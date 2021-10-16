@@ -2,7 +2,7 @@
 
 The idea is use CPP preprocessing instructions along with standard Linux CLI tools(bash,sed,grep) to geenrate a FIX decoder for a given venue.
 
-* No third party dependencies. All the geenrated code is yours and can go straight into your lib or app.
+* No third party dependencies. All the generated code is yours and can go straight into your lib or app.
 * Extremely lightweight and low latency FIX parsing with reusable memory and objects.
 * Repeating groups support.
 * You can strip off all useless sandard FIX tags to fit your venue specs.
