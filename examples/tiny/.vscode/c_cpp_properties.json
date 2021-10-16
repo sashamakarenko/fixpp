@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "includePath": [
+                "${default}",
+                "${workspaceFolder}/src",
+                "${workspaceFolder}/src/tiny"
+            ],
+            "defines": []
+        }
+    ],
+    "version": 4
+}

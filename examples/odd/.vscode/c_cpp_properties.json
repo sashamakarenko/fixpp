@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "includePath": [
+                "${default}",
+                "${workspaceFolder}/src",
+                "${workspaceFolder}/src/odd"
+            ],
+            "defines": []
+        }
+    ],
+    "version": 4
+}

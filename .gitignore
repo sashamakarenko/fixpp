@@ -1,0 +1,10 @@
+**/build
+**/src/gdb
+examples/tiny/src/tiny
+examples/odd/src/odd
+examples/fixdump/src/fixdump/fix*
+examples/tiny/mdfr.html
+target
+.settings
+.project
+.classpath

@@ -1,0 +1,82 @@
+
+FIX_MSG_BEGIN( Header, _ )
+FIX_MSG_FIELD( BeginString )
+FIX_MSG_FIELD( BodyLength )
+FIX_MSG_FIELD( MsgType )
+FIX_MSG_FIELD( SenderCompID )
+FIX_MSG_FIELD( TargetCompID )
+FIX_MSG_FIELD( MsgSeqNum )
+FIX_MSG_FIELD( SendingTime )
+FIX_MSG_END
+
+FIX_MSG_BEGIN( Heartbeat, HEARTBEAT )
+FIX_MSG_FIELD( TestReqID )
+FIX_MSG_END
+
+FIX_MSG_BEGIN( Logon, LOGON )
+FIX_MSG_FIELD( EncryptMethod )
+FIX_MSG_FIELD( HeartBtInt )
+FIX_MSG_FIELD( ResetSeqNumFlag )
+FIX_MSG_FIELD( Username )
+FIX_MSG_FIELD( Password )
+FIX_MSG_END
+
+FIX_MSG_BEGIN( Logout, LOGOUT )
+FIX_MSG_FIELD( Text )
+FIX_MSG_END
+
+FIX_MSG_BEGIN( ExecutionReport, EXECUTION_REPORT )
+FIX_MSG_FIELD( OrderID )
+FIX_MSG_FIELD( ClOrdID )
+FIX_MSG_FIELD( OrigClOrdID )
+FIX_MSG_FIELD( ExecID )
+FIX_MSG_FIELD( ExecType )
+FIX_MSG_FIELD( OrdStatus )
+FIX_MSG_FIELD( OrdRejReason )
+FIX_MSG_FIELD( Account )
+FIX_MSG_FIELD( Symbol )
+FIX_MSG_FIELD( SecurityID )
+FIX_MSG_FIELD( SecurityType )
+FIX_MSG_FIELD( Text )
+FIX_MSG_FIELD( Product )
+FIX_MSG_FIELD( Side )
+FIX_MSG_FIELD( QtyType )
+FIX_MSG_FIELD( OrderQty )
+FIX_MSG_FIELD( OrdType )
+FIX_MSG_FIELD( PriceType )
+FIX_MSG_FIELD( Price )
+FIX_MSG_FIELD( StopPx )
+FIX_MSG_FIELD( Currency )
+FIX_MSG_FIELD( TimeInForce )
+FIX_MSG_FIELD( ExecInst )
+FIX_MSG_FIELD( LastQty )
+FIX_MSG_FIELD( LastPx )
+FIX_MSG_FIELD( LeavesQty )
+FIX_MSG_FIELD( AvgPx )
+FIX_MSG_FIELD( CumQty )
+FIX_MSG_GROUP( Legs )
+FIX_MSG_END
+
+FIX_MSG_BEGIN( MarketDataSnapshotFullRefresh, MARKET_DATA_SNAPSHOT_FULL_REFRESH )
+FIX_MSG_FIELD( MDReqID )
+FIX_MSG_FIELD( Symbol )
+FIX_MSG_FIELD( SecurityType )
+FIX_MSG_GROUP( MDEntries )
+FIX_MSG_END
+
+FIX_MSG_BEGIN( MarketDataIncrementalRefresh, MARKET_DATA_INCREMENTAL_REFRESH )
+FIX_MSG_FIELD( MDReqID )
+FIX_MSG_GROUP( MDEntries )
+FIX_MSG_END
+
+FIX_MSG_BEGIN( SecurityDefinition, SECURITY_DEFINITION )
+FIX_MSG_FIELD( SecurityReqID )
+FIX_MSG_FIELD( Symbol )
+FIX_MSG_FIELD( SecurityID )
+FIX_MSG_FIELD( Product )
+FIX_MSG_FIELD( SecurityType )
+FIX_MSG_FIELD( Currency )
+FIX_MSG_FIELD( Text )
+FIX_MSG_GROUP( Legs )
+FIX_MSG_END
+

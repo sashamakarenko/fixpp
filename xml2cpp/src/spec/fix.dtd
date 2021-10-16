@@ -1,0 +1,82 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!--
+    TODO define vocabulary identification
+    PUBLIC ID: -//vendor//vocabulary//EN
+    SYSTEM ID: http://server/path/FIX44.dtd
+
+-->
+
+<!--
+    An example how to use this DTD from your XML document:
+
+    <?xml version="1.0"?>
+
+    <!DOCTYPE fix SYSTEM "FIX44.dtd">
+
+    <fix>
+    ...
+    </fix>
+-->
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT fix (header|messages|trailer|components|fields)*>
+<!ATTLIST fix
+    type CDATA #IMPLIED
+    major CDATA #IMPLIED
+    minor CDATA #IMPLIED
+    servicepack CDATA #IMPLIED
+  >
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT header (field|group)*>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT field (value)*>
+<!ATTLIST field
+    name CDATA #IMPLIED
+    required CDATA #IMPLIED
+    number CDATA #IMPLIED
+    type CDATA #IMPLIED
+  >
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT group (field|component)*>
+<!ATTLIST group
+    name CDATA #IMPLIED
+    required CDATA #IMPLIED
+  >
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT messages (message)*>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT message (field|component|group)*>
+<!ATTLIST message
+    name CDATA #IMPLIED
+    msgtype CDATA #IMPLIED
+    msgcat CDATA #IMPLIED
+  >
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT component (field|component|group)*>
+<!ATTLIST component
+    name CDATA #IMPLIED
+    required CDATA #IMPLIED
+  >
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT trailer (field)*>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT components (component)*>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT fields (field)*>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT value EMPTY>
+<!ATTLIST value
+    enum CDATA #IMPLIED
+    description CDATA #IMPLIED
+  >
