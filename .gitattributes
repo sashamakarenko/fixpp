@@ -1,1 +1,1 @@
-*.pp cpp
+*.pp linguist-language=c++ 
