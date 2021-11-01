@@ -1,12 +1,12 @@
-# fixpp stands for FIX decoder with C++ PreProcessor
+# fixpp stands for FIX decoder by C++ PreProcessor
 
-The idea is use CPP preprocessing instructions along with standard Linux CLI tools(bash,sed,grep) to geenrate a FIX decoder for a given venue.
+The idea is use CPP preprocessing instructions along with standard Linux CLI tools(bash,sed,grep) to generate a FIX decoder for a given venue.
 
 * No third party dependencies. All the generated code is yours and can go straight into your lib or app.
 * Extremely lightweight and low latency FIX parsing with reusable memory and objects.
 * Repeating groups support.
-* You can strip off all useless sandard FIX tags to fit your venue specs.
-* Flexible formating with available predefined TTY color styles.
+* You can strip off all useless standard FIX tags to fit your venue specs.
+* Flexible formatting with available predefined TTY color styles.
 * Pretty printing with GDB and VSCode.
 
 ![TTY formatting](images/exec-report-tty.png)
@@ -291,7 +291,7 @@ int main( int args, const char ** argv )
 
 ## Examples
 
-To comple the examples you wil have to clone the makefile project next to fixpp:
+To compile the examples you wil have to clone the makefile project next to fixpp:
 ```
 $> git clone https://github.com/sashamakarenko/makefile.git makefile
 $> git clone https://github.com/sashamakarenko/fixpp.git fixpp
