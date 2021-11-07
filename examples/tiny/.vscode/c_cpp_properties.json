@@ -5,7 +5,8 @@
             "includePath": [
                 "${default}",
                 "${workspaceFolder}/src",
-                "${workspaceFolder}/src/tiny"
+                "${workspaceFolder}/src/tiny",
+                "${workspaceFolder}/../../../../pe/src"
             ],
             "defines": []
         }

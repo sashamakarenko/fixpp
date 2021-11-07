@@ -10,7 +10,8 @@ ifneq ($(wildcard $(PE_PRJ_DIR)),)
     TestPerf_EXTRA_LINK_FLAGS := -L$(TestPerf_EXTRA_LD_PATH) -lpe-1.0
     TestPerf_EXTRA_DEPENDENCY := $(PE_PRJ_DIR)/build/lib/release/libpe-1.0.so
 else
-    $(warning TestPerf disbaled)
+    $(warning TestPerf disbaled: visit https://github.com/sashamakarenko/pe)
+    $(warning Next to fixpp: git clone https://github.com/sashamakarenko/pe.git pe)
     DISABLED_TESTS = Perf
 endif
 
