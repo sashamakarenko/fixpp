@@ -264,7 +264,7 @@ void Message##NAME::reset(){\
 #define FIX_MSG_FIELD(NAME) <t2> field##NAME.offset = -1;
 
 #define FIX_MSG_GROUP(NAME) \
-<t2> for( auto & g : groups##NAME ) g.reset();
+<t2> for( auto g = groups##NAME.begin(); g != groups##NAME.end() and g->getMessageBuffer(); ++g ) g->reset();
 
 #define FIX_MSG_END \
 <t2> fieldCheckSum.offset = -1;\
