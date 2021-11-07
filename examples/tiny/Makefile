@@ -3,6 +3,17 @@ PRJ_BRANCH  := 1.0
 PRJ_VERSION := $(PRJ_BRANCH).0
 PRJ_TYPE    := lib
 
+PE_PRJ_DIR := ../../../pe
+ifneq ($(wildcard $(PE_PRJ_DIR)),)
+    TestPerf_EXTRA_CPP_FLAGS  := -I$(PE_PRJ_DIR)/src
+    TestPerf_EXTRA_LD_PATH    := $(PE_PRJ_DIR)/build/lib/release
+    TestPerf_EXTRA_LINK_FLAGS := -L$(TestPerf_EXTRA_LD_PATH) -lpe-1.0
+    TestPerf_EXTRA_DEPENDENCY := $(PE_PRJ_DIR)/build/lib/release/libpe-1.0.so
+else
+    $(warning TestPerf disbaled)
+    DISABLED_TESTS = Perf
+endif
+
 include ../../../makefile/Makefile
 
 ifneq ($(MAKECMDGOALS),clean)
@@ -15,6 +26,9 @@ build/fixgenerated.mk: src/$(PRJ_NAME)/FixApi.h
 
 src/$(PRJ_NAME)/FixApi.h: $(wildcard src/spec/*.def)
 	$(V)../../generate.sh --clean-fields -d $$PWD/src/$(PRJ_NAME) -s $$PWD/src/spec -i $(PRJ_NAME) -n $(PRJ_NAME) -p $$PWD/src/gdb
+
+$(TestPerf_EXTRA_DEPENDENCY):
+	$(SUBMAKE) -C $(PE_PRJ_DIR)
 
 clean::
 	$(V)rm -rf src/gdb src/$(PRJ_NAME) mdfr.html
