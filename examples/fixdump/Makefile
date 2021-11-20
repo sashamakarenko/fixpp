@@ -20,8 +20,9 @@ build/fixgenerated.mk: $(foreach d,$(SRCSUBDIRS),src/$(PRJ_NAME)/$d/FixApi.h)
 
 
 src/$(PRJ_NAME)/%/FixApi.h: FIX_VERSION = $*
-src/$(PRJ_NAME)/%/FixApi.h: $(wildcard src/spec/%/*.def)
-	$(V)../../../fixpp/generate.sh -d $$PWD/src/$(PRJ_NAME)/$(FIX_VERSION) -s $$PWD/src/spec/$(FIX_VERSION) -i $(PRJ_NAME)/$(FIX_VERSION) -n $(PRJ_NAME)::$(FIX_VERSION)  -p $$PWD/src/gdb
+src/$(PRJ_NAME)/%/FixApi.h: $(wildcard ../spec/%/*.def)
+	$(V)../../../fixpp/generate.sh -d $$PWD/src/$(PRJ_NAME)/$(FIX_VERSION) -s $$PWD/../spec/$(FIX_VERSION) -i $(PRJ_NAME)/$(FIX_VERSION) -n $(PRJ_NAME)::$(FIX_VERSION)  -p $$PWD/src/gdb
+	$(V)sed "s/ fixppGetEnumName/ $(FIX_VERSION)_fixppGetEnumName/" -i src/$(PRJ_NAME)/$(FIX_VERSION)/Messages.cpp
 
 clean::
 	$(V)rm -rf $(foreach d,$(SRCSUBDIRS),src/$(PRJ_NAME)/$d) src/gdb/

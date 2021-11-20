@@ -1,4 +1,4 @@
-<com> Generated from __FILE__
+<com> Generated
 <com> -------------------------------------- getMessageName -------------------------------
 
 #define FIX_FIELD_BEGIN_STRING( STR )

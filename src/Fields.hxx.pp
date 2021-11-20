@@ -1,3 +1,4 @@
+<com> Generated
 <com> -------------------------------------- names ----------------------------------------
 
 #define FIX_FIELD_BEGIN_STRING( STR ) extern const std::string FixBeginStringValue;

@@ -60,6 +60,13 @@ if [[ -z ${DSTDIR} || -z ${DEFDIR} || -z ${DSTINCDIR} || -z ${DSTNAMESPACE} ]]; 
     usage
 fi
 
+# check files existance
+for f in $DEFDIR/Fields.def $DEFDIR/Messages.def $DEFDIR/Groups.def; do
+    if [[ ! -f $f ]]; then
+        echo "File not found $f" >&2
+        exit 1
+    fi
+done
 
 # collect fields
 used_fields=" $( sed -n -e 's/.*FIX_MSG_FIELD.*( *\(.*\) *).*/\1/gp' -e 's/FIX_MSG_GROUP_BEGIN.*( *\(.*\) *, *\(.*\) *).*/No\1\n\2/gp' $DEFDIR/Messages.def $DEFDIR/Groups.def | sort -u | tr \\n ' ' ) "

@@ -1,10 +1,10 @@
-
+<com> Generated
 
 #define FIX_FIELD_BEGIN_STRING( STR )
 
 #define FIX_MSG_BEGIN(NAME,TYPE) \
 class Message##NAME: public MessageBase\
-{\
+<nl>{\
 <n1><com>  Methods\
 <nl>\
 <n1>    public:\

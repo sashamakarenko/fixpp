@@ -1,6 +1,8 @@
+<com> Generated
 
 #define FIX_MSG_GROUP_BEGIN( NAME, FIRST_FIELD )\
-class Group##NAME : public MessageBase {\
+class Group##NAME : public MessageBase\
+<nl>{\
 <n1><com>  Methods\
 <n1>    public:\
 <n1>    Group##NAME();\

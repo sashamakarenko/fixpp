@@ -1,4 +1,4 @@
-<com> Generated from __FILE__
+<com> Generated
 <com> -------------------------------------- getMessageName -------------------------------
 
 #define FIX_MSG_GROUP_BEGIN( NAME, FIRST_FIELD )\
