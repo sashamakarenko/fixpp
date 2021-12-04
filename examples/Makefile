@@ -1,20 +1,9 @@
-
 DIRS := tiny odd fix44 fixdump
+RULES := all clean check recheck
+deps = $(foreach d,$(DIRS),$(1)-$(d))
 
-all: $(foreach d,$(DIRS),build-$(d))
+$(foreach r,$(RULES),$(eval $(r): $(call deps,$(r))))
 
-clean: $(foreach d,$(DIRS),clean-$(d))
+$(foreach r,$(RULES),$(r)-%):
+	@$(MAKE) --no-print-directory -C $* $(@:-$*=)
 
-check: $(foreach d,$(DIRS),check-$(d))
-
-build-%:
-	@echo "Building $*"
-	@$(MAKE) --no-print-directory -C $*
-
-check-%:
-	@echo "Cleaning $*"
-	@$(MAKE) --no-print-directory -C $* check
-
-clean-%:
-	@echo "Cleaning $*"
-	@$(MAKE) --no-print-directory -C $* clean
