@@ -17,7 +17,11 @@ else
     DISABLED_TESTS = Perf
 endif
 
-include ../../../makefile/Makefile
+-include ../../../makefile/Makefile
+
+../../../makefile/Makefile:
+	@echo "cloning makefile..."
+	@cd ../../..; git clone https://github.com/sashamakarenko/makefile.git makefile
 
 ifneq ($(MAKECMDGOALS),clean)
 -include build/fixgenerated.mk

@@ -5,7 +5,11 @@ PRJ_TYPE    := lib
 
 TARGET_EXTRA_DEPENDENCY = src/$(PRJ_NAME)/FixApi.h
 
-include ../../../makefile/Makefile
+-include ../../../makefile/Makefile
+
+../../../makefile/Makefile:
+	@echo "cloning makefile..."
+	@cd ../../..; git clone https://github.com/sashamakarenko/makefile.git makefile
 
 ifneq ($(MAKECMDGOALS),clean)
 -include build/fixgenerated.mk
