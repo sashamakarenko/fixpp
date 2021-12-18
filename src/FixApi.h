@@ -116,7 +116,7 @@ inline T parseYYYYMMDD( const char * ptr )
            T( ptr[6] ) * 10       + T( ptr[7] ) - dec_zeros<T,(T)8>();
 }
 
-// HH:MM:SS[.sssuuunnn]
+// HH:MM:SS[.mmmuuunnn]
 template< typename T = unsigned, typename NT = T >
 inline const char * parseTime( const char * ptr, T & hour, T & minute, T & second, NT & nanoseconds )
 {
@@ -127,7 +127,7 @@ inline const char * parseTime( const char * ptr, T & hour, T & minute, T & secon
     {
         // we trust the venue not to exceed 9 digits
         unsigned len = 0;
-        nanoseconds = parseUInt( ptr + 9, len );
+        nanoseconds = (NT)parseUInt( ptr + 9, len );
         nanoseconds *= (NT)uintPow10[ 9 - len ];
         return ptr + 9 + len;
     }
