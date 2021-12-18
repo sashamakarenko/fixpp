@@ -3,28 +3,28 @@
 #include <cstring>
 #include <sstream>
 #include <fstream>
+#include <ctime>
 
 using namespace tiny;
 
 int main( int args, const char ** argv )
 {
-    
     std::cout << "\n\n -- MessageExecutionReport --" << std::endl;
     MessageHeader header;
     offset_t pos = header.scan( FIX_BUFFER_EXEC_REPORT, strlen( FIX_BUFFER_EXEC_REPORT ) );
     MessageExecutionReport er;
     pos = er.scan( FIX_BUFFER_EXEC_REPORT + pos, strlen( FIX_BUFFER_EXEC_REPORT ) - pos );
-    std::cout << ' ' << FixOrdStatus << " = " << er.getOrdStatus() << " " << computeChecksum( FIX_BUFFER_EXEC_REPORT, er.ptrToCheckSum() ) 
+    std::cout << ' ' << FixOrdStatus << " = " << er.getOrdStatus() << " " << computeChecksum( FIX_BUFFER_EXEC_REPORT, er.ptrToCheckSum() )
               << " body length " <<  ( er.ptrToCheckSum() - header.ptrToMsgType() ) << std::endl;
-    
+
     std::cout << "\n\n -- MessageExecutionReport (large) --" << std::endl;
     header.reset();
     pos = header.scan( FIX_BUFFER_LARGE_EXEC_REPORT, strlen( FIX_BUFFER_LARGE_EXEC_REPORT ) );
     MessageExecutionReport ler;
     pos = ler.scan( FIX_BUFFER_LARGE_EXEC_REPORT + pos, strlen( FIX_BUFFER_LARGE_EXEC_REPORT ) - pos );
-    std::cout << ' ' << FixOrdStatus << " = " << ler.getOrdStatus() << " " << computeChecksum( FIX_BUFFER_LARGE_EXEC_REPORT, ler.ptrToCheckSum() ) 
+    std::cout << ' ' << FixOrdStatus << " = " << ler.getOrdStatus() << " " << computeChecksum( FIX_BUFFER_LARGE_EXEC_REPORT, ler.ptrToCheckSum() )
               << " body length " <<  ( ler.ptrToCheckSum() - header.ptrToMsgType() ) << std::endl;
-    
+
     std::cout << "- Price as double: " << ler.getPrice() << std::endl;
 
     for( auto tag : MessageExecutionReport::getKnownFields() )
@@ -70,10 +70,10 @@ int main( int args, const char ** argv )
     {
         std::cout << " MsgType = " << it->second->name << std::endl;
     }
-    std::cout << " sizeof(MessageMarketDataSnapshotFullRefresh)=" << sizeof(mdsfr) << " BodyLength=" << header.getBodyLength() << " SendingTime=" << header.getSendingTime() 
-              << " " << computeChecksum( FIX_BUFFER_MD_FULL_REFRESH, mdsfr.ptrToCheckSum() ) 
+    std::cout << " sizeof(MessageMarketDataSnapshotFullRefresh)=" << sizeof(mdsfr) << " BodyLength=" << header.getBodyLength() << " SendingTime=" << header.getSendingTime()
+              << " " << computeChecksum( FIX_BUFFER_MD_FULL_REFRESH, mdsfr.ptrToCheckSum() )
               << " body length " <<  ( mdsfr.ptrToCheckSum() - header.ptrToMsgType() ) << std::endl;
-    
+
     switch ( msgTypeRaw )
     {
         case MsgTypeRaw_EXECUTION_REPORT:
@@ -108,7 +108,6 @@ int main( int args, const char ** argv )
     std::cout << fixstr( FIX_BUFFER_EXEC_REPORT      , ttyRgbStyle ) << std::endl;
     std::cout << fixstr( FIX_BUFFER_LARGE_EXEC_REPORT, ttyRgbStyle ) << std::endl;
     std::cout << fixstr( FIX_BUFFER_MD_FULL_REFRESH  , ttyRgbStyle ) << std::endl;
-    
 
     std::cout << "\n\n -- MessageSecurityDefinition --" << std::endl;
     fix = FIX_BUFFER_SECURITY_DEFINITION;
@@ -124,7 +123,7 @@ int main( int args, const char ** argv )
         std::cout << " MsgType = " << it->second->name << std::endl;
     }
     std::cout << "BodyLength=" << header.getBodyLength()
-              << " " << computeChecksum( fix, secdef.ptrToCheckSum() ) 
+              << " " << computeChecksum( fix, secdef.ptrToCheckSum() )
               << " body length " <<  ( secdef.ptrToCheckSum() - header.ptrToMsgType() ) << std::endl;
 
     std::cout << fixstr( fix  , ttyRgbStyle ) << std::endl;

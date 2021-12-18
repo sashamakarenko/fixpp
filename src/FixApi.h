@@ -47,9 +47,99 @@ constexpr raw_tag_t tag_as_raw()
     return ( ( raw_tag_t('0') + K % 10U ) << ( 8 * ( tag_key_width(K) - 1 ) ) ) + tag_as_raw<K/10U>();    
 }
 
+namespace
+{
+constexpr static const unsigned uintPow10[] =
+{
+    1U,
+    10U,
+    100U,
+    1000U,
+    10000U,
+    100000U,
+    1000000U,
+    10000000U,
+    100000000U,
+    1000000000U
+};
+}
+
+// used to scan integers of type T
+template< typename T, T N >
+constexpr T dec_zeros()
+{
+    return ( dec_zeros<T,T(N-1)>() * T(10) ) + T( '0' );
+}
+
+template<>
+constexpr unsigned dec_zeros<unsigned,0U>()
+{
+    return 0U;
+}
+
+template<>
+constexpr int dec_zeros<int,0>()
+{
+    return 0;
+}
+
+template<>
+constexpr int64_t dec_zeros<int64_t,0L>()
+{
+    return 0L;
+}
+
+template<>
+constexpr uint64_t dec_zeros<uint64_t,0UL>()
+{
+    return 0UL;
+}
+
 unsigned parseUInt( const char * ptr, unsigned & len );
 
 double parseDouble( const char * ptr );
+
+template< typename T = unsigned >
+inline const char * parseYYYYMMDD( const char * ptr, T & year, T & month, T & day )
+{
+    year  = T( ptr[0] ) * 1000 + T( ptr[1] ) * 100 + T( ptr[2] ) * 10 + T( ptr[3] ) - dec_zeros<T,(T)4>();
+    month = T( ptr[4] ) * 10   + T( ptr[5] ) - dec_zeros<T,(T)2>();
+    day   = T( ptr[6] ) * 10   + T( ptr[7] ) - dec_zeros<T,(T)2>();
+    return ptr + 8;
+}
+
+template< typename T = unsigned >
+inline T parseYYYYMMDD( const char * ptr )
+{
+    return T( ptr[0] ) * 10000000 + T( ptr[1] ) * 1000000 + T( ptr[2] ) * 100000 + T( ptr[3] ) * 10000 +
+           T( ptr[4] ) * 1000     + T( ptr[5] ) * 100 +
+           T( ptr[6] ) * 10       + T( ptr[7] ) - dec_zeros<T,(T)8>();
+}
+
+// HH:MM:SS[.sssuuunnn]
+template< typename T = unsigned, typename NT = T >
+inline const char * parseTime( const char * ptr, T & hour, T & minute, T & second, NT & nanoseconds )
+{
+    hour   = T( ptr[0] ) * 10   + T( ptr[1] ) - dec_zeros<T,(T)2>();
+    minute = T( ptr[3] ) * 10   + T( ptr[4] ) - dec_zeros<T,(T)2>();
+    second = T( ptr[6] ) * 10   + T( ptr[7] ) - dec_zeros<T,(T)2>();
+    if( ptr[8] == '.' )
+    {
+        // we trust the venue not to exceed 9 digits
+        unsigned len = 0;
+        nanoseconds = parseUInt( ptr + 9, len );
+        nanoseconds *= (NT)uintPow10[ 9 - len ];
+        return ptr + 9 + len;
+    }
+    nanoseconds = 0;
+    return ptr + 8;
+}
+
+template< typename T = unsigned, typename NT = T >
+inline const char * parseTimestamp( const char * ptr, T & year, T & month, T & day, T & hour, T & minute, T & second, NT & nanoseconds )
+{
+    return parseTime( parseYYYYMMDD( ptr, year, month, day ) + 1, hour, minute, second, nanoseconds );
+}
 
 // FIXPP_SOH terminated string
 struct sohstr
