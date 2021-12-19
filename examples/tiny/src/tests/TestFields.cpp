@@ -27,11 +27,41 @@ int main( int args, const char ** argv )
     std::cout << "SendingTime: " << yyyy << "/" << mm << "/" << dd << "-"
               << hour << ":" << minute << ":" << second << "." << nanos << std::endl;
 
+    {
+    unsigned short yyyy, mm, dd;
+    const char *timeptr = parseYYYYMMDD( header.ptrToSendingTime(), yyyy, mm, dd ) + 1;
+    unsigned short hour, minute, second;
+    parseTime( timeptr, hour, minute, second, nanos );
+    std::cout << "SendingTime ushort: " << yyyymmdd << " = " << yyyy << "/" << mm << "/" << dd << "-"
+              << hour << ":" << minute << ":" << second << "." << nanos << std::endl;
+
+    }
+
+    {
+    short yyyy, mm, dd;
+    const char *timeptr = parseYYYYMMDD( header.ptrToSendingTime(), yyyy, mm, dd ) + 1;
+    short hour, minute, second;
+    parseTime( timeptr, hour, minute, second, nanos );
+    std::cout << "SendingTime  short: " << yyyymmdd << " = " << yyyy << "/" << mm << "/" << dd << "-"
+              << hour << ":" << minute << ":" << second << "." << nanos << std::endl;
+
+    }
+
+    {
+    uint64_t yyyy, mm, dd;
+    const char *timeptr = parseYYYYMMDD( header.ptrToSendingTime(), yyyy, mm, dd ) + 1;
+    uint64_t hour, minute, second, nanos;
+    parseTime( timeptr, hour, minute, second, nanos );
+    std::cout << "SendingTime  u64: " << yyyymmdd << " = " << yyyy << "/" << mm << "/" << dd << "-"
+              << hour << ":" << minute << ":" << second << "." << nanos << std::endl;
+
+    }
+
     std::tm tm = {};
     parseTimestamp( header.ptrToSendingTime(), tm.tm_year, tm.tm_mon, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec, nanos );
     tm.tm_year -= 1900;
     tm.tm_mon  -= 1;
-    std::cout << "SendingTime: " << std::asctime(&tm) << std::endl;
+    std::cout << "SendingTime tm: " << std::asctime(&tm) << std::endl;
 
     timeptr = "12:34:56";
     parseTime( timeptr, hour, minute, second, nanos );

@@ -17,6 +17,8 @@ else
     DISABLED_TESTS = Perf
 endif
 
+CPP_EXTRA_FLAGS = -flto
+
 -include ../../../makefile/Makefile
 
 ../../../makefile/Makefile:

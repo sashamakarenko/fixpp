@@ -72,6 +72,18 @@ constexpr T dec_zeros()
 }
 
 template<>
+constexpr unsigned short dec_zeros<unsigned short,0U>()
+{
+    return 0U;
+}
+
+template<>
+constexpr short dec_zeros<short,0>()
+{
+    return 0;
+}
+
+template<>
 constexpr unsigned dec_zeros<unsigned,0U>()
 {
     return 0U;
