@@ -16,6 +16,9 @@ namespace DSTNAMESPACE
 // use uint32 if all tags < 10000
 typedef uint64_t raw_tag_t;
 
+// raw tag surrounded by SOH and =
+typedef uint64_t insertable_tag_t;
+
 // use 64bits if your venue has wider enum values
 // typedef uint64_t raw_enum_t;
 typedef uint32_t raw_enum_t;
@@ -45,6 +48,14 @@ constexpr raw_tag_t tag_as_raw()
     }
 
     return ( ( raw_tag_t('0') + K % 10U ) << ( 8 * ( tag_key_width(K) - 1 ) ) ) + tag_as_raw<K/10U>();
+}
+
+
+// as uint64_t * pointing to "\001" "TAG" "="
+template< unsigned K >
+constexpr insertable_tag_t tag_as_insertable()
+{
+    return ( insertable_tag_t('=') << ( 8 * ( tag_key_width(K) + 1 ) ) ) + ( insertable_tag_t(tag_as_raw<K>()) << 8 ) + 1;
 }
 
 namespace
@@ -499,13 +510,14 @@ struct Field: FieldBase
 
     static constexpr raw_tag_t RAW = tag_as_raw<K>();
     static constexpr unsigned  KEY = K;
+    static constexpr insertable_tag_t INSERTABLE_TAG = tag_as_insertable<K>();
 
     static constexpr const char * tagName()
     {
         return N;
     }
 
-    static constexpr unsigned tagKey()
+    static constexpr unsigned tagKey() 
     {
         return K;
     }

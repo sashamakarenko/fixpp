@@ -165,6 +165,9 @@ sed -n /Header/,/FIX_MSG_END/p ${DEFDIR}/Messages.def | grep FIX_MSG_FIELD | sed
 dst=${DSTDIR}/Fields.hxx
 echo "  generating MsgType enums"
 
+BeginStr=$( sed -n /FIX_FIELD_BEGIN_STRING/p ${DEFDIR}/Fields.def | sed -e 's/FIX_FIELD_BEGIN_STRING.*(\(.*\)).*/\1/' -e 's/ //' )
+sed "s/BEGIN_STRING_LENGTH/$((${#BeginStr}+1))/" -i $dst
+
 {
 echo
 echo "constexpr raw_enum_t MsgTypeRaw__ = (raw_enum_t)0; // Header"
