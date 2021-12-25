@@ -12,7 +12,7 @@ namespace fix44
 {
 
 // ------------------------------ primitives -----------------------------
-    
+
 // use uint32 if all tags < 10000
 typedef uint64_t raw_tag_t;
 
@@ -43,25 +43,52 @@ constexpr raw_tag_t tag_as_raw()
     {
         return K + raw_tag_t('0');
     }
-    
-    return ( ( raw_tag_t('0') + K % 10U ) << ( 8 * ( tag_key_width(K) - 1 ) ) ) + tag_as_raw<K/10U>();    
+
+    return ( ( raw_tag_t('0') + K % 10U ) << ( 8 * ( tag_key_width(K) - 1 ) ) ) + tag_as_raw<K/10U>();
 }
 
 namespace
 {
-constexpr static const unsigned uintPow10[] =
+
+constexpr static const uint64_t uintPow10[] =
 {
     1U,
     10U,
     100U,
     1000U,
-    10000U,
-    100000U,
-    1000000U,
-    10000000U,
-    100000000U,
-    1000000000U
+    1000'0U,
+    1000'00U,
+    1000'000U,
+    1000'000'0U,
+    1000'000'00U,
+    1000'000'000U,
+    1000'000'000'0U,
+    1000'000'000'00U,
+    1000'000'000'000U,
 };
+
+constexpr static const double div10Pow[] =
+{
+    1,
+    0.1,
+    0.01,
+    0.001,
+    0.0001,
+    0.00001,
+    0.000001,
+    0.0000001,
+    0.00000001,
+    0.000000001,
+    0.0000000001,
+    0.00000000001
+};
+
+// valid for FIX only
+constexpr bool isNotDecDigit( char c )
+{
+    return c < '0';
+}
+
 }
 
 // used to scan integers of type T
@@ -107,9 +134,99 @@ constexpr uint64_t dec_zeros<uint64_t,0UL>()
     return 0UL;
 }
 
-unsigned parseUInt( const char * ptr, unsigned & len );
+template< typename T = unsigned >
+inline T parseUInt( const char * ptr, unsigned & len )
+{
+    if( isNotDecDigit( ptr[0] ) )
+    {
+        return 0;
+    }
+    if( isNotDecDigit( ptr[1] ) )
+    {
+        len += 1;
+        return T( ptr[0] ) - dec_zeros<T,T(1)>();
+    }
+    if( isNotDecDigit( ptr[2] ) )
+    {
+        len += 2;
+        return T( ptr[0] ) * 10 + T( ptr[1] ) - dec_zeros<T,T(2)>();
+    }
+    if( isNotDecDigit( ptr[3] ) )
+    {
+        len += 3;
+        return T( ptr[0] ) * 100 + T( ptr[1] ) * 10 + T( ptr[2] ) - dec_zeros<T,T(3)>();
+    }
+    if( isNotDecDigit( ptr[4] ) )
+    {
+        len += 4;
+        return T( ptr[0] ) * 1000 +
+               T( ptr[1] ) * 100 +
+               T( ptr[2] ) * 10 +
+               T( ptr[3] ) - dec_zeros<T,T(4)>();
+    }
+    if( isNotDecDigit( ptr[5] ) )
+    {
+        len += 5;
+        return T( ptr[0] ) * 10000 +
+               T( ptr[1] ) * 1000 +
+               T( ptr[2] ) * 100 +
+               T( ptr[3] ) * 10 +
+               T( ptr[4] ) - dec_zeros<T,T(5)>();
+    }
+    if( isNotDecDigit( ptr[6] ) )
+    {
+        len += 6;
+        return T( ptr[0] ) * 100000 +
+               T( ptr[1] ) * 10000 +
+               T( ptr[2] ) * 1000 +
+               T( ptr[3] ) * 100 +
+               T( ptr[4] ) * 10 +
+               T( ptr[5] ) - dec_zeros<T,T(6)>();
+    }
+    if( isNotDecDigit( ptr[7] ) )
+    {
+        len += 7;
+        return T( ptr[0] ) * 1000000 +
+               T( ptr[1] ) * 100000 +
+               T( ptr[2] ) * 10000 +
+               T( ptr[3] ) * 1000 +
+               T( ptr[4] ) * 100 +
+               T( ptr[5] ) * 10 +
+               T( ptr[6] ) - dec_zeros<T,T(7)>();
+    }
+    T tmp =    T( ptr[0] ) * 10000000 +
+               T( ptr[1] ) * 1000000 +
+               T( ptr[2] ) * 100000 +
+               T( ptr[3] ) * 10000 +
+               T( ptr[4] ) * 1000 +
+               T( ptr[5] ) * 100 +
+               T( ptr[6] ) * 10 +
+               T( ptr[7] ) - dec_zeros<T,T(8)>();
+    if( isNotDecDigit( ptr[8] ) )
+    {
+        len += 8;
+        return tmp;
+    }
 
-double parseDouble( const char * ptr );
+    unsigned tmplen = 0;
+    T next = parseUInt<T>( ptr + 8, tmplen );
+    len += tmplen + 8;
+    return tmp * (T)uintPow10[ tmplen ] + next;
+}
+
+inline double parseDouble( const char * ptr )
+{
+    unsigned intlen = 0;
+    unsigned integer = parseUInt( ptr, intlen );
+    double mantissa = 0.0;
+    if( ptr[intlen] == '.' )
+    {
+        unsigned mantissaLength = 0;
+        mantissa = parseUInt( ptr + intlen + 1, mantissaLength );
+        mantissa *= div10Pow[ mantissaLength ];
+    }
+    return (double)integer + mantissa;
+}
 
 template< typename T = unsigned >
 inline const char * parseYYYYMMDD( const char * ptr, T & year, T & month, T & day )
@@ -308,7 +425,7 @@ inline raw_enum_t toRawEnum( int i )
     {
         return u + raw_enum_t('0');
     }
-    return ( ( raw_enum_t('0') + u % 10U ) << ( 8 * ( tag_key_width(u) - 1 ) ) ) + toRawEnum( i/10 );    
+    return ( ( raw_enum_t('0') + u % 10U ) << ( 8 * ( tag_key_width(u) - 1 ) ) ) + toRawEnum( i/10 );
 }
 
 
@@ -332,7 +449,7 @@ inline raw_enum_t toRawEnum( const sohstr & str )
 
 struct FieldEnumBase
 {
-    FieldEnumBase( const char * const n, raw_enum_t r ): name{n}, raw{r} 
+    FieldEnumBase( const char * const n, raw_enum_t r ): name{n}, raw{r}
     {
     }
     const char * const name;
@@ -348,20 +465,20 @@ struct FieldEnum: FieldEnumBase
     const ValueType value;
 };
 
-typedef std::map< raw_enum_t, const FieldEnumBase * > FieldEnumMap; 
+typedef std::map< raw_enum_t, const FieldEnumBase * > FieldEnumMap;
 
 struct FieldEnumsBase
 {
     virtual ~FieldEnumsBase(){}
-    
+
     virtual const char * getFieldName() const = 0;
-    
+
     virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const = 0;
-    
+
     virtual const FieldEnumMap & getEnumMapByRaw() const = 0;
 
     virtual const FieldEnumBase * const * const getEnums() const = 0;
-    
+
     const char * getEnumNameByRaw( raw_enum_t raw ) const
     {
         const FieldEnumBase * e = getEnumByRaw(raw);
@@ -379,10 +496,10 @@ template< const char * const & N, unsigned K, typename Type >
 struct Field: FieldBase
 {
     typedef Type ValueType;
-    
+
     static constexpr raw_tag_t RAW = tag_as_raw<K>();
     static constexpr unsigned  KEY = K;
-    
+
     static constexpr const char * tagName()
     {
         return N;
@@ -392,22 +509,22 @@ struct Field: FieldBase
     {
         return K;
     }
-    
+
     static constexpr unsigned tagWidth()
     {
         return tag_key_width(K);
     }
-    
+
     ValueType getValue( const char * buf ) const
     {
         return fromString<ValueType>( buf + offset );
     }
-    
+
     unsigned getValueOffset() const
     {
         return tagWidth() + 1;
     }
-    
+
     typedef FieldEnum<ValueType> EnumType;
     static const FieldEnumBase * const * enumItems;
 };
@@ -441,7 +558,7 @@ inline raw_tag_t nextRawTag( const char * ptr, offset_t & pos )
         pos += 6;
         return value & 0xff'ff'ff'ff'ff;
     }
-    
+
     return 0;
 }
 
@@ -458,12 +575,12 @@ struct FieldInfo
     const char * const tagName;
     const FieldEnumBase * const * enumItems;
 };
-template<typename MsgType> 
+template<typename MsgType>
 class iterator
 {
-    public: 
+    public:
         iterator( const MsgType & msg ): _msg{msg}, _field{0} {}
-        
+
     private:
         const MsgType & _msg;
         unsigned        _field;
