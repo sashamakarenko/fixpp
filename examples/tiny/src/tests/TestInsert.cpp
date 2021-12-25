@@ -17,11 +17,6 @@ inline char * insert<FieldBeginString>( char * p )
     return p + FixBeginStringInsertableTagLength;
 }
 
-template< typename FIELD >
-struct StreamTag
-{
-};
-
 struct MessageBuilder
 {
     MessageBuilder( char * buf, int endOffest = 0 ): begin{buf}, end{buf+ endOffest} {}
@@ -39,11 +34,24 @@ struct MessageBuilder
         return *this;
     }
 
-    template< typename FIELD, typename VALUE >
-    MessageBuilder & field( const VALUE & v, unsigned len = 0 )
+    MessageBuilder & value( const int & v )
+    {
+        value( "todo-int", 8 );
+        return *this;
+    }
+
+    template< typename FIELD >
+    MessageBuilder & field( const char * v, unsigned len )
     {
         end = insert<FIELD>(end);
         return value( v, len );
+    }
+
+    template< typename FIELD, typename VALUE >
+    MessageBuilder & field( const VALUE & v )
+    {
+        end = insert<FIELD>(end);
+        return value( v );
     }
 
     char * begin;
@@ -62,7 +70,7 @@ int main( int args, const char ** argv )
     std::cout << buf << "\n";
 
     MessageBuilder mb( buf );
-    mb.tag<FieldBeginString>().tag<FieldBodyLength>().field<FieldAccount>( "trader", 6 );
+    mb.tag<FieldBeginString>().tag<FieldBodyLength>().field<FieldAccount>( "trader", 6 ).field<FieldNoLegs>(679);
     *mb.end = 0;
     std::cout << buf << "\n";
 
