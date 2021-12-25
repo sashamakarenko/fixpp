@@ -1,1 +1,2 @@
 *.pp linguist-language=c++ 
+*.def linguist-language=c++ 
