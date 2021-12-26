@@ -7,6 +7,9 @@ using namespace tiny;
 
 constexpr bool is_less(unsigned l, unsigned r){ return l < r; }
 
+// in below inserts we admit 1 byte overflow which is supposed to be overwritten by the value
+
+// "\1" "1="
 // "\1" "12="
 template< typename FIELD, std::enable_if_t< is_less(FIELD::INSERTABLE_TAG_WIDTH,5), int > = 0 >
 inline char * insert( char * p )
@@ -91,9 +94,24 @@ inline int smallUintWidth( unsigned value )
     return 7;
 }
 
+inline char * reverseUIntToString( char * ptr, unsigned value )
+{
+    unsigned mod10 = value % 10;
+    do
+    {
+        *(--ptr) = '0' + mod10;
+        value /= 10;
+        mod10 = value % 10;
+    } while ( value > 0 );
+    return ptr;
+}
+
 //  begin    start                msgType                                    sendingTime                  body
-//  |        |                    |                                          |                            | 
+//  |        |                    |                                          |                            |
 //  "..."   "8=FIX.4.4" I "9=315" I "35=W" I "49=foo" I "56=bar" I "34=1234" I "52=20190101-01:01:01.000" I "..."
+//           ----------------     -------------------------------------                 --------========
+//                                precompute per session and msg type
+//                                and insert as a single memcpy only if seqnum width changes
 struct MessageBuilder
 {
     MessageBuilder( char * buf, int endOffest = 0 ): begin{buf}, end{buf+ endOffest} {}
@@ -174,7 +192,19 @@ int main( int args, const char ** argv )
     CHECK( 9999999, smallUintWidth(9999999), == 7 )
 
     char buf[1024];
-    char * p = buf;
+    buf[10] = 0;
+    CHECK( 0, std::string_view( reverseUIntToString( buf + 10, 0 ) ), == "0" );
+    CHECK( 1, std::string_view( reverseUIntToString( buf + 10, 1 ) ), == "1" );
+    CHECK( 12, std::string_view( reverseUIntToString( buf + 10, 12 ) ), == "12" );
+    CHECK( 120, std::string_view( reverseUIntToString( buf + 10, 120 ) ), == "120" );
+    CHECK( 123456, std::string_view( reverseUIntToString( buf + 10, 123456 ) ), == "123456" );
+
+    buf[20] = 0;
+    char * p = reverseUIntToString( buf + 20, 120 ) - FieldMsgSeqNum::INSERTABLE_TAG_WIDTH;
+    insert<FieldMsgSeqNum>(p);
+    std::cout << p << "\n";
+
+    p = buf;
     p = insert<FieldBeginString>(p);
     p = insert<FieldMsgType>(p);
     p = insert<FieldAccount>(p);
