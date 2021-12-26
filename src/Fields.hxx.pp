@@ -2,7 +2,7 @@
 <com> -------------------------------------- names ----------------------------------------
 
 #define FIX_FIELD_BEGIN_STRING( STR ) extern const std::string FixBeginStringValue; \
-<nl>constexpr const char * const FixBeginStringInsertableTag = "8=" #STR "\1"; \
+<nl>constexpr const char * const FixBeginStringInsertableTag = "8=" #STR; \
 <nl>constexpr const unsigned FixBeginStringInsertableTagLength = BEGIN_STRING_LENGTH; \
 
 #define FIX_ENUM_BEGIN( NAME )

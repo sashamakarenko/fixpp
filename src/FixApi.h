@@ -508,9 +508,11 @@ struct Field: FieldBase
 {
     typedef Type ValueType;
 
-    static constexpr raw_tag_t RAW = tag_as_raw<K>();
-    static constexpr unsigned  KEY = K;
+    static constexpr raw_tag_t        RAW = tag_as_raw<K>();
+    static constexpr unsigned         TAG_WIDTH = tag_key_width(K);
+    static constexpr unsigned         KEY = K;
     static constexpr insertable_tag_t INSERTABLE_TAG = tag_as_insertable<K>();
+    static constexpr unsigned         INSERTABLE_TAG_WIDTH = TAG_WIDTH + 2; // SOH + '='
 
     static constexpr const char * tagName()
     {
