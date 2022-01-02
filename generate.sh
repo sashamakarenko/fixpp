@@ -156,6 +156,9 @@ for cpp in $mydir/src/*.h $mydir/src/*.cpp; do
         $cpp > $dst
 done
 
+# Fixing Heaader getMessageType
+sed "s/MsgTypeEnums::_.str/EMPTY_STRING/" -i ${DSTDIR}/Messages.cxx
+
 # Extract header fields
 dst=${DSTDIR}/Header.cxx
 echo "  generating $dst"

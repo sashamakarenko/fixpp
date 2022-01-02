@@ -9,12 +9,16 @@ ifneq ($(wildcard $(PE_PRJ_DIR)),)
     TestPerf_EXTRA_LD_PATH    := $(PE_PRJ_DIR)/build/lib/release
     TestPerf_EXTRA_LINK_FLAGS := -L$(TestPerf_EXTRA_LD_PATH) -lpe-1.0
     TestPerf_EXTRA_DEPENDENCY := $(PE_PRJ_DIR)/build/lib/release/libpe-1.0.so
+    TestSenderPerf_EXTRA_CPP_FLAGS  := $(TestPerf_EXTRA_CPP_FLAGS)
+    TestSenderPerf_EXTRA_LD_PATH    := $(TestPerf_EXTRA_LD_PATH)
+    TestSenderPerf_EXTRA_LINK_FLAGS := $(TestPerf_EXTRA_LINK_FLAGS)
+    TestSenderPerf_EXTRA_DEPENDENCY := $(TestPerf_EXTRA_DEPENDENCY)
 else
     ifneq ($(findstring test-,$(MAKECMDGOALS))$(findstring check,$(MAKECMDGOALS)),)
         $(warning TestPerf disbaled: visit https://github.com/sashamakarenko/pe)
         $(warning Next to fixpp: git clone https://github.com/sashamakarenko/pe.git pe)
     endif
-    DISABLED_TESTS = Perf
+    DISABLED_TESTS = Perf SenderPerf
 endif
 
 CPP_EXTRA_FLAGS = -flto

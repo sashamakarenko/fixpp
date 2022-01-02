@@ -9,6 +9,7 @@ class Message##NAME: public MessageBase\
 <nl>\
 <n1>    public:\
 <n1>    static const char * getMessageName();\
+<n1>    static const std::string & getMessageType();\
 <n1>    offset_t scan( const char * fix, unsigned len );\
 <n1>    offset_t skip( const char * fix, unsigned len ) const;\
 <n1>    void reset();\

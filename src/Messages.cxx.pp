@@ -1,11 +1,17 @@
 <com> Generated
-<com> -------------------------------------- getMessageName -------------------------------
+<com> -------------------------- getMessageName getMessageType -------------------------
+
+const std::string EMPTY_STRING;
 
 #define FIX_FIELD_BEGIN_STRING( STR )
 
 #define FIX_MSG_BEGIN(NAME,TYPE) \
 const char * Message##NAME::getMessageName(){\
 <n2> return #NAME;\
+<nl>}\
+<nl>\
+<nl>const std::string & Message##NAME::getMessageType(){\
+<n2> return MsgTypeEnums::TYPE.str;\
 <nl>}
 
 #define FIX_MSG_FIELD(NAME)

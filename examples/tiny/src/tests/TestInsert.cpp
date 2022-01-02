@@ -1,161 +1,12 @@
-#include <tiny/Fields.h>
-#include <cstring>
-#include <type_traits>
+#include <tiny/SenderApi.h>
 #include "Helper.h"
 
 using namespace tiny;
 
-constexpr bool is_less(unsigned l, unsigned r){ return l < r; }
-
-// in below inserts we admit 1 byte overflow which is supposed to be overwritten by the value
-
-// "\1" "1="
-// "\1" "12="
-template< typename FIELD, std::enable_if_t< is_less(FIELD::INSERTABLE_TAG_WIDTH,5), int > = 0 >
-inline char * insert( char * p )
-{
-    *reinterpret_cast<uint32_t*>(p) = (uint32_t)FIELD::INSERTABLE_TAG;
-    return p + FIELD::INSERTABLE_TAG_WIDTH;
-}
-
-// "\1" "123= " 5
-// "\1" "1234= " 6
-template< typename FIELD, std::enable_if_t< FIELD::INSERTABLE_TAG_WIDTH == 5 or FIELD::INSERTABLE_TAG_WIDTH == 6, int > = 0 >
-inline char * insert( char * p )
-{
-    *reinterpret_cast<uint32_t*>(p)   = (uint32_t)FIELD::INSERTABLE_TAG;
-    *reinterpret_cast<uint16_t*>(p+4) = (uint16_t)(FIELD::INSERTABLE_TAG>>32);
-    return p + FIELD::INSERTABLE_TAG_WIDTH;
-}
-
-// "\1" "12345= " 7
-template< typename FIELD, std::enable_if_t< is_less(6,FIELD::INSERTABLE_TAG_WIDTH), int > = 0 >
-inline char * insert( char * p )
-{
-    *reinterpret_cast<insertable_tag_t*>(p) = FIELD::INSERTABLE_TAG;
-    return p + FIELD::INSERTABLE_TAG_WIDTH;
-}
-
-template<>
-inline char * insert<FieldBeginString>( char * p )
-{
-    memcpy( p, FixBeginStringInsertableTag, FixBeginStringInsertableTagLength );
-    return p + FixBeginStringInsertableTagLength;
-}
-
-inline int uintWidth( unsigned value )
-{
-    if( value < 1000U )
-    {
-        if( value < 100U )
-        {
-            return value < 10U ? 1 : 2;
-        }
-        return 3;
-    }
-    else if( value < 1000'000U )
-    {
-        if( value < 10'000U )
-        {
-            return 4;
-        }
-        return value < 100'000U ? 5 : 6;
-    }
-    else if( value < 1000'000'000U )
-    {
-        if( value < 10'000'000U )
-        {
-            return 7;
-        }
-        return value < 100'000'000U ? 8 : 9;
-    }
-    return 10;
-}
-
-// suitable for seqnums and message length
-inline int smallUintWidth( unsigned value )
-{
-    if( value < 1000U )
-    {
-        if( value >= 100U )
-        {
-            return 3;
-        }
-        return value < 10U ? 1 : 2;
-    }
-    else if( value < 10'000U )
-    {
-        return 4;
-    }
-    else if( value < 1000'000U )
-    {
-        return value < 100'000U ? 5 : 6;
-    }
-    return 7;
-}
-
-inline char * reverseUIntToString( char * ptr, unsigned value )
-{
-    unsigned mod10 = value % 10;
-    do
-    {
-        *(--ptr) = '0' + mod10;
-        value /= 10;
-        mod10 = value % 10;
-    } while ( value > 0 );
-    return ptr;
-}
-
-//  begin    start                msgType                                    sendingTime                  body
-//  |        |                    |                                          |                            |
-//  "..."   "8=FIX.4.4" I "9=315" I "35=W" I "49=foo" I "56=bar" I "34=1234" I "52=20190101-01:01:01.000" I "..."
-//           ----------------     -------------------------------------                 --------========
-//                                precompute per session and msg type
-//                                and insert as a single memcpy only if seqnum width changes
-struct MessageBuilder
-{
-    MessageBuilder( char * buf, int endOffest = 0 ): begin{buf}, end{buf+ endOffest} {}
-
-    template< typename FIELD >
-    MessageBuilder & tag()
-    {
-        end = insert<FIELD>(end); return *this;
-    }
-
-    MessageBuilder & value( const char * src, unsigned len )
-    {
-        memcpy( end, src, len );
-        end += len;
-        return *this;
-    }
-
-    MessageBuilder & value( const int & v )
-    {
-        value( "todo-int", 8 );
-        return *this;
-    }
-
-    template< typename FIELD >
-    MessageBuilder & field( const char * v, unsigned len )
-    {
-        end = insert<FIELD>(end);
-        return value( v, len );
-    }
-
-    template< typename FIELD, typename VALUE >
-    MessageBuilder & field( const VALUE & v )
-    {
-        end = insert<FIELD>(end);
-        return value( v );
-    }
-
-    char * begin;
-    char * end;
-    char * start;
-};
-
 int main( int args, const char ** argv )
 {
+    using namespace std::chrono_literals;
+
     CHECK( 0, uintWidth(0), == 1 )
     CHECK( 9, uintWidth(9), == 1 )
     CHECK( 10, uintWidth(10), == 2 )
@@ -212,10 +63,12 @@ int main( int args, const char ** argv )
     *p = 0;
     std::cout << buf << "\n";
 
-    MessageBuilder mb( buf );
-    mb.tag<FieldBeginString>().tag<FieldBodyLength>().field<FieldAccount>( "trader", 6 ).field<FieldNoLegs>(679);
-    *mb.end = 0;
+    FixBufferStream fixstr( buf );
+    fixstr.pushTag<FieldBeginString>().pushTag<FieldBodyLength>().append<FieldAccount>( "trader", 6 ).append<FieldNoLegs>(679);
+    *fixstr.end = 0;
     std::cout << buf << "\n";
+
+    std::cout << MessageExecutionReport::getMessageName() << " " << MessageExecutionReport::getMessageType() << "\n";
 
     return 0;
 }

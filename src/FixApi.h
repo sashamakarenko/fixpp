@@ -414,6 +414,20 @@ inline void gotoNextField( const char * fix, offset_t & pos )
     } while( true );
 }
 
+template<typename V>
+inline std::string toString( const V & value )
+{
+    return std::to_string(value);
+}
+
+template<>
+inline std::string toString<sohstr>( const sohstr & value )
+{
+    offset_t pos = 0;
+    gotoNextField( value.ptr, pos );
+    return std::string( value.ptr, (size_t)pos-1 );
+}
+
 inline unsigned copyRawEnum( const char * from, char * to )
 {
     unsigned len = 0;
@@ -460,17 +474,18 @@ inline raw_enum_t toRawEnum( const sohstr & str )
 
 struct FieldEnumBase
 {
-    FieldEnumBase( const char * const n, raw_enum_t r ): name{n}, raw{r}
+    FieldEnumBase( const char * const n, raw_enum_t r, std::string s ): name{n}, raw{r}, str{s}
     {
     }
     const char * const name;
     const raw_enum_t   raw;
+    const std::string  str;
 };
 
 template<typename ValueType>
 struct FieldEnum: FieldEnumBase
 {
-    FieldEnum( const char * const name, ValueType v ): FieldEnumBase{ name, toRawEnum(v) }, value{v}
+    FieldEnum( const char * const name, ValueType v ): FieldEnumBase{ name, toRawEnum(v), toString(v) }, value{v}
     {
     }
     const ValueType value;
@@ -581,25 +596,6 @@ struct MessageBase
     protected: const char * buf = nullptr;
     public: const char * getMessageBuffer() const { return buf; }
 };
-
-/*
-struct FieldInfo
-{
-    const unsigned tagKey;
-    const char * const tagName;
-    const FieldEnumBase * const * enumItems;
-};
-template<typename MsgType>
-class iterator
-{
-    public:
-        iterator( const MsgType & msg ): _msg{msg}, _field{0} {}
-
-    private:
-        const MsgType & _msg;
-        unsigned        _field;
-};
-*/
 
 typedef unsigned   AMT;
 typedef char       BOOLEAN;

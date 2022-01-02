@@ -2,12 +2,18 @@
 
 The idea is use CPP preprocessing instructions along with standard Linux CLI tools(bash,sed,grep) to generate a FIX decoder for a given venue.
 
+Receiving:
+
 * No third party dependencies. All the generated code is yours and can go straight into your lib or app.
 * Extremely lightweight and low latency FIX parsing with reusable memory and objects.
 * Repeating groups support.
 * You can strip off all useless standard FIX tags to fit your venue specs.
 * Flexible formatting with available predefined TTY color styles.
 * Pretty printing with GDB and VSCode.
+
+Sending:
+
+* todo
 
 ![TTY formatting](images/exec-report-tty.png)
 ![GDB pretty printing in VSCode](images/exec-report-vscode.png)
