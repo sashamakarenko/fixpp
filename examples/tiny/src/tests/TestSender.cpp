@@ -7,10 +7,10 @@ int main( int args, const char ** argv )
 {
     using namespace std::chrono_literals;
     ReusableMessageBuilder execReport( MessageExecutionReport::getMessageType(), 512, 128 );
-    execReport.addConstantHeaderField<FieldSenderCompID>("ASENDER");
-    execReport.addConstantHeaderField<FieldTargetCompID>("ATARGET");
-    execReport.addConstantHeaderTag<FieldMsgSeqNum>();
-    execReport.finalizeConstantHeader();
+    execReport.header.append<FieldSenderCompID>("ASENDER");
+    execReport.header.append<FieldTargetCompID>("ATARGET");
+    execReport.header.pushTag<FieldMsgSeqNum>();
+    execReport.header.finalize();
 
     execReport.append<FieldSendingTime>( TimestampKeeper::PLACE_HOLDER, TimestampKeeper::DATE_TIME_NANOS_LENGTH );
     execReport.sendingTime.setup( execReport.end - TimestampKeeper::DATE_TIME_NANOS_LENGTH, TimestampKeeper::Precision::NANOSECONDS );
@@ -61,8 +61,11 @@ int main( int args, const char ** argv )
     execReport.append<FieldClOrdID>("OID36194130303320710274");
     execReport.append<FieldOrigClOrdID>( "2312320210" );
     execReport.append<FieldSecurityID>("dhdddgqgddDDdwuidpdgqe");
+    execReport.append<FieldTransactTime>( execReport.sendingTime.begin, TimestampKeeper::DATE_TIME_NANOS_LENGTH );
+    execReport.append<FieldSide>( SideEnums::BUY.value );
     execReport.append<FieldQtyType>( QtyTypeEnums::UNITS.value );
     execReport.append<FieldPrice>( 2.12, 7 );
+    execReport.append<FieldOrdType>( OrdTypeEnums::LIMIT.value );
     execReport.setSeqnumAndUpdateHeaderAndChecksum(123);
     std::cout << fixstr( execReport.start, ttyRgbStyle ) << std::endl;
 

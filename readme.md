@@ -2,18 +2,40 @@
 
 The idea is use CPP preprocessing instructions along with standard Linux CLI tools(bash,sed,grep) to generate a FIX decoder for a given venue.
 
-Receiving:
+About API:
 
 * No third party dependencies. All the generated code is yours and can go straight into your lib or app.
-* Extremely lightweight and low latency FIX parsing with reusable memory and objects.
 * Repeating groups support.
 * You can strip off all useless standard FIX tags to fit your venue specs.
+
+Receiving ([read more](#sending-api)):
+
+* Lightweight and low latency FIX parsing with reusable memory and objects.
 * Flexible formatting with available predefined TTY color styles.
 * Pretty printing with GDB and VSCode.
 
-Sending:
+Sending ([read more](#input)):
 
-* todo
+* Low latency FIX message building with reusable memory and objects.
+* For a given message type, only fields changing between two sends are to be updated. 
+
+You have to know:
+
+* fixpp is not a FIX engine
+* it runs in an optimistic mode and relies on the venue FIX conformance (it saves quite a few CPU cycles...)
+
+## Performance
+
+> Results obtained in a tight loop on i9-9900K @ 5GHz
+
+| action | message type | length | time, ns | CPU cycles | HW instructions |
+|--------|--------------|--------|----------|------------|-----------------|
+| decode | ExecReport   |    170 |       75 |        375 |             911 |
+| decode | MarketDataSnapshotFullRefresh (6groups)  |    330 |       122 |        608 |             1647 |
+| encode | NewOrderSingle |    170 |       68 |        338 |             909 |
+| update | NewOrderSingle |    170 |       61 |        303 |             821 |
+
+## Screenshots
 
 ![TTY formatting](images/exec-report-tty.png)
 ![GDB pretty printing in VSCode](images/exec-report-vscode.png)
@@ -271,7 +293,7 @@ int main( int args, const char ** argv )
 
 ### How to read from socket or file
 
-```cpp   
+```cpp
     constexpr unsigned begStrAndBodyLenBytes = 20; // reasonably large initial number of bytes to read
     std::vector<char> recvbuffer( 4096 );
     while( source.read( &recvbuffer[0], begStrAndBodyLenBytes ) )
@@ -460,3 +482,86 @@ const FixFormatStyle htmlTableRgbStyle =
 <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<font color="black"><b>LegStipulationValue</b></font><font color="grey">(689)</font> </td><td> <font color="darkblue">b</font></td></tr>
 <tr><td><font color="black"><b>CheckSum</b></font><font color="grey">(10)</font> </td><td> <font color="darkblue">027</font></td></tr>
 </table></pre>
+
+## Sending API
+
+You will have to include SenderApi.h to build FIX messages with fixpp. It offers both 
+- low level buffer construction with FixBufferStream
+- and reusable memory approach with ReusableMessageBuilder
+
+### FixBufferStream
+
+This structure has two attributes: `begin` and `end`. Respectively pointing to the message's first and past last byte.
+Each time a new field is inserted, `end` will shift forward accordingly. In most cases the fields will be appended as tag-value pairs:
+```cpp
+execReport.append<FieldClOrdID>("OID4567");
+execReport.append<FieldQtyType>( QtyTypeEnums::UNITS.value );
+execReport.append<FieldPrice>( 21123.04567, 2 );
+```
+
+It is also possible to push tags and values separately:
+```cpp
+execReport.pushTag<FieldClOrdID>().pushValue("OID4567");
+```
+
+### ReusableMessageBuilder
+The idea behind is for a given FIX session:
+- to reuse the header since most of it's fields will not change,
+- to pre-compute the checksum for non-changing header's fields,
+- to update only changing time within timestamps since the date does not change intra day.
+
+This structure inherits the `begin` and `end` pointers from FixBufferStream. But `begin` refers to the first changing field like SendingTime for instance. The very first byte of the sending buffer will be pointed to by `start`. The latter will move each time the header's with changes. For example when the sequence number or body length change their widths.
+```
+buffer   start                msgType                                    sendingTime                  body
+|        |                    |                                          |                            |
+"..."   "8=FIX.4.4" I "9=315" I "35=W" I "49=foo" I "56=bar" I "34=1234" I "52=20190101-01:01:01.000" I "..."
+                                                                         |                            | 
+                                                                         begin                        end
+```
+
+A typical scenario will be
+
+```cpp
+
+    /// before we send it
+
+    // prepare
+    ReusableMessageBuilder order( MessageExecutionReport::getMessageType(), 512, 128 );
+    order.header.append<FieldSenderCompID>("ASENDER");
+    order.header.append<FieldTargetCompID>("ATARGET");
+    order.header.pushTag<FieldMsgSeqNum>();
+    order.header.finalize();
+
+    // append SendingTime to the header
+    auto constexpr tsLen  = TimestampKeeper::DATE_TIME_MILLIS_LENGTH;
+    auto constexpr tsFrac = TimestampKeeper::Precision::MILLISECONDS;
+    order.append<FieldSendingTime>( TimestampKeeper::PLACE_HOLDER, tsLen );
+    // initialize the timestamp keeper
+    order.sendingTime.setup( order.end - tsLen, tsFrac );
+    order.sendingTime.update();
+    const unsigned sendingTimeLength = order.end - order.begin;
+    ...
+    /// sending it
+    void sendOrder( const OrderFields & of )
+    {
+        // move end past SendingTime
+        order.rewind( sendingTimeLength );
+        // update changing fields in SendingTime
+        order.sendingTime.update();
+        // append order specific fields
+        order.append<FieldAccount>( of.account, of.accountLen );
+        order.append<FieldClOrdID>( of.orderId, of.orderIdLen );
+        order.append<FieldSymbol>( of.symbol, of.symbolLen );
+        order.append<FieldSide>( of.side );
+        order.append<FieldPrice>( of.price, 6 );
+        order.append<FieldOrderQty>( of.qty );
+        // copy SendingTime into TransactTime
+        order.append<FieldTransactTime>( order.sendingTime.begin, tsLen );
+        order.append<FieldOrdType>( of.type );
+        // finalize
+        order.setSeqnumAndUpdateHeaderAndChecksum(++seqnum);
+        // send it
+        socket.send( order.start, order.end - order.start );
+    }
+
+```

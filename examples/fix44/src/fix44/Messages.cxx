@@ -1,10 +1,16 @@
 
 // Generated
 
-// -------------------------------------- getMessageName -------------------------------
+// -------------------------- getMessageName getMessageType -------------------------
+
+const std::string EMPTY_STRING;
 
 const char * MessageHeader::getMessageName(){
      return "Header";
+}
+
+const std::string & MessageHeader::getMessageType(){
+     return EMPTY_STRING;
 }
 
 
@@ -12,9 +18,17 @@ const char * MessageHeartbeat::getMessageName(){
      return "Heartbeat";
 }
 
+const std::string & MessageHeartbeat::getMessageType(){
+     return MsgTypeEnums::HEARTBEAT.str;
+}
+
 
 const char * MessageTestRequest::getMessageName(){
      return "TestRequest";
+}
+
+const std::string & MessageTestRequest::getMessageType(){
+     return MsgTypeEnums::TEST_REQUEST.str;
 }
 
 
@@ -22,9 +36,17 @@ const char * MessageResendRequest::getMessageName(){
      return "ResendRequest";
 }
 
+const std::string & MessageResendRequest::getMessageType(){
+     return MsgTypeEnums::RESEND_REQUEST.str;
+}
+
 
 const char * MessageReject::getMessageName(){
      return "Reject";
+}
+
+const std::string & MessageReject::getMessageType(){
+     return MsgTypeEnums::REJECT.str;
 }
 
 
@@ -32,9 +54,17 @@ const char * MessageSequenceReset::getMessageName(){
      return "SequenceReset";
 }
 
+const std::string & MessageSequenceReset::getMessageType(){
+     return MsgTypeEnums::SEQUENCE_RESET.str;
+}
+
 
 const char * MessageLogout::getMessageName(){
      return "Logout";
+}
+
+const std::string & MessageLogout::getMessageType(){
+     return MsgTypeEnums::LOGOUT.str;
 }
 
 
@@ -42,9 +72,17 @@ const char * MessageIOI::getMessageName(){
      return "IOI";
 }
 
+const std::string & MessageIOI::getMessageType(){
+     return MsgTypeEnums::INDICATION_OF_INTEREST.str;
+}
+
 
 const char * MessageAdvertisement::getMessageName(){
      return "Advertisement";
+}
+
+const std::string & MessageAdvertisement::getMessageType(){
+     return MsgTypeEnums::ADVERTISEMENT.str;
 }
 
 
@@ -52,9 +90,17 @@ const char * MessageExecutionReport::getMessageName(){
      return "ExecutionReport";
 }
 
+const std::string & MessageExecutionReport::getMessageType(){
+     return MsgTypeEnums::EXECUTION_REPORT.str;
+}
+
 
 const char * MessageOrderCancelReject::getMessageName(){
      return "OrderCancelReject";
+}
+
+const std::string & MessageOrderCancelReject::getMessageType(){
+     return MsgTypeEnums::ORDER_CANCEL_REJECT.str;
 }
 
 
@@ -62,9 +108,17 @@ const char * MessageLogon::getMessageName(){
      return "Logon";
 }
 
+const std::string & MessageLogon::getMessageType(){
+     return MsgTypeEnums::LOGON.str;
+}
+
 
 const char * MessageNews::getMessageName(){
      return "News";
+}
+
+const std::string & MessageNews::getMessageType(){
+     return MsgTypeEnums::NEWS.str;
 }
 
 
@@ -72,9 +126,17 @@ const char * MessageEmail::getMessageName(){
      return "Email";
 }
 
+const std::string & MessageEmail::getMessageType(){
+     return MsgTypeEnums::EMAIL.str;
+}
+
 
 const char * MessageNewOrderSingle::getMessageName(){
      return "NewOrderSingle";
+}
+
+const std::string & MessageNewOrderSingle::getMessageType(){
+     return MsgTypeEnums::ORDER_SINGLE.str;
 }
 
 
@@ -82,9 +144,17 @@ const char * MessageNewOrderList::getMessageName(){
      return "NewOrderList";
 }
 
+const std::string & MessageNewOrderList::getMessageType(){
+     return MsgTypeEnums::ORDER_LIST.str;
+}
+
 
 const char * MessageOrderCancelRequest::getMessageName(){
      return "OrderCancelRequest";
+}
+
+const std::string & MessageOrderCancelRequest::getMessageType(){
+     return MsgTypeEnums::ORDER_CANCEL_REQUEST.str;
 }
 
 
@@ -92,9 +162,17 @@ const char * MessageOrderCancelReplaceRequest::getMessageName(){
      return "OrderCancelReplaceRequest";
 }
 
+const std::string & MessageOrderCancelReplaceRequest::getMessageType(){
+     return MsgTypeEnums::ORDER_CANCEL_REPLACE_REQUEST.str;
+}
+
 
 const char * MessageOrderStatusRequest::getMessageName(){
      return "OrderStatusRequest";
+}
+
+const std::string & MessageOrderStatusRequest::getMessageType(){
+     return MsgTypeEnums::ORDER_STATUS_REQUEST.str;
 }
 
 
@@ -102,9 +180,17 @@ const char * MessageAllocationInstruction::getMessageName(){
      return "AllocationInstruction";
 }
 
+const std::string & MessageAllocationInstruction::getMessageType(){
+     return MsgTypeEnums::ALLOCATION_INSTRUCTION.str;
+}
+
 
 const char * MessageListCancelRequest::getMessageName(){
      return "ListCancelRequest";
+}
+
+const std::string & MessageListCancelRequest::getMessageType(){
+     return MsgTypeEnums::LIST_CANCEL_REQUEST.str;
 }
 
 
@@ -112,9 +198,17 @@ const char * MessageListExecute::getMessageName(){
      return "ListExecute";
 }
 
+const std::string & MessageListExecute::getMessageType(){
+     return MsgTypeEnums::LIST_EXECUTE.str;
+}
+
 
 const char * MessageListStatusRequest::getMessageName(){
      return "ListStatusRequest";
+}
+
+const std::string & MessageListStatusRequest::getMessageType(){
+     return MsgTypeEnums::LIST_STATUS_REQUEST.str;
 }
 
 
@@ -122,9 +216,17 @@ const char * MessageListStatus::getMessageName(){
      return "ListStatus";
 }
 
+const std::string & MessageListStatus::getMessageType(){
+     return MsgTypeEnums::LIST_STATUS.str;
+}
+
 
 const char * MessageAllocationInstructionAck::getMessageName(){
      return "AllocationInstructionAck";
+}
+
+const std::string & MessageAllocationInstructionAck::getMessageType(){
+     return MsgTypeEnums::ALLOCATION_INSTRUCTION_ACK.str;
 }
 
 
@@ -132,9 +234,17 @@ const char * MessageDontKnowTrade::getMessageName(){
      return "DontKnowTrade";
 }
 
+const std::string & MessageDontKnowTrade::getMessageType(){
+     return MsgTypeEnums::DONT_KNOW_TRADE.str;
+}
+
 
 const char * MessageQuoteRequest::getMessageName(){
      return "QuoteRequest";
+}
+
+const std::string & MessageQuoteRequest::getMessageType(){
+     return MsgTypeEnums::QUOTE_REQUEST.str;
 }
 
 
@@ -142,9 +252,17 @@ const char * MessageQuote::getMessageName(){
      return "Quote";
 }
 
+const std::string & MessageQuote::getMessageType(){
+     return MsgTypeEnums::QUOTE.str;
+}
+
 
 const char * MessageSettlementInstructions::getMessageName(){
      return "SettlementInstructions";
+}
+
+const std::string & MessageSettlementInstructions::getMessageType(){
+     return MsgTypeEnums::SETTLEMENT_INSTRUCTIONS.str;
 }
 
 
@@ -152,9 +270,17 @@ const char * MessageMarketDataRequest::getMessageName(){
      return "MarketDataRequest";
 }
 
+const std::string & MessageMarketDataRequest::getMessageType(){
+     return MsgTypeEnums::MARKET_DATA_REQUEST.str;
+}
+
 
 const char * MessageMarketDataSnapshotFullRefresh::getMessageName(){
      return "MarketDataSnapshotFullRefresh";
+}
+
+const std::string & MessageMarketDataSnapshotFullRefresh::getMessageType(){
+     return MsgTypeEnums::MARKET_DATA_SNAPSHOT_FULL_REFRESH.str;
 }
 
 
@@ -162,9 +288,17 @@ const char * MessageMarketDataIncrementalRefresh::getMessageName(){
      return "MarketDataIncrementalRefresh";
 }
 
+const std::string & MessageMarketDataIncrementalRefresh::getMessageType(){
+     return MsgTypeEnums::MARKET_DATA_INCREMENTAL_REFRESH.str;
+}
+
 
 const char * MessageMarketDataRequestReject::getMessageName(){
      return "MarketDataRequestReject";
+}
+
+const std::string & MessageMarketDataRequestReject::getMessageType(){
+     return MsgTypeEnums::MARKET_DATA_REQUEST_REJECT.str;
 }
 
 
@@ -172,9 +306,17 @@ const char * MessageQuoteCancel::getMessageName(){
      return "QuoteCancel";
 }
 
+const std::string & MessageQuoteCancel::getMessageType(){
+     return MsgTypeEnums::QUOTE_CANCEL.str;
+}
+
 
 const char * MessageQuoteStatusRequest::getMessageName(){
      return "QuoteStatusRequest";
+}
+
+const std::string & MessageQuoteStatusRequest::getMessageType(){
+     return MsgTypeEnums::QUOTE_STATUS_REQUEST.str;
 }
 
 
@@ -182,9 +324,17 @@ const char * MessageMassQuoteAcknowledgement::getMessageName(){
      return "MassQuoteAcknowledgement";
 }
 
+const std::string & MessageMassQuoteAcknowledgement::getMessageType(){
+     return MsgTypeEnums::MASS_QUOTE_ACKNOWLEDGEMENT.str;
+}
+
 
 const char * MessageSecurityDefinitionRequest::getMessageName(){
      return "SecurityDefinitionRequest";
+}
+
+const std::string & MessageSecurityDefinitionRequest::getMessageType(){
+     return MsgTypeEnums::SECURITY_DEFINITION_REQUEST.str;
 }
 
 
@@ -192,9 +342,17 @@ const char * MessageSecurityDefinition::getMessageName(){
      return "SecurityDefinition";
 }
 
+const std::string & MessageSecurityDefinition::getMessageType(){
+     return MsgTypeEnums::SECURITY_DEFINITION.str;
+}
+
 
 const char * MessageSecurityStatusRequest::getMessageName(){
      return "SecurityStatusRequest";
+}
+
+const std::string & MessageSecurityStatusRequest::getMessageType(){
+     return MsgTypeEnums::SECURITY_STATUS_REQUEST.str;
 }
 
 
@@ -202,9 +360,17 @@ const char * MessageSecurityStatus::getMessageName(){
      return "SecurityStatus";
 }
 
+const std::string & MessageSecurityStatus::getMessageType(){
+     return MsgTypeEnums::SECURITY_STATUS.str;
+}
+
 
 const char * MessageTradingSessionStatusRequest::getMessageName(){
      return "TradingSessionStatusRequest";
+}
+
+const std::string & MessageTradingSessionStatusRequest::getMessageType(){
+     return MsgTypeEnums::TRADING_SESSION_STATUS_REQUEST.str;
 }
 
 
@@ -212,9 +378,17 @@ const char * MessageTradingSessionStatus::getMessageName(){
      return "TradingSessionStatus";
 }
 
+const std::string & MessageTradingSessionStatus::getMessageType(){
+     return MsgTypeEnums::TRADING_SESSION_STATUS.str;
+}
+
 
 const char * MessageMassQuote::getMessageName(){
      return "MassQuote";
+}
+
+const std::string & MessageMassQuote::getMessageType(){
+     return MsgTypeEnums::MASS_QUOTE.str;
 }
 
 
@@ -222,9 +396,17 @@ const char * MessageBusinessMessageReject::getMessageName(){
      return "BusinessMessageReject";
 }
 
+const std::string & MessageBusinessMessageReject::getMessageType(){
+     return MsgTypeEnums::BUSINESS_MESSAGE_REJECT.str;
+}
+
 
 const char * MessageBidRequest::getMessageName(){
      return "BidRequest";
+}
+
+const std::string & MessageBidRequest::getMessageType(){
+     return MsgTypeEnums::BID_REQUEST.str;
 }
 
 
@@ -232,9 +414,17 @@ const char * MessageBidResponse::getMessageName(){
      return "BidResponse";
 }
 
+const std::string & MessageBidResponse::getMessageType(){
+     return MsgTypeEnums::BID_RESPONSE.str;
+}
+
 
 const char * MessageListStrikePrice::getMessageName(){
      return "ListStrikePrice";
+}
+
+const std::string & MessageListStrikePrice::getMessageType(){
+     return MsgTypeEnums::LIST_STRIKE_PRICE.str;
 }
 
 
@@ -242,9 +432,17 @@ const char * MessageXMLnonFIX::getMessageName(){
      return "XMLnonFIX";
 }
 
+const std::string & MessageXMLnonFIX::getMessageType(){
+     return MsgTypeEnums::XML_MESSAGE.str;
+}
+
 
 const char * MessageRegistrationInstructions::getMessageName(){
      return "RegistrationInstructions";
+}
+
+const std::string & MessageRegistrationInstructions::getMessageType(){
+     return MsgTypeEnums::REGISTRATION_INSTRUCTIONS.str;
 }
 
 
@@ -252,9 +450,17 @@ const char * MessageRegistrationInstructionsResponse::getMessageName(){
      return "RegistrationInstructionsResponse";
 }
 
+const std::string & MessageRegistrationInstructionsResponse::getMessageType(){
+     return MsgTypeEnums::REGISTRATION_INSTRUCTIONS_RESPONSE.str;
+}
+
 
 const char * MessageOrderMassCancelRequest::getMessageName(){
      return "OrderMassCancelRequest";
+}
+
+const std::string & MessageOrderMassCancelRequest::getMessageType(){
+     return MsgTypeEnums::ORDER_MASS_CANCEL_REQUEST.str;
 }
 
 
@@ -262,9 +468,17 @@ const char * MessageOrderMassCancelReport::getMessageName(){
      return "OrderMassCancelReport";
 }
 
+const std::string & MessageOrderMassCancelReport::getMessageType(){
+     return MsgTypeEnums::ORDER_MASS_CANCEL_REPORT.str;
+}
+
 
 const char * MessageNewOrderCross::getMessageName(){
      return "NewOrderCross";
+}
+
+const std::string & MessageNewOrderCross::getMessageType(){
+     return MsgTypeEnums::NEW_ORDER_s.str;
 }
 
 
@@ -272,9 +486,17 @@ const char * MessageCrossOrderCancelReplaceRequest::getMessageName(){
      return "CrossOrderCancelReplaceRequest";
 }
 
+const std::string & MessageCrossOrderCancelReplaceRequest::getMessageType(){
+     return MsgTypeEnums::CROSS_ORDER_CANCEL_REPLACE_REQUEST.str;
+}
+
 
 const char * MessageCrossOrderCancelRequest::getMessageName(){
      return "CrossOrderCancelRequest";
+}
+
+const std::string & MessageCrossOrderCancelRequest::getMessageType(){
+     return MsgTypeEnums::CROSS_ORDER_CANCEL_REQUEST.str;
 }
 
 
@@ -282,9 +504,17 @@ const char * MessageSecurityTypeRequest::getMessageName(){
      return "SecurityTypeRequest";
 }
 
+const std::string & MessageSecurityTypeRequest::getMessageType(){
+     return MsgTypeEnums::SECURITY_TYPE_REQUEST.str;
+}
+
 
 const char * MessageSecurityTypes::getMessageName(){
      return "SecurityTypes";
+}
+
+const std::string & MessageSecurityTypes::getMessageType(){
+     return MsgTypeEnums::SECURITY_TYPES.str;
 }
 
 
@@ -292,9 +522,17 @@ const char * MessageSecurityListRequest::getMessageName(){
      return "SecurityListRequest";
 }
 
+const std::string & MessageSecurityListRequest::getMessageType(){
+     return MsgTypeEnums::SECURITY_LIST_REQUEST.str;
+}
+
 
 const char * MessageSecurityList::getMessageName(){
      return "SecurityList";
+}
+
+const std::string & MessageSecurityList::getMessageType(){
+     return MsgTypeEnums::SECURITY_LIST.str;
 }
 
 
@@ -302,9 +540,17 @@ const char * MessageDerivativeSecurityListRequest::getMessageName(){
      return "DerivativeSecurityListRequest";
 }
 
+const std::string & MessageDerivativeSecurityListRequest::getMessageType(){
+     return MsgTypeEnums::DERIVATIVE_SECURITY_LIST_REQUEST.str;
+}
+
 
 const char * MessageDerivativeSecurityList::getMessageName(){
      return "DerivativeSecurityList";
+}
+
+const std::string & MessageDerivativeSecurityList::getMessageType(){
+     return MsgTypeEnums::DERIVATIVE_SECURITY_LIST.str;
 }
 
 
@@ -312,9 +558,17 @@ const char * MessageNewOrderMultileg::getMessageName(){
      return "NewOrderMultileg";
 }
 
+const std::string & MessageNewOrderMultileg::getMessageType(){
+     return MsgTypeEnums::NEW_ORDER_AB.str;
+}
+
 
 const char * MessageMultilegOrderCancelReplace::getMessageName(){
      return "MultilegOrderCancelReplace";
+}
+
+const std::string & MessageMultilegOrderCancelReplace::getMessageType(){
+     return MsgTypeEnums::MULTILEG_ORDER_CANCEL_REPLACE.str;
 }
 
 
@@ -322,9 +576,17 @@ const char * MessageTradeCaptureReportRequest::getMessageName(){
      return "TradeCaptureReportRequest";
 }
 
+const std::string & MessageTradeCaptureReportRequest::getMessageType(){
+     return MsgTypeEnums::TRADE_CAPTURE_REPORT_REQUEST.str;
+}
+
 
 const char * MessageTradeCaptureReport::getMessageName(){
      return "TradeCaptureReport";
+}
+
+const std::string & MessageTradeCaptureReport::getMessageType(){
+     return MsgTypeEnums::TRADE_CAPTURE_REPORT.str;
 }
 
 
@@ -332,9 +594,17 @@ const char * MessageOrderMassStatusRequest::getMessageName(){
      return "OrderMassStatusRequest";
 }
 
+const std::string & MessageOrderMassStatusRequest::getMessageType(){
+     return MsgTypeEnums::ORDER_MASS_STATUS_REQUEST.str;
+}
+
 
 const char * MessageQuoteRequestReject::getMessageName(){
      return "QuoteRequestReject";
+}
+
+const std::string & MessageQuoteRequestReject::getMessageType(){
+     return MsgTypeEnums::QUOTE_REQUEST_REJECT.str;
 }
 
 
@@ -342,9 +612,17 @@ const char * MessageRFQRequest::getMessageName(){
      return "RFQRequest";
 }
 
+const std::string & MessageRFQRequest::getMessageType(){
+     return MsgTypeEnums::RFQ_REQUEST.str;
+}
+
 
 const char * MessageQuoteStatusReport::getMessageName(){
      return "QuoteStatusReport";
+}
+
+const std::string & MessageQuoteStatusReport::getMessageType(){
+     return MsgTypeEnums::QUOTE_STATUS_REPORT.str;
 }
 
 
@@ -352,9 +630,17 @@ const char * MessageQuoteResponse::getMessageName(){
      return "QuoteResponse";
 }
 
+const std::string & MessageQuoteResponse::getMessageType(){
+     return MsgTypeEnums::QUOTE_RESPONSE.str;
+}
+
 
 const char * MessageConfirmation::getMessageName(){
      return "Confirmation";
+}
+
+const std::string & MessageConfirmation::getMessageType(){
+     return MsgTypeEnums::CONFIRMATION.str;
 }
 
 
@@ -362,9 +648,17 @@ const char * MessagePositionMaintenanceRequest::getMessageName(){
      return "PositionMaintenanceRequest";
 }
 
+const std::string & MessagePositionMaintenanceRequest::getMessageType(){
+     return MsgTypeEnums::POSITION_MAINTENANCE_REQUEST.str;
+}
+
 
 const char * MessagePositionMaintenanceReport::getMessageName(){
      return "PositionMaintenanceReport";
+}
+
+const std::string & MessagePositionMaintenanceReport::getMessageType(){
+     return MsgTypeEnums::POSITION_MAINTENANCE_REPORT.str;
 }
 
 
@@ -372,9 +666,17 @@ const char * MessageRequestForPositions::getMessageName(){
      return "RequestForPositions";
 }
 
+const std::string & MessageRequestForPositions::getMessageType(){
+     return MsgTypeEnums::REQUEST_FOR_POSITIONS.str;
+}
+
 
 const char * MessageRequestForPositionsAck::getMessageName(){
      return "RequestForPositionsAck";
+}
+
+const std::string & MessageRequestForPositionsAck::getMessageType(){
+     return MsgTypeEnums::REQUEST_FOR_POSITIONS_ACK.str;
 }
 
 
@@ -382,9 +684,17 @@ const char * MessagePositionReport::getMessageName(){
      return "PositionReport";
 }
 
+const std::string & MessagePositionReport::getMessageType(){
+     return MsgTypeEnums::POSITION_REPORT.str;
+}
+
 
 const char * MessageTradeCaptureReportRequestAck::getMessageName(){
      return "TradeCaptureReportRequestAck";
+}
+
+const std::string & MessageTradeCaptureReportRequestAck::getMessageType(){
+     return MsgTypeEnums::TRADE_CAPTURE_REPORT_REQUEST_ACK.str;
 }
 
 
@@ -392,9 +702,17 @@ const char * MessageTradeCaptureReportAck::getMessageName(){
      return "TradeCaptureReportAck";
 }
 
+const std::string & MessageTradeCaptureReportAck::getMessageType(){
+     return MsgTypeEnums::TRADE_CAPTURE_REPORT_ACK.str;
+}
+
 
 const char * MessageAllocationReport::getMessageName(){
      return "AllocationReport";
+}
+
+const std::string & MessageAllocationReport::getMessageType(){
+     return MsgTypeEnums::ALLOCATION_REPORT.str;
 }
 
 
@@ -402,9 +720,17 @@ const char * MessageAllocationReportAck::getMessageName(){
      return "AllocationReportAck";
 }
 
+const std::string & MessageAllocationReportAck::getMessageType(){
+     return MsgTypeEnums::ALLOCATION_REPORT_ACK.str;
+}
+
 
 const char * MessageConfirmationAck::getMessageName(){
      return "ConfirmationAck";
+}
+
+const std::string & MessageConfirmationAck::getMessageType(){
+     return MsgTypeEnums::CONFIRMATION_ACK.str;
 }
 
 
@@ -412,9 +738,17 @@ const char * MessageSettlementInstructionRequest::getMessageName(){
      return "SettlementInstructionRequest";
 }
 
+const std::string & MessageSettlementInstructionRequest::getMessageType(){
+     return MsgTypeEnums::SETTLEMENT_INSTRUCTION_REQUEST.str;
+}
+
 
 const char * MessageAssignmentReport::getMessageName(){
      return "AssignmentReport";
+}
+
+const std::string & MessageAssignmentReport::getMessageType(){
+     return MsgTypeEnums::ASSIGNMENT_REPORT.str;
 }
 
 
@@ -422,9 +756,17 @@ const char * MessageCollateralRequest::getMessageName(){
      return "CollateralRequest";
 }
 
+const std::string & MessageCollateralRequest::getMessageType(){
+     return MsgTypeEnums::COLLATERAL_REQUEST.str;
+}
+
 
 const char * MessageCollateralAssignment::getMessageName(){
      return "CollateralAssignment";
+}
+
+const std::string & MessageCollateralAssignment::getMessageType(){
+     return MsgTypeEnums::COLLATERAL_ASSIGNMENT.str;
 }
 
 
@@ -432,9 +774,17 @@ const char * MessageCollateralResponse::getMessageName(){
      return "CollateralResponse";
 }
 
+const std::string & MessageCollateralResponse::getMessageType(){
+     return MsgTypeEnums::COLLATERAL_RESPONSE.str;
+}
+
 
 const char * MessageCollateralReport::getMessageName(){
      return "CollateralReport";
+}
+
+const std::string & MessageCollateralReport::getMessageType(){
+     return MsgTypeEnums::COLLATERAL_REPORT.str;
 }
 
 
@@ -442,9 +792,17 @@ const char * MessageCollateralInquiry::getMessageName(){
      return "CollateralInquiry";
 }
 
+const std::string & MessageCollateralInquiry::getMessageType(){
+     return MsgTypeEnums::COLLATERAL_INQUIRY.str;
+}
+
 
 const char * MessageNetworkCounterpartySystemStatusRequest::getMessageName(){
      return "NetworkCounterpartySystemStatusRequest";
+}
+
+const std::string & MessageNetworkCounterpartySystemStatusRequest::getMessageType(){
+     return MsgTypeEnums::NETWORK_BC.str;
 }
 
 
@@ -452,9 +810,17 @@ const char * MessageNetworkCounterpartySystemStatusResponse::getMessageName(){
      return "NetworkCounterpartySystemStatusResponse";
 }
 
+const std::string & MessageNetworkCounterpartySystemStatusResponse::getMessageType(){
+     return MsgTypeEnums::NETWORK_BD.str;
+}
+
 
 const char * MessageUserRequest::getMessageName(){
      return "UserRequest";
+}
+
+const std::string & MessageUserRequest::getMessageType(){
+     return MsgTypeEnums::USER_REQUEST.str;
 }
 
 
@@ -462,14 +828,26 @@ const char * MessageUserResponse::getMessageName(){
      return "UserResponse";
 }
 
+const std::string & MessageUserResponse::getMessageType(){
+     return MsgTypeEnums::USER_RESPONSE.str;
+}
+
 
 const char * MessageCollateralInquiryAck::getMessageName(){
      return "CollateralInquiryAck";
 }
 
+const std::string & MessageCollateralInquiryAck::getMessageType(){
+     return MsgTypeEnums::COLLATERAL_INQUIRY_ACK.str;
+}
+
 
 const char * MessageConfirmationRequest::getMessageName(){
      return "ConfirmationRequest";
+}
+
+const std::string & MessageConfirmationRequest::getMessageType(){
+     return MsgTypeEnums::CONFIRMATION_REQUEST.str;
 }
 
 

@@ -12,16 +12,20 @@ ifneq ($(wildcard $(PE_PRJ_DIR)),)
     TestSenderPerf_EXTRA_CPP_FLAGS  := $(TestPerf_EXTRA_CPP_FLAGS)
     TestSenderPerf_EXTRA_LD_PATH    := $(TestPerf_EXTRA_LD_PATH)
     TestSenderPerf_EXTRA_LINK_FLAGS := $(TestPerf_EXTRA_LINK_FLAGS)
-    TestSenderPerf_EXTRA_DEPENDENCY := $(TestPerf_EXTRA_DEPENDENCY)
+    TestSendForexPerf_EXTRA_DEPENDENCY := $(TestPerf_EXTRA_DEPENDENCY)
+    TestSendForexPerf_EXTRA_CPP_FLAGS  := $(TestPerf_EXTRA_CPP_FLAGS)
+    TestSendForexPerf_EXTRA_LD_PATH    := $(TestPerf_EXTRA_LD_PATH)
+    TestSendForexPerf_EXTRA_LINK_FLAGS := $(TestPerf_EXTRA_LINK_FLAGS)
+    TestSendForexPerf_EXTRA_DEPENDENCY := $(TestPerf_EXTRA_DEPENDENCY)
 else
     ifneq ($(findstring test-,$(MAKECMDGOALS))$(findstring check,$(MAKECMDGOALS)),)
-        $(warning TestPerf disbaled: visit https://github.com/sashamakarenko/pe)
+        $(warning TestPerf and TestSenderPerf are disabled: visit https://github.com/sashamakarenko/pe)
         $(warning Next to fixpp: git clone https://github.com/sashamakarenko/pe.git pe)
     endif
-    DISABLED_TESTS = Perf SenderPerf
+    DISABLED_TESTS = Perf SenderPerf SendForexPerf
 endif
 
-CPP_EXTRA_FLAGS = -flto
+# CPP_EXTRA_FLAGS = -flto
 
 -include ../../../makefile/Makefile
 

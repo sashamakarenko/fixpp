@@ -15,16 +15,21 @@ struct OrderFields
     unsigned accountLen;
 
     SideEnums::ValueType side;
+    OrdTypeEnums::ValueType type;
     unsigned qty;
     double price;
 };
 
 OrderFields orders[] =
 {
-    { "OID12345", 8, "GBP/USD", 7, "TRADER1", 7, SideEnums::BUY.value , 1000000, 1.30 },
-    { "OID12345", 8, "EUR/USD", 7, "TRADER3", 7, SideEnums::SELL.value, 2000000, 1.20 },
-    { "OID12345", 8, "GBP/USD", 7, "TRADER2", 7, SideEnums::BUY.value , 2500000, 1.31 },
-    { "OID12345", 8, "GBP/EUR", 7, "TRADER4", 7, SideEnums::SELL.value, 4000000, 1.21 },
+    { "OID12345-22" , 11, "GBP/USD", 7, "TRADER7"   , 7, SideEnums::BUY.value , OrdTypeEnums::LIMIT.value, 10000  , 1.30 },
+    { "OID12345"    ,  8, "EUR/USD", 7, "TRADER78"  , 8, SideEnums::SELL.value, OrdTypeEnums::FOREX.value, 2000000, 1.20 },
+    { "OID12345-100", 12, "GBP/USD", 7, "TRADER789" , 9, SideEnums::BUY.value , OrdTypeEnums::LIMIT.value, 250000 , 1.31 },
+    { "OID12345-1"  , 10, "GBP/EUR", 7, "TRADER789A",10, SideEnums::SELL.value, OrdTypeEnums::FOREX.value, 4000000, 1.21 },
+    { "OID12345-11" , 11, "GBP/USD", 7, "TRADER7"   , 7, SideEnums::BUY.value , OrdTypeEnums::LIMIT.value, 10000  , 1.30 },
+    { "OID12345"    ,  8, "EUR/USD", 7, "TRADER78"  , 8, SideEnums::SELL.value, OrdTypeEnums::FOREX.value, 2000000, 1.20 },
+    { "OID15525-100", 12, "GBP/USD", 7, "TRADER789" , 9, SideEnums::BUY.value , OrdTypeEnums::LIMIT.value, 250000 , 1.31 },
+    { "OID12345-1"  , 10, "GBP/EUR", 7, "TRADER789A",10, SideEnums::SELL.value, OrdTypeEnums::FOREX.value, 50000  , 1.21 },
     {}
 };
 
@@ -40,10 +45,10 @@ int main( int args, const char ** argv )
     m.initialize( 100 );
 
     ReusableMessageBuilder order( MessageExecutionReport::getMessageType(), 512, 128 );
-    order.addConstantHeaderField<FieldSenderCompID>("ASENDER");
-    order.addConstantHeaderField<FieldTargetCompID>("ATARGET");
-    order.addConstantHeaderTag<FieldMsgSeqNum>();
-    order.finalizeConstantHeader();
+    order.header.append<FieldSenderCompID>("ASENDER");
+    order.header.append<FieldTargetCompID>("ATARGET");
+    order.header.pushTag<FieldMsgSeqNum>();
+    order.header.finalize();
 
     //auto constexpr tsLen  = TimestampKeeper::DATE_TIME_SECONDS_LENGTH;
     //auto constexpr tsFrac = TimestampKeeper::Precision::SECONDS;
@@ -69,13 +74,15 @@ int main( int args, const char ** argv )
         order.append<FieldSide>( of.side );
         order.append<FieldOrderQty>( of.qty );
         order.append<FieldPrice>( of.price, 6 );
+        order.append<FieldTransactTime>( order.sendingTime.begin, tsLen );
+        order.append<FieldOrdType>( of.type );
         order.setSeqnumAndUpdateHeaderAndChecksum(seqnum);
         std::cout << fixstr( order.start, ttyRgbStyle ) << std::endl;
     }
 
     for( int i = 0; i < m.getMaxCaptures(); ++i )
     {
-        const OrderFields & of = orders[ i % 4 ];
+        const OrderFields & of = orders[ i % 8 ];
         m.startCapture();
         order.rewind( sendingTimeLength );
         order.sendingTime.update();
@@ -83,12 +90,23 @@ int main( int args, const char ** argv )
         order.append<FieldClOrdID>( of.orderId, of.orderIdLen );
         order.append<FieldSymbol>( of.symbol, of.symbolLen );
         order.append<FieldSide>( of.side );
-        order.append<FieldOrderQty>( of.qty );
         order.append<FieldPrice>( of.price, 6 );
+        order.append<FieldOrderQty>( of.qty );
+        order.append<FieldTransactTime>( order.sendingTime.begin, tsLen );
+        order.append<FieldOrdType>( of.type );
         order.setSeqnumAndUpdateHeaderAndChecksum(++seqnum);
         m.stopCapture();
     }
 
+    /*
+    i9-9900K @ 5GHz
+    -------------
+    cpu.cycles:	338
+    hw.instrs:	909
+    br.instrs:	97
+    cch.ll.rmiss:	0
+    br.misses:	1
+    */
     std::cout << "\n -- Build order -- " << std::endl;
     m.prepareResults();
     // m.printCaptures();
@@ -110,7 +128,7 @@ int main( int args, const char ** argv )
 
     for( int i = 0; i < m.getMaxCaptures(); ++i )
     {
-        const OrderFields & of = orders[ i % 4 ];
+        const OrderFields & of = orders[ i % 8 ];
         order.rewind( sendingTimeLength );
         m.startCapture();
         order.append<FieldClOrdID>( of.orderId, of.orderIdLen );
@@ -124,7 +142,7 @@ int main( int args, const char ** argv )
 
     for( int i = 0; i < m.getMaxCaptures(); ++i )
     {
-        const OrderFields & of = orders[ i % 4 ];
+        const OrderFields & of = orders[ i % 8 ];
         order.rewind( sendingTimeLength );
         m.startCapture();
         order.append<FieldPrice>( of.price, 6 );
@@ -138,7 +156,7 @@ int main( int args, const char ** argv )
 
     for( int i = 0; i < m.getMaxCaptures(); ++i )
     {
-        const OrderFields & of = orders[ i % 4 ];
+        const OrderFields & of = orders[ i % 8 ];
         order.rewind( sendingTimeLength );
         m.startCapture();
         order.append<FieldOrderQty>( of.qty );
@@ -152,7 +170,7 @@ int main( int args, const char ** argv )
 
     for( int i = 0; i < m.getMaxCaptures(); ++i )
     {
-        const OrderFields & of = orders[ i % 4 ];
+        const OrderFields & of = orders[ i % 8 ];
         order.rewind( sendingTimeLength );
         order.sendingTime.update();
         order.append<FieldAccount>( of.account, of.accountLen );

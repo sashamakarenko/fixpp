@@ -4,6 +4,7 @@
 
 #include <map>
 #include <stdint.h>
+#include <string>
 
 #define FIXPP_SOH 1
 #define SOHSTR(S) #S "\1"
@@ -474,7 +475,7 @@ inline raw_enum_t toRawEnum( const sohstr & str )
 
 struct FieldEnumBase
 {
-    FieldEnumBase( const char * const n, raw_enum_t r, std::string s ): name{n}, raw{r}, str{s}
+    FieldEnumBase( const char * const n, raw_enum_t r, const std::string & s ): name{n}, raw{r}, str{s}
     {
     }
     const char * const name;

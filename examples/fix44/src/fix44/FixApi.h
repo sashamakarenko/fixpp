@@ -4,6 +4,7 @@
 
 #include <map>
 #include <stdint.h>
+#include <string>
 
 #define FIXPP_SOH 1
 #define SOHSTR(S) #S "\1"
@@ -15,6 +16,9 @@ namespace fix44
 
 // use uint32 if all tags < 10000
 typedef uint64_t raw_tag_t;
+
+// raw tag surrounded by SOH and =
+typedef uint64_t insertable_tag_t;
 
 // use 64bits if your venue has wider enum values
 // typedef uint64_t raw_enum_t;
@@ -45,6 +49,14 @@ constexpr raw_tag_t tag_as_raw()
     }
 
     return ( ( raw_tag_t('0') + K % 10U ) << ( 8 * ( tag_key_width(K) - 1 ) ) ) + tag_as_raw<K/10U>();
+}
+
+
+// as uint64_t * pointing to "\001" "TAG" "="
+template< unsigned K >
+constexpr insertable_tag_t tag_as_insertable()
+{
+    return ( insertable_tag_t('=') << ( 8 * ( tag_key_width(K) + 1 ) ) ) + ( insertable_tag_t(tag_as_raw<K>()) << 8 ) + 1;
 }
 
 namespace
@@ -403,6 +415,20 @@ inline void gotoNextField( const char * fix, offset_t & pos )
     } while( true );
 }
 
+template<typename V>
+inline std::string toString( const V & value )
+{
+    return std::to_string(value);
+}
+
+template<>
+inline std::string toString<sohstr>( const sohstr & value )
+{
+    offset_t pos = 0;
+    gotoNextField( value.ptr, pos );
+    return std::string( value.ptr, (size_t)pos-1 );
+}
+
 inline unsigned copyRawEnum( const char * from, char * to )
 {
     unsigned len = 0;
@@ -449,17 +475,18 @@ inline raw_enum_t toRawEnum( const sohstr & str )
 
 struct FieldEnumBase
 {
-    FieldEnumBase( const char * const n, raw_enum_t r ): name{n}, raw{r}
+    FieldEnumBase( const char * const n, raw_enum_t r, const std::string & s ): name{n}, raw{r}, str{s}
     {
     }
     const char * const name;
     const raw_enum_t   raw;
+    const std::string  str;
 };
 
 template<typename ValueType>
 struct FieldEnum: FieldEnumBase
 {
-    FieldEnum( const char * const name, ValueType v ): FieldEnumBase{ name, toRawEnum(v) }, value{v}
+    FieldEnum( const char * const name, ValueType v ): FieldEnumBase{ name, toRawEnum(v), toString(v) }, value{v}
     {
     }
     const ValueType value;
@@ -497,15 +524,18 @@ struct Field: FieldBase
 {
     typedef Type ValueType;
 
-    static constexpr raw_tag_t RAW = tag_as_raw<K>();
-    static constexpr unsigned  KEY = K;
+    static constexpr raw_tag_t        RAW = tag_as_raw<K>();
+    static constexpr unsigned         TAG_WIDTH = tag_key_width(K);
+    static constexpr unsigned         KEY = K;
+    static constexpr insertable_tag_t INSERTABLE_TAG = tag_as_insertable<K>();
+    static constexpr unsigned         INSERTABLE_TAG_WIDTH = TAG_WIDTH + 2; // SOH + '='
 
     static constexpr const char * tagName()
     {
         return N;
     }
 
-    static constexpr unsigned tagKey()
+    static constexpr unsigned tagKey() 
     {
         return K;
     }
@@ -567,25 +597,6 @@ struct MessageBase
     protected: const char * buf = nullptr;
     public: const char * getMessageBuffer() const { return buf; }
 };
-
-/*
-struct FieldInfo
-{
-    const unsigned tagKey;
-    const char * const tagName;
-    const FieldEnumBase * const * enumItems;
-};
-template<typename MsgType>
-class iterator
-{
-    public:
-        iterator( const MsgType & msg ): _msg{msg}, _field{0} {}
-
-    private:
-        const MsgType & _msg;
-        unsigned        _field;
-};
-*/
 
 typedef unsigned   AMT;
 typedef char       BOOLEAN;

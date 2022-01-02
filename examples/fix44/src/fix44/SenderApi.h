@@ -1,9 +1,9 @@
-#include <DSTNAMESPACE/Messages.h>
+#include <fix44/Messages.h>
 #include <cstring>
 #include <type_traits>
 #include <chrono>
 
-namespace DSTNAMESPACE
+namespace fix44
 {
 
 using namespace tiny;
@@ -253,7 +253,7 @@ struct FixBufferStream
     char * end;
 };
 
-//  buffer   start                msgType                                    sendingTime                  body
+//  begin    start                msgType                                    sendingTime                  body
 //  |        |                    |                                          |                            |
 //  "..."   "8=FIX.4.4" I "9=315" I "35=W" I "49=foo" I "56=bar" I "34=1234" I "52=20190101-01:01:01.000" I "..."
 //           ----------------***  -------------------------------------****              --------========

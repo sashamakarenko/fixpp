@@ -9,6 +9,7 @@ class MessageHeader: public MessageBase
 
    public:
    static const char * getMessageName();
+   static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
@@ -201,6 +202,7 @@ class MessageHeartbeat: public MessageBase
 
    public:
    static const char * getMessageName();
+   static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
@@ -232,6 +234,7 @@ class MessageTestRequest: public MessageBase
 
    public:
    static const char * getMessageName();
+   static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
@@ -263,6 +266,7 @@ class MessageResendRequest: public MessageBase
 
    public:
    static const char * getMessageName();
+   static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
@@ -300,6 +304,7 @@ class MessageReject: public MessageBase
 
    public:
    static const char * getMessageName();
+   static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
@@ -367,6 +372,7 @@ class MessageSequenceReset: public MessageBase
 
    public:
    static const char * getMessageName();
+   static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
@@ -404,6 +410,7 @@ class MessageLogout: public MessageBase
 
    public:
    static const char * getMessageName();
+   static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
@@ -447,6 +454,7 @@ class MessageIOI: public MessageBase
 
    public:
    static const char * getMessageName();
+   static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
@@ -1065,6 +1073,7 @@ class MessageAdvertisement: public MessageBase
 
    public:
    static const char * getMessageName();
+   static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
@@ -1482,6 +1491,7 @@ class MessageExecutionReport: public MessageBase
 
    public:
    static const char * getMessageName();
+   static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
@@ -2860,6 +2870,7 @@ class MessageOrderCancelReject: public MessageBase
 
    public:
    static const char * getMessageName();
+   static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
@@ -3011,6 +3022,7 @@ class MessageLogon: public MessageBase
 
    public:
    static const char * getMessageName();
+   static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
@@ -3107,6 +3119,7 @@ class MessageNews: public MessageBase
 
    public:
    static const char * getMessageName();
+   static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
@@ -3235,6 +3248,7 @@ class MessageEmail: public MessageBase
 
    public:
    static const char * getMessageName();
+   static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
@@ -3375,6 +3389,7 @@ class MessageNewOrderSingle: public MessageBase
 
    public:
    static const char * getMessageName();
+   static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
@@ -4371,6 +4386,7 @@ class MessageNewOrderList: public MessageBase
 
    public:
    static const char * getMessageName();
+   static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
@@ -4515,6 +4531,7 @@ class MessageOrderCancelRequest: public MessageBase
 
    public:
    static const char * getMessageName();
+   static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
@@ -5010,6 +5027,7 @@ class MessageOrderCancelReplaceRequest: public MessageBase
 
    public:
    static const char * getMessageName();
+   static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
@@ -5995,6 +6013,7 @@ class MessageOrderStatusRequest: public MessageBase
 
    public:
    static const char * getMessageName();
+   static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
@@ -6412,6 +6431,7 @@ class MessageAllocationInstruction: public MessageBase
 
    public:
    static const char * getMessageName();
+   static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
@@ -7249,6 +7269,7 @@ class MessageListCancelRequest: public MessageBase
 
    public:
    static const char * getMessageName();
+   static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
@@ -7316,6 +7337,7 @@ class MessageListExecute: public MessageBase
 
    public:
    static const char * getMessageName();
+   static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
@@ -7383,6 +7405,7 @@ class MessageListStatusRequest: public MessageBase
 
    public:
    static const char * getMessageName();
+   static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
@@ -7432,6 +7455,7 @@ class MessageListStatus: public MessageBase
 
    public:
    static const char * getMessageName();
+   static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
@@ -7534,6 +7558,7 @@ class MessageAllocationInstructionAck: public MessageBase
 
    public:
    static const char * getMessageName();
+   static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
@@ -7665,6 +7690,7 @@ class MessageDontKnowTrade: public MessageBase
 
    public:
    static const char * getMessageName();
+   static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
@@ -8070,6 +8096,7 @@ class MessageQuoteRequest: public MessageBase
 
    public:
    static const char * getMessageName();
+   static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
@@ -8148,6 +8175,7 @@ class MessageQuote: public MessageBase
 
    public:
    static const char * getMessageName();
+   static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
@@ -8958,6 +8986,7 @@ class MessageSettlementInstructions: public MessageBase
 
    public:
    static const char * getMessageName();
+   static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
@@ -9048,6 +9077,7 @@ class MessageMarketDataRequest: public MessageBase
 
    public:
    static const char * getMessageName();
+   static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
@@ -9166,6 +9196,7 @@ class MessageMarketDataSnapshotFullRefresh: public MessageBase
 
    public:
    static const char * getMessageName();
+   static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
@@ -9528,6 +9559,7 @@ class MessageMarketDataIncrementalRefresh: public MessageBase
 
    public:
    static const char * getMessageName();
+   static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
@@ -9582,6 +9614,7 @@ class MessageMarketDataRequestReject: public MessageBase
 
    public:
    static const char * getMessageName();
+   static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
@@ -9648,6 +9681,7 @@ class MessageQuoteCancel: public MessageBase
 
    public:
    static const char * getMessageName();
+   static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
@@ -9749,6 +9783,7 @@ class MessageQuoteStatusRequest: public MessageBase
 
    public:
    static const char * getMessageName();
+   static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
@@ -10177,6 +10212,7 @@ class MessageMassQuoteAcknowledgement: public MessageBase
 
    public:
    static const char * getMessageName();
+   static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
@@ -10296,6 +10332,7 @@ class MessageSecurityDefinitionRequest: public MessageBase
 
    public:
    static const char * getMessageName();
+   static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
@@ -10694,6 +10731,7 @@ class MessageSecurityDefinition: public MessageBase
 
    public:
    static const char * getMessageName();
+   static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
@@ -11104,6 +11142,7 @@ class MessageSecurityStatusRequest: public MessageBase
 
    public:
    static const char * getMessageName();
+   static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
@@ -11472,6 +11511,7 @@ class MessageSecurityStatus: public MessageBase
 
    public:
    static const char * getMessageName();
+   static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
@@ -11936,6 +11976,7 @@ class MessageTradingSessionStatusRequest: public MessageBase
 
    public:
    static const char * getMessageName();
+   static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
@@ -11997,6 +12038,7 @@ class MessageTradingSessionStatus: public MessageBase
 
    public:
    static const char * getMessageName();
+   static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
@@ -12124,6 +12166,7 @@ class MessageMassQuote: public MessageBase
 
    public:
    static const char * getMessageName();
+   static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
@@ -12225,6 +12268,7 @@ class MessageBusinessMessageReject: public MessageBase
 
    public:
    static const char * getMessageName();
+   static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
@@ -12292,6 +12336,7 @@ class MessageBidRequest: public MessageBase
 
    public:
    static const char * getMessageName();
+   static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
@@ -12501,6 +12546,7 @@ class MessageBidResponse: public MessageBase
 
    public:
    static const char * getMessageName();
+   static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
@@ -12549,6 +12595,7 @@ class MessageListStrikePrice: public MessageBase
 
    public:
    static const char * getMessageName();
+   static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
@@ -12614,6 +12661,7 @@ class MessageXMLnonFIX: public MessageBase
 
    public:
    static const char * getMessageName();
+   static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
@@ -12639,6 +12687,7 @@ class MessageRegistrationInstructions: public MessageBase
 
    public:
    static const char * getMessageName();
+   static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
@@ -12751,6 +12800,7 @@ class MessageRegistrationInstructionsResponse: public MessageBase
 
    public:
    static const char * getMessageName();
+   static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
@@ -12841,6 +12891,7 @@ class MessageOrderMassCancelRequest: public MessageBase
 
    public:
    static const char * getMessageName();
+   static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
@@ -13486,6 +13537,7 @@ class MessageOrderMassCancelReport: public MessageBase
 
    public:
    static const char * getMessageName();
+   static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
@@ -14172,6 +14224,7 @@ class MessageNewOrderCross: public MessageBase
 
    public:
    static const char * getMessageName();
+   static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
@@ -14892,6 +14945,7 @@ class MessageCrossOrderCancelReplaceRequest: public MessageBase
 
    public:
    static const char * getMessageName();
+   static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
@@ -15624,6 +15678,7 @@ class MessageCrossOrderCancelRequest: public MessageBase
 
    public:
    static const char * getMessageName();
+   static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
@@ -15986,6 +16041,7 @@ class MessageSecurityTypeRequest: public MessageBase
 
    public:
    static const char * getMessageName();
+   static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
@@ -16065,6 +16121,7 @@ class MessageSecurityTypes: public MessageBase
 
    public:
    static const char * getMessageName();
+   static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
@@ -16167,6 +16224,7 @@ class MessageSecurityListRequest: public MessageBase
 
    public:
    static const char * getMessageName();
+   static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
@@ -16613,6 +16671,7 @@ class MessageSecurityList: public MessageBase
 
    public:
    static const char * getMessageName();
+   static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
@@ -16679,6 +16738,7 @@ class MessageDerivativeSecurityListRequest: public MessageBase
 
    public:
    static const char * getMessageName();
+   static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
@@ -17056,6 +17116,7 @@ class MessageDerivativeSecurityList: public MessageBase
 
    public:
    static const char * getMessageName();
+   static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
@@ -17414,6 +17475,7 @@ class MessageNewOrderMultileg: public MessageBase
 
    public:
    static const char * getMessageName();
+   static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
@@ -18260,6 +18322,7 @@ class MessageMultilegOrderCancelReplace: public MessageBase
 
    public:
    static const char * getMessageName();
+   static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
@@ -19124,6 +19187,7 @@ class MessageTradeCaptureReportRequest: public MessageBase
 
    public:
    static const char * getMessageName();
+   static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
@@ -19712,6 +19776,7 @@ class MessageTradeCaptureReport: public MessageBase
 
    public:
    static const char * getMessageName();
+   static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
@@ -20510,6 +20575,7 @@ class MessageOrderMassStatusRequest: public MessageBase
 
    public:
    static const char * getMessageName();
+   static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
@@ -21148,6 +21214,7 @@ class MessageQuoteRequestReject: public MessageBase
 
    public:
    static const char * getMessageName();
+   static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
@@ -21220,6 +21287,7 @@ class MessageRFQRequest: public MessageBase
 
    public:
    static const char * getMessageName();
+   static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
@@ -21268,6 +21336,7 @@ class MessageQuoteStatusReport: public MessageBase
 
    public:
    static const char * getMessageName();
+   static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
@@ -22090,6 +22159,7 @@ class MessageQuoteResponse: public MessageBase
 
    public:
    static const char * getMessageName();
+   static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
@@ -22912,6 +22982,7 @@ class MessageConfirmation: public MessageBase
 
    public:
    static const char * getMessageName();
+   static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
@@ -23813,6 +23884,7 @@ class MessagePositionMaintenanceRequest: public MessageBase
 
    public:
    static const char * getMessageName();
+   static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
@@ -24281,6 +24353,7 @@ class MessagePositionMaintenanceReport: public MessageBase
 
    public:
    static const char * getMessageName();
+   static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
@@ -24760,6 +24833,7 @@ class MessageRequestForPositions: public MessageBase
 
    public:
    static const char * getMessageName();
+   static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
@@ -25199,6 +25273,7 @@ class MessageRequestForPositionsAck: public MessageBase
 
    public:
    static const char * getMessageName();
+   static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
@@ -25615,6 +25690,7 @@ class MessagePositionReport: public MessageBase
 
    public:
    static const char * getMessageName();
+   static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
@@ -26095,6 +26171,7 @@ class MessageTradeCaptureReportRequestAck: public MessageBase
 
    public:
    static const char * getMessageName();
+   static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
@@ -26482,6 +26559,7 @@ class MessageTradeCaptureReportAck: public MessageBase
 
    public:
    static const char * getMessageName();
+   static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
@@ -27006,6 +27084,7 @@ class MessageAllocationReport: public MessageBase
 
    public:
    static const char * getMessageName();
+   static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
@@ -27867,6 +27946,7 @@ class MessageAllocationReportAck: public MessageBase
 
    public:
    static const char * getMessageName();
+   static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
@@ -28004,6 +28084,7 @@ class MessageConfirmationAck: public MessageBase
 
    public:
    static const char * getMessageName();
+   static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
@@ -28083,6 +28164,7 @@ class MessageSettlementInstructionRequest: public MessageBase
 
    public:
    static const char * getMessageName();
+   static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
@@ -28203,6 +28285,7 @@ class MessageAssignmentReport: public MessageBase
 
    public:
    static const char * getMessageName();
+   static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
@@ -28677,6 +28760,7 @@ class MessageCollateralRequest: public MessageBase
 
    public:
    static const char * getMessageName();
+   static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
@@ -29352,6 +29436,7 @@ class MessageCollateralAssignment: public MessageBase
 
    public:
    static const char * getMessageName();
+   static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
@@ -30080,6 +30165,7 @@ class MessageCollateralResponse: public MessageBase
 
    public:
    static const char * getMessageName();
+   static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
@@ -30749,6 +30835,7 @@ class MessageCollateralReport: public MessageBase
 
    public:
    static const char * getMessageName();
+   static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
@@ -31465,6 +31552,7 @@ class MessageCollateralInquiry: public MessageBase
 
    public:
    static const char * getMessageName();
+   static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
@@ -32175,6 +32263,7 @@ class MessageNetworkCounterpartySystemStatusRequest: public MessageBase
 
    public:
    static const char * getMessageName();
+   static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
@@ -32223,6 +32312,7 @@ class MessageNetworkCounterpartySystemStatusResponse: public MessageBase
 
    public:
    static const char * getMessageName();
+   static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
@@ -32283,6 +32373,7 @@ class MessageUserRequest: public MessageBase
 
    public:
    static const char * getMessageName();
+   static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
@@ -32350,6 +32441,7 @@ class MessageUserResponse: public MessageBase
 
    public:
    static const char * getMessageName();
+   static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
@@ -32399,6 +32491,7 @@ class MessageCollateralInquiryAck: public MessageBase
 
    public:
    static const char * getMessageName();
+   static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
@@ -32956,6 +33049,7 @@ class MessageConfirmationRequest: public MessageBase
 
    public:
    static const char * getMessageName();
+   static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();

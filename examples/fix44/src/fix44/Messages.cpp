@@ -128,6 +128,29 @@ const FixFormatStyle ttyRgbStyle =
     "\e[0m"      //  unknownStop
 };
 
+const FixFormatStyle ttyRgbSingleLineStyle =
+{
+    "",  //  messageBegin 
+    "",  //  messageEnd   
+    "",//  indent
+    "",//  groupFirstField;
+    "", //  fieldBegin   
+    "  ",//  fieldEnd     
+    "\e[33m",  //  headerTagNameStart 
+    "\e[0m",  //  headerTagNameStop  
+    "\e[33;1m",  //  tagNameStart 
+    "\e[0m",  //  tagNameStop  
+    "<\e[37;1m", //  tagValueStart
+    "\e[0m>", //  tagValueStop 
+    "=", //  equal        
+    "\e[34;1m",  //  valueStart   
+    "\e[0m",  //  valueStop    
+    "/\e[32m", //  enumStart    
+    "\e[0m",  //  enumStop     
+    "\e[31;1m",  //  unknownStart
+    "\e[0m"      //  unknownStop
+};
+
 // msgTypePos = offset of 35=
 unsigned parseMessageLength( const char * fix, unsigned & msgTypePos )
 {
@@ -154,7 +177,7 @@ const char * getEnumName( const char * fix, int valueOffset )
     }
 
     offset_t pos = (offset_t)valueOffset;
-    while( pos > 0 && fix[pos-1] != FIXPP_SOH )
+    while( pos > 0 and fix[pos-1] != FIXPP_SOH )
     {
         --pos;
     }
@@ -199,11 +222,14 @@ std::ostream & fixToHuman( const char * fix, offset_t & pos, std::ostream & os, 
         {
             if( headerFields.find( tag ) != headerFields.end() )
             {
-                os << style.headerTagNameStart << it->second << style.headerTagNameStop;
+                if( style.headerTagNameStart )
+                {
+                    os << style.headerTagNameStart << it->second << style.headerTagNameStop;
+                }
             }
             else
             {
-                if( indentator )
+                if( indentator and indentator != autoIndentFields )
                 {
                     FieldDepth fd = (*indentator)( tag );
                     if( fd.isFirstInGroup )
@@ -216,7 +242,10 @@ std::ostream & fixToHuman( const char * fix, offset_t & pos, std::ostream & os, 
                         for( int d = 0; d < fd.depth; ++d ) os << style.indent;
                     }
                 }
-                os << style.tagNameStart << it->second << style.tagNameStop;
+                if( style.tagNameStart )
+                {
+                    os << style.tagNameStart << it->second << style.tagNameStop;
+                }
             }
             
             auto eit = rawToEnum.find( tag );
@@ -241,7 +270,7 @@ std::ostream & fixToHuman( const char * fix, offset_t & pos, std::ostream & os, 
         raw_enum_t rawEnum = toRawEnum( fix + pos );
         
         // value as is
-        while( fix[pos] && fix[pos] != FIXPP_SOH )
+        while( fix[pos] and fix[pos] != FIXPP_SOH )
         {
             os << fix[pos++];
         }
@@ -249,7 +278,7 @@ std::ostream & fixToHuman( const char * fix, offset_t & pos, std::ostream & os, 
         os << style.valueStop;
         
         // enum
-        if( enums )
+        if( enums and style.enumStart )
         {
             const char * enumName = enums->getEnumNameByRaw( rawEnum );
             if( enumName )
@@ -261,7 +290,7 @@ std::ostream & fixToHuman( const char * fix, offset_t & pos, std::ostream & os, 
                 os << style.unknownStart << " UNKNOWN" << style.unknownStop;
             }
 
-            if( tag == FieldMsgType::RAW && indentator == autoIndentFields )
+            if( tag == FieldMsgType::RAW and indentator == autoIndentFields )
             {
                 indentator = getTagDepthMethodByRawMsgType( rawEnum );
             }

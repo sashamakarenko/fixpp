@@ -36,6 +36,7 @@ FIX_MSG_FIELD( OrderQty )
 FIX_MSG_FIELD( OrdType )
 FIX_MSG_FIELD( Price )
 FIX_MSG_FIELD( StopPx )
+FIX_MSG_FIELD( TransactTime )
 FIX_MSG_END
 
 FIX_MSG_BEGIN( ExecutionReport, EXECUTION_REPORT )
