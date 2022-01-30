@@ -35,7 +35,7 @@ OrderFields orders[] =
 
 struct ForexNewOrderSingle: public ReusableMessageBuilder
 {
-    ForexNewOrderSingle(): ReusableMessageBuilder( MessageExecutionReport::getMessageType(), 512, 128 ){}
+    ForexNewOrderSingle(): ReusableMessageBuilder( MessageNewOrderSingle::getMessageType(), 512, 128 ){}
     
     template< typename FIELD >
     unsigned getOffset() const

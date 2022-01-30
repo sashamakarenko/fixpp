@@ -526,7 +526,7 @@ A typical scenario will be
     /// before we send it
 
     // prepare
-    ReusableMessageBuilder order( MessageExecutionReport::getMessageType(), 512, 128 );
+    ReusableMessageBuilder order( MessageNewOrderSingle::getMessageType(), 512, 128 );
     order.header.append<FieldSenderCompID>("ASENDER");
     order.header.append<FieldTargetCompID>("ATARGET");
     order.header.pushTag<FieldMsgSeqNum>();
