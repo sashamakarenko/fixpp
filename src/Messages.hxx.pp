@@ -80,3 +80,24 @@ class ParserDispatcher
 #undef FIX_MSG_BEGIN
 #undef FIX_MSG_END
 #undef FIX_MSG_GROUP
+
+<com> -------------------------------------- convenience message namespace ----------------------------------------
+
+#define FIX_FIELD_BEGIN_STRING( STR )
+
+#define FIX_MSG_BEGIN(NAME,TYPE) \
+typedef Message##NAME NAME;
+
+#define FIX_MSG_FIELD(NAME)
+#define FIX_MSG_GROUP(NAME)
+#define FIX_MSG_END
+
+namespace message
+{
+#include <Messages.def>
+}
+
+#undef FIX_MSG_BEGIN
+#undef FIX_MSG_END
+#undef FIX_MSG_FIELD
+#undef FIX_MSG_GROUP

@@ -3,10 +3,16 @@
 #include <type_traits>
 #include <chrono>
 
+#ifndef likely
+#define likely(x)      __builtin_expect(!!(x), 1)
+#endif
+
+#ifndef unlikely
+#define unlikely(x)    __builtin_expect(!!(x), 0)
+#endif
+
 namespace fix44
 {
-
-using namespace tiny;
 
 // in below inserts we admit 1 byte overflow which is supposed to be overwritten by the value
 
@@ -394,7 +400,7 @@ struct TimestampKeeper
             }
         }
         unsigned len = DATE_TIME_SECONDS_LENGTH + 1 + (unsigned)secFraction;
-        begin[len] = '\1';
+        begin[len] = FIXPP_SOH;
         return begin + len;
     }
 
@@ -404,6 +410,15 @@ struct TimestampKeeper
     Precision secFraction;
 };
 
+/*
+
+buffer   start                msgType                                    sendingTime                  body
+|        |                    |                                          |                            |
+"..."   "8=FIX.4.4" I "9=315" I "35=W" I "49=foo" I "56=bar" I "34=1234" I "52=20190101-01:01:01.000" I "..."
+                         ---                                       ----  |                            | 
+                         | body length and seqno will be updated   |     begin                        end
+
+*/
 struct ReusableMessageBuilder: FixBufferStream
 {
     ReusableMessageBuilder( const std::string & messageType, unsigned maxBodyLength, unsigned headerTemplateCapacity = 128 ):
@@ -423,21 +438,21 @@ struct ReusableMessageBuilder: FixBufferStream
         unsigned chksum = header.chksum;
         char * ptr = reverseUIntToString( begin, seqnum, chksum );
         unsigned seqnumWidth = begin - ptr;
-        unsigned bodyLength = header.countableLength + seqnumWidth + ( end - begin ) + 7;
+        unsigned bodyLength = header.countableLength + seqnumWidth + ( end - begin ) + 7; // 7 = checksum width
 
         char * msgTypePtr = begin - header.countableLength - seqnumWidth;
         ptr = reverseUIntToString( msgTypePtr, bodyLength, chksum );
         unsigned bodyLengthWidth = msgTypePtr - ptr;
 
         start = begin - seqnumWidth - header.countableLength - bodyLengthWidth - BODY_LENGTH_OFFSET;
-        if( seqnumWidth != lastSeqnumWidth )
+        if( unlikely( seqnumWidth != lastSeqnumWidth ) )
         {
             lastBodyLengthWidth = bodyLengthWidth;
             lastSeqnumWidth = seqnumWidth;
             memcpy( start, header.begin, BODY_LENGTH_OFFSET );
             memcpy( msgTypePtr, header.begin + BODY_LENGTH_OFFSET, header.countableLength );
         }
-        else if( bodyLengthWidth != lastBodyLengthWidth )
+        else if( unlikely( bodyLengthWidth != lastBodyLengthWidth ) )
         {
             lastBodyLengthWidth = bodyLengthWidth;
             memcpy( start, header.begin, BODY_LENGTH_OFFSET );
@@ -445,10 +460,11 @@ struct ReusableMessageBuilder: FixBufferStream
         chksum += computeChecksum( begin, end );
         pushTag<FieldCheckSum>();
         chksum = chksum & 0xff;
-        *end++ = '0' + chksum / 100;
-        *end++ = '0' + ( chksum / 10 ) % 10;
-        *end++ = '0' + chksum % 10;
-        *end = 0;
+        end[0] = '0' + chksum / 100;
+        end[1] = '0' + ( chksum / 10 ) % 10;
+        end[2] = '0' + chksum % 10;
+        end[3] = 0;
+        end += 4;
         return start;
     }
 
@@ -462,7 +478,7 @@ struct ReusableMessageBuilder: FixBufferStream
     unsigned                      lastSeqnumWidth, lastBodyLengthWidth;
     HeaderTemplate                header;
     TimestampKeeper               sendingTime;
-    std::string                   msgType;
+    const std::string             msgType;
 };
 
 }

@@ -33746,3 +33746,292 @@ class ParserDispatcher
 
 
 };
+
+
+// -------------------------------------- convenience message namespace ----------------------------------------
+namespace message
+{
+
+typedef MessageHeader Header;
+
+
+typedef MessageHeartbeat Heartbeat;
+
+
+typedef MessageTestRequest TestRequest;
+
+
+typedef MessageResendRequest ResendRequest;
+
+
+typedef MessageReject Reject;
+
+
+typedef MessageSequenceReset SequenceReset;
+
+
+typedef MessageLogout Logout;
+
+
+typedef MessageIOI IOI;
+
+
+typedef MessageAdvertisement Advertisement;
+
+
+typedef MessageExecutionReport ExecutionReport;
+
+
+typedef MessageOrderCancelReject OrderCancelReject;
+
+
+typedef MessageLogon Logon;
+
+
+typedef MessageNews News;
+
+
+typedef MessageEmail Email;
+
+
+typedef MessageNewOrderSingle NewOrderSingle;
+
+
+typedef MessageNewOrderList NewOrderList;
+
+
+typedef MessageOrderCancelRequest OrderCancelRequest;
+
+
+typedef MessageOrderCancelReplaceRequest OrderCancelReplaceRequest;
+
+
+typedef MessageOrderStatusRequest OrderStatusRequest;
+
+
+typedef MessageAllocationInstruction AllocationInstruction;
+
+
+typedef MessageListCancelRequest ListCancelRequest;
+
+
+typedef MessageListExecute ListExecute;
+
+
+typedef MessageListStatusRequest ListStatusRequest;
+
+
+typedef MessageListStatus ListStatus;
+
+
+typedef MessageAllocationInstructionAck AllocationInstructionAck;
+
+
+typedef MessageDontKnowTrade DontKnowTrade;
+
+
+typedef MessageQuoteRequest QuoteRequest;
+
+
+typedef MessageQuote Quote;
+
+
+typedef MessageSettlementInstructions SettlementInstructions;
+
+
+typedef MessageMarketDataRequest MarketDataRequest;
+
+
+typedef MessageMarketDataSnapshotFullRefresh MarketDataSnapshotFullRefresh;
+
+
+typedef MessageMarketDataIncrementalRefresh MarketDataIncrementalRefresh;
+
+
+typedef MessageMarketDataRequestReject MarketDataRequestReject;
+
+
+typedef MessageQuoteCancel QuoteCancel;
+
+
+typedef MessageQuoteStatusRequest QuoteStatusRequest;
+
+
+typedef MessageMassQuoteAcknowledgement MassQuoteAcknowledgement;
+
+
+typedef MessageSecurityDefinitionRequest SecurityDefinitionRequest;
+
+
+typedef MessageSecurityDefinition SecurityDefinition;
+
+
+typedef MessageSecurityStatusRequest SecurityStatusRequest;
+
+
+typedef MessageSecurityStatus SecurityStatus;
+
+
+typedef MessageTradingSessionStatusRequest TradingSessionStatusRequest;
+
+
+typedef MessageTradingSessionStatus TradingSessionStatus;
+
+
+typedef MessageMassQuote MassQuote;
+
+
+typedef MessageBusinessMessageReject BusinessMessageReject;
+
+
+typedef MessageBidRequest BidRequest;
+
+
+typedef MessageBidResponse BidResponse;
+
+
+typedef MessageListStrikePrice ListStrikePrice;
+
+
+typedef MessageXMLnonFIX XMLnonFIX;
+
+
+typedef MessageRegistrationInstructions RegistrationInstructions;
+
+
+typedef MessageRegistrationInstructionsResponse RegistrationInstructionsResponse;
+
+
+typedef MessageOrderMassCancelRequest OrderMassCancelRequest;
+
+
+typedef MessageOrderMassCancelReport OrderMassCancelReport;
+
+
+typedef MessageNewOrderCross NewOrderCross;
+
+
+typedef MessageCrossOrderCancelReplaceRequest CrossOrderCancelReplaceRequest;
+
+
+typedef MessageCrossOrderCancelRequest CrossOrderCancelRequest;
+
+
+typedef MessageSecurityTypeRequest SecurityTypeRequest;
+
+
+typedef MessageSecurityTypes SecurityTypes;
+
+
+typedef MessageSecurityListRequest SecurityListRequest;
+
+
+typedef MessageSecurityList SecurityList;
+
+
+typedef MessageDerivativeSecurityListRequest DerivativeSecurityListRequest;
+
+
+typedef MessageDerivativeSecurityList DerivativeSecurityList;
+
+
+typedef MessageNewOrderMultileg NewOrderMultileg;
+
+
+typedef MessageMultilegOrderCancelReplace MultilegOrderCancelReplace;
+
+
+typedef MessageTradeCaptureReportRequest TradeCaptureReportRequest;
+
+
+typedef MessageTradeCaptureReport TradeCaptureReport;
+
+
+typedef MessageOrderMassStatusRequest OrderMassStatusRequest;
+
+
+typedef MessageQuoteRequestReject QuoteRequestReject;
+
+
+typedef MessageRFQRequest RFQRequest;
+
+
+typedef MessageQuoteStatusReport QuoteStatusReport;
+
+
+typedef MessageQuoteResponse QuoteResponse;
+
+
+typedef MessageConfirmation Confirmation;
+
+
+typedef MessagePositionMaintenanceRequest PositionMaintenanceRequest;
+
+
+typedef MessagePositionMaintenanceReport PositionMaintenanceReport;
+
+
+typedef MessageRequestForPositions RequestForPositions;
+
+
+typedef MessageRequestForPositionsAck RequestForPositionsAck;
+
+
+typedef MessagePositionReport PositionReport;
+
+
+typedef MessageTradeCaptureReportRequestAck TradeCaptureReportRequestAck;
+
+
+typedef MessageTradeCaptureReportAck TradeCaptureReportAck;
+
+
+typedef MessageAllocationReport AllocationReport;
+
+
+typedef MessageAllocationReportAck AllocationReportAck;
+
+
+typedef MessageConfirmationAck ConfirmationAck;
+
+
+typedef MessageSettlementInstructionRequest SettlementInstructionRequest;
+
+
+typedef MessageAssignmentReport AssignmentReport;
+
+
+typedef MessageCollateralRequest CollateralRequest;
+
+
+typedef MessageCollateralAssignment CollateralAssignment;
+
+
+typedef MessageCollateralResponse CollateralResponse;
+
+
+typedef MessageCollateralReport CollateralReport;
+
+
+typedef MessageCollateralInquiry CollateralInquiry;
+
+
+typedef MessageNetworkCounterpartySystemStatusRequest NetworkCounterpartySystemStatusRequest;
+
+
+typedef MessageNetworkCounterpartySystemStatusResponse NetworkCounterpartySystemStatusResponse;
+
+
+typedef MessageUserRequest UserRequest;
+
+
+typedef MessageUserResponse UserResponse;
+
+
+typedef MessageCollateralInquiryAck CollateralInquiryAck;
+
+
+typedef MessageConfirmationRequest ConfirmationRequest;
+
+
+}

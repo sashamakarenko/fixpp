@@ -46,35 +46,6 @@ struct ForexNewOrderSingle: public ReusableMessageBuilder
     unsigned accountOffset, orderIdOffset, symbolOffset, sideOffset, transactTimeOffset, ordTypeOffset, orderQtyOffset;
 };
 
-#define CASE_MEMCPY(N) \
-        case N:\
-            memcpy( dst, src, N );\
-            break;\
-
-
-inline void shortMemcpy( char * dst, const char * src, size_t len )
-{
-    switch( len )
-    {
-        CASE_MEMCPY(4)
-        CASE_MEMCPY(5)
-        CASE_MEMCPY(6)
-        CASE_MEMCPY(7)
-        CASE_MEMCPY(8)
-        CASE_MEMCPY(9)
-        CASE_MEMCPY(10)
-        CASE_MEMCPY(11)
-        CASE_MEMCPY(12)
-        CASE_MEMCPY(13)
-        CASE_MEMCPY(14)
-        CASE_MEMCPY(15)
-        CASE_MEMCPY(16)
-        default:
-            memcpy( dst, src, len );
-            break;
-    }
-}
-
 int main( int args, const char ** argv )
 {
     pe::Measurement m;

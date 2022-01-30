@@ -6,28 +6,30 @@
 #include <ctime>
 
 using namespace tiny;
+using namespace tiny::field;
+using namespace tiny::message;
 
 int main( int args, const char ** argv )
 {
-    std::cout << "\n\n -- MessageExecutionReport --" << std::endl;
-    MessageHeader header;
+    std::cout << "\n\n -- ExecutionReport --" << std::endl;
+    Header header;
     offset_t pos = header.scan( FIX_BUFFER_EXEC_REPORT, strlen( FIX_BUFFER_EXEC_REPORT ) );
-    MessageExecutionReport er;
+    ExecutionReport er;
     pos = er.scan( FIX_BUFFER_EXEC_REPORT + pos, strlen( FIX_BUFFER_EXEC_REPORT ) - pos );
     std::cout << ' ' << FixOrdStatus << " = " << er.getOrdStatus() << " " << computeChecksum( FIX_BUFFER_EXEC_REPORT, er.ptrToCheckSum() )
               << " body length " <<  ( er.ptrToCheckSum() - header.ptrToMsgType() ) << std::endl;
 
-    std::cout << "\n\n -- MessageExecutionReport (large) --" << std::endl;
+    std::cout << "\n\n -- ExecutionReport (large) --" << std::endl;
     header.reset();
     pos = header.scan( FIX_BUFFER_LARGE_EXEC_REPORT, strlen( FIX_BUFFER_LARGE_EXEC_REPORT ) );
-    MessageExecutionReport ler;
+    ExecutionReport ler;
     pos = ler.scan( FIX_BUFFER_LARGE_EXEC_REPORT + pos, strlen( FIX_BUFFER_LARGE_EXEC_REPORT ) - pos );
     std::cout << ' ' << FixOrdStatus << " = " << ler.getOrdStatus() << " " << computeChecksum( FIX_BUFFER_LARGE_EXEC_REPORT, ler.ptrToCheckSum() )
               << " body length " <<  ( ler.ptrToCheckSum() - header.ptrToMsgType() ) << std::endl;
 
     std::cout << "- Price as double: " << ler.getPrice() << std::endl;
 
-    for( auto tag : MessageExecutionReport::getKnownFields() )
+    for( auto tag : ExecutionReport::getKnownFields() )
     {
         const char * value = ler.getFieldValue( tag );
         if( value )
@@ -58,10 +60,10 @@ int main( int args, const char ** argv )
         }
     }
 
-    std::cout << "\n\n -- MessageMarketDataSnapshotFullRefresh --" << std::endl;
+    std::cout << "\n\n -- MarketDataSnapshotFullRefresh --" << std::endl;
     header.reset();
     pos = header.scan( FIX_BUFFER_MD_FULL_REFRESH, strlen( FIX_BUFFER_MD_FULL_REFRESH ) );
-    MessageMarketDataSnapshotFullRefresh mdsfr;
+    MarketDataSnapshotFullRefresh mdsfr;
     pos = mdsfr.scan( FIX_BUFFER_MD_FULL_REFRESH + pos, strlen( FIX_BUFFER_MD_FULL_REFRESH ) - pos );
 
     raw_enum_t msgTypeRaw = toRawEnum( header.ptrToMsgType() );
@@ -109,11 +111,11 @@ int main( int args, const char ** argv )
     std::cout << fixstr( FIX_BUFFER_LARGE_EXEC_REPORT, ttyRgbStyle ) << std::endl;
     std::cout << fixstr( FIX_BUFFER_MD_FULL_REFRESH  , ttyRgbStyle ) << std::endl;
 
-    std::cout << "\n\n -- MessageSecurityDefinition --" << std::endl;
+    std::cout << "\n\n -- SecurityDefinition --" << std::endl;
     fix = FIX_BUFFER_SECURITY_DEFINITION;
     header.reset();
     pos = header.scan( fix, strlen( fix ) );
-    MessageSecurityDefinition secdef;
+    SecurityDefinition secdef;
     pos = secdef.scan( fix + pos, strlen( fix ) - pos );
 
     msgTypeRaw = toRawEnum( header.ptrToMsgType() );

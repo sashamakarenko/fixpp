@@ -1,8 +1,8 @@
 # fixpp stands for FIX decoder by C++ PreProcessor
 
-The idea is use CPP preprocessing instructions along with standard Linux CLI tools(bash,sed,grep) to generate a FIX decoder for a given venue.
+The idea is to use CPP preprocessing instructions along with standard Linux CLI tools(bash,sed,grep) to generate a FIX API for a given venue.
 
-About API:
+Mind set:
 
 * No third party dependencies. All the generated code is yours and can go straight into your lib or app.
 * Repeating groups are supported.
@@ -31,9 +31,11 @@ You have to know:
 | action | message type | length | time, ns | CPU cycles | HW instructions |
 |--------|--------------|--------|----------|------------|-----------------|
 | decode | ExecReport   |    170 |       75 |        375 |             911 |
-| decode | MarketDataSnapshotFullRefresh (6groups)  |    330 |       122 |        608 |             1647 |
+| decode | MarketDataSnapshotFullRefresh*  |    330 |       122 |        608 |             1647 |
 | encode | NewOrderSingle |    170 |       68 |        338 |             909 |
 | update | NewOrderSingle |    170 |       61 |        303 |             821 |
+
+\* 6 repeating groups
 
 ## Screenshots
 
@@ -175,18 +177,18 @@ MYPRJ
 ```cpp
 #include <myprj/fix/Messages.h>
 
-const char * execReport = "8=FIX.4.49=33235=849=foo56=bar52=20071123-05:30:00.000"
-"11=OID123456150=E39=A55=XYZ167=CS54=138=1540=244=15.00158=EQUITYTESTING59=032=031=0151=1514=06=0" 
-"555=2600=SYM1624=0687=10683=1"
-                             "688=A689=a"
-                             "564=1"
-                             "539=2524=PARTY1525=S"
-                                   "524=PARTY2525=S"
-                                   "804=2545=S1805=1545=S2805=2"
-      "600=SYM2624=1687=20683=2"
-                             "688=A689=a"
-                             "688=B689=b"
-"10=027";
+const char * execReport = "8=FIX.4.4" I "9=332" I "35=8" I "49=foo" I "56=bar" I "52=20071123-05:30:00.000" I
+"11=OID123456" I "150=E" I "39=A" I "55=XYZ" I "167=CS" I "54=1" I "38=15" I "40=2" I "44=15.001" I "58=EQUITYTESTING" I "59=0" I "32=0" I "31=0" I "151=15" I "14=0" I "6=0" I 
+"555=2" I "600=SYM1" I "624=0" I "687=10" I "683=1" I
+                             "688=A" I "689=a" I
+                             "564=1" I
+                             "539=2" I "524=PARTY1" I "525=S" I
+                                   "524=PARTY2" I "525=S" I
+                                   "804=2" I "545=S1" I "805=1" I "545=S2" I "805=2" I
+      "600=SYM2" I "624=1" I "687=20" I "683=2" I
+                             "688=A" I "689=a" I
+                             "688=B" I "689=b" I
+"10=027" I;
 
     
 
@@ -237,25 +239,27 @@ const char * execReport = "8=FIX.4.49=33235=849=foo56=bar52=20071123-05:30:
 #include <cstring>
 #include <sstream>
 
+#define I "\001"
+
 const char * buffer = 
 // exec report
-"8=FIX.4.49=15635=849=foo56=bar52=20071123-05:30:00.00011=OID123456150=E39=A55=XYZ167=CS54=138=1540=244=15.00158=EQUITYTESTING59=032=031=0151=1514=06=010=118"
+"8=FIX.4.4" I "9=156" I "35=8" I "49=foo" I "56=bar" I "52=20071123-05:30:00.000" I "11=OID123456" I "150=E" I "39=A" I "55=XYZ" I "167=CS" I "54=1" I "38=15" I "40=2" I "44=15.001" I "58=EQUITYTESTING" I "59=0" I "32=0" I "31=0" I "151=15" I "14=0" I "6=0" I "10=118" I
 
 // large exec report
-"8=FIX.4.49=33235=849=foo56=bar52=20071123-05:30:00.00011=OID123456150=E39=A55=XYZ167=CS54=138=1540=244=15.00158=EQUITYTESTING59=032=031=0151=1514=06=0" 
-"555=2600=SYM1624=0687=10683=1"
-                             "688=A689=a"
-                             "564=1"
-                             "539=2524=PARTY1525=S"
-                                   "524=PARTY2525=S"
-                                   "804=2545=S1805=1545=S2805=2"
-      "600=SYM2624=1687=20683=2"
-                             "688=A689=a"
-                             "688=B689=b"
-"10=027"
+"8=FIX.4.4" I "9=332" I "35=8" I "49=foo" I "56=bar" I "52=20071123-05:30:00.000" I "11=OID123456" I "150=E" I "39=A" I "55=XYZ" I "167=CS" I "54=1" I "38=15" I "40=2" I "44=15.001" I "58=EQUITYTESTING" I "59=0" I "32=0" I "31=0" I "151=15" I "14=0" I "6=0" I 
+"555=2" I "600=SYM1" I "624=0" I "687=10" I "683=1" I
+                             "688=A" I "689=a" I
+                             "564=1" I
+                             "539=2" I "524=PARTY1" I "525=S" I
+                                   "524=PARTY2" I "525=S" I
+                                   "804=2" I "545=S1" I "805=1" I "545=S2" I "805=2" I
+      "600=SYM2" I "624=1" I "687=20" I "683=2" I
+                             "688=A" I "689=a" I
+                             "688=B" I "689=b" I
+"10=027" I
 
 // md full refresh
-"8=FIX.4.49=31535=W49=foo56=bar34=123452=20190101-01:01:01.00055=EUR/USD268=6269=1290=1270=1.2115=USD271=1000000269=1290=2270=1.21115=USD271=2000000269=1290=3270=1.22115=USD271=3000000269=1290=4270=1.231515=USD271=4000000269=0290=5270=1.20115=USD271=1000000269=0290=6270=1.20515=USD271=200000010=075";
+"8=FIX.4.4" I "9=315" I "35=W" I "49=foo" I "56=bar" I "34=1234" I "52=20190101-01:01:01.000" I "55=EUR/USD" I "268=6" I "269=1" I "290=1" I "270=1.21" I "15=USD" I "271=1000000" I "269=1" I "290=2" I "270=1.211" I "15=USD" I "271=2000000" I "269=1" I "290=3" I "270=1.221" I "15=USD" I "271=3000000" I "269=1" I "290=4" I "270=1.2315" I "15=USD" I "271=4000000" I "269=0" I "290=5" I "270=1.201" I "15=USD" I "271=1000000" I "269=0" I "290=6" I "270=1.205" I "15=USD" I "271=2000000" I "10=075" I;
 
 using namespace venue::fix;
 
@@ -524,12 +528,13 @@ A typical scenario will be
 ```cpp
     using namespace fix;
     using namespace fix::field;
+    using namespace fix::message;
     ...
 
     /// before we send it
 
     // prepare
-    ReusableMessageBuilder order( MessageNewOrderSingle::getMessageType(), 512, 128 );
+    ReusableMessageBuilder order( NewOrderSingle::getMessageType(), 512, 128 );
     order.header.append<SenderCompID>("ASENDER");
     order.header.append<TargetCompID>("ATARGET");
     order.header.pushTag<FieldMsgSeqNum>();
