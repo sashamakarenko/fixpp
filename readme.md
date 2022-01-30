@@ -494,14 +494,14 @@ You will have to include SenderApi.h to build FIX messages with fixpp. It offers
 This structure has two attributes: `begin` and `end`. Respectively pointing to the message's first and past last byte.
 Each time a new field is inserted `end` will shift forward accordingly. In most cases the fields will be appended as tag-value pairs:
 ```cpp
-execReport.append<FieldClOrdID>("OID4567");
-execReport.append<FieldQtyType>( QtyTypeEnums::UNITS.value );
-execReport.append<FieldPrice>( 21123.04567, 2 );
+execReport.append<ClOrdID>("OID4567");
+execReport.append<QtyType>( QtyTypeEnums::UNITS.value );
+execReport.append<Price>( 21123.04567, 2 );
 ```
 
 It is also possible to push tags and values separately:
 ```cpp
-execReport.pushTag<FieldClOrdID>().pushValue("OID4567");
+execReport.pushTag<ClOrdID>().pushValue("OID4567");
 ```
 
 ### ReusableMessageBuilder
@@ -522,20 +522,23 @@ buffer   start                msgType                                    sending
 A typical scenario will be
 
 ```cpp
+    using namespace fix;
+    using namespace fix::field;
+    ...
 
     /// before we send it
 
     // prepare
     ReusableMessageBuilder order( MessageNewOrderSingle::getMessageType(), 512, 128 );
-    order.header.append<FieldSenderCompID>("ASENDER");
-    order.header.append<FieldTargetCompID>("ATARGET");
+    order.header.append<SenderCompID>("ASENDER");
+    order.header.append<TargetCompID>("ATARGET");
     order.header.pushTag<FieldMsgSeqNum>();
     order.header.finalize();
 
     // append SendingTime to the header
     auto constexpr tsLen  = TimestampKeeper::DATE_TIME_MILLIS_LENGTH;
     auto constexpr tsFrac = TimestampKeeper::Precision::MILLISECONDS;
-    order.append<FieldSendingTime>( TimestampKeeper::PLACE_HOLDER, tsLen );
+    order.append<SendingTime>( TimestampKeeper::PLACE_HOLDER, tsLen );
     // initialize the timestamp keeper
     order.sendingTime.setup( order.end - tsLen, tsFrac );
     order.sendingTime.update();
@@ -549,15 +552,15 @@ A typical scenario will be
         // update changing fields in SendingTime
         order.sendingTime.update();
         // append order specific fields
-        order.append<FieldAccount>( of.account, of.accountLen );
-        order.append<FieldClOrdID>( of.orderId, of.orderIdLen );
-        order.append<FieldSymbol>( of.symbol, of.symbolLen );
-        order.append<FieldSide>( of.side );
-        order.append<FieldPrice>( of.price, 6 );
-        order.append<FieldOrderQty>( of.qty );
+        order.append<Account>( of.account, of.accountLen );
+        order.append<ClOrdID>( of.orderId, of.orderIdLen );
+        order.append<Symbol>( of.symbol, of.symbolLen );
+        order.append<Side>( of.side );
+        order.append<Price>( of.price, 6 );
+        order.append<OrderQty>( of.qty );
         // copy SendingTime into TransactTime
-        order.append<FieldTransactTime>( order.sendingTime.begin, tsLen );
-        order.append<FieldOrdType>( of.type );
+        order.append<TransactTime>( order.sendingTime.begin, tsLen );
+        order.append<OrdType>( of.type );
         // finalize
         order.setSeqnumAndUpdateHeaderAndChecksum(++seqnum);
         // send it

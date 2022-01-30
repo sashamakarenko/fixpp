@@ -52,3 +52,22 @@ struct NAME##Enums final: FieldEnumsBase {\
 #undef FIX_ENUM_BEGIN
 #undef FIX_ENUM_DECL
 #undef FIX_ENUM_END
+
+<com> -------------------------------------- convenience field namespace ----------------------------------------
+
+#define FIX_FIELD_DECL( NAME, TAG, TYPE ) \
+typedef Field##NAME NAME;
+
+#define FIX_ENUM_BEGIN( NAME )
+#define FIX_ENUM_DECL( NAME, E, V )
+#define FIX_ENUM_END
+
+namespace field
+{
+#include <Fields.def>
+}
+
+#undef FIX_FIELD_DECL
+#undef FIX_ENUM_BEGIN
+#undef FIX_ENUM_DECL
+#undef FIX_ENUM_END
