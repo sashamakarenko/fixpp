@@ -253,7 +253,7 @@ struct FixBufferStream
     char * end;
 };
 
-//  begin    start                msgType                                    sendingTime                  body
+//  buffer   start                msgType                                    sendingTime                  body
 //  |        |                    |                                          |                            |
 //  "..."   "8=FIX.4.4" I "9=315" I "35=W" I "49=foo" I "56=bar" I "34=1234" I "52=20190101-01:01:01.000" I "..."
 //           ----------------***  -------------------------------------****              --------========

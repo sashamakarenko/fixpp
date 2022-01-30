@@ -5,16 +5,16 @@ The idea is use CPP preprocessing instructions along with standard Linux CLI too
 About API:
 
 * No third party dependencies. All the generated code is yours and can go straight into your lib or app.
-* Repeating groups support.
+* Repeating groups are supported.
 * You can strip off all useless standard FIX tags to fit your venue specs.
 
-Receiving ([read more](#sending-api)):
+Receiving ([read more](#input)):
 
 * Lightweight and low latency FIX parsing with reusable memory and objects.
 * Flexible formatting with available predefined TTY color styles.
 * Pretty printing with GDB and VSCode.
 
-Sending ([read more](#input)):
+Sending ([read more](#sending-api)):
 
 * Low latency FIX message building with reusable memory and objects.
 * For a given message type, only fields changing between two sends are to be updated. 
@@ -22,7 +22,7 @@ Sending ([read more](#input)):
 You have to know:
 
 * fixpp is not a FIX engine
-* it runs in an optimistic mode and relies on the venue FIX conformance (it saves quite a few CPU cycles...)
+* it runs in an optimistic mode and relies on the venue FIX conformance (this saves quite a few CPU cycles...)
 
 ## Performance
 
@@ -492,7 +492,7 @@ You will have to include SenderApi.h to build FIX messages with fixpp. It offers
 ### FixBufferStream
 
 This structure has two attributes: `begin` and `end`. Respectively pointing to the message's first and past last byte.
-Each time a new field is inserted, `end` will shift forward accordingly. In most cases the fields will be appended as tag-value pairs:
+Each time a new field is inserted `end` will shift forward accordingly. In most cases the fields will be appended as tag-value pairs:
 ```cpp
 execReport.append<FieldClOrdID>("OID4567");
 execReport.append<FieldQtyType>( QtyTypeEnums::UNITS.value );
@@ -510,7 +510,7 @@ The idea behind is for a given FIX session:
 - to pre-compute the checksum for non-changing header's fields,
 - to update only changing time within timestamps since the date does not change intra day.
 
-This structure inherits the `begin` and `end` pointers from FixBufferStream. But `begin` refers to the first changing field like SendingTime for instance. The very first byte of the sending buffer will be pointed to by `start`. The latter will move each time the header's with changes. For example when the sequence number or body length change their widths.
+This structure inherits the `begin` and `end` pointers from FixBufferStream. But `begin` refers to the first changing field like SendingTime for instance. The very first byte of the sending buffer will be pointed to by `start`. The latter will move each time the header's width changes. For example when the sequence number or body length change their widths.
 ```
 buffer   start                msgType                                    sendingTime                  body
 |        |                    |                                          |                            |
