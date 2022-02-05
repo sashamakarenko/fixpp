@@ -2,7 +2,7 @@
 
 The idea is to use CPP preprocessing instructions along with standard Linux CLI tools(bash,sed,grep) to generate a FIX API for a given venue.
 
-Mind set:
+Mindset:
 
 * No third party dependencies. All the generated code is yours and can go straight into your lib or app.
 * Repeating groups are supported.
