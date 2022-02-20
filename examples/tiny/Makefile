@@ -5,14 +5,14 @@ PRJ_TYPE    := lib
 
 PE_PRJ_DIR := ../../../pe
 ifneq ($(wildcard $(PE_PRJ_DIR)),)
-    TestPerf_EXTRA_CPP_FLAGS  := -I$(PE_PRJ_DIR)/src
-    TestPerf_EXTRA_LD_PATH    := $(PE_PRJ_DIR)/build/lib/release
-    TestPerf_EXTRA_LINK_FLAGS := -L$(TestPerf_EXTRA_LD_PATH) -lpe-1.0
-    TestPerf_EXTRA_DEPENDENCY := $(PE_PRJ_DIR)/build/lib/release/libpe-1.0.so
-    TestSenderPerf_EXTRA_CPP_FLAGS  := $(TestPerf_EXTRA_CPP_FLAGS)
-    TestSenderPerf_EXTRA_LD_PATH    := $(TestPerf_EXTRA_LD_PATH)
-    TestSenderPerf_EXTRA_LINK_FLAGS := $(TestPerf_EXTRA_LINK_FLAGS)
-    TestSenderPerf_EXTRA_DEPENDENCY := $(TestPerf_EXTRA_DEPENDENCY)
+    TestPerf_EXTRA_CPP_FLAGS           := -I$(PE_PRJ_DIR)/src
+    TestPerf_EXTRA_LD_PATH             := $(PE_PRJ_DIR)/build/lib/release
+    TestPerf_EXTRA_LINK_FLAGS          := -L$(TestPerf_EXTRA_LD_PATH) -lpe-1.0
+    TestPerf_EXTRA_DEPENDENCY          := $(PE_PRJ_DIR)/build/lib/release/libpe-1.0.so
+    TestSenderPerf_EXTRA_CPP_FLAGS     := $(TestPerf_EXTRA_CPP_FLAGS)
+    TestSenderPerf_EXTRA_LD_PATH       := $(TestPerf_EXTRA_LD_PATH)
+    TestSenderPerf_EXTRA_LINK_FLAGS    := $(TestPerf_EXTRA_LINK_FLAGS)
+    TestSenderPerf_EXTRA_DEPENDENCY    := $(TestPerf_EXTRA_DEPENDENCY)
     TestSendForexPerf_EXTRA_CPP_FLAGS  := $(TestPerf_EXTRA_CPP_FLAGS)
     TestSendForexPerf_EXTRA_LD_PATH    := $(TestPerf_EXTRA_LD_PATH)
     TestSendForexPerf_EXTRA_LINK_FLAGS := $(TestPerf_EXTRA_LINK_FLAGS)
