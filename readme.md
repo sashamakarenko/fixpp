@@ -1,5 +1,23 @@
-# fixpp stands for FIX decoder by C++ PreProcessor
+# fixpp stands for FIX by C++ PreProcessor
 
+* [Motivation](#motivation)
+* [Performance](#performance)
+* [Screenshots](#screenshots)
+  - [TTY output](#tty-output)
+  - [Debugger view in vscode](#debugger-view-in-vscode)
+* [Input](#input)
+* [Output](#output)
+* [Decode messages](#decode-messages)
+  - [Use ParserDispatcher](#use-parserdispatcher)
+  - [How to read from socket or file](#how-to-read-from-socket-or-file)
+  - [DIY](#diy)
+* [Sending API](#sending-api)
+  - [FixBufferStream](#)
+  - [ReusableMessageBuilder](#)
+* [Examples](#examples)
+* [Custom HTML output](#custom-html-output)
+
+## Motivation
 The idea is to use CPP preprocessing instructions along with standard Linux CLI tools(bash,sed,grep) to generate a FIX API for a given venue.
 
 Mindset:
@@ -21,7 +39,7 @@ Sending ([read more](#sending-api)):
 
 You have to know:
 
-* fixpp is not a FIX engine
+* fixpp is not a FIX engine (yet)
 * it runs in an optimistic mode and relies on the venue FIX conformance (this saves quite a few CPU cycles...)
 
 ## Performance
@@ -37,14 +55,18 @@ You have to know:
 
 \* 6 repeating groups
 
+
 ## Screenshots
 
+### TTY output
 ![TTY formatting](images/exec-report-tty.png)
+
+### Debugger view in vscode
 ![GDB pretty printing in VSCode](images/exec-report-vscode.png)
 
 ## Input
 
-Based on your venue FIX API prepare files `Fields.def`, `Groups.def` and `Messages.def` for example in src/spec.
+Based on your venue FIX API prepare files `Fields.def`, `Groups.def` and `Messages.def`. One can pick up ready to use files from examples/spec and adjust `Groups.def` and `Messages.def`. `Fields.def` will be cleaned automatically during generation.
 
 **src/spec/Fields.def**
 ```
@@ -123,7 +145,6 @@ FIX_MSG_END
 See more in `examples`.
 
 ## Output
-### Generate decoder files
 
 `/path/to/fixpp/generate.sh -d MYPRJ/src/myprj/fix -s MYPRJ/src/spec -i myprj/fix -n venue::fix  -p MYPRJ/src/gdb`
 
@@ -171,66 +192,6 @@ MYPRJ
 ```
 
 ## Decode messages
-
-### DIY
-
-```cpp
-#include <myprj/fix/Messages.h>
-
-const char * execReport = "8=FIX.4.4" I "9=332" I "35=8" I "49=foo" I "56=bar" I "52=20071123-05:30:00.000" I
-"11=OID123456" I "150=E" I "39=A" I "55=XYZ" I "167=CS" I "54=1" I "38=15" I "40=2" I "44=15.001" I "58=EQUITYTESTING" I "59=0" I "32=0" I "31=0" I "151=15" I "14=0" I "6=0" I 
-"555=2" I "600=SYM1" I "624=0" I "687=10" I "683=1" I
-                             "688=A" I "689=a" I
-                             "564=1" I
-                             "539=2" I "524=PARTY1" I "525=S" I
-                                   "524=PARTY2" I "525=S" I
-                                   "804=2" I "545=S1" I "805=1" I "545=S2" I "805=2" I
-      "600=SYM2" I "624=1" I "687=20" I "683=2" I
-                             "688=A" I "689=a" I
-                             "688=B" I "689=b" I
-"10=027" I;
-
-    
-
-    using namespace venue::fix;
-    ...
-
-    MessageHeader header;
-    // pos = offset from message start
-    offset_t pos = header.scan( execReport, strlen( execReport ) );
-
-    MessageExecutionReport er;
-    pos = er.scan( execReport + pos, strlen( execReport ) - pos );
-    
-    // print single field value
-    std::cout << ' ' << FixOrdStatus << " = " << er.getOrdStatus() << std::endl;
-
-    // print entire message
-    std::cout << "\n\n -- Pretty Printing --" << std::endl;
-    
-    // use operator <<
-    std::cout << fixstr( execReport, ttyRgbStyle ) << std::endl;
-
-    // print flat and advance pos
-    pos = 0;
-    fixToHuman( execReport, pos, std::cout, ttyRgbStyle ) << std::endl;
-    
-    // indent groups
-    pos = 0;
-    fixToHuman( execReport, pos, std::cout, ttyRgbStyle, MessageExecutionReport::getFieldDepth ) << std::endl;    
-
-    // iterate over groups
-    if( er.isSetNoLegs() )
-    {
-        unsigned noLegs = er.getNoLegs();
-        for( unsigned legIdx = 0 ; legIdx < noLegs; ++legIdx )
-        {
-            const GroupLegs & leg = er.getGroupLegs( legIdx );
-            std::cout << legIdx << ": side:" << leg.getLegSide() << " qty: " << leg.getLegQty() << std::endl;
-        }
-    }
-
-```
 
 ### Use ParserDispatcher
 
@@ -319,6 +280,153 @@ int main( int args, const char ** argv )
         }
         
     }
+```
+### DIY
+
+```cpp
+#include <myprj/fix/Messages.h>
+
+const char * execReport = "8=FIX.4.4" I "9=332" I "35=8" I "49=foo" I "56=bar" I "52=20071123-05:30:00.000" I
+"11=OID123456" I "150=E" I "39=A" I "55=XYZ" I "167=CS" I "54=1" I "38=15" I "40=2" I "44=15.001" I "58=EQUITYTESTING" I "59=0" I "32=0" I "31=0" I "151=15" I "14=0" I "6=0" I 
+"555=2" I "600=SYM1" I "624=0" I "687=10" I "683=1" I
+                             "688=A" I "689=a" I
+                             "564=1" I
+                             "539=2" I "524=PARTY1" I "525=S" I
+                                   "524=PARTY2" I "525=S" I
+                                   "804=2" I "545=S1" I "805=1" I "545=S2" I "805=2" I
+      "600=SYM2" I "624=1" I "687=20" I "683=2" I
+                             "688=A" I "689=a" I
+                             "688=B" I "689=b" I
+"10=027" I;
+
+    
+
+    using namespace venue::fix;
+    ...
+
+    MessageHeader header;
+    // pos = offset from message start
+    offset_t pos = header.scan( execReport, strlen( execReport ) );
+
+    MessageExecutionReport er;
+    pos = er.scan( execReport + pos, strlen( execReport ) - pos );
+    
+    // print single field value
+    std::cout << ' ' << FixOrdStatus << " = " << er.getOrdStatus() << std::endl;
+
+    // print entire message
+    std::cout << "\n\n -- Pretty Printing --" << std::endl;
+    
+    // use operator <<
+    std::cout << fixstr( execReport, ttyRgbStyle ) << std::endl;
+
+    // print flat and advance pos
+    pos = 0;
+    fixToHuman( execReport, pos, std::cout, ttyRgbStyle ) << std::endl;
+    
+    // indent groups
+    pos = 0;
+    fixToHuman( execReport, pos, std::cout, ttyRgbStyle, MessageExecutionReport::getFieldDepth ) << std::endl;    
+
+    // iterate over groups
+    if( er.isSetNoLegs() )
+    {
+        unsigned noLegs = er.getNoLegs();
+        for( unsigned legIdx = 0 ; legIdx < noLegs; ++legIdx )
+        {
+            const GroupLegs & leg = er.getGroupLegs( legIdx );
+            std::cout << legIdx << ": side:" << leg.getLegSide() << " qty: " << leg.getLegQty() << std::endl;
+        }
+    }
+
+```
+
+
+## Sending API
+
+You will have to include SenderApi.h to build FIX messages with fixpp. It offers both 
+- low level buffer construction with FixBufferStream
+- and reusable memory approach with ReusableMessageBuilder
+
+### FixBufferStream
+
+This structure has two attributes: `begin` and `end`. Respectively pointing to the message's first and past last byte.
+Each time a new field is inserted `end` will shift forward accordingly. In most cases the fields will be appended as tag-value pairs:
+```cpp
+execReport.append<ClOrdID>("OID4567");
+execReport.append<QtyType>( QtyTypeEnums::UNITS.value );
+execReport.append<Price>( 21123.04567, 2 );
+```
+
+It is also possible to push tags and values separately:
+```cpp
+execReport.pushTag<ClOrdID>().pushValue("OID4567");
+```
+
+### ReusableMessageBuilder
+The idea behind is for a given FIX session:
+- to reuse the header since most of it's fields will not change,
+- to pre-compute the checksum for non-changing header's fields,
+- to update only changing time within timestamps since the date does not change intra day.
+
+This structure inherits the `begin` and `end` pointers from FixBufferStream. But `begin` refers to the first changing field like SendingTime for instance. The very first byte of the sending buffer will be pointed to by `start`. The latter will move each time the header's width changes. For example when the sequence number or body length change their widths.
+```
+buffer   start                msgType                                    sendingTime                  body
+|        |                    |                                          |                            |
+"..."   "8=FIX.4.4" I "9=315" I "35=W" I "49=foo" I "56=bar" I "34=1234" I "52=20190101-01:01:01.000" I "..."
+                                                                         |                            | 
+                                                                         begin                        end
+```
+
+A typical scenario will be
+
+```cpp
+    using namespace fix;
+    using namespace fix::field;
+    using namespace fix::message;
+    ...
+
+    /// before we send it
+
+    // prepare
+    ReusableMessageBuilder order( NewOrderSingle::getMessageType(), 512, 128 );
+    order.header.append<SenderCompID>("ASENDER");
+    order.header.append<TargetCompID>("ATARGET");
+    order.header.pushTag<FieldMsgSeqNum>();
+    order.header.finalize();
+
+    // append SendingTime to the header
+    auto constexpr tsLen  = TimestampKeeper::DATE_TIME_MILLIS_LENGTH;
+    auto constexpr tsFrac = TimestampKeeper::Precision::MILLISECONDS;
+    order.append<SendingTime>( TimestampKeeper::PLACE_HOLDER, tsLen );
+    // initialize the timestamp keeper
+    order.sendingTime.setup( order.end - tsLen, tsFrac );
+    order.sendingTime.update();
+    const unsigned sendingTimeLength = order.end - order.begin;
+    ...
+    /// sending it
+    void sendOrder( const OrderFields & of )
+    {
+        // move end past SendingTime
+        order.rewind( sendingTimeLength );
+        // update changing fields in SendingTime
+        order.sendingTime.update();
+        // append order specific fields
+        order.append<Account>( of.account, of.accountLen );
+        order.append<ClOrdID>( of.orderId, of.orderIdLen );
+        order.append<Symbol>( of.symbol, of.symbolLen );
+        order.append<Side>( of.side );
+        order.append<Price>( of.price, 6 );
+        order.append<OrderQty>( of.qty );
+        // copy SendingTime into TransactTime
+        order.append<TransactTime>( order.sendingTime.begin, tsLen );
+        order.append<OrdType>( of.type );
+        // finalize
+        order.setSeqnumAndUpdateHeaderAndChecksum(++seqnum);
+        // send it
+        socket.send( order.start, order.end - order.start );
+    }
+
 ```
 
 ## Examples
@@ -486,91 +594,3 @@ const FixFormatStyle htmlTableRgbStyle =
 <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<font color="black"><b>LegStipulationValue</b></font><font color="grey">(689)</font> </td><td> <font color="darkblue">b</font></td></tr>
 <tr><td><font color="black"><b>CheckSum</b></font><font color="grey">(10)</font> </td><td> <font color="darkblue">027</font></td></tr>
 </table></pre>
-
-## Sending API
-
-You will have to include SenderApi.h to build FIX messages with fixpp. It offers both 
-- low level buffer construction with FixBufferStream
-- and reusable memory approach with ReusableMessageBuilder
-
-### FixBufferStream
-
-This structure has two attributes: `begin` and `end`. Respectively pointing to the message's first and past last byte.
-Each time a new field is inserted `end` will shift forward accordingly. In most cases the fields will be appended as tag-value pairs:
-```cpp
-execReport.append<ClOrdID>("OID4567");
-execReport.append<QtyType>( QtyTypeEnums::UNITS.value );
-execReport.append<Price>( 21123.04567, 2 );
-```
-
-It is also possible to push tags and values separately:
-```cpp
-execReport.pushTag<ClOrdID>().pushValue("OID4567");
-```
-
-### ReusableMessageBuilder
-The idea behind is for a given FIX session:
-- to reuse the header since most of it's fields will not change,
-- to pre-compute the checksum for non-changing header's fields,
-- to update only changing time within timestamps since the date does not change intra day.
-
-This structure inherits the `begin` and `end` pointers from FixBufferStream. But `begin` refers to the first changing field like SendingTime for instance. The very first byte of the sending buffer will be pointed to by `start`. The latter will move each time the header's width changes. For example when the sequence number or body length change their widths.
-```
-buffer   start                msgType                                    sendingTime                  body
-|        |                    |                                          |                            |
-"..."   "8=FIX.4.4" I "9=315" I "35=W" I "49=foo" I "56=bar" I "34=1234" I "52=20190101-01:01:01.000" I "..."
-                                                                         |                            | 
-                                                                         begin                        end
-```
-
-A typical scenario will be
-
-```cpp
-    using namespace fix;
-    using namespace fix::field;
-    using namespace fix::message;
-    ...
-
-    /// before we send it
-
-    // prepare
-    ReusableMessageBuilder order( NewOrderSingle::getMessageType(), 512, 128 );
-    order.header.append<SenderCompID>("ASENDER");
-    order.header.append<TargetCompID>("ATARGET");
-    order.header.pushTag<FieldMsgSeqNum>();
-    order.header.finalize();
-
-    // append SendingTime to the header
-    auto constexpr tsLen  = TimestampKeeper::DATE_TIME_MILLIS_LENGTH;
-    auto constexpr tsFrac = TimestampKeeper::Precision::MILLISECONDS;
-    order.append<SendingTime>( TimestampKeeper::PLACE_HOLDER, tsLen );
-    // initialize the timestamp keeper
-    order.sendingTime.setup( order.end - tsLen, tsFrac );
-    order.sendingTime.update();
-    const unsigned sendingTimeLength = order.end - order.begin;
-    ...
-    /// sending it
-    void sendOrder( const OrderFields & of )
-    {
-        // move end past SendingTime
-        order.rewind( sendingTimeLength );
-        // update changing fields in SendingTime
-        order.sendingTime.update();
-        // append order specific fields
-        order.append<Account>( of.account, of.accountLen );
-        order.append<ClOrdID>( of.orderId, of.orderIdLen );
-        order.append<Symbol>( of.symbol, of.symbolLen );
-        order.append<Side>( of.side );
-        order.append<Price>( of.price, 6 );
-        order.append<OrderQty>( of.qty );
-        // copy SendingTime into TransactTime
-        order.append<TransactTime>( order.sendingTime.begin, tsLen );
-        order.append<OrdType>( of.type );
-        // finalize
-        order.setSeqnumAndUpdateHeaderAndChecksum(++seqnum);
-        // send it
-        socket.send( order.start, order.end - order.start );
-    }
-
-```
-
