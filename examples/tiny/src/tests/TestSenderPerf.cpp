@@ -2,6 +2,7 @@
 #include <pe/Measurement.h>
 
 using namespace tiny;
+using namespace tiny::field;
 
 struct OrderFields
 {
@@ -44,10 +45,10 @@ int main( int args, const char ** argv )
     m.addEvent( pe::EventType::branchMisses );
     m.initialize( 100 );
 
-    ReusableMessageBuilder order( MessageExecutionReport::getMessageType(), 512, 128 );
-    order.header.append<FieldSenderCompID>("ASENDER");
-    order.header.append<FieldTargetCompID>("ATARGET");
-    order.header.pushTag<FieldMsgSeqNum>();
+    ReusableMessageBuilder order( MessageNewOrderSingle::getMessageType(), 512, 128 );
+    order.header.append<SenderCompID>("ASENDER");
+    order.header.append<TargetCompID>("ATARGET");
+    order.header.pushTag<MsgSeqNum>();
     order.header.finalize();
 
     //auto constexpr tsLen  = TimestampKeeper::DATE_TIME_SECONDS_LENGTH;
@@ -58,7 +59,7 @@ int main( int args, const char ** argv )
     //auto constexpr tsFrac = TimestampKeeper::Precision::MICROSECONDS;
     //auto constexpr tsLen  = TimestampKeeper::DATE_TIME_NANOS_LENGTH;
     //auto constexpr tsFrac = TimestampKeeper::Precision::NANOSECONDS;
-    order.append<FieldSendingTime>( TimestampKeeper::PLACE_HOLDER, tsLen );
+    order.append<SendingTime>( TimestampKeeper::PLACE_HOLDER, tsLen );
     order.sendingTime.setup( order.end - tsLen, tsFrac );
     order.sendingTime.update();
     const unsigned sendingTimeLength = order.end - order.begin;
@@ -68,14 +69,14 @@ int main( int args, const char ** argv )
         const OrderFields & of = orders[0];
         order.rewind( sendingTimeLength );
         order.sendingTime.update();
-        order.append<FieldAccount>( of.account );
-        order.append<FieldClOrdID>( of.orderId );
-        order.append<FieldSymbol>( of.symbol );
-        order.append<FieldSide>( of.side );
-        order.append<FieldOrderQty>( of.qty );
-        order.append<FieldPrice>( of.price, 6 );
-        order.append<FieldTransactTime>( order.sendingTime.begin, tsLen );
-        order.append<FieldOrdType>( of.type );
+        order.append<Account>( of.account );
+        order.append<ClOrdID>( of.orderId );
+        order.append<Symbol>( of.symbol );
+        order.append<Side>( of.side );
+        order.append<OrderQty>( of.qty );
+        order.append<Price>( of.price, 6 );
+        order.append<TransactTime>( order.sendingTime.begin, tsLen );
+        order.append<OrdType>( of.type );
         order.setSeqnumAndUpdateHeaderAndChecksum(seqnum);
         std::cout << fixstr( order.start, ttyRgbStyle ) << std::endl;
     }
@@ -86,14 +87,14 @@ int main( int args, const char ** argv )
         m.startCapture();
         order.rewind( sendingTimeLength );
         order.sendingTime.update();
-        order.append<FieldAccount>( of.account, of.accountLen );
-        order.append<FieldClOrdID>( of.orderId, of.orderIdLen );
-        order.append<FieldSymbol>( of.symbol, of.symbolLen );
-        order.append<FieldSide>( of.side );
-        order.append<FieldPrice>( of.price, 6 );
-        order.append<FieldOrderQty>( of.qty );
-        order.append<FieldTransactTime>( order.sendingTime.begin, tsLen );
-        order.append<FieldOrdType>( of.type );
+        order.append<Account>( of.account, of.accountLen );
+        order.append<ClOrdID>( of.orderId, of.orderIdLen );
+        order.append<Symbol>( of.symbol, of.symbolLen );
+        order.append<Side>( of.side );
+        order.append<Price>( of.price, 6 );
+        order.append<OrderQty>( of.qty );
+        order.append<TransactTime>( order.sendingTime.begin, tsLen );
+        order.append<OrdType>( of.type );
         order.setSeqnumAndUpdateHeaderAndChecksum(++seqnum);
         m.stopCapture();
     }
@@ -131,7 +132,7 @@ int main( int args, const char ** argv )
         const OrderFields & of = orders[ i % 8 ];
         order.rewind( sendingTimeLength );
         m.startCapture();
-        order.append<FieldClOrdID>( of.orderId, of.orderIdLen );
+        order.append<ClOrdID>( of.orderId, of.orderIdLen );
         m.stopCapture();
     }
 
@@ -145,7 +146,7 @@ int main( int args, const char ** argv )
         const OrderFields & of = orders[ i % 8 ];
         order.rewind( sendingTimeLength );
         m.startCapture();
-        order.append<FieldPrice>( of.price, 6 );
+        order.append<Price>( of.price, 6 );
         m.stopCapture();
     }
 
@@ -159,7 +160,7 @@ int main( int args, const char ** argv )
         const OrderFields & of = orders[ i % 8 ];
         order.rewind( sendingTimeLength );
         m.startCapture();
-        order.append<FieldOrderQty>( of.qty );
+        order.append<OrderQty>( of.qty );
         m.stopCapture();
     }
 
@@ -173,12 +174,12 @@ int main( int args, const char ** argv )
         const OrderFields & of = orders[ i % 8 ];
         order.rewind( sendingTimeLength );
         order.sendingTime.update();
-        order.append<FieldAccount>( of.account, of.accountLen );
-        order.append<FieldClOrdID>( of.orderId, of.orderIdLen );
-        order.append<FieldSymbol>( of.symbol, of.symbolLen );
-        order.append<FieldSide>( of.side );
-        order.append<FieldOrderQty>( of.qty );
-        order.append<FieldPrice>( of.price, 6 );
+        order.append<Account>( of.account, of.accountLen );
+        order.append<ClOrdID>( of.orderId, of.orderIdLen );
+        order.append<Symbol>( of.symbol, of.symbolLen );
+        order.append<Side>( of.side );
+        order.append<OrderQty>( of.qty );
+        order.append<Price>( of.price, 6 );
         m.startCapture();
         order.setSeqnumAndUpdateHeaderAndChecksum(++seqnum);
         m.stopCapture();
