@@ -604,4 +604,4 @@ const FixFormatStyle htmlTableRgbStyle =
 <tr><td><font color="black"><b>CheckSum</b></font><font color="grey">(10)</font> </td><td> <font color="darkblue">027</font></td></tr>
 </table></pre>
 
-[![ ](https://hits.dwyl.com/sashamakarenko/fixpp.svg?style=flat-square&show=unique)](http://hits.dwyl.com/sashamakarenko/fixpp)
+[![_](https://hits.dwyl.com/sashamakarenko/fixpp.svg?style=flat)](http://hits.dwyl.com/sashamakarenko/fixpp)
