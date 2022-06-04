@@ -1,7 +1,5 @@
 # fixpp stands for FIX by C++ PreProcessor
 
-[![HitCount](https://hits.dwyl.com/sashamakarenko/fixpp.svg?style=flat-square&show=unique)](http://hits.dwyl.com/sashamakarenko/fixpp)
-
 * [Motivation](#motivation)
 * [Performance](#performance)
 * [Screenshots](#screenshots)
@@ -605,3 +603,5 @@ const FixFormatStyle htmlTableRgbStyle =
 <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<font color="black"><b>LegStipulationValue</b></font><font color="grey">(689)</font> </td><td> <font color="darkblue">b</font></td></tr>
 <tr><td><font color="black"><b>CheckSum</b></font><font color="grey">(10)</font> </td><td> <font color="darkblue">027</font></td></tr>
 </table></pre>
+
+[![ ](https://hits.dwyl.com/sashamakarenko/fixpp.svg?style=flat-square&show=unique)](http://hits.dwyl.com/sashamakarenko/fixpp)
