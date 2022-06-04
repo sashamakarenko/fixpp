@@ -1,0 +1,25 @@
+FIX_MSG_GROUP_BEGIN( LegStipulations, LegStipulationType )
+FIX_MSG_FIELD( LegStipulationValue )
+FIX_MSG_GROUP_END
+
+FIX_MSG_GROUP_BEGIN( NestedPartySubIDs, NestedPartySubID )
+FIX_MSG_FIELD( NestedPartySubIDType )
+FIX_MSG_GROUP_END
+
+FIX_MSG_GROUP_BEGIN( NestedPartyIDs, NestedPartyID )
+FIX_MSG_FIELD( NestedPartyIDSource )
+FIX_MSG_FIELD( NestedPartyRole )
+FIX_MSG_GROUP( NestedPartySubIDs )
+FIX_MSG_GROUP_END
+
+FIX_MSG_GROUP_BEGIN( Legs, LegSymbol )
+FIX_MSG_FIELD( LegSide )
+FIX_MSG_FIELD( LegQty )
+FIX_MSG_GROUP( LegStipulations )
+FIX_MSG_FIELD( LegPositionEffect )
+FIX_MSG_GROUP( NestedPartyIDs )
+FIX_MSG_FIELD( LegRefID )
+FIX_MSG_FIELD( LegPrice )
+FIX_MSG_FIELD( LegLastPx )
+FIX_MSG_GROUP_END
+

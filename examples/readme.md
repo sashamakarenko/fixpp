@@ -1,0 +1,6 @@
+- `fix44` all committed complete lib with all FIX4.4 messages
+- `fixdump` tool to decode FIX messages
+- `odd` lib with unit tests with irregular messages
+- `tiny` venue specific example with unit tests
+- `order` all committed primitive project only with NewOrderSingle and ExecutionReport
+- `spec` input files for different FIX standards
