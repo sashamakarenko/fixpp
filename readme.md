@@ -1,5 +1,7 @@
 # fixpp stands for FIX by C++ PreProcessor
 
+[![HitCount](https://hits.dwyl.com/sashamakarenko/fixpp.svg?style=flat-square&show=unique)](http://hits.dwyl.com/sashamakarenko/fixpp)
+
 * [Motivation](#motivation)
 * [Performance](#performance)
 * [Screenshots](#screenshots)
