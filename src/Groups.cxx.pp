@@ -47,7 +47,7 @@ offset_t Group##NAME::scan( Array & arr, const char * fix, unsigned len ){\
 <n1>  bool isGroupStart = false;\
 <n1>  prev = pos;\
 <n1>  raw_tag_t tag = nextRawTag( fix+pos, pos );\
-<nl>  gpos = pos - (groupBuf - fix); \
+<n1>  gpos = pos - (groupBuf - fix);\
 <n1>  switch( tag ){\
 <n1>  case Field##FIRST_FIELD::RAW :\
 <n2>    PRINT_FIELD(FIRST_FIELD) \

@@ -56,7 +56,7 @@ offset_t GroupLegStipulations::scan( Array & arr, const char * fix, unsigned len
    bool isGroupStart = false;
    prev = pos;
    raw_tag_t tag = nextRawTag( fix+pos, pos );
- gpos = pos - (groupBuf - fix); 
+   gpos = pos - (groupBuf - fix);
    switch( tag ){
    case FieldLegStipulationType::RAW :
      PRINT_FIELD(LegStipulationType) 
@@ -89,7 +89,7 @@ offset_t GroupNestedPartySubIDs::scan( Array & arr, const char * fix, unsigned l
    bool isGroupStart = false;
    prev = pos;
    raw_tag_t tag = nextRawTag( fix+pos, pos );
- gpos = pos - (groupBuf - fix); 
+   gpos = pos - (groupBuf - fix);
    switch( tag ){
    case FieldNestedPartySubID::RAW :
      PRINT_FIELD(NestedPartySubID) 
@@ -122,7 +122,7 @@ offset_t GroupNestedPartyIDs::scan( Array & arr, const char * fix, unsigned len 
    bool isGroupStart = false;
    prev = pos;
    raw_tag_t tag = nextRawTag( fix+pos, pos );
- gpos = pos - (groupBuf - fix); 
+   gpos = pos - (groupBuf - fix);
    switch( tag ){
    case FieldNestedPartyID::RAW :
      PRINT_FIELD(NestedPartyID) 
@@ -168,7 +168,7 @@ offset_t GroupLegs::scan( Array & arr, const char * fix, unsigned len ){
    bool isGroupStart = false;
    prev = pos;
    raw_tag_t tag = nextRawTag( fix+pos, pos );
- gpos = pos - (groupBuf - fix); 
+   gpos = pos - (groupBuf - fix);
    switch( tag ){
    case FieldLegSymbol::RAW :
      PRINT_FIELD(LegSymbol) 
