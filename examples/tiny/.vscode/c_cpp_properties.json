@@ -8,7 +8,8 @@
                 "${workspaceFolder}/src/tiny",
                 "${workspaceFolder}/../../../../pe/src"
             ],
-            "defines": []
+            "defines": [],
+            "configurationProvider": "ms-vscode.makefile-tools"
         }
     ],
     "version": 4

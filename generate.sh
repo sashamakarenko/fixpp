@@ -168,7 +168,23 @@ sed -n /Header/,/FIX_MSG_END/p ${DEFDIR}/Messages.def | grep FIX_MSG_FIELD | sed
 dst=${DSTDIR}/Fields.hxx
 echo "  generating MsgType enums"
 
-BeginStr=$( sed -n /FIX_FIELD_BEGIN_STRING/p ${DEFDIR}/Fields.def | sed -e 's/FIX_FIELD_BEGIN_STRING.*(\(.*\)).*/\1/' -e 's/ //' )
+msg_types_in_fields=$( grep MsgType ${DEFDIR}/Fields.def | grep FIX_ENUM_DECL | sed -e 's/.*,\(.*\),.*/\1/' -e 's/\W//g' )
+msg_types_in_messages=$( grep FIX_MSG_BEGIN ${DEFDIR}/Messages.def | sed -e 's/.*,\(.*\)).*/\1/' -e 's/\W//g' -e '/^_$/d' )
+
+for mt in $msg_types_in_messages; do
+    if ! grep -q $mt <<<"$msg_types_in_fields"; then
+        echo "MsgType $mt is not declared in ${DEFDIR}/Fields.def" >&2
+        exit 1
+    fi
+done
+
+for mt in $msg_types_in_fields; do
+    if ! grep -q $mt <<<"$msg_types_in_messages"; then
+        echo "MsgType $mt is declared in ${DEFDIR}/Fields.def but not in ${DEFDIR}/Messages.def" >&2
+    fi
+done
+
+BeginStr=$( sed -n /FIX_FIELD_BEGIN_STRING/p ${DEFDIR}/Fields.def | sed -e 's/FIX_FIELD_BEGIN_STRING.*(\(.*\)).*/\1/' -e 's/\W//g' )
 sed "s/BEGIN_STRING_LENGTH/$((${#BeginStr}+1))/" -i $dst
 
 {

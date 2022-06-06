@@ -4,7 +4,7 @@
 // -------------------------------------- names ----------------------------------------
 extern const std::string FixBeginStringValue; 
 constexpr const char * const FixBeginStringInsertableTag = "8=" "FIX.4.4"; 
-constexpr const unsigned FixBeginStringInsertableTagLength = 9;
+constexpr const unsigned FixBeginStringInsertableTagLength = 6;
 
 extern const char * const FixAccount;
 extern const char * const FixAvgPx;
@@ -172,22 +172,8 @@ struct MsgTypeEnums final: FieldEnumsBase {
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase * const * const getEnums() const override;
-   static const ItemType HEARTBEAT;
-   static const ItemType TEST_REQUEST;
-   static const ItemType RESEND_REQUEST;
-   static const ItemType REJECT;
-   static const ItemType SEQUENCE_RESET;
-   static const ItemType LOGOUT;
    static const ItemType EXECUTION_REPORT;
-   static const ItemType LOGON;
    static const ItemType ORDER_SINGLE;
-   static const ItemType MARKET_DATA_REQUEST;
-   static const ItemType MARKET_DATA_SNAPSHOT_FULL_REFRESH;
-   static const ItemType MARKET_DATA_INCREMENTAL_REFRESH;
-   static const ItemType MARKET_DATA_REQUEST_REJECT;
-   static const ItemType COLLATERAL_INQUIRY_ACK;
-   static const ItemType CONFIRMATION_REQUEST;
-   static const ItemType SECURITY_DEFINITION;
 };
 
 struct OrdStatusEnums final: FieldEnumsBase {
@@ -476,19 +462,5 @@ typedef FieldNestedPartySubIDType NestedPartySubIDType;
 }
 
 constexpr raw_enum_t MsgTypeRaw__ = (raw_enum_t)0; // Header
-constexpr raw_enum_t MsgTypeRaw_HEARTBEAT = (raw_enum_t)'0';
-constexpr raw_enum_t MsgTypeRaw_TEST_REQUEST = (raw_enum_t)'1';
-constexpr raw_enum_t MsgTypeRaw_RESEND_REQUEST = (raw_enum_t)'2';
-constexpr raw_enum_t MsgTypeRaw_REJECT = (raw_enum_t)'3';
-constexpr raw_enum_t MsgTypeRaw_SEQUENCE_RESET = (raw_enum_t)'4';
-constexpr raw_enum_t MsgTypeRaw_LOGOUT = (raw_enum_t)'5';
 constexpr raw_enum_t MsgTypeRaw_EXECUTION_REPORT = (raw_enum_t)'8';
-constexpr raw_enum_t MsgTypeRaw_LOGON = (raw_enum_t)'A';
 constexpr raw_enum_t MsgTypeRaw_ORDER_SINGLE = (raw_enum_t)'D';
-constexpr raw_enum_t MsgTypeRaw_MARKET_DATA_REQUEST = (raw_enum_t)'V';
-constexpr raw_enum_t MsgTypeRaw_MARKET_DATA_SNAPSHOT_FULL_REFRESH = (raw_enum_t)'W';
-constexpr raw_enum_t MsgTypeRaw_MARKET_DATA_INCREMENTAL_REFRESH = (raw_enum_t)'X';
-constexpr raw_enum_t MsgTypeRaw_MARKET_DATA_REQUEST_REJECT = (raw_enum_t)'Y';
-constexpr raw_enum_t MsgTypeRaw_COLLATERAL_INQUIRY_ACK = (raw_enum_t)'B' + (((raw_enum_t)'G')<<8);
-constexpr raw_enum_t MsgTypeRaw_CONFIRMATION_REQUEST = (raw_enum_t)'B' + (((raw_enum_t)'H')<<8);
-constexpr raw_enum_t MsgTypeRaw_SECURITY_DEFINITION = (raw_enum_t)'d';

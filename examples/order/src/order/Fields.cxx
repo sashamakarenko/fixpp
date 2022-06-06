@@ -80,22 +80,8 @@ const ProductEnums::ItemType ProductEnums::OTHER( "OTHER", 12 );
 const ProductEnums::ItemType ProductEnums::FINANCING( "FINANCING", 13 );
 
 
-const MsgTypeEnums::ItemType MsgTypeEnums::HEARTBEAT( "HEARTBEAT", SOHSTR(0) );
-const MsgTypeEnums::ItemType MsgTypeEnums::TEST_REQUEST( "TEST_REQUEST", SOHSTR(1) );
-const MsgTypeEnums::ItemType MsgTypeEnums::RESEND_REQUEST( "RESEND_REQUEST", SOHSTR(2) );
-const MsgTypeEnums::ItemType MsgTypeEnums::REJECT( "REJECT", SOHSTR(3) );
-const MsgTypeEnums::ItemType MsgTypeEnums::SEQUENCE_RESET( "SEQUENCE_RESET", SOHSTR(4) );
-const MsgTypeEnums::ItemType MsgTypeEnums::LOGOUT( "LOGOUT", SOHSTR(5) );
 const MsgTypeEnums::ItemType MsgTypeEnums::EXECUTION_REPORT( "EXECUTION_REPORT", SOHSTR(8) );
-const MsgTypeEnums::ItemType MsgTypeEnums::LOGON( "LOGON", SOHSTR(A) );
 const MsgTypeEnums::ItemType MsgTypeEnums::ORDER_SINGLE( "ORDER_SINGLE", SOHSTR(D) );
-const MsgTypeEnums::ItemType MsgTypeEnums::MARKET_DATA_REQUEST( "MARKET_DATA_REQUEST", SOHSTR(V) );
-const MsgTypeEnums::ItemType MsgTypeEnums::MARKET_DATA_SNAPSHOT_FULL_REFRESH( "MARKET_DATA_SNAPSHOT_FULL_REFRESH", SOHSTR(W) );
-const MsgTypeEnums::ItemType MsgTypeEnums::MARKET_DATA_INCREMENTAL_REFRESH( "MARKET_DATA_INCREMENTAL_REFRESH", SOHSTR(X) );
-const MsgTypeEnums::ItemType MsgTypeEnums::MARKET_DATA_REQUEST_REJECT( "MARKET_DATA_REQUEST_REJECT", SOHSTR(Y) );
-const MsgTypeEnums::ItemType MsgTypeEnums::COLLATERAL_INQUIRY_ACK( "COLLATERAL_INQUIRY_ACK", SOHSTR(BG) );
-const MsgTypeEnums::ItemType MsgTypeEnums::CONFIRMATION_REQUEST( "CONFIRMATION_REQUEST", SOHSTR(BH) );
-const MsgTypeEnums::ItemType MsgTypeEnums::SECURITY_DEFINITION( "SECURITY_DEFINITION", SOHSTR(d) );
 
 
 const OrdStatusEnums::ItemType OrdStatusEnums::NEW( "NEW", '0' );
@@ -356,22 +342,8 @@ const FieldEnumMap & MsgTypeEnums::getEnumMapByRaw() const { return MsgTypeEnums
 const FieldEnumBase * const * const MsgTypeEnums::getEnums() const { return items; }
 const MsgTypeEnums MsgTypeEnums::instance;
 const FieldEnumBase * MsgTypeEnums::items[] = {
-& MsgTypeEnums::HEARTBEAT,
-& MsgTypeEnums::TEST_REQUEST,
-& MsgTypeEnums::RESEND_REQUEST,
-& MsgTypeEnums::REJECT,
-& MsgTypeEnums::SEQUENCE_RESET,
-& MsgTypeEnums::LOGOUT,
 & MsgTypeEnums::EXECUTION_REPORT,
-& MsgTypeEnums::LOGON,
 & MsgTypeEnums::ORDER_SINGLE,
-& MsgTypeEnums::MARKET_DATA_REQUEST,
-& MsgTypeEnums::MARKET_DATA_SNAPSHOT_FULL_REFRESH,
-& MsgTypeEnums::MARKET_DATA_INCREMENTAL_REFRESH,
-& MsgTypeEnums::MARKET_DATA_REQUEST_REJECT,
-& MsgTypeEnums::COLLATERAL_INQUIRY_ACK,
-& MsgTypeEnums::CONFIRMATION_REQUEST,
-& MsgTypeEnums::SECURITY_DEFINITION,
 nullptr };
 
 
@@ -601,22 +573,8 @@ const FieldEnumMap ProductEnums::itemByRaw = {
 };
 
 const FieldEnumMap MsgTypeEnums::itemByRaw = {
-{ MsgTypeEnums::HEARTBEAT.raw, & MsgTypeEnums::HEARTBEAT },
-{ MsgTypeEnums::TEST_REQUEST.raw, & MsgTypeEnums::TEST_REQUEST },
-{ MsgTypeEnums::RESEND_REQUEST.raw, & MsgTypeEnums::RESEND_REQUEST },
-{ MsgTypeEnums::REJECT.raw, & MsgTypeEnums::REJECT },
-{ MsgTypeEnums::SEQUENCE_RESET.raw, & MsgTypeEnums::SEQUENCE_RESET },
-{ MsgTypeEnums::LOGOUT.raw, & MsgTypeEnums::LOGOUT },
 { MsgTypeEnums::EXECUTION_REPORT.raw, & MsgTypeEnums::EXECUTION_REPORT },
-{ MsgTypeEnums::LOGON.raw, & MsgTypeEnums::LOGON },
 { MsgTypeEnums::ORDER_SINGLE.raw, & MsgTypeEnums::ORDER_SINGLE },
-{ MsgTypeEnums::MARKET_DATA_REQUEST.raw, & MsgTypeEnums::MARKET_DATA_REQUEST },
-{ MsgTypeEnums::MARKET_DATA_SNAPSHOT_FULL_REFRESH.raw, & MsgTypeEnums::MARKET_DATA_SNAPSHOT_FULL_REFRESH },
-{ MsgTypeEnums::MARKET_DATA_INCREMENTAL_REFRESH.raw, & MsgTypeEnums::MARKET_DATA_INCREMENTAL_REFRESH },
-{ MsgTypeEnums::MARKET_DATA_REQUEST_REJECT.raw, & MsgTypeEnums::MARKET_DATA_REQUEST_REJECT },
-{ MsgTypeEnums::COLLATERAL_INQUIRY_ACK.raw, & MsgTypeEnums::COLLATERAL_INQUIRY_ACK },
-{ MsgTypeEnums::CONFIRMATION_REQUEST.raw, & MsgTypeEnums::CONFIRMATION_REQUEST },
-{ MsgTypeEnums::SECURITY_DEFINITION.raw, & MsgTypeEnums::SECURITY_DEFINITION },
 };
 
 const FieldEnumMap OrdStatusEnums::itemByRaw = {

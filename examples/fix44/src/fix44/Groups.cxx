@@ -618,7 +618,7 @@ offset_t GroupLegStipulations::scan( Array & arr, const char * fix, unsigned len
    bool isGroupStart = false;
    prev = pos;
    raw_tag_t tag = nextRawTag( fix+pos, pos );
- gpos = pos - (groupBuf - fix); 
+   gpos = pos - (groupBuf - fix);
    switch( tag ){
    case FieldLegStipulationType::RAW :
      PRINT_FIELD(LegStipulationType) 
@@ -651,7 +651,7 @@ offset_t GroupEvents::scan( Array & arr, const char * fix, unsigned len ){
    bool isGroupStart = false;
    prev = pos;
    raw_tag_t tag = nextRawTag( fix+pos, pos );
- gpos = pos - (groupBuf - fix); 
+   gpos = pos - (groupBuf - fix);
    switch( tag ){
    case FieldEventType::RAW :
      PRINT_FIELD(EventType) 
@@ -694,7 +694,7 @@ offset_t GroupLegSecurityAltID::scan( Array & arr, const char * fix, unsigned le
    bool isGroupStart = false;
    prev = pos;
    raw_tag_t tag = nextRawTag( fix+pos, pos );
- gpos = pos - (groupBuf - fix); 
+   gpos = pos - (groupBuf - fix);
    switch( tag ){
    case FieldLegSecurityAltID::RAW :
      PRINT_FIELD(LegSecurityAltID) 
@@ -727,7 +727,7 @@ offset_t GroupCapacities::scan( Array & arr, const char * fix, unsigned len ){
    bool isGroupStart = false;
    prev = pos;
    raw_tag_t tag = nextRawTag( fix+pos, pos );
- gpos = pos - (groupBuf - fix); 
+   gpos = pos - (groupBuf - fix);
    switch( tag ){
    case FieldOrderCapacity::RAW :
      PRINT_FIELD(OrderCapacity) 
@@ -765,7 +765,7 @@ offset_t GroupNested3PartySubIDs::scan( Array & arr, const char * fix, unsigned 
    bool isGroupStart = false;
    prev = pos;
    raw_tag_t tag = nextRawTag( fix+pos, pos );
- gpos = pos - (groupBuf - fix); 
+   gpos = pos - (groupBuf - fix);
    switch( tag ){
    case FieldNested3PartySubID::RAW :
      PRINT_FIELD(Nested3PartySubID) 
@@ -798,7 +798,7 @@ offset_t GroupPartySubIDs::scan( Array & arr, const char * fix, unsigned len ){
    bool isGroupStart = false;
    prev = pos;
    raw_tag_t tag = nextRawTag( fix+pos, pos );
- gpos = pos - (groupBuf - fix); 
+   gpos = pos - (groupBuf - fix);
    switch( tag ){
    case FieldPartySubID::RAW :
      PRINT_FIELD(PartySubID) 
@@ -831,7 +831,7 @@ offset_t GroupNested2PartySubIDs::scan( Array & arr, const char * fix, unsigned 
    bool isGroupStart = false;
    prev = pos;
    raw_tag_t tag = nextRawTag( fix+pos, pos );
- gpos = pos - (groupBuf - fix); 
+   gpos = pos - (groupBuf - fix);
    switch( tag ){
    case FieldNested2PartySubID::RAW :
      PRINT_FIELD(Nested2PartySubID) 
@@ -864,7 +864,7 @@ offset_t GroupNested2PartyIDs::scan( Array & arr, const char * fix, unsigned len
    bool isGroupStart = false;
    prev = pos;
    raw_tag_t tag = nextRawTag( fix+pos, pos );
- gpos = pos - (groupBuf - fix); 
+   gpos = pos - (groupBuf - fix);
    switch( tag ){
    case FieldNested2PartyID::RAW :
      PRINT_FIELD(Nested2PartyID) 
@@ -910,7 +910,7 @@ offset_t GroupHops::scan( Array & arr, const char * fix, unsigned len ){
    bool isGroupStart = false;
    prev = pos;
    raw_tag_t tag = nextRawTag( fix+pos, pos );
- gpos = pos - (groupBuf - fix); 
+   gpos = pos - (groupBuf - fix);
    switch( tag ){
    case FieldHopCompID::RAW :
      PRINT_FIELD(HopCompID) 
@@ -948,7 +948,7 @@ offset_t GroupCollInquiryQualifier::scan( Array & arr, const char * fix, unsigne
    bool isGroupStart = false;
    prev = pos;
    raw_tag_t tag = nextRawTag( fix+pos, pos );
- gpos = pos - (groupBuf - fix); 
+   gpos = pos - (groupBuf - fix);
    switch( tag ){
    case FieldCollInquiryQualifier::RAW :
      PRINT_FIELD(CollInquiryQualifier) 
@@ -976,7 +976,7 @@ offset_t GroupPartyIDs::scan( Array & arr, const char * fix, unsigned len ){
    bool isGroupStart = false;
    prev = pos;
    raw_tag_t tag = nextRawTag( fix+pos, pos );
- gpos = pos - (groupBuf - fix); 
+   gpos = pos - (groupBuf - fix);
    switch( tag ){
    case FieldPartyID::RAW :
      PRINT_FIELD(PartyID) 
@@ -1022,7 +1022,7 @@ offset_t GroupAllocs::scan( Array & arr, const char * fix, unsigned len ){
    bool isGroupStart = false;
    prev = pos;
    raw_tag_t tag = nextRawTag( fix+pos, pos );
- gpos = pos - (groupBuf - fix); 
+   gpos = pos - (groupBuf - fix);
    switch( tag ){
    case FieldAllocAccount::RAW :
      PRINT_FIELD(AllocAccount) 
@@ -1085,7 +1085,7 @@ offset_t GroupTradingSessions::scan( Array & arr, const char * fix, unsigned len
    bool isGroupStart = false;
    prev = pos;
    raw_tag_t tag = nextRawTag( fix+pos, pos );
- gpos = pos - (groupBuf - fix); 
+   gpos = pos - (groupBuf - fix);
    switch( tag ){
    case FieldTradingSessionID::RAW :
      PRINT_FIELD(TradingSessionID) 
@@ -1118,7 +1118,7 @@ offset_t GroupSecurityAltID::scan( Array & arr, const char * fix, unsigned len )
    bool isGroupStart = false;
    prev = pos;
    raw_tag_t tag = nextRawTag( fix+pos, pos );
- gpos = pos - (groupBuf - fix); 
+   gpos = pos - (groupBuf - fix);
    switch( tag ){
    case FieldSecurityAltID::RAW :
      PRINT_FIELD(SecurityAltID) 
@@ -1151,7 +1151,7 @@ offset_t GroupUnderlyingSecurityAltID::scan( Array & arr, const char * fix, unsi
    bool isGroupStart = false;
    prev = pos;
    raw_tag_t tag = nextRawTag( fix+pos, pos );
- gpos = pos - (groupBuf - fix); 
+   gpos = pos - (groupBuf - fix);
    switch( tag ){
    case FieldUnderlyingSecurityAltID::RAW :
      PRINT_FIELD(UnderlyingSecurityAltID) 
@@ -1184,7 +1184,7 @@ offset_t GroupUnderlyingStips::scan( Array & arr, const char * fix, unsigned len
    bool isGroupStart = false;
    prev = pos;
    raw_tag_t tag = nextRawTag( fix+pos, pos );
- gpos = pos - (groupBuf - fix); 
+   gpos = pos - (groupBuf - fix);
    switch( tag ){
    case FieldUnderlyingStipType::RAW :
      PRINT_FIELD(UnderlyingStipType) 
@@ -1217,7 +1217,7 @@ offset_t GroupUnderlyings::scan( Array & arr, const char * fix, unsigned len ){
    bool isGroupStart = false;
    prev = pos;
    raw_tag_t tag = nextRawTag( fix+pos, pos );
- gpos = pos - (groupBuf - fix); 
+   gpos = pos - (groupBuf - fix);
    switch( tag ){
    case FieldUnderlyingSymbol::RAW :
      PRINT_FIELD(UnderlyingSymbol) 
@@ -1491,7 +1491,7 @@ offset_t GroupStipulations::scan( Array & arr, const char * fix, unsigned len ){
    bool isGroupStart = false;
    prev = pos;
    raw_tag_t tag = nextRawTag( fix+pos, pos );
- gpos = pos - (groupBuf - fix); 
+   gpos = pos - (groupBuf - fix);
    switch( tag ){
    case FieldStipulationType::RAW :
      PRINT_FIELD(StipulationType) 
@@ -1524,7 +1524,7 @@ offset_t GroupOrders::scan( Array & arr, const char * fix, unsigned len ){
    bool isGroupStart = false;
    prev = pos;
    raw_tag_t tag = nextRawTag( fix+pos, pos );
- gpos = pos - (groupBuf - fix); 
+   gpos = pos - (groupBuf - fix);
    switch( tag ){
    case FieldClOrdID::RAW :
      PRINT_FIELD(ClOrdID) 
@@ -2303,7 +2303,7 @@ offset_t GroupSettlPartySubIDs::scan( Array & arr, const char * fix, unsigned le
    bool isGroupStart = false;
    prev = pos;
    raw_tag_t tag = nextRawTag( fix+pos, pos );
- gpos = pos - (groupBuf - fix); 
+   gpos = pos - (groupBuf - fix);
    switch( tag ){
    case FieldSettlPartySubID::RAW :
      PRINT_FIELD(SettlPartySubID) 
@@ -2336,7 +2336,7 @@ offset_t GroupSettlPartyIDs::scan( Array & arr, const char * fix, unsigned len )
    bool isGroupStart = false;
    prev = pos;
    raw_tag_t tag = nextRawTag( fix+pos, pos );
- gpos = pos - (groupBuf - fix); 
+   gpos = pos - (groupBuf - fix);
    switch( tag ){
    case FieldSettlPartyID::RAW :
      PRINT_FIELD(SettlPartyID) 
@@ -2382,7 +2382,7 @@ offset_t GroupDlvyInst::scan( Array & arr, const char * fix, unsigned len ){
    bool isGroupStart = false;
    prev = pos;
    raw_tag_t tag = nextRawTag( fix+pos, pos );
- gpos = pos - (groupBuf - fix); 
+   gpos = pos - (groupBuf - fix);
    switch( tag ){
    case FieldSettlInstSource::RAW :
      PRINT_FIELD(SettlInstSource) 
@@ -2423,7 +2423,7 @@ offset_t GroupClearingInstructions::scan( Array & arr, const char * fix, unsigne
    bool isGroupStart = false;
    prev = pos;
    raw_tag_t tag = nextRawTag( fix+pos, pos );
- gpos = pos - (groupBuf - fix); 
+   gpos = pos - (groupBuf - fix);
    switch( tag ){
    case FieldClearingInstruction::RAW :
      PRINT_FIELD(ClearingInstruction) 
@@ -2451,7 +2451,7 @@ offset_t GroupNestedPartySubIDs::scan( Array & arr, const char * fix, unsigned l
    bool isGroupStart = false;
    prev = pos;
    raw_tag_t tag = nextRawTag( fix+pos, pos );
- gpos = pos - (groupBuf - fix); 
+   gpos = pos - (groupBuf - fix);
    switch( tag ){
    case FieldNestedPartySubID::RAW :
      PRINT_FIELD(NestedPartySubID) 
@@ -2484,7 +2484,7 @@ offset_t GroupNestedPartyIDs::scan( Array & arr, const char * fix, unsigned len 
    bool isGroupStart = false;
    prev = pos;
    raw_tag_t tag = nextRawTag( fix+pos, pos );
- gpos = pos - (groupBuf - fix); 
+   gpos = pos - (groupBuf - fix);
    switch( tag ){
    case FieldNestedPartyID::RAW :
      PRINT_FIELD(NestedPartyID) 
@@ -2530,7 +2530,7 @@ offset_t GroupLegs::scan( Array & arr, const char * fix, unsigned len ){
    bool isGroupStart = false;
    prev = pos;
    raw_tag_t tag = nextRawTag( fix+pos, pos );
- gpos = pos - (groupBuf - fix); 
+   gpos = pos - (groupBuf - fix);
    switch( tag ){
    case FieldLegSymbol::RAW :
      PRINT_FIELD(LegSymbol) 
@@ -2827,7 +2827,7 @@ offset_t GroupQuoteEntries::scan( Array & arr, const char * fix, unsigned len ){
    bool isGroupStart = false;
    prev = pos;
    raw_tag_t tag = nextRawTag( fix+pos, pos );
- gpos = pos - (groupBuf - fix); 
+   gpos = pos - (groupBuf - fix);
    switch( tag ){
    case FieldSymbol::RAW :
      PRINT_FIELD(Symbol) 
@@ -3132,7 +3132,7 @@ offset_t GroupQuoteSets::scan( Array & arr, const char * fix, unsigned len ){
    bool isGroupStart = false;
    prev = pos;
    raw_tag_t tag = nextRawTag( fix+pos, pos );
- gpos = pos - (groupBuf - fix); 
+   gpos = pos - (groupBuf - fix);
    switch( tag ){
    case FieldQuoteSetID::RAW :
      PRINT_FIELD(QuoteSetID) 
@@ -3419,7 +3419,7 @@ offset_t GroupSecurityTypes::scan( Array & arr, const char * fix, unsigned len )
    bool isGroupStart = false;
    prev = pos;
    raw_tag_t tag = nextRawTag( fix+pos, pos );
- gpos = pos - (groupBuf - fix); 
+   gpos = pos - (groupBuf - fix);
    switch( tag ){
    case FieldSecurityType::RAW :
      PRINT_FIELD(SecurityType) 
@@ -3462,7 +3462,7 @@ offset_t GroupNested3PartyIDs::scan( Array & arr, const char * fix, unsigned len
    bool isGroupStart = false;
    prev = pos;
    raw_tag_t tag = nextRawTag( fix+pos, pos );
- gpos = pos - (groupBuf - fix); 
+   gpos = pos - (groupBuf - fix);
    switch( tag ){
    case FieldNested3PartyID::RAW :
      PRINT_FIELD(Nested3PartyID) 
@@ -3508,7 +3508,7 @@ offset_t GroupPositions::scan( Array & arr, const char * fix, unsigned len ){
    bool isGroupStart = false;
    prev = pos;
    raw_tag_t tag = nextRawTag( fix+pos, pos );
- gpos = pos - (groupBuf - fix); 
+   gpos = pos - (groupBuf - fix);
    switch( tag ){
    case FieldPosType::RAW :
      PRINT_FIELD(PosType) 
@@ -3559,7 +3559,7 @@ offset_t GroupAffectedOrders::scan( Array & arr, const char * fix, unsigned len 
    bool isGroupStart = false;
    prev = pos;
    raw_tag_t tag = nextRawTag( fix+pos, pos );
- gpos = pos - (groupBuf - fix); 
+   gpos = pos - (groupBuf - fix);
    switch( tag ){
    case FieldOrigClOrdID::RAW :
      PRINT_FIELD(OrigClOrdID) 
@@ -3597,7 +3597,7 @@ offset_t GroupExecs::scan( Array & arr, const char * fix, unsigned len ){
    bool isGroupStart = false;
    prev = pos;
    raw_tag_t tag = nextRawTag( fix+pos, pos );
- gpos = pos - (groupBuf - fix); 
+   gpos = pos - (groupBuf - fix);
    switch( tag ){
    case FieldLastQty::RAW :
      PRINT_FIELD(LastQty) 
@@ -3650,7 +3650,7 @@ offset_t GroupMsgTypes::scan( Array & arr, const char * fix, unsigned len ){
    bool isGroupStart = false;
    prev = pos;
    raw_tag_t tag = nextRawTag( fix+pos, pos );
- gpos = pos - (groupBuf - fix); 
+   gpos = pos - (groupBuf - fix);
    switch( tag ){
    case FieldRefMsgType::RAW :
      PRINT_FIELD(RefMsgType) 
@@ -3683,7 +3683,7 @@ offset_t GroupBidComponents::scan( Array & arr, const char * fix, unsigned len )
    bool isGroupStart = false;
    prev = pos;
    raw_tag_t tag = nextRawTag( fix+pos, pos );
- gpos = pos - (groupBuf - fix); 
+   gpos = pos - (groupBuf - fix);
    switch( tag ){
    case FieldListID::RAW :
      PRINT_FIELD(ListID) 
@@ -3751,7 +3751,7 @@ offset_t GroupSettlInst::scan( Array & arr, const char * fix, unsigned len ){
    bool isGroupStart = false;
    prev = pos;
    raw_tag_t tag = nextRawTag( fix+pos, pos );
- gpos = pos - (groupBuf - fix); 
+   gpos = pos - (groupBuf - fix);
    switch( tag ){
    case FieldSettlInstID::RAW :
      PRINT_FIELD(SettlInstID) 
@@ -3905,7 +3905,7 @@ offset_t GroupInstrAttrib::scan( Array & arr, const char * fix, unsigned len ){
    bool isGroupStart = false;
    prev = pos;
    raw_tag_t tag = nextRawTag( fix+pos, pos );
- gpos = pos - (groupBuf - fix); 
+   gpos = pos - (groupBuf - fix);
    switch( tag ){
    case FieldInstrAttribType::RAW :
      PRINT_FIELD(InstrAttribType) 
@@ -3938,7 +3938,7 @@ offset_t GroupMiscFees::scan( Array & arr, const char * fix, unsigned len ){
    bool isGroupStart = false;
    prev = pos;
    raw_tag_t tag = nextRawTag( fix+pos, pos );
- gpos = pos - (groupBuf - fix); 
+   gpos = pos - (groupBuf - fix);
    switch( tag ){
    case FieldMiscFeeAmt::RAW :
      PRINT_FIELD(MiscFeeAmt) 
@@ -3981,7 +3981,7 @@ offset_t GroupQuoteQualifiers::scan( Array & arr, const char * fix, unsigned len
    bool isGroupStart = false;
    prev = pos;
    raw_tag_t tag = nextRawTag( fix+pos, pos );
- gpos = pos - (groupBuf - fix); 
+   gpos = pos - (groupBuf - fix);
    switch( tag ){
    case FieldQuoteQualifier::RAW :
      PRINT_FIELD(QuoteQualifier) 
@@ -4009,7 +4009,7 @@ offset_t GroupDistribInsts::scan( Array & arr, const char * fix, unsigned len ){
    bool isGroupStart = false;
    prev = pos;
    raw_tag_t tag = nextRawTag( fix+pos, pos );
- gpos = pos - (groupBuf - fix); 
+   gpos = pos - (groupBuf - fix);
    switch( tag ){
    case FieldDistribPaymentMethod::RAW :
      PRINT_FIELD(DistribPaymentMethod) 
@@ -4072,7 +4072,7 @@ offset_t GroupTrdRegTimestamps::scan( Array & arr, const char * fix, unsigned le
    bool isGroupStart = false;
    prev = pos;
    raw_tag_t tag = nextRawTag( fix+pos, pos );
- gpos = pos - (groupBuf - fix); 
+   gpos = pos - (groupBuf - fix);
    switch( tag ){
    case FieldTrdRegTimestamp::RAW :
      PRINT_FIELD(TrdRegTimestamp) 
@@ -4110,7 +4110,7 @@ offset_t GroupAltMDSource::scan( Array & arr, const char * fix, unsigned len ){
    bool isGroupStart = false;
    prev = pos;
    raw_tag_t tag = nextRawTag( fix+pos, pos );
- gpos = pos - (groupBuf - fix); 
+   gpos = pos - (groupBuf - fix);
    switch( tag ){
    case FieldAltMDSourceID::RAW :
      PRINT_FIELD(AltMDSourceID) 
@@ -4138,7 +4138,7 @@ offset_t GroupSides::scan( Array & arr, const char * fix, unsigned len ){
    bool isGroupStart = false;
    prev = pos;
    raw_tag_t tag = nextRawTag( fix+pos, pos );
- gpos = pos - (groupBuf - fix); 
+   gpos = pos - (groupBuf - fix);
    switch( tag ){
    case FieldSide::RAW :
      PRINT_FIELD(Side) 
@@ -4254,7 +4254,7 @@ offset_t GroupRoutingIDs::scan( Array & arr, const char * fix, unsigned len ){
    bool isGroupStart = false;
    prev = pos;
    raw_tag_t tag = nextRawTag( fix+pos, pos );
- gpos = pos - (groupBuf - fix); 
+   gpos = pos - (groupBuf - fix);
    switch( tag ){
    case FieldRoutingType::RAW :
      PRINT_FIELD(RoutingType) 
@@ -4287,7 +4287,7 @@ offset_t GroupPosAmt::scan( Array & arr, const char * fix, unsigned len ){
    bool isGroupStart = false;
    prev = pos;
    raw_tag_t tag = nextRawTag( fix+pos, pos );
- gpos = pos - (groupBuf - fix); 
+   gpos = pos - (groupBuf - fix);
    switch( tag ){
    case FieldPosAmtType::RAW :
      PRINT_FIELD(PosAmtType) 
@@ -4320,7 +4320,7 @@ offset_t GroupLinesOfText::scan( Array & arr, const char * fix, unsigned len ){
    bool isGroupStart = false;
    prev = pos;
    raw_tag_t tag = nextRawTag( fix+pos, pos );
- gpos = pos - (groupBuf - fix); 
+   gpos = pos - (groupBuf - fix);
    switch( tag ){
    case FieldText::RAW :
      PRINT_FIELD(Text) 
@@ -4358,7 +4358,7 @@ offset_t GroupIOIQualifiers::scan( Array & arr, const char * fix, unsigned len )
    bool isGroupStart = false;
    prev = pos;
    raw_tag_t tag = nextRawTag( fix+pos, pos );
- gpos = pos - (groupBuf - fix); 
+   gpos = pos - (groupBuf - fix);
    switch( tag ){
    case FieldIOIQualifier::RAW :
      PRINT_FIELD(IOIQualifier) 
@@ -4386,7 +4386,7 @@ offset_t GroupDates::scan( Array & arr, const char * fix, unsigned len ){
    bool isGroupStart = false;
    prev = pos;
    raw_tag_t tag = nextRawTag( fix+pos, pos );
- gpos = pos - (groupBuf - fix); 
+   gpos = pos - (groupBuf - fix);
    switch( tag ){
    case FieldTradeDate::RAW :
      PRINT_FIELD(TradeDate) 
@@ -4419,7 +4419,7 @@ offset_t GroupMDEntryTypes::scan( Array & arr, const char * fix, unsigned len ){
    bool isGroupStart = false;
    prev = pos;
    raw_tag_t tag = nextRawTag( fix+pos, pos );
- gpos = pos - (groupBuf - fix); 
+   gpos = pos - (groupBuf - fix);
    switch( tag ){
    case FieldMDEntryType::RAW :
      PRINT_FIELD(MDEntryType) 
@@ -4447,7 +4447,7 @@ offset_t GroupRelatedSym::scan( Array & arr, const char * fix, unsigned len ){
    bool isGroupStart = false;
    prev = pos;
    raw_tag_t tag = nextRawTag( fix+pos, pos );
- gpos = pos - (groupBuf - fix); 
+   gpos = pos - (groupBuf - fix);
    switch( tag ){
    case FieldSymbol::RAW :
      PRINT_FIELD(Symbol) 
@@ -4691,7 +4691,7 @@ offset_t GroupContraBrokers::scan( Array & arr, const char * fix, unsigned len )
    bool isGroupStart = false;
    prev = pos;
    raw_tag_t tag = nextRawTag( fix+pos, pos );
- gpos = pos - (groupBuf - fix); 
+   gpos = pos - (groupBuf - fix);
    switch( tag ){
    case FieldContraBroker::RAW :
      PRINT_FIELD(ContraBroker) 
@@ -4739,7 +4739,7 @@ offset_t GroupTrades::scan( Array & arr, const char * fix, unsigned len ){
    bool isGroupStart = false;
    prev = pos;
    raw_tag_t tag = nextRawTag( fix+pos, pos );
- gpos = pos - (groupBuf - fix); 
+   gpos = pos - (groupBuf - fix);
    switch( tag ){
    case FieldTradeReportID::RAW :
      PRINT_FIELD(TradeReportID) 
@@ -4772,7 +4772,7 @@ offset_t GroupStrikes::scan( Array & arr, const char * fix, unsigned len ){
    bool isGroupStart = false;
    prev = pos;
    raw_tag_t tag = nextRawTag( fix+pos, pos );
- gpos = pos - (groupBuf - fix); 
+   gpos = pos - (groupBuf - fix);
    switch( tag ){
    case FieldSymbol::RAW :
      PRINT_FIELD(Symbol) 
@@ -5016,7 +5016,7 @@ offset_t GroupBidDescriptors::scan( Array & arr, const char * fix, unsigned len 
    bool isGroupStart = false;
    prev = pos;
    raw_tag_t tag = nextRawTag( fix+pos, pos );
- gpos = pos - (groupBuf - fix); 
+   gpos = pos - (groupBuf - fix);
    switch( tag ){
    case FieldBidDescriptorType::RAW :
      PRINT_FIELD(BidDescriptorType) 
@@ -5094,7 +5094,7 @@ offset_t GroupCompIDs::scan( Array & arr, const char * fix, unsigned len ){
    bool isGroupStart = false;
    prev = pos;
    raw_tag_t tag = nextRawTag( fix+pos, pos );
- gpos = pos - (groupBuf - fix); 
+   gpos = pos - (groupBuf - fix);
    switch( tag ){
    case FieldRefCompID::RAW :
      PRINT_FIELD(RefCompID) 
@@ -5137,7 +5137,7 @@ offset_t GroupLegAllocs::scan( Array & arr, const char * fix, unsigned len ){
    bool isGroupStart = false;
    prev = pos;
    raw_tag_t tag = nextRawTag( fix+pos, pos );
- gpos = pos - (groupBuf - fix); 
+   gpos = pos - (groupBuf - fix);
    switch( tag ){
    case FieldLegAllocAccount::RAW :
      PRINT_FIELD(LegAllocAccount) 
@@ -5193,7 +5193,7 @@ offset_t GroupRegistDtls::scan( Array & arr, const char * fix, unsigned len ){
    bool isGroupStart = false;
    prev = pos;
    raw_tag_t tag = nextRawTag( fix+pos, pos );
- gpos = pos - (groupBuf - fix); 
+   gpos = pos - (groupBuf - fix);
    switch( tag ){
    case FieldRegistDtls::RAW :
      PRINT_FIELD(RegistDtls) 
@@ -5259,7 +5259,7 @@ offset_t GroupContAmts::scan( Array & arr, const char * fix, unsigned len ){
    bool isGroupStart = false;
    prev = pos;
    raw_tag_t tag = nextRawTag( fix+pos, pos );
- gpos = pos - (groupBuf - fix); 
+   gpos = pos - (groupBuf - fix);
    switch( tag ){
    case FieldContAmtType::RAW :
      PRINT_FIELD(ContAmtType) 
@@ -5297,7 +5297,7 @@ offset_t GroupMDEntries::scan( Array & arr, const char * fix, unsigned len ){
    bool isGroupStart = false;
    prev = pos;
    raw_tag_t tag = nextRawTag( fix+pos, pos );
- gpos = pos - (groupBuf - fix); 
+   gpos = pos - (groupBuf - fix);
    switch( tag ){
    case FieldMDEntryType::RAW :
      PRINT_FIELD(MDEntryType) 
