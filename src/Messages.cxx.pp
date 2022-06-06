@@ -315,12 +315,14 @@ const char * ParserDispatcher::parseAndDipatch( const char * buf, unsigned len, 
     {
 #undef FIX_MSG_BEGIN
 #define FIX_MSG_BEGIN(NAME,TYPE) \
-<n3>case MsgTypeRaw_##TYPE : { \
-<n3>  if( resetMessage ) _msg##NAME.reset(); \
-<n3>  pos = _msg##NAME.scan( buf, len - pos ); \
+<nl><com> case-begin-TYPE\
+<n3>case MsgTypeRaw_##TYPE : {\
+<n3>  if( resetMessage ) _msg##NAME.reset();\
+<n3>  pos = _msg##NAME.scan( buf, len - pos );\
 <n3>  onMessage( _msg##NAME );\
 <n3>  break;\
-<n3>}
+<n3>}\
+<com> case-end-TYPE
 #include <Messages.def>
       default:
         onUnknownMessage( msgType );

@@ -911,28 +911,34 @@ const char * ParserDispatcher::parseAndDipatch( const char * buf, unsigned len, 
     {
 
 
-      case MsgTypeRaw__ : { 
-       if( resetMessage ) _msgHeader.reset(); 
-       pos = _msgHeader.scan( buf, len - pos ); 
+// case-begin-_
+      case MsgTypeRaw__ : {
+       if( resetMessage ) _msgHeader.reset();
+       pos = _msgHeader.scan( buf, len - pos );
        onMessage( _msgHeader );
        break;
       }
+// case-end-_
 
 
-      case MsgTypeRaw_ORDER_SINGLE : { 
-       if( resetMessage ) _msgNewOrderSingle.reset(); 
-       pos = _msgNewOrderSingle.scan( buf, len - pos ); 
+// case-begin-ORDER_SINGLE
+      case MsgTypeRaw_ORDER_SINGLE : {
+       if( resetMessage ) _msgNewOrderSingle.reset();
+       pos = _msgNewOrderSingle.scan( buf, len - pos );
        onMessage( _msgNewOrderSingle );
        break;
       }
+// case-end-ORDER_SINGLE
 
 
-      case MsgTypeRaw_EXECUTION_REPORT : { 
-       if( resetMessage ) _msgExecutionReport.reset(); 
-       pos = _msgExecutionReport.scan( buf, len - pos ); 
+// case-begin-EXECUTION_REPORT
+      case MsgTypeRaw_EXECUTION_REPORT : {
+       if( resetMessage ) _msgExecutionReport.reset();
+       pos = _msgExecutionReport.scan( buf, len - pos );
        onMessage( _msgExecutionReport );
        break;
       }
+// case-end-EXECUTION_REPORT
 
 
       default:

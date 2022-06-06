@@ -35,14 +35,18 @@ endif
 
 ifneq ($(MAKECMDGOALS),clean)
 -include build/fixgenerated.mk
-endif
 
 build/fixgenerated.mk: src/$(PRJ_NAME)/FixApi.h
 	$(V)mkdir -p $(@D)
 	$(V)touch $@
 
+OUTBOUND_MESAGES=LOGON ORDER_SINGLE
+
 src/$(PRJ_NAME)/FixApi.h: $(wildcard src/spec/*.def)
 	$(V)../../generate.sh --clean-fields -d $$PWD/src/$(PRJ_NAME) -s $$PWD/src/spec -i $(PRJ_NAME) -n $(PRJ_NAME) -p $$PWD/src/gdb
+	$(V)for mt in _ $(OUTBOUND_MESAGES); do sed "/case-begin-$$mt/,/case-end-$$mt/d" -i src/$(PRJ_NAME)/Messages.cxx; done
+
+endif
 
 $(TestPerf_EXTRA_DEPENDENCY):
 	$(SUBMAKE) -C $(PE_PRJ_DIR)
