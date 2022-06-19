@@ -69142,756 +69142,944 @@ const char * ParserDispatcher::parseAndDipatch( const char * buf, unsigned len, 
     {
 
 
-      case MsgTypeRaw__ : { 
-       if( resetMessage ) _msgHeader.reset(); 
-       pos = _msgHeader.scan( buf, len - pos ); 
+// case-begin-_
+      case MsgTypeRaw__ : {
+       if( resetMessage ) _msgHeader.reset();
+       pos = _msgHeader.scan( buf, len - pos );
        onMessage( _msgHeader );
        break;
       }
+// case-end-_
 
 
-      case MsgTypeRaw_HEARTBEAT : { 
-       if( resetMessage ) _msgHeartbeat.reset(); 
-       pos = _msgHeartbeat.scan( buf, len - pos ); 
+// case-begin-HEARTBEAT
+      case MsgTypeRaw_HEARTBEAT : {
+       if( resetMessage ) _msgHeartbeat.reset();
+       pos = _msgHeartbeat.scan( buf, len - pos );
        onMessage( _msgHeartbeat );
        break;
       }
+// case-end-HEARTBEAT
 
 
-      case MsgTypeRaw_TEST_REQUEST : { 
-       if( resetMessage ) _msgTestRequest.reset(); 
-       pos = _msgTestRequest.scan( buf, len - pos ); 
+// case-begin-TEST_REQUEST
+      case MsgTypeRaw_TEST_REQUEST : {
+       if( resetMessage ) _msgTestRequest.reset();
+       pos = _msgTestRequest.scan( buf, len - pos );
        onMessage( _msgTestRequest );
        break;
       }
+// case-end-TEST_REQUEST
 
 
-      case MsgTypeRaw_RESEND_REQUEST : { 
-       if( resetMessage ) _msgResendRequest.reset(); 
-       pos = _msgResendRequest.scan( buf, len - pos ); 
+// case-begin-RESEND_REQUEST
+      case MsgTypeRaw_RESEND_REQUEST : {
+       if( resetMessage ) _msgResendRequest.reset();
+       pos = _msgResendRequest.scan( buf, len - pos );
        onMessage( _msgResendRequest );
        break;
       }
+// case-end-RESEND_REQUEST
 
 
-      case MsgTypeRaw_REJECT : { 
-       if( resetMessage ) _msgReject.reset(); 
-       pos = _msgReject.scan( buf, len - pos ); 
+// case-begin-REJECT
+      case MsgTypeRaw_REJECT : {
+       if( resetMessage ) _msgReject.reset();
+       pos = _msgReject.scan( buf, len - pos );
        onMessage( _msgReject );
        break;
       }
+// case-end-REJECT
 
 
-      case MsgTypeRaw_SEQUENCE_RESET : { 
-       if( resetMessage ) _msgSequenceReset.reset(); 
-       pos = _msgSequenceReset.scan( buf, len - pos ); 
+// case-begin-SEQUENCE_RESET
+      case MsgTypeRaw_SEQUENCE_RESET : {
+       if( resetMessage ) _msgSequenceReset.reset();
+       pos = _msgSequenceReset.scan( buf, len - pos );
        onMessage( _msgSequenceReset );
        break;
       }
+// case-end-SEQUENCE_RESET
 
 
-      case MsgTypeRaw_LOGOUT : { 
-       if( resetMessage ) _msgLogout.reset(); 
-       pos = _msgLogout.scan( buf, len - pos ); 
+// case-begin-LOGOUT
+      case MsgTypeRaw_LOGOUT : {
+       if( resetMessage ) _msgLogout.reset();
+       pos = _msgLogout.scan( buf, len - pos );
        onMessage( _msgLogout );
        break;
       }
+// case-end-LOGOUT
 
 
-      case MsgTypeRaw_INDICATION_OF_INTEREST : { 
-       if( resetMessage ) _msgIOI.reset(); 
-       pos = _msgIOI.scan( buf, len - pos ); 
+// case-begin-INDICATION_OF_INTEREST
+      case MsgTypeRaw_INDICATION_OF_INTEREST : {
+       if( resetMessage ) _msgIOI.reset();
+       pos = _msgIOI.scan( buf, len - pos );
        onMessage( _msgIOI );
        break;
       }
+// case-end-INDICATION_OF_INTEREST
 
 
-      case MsgTypeRaw_ADVERTISEMENT : { 
-       if( resetMessage ) _msgAdvertisement.reset(); 
-       pos = _msgAdvertisement.scan( buf, len - pos ); 
+// case-begin-ADVERTISEMENT
+      case MsgTypeRaw_ADVERTISEMENT : {
+       if( resetMessage ) _msgAdvertisement.reset();
+       pos = _msgAdvertisement.scan( buf, len - pos );
        onMessage( _msgAdvertisement );
        break;
       }
+// case-end-ADVERTISEMENT
 
 
-      case MsgTypeRaw_EXECUTION_REPORT : { 
-       if( resetMessage ) _msgExecutionReport.reset(); 
-       pos = _msgExecutionReport.scan( buf, len - pos ); 
+// case-begin-EXECUTION_REPORT
+      case MsgTypeRaw_EXECUTION_REPORT : {
+       if( resetMessage ) _msgExecutionReport.reset();
+       pos = _msgExecutionReport.scan( buf, len - pos );
        onMessage( _msgExecutionReport );
        break;
       }
+// case-end-EXECUTION_REPORT
 
 
-      case MsgTypeRaw_ORDER_CANCEL_REJECT : { 
-       if( resetMessage ) _msgOrderCancelReject.reset(); 
-       pos = _msgOrderCancelReject.scan( buf, len - pos ); 
+// case-begin-ORDER_CANCEL_REJECT
+      case MsgTypeRaw_ORDER_CANCEL_REJECT : {
+       if( resetMessage ) _msgOrderCancelReject.reset();
+       pos = _msgOrderCancelReject.scan( buf, len - pos );
        onMessage( _msgOrderCancelReject );
        break;
       }
+// case-end-ORDER_CANCEL_REJECT
 
 
-      case MsgTypeRaw_LOGON : { 
-       if( resetMessage ) _msgLogon.reset(); 
-       pos = _msgLogon.scan( buf, len - pos ); 
+// case-begin-LOGON
+      case MsgTypeRaw_LOGON : {
+       if( resetMessage ) _msgLogon.reset();
+       pos = _msgLogon.scan( buf, len - pos );
        onMessage( _msgLogon );
        break;
       }
+// case-end-LOGON
 
 
-      case MsgTypeRaw_NEWS : { 
-       if( resetMessage ) _msgNews.reset(); 
-       pos = _msgNews.scan( buf, len - pos ); 
+// case-begin-NEWS
+      case MsgTypeRaw_NEWS : {
+       if( resetMessage ) _msgNews.reset();
+       pos = _msgNews.scan( buf, len - pos );
        onMessage( _msgNews );
        break;
       }
+// case-end-NEWS
 
 
-      case MsgTypeRaw_EMAIL : { 
-       if( resetMessage ) _msgEmail.reset(); 
-       pos = _msgEmail.scan( buf, len - pos ); 
+// case-begin-EMAIL
+      case MsgTypeRaw_EMAIL : {
+       if( resetMessage ) _msgEmail.reset();
+       pos = _msgEmail.scan( buf, len - pos );
        onMessage( _msgEmail );
        break;
       }
+// case-end-EMAIL
 
 
-      case MsgTypeRaw_ORDER_SINGLE : { 
-       if( resetMessage ) _msgNewOrderSingle.reset(); 
-       pos = _msgNewOrderSingle.scan( buf, len - pos ); 
+// case-begin-ORDER_SINGLE
+      case MsgTypeRaw_ORDER_SINGLE : {
+       if( resetMessage ) _msgNewOrderSingle.reset();
+       pos = _msgNewOrderSingle.scan( buf, len - pos );
        onMessage( _msgNewOrderSingle );
        break;
       }
+// case-end-ORDER_SINGLE
 
 
-      case MsgTypeRaw_ORDER_LIST : { 
-       if( resetMessage ) _msgNewOrderList.reset(); 
-       pos = _msgNewOrderList.scan( buf, len - pos ); 
+// case-begin-ORDER_LIST
+      case MsgTypeRaw_ORDER_LIST : {
+       if( resetMessage ) _msgNewOrderList.reset();
+       pos = _msgNewOrderList.scan( buf, len - pos );
        onMessage( _msgNewOrderList );
        break;
       }
+// case-end-ORDER_LIST
 
 
-      case MsgTypeRaw_ORDER_CANCEL_REQUEST : { 
-       if( resetMessage ) _msgOrderCancelRequest.reset(); 
-       pos = _msgOrderCancelRequest.scan( buf, len - pos ); 
+// case-begin-ORDER_CANCEL_REQUEST
+      case MsgTypeRaw_ORDER_CANCEL_REQUEST : {
+       if( resetMessage ) _msgOrderCancelRequest.reset();
+       pos = _msgOrderCancelRequest.scan( buf, len - pos );
        onMessage( _msgOrderCancelRequest );
        break;
       }
+// case-end-ORDER_CANCEL_REQUEST
 
 
-      case MsgTypeRaw_ORDER_CANCEL_REPLACE_REQUEST : { 
-       if( resetMessage ) _msgOrderCancelReplaceRequest.reset(); 
-       pos = _msgOrderCancelReplaceRequest.scan( buf, len - pos ); 
+// case-begin-ORDER_CANCEL_REPLACE_REQUEST
+      case MsgTypeRaw_ORDER_CANCEL_REPLACE_REQUEST : {
+       if( resetMessage ) _msgOrderCancelReplaceRequest.reset();
+       pos = _msgOrderCancelReplaceRequest.scan( buf, len - pos );
        onMessage( _msgOrderCancelReplaceRequest );
        break;
       }
+// case-end-ORDER_CANCEL_REPLACE_REQUEST
 
 
-      case MsgTypeRaw_ORDER_STATUS_REQUEST : { 
-       if( resetMessage ) _msgOrderStatusRequest.reset(); 
-       pos = _msgOrderStatusRequest.scan( buf, len - pos ); 
+// case-begin-ORDER_STATUS_REQUEST
+      case MsgTypeRaw_ORDER_STATUS_REQUEST : {
+       if( resetMessage ) _msgOrderStatusRequest.reset();
+       pos = _msgOrderStatusRequest.scan( buf, len - pos );
        onMessage( _msgOrderStatusRequest );
        break;
       }
+// case-end-ORDER_STATUS_REQUEST
 
 
-      case MsgTypeRaw_ALLOCATION_INSTRUCTION : { 
-       if( resetMessage ) _msgAllocationInstruction.reset(); 
-       pos = _msgAllocationInstruction.scan( buf, len - pos ); 
+// case-begin-ALLOCATION_INSTRUCTION
+      case MsgTypeRaw_ALLOCATION_INSTRUCTION : {
+       if( resetMessage ) _msgAllocationInstruction.reset();
+       pos = _msgAllocationInstruction.scan( buf, len - pos );
        onMessage( _msgAllocationInstruction );
        break;
       }
+// case-end-ALLOCATION_INSTRUCTION
 
 
-      case MsgTypeRaw_LIST_CANCEL_REQUEST : { 
-       if( resetMessage ) _msgListCancelRequest.reset(); 
-       pos = _msgListCancelRequest.scan( buf, len - pos ); 
+// case-begin-LIST_CANCEL_REQUEST
+      case MsgTypeRaw_LIST_CANCEL_REQUEST : {
+       if( resetMessage ) _msgListCancelRequest.reset();
+       pos = _msgListCancelRequest.scan( buf, len - pos );
        onMessage( _msgListCancelRequest );
        break;
       }
+// case-end-LIST_CANCEL_REQUEST
 
 
-      case MsgTypeRaw_LIST_EXECUTE : { 
-       if( resetMessage ) _msgListExecute.reset(); 
-       pos = _msgListExecute.scan( buf, len - pos ); 
+// case-begin-LIST_EXECUTE
+      case MsgTypeRaw_LIST_EXECUTE : {
+       if( resetMessage ) _msgListExecute.reset();
+       pos = _msgListExecute.scan( buf, len - pos );
        onMessage( _msgListExecute );
        break;
       }
+// case-end-LIST_EXECUTE
 
 
-      case MsgTypeRaw_LIST_STATUS_REQUEST : { 
-       if( resetMessage ) _msgListStatusRequest.reset(); 
-       pos = _msgListStatusRequest.scan( buf, len - pos ); 
+// case-begin-LIST_STATUS_REQUEST
+      case MsgTypeRaw_LIST_STATUS_REQUEST : {
+       if( resetMessage ) _msgListStatusRequest.reset();
+       pos = _msgListStatusRequest.scan( buf, len - pos );
        onMessage( _msgListStatusRequest );
        break;
       }
+// case-end-LIST_STATUS_REQUEST
 
 
-      case MsgTypeRaw_LIST_STATUS : { 
-       if( resetMessage ) _msgListStatus.reset(); 
-       pos = _msgListStatus.scan( buf, len - pos ); 
+// case-begin-LIST_STATUS
+      case MsgTypeRaw_LIST_STATUS : {
+       if( resetMessage ) _msgListStatus.reset();
+       pos = _msgListStatus.scan( buf, len - pos );
        onMessage( _msgListStatus );
        break;
       }
+// case-end-LIST_STATUS
 
 
-      case MsgTypeRaw_ALLOCATION_INSTRUCTION_ACK : { 
-       if( resetMessage ) _msgAllocationInstructionAck.reset(); 
-       pos = _msgAllocationInstructionAck.scan( buf, len - pos ); 
+// case-begin-ALLOCATION_INSTRUCTION_ACK
+      case MsgTypeRaw_ALLOCATION_INSTRUCTION_ACK : {
+       if( resetMessage ) _msgAllocationInstructionAck.reset();
+       pos = _msgAllocationInstructionAck.scan( buf, len - pos );
        onMessage( _msgAllocationInstructionAck );
        break;
       }
+// case-end-ALLOCATION_INSTRUCTION_ACK
 
 
-      case MsgTypeRaw_DONT_KNOW_TRADE : { 
-       if( resetMessage ) _msgDontKnowTrade.reset(); 
-       pos = _msgDontKnowTrade.scan( buf, len - pos ); 
+// case-begin-DONT_KNOW_TRADE
+      case MsgTypeRaw_DONT_KNOW_TRADE : {
+       if( resetMessage ) _msgDontKnowTrade.reset();
+       pos = _msgDontKnowTrade.scan( buf, len - pos );
        onMessage( _msgDontKnowTrade );
        break;
       }
+// case-end-DONT_KNOW_TRADE
 
 
-      case MsgTypeRaw_QUOTE_REQUEST : { 
-       if( resetMessage ) _msgQuoteRequest.reset(); 
-       pos = _msgQuoteRequest.scan( buf, len - pos ); 
+// case-begin-QUOTE_REQUEST
+      case MsgTypeRaw_QUOTE_REQUEST : {
+       if( resetMessage ) _msgQuoteRequest.reset();
+       pos = _msgQuoteRequest.scan( buf, len - pos );
        onMessage( _msgQuoteRequest );
        break;
       }
+// case-end-QUOTE_REQUEST
 
 
-      case MsgTypeRaw_QUOTE : { 
-       if( resetMessage ) _msgQuote.reset(); 
-       pos = _msgQuote.scan( buf, len - pos ); 
+// case-begin-QUOTE
+      case MsgTypeRaw_QUOTE : {
+       if( resetMessage ) _msgQuote.reset();
+       pos = _msgQuote.scan( buf, len - pos );
        onMessage( _msgQuote );
        break;
       }
+// case-end-QUOTE
 
 
-      case MsgTypeRaw_SETTLEMENT_INSTRUCTIONS : { 
-       if( resetMessage ) _msgSettlementInstructions.reset(); 
-       pos = _msgSettlementInstructions.scan( buf, len - pos ); 
+// case-begin-SETTLEMENT_INSTRUCTIONS
+      case MsgTypeRaw_SETTLEMENT_INSTRUCTIONS : {
+       if( resetMessage ) _msgSettlementInstructions.reset();
+       pos = _msgSettlementInstructions.scan( buf, len - pos );
        onMessage( _msgSettlementInstructions );
        break;
       }
+// case-end-SETTLEMENT_INSTRUCTIONS
 
 
-      case MsgTypeRaw_MARKET_DATA_REQUEST : { 
-       if( resetMessage ) _msgMarketDataRequest.reset(); 
-       pos = _msgMarketDataRequest.scan( buf, len - pos ); 
+// case-begin-MARKET_DATA_REQUEST
+      case MsgTypeRaw_MARKET_DATA_REQUEST : {
+       if( resetMessage ) _msgMarketDataRequest.reset();
+       pos = _msgMarketDataRequest.scan( buf, len - pos );
        onMessage( _msgMarketDataRequest );
        break;
       }
+// case-end-MARKET_DATA_REQUEST
 
 
-      case MsgTypeRaw_MARKET_DATA_SNAPSHOT_FULL_REFRESH : { 
-       if( resetMessage ) _msgMarketDataSnapshotFullRefresh.reset(); 
-       pos = _msgMarketDataSnapshotFullRefresh.scan( buf, len - pos ); 
+// case-begin-MARKET_DATA_SNAPSHOT_FULL_REFRESH
+      case MsgTypeRaw_MARKET_DATA_SNAPSHOT_FULL_REFRESH : {
+       if( resetMessage ) _msgMarketDataSnapshotFullRefresh.reset();
+       pos = _msgMarketDataSnapshotFullRefresh.scan( buf, len - pos );
        onMessage( _msgMarketDataSnapshotFullRefresh );
        break;
       }
+// case-end-MARKET_DATA_SNAPSHOT_FULL_REFRESH
 
 
-      case MsgTypeRaw_MARKET_DATA_INCREMENTAL_REFRESH : { 
-       if( resetMessage ) _msgMarketDataIncrementalRefresh.reset(); 
-       pos = _msgMarketDataIncrementalRefresh.scan( buf, len - pos ); 
+// case-begin-MARKET_DATA_INCREMENTAL_REFRESH
+      case MsgTypeRaw_MARKET_DATA_INCREMENTAL_REFRESH : {
+       if( resetMessage ) _msgMarketDataIncrementalRefresh.reset();
+       pos = _msgMarketDataIncrementalRefresh.scan( buf, len - pos );
        onMessage( _msgMarketDataIncrementalRefresh );
        break;
       }
+// case-end-MARKET_DATA_INCREMENTAL_REFRESH
 
 
-      case MsgTypeRaw_MARKET_DATA_REQUEST_REJECT : { 
-       if( resetMessage ) _msgMarketDataRequestReject.reset(); 
-       pos = _msgMarketDataRequestReject.scan( buf, len - pos ); 
+// case-begin-MARKET_DATA_REQUEST_REJECT
+      case MsgTypeRaw_MARKET_DATA_REQUEST_REJECT : {
+       if( resetMessage ) _msgMarketDataRequestReject.reset();
+       pos = _msgMarketDataRequestReject.scan( buf, len - pos );
        onMessage( _msgMarketDataRequestReject );
        break;
       }
+// case-end-MARKET_DATA_REQUEST_REJECT
 
 
-      case MsgTypeRaw_QUOTE_CANCEL : { 
-       if( resetMessage ) _msgQuoteCancel.reset(); 
-       pos = _msgQuoteCancel.scan( buf, len - pos ); 
+// case-begin-QUOTE_CANCEL
+      case MsgTypeRaw_QUOTE_CANCEL : {
+       if( resetMessage ) _msgQuoteCancel.reset();
+       pos = _msgQuoteCancel.scan( buf, len - pos );
        onMessage( _msgQuoteCancel );
        break;
       }
+// case-end-QUOTE_CANCEL
 
 
-      case MsgTypeRaw_QUOTE_STATUS_REQUEST : { 
-       if( resetMessage ) _msgQuoteStatusRequest.reset(); 
-       pos = _msgQuoteStatusRequest.scan( buf, len - pos ); 
+// case-begin-QUOTE_STATUS_REQUEST
+      case MsgTypeRaw_QUOTE_STATUS_REQUEST : {
+       if( resetMessage ) _msgQuoteStatusRequest.reset();
+       pos = _msgQuoteStatusRequest.scan( buf, len - pos );
        onMessage( _msgQuoteStatusRequest );
        break;
       }
+// case-end-QUOTE_STATUS_REQUEST
 
 
-      case MsgTypeRaw_MASS_QUOTE_ACKNOWLEDGEMENT : { 
-       if( resetMessage ) _msgMassQuoteAcknowledgement.reset(); 
-       pos = _msgMassQuoteAcknowledgement.scan( buf, len - pos ); 
+// case-begin-MASS_QUOTE_ACKNOWLEDGEMENT
+      case MsgTypeRaw_MASS_QUOTE_ACKNOWLEDGEMENT : {
+       if( resetMessage ) _msgMassQuoteAcknowledgement.reset();
+       pos = _msgMassQuoteAcknowledgement.scan( buf, len - pos );
        onMessage( _msgMassQuoteAcknowledgement );
        break;
       }
+// case-end-MASS_QUOTE_ACKNOWLEDGEMENT
 
 
-      case MsgTypeRaw_SECURITY_DEFINITION_REQUEST : { 
-       if( resetMessage ) _msgSecurityDefinitionRequest.reset(); 
-       pos = _msgSecurityDefinitionRequest.scan( buf, len - pos ); 
+// case-begin-SECURITY_DEFINITION_REQUEST
+      case MsgTypeRaw_SECURITY_DEFINITION_REQUEST : {
+       if( resetMessage ) _msgSecurityDefinitionRequest.reset();
+       pos = _msgSecurityDefinitionRequest.scan( buf, len - pos );
        onMessage( _msgSecurityDefinitionRequest );
        break;
       }
+// case-end-SECURITY_DEFINITION_REQUEST
 
 
-      case MsgTypeRaw_SECURITY_DEFINITION : { 
-       if( resetMessage ) _msgSecurityDefinition.reset(); 
-       pos = _msgSecurityDefinition.scan( buf, len - pos ); 
+// case-begin-SECURITY_DEFINITION
+      case MsgTypeRaw_SECURITY_DEFINITION : {
+       if( resetMessage ) _msgSecurityDefinition.reset();
+       pos = _msgSecurityDefinition.scan( buf, len - pos );
        onMessage( _msgSecurityDefinition );
        break;
       }
+// case-end-SECURITY_DEFINITION
 
 
-      case MsgTypeRaw_SECURITY_STATUS_REQUEST : { 
-       if( resetMessage ) _msgSecurityStatusRequest.reset(); 
-       pos = _msgSecurityStatusRequest.scan( buf, len - pos ); 
+// case-begin-SECURITY_STATUS_REQUEST
+      case MsgTypeRaw_SECURITY_STATUS_REQUEST : {
+       if( resetMessage ) _msgSecurityStatusRequest.reset();
+       pos = _msgSecurityStatusRequest.scan( buf, len - pos );
        onMessage( _msgSecurityStatusRequest );
        break;
       }
+// case-end-SECURITY_STATUS_REQUEST
 
 
-      case MsgTypeRaw_SECURITY_STATUS : { 
-       if( resetMessage ) _msgSecurityStatus.reset(); 
-       pos = _msgSecurityStatus.scan( buf, len - pos ); 
+// case-begin-SECURITY_STATUS
+      case MsgTypeRaw_SECURITY_STATUS : {
+       if( resetMessage ) _msgSecurityStatus.reset();
+       pos = _msgSecurityStatus.scan( buf, len - pos );
        onMessage( _msgSecurityStatus );
        break;
       }
+// case-end-SECURITY_STATUS
 
 
-      case MsgTypeRaw_TRADING_SESSION_STATUS_REQUEST : { 
-       if( resetMessage ) _msgTradingSessionStatusRequest.reset(); 
-       pos = _msgTradingSessionStatusRequest.scan( buf, len - pos ); 
+// case-begin-TRADING_SESSION_STATUS_REQUEST
+      case MsgTypeRaw_TRADING_SESSION_STATUS_REQUEST : {
+       if( resetMessage ) _msgTradingSessionStatusRequest.reset();
+       pos = _msgTradingSessionStatusRequest.scan( buf, len - pos );
        onMessage( _msgTradingSessionStatusRequest );
        break;
       }
+// case-end-TRADING_SESSION_STATUS_REQUEST
 
 
-      case MsgTypeRaw_TRADING_SESSION_STATUS : { 
-       if( resetMessage ) _msgTradingSessionStatus.reset(); 
-       pos = _msgTradingSessionStatus.scan( buf, len - pos ); 
+// case-begin-TRADING_SESSION_STATUS
+      case MsgTypeRaw_TRADING_SESSION_STATUS : {
+       if( resetMessage ) _msgTradingSessionStatus.reset();
+       pos = _msgTradingSessionStatus.scan( buf, len - pos );
        onMessage( _msgTradingSessionStatus );
        break;
       }
+// case-end-TRADING_SESSION_STATUS
 
 
-      case MsgTypeRaw_MASS_QUOTE : { 
-       if( resetMessage ) _msgMassQuote.reset(); 
-       pos = _msgMassQuote.scan( buf, len - pos ); 
+// case-begin-MASS_QUOTE
+      case MsgTypeRaw_MASS_QUOTE : {
+       if( resetMessage ) _msgMassQuote.reset();
+       pos = _msgMassQuote.scan( buf, len - pos );
        onMessage( _msgMassQuote );
        break;
       }
+// case-end-MASS_QUOTE
 
 
-      case MsgTypeRaw_BUSINESS_MESSAGE_REJECT : { 
-       if( resetMessage ) _msgBusinessMessageReject.reset(); 
-       pos = _msgBusinessMessageReject.scan( buf, len - pos ); 
+// case-begin-BUSINESS_MESSAGE_REJECT
+      case MsgTypeRaw_BUSINESS_MESSAGE_REJECT : {
+       if( resetMessage ) _msgBusinessMessageReject.reset();
+       pos = _msgBusinessMessageReject.scan( buf, len - pos );
        onMessage( _msgBusinessMessageReject );
        break;
       }
+// case-end-BUSINESS_MESSAGE_REJECT
 
 
-      case MsgTypeRaw_BID_REQUEST : { 
-       if( resetMessage ) _msgBidRequest.reset(); 
-       pos = _msgBidRequest.scan( buf, len - pos ); 
+// case-begin-BID_REQUEST
+      case MsgTypeRaw_BID_REQUEST : {
+       if( resetMessage ) _msgBidRequest.reset();
+       pos = _msgBidRequest.scan( buf, len - pos );
        onMessage( _msgBidRequest );
        break;
       }
+// case-end-BID_REQUEST
 
 
-      case MsgTypeRaw_BID_RESPONSE : { 
-       if( resetMessage ) _msgBidResponse.reset(); 
-       pos = _msgBidResponse.scan( buf, len - pos ); 
+// case-begin-BID_RESPONSE
+      case MsgTypeRaw_BID_RESPONSE : {
+       if( resetMessage ) _msgBidResponse.reset();
+       pos = _msgBidResponse.scan( buf, len - pos );
        onMessage( _msgBidResponse );
        break;
       }
+// case-end-BID_RESPONSE
 
 
-      case MsgTypeRaw_LIST_STRIKE_PRICE : { 
-       if( resetMessage ) _msgListStrikePrice.reset(); 
-       pos = _msgListStrikePrice.scan( buf, len - pos ); 
+// case-begin-LIST_STRIKE_PRICE
+      case MsgTypeRaw_LIST_STRIKE_PRICE : {
+       if( resetMessage ) _msgListStrikePrice.reset();
+       pos = _msgListStrikePrice.scan( buf, len - pos );
        onMessage( _msgListStrikePrice );
        break;
       }
+// case-end-LIST_STRIKE_PRICE
 
 
-      case MsgTypeRaw_XML_MESSAGE : { 
-       if( resetMessage ) _msgXMLnonFIX.reset(); 
-       pos = _msgXMLnonFIX.scan( buf, len - pos ); 
+// case-begin-XML_MESSAGE
+      case MsgTypeRaw_XML_MESSAGE : {
+       if( resetMessage ) _msgXMLnonFIX.reset();
+       pos = _msgXMLnonFIX.scan( buf, len - pos );
        onMessage( _msgXMLnonFIX );
        break;
       }
+// case-end-XML_MESSAGE
 
 
-      case MsgTypeRaw_REGISTRATION_INSTRUCTIONS : { 
-       if( resetMessage ) _msgRegistrationInstructions.reset(); 
-       pos = _msgRegistrationInstructions.scan( buf, len - pos ); 
+// case-begin-REGISTRATION_INSTRUCTIONS
+      case MsgTypeRaw_REGISTRATION_INSTRUCTIONS : {
+       if( resetMessage ) _msgRegistrationInstructions.reset();
+       pos = _msgRegistrationInstructions.scan( buf, len - pos );
        onMessage( _msgRegistrationInstructions );
        break;
       }
+// case-end-REGISTRATION_INSTRUCTIONS
 
 
-      case MsgTypeRaw_REGISTRATION_INSTRUCTIONS_RESPONSE : { 
-       if( resetMessage ) _msgRegistrationInstructionsResponse.reset(); 
-       pos = _msgRegistrationInstructionsResponse.scan( buf, len - pos ); 
+// case-begin-REGISTRATION_INSTRUCTIONS_RESPONSE
+      case MsgTypeRaw_REGISTRATION_INSTRUCTIONS_RESPONSE : {
+       if( resetMessage ) _msgRegistrationInstructionsResponse.reset();
+       pos = _msgRegistrationInstructionsResponse.scan( buf, len - pos );
        onMessage( _msgRegistrationInstructionsResponse );
        break;
       }
+// case-end-REGISTRATION_INSTRUCTIONS_RESPONSE
 
 
-      case MsgTypeRaw_ORDER_MASS_CANCEL_REQUEST : { 
-       if( resetMessage ) _msgOrderMassCancelRequest.reset(); 
-       pos = _msgOrderMassCancelRequest.scan( buf, len - pos ); 
+// case-begin-ORDER_MASS_CANCEL_REQUEST
+      case MsgTypeRaw_ORDER_MASS_CANCEL_REQUEST : {
+       if( resetMessage ) _msgOrderMassCancelRequest.reset();
+       pos = _msgOrderMassCancelRequest.scan( buf, len - pos );
        onMessage( _msgOrderMassCancelRequest );
        break;
       }
+// case-end-ORDER_MASS_CANCEL_REQUEST
 
 
-      case MsgTypeRaw_ORDER_MASS_CANCEL_REPORT : { 
-       if( resetMessage ) _msgOrderMassCancelReport.reset(); 
-       pos = _msgOrderMassCancelReport.scan( buf, len - pos ); 
+// case-begin-ORDER_MASS_CANCEL_REPORT
+      case MsgTypeRaw_ORDER_MASS_CANCEL_REPORT : {
+       if( resetMessage ) _msgOrderMassCancelReport.reset();
+       pos = _msgOrderMassCancelReport.scan( buf, len - pos );
        onMessage( _msgOrderMassCancelReport );
        break;
       }
+// case-end-ORDER_MASS_CANCEL_REPORT
 
 
-      case MsgTypeRaw_NEW_ORDER_s : { 
-       if( resetMessage ) _msgNewOrderCross.reset(); 
-       pos = _msgNewOrderCross.scan( buf, len - pos ); 
+// case-begin-NEW_ORDER_s
+      case MsgTypeRaw_NEW_ORDER_s : {
+       if( resetMessage ) _msgNewOrderCross.reset();
+       pos = _msgNewOrderCross.scan( buf, len - pos );
        onMessage( _msgNewOrderCross );
        break;
       }
+// case-end-NEW_ORDER_s
 
 
-      case MsgTypeRaw_CROSS_ORDER_CANCEL_REPLACE_REQUEST : { 
-       if( resetMessage ) _msgCrossOrderCancelReplaceRequest.reset(); 
-       pos = _msgCrossOrderCancelReplaceRequest.scan( buf, len - pos ); 
+// case-begin-CROSS_ORDER_CANCEL_REPLACE_REQUEST
+      case MsgTypeRaw_CROSS_ORDER_CANCEL_REPLACE_REQUEST : {
+       if( resetMessage ) _msgCrossOrderCancelReplaceRequest.reset();
+       pos = _msgCrossOrderCancelReplaceRequest.scan( buf, len - pos );
        onMessage( _msgCrossOrderCancelReplaceRequest );
        break;
       }
+// case-end-CROSS_ORDER_CANCEL_REPLACE_REQUEST
 
 
-      case MsgTypeRaw_CROSS_ORDER_CANCEL_REQUEST : { 
-       if( resetMessage ) _msgCrossOrderCancelRequest.reset(); 
-       pos = _msgCrossOrderCancelRequest.scan( buf, len - pos ); 
+// case-begin-CROSS_ORDER_CANCEL_REQUEST
+      case MsgTypeRaw_CROSS_ORDER_CANCEL_REQUEST : {
+       if( resetMessage ) _msgCrossOrderCancelRequest.reset();
+       pos = _msgCrossOrderCancelRequest.scan( buf, len - pos );
        onMessage( _msgCrossOrderCancelRequest );
        break;
       }
+// case-end-CROSS_ORDER_CANCEL_REQUEST
 
 
-      case MsgTypeRaw_SECURITY_TYPE_REQUEST : { 
-       if( resetMessage ) _msgSecurityTypeRequest.reset(); 
-       pos = _msgSecurityTypeRequest.scan( buf, len - pos ); 
+// case-begin-SECURITY_TYPE_REQUEST
+      case MsgTypeRaw_SECURITY_TYPE_REQUEST : {
+       if( resetMessage ) _msgSecurityTypeRequest.reset();
+       pos = _msgSecurityTypeRequest.scan( buf, len - pos );
        onMessage( _msgSecurityTypeRequest );
        break;
       }
+// case-end-SECURITY_TYPE_REQUEST
 
 
-      case MsgTypeRaw_SECURITY_TYPES : { 
-       if( resetMessage ) _msgSecurityTypes.reset(); 
-       pos = _msgSecurityTypes.scan( buf, len - pos ); 
+// case-begin-SECURITY_TYPES
+      case MsgTypeRaw_SECURITY_TYPES : {
+       if( resetMessage ) _msgSecurityTypes.reset();
+       pos = _msgSecurityTypes.scan( buf, len - pos );
        onMessage( _msgSecurityTypes );
        break;
       }
+// case-end-SECURITY_TYPES
 
 
-      case MsgTypeRaw_SECURITY_LIST_REQUEST : { 
-       if( resetMessage ) _msgSecurityListRequest.reset(); 
-       pos = _msgSecurityListRequest.scan( buf, len - pos ); 
+// case-begin-SECURITY_LIST_REQUEST
+      case MsgTypeRaw_SECURITY_LIST_REQUEST : {
+       if( resetMessage ) _msgSecurityListRequest.reset();
+       pos = _msgSecurityListRequest.scan( buf, len - pos );
        onMessage( _msgSecurityListRequest );
        break;
       }
+// case-end-SECURITY_LIST_REQUEST
 
 
-      case MsgTypeRaw_SECURITY_LIST : { 
-       if( resetMessage ) _msgSecurityList.reset(); 
-       pos = _msgSecurityList.scan( buf, len - pos ); 
+// case-begin-SECURITY_LIST
+      case MsgTypeRaw_SECURITY_LIST : {
+       if( resetMessage ) _msgSecurityList.reset();
+       pos = _msgSecurityList.scan( buf, len - pos );
        onMessage( _msgSecurityList );
        break;
       }
+// case-end-SECURITY_LIST
 
 
-      case MsgTypeRaw_DERIVATIVE_SECURITY_LIST_REQUEST : { 
-       if( resetMessage ) _msgDerivativeSecurityListRequest.reset(); 
-       pos = _msgDerivativeSecurityListRequest.scan( buf, len - pos ); 
+// case-begin-DERIVATIVE_SECURITY_LIST_REQUEST
+      case MsgTypeRaw_DERIVATIVE_SECURITY_LIST_REQUEST : {
+       if( resetMessage ) _msgDerivativeSecurityListRequest.reset();
+       pos = _msgDerivativeSecurityListRequest.scan( buf, len - pos );
        onMessage( _msgDerivativeSecurityListRequest );
        break;
       }
+// case-end-DERIVATIVE_SECURITY_LIST_REQUEST
 
 
-      case MsgTypeRaw_DERIVATIVE_SECURITY_LIST : { 
-       if( resetMessage ) _msgDerivativeSecurityList.reset(); 
-       pos = _msgDerivativeSecurityList.scan( buf, len - pos ); 
+// case-begin-DERIVATIVE_SECURITY_LIST
+      case MsgTypeRaw_DERIVATIVE_SECURITY_LIST : {
+       if( resetMessage ) _msgDerivativeSecurityList.reset();
+       pos = _msgDerivativeSecurityList.scan( buf, len - pos );
        onMessage( _msgDerivativeSecurityList );
        break;
       }
+// case-end-DERIVATIVE_SECURITY_LIST
 
 
-      case MsgTypeRaw_NEW_ORDER_AB : { 
-       if( resetMessage ) _msgNewOrderMultileg.reset(); 
-       pos = _msgNewOrderMultileg.scan( buf, len - pos ); 
+// case-begin-NEW_ORDER_AB
+      case MsgTypeRaw_NEW_ORDER_AB : {
+       if( resetMessage ) _msgNewOrderMultileg.reset();
+       pos = _msgNewOrderMultileg.scan( buf, len - pos );
        onMessage( _msgNewOrderMultileg );
        break;
       }
+// case-end-NEW_ORDER_AB
 
 
-      case MsgTypeRaw_MULTILEG_ORDER_CANCEL_REPLACE : { 
-       if( resetMessage ) _msgMultilegOrderCancelReplace.reset(); 
-       pos = _msgMultilegOrderCancelReplace.scan( buf, len - pos ); 
+// case-begin-MULTILEG_ORDER_CANCEL_REPLACE
+      case MsgTypeRaw_MULTILEG_ORDER_CANCEL_REPLACE : {
+       if( resetMessage ) _msgMultilegOrderCancelReplace.reset();
+       pos = _msgMultilegOrderCancelReplace.scan( buf, len - pos );
        onMessage( _msgMultilegOrderCancelReplace );
        break;
       }
+// case-end-MULTILEG_ORDER_CANCEL_REPLACE
 
 
-      case MsgTypeRaw_TRADE_CAPTURE_REPORT_REQUEST : { 
-       if( resetMessage ) _msgTradeCaptureReportRequest.reset(); 
-       pos = _msgTradeCaptureReportRequest.scan( buf, len - pos ); 
+// case-begin-TRADE_CAPTURE_REPORT_REQUEST
+      case MsgTypeRaw_TRADE_CAPTURE_REPORT_REQUEST : {
+       if( resetMessage ) _msgTradeCaptureReportRequest.reset();
+       pos = _msgTradeCaptureReportRequest.scan( buf, len - pos );
        onMessage( _msgTradeCaptureReportRequest );
        break;
       }
+// case-end-TRADE_CAPTURE_REPORT_REQUEST
 
 
-      case MsgTypeRaw_TRADE_CAPTURE_REPORT : { 
-       if( resetMessage ) _msgTradeCaptureReport.reset(); 
-       pos = _msgTradeCaptureReport.scan( buf, len - pos ); 
+// case-begin-TRADE_CAPTURE_REPORT
+      case MsgTypeRaw_TRADE_CAPTURE_REPORT : {
+       if( resetMessage ) _msgTradeCaptureReport.reset();
+       pos = _msgTradeCaptureReport.scan( buf, len - pos );
        onMessage( _msgTradeCaptureReport );
        break;
       }
+// case-end-TRADE_CAPTURE_REPORT
 
 
-      case MsgTypeRaw_ORDER_MASS_STATUS_REQUEST : { 
-       if( resetMessage ) _msgOrderMassStatusRequest.reset(); 
-       pos = _msgOrderMassStatusRequest.scan( buf, len - pos ); 
+// case-begin-ORDER_MASS_STATUS_REQUEST
+      case MsgTypeRaw_ORDER_MASS_STATUS_REQUEST : {
+       if( resetMessage ) _msgOrderMassStatusRequest.reset();
+       pos = _msgOrderMassStatusRequest.scan( buf, len - pos );
        onMessage( _msgOrderMassStatusRequest );
        break;
       }
+// case-end-ORDER_MASS_STATUS_REQUEST
 
 
-      case MsgTypeRaw_QUOTE_REQUEST_REJECT : { 
-       if( resetMessage ) _msgQuoteRequestReject.reset(); 
-       pos = _msgQuoteRequestReject.scan( buf, len - pos ); 
+// case-begin-QUOTE_REQUEST_REJECT
+      case MsgTypeRaw_QUOTE_REQUEST_REJECT : {
+       if( resetMessage ) _msgQuoteRequestReject.reset();
+       pos = _msgQuoteRequestReject.scan( buf, len - pos );
        onMessage( _msgQuoteRequestReject );
        break;
       }
+// case-end-QUOTE_REQUEST_REJECT
 
 
-      case MsgTypeRaw_RFQ_REQUEST : { 
-       if( resetMessage ) _msgRFQRequest.reset(); 
-       pos = _msgRFQRequest.scan( buf, len - pos ); 
+// case-begin-RFQ_REQUEST
+      case MsgTypeRaw_RFQ_REQUEST : {
+       if( resetMessage ) _msgRFQRequest.reset();
+       pos = _msgRFQRequest.scan( buf, len - pos );
        onMessage( _msgRFQRequest );
        break;
       }
+// case-end-RFQ_REQUEST
 
 
-      case MsgTypeRaw_QUOTE_STATUS_REPORT : { 
-       if( resetMessage ) _msgQuoteStatusReport.reset(); 
-       pos = _msgQuoteStatusReport.scan( buf, len - pos ); 
+// case-begin-QUOTE_STATUS_REPORT
+      case MsgTypeRaw_QUOTE_STATUS_REPORT : {
+       if( resetMessage ) _msgQuoteStatusReport.reset();
+       pos = _msgQuoteStatusReport.scan( buf, len - pos );
        onMessage( _msgQuoteStatusReport );
        break;
       }
+// case-end-QUOTE_STATUS_REPORT
 
 
-      case MsgTypeRaw_QUOTE_RESPONSE : { 
-       if( resetMessage ) _msgQuoteResponse.reset(); 
-       pos = _msgQuoteResponse.scan( buf, len - pos ); 
+// case-begin-QUOTE_RESPONSE
+      case MsgTypeRaw_QUOTE_RESPONSE : {
+       if( resetMessage ) _msgQuoteResponse.reset();
+       pos = _msgQuoteResponse.scan( buf, len - pos );
        onMessage( _msgQuoteResponse );
        break;
       }
+// case-end-QUOTE_RESPONSE
 
 
-      case MsgTypeRaw_CONFIRMATION : { 
-       if( resetMessage ) _msgConfirmation.reset(); 
-       pos = _msgConfirmation.scan( buf, len - pos ); 
+// case-begin-CONFIRMATION
+      case MsgTypeRaw_CONFIRMATION : {
+       if( resetMessage ) _msgConfirmation.reset();
+       pos = _msgConfirmation.scan( buf, len - pos );
        onMessage( _msgConfirmation );
        break;
       }
+// case-end-CONFIRMATION
 
 
-      case MsgTypeRaw_POSITION_MAINTENANCE_REQUEST : { 
-       if( resetMessage ) _msgPositionMaintenanceRequest.reset(); 
-       pos = _msgPositionMaintenanceRequest.scan( buf, len - pos ); 
+// case-begin-POSITION_MAINTENANCE_REQUEST
+      case MsgTypeRaw_POSITION_MAINTENANCE_REQUEST : {
+       if( resetMessage ) _msgPositionMaintenanceRequest.reset();
+       pos = _msgPositionMaintenanceRequest.scan( buf, len - pos );
        onMessage( _msgPositionMaintenanceRequest );
        break;
       }
+// case-end-POSITION_MAINTENANCE_REQUEST
 
 
-      case MsgTypeRaw_POSITION_MAINTENANCE_REPORT : { 
-       if( resetMessage ) _msgPositionMaintenanceReport.reset(); 
-       pos = _msgPositionMaintenanceReport.scan( buf, len - pos ); 
+// case-begin-POSITION_MAINTENANCE_REPORT
+      case MsgTypeRaw_POSITION_MAINTENANCE_REPORT : {
+       if( resetMessage ) _msgPositionMaintenanceReport.reset();
+       pos = _msgPositionMaintenanceReport.scan( buf, len - pos );
        onMessage( _msgPositionMaintenanceReport );
        break;
       }
+// case-end-POSITION_MAINTENANCE_REPORT
 
 
-      case MsgTypeRaw_REQUEST_FOR_POSITIONS : { 
-       if( resetMessage ) _msgRequestForPositions.reset(); 
-       pos = _msgRequestForPositions.scan( buf, len - pos ); 
+// case-begin-REQUEST_FOR_POSITIONS
+      case MsgTypeRaw_REQUEST_FOR_POSITIONS : {
+       if( resetMessage ) _msgRequestForPositions.reset();
+       pos = _msgRequestForPositions.scan( buf, len - pos );
        onMessage( _msgRequestForPositions );
        break;
       }
+// case-end-REQUEST_FOR_POSITIONS
 
 
-      case MsgTypeRaw_REQUEST_FOR_POSITIONS_ACK : { 
-       if( resetMessage ) _msgRequestForPositionsAck.reset(); 
-       pos = _msgRequestForPositionsAck.scan( buf, len - pos ); 
+// case-begin-REQUEST_FOR_POSITIONS_ACK
+      case MsgTypeRaw_REQUEST_FOR_POSITIONS_ACK : {
+       if( resetMessage ) _msgRequestForPositionsAck.reset();
+       pos = _msgRequestForPositionsAck.scan( buf, len - pos );
        onMessage( _msgRequestForPositionsAck );
        break;
       }
+// case-end-REQUEST_FOR_POSITIONS_ACK
 
 
-      case MsgTypeRaw_POSITION_REPORT : { 
-       if( resetMessage ) _msgPositionReport.reset(); 
-       pos = _msgPositionReport.scan( buf, len - pos ); 
+// case-begin-POSITION_REPORT
+      case MsgTypeRaw_POSITION_REPORT : {
+       if( resetMessage ) _msgPositionReport.reset();
+       pos = _msgPositionReport.scan( buf, len - pos );
        onMessage( _msgPositionReport );
        break;
       }
+// case-end-POSITION_REPORT
 
 
-      case MsgTypeRaw_TRADE_CAPTURE_REPORT_REQUEST_ACK : { 
-       if( resetMessage ) _msgTradeCaptureReportRequestAck.reset(); 
-       pos = _msgTradeCaptureReportRequestAck.scan( buf, len - pos ); 
+// case-begin-TRADE_CAPTURE_REPORT_REQUEST_ACK
+      case MsgTypeRaw_TRADE_CAPTURE_REPORT_REQUEST_ACK : {
+       if( resetMessage ) _msgTradeCaptureReportRequestAck.reset();
+       pos = _msgTradeCaptureReportRequestAck.scan( buf, len - pos );
        onMessage( _msgTradeCaptureReportRequestAck );
        break;
       }
+// case-end-TRADE_CAPTURE_REPORT_REQUEST_ACK
 
 
-      case MsgTypeRaw_TRADE_CAPTURE_REPORT_ACK : { 
-       if( resetMessage ) _msgTradeCaptureReportAck.reset(); 
-       pos = _msgTradeCaptureReportAck.scan( buf, len - pos ); 
+// case-begin-TRADE_CAPTURE_REPORT_ACK
+      case MsgTypeRaw_TRADE_CAPTURE_REPORT_ACK : {
+       if( resetMessage ) _msgTradeCaptureReportAck.reset();
+       pos = _msgTradeCaptureReportAck.scan( buf, len - pos );
        onMessage( _msgTradeCaptureReportAck );
        break;
       }
+// case-end-TRADE_CAPTURE_REPORT_ACK
 
 
-      case MsgTypeRaw_ALLOCATION_REPORT : { 
-       if( resetMessage ) _msgAllocationReport.reset(); 
-       pos = _msgAllocationReport.scan( buf, len - pos ); 
+// case-begin-ALLOCATION_REPORT
+      case MsgTypeRaw_ALLOCATION_REPORT : {
+       if( resetMessage ) _msgAllocationReport.reset();
+       pos = _msgAllocationReport.scan( buf, len - pos );
        onMessage( _msgAllocationReport );
        break;
       }
+// case-end-ALLOCATION_REPORT
 
 
-      case MsgTypeRaw_ALLOCATION_REPORT_ACK : { 
-       if( resetMessage ) _msgAllocationReportAck.reset(); 
-       pos = _msgAllocationReportAck.scan( buf, len - pos ); 
+// case-begin-ALLOCATION_REPORT_ACK
+      case MsgTypeRaw_ALLOCATION_REPORT_ACK : {
+       if( resetMessage ) _msgAllocationReportAck.reset();
+       pos = _msgAllocationReportAck.scan( buf, len - pos );
        onMessage( _msgAllocationReportAck );
        break;
       }
+// case-end-ALLOCATION_REPORT_ACK
 
 
-      case MsgTypeRaw_CONFIRMATION_ACK : { 
-       if( resetMessage ) _msgConfirmationAck.reset(); 
-       pos = _msgConfirmationAck.scan( buf, len - pos ); 
+// case-begin-CONFIRMATION_ACK
+      case MsgTypeRaw_CONFIRMATION_ACK : {
+       if( resetMessage ) _msgConfirmationAck.reset();
+       pos = _msgConfirmationAck.scan( buf, len - pos );
        onMessage( _msgConfirmationAck );
        break;
       }
+// case-end-CONFIRMATION_ACK
 
 
-      case MsgTypeRaw_SETTLEMENT_INSTRUCTION_REQUEST : { 
-       if( resetMessage ) _msgSettlementInstructionRequest.reset(); 
-       pos = _msgSettlementInstructionRequest.scan( buf, len - pos ); 
+// case-begin-SETTLEMENT_INSTRUCTION_REQUEST
+      case MsgTypeRaw_SETTLEMENT_INSTRUCTION_REQUEST : {
+       if( resetMessage ) _msgSettlementInstructionRequest.reset();
+       pos = _msgSettlementInstructionRequest.scan( buf, len - pos );
        onMessage( _msgSettlementInstructionRequest );
        break;
       }
+// case-end-SETTLEMENT_INSTRUCTION_REQUEST
 
 
-      case MsgTypeRaw_ASSIGNMENT_REPORT : { 
-       if( resetMessage ) _msgAssignmentReport.reset(); 
-       pos = _msgAssignmentReport.scan( buf, len - pos ); 
+// case-begin-ASSIGNMENT_REPORT
+      case MsgTypeRaw_ASSIGNMENT_REPORT : {
+       if( resetMessage ) _msgAssignmentReport.reset();
+       pos = _msgAssignmentReport.scan( buf, len - pos );
        onMessage( _msgAssignmentReport );
        break;
       }
+// case-end-ASSIGNMENT_REPORT
 
 
-      case MsgTypeRaw_COLLATERAL_REQUEST : { 
-       if( resetMessage ) _msgCollateralRequest.reset(); 
-       pos = _msgCollateralRequest.scan( buf, len - pos ); 
+// case-begin-COLLATERAL_REQUEST
+      case MsgTypeRaw_COLLATERAL_REQUEST : {
+       if( resetMessage ) _msgCollateralRequest.reset();
+       pos = _msgCollateralRequest.scan( buf, len - pos );
        onMessage( _msgCollateralRequest );
        break;
       }
+// case-end-COLLATERAL_REQUEST
 
 
-      case MsgTypeRaw_COLLATERAL_ASSIGNMENT : { 
-       if( resetMessage ) _msgCollateralAssignment.reset(); 
-       pos = _msgCollateralAssignment.scan( buf, len - pos ); 
+// case-begin-COLLATERAL_ASSIGNMENT
+      case MsgTypeRaw_COLLATERAL_ASSIGNMENT : {
+       if( resetMessage ) _msgCollateralAssignment.reset();
+       pos = _msgCollateralAssignment.scan( buf, len - pos );
        onMessage( _msgCollateralAssignment );
        break;
       }
+// case-end-COLLATERAL_ASSIGNMENT
 
 
-      case MsgTypeRaw_COLLATERAL_RESPONSE : { 
-       if( resetMessage ) _msgCollateralResponse.reset(); 
-       pos = _msgCollateralResponse.scan( buf, len - pos ); 
+// case-begin-COLLATERAL_RESPONSE
+      case MsgTypeRaw_COLLATERAL_RESPONSE : {
+       if( resetMessage ) _msgCollateralResponse.reset();
+       pos = _msgCollateralResponse.scan( buf, len - pos );
        onMessage( _msgCollateralResponse );
        break;
       }
+// case-end-COLLATERAL_RESPONSE
 
 
-      case MsgTypeRaw_COLLATERAL_REPORT : { 
-       if( resetMessage ) _msgCollateralReport.reset(); 
-       pos = _msgCollateralReport.scan( buf, len - pos ); 
+// case-begin-COLLATERAL_REPORT
+      case MsgTypeRaw_COLLATERAL_REPORT : {
+       if( resetMessage ) _msgCollateralReport.reset();
+       pos = _msgCollateralReport.scan( buf, len - pos );
        onMessage( _msgCollateralReport );
        break;
       }
+// case-end-COLLATERAL_REPORT
 
 
-      case MsgTypeRaw_COLLATERAL_INQUIRY : { 
-       if( resetMessage ) _msgCollateralInquiry.reset(); 
-       pos = _msgCollateralInquiry.scan( buf, len - pos ); 
+// case-begin-COLLATERAL_INQUIRY
+      case MsgTypeRaw_COLLATERAL_INQUIRY : {
+       if( resetMessage ) _msgCollateralInquiry.reset();
+       pos = _msgCollateralInquiry.scan( buf, len - pos );
        onMessage( _msgCollateralInquiry );
        break;
       }
+// case-end-COLLATERAL_INQUIRY
 
 
-      case MsgTypeRaw_NETWORK_BC : { 
-       if( resetMessage ) _msgNetworkCounterpartySystemStatusRequest.reset(); 
-       pos = _msgNetworkCounterpartySystemStatusRequest.scan( buf, len - pos ); 
+// case-begin-NETWORK_BC
+      case MsgTypeRaw_NETWORK_BC : {
+       if( resetMessage ) _msgNetworkCounterpartySystemStatusRequest.reset();
+       pos = _msgNetworkCounterpartySystemStatusRequest.scan( buf, len - pos );
        onMessage( _msgNetworkCounterpartySystemStatusRequest );
        break;
       }
+// case-end-NETWORK_BC
 
 
-      case MsgTypeRaw_NETWORK_BD : { 
-       if( resetMessage ) _msgNetworkCounterpartySystemStatusResponse.reset(); 
-       pos = _msgNetworkCounterpartySystemStatusResponse.scan( buf, len - pos ); 
+// case-begin-NETWORK_BD
+      case MsgTypeRaw_NETWORK_BD : {
+       if( resetMessage ) _msgNetworkCounterpartySystemStatusResponse.reset();
+       pos = _msgNetworkCounterpartySystemStatusResponse.scan( buf, len - pos );
        onMessage( _msgNetworkCounterpartySystemStatusResponse );
        break;
       }
+// case-end-NETWORK_BD
 
 
-      case MsgTypeRaw_USER_REQUEST : { 
-       if( resetMessage ) _msgUserRequest.reset(); 
-       pos = _msgUserRequest.scan( buf, len - pos ); 
+// case-begin-USER_REQUEST
+      case MsgTypeRaw_USER_REQUEST : {
+       if( resetMessage ) _msgUserRequest.reset();
+       pos = _msgUserRequest.scan( buf, len - pos );
        onMessage( _msgUserRequest );
        break;
       }
+// case-end-USER_REQUEST
 
 
-      case MsgTypeRaw_USER_RESPONSE : { 
-       if( resetMessage ) _msgUserResponse.reset(); 
-       pos = _msgUserResponse.scan( buf, len - pos ); 
+// case-begin-USER_RESPONSE
+      case MsgTypeRaw_USER_RESPONSE : {
+       if( resetMessage ) _msgUserResponse.reset();
+       pos = _msgUserResponse.scan( buf, len - pos );
        onMessage( _msgUserResponse );
        break;
       }
+// case-end-USER_RESPONSE
 
 
-      case MsgTypeRaw_COLLATERAL_INQUIRY_ACK : { 
-       if( resetMessage ) _msgCollateralInquiryAck.reset(); 
-       pos = _msgCollateralInquiryAck.scan( buf, len - pos ); 
+// case-begin-COLLATERAL_INQUIRY_ACK
+      case MsgTypeRaw_COLLATERAL_INQUIRY_ACK : {
+       if( resetMessage ) _msgCollateralInquiryAck.reset();
+       pos = _msgCollateralInquiryAck.scan( buf, len - pos );
        onMessage( _msgCollateralInquiryAck );
        break;
       }
+// case-end-COLLATERAL_INQUIRY_ACK
 
 
-      case MsgTypeRaw_CONFIRMATION_REQUEST : { 
-       if( resetMessage ) _msgConfirmationRequest.reset(); 
-       pos = _msgConfirmationRequest.scan( buf, len - pos ); 
+// case-begin-CONFIRMATION_REQUEST
+      case MsgTypeRaw_CONFIRMATION_REQUEST : {
+       if( resetMessage ) _msgConfirmationRequest.reset();
+       pos = _msgConfirmationRequest.scan( buf, len - pos );
        onMessage( _msgConfirmationRequest );
        break;
       }
+// case-end-CONFIRMATION_REQUEST
 
 
       default:

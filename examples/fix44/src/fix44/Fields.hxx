@@ -4,7 +4,7 @@
 // -------------------------------------- names ----------------------------------------
 extern const std::string FixBeginStringValue; 
 constexpr const char * const FixBeginStringInsertableTag = "8=" "FIX.4.4"; 
-constexpr const unsigned FixBeginStringInsertableTagLength = 6;
+constexpr const unsigned FixBeginStringInsertableTagLength = 9;
 
 extern const char * const FixAccount;
 extern const char * const FixAdvId;

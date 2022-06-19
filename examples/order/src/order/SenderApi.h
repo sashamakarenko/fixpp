@@ -438,7 +438,7 @@ struct ReusableMessageBuilder: FixBufferStream
         unsigned chksum = header.chksum;
         char * ptr = reverseUIntToString( begin, seqnum, chksum );
         unsigned seqnumWidth = begin - ptr;
-        unsigned bodyLength = header.countableLength + seqnumWidth + ( end - begin ) + 7; // 7 = checksum width
+        unsigned bodyLength = header.countableLength + seqnumWidth + ( end - begin );
 
         char * msgTypePtr = begin - header.countableLength - seqnumWidth;
         ptr = reverseUIntToString( msgTypePtr, bodyLength, chksum );
@@ -457,13 +457,13 @@ struct ReusableMessageBuilder: FixBufferStream
             lastBodyLengthWidth = bodyLengthWidth;
             memcpy( start, header.begin, BODY_LENGTH_OFFSET );
         }
-        chksum += computeChecksum( begin, end );
+        chksum += computeChecksum( begin, end ) + 1; // 1 = last SOH not inserted yet
         pushTag<FieldCheckSum>();
         chksum = chksum & 0xff;
         end[0] = '0' + chksum / 100;
         end[1] = '0' + ( chksum / 10 ) % 10;
         end[2] = '0' + chksum % 10;
-        end[3] = 0;
+        end[3] = 1;
         end += 4;
         return start;
     }
