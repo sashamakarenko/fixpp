@@ -184,8 +184,8 @@ for mt in $msg_types_in_fields; do
     fi
 done
 
-BeginStr=$( sed -n /FIX_FIELD_BEGIN_STRING/p ${DEFDIR}/Fields.def | sed -e 's/FIX_FIELD_BEGIN_STRING.*(\(.*\)).*/\1/' -e 's/\W//g' )
-sed "s/BEGIN_STRING_LENGTH/$((${#BeginStr}+1))/" -i $dst
+BeginStr=$( sed -n /FIX_FIELD_BEGIN_STRING/p ${DEFDIR}/Fields.def | sed -e 's/FIX_FIELD_BEGIN_STRING.*(\(.*\)).*/\1/' -e 's/ //g'  -e 's/\t//g' )
+sed "s/BEGIN_STRING_LENGTH/$((${#BeginStr}+2))/" -i $dst
 
 {
 echo

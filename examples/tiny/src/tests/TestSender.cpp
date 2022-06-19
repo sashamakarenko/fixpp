@@ -3,6 +3,7 @@
 
 using namespace tiny;
 using namespace tiny::field;
+using namespace tiny::message;
 
 int main( int args, const char ** argv )
 {
@@ -25,7 +26,12 @@ int main( int args, const char ** argv )
     std::cout << computeChecksum( execReport.start, execReport.end - 7 ) << "\n";
     std::cout << fixstr( execReport.start, ttyRgbStyle ) << std::endl;
 
-
+    auto len = execReport.end - execReport.start;
+    std::cout.write( execReport.start, len ) << std::endl;
+    Header header;
+    offset_t pos = header.scan( execReport.start, len );
+    ExecutionReport er;
+    pos = er.scan( execReport.start + pos, len - pos );
 
     execReport.rewind( sendingTimeLength );
     execReport.sendingTime.update();
