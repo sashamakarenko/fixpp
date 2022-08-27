@@ -353,7 +353,8 @@ struct TimestampKeeper
         {
             startOfDay = tnow - ( tnow % ( 3600 * 24 ) );
             endOfDay = startOfDay + 3600 * 24;
-            std::tm tm = * std::gmtime( & tnow );
+            std::tm tm;
+            gmtime_r( & tnow, &tm );
             std::strftime( begin, 64, "%Y%m%d-%H:%M:%S", &tm );
         }
 
