@@ -85,5 +85,32 @@ int main( int args, const char ** argv )
     std::cout << fixstr( execReport.start, ttyRgbStyle ) << std::endl;
     execReport.rewind( sendingTimeLength );
 
+    // second fractions
+    const std::chrono::time_point<std::chrono::system_clock> now = std::chrono::system_clock::now();
+
+    char timestamp_sec[ TimestampKeeper::DATE_TIME_SECONDS_LENGTH + 1 ];
+    TimestampKeeper tsSecs( timestamp_sec, TimestampKeeper::Precision::SECONDS );
+    tsSecs.update( now );
+    timestamp_sec[ sizeof(timestamp_sec) - 1 ] = 0;
+    std::cout << "seconds: " << timestamp_sec << std::endl;
+
+    char timestamp_mil[ TimestampKeeper::DATE_TIME_MILLIS_LENGTH + 1 ];
+    TimestampKeeper tsMils( timestamp_mil, TimestampKeeper::Precision::MILLISECONDS );
+    tsMils.update( now );
+    timestamp_mil[ sizeof(timestamp_mil) - 1 ] = 0;
+    std::cout << "millis:  " << timestamp_mil << std::endl;
+
+    char timestamp_mic[ TimestampKeeper::DATE_TIME_MICROS_LENGTH + 1 ];
+    TimestampKeeper tsMics( timestamp_mic, TimestampKeeper::Precision::MICROSECONDS );
+    tsMics.update( now );
+    timestamp_mic[ sizeof(timestamp_mic) - 1 ] = 0;
+    std::cout << "micros:  " << timestamp_mic << std::endl;
+
+    char timestamp_nan[ TimestampKeeper::DATE_TIME_NANOS_LENGTH + 1 ];
+    TimestampKeeper tsNans( timestamp_nan, TimestampKeeper::Precision::NANOSECONDS );
+    tsNans.update( now );
+    timestamp_nan[ sizeof(timestamp_nan) - 1 ] = 0;
+    std::cout << "nanos:   " << timestamp_nan << std::endl;
+
     return 0;
 }
