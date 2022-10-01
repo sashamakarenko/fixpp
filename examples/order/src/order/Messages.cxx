@@ -735,7 +735,7 @@ const char * MessageExecutionReport::getFieldValue( unsigned tag ) const {
 
 namespace {
 
-const std::vector<unsigned> Header_knownFields = {
+const std::vector<tag_t> Header_knownFields = {
 FieldBeginString::KEY,
 FieldBodyLength::KEY,
 FieldMsgType::KEY,
@@ -745,7 +745,7 @@ FieldMsgSeqNum::KEY,
 FieldSendingTime::KEY,
 FieldCheckSum::KEY };
 
-const std::vector<unsigned> NewOrderSingle_knownFields = {
+const std::vector<tag_t> NewOrderSingle_knownFields = {
 FieldClOrdID::KEY,
 FieldAccount::KEY,
 FieldSymbol::KEY,
@@ -759,7 +759,7 @@ FieldStopPx::KEY,
 FieldTransactTime::KEY,
 FieldCheckSum::KEY };
 
-const std::vector<unsigned> ExecutionReport_knownFields = {
+const std::vector<tag_t> ExecutionReport_knownFields = {
 FieldOrderID::KEY,
 FieldClOrdID::KEY,
 FieldOrigClOrdID::KEY,
@@ -794,11 +794,11 @@ FieldCheckSum::KEY };
 }
 
 
-const std::vector<unsigned> & MessageHeader::getKnownFields(){ return Header_knownFields; }
+const std::vector<tag_t> & MessageHeader::getKnownFields(){ return Header_knownFields; }
 
-const std::vector<unsigned> & MessageNewOrderSingle::getKnownFields(){ return NewOrderSingle_knownFields; }
+const std::vector<tag_t> & MessageNewOrderSingle::getKnownFields(){ return NewOrderSingle_knownFields; }
 
-const std::vector<unsigned> & MessageExecutionReport::getKnownFields(){ return ExecutionReport_knownFields; }
+const std::vector<tag_t> & MessageExecutionReport::getKnownFields(){ return ExecutionReport_knownFields; }
 
 
 GetDepthMethod getTagDepthMethodByRawMsgType( raw_enum_t rawMsgType ){

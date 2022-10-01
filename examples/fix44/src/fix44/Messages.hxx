@@ -13,9 +13,9 @@ class MessageHeader: public MessageBase
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
-   const char * getFieldValue( unsigned tag ) const;
+   const char * getFieldValue( tag_t tag ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
-   static const std::vector<unsigned> & getKnownFields();
+   static const std::vector<tag_t> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
 
 // Fields
@@ -206,9 +206,9 @@ class MessageHeartbeat: public MessageBase
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
-   const char * getFieldValue( unsigned tag ) const;
+   const char * getFieldValue( tag_t tag ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
-   static const std::vector<unsigned> & getKnownFields();
+   static const std::vector<tag_t> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
 
 // Fields
@@ -238,9 +238,9 @@ class MessageTestRequest: public MessageBase
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
-   const char * getFieldValue( unsigned tag ) const;
+   const char * getFieldValue( tag_t tag ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
-   static const std::vector<unsigned> & getKnownFields();
+   static const std::vector<tag_t> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
 
 // Fields
@@ -270,9 +270,9 @@ class MessageResendRequest: public MessageBase
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
-   const char * getFieldValue( unsigned tag ) const;
+   const char * getFieldValue( tag_t tag ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
-   static const std::vector<unsigned> & getKnownFields();
+   static const std::vector<tag_t> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
 
 // Fields
@@ -308,9 +308,9 @@ class MessageReject: public MessageBase
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
-   const char * getFieldValue( unsigned tag ) const;
+   const char * getFieldValue( tag_t tag ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
-   static const std::vector<unsigned> & getKnownFields();
+   static const std::vector<tag_t> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
 
 // Fields
@@ -376,9 +376,9 @@ class MessageSequenceReset: public MessageBase
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
-   const char * getFieldValue( unsigned tag ) const;
+   const char * getFieldValue( tag_t tag ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
-   static const std::vector<unsigned> & getKnownFields();
+   static const std::vector<tag_t> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
 
 // Fields
@@ -414,9 +414,9 @@ class MessageLogout: public MessageBase
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
-   const char * getFieldValue( unsigned tag ) const;
+   const char * getFieldValue( tag_t tag ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
-   static const std::vector<unsigned> & getKnownFields();
+   static const std::vector<tag_t> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
 
 // Fields
@@ -458,9 +458,9 @@ class MessageIOI: public MessageBase
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
-   const char * getFieldValue( unsigned tag ) const;
+   const char * getFieldValue( tag_t tag ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
-   static const std::vector<unsigned> & getKnownFields();
+   static const std::vector<tag_t> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
 
 // Fields
@@ -1077,9 +1077,9 @@ class MessageAdvertisement: public MessageBase
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
-   const char * getFieldValue( unsigned tag ) const;
+   const char * getFieldValue( tag_t tag ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
-   static const std::vector<unsigned> & getKnownFields();
+   static const std::vector<tag_t> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
 
 // Fields
@@ -1495,9 +1495,9 @@ class MessageExecutionReport: public MessageBase
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
-   const char * getFieldValue( unsigned tag ) const;
+   const char * getFieldValue( tag_t tag ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
-   static const std::vector<unsigned> & getKnownFields();
+   static const std::vector<tag_t> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
 
 // Fields
@@ -2874,9 +2874,9 @@ class MessageOrderCancelReject: public MessageBase
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
-   const char * getFieldValue( unsigned tag ) const;
+   const char * getFieldValue( tag_t tag ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
-   static const std::vector<unsigned> & getKnownFields();
+   static const std::vector<tag_t> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
 
 // Fields
@@ -3026,9 +3026,9 @@ class MessageLogon: public MessageBase
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
-   const char * getFieldValue( unsigned tag ) const;
+   const char * getFieldValue( tag_t tag ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
-   static const std::vector<unsigned> & getKnownFields();
+   static const std::vector<tag_t> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
 
 // Fields
@@ -3123,9 +3123,9 @@ class MessageNews: public MessageBase
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
-   const char * getFieldValue( unsigned tag ) const;
+   const char * getFieldValue( tag_t tag ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
-   static const std::vector<unsigned> & getKnownFields();
+   static const std::vector<tag_t> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
 
 // Fields
@@ -3252,9 +3252,9 @@ class MessageEmail: public MessageBase
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
-   const char * getFieldValue( unsigned tag ) const;
+   const char * getFieldValue( tag_t tag ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
-   static const std::vector<unsigned> & getKnownFields();
+   static const std::vector<tag_t> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
 
 // Fields
@@ -3393,9 +3393,9 @@ class MessageNewOrderSingle: public MessageBase
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
-   const char * getFieldValue( unsigned tag ) const;
+   const char * getFieldValue( tag_t tag ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
-   static const std::vector<unsigned> & getKnownFields();
+   static const std::vector<tag_t> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
 
 // Fields
@@ -4390,9 +4390,9 @@ class MessageNewOrderList: public MessageBase
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
-   const char * getFieldValue( unsigned tag ) const;
+   const char * getFieldValue( tag_t tag ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
-   static const std::vector<unsigned> & getKnownFields();
+   static const std::vector<tag_t> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
 
 // Fields
@@ -4535,9 +4535,9 @@ class MessageOrderCancelRequest: public MessageBase
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
-   const char * getFieldValue( unsigned tag ) const;
+   const char * getFieldValue( tag_t tag ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
-   static const std::vector<unsigned> & getKnownFields();
+   static const std::vector<tag_t> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
 
 // Fields
@@ -5031,9 +5031,9 @@ class MessageOrderCancelReplaceRequest: public MessageBase
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
-   const char * getFieldValue( unsigned tag ) const;
+   const char * getFieldValue( tag_t tag ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
-   static const std::vector<unsigned> & getKnownFields();
+   static const std::vector<tag_t> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
 
 // Fields
@@ -6017,9 +6017,9 @@ class MessageOrderStatusRequest: public MessageBase
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
-   const char * getFieldValue( unsigned tag ) const;
+   const char * getFieldValue( tag_t tag ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
-   static const std::vector<unsigned> & getKnownFields();
+   static const std::vector<tag_t> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
 
 // Fields
@@ -6435,9 +6435,9 @@ class MessageAllocationInstruction: public MessageBase
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
-   const char * getFieldValue( unsigned tag ) const;
+   const char * getFieldValue( tag_t tag ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
-   static const std::vector<unsigned> & getKnownFields();
+   static const std::vector<tag_t> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
 
 // Fields
@@ -7273,9 +7273,9 @@ class MessageListCancelRequest: public MessageBase
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
-   const char * getFieldValue( unsigned tag ) const;
+   const char * getFieldValue( tag_t tag ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
-   static const std::vector<unsigned> & getKnownFields();
+   static const std::vector<tag_t> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
 
 // Fields
@@ -7341,9 +7341,9 @@ class MessageListExecute: public MessageBase
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
-   const char * getFieldValue( unsigned tag ) const;
+   const char * getFieldValue( tag_t tag ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
-   static const std::vector<unsigned> & getKnownFields();
+   static const std::vector<tag_t> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
 
 // Fields
@@ -7409,9 +7409,9 @@ class MessageListStatusRequest: public MessageBase
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
-   const char * getFieldValue( unsigned tag ) const;
+   const char * getFieldValue( tag_t tag ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
-   static const std::vector<unsigned> & getKnownFields();
+   static const std::vector<tag_t> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
 
 // Fields
@@ -7459,9 +7459,9 @@ class MessageListStatus: public MessageBase
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
-   const char * getFieldValue( unsigned tag ) const;
+   const char * getFieldValue( tag_t tag ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
-   static const std::vector<unsigned> & getKnownFields();
+   static const std::vector<tag_t> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
 
 // Fields
@@ -7562,9 +7562,9 @@ class MessageAllocationInstructionAck: public MessageBase
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
-   const char * getFieldValue( unsigned tag ) const;
+   const char * getFieldValue( tag_t tag ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
-   static const std::vector<unsigned> & getKnownFields();
+   static const std::vector<tag_t> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
 
 // Fields
@@ -7694,9 +7694,9 @@ class MessageDontKnowTrade: public MessageBase
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
-   const char * getFieldValue( unsigned tag ) const;
+   const char * getFieldValue( tag_t tag ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
-   static const std::vector<unsigned> & getKnownFields();
+   static const std::vector<tag_t> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
 
 // Fields
@@ -8100,9 +8100,9 @@ class MessageQuoteRequest: public MessageBase
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
-   const char * getFieldValue( unsigned tag ) const;
+   const char * getFieldValue( tag_t tag ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
-   static const std::vector<unsigned> & getKnownFields();
+   static const std::vector<tag_t> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
 
 // Fields
@@ -8179,9 +8179,9 @@ class MessageQuote: public MessageBase
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
-   const char * getFieldValue( unsigned tag ) const;
+   const char * getFieldValue( tag_t tag ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
-   static const std::vector<unsigned> & getKnownFields();
+   static const std::vector<tag_t> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
 
 // Fields
@@ -8990,9 +8990,9 @@ class MessageSettlementInstructions: public MessageBase
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
-   const char * getFieldValue( unsigned tag ) const;
+   const char * getFieldValue( tag_t tag ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
-   static const std::vector<unsigned> & getKnownFields();
+   static const std::vector<tag_t> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
 
 // Fields
@@ -9081,9 +9081,9 @@ class MessageMarketDataRequest: public MessageBase
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
-   const char * getFieldValue( unsigned tag ) const;
+   const char * getFieldValue( tag_t tag ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
-   static const std::vector<unsigned> & getKnownFields();
+   static const std::vector<tag_t> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
 
 // Fields
@@ -9200,9 +9200,9 @@ class MessageMarketDataSnapshotFullRefresh: public MessageBase
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
-   const char * getFieldValue( unsigned tag ) const;
+   const char * getFieldValue( tag_t tag ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
-   static const std::vector<unsigned> & getKnownFields();
+   static const std::vector<tag_t> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
 
 // Fields
@@ -9563,9 +9563,9 @@ class MessageMarketDataIncrementalRefresh: public MessageBase
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
-   const char * getFieldValue( unsigned tag ) const;
+   const char * getFieldValue( tag_t tag ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
-   static const std::vector<unsigned> & getKnownFields();
+   static const std::vector<tag_t> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
 
 // Fields
@@ -9618,9 +9618,9 @@ class MessageMarketDataRequestReject: public MessageBase
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
-   const char * getFieldValue( unsigned tag ) const;
+   const char * getFieldValue( tag_t tag ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
-   static const std::vector<unsigned> & getKnownFields();
+   static const std::vector<tag_t> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
 
 // Fields
@@ -9685,9 +9685,9 @@ class MessageQuoteCancel: public MessageBase
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
-   const char * getFieldValue( unsigned tag ) const;
+   const char * getFieldValue( tag_t tag ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
-   static const std::vector<unsigned> & getKnownFields();
+   static const std::vector<tag_t> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
 
 // Fields
@@ -9787,9 +9787,9 @@ class MessageQuoteStatusRequest: public MessageBase
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
-   const char * getFieldValue( unsigned tag ) const;
+   const char * getFieldValue( tag_t tag ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
-   static const std::vector<unsigned> & getKnownFields();
+   static const std::vector<tag_t> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
 
 // Fields
@@ -10216,9 +10216,9 @@ class MessageMassQuoteAcknowledgement: public MessageBase
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
-   const char * getFieldValue( unsigned tag ) const;
+   const char * getFieldValue( tag_t tag ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
-   static const std::vector<unsigned> & getKnownFields();
+   static const std::vector<tag_t> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
 
 // Fields
@@ -10336,9 +10336,9 @@ class MessageSecurityDefinitionRequest: public MessageBase
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
-   const char * getFieldValue( unsigned tag ) const;
+   const char * getFieldValue( tag_t tag ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
-   static const std::vector<unsigned> & getKnownFields();
+   static const std::vector<tag_t> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
 
 // Fields
@@ -10735,9 +10735,9 @@ class MessageSecurityDefinition: public MessageBase
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
-   const char * getFieldValue( unsigned tag ) const;
+   const char * getFieldValue( tag_t tag ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
-   static const std::vector<unsigned> & getKnownFields();
+   static const std::vector<tag_t> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
 
 // Fields
@@ -11146,9 +11146,9 @@ class MessageSecurityStatusRequest: public MessageBase
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
-   const char * getFieldValue( unsigned tag ) const;
+   const char * getFieldValue( tag_t tag ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
-   static const std::vector<unsigned> & getKnownFields();
+   static const std::vector<tag_t> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
 
 // Fields
@@ -11515,9 +11515,9 @@ class MessageSecurityStatus: public MessageBase
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
-   const char * getFieldValue( unsigned tag ) const;
+   const char * getFieldValue( tag_t tag ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
-   static const std::vector<unsigned> & getKnownFields();
+   static const std::vector<tag_t> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
 
 // Fields
@@ -11980,9 +11980,9 @@ class MessageTradingSessionStatusRequest: public MessageBase
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
-   const char * getFieldValue( unsigned tag ) const;
+   const char * getFieldValue( tag_t tag ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
-   static const std::vector<unsigned> & getKnownFields();
+   static const std::vector<tag_t> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
 
 // Fields
@@ -12042,9 +12042,9 @@ class MessageTradingSessionStatus: public MessageBase
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
-   const char * getFieldValue( unsigned tag ) const;
+   const char * getFieldValue( tag_t tag ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
-   static const std::vector<unsigned> & getKnownFields();
+   static const std::vector<tag_t> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
 
 // Fields
@@ -12170,9 +12170,9 @@ class MessageMassQuote: public MessageBase
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
-   const char * getFieldValue( unsigned tag ) const;
+   const char * getFieldValue( tag_t tag ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
-   static const std::vector<unsigned> & getKnownFields();
+   static const std::vector<tag_t> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
 
 // Fields
@@ -12272,9 +12272,9 @@ class MessageBusinessMessageReject: public MessageBase
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
-   const char * getFieldValue( unsigned tag ) const;
+   const char * getFieldValue( tag_t tag ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
-   static const std::vector<unsigned> & getKnownFields();
+   static const std::vector<tag_t> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
 
 // Fields
@@ -12340,9 +12340,9 @@ class MessageBidRequest: public MessageBase
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
-   const char * getFieldValue( unsigned tag ) const;
+   const char * getFieldValue( tag_t tag ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
-   static const std::vector<unsigned> & getKnownFields();
+   static const std::vector<tag_t> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
 
 // Fields
@@ -12550,9 +12550,9 @@ class MessageBidResponse: public MessageBase
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
-   const char * getFieldValue( unsigned tag ) const;
+   const char * getFieldValue( tag_t tag ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
-   static const std::vector<unsigned> & getKnownFields();
+   static const std::vector<tag_t> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
 
 // Fields
@@ -12599,9 +12599,9 @@ class MessageListStrikePrice: public MessageBase
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
-   const char * getFieldValue( unsigned tag ) const;
+   const char * getFieldValue( tag_t tag ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
-   static const std::vector<unsigned> & getKnownFields();
+   static const std::vector<tag_t> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
 
 // Fields
@@ -12665,9 +12665,9 @@ class MessageXMLnonFIX: public MessageBase
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
-   const char * getFieldValue( unsigned tag ) const;
+   const char * getFieldValue( tag_t tag ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
-   static const std::vector<unsigned> & getKnownFields();
+   static const std::vector<tag_t> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
 
 // Fields
@@ -12691,9 +12691,9 @@ class MessageRegistrationInstructions: public MessageBase
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
-   const char * getFieldValue( unsigned tag ) const;
+   const char * getFieldValue( tag_t tag ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
-   static const std::vector<unsigned> & getKnownFields();
+   static const std::vector<tag_t> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
 
 // Fields
@@ -12804,9 +12804,9 @@ class MessageRegistrationInstructionsResponse: public MessageBase
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
-   const char * getFieldValue( unsigned tag ) const;
+   const char * getFieldValue( tag_t tag ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
-   static const std::vector<unsigned> & getKnownFields();
+   static const std::vector<tag_t> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
 
 // Fields
@@ -12895,9 +12895,9 @@ class MessageOrderMassCancelRequest: public MessageBase
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
-   const char * getFieldValue( unsigned tag ) const;
+   const char * getFieldValue( tag_t tag ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
-   static const std::vector<unsigned> & getKnownFields();
+   static const std::vector<tag_t> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
 
 // Fields
@@ -13541,9 +13541,9 @@ class MessageOrderMassCancelReport: public MessageBase
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
-   const char * getFieldValue( unsigned tag ) const;
+   const char * getFieldValue( tag_t tag ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
-   static const std::vector<unsigned> & getKnownFields();
+   static const std::vector<tag_t> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
 
 // Fields
@@ -14228,9 +14228,9 @@ class MessageNewOrderCross: public MessageBase
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
-   const char * getFieldValue( unsigned tag ) const;
+   const char * getFieldValue( tag_t tag ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
-   static const std::vector<unsigned> & getKnownFields();
+   static const std::vector<tag_t> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
 
 // Fields
@@ -14949,9 +14949,9 @@ class MessageCrossOrderCancelReplaceRequest: public MessageBase
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
-   const char * getFieldValue( unsigned tag ) const;
+   const char * getFieldValue( tag_t tag ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
-   static const std::vector<unsigned> & getKnownFields();
+   static const std::vector<tag_t> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
 
 // Fields
@@ -15682,9 +15682,9 @@ class MessageCrossOrderCancelRequest: public MessageBase
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
-   const char * getFieldValue( unsigned tag ) const;
+   const char * getFieldValue( tag_t tag ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
-   static const std::vector<unsigned> & getKnownFields();
+   static const std::vector<tag_t> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
 
 // Fields
@@ -16045,9 +16045,9 @@ class MessageSecurityTypeRequest: public MessageBase
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
-   const char * getFieldValue( unsigned tag ) const;
+   const char * getFieldValue( tag_t tag ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
-   static const std::vector<unsigned> & getKnownFields();
+   static const std::vector<tag_t> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
 
 // Fields
@@ -16125,9 +16125,9 @@ class MessageSecurityTypes: public MessageBase
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
-   const char * getFieldValue( unsigned tag ) const;
+   const char * getFieldValue( tag_t tag ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
-   static const std::vector<unsigned> & getKnownFields();
+   static const std::vector<tag_t> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
 
 // Fields
@@ -16228,9 +16228,9 @@ class MessageSecurityListRequest: public MessageBase
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
-   const char * getFieldValue( unsigned tag ) const;
+   const char * getFieldValue( tag_t tag ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
-   static const std::vector<unsigned> & getKnownFields();
+   static const std::vector<tag_t> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
 
 // Fields
@@ -16675,9 +16675,9 @@ class MessageSecurityList: public MessageBase
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
-   const char * getFieldValue( unsigned tag ) const;
+   const char * getFieldValue( tag_t tag ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
-   static const std::vector<unsigned> & getKnownFields();
+   static const std::vector<tag_t> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
 
 // Fields
@@ -16742,9 +16742,9 @@ class MessageDerivativeSecurityListRequest: public MessageBase
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
-   const char * getFieldValue( unsigned tag ) const;
+   const char * getFieldValue( tag_t tag ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
-   static const std::vector<unsigned> & getKnownFields();
+   static const std::vector<tag_t> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
 
 // Fields
@@ -17120,9 +17120,9 @@ class MessageDerivativeSecurityList: public MessageBase
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
-   const char * getFieldValue( unsigned tag ) const;
+   const char * getFieldValue( tag_t tag ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
-   static const std::vector<unsigned> & getKnownFields();
+   static const std::vector<tag_t> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
 
 // Fields
@@ -17479,9 +17479,9 @@ class MessageNewOrderMultileg: public MessageBase
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
-   const char * getFieldValue( unsigned tag ) const;
+   const char * getFieldValue( tag_t tag ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
-   static const std::vector<unsigned> & getKnownFields();
+   static const std::vector<tag_t> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
 
 // Fields
@@ -18326,9 +18326,9 @@ class MessageMultilegOrderCancelReplace: public MessageBase
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
-   const char * getFieldValue( unsigned tag ) const;
+   const char * getFieldValue( tag_t tag ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
-   static const std::vector<unsigned> & getKnownFields();
+   static const std::vector<tag_t> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
 
 // Fields
@@ -19191,9 +19191,9 @@ class MessageTradeCaptureReportRequest: public MessageBase
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
-   const char * getFieldValue( unsigned tag ) const;
+   const char * getFieldValue( tag_t tag ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
-   static const std::vector<unsigned> & getKnownFields();
+   static const std::vector<tag_t> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
 
 // Fields
@@ -19780,9 +19780,9 @@ class MessageTradeCaptureReport: public MessageBase
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
-   const char * getFieldValue( unsigned tag ) const;
+   const char * getFieldValue( tag_t tag ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
-   static const std::vector<unsigned> & getKnownFields();
+   static const std::vector<tag_t> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
 
 // Fields
@@ -20579,9 +20579,9 @@ class MessageOrderMassStatusRequest: public MessageBase
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
-   const char * getFieldValue( unsigned tag ) const;
+   const char * getFieldValue( tag_t tag ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
-   static const std::vector<unsigned> & getKnownFields();
+   static const std::vector<tag_t> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
 
 // Fields
@@ -21218,9 +21218,9 @@ class MessageQuoteRequestReject: public MessageBase
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
-   const char * getFieldValue( unsigned tag ) const;
+   const char * getFieldValue( tag_t tag ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
-   static const std::vector<unsigned> & getKnownFields();
+   static const std::vector<tag_t> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
 
 // Fields
@@ -21291,9 +21291,9 @@ class MessageRFQRequest: public MessageBase
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
-   const char * getFieldValue( unsigned tag ) const;
+   const char * getFieldValue( tag_t tag ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
-   static const std::vector<unsigned> & getKnownFields();
+   static const std::vector<tag_t> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
 
 // Fields
@@ -21340,9 +21340,9 @@ class MessageQuoteStatusReport: public MessageBase
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
-   const char * getFieldValue( unsigned tag ) const;
+   const char * getFieldValue( tag_t tag ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
-   static const std::vector<unsigned> & getKnownFields();
+   static const std::vector<tag_t> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
 
 // Fields
@@ -22163,9 +22163,9 @@ class MessageQuoteResponse: public MessageBase
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
-   const char * getFieldValue( unsigned tag ) const;
+   const char * getFieldValue( tag_t tag ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
-   static const std::vector<unsigned> & getKnownFields();
+   static const std::vector<tag_t> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
 
 // Fields
@@ -22986,9 +22986,9 @@ class MessageConfirmation: public MessageBase
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
-   const char * getFieldValue( unsigned tag ) const;
+   const char * getFieldValue( tag_t tag ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
-   static const std::vector<unsigned> & getKnownFields();
+   static const std::vector<tag_t> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
 
 // Fields
@@ -23888,9 +23888,9 @@ class MessagePositionMaintenanceRequest: public MessageBase
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
-   const char * getFieldValue( unsigned tag ) const;
+   const char * getFieldValue( tag_t tag ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
-   static const std::vector<unsigned> & getKnownFields();
+   static const std::vector<tag_t> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
 
 // Fields
@@ -24357,9 +24357,9 @@ class MessagePositionMaintenanceReport: public MessageBase
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
-   const char * getFieldValue( unsigned tag ) const;
+   const char * getFieldValue( tag_t tag ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
-   static const std::vector<unsigned> & getKnownFields();
+   static const std::vector<tag_t> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
 
 // Fields
@@ -24837,9 +24837,9 @@ class MessageRequestForPositions: public MessageBase
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
-   const char * getFieldValue( unsigned tag ) const;
+   const char * getFieldValue( tag_t tag ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
-   static const std::vector<unsigned> & getKnownFields();
+   static const std::vector<tag_t> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
 
 // Fields
@@ -25277,9 +25277,9 @@ class MessageRequestForPositionsAck: public MessageBase
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
-   const char * getFieldValue( unsigned tag ) const;
+   const char * getFieldValue( tag_t tag ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
-   static const std::vector<unsigned> & getKnownFields();
+   static const std::vector<tag_t> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
 
 // Fields
@@ -25694,9 +25694,9 @@ class MessagePositionReport: public MessageBase
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
-   const char * getFieldValue( unsigned tag ) const;
+   const char * getFieldValue( tag_t tag ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
-   static const std::vector<unsigned> & getKnownFields();
+   static const std::vector<tag_t> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
 
 // Fields
@@ -26175,9 +26175,9 @@ class MessageTradeCaptureReportRequestAck: public MessageBase
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
-   const char * getFieldValue( unsigned tag ) const;
+   const char * getFieldValue( tag_t tag ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
-   static const std::vector<unsigned> & getKnownFields();
+   static const std::vector<tag_t> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
 
 // Fields
@@ -26563,9 +26563,9 @@ class MessageTradeCaptureReportAck: public MessageBase
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
-   const char * getFieldValue( unsigned tag ) const;
+   const char * getFieldValue( tag_t tag ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
-   static const std::vector<unsigned> & getKnownFields();
+   static const std::vector<tag_t> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
 
 // Fields
@@ -27088,9 +27088,9 @@ class MessageAllocationReport: public MessageBase
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
-   const char * getFieldValue( unsigned tag ) const;
+   const char * getFieldValue( tag_t tag ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
-   static const std::vector<unsigned> & getKnownFields();
+   static const std::vector<tag_t> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
 
 // Fields
@@ -27950,9 +27950,9 @@ class MessageAllocationReportAck: public MessageBase
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
-   const char * getFieldValue( unsigned tag ) const;
+   const char * getFieldValue( tag_t tag ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
-   static const std::vector<unsigned> & getKnownFields();
+   static const std::vector<tag_t> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
 
 // Fields
@@ -28088,9 +28088,9 @@ class MessageConfirmationAck: public MessageBase
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
-   const char * getFieldValue( unsigned tag ) const;
+   const char * getFieldValue( tag_t tag ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
-   static const std::vector<unsigned> & getKnownFields();
+   static const std::vector<tag_t> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
 
 // Fields
@@ -28168,9 +28168,9 @@ class MessageSettlementInstructionRequest: public MessageBase
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
-   const char * getFieldValue( unsigned tag ) const;
+   const char * getFieldValue( tag_t tag ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
-   static const std::vector<unsigned> & getKnownFields();
+   static const std::vector<tag_t> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
 
 // Fields
@@ -28289,9 +28289,9 @@ class MessageAssignmentReport: public MessageBase
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
-   const char * getFieldValue( unsigned tag ) const;
+   const char * getFieldValue( tag_t tag ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
-   static const std::vector<unsigned> & getKnownFields();
+   static const std::vector<tag_t> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
 
 // Fields
@@ -28764,9 +28764,9 @@ class MessageCollateralRequest: public MessageBase
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
-   const char * getFieldValue( unsigned tag ) const;
+   const char * getFieldValue( tag_t tag ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
-   static const std::vector<unsigned> & getKnownFields();
+   static const std::vector<tag_t> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
 
 // Fields
@@ -29440,9 +29440,9 @@ class MessageCollateralAssignment: public MessageBase
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
-   const char * getFieldValue( unsigned tag ) const;
+   const char * getFieldValue( tag_t tag ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
-   static const std::vector<unsigned> & getKnownFields();
+   static const std::vector<tag_t> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
 
 // Fields
@@ -30169,9 +30169,9 @@ class MessageCollateralResponse: public MessageBase
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
-   const char * getFieldValue( unsigned tag ) const;
+   const char * getFieldValue( tag_t tag ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
-   static const std::vector<unsigned> & getKnownFields();
+   static const std::vector<tag_t> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
 
 // Fields
@@ -30839,9 +30839,9 @@ class MessageCollateralReport: public MessageBase
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
-   const char * getFieldValue( unsigned tag ) const;
+   const char * getFieldValue( tag_t tag ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
-   static const std::vector<unsigned> & getKnownFields();
+   static const std::vector<tag_t> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
 
 // Fields
@@ -31556,9 +31556,9 @@ class MessageCollateralInquiry: public MessageBase
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
-   const char * getFieldValue( unsigned tag ) const;
+   const char * getFieldValue( tag_t tag ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
-   static const std::vector<unsigned> & getKnownFields();
+   static const std::vector<tag_t> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
 
 // Fields
@@ -32267,9 +32267,9 @@ class MessageNetworkCounterpartySystemStatusRequest: public MessageBase
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
-   const char * getFieldValue( unsigned tag ) const;
+   const char * getFieldValue( tag_t tag ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
-   static const std::vector<unsigned> & getKnownFields();
+   static const std::vector<tag_t> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
 
 // Fields
@@ -32316,9 +32316,9 @@ class MessageNetworkCounterpartySystemStatusResponse: public MessageBase
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
-   const char * getFieldValue( unsigned tag ) const;
+   const char * getFieldValue( tag_t tag ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
-   static const std::vector<unsigned> & getKnownFields();
+   static const std::vector<tag_t> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
 
 // Fields
@@ -32377,9 +32377,9 @@ class MessageUserRequest: public MessageBase
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
-   const char * getFieldValue( unsigned tag ) const;
+   const char * getFieldValue( tag_t tag ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
-   static const std::vector<unsigned> & getKnownFields();
+   static const std::vector<tag_t> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
 
 // Fields
@@ -32445,9 +32445,9 @@ class MessageUserResponse: public MessageBase
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
-   const char * getFieldValue( unsigned tag ) const;
+   const char * getFieldValue( tag_t tag ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
-   static const std::vector<unsigned> & getKnownFields();
+   static const std::vector<tag_t> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
 
 // Fields
@@ -32495,9 +32495,9 @@ class MessageCollateralInquiryAck: public MessageBase
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
-   const char * getFieldValue( unsigned tag ) const;
+   const char * getFieldValue( tag_t tag ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
-   static const std::vector<unsigned> & getKnownFields();
+   static const std::vector<tag_t> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
 
 // Fields
@@ -33053,9 +33053,9 @@ class MessageConfirmationRequest: public MessageBase
    offset_t scan( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
-   const char * getFieldValue( unsigned tag ) const;
+   const char * getFieldValue( tag_t tag ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
-   static const std::vector<unsigned> & getKnownFields();
+   static const std::vector<tag_t> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
 
 // Fields

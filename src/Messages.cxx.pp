@@ -204,7 +204,7 @@ const char * Message##NAME::getFieldValue( unsigned tag ) const {\
 <nl>
 
 #define FIX_MSG_BEGIN(NAME,TYPE) \
-const std::vector<unsigned> NAME##_knownFields = {
+const std::vector<tag_t> NAME##_knownFields = {
 
 #define FIX_MSG_FIELD(NAME) Field##NAME::KEY,
 
@@ -224,7 +224,7 @@ namespace {
 
 <nl>
 #define FIX_MSG_BEGIN(NAME,TYPE) \
-const std::vector<unsigned> & Message##NAME::getKnownFields(){ return NAME##_knownFields; }
+const std::vector<tag_t> & Message##NAME::getKnownFields(){ return NAME##_knownFields; }
 
 #define FIX_MSG_FIELD(NAME) <remove-me>
 #define FIX_MSG_GROUP(NAME) <remove-me>

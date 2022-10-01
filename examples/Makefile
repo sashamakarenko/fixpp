@@ -1,4 +1,4 @@
-DIRS := tiny odd fix44 fixdump
+DIRS := tiny odd fix44 fixdump order
 RULES := all clean check recheck
 deps = $(foreach d,$(DIRS),$(1)-$(d))
 

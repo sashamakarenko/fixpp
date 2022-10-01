@@ -14,6 +14,9 @@ namespace fix44
 
 // ------------------------------ primitives -----------------------------
 
+// field key or tag type
+typedef uint32_t tag_t;
+
 // use uint32 if all tags < 10000
 typedef uint64_t raw_tag_t;
 
@@ -30,7 +33,7 @@ typedef int32_t offset_t;
 
 
 // max 5 decimal digits in tags
-constexpr unsigned tag_key_width( unsigned K )
+constexpr unsigned tag_key_width( tag_t K )
 {
     if( K < 10U    ) return 1;
     if( K < 100U   ) return 2;
@@ -40,7 +43,7 @@ constexpr unsigned tag_key_width( unsigned K )
 }
 
 
-template< unsigned K >
+template< tag_t K >
 constexpr raw_tag_t tag_as_raw()
 {
     if( tag_key_width(K) == 1 )
@@ -53,7 +56,7 @@ constexpr raw_tag_t tag_as_raw()
 
 
 // as uint64_t * pointing to "\001" "TAG" "="
-template< unsigned K >
+template< tag_t K >
 constexpr insertable_tag_t tag_as_insertable()
 {
     return ( insertable_tag_t('=') << ( 8 * ( tag_key_width(K) + 1 ) ) ) + ( insertable_tag_t(tag_as_raw<K>()) << 8 ) + 1;
@@ -519,7 +522,7 @@ struct FieldBase
     offset_t offset = -1;
 };
 
-template< const char * const & N, unsigned K, typename Type >
+template< const char * const & N, tag_t K, typename Type >
 struct Field: FieldBase
 {
     typedef Type ValueType;

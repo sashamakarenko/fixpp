@@ -58237,7 +58237,7 @@ const char * MessageConfirmationRequest::getFieldValue( unsigned tag ) const {
 
 namespace {
 
-const std::vector<unsigned> Header_knownFields = {
+const std::vector<tag_t> Header_knownFields = {
 FieldBeginString::KEY,
 FieldBodyLength::KEY,
 FieldMsgType::KEY,
@@ -58267,20 +58267,20 @@ FieldLastMsgSeqNumProcessed::KEY,
 FieldNoHops::KEY,
 FieldCheckSum::KEY };
 
-const std::vector<unsigned> Heartbeat_knownFields = {
+const std::vector<tag_t> Heartbeat_knownFields = {
 FieldTestReqID::KEY,
 FieldCheckSum::KEY };
 
-const std::vector<unsigned> TestRequest_knownFields = {
+const std::vector<tag_t> TestRequest_knownFields = {
 FieldTestReqID::KEY,
 FieldCheckSum::KEY };
 
-const std::vector<unsigned> ResendRequest_knownFields = {
+const std::vector<tag_t> ResendRequest_knownFields = {
 FieldBeginSeqNo::KEY,
 FieldEndSeqNo::KEY,
 FieldCheckSum::KEY };
 
-const std::vector<unsigned> Reject_knownFields = {
+const std::vector<tag_t> Reject_knownFields = {
 FieldRefSeqNum::KEY,
 FieldRefTagID::KEY,
 FieldRefMsgType::KEY,
@@ -58290,18 +58290,18 @@ FieldEncodedTextLen::KEY,
 FieldEncodedText::KEY,
 FieldCheckSum::KEY };
 
-const std::vector<unsigned> SequenceReset_knownFields = {
+const std::vector<tag_t> SequenceReset_knownFields = {
 FieldGapFillFlag::KEY,
 FieldNewSeqNo::KEY,
 FieldCheckSum::KEY };
 
-const std::vector<unsigned> Logout_knownFields = {
+const std::vector<tag_t> Logout_knownFields = {
 FieldText::KEY,
 FieldEncodedTextLen::KEY,
 FieldEncodedText::KEY,
 FieldCheckSum::KEY };
 
-const std::vector<unsigned> IOI_knownFields = {
+const std::vector<tag_t> IOI_knownFields = {
 FieldIOIID::KEY,
 FieldIOITransType::KEY,
 FieldIOIRefID::KEY,
@@ -58397,7 +58397,7 @@ FieldYieldRedemptionPrice::KEY,
 FieldYieldRedemptionPriceType::KEY,
 FieldCheckSum::KEY };
 
-const std::vector<unsigned> Advertisement_knownFields = {
+const std::vector<tag_t> Advertisement_knownFields = {
 FieldAdvId::KEY,
 FieldAdvTransType::KEY,
 FieldAdvRefID::KEY,
@@ -58462,7 +58462,7 @@ FieldTradingSessionID::KEY,
 FieldTradingSessionSubID::KEY,
 FieldCheckSum::KEY };
 
-const std::vector<unsigned> ExecutionReport_knownFields = {
+const std::vector<tag_t> ExecutionReport_knownFields = {
 FieldOrderID::KEY,
 FieldSecondaryOrderID::KEY,
 FieldSecondaryClOrdID::KEY,
@@ -58683,7 +58683,7 @@ FieldCopyMsgIndicator::KEY,
 FieldNoMiscFees::KEY,
 FieldCheckSum::KEY };
 
-const std::vector<unsigned> OrderCancelReject_knownFields = {
+const std::vector<tag_t> OrderCancelReject_knownFields = {
 FieldOrderID::KEY,
 FieldSecondaryOrderID::KEY,
 FieldSecondaryClOrdID::KEY,
@@ -58707,7 +58707,7 @@ FieldEncodedTextLen::KEY,
 FieldEncodedText::KEY,
 FieldCheckSum::KEY };
 
-const std::vector<unsigned> Logon_knownFields = {
+const std::vector<tag_t> Logon_knownFields = {
 FieldEncryptMethod::KEY,
 FieldHeartBtInt::KEY,
 FieldRawDataLength::KEY,
@@ -58721,7 +58721,7 @@ FieldUsername::KEY,
 FieldPassword::KEY,
 FieldCheckSum::KEY };
 
-const std::vector<unsigned> News_knownFields = {
+const std::vector<tag_t> News_knownFields = {
 FieldOrigTime::KEY,
 FieldUrgency::KEY,
 FieldHeadline::KEY,
@@ -58737,7 +58737,7 @@ FieldRawDataLength::KEY,
 FieldRawData::KEY,
 FieldCheckSum::KEY };
 
-const std::vector<unsigned> Email_knownFields = {
+const std::vector<tag_t> Email_knownFields = {
 FieldEmailThreadID::KEY,
 FieldEmailType::KEY,
 FieldOrigTime::KEY,
@@ -58755,7 +58755,7 @@ FieldRawDataLength::KEY,
 FieldRawData::KEY,
 FieldCheckSum::KEY };
 
-const std::vector<unsigned> NewOrderSingle_knownFields = {
+const std::vector<tag_t> NewOrderSingle_knownFields = {
 FieldClOrdID::KEY,
 FieldSecondaryClOrdID::KEY,
 FieldClOrdLinkID::KEY,
@@ -58914,7 +58914,7 @@ FieldRegistID::KEY,
 FieldDesignation::KEY,
 FieldCheckSum::KEY };
 
-const std::vector<unsigned> NewOrderList_knownFields = {
+const std::vector<tag_t> NewOrderList_knownFields = {
 FieldListID::KEY,
 FieldBidID::KEY,
 FieldClientBidID::KEY,
@@ -58936,7 +58936,7 @@ FieldLastFragment::KEY,
 FieldNoOrders::KEY,
 FieldCheckSum::KEY };
 
-const std::vector<unsigned> OrderCancelRequest_knownFields = {
+const std::vector<tag_t> OrderCancelRequest_knownFields = {
 FieldOrigClOrdID::KEY,
 FieldOrderID::KEY,
 FieldClOrdID::KEY,
@@ -59014,7 +59014,7 @@ FieldEncodedTextLen::KEY,
 FieldEncodedText::KEY,
 FieldCheckSum::KEY };
 
-const std::vector<unsigned> OrderCancelReplaceRequest_knownFields = {
+const std::vector<tag_t> OrderCancelReplaceRequest_knownFields = {
 FieldOrderID::KEY,
 FieldNoPartyIDs::KEY,
 FieldTradeOriginationDate::KEY,
@@ -59172,7 +59172,7 @@ FieldRegistID::KEY,
 FieldDesignation::KEY,
 FieldCheckSum::KEY };
 
-const std::vector<unsigned> OrderStatusRequest_knownFields = {
+const std::vector<tag_t> OrderStatusRequest_knownFields = {
 FieldOrderID::KEY,
 FieldClOrdID::KEY,
 FieldSecondaryClOrdID::KEY,
@@ -59237,7 +59237,7 @@ FieldNoUnderlyings::KEY,
 FieldSide::KEY,
 FieldCheckSum::KEY };
 
-const std::vector<unsigned> AllocationInstruction_knownFields = {
+const std::vector<tag_t> AllocationInstruction_knownFields = {
 FieldAllocID::KEY,
 FieldAllocTransType::KEY,
 FieldAllocType::KEY,
@@ -59367,7 +59367,7 @@ FieldLastFragment::KEY,
 FieldNoAllocs::KEY,
 FieldCheckSum::KEY };
 
-const std::vector<unsigned> ListCancelRequest_knownFields = {
+const std::vector<tag_t> ListCancelRequest_knownFields = {
 FieldListID::KEY,
 FieldTransactTime::KEY,
 FieldTradeOriginationDate::KEY,
@@ -59377,7 +59377,7 @@ FieldEncodedTextLen::KEY,
 FieldEncodedText::KEY,
 FieldCheckSum::KEY };
 
-const std::vector<unsigned> ListExecute_knownFields = {
+const std::vector<tag_t> ListExecute_knownFields = {
 FieldListID::KEY,
 FieldClientBidID::KEY,
 FieldBidID::KEY,
@@ -59387,14 +59387,14 @@ FieldEncodedTextLen::KEY,
 FieldEncodedText::KEY,
 FieldCheckSum::KEY };
 
-const std::vector<unsigned> ListStatusRequest_knownFields = {
+const std::vector<tag_t> ListStatusRequest_knownFields = {
 FieldListID::KEY,
 FieldText::KEY,
 FieldEncodedTextLen::KEY,
 FieldEncodedText::KEY,
 FieldCheckSum::KEY };
 
-const std::vector<unsigned> ListStatus_knownFields = {
+const std::vector<tag_t> ListStatus_knownFields = {
 FieldListID::KEY,
 FieldListStatusType::KEY,
 FieldNoRpts::KEY,
@@ -59409,7 +59409,7 @@ FieldLastFragment::KEY,
 FieldNoOrders::KEY,
 FieldCheckSum::KEY };
 
-const std::vector<unsigned> AllocationInstructionAck_knownFields = {
+const std::vector<tag_t> AllocationInstructionAck_knownFields = {
 FieldAllocID::KEY,
 FieldNoPartyIDs::KEY,
 FieldSecondaryAllocID::KEY,
@@ -59428,7 +59428,7 @@ FieldEncodedText::KEY,
 FieldNoAllocs::KEY,
 FieldCheckSum::KEY };
 
-const std::vector<unsigned> DontKnowTrade_knownFields = {
+const std::vector<tag_t> DontKnowTrade_knownFields = {
 FieldOrderID::KEY,
 FieldSecondaryOrderID::KEY,
 FieldExecID::KEY,
@@ -59491,7 +59491,7 @@ FieldEncodedTextLen::KEY,
 FieldEncodedText::KEY,
 FieldCheckSum::KEY };
 
-const std::vector<unsigned> QuoteRequest_knownFields = {
+const std::vector<tag_t> QuoteRequest_knownFields = {
 FieldQuoteReqID::KEY,
 FieldRFQReqID::KEY,
 FieldClOrdID::KEY,
@@ -59502,7 +59502,7 @@ FieldEncodedTextLen::KEY,
 FieldEncodedText::KEY,
 FieldCheckSum::KEY };
 
-const std::vector<unsigned> Quote_knownFields = {
+const std::vector<tag_t> Quote_knownFields = {
 FieldQuoteReqID::KEY,
 FieldQuoteID::KEY,
 FieldQuoteRespID::KEY,
@@ -59630,7 +59630,7 @@ FieldEncodedTextLen::KEY,
 FieldEncodedText::KEY,
 FieldCheckSum::KEY };
 
-const std::vector<unsigned> SettlementInstructions_knownFields = {
+const std::vector<tag_t> SettlementInstructions_knownFields = {
 FieldSettlInstMsgID::KEY,
 FieldSettlInstReqID::KEY,
 FieldSettlInstMode::KEY,
@@ -59643,7 +59643,7 @@ FieldTransactTime::KEY,
 FieldNoSettlInst::KEY,
 FieldCheckSum::KEY };
 
-const std::vector<unsigned> MarketDataRequest_knownFields = {
+const std::vector<tag_t> MarketDataRequest_knownFields = {
 FieldMDReqID::KEY,
 FieldSubscriptionRequestType::KEY,
 FieldMarketDepth::KEY,
@@ -59659,7 +59659,7 @@ FieldApplQueueAction::KEY,
 FieldApplQueueMax::KEY,
 FieldCheckSum::KEY };
 
-const std::vector<unsigned> MarketDataSnapshotFullRefresh_knownFields = {
+const std::vector<tag_t> MarketDataSnapshotFullRefresh_knownFields = {
 FieldMDReqID::KEY,
 FieldSymbol::KEY,
 FieldSymbolSfx::KEY,
@@ -59714,14 +59714,14 @@ FieldApplQueueDepth::KEY,
 FieldApplQueueResolution::KEY,
 FieldCheckSum::KEY };
 
-const std::vector<unsigned> MarketDataIncrementalRefresh_knownFields = {
+const std::vector<tag_t> MarketDataIncrementalRefresh_knownFields = {
 FieldMDReqID::KEY,
 FieldNoMDEntries::KEY,
 FieldApplQueueDepth::KEY,
 FieldApplQueueResolution::KEY,
 FieldCheckSum::KEY };
 
-const std::vector<unsigned> MarketDataRequestReject_knownFields = {
+const std::vector<tag_t> MarketDataRequestReject_knownFields = {
 FieldMDReqID::KEY,
 FieldMDReqRejReason::KEY,
 FieldNoAltMDSource::KEY,
@@ -59730,7 +59730,7 @@ FieldEncodedTextLen::KEY,
 FieldEncodedText::KEY,
 FieldCheckSum::KEY };
 
-const std::vector<unsigned> QuoteCancel_knownFields = {
+const std::vector<tag_t> QuoteCancel_knownFields = {
 FieldQuoteReqID::KEY,
 FieldQuoteID::KEY,
 FieldQuoteCancelType::KEY,
@@ -59744,7 +59744,7 @@ FieldTradingSessionSubID::KEY,
 FieldNoQuoteEntries::KEY,
 FieldCheckSum::KEY };
 
-const std::vector<unsigned> QuoteStatusRequest_knownFields = {
+const std::vector<tag_t> QuoteStatusRequest_knownFields = {
 FieldQuoteStatusReqID::KEY,
 FieldQuoteID::KEY,
 FieldSymbol::KEY,
@@ -59810,7 +59810,7 @@ FieldTradingSessionSubID::KEY,
 FieldSubscriptionRequestType::KEY,
 FieldCheckSum::KEY };
 
-const std::vector<unsigned> MassQuoteAcknowledgement_knownFields = {
+const std::vector<tag_t> MassQuoteAcknowledgement_knownFields = {
 FieldQuoteReqID::KEY,
 FieldQuoteID::KEY,
 FieldQuoteStatus::KEY,
@@ -59827,7 +59827,7 @@ FieldEncodedText::KEY,
 FieldNoQuoteSets::KEY,
 FieldCheckSum::KEY };
 
-const std::vector<unsigned> SecurityDefinitionRequest_knownFields = {
+const std::vector<tag_t> SecurityDefinitionRequest_knownFields = {
 FieldSecurityReqID::KEY,
 FieldSecurityRequestType::KEY,
 FieldSymbol::KEY,
@@ -59888,7 +59888,7 @@ FieldExpirationCycle::KEY,
 FieldSubscriptionRequestType::KEY,
 FieldCheckSum::KEY };
 
-const std::vector<unsigned> SecurityDefinition_knownFields = {
+const std::vector<tag_t> SecurityDefinition_knownFields = {
 FieldSecurityReqID::KEY,
 FieldSecurityResponseID::KEY,
 FieldSecurityResponseType::KEY,
@@ -59951,7 +59951,7 @@ FieldRoundLot::KEY,
 FieldMinTradeVol::KEY,
 FieldCheckSum::KEY };
 
-const std::vector<unsigned> SecurityStatusRequest_knownFields = {
+const std::vector<tag_t> SecurityStatusRequest_knownFields = {
 FieldSecurityStatusReqID::KEY,
 FieldSymbol::KEY,
 FieldSymbolSfx::KEY,
@@ -60007,7 +60007,7 @@ FieldTradingSessionID::KEY,
 FieldTradingSessionSubID::KEY,
 FieldCheckSum::KEY };
 
-const std::vector<unsigned> SecurityStatus_knownFields = {
+const std::vector<tag_t> SecurityStatus_knownFields = {
 FieldSecurityStatusReqID::KEY,
 FieldSymbol::KEY,
 FieldSymbolSfx::KEY,
@@ -60079,7 +60079,7 @@ FieldEncodedTextLen::KEY,
 FieldEncodedText::KEY,
 FieldCheckSum::KEY };
 
-const std::vector<unsigned> TradingSessionStatusRequest_knownFields = {
+const std::vector<tag_t> TradingSessionStatusRequest_knownFields = {
 FieldTradSesReqID::KEY,
 FieldTradingSessionID::KEY,
 FieldTradingSessionSubID::KEY,
@@ -60088,7 +60088,7 @@ FieldTradSesMode::KEY,
 FieldSubscriptionRequestType::KEY,
 FieldCheckSum::KEY };
 
-const std::vector<unsigned> TradingSessionStatus_knownFields = {
+const std::vector<tag_t> TradingSessionStatus_knownFields = {
 FieldTradSesReqID::KEY,
 FieldTradingSessionID::KEY,
 FieldTradingSessionSubID::KEY,
@@ -60108,7 +60108,7 @@ FieldEncodedTextLen::KEY,
 FieldEncodedText::KEY,
 FieldCheckSum::KEY };
 
-const std::vector<unsigned> MassQuote_knownFields = {
+const std::vector<tag_t> MassQuote_knownFields = {
 FieldQuoteReqID::KEY,
 FieldQuoteID::KEY,
 FieldQuoteType::KEY,
@@ -60122,7 +60122,7 @@ FieldDefOfferSize::KEY,
 FieldNoQuoteSets::KEY,
 FieldCheckSum::KEY };
 
-const std::vector<unsigned> BusinessMessageReject_knownFields = {
+const std::vector<tag_t> BusinessMessageReject_knownFields = {
 FieldRefSeqNum::KEY,
 FieldRefMsgType::KEY,
 FieldBusinessRejectRefID::KEY,
@@ -60132,7 +60132,7 @@ FieldEncodedTextLen::KEY,
 FieldEncodedText::KEY,
 FieldCheckSum::KEY };
 
-const std::vector<unsigned> BidRequest_knownFields = {
+const std::vector<tag_t> BidRequest_knownFields = {
 FieldBidID::KEY,
 FieldClientBidID::KEY,
 FieldBidRequestTransType::KEY,
@@ -60164,13 +60164,13 @@ FieldEncodedTextLen::KEY,
 FieldEncodedText::KEY,
 FieldCheckSum::KEY };
 
-const std::vector<unsigned> BidResponse_knownFields = {
+const std::vector<tag_t> BidResponse_knownFields = {
 FieldBidID::KEY,
 FieldClientBidID::KEY,
 FieldNoBidComponents::KEY,
 FieldCheckSum::KEY };
 
-const std::vector<unsigned> ListStrikePrice_knownFields = {
+const std::vector<tag_t> ListStrikePrice_knownFields = {
 FieldListID::KEY,
 FieldTotNoStrikes::KEY,
 FieldLastFragment::KEY,
@@ -60178,10 +60178,10 @@ FieldNoStrikes::KEY,
 FieldNoUnderlyings::KEY,
 FieldCheckSum::KEY };
 
-const std::vector<unsigned> XMLnonFIX_knownFields = {
+const std::vector<tag_t> XMLnonFIX_knownFields = {
 FieldCheckSum::KEY };
 
-const std::vector<unsigned> RegistrationInstructions_knownFields = {
+const std::vector<tag_t> RegistrationInstructions_knownFields = {
 FieldRegistID::KEY,
 FieldRegistTransType::KEY,
 FieldRegistRefID::KEY,
@@ -60196,7 +60196,7 @@ FieldNoRegistDtls::KEY,
 FieldNoDistribInsts::KEY,
 FieldCheckSum::KEY };
 
-const std::vector<unsigned> RegistrationInstructionsResponse_knownFields = {
+const std::vector<tag_t> RegistrationInstructionsResponse_knownFields = {
 FieldRegistID::KEY,
 FieldRegistTransType::KEY,
 FieldRegistRefID::KEY,
@@ -60209,7 +60209,7 @@ FieldRegistRejReasonCode::KEY,
 FieldRegistRejReasonText::KEY,
 FieldCheckSum::KEY };
 
-const std::vector<unsigned> OrderMassCancelRequest_knownFields = {
+const std::vector<tag_t> OrderMassCancelRequest_knownFields = {
 FieldClOrdID::KEY,
 FieldSecondaryClOrdID::KEY,
 FieldMassCancelRequestType::KEY,
@@ -60312,7 +60312,7 @@ FieldEncodedTextLen::KEY,
 FieldEncodedText::KEY,
 FieldCheckSum::KEY };
 
-const std::vector<unsigned> OrderMassCancelReport_knownFields = {
+const std::vector<tag_t> OrderMassCancelReport_knownFields = {
 FieldClOrdID::KEY,
 FieldSecondaryClOrdID::KEY,
 FieldOrderID::KEY,
@@ -60421,7 +60421,7 @@ FieldEncodedTextLen::KEY,
 FieldEncodedText::KEY,
 FieldCheckSum::KEY };
 
-const std::vector<unsigned> NewOrderCross_knownFields = {
+const std::vector<tag_t> NewOrderCross_knownFields = {
 FieldCrossID::KEY,
 FieldCrossType::KEY,
 FieldCrossPrioritization::KEY,
@@ -60534,7 +60534,7 @@ FieldRegistID::KEY,
 FieldDesignation::KEY,
 FieldCheckSum::KEY };
 
-const std::vector<unsigned> CrossOrderCancelReplaceRequest_knownFields = {
+const std::vector<tag_t> CrossOrderCancelReplaceRequest_knownFields = {
 FieldOrderID::KEY,
 FieldCrossID::KEY,
 FieldOrigCrossID::KEY,
@@ -60649,7 +60649,7 @@ FieldRegistID::KEY,
 FieldDesignation::KEY,
 FieldCheckSum::KEY };
 
-const std::vector<unsigned> CrossOrderCancelRequest_knownFields = {
+const std::vector<tag_t> CrossOrderCancelRequest_knownFields = {
 FieldOrderID::KEY,
 FieldCrossID::KEY,
 FieldOrigCrossID::KEY,
@@ -60704,7 +60704,7 @@ FieldNoLegs::KEY,
 FieldTransactTime::KEY,
 FieldCheckSum::KEY };
 
-const std::vector<unsigned> SecurityTypeRequest_knownFields = {
+const std::vector<tag_t> SecurityTypeRequest_knownFields = {
 FieldSecurityReqID::KEY,
 FieldText::KEY,
 FieldEncodedTextLen::KEY,
@@ -60716,7 +60716,7 @@ FieldSecurityType::KEY,
 FieldSecuritySubType::KEY,
 FieldCheckSum::KEY };
 
-const std::vector<unsigned> SecurityTypes_knownFields = {
+const std::vector<tag_t> SecurityTypes_knownFields = {
 FieldSecurityReqID::KEY,
 FieldSecurityResponseID::KEY,
 FieldSecurityResponseType::KEY,
@@ -60731,7 +60731,7 @@ FieldTradingSessionSubID::KEY,
 FieldSubscriptionRequestType::KEY,
 FieldCheckSum::KEY };
 
-const std::vector<unsigned> SecurityListRequest_knownFields = {
+const std::vector<tag_t> SecurityListRequest_knownFields = {
 FieldSecurityReqID::KEY,
 FieldSecurityListRequestType::KEY,
 FieldSymbol::KEY,
@@ -60800,7 +60800,7 @@ FieldTradingSessionSubID::KEY,
 FieldSubscriptionRequestType::KEY,
 FieldCheckSum::KEY };
 
-const std::vector<unsigned> SecurityList_knownFields = {
+const std::vector<tag_t> SecurityList_knownFields = {
 FieldSecurityReqID::KEY,
 FieldSecurityResponseID::KEY,
 FieldSecurityRequestResult::KEY,
@@ -60809,7 +60809,7 @@ FieldLastFragment::KEY,
 FieldNoRelatedSym::KEY,
 FieldCheckSum::KEY };
 
-const std::vector<unsigned> DerivativeSecurityListRequest_knownFields = {
+const std::vector<tag_t> DerivativeSecurityListRequest_knownFields = {
 FieldSecurityReqID::KEY,
 FieldSecurityListRequestType::KEY,
 FieldUnderlyingSymbol::KEY,
@@ -60869,7 +60869,7 @@ FieldTradingSessionSubID::KEY,
 FieldSubscriptionRequestType::KEY,
 FieldCheckSum::KEY };
 
-const std::vector<unsigned> DerivativeSecurityList_knownFields = {
+const std::vector<tag_t> DerivativeSecurityList_knownFields = {
 FieldSecurityReqID::KEY,
 FieldSecurityResponseID::KEY,
 FieldSecurityRequestResult::KEY,
@@ -60925,7 +60925,7 @@ FieldLastFragment::KEY,
 FieldNoRelatedSym::KEY,
 FieldCheckSum::KEY };
 
-const std::vector<unsigned> NewOrderMultileg_knownFields = {
+const std::vector<tag_t> NewOrderMultileg_knownFields = {
 FieldClOrdID::KEY,
 FieldSecondaryClOrdID::KEY,
 FieldClOrdLinkID::KEY,
@@ -61059,7 +61059,7 @@ FieldDesignation::KEY,
 FieldMultiLegRptTypeReq::KEY,
 FieldCheckSum::KEY };
 
-const std::vector<unsigned> MultilegOrderCancelReplace_knownFields = {
+const std::vector<tag_t> MultilegOrderCancelReplace_knownFields = {
 FieldOrderID::KEY,
 FieldOrigClOrdID::KEY,
 FieldClOrdID::KEY,
@@ -61196,7 +61196,7 @@ FieldDesignation::KEY,
 FieldMultiLegRptTypeReq::KEY,
 FieldCheckSum::KEY };
 
-const std::vector<unsigned> TradeCaptureReportRequest_knownFields = {
+const std::vector<tag_t> TradeCaptureReportRequest_knownFields = {
 FieldTradeRequestID::KEY,
 FieldTradeRequestType::KEY,
 FieldSubscriptionRequestType::KEY,
@@ -61287,7 +61287,7 @@ FieldEncodedTextLen::KEY,
 FieldEncodedText::KEY,
 FieldCheckSum::KEY };
 
-const std::vector<unsigned> TradeCaptureReport_knownFields = {
+const std::vector<tag_t> TradeCaptureReport_knownFields = {
 FieldTradeReportID::KEY,
 FieldTradeReportTransType::KEY,
 FieldTradeReportType::KEY,
@@ -61413,7 +61413,7 @@ FieldPublishTrdIndicator::KEY,
 FieldShortSaleReason::KEY,
 FieldCheckSum::KEY };
 
-const std::vector<unsigned> OrderMassStatusRequest_knownFields = {
+const std::vector<tag_t> OrderMassStatusRequest_knownFields = {
 FieldMassStatusReqID::KEY,
 FieldMassStatusReqType::KEY,
 FieldNoPartyIDs::KEY,
@@ -61514,7 +61514,7 @@ FieldNoUnderlyingStips::KEY,
 FieldSide::KEY,
 FieldCheckSum::KEY };
 
-const std::vector<unsigned> QuoteRequestReject_knownFields = {
+const std::vector<tag_t> QuoteRequestReject_knownFields = {
 FieldQuoteReqID::KEY,
 FieldRFQReqID::KEY,
 FieldQuoteRequestRejectReason::KEY,
@@ -61524,13 +61524,13 @@ FieldEncodedTextLen::KEY,
 FieldEncodedText::KEY,
 FieldCheckSum::KEY };
 
-const std::vector<unsigned> RFQRequest_knownFields = {
+const std::vector<tag_t> RFQRequest_knownFields = {
 FieldRFQReqID::KEY,
 FieldNoRelatedSym::KEY,
 FieldSubscriptionRequestType::KEY,
 FieldCheckSum::KEY };
 
-const std::vector<unsigned> QuoteStatusReport_knownFields = {
+const std::vector<tag_t> QuoteStatusReport_knownFields = {
 FieldQuoteStatusReqID::KEY,
 FieldQuoteReqID::KEY,
 FieldQuoteID::KEY,
@@ -61660,7 +61660,7 @@ FieldEncodedTextLen::KEY,
 FieldEncodedText::KEY,
 FieldCheckSum::KEY };
 
-const std::vector<unsigned> QuoteResponse_knownFields = {
+const std::vector<tag_t> QuoteResponse_knownFields = {
 FieldQuoteRespID::KEY,
 FieldQuoteID::KEY,
 FieldQuoteRespType::KEY,
@@ -61790,7 +61790,7 @@ FieldYieldRedemptionPrice::KEY,
 FieldYieldRedemptionPriceType::KEY,
 FieldCheckSum::KEY };
 
-const std::vector<unsigned> Confirmation_knownFields = {
+const std::vector<tag_t> Confirmation_knownFields = {
 FieldConfirmID::KEY,
 FieldConfirmRefID::KEY,
 FieldConfirmReqID::KEY,
@@ -61929,7 +61929,7 @@ FieldNoStipulations::KEY,
 FieldNoMiscFees::KEY,
 FieldCheckSum::KEY };
 
-const std::vector<unsigned> PositionMaintenanceRequest_knownFields = {
+const std::vector<tag_t> PositionMaintenanceRequest_knownFields = {
 FieldPosReqID::KEY,
 FieldPosTransType::KEY,
 FieldPosMaintAction::KEY,
@@ -62000,7 +62000,7 @@ FieldEncodedTextLen::KEY,
 FieldEncodedText::KEY,
 FieldCheckSum::KEY };
 
-const std::vector<unsigned> PositionMaintenanceReport_knownFields = {
+const std::vector<tag_t> PositionMaintenanceReport_knownFields = {
 FieldPosMaintRptID::KEY,
 FieldPosTransType::KEY,
 FieldPosReqID::KEY,
@@ -62072,7 +62072,7 @@ FieldEncodedTextLen::KEY,
 FieldEncodedText::KEY,
 FieldCheckSum::KEY };
 
-const std::vector<unsigned> RequestForPositions_knownFields = {
+const std::vector<tag_t> RequestForPositions_knownFields = {
 FieldPosReqID::KEY,
 FieldPosReqType::KEY,
 FieldMatchStatus::KEY,
@@ -62139,7 +62139,7 @@ FieldEncodedTextLen::KEY,
 FieldEncodedText::KEY,
 FieldCheckSum::KEY };
 
-const std::vector<unsigned> RequestForPositionsAck_knownFields = {
+const std::vector<tag_t> RequestForPositionsAck_knownFields = {
 FieldPosMaintRptID::KEY,
 FieldPosReqID::KEY,
 FieldTotalNumPosReports::KEY,
@@ -62203,7 +62203,7 @@ FieldEncodedTextLen::KEY,
 FieldEncodedText::KEY,
 FieldCheckSum::KEY };
 
-const std::vector<unsigned> PositionReport_knownFields = {
+const std::vector<tag_t> PositionReport_knownFields = {
 FieldPosMaintRptID::KEY,
 FieldPosReqID::KEY,
 FieldPosReqType::KEY,
@@ -62276,7 +62276,7 @@ FieldEncodedTextLen::KEY,
 FieldEncodedText::KEY,
 FieldCheckSum::KEY };
 
-const std::vector<unsigned> TradeCaptureReportRequestAck_knownFields = {
+const std::vector<tag_t> TradeCaptureReportRequestAck_knownFields = {
 FieldTradeRequestID::KEY,
 FieldTradeRequestType::KEY,
 FieldSubscriptionRequestType::KEY,
@@ -62336,7 +62336,7 @@ FieldEncodedTextLen::KEY,
 FieldEncodedText::KEY,
 FieldCheckSum::KEY };
 
-const std::vector<unsigned> TradeCaptureReportAck_knownFields = {
+const std::vector<tag_t> TradeCaptureReportAck_knownFields = {
 FieldTradeReportID::KEY,
 FieldTradeReportTransType::KEY,
 FieldTradeReportType::KEY,
@@ -62418,7 +62418,7 @@ FieldPreallocMethod::KEY,
 FieldNoAllocs::KEY,
 FieldCheckSum::KEY };
 
-const std::vector<unsigned> AllocationReport_knownFields = {
+const std::vector<tag_t> AllocationReport_knownFields = {
 FieldAllocReportID::KEY,
 FieldAllocID::KEY,
 FieldAllocTransType::KEY,
@@ -62552,7 +62552,7 @@ FieldLastFragment::KEY,
 FieldNoAllocs::KEY,
 FieldCheckSum::KEY };
 
-const std::vector<unsigned> AllocationReportAck_knownFields = {
+const std::vector<tag_t> AllocationReportAck_knownFields = {
 FieldAllocReportID::KEY,
 FieldAllocID::KEY,
 FieldNoPartyIDs::KEY,
@@ -62572,7 +62572,7 @@ FieldEncodedText::KEY,
 FieldNoAllocs::KEY,
 FieldCheckSum::KEY };
 
-const std::vector<unsigned> ConfirmationAck_knownFields = {
+const std::vector<tag_t> ConfirmationAck_knownFields = {
 FieldConfirmID::KEY,
 FieldTradeDate::KEY,
 FieldTransactTime::KEY,
@@ -62584,7 +62584,7 @@ FieldEncodedTextLen::KEY,
 FieldEncodedText::KEY,
 FieldCheckSum::KEY };
 
-const std::vector<unsigned> SettlementInstructionRequest_knownFields = {
+const std::vector<tag_t> SettlementInstructionRequest_knownFields = {
 FieldSettlInstReqID::KEY,
 FieldTransactTime::KEY,
 FieldNoPartyIDs::KEY,
@@ -62602,7 +62602,7 @@ FieldStandInstDbName::KEY,
 FieldStandInstDbID::KEY,
 FieldCheckSum::KEY };
 
-const std::vector<unsigned> AssignmentReport_knownFields = {
+const std::vector<tag_t> AssignmentReport_knownFields = {
 FieldAsgnRptID::KEY,
 FieldTotNumAssignmentReports::KEY,
 FieldLastRptRequested::KEY,
@@ -62674,7 +62674,7 @@ FieldEncodedTextLen::KEY,
 FieldEncodedText::KEY,
 FieldCheckSum::KEY };
 
-const std::vector<unsigned> CollateralRequest_knownFields = {
+const std::vector<tag_t> CollateralRequest_knownFields = {
 FieldCollReqID::KEY,
 FieldCollAsgnReason::KEY,
 FieldTransactTime::KEY,
@@ -62777,7 +62777,7 @@ FieldEncodedTextLen::KEY,
 FieldEncodedText::KEY,
 FieldCheckSum::KEY };
 
-const std::vector<unsigned> CollateralAssignment_knownFields = {
+const std::vector<tag_t> CollateralAssignment_knownFields = {
 FieldCollAsgnID::KEY,
 FieldCollReqID::KEY,
 FieldCollAsgnReason::KEY,
@@ -62888,7 +62888,7 @@ FieldEncodedTextLen::KEY,
 FieldEncodedText::KEY,
 FieldCheckSum::KEY };
 
-const std::vector<unsigned> CollateralResponse_knownFields = {
+const std::vector<tag_t> CollateralResponse_knownFields = {
 FieldCollRespID::KEY,
 FieldCollAsgnID::KEY,
 FieldCollReqID::KEY,
@@ -62990,7 +62990,7 @@ FieldEncodedTextLen::KEY,
 FieldEncodedText::KEY,
 FieldCheckSum::KEY };
 
-const std::vector<unsigned> CollateralReport_knownFields = {
+const std::vector<tag_t> CollateralReport_knownFields = {
 FieldCollRptID::KEY,
 FieldCollInquiryID::KEY,
 FieldCollStatus::KEY,
@@ -63099,7 +63099,7 @@ FieldEncodedTextLen::KEY,
 FieldEncodedText::KEY,
 FieldCheckSum::KEY };
 
-const std::vector<unsigned> CollateralInquiry_knownFields = {
+const std::vector<tag_t> CollateralInquiry_knownFields = {
 FieldCollInquiryID::KEY,
 FieldNoCollInquiryQualifier::KEY,
 FieldSubscriptionRequestType::KEY,
@@ -63207,13 +63207,13 @@ FieldEncodedTextLen::KEY,
 FieldEncodedText::KEY,
 FieldCheckSum::KEY };
 
-const std::vector<unsigned> NetworkCounterpartySystemStatusRequest_knownFields = {
+const std::vector<tag_t> NetworkCounterpartySystemStatusRequest_knownFields = {
 FieldNetworkRequestType::KEY,
 FieldNetworkRequestID::KEY,
 FieldNoCompIDs::KEY,
 FieldCheckSum::KEY };
 
-const std::vector<unsigned> NetworkCounterpartySystemStatusResponse_knownFields = {
+const std::vector<tag_t> NetworkCounterpartySystemStatusResponse_knownFields = {
 FieldNetworkStatusResponseType::KEY,
 FieldNetworkRequestID::KEY,
 FieldNetworkResponseID::KEY,
@@ -63221,7 +63221,7 @@ FieldLastNetworkResponseID::KEY,
 FieldNoCompIDs::KEY,
 FieldCheckSum::KEY };
 
-const std::vector<unsigned> UserRequest_knownFields = {
+const std::vector<tag_t> UserRequest_knownFields = {
 FieldUserRequestID::KEY,
 FieldUserRequestType::KEY,
 FieldUsername::KEY,
@@ -63231,14 +63231,14 @@ FieldRawDataLength::KEY,
 FieldRawData::KEY,
 FieldCheckSum::KEY };
 
-const std::vector<unsigned> UserResponse_knownFields = {
+const std::vector<tag_t> UserResponse_knownFields = {
 FieldUserRequestID::KEY,
 FieldUsername::KEY,
 FieldUserStatus::KEY,
 FieldUserStatusText::KEY,
 FieldCheckSum::KEY };
 
-const std::vector<unsigned> CollateralInquiryAck_knownFields = {
+const std::vector<tag_t> CollateralInquiryAck_knownFields = {
 FieldCollInquiryID::KEY,
 FieldCollInquiryStatus::KEY,
 FieldCollInquiryResult::KEY,
@@ -63323,7 +63323,7 @@ FieldEncodedTextLen::KEY,
 FieldEncodedText::KEY,
 FieldCheckSum::KEY };
 
-const std::vector<unsigned> ConfirmationRequest_knownFields = {
+const std::vector<tag_t> ConfirmationRequest_knownFields = {
 FieldConfirmReqID::KEY,
 FieldConfirmType::KEY,
 FieldNoOrders::KEY,
@@ -63342,193 +63342,193 @@ FieldCheckSum::KEY };
 }
 
 
-const std::vector<unsigned> & MessageHeader::getKnownFields(){ return Header_knownFields; }
+const std::vector<tag_t> & MessageHeader::getKnownFields(){ return Header_knownFields; }
 
-const std::vector<unsigned> & MessageHeartbeat::getKnownFields(){ return Heartbeat_knownFields; }
+const std::vector<tag_t> & MessageHeartbeat::getKnownFields(){ return Heartbeat_knownFields; }
 
-const std::vector<unsigned> & MessageTestRequest::getKnownFields(){ return TestRequest_knownFields; }
+const std::vector<tag_t> & MessageTestRequest::getKnownFields(){ return TestRequest_knownFields; }
 
-const std::vector<unsigned> & MessageResendRequest::getKnownFields(){ return ResendRequest_knownFields; }
+const std::vector<tag_t> & MessageResendRequest::getKnownFields(){ return ResendRequest_knownFields; }
 
-const std::vector<unsigned> & MessageReject::getKnownFields(){ return Reject_knownFields; }
+const std::vector<tag_t> & MessageReject::getKnownFields(){ return Reject_knownFields; }
 
-const std::vector<unsigned> & MessageSequenceReset::getKnownFields(){ return SequenceReset_knownFields; }
+const std::vector<tag_t> & MessageSequenceReset::getKnownFields(){ return SequenceReset_knownFields; }
 
-const std::vector<unsigned> & MessageLogout::getKnownFields(){ return Logout_knownFields; }
+const std::vector<tag_t> & MessageLogout::getKnownFields(){ return Logout_knownFields; }
 
-const std::vector<unsigned> & MessageIOI::getKnownFields(){ return IOI_knownFields; }
+const std::vector<tag_t> & MessageIOI::getKnownFields(){ return IOI_knownFields; }
 
-const std::vector<unsigned> & MessageAdvertisement::getKnownFields(){ return Advertisement_knownFields; }
+const std::vector<tag_t> & MessageAdvertisement::getKnownFields(){ return Advertisement_knownFields; }
 
-const std::vector<unsigned> & MessageExecutionReport::getKnownFields(){ return ExecutionReport_knownFields; }
+const std::vector<tag_t> & MessageExecutionReport::getKnownFields(){ return ExecutionReport_knownFields; }
 
-const std::vector<unsigned> & MessageOrderCancelReject::getKnownFields(){ return OrderCancelReject_knownFields; }
+const std::vector<tag_t> & MessageOrderCancelReject::getKnownFields(){ return OrderCancelReject_knownFields; }
 
-const std::vector<unsigned> & MessageLogon::getKnownFields(){ return Logon_knownFields; }
+const std::vector<tag_t> & MessageLogon::getKnownFields(){ return Logon_knownFields; }
 
-const std::vector<unsigned> & MessageNews::getKnownFields(){ return News_knownFields; }
+const std::vector<tag_t> & MessageNews::getKnownFields(){ return News_knownFields; }
 
-const std::vector<unsigned> & MessageEmail::getKnownFields(){ return Email_knownFields; }
+const std::vector<tag_t> & MessageEmail::getKnownFields(){ return Email_knownFields; }
 
-const std::vector<unsigned> & MessageNewOrderSingle::getKnownFields(){ return NewOrderSingle_knownFields; }
+const std::vector<tag_t> & MessageNewOrderSingle::getKnownFields(){ return NewOrderSingle_knownFields; }
 
-const std::vector<unsigned> & MessageNewOrderList::getKnownFields(){ return NewOrderList_knownFields; }
+const std::vector<tag_t> & MessageNewOrderList::getKnownFields(){ return NewOrderList_knownFields; }
 
-const std::vector<unsigned> & MessageOrderCancelRequest::getKnownFields(){ return OrderCancelRequest_knownFields; }
+const std::vector<tag_t> & MessageOrderCancelRequest::getKnownFields(){ return OrderCancelRequest_knownFields; }
 
-const std::vector<unsigned> & MessageOrderCancelReplaceRequest::getKnownFields(){ return OrderCancelReplaceRequest_knownFields; }
+const std::vector<tag_t> & MessageOrderCancelReplaceRequest::getKnownFields(){ return OrderCancelReplaceRequest_knownFields; }
 
-const std::vector<unsigned> & MessageOrderStatusRequest::getKnownFields(){ return OrderStatusRequest_knownFields; }
+const std::vector<tag_t> & MessageOrderStatusRequest::getKnownFields(){ return OrderStatusRequest_knownFields; }
 
-const std::vector<unsigned> & MessageAllocationInstruction::getKnownFields(){ return AllocationInstruction_knownFields; }
+const std::vector<tag_t> & MessageAllocationInstruction::getKnownFields(){ return AllocationInstruction_knownFields; }
 
-const std::vector<unsigned> & MessageListCancelRequest::getKnownFields(){ return ListCancelRequest_knownFields; }
+const std::vector<tag_t> & MessageListCancelRequest::getKnownFields(){ return ListCancelRequest_knownFields; }
 
-const std::vector<unsigned> & MessageListExecute::getKnownFields(){ return ListExecute_knownFields; }
+const std::vector<tag_t> & MessageListExecute::getKnownFields(){ return ListExecute_knownFields; }
 
-const std::vector<unsigned> & MessageListStatusRequest::getKnownFields(){ return ListStatusRequest_knownFields; }
+const std::vector<tag_t> & MessageListStatusRequest::getKnownFields(){ return ListStatusRequest_knownFields; }
 
-const std::vector<unsigned> & MessageListStatus::getKnownFields(){ return ListStatus_knownFields; }
+const std::vector<tag_t> & MessageListStatus::getKnownFields(){ return ListStatus_knownFields; }
 
-const std::vector<unsigned> & MessageAllocationInstructionAck::getKnownFields(){ return AllocationInstructionAck_knownFields; }
+const std::vector<tag_t> & MessageAllocationInstructionAck::getKnownFields(){ return AllocationInstructionAck_knownFields; }
 
-const std::vector<unsigned> & MessageDontKnowTrade::getKnownFields(){ return DontKnowTrade_knownFields; }
+const std::vector<tag_t> & MessageDontKnowTrade::getKnownFields(){ return DontKnowTrade_knownFields; }
 
-const std::vector<unsigned> & MessageQuoteRequest::getKnownFields(){ return QuoteRequest_knownFields; }
+const std::vector<tag_t> & MessageQuoteRequest::getKnownFields(){ return QuoteRequest_knownFields; }
 
-const std::vector<unsigned> & MessageQuote::getKnownFields(){ return Quote_knownFields; }
+const std::vector<tag_t> & MessageQuote::getKnownFields(){ return Quote_knownFields; }
 
-const std::vector<unsigned> & MessageSettlementInstructions::getKnownFields(){ return SettlementInstructions_knownFields; }
+const std::vector<tag_t> & MessageSettlementInstructions::getKnownFields(){ return SettlementInstructions_knownFields; }
 
-const std::vector<unsigned> & MessageMarketDataRequest::getKnownFields(){ return MarketDataRequest_knownFields; }
+const std::vector<tag_t> & MessageMarketDataRequest::getKnownFields(){ return MarketDataRequest_knownFields; }
 
-const std::vector<unsigned> & MessageMarketDataSnapshotFullRefresh::getKnownFields(){ return MarketDataSnapshotFullRefresh_knownFields; }
+const std::vector<tag_t> & MessageMarketDataSnapshotFullRefresh::getKnownFields(){ return MarketDataSnapshotFullRefresh_knownFields; }
 
-const std::vector<unsigned> & MessageMarketDataIncrementalRefresh::getKnownFields(){ return MarketDataIncrementalRefresh_knownFields; }
+const std::vector<tag_t> & MessageMarketDataIncrementalRefresh::getKnownFields(){ return MarketDataIncrementalRefresh_knownFields; }
 
-const std::vector<unsigned> & MessageMarketDataRequestReject::getKnownFields(){ return MarketDataRequestReject_knownFields; }
+const std::vector<tag_t> & MessageMarketDataRequestReject::getKnownFields(){ return MarketDataRequestReject_knownFields; }
 
-const std::vector<unsigned> & MessageQuoteCancel::getKnownFields(){ return QuoteCancel_knownFields; }
+const std::vector<tag_t> & MessageQuoteCancel::getKnownFields(){ return QuoteCancel_knownFields; }
 
-const std::vector<unsigned> & MessageQuoteStatusRequest::getKnownFields(){ return QuoteStatusRequest_knownFields; }
+const std::vector<tag_t> & MessageQuoteStatusRequest::getKnownFields(){ return QuoteStatusRequest_knownFields; }
 
-const std::vector<unsigned> & MessageMassQuoteAcknowledgement::getKnownFields(){ return MassQuoteAcknowledgement_knownFields; }
+const std::vector<tag_t> & MessageMassQuoteAcknowledgement::getKnownFields(){ return MassQuoteAcknowledgement_knownFields; }
 
-const std::vector<unsigned> & MessageSecurityDefinitionRequest::getKnownFields(){ return SecurityDefinitionRequest_knownFields; }
+const std::vector<tag_t> & MessageSecurityDefinitionRequest::getKnownFields(){ return SecurityDefinitionRequest_knownFields; }
 
-const std::vector<unsigned> & MessageSecurityDefinition::getKnownFields(){ return SecurityDefinition_knownFields; }
+const std::vector<tag_t> & MessageSecurityDefinition::getKnownFields(){ return SecurityDefinition_knownFields; }
 
-const std::vector<unsigned> & MessageSecurityStatusRequest::getKnownFields(){ return SecurityStatusRequest_knownFields; }
+const std::vector<tag_t> & MessageSecurityStatusRequest::getKnownFields(){ return SecurityStatusRequest_knownFields; }
 
-const std::vector<unsigned> & MessageSecurityStatus::getKnownFields(){ return SecurityStatus_knownFields; }
+const std::vector<tag_t> & MessageSecurityStatus::getKnownFields(){ return SecurityStatus_knownFields; }
 
-const std::vector<unsigned> & MessageTradingSessionStatusRequest::getKnownFields(){ return TradingSessionStatusRequest_knownFields; }
+const std::vector<tag_t> & MessageTradingSessionStatusRequest::getKnownFields(){ return TradingSessionStatusRequest_knownFields; }
 
-const std::vector<unsigned> & MessageTradingSessionStatus::getKnownFields(){ return TradingSessionStatus_knownFields; }
+const std::vector<tag_t> & MessageTradingSessionStatus::getKnownFields(){ return TradingSessionStatus_knownFields; }
 
-const std::vector<unsigned> & MessageMassQuote::getKnownFields(){ return MassQuote_knownFields; }
+const std::vector<tag_t> & MessageMassQuote::getKnownFields(){ return MassQuote_knownFields; }
 
-const std::vector<unsigned> & MessageBusinessMessageReject::getKnownFields(){ return BusinessMessageReject_knownFields; }
+const std::vector<tag_t> & MessageBusinessMessageReject::getKnownFields(){ return BusinessMessageReject_knownFields; }
 
-const std::vector<unsigned> & MessageBidRequest::getKnownFields(){ return BidRequest_knownFields; }
+const std::vector<tag_t> & MessageBidRequest::getKnownFields(){ return BidRequest_knownFields; }
 
-const std::vector<unsigned> & MessageBidResponse::getKnownFields(){ return BidResponse_knownFields; }
+const std::vector<tag_t> & MessageBidResponse::getKnownFields(){ return BidResponse_knownFields; }
 
-const std::vector<unsigned> & MessageListStrikePrice::getKnownFields(){ return ListStrikePrice_knownFields; }
+const std::vector<tag_t> & MessageListStrikePrice::getKnownFields(){ return ListStrikePrice_knownFields; }
 
-const std::vector<unsigned> & MessageXMLnonFIX::getKnownFields(){ return XMLnonFIX_knownFields; }
+const std::vector<tag_t> & MessageXMLnonFIX::getKnownFields(){ return XMLnonFIX_knownFields; }
 
-const std::vector<unsigned> & MessageRegistrationInstructions::getKnownFields(){ return RegistrationInstructions_knownFields; }
+const std::vector<tag_t> & MessageRegistrationInstructions::getKnownFields(){ return RegistrationInstructions_knownFields; }
 
-const std::vector<unsigned> & MessageRegistrationInstructionsResponse::getKnownFields(){ return RegistrationInstructionsResponse_knownFields; }
+const std::vector<tag_t> & MessageRegistrationInstructionsResponse::getKnownFields(){ return RegistrationInstructionsResponse_knownFields; }
 
-const std::vector<unsigned> & MessageOrderMassCancelRequest::getKnownFields(){ return OrderMassCancelRequest_knownFields; }
+const std::vector<tag_t> & MessageOrderMassCancelRequest::getKnownFields(){ return OrderMassCancelRequest_knownFields; }
 
-const std::vector<unsigned> & MessageOrderMassCancelReport::getKnownFields(){ return OrderMassCancelReport_knownFields; }
+const std::vector<tag_t> & MessageOrderMassCancelReport::getKnownFields(){ return OrderMassCancelReport_knownFields; }
 
-const std::vector<unsigned> & MessageNewOrderCross::getKnownFields(){ return NewOrderCross_knownFields; }
+const std::vector<tag_t> & MessageNewOrderCross::getKnownFields(){ return NewOrderCross_knownFields; }
 
-const std::vector<unsigned> & MessageCrossOrderCancelReplaceRequest::getKnownFields(){ return CrossOrderCancelReplaceRequest_knownFields; }
+const std::vector<tag_t> & MessageCrossOrderCancelReplaceRequest::getKnownFields(){ return CrossOrderCancelReplaceRequest_knownFields; }
 
-const std::vector<unsigned> & MessageCrossOrderCancelRequest::getKnownFields(){ return CrossOrderCancelRequest_knownFields; }
+const std::vector<tag_t> & MessageCrossOrderCancelRequest::getKnownFields(){ return CrossOrderCancelRequest_knownFields; }
 
-const std::vector<unsigned> & MessageSecurityTypeRequest::getKnownFields(){ return SecurityTypeRequest_knownFields; }
+const std::vector<tag_t> & MessageSecurityTypeRequest::getKnownFields(){ return SecurityTypeRequest_knownFields; }
 
-const std::vector<unsigned> & MessageSecurityTypes::getKnownFields(){ return SecurityTypes_knownFields; }
+const std::vector<tag_t> & MessageSecurityTypes::getKnownFields(){ return SecurityTypes_knownFields; }
 
-const std::vector<unsigned> & MessageSecurityListRequest::getKnownFields(){ return SecurityListRequest_knownFields; }
+const std::vector<tag_t> & MessageSecurityListRequest::getKnownFields(){ return SecurityListRequest_knownFields; }
 
-const std::vector<unsigned> & MessageSecurityList::getKnownFields(){ return SecurityList_knownFields; }
+const std::vector<tag_t> & MessageSecurityList::getKnownFields(){ return SecurityList_knownFields; }
 
-const std::vector<unsigned> & MessageDerivativeSecurityListRequest::getKnownFields(){ return DerivativeSecurityListRequest_knownFields; }
+const std::vector<tag_t> & MessageDerivativeSecurityListRequest::getKnownFields(){ return DerivativeSecurityListRequest_knownFields; }
 
-const std::vector<unsigned> & MessageDerivativeSecurityList::getKnownFields(){ return DerivativeSecurityList_knownFields; }
+const std::vector<tag_t> & MessageDerivativeSecurityList::getKnownFields(){ return DerivativeSecurityList_knownFields; }
 
-const std::vector<unsigned> & MessageNewOrderMultileg::getKnownFields(){ return NewOrderMultileg_knownFields; }
+const std::vector<tag_t> & MessageNewOrderMultileg::getKnownFields(){ return NewOrderMultileg_knownFields; }
 
-const std::vector<unsigned> & MessageMultilegOrderCancelReplace::getKnownFields(){ return MultilegOrderCancelReplace_knownFields; }
+const std::vector<tag_t> & MessageMultilegOrderCancelReplace::getKnownFields(){ return MultilegOrderCancelReplace_knownFields; }
 
-const std::vector<unsigned> & MessageTradeCaptureReportRequest::getKnownFields(){ return TradeCaptureReportRequest_knownFields; }
+const std::vector<tag_t> & MessageTradeCaptureReportRequest::getKnownFields(){ return TradeCaptureReportRequest_knownFields; }
 
-const std::vector<unsigned> & MessageTradeCaptureReport::getKnownFields(){ return TradeCaptureReport_knownFields; }
+const std::vector<tag_t> & MessageTradeCaptureReport::getKnownFields(){ return TradeCaptureReport_knownFields; }
 
-const std::vector<unsigned> & MessageOrderMassStatusRequest::getKnownFields(){ return OrderMassStatusRequest_knownFields; }
+const std::vector<tag_t> & MessageOrderMassStatusRequest::getKnownFields(){ return OrderMassStatusRequest_knownFields; }
 
-const std::vector<unsigned> & MessageQuoteRequestReject::getKnownFields(){ return QuoteRequestReject_knownFields; }
+const std::vector<tag_t> & MessageQuoteRequestReject::getKnownFields(){ return QuoteRequestReject_knownFields; }
 
-const std::vector<unsigned> & MessageRFQRequest::getKnownFields(){ return RFQRequest_knownFields; }
+const std::vector<tag_t> & MessageRFQRequest::getKnownFields(){ return RFQRequest_knownFields; }
 
-const std::vector<unsigned> & MessageQuoteStatusReport::getKnownFields(){ return QuoteStatusReport_knownFields; }
+const std::vector<tag_t> & MessageQuoteStatusReport::getKnownFields(){ return QuoteStatusReport_knownFields; }
 
-const std::vector<unsigned> & MessageQuoteResponse::getKnownFields(){ return QuoteResponse_knownFields; }
+const std::vector<tag_t> & MessageQuoteResponse::getKnownFields(){ return QuoteResponse_knownFields; }
 
-const std::vector<unsigned> & MessageConfirmation::getKnownFields(){ return Confirmation_knownFields; }
+const std::vector<tag_t> & MessageConfirmation::getKnownFields(){ return Confirmation_knownFields; }
 
-const std::vector<unsigned> & MessagePositionMaintenanceRequest::getKnownFields(){ return PositionMaintenanceRequest_knownFields; }
+const std::vector<tag_t> & MessagePositionMaintenanceRequest::getKnownFields(){ return PositionMaintenanceRequest_knownFields; }
 
-const std::vector<unsigned> & MessagePositionMaintenanceReport::getKnownFields(){ return PositionMaintenanceReport_knownFields; }
+const std::vector<tag_t> & MessagePositionMaintenanceReport::getKnownFields(){ return PositionMaintenanceReport_knownFields; }
 
-const std::vector<unsigned> & MessageRequestForPositions::getKnownFields(){ return RequestForPositions_knownFields; }
+const std::vector<tag_t> & MessageRequestForPositions::getKnownFields(){ return RequestForPositions_knownFields; }
 
-const std::vector<unsigned> & MessageRequestForPositionsAck::getKnownFields(){ return RequestForPositionsAck_knownFields; }
+const std::vector<tag_t> & MessageRequestForPositionsAck::getKnownFields(){ return RequestForPositionsAck_knownFields; }
 
-const std::vector<unsigned> & MessagePositionReport::getKnownFields(){ return PositionReport_knownFields; }
+const std::vector<tag_t> & MessagePositionReport::getKnownFields(){ return PositionReport_knownFields; }
 
-const std::vector<unsigned> & MessageTradeCaptureReportRequestAck::getKnownFields(){ return TradeCaptureReportRequestAck_knownFields; }
+const std::vector<tag_t> & MessageTradeCaptureReportRequestAck::getKnownFields(){ return TradeCaptureReportRequestAck_knownFields; }
 
-const std::vector<unsigned> & MessageTradeCaptureReportAck::getKnownFields(){ return TradeCaptureReportAck_knownFields; }
+const std::vector<tag_t> & MessageTradeCaptureReportAck::getKnownFields(){ return TradeCaptureReportAck_knownFields; }
 
-const std::vector<unsigned> & MessageAllocationReport::getKnownFields(){ return AllocationReport_knownFields; }
+const std::vector<tag_t> & MessageAllocationReport::getKnownFields(){ return AllocationReport_knownFields; }
 
-const std::vector<unsigned> & MessageAllocationReportAck::getKnownFields(){ return AllocationReportAck_knownFields; }
+const std::vector<tag_t> & MessageAllocationReportAck::getKnownFields(){ return AllocationReportAck_knownFields; }
 
-const std::vector<unsigned> & MessageConfirmationAck::getKnownFields(){ return ConfirmationAck_knownFields; }
+const std::vector<tag_t> & MessageConfirmationAck::getKnownFields(){ return ConfirmationAck_knownFields; }
 
-const std::vector<unsigned> & MessageSettlementInstructionRequest::getKnownFields(){ return SettlementInstructionRequest_knownFields; }
+const std::vector<tag_t> & MessageSettlementInstructionRequest::getKnownFields(){ return SettlementInstructionRequest_knownFields; }
 
-const std::vector<unsigned> & MessageAssignmentReport::getKnownFields(){ return AssignmentReport_knownFields; }
+const std::vector<tag_t> & MessageAssignmentReport::getKnownFields(){ return AssignmentReport_knownFields; }
 
-const std::vector<unsigned> & MessageCollateralRequest::getKnownFields(){ return CollateralRequest_knownFields; }
+const std::vector<tag_t> & MessageCollateralRequest::getKnownFields(){ return CollateralRequest_knownFields; }
 
-const std::vector<unsigned> & MessageCollateralAssignment::getKnownFields(){ return CollateralAssignment_knownFields; }
+const std::vector<tag_t> & MessageCollateralAssignment::getKnownFields(){ return CollateralAssignment_knownFields; }
 
-const std::vector<unsigned> & MessageCollateralResponse::getKnownFields(){ return CollateralResponse_knownFields; }
+const std::vector<tag_t> & MessageCollateralResponse::getKnownFields(){ return CollateralResponse_knownFields; }
 
-const std::vector<unsigned> & MessageCollateralReport::getKnownFields(){ return CollateralReport_knownFields; }
+const std::vector<tag_t> & MessageCollateralReport::getKnownFields(){ return CollateralReport_knownFields; }
 
-const std::vector<unsigned> & MessageCollateralInquiry::getKnownFields(){ return CollateralInquiry_knownFields; }
+const std::vector<tag_t> & MessageCollateralInquiry::getKnownFields(){ return CollateralInquiry_knownFields; }
 
-const std::vector<unsigned> & MessageNetworkCounterpartySystemStatusRequest::getKnownFields(){ return NetworkCounterpartySystemStatusRequest_knownFields; }
+const std::vector<tag_t> & MessageNetworkCounterpartySystemStatusRequest::getKnownFields(){ return NetworkCounterpartySystemStatusRequest_knownFields; }
 
-const std::vector<unsigned> & MessageNetworkCounterpartySystemStatusResponse::getKnownFields(){ return NetworkCounterpartySystemStatusResponse_knownFields; }
+const std::vector<tag_t> & MessageNetworkCounterpartySystemStatusResponse::getKnownFields(){ return NetworkCounterpartySystemStatusResponse_knownFields; }
 
-const std::vector<unsigned> & MessageUserRequest::getKnownFields(){ return UserRequest_knownFields; }
+const std::vector<tag_t> & MessageUserRequest::getKnownFields(){ return UserRequest_knownFields; }
 
-const std::vector<unsigned> & MessageUserResponse::getKnownFields(){ return UserResponse_knownFields; }
+const std::vector<tag_t> & MessageUserResponse::getKnownFields(){ return UserResponse_knownFields; }
 
-const std::vector<unsigned> & MessageCollateralInquiryAck::getKnownFields(){ return CollateralInquiryAck_knownFields; }
+const std::vector<tag_t> & MessageCollateralInquiryAck::getKnownFields(){ return CollateralInquiryAck_knownFields; }
 
-const std::vector<unsigned> & MessageConfirmationRequest::getKnownFields(){ return ConfirmationRequest_knownFields; }
+const std::vector<tag_t> & MessageConfirmationRequest::getKnownFields(){ return ConfirmationRequest_knownFields; }
 
 
 GetDepthMethod getTagDepthMethodByRawMsgType( raw_enum_t rawMsgType ){
