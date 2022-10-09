@@ -62,7 +62,7 @@ struct fixstr
 
 const char * getEnumName( const char * fix, int valueOffset );
 
-}
+} // namespace DSTNAMESPACE
 
 inline std::ostream & operator << ( std::ostream & os, const DSTNAMESPACE::fixstr & msg )
 {

@@ -429,7 +429,7 @@ inline std::string toString<sohstr>( const sohstr & value )
 {
     offset_t pos = 0;
     gotoNextField( value.ptr, pos );
-    return std::string( value.ptr, (size_t)pos-1 );
+    return std::string( value.ptr, (std::size_t)pos-1 );
 }
 
 inline unsigned copyRawEnum( const char * from, char * to )

@@ -9,7 +9,7 @@ namespace DSTNAMESPACE
 
 #include <DSTINCDIR/Groups.hxx>
 
-}
+} // namespace DSTNAMESPACE
 
 #endif /* DSTHEADERGUARD_GROUPS_H */
 

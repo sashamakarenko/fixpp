@@ -9,4 +9,4 @@ namespace DSTNAMESPACE
 
 #include <DSTINCDIR/Groups.cxx>
 
-}
+} // namespace DSTNAMESPACE

@@ -29,6 +29,6 @@ extern const std::map< raw_tag_t, const FieldEnumsBase * const > & rawToEnum;
 
 void checkEnums();
 
-}
+}  // namespace DSTNAMESPACE
 
 #endif // DSTHEADERGUARD_FIELDS_H

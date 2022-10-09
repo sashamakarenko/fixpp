@@ -9,7 +9,7 @@
 #define FIX_MSG_GROUP(NAME) FIX_MSG_FIELD(No##NAME)\
 <n1>\
 <n1> public:\
-<n1> size_t getGroupCount##NAME() const { return groups##NAME.size(); } \
-<n1> const Group##NAME & getGroup##NAME( size_t idx ) const { return groups##NAME[ idx ]; } \
+<n1> std::size_t getGroupCount##NAME() const { return groups##NAME.size(); } \
+<n1> const Group##NAME & getGroup##NAME( std::size_t idx ) const { return groups##NAME[ idx ]; } \
 <n1> private: Group##NAME::Array groups##NAME{ 10 };
 

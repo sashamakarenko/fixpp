@@ -29,7 +29,7 @@ void checkEnums()
         const FieldEnumsBase * enums = it.second;
         const FieldEnumMap & emap =  enums->getEnumMapByRaw();
         auto mapSz = emap.size();
-        size_t enumCount = 0;
+        std::size_t enumCount = 0;
         for( const FieldEnumBase * const * eptr = enums->getEnums(); eptr && *eptr; ++eptr )
         {
             ++enumCount;
@@ -55,4 +55,4 @@ void checkEnums()
     }
 }
 
-}
+} // namespace DSTNAMESPACE

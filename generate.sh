@@ -204,6 +204,23 @@ grep FIX_ENUM_DECL ${DEFDIR}/Fields.def | grep MsgType | sed 's/.*,\(.*\),.*SOHS
 done
 } >> $dst
 
+echo "  processing include .hxx and .cxx"
+(
+    cd ${DSTDIR}
+    for i in *.hxx *.cxx; do
+        for f in $(grep -l "/$i>" *); do
+            echo "  injecting $i into $f"
+            sed -n "1,/\/$i\>/p" $f | sed '$d' > $f.tmp
+            echo "// start of $i" >> $f.tmp
+            cat $i >> $f.tmp
+            echo "// end of $i" >> $f.tmp
+            sed -n "/\/$i\>/,\$"p $f | sed 1d >> $f.tmp
+            mv $f.tmp $f
+        done
+        rm -f $i
+    done
+)
+
 # message and group names for gdb pretty printing
 dst=$PPDIR/printers.py
 if [[ -n "$PPDIR" ]]; then

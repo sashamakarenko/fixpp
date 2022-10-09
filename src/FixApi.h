@@ -3,7 +3,7 @@
 #define DSTHEADERGUARD_FIXAPI_H
 
 #include <map>
-#include <stdint.h>
+#include <cstdint>
 #include <string>
 
 #define FIXPP_SOH 1
@@ -15,21 +15,21 @@ namespace DSTNAMESPACE
 // ------------------------------ primitives -----------------------------
 
 // field key or tag type
-typedef uint32_t tag_t;
+using tag_t = uint32_t;
 
 // use uint32 if all tags < 10000
-typedef uint64_t raw_tag_t;
+using raw_tag_t = uint64_t;
 
 // raw tag surrounded by SOH and =
-typedef uint64_t insertable_tag_t;
+using insertable_tag_t = uint64_t;
 
 // use 64bits if your venue has wider enum values
 // typedef uint64_t raw_enum_t;
-typedef uint32_t raw_enum_t;
+using raw_enum_t = uint32_t;
 
 // use 16bits if all your venue messages are short
 // typedef int16_t offset_t;
-typedef int32_t offset_t;
+using offset_t = int32_t;
 
 
 // max 5 decimal digits in tags
@@ -429,7 +429,7 @@ inline std::string toString<sohstr>( const sohstr & value )
 {
     offset_t pos = 0;
     gotoNextField( value.ptr, pos );
-    return std::string( value.ptr, (size_t)pos-1 );
+    return std::string( value.ptr, (std::size_t)pos-1 );
 }
 
 inline unsigned copyRawEnum( const char * from, char * to )
@@ -495,7 +495,7 @@ struct FieldEnum: FieldEnumBase
     const ValueType value;
 };
 
-typedef std::map< raw_enum_t, const FieldEnumBase * > FieldEnumMap;
+using FieldEnumMap = std::map< raw_enum_t, const FieldEnumBase * >;
 
 struct FieldEnumsBase
 {

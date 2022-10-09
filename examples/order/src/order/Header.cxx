@@ -1,7 +1,0 @@
- FieldBeginString::RAW,
- FieldBodyLength::RAW,
- FieldMsgType::RAW,
- FieldSenderCompID::RAW,
- FieldTargetCompID::RAW,
- FieldMsgSeqNum::RAW,
- FieldSendingTime::RAW,
