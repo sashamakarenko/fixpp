@@ -176,19 +176,13 @@ MYPRJ
         └── fix // generated files
             ├── Debug.h
             ├── Fields.cpp
-            ├── Fields.cxx
             ├── Fields.h
-            ├── Fields.hxx
             ├── FixApi.h
             ├── Groups.cpp
-            ├── Groups.cxx
             ├── Groups.h
-            ├── Groups.hxx
-            ├── Header.cxx
             ├── Messages.cpp
-            ├── Messages.cxx
             ├── Messages.h
-            └── Messages.hxx
+            └── SenderApi.h
 ```
 
 A fully generated and committed primitive project is available in examples/order.

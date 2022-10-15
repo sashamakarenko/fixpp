@@ -6,7 +6,7 @@
                 "${default}",
                 "${workspaceFolder}/src",
                 "${workspaceFolder}/src/tiny",
-                "${workspaceFolder}/../../../../pe/src"
+                "${workspaceFolder}/../../../pe/src"
             ],
             "defines": [],
             "configurationProvider": "ms-vscode.makefile-tools"
