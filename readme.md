@@ -174,7 +174,6 @@ MYPRJ
     └── myprj
         │
         └── fix // generated files
-            ├── Debug.h
             ├── Fields.cpp
             ├── Fields.h
             ├── FixApi.h

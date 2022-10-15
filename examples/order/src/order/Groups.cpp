@@ -2,7 +2,6 @@
 
 #include <order/Groups.h>
 
-#include <order/Debug.h>
 
 namespace order
 {
