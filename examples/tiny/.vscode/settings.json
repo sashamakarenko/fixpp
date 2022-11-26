@@ -80,5 +80,8 @@
         "ranges": "cpp"
     },
     "C_Cpp.default.includePath": [ "${default}", "${workspaceFolder}/src", "${workspaceFolder}/src/tiny" ],
-    "C_Cpp.default.cppStandard": "gnu++17"
+    "C_Cpp.default.cppStandard": "gnu++17",
+    "C_Cpp.default.customConfigurationVariables": {
+    
+    }
 }

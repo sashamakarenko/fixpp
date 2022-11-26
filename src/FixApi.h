@@ -5,6 +5,8 @@
 #include <map>
 #include <cstdint>
 #include <string>
+#include <limits>
+#include <cstddef>
 
 #define FIXPP_SOH 1
 #define SOHSTR(S) #S "\1"
@@ -169,53 +171,58 @@ inline T parseUInt( const char * ptr, unsigned & len )
     if( isNotDecDigit( ptr[3] ) )
     {
         len += 3;
-        return T( ptr[0] ) * 100 + T( ptr[1] ) * 10 + T( ptr[2] ) - dec_zeros<T,T(3)>();
+        return ( T( ptr[0] ) * 10 + T( ptr[1] ) ) * 10 + T( ptr[2] ) - dec_zeros<T,T(3)>();
     }
     if( isNotDecDigit( ptr[4] ) )
     {
         len += 4;
-        return T( ptr[0] ) * 1000 +
-               T( ptr[1] ) * 100 +
-               T( ptr[2] ) * 10 +
+        return ( (
+               T( ptr[0] )   * 10 +
+               T( ptr[1] ) ) * 10 +
+               T( ptr[2] ) ) * 10 +
                T( ptr[3] ) - dec_zeros<T,T(4)>();
     }
     if( isNotDecDigit( ptr[5] ) )
     {
         len += 5;
-        return T( ptr[0] ) * 10000 +
-               T( ptr[1] ) * 1000 +
-               T( ptr[2] ) * 100 +
-               T( ptr[3] ) * 10 +
+        return ( ( (
+               T( ptr[0] )   * 10 +
+               T( ptr[1] ) ) * 10 +
+               T( ptr[2] ) ) * 10 +
+               T( ptr[3] ) ) * 10 +
                T( ptr[4] ) - dec_zeros<T,T(5)>();
     }
     if( isNotDecDigit( ptr[6] ) )
     {
         len += 6;
-        return T( ptr[0] ) * 100000 +
-               T( ptr[1] ) * 10000 +
-               T( ptr[2] ) * 1000 +
-               T( ptr[3] ) * 100 +
-               T( ptr[4] ) * 10 +
+        return ( ( ( (
+               T( ptr[0] )   * 10 +
+               T( ptr[1] ) ) * 10 +
+               T( ptr[2] ) ) * 10 +
+               T( ptr[3] ) ) * 10 +
+               T( ptr[4] ) ) * 10 +
                T( ptr[5] ) - dec_zeros<T,T(6)>();
     }
     if( isNotDecDigit( ptr[7] ) )
     {
         len += 7;
-        return T( ptr[0] ) * 1000000 +
-               T( ptr[1] ) * 100000 +
-               T( ptr[2] ) * 10000 +
-               T( ptr[3] ) * 1000 +
-               T( ptr[4] ) * 100 +
-               T( ptr[5] ) * 10 +
+        return ( ( ( ( (
+               T( ptr[0] )   * 10 +
+               T( ptr[1] ) ) * 10 +
+               T( ptr[2] ) ) * 10 +
+               T( ptr[3] ) ) * 10 +
+               T( ptr[4] ) ) * 10 +
+               T( ptr[5] ) ) * 10 +
                T( ptr[6] ) - dec_zeros<T,T(7)>();
     }
-    T tmp =    T( ptr[0] ) * 10000000 +
-               T( ptr[1] ) * 1000000 +
-               T( ptr[2] ) * 100000 +
-               T( ptr[3] ) * 10000 +
-               T( ptr[4] ) * 1000 +
-               T( ptr[5] ) * 100 +
-               T( ptr[6] ) * 10 +
+    T tmp =    ( ( ( ( ( (
+               T( ptr[0] )   * 10 +
+               T( ptr[1] ) ) * 10 +
+               T( ptr[2] ) ) * 10 +
+               T( ptr[3] ) ) * 10 +
+               T( ptr[4] ) ) * 10 +
+               T( ptr[5] ) ) * 10 +
+               T( ptr[6] ) ) * 10 +
                T( ptr[7] ) - dec_zeros<T,T(8)>();
     if( isNotDecDigit( ptr[8] ) )
     {
@@ -338,6 +345,9 @@ inline sohstr fromString<sohstr>( const char * ptr )
     return ptr;
 }
 
+// "...;123=ABC;56=value;"
+//          |
+//          ptr
 inline unsigned getValueLength( const char * ptr )
 {
     unsigned len = 0;
@@ -368,6 +378,9 @@ inline unsigned getValueLength( const char * ptr )
     } while( true );
 }
 
+// "...;123=whatever;56=nextvalue;"
+//          |        |
+//          pos in   pos out
 inline void gotoNextField( const char * fix, offset_t & pos )
 {
     const char * ptr = fix + pos;
@@ -538,7 +551,7 @@ struct Field: FieldBase
         return N;
     }
 
-    static constexpr unsigned tagKey() 
+    static constexpr unsigned tagKey()
     {
         return K;
     }
@@ -562,34 +575,36 @@ struct Field: FieldBase
     static const FieldEnumBase * const * enumItems;
 };
 
-
+// ";1=value;12=value;..."
+//   |
+//   ptr
 inline raw_tag_t nextRawTag( const char * ptr, offset_t & pos )
 {
-    raw_tag_t value = *reinterpret_cast<const raw_tag_t *>(ptr);
+    raw_tag_t rtag = *reinterpret_cast<const raw_tag_t *>(ptr);
     if( ptr[1] == '=' )
     {
         pos += 2;
-        return value & 0xff;
+        return rtag & 0xff;
     }
     else if( ptr[2] == '=' )
     {
         pos += 3;
-        return value & 0xff'ff;
+        return rtag & 0xff'ff;
     }
     else if( ptr[3] == '=' )
     {
         pos += 4;
-        return value & 0xff'ff'ff;
+        return rtag & 0xff'ff'ff;
     }
     else if( ptr[4] == '=' )
     {
         pos += 5;
-        return value & 0xff'ff'ff'ff;
+        return rtag & 0xff'ff'ff'ff;
     }
     else if( ptr[5] == '=' )
     {
         pos += 6;
-        return value & 0xff'ff'ff'ff'ff;
+        return rtag & 0xff'ff'ff'ff'ff;
     }
 
     return 0;
@@ -600,6 +615,84 @@ struct MessageBase
     protected: const char * buf = nullptr;
     public: const char * getMessageBuffer() const { return buf; }
 };
+
+class Iterator
+{
+    public:
+
+        Iterator( const char * begin, const char * end = nullptr ):
+            _begin( begin ),
+            _end( end ),
+            _pos( 0 ),
+            _valueOffset( 0 )
+        {
+            ptrdiff_t len = _end - _begin;
+            if( _begin != nullptr and _begin[_pos] != 0 and ( _end == nullptr or len < (ptrdiff_t)std::numeric_limits< offset_t >::max() ) )
+            {
+                update();
+            }
+        }
+
+        bool hasNext() const
+        {
+            return _valueOffset > 0;
+        }
+
+        bool next()
+        {
+            if( _valueOffset == 0 or _begin == nullptr or _begin[_pos] == 0 or ( _end != nullptr and _begin + _pos >= _end  ) )
+            {
+                return false;
+            }
+            gotoNextField( _begin, _pos );
+            if( _end != nullptr and _begin + _pos >= _end )
+            {
+                _valueOffset = 0;
+            }
+            else
+            {
+                update();
+            }
+            return _valueOffset > 0;
+        }
+
+        const char * getTagPtr() const
+        {
+            return _begin + _pos;
+        }
+
+        const char * getValuePtr() const
+        {
+            return _valueOffset ? _begin + _valueOffset : nullptr;
+        }
+
+        raw_tag_t getRawTag() const
+        {
+            if( _valueOffset )
+            {
+                offset_t len = 0;
+                return nextRawTag( _begin + _pos, len );
+            }
+            return 0;
+        }
+
+    private:
+
+        raw_tag_t update()
+        {
+            _valueOffset = _pos;
+            raw_tag_t tag = nextRawTag( _begin + _pos, _valueOffset );
+            if( tag == 0 )
+            {
+                _valueOffset = 0;
+            }
+            return tag;
+        }
+
+        const char * _begin, * _end;
+        offset_t     _pos, _valueOffset;
+};
+
 
 typedef unsigned   AMT;
 typedef char       BOOLEAN;
