@@ -304,6 +304,12 @@ template<typename V>
 V fromString( const char * ptr );
 
 template<>
+inline bool fromString<bool>( const char * ptr )
+{
+    return 'Y' == *ptr;
+}
+
+template<>
 inline unsigned fromString<unsigned>( const char * ptr )
 {
     unsigned len;
@@ -695,7 +701,7 @@ class Iterator
 
 
 typedef unsigned   AMT;
-typedef char       BOOLEAN;
+typedef bool       BOOLEAN;
 typedef char       CHAR;
 typedef sohstr     COUNTRY;
 typedef sohstr     CURRENCY;

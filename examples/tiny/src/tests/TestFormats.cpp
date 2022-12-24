@@ -180,6 +180,8 @@ int main( int args, const char ** argv )
     std::cout << std::endl;
     fixToTwoLines( FIX_BUFFER_MD_FULL_REFRESH, pos, std::cout, twoLineRgb ) << std::endl;
 
+    std::cout << fixstr( FIX_BUFFER_LOGON, ttyRgbStyle ) << std::endl;
+
     std::cout << fixstr( FIX_BUFFER_MD_FULL_REFRESH, ttyRgbStyle ) << std::endl;
 
     std::cout << fixstr( FIX_BUFFER_EXEC_REPORT, ttyRgbSingleLineStyle ) << "\n" << std::endl;

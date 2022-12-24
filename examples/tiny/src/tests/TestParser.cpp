@@ -130,5 +130,19 @@ int main( int args, const char ** argv )
 
     std::cout << fixstr( fix  , ttyRgbStyle ) << std::endl;
 
+    std::cout << "\n\n -- Logon --" << std::endl;
+    header.reset();
+    fix = FIX_BUFFER_LOGON;
+    pos = header.scan( fix, strlen( fix ) );
+    Logon logon;
+    pos = logon.scan( fix + pos, strlen( fix ) - pos );
+
+    std::cout << "BodyLength=" << header.getBodyLength()
+              << " ResetSeqNumFlag " << logon.getResetSeqNumFlag()
+              << " checksum " << computeChecksum( fix, logon.ptrToCheckSum() )
+              << " body length " <<  ( logon.ptrToCheckSum() - header.ptrToMsgType() )
+              << " strlen " <<  strlen( fix )
+              << std::endl;
+
     return 0;
 }

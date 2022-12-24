@@ -3,6 +3,7 @@
 #include <pe/Measurement.h>
 #include <cstring>
 #include <sstream>
+#include <memory>
 
 using namespace tiny;
 
@@ -36,7 +37,7 @@ int main( int args, const char ** argv )
     m.addEvent( pe::EventType::branchMisses );
     m.addEvent( pe::EventType::memory );
     m.initialize( 100 );
-    
+
     const char * buffer = execReports100;
     std::size_t len = std::strlen( buffer );
     MyProcessor mp;
@@ -137,6 +138,35 @@ int main( int args, const char ** argv )
         m.stopCapture();
         header.reset();
         secdef.reset();
+    }
+    m.prepareResults();
+    m.printCaptures();
+    m.showAverageValues( std::cout );
+    m.rewind();
+
+    std::cout << "\n - - - - - - - - - -   parseYYYYMMDD(y,m,d)  - - - - - - - - - -\n";
+    std::unique_ptr<unsigned> yyyy = std::make_unique<unsigned>(1);
+    std::unique_ptr<unsigned> mm   = std::make_unique<unsigned>(2);
+    std::unique_ptr<unsigned> dd   = std::make_unique<unsigned>(3);
+    for( int j = 0; j < 100000000; ++j ) { (*yyyy) *= unsigned(1.2*(double)(*mm)); }
+    for( int j = 0; j < 10; ++j )
+    {
+        m.startCapture();
+        parseYYYYMMDD( TIMESTAMPS[j], *yyyy, *mm, *dd );
+        m.stopCapture();
+    }
+    m.prepareResults();
+    m.printCaptures();
+    m.showAverageValues( std::cout );
+    m.rewind();
+
+    std::cout << "\n - - - - - - - - - -   parseYYYYMMDD  - - - - - - - - - -\n";
+    std::unique_ptr<unsigned> ymd = std::make_unique<unsigned>();
+    for( int j = 0; j < 10; ++j )
+    {
+        m.startCapture();
+        *ymd = parseYYYYMMDD( TIMESTAMPS[j] );
+        m.stopCapture();
     }
     m.prepareResults();
     m.printCaptures();
