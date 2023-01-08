@@ -238,6 +238,12 @@ inline T parseUInt( const char * ptr, unsigned & len )
 
 inline double parseDouble( const char * ptr )
 {
+    double sign = 1;
+    if( *ptr == '-' )
+    {
+        sign = -1;
+        ++ptr;
+    }
     unsigned intlen = 0;
     unsigned integer = parseUInt( ptr, intlen );
     double mantissa = 0.0;
@@ -247,7 +253,7 @@ inline double parseDouble( const char * ptr )
         mantissa = parseUInt( ptr + intlen + 1, mantissaLength );
         mantissa *= div10Pow[ mantissaLength ];
     }
-    return (double)integer + mantissa;
+    return sign * ( (double)integer + mantissa );
 }
 
 template< typename T = unsigned >
