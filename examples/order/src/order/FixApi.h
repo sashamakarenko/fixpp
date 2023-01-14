@@ -236,8 +236,56 @@ inline T parseUInt( const char * ptr, unsigned & len )
     return tmp * (T)uintPow10[ tmplen ] + next;
 }
 
+struct Quantity
+{
+    template< typename T >
+    Quantity( const T & value, bool isInt ): value{ value }, isInteger{ isInt }{}
+    union Value
+    {
+        Value( int64_t  i ): integer{i}{}
+        Value( uint64_t i ): integer{(int64_t)i}{}
+        Value( double   r ): real{r}{}
+        Value( float    r ): real{r}{}
+        int64_t integer;
+        double  real;
+    };
+
+    template< typename T >
+    operator T () const { return isInteger ? value.integer : value.real; }
+
+    Value value;
+    bool  isInteger;
+};
+
+inline Quantity parseQuantity( const char * ptr )
+{
+    int sign = 1;
+    if( *ptr == '-' )
+    {
+        sign = -1;
+        ++ptr;
+    }
+    unsigned intlen = 0;
+    int64_t integer = parseUInt<int64_t>( ptr, intlen );
+    if( ptr[intlen] != '.' ) // SOH
+    {
+       return { sign * integer, true };
+    }
+
+    unsigned mantissaLength = 0;
+    double mantissa = parseUInt( ptr + intlen + 1, mantissaLength );
+    mantissa *= div10Pow[ mantissaLength ];
+    return { sign * ( (double)integer + mantissa ), false };
+}
+
 inline double parseDouble( const char * ptr )
 {
+    double sign = 1;
+    if( *ptr == '-' )
+    {
+        sign = -1;
+        ++ptr;
+    }
     unsigned intlen = 0;
     unsigned integer = parseUInt( ptr, intlen );
     double mantissa = 0.0;
@@ -247,7 +295,7 @@ inline double parseDouble( const char * ptr )
         mantissa = parseUInt( ptr + intlen + 1, mantissaLength );
         mantissa *= div10Pow[ mantissaLength ];
     }
-    return (double)integer + mantissa;
+    return sign * ( (double)integer + mantissa );
 }
 
 template< typename T = unsigned >
@@ -331,6 +379,12 @@ template<>
 inline double fromString<double>( const char * ptr )
 {
     return parseDouble( ptr );
+}
+
+template<>
+inline Quantity fromString<Quantity>( const char * ptr )
+{
+    return parseQuantity( ptr );
 }
 
 template<>
@@ -700,7 +754,8 @@ class Iterator
 };
 
 
-typedef unsigned   AMT;
+// typedef double     AMT;
+typedef Quantity   AMT;
 typedef bool       BOOLEAN;
 typedef char       CHAR;
 typedef sohstr     COUNTRY;
@@ -718,7 +773,9 @@ typedef unsigned   NUMINGROUP;
 typedef double     PERCENTAGE;
 typedef double     PRICE;
 typedef double     PRICEOFFSET;
-typedef unsigned   QTY;
+// typedef double     QTY;
+// typedef unsigned   QTY;
+typedef Quantity   QTY;
 typedef unsigned   SEQNUM;
 typedef sohstr     STRING;
 typedef sohstr     MULTIPLECHARVALUE;
@@ -733,6 +790,16 @@ typedef sohstr     TZTIMESTAMP;
 typedef sohstr     XMLDATA;
 
 } // namespace order
+
+inline order::Quantity operator "" _qty( long double q ){ return order::Quantity( (double)q, false ); }
+
+namespace std
+{
+    inline std::string to_string( const order::Quantity & qty ) noexcept 
+    {
+        return  qty.isInteger ? std::to_string( qty.value.integer ) : std::to_string( qty.value.real );
+    }
+}
 
 #endif /* order_FIXAPI_H */
 

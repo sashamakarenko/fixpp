@@ -7,50 +7,6 @@
 #include <ctime>
 #include <iomanip>
 
-namespace tiny
-{
-
-union Quantity
-{
-    Quantity( int64_t  i ): integer{i}{}
-    Quantity( uint64_t i ): integer{(int64_t)i}{}
-    Quantity( double   r ): real{r}{}
-    Quantity( float    r ): real{r}{}
-    int64_t integer;
-    double  real;
-};
-
-struct ExtQuantity
-{
-    template< typename T >
-    ExtQuantity( const T & value, bool isInt ): value{ value }, isInteger{ isInt }{}
-    Quantity value;
-    bool     isInteger;
-};
-
-inline ExtQuantity parseQuantity( const char * ptr )
-{
-    int sign = 1;
-    if( *ptr == '-' )
-    {
-        sign = -1;
-        ++ptr;
-    }
-    unsigned intlen = 0;
-    int64_t integer = parseUInt<int64_t>( ptr, intlen );
-    if( ptr[intlen] != '.' ) // SOH
-    {
-       return { sign * integer, true };
-    }
-
-    unsigned mantissaLength = 0;
-    double mantissa = parseUInt( ptr + intlen + 1, mantissaLength );
-    mantissa *= div10Pow[ mantissaLength ];
-    return { sign * ( (double)integer + mantissa ), false };
-}
-
-}
-
 using namespace tiny;
 using namespace std::string_literals;
 
@@ -259,7 +215,7 @@ int main( int args, const char ** argv )
     d = parseDouble( "-1.345" I );
     CHECK( double -1.345, d, == -1.345 );
 
-    ExtQuantity qty = parseQuantity( "0" I );
+    Quantity qty = parseQuantity( "0" I );
     CHECK( qty 0 is int, qty.isInteger, == true );
     CHECK( qty 0, qty.value.integer, == 0 );
 
@@ -271,5 +227,7 @@ int main( int args, const char ** argv )
     CHECK( qty 10.023 is int, qty.isInteger, == false );
     CHECK( qty 10.023, qty.value.real, == 10.023 );
 
+    CHECK( 10 * (int)10.023, 10 * (int)qty, == 100 );
+    // CHECK( 10 * 10.023, 10 * (double)qty, == (double)100.23_qty );
     return 0;
 }
