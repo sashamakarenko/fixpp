@@ -8,7 +8,7 @@
 #include <limits>
 #include <cstddef>
 
-#define FIXPP_SOH 1
+#define FIXPP_SOH 1U
 #define SOHSTR(S) #S "\1"
 
 namespace order
@@ -236,6 +236,7 @@ inline T parseUInt( const char * ptr, unsigned & len )
     return tmp * (T)uintPow10[ tmplen ] + next;
 }
 
+// todo: add pretty printer for Quantity
 struct Quantity
 {
     template< typename T >
@@ -789,9 +790,10 @@ typedef sohstr     LANGUAGE;
 typedef sohstr     TZTIMESTAMP;
 typedef sohstr     XMLDATA;
 
+inline order::Quantity operator "" _qty( long double q ){ return order::Quantity( (double)q, false ); }
+
 } // namespace order
 
-inline order::Quantity operator "" _qty( long double q ){ return order::Quantity( (double)q, false ); }
 
 namespace std
 {

@@ -8,7 +8,7 @@
 #include <limits>
 #include <cstddef>
 
-#define FIXPP_SOH 1
+#define FIXPP_SOH 1U
 #define SOHSTR(S) #S "\1"
 
 namespace DSTNAMESPACE
@@ -790,9 +790,10 @@ typedef sohstr     LANGUAGE;
 typedef sohstr     TZTIMESTAMP;
 typedef sohstr     XMLDATA;
 
+inline DSTNAMESPACE::Quantity operator "" _qty( long double q ){ return DSTNAMESPACE::Quantity( (double)q, false ); }
+
 } // namespace DSTNAMESPACE
 
-inline DSTNAMESPACE::Quantity operator "" _qty( long double q ){ return DSTNAMESPACE::Quantity( (double)q, false ); }
 
 namespace std
 {

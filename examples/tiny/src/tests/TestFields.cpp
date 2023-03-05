@@ -15,6 +15,18 @@ using namespace std::string_literals;
 #define W3 std::setw(3)  <<  std::setfill('0')
 #define W2 std::setw(2)  <<  std::setfill('0')
 
+template< typename T >
+bool operator < ( const tiny::Quantity & qty, const T & value )
+{
+    return (T)qty < value;
+}
+
+template<>
+bool operator < <tiny::Quantity>( const tiny::Quantity & left, const tiny::Quantity & right )
+{
+    return  left.isInteger and right.isInteger ? left.value.integer < right.value.integer : (double)left < (double)right;
+}
+
 int main( int args, const char ** argv )
 {
     const char * fixBuffer = EXAMPLE_MARKETDATA_FULL_REFRESH;
@@ -228,6 +240,8 @@ int main( int args, const char ** argv )
     CHECK( qty 10.023, qty.value.real, == 10.023 );
 
     CHECK( 10 * (int)10.023, 10 * (int)qty, == 100 );
-    // CHECK( 10 * 10.023, 10 * (double)qty, == (double)100.23_qty );
+
+    bool res = qty < 20;
+    // CHECK( 10.023 less 20, std::to_string(qty), res );
     return 0;
 }

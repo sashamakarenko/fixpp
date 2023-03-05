@@ -2,7 +2,7 @@
 
 std::ostream & operator << ( std::ostream & os, const order::sohstr & str )
 {
-    for( const char * ptr = str.ptr; *ptr != FIXPP_SOH; ++ptr )
+    for( const char * ptr = str.ptr; (unsigned)*ptr > FIXPP_SOH; ++ptr )
     {
         os << *ptr;
     }

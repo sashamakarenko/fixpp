@@ -8,7 +8,7 @@
 #include <limits>
 #include <cstddef>
 
-#define FIXPP_SOH 1
+#define FIXPP_SOH 1U
 #define SOHSTR(S) #S "\1"
 
 namespace fix44
@@ -790,9 +790,10 @@ typedef sohstr     LANGUAGE;
 typedef sohstr     TZTIMESTAMP;
 typedef sohstr     XMLDATA;
 
+inline fix44::Quantity operator "" _qty( long double q ){ return fix44::Quantity( (double)q, false ); }
+
 } // namespace fix44
 
-inline fix44::Quantity operator "" _qty( long double q ){ return fix44::Quantity( (double)q, false ); }
 
 namespace std
 {
