@@ -1462,7 +1462,7 @@ typedef Field< FixCrossID, 548, STRING > FieldCrossID;
 typedef Field< FixCrossType, 549, INT > FieldCrossType;
 typedef Field< FixCrossPrioritization, 550, INT > FieldCrossPrioritization;
 typedef Field< FixOrigCrossID, 551, STRING > FieldOrigCrossID;
-typedef Field< FixNoSides, 552, NUMINGROUP > FieldNoSides;
+typedef Field< FixNoSides, 552, INT > FieldNoSides;
 typedef Field< FixUsername, 553, STRING > FieldUsername;
 typedef Field< FixPassword, 554, STRING > FieldPassword;
 typedef Field< FixNoLegs, 555, NUMINGROUP > FieldNoLegs;
@@ -4679,6 +4679,20 @@ struct CrossPrioritizationEnums final: FieldEnumsBase {
    static const ItemType NONE;
    static const ItemType BUY_SIDE_IS_PRIORITIZED;
    static const ItemType SELL_SIDE_IS_PRIORITIZED;
+};
+
+struct NoSidesEnums final: FieldEnumsBase {
+   typedef FieldNoSides::ValueType ValueType;
+   typedef FieldEnum< ValueType > ItemType;
+   static const FieldEnumBase * items[];
+   static const FieldEnumMap itemByRaw;
+   static const NoSidesEnums instance;
+   virtual const char * getFieldName() const override;
+   virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
+   virtual const FieldEnumMap & getEnumMapByRaw() const override;
+   virtual const FieldEnumBase * const * const getEnums() const override;
+   static const ItemType ONE_SIDE;
+   static const ItemType BOTH_SIDES;
 };
 
 struct SecurityListRequestTypeEnums final: FieldEnumsBase {

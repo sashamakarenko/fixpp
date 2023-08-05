@@ -767,6 +767,7 @@ typedef double     FLOAT;
 typedef int        INT;
 typedef unsigned   LENGTH;
 typedef sohstr     LOCALMKTDATE;
+typedef sohstr     LOCALMKTTIME;
 typedef sohstr     DAYOFMONTH;
 typedef sohstr     MONTHYEAR;
 typedef sohstr     MULTIPLEVALUESTRING;
@@ -789,6 +790,10 @@ typedef sohstr     TZTIMEONLY;
 typedef sohstr     LANGUAGE;
 typedef sohstr     TZTIMESTAMP;
 typedef sohstr     XMLDATA;
+typedef sohstr     XID;
+typedef sohstr     XIDREF;
+typedef sohstr     EURIBOR;
+typedef unsigned   TAGNUM;
 
 inline DSTNAMESPACE::Quantity operator "" _qty( long double q ){ return DSTNAMESPACE::Quantity( (double)q, false ); }
 

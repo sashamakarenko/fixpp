@@ -69,8 +69,8 @@ for f in $DEFDIR/Fields.def $DEFDIR/Messages.def $DEFDIR/Groups.def; do
 done
 
 # collect fields
-used_fields=" $( sed -n -e 's/.*FIX_MSG_FIELD.*( *\(.*\) *).*/\1/gp' -e 's/FIX_MSG_GROUP_BEGIN.*( *\(.*\) *, *\(.*\) *).*/No\1\n\2/gp' $DEFDIR/Messages.def $DEFDIR/Groups.def | sort -u | tr \\n ' ' ) "
-decl_fields=" $( sed -n -e 's/FIX_FIELD_DECL.*( *\(.*\) *,.*,.*).*/\1/gp' $DEFDIR/Fields.def | sort -u | tr \\n ' ' ) "
+used_fields=" $( sed -n -e 's/.*FIX_MSG_FIELD.*( *\(.*\) *).*/\1/gp' -e 's/FIX_MSG_GROUP_BEGIN.*( *\(.*\) *, *\(.*\) *).*/No\1\n\2/gp' $DEFDIR/Messages.def $DEFDIR/Groups.def | sort -u | tr \\n ' ' | sed 's/  / /g' ) "
+decl_fields=" $( sed -n -e 's/FIX_FIELD_DECL.*( *\(.*\) *,.*,.*).*/\1/gp' $DEFDIR/Fields.def | sort -u | tr \\n ' ' | sed 's/  / /g' ) "
 
 if $clean_fields; then
     fields_bkp_file=$DEFDIR/Fields.def.$(date +%s)

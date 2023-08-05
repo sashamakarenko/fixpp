@@ -52,7 +52,7 @@
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [
-                { "name": "LD_LIBRARY_PATH", "value": "${workspaceFolder}/build/lib/debug" }
+                { "name": "LD_LIBRARY_PATH", "value": "${workspaceFolder}/build/lib/debug:${env:LD_LIBRARY_PATH}" }
             ],
             "externalConsole": false,
             "MIMode": "gdb",

@@ -1,4 +1,5 @@
 - `fix44` all committed complete lib with all FIX4.4 messages
+- `fix50` project with FIX5.0SP2 messages
 - `fixdump` tool to decode FIX messages
 - `odd` lib with unit tests with irregular messages
 - `tiny` venue specific example with unit tests

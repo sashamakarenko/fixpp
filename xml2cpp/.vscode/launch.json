@@ -7,7 +7,15 @@
             "request": "launch",
             "mainClass": "phix.xml2cpp.Main",
             "projectName": "xml2cpp",
-            "args": [ "spec/FIX42.xml", "target" ]
+            "args": [ "../spec/FIX44.xml", "../examples/spec/fix44" ]
+        },
+        {
+            "type": "java",
+            "name": "FIX50",
+            "request": "launch",
+            "mainClass": "phix.xml2cpp.Main",
+            "projectName": "xml2cpp",
+            "args": [ "../spec/FIX50SP2.xml", "../spec/FIXT11.xml", "../examples/spec/fix50" ]
         }
     ]
 }

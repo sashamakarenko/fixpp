@@ -2388,6 +2388,10 @@ const CrossPrioritizationEnums::ItemType CrossPrioritizationEnums::BUY_SIDE_IS_P
 const CrossPrioritizationEnums::ItemType CrossPrioritizationEnums::SELL_SIDE_IS_PRIORITIZED( "SELL_SIDE_IS_PRIORITIZED", 2 );
 
 
+const NoSidesEnums::ItemType NoSidesEnums::ONE_SIDE( "ONE_SIDE", 1 );
+const NoSidesEnums::ItemType NoSidesEnums::BOTH_SIDES( "BOTH_SIDES", 2 );
+
+
 const SecurityListRequestTypeEnums::ItemType SecurityListRequestTypeEnums::SYMBOL( "SYMBOL", 0 );
 const SecurityListRequestTypeEnums::ItemType SecurityListRequestTypeEnums::SECURITYTYPE_AND_OR_CFICODE( "SECURITYTYPE_AND_OR_CFICODE", 1 );
 const SecurityListRequestTypeEnums::ItemType SecurityListRequestTypeEnums::PRODUCT( "PRODUCT", 2 );
@@ -6458,6 +6462,17 @@ const FieldEnumBase * CrossPrioritizationEnums::items[] = {
 nullptr };
 
 
+const char * NoSidesEnums::getFieldName() const { return FixNoSides; }
+const FieldEnumBase * NoSidesEnums::getEnumByRaw( raw_enum_t raw ) const { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : it->second; }
+const FieldEnumMap & NoSidesEnums::getEnumMapByRaw() const { return NoSidesEnums::itemByRaw; }
+const FieldEnumBase * const * const NoSidesEnums::getEnums() const { return items; }
+const NoSidesEnums NoSidesEnums::instance;
+const FieldEnumBase * NoSidesEnums::items[] = {
+& NoSidesEnums::ONE_SIDE,
+& NoSidesEnums::BOTH_SIDES,
+nullptr };
+
+
 const char * SecurityListRequestTypeEnums::getFieldName() const { return FixSecurityListRequestType; }
 const FieldEnumBase * SecurityListRequestTypeEnums::getEnumByRaw( raw_enum_t raw ) const { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : it->second; }
 const FieldEnumMap & SecurityListRequestTypeEnums::getEnumMapByRaw() const { return SecurityListRequestTypeEnums::itemByRaw; }
@@ -9539,6 +9554,11 @@ const FieldEnumMap CrossPrioritizationEnums::itemByRaw = {
 { CrossPrioritizationEnums::NONE.raw, & CrossPrioritizationEnums::NONE },
 { CrossPrioritizationEnums::BUY_SIDE_IS_PRIORITIZED.raw, & CrossPrioritizationEnums::BUY_SIDE_IS_PRIORITIZED },
 { CrossPrioritizationEnums::SELL_SIDE_IS_PRIORITIZED.raw, & CrossPrioritizationEnums::SELL_SIDE_IS_PRIORITIZED },
+};
+
+const FieldEnumMap NoSidesEnums::itemByRaw = {
+{ NoSidesEnums::ONE_SIDE.raw, & NoSidesEnums::ONE_SIDE },
+{ NoSidesEnums::BOTH_SIDES.raw, & NoSidesEnums::BOTH_SIDES },
 };
 
 const FieldEnumMap SecurityListRequestTypeEnums::itemByRaw = {
@@ -13551,6 +13571,9 @@ int initStatics()
 
   FieldCrossPrioritization::enumItems = CrossPrioritizationEnums::items;
   enumsByRaw.emplace( FieldCrossPrioritization::RAW, & CrossPrioritizationEnums::instance );
+
+  FieldNoSides::enumItems = NoSidesEnums::items;
+  enumsByRaw.emplace( FieldNoSides::RAW, & NoSidesEnums::instance );
 
   FieldSecurityListRequestType::enumItems = SecurityListRequestTypeEnums::items;
   enumsByRaw.emplace( FieldSecurityListRequestType::RAW, & SecurityListRequestTypeEnums::instance );

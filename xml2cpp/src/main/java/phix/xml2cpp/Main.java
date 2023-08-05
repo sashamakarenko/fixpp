@@ -3,6 +3,7 @@ package phix.xml2cpp;
 import java.io.File;
 import java.io.FileReader;
 import java.io.PrintWriter;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
@@ -41,6 +42,7 @@ public class Main
     static LinkedHashMap<String,List<Object>>  expGroups     = new LinkedHashMap<>();
     static HashSet<String>                     writtenGroups = new HashSet<>();
 
+    // ex: 
     public static void main( String args[] )
     {
         try
@@ -52,10 +54,7 @@ public class Main
             spf.setFeature("http://xml.org/sax/features/validation", false );
             XMLReader xmlReader = spf.newSAXParser().getXMLReader();
             SAXSource source = new SAXSource( xmlReader, new InputSource( new FileReader( args[0] ) ) );
-            
             Fix root = (Fix)unmarshaller.unmarshal( source );
-            
-            
             for( Object child : root.getHeaderOrMessagesOrTrailerOrComponentsOrFields() )
             {
                 if( child instanceof Fields )
@@ -76,7 +75,52 @@ public class Main
                 }
             }
 
-            File dir = new File( args[1] );
+            String destinantionDir = args[1];
+            if( args.length == 3 ) // load FIXT11.xml
+            {
+                destinantionDir = args[2];
+                source = new SAXSource( xmlReader, new InputSource( new FileReader( args[1] ) ) );
+                root = (Fix)unmarshaller.unmarshal( source );
+                for( Object child : root.getHeaderOrMessagesOrTrailerOrComponentsOrFields() )
+                {
+                    if( child instanceof Fields )
+                    {
+                        // fields = ((Fields)child).getField();
+                    }
+                    if( child instanceof Components )
+                    {
+                        // comps = ((Components)child).getComponent();
+                    }
+                    int pos = 0;
+                    if( child instanceof Messages )
+                    {
+                        for( Message mnew : ((Messages)child).getMessage() )
+                        {
+                            Message mToAdd = mnew;
+                            for( Message mold : messages )
+                            {
+                                if( mold.getName().equals( mnew.getName() ) )
+                                {
+                                    mToAdd = null;
+                                    break;
+                                }
+                            }
+                            if( mToAdd != null )
+                            {
+                                System.out.println( "Adding message " + mToAdd.getName() );
+                                messages.add( pos++, mToAdd );
+                            }
+                        }
+                    }
+                    if( child instanceof Header )
+                    {
+                        expMessages.put( "Header", ((Header)child).getFieldOrGroup() );
+                    }
+                }
+
+            }
+
+            File dir = new File( destinantionDir );
             dir.mkdirs();
 
             // ----------------------------------------------------------------- fields
@@ -95,6 +139,15 @@ public class Main
 
             for( Field f : fields )
             {
+                String fname = f.getName();
+                for( Field other : fields )
+                {
+                    if( other != f && other.getName().equals( fname ) )
+                    {
+                        System.err.println( "Ignoring duplicated field " + fname );
+                        continue;
+                    }
+                }
                 List<Value> values = f.getValue();
                 if( values == null || values.isEmpty() ) continue;
 
@@ -102,7 +155,7 @@ public class Main
                 for( Value v : values )
                 {
                     String value = v.getEnum();
-                    if( f.getName().equals( "MsgType" ) )
+                    if( fname.equals( "MsgType" ) )
                     {
                         msgTypeById.put( value, v.getDescription() );
                     }
@@ -202,7 +255,7 @@ public class Main
                 }
                 else if( child instanceof Group )
                 {
-                    firstName = ((Group)child).getName().substring(2);
+                    firstName = ((Group)child).getName(); //.substring(2);
                 }
                 groupDef.printf( "\nFIX_MSG_GROUP_BEGIN( %s, %s )\n", name.substring(2), firstName );
             }
