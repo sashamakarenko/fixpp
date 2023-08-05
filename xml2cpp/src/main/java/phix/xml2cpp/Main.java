@@ -42,7 +42,10 @@ public class Main
     static LinkedHashMap<String,List<Object>>  expGroups     = new LinkedHashMap<>();
     static HashSet<String>                     writtenGroups = new HashSet<>();
 
-    // ex: 
+    /*
+     2 args: ../spec/FIX44.xml ../examples/spec/fix44
+     3 args: ../spec/FIX50SP2.xml ../spec/FIXT11.xml ../examples/spec/fix50
+     */
     public static void main( String args[] )
     {
         try
@@ -83,14 +86,17 @@ public class Main
                 root = (Fix)unmarshaller.unmarshal( source );
                 for( Object child : root.getHeaderOrMessagesOrTrailerOrComponentsOrFields() )
                 {
+                    /* We add only messages from FIXT11.xml since all fields and components
+                       are suposed to be in  FIX5*.xml.
                     if( child instanceof Fields )
                     {
-                        // fields = ((Fields)child).getField();
+                        extraFields = ((Fields)child).getField();
                     }
                     if( child instanceof Components )
                     {
-                        // comps = ((Components)child).getComponent();
+                        extraComps = ((Components)child).getComponent();
                     }
+                    */
                     int pos = 0;
                     if( child instanceof Messages )
                     {
@@ -126,11 +132,11 @@ public class Main
             // ----------------------------------------------------------------- fields
             {
             System.out.println( "Writing fields" );
-            
+
             PrintWriter fieldDef = new PrintWriter( new File( dir, "Fields.def" ) );
-            
+
             fieldDef.printf( "FIX_FIELD_BEGIN_STRING( FIX.%s.%s )\n\n", root.getMajor(), root.getMinor() );
-            
+
             for( Field f : fields )
             {
                 fieldByName.put( f.getName(), f );
@@ -159,8 +165,8 @@ public class Main
                     {
                         msgTypeById.put( value, v.getDescription() );
                     }
-                    fieldDef.printf( "FIX_ENUM_DECL( %s, %s, %s )\n", f.getName(), 
-                            ( Character.isDigit( v.getDescription().charAt(0) ) ? "_" : "" ) + v.getDescription(), 
+                    fieldDef.printf( "FIX_ENUM_DECL( %s, %s, %s )\n", f.getName(),
+                            ( Character.isDigit( v.getDescription().charAt(0) ) ? "_" : "" ) + v.getDescription(),
                             valueToString(value, f.getType() ) );
                 }
                 fieldDef.printf( "FIX_ENUM_END\n" );
@@ -174,20 +180,20 @@ public class Main
             {
                 compByName.put( c.getName(), c );
             }
-            
+
             for( Component c : comps )
             {
                 expandComponent( c.getName() );
             }
-            
+
             // ----------------------------------------------------------------- messages
             {
             System.out.println( "Writing messages" );
             PrintWriter msgDef = new PrintWriter( new File( dir, "Messages.def" ) );
             writeMessage( msgDef, "Header", "_", expMessages.get( "Header" ) );
-                
+
             for( Message m : messages )
-            {                
+            {
                 LinkedList<Object> children = new LinkedList<>();
                 for( Object child : m.getFieldOrComponentOrGroup() )
                 {
@@ -204,7 +210,7 @@ public class Main
                         children.addAll( expComps.get( ((Component)child).getName() ) );
                     }
                 }
-                
+
                 writeMessage( msgDef, m.getName(), msgTypeById.get( m.getMsgtype() ), children );
             }
             msgDef.close();
@@ -242,7 +248,7 @@ public class Main
                 writeGroup( groupDef, ((Group)child).getName() );
             }
         }
-        
+
         for( Object child : expGroups.get( name ) )
         {
             if( first == null )
@@ -273,7 +279,7 @@ public class Main
         }
         groupDef.printf( "FIX_MSG_GROUP_END\n" );
     }
-    
+
     static void writeMessage( PrintWriter msgDef, String name, String type, List<Object> children )
     {
         if( type == null )
@@ -301,7 +307,7 @@ public class Main
     {
         List<Object> expanded = expComps.get( name );
         if( expanded != null ) return expanded;
-        
+
         expanded = new LinkedList<>();
         expComps.put( name, expanded );
         Component comp = compByName.get(name);
@@ -329,7 +335,7 @@ public class Main
     {
         List<Object> expanded = expGroups.get( name );
         if( expanded != null ) return expanded;
-        
+
         expanded = new LinkedList<>();
         expGroups.put( name, expanded );
         Group group = groupByName.get(name);
@@ -351,7 +357,7 @@ public class Main
         }
         return expanded;
     }
-    
+
     static String valueToString( String value, String type )
     {
         switch( type )
@@ -359,11 +365,11 @@ public class Main
             case "CHAR":
             case "BOOLEAN":
                 return "'" + value + "'";
-                
+
             case "INT":
             case "NUMINGROUP":
                 return value;
-            
+
             default:
                 return "SOHSTR(" + value + ")";
         }
