@@ -40,13 +40,13 @@ offset_t Message##NAME::scan( const char * fix, unsigned len ){\
 
 #define FIX_MSG_FIELD(NAME) \
 <n1>  case Field##NAME::RAW :\
-<n2>    PRINT_FIELD(NAME) \
+<n2>    FIXPP_PRINT_FIELD(NAME) \
 <n2>    field##NAME.offset = pos;\
 <n2>    break;\
 
 #define FIX_MSG_GROUP(NAME) \
 <n1>  case FieldNo##NAME::RAW :\
-<n2>    PRINT_FIELD(No##NAME) \
+<n2>    FIXPP_PRINT_FIELD(No##NAME) \
 <n2>    fieldNo##NAME.offset = pos;\
 <n2>    isGroupStart = true;\
 <n2>    gotoNextField( fix, pos );\
@@ -55,12 +55,12 @@ offset_t Message##NAME::scan( const char * fix, unsigned len ){\
 
 #define FIX_MSG_END \
 <n1>  case FieldCheckSum::RAW :\
-<n2>    PRINT_FIELD(CheckSum) \
+<n2>    FIXPP_PRINT_FIELD(CheckSum) \
 <n2>    fieldCheckSum.offset = pos;\
 <n2>    gotoNextField( fix, pos );\
 <n2>    return pos; \
 <nl>\
-<n1>  default: PRINT_UNKNOWN\
+<n1>  default: FIXPP_PRINT_UNKNOWN_FIELD\
 <n2>    return prev;\
 <n1>    }\
 <n1>  if( ! isGroupStart ) gotoNextField( fix, pos );\
@@ -105,7 +105,7 @@ offset_t Message##NAME::skip( const char * fix, unsigned len ) const\
 <n2>    gotoNextField( fix, pos );\
 <n2>    return pos;\
 <nl>\
-<n1>  default: PRINT_UNKNOWN\
+<n1>  default: FIXPP_PRINT_UNKNOWN_FIELD\
 <n2>    return prev;\
 <n1>    }\
 <n1>  if( ! isGroupStart ) gotoNextField( fix, pos );\

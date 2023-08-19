@@ -521,9 +521,9 @@ inline raw_enum_t toRawEnum( char c )
     return (raw_enum_t)c;
 }
 
-inline raw_enum_t toRawEnum( int i )
+inline raw_enum_t toRawEnum( unsigned i )
 {
-    unsigned u = (unsigned)i;
+    unsigned u = i;
     if( tag_key_width(u) == 1 )
     {
         return u + raw_enum_t('0');
@@ -531,6 +531,10 @@ inline raw_enum_t toRawEnum( int i )
     return ( ( raw_enum_t('0') + u % 10U ) << ( 8 * ( tag_key_width(u) - 1 ) ) ) + toRawEnum( i/10 );
 }
 
+inline raw_enum_t toRawEnum( int i )
+{
+    return toRawEnum( (unsigned)i );
+}
 
 inline raw_enum_t toRawEnum( const char * str )
 {
@@ -767,6 +771,7 @@ typedef double     FLOAT;
 typedef int        INT;
 typedef unsigned   LENGTH;
 typedef sohstr     LOCALMKTDATE;
+typedef sohstr     LOCALMKTTIME;
 typedef sohstr     DAYOFMONTH;
 typedef sohstr     MONTHYEAR;
 typedef sohstr     MULTIPLEVALUESTRING;
@@ -789,6 +794,10 @@ typedef sohstr     TZTIMEONLY;
 typedef sohstr     LANGUAGE;
 typedef sohstr     TZTIMESTAMP;
 typedef sohstr     XMLDATA;
+typedef sohstr     XID;
+typedef sohstr     XIDREF;
+typedef sohstr     EURIBOR;
+typedef unsigned   TAGNUM;
 
 inline fix44::Quantity operator "" _qty( long double q ){ return fix44::Quantity( (double)q, false ); }
 

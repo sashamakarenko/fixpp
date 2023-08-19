@@ -17,7 +17,7 @@ build/fixgenerated.mk: src/$(PRJ_NAME)/FixApi.h
 	$(V)mkdir -p $(@D)
 	$(V)touch $@
 
-src/$(PRJ_NAME)/FixApi.h: $(wildcard src/spec/*.def)
+src/$(PRJ_NAME)/FixApi.h: $(wildcard src/spec/*.def) $(wildcard ../../src/*.h) $(wildcard ../../src/*.cpp) $(wildcard ../../src/*.pp) ../../generate.sh
 	$(V)../../generate.sh --clean-fields -d $$PWD/src/$(PRJ_NAME) -s $$PWD/src/spec -i $(PRJ_NAME) -n $(PRJ_NAME) -p $$PWD/src/gdb
 
 endif

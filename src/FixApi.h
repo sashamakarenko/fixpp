@@ -521,9 +521,9 @@ inline raw_enum_t toRawEnum( char c )
     return (raw_enum_t)c;
 }
 
-inline raw_enum_t toRawEnum( int i )
+inline raw_enum_t toRawEnum( unsigned i )
 {
-    unsigned u = (unsigned)i;
+    unsigned u = i;
     if( tag_key_width(u) == 1 )
     {
         return u + raw_enum_t('0');
@@ -531,6 +531,10 @@ inline raw_enum_t toRawEnum( int i )
     return ( ( raw_enum_t('0') + u % 10U ) << ( 8 * ( tag_key_width(u) - 1 ) ) ) + toRawEnum( i/10 );
 }
 
+inline raw_enum_t toRawEnum( int i )
+{
+    return toRawEnum( (unsigned)i );
+}
 
 inline raw_enum_t toRawEnum( const char * str )
 {

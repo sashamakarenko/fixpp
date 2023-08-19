@@ -1462,7 +1462,7 @@ typedef Field< FixCrossID, 548, STRING > FieldCrossID;
 typedef Field< FixCrossType, 549, INT > FieldCrossType;
 typedef Field< FixCrossPrioritization, 550, INT > FieldCrossPrioritization;
 typedef Field< FixOrigCrossID, 551, STRING > FieldOrigCrossID;
-typedef Field< FixNoSides, 552, INT > FieldNoSides;
+typedef Field< FixNoSides, 552, NUMINGROUP > FieldNoSides;
 typedef Field< FixUsername, 553, STRING > FieldUsername;
 typedef Field< FixPassword, 554, STRING > FieldPassword;
 typedef Field< FixNoLegs, 555, NUMINGROUP > FieldNoLegs;
@@ -7534,14 +7534,16 @@ void checkEnums();
 
 }  // namespace fix44
 
-#define DEBUG_PARSERx
 
-#ifdef DEBUG_PARSER
-#define PRINT_FIELD(NAME) std::cout << Field##NAME::tagName() << "(" << Field##NAME::tagKey() << ") = " << sohstr( fix+pos ) << std::endl;
-#define PRINT_UNKNOWN std::cout << "- unknown " << tag << " in " << getMessageName() << ":" << pos << " " << sohstr( fix+prev ) << std::endl;
+// Uncomment this to debug parser
+// #define FIXPP_DEBUG_PARSER
+
+#ifdef FIXPP_DEBUG_PARSER
+#define FIXPP_PRINT_FIELD(NAME) std::cout << Field##NAME::tagName() << "(" << Field##NAME::tagKey() << ") = " << sohstr( fix+pos ) << std::endl;
+#define FIXPP_PRINT_UNKNOWN_FIELD std::cout << "- unknown " << tag << " in " << getMessageName() << ":" << pos << " " << sohstr( fix+prev ) << std::endl;
 #else
-#define PRINT_FIELD(NAME)
-#define PRINT_UNKNOWN
+#define FIXPP_PRINT_FIELD(NAME)
+#define FIXPP_PRINT_UNKNOWN_FIELD
 #endif
 
 

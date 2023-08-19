@@ -42,7 +42,7 @@ build/fixgenerated.mk: src/$(PRJ_NAME)/FixApi.h
 
 OUTBOUND_MESAGES=LOGON ORDER_SINGLE
 
-src/$(PRJ_NAME)/FixApi.h: $(wildcard src/spec/*.def)
+src/$(PRJ_NAME)/FixApi.h: $(wildcard src/spec/*.def) $(wildcard ../../src/*.h) $(wildcard ../../src/*.cpp) $(wildcard ../../src/*.pp) ../../generate.sh
 	$(V)../../generate.sh --clean-fields -d $$PWD/src/$(PRJ_NAME) -s $$PWD/src/spec -i $(PRJ_NAME) -n $(PRJ_NAME) -p $$PWD/src/gdb
 	$(V)for mt in _ $(OUTBOUND_MESAGES); do sed "/case-begin-$$mt/,/case-end-$$mt/d" -i src/$(PRJ_NAME)/Messages.cpp; done
 

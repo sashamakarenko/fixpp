@@ -50,7 +50,7 @@ offset_t Group##NAME::scan( Array & arr, const char * fix, unsigned len ){\
 <n1>  gpos = pos - (groupBuf - fix);\
 <n1>  switch( tag ){\
 <n1>  case Field##FIRST_FIELD::RAW :\
-<n2>    PRINT_FIELD(FIRST_FIELD) \
+<n2>    FIXPP_PRINT_FIELD(FIRST_FIELD)\
 <n2>    group = groupCount < arr.size() ? & arr[ groupCount ] : & arr.emplace_back();\
 <n2>    group->field##FIRST_FIELD.offset = pos - prev;\
 <n2>    group->buf = fix+prev;\
@@ -60,13 +60,13 @@ offset_t Group##NAME::scan( Array & arr, const char * fix, unsigned len ){\
 
 #define FIX_MSG_FIELD(NAME) \
 <n1>  case Field##NAME::RAW :\
-<n2>    PRINT_FIELD(NAME) \
+<n2>    FIXPP_PRINT_FIELD(NAME)\
 <n2>    group->field##NAME.offset = gpos;\
 <n2>    break;\
 
 #define FIX_MSG_GROUP(NAME) \
 <n1>  case FieldNo##NAME::RAW :\
-<n2>    PRINT_FIELD(No##NAME) \
+<n2>    FIXPP_PRINT_FIELD(No##NAME)\
 <n2>    group->fieldNo##NAME.offset = gpos;\
 <n2>    isGroupStart = true;\
 <n2>    gotoNextField( fix, pos );\
@@ -74,7 +74,7 @@ offset_t Group##NAME::scan( Array & arr, const char * fix, unsigned len ){\
 <n2>    break;\
 
 #define FIX_MSG_GROUP_END \
-<n1>  default: PRINT_UNKNOWN\
+<n1>  default: FIXPP_PRINT_UNKNOWN_FIELD\
 <n2>    return prev;\
 <n1>    }\
 <n1>  if( ! isGroupStart ) gotoNextField( fix, pos );\
@@ -113,7 +113,7 @@ offset_t Group##NAME::skip( const char * fix, unsigned len ){\
 <n2>    break;\
 
 #define FIX_MSG_GROUP_END \
-<n1>  default: PRINT_UNKNOWN\
+<n1>  default: FIXPP_PRINT_UNKNOWN_FIELD\
 <n2>    return prev;\
 <n1>    }\
 <n1>  if( ! isGroupStart ) gotoNextField( fix, pos );\

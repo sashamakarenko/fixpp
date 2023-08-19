@@ -52,47 +52,47 @@ while( pos < (int)len ) {
    switch( tag ){
 
    case FieldBeginString::RAW :
-     PRINT_FIELD(BeginString) 
+     FIXPP_PRINT_FIELD(BeginString) 
      fieldBeginString.offset = pos;
      break;
 
    case FieldBodyLength::RAW :
-     PRINT_FIELD(BodyLength) 
+     FIXPP_PRINT_FIELD(BodyLength) 
      fieldBodyLength.offset = pos;
      break;
 
    case FieldMsgType::RAW :
-     PRINT_FIELD(MsgType) 
+     FIXPP_PRINT_FIELD(MsgType) 
      fieldMsgType.offset = pos;
      break;
 
    case FieldSenderCompID::RAW :
-     PRINT_FIELD(SenderCompID) 
+     FIXPP_PRINT_FIELD(SenderCompID) 
      fieldSenderCompID.offset = pos;
      break;
 
    case FieldTargetCompID::RAW :
-     PRINT_FIELD(TargetCompID) 
+     FIXPP_PRINT_FIELD(TargetCompID) 
      fieldTargetCompID.offset = pos;
      break;
 
    case FieldMsgSeqNum::RAW :
-     PRINT_FIELD(MsgSeqNum) 
+     FIXPP_PRINT_FIELD(MsgSeqNum) 
      fieldMsgSeqNum.offset = pos;
      break;
 
    case FieldSendingTime::RAW :
-     PRINT_FIELD(SendingTime) 
+     FIXPP_PRINT_FIELD(SendingTime) 
      fieldSendingTime.offset = pos;
      break;
 
    case FieldCheckSum::RAW :
-     PRINT_FIELD(CheckSum) 
+     FIXPP_PRINT_FIELD(CheckSum) 
      fieldCheckSum.offset = pos;
      gotoNextField( fix, pos );
      return pos; 
 
-   default: PRINT_UNKNOWN
+   default: FIXPP_PRINT_UNKNOWN_FIELD
      return prev;
    }
    if( ! isGroupStart ) gotoNextField( fix, pos );
@@ -110,67 +110,67 @@ while( pos < (int)len ) {
    switch( tag ){
 
    case FieldClOrdID::RAW :
-     PRINT_FIELD(ClOrdID) 
+     FIXPP_PRINT_FIELD(ClOrdID) 
      fieldClOrdID.offset = pos;
      break;
 
    case FieldAccount::RAW :
-     PRINT_FIELD(Account) 
+     FIXPP_PRINT_FIELD(Account) 
      fieldAccount.offset = pos;
      break;
 
    case FieldSymbol::RAW :
-     PRINT_FIELD(Symbol) 
+     FIXPP_PRINT_FIELD(Symbol) 
      fieldSymbol.offset = pos;
      break;
 
    case FieldSecurityID::RAW :
-     PRINT_FIELD(SecurityID) 
+     FIXPP_PRINT_FIELD(SecurityID) 
      fieldSecurityID.offset = pos;
      break;
 
    case FieldSide::RAW :
-     PRINT_FIELD(Side) 
+     FIXPP_PRINT_FIELD(Side) 
      fieldSide.offset = pos;
      break;
 
    case FieldQtyType::RAW :
-     PRINT_FIELD(QtyType) 
+     FIXPP_PRINT_FIELD(QtyType) 
      fieldQtyType.offset = pos;
      break;
 
    case FieldOrderQty::RAW :
-     PRINT_FIELD(OrderQty) 
+     FIXPP_PRINT_FIELD(OrderQty) 
      fieldOrderQty.offset = pos;
      break;
 
    case FieldOrdType::RAW :
-     PRINT_FIELD(OrdType) 
+     FIXPP_PRINT_FIELD(OrdType) 
      fieldOrdType.offset = pos;
      break;
 
    case FieldPrice::RAW :
-     PRINT_FIELD(Price) 
+     FIXPP_PRINT_FIELD(Price) 
      fieldPrice.offset = pos;
      break;
 
    case FieldStopPx::RAW :
-     PRINT_FIELD(StopPx) 
+     FIXPP_PRINT_FIELD(StopPx) 
      fieldStopPx.offset = pos;
      break;
 
    case FieldTransactTime::RAW :
-     PRINT_FIELD(TransactTime) 
+     FIXPP_PRINT_FIELD(TransactTime) 
      fieldTransactTime.offset = pos;
      break;
 
    case FieldCheckSum::RAW :
-     PRINT_FIELD(CheckSum) 
+     FIXPP_PRINT_FIELD(CheckSum) 
      fieldCheckSum.offset = pos;
      gotoNextField( fix, pos );
      return pos; 
 
-   default: PRINT_UNKNOWN
+   default: FIXPP_PRINT_UNKNOWN_FIELD
      return prev;
    }
    if( ! isGroupStart ) gotoNextField( fix, pos );
@@ -188,147 +188,147 @@ while( pos < (int)len ) {
    switch( tag ){
 
    case FieldOrderID::RAW :
-     PRINT_FIELD(OrderID) 
+     FIXPP_PRINT_FIELD(OrderID) 
      fieldOrderID.offset = pos;
      break;
 
    case FieldClOrdID::RAW :
-     PRINT_FIELD(ClOrdID) 
+     FIXPP_PRINT_FIELD(ClOrdID) 
      fieldClOrdID.offset = pos;
      break;
 
    case FieldOrigClOrdID::RAW :
-     PRINT_FIELD(OrigClOrdID) 
+     FIXPP_PRINT_FIELD(OrigClOrdID) 
      fieldOrigClOrdID.offset = pos;
      break;
 
    case FieldExecID::RAW :
-     PRINT_FIELD(ExecID) 
+     FIXPP_PRINT_FIELD(ExecID) 
      fieldExecID.offset = pos;
      break;
 
    case FieldExecType::RAW :
-     PRINT_FIELD(ExecType) 
+     FIXPP_PRINT_FIELD(ExecType) 
      fieldExecType.offset = pos;
      break;
 
    case FieldOrdStatus::RAW :
-     PRINT_FIELD(OrdStatus) 
+     FIXPP_PRINT_FIELD(OrdStatus) 
      fieldOrdStatus.offset = pos;
      break;
 
    case FieldOrdRejReason::RAW :
-     PRINT_FIELD(OrdRejReason) 
+     FIXPP_PRINT_FIELD(OrdRejReason) 
      fieldOrdRejReason.offset = pos;
      break;
 
    case FieldAccount::RAW :
-     PRINT_FIELD(Account) 
+     FIXPP_PRINT_FIELD(Account) 
      fieldAccount.offset = pos;
      break;
 
    case FieldSymbol::RAW :
-     PRINT_FIELD(Symbol) 
+     FIXPP_PRINT_FIELD(Symbol) 
      fieldSymbol.offset = pos;
      break;
 
    case FieldSecurityID::RAW :
-     PRINT_FIELD(SecurityID) 
+     FIXPP_PRINT_FIELD(SecurityID) 
      fieldSecurityID.offset = pos;
      break;
 
    case FieldSecurityType::RAW :
-     PRINT_FIELD(SecurityType) 
+     FIXPP_PRINT_FIELD(SecurityType) 
      fieldSecurityType.offset = pos;
      break;
 
    case FieldText::RAW :
-     PRINT_FIELD(Text) 
+     FIXPP_PRINT_FIELD(Text) 
      fieldText.offset = pos;
      break;
 
    case FieldProduct::RAW :
-     PRINT_FIELD(Product) 
+     FIXPP_PRINT_FIELD(Product) 
      fieldProduct.offset = pos;
      break;
 
    case FieldSide::RAW :
-     PRINT_FIELD(Side) 
+     FIXPP_PRINT_FIELD(Side) 
      fieldSide.offset = pos;
      break;
 
    case FieldQtyType::RAW :
-     PRINT_FIELD(QtyType) 
+     FIXPP_PRINT_FIELD(QtyType) 
      fieldQtyType.offset = pos;
      break;
 
    case FieldOrderQty::RAW :
-     PRINT_FIELD(OrderQty) 
+     FIXPP_PRINT_FIELD(OrderQty) 
      fieldOrderQty.offset = pos;
      break;
 
    case FieldOrdType::RAW :
-     PRINT_FIELD(OrdType) 
+     FIXPP_PRINT_FIELD(OrdType) 
      fieldOrdType.offset = pos;
      break;
 
    case FieldPriceType::RAW :
-     PRINT_FIELD(PriceType) 
+     FIXPP_PRINT_FIELD(PriceType) 
      fieldPriceType.offset = pos;
      break;
 
    case FieldPrice::RAW :
-     PRINT_FIELD(Price) 
+     FIXPP_PRINT_FIELD(Price) 
      fieldPrice.offset = pos;
      break;
 
    case FieldStopPx::RAW :
-     PRINT_FIELD(StopPx) 
+     FIXPP_PRINT_FIELD(StopPx) 
      fieldStopPx.offset = pos;
      break;
 
    case FieldCurrency::RAW :
-     PRINT_FIELD(Currency) 
+     FIXPP_PRINT_FIELD(Currency) 
      fieldCurrency.offset = pos;
      break;
 
    case FieldTimeInForce::RAW :
-     PRINT_FIELD(TimeInForce) 
+     FIXPP_PRINT_FIELD(TimeInForce) 
      fieldTimeInForce.offset = pos;
      break;
 
    case FieldExecInst::RAW :
-     PRINT_FIELD(ExecInst) 
+     FIXPP_PRINT_FIELD(ExecInst) 
      fieldExecInst.offset = pos;
      break;
 
    case FieldLastQty::RAW :
-     PRINT_FIELD(LastQty) 
+     FIXPP_PRINT_FIELD(LastQty) 
      fieldLastQty.offset = pos;
      break;
 
    case FieldLastPx::RAW :
-     PRINT_FIELD(LastPx) 
+     FIXPP_PRINT_FIELD(LastPx) 
      fieldLastPx.offset = pos;
      break;
 
    case FieldLeavesQty::RAW :
-     PRINT_FIELD(LeavesQty) 
+     FIXPP_PRINT_FIELD(LeavesQty) 
      fieldLeavesQty.offset = pos;
      break;
 
    case FieldAvgPx::RAW :
-     PRINT_FIELD(AvgPx) 
+     FIXPP_PRINT_FIELD(AvgPx) 
      fieldAvgPx.offset = pos;
      break;
 
    case FieldCumQty::RAW :
-     PRINT_FIELD(CumQty) 
+     FIXPP_PRINT_FIELD(CumQty) 
      fieldCumQty.offset = pos;
      break;
 
    case FieldNoLegs::RAW :
-     PRINT_FIELD(NoLegs) 
+     FIXPP_PRINT_FIELD(NoLegs) 
      fieldNoLegs.offset = pos;
      isGroupStart = true;
      gotoNextField( fix, pos );
@@ -336,12 +336,12 @@ while( pos < (int)len ) {
      break;
 
    case FieldCheckSum::RAW :
-     PRINT_FIELD(CheckSum) 
+     FIXPP_PRINT_FIELD(CheckSum) 
      fieldCheckSum.offset = pos;
      gotoNextField( fix, pos );
      return pos; 
 
-   default: PRINT_UNKNOWN
+   default: FIXPP_PRINT_UNKNOWN_FIELD
      return prev;
    }
    if( ! isGroupStart ) gotoNextField( fix, pos );
@@ -387,7 +387,7 @@ while( pos < (int)len ) {
      gotoNextField( fix, pos );
      return pos;
 
-   default: PRINT_UNKNOWN
+   default: FIXPP_PRINT_UNKNOWN_FIELD
      return prev;
    }
    if( ! isGroupStart ) gotoNextField( fix, pos );
@@ -442,7 +442,7 @@ while( pos < (int)len ) {
      gotoNextField( fix, pos );
      return pos;
 
-   default: PRINT_UNKNOWN
+   default: FIXPP_PRINT_UNKNOWN_FIELD
      return prev;
    }
    if( ! isGroupStart ) gotoNextField( fix, pos );
@@ -554,7 +554,7 @@ while( pos < (int)len ) {
      gotoNextField( fix, pos );
      return pos;
 
-   default: PRINT_UNKNOWN
+   default: FIXPP_PRINT_UNKNOWN_FIELD
      return prev;
    }
    if( ! isGroupStart ) gotoNextField( fix, pos );

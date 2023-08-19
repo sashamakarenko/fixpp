@@ -68,7 +68,7 @@ offset_t GroupLegStipulations::scan( Array & arr, const char * fix, unsigned len
    gpos = pos - (groupBuf - fix);
    switch( tag ){
    case FieldLegStipulationType::RAW :
-     PRINT_FIELD(LegStipulationType) 
+     FIXPP_PRINT_FIELD(LegStipulationType)
      group = groupCount < arr.size() ? & arr[ groupCount ] : & arr.emplace_back();
      group->fieldLegStipulationType.offset = pos - prev;
      group->buf = fix+prev;
@@ -77,11 +77,11 @@ offset_t GroupLegStipulations::scan( Array & arr, const char * fix, unsigned len
      break;
 
    case FieldLegStipulationValue::RAW :
-     PRINT_FIELD(LegStipulationValue) 
+     FIXPP_PRINT_FIELD(LegStipulationValue)
      group->fieldLegStipulationValue.offset = gpos;
      break;
 
-   default: PRINT_UNKNOWN
+   default: FIXPP_PRINT_UNKNOWN_FIELD
      return prev;
    }
    if( ! isGroupStart ) gotoNextField( fix, pos );
@@ -101,7 +101,7 @@ offset_t GroupNestedPartySubIDs::scan( Array & arr, const char * fix, unsigned l
    gpos = pos - (groupBuf - fix);
    switch( tag ){
    case FieldNestedPartySubID::RAW :
-     PRINT_FIELD(NestedPartySubID) 
+     FIXPP_PRINT_FIELD(NestedPartySubID)
      group = groupCount < arr.size() ? & arr[ groupCount ] : & arr.emplace_back();
      group->fieldNestedPartySubID.offset = pos - prev;
      group->buf = fix+prev;
@@ -110,11 +110,11 @@ offset_t GroupNestedPartySubIDs::scan( Array & arr, const char * fix, unsigned l
      break;
 
    case FieldNestedPartySubIDType::RAW :
-     PRINT_FIELD(NestedPartySubIDType) 
+     FIXPP_PRINT_FIELD(NestedPartySubIDType)
      group->fieldNestedPartySubIDType.offset = gpos;
      break;
 
-   default: PRINT_UNKNOWN
+   default: FIXPP_PRINT_UNKNOWN_FIELD
      return prev;
    }
    if( ! isGroupStart ) gotoNextField( fix, pos );
@@ -134,7 +134,7 @@ offset_t GroupNestedPartyIDs::scan( Array & arr, const char * fix, unsigned len 
    gpos = pos - (groupBuf - fix);
    switch( tag ){
    case FieldNestedPartyID::RAW :
-     PRINT_FIELD(NestedPartyID) 
+     FIXPP_PRINT_FIELD(NestedPartyID)
      group = groupCount < arr.size() ? & arr[ groupCount ] : & arr.emplace_back();
      group->fieldNestedPartyID.offset = pos - prev;
      group->buf = fix+prev;
@@ -143,24 +143,24 @@ offset_t GroupNestedPartyIDs::scan( Array & arr, const char * fix, unsigned len 
      break;
 
    case FieldNestedPartyIDSource::RAW :
-     PRINT_FIELD(NestedPartyIDSource) 
+     FIXPP_PRINT_FIELD(NestedPartyIDSource)
      group->fieldNestedPartyIDSource.offset = gpos;
      break;
 
    case FieldNestedPartyRole::RAW :
-     PRINT_FIELD(NestedPartyRole) 
+     FIXPP_PRINT_FIELD(NestedPartyRole)
      group->fieldNestedPartyRole.offset = gpos;
      break;
 
    case FieldNoNestedPartySubIDs::RAW :
-     PRINT_FIELD(NoNestedPartySubIDs) 
+     FIXPP_PRINT_FIELD(NoNestedPartySubIDs)
      group->fieldNoNestedPartySubIDs.offset = gpos;
      isGroupStart = true;
      gotoNextField( fix, pos );
      pos += GroupNestedPartySubIDs::scan( group->groupsNestedPartySubIDs, fix+pos, len - pos );
      break;
 
-   default: PRINT_UNKNOWN
+   default: FIXPP_PRINT_UNKNOWN_FIELD
      return prev;
    }
    if( ! isGroupStart ) gotoNextField( fix, pos );
@@ -180,7 +180,7 @@ offset_t GroupLegs::scan( Array & arr, const char * fix, unsigned len ){
    gpos = pos - (groupBuf - fix);
    switch( tag ){
    case FieldLegSymbol::RAW :
-     PRINT_FIELD(LegSymbol) 
+     FIXPP_PRINT_FIELD(LegSymbol)
      group = groupCount < arr.size() ? & arr[ groupCount ] : & arr.emplace_back();
      group->fieldLegSymbol.offset = pos - prev;
      group->buf = fix+prev;
@@ -189,17 +189,17 @@ offset_t GroupLegs::scan( Array & arr, const char * fix, unsigned len ){
      break;
 
    case FieldLegSide::RAW :
-     PRINT_FIELD(LegSide) 
+     FIXPP_PRINT_FIELD(LegSide)
      group->fieldLegSide.offset = gpos;
      break;
 
    case FieldLegQty::RAW :
-     PRINT_FIELD(LegQty) 
+     FIXPP_PRINT_FIELD(LegQty)
      group->fieldLegQty.offset = gpos;
      break;
 
    case FieldNoLegStipulations::RAW :
-     PRINT_FIELD(NoLegStipulations) 
+     FIXPP_PRINT_FIELD(NoLegStipulations)
      group->fieldNoLegStipulations.offset = gpos;
      isGroupStart = true;
      gotoNextField( fix, pos );
@@ -207,12 +207,12 @@ offset_t GroupLegs::scan( Array & arr, const char * fix, unsigned len ){
      break;
 
    case FieldLegPositionEffect::RAW :
-     PRINT_FIELD(LegPositionEffect) 
+     FIXPP_PRINT_FIELD(LegPositionEffect)
      group->fieldLegPositionEffect.offset = gpos;
      break;
 
    case FieldNoNestedPartyIDs::RAW :
-     PRINT_FIELD(NoNestedPartyIDs) 
+     FIXPP_PRINT_FIELD(NoNestedPartyIDs)
      group->fieldNoNestedPartyIDs.offset = gpos;
      isGroupStart = true;
      gotoNextField( fix, pos );
@@ -220,21 +220,21 @@ offset_t GroupLegs::scan( Array & arr, const char * fix, unsigned len ){
      break;
 
    case FieldLegRefID::RAW :
-     PRINT_FIELD(LegRefID) 
+     FIXPP_PRINT_FIELD(LegRefID)
      group->fieldLegRefID.offset = gpos;
      break;
 
    case FieldLegPrice::RAW :
-     PRINT_FIELD(LegPrice) 
+     FIXPP_PRINT_FIELD(LegPrice)
      group->fieldLegPrice.offset = gpos;
      break;
 
    case FieldLegLastPx::RAW :
-     PRINT_FIELD(LegLastPx) 
+     FIXPP_PRINT_FIELD(LegLastPx)
      group->fieldLegLastPx.offset = gpos;
      break;
 
-   default: PRINT_UNKNOWN
+   default: FIXPP_PRINT_UNKNOWN_FIELD
      return prev;
    }
    if( ! isGroupStart ) gotoNextField( fix, pos );
@@ -257,7 +257,7 @@ offset_t GroupLegStipulations::skip( const char * fix, unsigned len ){
    case FieldLegStipulationValue::RAW :
      break;
 
-   default: PRINT_UNKNOWN
+   default: FIXPP_PRINT_UNKNOWN_FIELD
      return prev;
    }
    if( ! isGroupStart ) gotoNextField( fix, pos );
@@ -278,7 +278,7 @@ offset_t GroupNestedPartySubIDs::skip( const char * fix, unsigned len ){
    case FieldNestedPartySubIDType::RAW :
      break;
 
-   default: PRINT_UNKNOWN
+   default: FIXPP_PRINT_UNKNOWN_FIELD
      return prev;
    }
    if( ! isGroupStart ) gotoNextField( fix, pos );
@@ -308,7 +308,7 @@ offset_t GroupNestedPartyIDs::skip( const char * fix, unsigned len ){
      pos += GroupNestedPartySubIDs::skip( fix+pos, len - pos );
      break;
 
-   default: PRINT_UNKNOWN
+   default: FIXPP_PRINT_UNKNOWN_FIELD
      return prev;
    }
    if( ! isGroupStart ) gotoNextField( fix, pos );
@@ -356,7 +356,7 @@ offset_t GroupLegs::skip( const char * fix, unsigned len ){
    case FieldLegLastPx::RAW :
      break;
 
-   default: PRINT_UNKNOWN
+   default: FIXPP_PRINT_UNKNOWN_FIELD
      return prev;
    }
    if( ! isGroupStart ) gotoNextField( fix, pos );
