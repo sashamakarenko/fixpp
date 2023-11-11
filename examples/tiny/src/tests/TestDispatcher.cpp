@@ -36,15 +36,15 @@ int main( int args, const char ** argv )
     }
     
     std::istringstream source( buffer ); // could be file or socket
-    constexpr unsigned begStrAndBodyLenBytes = 20; // reasonably large initial number of bytes to read
+    constexpr unsigned begStrAndBodyLenBytes = MESSAGE_BEGIN_MIN_BYTES_TO_READ; // reasonably large initial number of bytes to read
     std::vector<char> recvbuffer( 200 );
     while( source.read( &recvbuffer[0], begStrAndBodyLenBytes ) )
     {
         unsigned msgTypeOffset;
-        len = parseMessageLength( &recvbuffer[0], msgTypeOffset ) + 7; // 7 = chsum length
+        len = parseMessageLength( &recvbuffer[0], msgTypeOffset ) + CHECKSUM_FIELD_LENGTH;
         if( recvbuffer.size() < len + msgTypeOffset )
         {
-            recvbuffer.insert( recvbuffer.end(), len + msgTypeOffset - recvbuffer.size() + 100 , 0 );
+            recvbuffer.insert( recvbuffer.end(), len + msgTypeOffset - recvbuffer.size() + 100, 0 );
         }
         // read the remaining bytes
         if( source.read( & recvbuffer[begStrAndBodyLenBytes], len - begStrAndBodyLenBytes + msgTypeOffset ) )

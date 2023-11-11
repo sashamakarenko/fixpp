@@ -801,6 +801,9 @@ typedef unsigned   TAGNUM;
 
 inline fix44::Quantity operator "" _qty( long double q ){ return fix44::Quantity( (double)q, false ); }
 
+constexpr unsigned MESSAGE_BEGIN_MIN_BYTES_TO_READ = 20;
+constexpr unsigned CHECKSUM_FIELD_LENGTH = 7;
+
 } // namespace fix44
 
 

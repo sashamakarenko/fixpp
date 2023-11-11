@@ -25,6 +25,7 @@ else
     DISABLED_TESTS = Perf SenderPerf SendForexPerf
 endif
 
+TEST_DEFINES = -DEXIT_ON_ERROR
 # CPP_EXTRA_FLAGS = -flto
 
 -include ../../../makefile/Makefile
