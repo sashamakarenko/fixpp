@@ -208,7 +208,7 @@ echo "  processing include .hxx and .cxx"
 (
     cd ${DSTDIR}
     for i in *.hxx *.cxx; do
-        for f in $(grep -l "/$i>" *); do
+        for f in $(grep -l "/$i>" *.cpp *.h); do
             echo "  injecting $i into $f"
             sed -n "1,/\/$i\>/p" $f | sed '$d' > $f.tmp
             echo "// start of $i" >> $f.tmp

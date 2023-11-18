@@ -1,6 +1,7 @@
-#include <DSTINCDIR/Messages.h>
-
+#include <vector>
 #include <set>
+
+#include <DSTINCDIR/Messages.h>
 
 namespace DSTNAMESPACE
 {

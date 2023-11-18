@@ -1,5 +1,3 @@
-#include <vector>
-
 #include <DSTINCDIR/Groups.h>
 
 

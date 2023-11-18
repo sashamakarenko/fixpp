@@ -1,6 +1,7 @@
-#include <fix44/Messages.h>
-
+#include <vector>
 #include <set>
+
+#include <fix44/Messages.h>
 
 namespace fix44
 {

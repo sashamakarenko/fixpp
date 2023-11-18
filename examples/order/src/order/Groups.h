@@ -2,6 +2,8 @@
 #ifndef order_GROUPS_H
 #define order_GROUPS_H
 
+#include <vector>
+
 #include <order/Fields.h>
 
 namespace order

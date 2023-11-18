@@ -1,5 +1,3 @@
-#include <vector>
-
 #include <order/Groups.h>
 
 

@@ -1,6 +1,7 @@
-#include <order/Messages.h>
-
+#include <vector>
 #include <set>
+
+#include <order/Messages.h>
 
 namespace order
 {

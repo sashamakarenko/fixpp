@@ -2,6 +2,8 @@
 #ifndef DSTHEADERGUARD_GROUPS_H
 #define DSTHEADERGUARD_GROUPS_H
 
+#include <vector>
+
 #include <DSTINCDIR/Fields.h>
 
 namespace DSTNAMESPACE

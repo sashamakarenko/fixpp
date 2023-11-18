@@ -1,5 +1,3 @@
-#include <vector>
-
 #include <fix44/Groups.h>
 
 

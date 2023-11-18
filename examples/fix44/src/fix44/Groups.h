@@ -2,6 +2,8 @@
 #ifndef fix44_GROUPS_H
 #define fix44_GROUPS_H
 
+#include <vector>
+
 #include <fix44/Fields.h>
 
 namespace fix44

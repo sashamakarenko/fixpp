@@ -3,7 +3,7 @@
 #define DSTHEADERGUARD_MESSAGES_H
 
 #include <DSTINCDIR/Fields.h>
-
+#include <DSTINCDIR/Groups.h>
 #include <vector>
 
 namespace DSTNAMESPACE
@@ -11,7 +11,6 @@ namespace DSTNAMESPACE
 
 GetDepthMethod getTagDepthMethodByRawMsgType( raw_enum_t rawMsgType );
 
-#include <DSTINCDIR/Groups.hxx>
 
 #include <DSTINCDIR/Messages.hxx>
 
