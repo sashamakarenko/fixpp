@@ -175,6 +175,14 @@ struct FixBufferStream
         return *this;
     }
 
+    FixBufferStream & pushTag( unsigned tag )
+    {
+        *end++ = FIXPP_SOH;
+        pushValue( tag );
+        *end++ = '=';
+        return *this;
+    }
+
     FixBufferStream & pushValue( const char * src, unsigned len )
     {
         memcpy( end, src, len );
@@ -187,6 +195,15 @@ struct FixBufferStream
         while( *src )
         {
             *end++ = *src++;
+        }
+        return *this;
+    }
+
+    FixBufferStream & pushValue( const sohstr & src )
+    {
+        for( const char * ptr = src.ptr; *ptr != FIXPP_SOH and *ptr; )
+        {
+            *end++ = *ptr++;
         }
         return *this;
     }

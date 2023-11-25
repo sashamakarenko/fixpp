@@ -191,6 +191,15 @@ struct FixBufferStream
         return *this;
     }
 
+    FixBufferStream & pushValue( const sohstr & src )
+    {
+        for( const char * ptr = src.ptr; *ptr != FIXPP_SOH and *ptr; )
+        {
+            *end++ = *ptr++;
+        }
+        return *this;
+    }
+
     FixBufferStream & pushValue( char v )
     {
         *end++ = v;
