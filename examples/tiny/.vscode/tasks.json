@@ -2,6 +2,18 @@
 	"version": "2.0.0",
 	"tasks": [
 		{
+			"label": "TestSafeSender (debug)",
+			"type": "shell",
+			"command": "make test-SafeSender BUILD_MODE=debug",
+			"problemMatcher": [
+				"$gcc"
+			],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			}
+		},
+		{
 			"label": "TestParser (debug)",
 			"type": "shell",
 			"command": "make test-Parser BUILD_MODE=debug",

@@ -199,6 +199,11 @@ struct FixBufferStream
         return *this;
     }
 
+    FixBufferStream & pushValue( const std::string & src )
+    {
+        return pushValue( src.c_str(), src.size() );
+    }
+
     FixBufferStream & pushValue( const sohstr & src )
     {
         for( const char * ptr = src.ptr; *ptr != FIXPP_SOH and *ptr; )
@@ -221,6 +226,13 @@ struct FixBufferStream
         return *this;
     }
 
+    FixBufferStream & pushValue( long unsigned v )
+    {
+        end += uintWidth( v );
+        reverseUIntToString( end, v );
+        return *this;
+    }
+
     FixBufferStream & pushValue( int v )
     {
         unsigned uv = v;
@@ -234,9 +246,13 @@ struct FixBufferStream
         return *this;
     }
 
-    // todo: negatives
     FixBufferStream & pushValue( double v, unsigned precision )
     {
+        if( v < 0 )
+        {
+            *end++ = '-';
+            v = -v;  
+        }
         unsigned i = (unsigned)v;
         end += uintWidth( i );
         reverseUIntToString( end, i );
@@ -428,6 +444,30 @@ struct TimestampKeeper
     Precision secFraction;
 };
 
+// basic types
+template< typename VALUE >
+constexpr unsigned valueMaxLength( const VALUE & v )
+{
+    return 16;
+}
+
+inline unsigned valueMaxLength( const std::string & v )
+{
+    return v.size();
+}
+
+inline unsigned valueMaxLength( const sohstr & v )
+{
+    offset_t pos = 0;
+    gotoNextField( v.ptr, pos );
+    return pos-1;
+}
+
+inline unsigned valueMaxLength( const char * & v )
+{
+    return strlen(v);
+}
+
 /*
 
 buffer   start                msgType                                    sendingTime                  body
@@ -445,6 +485,7 @@ struct ReusableMessageBuilder: FixBufferStream
         start( nullptr ),
         lastSeqnumWidth( 0 ),
         lastBodyLengthWidth( 0 ),
+        bufferGrowChunk( 1024 ),
         header( headerTemplateCapacity, messageType ),
         msgType( messageType )
     {
@@ -491,9 +532,48 @@ struct ReusableMessageBuilder: FixBufferStream
         end = begin + pos;
     }
 
+    // start is not necessary to update here
+    void resizeIfNecessary( unsigned valueLength )
+    {
+        valueLength += 8; // max "|tag=" length ?
+        auto endOffset = end - &buffer[0];
+        if( endOffset + valueLength >= buffer.size() )
+        {
+            auto beginOffset = begin - &buffer[0];
+            buffer.resize( ( 1 + ( endOffset + valueLength ) / bufferGrowChunk ) * bufferGrowChunk );
+            begin = &buffer[0] + beginOffset;
+            end   = &buffer[0] + endOffset;
+        }
+    }
+
+    template< typename FIELD >
+    FixBufferStream & appendSafely( const char * v, unsigned len )
+    {
+        resizeIfNecessary( len );
+        end = insert<FIELD>(end);
+        return pushValue( v, len );
+    }
+
+    template< typename FIELD, typename VALUE >
+    FixBufferStream & appendSafely( const VALUE & v )
+    {
+        resizeIfNecessary( valueMaxLength(v) );
+        end = insert<FIELD>(end);
+        return pushValue( v );
+    }
+
+    template< typename FIELD >
+    FixBufferStream & appendSafely( double v, unsigned precision )
+    {
+        resizeIfNecessary( 16 ); // formatted floating point max length ?
+        end = insert<FIELD>(end);
+        return pushValue( v, precision );
+    }
+
     std::vector<char>             buffer;
     char                        * start;
     unsigned                      lastSeqnumWidth, lastBodyLengthWidth;
+    unsigned                      bufferGrowChunk;
     HeaderTemplate                header;
     TimestampKeeper               sendingTime;
     const std::string             msgType;
