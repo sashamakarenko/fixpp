@@ -34079,6 +34079,7 @@ extern const FixFormatStyle defaultStyle;
 extern const FixFormatStyle defaultVerticalStyle;
 extern const FixFormatStyle ttyStyle;
 extern const FixFormatStyle ttyRgbStyle;
+extern const FixFormatStyle ttyRgbRawStyle;
 extern const FixFormatStyle ttyRgbSingleLineStyle;
 
 const GetDepthMethod autoIndentFields = (GetDepthMethod)(-1);

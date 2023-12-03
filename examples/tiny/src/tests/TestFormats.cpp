@@ -201,6 +201,7 @@ int main( int args, const char ** argv )
     html << fixstr( FIX_BUFFER_MD_FULL_REFRESH, htmlRgbStyle ) << std::endl;
     html << fixstr( FIX_BUFFER_LARGE_EXEC_REPORT, htmlTableRgbStyle ) << std::endl;
     html.close();
+    html << fixstr( FIX_BUFFER_LARGE_EXEC_REPORT, ttyRgbRawStyle ) << std::endl;
 
     return 0;
 }

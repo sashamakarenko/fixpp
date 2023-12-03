@@ -150,6 +150,30 @@ const FixFormatStyle ttyRgbSingleLineStyle =
     "\e[0m"      //  unknownStop
 };
 
+// no tag names
+const FixFormatStyle ttyRgbRawStyle =
+{
+    "",  //  messageBegin
+    "",  //  messageEnd
+    "",//  indent
+    "",//  groupFirstField;
+    "", //  fieldBegin
+    " ",//  fieldEnd
+    nullptr,  //  headerTagNameStart
+    "\e[0m",  //  headerTagNameStop
+    nullptr,  //  tagNameStart
+    "\e[0m",  //  tagNameStop
+    "\e[93;1m", //  tagValueStart
+    "\e[0m", //  tagValueStop
+    "=", //  equal
+    "\e[37;1m",  //  valueStart
+    "\e[0m",  //  valueStop
+    "/\e[92m", //  enumStart
+    "\e[0m",  //  enumStop
+    "\e[31;1m",  //  unknownStart
+    "\e[0m"      //  unknownStop
+};
+
 // msgTypePos = offset of 35=
 unsigned parseMessageLength( const char * fix, unsigned & msgTypePos )
 {
