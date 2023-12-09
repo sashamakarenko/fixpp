@@ -1,3 +1,4 @@
+__COPYRIGHT__
 #pragma once
 #ifndef DSTHEADERGUARD_GROUPS_H
 #define DSTHEADERGUARD_GROUPS_H

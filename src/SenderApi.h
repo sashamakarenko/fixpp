@@ -1,3 +1,8 @@
+__COPYRIGHT__
+#pragma once
+#ifndef DSTHEADERGUARD_SENDERAPI_H
+#define DSTHEADERGUARD_SENDERAPI_H
+
 #include <DSTINCDIR/Messages.h>
 #include <cstring>
 #include <type_traits>
@@ -79,7 +84,7 @@ inline int uintWidth( unsigned value )
     return 10;
 }
 
-int uintWidth2( unsigned value )
+inline int uintWidth2( unsigned value )
 {
     if( value < 100000U )
     {
@@ -580,3 +585,5 @@ struct ReusableMessageBuilder: FixBufferStream
 };
 
 }
+
+#endif // DSTHEADERGUARD_SENDERAPI_H

@@ -86,7 +86,8 @@ const FieldEnumMap NAME##Enums::itemByRaw = { \
 
 #define FIX_FIELD_DECL( NAME, TAG, TYPE ) \
 <n1>tagNameByRaw.emplace( tag_as_raw<TAG>(), Fix##NAME );\
-<n1>tagNameByValue.emplace( TAG, Fix##NAME );
+<n1>tagNameByValue.emplace( TAG, Fix##NAME );\
+<n1>tagByName.emplace( Fix##NAME, TAG );
 
 <nl>
 int initStatics()

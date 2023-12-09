@@ -1,3 +1,5 @@
+__COPYRIGHT__
+
 import gdb
 import gdb.printing
 import itertools

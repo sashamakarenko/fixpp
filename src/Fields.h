@@ -1,3 +1,4 @@
+__COPYRIGHT__
 #pragma once
 #ifndef DSTHEADERGUARD_FIELDS_H
 #define DSTHEADERGUARD_FIELDS_H
@@ -21,9 +22,14 @@ struct FieldDepth
 
 typedef FieldDepth (*GetDepthMethod)( raw_tag_t );
 
-extern const std::map< raw_tag_t, const char * const >           & rawToTagName;
-extern const std::map< unsigned, const char * const >            & valueToTagName;
-extern const std::map< raw_tag_t, const FieldEnumsBase * const > & rawToEnum;
+extern const std::map< raw_tag_t  , const char * const >           & rawToTagName;
+extern const std::map< tag_t      , const char * const >           & valueToTagName;
+extern const std::map< raw_tag_t  , const FieldEnumsBase * const > & rawToEnum;
+extern const std::map< std::string, tag_t >                        & nameToTag;
+
+tag_t getFieldTag( const std::string & fieldName );
+
+const char * getFieldName( tag_t tagValue );
 
 #include <DSTINCDIR/Fields.hxx>
 

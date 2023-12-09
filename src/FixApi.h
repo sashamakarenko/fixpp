@@ -1,3 +1,4 @@
+__COPYRIGHT__
 #pragma once
 #ifndef DSTHEADERGUARD_FIXAPI_H
 #define DSTHEADERGUARD_FIXAPI_H

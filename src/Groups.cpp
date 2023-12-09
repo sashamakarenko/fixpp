@@ -1,5 +1,7 @@
-#include <DSTINCDIR/Groups.h>
 
+__COPYRIGHT__
+
+#include <DSTINCDIR/Groups.h>
 
 namespace DSTNAMESPACE
 {

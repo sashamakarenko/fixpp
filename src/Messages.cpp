@@ -1,3 +1,5 @@
+__COPYRIGHT__
+
 #include <vector>
 #include <set>
 
