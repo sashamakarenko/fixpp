@@ -70816,143 +70816,143 @@ std::set< raw_tag_t > headerFields =
 // end of Header.cxx
 };
 
-const FixFormatStyle defaultStyle = 
+const FixFormatStyle defaultStyle =
 {
-    "",  //  messageBegin 
-    "",  //  messageEnd   
-    "",  //  indent
-    "",  //  groupFirstField;
-    "",  //  fieldBegin   
-    " ", //  fieldEnd     
-    "",  //  headerTagNameStart 
-    "",  //  headerTagNameStop  
-    "",  //  tagNameStart 
-    "",  //  tagNameStop  
-    "(", //  tagValueStart
-    ")", //  tagValueStop 
-    "=", //  equal        
-    "",  //  valueStart   
-    "",  //  valueStop    
-    "<", //  enumStart    
-    ">", //  enumStop     
-    "",  //  unknownStart
-    ""   //  unknownStop
+    .messageBegin       = "",
+    .messageEnd         = "",
+    .indent             = "",
+    .groupFirstField    = "",
+    .fieldBegin         = "",
+    .fieldEnd           = " ",
+    .headerTagNameStart = "",
+    .headerTagNameStop  = "",
+    .tagNameStart       = "",
+    .tagNameStop        = "",
+    .tagValueStart      = "(",
+    .tagValueStop       = ")",
+    .equal              = "=",
+    .valueStart         = "",
+    .valueStop          = "",
+    .enumStart          = "<",
+    .enumStop           = ">",
+    .unknownStart       = "",
+    .unknownStop        = ""
 };
 
-const FixFormatStyle defaultVerticalStyle = 
+const FixFormatStyle defaultVerticalStyle =
 {
-    "",  //  messageBegin 
-    "",  //  messageEnd   
-    "  ",//  indent
-    " *",//  groupFirstField;
-    " ", //  fieldBegin   
-    "\n",//  fieldEnd     
-    "",  //  headerTagNameStart 
-    "",  //  headerTagNameStop  
-    "",  //  tagNameStart 
-    "",  //  tagNameStop  
-    "(", //  tagValueStart
-    ")", //  tagValueStop 
-    "=", //  equal        
-    "",  //  valueStart   
-    "",  //  valueStop    
-    "<", //  enumStart    
-    ">", //  enumStop     
-    "",  //  unknownStart
-    ""   //  unknownStop
+    .messageBegin       = "",
+    .messageEnd         = "",
+    .indent             = "  ",
+    .groupFirstField    = " *",
+    .fieldBegin         = " ",
+    .fieldEnd           = "\n",
+    .headerTagNameStart = "",
+    .headerTagNameStop  = "",
+    .tagNameStart       = "",
+    .tagNameStop        = "",
+    .tagValueStart      = "(",
+    .tagValueStop       = ")",
+    .equal              = "=",
+    .valueStart         = "",
+    .valueStop          = "",
+    .enumStart          = "<",
+    .enumStop           = ">",
+    .unknownStart       = "",
+    .unknownStop        = ""
 };
 
-const FixFormatStyle ttyStyle = 
+const FixFormatStyle ttyStyle =
 {
-    "",  //  messageBegin 
-    "",  //  messageEnd   
-    "  ",//  indent
-    " \u2022",//  groupFirstField;
-    " ", //  fieldBegin   
-    "\n",//  fieldEnd     
-    "",  //  headerTagNameStart 
-    "",  //  headerTagNameStop  
-    "\e[1m",  //  tagNameStart 
-    "\e[0m",  //  tagNameStop  
-    "(", //  tagValueStart
-    ")", //  tagValueStop 
-    "=", //  equal        
-    "",  //  valueStart   
-    "",  //  valueStop    
-    "<", //  enumStart    
-    ">",  //  enumStop     
-    "\e[31;1m",  //  unknownStart
-    "\e[0m"      //  unknownStop
+    .messageBegin       = "",
+    .messageEnd         = "",
+    .indent             = "  ",
+    .groupFirstField    = " \u2022",
+    .fieldBegin         = " ",
+    .fieldEnd           = "\n",
+    .headerTagNameStart = "",
+    .headerTagNameStop  = "",
+    .tagNameStart       = "\e[1m",
+    .tagNameStop        = "\e[0m",
+    .tagValueStart      = "(",
+    .tagValueStop       = ")",
+    .equal              = "=",
+    .valueStart         = "",
+    .valueStop          = "",
+    .enumStart          = "<",
+    .enumStop           = ">",
+    .unknownStart       = "\e[31;1m",
+    .unknownStop        = "\e[0m"
 };
 
 const FixFormatStyle ttyRgbStyle =
 {
-    "",  //  messageBegin 
-    "",  //  messageEnd   
-    "  ",//  indent
-    " \u2022",//  groupFirstField;
-    " ", //  fieldBegin   
-    "\n",//  fieldEnd     
-    "\e[33m",  //  headerTagNameStart 
-    "\e[0m",  //  headerTagNameStop  
-    "\e[33;1m",  //  tagNameStart 
-    "\e[0m",  //  tagNameStop  
-    "(\e[37;1m", //  tagValueStart
-    "\e[0m)", //  tagValueStop 
-    " = ", //  equal        
-    "\e[34;1m",  //  valueStart   
-    "\e[0m",  //  valueStop    
-    " \e[32m", //  enumStart    
-    "\e[0m",  //  enumStop     
-    "\e[31;1m",  //  unknownStart
-    "\e[0m"      //  unknownStop
+    .messageBegin       = "",
+    .messageEnd         = "",
+    .indent             = "  ",
+    .groupFirstField    = " \u2022",
+    .fieldBegin         = " ",
+    .fieldEnd           = "\n",
+    .headerTagNameStart = "\e[33m",
+    .headerTagNameStop  = "\e[0m",
+    .tagNameStart       = "\e[33;1m",
+    .tagNameStop        = "\e[0m",
+    .tagValueStart      = "(\e[37;1m",
+    .tagValueStop       = "\e[0m)",
+    .equal              = " = ",
+    .valueStart         = "\e[34;1m",
+    .valueStop          = "\e[0m",
+    .enumStart          = " \e[32m",
+    .enumStop           = "\e[0m",
+    .unknownStart       = "\e[31;1m",
+    .unknownStop        = "\e[0m"
 };
 
 const FixFormatStyle ttyRgbSingleLineStyle =
 {
-    "",  //  messageBegin 
-    "",  //  messageEnd   
-    "",//  indent
-    "",//  groupFirstField;
-    "", //  fieldBegin   
-    "  ",//  fieldEnd     
-    "\e[33m",  //  headerTagNameStart 
-    "\e[0m",  //  headerTagNameStop  
-    "\e[33;1m",  //  tagNameStart 
-    "\e[0m",  //  tagNameStop  
-    "<\e[37;1m", //  tagValueStart
-    "\e[0m>", //  tagValueStop 
-    "=", //  equal        
-    "\e[34;1m",  //  valueStart   
-    "\e[0m",  //  valueStop    
-    "/\e[32m", //  enumStart    
-    "\e[0m",  //  enumStop     
-    "\e[31;1m",  //  unknownStart
-    "\e[0m"      //  unknownStop
+    .messageBegin       = "",
+    .messageEnd         = "",
+    .indent             = "",
+    .groupFirstField    = "",
+    .fieldBegin         = "",
+    .fieldEnd           = "  ",
+    .headerTagNameStart = "\e[33m",
+    .headerTagNameStop  = "\e[0m",
+    .tagNameStart       = "\e[33;1m",
+    .tagNameStop        = "\e[0m",
+    .tagValueStart      = "<\e[37;1m",
+    .tagValueStop       = "\e[0m>",
+    .equal              = "=",
+    .valueStart         = "\e[34;1m",
+    .valueStop          = "\e[0m",
+    .enumStart          = "/\e[32m",
+    .enumStop           = "\e[0m",
+    .unknownStart       = "\e[31;1m",
+    .unknownStop        = "\e[0m"
 };
 
 // no tag names
 const FixFormatStyle ttyRgbRawStyle =
 {
-    "",  //  messageBegin
-    "",  //  messageEnd
-    "",//  indent
-    "",//  groupFirstField;
-    "", //  fieldBegin
-    " ",//  fieldEnd
-    nullptr,  //  headerTagNameStart
-    "\e[0m",  //  headerTagNameStop
-    nullptr,  //  tagNameStart
-    "\e[0m",  //  tagNameStop
-    "\e[93;1m", //  tagValueStart
-    "\e[0m", //  tagValueStop
-    "=", //  equal
-    "\e[37;1m",  //  valueStart
-    "\e[0m",  //  valueStop
-    "/\e[92m", //  enumStart
-    "\e[0m",  //  enumStop
-    "\e[31;1m",  //  unknownStart
-    "\e[0m"      //  unknownStop
+    .messageBegin       = "",
+    .messageEnd         = "",
+    .indent             = "",
+    .groupFirstField    = "",
+    .fieldBegin         = "",
+    .fieldEnd           = " ",
+    .headerTagNameStart = nullptr,
+    .headerTagNameStop  = "\e[0m",
+    .tagNameStart       = nullptr,
+    .tagNameStop        = "\e[0m",
+    .tagValueStart      = "\e[93;1m",
+    .tagValueStop       = "\e[0m",
+    .equal              = "=",
+    .valueStart         = "\e[37;1m",
+    .valueStop          = "\e[0m",
+    .enumStart          = "/\e[92m",
+    .enumStop           = "\e[0m",
+    .unknownStart       = "\e[31;1m",
+    .unknownStop        = "\e[0m"
 };
 
 // msgTypePos = offset of 35=
@@ -70996,7 +70996,7 @@ const char * getEnumName( const char * fix, int valueOffset )
     if( eit == rawToEnum.end() )
     {
         return nullptr;
-    }    
+    }
     const FieldEnumsBase * enums = eit->second;
     raw_enum_t rawEnum = toRawEnum( fix + valueOffset );
     const char * enumName = enums->getEnumNameByRaw( rawEnum );
@@ -71006,7 +71006,7 @@ const char * getEnumName( const char * fix, int valueOffset )
 std::ostream & fixToHuman( const char * fix, offset_t & pos, std::ostream & os, const FixFormatStyle & style, GetDepthMethod indentator )
 {
     os << style.messageBegin;
-    
+
     while( fix[pos] )
     {
         offset_t prev = pos;
@@ -71019,7 +71019,7 @@ std::ostream & fixToHuman( const char * fix, offset_t & pos, std::ostream & os, 
         }
 
         os << style.fieldBegin;
-        
+
         auto it = rawToTagName.find( tag );
         const FieldEnumsBase * enums = nullptr;
         if( it != rawToTagName.end() )
@@ -71051,7 +71051,7 @@ std::ostream & fixToHuman( const char * fix, offset_t & pos, std::ostream & os, 
                     os << style.tagNameStart << it->second << style.tagNameStop;
                 }
             }
-            
+
             auto eit = rawToEnum.find( tag );
             if( eit != rawToEnum.end() )
             {
@@ -71062,7 +71062,7 @@ std::ostream & fixToHuman( const char * fix, offset_t & pos, std::ostream & os, 
         {
             os << style.unknownStart << "Unknown" << style.unknownStop;
         }
-        
+
         // tag
         os << style.tagValueStart;
         while( fix[prev] != '=' )
@@ -71070,17 +71070,17 @@ std::ostream & fixToHuman( const char * fix, offset_t & pos, std::ostream & os, 
             os << fix[prev++];
         }
         os << style.tagValueStop << style.equal << style.valueStart;
-        
+
         raw_enum_t rawEnum = toRawEnum( fix + pos );
-        
+
         // value as is
         while( fix[pos] and fix[pos] != FIXPP_SOH )
         {
             os << fix[pos++];
         }
-        
+
         os << style.valueStop;
-        
+
         // enum
         if( enums and style.enumStart )
         {
@@ -71103,13 +71103,13 @@ std::ostream & fixToHuman( const char * fix, offset_t & pos, std::ostream & os, 
 
         os << style.fieldEnd;
         os.flush();
-        
+
         ++pos;
         if( tag == FieldCheckSum::RAW )
         {
             break;
         }
-        
+
     }
     os << style.messageEnd;
     return os;
