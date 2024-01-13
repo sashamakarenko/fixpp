@@ -14,12 +14,16 @@ int main( int args, const char ** argv )
     execReport.header.pushTag<MsgSeqNum>();
     execReport.header.finalize();
 
+    // will use userTime1 as TransactTime
+    execReport.userTime1.secFraction = TimestampKeeper::Precision::MILLISECONDS;
+
     execReport.append<SendingTime>( TimestampKeeper::PLACE_HOLDER, TimestampKeeper::DATE_TIME_NANOS_LENGTH );
     execReport.sendingTime.setup( execReport.end - TimestampKeeper::DATE_TIME_NANOS_LENGTH, TimestampKeeper::Precision::NANOSECONDS );
     execReport.sendingTime.update();
     const unsigned sendingTimeLength = execReport.end - execReport.begin;
 
     execReport.append<ClOrdID>("OID123");
+    execReport.append<TransactTime>( execReport.userTime1 );
     execReport.append<QtyType>( QtyTypeEnums::CONTRACTS.value );
     execReport.append<Price>( 123.04567, 4 );
     execReport.setSeqnumAndUpdateHeaderAndChecksum(123);
@@ -36,6 +40,7 @@ int main( int args, const char ** argv )
     execReport.rewind( sendingTimeLength );
     execReport.sendingTime.update();
     execReport.append<ClOrdID>("OID4567");
+    execReport.append<TransactTime>( execReport.userTime1 );
     execReport.append<QtyType>( QtyTypeEnums::UNITS.value );
     execReport.append<Price>( 21123.04567, 2 );
     execReport.setSeqnumAndUpdateHeaderAndChecksum(124);
@@ -45,6 +50,7 @@ int main( int args, const char ** argv )
     execReport.rewind( sendingTimeLength );
     execReport.sendingTime.update();
     execReport.append<ClOrdID>("OID36194130303320464710274");
+    execReport.append<TransactTime>( execReport.userTime1 );
     execReport.append<OrigClOrdID>( "2312320210" );
     execReport.append<SecurityID>("dhdddgqgddDDdwuidpdgqe");
     execReport.append<QtyType>( QtyTypeEnums::UNITS.value );
@@ -55,6 +61,7 @@ int main( int args, const char ** argv )
     execReport.rewind( sendingTimeLength );
     execReport.sendingTime.update();
     execReport.append<ClOrdID>("OID36194130303320464710274");
+    execReport.append<TransactTime>( execReport.userTime1 );
     execReport.append<OrigClOrdID>( "2312320210" );
     execReport.append<SecurityID>("dhdddgqgddDDdwuidpdgqe");
     execReport.append<QtyType>( QtyTypeEnums::UNITS.value );
@@ -79,6 +86,7 @@ int main( int args, const char ** argv )
     execReport.rewind( sendingTimeLength );
     execReport.sendingTime.update();
     execReport.append<ClOrdID>("OID123");
+    execReport.append<TransactTime>( execReport.userTime1 );
     execReport.append<QtyType>( QtyTypeEnums::CONTRACTS.value );
     execReport.append<Price>( 123.04567, 4 );
     execReport.setSeqnumAndUpdateHeaderAndChecksum(1);

@@ -169,6 +169,8 @@ inline char * reverseUIntToString( char * ptr, unsigned value, unsigned & chksum
     return ptr;
 }
 
+struct TimestampKeeper;
+
 struct FixBufferStream
 {
     FixBufferStream( char * buf ): begin{buf}, end{buf} {}
@@ -256,7 +258,7 @@ struct FixBufferStream
         if( v < 0 )
         {
             *end++ = '-';
-            v = -v;  
+            v = -v;
         }
         unsigned i = (unsigned)v;
         end += uintWidth( i );
@@ -271,6 +273,8 @@ struct FixBufferStream
         }
         return *this;
     }
+
+    inline FixBufferStream & pushValue( TimestampKeeper & tk );
 
     template< typename FIELD >
     FixBufferStream & append( const char * v, unsigned len )
@@ -293,6 +297,13 @@ struct FixBufferStream
         return pushValue( v, precision );
     }
 
+    template< typename FIELD >
+    FixBufferStream & append( TimestampKeeper & v )
+    {
+        end = insert<FIELD>(end);
+        return pushValue( v );
+    }
+
     char * begin;
     char * end;
 };
@@ -308,10 +319,10 @@ struct FixBufferStream
 constexpr unsigned BODY_LENGTH_OFFSET = FixBeginStringInsertableTagLength + FieldBodyLength::INSERTABLE_TAG_WIDTH;
 struct HeaderTemplate: FixBufferStream
 {
-    HeaderTemplate( unsigned capacity, const std::string & msgType ):
-        FixBufferStream( nullptr ),
-        buffer( capacity, (char)0 ),
-        chksum( 0 )
+    HeaderTemplate( unsigned capacity, const std::string & msgType )
+    : FixBufferStream( nullptr )
+    , buffer( capacity, (char)0 )
+    , chksum( 0 )
     {
         begin = end = &buffer[0];
         end = insert<FieldBeginString>( end );
@@ -357,19 +368,40 @@ struct TimestampKeeper
     constexpr static unsigned DATE_TIME_NANOS_LENGTH   = 27;
     constexpr static const char * const PLACE_HOLDER = "11112233-44:55:66.777888999";
 
-    TimestampKeeper( char * buffer = nullptr, Precision secPrecision = Precision::SECONDS ):
-        startOfDay( 0 ),
-        endOfDay( 0 ),
-        begin( buffer ), 
-        lastSecond( 0 ),
-        lastFraction( 0 ),
-        secFraction( secPrecision )
+    inline unsigned length() const { return DATE_TIME_SECONDS_LENGTH + ( secFraction != Precision::SECONDS ? 1 : 0 ) + (unsigned)secFraction; }
+
+    TimestampKeeper( char * buffer = nullptr, Precision secPrecision = Precision::SECONDS )
+    : startOfDay  ( 0 )
+    , endOfDay    ( 0 )
+    , begin       ( buffer )
+    , lastSecond  ( 0 )
+    , lastFraction( 0 )
+    , secFraction ( secPrecision )
     {
     }
 
     unsigned getWidth() const
     {
         return DATE_TIME_SECONDS_LENGTH + 1 + (unsigned)secFraction;
+    }
+
+    unsigned fill( char * buffer, Precision secPrecision )
+    {
+        if( begin != buffer or secFraction != secPrecision )
+        {
+            begin = buffer;
+            secFraction = secPrecision;
+            startOfDay = 0;
+            endOfDay = 0;
+            lastSecond = 0;
+            lastFraction = 0;
+        }
+        if( buffer )
+        {
+            update();
+            return getWidth();
+        }
+        return 0;
     }
 
     unsigned setup( char * buffer, Precision secPrecision )
@@ -449,6 +481,13 @@ struct TimestampKeeper
     Precision secFraction;
 };
 
+FixBufferStream & FixBufferStream::pushValue( TimestampKeeper & tk )
+{
+    tk.fill( end, tk.secFraction );
+    end += tk.length();
+    return *this;
+}
+
 // basic types
 template< typename VALUE >
 constexpr unsigned valueMaxLength( const VALUE & v )
@@ -459,6 +498,11 @@ constexpr unsigned valueMaxLength( const VALUE & v )
 inline unsigned valueMaxLength( const std::string & v )
 {
     return v.size();
+}
+
+inline unsigned valueMaxLength( const TimestampKeeper & v )
+{
+    return v.length();
 }
 
 inline unsigned valueMaxLength( const sohstr & v )
@@ -478,21 +522,21 @@ inline unsigned valueMaxLength( const char * & v )
 buffer   start                msgType                                    sendingTime                  body
 |        |                    |                                          |                            |
 "..."   "8=FIX.4.4" I "9=315" I "35=W" I "49=foo" I "56=bar" I "34=1234" I "52=20190101-01:01:01.000" I "..."
-                         ---                                       ----  |                            | 
+                         ---                                       ----  |                            |
                          | body length and seqno will be updated   |     begin                        end
 
 */
 struct ReusableMessageBuilder: FixBufferStream
 {
-    ReusableMessageBuilder( const std::string & messageType, unsigned maxBodyLength, unsigned headerTemplateCapacity = 128 ):
-        FixBufferStream( nullptr ),
-        buffer( maxBodyLength + 1, (char)0 ),
-        start( nullptr ),
-        lastSeqnumWidth( 0 ),
-        lastBodyLengthWidth( 0 ),
-        bufferGrowChunk( 1024 ),
-        header( headerTemplateCapacity, messageType ),
-        msgType( messageType )
+    ReusableMessageBuilder( const std::string & messageType, unsigned maxBodyLength, unsigned headerTemplateCapacity = 128 )
+    : FixBufferStream    ( nullptr )
+    , buffer             ( maxBodyLength + 1, (char)0 )
+    , start              ( nullptr )
+    , lastSeqnumWidth    ( 0 )
+    , lastBodyLengthWidth( 0 )
+    , bufferGrowChunk    ( 1024 )
+    , header             ( headerTemplateCapacity, messageType )
+    , msgType            ( messageType )
     {
         begin = end = &buffer[0] + headerTemplateCapacity;
     }
@@ -575,13 +619,17 @@ struct ReusableMessageBuilder: FixBufferStream
         return pushValue( v, precision );
     }
 
+    const std::string             msgType;
     std::vector<char>             buffer;
     char                        * start;
     unsigned                      lastSeqnumWidth, lastBodyLengthWidth;
     unsigned                      bufferGrowChunk;
     HeaderTemplate                header;
     TimestampKeeper               sendingTime;
-    const std::string             msgType;
+    TimestampKeeper               userTime1;
+    TimestampKeeper               userTime2;
+    TimestampKeeper               userTime3;
+    TimestampKeeper               userTime4;
 };
 
 }

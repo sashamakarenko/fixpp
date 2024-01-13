@@ -32,7 +32,7 @@ const char * MessageNewOrderSingle::getMessageName(){
 }
 
 const std::string & MessageNewOrderSingle::getMessageType(){
-     return MsgTypeEnums::ORDER_SINGLE.str;
+     return MsgTypeEnums::NEW_ORDER_SINGLE.str;
 }
 
 
@@ -820,7 +820,7 @@ GetDepthMethod getTagDepthMethodByRawMsgType( raw_enum_t rawMsgType ){
    case MsgTypeRaw__ :
      return MessageHeader::getFieldDepth;
 
-   case MsgTypeRaw_ORDER_SINGLE :
+   case MsgTypeRaw_NEW_ORDER_SINGLE :
      return MessageNewOrderSingle::getFieldDepth;
 
    case MsgTypeRaw_EXECUTION_REPORT :
@@ -934,14 +934,14 @@ const char * ParserDispatcher::parseAndDipatch( const char * buf, unsigned len, 
 // case-end-_
 
 
-// case-begin-ORDER_SINGLE
-      case MsgTypeRaw_ORDER_SINGLE : {
+// case-begin-NEW_ORDER_SINGLE
+      case MsgTypeRaw_NEW_ORDER_SINGLE : {
        if( resetMessage ) _msgNewOrderSingle.reset();
        pos = _msgNewOrderSingle.scan( buf, len - pos );
        onMessage( _msgNewOrderSingle );
        break;
       }
-// case-end-ORDER_SINGLE
+// case-end-NEW_ORDER_SINGLE
 
 
 // case-begin-EXECUTION_REPORT
@@ -970,7 +970,7 @@ void ParserDispatcher::onMessage( MessageHeader & msg )
 
 void ParserDispatcher::onMessage( MessageNewOrderSingle & msg )
 {
-   unprocessedMessage( MsgTypeRaw_ORDER_SINGLE, msg ); 
+   unprocessedMessage( MsgTypeRaw_NEW_ORDER_SINGLE, msg ); 
    msg.reset(); 
 }
 
@@ -1263,7 +1263,7 @@ std::ostream & fixToHuman( const char * fix, offset_t & pos, std::ostream & os, 
         }
         else
         {
-            os << style.unknownStart << "Unknown" << style.unknownStop;
+            os << style.unknownStart << " ?" << style.unknownStop;
         }
 
         // tag

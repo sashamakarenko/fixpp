@@ -71060,7 +71060,7 @@ std::ostream & fixToHuman( const char * fix, offset_t & pos, std::ostream & os, 
         }
         else
         {
-            os << style.unknownStart << "Unknown" << style.unknownStop;
+            os << style.unknownStart << " ?" << style.unknownStop;
         }
 
         // tag

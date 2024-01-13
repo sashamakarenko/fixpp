@@ -209,7 +209,7 @@ struct MsgTypeEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase * const * const getEnums() const override;
    static const ItemType EXECUTION_REPORT;
-   static const ItemType ORDER_SINGLE;
+   static const ItemType NEW_ORDER_SINGLE;
 };
 
 struct OrdStatusEnums final: FieldEnumsBase {
@@ -499,7 +499,7 @@ typedef FieldNestedPartySubIDType NestedPartySubIDType;
 
 constexpr raw_enum_t MsgTypeRaw__ = (raw_enum_t)0; // Header
 constexpr raw_enum_t MsgTypeRaw_EXECUTION_REPORT = (raw_enum_t)'8';
-constexpr raw_enum_t MsgTypeRaw_ORDER_SINGLE = (raw_enum_t)'D';
+constexpr raw_enum_t MsgTypeRaw_NEW_ORDER_SINGLE = (raw_enum_t)'D';
 // end of Fields.hxx
 
 void checkEnums();

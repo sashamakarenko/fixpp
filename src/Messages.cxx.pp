@@ -88,7 +88,7 @@ offset_t Message##NAME::skip( const char * fix, unsigned len ) const\
 <n1>  raw_tag_t tag = nextRawTag( fix+pos, pos );\
 <n1>  switch( tag ){\
 
-        
+
 #define FIX_MSG_FIELD(NAME) \
 <n1>  case Field##NAME::RAW :\
 <n2>    break;\
@@ -151,7 +151,7 @@ FieldDepth Message##NAME::getFieldDepth( raw_tag_t tag ){\
 <t2>  case Field##NAME::RAW :
 
 #define FIX_MSG_GROUP(NAME) \
-<t2>  case FieldNo##NAME::RAW : 
+<t2>  case FieldNo##NAME::RAW :
 
 #define FIX_MSG_END \
 <t2>  case FieldCheckSum::RAW :\
@@ -266,7 +266,7 @@ GetDepthMethod getTagDepthMethodByRawMsgType( raw_enum_t rawMsgType ){
 #define FIX_MSG_BEGIN(NAME,TYPE) \
 void Message##NAME::reset(){\
 <n2> buf = nullptr;
-        
+
 #define FIX_MSG_FIELD(NAME) <t2> field##NAME.offset = -1;
 
 #define FIX_MSG_GROUP(NAME) \
@@ -285,15 +285,15 @@ void Message##NAME::reset(){\
 
 <com> -------------------------------------- ParserDispatcher ----------------------------------------
 
-#define FIX_MSG_FIELD(NAME) 
-#define FIX_MSG_GROUP(NAME) 
+#define FIX_MSG_FIELD(NAME)
+#define FIX_MSG_GROUP(NAME)
 #define FIX_MSG_END
 
 const char * ParserDispatcher::parseAndDipatch( const char * buf, unsigned len, bool resetMessage )
 {
-    if( resetMessage ) 
+    if( resetMessage )
     {
-        _msgHeader.reset();    
+        _msgHeader.reset();
     }
     offset_t pos = _msgHeader.scan( buf, len );
 

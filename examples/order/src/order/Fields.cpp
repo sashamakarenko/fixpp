@@ -122,7 +122,7 @@ const ProductEnums::ItemType ProductEnums::FINANCING( "FINANCING", 13 );
 
 
 const MsgTypeEnums::ItemType MsgTypeEnums::EXECUTION_REPORT( "EXECUTION_REPORT", SOHSTR(8) );
-const MsgTypeEnums::ItemType MsgTypeEnums::ORDER_SINGLE( "ORDER_SINGLE", SOHSTR(D) );
+const MsgTypeEnums::ItemType MsgTypeEnums::NEW_ORDER_SINGLE( "NEW_ORDER_SINGLE", SOHSTR(D) );
 
 
 const OrdStatusEnums::ItemType OrdStatusEnums::NEW( "NEW", '0' );
@@ -384,7 +384,7 @@ const FieldEnumBase * const * const MsgTypeEnums::getEnums() const { return item
 const MsgTypeEnums MsgTypeEnums::instance;
 const FieldEnumBase * MsgTypeEnums::items[] = {
 & MsgTypeEnums::EXECUTION_REPORT,
-& MsgTypeEnums::ORDER_SINGLE,
+& MsgTypeEnums::NEW_ORDER_SINGLE,
 nullptr };
 
 
@@ -615,7 +615,7 @@ const FieldEnumMap ProductEnums::itemByRaw = {
 
 const FieldEnumMap MsgTypeEnums::itemByRaw = {
 { MsgTypeEnums::EXECUTION_REPORT.raw, & MsgTypeEnums::EXECUTION_REPORT },
-{ MsgTypeEnums::ORDER_SINGLE.raw, & MsgTypeEnums::ORDER_SINGLE },
+{ MsgTypeEnums::NEW_ORDER_SINGLE.raw, & MsgTypeEnums::NEW_ORDER_SINGLE },
 };
 
 const FieldEnumMap OrdStatusEnums::itemByRaw = {

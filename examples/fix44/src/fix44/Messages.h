@@ -34057,25 +34057,25 @@ typedef MessageConfirmationRequest ConfirmationRequest;
 
 struct FixFormatStyle
 {
-    const char * messageBegin   ;
-    const char * messageEnd     ;
-    const char * indent         ;
-    const char * groupFirstField;
-    const char * fieldBegin     ;
-    const char * fieldEnd       ;
+    const char * messageBegin      ;
+    const char * messageEnd        ;
+    const char * indent            ;
+    const char * groupFirstField   ;
+    const char * fieldBegin        ;
+    const char * fieldEnd          ;
     const char * headerTagNameStart;
     const char * headerTagNameStop ;
-    const char * tagNameStart   ;
-    const char * tagNameStop    ;
-    const char * tagValueStart  ;
-    const char * tagValueStop   ;
-    const char * equal          ;
-    const char * valueStart     ;
-    const char * valueStop      ;
-    const char * enumStart      ;
-    const char * enumStop       ;
-    const char * unknownStart   ;
-    const char * unknownStop    ;
+    const char * tagNameStart      ;
+    const char * tagNameStop       ;
+    const char * tagValueStart     ;
+    const char * tagValueStop      ;
+    const char * equal             ;
+    const char * valueStart        ;
+    const char * valueStop         ;
+    const char * enumStart         ;
+    const char * enumStop          ;
+    const char * unknownStart      ;
+    const char * unknownStop       ;
 };
 
 extern const FixFormatStyle defaultStyle;

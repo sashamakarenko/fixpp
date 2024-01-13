@@ -33,8 +33,8 @@ class Message##NAME: public MessageBase\
 #undef FIX_MSG_FIELD
 #undef FIX_MSG_GROUP
 
-#define FIX_MSG_FIELD(NAME) 
-#define FIX_MSG_GROUP(NAME) 
+#define FIX_MSG_FIELD(NAME)
+#define FIX_MSG_GROUP(NAME)
 #define FIX_MSG_END
 
 <nl>
@@ -58,7 +58,7 @@ class ParserDispatcher
 
      inline MessageHeader & getCurrentHeader() { return _msgHeader; }
 
-<t2> <com> dispatching 
+<t2> <com> dispatching
  <com> onHeader will never be called
 #define FIX_MSG_BEGIN(NAME,TYPE) \
  <t2> virtual void onMessage( Message##NAME & msg );
