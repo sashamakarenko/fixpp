@@ -78,7 +78,12 @@
         "compare": "cpp",
         "concepts": "cpp",
         "ranges": "cpp",
-        "numbers": "cpp"
+        "numbers": "cpp",
+        "charconv": "cpp",
+        "format": "cpp",
+        "semaphore": "cpp",
+        "span": "cpp",
+        "stop_token": "cpp"
     },
     "C_Cpp.default.includePath": [ "${default}", "${workspaceFolder}/src", "${workspaceFolder}/src/tiny" ],
     "C_Cpp.default.cppStandard": "gnu++17",

@@ -172,6 +172,16 @@ inline char * reverseUIntToString( char * ptr, unsigned value, unsigned & chksum
 }
 
 struct TimestampKeeper;
+using ClockType = std::chrono::system_clock;
+using TimePoint = std::chrono::time_point<ClockType>;
+
+enum class ClockPrecision: unsigned
+{
+    SECONDS      = 0,
+    MILLISECONDS = 3,
+    MICROSECONDS = 6,
+    NANOSECONDS  = 9
+};
 
 struct FixBufferStream
 {
@@ -276,7 +286,7 @@ struct FixBufferStream
         return *this;
     }
 
-    inline FixBufferStream & pushValue( TimestampKeeper & tk );
+    inline FixBufferStream & pushValue( TimestampKeeper & tk, const TimePoint & tp );
 
     template< typename FIELD >
     FixBufferStream & append( const char * v, unsigned len )
@@ -300,11 +310,15 @@ struct FixBufferStream
     }
 
     template< typename FIELD >
-    FixBufferStream & append( TimestampKeeper & v )
+    FixBufferStream & append( TimestampKeeper & v, const TimePoint & tp = ClockType::now() )
     {
         end = insert<FIELD>(end);
-        return pushValue( v );
+        return pushValue( v, tp );
     }
+
+    // not efficient
+    template< typename FIELD >
+    FixBufferStream & append( const TimePoint & tp, ClockPrecision precision );
 
     char * begin;
     char * end;
@@ -354,13 +368,7 @@ struct HeaderTemplate: FixBufferStream
 
 struct TimestampKeeper
 {
-    enum class Precision: unsigned
-    {
-        SECONDS      = 0,
-        MILLISECONDS = 3,
-        MICROSECONDS = 6,
-        NANOSECONDS  = 9
-    };
+    using Precision = ClockPrecision;
 
     // YYYYMMDD-HH:MM:SS.mmmnnnuuu
     constexpr static unsigned DATE_LENGTH              = 8;
@@ -387,7 +395,7 @@ struct TimestampKeeper
         return DATE_TIME_SECONDS_LENGTH + 1 + (unsigned)secFraction;
     }
 
-    unsigned fill( char * buffer, Precision secPrecision )
+    unsigned fill( char * buffer, Precision secPrecision, const TimePoint & tp = ClockType::now() )
     {
         if( begin != buffer or secFraction != secPrecision )
         {
@@ -400,7 +408,7 @@ struct TimestampKeeper
         }
         if( buffer )
         {
-            update();
+            update( tp );
             return getWidth();
         }
         return 0;
@@ -418,19 +426,19 @@ struct TimestampKeeper
         return getWidth();
     }
 
-    char * update( const std::chrono::time_point<std::chrono::system_clock> & now = std::chrono::system_clock::now() )
+    char * update( const TimePoint & tp = ClockType::now() )
     {
-        const std::time_t tnow = std::chrono::system_clock::to_time_t(now);
-        if( tnow < startOfDay or tnow >= endOfDay )
+        const std::time_t tpt = ClockType::to_time_t( tp );
+        if( tpt < startOfDay or tpt >= endOfDay )
         {
-            startOfDay = tnow - ( tnow % ( 3600 * 24 ) );
+            startOfDay = tpt - ( tpt % ( 3600 * 24 ) );
             endOfDay = startOfDay + 3600 * 24;
             std::tm tm;
-            gmtime_r( & tnow, &tm );
+            gmtime_r( &tpt, &tm );
             std::strftime( begin, 64, "%Y%m%d-%H:%M:%S", &tm );
         }
 
-        unsigned diff = tnow - startOfDay;
+        unsigned diff = tpt - startOfDay;
         if( lastSecond != diff )
         {
             uint16_t hours   = diff / 3600;
@@ -452,15 +460,15 @@ struct TimestampKeeper
             unsigned fraction = 0;
             if( secFraction == Precision::MILLISECONDS )
             {
-                fraction = std::chrono::time_point_cast<std::chrono::milliseconds>(now).time_since_epoch().count() % 1000;
+                fraction = std::chrono::time_point_cast<std::chrono::milliseconds>(tp).time_since_epoch().count() % 1000;
             }
             else if( secFraction == Precision::MICROSECONDS )
             {
-                fraction = std::chrono::time_point_cast<std::chrono::microseconds>(now).time_since_epoch().count() % 1000'000;
+                fraction = std::chrono::time_point_cast<std::chrono::microseconds>(tp).time_since_epoch().count() % 1000'000;
             }
             else // nanos
             {
-                fraction = std::chrono::time_point_cast<std::chrono::nanoseconds>(now).time_since_epoch().count() % 1000'000'000;
+                fraction = std::chrono::time_point_cast<std::chrono::nanoseconds>(tp).time_since_epoch().count() % 1000'000'000;
             }
             if( fraction != lastFraction )
             {
@@ -483,11 +491,19 @@ struct TimestampKeeper
     Precision secFraction;
 };
 
-FixBufferStream & FixBufferStream::pushValue( TimestampKeeper & tk )
+FixBufferStream & FixBufferStream::pushValue( TimestampKeeper & tk, const TimePoint & tp )
 {
-    tk.fill( end, tk.secFraction );
+    tk.fill( end, tk.secFraction, tp );
     end += tk.length();
     return *this;
+}
+
+template< typename FIELD >
+inline FixBufferStream & FixBufferStream::append( const TimePoint & tp, ClockPrecision precision )
+{
+    end = insert<FIELD>(end);
+    TimestampKeeper tmp( nullptr, precision );
+    return pushValue( tmp, tp );
 }
 
 // basic types
