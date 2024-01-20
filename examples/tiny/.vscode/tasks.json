@@ -60,7 +60,22 @@
 				"kind": "build",
 				"isDefault": true
 			}
-		}
+		},
+        {
+            "label": "build all tests",
+            "type": "shell",
+            "command": "make build-all-tests BUILD_MODE=debug",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			}
+        },
 
 	]
 }

@@ -29,6 +29,9 @@ bool operator < <tiny::Quantity>( const tiny::Quantity & left, const tiny::Quant
 
 int main( int args, const char ** argv )
 {
+    // uncomment to test too big tags 
+    // [[maybe_unused]] raw_tag_t bigTag = tag_as_raw<123'000>();
+
     const char * fixBuffer = EXAMPLE_MARKETDATA_FULL_REFRESH;
     tiny::MessageHeader header;
     offset_t pos = header.scan( fixBuffer, strlen( fixBuffer ) );

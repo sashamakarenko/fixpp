@@ -11,6 +11,7 @@ using namespace tiny::message;
 
 int main( int args, const char ** argv )
 {
+    std::string checkPrettyPrinting( "text to show in debugger" );
     std::cout << "\n\n -- ExecutionReport --" << std::endl;
     Header header;
     offset_t pos = header.scan( FIX_BUFFER_EXEC_REPORT, strlen( FIX_BUFFER_EXEC_REPORT ) );

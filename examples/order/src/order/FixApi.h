@@ -38,8 +38,10 @@ using offset_t = int32_t;
 
 
 // max 5 decimal digits in tags
-constexpr unsigned tag_key_width( tag_t K )
+template<tag_t K>
+constexpr unsigned tag_width()
 {
+    static_assert( K < 100'000U, "too high tag number" );
     if( K < 10U    ) return 1;
     if( K < 100U   ) return 2;
     if( K < 1000U  ) return 3;
@@ -47,16 +49,25 @@ constexpr unsigned tag_key_width( tag_t K )
     return 5;
 }
 
+constexpr unsigned tag_width( tag_t K )
+{
+    if( K < 10U     ) return 1;
+    if( K < 100U    ) return 2;
+    if( K < 1000U   ) return 3;
+    if( K < 10000U  ) return 4;
+    if( K < 100000U ) return 5;
+    return 0; // todo: s?
+}
 
 template< tag_t K >
 constexpr raw_tag_t tag_as_raw()
 {
-    if( tag_key_width(K) == 1 )
+    if( tag_width<K>() == 1 )
     {
         return K + raw_tag_t('0');
     }
 
-    return ( ( raw_tag_t('0') + K % 10U ) << ( 8 * ( tag_key_width(K) - 1 ) ) ) + tag_as_raw<K/10U>();
+    return ( ( raw_tag_t('0') + K % 10U ) << ( 8 * ( tag_width<K>() - 1 ) ) ) + tag_as_raw<K/10U>();
 }
 
 
@@ -64,7 +75,7 @@ constexpr raw_tag_t tag_as_raw()
 template< tag_t K >
 constexpr insertable_tag_t tag_as_insertable()
 {
-    return ( insertable_tag_t('=') << ( 8 * ( tag_key_width(K) + 1 ) ) ) + ( insertable_tag_t(tag_as_raw<K>()) << 8 ) + 1;
+    return ( insertable_tag_t('=') << ( 8 * ( tag_width<K>() + 1 ) ) ) + ( insertable_tag_t(tag_as_raw<K>()) << 8 ) + 1;
 }
 
 namespace
@@ -111,7 +122,7 @@ constexpr bool isNotDecDigit( char c )
 
 }
 
-// used to scan integers of type T
+// used to scan integers of type T to reduce the number of arithmetic operations
 template< typename T, T N >
 constexpr T dec_zeros()
 {
@@ -527,11 +538,11 @@ inline raw_enum_t toRawEnum( char c )
 inline raw_enum_t toRawEnum( unsigned i )
 {
     unsigned u = i;
-    if( tag_key_width(u) == 1 )
+    if( tag_width(u) == 1 )
     {
         return u + raw_enum_t('0');
     }
-    return ( ( raw_enum_t('0') + u % 10U ) << ( 8 * ( tag_key_width(u) - 1 ) ) ) + toRawEnum( i/10 );
+    return ( ( raw_enum_t('0') + u % 10U ) << ( 8 * ( tag_width(u) - 1 ) ) ) + toRawEnum( i/10 );
 }
 
 inline raw_enum_t toRawEnum( int i )
@@ -573,6 +584,10 @@ struct FieldEnum: FieldEnumBase
     FieldEnum( const char * const name, ValueType v ): FieldEnumBase{ name, toRawEnum(v), toString(v) }, value{v}
     {
     }
+    const ValueType & operator() () const
+    {
+        return value;
+    }
     const ValueType value;
 };
 
@@ -609,7 +624,7 @@ struct Field: FieldBase
     typedef Type ValueType;
 
     static constexpr raw_tag_t        RAW = tag_as_raw<K>();
-    static constexpr unsigned         TAG_WIDTH = tag_key_width(K);
+    static constexpr unsigned         TAG_WIDTH = tag_width<K>();
     static constexpr unsigned         KEY = K;
     static constexpr insertable_tag_t INSERTABLE_TAG = tag_as_insertable<K>();
     static constexpr unsigned         INSERTABLE_TAG_WIDTH = TAG_WIDTH + 2; // SOH + '='
@@ -626,7 +641,7 @@ struct Field: FieldBase
 
     static constexpr unsigned tagWidth()
     {
-        return tag_key_width(K);
+        return tag_width<K>();
     }
 
     ValueType getValue( const char * buf ) const
@@ -812,7 +827,7 @@ constexpr unsigned CHECKSUM_FIELD_LENGTH = 7;
 
 namespace std
 {
-    inline std::string to_string( const order::Quantity & qty ) noexcept 
+    inline std::string to_string( const order::Quantity & qty ) noexcept
     {
         return  qty.isInteger ? std::to_string( qty.value.integer ) : std::to_string( qty.value.real );
     }

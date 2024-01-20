@@ -21,7 +21,7 @@ int main( int args, const char ** argv )
     const unsigned sendingTimeLength = execReport.end - execReport.begin;
 
     execReport.appendSafely<ClOrdID>("OID123");
-    execReport.appendSafely<QtyType>( QtyTypeEnums::CONTRACTS.value );
+    execReport.appendSafely<QtyType>( QtyTypeEnums::CONTRACTS() );
     execReport.appendSafely<Price>( 123.04567, 4 );
     execReport.setSeqnumAndUpdateHeaderAndChecksum(123);
     std::cout << computeChecksum( execReport.start, execReport.end - 7 ) << "\n";

@@ -38,9 +38,6 @@ FIX_FIELD_DECL( PriceType                     ,    423, INT            )
 FIX_FIELD_DECL( Product                       ,    460, INT            )
 FIX_FIELD_DECL( QtyType                       ,    854, INT            )
 
-FIX_FIELD_DECL( Huge12345                     ,  12345, STRING         )
-FIX_FIELD_DECL( Huge123456                    , 123456, STRING         )
-
 
 FIX_ENUM_BEGIN( QtyType )
 FIX_ENUM_DECL( QtyType, UNITS, 0 )
