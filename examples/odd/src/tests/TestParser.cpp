@@ -30,7 +30,7 @@ int main( int args, const char ** argv )
         const char * value = ler.getFieldValue( tag );
         if( value )
         {
-            std::cout << valueToTagName.at( tag ) << " is " << sohstr( value );
+            std::cout << tagToName.at( tag ) << " is " << sohstr( value );
             const char * enumName = getEnumName( ler.getMessageBuffer(), value - ler.getMessageBuffer() );
             if( enumName ) std::cout << " " << enumName;
             std::cout << "\n";

@@ -3,6 +3,7 @@
 // https://github.com/sashamakarenko/fixpp/blob/main/LICENSE
 
 #include <fix44/Fields.h>
+#include <set>
 
 std::ostream & operator << ( std::ostream & os, const fix44::sohstr & str )
 {
@@ -19,12 +20,18 @@ namespace fix44
 std::map< raw_tag_t  , const char * const >           tagNameByRaw;
 std::map< tag_t      , const char * const >           tagNameByValue;
 std::map< raw_tag_t  , const FieldEnumsBase * const > enumsByRaw;
+std::map< tag_t      , const FieldEnumsBase * const > enumsByTag;
 std::map< std::string, tag_t >                        tagByName;
+std::map< tag_t      , FieldType >                    fieldTypeByValue;
+std::map< tag_t      , const std::string >            fieldTypeNameByValue;
 
-const std::map< raw_tag_t  , const char * const >           & rawToTagName   = tagNameByRaw;
-const std::map< tag_t      , const char * const >           & valueToTagName = tagNameByValue;
-const std::map< raw_tag_t  , const FieldEnumsBase * const > & rawToEnum      = enumsByRaw;
-const std::map< std::string, tag_t >                        & nameToTag      = tagByName;
+const std::map< raw_tag_t  , const char * const >           & RAW_TAG_TO_NAME       = tagNameByRaw;
+const std::map< tag_t      , const char * const >           & TAG_TO_NAME           = tagNameByValue;
+const std::map< raw_tag_t  , const FieldEnumsBase * const > & RAW_TO_ENUM           = enumsByRaw;
+const std::map< tag_t      , const FieldEnumsBase * const > & TAG_TO_ENUM           = enumsByTag;
+const std::map< std::string, tag_t >                        & FIELD_NAME_TO_TAG     = tagByName;
+const std::map< tag_t      , FieldType >                    & TAG_TO_FIELD_TYPE     = fieldTypeByValue;
+const std::map< tag_t      , const std::string >            & TAG_TO_FIELD_NAME     = fieldTypeNameByValue;
 
 tag_t getFieldTag( const std::string & fieldName )
 {
@@ -36,6 +43,56 @@ const char * getFieldName( tag_t tagValue )
 {
     auto it = tagNameByValue.find( tagValue );
     return it != tagNameByValue.end() ? it->second : nullptr;
+}
+
+FieldType getFieldType( tag_t tagValue )
+{
+    auto it = fieldTypeByValue.find( tagValue );
+    return it != fieldTypeByValue.end() ? it->second : FieldType::UNKNOWN;
+}
+
+const std::string & getFieldTypeName( tag_t tagValue )
+{
+    static std::string unknown{ "UNKNOWN" };
+    auto it = fieldTypeNameByValue.find( tagValue );
+    return it != fieldTypeNameByValue.end() ? it->second : unknown;
+}
+
+std::set< tag_t > headerTags =
+{
+// start of Header.cxx
+ FieldBeginString::KEY,
+ FieldBodyLength::KEY,
+ FieldMsgType::KEY,
+ FieldSenderCompID::KEY,
+ FieldTargetCompID::KEY,
+ FieldOnBehalfOfCompID::KEY,
+ FieldDeliverToCompID::KEY,
+ FieldSecureDataLen::KEY,
+ FieldSecureData::KEY,
+ FieldMsgSeqNum::KEY,
+ FieldSenderSubID::KEY,
+ FieldSenderLocationID::KEY,
+ FieldTargetSubID::KEY,
+ FieldTargetLocationID::KEY,
+ FieldOnBehalfOfSubID::KEY,
+ FieldOnBehalfOfLocationID::KEY,
+ FieldDeliverToSubID::KEY,
+ FieldDeliverToLocationID::KEY,
+ FieldPossDupFlag::KEY,
+ FieldPossResend::KEY,
+ FieldSendingTime::KEY,
+ FieldOrigSendingTime::KEY,
+ FieldXmlDataLen::KEY,
+ FieldXmlData::KEY,
+ FieldMessageEncoding::KEY,
+ FieldLastMsgSeqNumProcessed::KEY,
+// end of Header.cxx
+};
+
+bool isHeaderField( tag_t tagValue )
+{
+    return headerTags.find( tagValue ) != headerTags.end();
 }
 
 // start of Fields.cxx
@@ -3157,921 +3214,2745 @@ const CollInquiryResultEnums::ItemType CollInquiryResultEnums::UNAUTHORIZED_FOR_
 const CollInquiryResultEnums::ItemType CollInquiryResultEnums::OTHER( "OTHER", 99 );
 
 
-// -------------------------------------- enum items ----------------------------------------
+// ------------------------------- enum items and type names -------------------------------------
 
 
 template<> const FieldEnumBase * const * FieldAccount::enumItems = nullptr;
+template<> FieldType FieldAccount::getType() { return FieldType::STRING; }
+template<> const std::string & FieldAccount::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldAdvId::enumItems = nullptr;
+template<> FieldType FieldAdvId::getType() { return FieldType::STRING; }
+template<> const std::string & FieldAdvId::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldAdvRefID::enumItems = nullptr;
+template<> FieldType FieldAdvRefID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldAdvRefID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldAdvSide::enumItems = nullptr;
+template<> FieldType FieldAdvSide::getType() { return FieldType::CHAR; }
+template<> const std::string & FieldAdvSide::getTypeName() { static const std::string fixType{ "CHAR" }; return fixType; }
 template<> const FieldEnumBase * const * FieldAdvTransType::enumItems = nullptr;
+template<> FieldType FieldAdvTransType::getType() { return FieldType::STRING; }
+template<> const std::string & FieldAdvTransType::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldAvgPx::enumItems = nullptr;
+template<> FieldType FieldAvgPx::getType() { return FieldType::PRICE; }
+template<> const std::string & FieldAvgPx::getTypeName() { static const std::string fixType{ "PRICE" }; return fixType; }
 template<> const FieldEnumBase * const * FieldBeginSeqNo::enumItems = nullptr;
+template<> FieldType FieldBeginSeqNo::getType() { return FieldType::SEQNUM; }
+template<> const std::string & FieldBeginSeqNo::getTypeName() { static const std::string fixType{ "SEQNUM" }; return fixType; }
 template<> const FieldEnumBase * const * FieldBeginString::enumItems = nullptr;
+template<> FieldType FieldBeginString::getType() { return FieldType::STRING; }
+template<> const std::string & FieldBeginString::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldBodyLength::enumItems = nullptr;
+template<> FieldType FieldBodyLength::getType() { return FieldType::LENGTH; }
+template<> const std::string & FieldBodyLength::getTypeName() { static const std::string fixType{ "LENGTH" }; return fixType; }
 template<> const FieldEnumBase * const * FieldCheckSum::enumItems = nullptr;
+template<> FieldType FieldCheckSum::getType() { return FieldType::STRING; }
+template<> const std::string & FieldCheckSum::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldClOrdID::enumItems = nullptr;
+template<> FieldType FieldClOrdID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldClOrdID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldCommission::enumItems = nullptr;
+template<> FieldType FieldCommission::getType() { return FieldType::AMT; }
+template<> const std::string & FieldCommission::getTypeName() { static const std::string fixType{ "AMT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldCommType::enumItems = nullptr;
+template<> FieldType FieldCommType::getType() { return FieldType::CHAR; }
+template<> const std::string & FieldCommType::getTypeName() { static const std::string fixType{ "CHAR" }; return fixType; }
 template<> const FieldEnumBase * const * FieldCumQty::enumItems = nullptr;
+template<> FieldType FieldCumQty::getType() { return FieldType::QTY; }
+template<> const std::string & FieldCumQty::getTypeName() { static const std::string fixType{ "QTY" }; return fixType; }
 template<> const FieldEnumBase * const * FieldCurrency::enumItems = nullptr;
+template<> FieldType FieldCurrency::getType() { return FieldType::CURRENCY; }
+template<> const std::string & FieldCurrency::getTypeName() { static const std::string fixType{ "CURRENCY" }; return fixType; }
 template<> const FieldEnumBase * const * FieldEndSeqNo::enumItems = nullptr;
+template<> FieldType FieldEndSeqNo::getType() { return FieldType::SEQNUM; }
+template<> const std::string & FieldEndSeqNo::getTypeName() { static const std::string fixType{ "SEQNUM" }; return fixType; }
 template<> const FieldEnumBase * const * FieldExecID::enumItems = nullptr;
+template<> FieldType FieldExecID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldExecID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldExecInst::enumItems = nullptr;
+template<> FieldType FieldExecInst::getType() { return FieldType::MULTIPLEVALUESTRING; }
+template<> const std::string & FieldExecInst::getTypeName() { static const std::string fixType{ "MULTIPLEVALUESTRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldExecRefID::enumItems = nullptr;
+template<> FieldType FieldExecRefID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldExecRefID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldHandlInst::enumItems = nullptr;
+template<> FieldType FieldHandlInst::getType() { return FieldType::CHAR; }
+template<> const std::string & FieldHandlInst::getTypeName() { static const std::string fixType{ "CHAR" }; return fixType; }
 template<> const FieldEnumBase * const * FieldSecurityIDSource::enumItems = nullptr;
+template<> FieldType FieldSecurityIDSource::getType() { return FieldType::STRING; }
+template<> const std::string & FieldSecurityIDSource::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldIOIID::enumItems = nullptr;
+template<> FieldType FieldIOIID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldIOIID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldIOIQltyInd::enumItems = nullptr;
+template<> FieldType FieldIOIQltyInd::getType() { return FieldType::CHAR; }
+template<> const std::string & FieldIOIQltyInd::getTypeName() { static const std::string fixType{ "CHAR" }; return fixType; }
 template<> const FieldEnumBase * const * FieldIOIRefID::enumItems = nullptr;
+template<> FieldType FieldIOIRefID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldIOIRefID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldIOIQty::enumItems = nullptr;
+template<> FieldType FieldIOIQty::getType() { return FieldType::STRING; }
+template<> const std::string & FieldIOIQty::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldIOITransType::enumItems = nullptr;
+template<> FieldType FieldIOITransType::getType() { return FieldType::CHAR; }
+template<> const std::string & FieldIOITransType::getTypeName() { static const std::string fixType{ "CHAR" }; return fixType; }
 template<> const FieldEnumBase * const * FieldLastCapacity::enumItems = nullptr;
+template<> FieldType FieldLastCapacity::getType() { return FieldType::CHAR; }
+template<> const std::string & FieldLastCapacity::getTypeName() { static const std::string fixType{ "CHAR" }; return fixType; }
 template<> const FieldEnumBase * const * FieldLastMkt::enumItems = nullptr;
+template<> FieldType FieldLastMkt::getType() { return FieldType::EXCHANGE; }
+template<> const std::string & FieldLastMkt::getTypeName() { static const std::string fixType{ "EXCHANGE" }; return fixType; }
 template<> const FieldEnumBase * const * FieldLastPx::enumItems = nullptr;
+template<> FieldType FieldLastPx::getType() { return FieldType::PRICE; }
+template<> const std::string & FieldLastPx::getTypeName() { static const std::string fixType{ "PRICE" }; return fixType; }
 template<> const FieldEnumBase * const * FieldLastQty::enumItems = nullptr;
+template<> FieldType FieldLastQty::getType() { return FieldType::QTY; }
+template<> const std::string & FieldLastQty::getTypeName() { static const std::string fixType{ "QTY" }; return fixType; }
 template<> const FieldEnumBase * const * FieldNoLinesOfText::enumItems = nullptr;
+template<> FieldType FieldNoLinesOfText::getType() { return FieldType::NUMINGROUP; }
+template<> const std::string & FieldNoLinesOfText::getTypeName() { static const std::string fixType{ "NUMINGROUP" }; return fixType; }
 template<> const FieldEnumBase * const * FieldMsgSeqNum::enumItems = nullptr;
+template<> FieldType FieldMsgSeqNum::getType() { return FieldType::SEQNUM; }
+template<> const std::string & FieldMsgSeqNum::getTypeName() { static const std::string fixType{ "SEQNUM" }; return fixType; }
 template<> const FieldEnumBase * const * FieldMsgType::enumItems = nullptr;
+template<> FieldType FieldMsgType::getType() { return FieldType::STRING; }
+template<> const std::string & FieldMsgType::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldNewSeqNo::enumItems = nullptr;
+template<> FieldType FieldNewSeqNo::getType() { return FieldType::SEQNUM; }
+template<> const std::string & FieldNewSeqNo::getTypeName() { static const std::string fixType{ "SEQNUM" }; return fixType; }
 template<> const FieldEnumBase * const * FieldOrderID::enumItems = nullptr;
+template<> FieldType FieldOrderID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldOrderID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldOrderQty::enumItems = nullptr;
+template<> FieldType FieldOrderQty::getType() { return FieldType::QTY; }
+template<> const std::string & FieldOrderQty::getTypeName() { static const std::string fixType{ "QTY" }; return fixType; }
 template<> const FieldEnumBase * const * FieldOrdStatus::enumItems = nullptr;
+template<> FieldType FieldOrdStatus::getType() { return FieldType::CHAR; }
+template<> const std::string & FieldOrdStatus::getTypeName() { static const std::string fixType{ "CHAR" }; return fixType; }
 template<> const FieldEnumBase * const * FieldOrdType::enumItems = nullptr;
+template<> FieldType FieldOrdType::getType() { return FieldType::CHAR; }
+template<> const std::string & FieldOrdType::getTypeName() { static const std::string fixType{ "CHAR" }; return fixType; }
 template<> const FieldEnumBase * const * FieldOrigClOrdID::enumItems = nullptr;
+template<> FieldType FieldOrigClOrdID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldOrigClOrdID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldOrigTime::enumItems = nullptr;
+template<> FieldType FieldOrigTime::getType() { return FieldType::UTCTIMESTAMP; }
+template<> const std::string & FieldOrigTime::getTypeName() { static const std::string fixType{ "UTCTIMESTAMP" }; return fixType; }
 template<> const FieldEnumBase * const * FieldPossDupFlag::enumItems = nullptr;
+template<> FieldType FieldPossDupFlag::getType() { return FieldType::BOOLEAN; }
+template<> const std::string & FieldPossDupFlag::getTypeName() { static const std::string fixType{ "BOOLEAN" }; return fixType; }
 template<> const FieldEnumBase * const * FieldPrice::enumItems = nullptr;
+template<> FieldType FieldPrice::getType() { return FieldType::PRICE; }
+template<> const std::string & FieldPrice::getTypeName() { static const std::string fixType{ "PRICE" }; return fixType; }
 template<> const FieldEnumBase * const * FieldRefSeqNum::enumItems = nullptr;
+template<> FieldType FieldRefSeqNum::getType() { return FieldType::SEQNUM; }
+template<> const std::string & FieldRefSeqNum::getTypeName() { static const std::string fixType{ "SEQNUM" }; return fixType; }
 template<> const FieldEnumBase * const * FieldSecurityID::enumItems = nullptr;
+template<> FieldType FieldSecurityID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldSecurityID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldSenderCompID::enumItems = nullptr;
+template<> FieldType FieldSenderCompID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldSenderCompID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldSenderSubID::enumItems = nullptr;
+template<> FieldType FieldSenderSubID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldSenderSubID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldSendingTime::enumItems = nullptr;
+template<> FieldType FieldSendingTime::getType() { return FieldType::UTCTIMESTAMP; }
+template<> const std::string & FieldSendingTime::getTypeName() { static const std::string fixType{ "UTCTIMESTAMP" }; return fixType; }
 template<> const FieldEnumBase * const * FieldQuantity::enumItems = nullptr;
+template<> FieldType FieldQuantity::getType() { return FieldType::QTY; }
+template<> const std::string & FieldQuantity::getTypeName() { static const std::string fixType{ "QTY" }; return fixType; }
 template<> const FieldEnumBase * const * FieldSide::enumItems = nullptr;
+template<> FieldType FieldSide::getType() { return FieldType::CHAR; }
+template<> const std::string & FieldSide::getTypeName() { static const std::string fixType{ "CHAR" }; return fixType; }
 template<> const FieldEnumBase * const * FieldSymbol::enumItems = nullptr;
+template<> FieldType FieldSymbol::getType() { return FieldType::STRING; }
+template<> const std::string & FieldSymbol::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldTargetCompID::enumItems = nullptr;
+template<> FieldType FieldTargetCompID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldTargetCompID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldTargetSubID::enumItems = nullptr;
+template<> FieldType FieldTargetSubID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldTargetSubID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldText::enumItems = nullptr;
+template<> FieldType FieldText::getType() { return FieldType::STRING; }
+template<> const std::string & FieldText::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldTimeInForce::enumItems = nullptr;
+template<> FieldType FieldTimeInForce::getType() { return FieldType::CHAR; }
+template<> const std::string & FieldTimeInForce::getTypeName() { static const std::string fixType{ "CHAR" }; return fixType; }
 template<> const FieldEnumBase * const * FieldTransactTime::enumItems = nullptr;
+template<> FieldType FieldTransactTime::getType() { return FieldType::UTCTIMESTAMP; }
+template<> const std::string & FieldTransactTime::getTypeName() { static const std::string fixType{ "UTCTIMESTAMP" }; return fixType; }
 template<> const FieldEnumBase * const * FieldUrgency::enumItems = nullptr;
+template<> FieldType FieldUrgency::getType() { return FieldType::CHAR; }
+template<> const std::string & FieldUrgency::getTypeName() { static const std::string fixType{ "CHAR" }; return fixType; }
 template<> const FieldEnumBase * const * FieldValidUntilTime::enumItems = nullptr;
+template<> FieldType FieldValidUntilTime::getType() { return FieldType::UTCTIMESTAMP; }
+template<> const std::string & FieldValidUntilTime::getTypeName() { static const std::string fixType{ "UTCTIMESTAMP" }; return fixType; }
 template<> const FieldEnumBase * const * FieldSettlType::enumItems = nullptr;
+template<> FieldType FieldSettlType::getType() { return FieldType::CHAR; }
+template<> const std::string & FieldSettlType::getTypeName() { static const std::string fixType{ "CHAR" }; return fixType; }
 template<> const FieldEnumBase * const * FieldSettlDate::enumItems = nullptr;
+template<> FieldType FieldSettlDate::getType() { return FieldType::LOCALMKTDATE; }
+template<> const std::string & FieldSettlDate::getTypeName() { static const std::string fixType{ "LOCALMKTDATE" }; return fixType; }
 template<> const FieldEnumBase * const * FieldSymbolSfx::enumItems = nullptr;
+template<> FieldType FieldSymbolSfx::getType() { return FieldType::STRING; }
+template<> const std::string & FieldSymbolSfx::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldListID::enumItems = nullptr;
+template<> FieldType FieldListID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldListID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldListSeqNo::enumItems = nullptr;
+template<> FieldType FieldListSeqNo::getType() { return FieldType::INT; }
+template<> const std::string & FieldListSeqNo::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldTotNoOrders::enumItems = nullptr;
+template<> FieldType FieldTotNoOrders::getType() { return FieldType::INT; }
+template<> const std::string & FieldTotNoOrders::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldListExecInst::enumItems = nullptr;
+template<> FieldType FieldListExecInst::getType() { return FieldType::STRING; }
+template<> const std::string & FieldListExecInst::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldAllocID::enumItems = nullptr;
+template<> FieldType FieldAllocID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldAllocID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldAllocTransType::enumItems = nullptr;
+template<> FieldType FieldAllocTransType::getType() { return FieldType::CHAR; }
+template<> const std::string & FieldAllocTransType::getTypeName() { static const std::string fixType{ "CHAR" }; return fixType; }
 template<> const FieldEnumBase * const * FieldRefAllocID::enumItems = nullptr;
+template<> FieldType FieldRefAllocID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldRefAllocID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldNoOrders::enumItems = nullptr;
+template<> FieldType FieldNoOrders::getType() { return FieldType::NUMINGROUP; }
+template<> const std::string & FieldNoOrders::getTypeName() { static const std::string fixType{ "NUMINGROUP" }; return fixType; }
 template<> const FieldEnumBase * const * FieldAvgPxPrecision::enumItems = nullptr;
+template<> FieldType FieldAvgPxPrecision::getType() { return FieldType::INT; }
+template<> const std::string & FieldAvgPxPrecision::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldTradeDate::enumItems = nullptr;
+template<> FieldType FieldTradeDate::getType() { return FieldType::LOCALMKTDATE; }
+template<> const std::string & FieldTradeDate::getTypeName() { static const std::string fixType{ "LOCALMKTDATE" }; return fixType; }
 template<> const FieldEnumBase * const * FieldPositionEffect::enumItems = nullptr;
+template<> FieldType FieldPositionEffect::getType() { return FieldType::CHAR; }
+template<> const std::string & FieldPositionEffect::getTypeName() { static const std::string fixType{ "CHAR" }; return fixType; }
 template<> const FieldEnumBase * const * FieldNoAllocs::enumItems = nullptr;
+template<> FieldType FieldNoAllocs::getType() { return FieldType::NUMINGROUP; }
+template<> const std::string & FieldNoAllocs::getTypeName() { static const std::string fixType{ "NUMINGROUP" }; return fixType; }
 template<> const FieldEnumBase * const * FieldAllocAccount::enumItems = nullptr;
+template<> FieldType FieldAllocAccount::getType() { return FieldType::STRING; }
+template<> const std::string & FieldAllocAccount::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldAllocQty::enumItems = nullptr;
+template<> FieldType FieldAllocQty::getType() { return FieldType::QTY; }
+template<> const std::string & FieldAllocQty::getTypeName() { static const std::string fixType{ "QTY" }; return fixType; }
 template<> const FieldEnumBase * const * FieldProcessCode::enumItems = nullptr;
+template<> FieldType FieldProcessCode::getType() { return FieldType::CHAR; }
+template<> const std::string & FieldProcessCode::getTypeName() { static const std::string fixType{ "CHAR" }; return fixType; }
 template<> const FieldEnumBase * const * FieldNoRpts::enumItems = nullptr;
+template<> FieldType FieldNoRpts::getType() { return FieldType::INT; }
+template<> const std::string & FieldNoRpts::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldRptSeq::enumItems = nullptr;
+template<> FieldType FieldRptSeq::getType() { return FieldType::INT; }
+template<> const std::string & FieldRptSeq::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldCxlQty::enumItems = nullptr;
+template<> FieldType FieldCxlQty::getType() { return FieldType::QTY; }
+template<> const std::string & FieldCxlQty::getTypeName() { static const std::string fixType{ "QTY" }; return fixType; }
 template<> const FieldEnumBase * const * FieldNoDlvyInst::enumItems = nullptr;
+template<> FieldType FieldNoDlvyInst::getType() { return FieldType::NUMINGROUP; }
+template<> const std::string & FieldNoDlvyInst::getTypeName() { static const std::string fixType{ "NUMINGROUP" }; return fixType; }
 template<> const FieldEnumBase * const * FieldAllocStatus::enumItems = nullptr;
+template<> FieldType FieldAllocStatus::getType() { return FieldType::INT; }
+template<> const std::string & FieldAllocStatus::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldAllocRejCode::enumItems = nullptr;
+template<> FieldType FieldAllocRejCode::getType() { return FieldType::INT; }
+template<> const std::string & FieldAllocRejCode::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldSignature::enumItems = nullptr;
+template<> FieldType FieldSignature::getType() { return FieldType::DATA; }
+template<> const std::string & FieldSignature::getTypeName() { static const std::string fixType{ "DATA" }; return fixType; }
 template<> const FieldEnumBase * const * FieldSecureDataLen::enumItems = nullptr;
+template<> FieldType FieldSecureDataLen::getType() { return FieldType::LENGTH; }
+template<> const std::string & FieldSecureDataLen::getTypeName() { static const std::string fixType{ "LENGTH" }; return fixType; }
 template<> const FieldEnumBase * const * FieldSecureData::enumItems = nullptr;
+template<> FieldType FieldSecureData::getType() { return FieldType::DATA; }
+template<> const std::string & FieldSecureData::getTypeName() { static const std::string fixType{ "DATA" }; return fixType; }
 template<> const FieldEnumBase * const * FieldSignatureLength::enumItems = nullptr;
+template<> FieldType FieldSignatureLength::getType() { return FieldType::LENGTH; }
+template<> const std::string & FieldSignatureLength::getTypeName() { static const std::string fixType{ "LENGTH" }; return fixType; }
 template<> const FieldEnumBase * const * FieldEmailType::enumItems = nullptr;
+template<> FieldType FieldEmailType::getType() { return FieldType::CHAR; }
+template<> const std::string & FieldEmailType::getTypeName() { static const std::string fixType{ "CHAR" }; return fixType; }
 template<> const FieldEnumBase * const * FieldRawDataLength::enumItems = nullptr;
+template<> FieldType FieldRawDataLength::getType() { return FieldType::LENGTH; }
+template<> const std::string & FieldRawDataLength::getTypeName() { static const std::string fixType{ "LENGTH" }; return fixType; }
 template<> const FieldEnumBase * const * FieldRawData::enumItems = nullptr;
+template<> FieldType FieldRawData::getType() { return FieldType::DATA; }
+template<> const std::string & FieldRawData::getTypeName() { static const std::string fixType{ "DATA" }; return fixType; }
 template<> const FieldEnumBase * const * FieldPossResend::enumItems = nullptr;
+template<> FieldType FieldPossResend::getType() { return FieldType::BOOLEAN; }
+template<> const std::string & FieldPossResend::getTypeName() { static const std::string fixType{ "BOOLEAN" }; return fixType; }
 template<> const FieldEnumBase * const * FieldEncryptMethod::enumItems = nullptr;
+template<> FieldType FieldEncryptMethod::getType() { return FieldType::INT; }
+template<> const std::string & FieldEncryptMethod::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldStopPx::enumItems = nullptr;
+template<> FieldType FieldStopPx::getType() { return FieldType::PRICE; }
+template<> const std::string & FieldStopPx::getTypeName() { static const std::string fixType{ "PRICE" }; return fixType; }
 template<> const FieldEnumBase * const * FieldExDestination::enumItems = nullptr;
+template<> FieldType FieldExDestination::getType() { return FieldType::EXCHANGE; }
+template<> const std::string & FieldExDestination::getTypeName() { static const std::string fixType{ "EXCHANGE" }; return fixType; }
 template<> const FieldEnumBase * const * FieldCxlRejReason::enumItems = nullptr;
+template<> FieldType FieldCxlRejReason::getType() { return FieldType::INT; }
+template<> const std::string & FieldCxlRejReason::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldOrdRejReason::enumItems = nullptr;
+template<> FieldType FieldOrdRejReason::getType() { return FieldType::INT; }
+template<> const std::string & FieldOrdRejReason::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldIOIQualifier::enumItems = nullptr;
+template<> FieldType FieldIOIQualifier::getType() { return FieldType::CHAR; }
+template<> const std::string & FieldIOIQualifier::getTypeName() { static const std::string fixType{ "CHAR" }; return fixType; }
 template<> const FieldEnumBase * const * FieldIssuer::enumItems = nullptr;
+template<> FieldType FieldIssuer::getType() { return FieldType::STRING; }
+template<> const std::string & FieldIssuer::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldSecurityDesc::enumItems = nullptr;
+template<> FieldType FieldSecurityDesc::getType() { return FieldType::STRING; }
+template<> const std::string & FieldSecurityDesc::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldHeartBtInt::enumItems = nullptr;
+template<> FieldType FieldHeartBtInt::getType() { return FieldType::INT; }
+template<> const std::string & FieldHeartBtInt::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldMinQty::enumItems = nullptr;
+template<> FieldType FieldMinQty::getType() { return FieldType::QTY; }
+template<> const std::string & FieldMinQty::getTypeName() { static const std::string fixType{ "QTY" }; return fixType; }
 template<> const FieldEnumBase * const * FieldMaxFloor::enumItems = nullptr;
+template<> FieldType FieldMaxFloor::getType() { return FieldType::QTY; }
+template<> const std::string & FieldMaxFloor::getTypeName() { static const std::string fixType{ "QTY" }; return fixType; }
 template<> const FieldEnumBase * const * FieldTestReqID::enumItems = nullptr;
+template<> FieldType FieldTestReqID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldTestReqID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldReportToExch::enumItems = nullptr;
+template<> FieldType FieldReportToExch::getType() { return FieldType::BOOLEAN; }
+template<> const std::string & FieldReportToExch::getTypeName() { static const std::string fixType{ "BOOLEAN" }; return fixType; }
 template<> const FieldEnumBase * const * FieldLocateReqd::enumItems = nullptr;
+template<> FieldType FieldLocateReqd::getType() { return FieldType::BOOLEAN; }
+template<> const std::string & FieldLocateReqd::getTypeName() { static const std::string fixType{ "BOOLEAN" }; return fixType; }
 template<> const FieldEnumBase * const * FieldOnBehalfOfCompID::enumItems = nullptr;
+template<> FieldType FieldOnBehalfOfCompID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldOnBehalfOfCompID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldOnBehalfOfSubID::enumItems = nullptr;
+template<> FieldType FieldOnBehalfOfSubID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldOnBehalfOfSubID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldQuoteID::enumItems = nullptr;
+template<> FieldType FieldQuoteID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldQuoteID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldNetMoney::enumItems = nullptr;
+template<> FieldType FieldNetMoney::getType() { return FieldType::AMT; }
+template<> const std::string & FieldNetMoney::getTypeName() { static const std::string fixType{ "AMT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldSettlCurrAmt::enumItems = nullptr;
+template<> FieldType FieldSettlCurrAmt::getType() { return FieldType::AMT; }
+template<> const std::string & FieldSettlCurrAmt::getTypeName() { static const std::string fixType{ "AMT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldSettlCurrency::enumItems = nullptr;
+template<> FieldType FieldSettlCurrency::getType() { return FieldType::CURRENCY; }
+template<> const std::string & FieldSettlCurrency::getTypeName() { static const std::string fixType{ "CURRENCY" }; return fixType; }
 template<> const FieldEnumBase * const * FieldForexReq::enumItems = nullptr;
+template<> FieldType FieldForexReq::getType() { return FieldType::BOOLEAN; }
+template<> const std::string & FieldForexReq::getTypeName() { static const std::string fixType{ "BOOLEAN" }; return fixType; }
 template<> const FieldEnumBase * const * FieldOrigSendingTime::enumItems = nullptr;
+template<> FieldType FieldOrigSendingTime::getType() { return FieldType::UTCTIMESTAMP; }
+template<> const std::string & FieldOrigSendingTime::getTypeName() { static const std::string fixType{ "UTCTIMESTAMP" }; return fixType; }
 template<> const FieldEnumBase * const * FieldGapFillFlag::enumItems = nullptr;
+template<> FieldType FieldGapFillFlag::getType() { return FieldType::BOOLEAN; }
+template<> const std::string & FieldGapFillFlag::getTypeName() { static const std::string fixType{ "BOOLEAN" }; return fixType; }
 template<> const FieldEnumBase * const * FieldNoExecs::enumItems = nullptr;
+template<> FieldType FieldNoExecs::getType() { return FieldType::NUMINGROUP; }
+template<> const std::string & FieldNoExecs::getTypeName() { static const std::string fixType{ "NUMINGROUP" }; return fixType; }
 template<> const FieldEnumBase * const * FieldExpireTime::enumItems = nullptr;
+template<> FieldType FieldExpireTime::getType() { return FieldType::UTCTIMESTAMP; }
+template<> const std::string & FieldExpireTime::getTypeName() { static const std::string fixType{ "UTCTIMESTAMP" }; return fixType; }
 template<> const FieldEnumBase * const * FieldDKReason::enumItems = nullptr;
+template<> FieldType FieldDKReason::getType() { return FieldType::CHAR; }
+template<> const std::string & FieldDKReason::getTypeName() { static const std::string fixType{ "CHAR" }; return fixType; }
 template<> const FieldEnumBase * const * FieldDeliverToCompID::enumItems = nullptr;
+template<> FieldType FieldDeliverToCompID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldDeliverToCompID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldDeliverToSubID::enumItems = nullptr;
+template<> FieldType FieldDeliverToSubID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldDeliverToSubID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldIOINaturalFlag::enumItems = nullptr;
+template<> FieldType FieldIOINaturalFlag::getType() { return FieldType::BOOLEAN; }
+template<> const std::string & FieldIOINaturalFlag::getTypeName() { static const std::string fixType{ "BOOLEAN" }; return fixType; }
 template<> const FieldEnumBase * const * FieldQuoteReqID::enumItems = nullptr;
+template<> FieldType FieldQuoteReqID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldQuoteReqID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldBidPx::enumItems = nullptr;
+template<> FieldType FieldBidPx::getType() { return FieldType::PRICE; }
+template<> const std::string & FieldBidPx::getTypeName() { static const std::string fixType{ "PRICE" }; return fixType; }
 template<> const FieldEnumBase * const * FieldOfferPx::enumItems = nullptr;
+template<> FieldType FieldOfferPx::getType() { return FieldType::PRICE; }
+template<> const std::string & FieldOfferPx::getTypeName() { static const std::string fixType{ "PRICE" }; return fixType; }
 template<> const FieldEnumBase * const * FieldBidSize::enumItems = nullptr;
+template<> FieldType FieldBidSize::getType() { return FieldType::QTY; }
+template<> const std::string & FieldBidSize::getTypeName() { static const std::string fixType{ "QTY" }; return fixType; }
 template<> const FieldEnumBase * const * FieldOfferSize::enumItems = nullptr;
+template<> FieldType FieldOfferSize::getType() { return FieldType::QTY; }
+template<> const std::string & FieldOfferSize::getTypeName() { static const std::string fixType{ "QTY" }; return fixType; }
 template<> const FieldEnumBase * const * FieldNoMiscFees::enumItems = nullptr;
+template<> FieldType FieldNoMiscFees::getType() { return FieldType::NUMINGROUP; }
+template<> const std::string & FieldNoMiscFees::getTypeName() { static const std::string fixType{ "NUMINGROUP" }; return fixType; }
 template<> const FieldEnumBase * const * FieldMiscFeeAmt::enumItems = nullptr;
+template<> FieldType FieldMiscFeeAmt::getType() { return FieldType::AMT; }
+template<> const std::string & FieldMiscFeeAmt::getTypeName() { static const std::string fixType{ "AMT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldMiscFeeCurr::enumItems = nullptr;
+template<> FieldType FieldMiscFeeCurr::getType() { return FieldType::CURRENCY; }
+template<> const std::string & FieldMiscFeeCurr::getTypeName() { static const std::string fixType{ "CURRENCY" }; return fixType; }
 template<> const FieldEnumBase * const * FieldMiscFeeType::enumItems = nullptr;
+template<> FieldType FieldMiscFeeType::getType() { return FieldType::STRING; }
+template<> const std::string & FieldMiscFeeType::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldPrevClosePx::enumItems = nullptr;
+template<> FieldType FieldPrevClosePx::getType() { return FieldType::PRICE; }
+template<> const std::string & FieldPrevClosePx::getTypeName() { static const std::string fixType{ "PRICE" }; return fixType; }
 template<> const FieldEnumBase * const * FieldResetSeqNumFlag::enumItems = nullptr;
+template<> FieldType FieldResetSeqNumFlag::getType() { return FieldType::BOOLEAN; }
+template<> const std::string & FieldResetSeqNumFlag::getTypeName() { static const std::string fixType{ "BOOLEAN" }; return fixType; }
 template<> const FieldEnumBase * const * FieldSenderLocationID::enumItems = nullptr;
+template<> FieldType FieldSenderLocationID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldSenderLocationID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldTargetLocationID::enumItems = nullptr;
+template<> FieldType FieldTargetLocationID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldTargetLocationID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldOnBehalfOfLocationID::enumItems = nullptr;
+template<> FieldType FieldOnBehalfOfLocationID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldOnBehalfOfLocationID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldDeliverToLocationID::enumItems = nullptr;
+template<> FieldType FieldDeliverToLocationID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldDeliverToLocationID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldNoRelatedSym::enumItems = nullptr;
+template<> FieldType FieldNoRelatedSym::getType() { return FieldType::NUMINGROUP; }
+template<> const std::string & FieldNoRelatedSym::getTypeName() { static const std::string fixType{ "NUMINGROUP" }; return fixType; }
 template<> const FieldEnumBase * const * FieldSubject::enumItems = nullptr;
+template<> FieldType FieldSubject::getType() { return FieldType::STRING; }
+template<> const std::string & FieldSubject::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldHeadline::enumItems = nullptr;
+template<> FieldType FieldHeadline::getType() { return FieldType::STRING; }
+template<> const std::string & FieldHeadline::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldURLLink::enumItems = nullptr;
+template<> FieldType FieldURLLink::getType() { return FieldType::STRING; }
+template<> const std::string & FieldURLLink::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldExecType::enumItems = nullptr;
+template<> FieldType FieldExecType::getType() { return FieldType::CHAR; }
+template<> const std::string & FieldExecType::getTypeName() { static const std::string fixType{ "CHAR" }; return fixType; }
 template<> const FieldEnumBase * const * FieldLeavesQty::enumItems = nullptr;
+template<> FieldType FieldLeavesQty::getType() { return FieldType::QTY; }
+template<> const std::string & FieldLeavesQty::getTypeName() { static const std::string fixType{ "QTY" }; return fixType; }
 template<> const FieldEnumBase * const * FieldCashOrderQty::enumItems = nullptr;
+template<> FieldType FieldCashOrderQty::getType() { return FieldType::QTY; }
+template<> const std::string & FieldCashOrderQty::getTypeName() { static const std::string fixType{ "QTY" }; return fixType; }
 template<> const FieldEnumBase * const * FieldAllocAvgPx::enumItems = nullptr;
+template<> FieldType FieldAllocAvgPx::getType() { return FieldType::PRICE; }
+template<> const std::string & FieldAllocAvgPx::getTypeName() { static const std::string fixType{ "PRICE" }; return fixType; }
 template<> const FieldEnumBase * const * FieldAllocNetMoney::enumItems = nullptr;
+template<> FieldType FieldAllocNetMoney::getType() { return FieldType::AMT; }
+template<> const std::string & FieldAllocNetMoney::getTypeName() { static const std::string fixType{ "AMT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldSettlCurrFxRate::enumItems = nullptr;
+template<> FieldType FieldSettlCurrFxRate::getType() { return FieldType::FLOAT; }
+template<> const std::string & FieldSettlCurrFxRate::getTypeName() { static const std::string fixType{ "FLOAT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldSettlCurrFxRateCalc::enumItems = nullptr;
+template<> FieldType FieldSettlCurrFxRateCalc::getType() { return FieldType::CHAR; }
+template<> const std::string & FieldSettlCurrFxRateCalc::getTypeName() { static const std::string fixType{ "CHAR" }; return fixType; }
 template<> const FieldEnumBase * const * FieldNumDaysInterest::enumItems = nullptr;
+template<> FieldType FieldNumDaysInterest::getType() { return FieldType::INT; }
+template<> const std::string & FieldNumDaysInterest::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldAccruedInterestRate::enumItems = nullptr;
+template<> FieldType FieldAccruedInterestRate::getType() { return FieldType::PERCENTAGE; }
+template<> const std::string & FieldAccruedInterestRate::getTypeName() { static const std::string fixType{ "PERCENTAGE" }; return fixType; }
 template<> const FieldEnumBase * const * FieldAccruedInterestAmt::enumItems = nullptr;
+template<> FieldType FieldAccruedInterestAmt::getType() { return FieldType::AMT; }
+template<> const std::string & FieldAccruedInterestAmt::getTypeName() { static const std::string fixType{ "AMT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldSettlInstMode::enumItems = nullptr;
+template<> FieldType FieldSettlInstMode::getType() { return FieldType::CHAR; }
+template<> const std::string & FieldSettlInstMode::getTypeName() { static const std::string fixType{ "CHAR" }; return fixType; }
 template<> const FieldEnumBase * const * FieldAllocText::enumItems = nullptr;
+template<> FieldType FieldAllocText::getType() { return FieldType::STRING; }
+template<> const std::string & FieldAllocText::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldSettlInstID::enumItems = nullptr;
+template<> FieldType FieldSettlInstID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldSettlInstID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldSettlInstTransType::enumItems = nullptr;
+template<> FieldType FieldSettlInstTransType::getType() { return FieldType::CHAR; }
+template<> const std::string & FieldSettlInstTransType::getTypeName() { static const std::string fixType{ "CHAR" }; return fixType; }
 template<> const FieldEnumBase * const * FieldEmailThreadID::enumItems = nullptr;
+template<> FieldType FieldEmailThreadID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldEmailThreadID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldSettlInstSource::enumItems = nullptr;
+template<> FieldType FieldSettlInstSource::getType() { return FieldType::CHAR; }
+template<> const std::string & FieldSettlInstSource::getTypeName() { static const std::string fixType{ "CHAR" }; return fixType; }
 template<> const FieldEnumBase * const * FieldSecurityType::enumItems = nullptr;
+template<> FieldType FieldSecurityType::getType() { return FieldType::STRING; }
+template<> const std::string & FieldSecurityType::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldEffectiveTime::enumItems = nullptr;
+template<> FieldType FieldEffectiveTime::getType() { return FieldType::UTCTIMESTAMP; }
+template<> const std::string & FieldEffectiveTime::getTypeName() { static const std::string fixType{ "UTCTIMESTAMP" }; return fixType; }
 template<> const FieldEnumBase * const * FieldStandInstDbType::enumItems = nullptr;
+template<> FieldType FieldStandInstDbType::getType() { return FieldType::INT; }
+template<> const std::string & FieldStandInstDbType::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldStandInstDbName::enumItems = nullptr;
+template<> FieldType FieldStandInstDbName::getType() { return FieldType::STRING; }
+template<> const std::string & FieldStandInstDbName::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldStandInstDbID::enumItems = nullptr;
+template<> FieldType FieldStandInstDbID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldStandInstDbID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldSettlDeliveryType::enumItems = nullptr;
+template<> FieldType FieldSettlDeliveryType::getType() { return FieldType::INT; }
+template<> const std::string & FieldSettlDeliveryType::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldBidSpotRate::enumItems = nullptr;
+template<> FieldType FieldBidSpotRate::getType() { return FieldType::PRICE; }
+template<> const std::string & FieldBidSpotRate::getTypeName() { static const std::string fixType{ "PRICE" }; return fixType; }
 template<> const FieldEnumBase * const * FieldBidForwardPoints::enumItems = nullptr;
+template<> FieldType FieldBidForwardPoints::getType() { return FieldType::PRICEOFFSET; }
+template<> const std::string & FieldBidForwardPoints::getTypeName() { static const std::string fixType{ "PRICEOFFSET" }; return fixType; }
 template<> const FieldEnumBase * const * FieldOfferSpotRate::enumItems = nullptr;
+template<> FieldType FieldOfferSpotRate::getType() { return FieldType::PRICE; }
+template<> const std::string & FieldOfferSpotRate::getTypeName() { static const std::string fixType{ "PRICE" }; return fixType; }
 template<> const FieldEnumBase * const * FieldOfferForwardPoints::enumItems = nullptr;
+template<> FieldType FieldOfferForwardPoints::getType() { return FieldType::PRICEOFFSET; }
+template<> const std::string & FieldOfferForwardPoints::getTypeName() { static const std::string fixType{ "PRICEOFFSET" }; return fixType; }
 template<> const FieldEnumBase * const * FieldOrderQty2::enumItems = nullptr;
+template<> FieldType FieldOrderQty2::getType() { return FieldType::QTY; }
+template<> const std::string & FieldOrderQty2::getTypeName() { static const std::string fixType{ "QTY" }; return fixType; }
 template<> const FieldEnumBase * const * FieldSettlDate2::enumItems = nullptr;
+template<> FieldType FieldSettlDate2::getType() { return FieldType::LOCALMKTDATE; }
+template<> const std::string & FieldSettlDate2::getTypeName() { static const std::string fixType{ "LOCALMKTDATE" }; return fixType; }
 template<> const FieldEnumBase * const * FieldLastSpotRate::enumItems = nullptr;
+template<> FieldType FieldLastSpotRate::getType() { return FieldType::PRICE; }
+template<> const std::string & FieldLastSpotRate::getTypeName() { static const std::string fixType{ "PRICE" }; return fixType; }
 template<> const FieldEnumBase * const * FieldLastForwardPoints::enumItems = nullptr;
+template<> FieldType FieldLastForwardPoints::getType() { return FieldType::PRICEOFFSET; }
+template<> const std::string & FieldLastForwardPoints::getTypeName() { static const std::string fixType{ "PRICEOFFSET" }; return fixType; }
 template<> const FieldEnumBase * const * FieldAllocLinkID::enumItems = nullptr;
+template<> FieldType FieldAllocLinkID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldAllocLinkID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldAllocLinkType::enumItems = nullptr;
+template<> FieldType FieldAllocLinkType::getType() { return FieldType::INT; }
+template<> const std::string & FieldAllocLinkType::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldSecondaryOrderID::enumItems = nullptr;
+template<> FieldType FieldSecondaryOrderID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldSecondaryOrderID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldNoIOIQualifiers::enumItems = nullptr;
+template<> FieldType FieldNoIOIQualifiers::getType() { return FieldType::NUMINGROUP; }
+template<> const std::string & FieldNoIOIQualifiers::getTypeName() { static const std::string fixType{ "NUMINGROUP" }; return fixType; }
 template<> const FieldEnumBase * const * FieldMaturityMonthYear::enumItems = nullptr;
+template<> FieldType FieldMaturityMonthYear::getType() { return FieldType::MONTHYEAR; }
+template<> const std::string & FieldMaturityMonthYear::getTypeName() { static const std::string fixType{ "MONTHYEAR" }; return fixType; }
 template<> const FieldEnumBase * const * FieldPutOrCall::enumItems = nullptr;
+template<> FieldType FieldPutOrCall::getType() { return FieldType::INT; }
+template<> const std::string & FieldPutOrCall::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldStrikePrice::enumItems = nullptr;
+template<> FieldType FieldStrikePrice::getType() { return FieldType::PRICE; }
+template<> const std::string & FieldStrikePrice::getTypeName() { static const std::string fixType{ "PRICE" }; return fixType; }
 template<> const FieldEnumBase * const * FieldCoveredOrUncovered::enumItems = nullptr;
+template<> FieldType FieldCoveredOrUncovered::getType() { return FieldType::INT; }
+template<> const std::string & FieldCoveredOrUncovered::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldOptAttribute::enumItems = nullptr;
+template<> FieldType FieldOptAttribute::getType() { return FieldType::CHAR; }
+template<> const std::string & FieldOptAttribute::getTypeName() { static const std::string fixType{ "CHAR" }; return fixType; }
 template<> const FieldEnumBase * const * FieldSecurityExchange::enumItems = nullptr;
+template<> FieldType FieldSecurityExchange::getType() { return FieldType::EXCHANGE; }
+template<> const std::string & FieldSecurityExchange::getTypeName() { static const std::string fixType{ "EXCHANGE" }; return fixType; }
 template<> const FieldEnumBase * const * FieldNotifyBrokerOfCredit::enumItems = nullptr;
+template<> FieldType FieldNotifyBrokerOfCredit::getType() { return FieldType::BOOLEAN; }
+template<> const std::string & FieldNotifyBrokerOfCredit::getTypeName() { static const std::string fixType{ "BOOLEAN" }; return fixType; }
 template<> const FieldEnumBase * const * FieldAllocHandlInst::enumItems = nullptr;
+template<> FieldType FieldAllocHandlInst::getType() { return FieldType::INT; }
+template<> const std::string & FieldAllocHandlInst::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldMaxShow::enumItems = nullptr;
+template<> FieldType FieldMaxShow::getType() { return FieldType::QTY; }
+template<> const std::string & FieldMaxShow::getTypeName() { static const std::string fixType{ "QTY" }; return fixType; }
 template<> const FieldEnumBase * const * FieldPegOffsetValue::enumItems = nullptr;
+template<> FieldType FieldPegOffsetValue::getType() { return FieldType::FLOAT; }
+template<> const std::string & FieldPegOffsetValue::getTypeName() { static const std::string fixType{ "FLOAT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldXmlDataLen::enumItems = nullptr;
+template<> FieldType FieldXmlDataLen::getType() { return FieldType::LENGTH; }
+template<> const std::string & FieldXmlDataLen::getTypeName() { static const std::string fixType{ "LENGTH" }; return fixType; }
 template<> const FieldEnumBase * const * FieldXmlData::enumItems = nullptr;
+template<> FieldType FieldXmlData::getType() { return FieldType::DATA; }
+template<> const std::string & FieldXmlData::getTypeName() { static const std::string fixType{ "DATA" }; return fixType; }
 template<> const FieldEnumBase * const * FieldSettlInstRefID::enumItems = nullptr;
+template<> FieldType FieldSettlInstRefID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldSettlInstRefID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldNoRoutingIDs::enumItems = nullptr;
+template<> FieldType FieldNoRoutingIDs::getType() { return FieldType::NUMINGROUP; }
+template<> const std::string & FieldNoRoutingIDs::getTypeName() { static const std::string fixType{ "NUMINGROUP" }; return fixType; }
 template<> const FieldEnumBase * const * FieldRoutingType::enumItems = nullptr;
+template<> FieldType FieldRoutingType::getType() { return FieldType::INT; }
+template<> const std::string & FieldRoutingType::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldRoutingID::enumItems = nullptr;
+template<> FieldType FieldRoutingID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldRoutingID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldSpread::enumItems = nullptr;
+template<> FieldType FieldSpread::getType() { return FieldType::PRICEOFFSET; }
+template<> const std::string & FieldSpread::getTypeName() { static const std::string fixType{ "PRICEOFFSET" }; return fixType; }
 template<> const FieldEnumBase * const * FieldBenchmarkCurveCurrency::enumItems = nullptr;
+template<> FieldType FieldBenchmarkCurveCurrency::getType() { return FieldType::CURRENCY; }
+template<> const std::string & FieldBenchmarkCurveCurrency::getTypeName() { static const std::string fixType{ "CURRENCY" }; return fixType; }
 template<> const FieldEnumBase * const * FieldBenchmarkCurveName::enumItems = nullptr;
+template<> FieldType FieldBenchmarkCurveName::getType() { return FieldType::STRING; }
+template<> const std::string & FieldBenchmarkCurveName::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldBenchmarkCurvePoint::enumItems = nullptr;
+template<> FieldType FieldBenchmarkCurvePoint::getType() { return FieldType::STRING; }
+template<> const std::string & FieldBenchmarkCurvePoint::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldCouponRate::enumItems = nullptr;
+template<> FieldType FieldCouponRate::getType() { return FieldType::PERCENTAGE; }
+template<> const std::string & FieldCouponRate::getTypeName() { static const std::string fixType{ "PERCENTAGE" }; return fixType; }
 template<> const FieldEnumBase * const * FieldCouponPaymentDate::enumItems = nullptr;
+template<> FieldType FieldCouponPaymentDate::getType() { return FieldType::LOCALMKTDATE; }
+template<> const std::string & FieldCouponPaymentDate::getTypeName() { static const std::string fixType{ "LOCALMKTDATE" }; return fixType; }
 template<> const FieldEnumBase * const * FieldIssueDate::enumItems = nullptr;
+template<> FieldType FieldIssueDate::getType() { return FieldType::LOCALMKTDATE; }
+template<> const std::string & FieldIssueDate::getTypeName() { static const std::string fixType{ "LOCALMKTDATE" }; return fixType; }
 template<> const FieldEnumBase * const * FieldRepurchaseTerm::enumItems = nullptr;
+template<> FieldType FieldRepurchaseTerm::getType() { return FieldType::INT; }
+template<> const std::string & FieldRepurchaseTerm::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldRepurchaseRate::enumItems = nullptr;
+template<> FieldType FieldRepurchaseRate::getType() { return FieldType::PERCENTAGE; }
+template<> const std::string & FieldRepurchaseRate::getTypeName() { static const std::string fixType{ "PERCENTAGE" }; return fixType; }
 template<> const FieldEnumBase * const * FieldFactor::enumItems = nullptr;
+template<> FieldType FieldFactor::getType() { return FieldType::FLOAT; }
+template<> const std::string & FieldFactor::getTypeName() { static const std::string fixType{ "FLOAT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldTradeOriginationDate::enumItems = nullptr;
+template<> FieldType FieldTradeOriginationDate::getType() { return FieldType::LOCALMKTDATE; }
+template<> const std::string & FieldTradeOriginationDate::getTypeName() { static const std::string fixType{ "LOCALMKTDATE" }; return fixType; }
 template<> const FieldEnumBase * const * FieldExDate::enumItems = nullptr;
+template<> FieldType FieldExDate::getType() { return FieldType::LOCALMKTDATE; }
+template<> const std::string & FieldExDate::getTypeName() { static const std::string fixType{ "LOCALMKTDATE" }; return fixType; }
 template<> const FieldEnumBase * const * FieldContractMultiplier::enumItems = nullptr;
+template<> FieldType FieldContractMultiplier::getType() { return FieldType::FLOAT; }
+template<> const std::string & FieldContractMultiplier::getTypeName() { static const std::string fixType{ "FLOAT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldNoStipulations::enumItems = nullptr;
+template<> FieldType FieldNoStipulations::getType() { return FieldType::NUMINGROUP; }
+template<> const std::string & FieldNoStipulations::getTypeName() { static const std::string fixType{ "NUMINGROUP" }; return fixType; }
 template<> const FieldEnumBase * const * FieldStipulationType::enumItems = nullptr;
+template<> FieldType FieldStipulationType::getType() { return FieldType::STRING; }
+template<> const std::string & FieldStipulationType::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldStipulationValue::enumItems = nullptr;
+template<> FieldType FieldStipulationValue::getType() { return FieldType::STRING; }
+template<> const std::string & FieldStipulationValue::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldYieldType::enumItems = nullptr;
+template<> FieldType FieldYieldType::getType() { return FieldType::STRING; }
+template<> const std::string & FieldYieldType::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldYield::enumItems = nullptr;
+template<> FieldType FieldYield::getType() { return FieldType::PERCENTAGE; }
+template<> const std::string & FieldYield::getTypeName() { static const std::string fixType{ "PERCENTAGE" }; return fixType; }
 template<> const FieldEnumBase * const * FieldTotalTakedown::enumItems = nullptr;
+template<> FieldType FieldTotalTakedown::getType() { return FieldType::AMT; }
+template<> const std::string & FieldTotalTakedown::getTypeName() { static const std::string fixType{ "AMT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldConcession::enumItems = nullptr;
+template<> FieldType FieldConcession::getType() { return FieldType::AMT; }
+template<> const std::string & FieldConcession::getTypeName() { static const std::string fixType{ "AMT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldRepoCollateralSecurityType::enumItems = nullptr;
+template<> FieldType FieldRepoCollateralSecurityType::getType() { return FieldType::STRING; }
+template<> const std::string & FieldRepoCollateralSecurityType::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldRedemptionDate::enumItems = nullptr;
+template<> FieldType FieldRedemptionDate::getType() { return FieldType::LOCALMKTDATE; }
+template<> const std::string & FieldRedemptionDate::getTypeName() { static const std::string fixType{ "LOCALMKTDATE" }; return fixType; }
 template<> const FieldEnumBase * const * FieldUnderlyingCouponPaymentDate::enumItems = nullptr;
+template<> FieldType FieldUnderlyingCouponPaymentDate::getType() { return FieldType::LOCALMKTDATE; }
+template<> const std::string & FieldUnderlyingCouponPaymentDate::getTypeName() { static const std::string fixType{ "LOCALMKTDATE" }; return fixType; }
 template<> const FieldEnumBase * const * FieldUnderlyingIssueDate::enumItems = nullptr;
+template<> FieldType FieldUnderlyingIssueDate::getType() { return FieldType::LOCALMKTDATE; }
+template<> const std::string & FieldUnderlyingIssueDate::getTypeName() { static const std::string fixType{ "LOCALMKTDATE" }; return fixType; }
 template<> const FieldEnumBase * const * FieldUnderlyingRepoCollateralSecurityType::enumItems = nullptr;
+template<> FieldType FieldUnderlyingRepoCollateralSecurityType::getType() { return FieldType::STRING; }
+template<> const std::string & FieldUnderlyingRepoCollateralSecurityType::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldUnderlyingRepurchaseTerm::enumItems = nullptr;
+template<> FieldType FieldUnderlyingRepurchaseTerm::getType() { return FieldType::INT; }
+template<> const std::string & FieldUnderlyingRepurchaseTerm::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldUnderlyingRepurchaseRate::enumItems = nullptr;
+template<> FieldType FieldUnderlyingRepurchaseRate::getType() { return FieldType::PERCENTAGE; }
+template<> const std::string & FieldUnderlyingRepurchaseRate::getTypeName() { static const std::string fixType{ "PERCENTAGE" }; return fixType; }
 template<> const FieldEnumBase * const * FieldUnderlyingFactor::enumItems = nullptr;
+template<> FieldType FieldUnderlyingFactor::getType() { return FieldType::FLOAT; }
+template<> const std::string & FieldUnderlyingFactor::getTypeName() { static const std::string fixType{ "FLOAT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldUnderlyingRedemptionDate::enumItems = nullptr;
+template<> FieldType FieldUnderlyingRedemptionDate::getType() { return FieldType::LOCALMKTDATE; }
+template<> const std::string & FieldUnderlyingRedemptionDate::getTypeName() { static const std::string fixType{ "LOCALMKTDATE" }; return fixType; }
 template<> const FieldEnumBase * const * FieldLegCouponPaymentDate::enumItems = nullptr;
+template<> FieldType FieldLegCouponPaymentDate::getType() { return FieldType::LOCALMKTDATE; }
+template<> const std::string & FieldLegCouponPaymentDate::getTypeName() { static const std::string fixType{ "LOCALMKTDATE" }; return fixType; }
 template<> const FieldEnumBase * const * FieldLegIssueDate::enumItems = nullptr;
+template<> FieldType FieldLegIssueDate::getType() { return FieldType::LOCALMKTDATE; }
+template<> const std::string & FieldLegIssueDate::getTypeName() { static const std::string fixType{ "LOCALMKTDATE" }; return fixType; }
 template<> const FieldEnumBase * const * FieldLegRepoCollateralSecurityType::enumItems = nullptr;
+template<> FieldType FieldLegRepoCollateralSecurityType::getType() { return FieldType::STRING; }
+template<> const std::string & FieldLegRepoCollateralSecurityType::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldLegRepurchaseTerm::enumItems = nullptr;
+template<> FieldType FieldLegRepurchaseTerm::getType() { return FieldType::INT; }
+template<> const std::string & FieldLegRepurchaseTerm::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldLegRepurchaseRate::enumItems = nullptr;
+template<> FieldType FieldLegRepurchaseRate::getType() { return FieldType::PERCENTAGE; }
+template<> const std::string & FieldLegRepurchaseRate::getTypeName() { static const std::string fixType{ "PERCENTAGE" }; return fixType; }
 template<> const FieldEnumBase * const * FieldLegFactor::enumItems = nullptr;
+template<> FieldType FieldLegFactor::getType() { return FieldType::FLOAT; }
+template<> const std::string & FieldLegFactor::getTypeName() { static const std::string fixType{ "FLOAT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldLegRedemptionDate::enumItems = nullptr;
+template<> FieldType FieldLegRedemptionDate::getType() { return FieldType::LOCALMKTDATE; }
+template<> const std::string & FieldLegRedemptionDate::getTypeName() { static const std::string fixType{ "LOCALMKTDATE" }; return fixType; }
 template<> const FieldEnumBase * const * FieldCreditRating::enumItems = nullptr;
+template<> FieldType FieldCreditRating::getType() { return FieldType::STRING; }
+template<> const std::string & FieldCreditRating::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldUnderlyingCreditRating::enumItems = nullptr;
+template<> FieldType FieldUnderlyingCreditRating::getType() { return FieldType::STRING; }
+template<> const std::string & FieldUnderlyingCreditRating::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldLegCreditRating::enumItems = nullptr;
+template<> FieldType FieldLegCreditRating::getType() { return FieldType::STRING; }
+template<> const std::string & FieldLegCreditRating::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldTradedFlatSwitch::enumItems = nullptr;
+template<> FieldType FieldTradedFlatSwitch::getType() { return FieldType::BOOLEAN; }
+template<> const std::string & FieldTradedFlatSwitch::getTypeName() { static const std::string fixType{ "BOOLEAN" }; return fixType; }
 template<> const FieldEnumBase * const * FieldBasisFeatureDate::enumItems = nullptr;
+template<> FieldType FieldBasisFeatureDate::getType() { return FieldType::LOCALMKTDATE; }
+template<> const std::string & FieldBasisFeatureDate::getTypeName() { static const std::string fixType{ "LOCALMKTDATE" }; return fixType; }
 template<> const FieldEnumBase * const * FieldBasisFeaturePrice::enumItems = nullptr;
+template<> FieldType FieldBasisFeaturePrice::getType() { return FieldType::PRICE; }
+template<> const std::string & FieldBasisFeaturePrice::getTypeName() { static const std::string fixType{ "PRICE" }; return fixType; }
 template<> const FieldEnumBase * const * FieldMDReqID::enumItems = nullptr;
+template<> FieldType FieldMDReqID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldMDReqID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldSubscriptionRequestType::enumItems = nullptr;
+template<> FieldType FieldSubscriptionRequestType::getType() { return FieldType::CHAR; }
+template<> const std::string & FieldSubscriptionRequestType::getTypeName() { static const std::string fixType{ "CHAR" }; return fixType; }
 template<> const FieldEnumBase * const * FieldMarketDepth::enumItems = nullptr;
+template<> FieldType FieldMarketDepth::getType() { return FieldType::INT; }
+template<> const std::string & FieldMarketDepth::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldMDUpdateType::enumItems = nullptr;
+template<> FieldType FieldMDUpdateType::getType() { return FieldType::INT; }
+template<> const std::string & FieldMDUpdateType::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldAggregatedBook::enumItems = nullptr;
+template<> FieldType FieldAggregatedBook::getType() { return FieldType::BOOLEAN; }
+template<> const std::string & FieldAggregatedBook::getTypeName() { static const std::string fixType{ "BOOLEAN" }; return fixType; }
 template<> const FieldEnumBase * const * FieldNoMDEntryTypes::enumItems = nullptr;
+template<> FieldType FieldNoMDEntryTypes::getType() { return FieldType::NUMINGROUP; }
+template<> const std::string & FieldNoMDEntryTypes::getTypeName() { static const std::string fixType{ "NUMINGROUP" }; return fixType; }
 template<> const FieldEnumBase * const * FieldNoMDEntries::enumItems = nullptr;
+template<> FieldType FieldNoMDEntries::getType() { return FieldType::NUMINGROUP; }
+template<> const std::string & FieldNoMDEntries::getTypeName() { static const std::string fixType{ "NUMINGROUP" }; return fixType; }
 template<> const FieldEnumBase * const * FieldMDEntryType::enumItems = nullptr;
+template<> FieldType FieldMDEntryType::getType() { return FieldType::CHAR; }
+template<> const std::string & FieldMDEntryType::getTypeName() { static const std::string fixType{ "CHAR" }; return fixType; }
 template<> const FieldEnumBase * const * FieldMDEntryPx::enumItems = nullptr;
+template<> FieldType FieldMDEntryPx::getType() { return FieldType::PRICE; }
+template<> const std::string & FieldMDEntryPx::getTypeName() { static const std::string fixType{ "PRICE" }; return fixType; }
 template<> const FieldEnumBase * const * FieldMDEntrySize::enumItems = nullptr;
+template<> FieldType FieldMDEntrySize::getType() { return FieldType::QTY; }
+template<> const std::string & FieldMDEntrySize::getTypeName() { static const std::string fixType{ "QTY" }; return fixType; }
 template<> const FieldEnumBase * const * FieldMDEntryDate::enumItems = nullptr;
+template<> FieldType FieldMDEntryDate::getType() { return FieldType::UTCDATEONLY; }
+template<> const std::string & FieldMDEntryDate::getTypeName() { static const std::string fixType{ "UTCDATEONLY" }; return fixType; }
 template<> const FieldEnumBase * const * FieldMDEntryTime::enumItems = nullptr;
+template<> FieldType FieldMDEntryTime::getType() { return FieldType::UTCTIMEONLY; }
+template<> const std::string & FieldMDEntryTime::getTypeName() { static const std::string fixType{ "UTCTIMEONLY" }; return fixType; }
 template<> const FieldEnumBase * const * FieldTickDirection::enumItems = nullptr;
+template<> FieldType FieldTickDirection::getType() { return FieldType::CHAR; }
+template<> const std::string & FieldTickDirection::getTypeName() { static const std::string fixType{ "CHAR" }; return fixType; }
 template<> const FieldEnumBase * const * FieldMDMkt::enumItems = nullptr;
+template<> FieldType FieldMDMkt::getType() { return FieldType::EXCHANGE; }
+template<> const std::string & FieldMDMkt::getTypeName() { static const std::string fixType{ "EXCHANGE" }; return fixType; }
 template<> const FieldEnumBase * const * FieldQuoteCondition::enumItems = nullptr;
+template<> FieldType FieldQuoteCondition::getType() { return FieldType::MULTIPLEVALUESTRING; }
+template<> const std::string & FieldQuoteCondition::getTypeName() { static const std::string fixType{ "MULTIPLEVALUESTRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldTradeCondition::enumItems = nullptr;
+template<> FieldType FieldTradeCondition::getType() { return FieldType::MULTIPLEVALUESTRING; }
+template<> const std::string & FieldTradeCondition::getTypeName() { static const std::string fixType{ "MULTIPLEVALUESTRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldMDEntryID::enumItems = nullptr;
+template<> FieldType FieldMDEntryID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldMDEntryID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldMDUpdateAction::enumItems = nullptr;
+template<> FieldType FieldMDUpdateAction::getType() { return FieldType::CHAR; }
+template<> const std::string & FieldMDUpdateAction::getTypeName() { static const std::string fixType{ "CHAR" }; return fixType; }
 template<> const FieldEnumBase * const * FieldMDEntryRefID::enumItems = nullptr;
+template<> FieldType FieldMDEntryRefID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldMDEntryRefID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldMDReqRejReason::enumItems = nullptr;
+template<> FieldType FieldMDReqRejReason::getType() { return FieldType::CHAR; }
+template<> const std::string & FieldMDReqRejReason::getTypeName() { static const std::string fixType{ "CHAR" }; return fixType; }
 template<> const FieldEnumBase * const * FieldMDEntryOriginator::enumItems = nullptr;
+template<> FieldType FieldMDEntryOriginator::getType() { return FieldType::STRING; }
+template<> const std::string & FieldMDEntryOriginator::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldLocationID::enumItems = nullptr;
+template<> FieldType FieldLocationID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldLocationID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldDeskID::enumItems = nullptr;
+template<> FieldType FieldDeskID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldDeskID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldDeleteReason::enumItems = nullptr;
+template<> FieldType FieldDeleteReason::getType() { return FieldType::CHAR; }
+template<> const std::string & FieldDeleteReason::getTypeName() { static const std::string fixType{ "CHAR" }; return fixType; }
 template<> const FieldEnumBase * const * FieldOpenCloseSettlFlag::enumItems = nullptr;
+template<> FieldType FieldOpenCloseSettlFlag::getType() { return FieldType::MULTIPLEVALUESTRING; }
+template<> const std::string & FieldOpenCloseSettlFlag::getTypeName() { static const std::string fixType{ "MULTIPLEVALUESTRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldSellerDays::enumItems = nullptr;
+template<> FieldType FieldSellerDays::getType() { return FieldType::INT; }
+template<> const std::string & FieldSellerDays::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldMDEntryBuyer::enumItems = nullptr;
+template<> FieldType FieldMDEntryBuyer::getType() { return FieldType::STRING; }
+template<> const std::string & FieldMDEntryBuyer::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldMDEntrySeller::enumItems = nullptr;
+template<> FieldType FieldMDEntrySeller::getType() { return FieldType::STRING; }
+template<> const std::string & FieldMDEntrySeller::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldMDEntryPositionNo::enumItems = nullptr;
+template<> FieldType FieldMDEntryPositionNo::getType() { return FieldType::INT; }
+template<> const std::string & FieldMDEntryPositionNo::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldFinancialStatus::enumItems = nullptr;
+template<> FieldType FieldFinancialStatus::getType() { return FieldType::MULTIPLEVALUESTRING; }
+template<> const std::string & FieldFinancialStatus::getTypeName() { static const std::string fixType{ "MULTIPLEVALUESTRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldCorporateAction::enumItems = nullptr;
+template<> FieldType FieldCorporateAction::getType() { return FieldType::MULTIPLEVALUESTRING; }
+template<> const std::string & FieldCorporateAction::getTypeName() { static const std::string fixType{ "MULTIPLEVALUESTRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldDefBidSize::enumItems = nullptr;
+template<> FieldType FieldDefBidSize::getType() { return FieldType::QTY; }
+template<> const std::string & FieldDefBidSize::getTypeName() { static const std::string fixType{ "QTY" }; return fixType; }
 template<> const FieldEnumBase * const * FieldDefOfferSize::enumItems = nullptr;
+template<> FieldType FieldDefOfferSize::getType() { return FieldType::QTY; }
+template<> const std::string & FieldDefOfferSize::getTypeName() { static const std::string fixType{ "QTY" }; return fixType; }
 template<> const FieldEnumBase * const * FieldNoQuoteEntries::enumItems = nullptr;
+template<> FieldType FieldNoQuoteEntries::getType() { return FieldType::NUMINGROUP; }
+template<> const std::string & FieldNoQuoteEntries::getTypeName() { static const std::string fixType{ "NUMINGROUP" }; return fixType; }
 template<> const FieldEnumBase * const * FieldNoQuoteSets::enumItems = nullptr;
+template<> FieldType FieldNoQuoteSets::getType() { return FieldType::NUMINGROUP; }
+template<> const std::string & FieldNoQuoteSets::getTypeName() { static const std::string fixType{ "NUMINGROUP" }; return fixType; }
 template<> const FieldEnumBase * const * FieldQuoteStatus::enumItems = nullptr;
+template<> FieldType FieldQuoteStatus::getType() { return FieldType::INT; }
+template<> const std::string & FieldQuoteStatus::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldQuoteCancelType::enumItems = nullptr;
+template<> FieldType FieldQuoteCancelType::getType() { return FieldType::INT; }
+template<> const std::string & FieldQuoteCancelType::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldQuoteEntryID::enumItems = nullptr;
+template<> FieldType FieldQuoteEntryID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldQuoteEntryID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldQuoteRejectReason::enumItems = nullptr;
+template<> FieldType FieldQuoteRejectReason::getType() { return FieldType::INT; }
+template<> const std::string & FieldQuoteRejectReason::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldQuoteResponseLevel::enumItems = nullptr;
+template<> FieldType FieldQuoteResponseLevel::getType() { return FieldType::INT; }
+template<> const std::string & FieldQuoteResponseLevel::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldQuoteSetID::enumItems = nullptr;
+template<> FieldType FieldQuoteSetID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldQuoteSetID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldQuoteRequestType::enumItems = nullptr;
+template<> FieldType FieldQuoteRequestType::getType() { return FieldType::INT; }
+template<> const std::string & FieldQuoteRequestType::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldTotNoQuoteEntries::enumItems = nullptr;
+template<> FieldType FieldTotNoQuoteEntries::getType() { return FieldType::INT; }
+template<> const std::string & FieldTotNoQuoteEntries::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldUnderlyingSecurityIDSource::enumItems = nullptr;
+template<> FieldType FieldUnderlyingSecurityIDSource::getType() { return FieldType::STRING; }
+template<> const std::string & FieldUnderlyingSecurityIDSource::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldUnderlyingIssuer::enumItems = nullptr;
+template<> FieldType FieldUnderlyingIssuer::getType() { return FieldType::STRING; }
+template<> const std::string & FieldUnderlyingIssuer::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldUnderlyingSecurityDesc::enumItems = nullptr;
+template<> FieldType FieldUnderlyingSecurityDesc::getType() { return FieldType::STRING; }
+template<> const std::string & FieldUnderlyingSecurityDesc::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldUnderlyingSecurityExchange::enumItems = nullptr;
+template<> FieldType FieldUnderlyingSecurityExchange::getType() { return FieldType::EXCHANGE; }
+template<> const std::string & FieldUnderlyingSecurityExchange::getTypeName() { static const std::string fixType{ "EXCHANGE" }; return fixType; }
 template<> const FieldEnumBase * const * FieldUnderlyingSecurityID::enumItems = nullptr;
+template<> FieldType FieldUnderlyingSecurityID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldUnderlyingSecurityID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldUnderlyingSecurityType::enumItems = nullptr;
+template<> FieldType FieldUnderlyingSecurityType::getType() { return FieldType::STRING; }
+template<> const std::string & FieldUnderlyingSecurityType::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldUnderlyingSymbol::enumItems = nullptr;
+template<> FieldType FieldUnderlyingSymbol::getType() { return FieldType::STRING; }
+template<> const std::string & FieldUnderlyingSymbol::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldUnderlyingSymbolSfx::enumItems = nullptr;
+template<> FieldType FieldUnderlyingSymbolSfx::getType() { return FieldType::STRING; }
+template<> const std::string & FieldUnderlyingSymbolSfx::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldUnderlyingMaturityMonthYear::enumItems = nullptr;
+template<> FieldType FieldUnderlyingMaturityMonthYear::getType() { return FieldType::MONTHYEAR; }
+template<> const std::string & FieldUnderlyingMaturityMonthYear::getTypeName() { static const std::string fixType{ "MONTHYEAR" }; return fixType; }
 template<> const FieldEnumBase * const * FieldUnderlyingPutOrCall::enumItems = nullptr;
+template<> FieldType FieldUnderlyingPutOrCall::getType() { return FieldType::INT; }
+template<> const std::string & FieldUnderlyingPutOrCall::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldUnderlyingStrikePrice::enumItems = nullptr;
+template<> FieldType FieldUnderlyingStrikePrice::getType() { return FieldType::PRICE; }
+template<> const std::string & FieldUnderlyingStrikePrice::getTypeName() { static const std::string fixType{ "PRICE" }; return fixType; }
 template<> const FieldEnumBase * const * FieldUnderlyingOptAttribute::enumItems = nullptr;
+template<> FieldType FieldUnderlyingOptAttribute::getType() { return FieldType::CHAR; }
+template<> const std::string & FieldUnderlyingOptAttribute::getTypeName() { static const std::string fixType{ "CHAR" }; return fixType; }
 template<> const FieldEnumBase * const * FieldUnderlyingCurrency::enumItems = nullptr;
+template<> FieldType FieldUnderlyingCurrency::getType() { return FieldType::CURRENCY; }
+template<> const std::string & FieldUnderlyingCurrency::getTypeName() { static const std::string fixType{ "CURRENCY" }; return fixType; }
 template<> const FieldEnumBase * const * FieldSecurityReqID::enumItems = nullptr;
+template<> FieldType FieldSecurityReqID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldSecurityReqID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldSecurityRequestType::enumItems = nullptr;
+template<> FieldType FieldSecurityRequestType::getType() { return FieldType::INT; }
+template<> const std::string & FieldSecurityRequestType::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldSecurityResponseID::enumItems = nullptr;
+template<> FieldType FieldSecurityResponseID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldSecurityResponseID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldSecurityResponseType::enumItems = nullptr;
+template<> FieldType FieldSecurityResponseType::getType() { return FieldType::INT; }
+template<> const std::string & FieldSecurityResponseType::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldSecurityStatusReqID::enumItems = nullptr;
+template<> FieldType FieldSecurityStatusReqID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldSecurityStatusReqID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldUnsolicitedIndicator::enumItems = nullptr;
+template<> FieldType FieldUnsolicitedIndicator::getType() { return FieldType::BOOLEAN; }
+template<> const std::string & FieldUnsolicitedIndicator::getTypeName() { static const std::string fixType{ "BOOLEAN" }; return fixType; }
 template<> const FieldEnumBase * const * FieldSecurityTradingStatus::enumItems = nullptr;
+template<> FieldType FieldSecurityTradingStatus::getType() { return FieldType::INT; }
+template<> const std::string & FieldSecurityTradingStatus::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldHaltReasonChar::enumItems = nullptr;
+template<> FieldType FieldHaltReasonChar::getType() { return FieldType::CHAR; }
+template<> const std::string & FieldHaltReasonChar::getTypeName() { static const std::string fixType{ "CHAR" }; return fixType; }
 template<> const FieldEnumBase * const * FieldInViewOfCommon::enumItems = nullptr;
+template<> FieldType FieldInViewOfCommon::getType() { return FieldType::BOOLEAN; }
+template<> const std::string & FieldInViewOfCommon::getTypeName() { static const std::string fixType{ "BOOLEAN" }; return fixType; }
 template<> const FieldEnumBase * const * FieldDueToRelated::enumItems = nullptr;
+template<> FieldType FieldDueToRelated::getType() { return FieldType::BOOLEAN; }
+template<> const std::string & FieldDueToRelated::getTypeName() { static const std::string fixType{ "BOOLEAN" }; return fixType; }
 template<> const FieldEnumBase * const * FieldBuyVolume::enumItems = nullptr;
+template<> FieldType FieldBuyVolume::getType() { return FieldType::QTY; }
+template<> const std::string & FieldBuyVolume::getTypeName() { static const std::string fixType{ "QTY" }; return fixType; }
 template<> const FieldEnumBase * const * FieldSellVolume::enumItems = nullptr;
+template<> FieldType FieldSellVolume::getType() { return FieldType::QTY; }
+template<> const std::string & FieldSellVolume::getTypeName() { static const std::string fixType{ "QTY" }; return fixType; }
 template<> const FieldEnumBase * const * FieldHighPx::enumItems = nullptr;
+template<> FieldType FieldHighPx::getType() { return FieldType::PRICE; }
+template<> const std::string & FieldHighPx::getTypeName() { static const std::string fixType{ "PRICE" }; return fixType; }
 template<> const FieldEnumBase * const * FieldLowPx::enumItems = nullptr;
+template<> FieldType FieldLowPx::getType() { return FieldType::PRICE; }
+template<> const std::string & FieldLowPx::getTypeName() { static const std::string fixType{ "PRICE" }; return fixType; }
 template<> const FieldEnumBase * const * FieldAdjustment::enumItems = nullptr;
+template<> FieldType FieldAdjustment::getType() { return FieldType::INT; }
+template<> const std::string & FieldAdjustment::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldTradSesReqID::enumItems = nullptr;
+template<> FieldType FieldTradSesReqID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldTradSesReqID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldTradingSessionID::enumItems = nullptr;
+template<> FieldType FieldTradingSessionID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldTradingSessionID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldContraTrader::enumItems = nullptr;
+template<> FieldType FieldContraTrader::getType() { return FieldType::STRING; }
+template<> const std::string & FieldContraTrader::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldTradSesMethod::enumItems = nullptr;
+template<> FieldType FieldTradSesMethod::getType() { return FieldType::INT; }
+template<> const std::string & FieldTradSesMethod::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldTradSesMode::enumItems = nullptr;
+template<> FieldType FieldTradSesMode::getType() { return FieldType::INT; }
+template<> const std::string & FieldTradSesMode::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldTradSesStatus::enumItems = nullptr;
+template<> FieldType FieldTradSesStatus::getType() { return FieldType::INT; }
+template<> const std::string & FieldTradSesStatus::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldTradSesStartTime::enumItems = nullptr;
+template<> FieldType FieldTradSesStartTime::getType() { return FieldType::UTCTIMESTAMP; }
+template<> const std::string & FieldTradSesStartTime::getTypeName() { static const std::string fixType{ "UTCTIMESTAMP" }; return fixType; }
 template<> const FieldEnumBase * const * FieldTradSesOpenTime::enumItems = nullptr;
+template<> FieldType FieldTradSesOpenTime::getType() { return FieldType::UTCTIMESTAMP; }
+template<> const std::string & FieldTradSesOpenTime::getTypeName() { static const std::string fixType{ "UTCTIMESTAMP" }; return fixType; }
 template<> const FieldEnumBase * const * FieldTradSesPreCloseTime::enumItems = nullptr;
+template<> FieldType FieldTradSesPreCloseTime::getType() { return FieldType::UTCTIMESTAMP; }
+template<> const std::string & FieldTradSesPreCloseTime::getTypeName() { static const std::string fixType{ "UTCTIMESTAMP" }; return fixType; }
 template<> const FieldEnumBase * const * FieldTradSesCloseTime::enumItems = nullptr;
+template<> FieldType FieldTradSesCloseTime::getType() { return FieldType::UTCTIMESTAMP; }
+template<> const std::string & FieldTradSesCloseTime::getTypeName() { static const std::string fixType{ "UTCTIMESTAMP" }; return fixType; }
 template<> const FieldEnumBase * const * FieldTradSesEndTime::enumItems = nullptr;
+template<> FieldType FieldTradSesEndTime::getType() { return FieldType::UTCTIMESTAMP; }
+template<> const std::string & FieldTradSesEndTime::getTypeName() { static const std::string fixType{ "UTCTIMESTAMP" }; return fixType; }
 template<> const FieldEnumBase * const * FieldNumberOfOrders::enumItems = nullptr;
+template<> FieldType FieldNumberOfOrders::getType() { return FieldType::INT; }
+template<> const std::string & FieldNumberOfOrders::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldMessageEncoding::enumItems = nullptr;
+template<> FieldType FieldMessageEncoding::getType() { return FieldType::STRING; }
+template<> const std::string & FieldMessageEncoding::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldEncodedIssuerLen::enumItems = nullptr;
+template<> FieldType FieldEncodedIssuerLen::getType() { return FieldType::LENGTH; }
+template<> const std::string & FieldEncodedIssuerLen::getTypeName() { static const std::string fixType{ "LENGTH" }; return fixType; }
 template<> const FieldEnumBase * const * FieldEncodedIssuer::enumItems = nullptr;
+template<> FieldType FieldEncodedIssuer::getType() { return FieldType::DATA; }
+template<> const std::string & FieldEncodedIssuer::getTypeName() { static const std::string fixType{ "DATA" }; return fixType; }
 template<> const FieldEnumBase * const * FieldEncodedSecurityDescLen::enumItems = nullptr;
+template<> FieldType FieldEncodedSecurityDescLen::getType() { return FieldType::LENGTH; }
+template<> const std::string & FieldEncodedSecurityDescLen::getTypeName() { static const std::string fixType{ "LENGTH" }; return fixType; }
 template<> const FieldEnumBase * const * FieldEncodedSecurityDesc::enumItems = nullptr;
+template<> FieldType FieldEncodedSecurityDesc::getType() { return FieldType::DATA; }
+template<> const std::string & FieldEncodedSecurityDesc::getTypeName() { static const std::string fixType{ "DATA" }; return fixType; }
 template<> const FieldEnumBase * const * FieldEncodedListExecInstLen::enumItems = nullptr;
+template<> FieldType FieldEncodedListExecInstLen::getType() { return FieldType::LENGTH; }
+template<> const std::string & FieldEncodedListExecInstLen::getTypeName() { static const std::string fixType{ "LENGTH" }; return fixType; }
 template<> const FieldEnumBase * const * FieldEncodedListExecInst::enumItems = nullptr;
+template<> FieldType FieldEncodedListExecInst::getType() { return FieldType::DATA; }
+template<> const std::string & FieldEncodedListExecInst::getTypeName() { static const std::string fixType{ "DATA" }; return fixType; }
 template<> const FieldEnumBase * const * FieldEncodedTextLen::enumItems = nullptr;
+template<> FieldType FieldEncodedTextLen::getType() { return FieldType::LENGTH; }
+template<> const std::string & FieldEncodedTextLen::getTypeName() { static const std::string fixType{ "LENGTH" }; return fixType; }
 template<> const FieldEnumBase * const * FieldEncodedText::enumItems = nullptr;
+template<> FieldType FieldEncodedText::getType() { return FieldType::DATA; }
+template<> const std::string & FieldEncodedText::getTypeName() { static const std::string fixType{ "DATA" }; return fixType; }
 template<> const FieldEnumBase * const * FieldEncodedSubjectLen::enumItems = nullptr;
+template<> FieldType FieldEncodedSubjectLen::getType() { return FieldType::LENGTH; }
+template<> const std::string & FieldEncodedSubjectLen::getTypeName() { static const std::string fixType{ "LENGTH" }; return fixType; }
 template<> const FieldEnumBase * const * FieldEncodedSubject::enumItems = nullptr;
+template<> FieldType FieldEncodedSubject::getType() { return FieldType::DATA; }
+template<> const std::string & FieldEncodedSubject::getTypeName() { static const std::string fixType{ "DATA" }; return fixType; }
 template<> const FieldEnumBase * const * FieldEncodedHeadlineLen::enumItems = nullptr;
+template<> FieldType FieldEncodedHeadlineLen::getType() { return FieldType::LENGTH; }
+template<> const std::string & FieldEncodedHeadlineLen::getTypeName() { static const std::string fixType{ "LENGTH" }; return fixType; }
 template<> const FieldEnumBase * const * FieldEncodedHeadline::enumItems = nullptr;
+template<> FieldType FieldEncodedHeadline::getType() { return FieldType::DATA; }
+template<> const std::string & FieldEncodedHeadline::getTypeName() { static const std::string fixType{ "DATA" }; return fixType; }
 template<> const FieldEnumBase * const * FieldEncodedAllocTextLen::enumItems = nullptr;
+template<> FieldType FieldEncodedAllocTextLen::getType() { return FieldType::LENGTH; }
+template<> const std::string & FieldEncodedAllocTextLen::getTypeName() { static const std::string fixType{ "LENGTH" }; return fixType; }
 template<> const FieldEnumBase * const * FieldEncodedAllocText::enumItems = nullptr;
+template<> FieldType FieldEncodedAllocText::getType() { return FieldType::DATA; }
+template<> const std::string & FieldEncodedAllocText::getTypeName() { static const std::string fixType{ "DATA" }; return fixType; }
 template<> const FieldEnumBase * const * FieldEncodedUnderlyingIssuerLen::enumItems = nullptr;
+template<> FieldType FieldEncodedUnderlyingIssuerLen::getType() { return FieldType::LENGTH; }
+template<> const std::string & FieldEncodedUnderlyingIssuerLen::getTypeName() { static const std::string fixType{ "LENGTH" }; return fixType; }
 template<> const FieldEnumBase * const * FieldEncodedUnderlyingIssuer::enumItems = nullptr;
+template<> FieldType FieldEncodedUnderlyingIssuer::getType() { return FieldType::DATA; }
+template<> const std::string & FieldEncodedUnderlyingIssuer::getTypeName() { static const std::string fixType{ "DATA" }; return fixType; }
 template<> const FieldEnumBase * const * FieldEncodedUnderlyingSecurityDescLen::enumItems = nullptr;
+template<> FieldType FieldEncodedUnderlyingSecurityDescLen::getType() { return FieldType::LENGTH; }
+template<> const std::string & FieldEncodedUnderlyingSecurityDescLen::getTypeName() { static const std::string fixType{ "LENGTH" }; return fixType; }
 template<> const FieldEnumBase * const * FieldEncodedUnderlyingSecurityDesc::enumItems = nullptr;
+template<> FieldType FieldEncodedUnderlyingSecurityDesc::getType() { return FieldType::DATA; }
+template<> const std::string & FieldEncodedUnderlyingSecurityDesc::getTypeName() { static const std::string fixType{ "DATA" }; return fixType; }
 template<> const FieldEnumBase * const * FieldAllocPrice::enumItems = nullptr;
+template<> FieldType FieldAllocPrice::getType() { return FieldType::PRICE; }
+template<> const std::string & FieldAllocPrice::getTypeName() { static const std::string fixType{ "PRICE" }; return fixType; }
 template<> const FieldEnumBase * const * FieldQuoteSetValidUntilTime::enumItems = nullptr;
+template<> FieldType FieldQuoteSetValidUntilTime::getType() { return FieldType::UTCTIMESTAMP; }
+template<> const std::string & FieldQuoteSetValidUntilTime::getTypeName() { static const std::string fixType{ "UTCTIMESTAMP" }; return fixType; }
 template<> const FieldEnumBase * const * FieldQuoteEntryRejectReason::enumItems = nullptr;
+template<> FieldType FieldQuoteEntryRejectReason::getType() { return FieldType::INT; }
+template<> const std::string & FieldQuoteEntryRejectReason::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldLastMsgSeqNumProcessed::enumItems = nullptr;
+template<> FieldType FieldLastMsgSeqNumProcessed::getType() { return FieldType::SEQNUM; }
+template<> const std::string & FieldLastMsgSeqNumProcessed::getTypeName() { static const std::string fixType{ "SEQNUM" }; return fixType; }
 template<> const FieldEnumBase * const * FieldRefTagID::enumItems = nullptr;
+template<> FieldType FieldRefTagID::getType() { return FieldType::INT; }
+template<> const std::string & FieldRefTagID::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldRefMsgType::enumItems = nullptr;
+template<> FieldType FieldRefMsgType::getType() { return FieldType::STRING; }
+template<> const std::string & FieldRefMsgType::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldSessionRejectReason::enumItems = nullptr;
+template<> FieldType FieldSessionRejectReason::getType() { return FieldType::INT; }
+template<> const std::string & FieldSessionRejectReason::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldBidRequestTransType::enumItems = nullptr;
+template<> FieldType FieldBidRequestTransType::getType() { return FieldType::CHAR; }
+template<> const std::string & FieldBidRequestTransType::getTypeName() { static const std::string fixType{ "CHAR" }; return fixType; }
 template<> const FieldEnumBase * const * FieldContraBroker::enumItems = nullptr;
+template<> FieldType FieldContraBroker::getType() { return FieldType::STRING; }
+template<> const std::string & FieldContraBroker::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldComplianceID::enumItems = nullptr;
+template<> FieldType FieldComplianceID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldComplianceID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldSolicitedFlag::enumItems = nullptr;
+template<> FieldType FieldSolicitedFlag::getType() { return FieldType::BOOLEAN; }
+template<> const std::string & FieldSolicitedFlag::getTypeName() { static const std::string fixType{ "BOOLEAN" }; return fixType; }
 template<> const FieldEnumBase * const * FieldExecRestatementReason::enumItems = nullptr;
+template<> FieldType FieldExecRestatementReason::getType() { return FieldType::INT; }
+template<> const std::string & FieldExecRestatementReason::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldBusinessRejectRefID::enumItems = nullptr;
+template<> FieldType FieldBusinessRejectRefID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldBusinessRejectRefID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldBusinessRejectReason::enumItems = nullptr;
+template<> FieldType FieldBusinessRejectReason::getType() { return FieldType::INT; }
+template<> const std::string & FieldBusinessRejectReason::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldGrossTradeAmt::enumItems = nullptr;
+template<> FieldType FieldGrossTradeAmt::getType() { return FieldType::AMT; }
+template<> const std::string & FieldGrossTradeAmt::getTypeName() { static const std::string fixType{ "AMT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldNoContraBrokers::enumItems = nullptr;
+template<> FieldType FieldNoContraBrokers::getType() { return FieldType::NUMINGROUP; }
+template<> const std::string & FieldNoContraBrokers::getTypeName() { static const std::string fixType{ "NUMINGROUP" }; return fixType; }
 template<> const FieldEnumBase * const * FieldMaxMessageSize::enumItems = nullptr;
+template<> FieldType FieldMaxMessageSize::getType() { return FieldType::LENGTH; }
+template<> const std::string & FieldMaxMessageSize::getTypeName() { static const std::string fixType{ "LENGTH" }; return fixType; }
 template<> const FieldEnumBase * const * FieldNoMsgTypes::enumItems = nullptr;
+template<> FieldType FieldNoMsgTypes::getType() { return FieldType::NUMINGROUP; }
+template<> const std::string & FieldNoMsgTypes::getTypeName() { static const std::string fixType{ "NUMINGROUP" }; return fixType; }
 template<> const FieldEnumBase * const * FieldMsgDirection::enumItems = nullptr;
+template<> FieldType FieldMsgDirection::getType() { return FieldType::CHAR; }
+template<> const std::string & FieldMsgDirection::getTypeName() { static const std::string fixType{ "CHAR" }; return fixType; }
 template<> const FieldEnumBase * const * FieldNoTradingSessions::enumItems = nullptr;
+template<> FieldType FieldNoTradingSessions::getType() { return FieldType::NUMINGROUP; }
+template<> const std::string & FieldNoTradingSessions::getTypeName() { static const std::string fixType{ "NUMINGROUP" }; return fixType; }
 template<> const FieldEnumBase * const * FieldTotalVolumeTraded::enumItems = nullptr;
+template<> FieldType FieldTotalVolumeTraded::getType() { return FieldType::QTY; }
+template<> const std::string & FieldTotalVolumeTraded::getTypeName() { static const std::string fixType{ "QTY" }; return fixType; }
 template<> const FieldEnumBase * const * FieldDiscretionInst::enumItems = nullptr;
+template<> FieldType FieldDiscretionInst::getType() { return FieldType::CHAR; }
+template<> const std::string & FieldDiscretionInst::getTypeName() { static const std::string fixType{ "CHAR" }; return fixType; }
 template<> const FieldEnumBase * const * FieldDiscretionOffsetValue::enumItems = nullptr;
+template<> FieldType FieldDiscretionOffsetValue::getType() { return FieldType::FLOAT; }
+template<> const std::string & FieldDiscretionOffsetValue::getTypeName() { static const std::string fixType{ "FLOAT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldBidID::enumItems = nullptr;
+template<> FieldType FieldBidID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldBidID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldClientBidID::enumItems = nullptr;
+template<> FieldType FieldClientBidID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldClientBidID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldListName::enumItems = nullptr;
+template<> FieldType FieldListName::getType() { return FieldType::STRING; }
+template<> const std::string & FieldListName::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldTotNoRelatedSym::enumItems = nullptr;
+template<> FieldType FieldTotNoRelatedSym::getType() { return FieldType::INT; }
+template<> const std::string & FieldTotNoRelatedSym::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldBidType::enumItems = nullptr;
+template<> FieldType FieldBidType::getType() { return FieldType::INT; }
+template<> const std::string & FieldBidType::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldNumTickets::enumItems = nullptr;
+template<> FieldType FieldNumTickets::getType() { return FieldType::INT; }
+template<> const std::string & FieldNumTickets::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldSideValue1::enumItems = nullptr;
+template<> FieldType FieldSideValue1::getType() { return FieldType::AMT; }
+template<> const std::string & FieldSideValue1::getTypeName() { static const std::string fixType{ "AMT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldSideValue2::enumItems = nullptr;
+template<> FieldType FieldSideValue2::getType() { return FieldType::AMT; }
+template<> const std::string & FieldSideValue2::getTypeName() { static const std::string fixType{ "AMT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldNoBidDescriptors::enumItems = nullptr;
+template<> FieldType FieldNoBidDescriptors::getType() { return FieldType::NUMINGROUP; }
+template<> const std::string & FieldNoBidDescriptors::getTypeName() { static const std::string fixType{ "NUMINGROUP" }; return fixType; }
 template<> const FieldEnumBase * const * FieldBidDescriptorType::enumItems = nullptr;
+template<> FieldType FieldBidDescriptorType::getType() { return FieldType::INT; }
+template<> const std::string & FieldBidDescriptorType::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldBidDescriptor::enumItems = nullptr;
+template<> FieldType FieldBidDescriptor::getType() { return FieldType::STRING; }
+template<> const std::string & FieldBidDescriptor::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldSideValueInd::enumItems = nullptr;
+template<> FieldType FieldSideValueInd::getType() { return FieldType::INT; }
+template<> const std::string & FieldSideValueInd::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldLiquidityPctLow::enumItems = nullptr;
+template<> FieldType FieldLiquidityPctLow::getType() { return FieldType::PERCENTAGE; }
+template<> const std::string & FieldLiquidityPctLow::getTypeName() { static const std::string fixType{ "PERCENTAGE" }; return fixType; }
 template<> const FieldEnumBase * const * FieldLiquidityPctHigh::enumItems = nullptr;
+template<> FieldType FieldLiquidityPctHigh::getType() { return FieldType::PERCENTAGE; }
+template<> const std::string & FieldLiquidityPctHigh::getTypeName() { static const std::string fixType{ "PERCENTAGE" }; return fixType; }
 template<> const FieldEnumBase * const * FieldLiquidityValue::enumItems = nullptr;
+template<> FieldType FieldLiquidityValue::getType() { return FieldType::AMT; }
+template<> const std::string & FieldLiquidityValue::getTypeName() { static const std::string fixType{ "AMT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldEFPTrackingError::enumItems = nullptr;
+template<> FieldType FieldEFPTrackingError::getType() { return FieldType::PERCENTAGE; }
+template<> const std::string & FieldEFPTrackingError::getTypeName() { static const std::string fixType{ "PERCENTAGE" }; return fixType; }
 template<> const FieldEnumBase * const * FieldFairValue::enumItems = nullptr;
+template<> FieldType FieldFairValue::getType() { return FieldType::AMT; }
+template<> const std::string & FieldFairValue::getTypeName() { static const std::string fixType{ "AMT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldOutsideIndexPct::enumItems = nullptr;
+template<> FieldType FieldOutsideIndexPct::getType() { return FieldType::PERCENTAGE; }
+template<> const std::string & FieldOutsideIndexPct::getTypeName() { static const std::string fixType{ "PERCENTAGE" }; return fixType; }
 template<> const FieldEnumBase * const * FieldValueOfFutures::enumItems = nullptr;
+template<> FieldType FieldValueOfFutures::getType() { return FieldType::AMT; }
+template<> const std::string & FieldValueOfFutures::getTypeName() { static const std::string fixType{ "AMT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldLiquidityIndType::enumItems = nullptr;
+template<> FieldType FieldLiquidityIndType::getType() { return FieldType::INT; }
+template<> const std::string & FieldLiquidityIndType::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldWtAverageLiquidity::enumItems = nullptr;
+template<> FieldType FieldWtAverageLiquidity::getType() { return FieldType::PERCENTAGE; }
+template<> const std::string & FieldWtAverageLiquidity::getTypeName() { static const std::string fixType{ "PERCENTAGE" }; return fixType; }
 template<> const FieldEnumBase * const * FieldExchangeForPhysical::enumItems = nullptr;
+template<> FieldType FieldExchangeForPhysical::getType() { return FieldType::BOOLEAN; }
+template<> const std::string & FieldExchangeForPhysical::getTypeName() { static const std::string fixType{ "BOOLEAN" }; return fixType; }
 template<> const FieldEnumBase * const * FieldOutMainCntryUIndex::enumItems = nullptr;
+template<> FieldType FieldOutMainCntryUIndex::getType() { return FieldType::AMT; }
+template<> const std::string & FieldOutMainCntryUIndex::getTypeName() { static const std::string fixType{ "AMT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldCrossPercent::enumItems = nullptr;
+template<> FieldType FieldCrossPercent::getType() { return FieldType::PERCENTAGE; }
+template<> const std::string & FieldCrossPercent::getTypeName() { static const std::string fixType{ "PERCENTAGE" }; return fixType; }
 template<> const FieldEnumBase * const * FieldProgRptReqs::enumItems = nullptr;
+template<> FieldType FieldProgRptReqs::getType() { return FieldType::INT; }
+template<> const std::string & FieldProgRptReqs::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldProgPeriodInterval::enumItems = nullptr;
+template<> FieldType FieldProgPeriodInterval::getType() { return FieldType::INT; }
+template<> const std::string & FieldProgPeriodInterval::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldIncTaxInd::enumItems = nullptr;
+template<> FieldType FieldIncTaxInd::getType() { return FieldType::INT; }
+template<> const std::string & FieldIncTaxInd::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldNumBidders::enumItems = nullptr;
+template<> FieldType FieldNumBidders::getType() { return FieldType::INT; }
+template<> const std::string & FieldNumBidders::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldBidTradeType::enumItems = nullptr;
+template<> FieldType FieldBidTradeType::getType() { return FieldType::CHAR; }
+template<> const std::string & FieldBidTradeType::getTypeName() { static const std::string fixType{ "CHAR" }; return fixType; }
 template<> const FieldEnumBase * const * FieldBasisPxType::enumItems = nullptr;
+template<> FieldType FieldBasisPxType::getType() { return FieldType::CHAR; }
+template<> const std::string & FieldBasisPxType::getTypeName() { static const std::string fixType{ "CHAR" }; return fixType; }
 template<> const FieldEnumBase * const * FieldNoBidComponents::enumItems = nullptr;
+template<> FieldType FieldNoBidComponents::getType() { return FieldType::NUMINGROUP; }
+template<> const std::string & FieldNoBidComponents::getTypeName() { static const std::string fixType{ "NUMINGROUP" }; return fixType; }
 template<> const FieldEnumBase * const * FieldCountry::enumItems = nullptr;
+template<> FieldType FieldCountry::getType() { return FieldType::COUNTRY; }
+template<> const std::string & FieldCountry::getTypeName() { static const std::string fixType{ "COUNTRY" }; return fixType; }
 template<> const FieldEnumBase * const * FieldTotNoStrikes::enumItems = nullptr;
+template<> FieldType FieldTotNoStrikes::getType() { return FieldType::INT; }
+template<> const std::string & FieldTotNoStrikes::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldPriceType::enumItems = nullptr;
+template<> FieldType FieldPriceType::getType() { return FieldType::INT; }
+template<> const std::string & FieldPriceType::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldDayOrderQty::enumItems = nullptr;
+template<> FieldType FieldDayOrderQty::getType() { return FieldType::QTY; }
+template<> const std::string & FieldDayOrderQty::getTypeName() { static const std::string fixType{ "QTY" }; return fixType; }
 template<> const FieldEnumBase * const * FieldDayCumQty::enumItems = nullptr;
+template<> FieldType FieldDayCumQty::getType() { return FieldType::QTY; }
+template<> const std::string & FieldDayCumQty::getTypeName() { static const std::string fixType{ "QTY" }; return fixType; }
 template<> const FieldEnumBase * const * FieldDayAvgPx::enumItems = nullptr;
+template<> FieldType FieldDayAvgPx::getType() { return FieldType::PRICE; }
+template<> const std::string & FieldDayAvgPx::getTypeName() { static const std::string fixType{ "PRICE" }; return fixType; }
 template<> const FieldEnumBase * const * FieldGTBookingInst::enumItems = nullptr;
+template<> FieldType FieldGTBookingInst::getType() { return FieldType::INT; }
+template<> const std::string & FieldGTBookingInst::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldNoStrikes::enumItems = nullptr;
+template<> FieldType FieldNoStrikes::getType() { return FieldType::NUMINGROUP; }
+template<> const std::string & FieldNoStrikes::getTypeName() { static const std::string fixType{ "NUMINGROUP" }; return fixType; }
 template<> const FieldEnumBase * const * FieldListStatusType::enumItems = nullptr;
+template<> FieldType FieldListStatusType::getType() { return FieldType::INT; }
+template<> const std::string & FieldListStatusType::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldNetGrossInd::enumItems = nullptr;
+template<> FieldType FieldNetGrossInd::getType() { return FieldType::INT; }
+template<> const std::string & FieldNetGrossInd::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldListOrderStatus::enumItems = nullptr;
+template<> FieldType FieldListOrderStatus::getType() { return FieldType::INT; }
+template<> const std::string & FieldListOrderStatus::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldExpireDate::enumItems = nullptr;
+template<> FieldType FieldExpireDate::getType() { return FieldType::LOCALMKTDATE; }
+template<> const std::string & FieldExpireDate::getTypeName() { static const std::string fixType{ "LOCALMKTDATE" }; return fixType; }
 template<> const FieldEnumBase * const * FieldListExecInstType::enumItems = nullptr;
+template<> FieldType FieldListExecInstType::getType() { return FieldType::CHAR; }
+template<> const std::string & FieldListExecInstType::getTypeName() { static const std::string fixType{ "CHAR" }; return fixType; }
 template<> const FieldEnumBase * const * FieldCxlRejResponseTo::enumItems = nullptr;
+template<> FieldType FieldCxlRejResponseTo::getType() { return FieldType::CHAR; }
+template<> const std::string & FieldCxlRejResponseTo::getTypeName() { static const std::string fixType{ "CHAR" }; return fixType; }
 template<> const FieldEnumBase * const * FieldUnderlyingCouponRate::enumItems = nullptr;
+template<> FieldType FieldUnderlyingCouponRate::getType() { return FieldType::PERCENTAGE; }
+template<> const std::string & FieldUnderlyingCouponRate::getTypeName() { static const std::string fixType{ "PERCENTAGE" }; return fixType; }
 template<> const FieldEnumBase * const * FieldUnderlyingContractMultiplier::enumItems = nullptr;
+template<> FieldType FieldUnderlyingContractMultiplier::getType() { return FieldType::FLOAT; }
+template<> const std::string & FieldUnderlyingContractMultiplier::getTypeName() { static const std::string fixType{ "FLOAT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldContraTradeQty::enumItems = nullptr;
+template<> FieldType FieldContraTradeQty::getType() { return FieldType::QTY; }
+template<> const std::string & FieldContraTradeQty::getTypeName() { static const std::string fixType{ "QTY" }; return fixType; }
 template<> const FieldEnumBase * const * FieldContraTradeTime::enumItems = nullptr;
+template<> FieldType FieldContraTradeTime::getType() { return FieldType::UTCTIMESTAMP; }
+template<> const std::string & FieldContraTradeTime::getTypeName() { static const std::string fixType{ "UTCTIMESTAMP" }; return fixType; }
 template<> const FieldEnumBase * const * FieldLiquidityNumSecurities::enumItems = nullptr;
+template<> FieldType FieldLiquidityNumSecurities::getType() { return FieldType::INT; }
+template<> const std::string & FieldLiquidityNumSecurities::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldMultiLegReportingType::enumItems = nullptr;
+template<> FieldType FieldMultiLegReportingType::getType() { return FieldType::CHAR; }
+template<> const std::string & FieldMultiLegReportingType::getTypeName() { static const std::string fixType{ "CHAR" }; return fixType; }
 template<> const FieldEnumBase * const * FieldStrikeTime::enumItems = nullptr;
+template<> FieldType FieldStrikeTime::getType() { return FieldType::UTCTIMESTAMP; }
+template<> const std::string & FieldStrikeTime::getTypeName() { static const std::string fixType{ "UTCTIMESTAMP" }; return fixType; }
 template<> const FieldEnumBase * const * FieldListStatusText::enumItems = nullptr;
+template<> FieldType FieldListStatusText::getType() { return FieldType::STRING; }
+template<> const std::string & FieldListStatusText::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldEncodedListStatusTextLen::enumItems = nullptr;
+template<> FieldType FieldEncodedListStatusTextLen::getType() { return FieldType::LENGTH; }
+template<> const std::string & FieldEncodedListStatusTextLen::getTypeName() { static const std::string fixType{ "LENGTH" }; return fixType; }
 template<> const FieldEnumBase * const * FieldEncodedListStatusText::enumItems = nullptr;
+template<> FieldType FieldEncodedListStatusText::getType() { return FieldType::DATA; }
+template<> const std::string & FieldEncodedListStatusText::getTypeName() { static const std::string fixType{ "DATA" }; return fixType; }
 template<> const FieldEnumBase * const * FieldPartyIDSource::enumItems = nullptr;
+template<> FieldType FieldPartyIDSource::getType() { return FieldType::CHAR; }
+template<> const std::string & FieldPartyIDSource::getTypeName() { static const std::string fixType{ "CHAR" }; return fixType; }
 template<> const FieldEnumBase * const * FieldPartyID::enumItems = nullptr;
+template<> FieldType FieldPartyID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldPartyID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldNetChgPrevDay::enumItems = nullptr;
+template<> FieldType FieldNetChgPrevDay::getType() { return FieldType::PRICEOFFSET; }
+template<> const std::string & FieldNetChgPrevDay::getTypeName() { static const std::string fixType{ "PRICEOFFSET" }; return fixType; }
 template<> const FieldEnumBase * const * FieldPartyRole::enumItems = nullptr;
+template<> FieldType FieldPartyRole::getType() { return FieldType::INT; }
+template<> const std::string & FieldPartyRole::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldNoPartyIDs::enumItems = nullptr;
+template<> FieldType FieldNoPartyIDs::getType() { return FieldType::NUMINGROUP; }
+template<> const std::string & FieldNoPartyIDs::getTypeName() { static const std::string fixType{ "NUMINGROUP" }; return fixType; }
 template<> const FieldEnumBase * const * FieldNoSecurityAltID::enumItems = nullptr;
+template<> FieldType FieldNoSecurityAltID::getType() { return FieldType::NUMINGROUP; }
+template<> const std::string & FieldNoSecurityAltID::getTypeName() { static const std::string fixType{ "NUMINGROUP" }; return fixType; }
 template<> const FieldEnumBase * const * FieldSecurityAltID::enumItems = nullptr;
+template<> FieldType FieldSecurityAltID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldSecurityAltID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldSecurityAltIDSource::enumItems = nullptr;
+template<> FieldType FieldSecurityAltIDSource::getType() { return FieldType::STRING; }
+template<> const std::string & FieldSecurityAltIDSource::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldNoUnderlyingSecurityAltID::enumItems = nullptr;
+template<> FieldType FieldNoUnderlyingSecurityAltID::getType() { return FieldType::NUMINGROUP; }
+template<> const std::string & FieldNoUnderlyingSecurityAltID::getTypeName() { static const std::string fixType{ "NUMINGROUP" }; return fixType; }
 template<> const FieldEnumBase * const * FieldUnderlyingSecurityAltID::enumItems = nullptr;
+template<> FieldType FieldUnderlyingSecurityAltID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldUnderlyingSecurityAltID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldUnderlyingSecurityAltIDSource::enumItems = nullptr;
+template<> FieldType FieldUnderlyingSecurityAltIDSource::getType() { return FieldType::STRING; }
+template<> const std::string & FieldUnderlyingSecurityAltIDSource::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldProduct::enumItems = nullptr;
+template<> FieldType FieldProduct::getType() { return FieldType::INT; }
+template<> const std::string & FieldProduct::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldCFICode::enumItems = nullptr;
+template<> FieldType FieldCFICode::getType() { return FieldType::STRING; }
+template<> const std::string & FieldCFICode::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldUnderlyingProduct::enumItems = nullptr;
+template<> FieldType FieldUnderlyingProduct::getType() { return FieldType::INT; }
+template<> const std::string & FieldUnderlyingProduct::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldUnderlyingCFICode::enumItems = nullptr;
+template<> FieldType FieldUnderlyingCFICode::getType() { return FieldType::STRING; }
+template<> const std::string & FieldUnderlyingCFICode::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldTestMessageIndicator::enumItems = nullptr;
+template<> FieldType FieldTestMessageIndicator::getType() { return FieldType::BOOLEAN; }
+template<> const std::string & FieldTestMessageIndicator::getTypeName() { static const std::string fixType{ "BOOLEAN" }; return fixType; }
 template<> const FieldEnumBase * const * FieldBookingRefID::enumItems = nullptr;
+template<> FieldType FieldBookingRefID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldBookingRefID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldIndividualAllocID::enumItems = nullptr;
+template<> FieldType FieldIndividualAllocID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldIndividualAllocID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldRoundingDirection::enumItems = nullptr;
+template<> FieldType FieldRoundingDirection::getType() { return FieldType::CHAR; }
+template<> const std::string & FieldRoundingDirection::getTypeName() { static const std::string fixType{ "CHAR" }; return fixType; }
 template<> const FieldEnumBase * const * FieldRoundingModulus::enumItems = nullptr;
+template<> FieldType FieldRoundingModulus::getType() { return FieldType::FLOAT; }
+template<> const std::string & FieldRoundingModulus::getTypeName() { static const std::string fixType{ "FLOAT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldCountryOfIssue::enumItems = nullptr;
+template<> FieldType FieldCountryOfIssue::getType() { return FieldType::COUNTRY; }
+template<> const std::string & FieldCountryOfIssue::getTypeName() { static const std::string fixType{ "COUNTRY" }; return fixType; }
 template<> const FieldEnumBase * const * FieldStateOrProvinceOfIssue::enumItems = nullptr;
+template<> FieldType FieldStateOrProvinceOfIssue::getType() { return FieldType::STRING; }
+template<> const std::string & FieldStateOrProvinceOfIssue::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldLocaleOfIssue::enumItems = nullptr;
+template<> FieldType FieldLocaleOfIssue::getType() { return FieldType::STRING; }
+template<> const std::string & FieldLocaleOfIssue::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldNoRegistDtls::enumItems = nullptr;
+template<> FieldType FieldNoRegistDtls::getType() { return FieldType::NUMINGROUP; }
+template<> const std::string & FieldNoRegistDtls::getTypeName() { static const std::string fixType{ "NUMINGROUP" }; return fixType; }
 template<> const FieldEnumBase * const * FieldMailingDtls::enumItems = nullptr;
+template<> FieldType FieldMailingDtls::getType() { return FieldType::STRING; }
+template<> const std::string & FieldMailingDtls::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldInvestorCountryOfResidence::enumItems = nullptr;
+template<> FieldType FieldInvestorCountryOfResidence::getType() { return FieldType::COUNTRY; }
+template<> const std::string & FieldInvestorCountryOfResidence::getTypeName() { static const std::string fixType{ "COUNTRY" }; return fixType; }
 template<> const FieldEnumBase * const * FieldPaymentRef::enumItems = nullptr;
+template<> FieldType FieldPaymentRef::getType() { return FieldType::STRING; }
+template<> const std::string & FieldPaymentRef::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldDistribPaymentMethod::enumItems = nullptr;
+template<> FieldType FieldDistribPaymentMethod::getType() { return FieldType::INT; }
+template<> const std::string & FieldDistribPaymentMethod::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldCashDistribCurr::enumItems = nullptr;
+template<> FieldType FieldCashDistribCurr::getType() { return FieldType::CURRENCY; }
+template<> const std::string & FieldCashDistribCurr::getTypeName() { static const std::string fixType{ "CURRENCY" }; return fixType; }
 template<> const FieldEnumBase * const * FieldCommCurrency::enumItems = nullptr;
+template<> FieldType FieldCommCurrency::getType() { return FieldType::CURRENCY; }
+template<> const std::string & FieldCommCurrency::getTypeName() { static const std::string fixType{ "CURRENCY" }; return fixType; }
 template<> const FieldEnumBase * const * FieldCancellationRights::enumItems = nullptr;
+template<> FieldType FieldCancellationRights::getType() { return FieldType::CHAR; }
+template<> const std::string & FieldCancellationRights::getTypeName() { static const std::string fixType{ "CHAR" }; return fixType; }
 template<> const FieldEnumBase * const * FieldMoneyLaunderingStatus::enumItems = nullptr;
+template<> FieldType FieldMoneyLaunderingStatus::getType() { return FieldType::CHAR; }
+template<> const std::string & FieldMoneyLaunderingStatus::getTypeName() { static const std::string fixType{ "CHAR" }; return fixType; }
 template<> const FieldEnumBase * const * FieldMailingInst::enumItems = nullptr;
+template<> FieldType FieldMailingInst::getType() { return FieldType::STRING; }
+template<> const std::string & FieldMailingInst::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldTransBkdTime::enumItems = nullptr;
+template<> FieldType FieldTransBkdTime::getType() { return FieldType::UTCTIMESTAMP; }
+template<> const std::string & FieldTransBkdTime::getTypeName() { static const std::string fixType{ "UTCTIMESTAMP" }; return fixType; }
 template<> const FieldEnumBase * const * FieldExecPriceType::enumItems = nullptr;
+template<> FieldType FieldExecPriceType::getType() { return FieldType::CHAR; }
+template<> const std::string & FieldExecPriceType::getTypeName() { static const std::string fixType{ "CHAR" }; return fixType; }
 template<> const FieldEnumBase * const * FieldExecPriceAdjustment::enumItems = nullptr;
+template<> FieldType FieldExecPriceAdjustment::getType() { return FieldType::FLOAT; }
+template<> const std::string & FieldExecPriceAdjustment::getTypeName() { static const std::string fixType{ "FLOAT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldDateOfBirth::enumItems = nullptr;
+template<> FieldType FieldDateOfBirth::getType() { return FieldType::LOCALMKTDATE; }
+template<> const std::string & FieldDateOfBirth::getTypeName() { static const std::string fixType{ "LOCALMKTDATE" }; return fixType; }
 template<> const FieldEnumBase * const * FieldTradeReportTransType::enumItems = nullptr;
+template<> FieldType FieldTradeReportTransType::getType() { return FieldType::INT; }
+template<> const std::string & FieldTradeReportTransType::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldCardHolderName::enumItems = nullptr;
+template<> FieldType FieldCardHolderName::getType() { return FieldType::STRING; }
+template<> const std::string & FieldCardHolderName::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldCardNumber::enumItems = nullptr;
+template<> FieldType FieldCardNumber::getType() { return FieldType::STRING; }
+template<> const std::string & FieldCardNumber::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldCardExpDate::enumItems = nullptr;
+template<> FieldType FieldCardExpDate::getType() { return FieldType::LOCALMKTDATE; }
+template<> const std::string & FieldCardExpDate::getTypeName() { static const std::string fixType{ "LOCALMKTDATE" }; return fixType; }
 template<> const FieldEnumBase * const * FieldCardIssNum::enumItems = nullptr;
+template<> FieldType FieldCardIssNum::getType() { return FieldType::STRING; }
+template<> const std::string & FieldCardIssNum::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldPaymentMethod::enumItems = nullptr;
+template<> FieldType FieldPaymentMethod::getType() { return FieldType::INT; }
+template<> const std::string & FieldPaymentMethod::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldRegistAcctType::enumItems = nullptr;
+template<> FieldType FieldRegistAcctType::getType() { return FieldType::STRING; }
+template<> const std::string & FieldRegistAcctType::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldDesignation::enumItems = nullptr;
+template<> FieldType FieldDesignation::getType() { return FieldType::STRING; }
+template<> const std::string & FieldDesignation::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldTaxAdvantageType::enumItems = nullptr;
+template<> FieldType FieldTaxAdvantageType::getType() { return FieldType::INT; }
+template<> const std::string & FieldTaxAdvantageType::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldRegistRejReasonText::enumItems = nullptr;
+template<> FieldType FieldRegistRejReasonText::getType() { return FieldType::STRING; }
+template<> const std::string & FieldRegistRejReasonText::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldFundRenewWaiv::enumItems = nullptr;
+template<> FieldType FieldFundRenewWaiv::getType() { return FieldType::CHAR; }
+template<> const std::string & FieldFundRenewWaiv::getTypeName() { static const std::string fixType{ "CHAR" }; return fixType; }
 template<> const FieldEnumBase * const * FieldCashDistribAgentName::enumItems = nullptr;
+template<> FieldType FieldCashDistribAgentName::getType() { return FieldType::STRING; }
+template<> const std::string & FieldCashDistribAgentName::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldCashDistribAgentCode::enumItems = nullptr;
+template<> FieldType FieldCashDistribAgentCode::getType() { return FieldType::STRING; }
+template<> const std::string & FieldCashDistribAgentCode::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldCashDistribAgentAcctNumber::enumItems = nullptr;
+template<> FieldType FieldCashDistribAgentAcctNumber::getType() { return FieldType::STRING; }
+template<> const std::string & FieldCashDistribAgentAcctNumber::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldCashDistribPayRef::enumItems = nullptr;
+template<> FieldType FieldCashDistribPayRef::getType() { return FieldType::STRING; }
+template<> const std::string & FieldCashDistribPayRef::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldCashDistribAgentAcctName::enumItems = nullptr;
+template<> FieldType FieldCashDistribAgentAcctName::getType() { return FieldType::STRING; }
+template<> const std::string & FieldCashDistribAgentAcctName::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldCardStartDate::enumItems = nullptr;
+template<> FieldType FieldCardStartDate::getType() { return FieldType::LOCALMKTDATE; }
+template<> const std::string & FieldCardStartDate::getTypeName() { static const std::string fixType{ "LOCALMKTDATE" }; return fixType; }
 template<> const FieldEnumBase * const * FieldPaymentDate::enumItems = nullptr;
+template<> FieldType FieldPaymentDate::getType() { return FieldType::LOCALMKTDATE; }
+template<> const std::string & FieldPaymentDate::getTypeName() { static const std::string fixType{ "LOCALMKTDATE" }; return fixType; }
 template<> const FieldEnumBase * const * FieldPaymentRemitterID::enumItems = nullptr;
+template<> FieldType FieldPaymentRemitterID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldPaymentRemitterID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldRegistStatus::enumItems = nullptr;
+template<> FieldType FieldRegistStatus::getType() { return FieldType::CHAR; }
+template<> const std::string & FieldRegistStatus::getTypeName() { static const std::string fixType{ "CHAR" }; return fixType; }
 template<> const FieldEnumBase * const * FieldRegistRejReasonCode::enumItems = nullptr;
+template<> FieldType FieldRegistRejReasonCode::getType() { return FieldType::INT; }
+template<> const std::string & FieldRegistRejReasonCode::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldRegistRefID::enumItems = nullptr;
+template<> FieldType FieldRegistRefID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldRegistRefID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldRegistDtls::enumItems = nullptr;
+template<> FieldType FieldRegistDtls::getType() { return FieldType::STRING; }
+template<> const std::string & FieldRegistDtls::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldNoDistribInsts::enumItems = nullptr;
+template<> FieldType FieldNoDistribInsts::getType() { return FieldType::NUMINGROUP; }
+template<> const std::string & FieldNoDistribInsts::getTypeName() { static const std::string fixType{ "NUMINGROUP" }; return fixType; }
 template<> const FieldEnumBase * const * FieldRegistEmail::enumItems = nullptr;
+template<> FieldType FieldRegistEmail::getType() { return FieldType::STRING; }
+template<> const std::string & FieldRegistEmail::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldDistribPercentage::enumItems = nullptr;
+template<> FieldType FieldDistribPercentage::getType() { return FieldType::PERCENTAGE; }
+template<> const std::string & FieldDistribPercentage::getTypeName() { static const std::string fixType{ "PERCENTAGE" }; return fixType; }
 template<> const FieldEnumBase * const * FieldRegistID::enumItems = nullptr;
+template<> FieldType FieldRegistID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldRegistID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldRegistTransType::enumItems = nullptr;
+template<> FieldType FieldRegistTransType::getType() { return FieldType::CHAR; }
+template<> const std::string & FieldRegistTransType::getTypeName() { static const std::string fixType{ "CHAR" }; return fixType; }
 template<> const FieldEnumBase * const * FieldExecValuationPoint::enumItems = nullptr;
+template<> FieldType FieldExecValuationPoint::getType() { return FieldType::UTCTIMESTAMP; }
+template<> const std::string & FieldExecValuationPoint::getTypeName() { static const std::string fixType{ "UTCTIMESTAMP" }; return fixType; }
 template<> const FieldEnumBase * const * FieldOrderPercent::enumItems = nullptr;
+template<> FieldType FieldOrderPercent::getType() { return FieldType::PERCENTAGE; }
+template<> const std::string & FieldOrderPercent::getTypeName() { static const std::string fixType{ "PERCENTAGE" }; return fixType; }
 template<> const FieldEnumBase * const * FieldOwnershipType::enumItems = nullptr;
+template<> FieldType FieldOwnershipType::getType() { return FieldType::CHAR; }
+template<> const std::string & FieldOwnershipType::getTypeName() { static const std::string fixType{ "CHAR" }; return fixType; }
 template<> const FieldEnumBase * const * FieldNoContAmts::enumItems = nullptr;
+template<> FieldType FieldNoContAmts::getType() { return FieldType::NUMINGROUP; }
+template<> const std::string & FieldNoContAmts::getTypeName() { static const std::string fixType{ "NUMINGROUP" }; return fixType; }
 template<> const FieldEnumBase * const * FieldContAmtType::enumItems = nullptr;
+template<> FieldType FieldContAmtType::getType() { return FieldType::INT; }
+template<> const std::string & FieldContAmtType::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldContAmtValue::enumItems = nullptr;
+template<> FieldType FieldContAmtValue::getType() { return FieldType::FLOAT; }
+template<> const std::string & FieldContAmtValue::getTypeName() { static const std::string fixType{ "FLOAT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldContAmtCurr::enumItems = nullptr;
+template<> FieldType FieldContAmtCurr::getType() { return FieldType::CURRENCY; }
+template<> const std::string & FieldContAmtCurr::getTypeName() { static const std::string fixType{ "CURRENCY" }; return fixType; }
 template<> const FieldEnumBase * const * FieldOwnerType::enumItems = nullptr;
+template<> FieldType FieldOwnerType::getType() { return FieldType::INT; }
+template<> const std::string & FieldOwnerType::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldPartySubID::enumItems = nullptr;
+template<> FieldType FieldPartySubID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldPartySubID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldNestedPartyID::enumItems = nullptr;
+template<> FieldType FieldNestedPartyID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldNestedPartyID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldNestedPartyIDSource::enumItems = nullptr;
+template<> FieldType FieldNestedPartyIDSource::getType() { return FieldType::CHAR; }
+template<> const std::string & FieldNestedPartyIDSource::getTypeName() { static const std::string fixType{ "CHAR" }; return fixType; }
 template<> const FieldEnumBase * const * FieldSecondaryClOrdID::enumItems = nullptr;
+template<> FieldType FieldSecondaryClOrdID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldSecondaryClOrdID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldSecondaryExecID::enumItems = nullptr;
+template<> FieldType FieldSecondaryExecID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldSecondaryExecID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldOrderCapacity::enumItems = nullptr;
+template<> FieldType FieldOrderCapacity::getType() { return FieldType::CHAR; }
+template<> const std::string & FieldOrderCapacity::getTypeName() { static const std::string fixType{ "CHAR" }; return fixType; }
 template<> const FieldEnumBase * const * FieldOrderRestrictions::enumItems = nullptr;
+template<> FieldType FieldOrderRestrictions::getType() { return FieldType::MULTIPLEVALUESTRING; }
+template<> const std::string & FieldOrderRestrictions::getTypeName() { static const std::string fixType{ "MULTIPLEVALUESTRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldMassCancelRequestType::enumItems = nullptr;
+template<> FieldType FieldMassCancelRequestType::getType() { return FieldType::CHAR; }
+template<> const std::string & FieldMassCancelRequestType::getTypeName() { static const std::string fixType{ "CHAR" }; return fixType; }
 template<> const FieldEnumBase * const * FieldMassCancelResponse::enumItems = nullptr;
+template<> FieldType FieldMassCancelResponse::getType() { return FieldType::CHAR; }
+template<> const std::string & FieldMassCancelResponse::getTypeName() { static const std::string fixType{ "CHAR" }; return fixType; }
 template<> const FieldEnumBase * const * FieldMassCancelRejectReason::enumItems = nullptr;
+template<> FieldType FieldMassCancelRejectReason::getType() { return FieldType::CHAR; }
+template<> const std::string & FieldMassCancelRejectReason::getTypeName() { static const std::string fixType{ "CHAR" }; return fixType; }
 template<> const FieldEnumBase * const * FieldTotalAffectedOrders::enumItems = nullptr;
+template<> FieldType FieldTotalAffectedOrders::getType() { return FieldType::INT; }
+template<> const std::string & FieldTotalAffectedOrders::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldNoAffectedOrders::enumItems = nullptr;
+template<> FieldType FieldNoAffectedOrders::getType() { return FieldType::NUMINGROUP; }
+template<> const std::string & FieldNoAffectedOrders::getTypeName() { static const std::string fixType{ "NUMINGROUP" }; return fixType; }
 template<> const FieldEnumBase * const * FieldAffectedOrderID::enumItems = nullptr;
+template<> FieldType FieldAffectedOrderID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldAffectedOrderID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldAffectedSecondaryOrderID::enumItems = nullptr;
+template<> FieldType FieldAffectedSecondaryOrderID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldAffectedSecondaryOrderID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldQuoteType::enumItems = nullptr;
+template<> FieldType FieldQuoteType::getType() { return FieldType::INT; }
+template<> const std::string & FieldQuoteType::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldNestedPartyRole::enumItems = nullptr;
+template<> FieldType FieldNestedPartyRole::getType() { return FieldType::INT; }
+template<> const std::string & FieldNestedPartyRole::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldNoNestedPartyIDs::enumItems = nullptr;
+template<> FieldType FieldNoNestedPartyIDs::getType() { return FieldType::NUMINGROUP; }
+template<> const std::string & FieldNoNestedPartyIDs::getTypeName() { static const std::string fixType{ "NUMINGROUP" }; return fixType; }
 template<> const FieldEnumBase * const * FieldTotalAccruedInterestAmt::enumItems = nullptr;
+template<> FieldType FieldTotalAccruedInterestAmt::getType() { return FieldType::AMT; }
+template<> const std::string & FieldTotalAccruedInterestAmt::getTypeName() { static const std::string fixType{ "AMT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldMaturityDate::enumItems = nullptr;
+template<> FieldType FieldMaturityDate::getType() { return FieldType::LOCALMKTDATE; }
+template<> const std::string & FieldMaturityDate::getTypeName() { static const std::string fixType{ "LOCALMKTDATE" }; return fixType; }
 template<> const FieldEnumBase * const * FieldUnderlyingMaturityDate::enumItems = nullptr;
+template<> FieldType FieldUnderlyingMaturityDate::getType() { return FieldType::LOCALMKTDATE; }
+template<> const std::string & FieldUnderlyingMaturityDate::getTypeName() { static const std::string fixType{ "LOCALMKTDATE" }; return fixType; }
 template<> const FieldEnumBase * const * FieldInstrRegistry::enumItems = nullptr;
+template<> FieldType FieldInstrRegistry::getType() { return FieldType::STRING; }
+template<> const std::string & FieldInstrRegistry::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldCashMargin::enumItems = nullptr;
+template<> FieldType FieldCashMargin::getType() { return FieldType::CHAR; }
+template<> const std::string & FieldCashMargin::getTypeName() { static const std::string fixType{ "CHAR" }; return fixType; }
 template<> const FieldEnumBase * const * FieldNestedPartySubID::enumItems = nullptr;
+template<> FieldType FieldNestedPartySubID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldNestedPartySubID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldScope::enumItems = nullptr;
+template<> FieldType FieldScope::getType() { return FieldType::MULTIPLEVALUESTRING; }
+template<> const std::string & FieldScope::getTypeName() { static const std::string fixType{ "MULTIPLEVALUESTRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldMDImplicitDelete::enumItems = nullptr;
+template<> FieldType FieldMDImplicitDelete::getType() { return FieldType::BOOLEAN; }
+template<> const std::string & FieldMDImplicitDelete::getTypeName() { static const std::string fixType{ "BOOLEAN" }; return fixType; }
 template<> const FieldEnumBase * const * FieldCrossID::enumItems = nullptr;
+template<> FieldType FieldCrossID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldCrossID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldCrossType::enumItems = nullptr;
+template<> FieldType FieldCrossType::getType() { return FieldType::INT; }
+template<> const std::string & FieldCrossType::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldCrossPrioritization::enumItems = nullptr;
+template<> FieldType FieldCrossPrioritization::getType() { return FieldType::INT; }
+template<> const std::string & FieldCrossPrioritization::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldOrigCrossID::enumItems = nullptr;
+template<> FieldType FieldOrigCrossID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldOrigCrossID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldNoSides::enumItems = nullptr;
+template<> FieldType FieldNoSides::getType() { return FieldType::NUMINGROUP; }
+template<> const std::string & FieldNoSides::getTypeName() { static const std::string fixType{ "NUMINGROUP" }; return fixType; }
 template<> const FieldEnumBase * const * FieldUsername::enumItems = nullptr;
+template<> FieldType FieldUsername::getType() { return FieldType::STRING; }
+template<> const std::string & FieldUsername::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldPassword::enumItems = nullptr;
+template<> FieldType FieldPassword::getType() { return FieldType::STRING; }
+template<> const std::string & FieldPassword::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldNoLegs::enumItems = nullptr;
+template<> FieldType FieldNoLegs::getType() { return FieldType::NUMINGROUP; }
+template<> const std::string & FieldNoLegs::getTypeName() { static const std::string fixType{ "NUMINGROUP" }; return fixType; }
 template<> const FieldEnumBase * const * FieldLegCurrency::enumItems = nullptr;
+template<> FieldType FieldLegCurrency::getType() { return FieldType::CURRENCY; }
+template<> const std::string & FieldLegCurrency::getTypeName() { static const std::string fixType{ "CURRENCY" }; return fixType; }
 template<> const FieldEnumBase * const * FieldTotNoSecurityTypes::enumItems = nullptr;
+template<> FieldType FieldTotNoSecurityTypes::getType() { return FieldType::INT; }
+template<> const std::string & FieldTotNoSecurityTypes::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldNoSecurityTypes::enumItems = nullptr;
+template<> FieldType FieldNoSecurityTypes::getType() { return FieldType::NUMINGROUP; }
+template<> const std::string & FieldNoSecurityTypes::getTypeName() { static const std::string fixType{ "NUMINGROUP" }; return fixType; }
 template<> const FieldEnumBase * const * FieldSecurityListRequestType::enumItems = nullptr;
+template<> FieldType FieldSecurityListRequestType::getType() { return FieldType::INT; }
+template<> const std::string & FieldSecurityListRequestType::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldSecurityRequestResult::enumItems = nullptr;
+template<> FieldType FieldSecurityRequestResult::getType() { return FieldType::INT; }
+template<> const std::string & FieldSecurityRequestResult::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldRoundLot::enumItems = nullptr;
+template<> FieldType FieldRoundLot::getType() { return FieldType::QTY; }
+template<> const std::string & FieldRoundLot::getTypeName() { static const std::string fixType{ "QTY" }; return fixType; }
 template<> const FieldEnumBase * const * FieldMinTradeVol::enumItems = nullptr;
+template<> FieldType FieldMinTradeVol::getType() { return FieldType::QTY; }
+template<> const std::string & FieldMinTradeVol::getTypeName() { static const std::string fixType{ "QTY" }; return fixType; }
 template<> const FieldEnumBase * const * FieldMultiLegRptTypeReq::enumItems = nullptr;
+template<> FieldType FieldMultiLegRptTypeReq::getType() { return FieldType::INT; }
+template<> const std::string & FieldMultiLegRptTypeReq::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldLegPositionEffect::enumItems = nullptr;
+template<> FieldType FieldLegPositionEffect::getType() { return FieldType::CHAR; }
+template<> const std::string & FieldLegPositionEffect::getTypeName() { static const std::string fixType{ "CHAR" }; return fixType; }
 template<> const FieldEnumBase * const * FieldLegCoveredOrUncovered::enumItems = nullptr;
+template<> FieldType FieldLegCoveredOrUncovered::getType() { return FieldType::INT; }
+template<> const std::string & FieldLegCoveredOrUncovered::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldLegPrice::enumItems = nullptr;
+template<> FieldType FieldLegPrice::getType() { return FieldType::PRICE; }
+template<> const std::string & FieldLegPrice::getTypeName() { static const std::string fixType{ "PRICE" }; return fixType; }
 template<> const FieldEnumBase * const * FieldTradSesStatusRejReason::enumItems = nullptr;
+template<> FieldType FieldTradSesStatusRejReason::getType() { return FieldType::INT; }
+template<> const std::string & FieldTradSesStatusRejReason::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldTradeRequestID::enumItems = nullptr;
+template<> FieldType FieldTradeRequestID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldTradeRequestID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldTradeRequestType::enumItems = nullptr;
+template<> FieldType FieldTradeRequestType::getType() { return FieldType::INT; }
+template<> const std::string & FieldTradeRequestType::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldPreviouslyReported::enumItems = nullptr;
+template<> FieldType FieldPreviouslyReported::getType() { return FieldType::BOOLEAN; }
+template<> const std::string & FieldPreviouslyReported::getTypeName() { static const std::string fixType{ "BOOLEAN" }; return fixType; }
 template<> const FieldEnumBase * const * FieldTradeReportID::enumItems = nullptr;
+template<> FieldType FieldTradeReportID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldTradeReportID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldTradeReportRefID::enumItems = nullptr;
+template<> FieldType FieldTradeReportRefID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldTradeReportRefID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldMatchStatus::enumItems = nullptr;
+template<> FieldType FieldMatchStatus::getType() { return FieldType::CHAR; }
+template<> const std::string & FieldMatchStatus::getTypeName() { static const std::string fixType{ "CHAR" }; return fixType; }
 template<> const FieldEnumBase * const * FieldMatchType::enumItems = nullptr;
+template<> FieldType FieldMatchType::getType() { return FieldType::STRING; }
+template<> const std::string & FieldMatchType::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldOddLot::enumItems = nullptr;
+template<> FieldType FieldOddLot::getType() { return FieldType::BOOLEAN; }
+template<> const std::string & FieldOddLot::getTypeName() { static const std::string fixType{ "BOOLEAN" }; return fixType; }
 template<> const FieldEnumBase * const * FieldNoClearingInstructions::enumItems = nullptr;
+template<> FieldType FieldNoClearingInstructions::getType() { return FieldType::NUMINGROUP; }
+template<> const std::string & FieldNoClearingInstructions::getTypeName() { static const std::string fixType{ "NUMINGROUP" }; return fixType; }
 template<> const FieldEnumBase * const * FieldClearingInstruction::enumItems = nullptr;
+template<> FieldType FieldClearingInstruction::getType() { return FieldType::INT; }
+template<> const std::string & FieldClearingInstruction::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldTradeInputSource::enumItems = nullptr;
+template<> FieldType FieldTradeInputSource::getType() { return FieldType::STRING; }
+template<> const std::string & FieldTradeInputSource::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldTradeInputDevice::enumItems = nullptr;
+template<> FieldType FieldTradeInputDevice::getType() { return FieldType::STRING; }
+template<> const std::string & FieldTradeInputDevice::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldNoDates::enumItems = nullptr;
+template<> FieldType FieldNoDates::getType() { return FieldType::NUMINGROUP; }
+template<> const std::string & FieldNoDates::getTypeName() { static const std::string fixType{ "NUMINGROUP" }; return fixType; }
 template<> const FieldEnumBase * const * FieldAccountType::enumItems = nullptr;
+template<> FieldType FieldAccountType::getType() { return FieldType::INT; }
+template<> const std::string & FieldAccountType::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldCustOrderCapacity::enumItems = nullptr;
+template<> FieldType FieldCustOrderCapacity::getType() { return FieldType::INT; }
+template<> const std::string & FieldCustOrderCapacity::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldClOrdLinkID::enumItems = nullptr;
+template<> FieldType FieldClOrdLinkID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldClOrdLinkID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldMassStatusReqID::enumItems = nullptr;
+template<> FieldType FieldMassStatusReqID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldMassStatusReqID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldMassStatusReqType::enumItems = nullptr;
+template<> FieldType FieldMassStatusReqType::getType() { return FieldType::INT; }
+template<> const std::string & FieldMassStatusReqType::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldOrigOrdModTime::enumItems = nullptr;
+template<> FieldType FieldOrigOrdModTime::getType() { return FieldType::UTCTIMESTAMP; }
+template<> const std::string & FieldOrigOrdModTime::getTypeName() { static const std::string fixType{ "UTCTIMESTAMP" }; return fixType; }
 template<> const FieldEnumBase * const * FieldLegSettlType::enumItems = nullptr;
+template<> FieldType FieldLegSettlType::getType() { return FieldType::CHAR; }
+template<> const std::string & FieldLegSettlType::getTypeName() { static const std::string fixType{ "CHAR" }; return fixType; }
 template<> const FieldEnumBase * const * FieldLegSettlDate::enumItems = nullptr;
+template<> FieldType FieldLegSettlDate::getType() { return FieldType::LOCALMKTDATE; }
+template<> const std::string & FieldLegSettlDate::getTypeName() { static const std::string fixType{ "LOCALMKTDATE" }; return fixType; }
 template<> const FieldEnumBase * const * FieldDayBookingInst::enumItems = nullptr;
+template<> FieldType FieldDayBookingInst::getType() { return FieldType::CHAR; }
+template<> const std::string & FieldDayBookingInst::getTypeName() { static const std::string fixType{ "CHAR" }; return fixType; }
 template<> const FieldEnumBase * const * FieldBookingUnit::enumItems = nullptr;
+template<> FieldType FieldBookingUnit::getType() { return FieldType::CHAR; }
+template<> const std::string & FieldBookingUnit::getTypeName() { static const std::string fixType{ "CHAR" }; return fixType; }
 template<> const FieldEnumBase * const * FieldPreallocMethod::enumItems = nullptr;
+template<> FieldType FieldPreallocMethod::getType() { return FieldType::CHAR; }
+template<> const std::string & FieldPreallocMethod::getTypeName() { static const std::string fixType{ "CHAR" }; return fixType; }
 template<> const FieldEnumBase * const * FieldUnderlyingCountryOfIssue::enumItems = nullptr;
+template<> FieldType FieldUnderlyingCountryOfIssue::getType() { return FieldType::COUNTRY; }
+template<> const std::string & FieldUnderlyingCountryOfIssue::getTypeName() { static const std::string fixType{ "COUNTRY" }; return fixType; }
 template<> const FieldEnumBase * const * FieldUnderlyingStateOrProvinceOfIssue::enumItems = nullptr;
+template<> FieldType FieldUnderlyingStateOrProvinceOfIssue::getType() { return FieldType::STRING; }
+template<> const std::string & FieldUnderlyingStateOrProvinceOfIssue::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldUnderlyingLocaleOfIssue::enumItems = nullptr;
+template<> FieldType FieldUnderlyingLocaleOfIssue::getType() { return FieldType::STRING; }
+template<> const std::string & FieldUnderlyingLocaleOfIssue::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldUnderlyingInstrRegistry::enumItems = nullptr;
+template<> FieldType FieldUnderlyingInstrRegistry::getType() { return FieldType::STRING; }
+template<> const std::string & FieldUnderlyingInstrRegistry::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldLegCountryOfIssue::enumItems = nullptr;
+template<> FieldType FieldLegCountryOfIssue::getType() { return FieldType::COUNTRY; }
+template<> const std::string & FieldLegCountryOfIssue::getTypeName() { static const std::string fixType{ "COUNTRY" }; return fixType; }
 template<> const FieldEnumBase * const * FieldLegStateOrProvinceOfIssue::enumItems = nullptr;
+template<> FieldType FieldLegStateOrProvinceOfIssue::getType() { return FieldType::STRING; }
+template<> const std::string & FieldLegStateOrProvinceOfIssue::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldLegLocaleOfIssue::enumItems = nullptr;
+template<> FieldType FieldLegLocaleOfIssue::getType() { return FieldType::STRING; }
+template<> const std::string & FieldLegLocaleOfIssue::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldLegInstrRegistry::enumItems = nullptr;
+template<> FieldType FieldLegInstrRegistry::getType() { return FieldType::STRING; }
+template<> const std::string & FieldLegInstrRegistry::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldLegSymbol::enumItems = nullptr;
+template<> FieldType FieldLegSymbol::getType() { return FieldType::STRING; }
+template<> const std::string & FieldLegSymbol::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldLegSymbolSfx::enumItems = nullptr;
+template<> FieldType FieldLegSymbolSfx::getType() { return FieldType::STRING; }
+template<> const std::string & FieldLegSymbolSfx::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldLegSecurityID::enumItems = nullptr;
+template<> FieldType FieldLegSecurityID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldLegSecurityID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldLegSecurityIDSource::enumItems = nullptr;
+template<> FieldType FieldLegSecurityIDSource::getType() { return FieldType::STRING; }
+template<> const std::string & FieldLegSecurityIDSource::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldNoLegSecurityAltID::enumItems = nullptr;
+template<> FieldType FieldNoLegSecurityAltID::getType() { return FieldType::NUMINGROUP; }
+template<> const std::string & FieldNoLegSecurityAltID::getTypeName() { static const std::string fixType{ "NUMINGROUP" }; return fixType; }
 template<> const FieldEnumBase * const * FieldLegSecurityAltID::enumItems = nullptr;
+template<> FieldType FieldLegSecurityAltID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldLegSecurityAltID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldLegSecurityAltIDSource::enumItems = nullptr;
+template<> FieldType FieldLegSecurityAltIDSource::getType() { return FieldType::STRING; }
+template<> const std::string & FieldLegSecurityAltIDSource::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldLegProduct::enumItems = nullptr;
+template<> FieldType FieldLegProduct::getType() { return FieldType::INT; }
+template<> const std::string & FieldLegProduct::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldLegCFICode::enumItems = nullptr;
+template<> FieldType FieldLegCFICode::getType() { return FieldType::STRING; }
+template<> const std::string & FieldLegCFICode::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldLegSecurityType::enumItems = nullptr;
+template<> FieldType FieldLegSecurityType::getType() { return FieldType::STRING; }
+template<> const std::string & FieldLegSecurityType::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldLegMaturityMonthYear::enumItems = nullptr;
+template<> FieldType FieldLegMaturityMonthYear::getType() { return FieldType::MONTHYEAR; }
+template<> const std::string & FieldLegMaturityMonthYear::getTypeName() { static const std::string fixType{ "MONTHYEAR" }; return fixType; }
 template<> const FieldEnumBase * const * FieldLegMaturityDate::enumItems = nullptr;
+template<> FieldType FieldLegMaturityDate::getType() { return FieldType::LOCALMKTDATE; }
+template<> const std::string & FieldLegMaturityDate::getTypeName() { static const std::string fixType{ "LOCALMKTDATE" }; return fixType; }
 template<> const FieldEnumBase * const * FieldLegStrikePrice::enumItems = nullptr;
+template<> FieldType FieldLegStrikePrice::getType() { return FieldType::PRICE; }
+template<> const std::string & FieldLegStrikePrice::getTypeName() { static const std::string fixType{ "PRICE" }; return fixType; }
 template<> const FieldEnumBase * const * FieldLegOptAttribute::enumItems = nullptr;
+template<> FieldType FieldLegOptAttribute::getType() { return FieldType::CHAR; }
+template<> const std::string & FieldLegOptAttribute::getTypeName() { static const std::string fixType{ "CHAR" }; return fixType; }
 template<> const FieldEnumBase * const * FieldLegContractMultiplier::enumItems = nullptr;
+template<> FieldType FieldLegContractMultiplier::getType() { return FieldType::FLOAT; }
+template<> const std::string & FieldLegContractMultiplier::getTypeName() { static const std::string fixType{ "FLOAT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldLegCouponRate::enumItems = nullptr;
+template<> FieldType FieldLegCouponRate::getType() { return FieldType::PERCENTAGE; }
+template<> const std::string & FieldLegCouponRate::getTypeName() { static const std::string fixType{ "PERCENTAGE" }; return fixType; }
 template<> const FieldEnumBase * const * FieldLegSecurityExchange::enumItems = nullptr;
+template<> FieldType FieldLegSecurityExchange::getType() { return FieldType::EXCHANGE; }
+template<> const std::string & FieldLegSecurityExchange::getTypeName() { static const std::string fixType{ "EXCHANGE" }; return fixType; }
 template<> const FieldEnumBase * const * FieldLegIssuer::enumItems = nullptr;
+template<> FieldType FieldLegIssuer::getType() { return FieldType::STRING; }
+template<> const std::string & FieldLegIssuer::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldEncodedLegIssuerLen::enumItems = nullptr;
+template<> FieldType FieldEncodedLegIssuerLen::getType() { return FieldType::LENGTH; }
+template<> const std::string & FieldEncodedLegIssuerLen::getTypeName() { static const std::string fixType{ "LENGTH" }; return fixType; }
 template<> const FieldEnumBase * const * FieldEncodedLegIssuer::enumItems = nullptr;
+template<> FieldType FieldEncodedLegIssuer::getType() { return FieldType::DATA; }
+template<> const std::string & FieldEncodedLegIssuer::getTypeName() { static const std::string fixType{ "DATA" }; return fixType; }
 template<> const FieldEnumBase * const * FieldLegSecurityDesc::enumItems = nullptr;
+template<> FieldType FieldLegSecurityDesc::getType() { return FieldType::STRING; }
+template<> const std::string & FieldLegSecurityDesc::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldEncodedLegSecurityDescLen::enumItems = nullptr;
+template<> FieldType FieldEncodedLegSecurityDescLen::getType() { return FieldType::LENGTH; }
+template<> const std::string & FieldEncodedLegSecurityDescLen::getTypeName() { static const std::string fixType{ "LENGTH" }; return fixType; }
 template<> const FieldEnumBase * const * FieldEncodedLegSecurityDesc::enumItems = nullptr;
+template<> FieldType FieldEncodedLegSecurityDesc::getType() { return FieldType::DATA; }
+template<> const std::string & FieldEncodedLegSecurityDesc::getTypeName() { static const std::string fixType{ "DATA" }; return fixType; }
 template<> const FieldEnumBase * const * FieldLegRatioQty::enumItems = nullptr;
+template<> FieldType FieldLegRatioQty::getType() { return FieldType::FLOAT; }
+template<> const std::string & FieldLegRatioQty::getTypeName() { static const std::string fixType{ "FLOAT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldLegSide::enumItems = nullptr;
+template<> FieldType FieldLegSide::getType() { return FieldType::CHAR; }
+template<> const std::string & FieldLegSide::getTypeName() { static const std::string fixType{ "CHAR" }; return fixType; }
 template<> const FieldEnumBase * const * FieldTradingSessionSubID::enumItems = nullptr;
+template<> FieldType FieldTradingSessionSubID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldTradingSessionSubID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldAllocType::enumItems = nullptr;
+template<> FieldType FieldAllocType::getType() { return FieldType::INT; }
+template<> const std::string & FieldAllocType::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldNoHops::enumItems = nullptr;
+template<> FieldType FieldNoHops::getType() { return FieldType::NUMINGROUP; }
+template<> const std::string & FieldNoHops::getTypeName() { static const std::string fixType{ "NUMINGROUP" }; return fixType; }
 template<> const FieldEnumBase * const * FieldHopCompID::enumItems = nullptr;
+template<> FieldType FieldHopCompID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldHopCompID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldHopSendingTime::enumItems = nullptr;
+template<> FieldType FieldHopSendingTime::getType() { return FieldType::UTCTIMESTAMP; }
+template<> const std::string & FieldHopSendingTime::getTypeName() { static const std::string fixType{ "UTCTIMESTAMP" }; return fixType; }
 template<> const FieldEnumBase * const * FieldHopRefID::enumItems = nullptr;
+template<> FieldType FieldHopRefID::getType() { return FieldType::SEQNUM; }
+template<> const std::string & FieldHopRefID::getTypeName() { static const std::string fixType{ "SEQNUM" }; return fixType; }
 template<> const FieldEnumBase * const * FieldMidPx::enumItems = nullptr;
+template<> FieldType FieldMidPx::getType() { return FieldType::PRICE; }
+template<> const std::string & FieldMidPx::getTypeName() { static const std::string fixType{ "PRICE" }; return fixType; }
 template<> const FieldEnumBase * const * FieldBidYield::enumItems = nullptr;
+template<> FieldType FieldBidYield::getType() { return FieldType::PERCENTAGE; }
+template<> const std::string & FieldBidYield::getTypeName() { static const std::string fixType{ "PERCENTAGE" }; return fixType; }
 template<> const FieldEnumBase * const * FieldMidYield::enumItems = nullptr;
+template<> FieldType FieldMidYield::getType() { return FieldType::PERCENTAGE; }
+template<> const std::string & FieldMidYield::getTypeName() { static const std::string fixType{ "PERCENTAGE" }; return fixType; }
 template<> const FieldEnumBase * const * FieldOfferYield::enumItems = nullptr;
+template<> FieldType FieldOfferYield::getType() { return FieldType::PERCENTAGE; }
+template<> const std::string & FieldOfferYield::getTypeName() { static const std::string fixType{ "PERCENTAGE" }; return fixType; }
 template<> const FieldEnumBase * const * FieldClearingFeeIndicator::enumItems = nullptr;
+template<> FieldType FieldClearingFeeIndicator::getType() { return FieldType::STRING; }
+template<> const std::string & FieldClearingFeeIndicator::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldWorkingIndicator::enumItems = nullptr;
+template<> FieldType FieldWorkingIndicator::getType() { return FieldType::BOOLEAN; }
+template<> const std::string & FieldWorkingIndicator::getTypeName() { static const std::string fixType{ "BOOLEAN" }; return fixType; }
 template<> const FieldEnumBase * const * FieldLegLastPx::enumItems = nullptr;
+template<> FieldType FieldLegLastPx::getType() { return FieldType::PRICE; }
+template<> const std::string & FieldLegLastPx::getTypeName() { static const std::string fixType{ "PRICE" }; return fixType; }
 template<> const FieldEnumBase * const * FieldPriorityIndicator::enumItems = nullptr;
+template<> FieldType FieldPriorityIndicator::getType() { return FieldType::INT; }
+template<> const std::string & FieldPriorityIndicator::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldPriceImprovement::enumItems = nullptr;
+template<> FieldType FieldPriceImprovement::getType() { return FieldType::PRICEOFFSET; }
+template<> const std::string & FieldPriceImprovement::getTypeName() { static const std::string fixType{ "PRICEOFFSET" }; return fixType; }
 template<> const FieldEnumBase * const * FieldPrice2::enumItems = nullptr;
+template<> FieldType FieldPrice2::getType() { return FieldType::PRICE; }
+template<> const std::string & FieldPrice2::getTypeName() { static const std::string fixType{ "PRICE" }; return fixType; }
 template<> const FieldEnumBase * const * FieldLastForwardPoints2::enumItems = nullptr;
+template<> FieldType FieldLastForwardPoints2::getType() { return FieldType::PRICEOFFSET; }
+template<> const std::string & FieldLastForwardPoints2::getTypeName() { static const std::string fixType{ "PRICEOFFSET" }; return fixType; }
 template<> const FieldEnumBase * const * FieldBidForwardPoints2::enumItems = nullptr;
+template<> FieldType FieldBidForwardPoints2::getType() { return FieldType::PRICEOFFSET; }
+template<> const std::string & FieldBidForwardPoints2::getTypeName() { static const std::string fixType{ "PRICEOFFSET" }; return fixType; }
 template<> const FieldEnumBase * const * FieldOfferForwardPoints2::enumItems = nullptr;
+template<> FieldType FieldOfferForwardPoints2::getType() { return FieldType::PRICEOFFSET; }
+template<> const std::string & FieldOfferForwardPoints2::getTypeName() { static const std::string fixType{ "PRICEOFFSET" }; return fixType; }
 template<> const FieldEnumBase * const * FieldRFQReqID::enumItems = nullptr;
+template<> FieldType FieldRFQReqID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldRFQReqID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldMktBidPx::enumItems = nullptr;
+template<> FieldType FieldMktBidPx::getType() { return FieldType::PRICE; }
+template<> const std::string & FieldMktBidPx::getTypeName() { static const std::string fixType{ "PRICE" }; return fixType; }
 template<> const FieldEnumBase * const * FieldMktOfferPx::enumItems = nullptr;
+template<> FieldType FieldMktOfferPx::getType() { return FieldType::PRICE; }
+template<> const std::string & FieldMktOfferPx::getTypeName() { static const std::string fixType{ "PRICE" }; return fixType; }
 template<> const FieldEnumBase * const * FieldMinBidSize::enumItems = nullptr;
+template<> FieldType FieldMinBidSize::getType() { return FieldType::QTY; }
+template<> const std::string & FieldMinBidSize::getTypeName() { static const std::string fixType{ "QTY" }; return fixType; }
 template<> const FieldEnumBase * const * FieldMinOfferSize::enumItems = nullptr;
+template<> FieldType FieldMinOfferSize::getType() { return FieldType::QTY; }
+template<> const std::string & FieldMinOfferSize::getTypeName() { static const std::string fixType{ "QTY" }; return fixType; }
 template<> const FieldEnumBase * const * FieldQuoteStatusReqID::enumItems = nullptr;
+template<> FieldType FieldQuoteStatusReqID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldQuoteStatusReqID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldLegalConfirm::enumItems = nullptr;
+template<> FieldType FieldLegalConfirm::getType() { return FieldType::BOOLEAN; }
+template<> const std::string & FieldLegalConfirm::getTypeName() { static const std::string fixType{ "BOOLEAN" }; return fixType; }
 template<> const FieldEnumBase * const * FieldUnderlyingLastPx::enumItems = nullptr;
+template<> FieldType FieldUnderlyingLastPx::getType() { return FieldType::PRICE; }
+template<> const std::string & FieldUnderlyingLastPx::getTypeName() { static const std::string fixType{ "PRICE" }; return fixType; }
 template<> const FieldEnumBase * const * FieldUnderlyingLastQty::enumItems = nullptr;
+template<> FieldType FieldUnderlyingLastQty::getType() { return FieldType::QTY; }
+template<> const std::string & FieldUnderlyingLastQty::getTypeName() { static const std::string fixType{ "QTY" }; return fixType; }
 template<> const FieldEnumBase * const * FieldLegRefID::enumItems = nullptr;
+template<> FieldType FieldLegRefID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldLegRefID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldContraLegRefID::enumItems = nullptr;
+template<> FieldType FieldContraLegRefID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldContraLegRefID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldSettlCurrBidFxRate::enumItems = nullptr;
+template<> FieldType FieldSettlCurrBidFxRate::getType() { return FieldType::FLOAT; }
+template<> const std::string & FieldSettlCurrBidFxRate::getTypeName() { static const std::string fixType{ "FLOAT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldSettlCurrOfferFxRate::enumItems = nullptr;
+template<> FieldType FieldSettlCurrOfferFxRate::getType() { return FieldType::FLOAT; }
+template<> const std::string & FieldSettlCurrOfferFxRate::getTypeName() { static const std::string fixType{ "FLOAT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldQuoteRequestRejectReason::enumItems = nullptr;
+template<> FieldType FieldQuoteRequestRejectReason::getType() { return FieldType::INT; }
+template<> const std::string & FieldQuoteRequestRejectReason::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldSideComplianceID::enumItems = nullptr;
+template<> FieldType FieldSideComplianceID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldSideComplianceID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldAcctIDSource::enumItems = nullptr;
+template<> FieldType FieldAcctIDSource::getType() { return FieldType::INT; }
+template<> const std::string & FieldAcctIDSource::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldAllocAcctIDSource::enumItems = nullptr;
+template<> FieldType FieldAllocAcctIDSource::getType() { return FieldType::INT; }
+template<> const std::string & FieldAllocAcctIDSource::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldBenchmarkPrice::enumItems = nullptr;
+template<> FieldType FieldBenchmarkPrice::getType() { return FieldType::PRICE; }
+template<> const std::string & FieldBenchmarkPrice::getTypeName() { static const std::string fixType{ "PRICE" }; return fixType; }
 template<> const FieldEnumBase * const * FieldBenchmarkPriceType::enumItems = nullptr;
+template<> FieldType FieldBenchmarkPriceType::getType() { return FieldType::INT; }
+template<> const std::string & FieldBenchmarkPriceType::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldConfirmID::enumItems = nullptr;
+template<> FieldType FieldConfirmID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldConfirmID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldConfirmStatus::enumItems = nullptr;
+template<> FieldType FieldConfirmStatus::getType() { return FieldType::INT; }
+template<> const std::string & FieldConfirmStatus::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldConfirmTransType::enumItems = nullptr;
+template<> FieldType FieldConfirmTransType::getType() { return FieldType::INT; }
+template<> const std::string & FieldConfirmTransType::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldContractSettlMonth::enumItems = nullptr;
+template<> FieldType FieldContractSettlMonth::getType() { return FieldType::MONTHYEAR; }
+template<> const std::string & FieldContractSettlMonth::getTypeName() { static const std::string fixType{ "MONTHYEAR" }; return fixType; }
 template<> const FieldEnumBase * const * FieldDeliveryForm::enumItems = nullptr;
+template<> FieldType FieldDeliveryForm::getType() { return FieldType::INT; }
+template<> const std::string & FieldDeliveryForm::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldLastParPx::enumItems = nullptr;
+template<> FieldType FieldLastParPx::getType() { return FieldType::PRICE; }
+template<> const std::string & FieldLastParPx::getTypeName() { static const std::string fixType{ "PRICE" }; return fixType; }
 template<> const FieldEnumBase * const * FieldNoLegAllocs::enumItems = nullptr;
+template<> FieldType FieldNoLegAllocs::getType() { return FieldType::NUMINGROUP; }
+template<> const std::string & FieldNoLegAllocs::getTypeName() { static const std::string fixType{ "NUMINGROUP" }; return fixType; }
 template<> const FieldEnumBase * const * FieldLegAllocAccount::enumItems = nullptr;
+template<> FieldType FieldLegAllocAccount::getType() { return FieldType::STRING; }
+template<> const std::string & FieldLegAllocAccount::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldLegIndividualAllocID::enumItems = nullptr;
+template<> FieldType FieldLegIndividualAllocID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldLegIndividualAllocID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldLegAllocQty::enumItems = nullptr;
+template<> FieldType FieldLegAllocQty::getType() { return FieldType::QTY; }
+template<> const std::string & FieldLegAllocQty::getTypeName() { static const std::string fixType{ "QTY" }; return fixType; }
 template<> const FieldEnumBase * const * FieldLegAllocAcctIDSource::enumItems = nullptr;
+template<> FieldType FieldLegAllocAcctIDSource::getType() { return FieldType::STRING; }
+template<> const std::string & FieldLegAllocAcctIDSource::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldLegSettlCurrency::enumItems = nullptr;
+template<> FieldType FieldLegSettlCurrency::getType() { return FieldType::CURRENCY; }
+template<> const std::string & FieldLegSettlCurrency::getTypeName() { static const std::string fixType{ "CURRENCY" }; return fixType; }
 template<> const FieldEnumBase * const * FieldLegBenchmarkCurveCurrency::enumItems = nullptr;
+template<> FieldType FieldLegBenchmarkCurveCurrency::getType() { return FieldType::CURRENCY; }
+template<> const std::string & FieldLegBenchmarkCurveCurrency::getTypeName() { static const std::string fixType{ "CURRENCY" }; return fixType; }
 template<> const FieldEnumBase * const * FieldLegBenchmarkCurveName::enumItems = nullptr;
+template<> FieldType FieldLegBenchmarkCurveName::getType() { return FieldType::STRING; }
+template<> const std::string & FieldLegBenchmarkCurveName::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldLegBenchmarkCurvePoint::enumItems = nullptr;
+template<> FieldType FieldLegBenchmarkCurvePoint::getType() { return FieldType::STRING; }
+template<> const std::string & FieldLegBenchmarkCurvePoint::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldLegBenchmarkPrice::enumItems = nullptr;
+template<> FieldType FieldLegBenchmarkPrice::getType() { return FieldType::PRICE; }
+template<> const std::string & FieldLegBenchmarkPrice::getTypeName() { static const std::string fixType{ "PRICE" }; return fixType; }
 template<> const FieldEnumBase * const * FieldLegBenchmarkPriceType::enumItems = nullptr;
+template<> FieldType FieldLegBenchmarkPriceType::getType() { return FieldType::INT; }
+template<> const std::string & FieldLegBenchmarkPriceType::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldLegBidPx::enumItems = nullptr;
+template<> FieldType FieldLegBidPx::getType() { return FieldType::PRICE; }
+template<> const std::string & FieldLegBidPx::getTypeName() { static const std::string fixType{ "PRICE" }; return fixType; }
 template<> const FieldEnumBase * const * FieldLegIOIQty::enumItems = nullptr;
+template<> FieldType FieldLegIOIQty::getType() { return FieldType::STRING; }
+template<> const std::string & FieldLegIOIQty::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldNoLegStipulations::enumItems = nullptr;
+template<> FieldType FieldNoLegStipulations::getType() { return FieldType::NUMINGROUP; }
+template<> const std::string & FieldNoLegStipulations::getTypeName() { static const std::string fixType{ "NUMINGROUP" }; return fixType; }
 template<> const FieldEnumBase * const * FieldLegOfferPx::enumItems = nullptr;
+template<> FieldType FieldLegOfferPx::getType() { return FieldType::PRICE; }
+template<> const std::string & FieldLegOfferPx::getTypeName() { static const std::string fixType{ "PRICE" }; return fixType; }
 template<> const FieldEnumBase * const * FieldLegPriceType::enumItems = nullptr;
+template<> FieldType FieldLegPriceType::getType() { return FieldType::INT; }
+template<> const std::string & FieldLegPriceType::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldLegQty::enumItems = nullptr;
+template<> FieldType FieldLegQty::getType() { return FieldType::QTY; }
+template<> const std::string & FieldLegQty::getTypeName() { static const std::string fixType{ "QTY" }; return fixType; }
 template<> const FieldEnumBase * const * FieldLegStipulationType::enumItems = nullptr;
+template<> FieldType FieldLegStipulationType::getType() { return FieldType::STRING; }
+template<> const std::string & FieldLegStipulationType::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldLegStipulationValue::enumItems = nullptr;
+template<> FieldType FieldLegStipulationValue::getType() { return FieldType::STRING; }
+template<> const std::string & FieldLegStipulationValue::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldLegSwapType::enumItems = nullptr;
+template<> FieldType FieldLegSwapType::getType() { return FieldType::INT; }
+template<> const std::string & FieldLegSwapType::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldPool::enumItems = nullptr;
+template<> FieldType FieldPool::getType() { return FieldType::STRING; }
+template<> const std::string & FieldPool::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldQuotePriceType::enumItems = nullptr;
+template<> FieldType FieldQuotePriceType::getType() { return FieldType::INT; }
+template<> const std::string & FieldQuotePriceType::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldQuoteRespID::enumItems = nullptr;
+template<> FieldType FieldQuoteRespID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldQuoteRespID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldQuoteRespType::enumItems = nullptr;
+template<> FieldType FieldQuoteRespType::getType() { return FieldType::INT; }
+template<> const std::string & FieldQuoteRespType::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldQuoteQualifier::enumItems = nullptr;
+template<> FieldType FieldQuoteQualifier::getType() { return FieldType::CHAR; }
+template<> const std::string & FieldQuoteQualifier::getTypeName() { static const std::string fixType{ "CHAR" }; return fixType; }
 template<> const FieldEnumBase * const * FieldYieldRedemptionDate::enumItems = nullptr;
+template<> FieldType FieldYieldRedemptionDate::getType() { return FieldType::LOCALMKTDATE; }
+template<> const std::string & FieldYieldRedemptionDate::getTypeName() { static const std::string fixType{ "LOCALMKTDATE" }; return fixType; }
 template<> const FieldEnumBase * const * FieldYieldRedemptionPrice::enumItems = nullptr;
+template<> FieldType FieldYieldRedemptionPrice::getType() { return FieldType::PRICE; }
+template<> const std::string & FieldYieldRedemptionPrice::getTypeName() { static const std::string fixType{ "PRICE" }; return fixType; }
 template<> const FieldEnumBase * const * FieldYieldRedemptionPriceType::enumItems = nullptr;
+template<> FieldType FieldYieldRedemptionPriceType::getType() { return FieldType::INT; }
+template<> const std::string & FieldYieldRedemptionPriceType::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldBenchmarkSecurityID::enumItems = nullptr;
+template<> FieldType FieldBenchmarkSecurityID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldBenchmarkSecurityID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldReversalIndicator::enumItems = nullptr;
+template<> FieldType FieldReversalIndicator::getType() { return FieldType::BOOLEAN; }
+template<> const std::string & FieldReversalIndicator::getTypeName() { static const std::string fixType{ "BOOLEAN" }; return fixType; }
 template<> const FieldEnumBase * const * FieldYieldCalcDate::enumItems = nullptr;
+template<> FieldType FieldYieldCalcDate::getType() { return FieldType::LOCALMKTDATE; }
+template<> const std::string & FieldYieldCalcDate::getTypeName() { static const std::string fixType{ "LOCALMKTDATE" }; return fixType; }
 template<> const FieldEnumBase * const * FieldNoPositions::enumItems = nullptr;
+template<> FieldType FieldNoPositions::getType() { return FieldType::NUMINGROUP; }
+template<> const std::string & FieldNoPositions::getTypeName() { static const std::string fixType{ "NUMINGROUP" }; return fixType; }
 template<> const FieldEnumBase * const * FieldPosType::enumItems = nullptr;
+template<> FieldType FieldPosType::getType() { return FieldType::STRING; }
+template<> const std::string & FieldPosType::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldLongQty::enumItems = nullptr;
+template<> FieldType FieldLongQty::getType() { return FieldType::QTY; }
+template<> const std::string & FieldLongQty::getTypeName() { static const std::string fixType{ "QTY" }; return fixType; }
 template<> const FieldEnumBase * const * FieldShortQty::enumItems = nullptr;
+template<> FieldType FieldShortQty::getType() { return FieldType::QTY; }
+template<> const std::string & FieldShortQty::getTypeName() { static const std::string fixType{ "QTY" }; return fixType; }
 template<> const FieldEnumBase * const * FieldPosQtyStatus::enumItems = nullptr;
+template<> FieldType FieldPosQtyStatus::getType() { return FieldType::INT; }
+template<> const std::string & FieldPosQtyStatus::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldPosAmtType::enumItems = nullptr;
+template<> FieldType FieldPosAmtType::getType() { return FieldType::STRING; }
+template<> const std::string & FieldPosAmtType::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldPosAmt::enumItems = nullptr;
+template<> FieldType FieldPosAmt::getType() { return FieldType::AMT; }
+template<> const std::string & FieldPosAmt::getTypeName() { static const std::string fixType{ "AMT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldPosTransType::enumItems = nullptr;
+template<> FieldType FieldPosTransType::getType() { return FieldType::INT; }
+template<> const std::string & FieldPosTransType::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldPosReqID::enumItems = nullptr;
+template<> FieldType FieldPosReqID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldPosReqID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldNoUnderlyings::enumItems = nullptr;
+template<> FieldType FieldNoUnderlyings::getType() { return FieldType::NUMINGROUP; }
+template<> const std::string & FieldNoUnderlyings::getTypeName() { static const std::string fixType{ "NUMINGROUP" }; return fixType; }
 template<> const FieldEnumBase * const * FieldPosMaintAction::enumItems = nullptr;
+template<> FieldType FieldPosMaintAction::getType() { return FieldType::INT; }
+template<> const std::string & FieldPosMaintAction::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldOrigPosReqRefID::enumItems = nullptr;
+template<> FieldType FieldOrigPosReqRefID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldOrigPosReqRefID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldPosMaintRptRefID::enumItems = nullptr;
+template<> FieldType FieldPosMaintRptRefID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldPosMaintRptRefID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldClearingBusinessDate::enumItems = nullptr;
+template<> FieldType FieldClearingBusinessDate::getType() { return FieldType::LOCALMKTDATE; }
+template<> const std::string & FieldClearingBusinessDate::getTypeName() { static const std::string fixType{ "LOCALMKTDATE" }; return fixType; }
 template<> const FieldEnumBase * const * FieldSettlSessID::enumItems = nullptr;
+template<> FieldType FieldSettlSessID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldSettlSessID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldSettlSessSubID::enumItems = nullptr;
+template<> FieldType FieldSettlSessSubID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldSettlSessSubID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldAdjustmentType::enumItems = nullptr;
+template<> FieldType FieldAdjustmentType::getType() { return FieldType::INT; }
+template<> const std::string & FieldAdjustmentType::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldContraryInstructionIndicator::enumItems = nullptr;
+template<> FieldType FieldContraryInstructionIndicator::getType() { return FieldType::BOOLEAN; }
+template<> const std::string & FieldContraryInstructionIndicator::getTypeName() { static const std::string fixType{ "BOOLEAN" }; return fixType; }
 template<> const FieldEnumBase * const * FieldPriorSpreadIndicator::enumItems = nullptr;
+template<> FieldType FieldPriorSpreadIndicator::getType() { return FieldType::BOOLEAN; }
+template<> const std::string & FieldPriorSpreadIndicator::getTypeName() { static const std::string fixType{ "BOOLEAN" }; return fixType; }
 template<> const FieldEnumBase * const * FieldPosMaintRptID::enumItems = nullptr;
+template<> FieldType FieldPosMaintRptID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldPosMaintRptID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldPosMaintStatus::enumItems = nullptr;
+template<> FieldType FieldPosMaintStatus::getType() { return FieldType::INT; }
+template<> const std::string & FieldPosMaintStatus::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldPosMaintResult::enumItems = nullptr;
+template<> FieldType FieldPosMaintResult::getType() { return FieldType::INT; }
+template<> const std::string & FieldPosMaintResult::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldPosReqType::enumItems = nullptr;
+template<> FieldType FieldPosReqType::getType() { return FieldType::INT; }
+template<> const std::string & FieldPosReqType::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldResponseTransportType::enumItems = nullptr;
+template<> FieldType FieldResponseTransportType::getType() { return FieldType::INT; }
+template<> const std::string & FieldResponseTransportType::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldResponseDestination::enumItems = nullptr;
+template<> FieldType FieldResponseDestination::getType() { return FieldType::STRING; }
+template<> const std::string & FieldResponseDestination::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldTotalNumPosReports::enumItems = nullptr;
+template<> FieldType FieldTotalNumPosReports::getType() { return FieldType::INT; }
+template<> const std::string & FieldTotalNumPosReports::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldPosReqResult::enumItems = nullptr;
+template<> FieldType FieldPosReqResult::getType() { return FieldType::INT; }
+template<> const std::string & FieldPosReqResult::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldPosReqStatus::enumItems = nullptr;
+template<> FieldType FieldPosReqStatus::getType() { return FieldType::INT; }
+template<> const std::string & FieldPosReqStatus::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldSettlPrice::enumItems = nullptr;
+template<> FieldType FieldSettlPrice::getType() { return FieldType::PRICE; }
+template<> const std::string & FieldSettlPrice::getTypeName() { static const std::string fixType{ "PRICE" }; return fixType; }
 template<> const FieldEnumBase * const * FieldSettlPriceType::enumItems = nullptr;
+template<> FieldType FieldSettlPriceType::getType() { return FieldType::INT; }
+template<> const std::string & FieldSettlPriceType::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldUnderlyingSettlPrice::enumItems = nullptr;
+template<> FieldType FieldUnderlyingSettlPrice::getType() { return FieldType::PRICE; }
+template<> const std::string & FieldUnderlyingSettlPrice::getTypeName() { static const std::string fixType{ "PRICE" }; return fixType; }
 template<> const FieldEnumBase * const * FieldUnderlyingSettlPriceType::enumItems = nullptr;
+template<> FieldType FieldUnderlyingSettlPriceType::getType() { return FieldType::INT; }
+template<> const std::string & FieldUnderlyingSettlPriceType::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldPriorSettlPrice::enumItems = nullptr;
+template<> FieldType FieldPriorSettlPrice::getType() { return FieldType::PRICE; }
+template<> const std::string & FieldPriorSettlPrice::getTypeName() { static const std::string fixType{ "PRICE" }; return fixType; }
 template<> const FieldEnumBase * const * FieldNoQuoteQualifiers::enumItems = nullptr;
+template<> FieldType FieldNoQuoteQualifiers::getType() { return FieldType::NUMINGROUP; }
+template<> const std::string & FieldNoQuoteQualifiers::getTypeName() { static const std::string fixType{ "NUMINGROUP" }; return fixType; }
 template<> const FieldEnumBase * const * FieldAllocSettlCurrency::enumItems = nullptr;
+template<> FieldType FieldAllocSettlCurrency::getType() { return FieldType::CURRENCY; }
+template<> const std::string & FieldAllocSettlCurrency::getTypeName() { static const std::string fixType{ "CURRENCY" }; return fixType; }
 template<> const FieldEnumBase * const * FieldAllocSettlCurrAmt::enumItems = nullptr;
+template<> FieldType FieldAllocSettlCurrAmt::getType() { return FieldType::AMT; }
+template<> const std::string & FieldAllocSettlCurrAmt::getTypeName() { static const std::string fixType{ "AMT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldInterestAtMaturity::enumItems = nullptr;
+template<> FieldType FieldInterestAtMaturity::getType() { return FieldType::AMT; }
+template<> const std::string & FieldInterestAtMaturity::getTypeName() { static const std::string fixType{ "AMT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldLegDatedDate::enumItems = nullptr;
+template<> FieldType FieldLegDatedDate::getType() { return FieldType::LOCALMKTDATE; }
+template<> const std::string & FieldLegDatedDate::getTypeName() { static const std::string fixType{ "LOCALMKTDATE" }; return fixType; }
 template<> const FieldEnumBase * const * FieldLegPool::enumItems = nullptr;
+template<> FieldType FieldLegPool::getType() { return FieldType::STRING; }
+template<> const std::string & FieldLegPool::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldAllocInterestAtMaturity::enumItems = nullptr;
+template<> FieldType FieldAllocInterestAtMaturity::getType() { return FieldType::AMT; }
+template<> const std::string & FieldAllocInterestAtMaturity::getTypeName() { static const std::string fixType{ "AMT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldAllocAccruedInterestAmt::enumItems = nullptr;
+template<> FieldType FieldAllocAccruedInterestAmt::getType() { return FieldType::AMT; }
+template<> const std::string & FieldAllocAccruedInterestAmt::getTypeName() { static const std::string fixType{ "AMT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldDeliveryDate::enumItems = nullptr;
+template<> FieldType FieldDeliveryDate::getType() { return FieldType::LOCALMKTDATE; }
+template<> const std::string & FieldDeliveryDate::getTypeName() { static const std::string fixType{ "LOCALMKTDATE" }; return fixType; }
 template<> const FieldEnumBase * const * FieldAssignmentMethod::enumItems = nullptr;
+template<> FieldType FieldAssignmentMethod::getType() { return FieldType::CHAR; }
+template<> const std::string & FieldAssignmentMethod::getTypeName() { static const std::string fixType{ "CHAR" }; return fixType; }
 template<> const FieldEnumBase * const * FieldAssignmentUnit::enumItems = nullptr;
+template<> FieldType FieldAssignmentUnit::getType() { return FieldType::QTY; }
+template<> const std::string & FieldAssignmentUnit::getTypeName() { static const std::string fixType{ "QTY" }; return fixType; }
 template<> const FieldEnumBase * const * FieldOpenInterest::enumItems = nullptr;
+template<> FieldType FieldOpenInterest::getType() { return FieldType::AMT; }
+template<> const std::string & FieldOpenInterest::getTypeName() { static const std::string fixType{ "AMT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldExerciseMethod::enumItems = nullptr;
+template<> FieldType FieldExerciseMethod::getType() { return FieldType::CHAR; }
+template<> const std::string & FieldExerciseMethod::getTypeName() { static const std::string fixType{ "CHAR" }; return fixType; }
 template<> const FieldEnumBase * const * FieldTotNumTradeReports::enumItems = nullptr;
+template<> FieldType FieldTotNumTradeReports::getType() { return FieldType::INT; }
+template<> const std::string & FieldTotNumTradeReports::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldTradeRequestResult::enumItems = nullptr;
+template<> FieldType FieldTradeRequestResult::getType() { return FieldType::INT; }
+template<> const std::string & FieldTradeRequestResult::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldTradeRequestStatus::enumItems = nullptr;
+template<> FieldType FieldTradeRequestStatus::getType() { return FieldType::INT; }
+template<> const std::string & FieldTradeRequestStatus::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldTradeReportRejectReason::enumItems = nullptr;
+template<> FieldType FieldTradeReportRejectReason::getType() { return FieldType::INT; }
+template<> const std::string & FieldTradeReportRejectReason::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldSideMultiLegReportingType::enumItems = nullptr;
+template<> FieldType FieldSideMultiLegReportingType::getType() { return FieldType::INT; }
+template<> const std::string & FieldSideMultiLegReportingType::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldNoPosAmt::enumItems = nullptr;
+template<> FieldType FieldNoPosAmt::getType() { return FieldType::NUMINGROUP; }
+template<> const std::string & FieldNoPosAmt::getTypeName() { static const std::string fixType{ "NUMINGROUP" }; return fixType; }
 template<> const FieldEnumBase * const * FieldAutoAcceptIndicator::enumItems = nullptr;
+template<> FieldType FieldAutoAcceptIndicator::getType() { return FieldType::BOOLEAN; }
+template<> const std::string & FieldAutoAcceptIndicator::getTypeName() { static const std::string fixType{ "BOOLEAN" }; return fixType; }
 template<> const FieldEnumBase * const * FieldAllocReportID::enumItems = nullptr;
+template<> FieldType FieldAllocReportID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldAllocReportID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldNoNested2PartyIDs::enumItems = nullptr;
+template<> FieldType FieldNoNested2PartyIDs::getType() { return FieldType::NUMINGROUP; }
+template<> const std::string & FieldNoNested2PartyIDs::getTypeName() { static const std::string fixType{ "NUMINGROUP" }; return fixType; }
 template<> const FieldEnumBase * const * FieldNested2PartyID::enumItems = nullptr;
+template<> FieldType FieldNested2PartyID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldNested2PartyID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldNested2PartyIDSource::enumItems = nullptr;
+template<> FieldType FieldNested2PartyIDSource::getType() { return FieldType::CHAR; }
+template<> const std::string & FieldNested2PartyIDSource::getTypeName() { static const std::string fixType{ "CHAR" }; return fixType; }
 template<> const FieldEnumBase * const * FieldNested2PartyRole::enumItems = nullptr;
+template<> FieldType FieldNested2PartyRole::getType() { return FieldType::INT; }
+template<> const std::string & FieldNested2PartyRole::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldNested2PartySubID::enumItems = nullptr;
+template<> FieldType FieldNested2PartySubID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldNested2PartySubID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldBenchmarkSecurityIDSource::enumItems = nullptr;
+template<> FieldType FieldBenchmarkSecurityIDSource::getType() { return FieldType::STRING; }
+template<> const std::string & FieldBenchmarkSecurityIDSource::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldSecuritySubType::enumItems = nullptr;
+template<> FieldType FieldSecuritySubType::getType() { return FieldType::STRING; }
+template<> const std::string & FieldSecuritySubType::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldUnderlyingSecuritySubType::enumItems = nullptr;
+template<> FieldType FieldUnderlyingSecuritySubType::getType() { return FieldType::STRING; }
+template<> const std::string & FieldUnderlyingSecuritySubType::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldLegSecuritySubType::enumItems = nullptr;
+template<> FieldType FieldLegSecuritySubType::getType() { return FieldType::STRING; }
+template<> const std::string & FieldLegSecuritySubType::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldAllowableOneSidednessPct::enumItems = nullptr;
+template<> FieldType FieldAllowableOneSidednessPct::getType() { return FieldType::PERCENTAGE; }
+template<> const std::string & FieldAllowableOneSidednessPct::getTypeName() { static const std::string fixType{ "PERCENTAGE" }; return fixType; }
 template<> const FieldEnumBase * const * FieldAllowableOneSidednessValue::enumItems = nullptr;
+template<> FieldType FieldAllowableOneSidednessValue::getType() { return FieldType::AMT; }
+template<> const std::string & FieldAllowableOneSidednessValue::getTypeName() { static const std::string fixType{ "AMT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldAllowableOneSidednessCurr::enumItems = nullptr;
+template<> FieldType FieldAllowableOneSidednessCurr::getType() { return FieldType::CURRENCY; }
+template<> const std::string & FieldAllowableOneSidednessCurr::getTypeName() { static const std::string fixType{ "CURRENCY" }; return fixType; }
 template<> const FieldEnumBase * const * FieldNoTrdRegTimestamps::enumItems = nullptr;
+template<> FieldType FieldNoTrdRegTimestamps::getType() { return FieldType::NUMINGROUP; }
+template<> const std::string & FieldNoTrdRegTimestamps::getTypeName() { static const std::string fixType{ "NUMINGROUP" }; return fixType; }
 template<> const FieldEnumBase * const * FieldTrdRegTimestamp::enumItems = nullptr;
+template<> FieldType FieldTrdRegTimestamp::getType() { return FieldType::UTCTIMESTAMP; }
+template<> const std::string & FieldTrdRegTimestamp::getTypeName() { static const std::string fixType{ "UTCTIMESTAMP" }; return fixType; }
 template<> const FieldEnumBase * const * FieldTrdRegTimestampType::enumItems = nullptr;
+template<> FieldType FieldTrdRegTimestampType::getType() { return FieldType::INT; }
+template<> const std::string & FieldTrdRegTimestampType::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldTrdRegTimestampOrigin::enumItems = nullptr;
+template<> FieldType FieldTrdRegTimestampOrigin::getType() { return FieldType::STRING; }
+template<> const std::string & FieldTrdRegTimestampOrigin::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldConfirmRefID::enumItems = nullptr;
+template<> FieldType FieldConfirmRefID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldConfirmRefID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldConfirmType::enumItems = nullptr;
+template<> FieldType FieldConfirmType::getType() { return FieldType::INT; }
+template<> const std::string & FieldConfirmType::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldConfirmRejReason::enumItems = nullptr;
+template<> FieldType FieldConfirmRejReason::getType() { return FieldType::INT; }
+template<> const std::string & FieldConfirmRejReason::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldBookingType::enumItems = nullptr;
+template<> FieldType FieldBookingType::getType() { return FieldType::INT; }
+template<> const std::string & FieldBookingType::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldIndividualAllocRejCode::enumItems = nullptr;
+template<> FieldType FieldIndividualAllocRejCode::getType() { return FieldType::INT; }
+template<> const std::string & FieldIndividualAllocRejCode::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldSettlInstMsgID::enumItems = nullptr;
+template<> FieldType FieldSettlInstMsgID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldSettlInstMsgID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldNoSettlInst::enumItems = nullptr;
+template<> FieldType FieldNoSettlInst::getType() { return FieldType::NUMINGROUP; }
+template<> const std::string & FieldNoSettlInst::getTypeName() { static const std::string fixType{ "NUMINGROUP" }; return fixType; }
 template<> const FieldEnumBase * const * FieldLastUpdateTime::enumItems = nullptr;
+template<> FieldType FieldLastUpdateTime::getType() { return FieldType::UTCTIMESTAMP; }
+template<> const std::string & FieldLastUpdateTime::getTypeName() { static const std::string fixType{ "UTCTIMESTAMP" }; return fixType; }
 template<> const FieldEnumBase * const * FieldAllocSettlInstType::enumItems = nullptr;
+template<> FieldType FieldAllocSettlInstType::getType() { return FieldType::INT; }
+template<> const std::string & FieldAllocSettlInstType::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldNoSettlPartyIDs::enumItems = nullptr;
+template<> FieldType FieldNoSettlPartyIDs::getType() { return FieldType::NUMINGROUP; }
+template<> const std::string & FieldNoSettlPartyIDs::getTypeName() { static const std::string fixType{ "NUMINGROUP" }; return fixType; }
 template<> const FieldEnumBase * const * FieldSettlPartyID::enumItems = nullptr;
+template<> FieldType FieldSettlPartyID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldSettlPartyID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldSettlPartyIDSource::enumItems = nullptr;
+template<> FieldType FieldSettlPartyIDSource::getType() { return FieldType::CHAR; }
+template<> const std::string & FieldSettlPartyIDSource::getTypeName() { static const std::string fixType{ "CHAR" }; return fixType; }
 template<> const FieldEnumBase * const * FieldSettlPartyRole::enumItems = nullptr;
+template<> FieldType FieldSettlPartyRole::getType() { return FieldType::INT; }
+template<> const std::string & FieldSettlPartyRole::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldSettlPartySubID::enumItems = nullptr;
+template<> FieldType FieldSettlPartySubID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldSettlPartySubID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldSettlPartySubIDType::enumItems = nullptr;
+template<> FieldType FieldSettlPartySubIDType::getType() { return FieldType::INT; }
+template<> const std::string & FieldSettlPartySubIDType::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldDlvyInstType::enumItems = nullptr;
+template<> FieldType FieldDlvyInstType::getType() { return FieldType::CHAR; }
+template<> const std::string & FieldDlvyInstType::getTypeName() { static const std::string fixType{ "CHAR" }; return fixType; }
 template<> const FieldEnumBase * const * FieldTerminationType::enumItems = nullptr;
+template<> FieldType FieldTerminationType::getType() { return FieldType::INT; }
+template<> const std::string & FieldTerminationType::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldNextExpectedMsgSeqNum::enumItems = nullptr;
+template<> FieldType FieldNextExpectedMsgSeqNum::getType() { return FieldType::SEQNUM; }
+template<> const std::string & FieldNextExpectedMsgSeqNum::getTypeName() { static const std::string fixType{ "SEQNUM" }; return fixType; }
 template<> const FieldEnumBase * const * FieldOrdStatusReqID::enumItems = nullptr;
+template<> FieldType FieldOrdStatusReqID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldOrdStatusReqID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldSettlInstReqID::enumItems = nullptr;
+template<> FieldType FieldSettlInstReqID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldSettlInstReqID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldSettlInstReqRejCode::enumItems = nullptr;
+template<> FieldType FieldSettlInstReqRejCode::getType() { return FieldType::INT; }
+template<> const std::string & FieldSettlInstReqRejCode::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldSecondaryAllocID::enumItems = nullptr;
+template<> FieldType FieldSecondaryAllocID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldSecondaryAllocID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldAllocReportType::enumItems = nullptr;
+template<> FieldType FieldAllocReportType::getType() { return FieldType::INT; }
+template<> const std::string & FieldAllocReportType::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldAllocReportRefID::enumItems = nullptr;
+template<> FieldType FieldAllocReportRefID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldAllocReportRefID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldAllocCancReplaceReason::enumItems = nullptr;
+template<> FieldType FieldAllocCancReplaceReason::getType() { return FieldType::INT; }
+template<> const std::string & FieldAllocCancReplaceReason::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldCopyMsgIndicator::enumItems = nullptr;
+template<> FieldType FieldCopyMsgIndicator::getType() { return FieldType::BOOLEAN; }
+template<> const std::string & FieldCopyMsgIndicator::getTypeName() { static const std::string fixType{ "BOOLEAN" }; return fixType; }
 template<> const FieldEnumBase * const * FieldAllocAccountType::enumItems = nullptr;
+template<> FieldType FieldAllocAccountType::getType() { return FieldType::INT; }
+template<> const std::string & FieldAllocAccountType::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldOrderAvgPx::enumItems = nullptr;
+template<> FieldType FieldOrderAvgPx::getType() { return FieldType::PRICE; }
+template<> const std::string & FieldOrderAvgPx::getTypeName() { static const std::string fixType{ "PRICE" }; return fixType; }
 template<> const FieldEnumBase * const * FieldOrderBookingQty::enumItems = nullptr;
+template<> FieldType FieldOrderBookingQty::getType() { return FieldType::QTY; }
+template<> const std::string & FieldOrderBookingQty::getTypeName() { static const std::string fixType{ "QTY" }; return fixType; }
 template<> const FieldEnumBase * const * FieldNoSettlPartySubIDs::enumItems = nullptr;
+template<> FieldType FieldNoSettlPartySubIDs::getType() { return FieldType::NUMINGROUP; }
+template<> const std::string & FieldNoSettlPartySubIDs::getTypeName() { static const std::string fixType{ "NUMINGROUP" }; return fixType; }
 template<> const FieldEnumBase * const * FieldNoPartySubIDs::enumItems = nullptr;
+template<> FieldType FieldNoPartySubIDs::getType() { return FieldType::NUMINGROUP; }
+template<> const std::string & FieldNoPartySubIDs::getTypeName() { static const std::string fixType{ "NUMINGROUP" }; return fixType; }
 template<> const FieldEnumBase * const * FieldPartySubIDType::enumItems = nullptr;
+template<> FieldType FieldPartySubIDType::getType() { return FieldType::INT; }
+template<> const std::string & FieldPartySubIDType::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldNoNestedPartySubIDs::enumItems = nullptr;
+template<> FieldType FieldNoNestedPartySubIDs::getType() { return FieldType::NUMINGROUP; }
+template<> const std::string & FieldNoNestedPartySubIDs::getTypeName() { static const std::string fixType{ "NUMINGROUP" }; return fixType; }
 template<> const FieldEnumBase * const * FieldNestedPartySubIDType::enumItems = nullptr;
+template<> FieldType FieldNestedPartySubIDType::getType() { return FieldType::INT; }
+template<> const std::string & FieldNestedPartySubIDType::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldNoNested2PartySubIDs::enumItems = nullptr;
+template<> FieldType FieldNoNested2PartySubIDs::getType() { return FieldType::NUMINGROUP; }
+template<> const std::string & FieldNoNested2PartySubIDs::getTypeName() { static const std::string fixType{ "NUMINGROUP" }; return fixType; }
 template<> const FieldEnumBase * const * FieldNested2PartySubIDType::enumItems = nullptr;
+template<> FieldType FieldNested2PartySubIDType::getType() { return FieldType::INT; }
+template<> const std::string & FieldNested2PartySubIDType::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldAllocIntermedReqType::enumItems = nullptr;
+template<> FieldType FieldAllocIntermedReqType::getType() { return FieldType::INT; }
+template<> const std::string & FieldAllocIntermedReqType::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldUnderlyingPx::enumItems = nullptr;
+template<> FieldType FieldUnderlyingPx::getType() { return FieldType::PRICE; }
+template<> const std::string & FieldUnderlyingPx::getTypeName() { static const std::string fixType{ "PRICE" }; return fixType; }
 template<> const FieldEnumBase * const * FieldPriceDelta::enumItems = nullptr;
+template<> FieldType FieldPriceDelta::getType() { return FieldType::FLOAT; }
+template<> const std::string & FieldPriceDelta::getTypeName() { static const std::string fixType{ "FLOAT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldApplQueueMax::enumItems = nullptr;
+template<> FieldType FieldApplQueueMax::getType() { return FieldType::INT; }
+template<> const std::string & FieldApplQueueMax::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldApplQueueDepth::enumItems = nullptr;
+template<> FieldType FieldApplQueueDepth::getType() { return FieldType::INT; }
+template<> const std::string & FieldApplQueueDepth::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldApplQueueResolution::enumItems = nullptr;
+template<> FieldType FieldApplQueueResolution::getType() { return FieldType::INT; }
+template<> const std::string & FieldApplQueueResolution::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldApplQueueAction::enumItems = nullptr;
+template<> FieldType FieldApplQueueAction::getType() { return FieldType::INT; }
+template<> const std::string & FieldApplQueueAction::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldNoAltMDSource::enumItems = nullptr;
+template<> FieldType FieldNoAltMDSource::getType() { return FieldType::NUMINGROUP; }
+template<> const std::string & FieldNoAltMDSource::getTypeName() { static const std::string fixType{ "NUMINGROUP" }; return fixType; }
 template<> const FieldEnumBase * const * FieldAltMDSourceID::enumItems = nullptr;
+template<> FieldType FieldAltMDSourceID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldAltMDSourceID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldSecondaryTradeReportID::enumItems = nullptr;
+template<> FieldType FieldSecondaryTradeReportID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldSecondaryTradeReportID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldAvgPxIndicator::enumItems = nullptr;
+template<> FieldType FieldAvgPxIndicator::getType() { return FieldType::INT; }
+template<> const std::string & FieldAvgPxIndicator::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldTradeLinkID::enumItems = nullptr;
+template<> FieldType FieldTradeLinkID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldTradeLinkID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldOrderInputDevice::enumItems = nullptr;
+template<> FieldType FieldOrderInputDevice::getType() { return FieldType::STRING; }
+template<> const std::string & FieldOrderInputDevice::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldUnderlyingTradingSessionID::enumItems = nullptr;
+template<> FieldType FieldUnderlyingTradingSessionID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldUnderlyingTradingSessionID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldUnderlyingTradingSessionSubID::enumItems = nullptr;
+template<> FieldType FieldUnderlyingTradingSessionSubID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldUnderlyingTradingSessionSubID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldTradeLegRefID::enumItems = nullptr;
+template<> FieldType FieldTradeLegRefID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldTradeLegRefID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldExchangeRule::enumItems = nullptr;
+template<> FieldType FieldExchangeRule::getType() { return FieldType::STRING; }
+template<> const std::string & FieldExchangeRule::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldTradeAllocIndicator::enumItems = nullptr;
+template<> FieldType FieldTradeAllocIndicator::getType() { return FieldType::INT; }
+template<> const std::string & FieldTradeAllocIndicator::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldExpirationCycle::enumItems = nullptr;
+template<> FieldType FieldExpirationCycle::getType() { return FieldType::INT; }
+template<> const std::string & FieldExpirationCycle::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldTrdType::enumItems = nullptr;
+template<> FieldType FieldTrdType::getType() { return FieldType::INT; }
+template<> const std::string & FieldTrdType::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldTrdSubType::enumItems = nullptr;
+template<> FieldType FieldTrdSubType::getType() { return FieldType::INT; }
+template<> const std::string & FieldTrdSubType::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldTransferReason::enumItems = nullptr;
+template<> FieldType FieldTransferReason::getType() { return FieldType::STRING; }
+template<> const std::string & FieldTransferReason::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldTotNumAssignmentReports::enumItems = nullptr;
+template<> FieldType FieldTotNumAssignmentReports::getType() { return FieldType::INT; }
+template<> const std::string & FieldTotNumAssignmentReports::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldAsgnRptID::enumItems = nullptr;
+template<> FieldType FieldAsgnRptID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldAsgnRptID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldThresholdAmount::enumItems = nullptr;
+template<> FieldType FieldThresholdAmount::getType() { return FieldType::PRICEOFFSET; }
+template<> const std::string & FieldThresholdAmount::getTypeName() { static const std::string fixType{ "PRICEOFFSET" }; return fixType; }
 template<> const FieldEnumBase * const * FieldPegMoveType::enumItems = nullptr;
+template<> FieldType FieldPegMoveType::getType() { return FieldType::INT; }
+template<> const std::string & FieldPegMoveType::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldPegOffsetType::enumItems = nullptr;
+template<> FieldType FieldPegOffsetType::getType() { return FieldType::INT; }
+template<> const std::string & FieldPegOffsetType::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldPegLimitType::enumItems = nullptr;
+template<> FieldType FieldPegLimitType::getType() { return FieldType::INT; }
+template<> const std::string & FieldPegLimitType::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldPegRoundDirection::enumItems = nullptr;
+template<> FieldType FieldPegRoundDirection::getType() { return FieldType::INT; }
+template<> const std::string & FieldPegRoundDirection::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldPeggedPrice::enumItems = nullptr;
+template<> FieldType FieldPeggedPrice::getType() { return FieldType::PRICE; }
+template<> const std::string & FieldPeggedPrice::getTypeName() { static const std::string fixType{ "PRICE" }; return fixType; }
 template<> const FieldEnumBase * const * FieldPegScope::enumItems = nullptr;
+template<> FieldType FieldPegScope::getType() { return FieldType::INT; }
+template<> const std::string & FieldPegScope::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldDiscretionMoveType::enumItems = nullptr;
+template<> FieldType FieldDiscretionMoveType::getType() { return FieldType::INT; }
+template<> const std::string & FieldDiscretionMoveType::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldDiscretionOffsetType::enumItems = nullptr;
+template<> FieldType FieldDiscretionOffsetType::getType() { return FieldType::INT; }
+template<> const std::string & FieldDiscretionOffsetType::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldDiscretionLimitType::enumItems = nullptr;
+template<> FieldType FieldDiscretionLimitType::getType() { return FieldType::INT; }
+template<> const std::string & FieldDiscretionLimitType::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldDiscretionRoundDirection::enumItems = nullptr;
+template<> FieldType FieldDiscretionRoundDirection::getType() { return FieldType::INT; }
+template<> const std::string & FieldDiscretionRoundDirection::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldDiscretionPrice::enumItems = nullptr;
+template<> FieldType FieldDiscretionPrice::getType() { return FieldType::PRICE; }
+template<> const std::string & FieldDiscretionPrice::getTypeName() { static const std::string fixType{ "PRICE" }; return fixType; }
 template<> const FieldEnumBase * const * FieldDiscretionScope::enumItems = nullptr;
+template<> FieldType FieldDiscretionScope::getType() { return FieldType::INT; }
+template<> const std::string & FieldDiscretionScope::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldTargetStrategy::enumItems = nullptr;
+template<> FieldType FieldTargetStrategy::getType() { return FieldType::INT; }
+template<> const std::string & FieldTargetStrategy::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldTargetStrategyParameters::enumItems = nullptr;
+template<> FieldType FieldTargetStrategyParameters::getType() { return FieldType::STRING; }
+template<> const std::string & FieldTargetStrategyParameters::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldParticipationRate::enumItems = nullptr;
+template<> FieldType FieldParticipationRate::getType() { return FieldType::PERCENTAGE; }
+template<> const std::string & FieldParticipationRate::getTypeName() { static const std::string fixType{ "PERCENTAGE" }; return fixType; }
 template<> const FieldEnumBase * const * FieldTargetStrategyPerformance::enumItems = nullptr;
+template<> FieldType FieldTargetStrategyPerformance::getType() { return FieldType::FLOAT; }
+template<> const std::string & FieldTargetStrategyPerformance::getTypeName() { static const std::string fixType{ "FLOAT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldLastLiquidityInd::enumItems = nullptr;
+template<> FieldType FieldLastLiquidityInd::getType() { return FieldType::INT; }
+template<> const std::string & FieldLastLiquidityInd::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldPublishTrdIndicator::enumItems = nullptr;
+template<> FieldType FieldPublishTrdIndicator::getType() { return FieldType::BOOLEAN; }
+template<> const std::string & FieldPublishTrdIndicator::getTypeName() { static const std::string fixType{ "BOOLEAN" }; return fixType; }
 template<> const FieldEnumBase * const * FieldShortSaleReason::enumItems = nullptr;
+template<> FieldType FieldShortSaleReason::getType() { return FieldType::INT; }
+template<> const std::string & FieldShortSaleReason::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldQtyType::enumItems = nullptr;
+template<> FieldType FieldQtyType::getType() { return FieldType::INT; }
+template<> const std::string & FieldQtyType::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldSecondaryTrdType::enumItems = nullptr;
+template<> FieldType FieldSecondaryTrdType::getType() { return FieldType::INT; }
+template<> const std::string & FieldSecondaryTrdType::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldTradeReportType::enumItems = nullptr;
+template<> FieldType FieldTradeReportType::getType() { return FieldType::INT; }
+template<> const std::string & FieldTradeReportType::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldAllocNoOrdersType::enumItems = nullptr;
+template<> FieldType FieldAllocNoOrdersType::getType() { return FieldType::INT; }
+template<> const std::string & FieldAllocNoOrdersType::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldSharedCommission::enumItems = nullptr;
+template<> FieldType FieldSharedCommission::getType() { return FieldType::AMT; }
+template<> const std::string & FieldSharedCommission::getTypeName() { static const std::string fixType{ "AMT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldConfirmReqID::enumItems = nullptr;
+template<> FieldType FieldConfirmReqID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldConfirmReqID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldAvgParPx::enumItems = nullptr;
+template<> FieldType FieldAvgParPx::getType() { return FieldType::PRICE; }
+template<> const std::string & FieldAvgParPx::getTypeName() { static const std::string fixType{ "PRICE" }; return fixType; }
 template<> const FieldEnumBase * const * FieldReportedPx::enumItems = nullptr;
+template<> FieldType FieldReportedPx::getType() { return FieldType::PRICE; }
+template<> const std::string & FieldReportedPx::getTypeName() { static const std::string fixType{ "PRICE" }; return fixType; }
 template<> const FieldEnumBase * const * FieldNoCapacities::enumItems = nullptr;
+template<> FieldType FieldNoCapacities::getType() { return FieldType::NUMINGROUP; }
+template<> const std::string & FieldNoCapacities::getTypeName() { static const std::string fixType{ "NUMINGROUP" }; return fixType; }
 template<> const FieldEnumBase * const * FieldOrderCapacityQty::enumItems = nullptr;
+template<> FieldType FieldOrderCapacityQty::getType() { return FieldType::QTY; }
+template<> const std::string & FieldOrderCapacityQty::getTypeName() { static const std::string fixType{ "QTY" }; return fixType; }
 template<> const FieldEnumBase * const * FieldNoEvents::enumItems = nullptr;
+template<> FieldType FieldNoEvents::getType() { return FieldType::NUMINGROUP; }
+template<> const std::string & FieldNoEvents::getTypeName() { static const std::string fixType{ "NUMINGROUP" }; return fixType; }
 template<> const FieldEnumBase * const * FieldEventType::enumItems = nullptr;
+template<> FieldType FieldEventType::getType() { return FieldType::INT; }
+template<> const std::string & FieldEventType::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldEventDate::enumItems = nullptr;
+template<> FieldType FieldEventDate::getType() { return FieldType::LOCALMKTDATE; }
+template<> const std::string & FieldEventDate::getTypeName() { static const std::string fixType{ "LOCALMKTDATE" }; return fixType; }
 template<> const FieldEnumBase * const * FieldEventPx::enumItems = nullptr;
+template<> FieldType FieldEventPx::getType() { return FieldType::PRICE; }
+template<> const std::string & FieldEventPx::getTypeName() { static const std::string fixType{ "PRICE" }; return fixType; }
 template<> const FieldEnumBase * const * FieldEventText::enumItems = nullptr;
+template<> FieldType FieldEventText::getType() { return FieldType::STRING; }
+template<> const std::string & FieldEventText::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldPctAtRisk::enumItems = nullptr;
+template<> FieldType FieldPctAtRisk::getType() { return FieldType::PERCENTAGE; }
+template<> const std::string & FieldPctAtRisk::getTypeName() { static const std::string fixType{ "PERCENTAGE" }; return fixType; }
 template<> const FieldEnumBase * const * FieldNoInstrAttrib::enumItems = nullptr;
+template<> FieldType FieldNoInstrAttrib::getType() { return FieldType::NUMINGROUP; }
+template<> const std::string & FieldNoInstrAttrib::getTypeName() { static const std::string fixType{ "NUMINGROUP" }; return fixType; }
 template<> const FieldEnumBase * const * FieldInstrAttribType::enumItems = nullptr;
+template<> FieldType FieldInstrAttribType::getType() { return FieldType::INT; }
+template<> const std::string & FieldInstrAttribType::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldInstrAttribValue::enumItems = nullptr;
+template<> FieldType FieldInstrAttribValue::getType() { return FieldType::STRING; }
+template<> const std::string & FieldInstrAttribValue::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldDatedDate::enumItems = nullptr;
+template<> FieldType FieldDatedDate::getType() { return FieldType::LOCALMKTDATE; }
+template<> const std::string & FieldDatedDate::getTypeName() { static const std::string fixType{ "LOCALMKTDATE" }; return fixType; }
 template<> const FieldEnumBase * const * FieldInterestAccrualDate::enumItems = nullptr;
+template<> FieldType FieldInterestAccrualDate::getType() { return FieldType::LOCALMKTDATE; }
+template<> const std::string & FieldInterestAccrualDate::getTypeName() { static const std::string fixType{ "LOCALMKTDATE" }; return fixType; }
 template<> const FieldEnumBase * const * FieldCPProgram::enumItems = nullptr;
+template<> FieldType FieldCPProgram::getType() { return FieldType::INT; }
+template<> const std::string & FieldCPProgram::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldCPRegType::enumItems = nullptr;
+template<> FieldType FieldCPRegType::getType() { return FieldType::STRING; }
+template<> const std::string & FieldCPRegType::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldUnderlyingCPProgram::enumItems = nullptr;
+template<> FieldType FieldUnderlyingCPProgram::getType() { return FieldType::STRING; }
+template<> const std::string & FieldUnderlyingCPProgram::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldUnderlyingCPRegType::enumItems = nullptr;
+template<> FieldType FieldUnderlyingCPRegType::getType() { return FieldType::STRING; }
+template<> const std::string & FieldUnderlyingCPRegType::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldUnderlyingQty::enumItems = nullptr;
+template<> FieldType FieldUnderlyingQty::getType() { return FieldType::QTY; }
+template<> const std::string & FieldUnderlyingQty::getTypeName() { static const std::string fixType{ "QTY" }; return fixType; }
 template<> const FieldEnumBase * const * FieldTrdMatchID::enumItems = nullptr;
+template<> FieldType FieldTrdMatchID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldTrdMatchID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldSecondaryTradeReportRefID::enumItems = nullptr;
+template<> FieldType FieldSecondaryTradeReportRefID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldSecondaryTradeReportRefID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldUnderlyingDirtyPrice::enumItems = nullptr;
+template<> FieldType FieldUnderlyingDirtyPrice::getType() { return FieldType::PRICE; }
+template<> const std::string & FieldUnderlyingDirtyPrice::getTypeName() { static const std::string fixType{ "PRICE" }; return fixType; }
 template<> const FieldEnumBase * const * FieldUnderlyingEndPrice::enumItems = nullptr;
+template<> FieldType FieldUnderlyingEndPrice::getType() { return FieldType::PRICE; }
+template<> const std::string & FieldUnderlyingEndPrice::getTypeName() { static const std::string fixType{ "PRICE" }; return fixType; }
 template<> const FieldEnumBase * const * FieldUnderlyingStartValue::enumItems = nullptr;
+template<> FieldType FieldUnderlyingStartValue::getType() { return FieldType::AMT; }
+template<> const std::string & FieldUnderlyingStartValue::getTypeName() { static const std::string fixType{ "AMT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldUnderlyingCurrentValue::enumItems = nullptr;
+template<> FieldType FieldUnderlyingCurrentValue::getType() { return FieldType::AMT; }
+template<> const std::string & FieldUnderlyingCurrentValue::getTypeName() { static const std::string fixType{ "AMT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldUnderlyingEndValue::enumItems = nullptr;
+template<> FieldType FieldUnderlyingEndValue::getType() { return FieldType::AMT; }
+template<> const std::string & FieldUnderlyingEndValue::getTypeName() { static const std::string fixType{ "AMT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldNoUnderlyingStips::enumItems = nullptr;
+template<> FieldType FieldNoUnderlyingStips::getType() { return FieldType::NUMINGROUP; }
+template<> const std::string & FieldNoUnderlyingStips::getTypeName() { static const std::string fixType{ "NUMINGROUP" }; return fixType; }
 template<> const FieldEnumBase * const * FieldUnderlyingStipType::enumItems = nullptr;
+template<> FieldType FieldUnderlyingStipType::getType() { return FieldType::STRING; }
+template<> const std::string & FieldUnderlyingStipType::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldUnderlyingStipValue::enumItems = nullptr;
+template<> FieldType FieldUnderlyingStipValue::getType() { return FieldType::STRING; }
+template<> const std::string & FieldUnderlyingStipValue::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldMaturityNetMoney::enumItems = nullptr;
+template<> FieldType FieldMaturityNetMoney::getType() { return FieldType::AMT; }
+template<> const std::string & FieldMaturityNetMoney::getTypeName() { static const std::string fixType{ "AMT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldMiscFeeBasis::enumItems = nullptr;
+template<> FieldType FieldMiscFeeBasis::getType() { return FieldType::INT; }
+template<> const std::string & FieldMiscFeeBasis::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldTotNoAllocs::enumItems = nullptr;
+template<> FieldType FieldTotNoAllocs::getType() { return FieldType::INT; }
+template<> const std::string & FieldTotNoAllocs::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldLastFragment::enumItems = nullptr;
+template<> FieldType FieldLastFragment::getType() { return FieldType::BOOLEAN; }
+template<> const std::string & FieldLastFragment::getTypeName() { static const std::string fixType{ "BOOLEAN" }; return fixType; }
 template<> const FieldEnumBase * const * FieldCollReqID::enumItems = nullptr;
+template<> FieldType FieldCollReqID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldCollReqID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldCollAsgnReason::enumItems = nullptr;
+template<> FieldType FieldCollAsgnReason::getType() { return FieldType::INT; }
+template<> const std::string & FieldCollAsgnReason::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldCollInquiryQualifier::enumItems = nullptr;
+template<> FieldType FieldCollInquiryQualifier::getType() { return FieldType::INT; }
+template<> const std::string & FieldCollInquiryQualifier::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldNoTrades::enumItems = nullptr;
+template<> FieldType FieldNoTrades::getType() { return FieldType::NUMINGROUP; }
+template<> const std::string & FieldNoTrades::getTypeName() { static const std::string fixType{ "NUMINGROUP" }; return fixType; }
 template<> const FieldEnumBase * const * FieldMarginRatio::enumItems = nullptr;
+template<> FieldType FieldMarginRatio::getType() { return FieldType::PERCENTAGE; }
+template<> const std::string & FieldMarginRatio::getTypeName() { static const std::string fixType{ "PERCENTAGE" }; return fixType; }
 template<> const FieldEnumBase * const * FieldMarginExcess::enumItems = nullptr;
+template<> FieldType FieldMarginExcess::getType() { return FieldType::AMT; }
+template<> const std::string & FieldMarginExcess::getTypeName() { static const std::string fixType{ "AMT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldTotalNetValue::enumItems = nullptr;
+template<> FieldType FieldTotalNetValue::getType() { return FieldType::AMT; }
+template<> const std::string & FieldTotalNetValue::getTypeName() { static const std::string fixType{ "AMT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldCashOutstanding::enumItems = nullptr;
+template<> FieldType FieldCashOutstanding::getType() { return FieldType::AMT; }
+template<> const std::string & FieldCashOutstanding::getTypeName() { static const std::string fixType{ "AMT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldCollAsgnID::enumItems = nullptr;
+template<> FieldType FieldCollAsgnID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldCollAsgnID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldCollAsgnTransType::enumItems = nullptr;
+template<> FieldType FieldCollAsgnTransType::getType() { return FieldType::INT; }
+template<> const std::string & FieldCollAsgnTransType::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldCollRespID::enumItems = nullptr;
+template<> FieldType FieldCollRespID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldCollRespID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldCollAsgnRespType::enumItems = nullptr;
+template<> FieldType FieldCollAsgnRespType::getType() { return FieldType::INT; }
+template<> const std::string & FieldCollAsgnRespType::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldCollAsgnRejectReason::enumItems = nullptr;
+template<> FieldType FieldCollAsgnRejectReason::getType() { return FieldType::INT; }
+template<> const std::string & FieldCollAsgnRejectReason::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldCollAsgnRefID::enumItems = nullptr;
+template<> FieldType FieldCollAsgnRefID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldCollAsgnRefID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldCollRptID::enumItems = nullptr;
+template<> FieldType FieldCollRptID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldCollRptID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldCollInquiryID::enumItems = nullptr;
+template<> FieldType FieldCollInquiryID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldCollInquiryID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldCollStatus::enumItems = nullptr;
+template<> FieldType FieldCollStatus::getType() { return FieldType::INT; }
+template<> const std::string & FieldCollStatus::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldTotNumReports::enumItems = nullptr;
+template<> FieldType FieldTotNumReports::getType() { return FieldType::INT; }
+template<> const std::string & FieldTotNumReports::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldLastRptRequested::enumItems = nullptr;
+template<> FieldType FieldLastRptRequested::getType() { return FieldType::BOOLEAN; }
+template<> const std::string & FieldLastRptRequested::getTypeName() { static const std::string fixType{ "BOOLEAN" }; return fixType; }
 template<> const FieldEnumBase * const * FieldAgreementDesc::enumItems = nullptr;
+template<> FieldType FieldAgreementDesc::getType() { return FieldType::STRING; }
+template<> const std::string & FieldAgreementDesc::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldAgreementID::enumItems = nullptr;
+template<> FieldType FieldAgreementID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldAgreementID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldAgreementDate::enumItems = nullptr;
+template<> FieldType FieldAgreementDate::getType() { return FieldType::LOCALMKTDATE; }
+template<> const std::string & FieldAgreementDate::getTypeName() { static const std::string fixType{ "LOCALMKTDATE" }; return fixType; }
 template<> const FieldEnumBase * const * FieldStartDate::enumItems = nullptr;
+template<> FieldType FieldStartDate::getType() { return FieldType::LOCALMKTDATE; }
+template<> const std::string & FieldStartDate::getTypeName() { static const std::string fixType{ "LOCALMKTDATE" }; return fixType; }
 template<> const FieldEnumBase * const * FieldEndDate::enumItems = nullptr;
+template<> FieldType FieldEndDate::getType() { return FieldType::LOCALMKTDATE; }
+template<> const std::string & FieldEndDate::getTypeName() { static const std::string fixType{ "LOCALMKTDATE" }; return fixType; }
 template<> const FieldEnumBase * const * FieldAgreementCurrency::enumItems = nullptr;
+template<> FieldType FieldAgreementCurrency::getType() { return FieldType::CURRENCY; }
+template<> const std::string & FieldAgreementCurrency::getTypeName() { static const std::string fixType{ "CURRENCY" }; return fixType; }
 template<> const FieldEnumBase * const * FieldDeliveryType::enumItems = nullptr;
+template<> FieldType FieldDeliveryType::getType() { return FieldType::INT; }
+template<> const std::string & FieldDeliveryType::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldEndAccruedInterestAmt::enumItems = nullptr;
+template<> FieldType FieldEndAccruedInterestAmt::getType() { return FieldType::AMT; }
+template<> const std::string & FieldEndAccruedInterestAmt::getTypeName() { static const std::string fixType{ "AMT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldStartCash::enumItems = nullptr;
+template<> FieldType FieldStartCash::getType() { return FieldType::AMT; }
+template<> const std::string & FieldStartCash::getTypeName() { static const std::string fixType{ "AMT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldEndCash::enumItems = nullptr;
+template<> FieldType FieldEndCash::getType() { return FieldType::AMT; }
+template<> const std::string & FieldEndCash::getTypeName() { static const std::string fixType{ "AMT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldUserRequestID::enumItems = nullptr;
+template<> FieldType FieldUserRequestID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldUserRequestID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldUserRequestType::enumItems = nullptr;
+template<> FieldType FieldUserRequestType::getType() { return FieldType::INT; }
+template<> const std::string & FieldUserRequestType::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldNewPassword::enumItems = nullptr;
+template<> FieldType FieldNewPassword::getType() { return FieldType::STRING; }
+template<> const std::string & FieldNewPassword::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldUserStatus::enumItems = nullptr;
+template<> FieldType FieldUserStatus::getType() { return FieldType::INT; }
+template<> const std::string & FieldUserStatus::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldUserStatusText::enumItems = nullptr;
+template<> FieldType FieldUserStatusText::getType() { return FieldType::STRING; }
+template<> const std::string & FieldUserStatusText::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldStatusValue::enumItems = nullptr;
+template<> FieldType FieldStatusValue::getType() { return FieldType::INT; }
+template<> const std::string & FieldStatusValue::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldStatusText::enumItems = nullptr;
+template<> FieldType FieldStatusText::getType() { return FieldType::STRING; }
+template<> const std::string & FieldStatusText::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldRefCompID::enumItems = nullptr;
+template<> FieldType FieldRefCompID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldRefCompID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldRefSubID::enumItems = nullptr;
+template<> FieldType FieldRefSubID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldRefSubID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldNetworkResponseID::enumItems = nullptr;
+template<> FieldType FieldNetworkResponseID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldNetworkResponseID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldNetworkRequestID::enumItems = nullptr;
+template<> FieldType FieldNetworkRequestID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldNetworkRequestID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldLastNetworkResponseID::enumItems = nullptr;
+template<> FieldType FieldLastNetworkResponseID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldLastNetworkResponseID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldNetworkRequestType::enumItems = nullptr;
+template<> FieldType FieldNetworkRequestType::getType() { return FieldType::INT; }
+template<> const std::string & FieldNetworkRequestType::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldNoCompIDs::enumItems = nullptr;
+template<> FieldType FieldNoCompIDs::getType() { return FieldType::NUMINGROUP; }
+template<> const std::string & FieldNoCompIDs::getTypeName() { static const std::string fixType{ "NUMINGROUP" }; return fixType; }
 template<> const FieldEnumBase * const * FieldNetworkStatusResponseType::enumItems = nullptr;
+template<> FieldType FieldNetworkStatusResponseType::getType() { return FieldType::INT; }
+template<> const std::string & FieldNetworkStatusResponseType::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldNoCollInquiryQualifier::enumItems = nullptr;
+template<> FieldType FieldNoCollInquiryQualifier::getType() { return FieldType::NUMINGROUP; }
+template<> const std::string & FieldNoCollInquiryQualifier::getTypeName() { static const std::string fixType{ "NUMINGROUP" }; return fixType; }
 template<> const FieldEnumBase * const * FieldTrdRptStatus::enumItems = nullptr;
+template<> FieldType FieldTrdRptStatus::getType() { return FieldType::INT; }
+template<> const std::string & FieldTrdRptStatus::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldAffirmStatus::enumItems = nullptr;
+template<> FieldType FieldAffirmStatus::getType() { return FieldType::INT; }
+template<> const std::string & FieldAffirmStatus::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldUnderlyingStrikeCurrency::enumItems = nullptr;
+template<> FieldType FieldUnderlyingStrikeCurrency::getType() { return FieldType::CURRENCY; }
+template<> const std::string & FieldUnderlyingStrikeCurrency::getTypeName() { static const std::string fixType{ "CURRENCY" }; return fixType; }
 template<> const FieldEnumBase * const * FieldLegStrikeCurrency::enumItems = nullptr;
+template<> FieldType FieldLegStrikeCurrency::getType() { return FieldType::CURRENCY; }
+template<> const std::string & FieldLegStrikeCurrency::getTypeName() { static const std::string fixType{ "CURRENCY" }; return fixType; }
 template<> const FieldEnumBase * const * FieldTimeBracket::enumItems = nullptr;
+template<> FieldType FieldTimeBracket::getType() { return FieldType::STRING; }
+template<> const std::string & FieldTimeBracket::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldCollAction::enumItems = nullptr;
+template<> FieldType FieldCollAction::getType() { return FieldType::INT; }
+template<> const std::string & FieldCollAction::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldCollInquiryStatus::enumItems = nullptr;
+template<> FieldType FieldCollInquiryStatus::getType() { return FieldType::INT; }
+template<> const std::string & FieldCollInquiryStatus::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldCollInquiryResult::enumItems = nullptr;
+template<> FieldType FieldCollInquiryResult::getType() { return FieldType::INT; }
+template<> const std::string & FieldCollInquiryResult::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldStrikeCurrency::enumItems = nullptr;
+template<> FieldType FieldStrikeCurrency::getType() { return FieldType::CURRENCY; }
+template<> const std::string & FieldStrikeCurrency::getTypeName() { static const std::string fixType{ "CURRENCY" }; return fixType; }
 template<> const FieldEnumBase * const * FieldNoNested3PartyIDs::enumItems = nullptr;
+template<> FieldType FieldNoNested3PartyIDs::getType() { return FieldType::NUMINGROUP; }
+template<> const std::string & FieldNoNested3PartyIDs::getTypeName() { static const std::string fixType{ "NUMINGROUP" }; return fixType; }
 template<> const FieldEnumBase * const * FieldNested3PartyID::enumItems = nullptr;
+template<> FieldType FieldNested3PartyID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldNested3PartyID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldNested3PartyIDSource::enumItems = nullptr;
+template<> FieldType FieldNested3PartyIDSource::getType() { return FieldType::CHAR; }
+template<> const std::string & FieldNested3PartyIDSource::getTypeName() { static const std::string fixType{ "CHAR" }; return fixType; }
 template<> const FieldEnumBase * const * FieldNested3PartyRole::enumItems = nullptr;
+template<> FieldType FieldNested3PartyRole::getType() { return FieldType::INT; }
+template<> const std::string & FieldNested3PartyRole::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldNoNested3PartySubIDs::enumItems = nullptr;
+template<> FieldType FieldNoNested3PartySubIDs::getType() { return FieldType::NUMINGROUP; }
+template<> const std::string & FieldNoNested3PartySubIDs::getTypeName() { static const std::string fixType{ "NUMINGROUP" }; return fixType; }
 template<> const FieldEnumBase * const * FieldNested3PartySubID::enumItems = nullptr;
+template<> FieldType FieldNested3PartySubID::getType() { return FieldType::STRING; }
+template<> const std::string & FieldNested3PartySubID::getTypeName() { static const std::string fixType{ "STRING" }; return fixType; }
 template<> const FieldEnumBase * const * FieldNested3PartySubIDType::enumItems = nullptr;
+template<> FieldType FieldNested3PartySubIDType::getType() { return FieldType::INT; }
+template<> const std::string & FieldNested3PartySubIDType::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 template<> const FieldEnumBase * const * FieldLegContractSettlMonth::enumItems = nullptr;
+template<> FieldType FieldLegContractSettlMonth::getType() { return FieldType::MONTHYEAR; }
+template<> const std::string & FieldLegContractSettlMonth::getTypeName() { static const std::string fixType{ "MONTHYEAR" }; return fixType; }
 template<> const FieldEnumBase * const * FieldLegInterestAccrualDate::enumItems = nullptr;
+template<> FieldType FieldLegInterestAccrualDate::getType() { return FieldType::LOCALMKTDATE; }
+template<> const std::string & FieldLegInterestAccrualDate::getTypeName() { static const std::string fixType{ "LOCALMKTDATE" }; return fixType; }
 
 
 const char * AdvSideEnums::getFieldName() const { return FixAdvSide; }
@@ -10446,4385 +12327,6454 @@ int initStatics()
   tagNameByRaw.emplace( tag_as_raw<1>(), FixAccount );
   tagNameByValue.emplace( 1, FixAccount );
   tagByName.emplace( FixAccount, 1 );
+  fieldTypeByValue.emplace( 1, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 1, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<2>(), FixAdvId );
   tagNameByValue.emplace( 2, FixAdvId );
   tagByName.emplace( FixAdvId, 2 );
+  fieldTypeByValue.emplace( 2, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 2, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<3>(), FixAdvRefID );
   tagNameByValue.emplace( 3, FixAdvRefID );
   tagByName.emplace( FixAdvRefID, 3 );
+  fieldTypeByValue.emplace( 3, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 3, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<4>(), FixAdvSide );
   tagNameByValue.emplace( 4, FixAdvSide );
   tagByName.emplace( FixAdvSide, 4 );
+  fieldTypeByValue.emplace( 4, FieldType::CHAR );
+  fieldTypeNameByValue.emplace( 4, "CHAR" );
 
   tagNameByRaw.emplace( tag_as_raw<5>(), FixAdvTransType );
   tagNameByValue.emplace( 5, FixAdvTransType );
   tagByName.emplace( FixAdvTransType, 5 );
+  fieldTypeByValue.emplace( 5, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 5, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<6>(), FixAvgPx );
   tagNameByValue.emplace( 6, FixAvgPx );
   tagByName.emplace( FixAvgPx, 6 );
+  fieldTypeByValue.emplace( 6, FieldType::PRICE );
+  fieldTypeNameByValue.emplace( 6, "PRICE" );
 
   tagNameByRaw.emplace( tag_as_raw<7>(), FixBeginSeqNo );
   tagNameByValue.emplace( 7, FixBeginSeqNo );
   tagByName.emplace( FixBeginSeqNo, 7 );
+  fieldTypeByValue.emplace( 7, FieldType::SEQNUM );
+  fieldTypeNameByValue.emplace( 7, "SEQNUM" );
 
   tagNameByRaw.emplace( tag_as_raw<8>(), FixBeginString );
   tagNameByValue.emplace( 8, FixBeginString );
   tagByName.emplace( FixBeginString, 8 );
+  fieldTypeByValue.emplace( 8, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 8, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<9>(), FixBodyLength );
   tagNameByValue.emplace( 9, FixBodyLength );
   tagByName.emplace( FixBodyLength, 9 );
+  fieldTypeByValue.emplace( 9, FieldType::LENGTH );
+  fieldTypeNameByValue.emplace( 9, "LENGTH" );
 
   tagNameByRaw.emplace( tag_as_raw<10>(), FixCheckSum );
   tagNameByValue.emplace( 10, FixCheckSum );
   tagByName.emplace( FixCheckSum, 10 );
+  fieldTypeByValue.emplace( 10, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 10, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<11>(), FixClOrdID );
   tagNameByValue.emplace( 11, FixClOrdID );
   tagByName.emplace( FixClOrdID, 11 );
+  fieldTypeByValue.emplace( 11, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 11, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<12>(), FixCommission );
   tagNameByValue.emplace( 12, FixCommission );
   tagByName.emplace( FixCommission, 12 );
+  fieldTypeByValue.emplace( 12, FieldType::AMT );
+  fieldTypeNameByValue.emplace( 12, "AMT" );
 
   tagNameByRaw.emplace( tag_as_raw<13>(), FixCommType );
   tagNameByValue.emplace( 13, FixCommType );
   tagByName.emplace( FixCommType, 13 );
+  fieldTypeByValue.emplace( 13, FieldType::CHAR );
+  fieldTypeNameByValue.emplace( 13, "CHAR" );
 
   tagNameByRaw.emplace( tag_as_raw<14>(), FixCumQty );
   tagNameByValue.emplace( 14, FixCumQty );
   tagByName.emplace( FixCumQty, 14 );
+  fieldTypeByValue.emplace( 14, FieldType::QTY );
+  fieldTypeNameByValue.emplace( 14, "QTY" );
 
   tagNameByRaw.emplace( tag_as_raw<15>(), FixCurrency );
   tagNameByValue.emplace( 15, FixCurrency );
   tagByName.emplace( FixCurrency, 15 );
+  fieldTypeByValue.emplace( 15, FieldType::CURRENCY );
+  fieldTypeNameByValue.emplace( 15, "CURRENCY" );
 
   tagNameByRaw.emplace( tag_as_raw<16>(), FixEndSeqNo );
   tagNameByValue.emplace( 16, FixEndSeqNo );
   tagByName.emplace( FixEndSeqNo, 16 );
+  fieldTypeByValue.emplace( 16, FieldType::SEQNUM );
+  fieldTypeNameByValue.emplace( 16, "SEQNUM" );
 
   tagNameByRaw.emplace( tag_as_raw<17>(), FixExecID );
   tagNameByValue.emplace( 17, FixExecID );
   tagByName.emplace( FixExecID, 17 );
+  fieldTypeByValue.emplace( 17, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 17, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<18>(), FixExecInst );
   tagNameByValue.emplace( 18, FixExecInst );
   tagByName.emplace( FixExecInst, 18 );
+  fieldTypeByValue.emplace( 18, FieldType::MULTIPLEVALUESTRING );
+  fieldTypeNameByValue.emplace( 18, "MULTIPLEVALUESTRING" );
 
   tagNameByRaw.emplace( tag_as_raw<19>(), FixExecRefID );
   tagNameByValue.emplace( 19, FixExecRefID );
   tagByName.emplace( FixExecRefID, 19 );
+  fieldTypeByValue.emplace( 19, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 19, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<21>(), FixHandlInst );
   tagNameByValue.emplace( 21, FixHandlInst );
   tagByName.emplace( FixHandlInst, 21 );
+  fieldTypeByValue.emplace( 21, FieldType::CHAR );
+  fieldTypeNameByValue.emplace( 21, "CHAR" );
 
   tagNameByRaw.emplace( tag_as_raw<22>(), FixSecurityIDSource );
   tagNameByValue.emplace( 22, FixSecurityIDSource );
   tagByName.emplace( FixSecurityIDSource, 22 );
+  fieldTypeByValue.emplace( 22, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 22, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<23>(), FixIOIID );
   tagNameByValue.emplace( 23, FixIOIID );
   tagByName.emplace( FixIOIID, 23 );
+  fieldTypeByValue.emplace( 23, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 23, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<25>(), FixIOIQltyInd );
   tagNameByValue.emplace( 25, FixIOIQltyInd );
   tagByName.emplace( FixIOIQltyInd, 25 );
+  fieldTypeByValue.emplace( 25, FieldType::CHAR );
+  fieldTypeNameByValue.emplace( 25, "CHAR" );
 
   tagNameByRaw.emplace( tag_as_raw<26>(), FixIOIRefID );
   tagNameByValue.emplace( 26, FixIOIRefID );
   tagByName.emplace( FixIOIRefID, 26 );
+  fieldTypeByValue.emplace( 26, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 26, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<27>(), FixIOIQty );
   tagNameByValue.emplace( 27, FixIOIQty );
   tagByName.emplace( FixIOIQty, 27 );
+  fieldTypeByValue.emplace( 27, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 27, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<28>(), FixIOITransType );
   tagNameByValue.emplace( 28, FixIOITransType );
   tagByName.emplace( FixIOITransType, 28 );
+  fieldTypeByValue.emplace( 28, FieldType::CHAR );
+  fieldTypeNameByValue.emplace( 28, "CHAR" );
 
   tagNameByRaw.emplace( tag_as_raw<29>(), FixLastCapacity );
   tagNameByValue.emplace( 29, FixLastCapacity );
   tagByName.emplace( FixLastCapacity, 29 );
+  fieldTypeByValue.emplace( 29, FieldType::CHAR );
+  fieldTypeNameByValue.emplace( 29, "CHAR" );
 
   tagNameByRaw.emplace( tag_as_raw<30>(), FixLastMkt );
   tagNameByValue.emplace( 30, FixLastMkt );
   tagByName.emplace( FixLastMkt, 30 );
+  fieldTypeByValue.emplace( 30, FieldType::EXCHANGE );
+  fieldTypeNameByValue.emplace( 30, "EXCHANGE" );
 
   tagNameByRaw.emplace( tag_as_raw<31>(), FixLastPx );
   tagNameByValue.emplace( 31, FixLastPx );
   tagByName.emplace( FixLastPx, 31 );
+  fieldTypeByValue.emplace( 31, FieldType::PRICE );
+  fieldTypeNameByValue.emplace( 31, "PRICE" );
 
   tagNameByRaw.emplace( tag_as_raw<32>(), FixLastQty );
   tagNameByValue.emplace( 32, FixLastQty );
   tagByName.emplace( FixLastQty, 32 );
+  fieldTypeByValue.emplace( 32, FieldType::QTY );
+  fieldTypeNameByValue.emplace( 32, "QTY" );
 
   tagNameByRaw.emplace( tag_as_raw<33>(), FixNoLinesOfText );
   tagNameByValue.emplace( 33, FixNoLinesOfText );
   tagByName.emplace( FixNoLinesOfText, 33 );
+  fieldTypeByValue.emplace( 33, FieldType::NUMINGROUP );
+  fieldTypeNameByValue.emplace( 33, "NUMINGROUP" );
 
   tagNameByRaw.emplace( tag_as_raw<34>(), FixMsgSeqNum );
   tagNameByValue.emplace( 34, FixMsgSeqNum );
   tagByName.emplace( FixMsgSeqNum, 34 );
+  fieldTypeByValue.emplace( 34, FieldType::SEQNUM );
+  fieldTypeNameByValue.emplace( 34, "SEQNUM" );
 
   tagNameByRaw.emplace( tag_as_raw<35>(), FixMsgType );
   tagNameByValue.emplace( 35, FixMsgType );
   tagByName.emplace( FixMsgType, 35 );
+  fieldTypeByValue.emplace( 35, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 35, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<36>(), FixNewSeqNo );
   tagNameByValue.emplace( 36, FixNewSeqNo );
   tagByName.emplace( FixNewSeqNo, 36 );
+  fieldTypeByValue.emplace( 36, FieldType::SEQNUM );
+  fieldTypeNameByValue.emplace( 36, "SEQNUM" );
 
   tagNameByRaw.emplace( tag_as_raw<37>(), FixOrderID );
   tagNameByValue.emplace( 37, FixOrderID );
   tagByName.emplace( FixOrderID, 37 );
+  fieldTypeByValue.emplace( 37, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 37, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<38>(), FixOrderQty );
   tagNameByValue.emplace( 38, FixOrderQty );
   tagByName.emplace( FixOrderQty, 38 );
+  fieldTypeByValue.emplace( 38, FieldType::QTY );
+  fieldTypeNameByValue.emplace( 38, "QTY" );
 
   tagNameByRaw.emplace( tag_as_raw<39>(), FixOrdStatus );
   tagNameByValue.emplace( 39, FixOrdStatus );
   tagByName.emplace( FixOrdStatus, 39 );
+  fieldTypeByValue.emplace( 39, FieldType::CHAR );
+  fieldTypeNameByValue.emplace( 39, "CHAR" );
 
   tagNameByRaw.emplace( tag_as_raw<40>(), FixOrdType );
   tagNameByValue.emplace( 40, FixOrdType );
   tagByName.emplace( FixOrdType, 40 );
+  fieldTypeByValue.emplace( 40, FieldType::CHAR );
+  fieldTypeNameByValue.emplace( 40, "CHAR" );
 
   tagNameByRaw.emplace( tag_as_raw<41>(), FixOrigClOrdID );
   tagNameByValue.emplace( 41, FixOrigClOrdID );
   tagByName.emplace( FixOrigClOrdID, 41 );
+  fieldTypeByValue.emplace( 41, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 41, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<42>(), FixOrigTime );
   tagNameByValue.emplace( 42, FixOrigTime );
   tagByName.emplace( FixOrigTime, 42 );
+  fieldTypeByValue.emplace( 42, FieldType::UTCTIMESTAMP );
+  fieldTypeNameByValue.emplace( 42, "UTCTIMESTAMP" );
 
   tagNameByRaw.emplace( tag_as_raw<43>(), FixPossDupFlag );
   tagNameByValue.emplace( 43, FixPossDupFlag );
   tagByName.emplace( FixPossDupFlag, 43 );
+  fieldTypeByValue.emplace( 43, FieldType::BOOLEAN );
+  fieldTypeNameByValue.emplace( 43, "BOOLEAN" );
 
   tagNameByRaw.emplace( tag_as_raw<44>(), FixPrice );
   tagNameByValue.emplace( 44, FixPrice );
   tagByName.emplace( FixPrice, 44 );
+  fieldTypeByValue.emplace( 44, FieldType::PRICE );
+  fieldTypeNameByValue.emplace( 44, "PRICE" );
 
   tagNameByRaw.emplace( tag_as_raw<45>(), FixRefSeqNum );
   tagNameByValue.emplace( 45, FixRefSeqNum );
   tagByName.emplace( FixRefSeqNum, 45 );
+  fieldTypeByValue.emplace( 45, FieldType::SEQNUM );
+  fieldTypeNameByValue.emplace( 45, "SEQNUM" );
 
   tagNameByRaw.emplace( tag_as_raw<48>(), FixSecurityID );
   tagNameByValue.emplace( 48, FixSecurityID );
   tagByName.emplace( FixSecurityID, 48 );
+  fieldTypeByValue.emplace( 48, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 48, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<49>(), FixSenderCompID );
   tagNameByValue.emplace( 49, FixSenderCompID );
   tagByName.emplace( FixSenderCompID, 49 );
+  fieldTypeByValue.emplace( 49, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 49, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<50>(), FixSenderSubID );
   tagNameByValue.emplace( 50, FixSenderSubID );
   tagByName.emplace( FixSenderSubID, 50 );
+  fieldTypeByValue.emplace( 50, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 50, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<52>(), FixSendingTime );
   tagNameByValue.emplace( 52, FixSendingTime );
   tagByName.emplace( FixSendingTime, 52 );
+  fieldTypeByValue.emplace( 52, FieldType::UTCTIMESTAMP );
+  fieldTypeNameByValue.emplace( 52, "UTCTIMESTAMP" );
 
   tagNameByRaw.emplace( tag_as_raw<53>(), FixQuantity );
   tagNameByValue.emplace( 53, FixQuantity );
   tagByName.emplace( FixQuantity, 53 );
+  fieldTypeByValue.emplace( 53, FieldType::QTY );
+  fieldTypeNameByValue.emplace( 53, "QTY" );
 
   tagNameByRaw.emplace( tag_as_raw<54>(), FixSide );
   tagNameByValue.emplace( 54, FixSide );
   tagByName.emplace( FixSide, 54 );
+  fieldTypeByValue.emplace( 54, FieldType::CHAR );
+  fieldTypeNameByValue.emplace( 54, "CHAR" );
 
   tagNameByRaw.emplace( tag_as_raw<55>(), FixSymbol );
   tagNameByValue.emplace( 55, FixSymbol );
   tagByName.emplace( FixSymbol, 55 );
+  fieldTypeByValue.emplace( 55, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 55, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<56>(), FixTargetCompID );
   tagNameByValue.emplace( 56, FixTargetCompID );
   tagByName.emplace( FixTargetCompID, 56 );
+  fieldTypeByValue.emplace( 56, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 56, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<57>(), FixTargetSubID );
   tagNameByValue.emplace( 57, FixTargetSubID );
   tagByName.emplace( FixTargetSubID, 57 );
+  fieldTypeByValue.emplace( 57, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 57, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<58>(), FixText );
   tagNameByValue.emplace( 58, FixText );
   tagByName.emplace( FixText, 58 );
+  fieldTypeByValue.emplace( 58, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 58, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<59>(), FixTimeInForce );
   tagNameByValue.emplace( 59, FixTimeInForce );
   tagByName.emplace( FixTimeInForce, 59 );
+  fieldTypeByValue.emplace( 59, FieldType::CHAR );
+  fieldTypeNameByValue.emplace( 59, "CHAR" );
 
   tagNameByRaw.emplace( tag_as_raw<60>(), FixTransactTime );
   tagNameByValue.emplace( 60, FixTransactTime );
   tagByName.emplace( FixTransactTime, 60 );
+  fieldTypeByValue.emplace( 60, FieldType::UTCTIMESTAMP );
+  fieldTypeNameByValue.emplace( 60, "UTCTIMESTAMP" );
 
   tagNameByRaw.emplace( tag_as_raw<61>(), FixUrgency );
   tagNameByValue.emplace( 61, FixUrgency );
   tagByName.emplace( FixUrgency, 61 );
+  fieldTypeByValue.emplace( 61, FieldType::CHAR );
+  fieldTypeNameByValue.emplace( 61, "CHAR" );
 
   tagNameByRaw.emplace( tag_as_raw<62>(), FixValidUntilTime );
   tagNameByValue.emplace( 62, FixValidUntilTime );
   tagByName.emplace( FixValidUntilTime, 62 );
+  fieldTypeByValue.emplace( 62, FieldType::UTCTIMESTAMP );
+  fieldTypeNameByValue.emplace( 62, "UTCTIMESTAMP" );
 
   tagNameByRaw.emplace( tag_as_raw<63>(), FixSettlType );
   tagNameByValue.emplace( 63, FixSettlType );
   tagByName.emplace( FixSettlType, 63 );
+  fieldTypeByValue.emplace( 63, FieldType::CHAR );
+  fieldTypeNameByValue.emplace( 63, "CHAR" );
 
   tagNameByRaw.emplace( tag_as_raw<64>(), FixSettlDate );
   tagNameByValue.emplace( 64, FixSettlDate );
   tagByName.emplace( FixSettlDate, 64 );
+  fieldTypeByValue.emplace( 64, FieldType::LOCALMKTDATE );
+  fieldTypeNameByValue.emplace( 64, "LOCALMKTDATE" );
 
   tagNameByRaw.emplace( tag_as_raw<65>(), FixSymbolSfx );
   tagNameByValue.emplace( 65, FixSymbolSfx );
   tagByName.emplace( FixSymbolSfx, 65 );
+  fieldTypeByValue.emplace( 65, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 65, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<66>(), FixListID );
   tagNameByValue.emplace( 66, FixListID );
   tagByName.emplace( FixListID, 66 );
+  fieldTypeByValue.emplace( 66, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 66, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<67>(), FixListSeqNo );
   tagNameByValue.emplace( 67, FixListSeqNo );
   tagByName.emplace( FixListSeqNo, 67 );
+  fieldTypeByValue.emplace( 67, FieldType::INT );
+  fieldTypeNameByValue.emplace( 67, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<68>(), FixTotNoOrders );
   tagNameByValue.emplace( 68, FixTotNoOrders );
   tagByName.emplace( FixTotNoOrders, 68 );
+  fieldTypeByValue.emplace( 68, FieldType::INT );
+  fieldTypeNameByValue.emplace( 68, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<69>(), FixListExecInst );
   tagNameByValue.emplace( 69, FixListExecInst );
   tagByName.emplace( FixListExecInst, 69 );
+  fieldTypeByValue.emplace( 69, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 69, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<70>(), FixAllocID );
   tagNameByValue.emplace( 70, FixAllocID );
   tagByName.emplace( FixAllocID, 70 );
+  fieldTypeByValue.emplace( 70, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 70, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<71>(), FixAllocTransType );
   tagNameByValue.emplace( 71, FixAllocTransType );
   tagByName.emplace( FixAllocTransType, 71 );
+  fieldTypeByValue.emplace( 71, FieldType::CHAR );
+  fieldTypeNameByValue.emplace( 71, "CHAR" );
 
   tagNameByRaw.emplace( tag_as_raw<72>(), FixRefAllocID );
   tagNameByValue.emplace( 72, FixRefAllocID );
   tagByName.emplace( FixRefAllocID, 72 );
+  fieldTypeByValue.emplace( 72, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 72, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<73>(), FixNoOrders );
   tagNameByValue.emplace( 73, FixNoOrders );
   tagByName.emplace( FixNoOrders, 73 );
+  fieldTypeByValue.emplace( 73, FieldType::NUMINGROUP );
+  fieldTypeNameByValue.emplace( 73, "NUMINGROUP" );
 
   tagNameByRaw.emplace( tag_as_raw<74>(), FixAvgPxPrecision );
   tagNameByValue.emplace( 74, FixAvgPxPrecision );
   tagByName.emplace( FixAvgPxPrecision, 74 );
+  fieldTypeByValue.emplace( 74, FieldType::INT );
+  fieldTypeNameByValue.emplace( 74, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<75>(), FixTradeDate );
   tagNameByValue.emplace( 75, FixTradeDate );
   tagByName.emplace( FixTradeDate, 75 );
+  fieldTypeByValue.emplace( 75, FieldType::LOCALMKTDATE );
+  fieldTypeNameByValue.emplace( 75, "LOCALMKTDATE" );
 
   tagNameByRaw.emplace( tag_as_raw<77>(), FixPositionEffect );
   tagNameByValue.emplace( 77, FixPositionEffect );
   tagByName.emplace( FixPositionEffect, 77 );
+  fieldTypeByValue.emplace( 77, FieldType::CHAR );
+  fieldTypeNameByValue.emplace( 77, "CHAR" );
 
   tagNameByRaw.emplace( tag_as_raw<78>(), FixNoAllocs );
   tagNameByValue.emplace( 78, FixNoAllocs );
   tagByName.emplace( FixNoAllocs, 78 );
+  fieldTypeByValue.emplace( 78, FieldType::NUMINGROUP );
+  fieldTypeNameByValue.emplace( 78, "NUMINGROUP" );
 
   tagNameByRaw.emplace( tag_as_raw<79>(), FixAllocAccount );
   tagNameByValue.emplace( 79, FixAllocAccount );
   tagByName.emplace( FixAllocAccount, 79 );
+  fieldTypeByValue.emplace( 79, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 79, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<80>(), FixAllocQty );
   tagNameByValue.emplace( 80, FixAllocQty );
   tagByName.emplace( FixAllocQty, 80 );
+  fieldTypeByValue.emplace( 80, FieldType::QTY );
+  fieldTypeNameByValue.emplace( 80, "QTY" );
 
   tagNameByRaw.emplace( tag_as_raw<81>(), FixProcessCode );
   tagNameByValue.emplace( 81, FixProcessCode );
   tagByName.emplace( FixProcessCode, 81 );
+  fieldTypeByValue.emplace( 81, FieldType::CHAR );
+  fieldTypeNameByValue.emplace( 81, "CHAR" );
 
   tagNameByRaw.emplace( tag_as_raw<82>(), FixNoRpts );
   tagNameByValue.emplace( 82, FixNoRpts );
   tagByName.emplace( FixNoRpts, 82 );
+  fieldTypeByValue.emplace( 82, FieldType::INT );
+  fieldTypeNameByValue.emplace( 82, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<83>(), FixRptSeq );
   tagNameByValue.emplace( 83, FixRptSeq );
   tagByName.emplace( FixRptSeq, 83 );
+  fieldTypeByValue.emplace( 83, FieldType::INT );
+  fieldTypeNameByValue.emplace( 83, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<84>(), FixCxlQty );
   tagNameByValue.emplace( 84, FixCxlQty );
   tagByName.emplace( FixCxlQty, 84 );
+  fieldTypeByValue.emplace( 84, FieldType::QTY );
+  fieldTypeNameByValue.emplace( 84, "QTY" );
 
   tagNameByRaw.emplace( tag_as_raw<85>(), FixNoDlvyInst );
   tagNameByValue.emplace( 85, FixNoDlvyInst );
   tagByName.emplace( FixNoDlvyInst, 85 );
+  fieldTypeByValue.emplace( 85, FieldType::NUMINGROUP );
+  fieldTypeNameByValue.emplace( 85, "NUMINGROUP" );
 
   tagNameByRaw.emplace( tag_as_raw<87>(), FixAllocStatus );
   tagNameByValue.emplace( 87, FixAllocStatus );
   tagByName.emplace( FixAllocStatus, 87 );
+  fieldTypeByValue.emplace( 87, FieldType::INT );
+  fieldTypeNameByValue.emplace( 87, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<88>(), FixAllocRejCode );
   tagNameByValue.emplace( 88, FixAllocRejCode );
   tagByName.emplace( FixAllocRejCode, 88 );
+  fieldTypeByValue.emplace( 88, FieldType::INT );
+  fieldTypeNameByValue.emplace( 88, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<89>(), FixSignature );
   tagNameByValue.emplace( 89, FixSignature );
   tagByName.emplace( FixSignature, 89 );
+  fieldTypeByValue.emplace( 89, FieldType::DATA );
+  fieldTypeNameByValue.emplace( 89, "DATA" );
 
   tagNameByRaw.emplace( tag_as_raw<90>(), FixSecureDataLen );
   tagNameByValue.emplace( 90, FixSecureDataLen );
   tagByName.emplace( FixSecureDataLen, 90 );
+  fieldTypeByValue.emplace( 90, FieldType::LENGTH );
+  fieldTypeNameByValue.emplace( 90, "LENGTH" );
 
   tagNameByRaw.emplace( tag_as_raw<91>(), FixSecureData );
   tagNameByValue.emplace( 91, FixSecureData );
   tagByName.emplace( FixSecureData, 91 );
+  fieldTypeByValue.emplace( 91, FieldType::DATA );
+  fieldTypeNameByValue.emplace( 91, "DATA" );
 
   tagNameByRaw.emplace( tag_as_raw<93>(), FixSignatureLength );
   tagNameByValue.emplace( 93, FixSignatureLength );
   tagByName.emplace( FixSignatureLength, 93 );
+  fieldTypeByValue.emplace( 93, FieldType::LENGTH );
+  fieldTypeNameByValue.emplace( 93, "LENGTH" );
 
   tagNameByRaw.emplace( tag_as_raw<94>(), FixEmailType );
   tagNameByValue.emplace( 94, FixEmailType );
   tagByName.emplace( FixEmailType, 94 );
+  fieldTypeByValue.emplace( 94, FieldType::CHAR );
+  fieldTypeNameByValue.emplace( 94, "CHAR" );
 
   tagNameByRaw.emplace( tag_as_raw<95>(), FixRawDataLength );
   tagNameByValue.emplace( 95, FixRawDataLength );
   tagByName.emplace( FixRawDataLength, 95 );
+  fieldTypeByValue.emplace( 95, FieldType::LENGTH );
+  fieldTypeNameByValue.emplace( 95, "LENGTH" );
 
   tagNameByRaw.emplace( tag_as_raw<96>(), FixRawData );
   tagNameByValue.emplace( 96, FixRawData );
   tagByName.emplace( FixRawData, 96 );
+  fieldTypeByValue.emplace( 96, FieldType::DATA );
+  fieldTypeNameByValue.emplace( 96, "DATA" );
 
   tagNameByRaw.emplace( tag_as_raw<97>(), FixPossResend );
   tagNameByValue.emplace( 97, FixPossResend );
   tagByName.emplace( FixPossResend, 97 );
+  fieldTypeByValue.emplace( 97, FieldType::BOOLEAN );
+  fieldTypeNameByValue.emplace( 97, "BOOLEAN" );
 
   tagNameByRaw.emplace( tag_as_raw<98>(), FixEncryptMethod );
   tagNameByValue.emplace( 98, FixEncryptMethod );
   tagByName.emplace( FixEncryptMethod, 98 );
+  fieldTypeByValue.emplace( 98, FieldType::INT );
+  fieldTypeNameByValue.emplace( 98, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<99>(), FixStopPx );
   tagNameByValue.emplace( 99, FixStopPx );
   tagByName.emplace( FixStopPx, 99 );
+  fieldTypeByValue.emplace( 99, FieldType::PRICE );
+  fieldTypeNameByValue.emplace( 99, "PRICE" );
 
   tagNameByRaw.emplace( tag_as_raw<100>(), FixExDestination );
   tagNameByValue.emplace( 100, FixExDestination );
   tagByName.emplace( FixExDestination, 100 );
+  fieldTypeByValue.emplace( 100, FieldType::EXCHANGE );
+  fieldTypeNameByValue.emplace( 100, "EXCHANGE" );
 
   tagNameByRaw.emplace( tag_as_raw<102>(), FixCxlRejReason );
   tagNameByValue.emplace( 102, FixCxlRejReason );
   tagByName.emplace( FixCxlRejReason, 102 );
+  fieldTypeByValue.emplace( 102, FieldType::INT );
+  fieldTypeNameByValue.emplace( 102, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<103>(), FixOrdRejReason );
   tagNameByValue.emplace( 103, FixOrdRejReason );
   tagByName.emplace( FixOrdRejReason, 103 );
+  fieldTypeByValue.emplace( 103, FieldType::INT );
+  fieldTypeNameByValue.emplace( 103, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<104>(), FixIOIQualifier );
   tagNameByValue.emplace( 104, FixIOIQualifier );
   tagByName.emplace( FixIOIQualifier, 104 );
+  fieldTypeByValue.emplace( 104, FieldType::CHAR );
+  fieldTypeNameByValue.emplace( 104, "CHAR" );
 
   tagNameByRaw.emplace( tag_as_raw<106>(), FixIssuer );
   tagNameByValue.emplace( 106, FixIssuer );
   tagByName.emplace( FixIssuer, 106 );
+  fieldTypeByValue.emplace( 106, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 106, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<107>(), FixSecurityDesc );
   tagNameByValue.emplace( 107, FixSecurityDesc );
   tagByName.emplace( FixSecurityDesc, 107 );
+  fieldTypeByValue.emplace( 107, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 107, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<108>(), FixHeartBtInt );
   tagNameByValue.emplace( 108, FixHeartBtInt );
   tagByName.emplace( FixHeartBtInt, 108 );
+  fieldTypeByValue.emplace( 108, FieldType::INT );
+  fieldTypeNameByValue.emplace( 108, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<110>(), FixMinQty );
   tagNameByValue.emplace( 110, FixMinQty );
   tagByName.emplace( FixMinQty, 110 );
+  fieldTypeByValue.emplace( 110, FieldType::QTY );
+  fieldTypeNameByValue.emplace( 110, "QTY" );
 
   tagNameByRaw.emplace( tag_as_raw<111>(), FixMaxFloor );
   tagNameByValue.emplace( 111, FixMaxFloor );
   tagByName.emplace( FixMaxFloor, 111 );
+  fieldTypeByValue.emplace( 111, FieldType::QTY );
+  fieldTypeNameByValue.emplace( 111, "QTY" );
 
   tagNameByRaw.emplace( tag_as_raw<112>(), FixTestReqID );
   tagNameByValue.emplace( 112, FixTestReqID );
   tagByName.emplace( FixTestReqID, 112 );
+  fieldTypeByValue.emplace( 112, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 112, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<113>(), FixReportToExch );
   tagNameByValue.emplace( 113, FixReportToExch );
   tagByName.emplace( FixReportToExch, 113 );
+  fieldTypeByValue.emplace( 113, FieldType::BOOLEAN );
+  fieldTypeNameByValue.emplace( 113, "BOOLEAN" );
 
   tagNameByRaw.emplace( tag_as_raw<114>(), FixLocateReqd );
   tagNameByValue.emplace( 114, FixLocateReqd );
   tagByName.emplace( FixLocateReqd, 114 );
+  fieldTypeByValue.emplace( 114, FieldType::BOOLEAN );
+  fieldTypeNameByValue.emplace( 114, "BOOLEAN" );
 
   tagNameByRaw.emplace( tag_as_raw<115>(), FixOnBehalfOfCompID );
   tagNameByValue.emplace( 115, FixOnBehalfOfCompID );
   tagByName.emplace( FixOnBehalfOfCompID, 115 );
+  fieldTypeByValue.emplace( 115, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 115, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<116>(), FixOnBehalfOfSubID );
   tagNameByValue.emplace( 116, FixOnBehalfOfSubID );
   tagByName.emplace( FixOnBehalfOfSubID, 116 );
+  fieldTypeByValue.emplace( 116, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 116, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<117>(), FixQuoteID );
   tagNameByValue.emplace( 117, FixQuoteID );
   tagByName.emplace( FixQuoteID, 117 );
+  fieldTypeByValue.emplace( 117, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 117, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<118>(), FixNetMoney );
   tagNameByValue.emplace( 118, FixNetMoney );
   tagByName.emplace( FixNetMoney, 118 );
+  fieldTypeByValue.emplace( 118, FieldType::AMT );
+  fieldTypeNameByValue.emplace( 118, "AMT" );
 
   tagNameByRaw.emplace( tag_as_raw<119>(), FixSettlCurrAmt );
   tagNameByValue.emplace( 119, FixSettlCurrAmt );
   tagByName.emplace( FixSettlCurrAmt, 119 );
+  fieldTypeByValue.emplace( 119, FieldType::AMT );
+  fieldTypeNameByValue.emplace( 119, "AMT" );
 
   tagNameByRaw.emplace( tag_as_raw<120>(), FixSettlCurrency );
   tagNameByValue.emplace( 120, FixSettlCurrency );
   tagByName.emplace( FixSettlCurrency, 120 );
+  fieldTypeByValue.emplace( 120, FieldType::CURRENCY );
+  fieldTypeNameByValue.emplace( 120, "CURRENCY" );
 
   tagNameByRaw.emplace( tag_as_raw<121>(), FixForexReq );
   tagNameByValue.emplace( 121, FixForexReq );
   tagByName.emplace( FixForexReq, 121 );
+  fieldTypeByValue.emplace( 121, FieldType::BOOLEAN );
+  fieldTypeNameByValue.emplace( 121, "BOOLEAN" );
 
   tagNameByRaw.emplace( tag_as_raw<122>(), FixOrigSendingTime );
   tagNameByValue.emplace( 122, FixOrigSendingTime );
   tagByName.emplace( FixOrigSendingTime, 122 );
+  fieldTypeByValue.emplace( 122, FieldType::UTCTIMESTAMP );
+  fieldTypeNameByValue.emplace( 122, "UTCTIMESTAMP" );
 
   tagNameByRaw.emplace( tag_as_raw<123>(), FixGapFillFlag );
   tagNameByValue.emplace( 123, FixGapFillFlag );
   tagByName.emplace( FixGapFillFlag, 123 );
+  fieldTypeByValue.emplace( 123, FieldType::BOOLEAN );
+  fieldTypeNameByValue.emplace( 123, "BOOLEAN" );
 
   tagNameByRaw.emplace( tag_as_raw<124>(), FixNoExecs );
   tagNameByValue.emplace( 124, FixNoExecs );
   tagByName.emplace( FixNoExecs, 124 );
+  fieldTypeByValue.emplace( 124, FieldType::NUMINGROUP );
+  fieldTypeNameByValue.emplace( 124, "NUMINGROUP" );
 
   tagNameByRaw.emplace( tag_as_raw<126>(), FixExpireTime );
   tagNameByValue.emplace( 126, FixExpireTime );
   tagByName.emplace( FixExpireTime, 126 );
+  fieldTypeByValue.emplace( 126, FieldType::UTCTIMESTAMP );
+  fieldTypeNameByValue.emplace( 126, "UTCTIMESTAMP" );
 
   tagNameByRaw.emplace( tag_as_raw<127>(), FixDKReason );
   tagNameByValue.emplace( 127, FixDKReason );
   tagByName.emplace( FixDKReason, 127 );
+  fieldTypeByValue.emplace( 127, FieldType::CHAR );
+  fieldTypeNameByValue.emplace( 127, "CHAR" );
 
   tagNameByRaw.emplace( tag_as_raw<128>(), FixDeliverToCompID );
   tagNameByValue.emplace( 128, FixDeliverToCompID );
   tagByName.emplace( FixDeliverToCompID, 128 );
+  fieldTypeByValue.emplace( 128, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 128, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<129>(), FixDeliverToSubID );
   tagNameByValue.emplace( 129, FixDeliverToSubID );
   tagByName.emplace( FixDeliverToSubID, 129 );
+  fieldTypeByValue.emplace( 129, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 129, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<130>(), FixIOINaturalFlag );
   tagNameByValue.emplace( 130, FixIOINaturalFlag );
   tagByName.emplace( FixIOINaturalFlag, 130 );
+  fieldTypeByValue.emplace( 130, FieldType::BOOLEAN );
+  fieldTypeNameByValue.emplace( 130, "BOOLEAN" );
 
   tagNameByRaw.emplace( tag_as_raw<131>(), FixQuoteReqID );
   tagNameByValue.emplace( 131, FixQuoteReqID );
   tagByName.emplace( FixQuoteReqID, 131 );
+  fieldTypeByValue.emplace( 131, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 131, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<132>(), FixBidPx );
   tagNameByValue.emplace( 132, FixBidPx );
   tagByName.emplace( FixBidPx, 132 );
+  fieldTypeByValue.emplace( 132, FieldType::PRICE );
+  fieldTypeNameByValue.emplace( 132, "PRICE" );
 
   tagNameByRaw.emplace( tag_as_raw<133>(), FixOfferPx );
   tagNameByValue.emplace( 133, FixOfferPx );
   tagByName.emplace( FixOfferPx, 133 );
+  fieldTypeByValue.emplace( 133, FieldType::PRICE );
+  fieldTypeNameByValue.emplace( 133, "PRICE" );
 
   tagNameByRaw.emplace( tag_as_raw<134>(), FixBidSize );
   tagNameByValue.emplace( 134, FixBidSize );
   tagByName.emplace( FixBidSize, 134 );
+  fieldTypeByValue.emplace( 134, FieldType::QTY );
+  fieldTypeNameByValue.emplace( 134, "QTY" );
 
   tagNameByRaw.emplace( tag_as_raw<135>(), FixOfferSize );
   tagNameByValue.emplace( 135, FixOfferSize );
   tagByName.emplace( FixOfferSize, 135 );
+  fieldTypeByValue.emplace( 135, FieldType::QTY );
+  fieldTypeNameByValue.emplace( 135, "QTY" );
 
   tagNameByRaw.emplace( tag_as_raw<136>(), FixNoMiscFees );
   tagNameByValue.emplace( 136, FixNoMiscFees );
   tagByName.emplace( FixNoMiscFees, 136 );
+  fieldTypeByValue.emplace( 136, FieldType::NUMINGROUP );
+  fieldTypeNameByValue.emplace( 136, "NUMINGROUP" );
 
   tagNameByRaw.emplace( tag_as_raw<137>(), FixMiscFeeAmt );
   tagNameByValue.emplace( 137, FixMiscFeeAmt );
   tagByName.emplace( FixMiscFeeAmt, 137 );
+  fieldTypeByValue.emplace( 137, FieldType::AMT );
+  fieldTypeNameByValue.emplace( 137, "AMT" );
 
   tagNameByRaw.emplace( tag_as_raw<138>(), FixMiscFeeCurr );
   tagNameByValue.emplace( 138, FixMiscFeeCurr );
   tagByName.emplace( FixMiscFeeCurr, 138 );
+  fieldTypeByValue.emplace( 138, FieldType::CURRENCY );
+  fieldTypeNameByValue.emplace( 138, "CURRENCY" );
 
   tagNameByRaw.emplace( tag_as_raw<139>(), FixMiscFeeType );
   tagNameByValue.emplace( 139, FixMiscFeeType );
   tagByName.emplace( FixMiscFeeType, 139 );
+  fieldTypeByValue.emplace( 139, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 139, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<140>(), FixPrevClosePx );
   tagNameByValue.emplace( 140, FixPrevClosePx );
   tagByName.emplace( FixPrevClosePx, 140 );
+  fieldTypeByValue.emplace( 140, FieldType::PRICE );
+  fieldTypeNameByValue.emplace( 140, "PRICE" );
 
   tagNameByRaw.emplace( tag_as_raw<141>(), FixResetSeqNumFlag );
   tagNameByValue.emplace( 141, FixResetSeqNumFlag );
   tagByName.emplace( FixResetSeqNumFlag, 141 );
+  fieldTypeByValue.emplace( 141, FieldType::BOOLEAN );
+  fieldTypeNameByValue.emplace( 141, "BOOLEAN" );
 
   tagNameByRaw.emplace( tag_as_raw<142>(), FixSenderLocationID );
   tagNameByValue.emplace( 142, FixSenderLocationID );
   tagByName.emplace( FixSenderLocationID, 142 );
+  fieldTypeByValue.emplace( 142, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 142, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<143>(), FixTargetLocationID );
   tagNameByValue.emplace( 143, FixTargetLocationID );
   tagByName.emplace( FixTargetLocationID, 143 );
+  fieldTypeByValue.emplace( 143, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 143, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<144>(), FixOnBehalfOfLocationID );
   tagNameByValue.emplace( 144, FixOnBehalfOfLocationID );
   tagByName.emplace( FixOnBehalfOfLocationID, 144 );
+  fieldTypeByValue.emplace( 144, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 144, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<145>(), FixDeliverToLocationID );
   tagNameByValue.emplace( 145, FixDeliverToLocationID );
   tagByName.emplace( FixDeliverToLocationID, 145 );
+  fieldTypeByValue.emplace( 145, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 145, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<146>(), FixNoRelatedSym );
   tagNameByValue.emplace( 146, FixNoRelatedSym );
   tagByName.emplace( FixNoRelatedSym, 146 );
+  fieldTypeByValue.emplace( 146, FieldType::NUMINGROUP );
+  fieldTypeNameByValue.emplace( 146, "NUMINGROUP" );
 
   tagNameByRaw.emplace( tag_as_raw<147>(), FixSubject );
   tagNameByValue.emplace( 147, FixSubject );
   tagByName.emplace( FixSubject, 147 );
+  fieldTypeByValue.emplace( 147, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 147, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<148>(), FixHeadline );
   tagNameByValue.emplace( 148, FixHeadline );
   tagByName.emplace( FixHeadline, 148 );
+  fieldTypeByValue.emplace( 148, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 148, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<149>(), FixURLLink );
   tagNameByValue.emplace( 149, FixURLLink );
   tagByName.emplace( FixURLLink, 149 );
+  fieldTypeByValue.emplace( 149, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 149, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<150>(), FixExecType );
   tagNameByValue.emplace( 150, FixExecType );
   tagByName.emplace( FixExecType, 150 );
+  fieldTypeByValue.emplace( 150, FieldType::CHAR );
+  fieldTypeNameByValue.emplace( 150, "CHAR" );
 
   tagNameByRaw.emplace( tag_as_raw<151>(), FixLeavesQty );
   tagNameByValue.emplace( 151, FixLeavesQty );
   tagByName.emplace( FixLeavesQty, 151 );
+  fieldTypeByValue.emplace( 151, FieldType::QTY );
+  fieldTypeNameByValue.emplace( 151, "QTY" );
 
   tagNameByRaw.emplace( tag_as_raw<152>(), FixCashOrderQty );
   tagNameByValue.emplace( 152, FixCashOrderQty );
   tagByName.emplace( FixCashOrderQty, 152 );
+  fieldTypeByValue.emplace( 152, FieldType::QTY );
+  fieldTypeNameByValue.emplace( 152, "QTY" );
 
   tagNameByRaw.emplace( tag_as_raw<153>(), FixAllocAvgPx );
   tagNameByValue.emplace( 153, FixAllocAvgPx );
   tagByName.emplace( FixAllocAvgPx, 153 );
+  fieldTypeByValue.emplace( 153, FieldType::PRICE );
+  fieldTypeNameByValue.emplace( 153, "PRICE" );
 
   tagNameByRaw.emplace( tag_as_raw<154>(), FixAllocNetMoney );
   tagNameByValue.emplace( 154, FixAllocNetMoney );
   tagByName.emplace( FixAllocNetMoney, 154 );
+  fieldTypeByValue.emplace( 154, FieldType::AMT );
+  fieldTypeNameByValue.emplace( 154, "AMT" );
 
   tagNameByRaw.emplace( tag_as_raw<155>(), FixSettlCurrFxRate );
   tagNameByValue.emplace( 155, FixSettlCurrFxRate );
   tagByName.emplace( FixSettlCurrFxRate, 155 );
+  fieldTypeByValue.emplace( 155, FieldType::FLOAT );
+  fieldTypeNameByValue.emplace( 155, "FLOAT" );
 
   tagNameByRaw.emplace( tag_as_raw<156>(), FixSettlCurrFxRateCalc );
   tagNameByValue.emplace( 156, FixSettlCurrFxRateCalc );
   tagByName.emplace( FixSettlCurrFxRateCalc, 156 );
+  fieldTypeByValue.emplace( 156, FieldType::CHAR );
+  fieldTypeNameByValue.emplace( 156, "CHAR" );
 
   tagNameByRaw.emplace( tag_as_raw<157>(), FixNumDaysInterest );
   tagNameByValue.emplace( 157, FixNumDaysInterest );
   tagByName.emplace( FixNumDaysInterest, 157 );
+  fieldTypeByValue.emplace( 157, FieldType::INT );
+  fieldTypeNameByValue.emplace( 157, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<158>(), FixAccruedInterestRate );
   tagNameByValue.emplace( 158, FixAccruedInterestRate );
   tagByName.emplace( FixAccruedInterestRate, 158 );
+  fieldTypeByValue.emplace( 158, FieldType::PERCENTAGE );
+  fieldTypeNameByValue.emplace( 158, "PERCENTAGE" );
 
   tagNameByRaw.emplace( tag_as_raw<159>(), FixAccruedInterestAmt );
   tagNameByValue.emplace( 159, FixAccruedInterestAmt );
   tagByName.emplace( FixAccruedInterestAmt, 159 );
+  fieldTypeByValue.emplace( 159, FieldType::AMT );
+  fieldTypeNameByValue.emplace( 159, "AMT" );
 
   tagNameByRaw.emplace( tag_as_raw<160>(), FixSettlInstMode );
   tagNameByValue.emplace( 160, FixSettlInstMode );
   tagByName.emplace( FixSettlInstMode, 160 );
+  fieldTypeByValue.emplace( 160, FieldType::CHAR );
+  fieldTypeNameByValue.emplace( 160, "CHAR" );
 
   tagNameByRaw.emplace( tag_as_raw<161>(), FixAllocText );
   tagNameByValue.emplace( 161, FixAllocText );
   tagByName.emplace( FixAllocText, 161 );
+  fieldTypeByValue.emplace( 161, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 161, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<162>(), FixSettlInstID );
   tagNameByValue.emplace( 162, FixSettlInstID );
   tagByName.emplace( FixSettlInstID, 162 );
+  fieldTypeByValue.emplace( 162, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 162, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<163>(), FixSettlInstTransType );
   tagNameByValue.emplace( 163, FixSettlInstTransType );
   tagByName.emplace( FixSettlInstTransType, 163 );
+  fieldTypeByValue.emplace( 163, FieldType::CHAR );
+  fieldTypeNameByValue.emplace( 163, "CHAR" );
 
   tagNameByRaw.emplace( tag_as_raw<164>(), FixEmailThreadID );
   tagNameByValue.emplace( 164, FixEmailThreadID );
   tagByName.emplace( FixEmailThreadID, 164 );
+  fieldTypeByValue.emplace( 164, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 164, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<165>(), FixSettlInstSource );
   tagNameByValue.emplace( 165, FixSettlInstSource );
   tagByName.emplace( FixSettlInstSource, 165 );
+  fieldTypeByValue.emplace( 165, FieldType::CHAR );
+  fieldTypeNameByValue.emplace( 165, "CHAR" );
 
   tagNameByRaw.emplace( tag_as_raw<167>(), FixSecurityType );
   tagNameByValue.emplace( 167, FixSecurityType );
   tagByName.emplace( FixSecurityType, 167 );
+  fieldTypeByValue.emplace( 167, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 167, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<168>(), FixEffectiveTime );
   tagNameByValue.emplace( 168, FixEffectiveTime );
   tagByName.emplace( FixEffectiveTime, 168 );
+  fieldTypeByValue.emplace( 168, FieldType::UTCTIMESTAMP );
+  fieldTypeNameByValue.emplace( 168, "UTCTIMESTAMP" );
 
   tagNameByRaw.emplace( tag_as_raw<169>(), FixStandInstDbType );
   tagNameByValue.emplace( 169, FixStandInstDbType );
   tagByName.emplace( FixStandInstDbType, 169 );
+  fieldTypeByValue.emplace( 169, FieldType::INT );
+  fieldTypeNameByValue.emplace( 169, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<170>(), FixStandInstDbName );
   tagNameByValue.emplace( 170, FixStandInstDbName );
   tagByName.emplace( FixStandInstDbName, 170 );
+  fieldTypeByValue.emplace( 170, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 170, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<171>(), FixStandInstDbID );
   tagNameByValue.emplace( 171, FixStandInstDbID );
   tagByName.emplace( FixStandInstDbID, 171 );
+  fieldTypeByValue.emplace( 171, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 171, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<172>(), FixSettlDeliveryType );
   tagNameByValue.emplace( 172, FixSettlDeliveryType );
   tagByName.emplace( FixSettlDeliveryType, 172 );
+  fieldTypeByValue.emplace( 172, FieldType::INT );
+  fieldTypeNameByValue.emplace( 172, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<188>(), FixBidSpotRate );
   tagNameByValue.emplace( 188, FixBidSpotRate );
   tagByName.emplace( FixBidSpotRate, 188 );
+  fieldTypeByValue.emplace( 188, FieldType::PRICE );
+  fieldTypeNameByValue.emplace( 188, "PRICE" );
 
   tagNameByRaw.emplace( tag_as_raw<189>(), FixBidForwardPoints );
   tagNameByValue.emplace( 189, FixBidForwardPoints );
   tagByName.emplace( FixBidForwardPoints, 189 );
+  fieldTypeByValue.emplace( 189, FieldType::PRICEOFFSET );
+  fieldTypeNameByValue.emplace( 189, "PRICEOFFSET" );
 
   tagNameByRaw.emplace( tag_as_raw<190>(), FixOfferSpotRate );
   tagNameByValue.emplace( 190, FixOfferSpotRate );
   tagByName.emplace( FixOfferSpotRate, 190 );
+  fieldTypeByValue.emplace( 190, FieldType::PRICE );
+  fieldTypeNameByValue.emplace( 190, "PRICE" );
 
   tagNameByRaw.emplace( tag_as_raw<191>(), FixOfferForwardPoints );
   tagNameByValue.emplace( 191, FixOfferForwardPoints );
   tagByName.emplace( FixOfferForwardPoints, 191 );
+  fieldTypeByValue.emplace( 191, FieldType::PRICEOFFSET );
+  fieldTypeNameByValue.emplace( 191, "PRICEOFFSET" );
 
   tagNameByRaw.emplace( tag_as_raw<192>(), FixOrderQty2 );
   tagNameByValue.emplace( 192, FixOrderQty2 );
   tagByName.emplace( FixOrderQty2, 192 );
+  fieldTypeByValue.emplace( 192, FieldType::QTY );
+  fieldTypeNameByValue.emplace( 192, "QTY" );
 
   tagNameByRaw.emplace( tag_as_raw<193>(), FixSettlDate2 );
   tagNameByValue.emplace( 193, FixSettlDate2 );
   tagByName.emplace( FixSettlDate2, 193 );
+  fieldTypeByValue.emplace( 193, FieldType::LOCALMKTDATE );
+  fieldTypeNameByValue.emplace( 193, "LOCALMKTDATE" );
 
   tagNameByRaw.emplace( tag_as_raw<194>(), FixLastSpotRate );
   tagNameByValue.emplace( 194, FixLastSpotRate );
   tagByName.emplace( FixLastSpotRate, 194 );
+  fieldTypeByValue.emplace( 194, FieldType::PRICE );
+  fieldTypeNameByValue.emplace( 194, "PRICE" );
 
   tagNameByRaw.emplace( tag_as_raw<195>(), FixLastForwardPoints );
   tagNameByValue.emplace( 195, FixLastForwardPoints );
   tagByName.emplace( FixLastForwardPoints, 195 );
+  fieldTypeByValue.emplace( 195, FieldType::PRICEOFFSET );
+  fieldTypeNameByValue.emplace( 195, "PRICEOFFSET" );
 
   tagNameByRaw.emplace( tag_as_raw<196>(), FixAllocLinkID );
   tagNameByValue.emplace( 196, FixAllocLinkID );
   tagByName.emplace( FixAllocLinkID, 196 );
+  fieldTypeByValue.emplace( 196, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 196, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<197>(), FixAllocLinkType );
   tagNameByValue.emplace( 197, FixAllocLinkType );
   tagByName.emplace( FixAllocLinkType, 197 );
+  fieldTypeByValue.emplace( 197, FieldType::INT );
+  fieldTypeNameByValue.emplace( 197, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<198>(), FixSecondaryOrderID );
   tagNameByValue.emplace( 198, FixSecondaryOrderID );
   tagByName.emplace( FixSecondaryOrderID, 198 );
+  fieldTypeByValue.emplace( 198, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 198, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<199>(), FixNoIOIQualifiers );
   tagNameByValue.emplace( 199, FixNoIOIQualifiers );
   tagByName.emplace( FixNoIOIQualifiers, 199 );
+  fieldTypeByValue.emplace( 199, FieldType::NUMINGROUP );
+  fieldTypeNameByValue.emplace( 199, "NUMINGROUP" );
 
   tagNameByRaw.emplace( tag_as_raw<200>(), FixMaturityMonthYear );
   tagNameByValue.emplace( 200, FixMaturityMonthYear );
   tagByName.emplace( FixMaturityMonthYear, 200 );
+  fieldTypeByValue.emplace( 200, FieldType::MONTHYEAR );
+  fieldTypeNameByValue.emplace( 200, "MONTHYEAR" );
 
   tagNameByRaw.emplace( tag_as_raw<201>(), FixPutOrCall );
   tagNameByValue.emplace( 201, FixPutOrCall );
   tagByName.emplace( FixPutOrCall, 201 );
+  fieldTypeByValue.emplace( 201, FieldType::INT );
+  fieldTypeNameByValue.emplace( 201, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<202>(), FixStrikePrice );
   tagNameByValue.emplace( 202, FixStrikePrice );
   tagByName.emplace( FixStrikePrice, 202 );
+  fieldTypeByValue.emplace( 202, FieldType::PRICE );
+  fieldTypeNameByValue.emplace( 202, "PRICE" );
 
   tagNameByRaw.emplace( tag_as_raw<203>(), FixCoveredOrUncovered );
   tagNameByValue.emplace( 203, FixCoveredOrUncovered );
   tagByName.emplace( FixCoveredOrUncovered, 203 );
+  fieldTypeByValue.emplace( 203, FieldType::INT );
+  fieldTypeNameByValue.emplace( 203, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<206>(), FixOptAttribute );
   tagNameByValue.emplace( 206, FixOptAttribute );
   tagByName.emplace( FixOptAttribute, 206 );
+  fieldTypeByValue.emplace( 206, FieldType::CHAR );
+  fieldTypeNameByValue.emplace( 206, "CHAR" );
 
   tagNameByRaw.emplace( tag_as_raw<207>(), FixSecurityExchange );
   tagNameByValue.emplace( 207, FixSecurityExchange );
   tagByName.emplace( FixSecurityExchange, 207 );
+  fieldTypeByValue.emplace( 207, FieldType::EXCHANGE );
+  fieldTypeNameByValue.emplace( 207, "EXCHANGE" );
 
   tagNameByRaw.emplace( tag_as_raw<208>(), FixNotifyBrokerOfCredit );
   tagNameByValue.emplace( 208, FixNotifyBrokerOfCredit );
   tagByName.emplace( FixNotifyBrokerOfCredit, 208 );
+  fieldTypeByValue.emplace( 208, FieldType::BOOLEAN );
+  fieldTypeNameByValue.emplace( 208, "BOOLEAN" );
 
   tagNameByRaw.emplace( tag_as_raw<209>(), FixAllocHandlInst );
   tagNameByValue.emplace( 209, FixAllocHandlInst );
   tagByName.emplace( FixAllocHandlInst, 209 );
+  fieldTypeByValue.emplace( 209, FieldType::INT );
+  fieldTypeNameByValue.emplace( 209, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<210>(), FixMaxShow );
   tagNameByValue.emplace( 210, FixMaxShow );
   tagByName.emplace( FixMaxShow, 210 );
+  fieldTypeByValue.emplace( 210, FieldType::QTY );
+  fieldTypeNameByValue.emplace( 210, "QTY" );
 
   tagNameByRaw.emplace( tag_as_raw<211>(), FixPegOffsetValue );
   tagNameByValue.emplace( 211, FixPegOffsetValue );
   tagByName.emplace( FixPegOffsetValue, 211 );
+  fieldTypeByValue.emplace( 211, FieldType::FLOAT );
+  fieldTypeNameByValue.emplace( 211, "FLOAT" );
 
   tagNameByRaw.emplace( tag_as_raw<212>(), FixXmlDataLen );
   tagNameByValue.emplace( 212, FixXmlDataLen );
   tagByName.emplace( FixXmlDataLen, 212 );
+  fieldTypeByValue.emplace( 212, FieldType::LENGTH );
+  fieldTypeNameByValue.emplace( 212, "LENGTH" );
 
   tagNameByRaw.emplace( tag_as_raw<213>(), FixXmlData );
   tagNameByValue.emplace( 213, FixXmlData );
   tagByName.emplace( FixXmlData, 213 );
+  fieldTypeByValue.emplace( 213, FieldType::DATA );
+  fieldTypeNameByValue.emplace( 213, "DATA" );
 
   tagNameByRaw.emplace( tag_as_raw<214>(), FixSettlInstRefID );
   tagNameByValue.emplace( 214, FixSettlInstRefID );
   tagByName.emplace( FixSettlInstRefID, 214 );
+  fieldTypeByValue.emplace( 214, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 214, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<215>(), FixNoRoutingIDs );
   tagNameByValue.emplace( 215, FixNoRoutingIDs );
   tagByName.emplace( FixNoRoutingIDs, 215 );
+  fieldTypeByValue.emplace( 215, FieldType::NUMINGROUP );
+  fieldTypeNameByValue.emplace( 215, "NUMINGROUP" );
 
   tagNameByRaw.emplace( tag_as_raw<216>(), FixRoutingType );
   tagNameByValue.emplace( 216, FixRoutingType );
   tagByName.emplace( FixRoutingType, 216 );
+  fieldTypeByValue.emplace( 216, FieldType::INT );
+  fieldTypeNameByValue.emplace( 216, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<217>(), FixRoutingID );
   tagNameByValue.emplace( 217, FixRoutingID );
   tagByName.emplace( FixRoutingID, 217 );
+  fieldTypeByValue.emplace( 217, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 217, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<218>(), FixSpread );
   tagNameByValue.emplace( 218, FixSpread );
   tagByName.emplace( FixSpread, 218 );
+  fieldTypeByValue.emplace( 218, FieldType::PRICEOFFSET );
+  fieldTypeNameByValue.emplace( 218, "PRICEOFFSET" );
 
   tagNameByRaw.emplace( tag_as_raw<220>(), FixBenchmarkCurveCurrency );
   tagNameByValue.emplace( 220, FixBenchmarkCurveCurrency );
   tagByName.emplace( FixBenchmarkCurveCurrency, 220 );
+  fieldTypeByValue.emplace( 220, FieldType::CURRENCY );
+  fieldTypeNameByValue.emplace( 220, "CURRENCY" );
 
   tagNameByRaw.emplace( tag_as_raw<221>(), FixBenchmarkCurveName );
   tagNameByValue.emplace( 221, FixBenchmarkCurveName );
   tagByName.emplace( FixBenchmarkCurveName, 221 );
+  fieldTypeByValue.emplace( 221, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 221, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<222>(), FixBenchmarkCurvePoint );
   tagNameByValue.emplace( 222, FixBenchmarkCurvePoint );
   tagByName.emplace( FixBenchmarkCurvePoint, 222 );
+  fieldTypeByValue.emplace( 222, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 222, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<223>(), FixCouponRate );
   tagNameByValue.emplace( 223, FixCouponRate );
   tagByName.emplace( FixCouponRate, 223 );
+  fieldTypeByValue.emplace( 223, FieldType::PERCENTAGE );
+  fieldTypeNameByValue.emplace( 223, "PERCENTAGE" );
 
   tagNameByRaw.emplace( tag_as_raw<224>(), FixCouponPaymentDate );
   tagNameByValue.emplace( 224, FixCouponPaymentDate );
   tagByName.emplace( FixCouponPaymentDate, 224 );
+  fieldTypeByValue.emplace( 224, FieldType::LOCALMKTDATE );
+  fieldTypeNameByValue.emplace( 224, "LOCALMKTDATE" );
 
   tagNameByRaw.emplace( tag_as_raw<225>(), FixIssueDate );
   tagNameByValue.emplace( 225, FixIssueDate );
   tagByName.emplace( FixIssueDate, 225 );
+  fieldTypeByValue.emplace( 225, FieldType::LOCALMKTDATE );
+  fieldTypeNameByValue.emplace( 225, "LOCALMKTDATE" );
 
   tagNameByRaw.emplace( tag_as_raw<226>(), FixRepurchaseTerm );
   tagNameByValue.emplace( 226, FixRepurchaseTerm );
   tagByName.emplace( FixRepurchaseTerm, 226 );
+  fieldTypeByValue.emplace( 226, FieldType::INT );
+  fieldTypeNameByValue.emplace( 226, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<227>(), FixRepurchaseRate );
   tagNameByValue.emplace( 227, FixRepurchaseRate );
   tagByName.emplace( FixRepurchaseRate, 227 );
+  fieldTypeByValue.emplace( 227, FieldType::PERCENTAGE );
+  fieldTypeNameByValue.emplace( 227, "PERCENTAGE" );
 
   tagNameByRaw.emplace( tag_as_raw<228>(), FixFactor );
   tagNameByValue.emplace( 228, FixFactor );
   tagByName.emplace( FixFactor, 228 );
+  fieldTypeByValue.emplace( 228, FieldType::FLOAT );
+  fieldTypeNameByValue.emplace( 228, "FLOAT" );
 
   tagNameByRaw.emplace( tag_as_raw<229>(), FixTradeOriginationDate );
   tagNameByValue.emplace( 229, FixTradeOriginationDate );
   tagByName.emplace( FixTradeOriginationDate, 229 );
+  fieldTypeByValue.emplace( 229, FieldType::LOCALMKTDATE );
+  fieldTypeNameByValue.emplace( 229, "LOCALMKTDATE" );
 
   tagNameByRaw.emplace( tag_as_raw<230>(), FixExDate );
   tagNameByValue.emplace( 230, FixExDate );
   tagByName.emplace( FixExDate, 230 );
+  fieldTypeByValue.emplace( 230, FieldType::LOCALMKTDATE );
+  fieldTypeNameByValue.emplace( 230, "LOCALMKTDATE" );
 
   tagNameByRaw.emplace( tag_as_raw<231>(), FixContractMultiplier );
   tagNameByValue.emplace( 231, FixContractMultiplier );
   tagByName.emplace( FixContractMultiplier, 231 );
+  fieldTypeByValue.emplace( 231, FieldType::FLOAT );
+  fieldTypeNameByValue.emplace( 231, "FLOAT" );
 
   tagNameByRaw.emplace( tag_as_raw<232>(), FixNoStipulations );
   tagNameByValue.emplace( 232, FixNoStipulations );
   tagByName.emplace( FixNoStipulations, 232 );
+  fieldTypeByValue.emplace( 232, FieldType::NUMINGROUP );
+  fieldTypeNameByValue.emplace( 232, "NUMINGROUP" );
 
   tagNameByRaw.emplace( tag_as_raw<233>(), FixStipulationType );
   tagNameByValue.emplace( 233, FixStipulationType );
   tagByName.emplace( FixStipulationType, 233 );
+  fieldTypeByValue.emplace( 233, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 233, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<234>(), FixStipulationValue );
   tagNameByValue.emplace( 234, FixStipulationValue );
   tagByName.emplace( FixStipulationValue, 234 );
+  fieldTypeByValue.emplace( 234, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 234, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<235>(), FixYieldType );
   tagNameByValue.emplace( 235, FixYieldType );
   tagByName.emplace( FixYieldType, 235 );
+  fieldTypeByValue.emplace( 235, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 235, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<236>(), FixYield );
   tagNameByValue.emplace( 236, FixYield );
   tagByName.emplace( FixYield, 236 );
+  fieldTypeByValue.emplace( 236, FieldType::PERCENTAGE );
+  fieldTypeNameByValue.emplace( 236, "PERCENTAGE" );
 
   tagNameByRaw.emplace( tag_as_raw<237>(), FixTotalTakedown );
   tagNameByValue.emplace( 237, FixTotalTakedown );
   tagByName.emplace( FixTotalTakedown, 237 );
+  fieldTypeByValue.emplace( 237, FieldType::AMT );
+  fieldTypeNameByValue.emplace( 237, "AMT" );
 
   tagNameByRaw.emplace( tag_as_raw<238>(), FixConcession );
   tagNameByValue.emplace( 238, FixConcession );
   tagByName.emplace( FixConcession, 238 );
+  fieldTypeByValue.emplace( 238, FieldType::AMT );
+  fieldTypeNameByValue.emplace( 238, "AMT" );
 
   tagNameByRaw.emplace( tag_as_raw<239>(), FixRepoCollateralSecurityType );
   tagNameByValue.emplace( 239, FixRepoCollateralSecurityType );
   tagByName.emplace( FixRepoCollateralSecurityType, 239 );
+  fieldTypeByValue.emplace( 239, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 239, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<240>(), FixRedemptionDate );
   tagNameByValue.emplace( 240, FixRedemptionDate );
   tagByName.emplace( FixRedemptionDate, 240 );
+  fieldTypeByValue.emplace( 240, FieldType::LOCALMKTDATE );
+  fieldTypeNameByValue.emplace( 240, "LOCALMKTDATE" );
 
   tagNameByRaw.emplace( tag_as_raw<241>(), FixUnderlyingCouponPaymentDate );
   tagNameByValue.emplace( 241, FixUnderlyingCouponPaymentDate );
   tagByName.emplace( FixUnderlyingCouponPaymentDate, 241 );
+  fieldTypeByValue.emplace( 241, FieldType::LOCALMKTDATE );
+  fieldTypeNameByValue.emplace( 241, "LOCALMKTDATE" );
 
   tagNameByRaw.emplace( tag_as_raw<242>(), FixUnderlyingIssueDate );
   tagNameByValue.emplace( 242, FixUnderlyingIssueDate );
   tagByName.emplace( FixUnderlyingIssueDate, 242 );
+  fieldTypeByValue.emplace( 242, FieldType::LOCALMKTDATE );
+  fieldTypeNameByValue.emplace( 242, "LOCALMKTDATE" );
 
   tagNameByRaw.emplace( tag_as_raw<243>(), FixUnderlyingRepoCollateralSecurityType );
   tagNameByValue.emplace( 243, FixUnderlyingRepoCollateralSecurityType );
   tagByName.emplace( FixUnderlyingRepoCollateralSecurityType, 243 );
+  fieldTypeByValue.emplace( 243, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 243, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<244>(), FixUnderlyingRepurchaseTerm );
   tagNameByValue.emplace( 244, FixUnderlyingRepurchaseTerm );
   tagByName.emplace( FixUnderlyingRepurchaseTerm, 244 );
+  fieldTypeByValue.emplace( 244, FieldType::INT );
+  fieldTypeNameByValue.emplace( 244, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<245>(), FixUnderlyingRepurchaseRate );
   tagNameByValue.emplace( 245, FixUnderlyingRepurchaseRate );
   tagByName.emplace( FixUnderlyingRepurchaseRate, 245 );
+  fieldTypeByValue.emplace( 245, FieldType::PERCENTAGE );
+  fieldTypeNameByValue.emplace( 245, "PERCENTAGE" );
 
   tagNameByRaw.emplace( tag_as_raw<246>(), FixUnderlyingFactor );
   tagNameByValue.emplace( 246, FixUnderlyingFactor );
   tagByName.emplace( FixUnderlyingFactor, 246 );
+  fieldTypeByValue.emplace( 246, FieldType::FLOAT );
+  fieldTypeNameByValue.emplace( 246, "FLOAT" );
 
   tagNameByRaw.emplace( tag_as_raw<247>(), FixUnderlyingRedemptionDate );
   tagNameByValue.emplace( 247, FixUnderlyingRedemptionDate );
   tagByName.emplace( FixUnderlyingRedemptionDate, 247 );
+  fieldTypeByValue.emplace( 247, FieldType::LOCALMKTDATE );
+  fieldTypeNameByValue.emplace( 247, "LOCALMKTDATE" );
 
   tagNameByRaw.emplace( tag_as_raw<248>(), FixLegCouponPaymentDate );
   tagNameByValue.emplace( 248, FixLegCouponPaymentDate );
   tagByName.emplace( FixLegCouponPaymentDate, 248 );
+  fieldTypeByValue.emplace( 248, FieldType::LOCALMKTDATE );
+  fieldTypeNameByValue.emplace( 248, "LOCALMKTDATE" );
 
   tagNameByRaw.emplace( tag_as_raw<249>(), FixLegIssueDate );
   tagNameByValue.emplace( 249, FixLegIssueDate );
   tagByName.emplace( FixLegIssueDate, 249 );
+  fieldTypeByValue.emplace( 249, FieldType::LOCALMKTDATE );
+  fieldTypeNameByValue.emplace( 249, "LOCALMKTDATE" );
 
   tagNameByRaw.emplace( tag_as_raw<250>(), FixLegRepoCollateralSecurityType );
   tagNameByValue.emplace( 250, FixLegRepoCollateralSecurityType );
   tagByName.emplace( FixLegRepoCollateralSecurityType, 250 );
+  fieldTypeByValue.emplace( 250, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 250, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<251>(), FixLegRepurchaseTerm );
   tagNameByValue.emplace( 251, FixLegRepurchaseTerm );
   tagByName.emplace( FixLegRepurchaseTerm, 251 );
+  fieldTypeByValue.emplace( 251, FieldType::INT );
+  fieldTypeNameByValue.emplace( 251, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<252>(), FixLegRepurchaseRate );
   tagNameByValue.emplace( 252, FixLegRepurchaseRate );
   tagByName.emplace( FixLegRepurchaseRate, 252 );
+  fieldTypeByValue.emplace( 252, FieldType::PERCENTAGE );
+  fieldTypeNameByValue.emplace( 252, "PERCENTAGE" );
 
   tagNameByRaw.emplace( tag_as_raw<253>(), FixLegFactor );
   tagNameByValue.emplace( 253, FixLegFactor );
   tagByName.emplace( FixLegFactor, 253 );
+  fieldTypeByValue.emplace( 253, FieldType::FLOAT );
+  fieldTypeNameByValue.emplace( 253, "FLOAT" );
 
   tagNameByRaw.emplace( tag_as_raw<254>(), FixLegRedemptionDate );
   tagNameByValue.emplace( 254, FixLegRedemptionDate );
   tagByName.emplace( FixLegRedemptionDate, 254 );
+  fieldTypeByValue.emplace( 254, FieldType::LOCALMKTDATE );
+  fieldTypeNameByValue.emplace( 254, "LOCALMKTDATE" );
 
   tagNameByRaw.emplace( tag_as_raw<255>(), FixCreditRating );
   tagNameByValue.emplace( 255, FixCreditRating );
   tagByName.emplace( FixCreditRating, 255 );
+  fieldTypeByValue.emplace( 255, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 255, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<256>(), FixUnderlyingCreditRating );
   tagNameByValue.emplace( 256, FixUnderlyingCreditRating );
   tagByName.emplace( FixUnderlyingCreditRating, 256 );
+  fieldTypeByValue.emplace( 256, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 256, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<257>(), FixLegCreditRating );
   tagNameByValue.emplace( 257, FixLegCreditRating );
   tagByName.emplace( FixLegCreditRating, 257 );
+  fieldTypeByValue.emplace( 257, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 257, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<258>(), FixTradedFlatSwitch );
   tagNameByValue.emplace( 258, FixTradedFlatSwitch );
   tagByName.emplace( FixTradedFlatSwitch, 258 );
+  fieldTypeByValue.emplace( 258, FieldType::BOOLEAN );
+  fieldTypeNameByValue.emplace( 258, "BOOLEAN" );
 
   tagNameByRaw.emplace( tag_as_raw<259>(), FixBasisFeatureDate );
   tagNameByValue.emplace( 259, FixBasisFeatureDate );
   tagByName.emplace( FixBasisFeatureDate, 259 );
+  fieldTypeByValue.emplace( 259, FieldType::LOCALMKTDATE );
+  fieldTypeNameByValue.emplace( 259, "LOCALMKTDATE" );
 
   tagNameByRaw.emplace( tag_as_raw<260>(), FixBasisFeaturePrice );
   tagNameByValue.emplace( 260, FixBasisFeaturePrice );
   tagByName.emplace( FixBasisFeaturePrice, 260 );
+  fieldTypeByValue.emplace( 260, FieldType::PRICE );
+  fieldTypeNameByValue.emplace( 260, "PRICE" );
 
   tagNameByRaw.emplace( tag_as_raw<262>(), FixMDReqID );
   tagNameByValue.emplace( 262, FixMDReqID );
   tagByName.emplace( FixMDReqID, 262 );
+  fieldTypeByValue.emplace( 262, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 262, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<263>(), FixSubscriptionRequestType );
   tagNameByValue.emplace( 263, FixSubscriptionRequestType );
   tagByName.emplace( FixSubscriptionRequestType, 263 );
+  fieldTypeByValue.emplace( 263, FieldType::CHAR );
+  fieldTypeNameByValue.emplace( 263, "CHAR" );
 
   tagNameByRaw.emplace( tag_as_raw<264>(), FixMarketDepth );
   tagNameByValue.emplace( 264, FixMarketDepth );
   tagByName.emplace( FixMarketDepth, 264 );
+  fieldTypeByValue.emplace( 264, FieldType::INT );
+  fieldTypeNameByValue.emplace( 264, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<265>(), FixMDUpdateType );
   tagNameByValue.emplace( 265, FixMDUpdateType );
   tagByName.emplace( FixMDUpdateType, 265 );
+  fieldTypeByValue.emplace( 265, FieldType::INT );
+  fieldTypeNameByValue.emplace( 265, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<266>(), FixAggregatedBook );
   tagNameByValue.emplace( 266, FixAggregatedBook );
   tagByName.emplace( FixAggregatedBook, 266 );
+  fieldTypeByValue.emplace( 266, FieldType::BOOLEAN );
+  fieldTypeNameByValue.emplace( 266, "BOOLEAN" );
 
   tagNameByRaw.emplace( tag_as_raw<267>(), FixNoMDEntryTypes );
   tagNameByValue.emplace( 267, FixNoMDEntryTypes );
   tagByName.emplace( FixNoMDEntryTypes, 267 );
+  fieldTypeByValue.emplace( 267, FieldType::NUMINGROUP );
+  fieldTypeNameByValue.emplace( 267, "NUMINGROUP" );
 
   tagNameByRaw.emplace( tag_as_raw<268>(), FixNoMDEntries );
   tagNameByValue.emplace( 268, FixNoMDEntries );
   tagByName.emplace( FixNoMDEntries, 268 );
+  fieldTypeByValue.emplace( 268, FieldType::NUMINGROUP );
+  fieldTypeNameByValue.emplace( 268, "NUMINGROUP" );
 
   tagNameByRaw.emplace( tag_as_raw<269>(), FixMDEntryType );
   tagNameByValue.emplace( 269, FixMDEntryType );
   tagByName.emplace( FixMDEntryType, 269 );
+  fieldTypeByValue.emplace( 269, FieldType::CHAR );
+  fieldTypeNameByValue.emplace( 269, "CHAR" );
 
   tagNameByRaw.emplace( tag_as_raw<270>(), FixMDEntryPx );
   tagNameByValue.emplace( 270, FixMDEntryPx );
   tagByName.emplace( FixMDEntryPx, 270 );
+  fieldTypeByValue.emplace( 270, FieldType::PRICE );
+  fieldTypeNameByValue.emplace( 270, "PRICE" );
 
   tagNameByRaw.emplace( tag_as_raw<271>(), FixMDEntrySize );
   tagNameByValue.emplace( 271, FixMDEntrySize );
   tagByName.emplace( FixMDEntrySize, 271 );
+  fieldTypeByValue.emplace( 271, FieldType::QTY );
+  fieldTypeNameByValue.emplace( 271, "QTY" );
 
   tagNameByRaw.emplace( tag_as_raw<272>(), FixMDEntryDate );
   tagNameByValue.emplace( 272, FixMDEntryDate );
   tagByName.emplace( FixMDEntryDate, 272 );
+  fieldTypeByValue.emplace( 272, FieldType::UTCDATEONLY );
+  fieldTypeNameByValue.emplace( 272, "UTCDATEONLY" );
 
   tagNameByRaw.emplace( tag_as_raw<273>(), FixMDEntryTime );
   tagNameByValue.emplace( 273, FixMDEntryTime );
   tagByName.emplace( FixMDEntryTime, 273 );
+  fieldTypeByValue.emplace( 273, FieldType::UTCTIMEONLY );
+  fieldTypeNameByValue.emplace( 273, "UTCTIMEONLY" );
 
   tagNameByRaw.emplace( tag_as_raw<274>(), FixTickDirection );
   tagNameByValue.emplace( 274, FixTickDirection );
   tagByName.emplace( FixTickDirection, 274 );
+  fieldTypeByValue.emplace( 274, FieldType::CHAR );
+  fieldTypeNameByValue.emplace( 274, "CHAR" );
 
   tagNameByRaw.emplace( tag_as_raw<275>(), FixMDMkt );
   tagNameByValue.emplace( 275, FixMDMkt );
   tagByName.emplace( FixMDMkt, 275 );
+  fieldTypeByValue.emplace( 275, FieldType::EXCHANGE );
+  fieldTypeNameByValue.emplace( 275, "EXCHANGE" );
 
   tagNameByRaw.emplace( tag_as_raw<276>(), FixQuoteCondition );
   tagNameByValue.emplace( 276, FixQuoteCondition );
   tagByName.emplace( FixQuoteCondition, 276 );
+  fieldTypeByValue.emplace( 276, FieldType::MULTIPLEVALUESTRING );
+  fieldTypeNameByValue.emplace( 276, "MULTIPLEVALUESTRING" );
 
   tagNameByRaw.emplace( tag_as_raw<277>(), FixTradeCondition );
   tagNameByValue.emplace( 277, FixTradeCondition );
   tagByName.emplace( FixTradeCondition, 277 );
+  fieldTypeByValue.emplace( 277, FieldType::MULTIPLEVALUESTRING );
+  fieldTypeNameByValue.emplace( 277, "MULTIPLEVALUESTRING" );
 
   tagNameByRaw.emplace( tag_as_raw<278>(), FixMDEntryID );
   tagNameByValue.emplace( 278, FixMDEntryID );
   tagByName.emplace( FixMDEntryID, 278 );
+  fieldTypeByValue.emplace( 278, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 278, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<279>(), FixMDUpdateAction );
   tagNameByValue.emplace( 279, FixMDUpdateAction );
   tagByName.emplace( FixMDUpdateAction, 279 );
+  fieldTypeByValue.emplace( 279, FieldType::CHAR );
+  fieldTypeNameByValue.emplace( 279, "CHAR" );
 
   tagNameByRaw.emplace( tag_as_raw<280>(), FixMDEntryRefID );
   tagNameByValue.emplace( 280, FixMDEntryRefID );
   tagByName.emplace( FixMDEntryRefID, 280 );
+  fieldTypeByValue.emplace( 280, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 280, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<281>(), FixMDReqRejReason );
   tagNameByValue.emplace( 281, FixMDReqRejReason );
   tagByName.emplace( FixMDReqRejReason, 281 );
+  fieldTypeByValue.emplace( 281, FieldType::CHAR );
+  fieldTypeNameByValue.emplace( 281, "CHAR" );
 
   tagNameByRaw.emplace( tag_as_raw<282>(), FixMDEntryOriginator );
   tagNameByValue.emplace( 282, FixMDEntryOriginator );
   tagByName.emplace( FixMDEntryOriginator, 282 );
+  fieldTypeByValue.emplace( 282, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 282, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<283>(), FixLocationID );
   tagNameByValue.emplace( 283, FixLocationID );
   tagByName.emplace( FixLocationID, 283 );
+  fieldTypeByValue.emplace( 283, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 283, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<284>(), FixDeskID );
   tagNameByValue.emplace( 284, FixDeskID );
   tagByName.emplace( FixDeskID, 284 );
+  fieldTypeByValue.emplace( 284, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 284, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<285>(), FixDeleteReason );
   tagNameByValue.emplace( 285, FixDeleteReason );
   tagByName.emplace( FixDeleteReason, 285 );
+  fieldTypeByValue.emplace( 285, FieldType::CHAR );
+  fieldTypeNameByValue.emplace( 285, "CHAR" );
 
   tagNameByRaw.emplace( tag_as_raw<286>(), FixOpenCloseSettlFlag );
   tagNameByValue.emplace( 286, FixOpenCloseSettlFlag );
   tagByName.emplace( FixOpenCloseSettlFlag, 286 );
+  fieldTypeByValue.emplace( 286, FieldType::MULTIPLEVALUESTRING );
+  fieldTypeNameByValue.emplace( 286, "MULTIPLEVALUESTRING" );
 
   tagNameByRaw.emplace( tag_as_raw<287>(), FixSellerDays );
   tagNameByValue.emplace( 287, FixSellerDays );
   tagByName.emplace( FixSellerDays, 287 );
+  fieldTypeByValue.emplace( 287, FieldType::INT );
+  fieldTypeNameByValue.emplace( 287, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<288>(), FixMDEntryBuyer );
   tagNameByValue.emplace( 288, FixMDEntryBuyer );
   tagByName.emplace( FixMDEntryBuyer, 288 );
+  fieldTypeByValue.emplace( 288, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 288, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<289>(), FixMDEntrySeller );
   tagNameByValue.emplace( 289, FixMDEntrySeller );
   tagByName.emplace( FixMDEntrySeller, 289 );
+  fieldTypeByValue.emplace( 289, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 289, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<290>(), FixMDEntryPositionNo );
   tagNameByValue.emplace( 290, FixMDEntryPositionNo );
   tagByName.emplace( FixMDEntryPositionNo, 290 );
+  fieldTypeByValue.emplace( 290, FieldType::INT );
+  fieldTypeNameByValue.emplace( 290, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<291>(), FixFinancialStatus );
   tagNameByValue.emplace( 291, FixFinancialStatus );
   tagByName.emplace( FixFinancialStatus, 291 );
+  fieldTypeByValue.emplace( 291, FieldType::MULTIPLEVALUESTRING );
+  fieldTypeNameByValue.emplace( 291, "MULTIPLEVALUESTRING" );
 
   tagNameByRaw.emplace( tag_as_raw<292>(), FixCorporateAction );
   tagNameByValue.emplace( 292, FixCorporateAction );
   tagByName.emplace( FixCorporateAction, 292 );
+  fieldTypeByValue.emplace( 292, FieldType::MULTIPLEVALUESTRING );
+  fieldTypeNameByValue.emplace( 292, "MULTIPLEVALUESTRING" );
 
   tagNameByRaw.emplace( tag_as_raw<293>(), FixDefBidSize );
   tagNameByValue.emplace( 293, FixDefBidSize );
   tagByName.emplace( FixDefBidSize, 293 );
+  fieldTypeByValue.emplace( 293, FieldType::QTY );
+  fieldTypeNameByValue.emplace( 293, "QTY" );
 
   tagNameByRaw.emplace( tag_as_raw<294>(), FixDefOfferSize );
   tagNameByValue.emplace( 294, FixDefOfferSize );
   tagByName.emplace( FixDefOfferSize, 294 );
+  fieldTypeByValue.emplace( 294, FieldType::QTY );
+  fieldTypeNameByValue.emplace( 294, "QTY" );
 
   tagNameByRaw.emplace( tag_as_raw<295>(), FixNoQuoteEntries );
   tagNameByValue.emplace( 295, FixNoQuoteEntries );
   tagByName.emplace( FixNoQuoteEntries, 295 );
+  fieldTypeByValue.emplace( 295, FieldType::NUMINGROUP );
+  fieldTypeNameByValue.emplace( 295, "NUMINGROUP" );
 
   tagNameByRaw.emplace( tag_as_raw<296>(), FixNoQuoteSets );
   tagNameByValue.emplace( 296, FixNoQuoteSets );
   tagByName.emplace( FixNoQuoteSets, 296 );
+  fieldTypeByValue.emplace( 296, FieldType::NUMINGROUP );
+  fieldTypeNameByValue.emplace( 296, "NUMINGROUP" );
 
   tagNameByRaw.emplace( tag_as_raw<297>(), FixQuoteStatus );
   tagNameByValue.emplace( 297, FixQuoteStatus );
   tagByName.emplace( FixQuoteStatus, 297 );
+  fieldTypeByValue.emplace( 297, FieldType::INT );
+  fieldTypeNameByValue.emplace( 297, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<298>(), FixQuoteCancelType );
   tagNameByValue.emplace( 298, FixQuoteCancelType );
   tagByName.emplace( FixQuoteCancelType, 298 );
+  fieldTypeByValue.emplace( 298, FieldType::INT );
+  fieldTypeNameByValue.emplace( 298, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<299>(), FixQuoteEntryID );
   tagNameByValue.emplace( 299, FixQuoteEntryID );
   tagByName.emplace( FixQuoteEntryID, 299 );
+  fieldTypeByValue.emplace( 299, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 299, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<300>(), FixQuoteRejectReason );
   tagNameByValue.emplace( 300, FixQuoteRejectReason );
   tagByName.emplace( FixQuoteRejectReason, 300 );
+  fieldTypeByValue.emplace( 300, FieldType::INT );
+  fieldTypeNameByValue.emplace( 300, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<301>(), FixQuoteResponseLevel );
   tagNameByValue.emplace( 301, FixQuoteResponseLevel );
   tagByName.emplace( FixQuoteResponseLevel, 301 );
+  fieldTypeByValue.emplace( 301, FieldType::INT );
+  fieldTypeNameByValue.emplace( 301, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<302>(), FixQuoteSetID );
   tagNameByValue.emplace( 302, FixQuoteSetID );
   tagByName.emplace( FixQuoteSetID, 302 );
+  fieldTypeByValue.emplace( 302, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 302, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<303>(), FixQuoteRequestType );
   tagNameByValue.emplace( 303, FixQuoteRequestType );
   tagByName.emplace( FixQuoteRequestType, 303 );
+  fieldTypeByValue.emplace( 303, FieldType::INT );
+  fieldTypeNameByValue.emplace( 303, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<304>(), FixTotNoQuoteEntries );
   tagNameByValue.emplace( 304, FixTotNoQuoteEntries );
   tagByName.emplace( FixTotNoQuoteEntries, 304 );
+  fieldTypeByValue.emplace( 304, FieldType::INT );
+  fieldTypeNameByValue.emplace( 304, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<305>(), FixUnderlyingSecurityIDSource );
   tagNameByValue.emplace( 305, FixUnderlyingSecurityIDSource );
   tagByName.emplace( FixUnderlyingSecurityIDSource, 305 );
+  fieldTypeByValue.emplace( 305, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 305, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<306>(), FixUnderlyingIssuer );
   tagNameByValue.emplace( 306, FixUnderlyingIssuer );
   tagByName.emplace( FixUnderlyingIssuer, 306 );
+  fieldTypeByValue.emplace( 306, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 306, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<307>(), FixUnderlyingSecurityDesc );
   tagNameByValue.emplace( 307, FixUnderlyingSecurityDesc );
   tagByName.emplace( FixUnderlyingSecurityDesc, 307 );
+  fieldTypeByValue.emplace( 307, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 307, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<308>(), FixUnderlyingSecurityExchange );
   tagNameByValue.emplace( 308, FixUnderlyingSecurityExchange );
   tagByName.emplace( FixUnderlyingSecurityExchange, 308 );
+  fieldTypeByValue.emplace( 308, FieldType::EXCHANGE );
+  fieldTypeNameByValue.emplace( 308, "EXCHANGE" );
 
   tagNameByRaw.emplace( tag_as_raw<309>(), FixUnderlyingSecurityID );
   tagNameByValue.emplace( 309, FixUnderlyingSecurityID );
   tagByName.emplace( FixUnderlyingSecurityID, 309 );
+  fieldTypeByValue.emplace( 309, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 309, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<310>(), FixUnderlyingSecurityType );
   tagNameByValue.emplace( 310, FixUnderlyingSecurityType );
   tagByName.emplace( FixUnderlyingSecurityType, 310 );
+  fieldTypeByValue.emplace( 310, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 310, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<311>(), FixUnderlyingSymbol );
   tagNameByValue.emplace( 311, FixUnderlyingSymbol );
   tagByName.emplace( FixUnderlyingSymbol, 311 );
+  fieldTypeByValue.emplace( 311, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 311, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<312>(), FixUnderlyingSymbolSfx );
   tagNameByValue.emplace( 312, FixUnderlyingSymbolSfx );
   tagByName.emplace( FixUnderlyingSymbolSfx, 312 );
+  fieldTypeByValue.emplace( 312, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 312, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<313>(), FixUnderlyingMaturityMonthYear );
   tagNameByValue.emplace( 313, FixUnderlyingMaturityMonthYear );
   tagByName.emplace( FixUnderlyingMaturityMonthYear, 313 );
+  fieldTypeByValue.emplace( 313, FieldType::MONTHYEAR );
+  fieldTypeNameByValue.emplace( 313, "MONTHYEAR" );
 
   tagNameByRaw.emplace( tag_as_raw<315>(), FixUnderlyingPutOrCall );
   tagNameByValue.emplace( 315, FixUnderlyingPutOrCall );
   tagByName.emplace( FixUnderlyingPutOrCall, 315 );
+  fieldTypeByValue.emplace( 315, FieldType::INT );
+  fieldTypeNameByValue.emplace( 315, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<316>(), FixUnderlyingStrikePrice );
   tagNameByValue.emplace( 316, FixUnderlyingStrikePrice );
   tagByName.emplace( FixUnderlyingStrikePrice, 316 );
+  fieldTypeByValue.emplace( 316, FieldType::PRICE );
+  fieldTypeNameByValue.emplace( 316, "PRICE" );
 
   tagNameByRaw.emplace( tag_as_raw<317>(), FixUnderlyingOptAttribute );
   tagNameByValue.emplace( 317, FixUnderlyingOptAttribute );
   tagByName.emplace( FixUnderlyingOptAttribute, 317 );
+  fieldTypeByValue.emplace( 317, FieldType::CHAR );
+  fieldTypeNameByValue.emplace( 317, "CHAR" );
 
   tagNameByRaw.emplace( tag_as_raw<318>(), FixUnderlyingCurrency );
   tagNameByValue.emplace( 318, FixUnderlyingCurrency );
   tagByName.emplace( FixUnderlyingCurrency, 318 );
+  fieldTypeByValue.emplace( 318, FieldType::CURRENCY );
+  fieldTypeNameByValue.emplace( 318, "CURRENCY" );
 
   tagNameByRaw.emplace( tag_as_raw<320>(), FixSecurityReqID );
   tagNameByValue.emplace( 320, FixSecurityReqID );
   tagByName.emplace( FixSecurityReqID, 320 );
+  fieldTypeByValue.emplace( 320, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 320, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<321>(), FixSecurityRequestType );
   tagNameByValue.emplace( 321, FixSecurityRequestType );
   tagByName.emplace( FixSecurityRequestType, 321 );
+  fieldTypeByValue.emplace( 321, FieldType::INT );
+  fieldTypeNameByValue.emplace( 321, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<322>(), FixSecurityResponseID );
   tagNameByValue.emplace( 322, FixSecurityResponseID );
   tagByName.emplace( FixSecurityResponseID, 322 );
+  fieldTypeByValue.emplace( 322, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 322, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<323>(), FixSecurityResponseType );
   tagNameByValue.emplace( 323, FixSecurityResponseType );
   tagByName.emplace( FixSecurityResponseType, 323 );
+  fieldTypeByValue.emplace( 323, FieldType::INT );
+  fieldTypeNameByValue.emplace( 323, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<324>(), FixSecurityStatusReqID );
   tagNameByValue.emplace( 324, FixSecurityStatusReqID );
   tagByName.emplace( FixSecurityStatusReqID, 324 );
+  fieldTypeByValue.emplace( 324, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 324, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<325>(), FixUnsolicitedIndicator );
   tagNameByValue.emplace( 325, FixUnsolicitedIndicator );
   tagByName.emplace( FixUnsolicitedIndicator, 325 );
+  fieldTypeByValue.emplace( 325, FieldType::BOOLEAN );
+  fieldTypeNameByValue.emplace( 325, "BOOLEAN" );
 
   tagNameByRaw.emplace( tag_as_raw<326>(), FixSecurityTradingStatus );
   tagNameByValue.emplace( 326, FixSecurityTradingStatus );
   tagByName.emplace( FixSecurityTradingStatus, 326 );
+  fieldTypeByValue.emplace( 326, FieldType::INT );
+  fieldTypeNameByValue.emplace( 326, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<327>(), FixHaltReasonChar );
   tagNameByValue.emplace( 327, FixHaltReasonChar );
   tagByName.emplace( FixHaltReasonChar, 327 );
+  fieldTypeByValue.emplace( 327, FieldType::CHAR );
+  fieldTypeNameByValue.emplace( 327, "CHAR" );
 
   tagNameByRaw.emplace( tag_as_raw<328>(), FixInViewOfCommon );
   tagNameByValue.emplace( 328, FixInViewOfCommon );
   tagByName.emplace( FixInViewOfCommon, 328 );
+  fieldTypeByValue.emplace( 328, FieldType::BOOLEAN );
+  fieldTypeNameByValue.emplace( 328, "BOOLEAN" );
 
   tagNameByRaw.emplace( tag_as_raw<329>(), FixDueToRelated );
   tagNameByValue.emplace( 329, FixDueToRelated );
   tagByName.emplace( FixDueToRelated, 329 );
+  fieldTypeByValue.emplace( 329, FieldType::BOOLEAN );
+  fieldTypeNameByValue.emplace( 329, "BOOLEAN" );
 
   tagNameByRaw.emplace( tag_as_raw<330>(), FixBuyVolume );
   tagNameByValue.emplace( 330, FixBuyVolume );
   tagByName.emplace( FixBuyVolume, 330 );
+  fieldTypeByValue.emplace( 330, FieldType::QTY );
+  fieldTypeNameByValue.emplace( 330, "QTY" );
 
   tagNameByRaw.emplace( tag_as_raw<331>(), FixSellVolume );
   tagNameByValue.emplace( 331, FixSellVolume );
   tagByName.emplace( FixSellVolume, 331 );
+  fieldTypeByValue.emplace( 331, FieldType::QTY );
+  fieldTypeNameByValue.emplace( 331, "QTY" );
 
   tagNameByRaw.emplace( tag_as_raw<332>(), FixHighPx );
   tagNameByValue.emplace( 332, FixHighPx );
   tagByName.emplace( FixHighPx, 332 );
+  fieldTypeByValue.emplace( 332, FieldType::PRICE );
+  fieldTypeNameByValue.emplace( 332, "PRICE" );
 
   tagNameByRaw.emplace( tag_as_raw<333>(), FixLowPx );
   tagNameByValue.emplace( 333, FixLowPx );
   tagByName.emplace( FixLowPx, 333 );
+  fieldTypeByValue.emplace( 333, FieldType::PRICE );
+  fieldTypeNameByValue.emplace( 333, "PRICE" );
 
   tagNameByRaw.emplace( tag_as_raw<334>(), FixAdjustment );
   tagNameByValue.emplace( 334, FixAdjustment );
   tagByName.emplace( FixAdjustment, 334 );
+  fieldTypeByValue.emplace( 334, FieldType::INT );
+  fieldTypeNameByValue.emplace( 334, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<335>(), FixTradSesReqID );
   tagNameByValue.emplace( 335, FixTradSesReqID );
   tagByName.emplace( FixTradSesReqID, 335 );
+  fieldTypeByValue.emplace( 335, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 335, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<336>(), FixTradingSessionID );
   tagNameByValue.emplace( 336, FixTradingSessionID );
   tagByName.emplace( FixTradingSessionID, 336 );
+  fieldTypeByValue.emplace( 336, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 336, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<337>(), FixContraTrader );
   tagNameByValue.emplace( 337, FixContraTrader );
   tagByName.emplace( FixContraTrader, 337 );
+  fieldTypeByValue.emplace( 337, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 337, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<338>(), FixTradSesMethod );
   tagNameByValue.emplace( 338, FixTradSesMethod );
   tagByName.emplace( FixTradSesMethod, 338 );
+  fieldTypeByValue.emplace( 338, FieldType::INT );
+  fieldTypeNameByValue.emplace( 338, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<339>(), FixTradSesMode );
   tagNameByValue.emplace( 339, FixTradSesMode );
   tagByName.emplace( FixTradSesMode, 339 );
+  fieldTypeByValue.emplace( 339, FieldType::INT );
+  fieldTypeNameByValue.emplace( 339, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<340>(), FixTradSesStatus );
   tagNameByValue.emplace( 340, FixTradSesStatus );
   tagByName.emplace( FixTradSesStatus, 340 );
+  fieldTypeByValue.emplace( 340, FieldType::INT );
+  fieldTypeNameByValue.emplace( 340, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<341>(), FixTradSesStartTime );
   tagNameByValue.emplace( 341, FixTradSesStartTime );
   tagByName.emplace( FixTradSesStartTime, 341 );
+  fieldTypeByValue.emplace( 341, FieldType::UTCTIMESTAMP );
+  fieldTypeNameByValue.emplace( 341, "UTCTIMESTAMP" );
 
   tagNameByRaw.emplace( tag_as_raw<342>(), FixTradSesOpenTime );
   tagNameByValue.emplace( 342, FixTradSesOpenTime );
   tagByName.emplace( FixTradSesOpenTime, 342 );
+  fieldTypeByValue.emplace( 342, FieldType::UTCTIMESTAMP );
+  fieldTypeNameByValue.emplace( 342, "UTCTIMESTAMP" );
 
   tagNameByRaw.emplace( tag_as_raw<343>(), FixTradSesPreCloseTime );
   tagNameByValue.emplace( 343, FixTradSesPreCloseTime );
   tagByName.emplace( FixTradSesPreCloseTime, 343 );
+  fieldTypeByValue.emplace( 343, FieldType::UTCTIMESTAMP );
+  fieldTypeNameByValue.emplace( 343, "UTCTIMESTAMP" );
 
   tagNameByRaw.emplace( tag_as_raw<344>(), FixTradSesCloseTime );
   tagNameByValue.emplace( 344, FixTradSesCloseTime );
   tagByName.emplace( FixTradSesCloseTime, 344 );
+  fieldTypeByValue.emplace( 344, FieldType::UTCTIMESTAMP );
+  fieldTypeNameByValue.emplace( 344, "UTCTIMESTAMP" );
 
   tagNameByRaw.emplace( tag_as_raw<345>(), FixTradSesEndTime );
   tagNameByValue.emplace( 345, FixTradSesEndTime );
   tagByName.emplace( FixTradSesEndTime, 345 );
+  fieldTypeByValue.emplace( 345, FieldType::UTCTIMESTAMP );
+  fieldTypeNameByValue.emplace( 345, "UTCTIMESTAMP" );
 
   tagNameByRaw.emplace( tag_as_raw<346>(), FixNumberOfOrders );
   tagNameByValue.emplace( 346, FixNumberOfOrders );
   tagByName.emplace( FixNumberOfOrders, 346 );
+  fieldTypeByValue.emplace( 346, FieldType::INT );
+  fieldTypeNameByValue.emplace( 346, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<347>(), FixMessageEncoding );
   tagNameByValue.emplace( 347, FixMessageEncoding );
   tagByName.emplace( FixMessageEncoding, 347 );
+  fieldTypeByValue.emplace( 347, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 347, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<348>(), FixEncodedIssuerLen );
   tagNameByValue.emplace( 348, FixEncodedIssuerLen );
   tagByName.emplace( FixEncodedIssuerLen, 348 );
+  fieldTypeByValue.emplace( 348, FieldType::LENGTH );
+  fieldTypeNameByValue.emplace( 348, "LENGTH" );
 
   tagNameByRaw.emplace( tag_as_raw<349>(), FixEncodedIssuer );
   tagNameByValue.emplace( 349, FixEncodedIssuer );
   tagByName.emplace( FixEncodedIssuer, 349 );
+  fieldTypeByValue.emplace( 349, FieldType::DATA );
+  fieldTypeNameByValue.emplace( 349, "DATA" );
 
   tagNameByRaw.emplace( tag_as_raw<350>(), FixEncodedSecurityDescLen );
   tagNameByValue.emplace( 350, FixEncodedSecurityDescLen );
   tagByName.emplace( FixEncodedSecurityDescLen, 350 );
+  fieldTypeByValue.emplace( 350, FieldType::LENGTH );
+  fieldTypeNameByValue.emplace( 350, "LENGTH" );
 
   tagNameByRaw.emplace( tag_as_raw<351>(), FixEncodedSecurityDesc );
   tagNameByValue.emplace( 351, FixEncodedSecurityDesc );
   tagByName.emplace( FixEncodedSecurityDesc, 351 );
+  fieldTypeByValue.emplace( 351, FieldType::DATA );
+  fieldTypeNameByValue.emplace( 351, "DATA" );
 
   tagNameByRaw.emplace( tag_as_raw<352>(), FixEncodedListExecInstLen );
   tagNameByValue.emplace( 352, FixEncodedListExecInstLen );
   tagByName.emplace( FixEncodedListExecInstLen, 352 );
+  fieldTypeByValue.emplace( 352, FieldType::LENGTH );
+  fieldTypeNameByValue.emplace( 352, "LENGTH" );
 
   tagNameByRaw.emplace( tag_as_raw<353>(), FixEncodedListExecInst );
   tagNameByValue.emplace( 353, FixEncodedListExecInst );
   tagByName.emplace( FixEncodedListExecInst, 353 );
+  fieldTypeByValue.emplace( 353, FieldType::DATA );
+  fieldTypeNameByValue.emplace( 353, "DATA" );
 
   tagNameByRaw.emplace( tag_as_raw<354>(), FixEncodedTextLen );
   tagNameByValue.emplace( 354, FixEncodedTextLen );
   tagByName.emplace( FixEncodedTextLen, 354 );
+  fieldTypeByValue.emplace( 354, FieldType::LENGTH );
+  fieldTypeNameByValue.emplace( 354, "LENGTH" );
 
   tagNameByRaw.emplace( tag_as_raw<355>(), FixEncodedText );
   tagNameByValue.emplace( 355, FixEncodedText );
   tagByName.emplace( FixEncodedText, 355 );
+  fieldTypeByValue.emplace( 355, FieldType::DATA );
+  fieldTypeNameByValue.emplace( 355, "DATA" );
 
   tagNameByRaw.emplace( tag_as_raw<356>(), FixEncodedSubjectLen );
   tagNameByValue.emplace( 356, FixEncodedSubjectLen );
   tagByName.emplace( FixEncodedSubjectLen, 356 );
+  fieldTypeByValue.emplace( 356, FieldType::LENGTH );
+  fieldTypeNameByValue.emplace( 356, "LENGTH" );
 
   tagNameByRaw.emplace( tag_as_raw<357>(), FixEncodedSubject );
   tagNameByValue.emplace( 357, FixEncodedSubject );
   tagByName.emplace( FixEncodedSubject, 357 );
+  fieldTypeByValue.emplace( 357, FieldType::DATA );
+  fieldTypeNameByValue.emplace( 357, "DATA" );
 
   tagNameByRaw.emplace( tag_as_raw<358>(), FixEncodedHeadlineLen );
   tagNameByValue.emplace( 358, FixEncodedHeadlineLen );
   tagByName.emplace( FixEncodedHeadlineLen, 358 );
+  fieldTypeByValue.emplace( 358, FieldType::LENGTH );
+  fieldTypeNameByValue.emplace( 358, "LENGTH" );
 
   tagNameByRaw.emplace( tag_as_raw<359>(), FixEncodedHeadline );
   tagNameByValue.emplace( 359, FixEncodedHeadline );
   tagByName.emplace( FixEncodedHeadline, 359 );
+  fieldTypeByValue.emplace( 359, FieldType::DATA );
+  fieldTypeNameByValue.emplace( 359, "DATA" );
 
   tagNameByRaw.emplace( tag_as_raw<360>(), FixEncodedAllocTextLen );
   tagNameByValue.emplace( 360, FixEncodedAllocTextLen );
   tagByName.emplace( FixEncodedAllocTextLen, 360 );
+  fieldTypeByValue.emplace( 360, FieldType::LENGTH );
+  fieldTypeNameByValue.emplace( 360, "LENGTH" );
 
   tagNameByRaw.emplace( tag_as_raw<361>(), FixEncodedAllocText );
   tagNameByValue.emplace( 361, FixEncodedAllocText );
   tagByName.emplace( FixEncodedAllocText, 361 );
+  fieldTypeByValue.emplace( 361, FieldType::DATA );
+  fieldTypeNameByValue.emplace( 361, "DATA" );
 
   tagNameByRaw.emplace( tag_as_raw<362>(), FixEncodedUnderlyingIssuerLen );
   tagNameByValue.emplace( 362, FixEncodedUnderlyingIssuerLen );
   tagByName.emplace( FixEncodedUnderlyingIssuerLen, 362 );
+  fieldTypeByValue.emplace( 362, FieldType::LENGTH );
+  fieldTypeNameByValue.emplace( 362, "LENGTH" );
 
   tagNameByRaw.emplace( tag_as_raw<363>(), FixEncodedUnderlyingIssuer );
   tagNameByValue.emplace( 363, FixEncodedUnderlyingIssuer );
   tagByName.emplace( FixEncodedUnderlyingIssuer, 363 );
+  fieldTypeByValue.emplace( 363, FieldType::DATA );
+  fieldTypeNameByValue.emplace( 363, "DATA" );
 
   tagNameByRaw.emplace( tag_as_raw<364>(), FixEncodedUnderlyingSecurityDescLen );
   tagNameByValue.emplace( 364, FixEncodedUnderlyingSecurityDescLen );
   tagByName.emplace( FixEncodedUnderlyingSecurityDescLen, 364 );
+  fieldTypeByValue.emplace( 364, FieldType::LENGTH );
+  fieldTypeNameByValue.emplace( 364, "LENGTH" );
 
   tagNameByRaw.emplace( tag_as_raw<365>(), FixEncodedUnderlyingSecurityDesc );
   tagNameByValue.emplace( 365, FixEncodedUnderlyingSecurityDesc );
   tagByName.emplace( FixEncodedUnderlyingSecurityDesc, 365 );
+  fieldTypeByValue.emplace( 365, FieldType::DATA );
+  fieldTypeNameByValue.emplace( 365, "DATA" );
 
   tagNameByRaw.emplace( tag_as_raw<366>(), FixAllocPrice );
   tagNameByValue.emplace( 366, FixAllocPrice );
   tagByName.emplace( FixAllocPrice, 366 );
+  fieldTypeByValue.emplace( 366, FieldType::PRICE );
+  fieldTypeNameByValue.emplace( 366, "PRICE" );
 
   tagNameByRaw.emplace( tag_as_raw<367>(), FixQuoteSetValidUntilTime );
   tagNameByValue.emplace( 367, FixQuoteSetValidUntilTime );
   tagByName.emplace( FixQuoteSetValidUntilTime, 367 );
+  fieldTypeByValue.emplace( 367, FieldType::UTCTIMESTAMP );
+  fieldTypeNameByValue.emplace( 367, "UTCTIMESTAMP" );
 
   tagNameByRaw.emplace( tag_as_raw<368>(), FixQuoteEntryRejectReason );
   tagNameByValue.emplace( 368, FixQuoteEntryRejectReason );
   tagByName.emplace( FixQuoteEntryRejectReason, 368 );
+  fieldTypeByValue.emplace( 368, FieldType::INT );
+  fieldTypeNameByValue.emplace( 368, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<369>(), FixLastMsgSeqNumProcessed );
   tagNameByValue.emplace( 369, FixLastMsgSeqNumProcessed );
   tagByName.emplace( FixLastMsgSeqNumProcessed, 369 );
+  fieldTypeByValue.emplace( 369, FieldType::SEQNUM );
+  fieldTypeNameByValue.emplace( 369, "SEQNUM" );
 
   tagNameByRaw.emplace( tag_as_raw<371>(), FixRefTagID );
   tagNameByValue.emplace( 371, FixRefTagID );
   tagByName.emplace( FixRefTagID, 371 );
+  fieldTypeByValue.emplace( 371, FieldType::INT );
+  fieldTypeNameByValue.emplace( 371, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<372>(), FixRefMsgType );
   tagNameByValue.emplace( 372, FixRefMsgType );
   tagByName.emplace( FixRefMsgType, 372 );
+  fieldTypeByValue.emplace( 372, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 372, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<373>(), FixSessionRejectReason );
   tagNameByValue.emplace( 373, FixSessionRejectReason );
   tagByName.emplace( FixSessionRejectReason, 373 );
+  fieldTypeByValue.emplace( 373, FieldType::INT );
+  fieldTypeNameByValue.emplace( 373, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<374>(), FixBidRequestTransType );
   tagNameByValue.emplace( 374, FixBidRequestTransType );
   tagByName.emplace( FixBidRequestTransType, 374 );
+  fieldTypeByValue.emplace( 374, FieldType::CHAR );
+  fieldTypeNameByValue.emplace( 374, "CHAR" );
 
   tagNameByRaw.emplace( tag_as_raw<375>(), FixContraBroker );
   tagNameByValue.emplace( 375, FixContraBroker );
   tagByName.emplace( FixContraBroker, 375 );
+  fieldTypeByValue.emplace( 375, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 375, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<376>(), FixComplianceID );
   tagNameByValue.emplace( 376, FixComplianceID );
   tagByName.emplace( FixComplianceID, 376 );
+  fieldTypeByValue.emplace( 376, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 376, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<377>(), FixSolicitedFlag );
   tagNameByValue.emplace( 377, FixSolicitedFlag );
   tagByName.emplace( FixSolicitedFlag, 377 );
+  fieldTypeByValue.emplace( 377, FieldType::BOOLEAN );
+  fieldTypeNameByValue.emplace( 377, "BOOLEAN" );
 
   tagNameByRaw.emplace( tag_as_raw<378>(), FixExecRestatementReason );
   tagNameByValue.emplace( 378, FixExecRestatementReason );
   tagByName.emplace( FixExecRestatementReason, 378 );
+  fieldTypeByValue.emplace( 378, FieldType::INT );
+  fieldTypeNameByValue.emplace( 378, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<379>(), FixBusinessRejectRefID );
   tagNameByValue.emplace( 379, FixBusinessRejectRefID );
   tagByName.emplace( FixBusinessRejectRefID, 379 );
+  fieldTypeByValue.emplace( 379, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 379, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<380>(), FixBusinessRejectReason );
   tagNameByValue.emplace( 380, FixBusinessRejectReason );
   tagByName.emplace( FixBusinessRejectReason, 380 );
+  fieldTypeByValue.emplace( 380, FieldType::INT );
+  fieldTypeNameByValue.emplace( 380, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<381>(), FixGrossTradeAmt );
   tagNameByValue.emplace( 381, FixGrossTradeAmt );
   tagByName.emplace( FixGrossTradeAmt, 381 );
+  fieldTypeByValue.emplace( 381, FieldType::AMT );
+  fieldTypeNameByValue.emplace( 381, "AMT" );
 
   tagNameByRaw.emplace( tag_as_raw<382>(), FixNoContraBrokers );
   tagNameByValue.emplace( 382, FixNoContraBrokers );
   tagByName.emplace( FixNoContraBrokers, 382 );
+  fieldTypeByValue.emplace( 382, FieldType::NUMINGROUP );
+  fieldTypeNameByValue.emplace( 382, "NUMINGROUP" );
 
   tagNameByRaw.emplace( tag_as_raw<383>(), FixMaxMessageSize );
   tagNameByValue.emplace( 383, FixMaxMessageSize );
   tagByName.emplace( FixMaxMessageSize, 383 );
+  fieldTypeByValue.emplace( 383, FieldType::LENGTH );
+  fieldTypeNameByValue.emplace( 383, "LENGTH" );
 
   tagNameByRaw.emplace( tag_as_raw<384>(), FixNoMsgTypes );
   tagNameByValue.emplace( 384, FixNoMsgTypes );
   tagByName.emplace( FixNoMsgTypes, 384 );
+  fieldTypeByValue.emplace( 384, FieldType::NUMINGROUP );
+  fieldTypeNameByValue.emplace( 384, "NUMINGROUP" );
 
   tagNameByRaw.emplace( tag_as_raw<385>(), FixMsgDirection );
   tagNameByValue.emplace( 385, FixMsgDirection );
   tagByName.emplace( FixMsgDirection, 385 );
+  fieldTypeByValue.emplace( 385, FieldType::CHAR );
+  fieldTypeNameByValue.emplace( 385, "CHAR" );
 
   tagNameByRaw.emplace( tag_as_raw<386>(), FixNoTradingSessions );
   tagNameByValue.emplace( 386, FixNoTradingSessions );
   tagByName.emplace( FixNoTradingSessions, 386 );
+  fieldTypeByValue.emplace( 386, FieldType::NUMINGROUP );
+  fieldTypeNameByValue.emplace( 386, "NUMINGROUP" );
 
   tagNameByRaw.emplace( tag_as_raw<387>(), FixTotalVolumeTraded );
   tagNameByValue.emplace( 387, FixTotalVolumeTraded );
   tagByName.emplace( FixTotalVolumeTraded, 387 );
+  fieldTypeByValue.emplace( 387, FieldType::QTY );
+  fieldTypeNameByValue.emplace( 387, "QTY" );
 
   tagNameByRaw.emplace( tag_as_raw<388>(), FixDiscretionInst );
   tagNameByValue.emplace( 388, FixDiscretionInst );
   tagByName.emplace( FixDiscretionInst, 388 );
+  fieldTypeByValue.emplace( 388, FieldType::CHAR );
+  fieldTypeNameByValue.emplace( 388, "CHAR" );
 
   tagNameByRaw.emplace( tag_as_raw<389>(), FixDiscretionOffsetValue );
   tagNameByValue.emplace( 389, FixDiscretionOffsetValue );
   tagByName.emplace( FixDiscretionOffsetValue, 389 );
+  fieldTypeByValue.emplace( 389, FieldType::FLOAT );
+  fieldTypeNameByValue.emplace( 389, "FLOAT" );
 
   tagNameByRaw.emplace( tag_as_raw<390>(), FixBidID );
   tagNameByValue.emplace( 390, FixBidID );
   tagByName.emplace( FixBidID, 390 );
+  fieldTypeByValue.emplace( 390, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 390, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<391>(), FixClientBidID );
   tagNameByValue.emplace( 391, FixClientBidID );
   tagByName.emplace( FixClientBidID, 391 );
+  fieldTypeByValue.emplace( 391, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 391, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<392>(), FixListName );
   tagNameByValue.emplace( 392, FixListName );
   tagByName.emplace( FixListName, 392 );
+  fieldTypeByValue.emplace( 392, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 392, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<393>(), FixTotNoRelatedSym );
   tagNameByValue.emplace( 393, FixTotNoRelatedSym );
   tagByName.emplace( FixTotNoRelatedSym, 393 );
+  fieldTypeByValue.emplace( 393, FieldType::INT );
+  fieldTypeNameByValue.emplace( 393, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<394>(), FixBidType );
   tagNameByValue.emplace( 394, FixBidType );
   tagByName.emplace( FixBidType, 394 );
+  fieldTypeByValue.emplace( 394, FieldType::INT );
+  fieldTypeNameByValue.emplace( 394, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<395>(), FixNumTickets );
   tagNameByValue.emplace( 395, FixNumTickets );
   tagByName.emplace( FixNumTickets, 395 );
+  fieldTypeByValue.emplace( 395, FieldType::INT );
+  fieldTypeNameByValue.emplace( 395, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<396>(), FixSideValue1 );
   tagNameByValue.emplace( 396, FixSideValue1 );
   tagByName.emplace( FixSideValue1, 396 );
+  fieldTypeByValue.emplace( 396, FieldType::AMT );
+  fieldTypeNameByValue.emplace( 396, "AMT" );
 
   tagNameByRaw.emplace( tag_as_raw<397>(), FixSideValue2 );
   tagNameByValue.emplace( 397, FixSideValue2 );
   tagByName.emplace( FixSideValue2, 397 );
+  fieldTypeByValue.emplace( 397, FieldType::AMT );
+  fieldTypeNameByValue.emplace( 397, "AMT" );
 
   tagNameByRaw.emplace( tag_as_raw<398>(), FixNoBidDescriptors );
   tagNameByValue.emplace( 398, FixNoBidDescriptors );
   tagByName.emplace( FixNoBidDescriptors, 398 );
+  fieldTypeByValue.emplace( 398, FieldType::NUMINGROUP );
+  fieldTypeNameByValue.emplace( 398, "NUMINGROUP" );
 
   tagNameByRaw.emplace( tag_as_raw<399>(), FixBidDescriptorType );
   tagNameByValue.emplace( 399, FixBidDescriptorType );
   tagByName.emplace( FixBidDescriptorType, 399 );
+  fieldTypeByValue.emplace( 399, FieldType::INT );
+  fieldTypeNameByValue.emplace( 399, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<400>(), FixBidDescriptor );
   tagNameByValue.emplace( 400, FixBidDescriptor );
   tagByName.emplace( FixBidDescriptor, 400 );
+  fieldTypeByValue.emplace( 400, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 400, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<401>(), FixSideValueInd );
   tagNameByValue.emplace( 401, FixSideValueInd );
   tagByName.emplace( FixSideValueInd, 401 );
+  fieldTypeByValue.emplace( 401, FieldType::INT );
+  fieldTypeNameByValue.emplace( 401, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<402>(), FixLiquidityPctLow );
   tagNameByValue.emplace( 402, FixLiquidityPctLow );
   tagByName.emplace( FixLiquidityPctLow, 402 );
+  fieldTypeByValue.emplace( 402, FieldType::PERCENTAGE );
+  fieldTypeNameByValue.emplace( 402, "PERCENTAGE" );
 
   tagNameByRaw.emplace( tag_as_raw<403>(), FixLiquidityPctHigh );
   tagNameByValue.emplace( 403, FixLiquidityPctHigh );
   tagByName.emplace( FixLiquidityPctHigh, 403 );
+  fieldTypeByValue.emplace( 403, FieldType::PERCENTAGE );
+  fieldTypeNameByValue.emplace( 403, "PERCENTAGE" );
 
   tagNameByRaw.emplace( tag_as_raw<404>(), FixLiquidityValue );
   tagNameByValue.emplace( 404, FixLiquidityValue );
   tagByName.emplace( FixLiquidityValue, 404 );
+  fieldTypeByValue.emplace( 404, FieldType::AMT );
+  fieldTypeNameByValue.emplace( 404, "AMT" );
 
   tagNameByRaw.emplace( tag_as_raw<405>(), FixEFPTrackingError );
   tagNameByValue.emplace( 405, FixEFPTrackingError );
   tagByName.emplace( FixEFPTrackingError, 405 );
+  fieldTypeByValue.emplace( 405, FieldType::PERCENTAGE );
+  fieldTypeNameByValue.emplace( 405, "PERCENTAGE" );
 
   tagNameByRaw.emplace( tag_as_raw<406>(), FixFairValue );
   tagNameByValue.emplace( 406, FixFairValue );
   tagByName.emplace( FixFairValue, 406 );
+  fieldTypeByValue.emplace( 406, FieldType::AMT );
+  fieldTypeNameByValue.emplace( 406, "AMT" );
 
   tagNameByRaw.emplace( tag_as_raw<407>(), FixOutsideIndexPct );
   tagNameByValue.emplace( 407, FixOutsideIndexPct );
   tagByName.emplace( FixOutsideIndexPct, 407 );
+  fieldTypeByValue.emplace( 407, FieldType::PERCENTAGE );
+  fieldTypeNameByValue.emplace( 407, "PERCENTAGE" );
 
   tagNameByRaw.emplace( tag_as_raw<408>(), FixValueOfFutures );
   tagNameByValue.emplace( 408, FixValueOfFutures );
   tagByName.emplace( FixValueOfFutures, 408 );
+  fieldTypeByValue.emplace( 408, FieldType::AMT );
+  fieldTypeNameByValue.emplace( 408, "AMT" );
 
   tagNameByRaw.emplace( tag_as_raw<409>(), FixLiquidityIndType );
   tagNameByValue.emplace( 409, FixLiquidityIndType );
   tagByName.emplace( FixLiquidityIndType, 409 );
+  fieldTypeByValue.emplace( 409, FieldType::INT );
+  fieldTypeNameByValue.emplace( 409, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<410>(), FixWtAverageLiquidity );
   tagNameByValue.emplace( 410, FixWtAverageLiquidity );
   tagByName.emplace( FixWtAverageLiquidity, 410 );
+  fieldTypeByValue.emplace( 410, FieldType::PERCENTAGE );
+  fieldTypeNameByValue.emplace( 410, "PERCENTAGE" );
 
   tagNameByRaw.emplace( tag_as_raw<411>(), FixExchangeForPhysical );
   tagNameByValue.emplace( 411, FixExchangeForPhysical );
   tagByName.emplace( FixExchangeForPhysical, 411 );
+  fieldTypeByValue.emplace( 411, FieldType::BOOLEAN );
+  fieldTypeNameByValue.emplace( 411, "BOOLEAN" );
 
   tagNameByRaw.emplace( tag_as_raw<412>(), FixOutMainCntryUIndex );
   tagNameByValue.emplace( 412, FixOutMainCntryUIndex );
   tagByName.emplace( FixOutMainCntryUIndex, 412 );
+  fieldTypeByValue.emplace( 412, FieldType::AMT );
+  fieldTypeNameByValue.emplace( 412, "AMT" );
 
   tagNameByRaw.emplace( tag_as_raw<413>(), FixCrossPercent );
   tagNameByValue.emplace( 413, FixCrossPercent );
   tagByName.emplace( FixCrossPercent, 413 );
+  fieldTypeByValue.emplace( 413, FieldType::PERCENTAGE );
+  fieldTypeNameByValue.emplace( 413, "PERCENTAGE" );
 
   tagNameByRaw.emplace( tag_as_raw<414>(), FixProgRptReqs );
   tagNameByValue.emplace( 414, FixProgRptReqs );
   tagByName.emplace( FixProgRptReqs, 414 );
+  fieldTypeByValue.emplace( 414, FieldType::INT );
+  fieldTypeNameByValue.emplace( 414, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<415>(), FixProgPeriodInterval );
   tagNameByValue.emplace( 415, FixProgPeriodInterval );
   tagByName.emplace( FixProgPeriodInterval, 415 );
+  fieldTypeByValue.emplace( 415, FieldType::INT );
+  fieldTypeNameByValue.emplace( 415, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<416>(), FixIncTaxInd );
   tagNameByValue.emplace( 416, FixIncTaxInd );
   tagByName.emplace( FixIncTaxInd, 416 );
+  fieldTypeByValue.emplace( 416, FieldType::INT );
+  fieldTypeNameByValue.emplace( 416, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<417>(), FixNumBidders );
   tagNameByValue.emplace( 417, FixNumBidders );
   tagByName.emplace( FixNumBidders, 417 );
+  fieldTypeByValue.emplace( 417, FieldType::INT );
+  fieldTypeNameByValue.emplace( 417, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<418>(), FixBidTradeType );
   tagNameByValue.emplace( 418, FixBidTradeType );
   tagByName.emplace( FixBidTradeType, 418 );
+  fieldTypeByValue.emplace( 418, FieldType::CHAR );
+  fieldTypeNameByValue.emplace( 418, "CHAR" );
 
   tagNameByRaw.emplace( tag_as_raw<419>(), FixBasisPxType );
   tagNameByValue.emplace( 419, FixBasisPxType );
   tagByName.emplace( FixBasisPxType, 419 );
+  fieldTypeByValue.emplace( 419, FieldType::CHAR );
+  fieldTypeNameByValue.emplace( 419, "CHAR" );
 
   tagNameByRaw.emplace( tag_as_raw<420>(), FixNoBidComponents );
   tagNameByValue.emplace( 420, FixNoBidComponents );
   tagByName.emplace( FixNoBidComponents, 420 );
+  fieldTypeByValue.emplace( 420, FieldType::NUMINGROUP );
+  fieldTypeNameByValue.emplace( 420, "NUMINGROUP" );
 
   tagNameByRaw.emplace( tag_as_raw<421>(), FixCountry );
   tagNameByValue.emplace( 421, FixCountry );
   tagByName.emplace( FixCountry, 421 );
+  fieldTypeByValue.emplace( 421, FieldType::COUNTRY );
+  fieldTypeNameByValue.emplace( 421, "COUNTRY" );
 
   tagNameByRaw.emplace( tag_as_raw<422>(), FixTotNoStrikes );
   tagNameByValue.emplace( 422, FixTotNoStrikes );
   tagByName.emplace( FixTotNoStrikes, 422 );
+  fieldTypeByValue.emplace( 422, FieldType::INT );
+  fieldTypeNameByValue.emplace( 422, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<423>(), FixPriceType );
   tagNameByValue.emplace( 423, FixPriceType );
   tagByName.emplace( FixPriceType, 423 );
+  fieldTypeByValue.emplace( 423, FieldType::INT );
+  fieldTypeNameByValue.emplace( 423, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<424>(), FixDayOrderQty );
   tagNameByValue.emplace( 424, FixDayOrderQty );
   tagByName.emplace( FixDayOrderQty, 424 );
+  fieldTypeByValue.emplace( 424, FieldType::QTY );
+  fieldTypeNameByValue.emplace( 424, "QTY" );
 
   tagNameByRaw.emplace( tag_as_raw<425>(), FixDayCumQty );
   tagNameByValue.emplace( 425, FixDayCumQty );
   tagByName.emplace( FixDayCumQty, 425 );
+  fieldTypeByValue.emplace( 425, FieldType::QTY );
+  fieldTypeNameByValue.emplace( 425, "QTY" );
 
   tagNameByRaw.emplace( tag_as_raw<426>(), FixDayAvgPx );
   tagNameByValue.emplace( 426, FixDayAvgPx );
   tagByName.emplace( FixDayAvgPx, 426 );
+  fieldTypeByValue.emplace( 426, FieldType::PRICE );
+  fieldTypeNameByValue.emplace( 426, "PRICE" );
 
   tagNameByRaw.emplace( tag_as_raw<427>(), FixGTBookingInst );
   tagNameByValue.emplace( 427, FixGTBookingInst );
   tagByName.emplace( FixGTBookingInst, 427 );
+  fieldTypeByValue.emplace( 427, FieldType::INT );
+  fieldTypeNameByValue.emplace( 427, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<428>(), FixNoStrikes );
   tagNameByValue.emplace( 428, FixNoStrikes );
   tagByName.emplace( FixNoStrikes, 428 );
+  fieldTypeByValue.emplace( 428, FieldType::NUMINGROUP );
+  fieldTypeNameByValue.emplace( 428, "NUMINGROUP" );
 
   tagNameByRaw.emplace( tag_as_raw<429>(), FixListStatusType );
   tagNameByValue.emplace( 429, FixListStatusType );
   tagByName.emplace( FixListStatusType, 429 );
+  fieldTypeByValue.emplace( 429, FieldType::INT );
+  fieldTypeNameByValue.emplace( 429, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<430>(), FixNetGrossInd );
   tagNameByValue.emplace( 430, FixNetGrossInd );
   tagByName.emplace( FixNetGrossInd, 430 );
+  fieldTypeByValue.emplace( 430, FieldType::INT );
+  fieldTypeNameByValue.emplace( 430, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<431>(), FixListOrderStatus );
   tagNameByValue.emplace( 431, FixListOrderStatus );
   tagByName.emplace( FixListOrderStatus, 431 );
+  fieldTypeByValue.emplace( 431, FieldType::INT );
+  fieldTypeNameByValue.emplace( 431, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<432>(), FixExpireDate );
   tagNameByValue.emplace( 432, FixExpireDate );
   tagByName.emplace( FixExpireDate, 432 );
+  fieldTypeByValue.emplace( 432, FieldType::LOCALMKTDATE );
+  fieldTypeNameByValue.emplace( 432, "LOCALMKTDATE" );
 
   tagNameByRaw.emplace( tag_as_raw<433>(), FixListExecInstType );
   tagNameByValue.emplace( 433, FixListExecInstType );
   tagByName.emplace( FixListExecInstType, 433 );
+  fieldTypeByValue.emplace( 433, FieldType::CHAR );
+  fieldTypeNameByValue.emplace( 433, "CHAR" );
 
   tagNameByRaw.emplace( tag_as_raw<434>(), FixCxlRejResponseTo );
   tagNameByValue.emplace( 434, FixCxlRejResponseTo );
   tagByName.emplace( FixCxlRejResponseTo, 434 );
+  fieldTypeByValue.emplace( 434, FieldType::CHAR );
+  fieldTypeNameByValue.emplace( 434, "CHAR" );
 
   tagNameByRaw.emplace( tag_as_raw<435>(), FixUnderlyingCouponRate );
   tagNameByValue.emplace( 435, FixUnderlyingCouponRate );
   tagByName.emplace( FixUnderlyingCouponRate, 435 );
+  fieldTypeByValue.emplace( 435, FieldType::PERCENTAGE );
+  fieldTypeNameByValue.emplace( 435, "PERCENTAGE" );
 
   tagNameByRaw.emplace( tag_as_raw<436>(), FixUnderlyingContractMultiplier );
   tagNameByValue.emplace( 436, FixUnderlyingContractMultiplier );
   tagByName.emplace( FixUnderlyingContractMultiplier, 436 );
+  fieldTypeByValue.emplace( 436, FieldType::FLOAT );
+  fieldTypeNameByValue.emplace( 436, "FLOAT" );
 
   tagNameByRaw.emplace( tag_as_raw<437>(), FixContraTradeQty );
   tagNameByValue.emplace( 437, FixContraTradeQty );
   tagByName.emplace( FixContraTradeQty, 437 );
+  fieldTypeByValue.emplace( 437, FieldType::QTY );
+  fieldTypeNameByValue.emplace( 437, "QTY" );
 
   tagNameByRaw.emplace( tag_as_raw<438>(), FixContraTradeTime );
   tagNameByValue.emplace( 438, FixContraTradeTime );
   tagByName.emplace( FixContraTradeTime, 438 );
+  fieldTypeByValue.emplace( 438, FieldType::UTCTIMESTAMP );
+  fieldTypeNameByValue.emplace( 438, "UTCTIMESTAMP" );
 
   tagNameByRaw.emplace( tag_as_raw<441>(), FixLiquidityNumSecurities );
   tagNameByValue.emplace( 441, FixLiquidityNumSecurities );
   tagByName.emplace( FixLiquidityNumSecurities, 441 );
+  fieldTypeByValue.emplace( 441, FieldType::INT );
+  fieldTypeNameByValue.emplace( 441, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<442>(), FixMultiLegReportingType );
   tagNameByValue.emplace( 442, FixMultiLegReportingType );
   tagByName.emplace( FixMultiLegReportingType, 442 );
+  fieldTypeByValue.emplace( 442, FieldType::CHAR );
+  fieldTypeNameByValue.emplace( 442, "CHAR" );
 
   tagNameByRaw.emplace( tag_as_raw<443>(), FixStrikeTime );
   tagNameByValue.emplace( 443, FixStrikeTime );
   tagByName.emplace( FixStrikeTime, 443 );
+  fieldTypeByValue.emplace( 443, FieldType::UTCTIMESTAMP );
+  fieldTypeNameByValue.emplace( 443, "UTCTIMESTAMP" );
 
   tagNameByRaw.emplace( tag_as_raw<444>(), FixListStatusText );
   tagNameByValue.emplace( 444, FixListStatusText );
   tagByName.emplace( FixListStatusText, 444 );
+  fieldTypeByValue.emplace( 444, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 444, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<445>(), FixEncodedListStatusTextLen );
   tagNameByValue.emplace( 445, FixEncodedListStatusTextLen );
   tagByName.emplace( FixEncodedListStatusTextLen, 445 );
+  fieldTypeByValue.emplace( 445, FieldType::LENGTH );
+  fieldTypeNameByValue.emplace( 445, "LENGTH" );
 
   tagNameByRaw.emplace( tag_as_raw<446>(), FixEncodedListStatusText );
   tagNameByValue.emplace( 446, FixEncodedListStatusText );
   tagByName.emplace( FixEncodedListStatusText, 446 );
+  fieldTypeByValue.emplace( 446, FieldType::DATA );
+  fieldTypeNameByValue.emplace( 446, "DATA" );
 
   tagNameByRaw.emplace( tag_as_raw<447>(), FixPartyIDSource );
   tagNameByValue.emplace( 447, FixPartyIDSource );
   tagByName.emplace( FixPartyIDSource, 447 );
+  fieldTypeByValue.emplace( 447, FieldType::CHAR );
+  fieldTypeNameByValue.emplace( 447, "CHAR" );
 
   tagNameByRaw.emplace( tag_as_raw<448>(), FixPartyID );
   tagNameByValue.emplace( 448, FixPartyID );
   tagByName.emplace( FixPartyID, 448 );
+  fieldTypeByValue.emplace( 448, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 448, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<451>(), FixNetChgPrevDay );
   tagNameByValue.emplace( 451, FixNetChgPrevDay );
   tagByName.emplace( FixNetChgPrevDay, 451 );
+  fieldTypeByValue.emplace( 451, FieldType::PRICEOFFSET );
+  fieldTypeNameByValue.emplace( 451, "PRICEOFFSET" );
 
   tagNameByRaw.emplace( tag_as_raw<452>(), FixPartyRole );
   tagNameByValue.emplace( 452, FixPartyRole );
   tagByName.emplace( FixPartyRole, 452 );
+  fieldTypeByValue.emplace( 452, FieldType::INT );
+  fieldTypeNameByValue.emplace( 452, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<453>(), FixNoPartyIDs );
   tagNameByValue.emplace( 453, FixNoPartyIDs );
   tagByName.emplace( FixNoPartyIDs, 453 );
+  fieldTypeByValue.emplace( 453, FieldType::NUMINGROUP );
+  fieldTypeNameByValue.emplace( 453, "NUMINGROUP" );
 
   tagNameByRaw.emplace( tag_as_raw<454>(), FixNoSecurityAltID );
   tagNameByValue.emplace( 454, FixNoSecurityAltID );
   tagByName.emplace( FixNoSecurityAltID, 454 );
+  fieldTypeByValue.emplace( 454, FieldType::NUMINGROUP );
+  fieldTypeNameByValue.emplace( 454, "NUMINGROUP" );
 
   tagNameByRaw.emplace( tag_as_raw<455>(), FixSecurityAltID );
   tagNameByValue.emplace( 455, FixSecurityAltID );
   tagByName.emplace( FixSecurityAltID, 455 );
+  fieldTypeByValue.emplace( 455, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 455, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<456>(), FixSecurityAltIDSource );
   tagNameByValue.emplace( 456, FixSecurityAltIDSource );
   tagByName.emplace( FixSecurityAltIDSource, 456 );
+  fieldTypeByValue.emplace( 456, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 456, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<457>(), FixNoUnderlyingSecurityAltID );
   tagNameByValue.emplace( 457, FixNoUnderlyingSecurityAltID );
   tagByName.emplace( FixNoUnderlyingSecurityAltID, 457 );
+  fieldTypeByValue.emplace( 457, FieldType::NUMINGROUP );
+  fieldTypeNameByValue.emplace( 457, "NUMINGROUP" );
 
   tagNameByRaw.emplace( tag_as_raw<458>(), FixUnderlyingSecurityAltID );
   tagNameByValue.emplace( 458, FixUnderlyingSecurityAltID );
   tagByName.emplace( FixUnderlyingSecurityAltID, 458 );
+  fieldTypeByValue.emplace( 458, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 458, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<459>(), FixUnderlyingSecurityAltIDSource );
   tagNameByValue.emplace( 459, FixUnderlyingSecurityAltIDSource );
   tagByName.emplace( FixUnderlyingSecurityAltIDSource, 459 );
+  fieldTypeByValue.emplace( 459, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 459, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<460>(), FixProduct );
   tagNameByValue.emplace( 460, FixProduct );
   tagByName.emplace( FixProduct, 460 );
+  fieldTypeByValue.emplace( 460, FieldType::INT );
+  fieldTypeNameByValue.emplace( 460, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<461>(), FixCFICode );
   tagNameByValue.emplace( 461, FixCFICode );
   tagByName.emplace( FixCFICode, 461 );
+  fieldTypeByValue.emplace( 461, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 461, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<462>(), FixUnderlyingProduct );
   tagNameByValue.emplace( 462, FixUnderlyingProduct );
   tagByName.emplace( FixUnderlyingProduct, 462 );
+  fieldTypeByValue.emplace( 462, FieldType::INT );
+  fieldTypeNameByValue.emplace( 462, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<463>(), FixUnderlyingCFICode );
   tagNameByValue.emplace( 463, FixUnderlyingCFICode );
   tagByName.emplace( FixUnderlyingCFICode, 463 );
+  fieldTypeByValue.emplace( 463, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 463, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<464>(), FixTestMessageIndicator );
   tagNameByValue.emplace( 464, FixTestMessageIndicator );
   tagByName.emplace( FixTestMessageIndicator, 464 );
+  fieldTypeByValue.emplace( 464, FieldType::BOOLEAN );
+  fieldTypeNameByValue.emplace( 464, "BOOLEAN" );
 
   tagNameByRaw.emplace( tag_as_raw<466>(), FixBookingRefID );
   tagNameByValue.emplace( 466, FixBookingRefID );
   tagByName.emplace( FixBookingRefID, 466 );
+  fieldTypeByValue.emplace( 466, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 466, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<467>(), FixIndividualAllocID );
   tagNameByValue.emplace( 467, FixIndividualAllocID );
   tagByName.emplace( FixIndividualAllocID, 467 );
+  fieldTypeByValue.emplace( 467, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 467, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<468>(), FixRoundingDirection );
   tagNameByValue.emplace( 468, FixRoundingDirection );
   tagByName.emplace( FixRoundingDirection, 468 );
+  fieldTypeByValue.emplace( 468, FieldType::CHAR );
+  fieldTypeNameByValue.emplace( 468, "CHAR" );
 
   tagNameByRaw.emplace( tag_as_raw<469>(), FixRoundingModulus );
   tagNameByValue.emplace( 469, FixRoundingModulus );
   tagByName.emplace( FixRoundingModulus, 469 );
+  fieldTypeByValue.emplace( 469, FieldType::FLOAT );
+  fieldTypeNameByValue.emplace( 469, "FLOAT" );
 
   tagNameByRaw.emplace( tag_as_raw<470>(), FixCountryOfIssue );
   tagNameByValue.emplace( 470, FixCountryOfIssue );
   tagByName.emplace( FixCountryOfIssue, 470 );
+  fieldTypeByValue.emplace( 470, FieldType::COUNTRY );
+  fieldTypeNameByValue.emplace( 470, "COUNTRY" );
 
   tagNameByRaw.emplace( tag_as_raw<471>(), FixStateOrProvinceOfIssue );
   tagNameByValue.emplace( 471, FixStateOrProvinceOfIssue );
   tagByName.emplace( FixStateOrProvinceOfIssue, 471 );
+  fieldTypeByValue.emplace( 471, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 471, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<472>(), FixLocaleOfIssue );
   tagNameByValue.emplace( 472, FixLocaleOfIssue );
   tagByName.emplace( FixLocaleOfIssue, 472 );
+  fieldTypeByValue.emplace( 472, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 472, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<473>(), FixNoRegistDtls );
   tagNameByValue.emplace( 473, FixNoRegistDtls );
   tagByName.emplace( FixNoRegistDtls, 473 );
+  fieldTypeByValue.emplace( 473, FieldType::NUMINGROUP );
+  fieldTypeNameByValue.emplace( 473, "NUMINGROUP" );
 
   tagNameByRaw.emplace( tag_as_raw<474>(), FixMailingDtls );
   tagNameByValue.emplace( 474, FixMailingDtls );
   tagByName.emplace( FixMailingDtls, 474 );
+  fieldTypeByValue.emplace( 474, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 474, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<475>(), FixInvestorCountryOfResidence );
   tagNameByValue.emplace( 475, FixInvestorCountryOfResidence );
   tagByName.emplace( FixInvestorCountryOfResidence, 475 );
+  fieldTypeByValue.emplace( 475, FieldType::COUNTRY );
+  fieldTypeNameByValue.emplace( 475, "COUNTRY" );
 
   tagNameByRaw.emplace( tag_as_raw<476>(), FixPaymentRef );
   tagNameByValue.emplace( 476, FixPaymentRef );
   tagByName.emplace( FixPaymentRef, 476 );
+  fieldTypeByValue.emplace( 476, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 476, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<477>(), FixDistribPaymentMethod );
   tagNameByValue.emplace( 477, FixDistribPaymentMethod );
   tagByName.emplace( FixDistribPaymentMethod, 477 );
+  fieldTypeByValue.emplace( 477, FieldType::INT );
+  fieldTypeNameByValue.emplace( 477, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<478>(), FixCashDistribCurr );
   tagNameByValue.emplace( 478, FixCashDistribCurr );
   tagByName.emplace( FixCashDistribCurr, 478 );
+  fieldTypeByValue.emplace( 478, FieldType::CURRENCY );
+  fieldTypeNameByValue.emplace( 478, "CURRENCY" );
 
   tagNameByRaw.emplace( tag_as_raw<479>(), FixCommCurrency );
   tagNameByValue.emplace( 479, FixCommCurrency );
   tagByName.emplace( FixCommCurrency, 479 );
+  fieldTypeByValue.emplace( 479, FieldType::CURRENCY );
+  fieldTypeNameByValue.emplace( 479, "CURRENCY" );
 
   tagNameByRaw.emplace( tag_as_raw<480>(), FixCancellationRights );
   tagNameByValue.emplace( 480, FixCancellationRights );
   tagByName.emplace( FixCancellationRights, 480 );
+  fieldTypeByValue.emplace( 480, FieldType::CHAR );
+  fieldTypeNameByValue.emplace( 480, "CHAR" );
 
   tagNameByRaw.emplace( tag_as_raw<481>(), FixMoneyLaunderingStatus );
   tagNameByValue.emplace( 481, FixMoneyLaunderingStatus );
   tagByName.emplace( FixMoneyLaunderingStatus, 481 );
+  fieldTypeByValue.emplace( 481, FieldType::CHAR );
+  fieldTypeNameByValue.emplace( 481, "CHAR" );
 
   tagNameByRaw.emplace( tag_as_raw<482>(), FixMailingInst );
   tagNameByValue.emplace( 482, FixMailingInst );
   tagByName.emplace( FixMailingInst, 482 );
+  fieldTypeByValue.emplace( 482, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 482, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<483>(), FixTransBkdTime );
   tagNameByValue.emplace( 483, FixTransBkdTime );
   tagByName.emplace( FixTransBkdTime, 483 );
+  fieldTypeByValue.emplace( 483, FieldType::UTCTIMESTAMP );
+  fieldTypeNameByValue.emplace( 483, "UTCTIMESTAMP" );
 
   tagNameByRaw.emplace( tag_as_raw<484>(), FixExecPriceType );
   tagNameByValue.emplace( 484, FixExecPriceType );
   tagByName.emplace( FixExecPriceType, 484 );
+  fieldTypeByValue.emplace( 484, FieldType::CHAR );
+  fieldTypeNameByValue.emplace( 484, "CHAR" );
 
   tagNameByRaw.emplace( tag_as_raw<485>(), FixExecPriceAdjustment );
   tagNameByValue.emplace( 485, FixExecPriceAdjustment );
   tagByName.emplace( FixExecPriceAdjustment, 485 );
+  fieldTypeByValue.emplace( 485, FieldType::FLOAT );
+  fieldTypeNameByValue.emplace( 485, "FLOAT" );
 
   tagNameByRaw.emplace( tag_as_raw<486>(), FixDateOfBirth );
   tagNameByValue.emplace( 486, FixDateOfBirth );
   tagByName.emplace( FixDateOfBirth, 486 );
+  fieldTypeByValue.emplace( 486, FieldType::LOCALMKTDATE );
+  fieldTypeNameByValue.emplace( 486, "LOCALMKTDATE" );
 
   tagNameByRaw.emplace( tag_as_raw<487>(), FixTradeReportTransType );
   tagNameByValue.emplace( 487, FixTradeReportTransType );
   tagByName.emplace( FixTradeReportTransType, 487 );
+  fieldTypeByValue.emplace( 487, FieldType::INT );
+  fieldTypeNameByValue.emplace( 487, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<488>(), FixCardHolderName );
   tagNameByValue.emplace( 488, FixCardHolderName );
   tagByName.emplace( FixCardHolderName, 488 );
+  fieldTypeByValue.emplace( 488, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 488, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<489>(), FixCardNumber );
   tagNameByValue.emplace( 489, FixCardNumber );
   tagByName.emplace( FixCardNumber, 489 );
+  fieldTypeByValue.emplace( 489, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 489, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<490>(), FixCardExpDate );
   tagNameByValue.emplace( 490, FixCardExpDate );
   tagByName.emplace( FixCardExpDate, 490 );
+  fieldTypeByValue.emplace( 490, FieldType::LOCALMKTDATE );
+  fieldTypeNameByValue.emplace( 490, "LOCALMKTDATE" );
 
   tagNameByRaw.emplace( tag_as_raw<491>(), FixCardIssNum );
   tagNameByValue.emplace( 491, FixCardIssNum );
   tagByName.emplace( FixCardIssNum, 491 );
+  fieldTypeByValue.emplace( 491, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 491, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<492>(), FixPaymentMethod );
   tagNameByValue.emplace( 492, FixPaymentMethod );
   tagByName.emplace( FixPaymentMethod, 492 );
+  fieldTypeByValue.emplace( 492, FieldType::INT );
+  fieldTypeNameByValue.emplace( 492, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<493>(), FixRegistAcctType );
   tagNameByValue.emplace( 493, FixRegistAcctType );
   tagByName.emplace( FixRegistAcctType, 493 );
+  fieldTypeByValue.emplace( 493, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 493, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<494>(), FixDesignation );
   tagNameByValue.emplace( 494, FixDesignation );
   tagByName.emplace( FixDesignation, 494 );
+  fieldTypeByValue.emplace( 494, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 494, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<495>(), FixTaxAdvantageType );
   tagNameByValue.emplace( 495, FixTaxAdvantageType );
   tagByName.emplace( FixTaxAdvantageType, 495 );
+  fieldTypeByValue.emplace( 495, FieldType::INT );
+  fieldTypeNameByValue.emplace( 495, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<496>(), FixRegistRejReasonText );
   tagNameByValue.emplace( 496, FixRegistRejReasonText );
   tagByName.emplace( FixRegistRejReasonText, 496 );
+  fieldTypeByValue.emplace( 496, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 496, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<497>(), FixFundRenewWaiv );
   tagNameByValue.emplace( 497, FixFundRenewWaiv );
   tagByName.emplace( FixFundRenewWaiv, 497 );
+  fieldTypeByValue.emplace( 497, FieldType::CHAR );
+  fieldTypeNameByValue.emplace( 497, "CHAR" );
 
   tagNameByRaw.emplace( tag_as_raw<498>(), FixCashDistribAgentName );
   tagNameByValue.emplace( 498, FixCashDistribAgentName );
   tagByName.emplace( FixCashDistribAgentName, 498 );
+  fieldTypeByValue.emplace( 498, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 498, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<499>(), FixCashDistribAgentCode );
   tagNameByValue.emplace( 499, FixCashDistribAgentCode );
   tagByName.emplace( FixCashDistribAgentCode, 499 );
+  fieldTypeByValue.emplace( 499, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 499, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<500>(), FixCashDistribAgentAcctNumber );
   tagNameByValue.emplace( 500, FixCashDistribAgentAcctNumber );
   tagByName.emplace( FixCashDistribAgentAcctNumber, 500 );
+  fieldTypeByValue.emplace( 500, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 500, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<501>(), FixCashDistribPayRef );
   tagNameByValue.emplace( 501, FixCashDistribPayRef );
   tagByName.emplace( FixCashDistribPayRef, 501 );
+  fieldTypeByValue.emplace( 501, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 501, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<502>(), FixCashDistribAgentAcctName );
   tagNameByValue.emplace( 502, FixCashDistribAgentAcctName );
   tagByName.emplace( FixCashDistribAgentAcctName, 502 );
+  fieldTypeByValue.emplace( 502, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 502, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<503>(), FixCardStartDate );
   tagNameByValue.emplace( 503, FixCardStartDate );
   tagByName.emplace( FixCardStartDate, 503 );
+  fieldTypeByValue.emplace( 503, FieldType::LOCALMKTDATE );
+  fieldTypeNameByValue.emplace( 503, "LOCALMKTDATE" );
 
   tagNameByRaw.emplace( tag_as_raw<504>(), FixPaymentDate );
   tagNameByValue.emplace( 504, FixPaymentDate );
   tagByName.emplace( FixPaymentDate, 504 );
+  fieldTypeByValue.emplace( 504, FieldType::LOCALMKTDATE );
+  fieldTypeNameByValue.emplace( 504, "LOCALMKTDATE" );
 
   tagNameByRaw.emplace( tag_as_raw<505>(), FixPaymentRemitterID );
   tagNameByValue.emplace( 505, FixPaymentRemitterID );
   tagByName.emplace( FixPaymentRemitterID, 505 );
+  fieldTypeByValue.emplace( 505, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 505, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<506>(), FixRegistStatus );
   tagNameByValue.emplace( 506, FixRegistStatus );
   tagByName.emplace( FixRegistStatus, 506 );
+  fieldTypeByValue.emplace( 506, FieldType::CHAR );
+  fieldTypeNameByValue.emplace( 506, "CHAR" );
 
   tagNameByRaw.emplace( tag_as_raw<507>(), FixRegistRejReasonCode );
   tagNameByValue.emplace( 507, FixRegistRejReasonCode );
   tagByName.emplace( FixRegistRejReasonCode, 507 );
+  fieldTypeByValue.emplace( 507, FieldType::INT );
+  fieldTypeNameByValue.emplace( 507, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<508>(), FixRegistRefID );
   tagNameByValue.emplace( 508, FixRegistRefID );
   tagByName.emplace( FixRegistRefID, 508 );
+  fieldTypeByValue.emplace( 508, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 508, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<509>(), FixRegistDtls );
   tagNameByValue.emplace( 509, FixRegistDtls );
   tagByName.emplace( FixRegistDtls, 509 );
+  fieldTypeByValue.emplace( 509, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 509, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<510>(), FixNoDistribInsts );
   tagNameByValue.emplace( 510, FixNoDistribInsts );
   tagByName.emplace( FixNoDistribInsts, 510 );
+  fieldTypeByValue.emplace( 510, FieldType::NUMINGROUP );
+  fieldTypeNameByValue.emplace( 510, "NUMINGROUP" );
 
   tagNameByRaw.emplace( tag_as_raw<511>(), FixRegistEmail );
   tagNameByValue.emplace( 511, FixRegistEmail );
   tagByName.emplace( FixRegistEmail, 511 );
+  fieldTypeByValue.emplace( 511, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 511, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<512>(), FixDistribPercentage );
   tagNameByValue.emplace( 512, FixDistribPercentage );
   tagByName.emplace( FixDistribPercentage, 512 );
+  fieldTypeByValue.emplace( 512, FieldType::PERCENTAGE );
+  fieldTypeNameByValue.emplace( 512, "PERCENTAGE" );
 
   tagNameByRaw.emplace( tag_as_raw<513>(), FixRegistID );
   tagNameByValue.emplace( 513, FixRegistID );
   tagByName.emplace( FixRegistID, 513 );
+  fieldTypeByValue.emplace( 513, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 513, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<514>(), FixRegistTransType );
   tagNameByValue.emplace( 514, FixRegistTransType );
   tagByName.emplace( FixRegistTransType, 514 );
+  fieldTypeByValue.emplace( 514, FieldType::CHAR );
+  fieldTypeNameByValue.emplace( 514, "CHAR" );
 
   tagNameByRaw.emplace( tag_as_raw<515>(), FixExecValuationPoint );
   tagNameByValue.emplace( 515, FixExecValuationPoint );
   tagByName.emplace( FixExecValuationPoint, 515 );
+  fieldTypeByValue.emplace( 515, FieldType::UTCTIMESTAMP );
+  fieldTypeNameByValue.emplace( 515, "UTCTIMESTAMP" );
 
   tagNameByRaw.emplace( tag_as_raw<516>(), FixOrderPercent );
   tagNameByValue.emplace( 516, FixOrderPercent );
   tagByName.emplace( FixOrderPercent, 516 );
+  fieldTypeByValue.emplace( 516, FieldType::PERCENTAGE );
+  fieldTypeNameByValue.emplace( 516, "PERCENTAGE" );
 
   tagNameByRaw.emplace( tag_as_raw<517>(), FixOwnershipType );
   tagNameByValue.emplace( 517, FixOwnershipType );
   tagByName.emplace( FixOwnershipType, 517 );
+  fieldTypeByValue.emplace( 517, FieldType::CHAR );
+  fieldTypeNameByValue.emplace( 517, "CHAR" );
 
   tagNameByRaw.emplace( tag_as_raw<518>(), FixNoContAmts );
   tagNameByValue.emplace( 518, FixNoContAmts );
   tagByName.emplace( FixNoContAmts, 518 );
+  fieldTypeByValue.emplace( 518, FieldType::NUMINGROUP );
+  fieldTypeNameByValue.emplace( 518, "NUMINGROUP" );
 
   tagNameByRaw.emplace( tag_as_raw<519>(), FixContAmtType );
   tagNameByValue.emplace( 519, FixContAmtType );
   tagByName.emplace( FixContAmtType, 519 );
+  fieldTypeByValue.emplace( 519, FieldType::INT );
+  fieldTypeNameByValue.emplace( 519, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<520>(), FixContAmtValue );
   tagNameByValue.emplace( 520, FixContAmtValue );
   tagByName.emplace( FixContAmtValue, 520 );
+  fieldTypeByValue.emplace( 520, FieldType::FLOAT );
+  fieldTypeNameByValue.emplace( 520, "FLOAT" );
 
   tagNameByRaw.emplace( tag_as_raw<521>(), FixContAmtCurr );
   tagNameByValue.emplace( 521, FixContAmtCurr );
   tagByName.emplace( FixContAmtCurr, 521 );
+  fieldTypeByValue.emplace( 521, FieldType::CURRENCY );
+  fieldTypeNameByValue.emplace( 521, "CURRENCY" );
 
   tagNameByRaw.emplace( tag_as_raw<522>(), FixOwnerType );
   tagNameByValue.emplace( 522, FixOwnerType );
   tagByName.emplace( FixOwnerType, 522 );
+  fieldTypeByValue.emplace( 522, FieldType::INT );
+  fieldTypeNameByValue.emplace( 522, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<523>(), FixPartySubID );
   tagNameByValue.emplace( 523, FixPartySubID );
   tagByName.emplace( FixPartySubID, 523 );
+  fieldTypeByValue.emplace( 523, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 523, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<524>(), FixNestedPartyID );
   tagNameByValue.emplace( 524, FixNestedPartyID );
   tagByName.emplace( FixNestedPartyID, 524 );
+  fieldTypeByValue.emplace( 524, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 524, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<525>(), FixNestedPartyIDSource );
   tagNameByValue.emplace( 525, FixNestedPartyIDSource );
   tagByName.emplace( FixNestedPartyIDSource, 525 );
+  fieldTypeByValue.emplace( 525, FieldType::CHAR );
+  fieldTypeNameByValue.emplace( 525, "CHAR" );
 
   tagNameByRaw.emplace( tag_as_raw<526>(), FixSecondaryClOrdID );
   tagNameByValue.emplace( 526, FixSecondaryClOrdID );
   tagByName.emplace( FixSecondaryClOrdID, 526 );
+  fieldTypeByValue.emplace( 526, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 526, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<527>(), FixSecondaryExecID );
   tagNameByValue.emplace( 527, FixSecondaryExecID );
   tagByName.emplace( FixSecondaryExecID, 527 );
+  fieldTypeByValue.emplace( 527, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 527, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<528>(), FixOrderCapacity );
   tagNameByValue.emplace( 528, FixOrderCapacity );
   tagByName.emplace( FixOrderCapacity, 528 );
+  fieldTypeByValue.emplace( 528, FieldType::CHAR );
+  fieldTypeNameByValue.emplace( 528, "CHAR" );
 
   tagNameByRaw.emplace( tag_as_raw<529>(), FixOrderRestrictions );
   tagNameByValue.emplace( 529, FixOrderRestrictions );
   tagByName.emplace( FixOrderRestrictions, 529 );
+  fieldTypeByValue.emplace( 529, FieldType::MULTIPLEVALUESTRING );
+  fieldTypeNameByValue.emplace( 529, "MULTIPLEVALUESTRING" );
 
   tagNameByRaw.emplace( tag_as_raw<530>(), FixMassCancelRequestType );
   tagNameByValue.emplace( 530, FixMassCancelRequestType );
   tagByName.emplace( FixMassCancelRequestType, 530 );
+  fieldTypeByValue.emplace( 530, FieldType::CHAR );
+  fieldTypeNameByValue.emplace( 530, "CHAR" );
 
   tagNameByRaw.emplace( tag_as_raw<531>(), FixMassCancelResponse );
   tagNameByValue.emplace( 531, FixMassCancelResponse );
   tagByName.emplace( FixMassCancelResponse, 531 );
+  fieldTypeByValue.emplace( 531, FieldType::CHAR );
+  fieldTypeNameByValue.emplace( 531, "CHAR" );
 
   tagNameByRaw.emplace( tag_as_raw<532>(), FixMassCancelRejectReason );
   tagNameByValue.emplace( 532, FixMassCancelRejectReason );
   tagByName.emplace( FixMassCancelRejectReason, 532 );
+  fieldTypeByValue.emplace( 532, FieldType::CHAR );
+  fieldTypeNameByValue.emplace( 532, "CHAR" );
 
   tagNameByRaw.emplace( tag_as_raw<533>(), FixTotalAffectedOrders );
   tagNameByValue.emplace( 533, FixTotalAffectedOrders );
   tagByName.emplace( FixTotalAffectedOrders, 533 );
+  fieldTypeByValue.emplace( 533, FieldType::INT );
+  fieldTypeNameByValue.emplace( 533, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<534>(), FixNoAffectedOrders );
   tagNameByValue.emplace( 534, FixNoAffectedOrders );
   tagByName.emplace( FixNoAffectedOrders, 534 );
+  fieldTypeByValue.emplace( 534, FieldType::NUMINGROUP );
+  fieldTypeNameByValue.emplace( 534, "NUMINGROUP" );
 
   tagNameByRaw.emplace( tag_as_raw<535>(), FixAffectedOrderID );
   tagNameByValue.emplace( 535, FixAffectedOrderID );
   tagByName.emplace( FixAffectedOrderID, 535 );
+  fieldTypeByValue.emplace( 535, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 535, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<536>(), FixAffectedSecondaryOrderID );
   tagNameByValue.emplace( 536, FixAffectedSecondaryOrderID );
   tagByName.emplace( FixAffectedSecondaryOrderID, 536 );
+  fieldTypeByValue.emplace( 536, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 536, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<537>(), FixQuoteType );
   tagNameByValue.emplace( 537, FixQuoteType );
   tagByName.emplace( FixQuoteType, 537 );
+  fieldTypeByValue.emplace( 537, FieldType::INT );
+  fieldTypeNameByValue.emplace( 537, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<538>(), FixNestedPartyRole );
   tagNameByValue.emplace( 538, FixNestedPartyRole );
   tagByName.emplace( FixNestedPartyRole, 538 );
+  fieldTypeByValue.emplace( 538, FieldType::INT );
+  fieldTypeNameByValue.emplace( 538, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<539>(), FixNoNestedPartyIDs );
   tagNameByValue.emplace( 539, FixNoNestedPartyIDs );
   tagByName.emplace( FixNoNestedPartyIDs, 539 );
+  fieldTypeByValue.emplace( 539, FieldType::NUMINGROUP );
+  fieldTypeNameByValue.emplace( 539, "NUMINGROUP" );
 
   tagNameByRaw.emplace( tag_as_raw<540>(), FixTotalAccruedInterestAmt );
   tagNameByValue.emplace( 540, FixTotalAccruedInterestAmt );
   tagByName.emplace( FixTotalAccruedInterestAmt, 540 );
+  fieldTypeByValue.emplace( 540, FieldType::AMT );
+  fieldTypeNameByValue.emplace( 540, "AMT" );
 
   tagNameByRaw.emplace( tag_as_raw<541>(), FixMaturityDate );
   tagNameByValue.emplace( 541, FixMaturityDate );
   tagByName.emplace( FixMaturityDate, 541 );
+  fieldTypeByValue.emplace( 541, FieldType::LOCALMKTDATE );
+  fieldTypeNameByValue.emplace( 541, "LOCALMKTDATE" );
 
   tagNameByRaw.emplace( tag_as_raw<542>(), FixUnderlyingMaturityDate );
   tagNameByValue.emplace( 542, FixUnderlyingMaturityDate );
   tagByName.emplace( FixUnderlyingMaturityDate, 542 );
+  fieldTypeByValue.emplace( 542, FieldType::LOCALMKTDATE );
+  fieldTypeNameByValue.emplace( 542, "LOCALMKTDATE" );
 
   tagNameByRaw.emplace( tag_as_raw<543>(), FixInstrRegistry );
   tagNameByValue.emplace( 543, FixInstrRegistry );
   tagByName.emplace( FixInstrRegistry, 543 );
+  fieldTypeByValue.emplace( 543, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 543, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<544>(), FixCashMargin );
   tagNameByValue.emplace( 544, FixCashMargin );
   tagByName.emplace( FixCashMargin, 544 );
+  fieldTypeByValue.emplace( 544, FieldType::CHAR );
+  fieldTypeNameByValue.emplace( 544, "CHAR" );
 
   tagNameByRaw.emplace( tag_as_raw<545>(), FixNestedPartySubID );
   tagNameByValue.emplace( 545, FixNestedPartySubID );
   tagByName.emplace( FixNestedPartySubID, 545 );
+  fieldTypeByValue.emplace( 545, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 545, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<546>(), FixScope );
   tagNameByValue.emplace( 546, FixScope );
   tagByName.emplace( FixScope, 546 );
+  fieldTypeByValue.emplace( 546, FieldType::MULTIPLEVALUESTRING );
+  fieldTypeNameByValue.emplace( 546, "MULTIPLEVALUESTRING" );
 
   tagNameByRaw.emplace( tag_as_raw<547>(), FixMDImplicitDelete );
   tagNameByValue.emplace( 547, FixMDImplicitDelete );
   tagByName.emplace( FixMDImplicitDelete, 547 );
+  fieldTypeByValue.emplace( 547, FieldType::BOOLEAN );
+  fieldTypeNameByValue.emplace( 547, "BOOLEAN" );
 
   tagNameByRaw.emplace( tag_as_raw<548>(), FixCrossID );
   tagNameByValue.emplace( 548, FixCrossID );
   tagByName.emplace( FixCrossID, 548 );
+  fieldTypeByValue.emplace( 548, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 548, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<549>(), FixCrossType );
   tagNameByValue.emplace( 549, FixCrossType );
   tagByName.emplace( FixCrossType, 549 );
+  fieldTypeByValue.emplace( 549, FieldType::INT );
+  fieldTypeNameByValue.emplace( 549, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<550>(), FixCrossPrioritization );
   tagNameByValue.emplace( 550, FixCrossPrioritization );
   tagByName.emplace( FixCrossPrioritization, 550 );
+  fieldTypeByValue.emplace( 550, FieldType::INT );
+  fieldTypeNameByValue.emplace( 550, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<551>(), FixOrigCrossID );
   tagNameByValue.emplace( 551, FixOrigCrossID );
   tagByName.emplace( FixOrigCrossID, 551 );
+  fieldTypeByValue.emplace( 551, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 551, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<552>(), FixNoSides );
   tagNameByValue.emplace( 552, FixNoSides );
   tagByName.emplace( FixNoSides, 552 );
+  fieldTypeByValue.emplace( 552, FieldType::NUMINGROUP );
+  fieldTypeNameByValue.emplace( 552, "NUMINGROUP" );
 
   tagNameByRaw.emplace( tag_as_raw<553>(), FixUsername );
   tagNameByValue.emplace( 553, FixUsername );
   tagByName.emplace( FixUsername, 553 );
+  fieldTypeByValue.emplace( 553, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 553, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<554>(), FixPassword );
   tagNameByValue.emplace( 554, FixPassword );
   tagByName.emplace( FixPassword, 554 );
+  fieldTypeByValue.emplace( 554, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 554, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<555>(), FixNoLegs );
   tagNameByValue.emplace( 555, FixNoLegs );
   tagByName.emplace( FixNoLegs, 555 );
+  fieldTypeByValue.emplace( 555, FieldType::NUMINGROUP );
+  fieldTypeNameByValue.emplace( 555, "NUMINGROUP" );
 
   tagNameByRaw.emplace( tag_as_raw<556>(), FixLegCurrency );
   tagNameByValue.emplace( 556, FixLegCurrency );
   tagByName.emplace( FixLegCurrency, 556 );
+  fieldTypeByValue.emplace( 556, FieldType::CURRENCY );
+  fieldTypeNameByValue.emplace( 556, "CURRENCY" );
 
   tagNameByRaw.emplace( tag_as_raw<557>(), FixTotNoSecurityTypes );
   tagNameByValue.emplace( 557, FixTotNoSecurityTypes );
   tagByName.emplace( FixTotNoSecurityTypes, 557 );
+  fieldTypeByValue.emplace( 557, FieldType::INT );
+  fieldTypeNameByValue.emplace( 557, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<558>(), FixNoSecurityTypes );
   tagNameByValue.emplace( 558, FixNoSecurityTypes );
   tagByName.emplace( FixNoSecurityTypes, 558 );
+  fieldTypeByValue.emplace( 558, FieldType::NUMINGROUP );
+  fieldTypeNameByValue.emplace( 558, "NUMINGROUP" );
 
   tagNameByRaw.emplace( tag_as_raw<559>(), FixSecurityListRequestType );
   tagNameByValue.emplace( 559, FixSecurityListRequestType );
   tagByName.emplace( FixSecurityListRequestType, 559 );
+  fieldTypeByValue.emplace( 559, FieldType::INT );
+  fieldTypeNameByValue.emplace( 559, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<560>(), FixSecurityRequestResult );
   tagNameByValue.emplace( 560, FixSecurityRequestResult );
   tagByName.emplace( FixSecurityRequestResult, 560 );
+  fieldTypeByValue.emplace( 560, FieldType::INT );
+  fieldTypeNameByValue.emplace( 560, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<561>(), FixRoundLot );
   tagNameByValue.emplace( 561, FixRoundLot );
   tagByName.emplace( FixRoundLot, 561 );
+  fieldTypeByValue.emplace( 561, FieldType::QTY );
+  fieldTypeNameByValue.emplace( 561, "QTY" );
 
   tagNameByRaw.emplace( tag_as_raw<562>(), FixMinTradeVol );
   tagNameByValue.emplace( 562, FixMinTradeVol );
   tagByName.emplace( FixMinTradeVol, 562 );
+  fieldTypeByValue.emplace( 562, FieldType::QTY );
+  fieldTypeNameByValue.emplace( 562, "QTY" );
 
   tagNameByRaw.emplace( tag_as_raw<563>(), FixMultiLegRptTypeReq );
   tagNameByValue.emplace( 563, FixMultiLegRptTypeReq );
   tagByName.emplace( FixMultiLegRptTypeReq, 563 );
+  fieldTypeByValue.emplace( 563, FieldType::INT );
+  fieldTypeNameByValue.emplace( 563, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<564>(), FixLegPositionEffect );
   tagNameByValue.emplace( 564, FixLegPositionEffect );
   tagByName.emplace( FixLegPositionEffect, 564 );
+  fieldTypeByValue.emplace( 564, FieldType::CHAR );
+  fieldTypeNameByValue.emplace( 564, "CHAR" );
 
   tagNameByRaw.emplace( tag_as_raw<565>(), FixLegCoveredOrUncovered );
   tagNameByValue.emplace( 565, FixLegCoveredOrUncovered );
   tagByName.emplace( FixLegCoveredOrUncovered, 565 );
+  fieldTypeByValue.emplace( 565, FieldType::INT );
+  fieldTypeNameByValue.emplace( 565, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<566>(), FixLegPrice );
   tagNameByValue.emplace( 566, FixLegPrice );
   tagByName.emplace( FixLegPrice, 566 );
+  fieldTypeByValue.emplace( 566, FieldType::PRICE );
+  fieldTypeNameByValue.emplace( 566, "PRICE" );
 
   tagNameByRaw.emplace( tag_as_raw<567>(), FixTradSesStatusRejReason );
   tagNameByValue.emplace( 567, FixTradSesStatusRejReason );
   tagByName.emplace( FixTradSesStatusRejReason, 567 );
+  fieldTypeByValue.emplace( 567, FieldType::INT );
+  fieldTypeNameByValue.emplace( 567, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<568>(), FixTradeRequestID );
   tagNameByValue.emplace( 568, FixTradeRequestID );
   tagByName.emplace( FixTradeRequestID, 568 );
+  fieldTypeByValue.emplace( 568, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 568, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<569>(), FixTradeRequestType );
   tagNameByValue.emplace( 569, FixTradeRequestType );
   tagByName.emplace( FixTradeRequestType, 569 );
+  fieldTypeByValue.emplace( 569, FieldType::INT );
+  fieldTypeNameByValue.emplace( 569, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<570>(), FixPreviouslyReported );
   tagNameByValue.emplace( 570, FixPreviouslyReported );
   tagByName.emplace( FixPreviouslyReported, 570 );
+  fieldTypeByValue.emplace( 570, FieldType::BOOLEAN );
+  fieldTypeNameByValue.emplace( 570, "BOOLEAN" );
 
   tagNameByRaw.emplace( tag_as_raw<571>(), FixTradeReportID );
   tagNameByValue.emplace( 571, FixTradeReportID );
   tagByName.emplace( FixTradeReportID, 571 );
+  fieldTypeByValue.emplace( 571, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 571, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<572>(), FixTradeReportRefID );
   tagNameByValue.emplace( 572, FixTradeReportRefID );
   tagByName.emplace( FixTradeReportRefID, 572 );
+  fieldTypeByValue.emplace( 572, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 572, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<573>(), FixMatchStatus );
   tagNameByValue.emplace( 573, FixMatchStatus );
   tagByName.emplace( FixMatchStatus, 573 );
+  fieldTypeByValue.emplace( 573, FieldType::CHAR );
+  fieldTypeNameByValue.emplace( 573, "CHAR" );
 
   tagNameByRaw.emplace( tag_as_raw<574>(), FixMatchType );
   tagNameByValue.emplace( 574, FixMatchType );
   tagByName.emplace( FixMatchType, 574 );
+  fieldTypeByValue.emplace( 574, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 574, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<575>(), FixOddLot );
   tagNameByValue.emplace( 575, FixOddLot );
   tagByName.emplace( FixOddLot, 575 );
+  fieldTypeByValue.emplace( 575, FieldType::BOOLEAN );
+  fieldTypeNameByValue.emplace( 575, "BOOLEAN" );
 
   tagNameByRaw.emplace( tag_as_raw<576>(), FixNoClearingInstructions );
   tagNameByValue.emplace( 576, FixNoClearingInstructions );
   tagByName.emplace( FixNoClearingInstructions, 576 );
+  fieldTypeByValue.emplace( 576, FieldType::NUMINGROUP );
+  fieldTypeNameByValue.emplace( 576, "NUMINGROUP" );
 
   tagNameByRaw.emplace( tag_as_raw<577>(), FixClearingInstruction );
   tagNameByValue.emplace( 577, FixClearingInstruction );
   tagByName.emplace( FixClearingInstruction, 577 );
+  fieldTypeByValue.emplace( 577, FieldType::INT );
+  fieldTypeNameByValue.emplace( 577, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<578>(), FixTradeInputSource );
   tagNameByValue.emplace( 578, FixTradeInputSource );
   tagByName.emplace( FixTradeInputSource, 578 );
+  fieldTypeByValue.emplace( 578, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 578, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<579>(), FixTradeInputDevice );
   tagNameByValue.emplace( 579, FixTradeInputDevice );
   tagByName.emplace( FixTradeInputDevice, 579 );
+  fieldTypeByValue.emplace( 579, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 579, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<580>(), FixNoDates );
   tagNameByValue.emplace( 580, FixNoDates );
   tagByName.emplace( FixNoDates, 580 );
+  fieldTypeByValue.emplace( 580, FieldType::NUMINGROUP );
+  fieldTypeNameByValue.emplace( 580, "NUMINGROUP" );
 
   tagNameByRaw.emplace( tag_as_raw<581>(), FixAccountType );
   tagNameByValue.emplace( 581, FixAccountType );
   tagByName.emplace( FixAccountType, 581 );
+  fieldTypeByValue.emplace( 581, FieldType::INT );
+  fieldTypeNameByValue.emplace( 581, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<582>(), FixCustOrderCapacity );
   tagNameByValue.emplace( 582, FixCustOrderCapacity );
   tagByName.emplace( FixCustOrderCapacity, 582 );
+  fieldTypeByValue.emplace( 582, FieldType::INT );
+  fieldTypeNameByValue.emplace( 582, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<583>(), FixClOrdLinkID );
   tagNameByValue.emplace( 583, FixClOrdLinkID );
   tagByName.emplace( FixClOrdLinkID, 583 );
+  fieldTypeByValue.emplace( 583, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 583, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<584>(), FixMassStatusReqID );
   tagNameByValue.emplace( 584, FixMassStatusReqID );
   tagByName.emplace( FixMassStatusReqID, 584 );
+  fieldTypeByValue.emplace( 584, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 584, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<585>(), FixMassStatusReqType );
   tagNameByValue.emplace( 585, FixMassStatusReqType );
   tagByName.emplace( FixMassStatusReqType, 585 );
+  fieldTypeByValue.emplace( 585, FieldType::INT );
+  fieldTypeNameByValue.emplace( 585, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<586>(), FixOrigOrdModTime );
   tagNameByValue.emplace( 586, FixOrigOrdModTime );
   tagByName.emplace( FixOrigOrdModTime, 586 );
+  fieldTypeByValue.emplace( 586, FieldType::UTCTIMESTAMP );
+  fieldTypeNameByValue.emplace( 586, "UTCTIMESTAMP" );
 
   tagNameByRaw.emplace( tag_as_raw<587>(), FixLegSettlType );
   tagNameByValue.emplace( 587, FixLegSettlType );
   tagByName.emplace( FixLegSettlType, 587 );
+  fieldTypeByValue.emplace( 587, FieldType::CHAR );
+  fieldTypeNameByValue.emplace( 587, "CHAR" );
 
   tagNameByRaw.emplace( tag_as_raw<588>(), FixLegSettlDate );
   tagNameByValue.emplace( 588, FixLegSettlDate );
   tagByName.emplace( FixLegSettlDate, 588 );
+  fieldTypeByValue.emplace( 588, FieldType::LOCALMKTDATE );
+  fieldTypeNameByValue.emplace( 588, "LOCALMKTDATE" );
 
   tagNameByRaw.emplace( tag_as_raw<589>(), FixDayBookingInst );
   tagNameByValue.emplace( 589, FixDayBookingInst );
   tagByName.emplace( FixDayBookingInst, 589 );
+  fieldTypeByValue.emplace( 589, FieldType::CHAR );
+  fieldTypeNameByValue.emplace( 589, "CHAR" );
 
   tagNameByRaw.emplace( tag_as_raw<590>(), FixBookingUnit );
   tagNameByValue.emplace( 590, FixBookingUnit );
   tagByName.emplace( FixBookingUnit, 590 );
+  fieldTypeByValue.emplace( 590, FieldType::CHAR );
+  fieldTypeNameByValue.emplace( 590, "CHAR" );
 
   tagNameByRaw.emplace( tag_as_raw<591>(), FixPreallocMethod );
   tagNameByValue.emplace( 591, FixPreallocMethod );
   tagByName.emplace( FixPreallocMethod, 591 );
+  fieldTypeByValue.emplace( 591, FieldType::CHAR );
+  fieldTypeNameByValue.emplace( 591, "CHAR" );
 
   tagNameByRaw.emplace( tag_as_raw<592>(), FixUnderlyingCountryOfIssue );
   tagNameByValue.emplace( 592, FixUnderlyingCountryOfIssue );
   tagByName.emplace( FixUnderlyingCountryOfIssue, 592 );
+  fieldTypeByValue.emplace( 592, FieldType::COUNTRY );
+  fieldTypeNameByValue.emplace( 592, "COUNTRY" );
 
   tagNameByRaw.emplace( tag_as_raw<593>(), FixUnderlyingStateOrProvinceOfIssue );
   tagNameByValue.emplace( 593, FixUnderlyingStateOrProvinceOfIssue );
   tagByName.emplace( FixUnderlyingStateOrProvinceOfIssue, 593 );
+  fieldTypeByValue.emplace( 593, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 593, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<594>(), FixUnderlyingLocaleOfIssue );
   tagNameByValue.emplace( 594, FixUnderlyingLocaleOfIssue );
   tagByName.emplace( FixUnderlyingLocaleOfIssue, 594 );
+  fieldTypeByValue.emplace( 594, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 594, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<595>(), FixUnderlyingInstrRegistry );
   tagNameByValue.emplace( 595, FixUnderlyingInstrRegistry );
   tagByName.emplace( FixUnderlyingInstrRegistry, 595 );
+  fieldTypeByValue.emplace( 595, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 595, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<596>(), FixLegCountryOfIssue );
   tagNameByValue.emplace( 596, FixLegCountryOfIssue );
   tagByName.emplace( FixLegCountryOfIssue, 596 );
+  fieldTypeByValue.emplace( 596, FieldType::COUNTRY );
+  fieldTypeNameByValue.emplace( 596, "COUNTRY" );
 
   tagNameByRaw.emplace( tag_as_raw<597>(), FixLegStateOrProvinceOfIssue );
   tagNameByValue.emplace( 597, FixLegStateOrProvinceOfIssue );
   tagByName.emplace( FixLegStateOrProvinceOfIssue, 597 );
+  fieldTypeByValue.emplace( 597, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 597, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<598>(), FixLegLocaleOfIssue );
   tagNameByValue.emplace( 598, FixLegLocaleOfIssue );
   tagByName.emplace( FixLegLocaleOfIssue, 598 );
+  fieldTypeByValue.emplace( 598, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 598, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<599>(), FixLegInstrRegistry );
   tagNameByValue.emplace( 599, FixLegInstrRegistry );
   tagByName.emplace( FixLegInstrRegistry, 599 );
+  fieldTypeByValue.emplace( 599, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 599, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<600>(), FixLegSymbol );
   tagNameByValue.emplace( 600, FixLegSymbol );
   tagByName.emplace( FixLegSymbol, 600 );
+  fieldTypeByValue.emplace( 600, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 600, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<601>(), FixLegSymbolSfx );
   tagNameByValue.emplace( 601, FixLegSymbolSfx );
   tagByName.emplace( FixLegSymbolSfx, 601 );
+  fieldTypeByValue.emplace( 601, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 601, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<602>(), FixLegSecurityID );
   tagNameByValue.emplace( 602, FixLegSecurityID );
   tagByName.emplace( FixLegSecurityID, 602 );
+  fieldTypeByValue.emplace( 602, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 602, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<603>(), FixLegSecurityIDSource );
   tagNameByValue.emplace( 603, FixLegSecurityIDSource );
   tagByName.emplace( FixLegSecurityIDSource, 603 );
+  fieldTypeByValue.emplace( 603, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 603, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<604>(), FixNoLegSecurityAltID );
   tagNameByValue.emplace( 604, FixNoLegSecurityAltID );
   tagByName.emplace( FixNoLegSecurityAltID, 604 );
+  fieldTypeByValue.emplace( 604, FieldType::NUMINGROUP );
+  fieldTypeNameByValue.emplace( 604, "NUMINGROUP" );
 
   tagNameByRaw.emplace( tag_as_raw<605>(), FixLegSecurityAltID );
   tagNameByValue.emplace( 605, FixLegSecurityAltID );
   tagByName.emplace( FixLegSecurityAltID, 605 );
+  fieldTypeByValue.emplace( 605, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 605, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<606>(), FixLegSecurityAltIDSource );
   tagNameByValue.emplace( 606, FixLegSecurityAltIDSource );
   tagByName.emplace( FixLegSecurityAltIDSource, 606 );
+  fieldTypeByValue.emplace( 606, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 606, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<607>(), FixLegProduct );
   tagNameByValue.emplace( 607, FixLegProduct );
   tagByName.emplace( FixLegProduct, 607 );
+  fieldTypeByValue.emplace( 607, FieldType::INT );
+  fieldTypeNameByValue.emplace( 607, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<608>(), FixLegCFICode );
   tagNameByValue.emplace( 608, FixLegCFICode );
   tagByName.emplace( FixLegCFICode, 608 );
+  fieldTypeByValue.emplace( 608, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 608, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<609>(), FixLegSecurityType );
   tagNameByValue.emplace( 609, FixLegSecurityType );
   tagByName.emplace( FixLegSecurityType, 609 );
+  fieldTypeByValue.emplace( 609, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 609, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<610>(), FixLegMaturityMonthYear );
   tagNameByValue.emplace( 610, FixLegMaturityMonthYear );
   tagByName.emplace( FixLegMaturityMonthYear, 610 );
+  fieldTypeByValue.emplace( 610, FieldType::MONTHYEAR );
+  fieldTypeNameByValue.emplace( 610, "MONTHYEAR" );
 
   tagNameByRaw.emplace( tag_as_raw<611>(), FixLegMaturityDate );
   tagNameByValue.emplace( 611, FixLegMaturityDate );
   tagByName.emplace( FixLegMaturityDate, 611 );
+  fieldTypeByValue.emplace( 611, FieldType::LOCALMKTDATE );
+  fieldTypeNameByValue.emplace( 611, "LOCALMKTDATE" );
 
   tagNameByRaw.emplace( tag_as_raw<612>(), FixLegStrikePrice );
   tagNameByValue.emplace( 612, FixLegStrikePrice );
   tagByName.emplace( FixLegStrikePrice, 612 );
+  fieldTypeByValue.emplace( 612, FieldType::PRICE );
+  fieldTypeNameByValue.emplace( 612, "PRICE" );
 
   tagNameByRaw.emplace( tag_as_raw<613>(), FixLegOptAttribute );
   tagNameByValue.emplace( 613, FixLegOptAttribute );
   tagByName.emplace( FixLegOptAttribute, 613 );
+  fieldTypeByValue.emplace( 613, FieldType::CHAR );
+  fieldTypeNameByValue.emplace( 613, "CHAR" );
 
   tagNameByRaw.emplace( tag_as_raw<614>(), FixLegContractMultiplier );
   tagNameByValue.emplace( 614, FixLegContractMultiplier );
   tagByName.emplace( FixLegContractMultiplier, 614 );
+  fieldTypeByValue.emplace( 614, FieldType::FLOAT );
+  fieldTypeNameByValue.emplace( 614, "FLOAT" );
 
   tagNameByRaw.emplace( tag_as_raw<615>(), FixLegCouponRate );
   tagNameByValue.emplace( 615, FixLegCouponRate );
   tagByName.emplace( FixLegCouponRate, 615 );
+  fieldTypeByValue.emplace( 615, FieldType::PERCENTAGE );
+  fieldTypeNameByValue.emplace( 615, "PERCENTAGE" );
 
   tagNameByRaw.emplace( tag_as_raw<616>(), FixLegSecurityExchange );
   tagNameByValue.emplace( 616, FixLegSecurityExchange );
   tagByName.emplace( FixLegSecurityExchange, 616 );
+  fieldTypeByValue.emplace( 616, FieldType::EXCHANGE );
+  fieldTypeNameByValue.emplace( 616, "EXCHANGE" );
 
   tagNameByRaw.emplace( tag_as_raw<617>(), FixLegIssuer );
   tagNameByValue.emplace( 617, FixLegIssuer );
   tagByName.emplace( FixLegIssuer, 617 );
+  fieldTypeByValue.emplace( 617, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 617, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<618>(), FixEncodedLegIssuerLen );
   tagNameByValue.emplace( 618, FixEncodedLegIssuerLen );
   tagByName.emplace( FixEncodedLegIssuerLen, 618 );
+  fieldTypeByValue.emplace( 618, FieldType::LENGTH );
+  fieldTypeNameByValue.emplace( 618, "LENGTH" );
 
   tagNameByRaw.emplace( tag_as_raw<619>(), FixEncodedLegIssuer );
   tagNameByValue.emplace( 619, FixEncodedLegIssuer );
   tagByName.emplace( FixEncodedLegIssuer, 619 );
+  fieldTypeByValue.emplace( 619, FieldType::DATA );
+  fieldTypeNameByValue.emplace( 619, "DATA" );
 
   tagNameByRaw.emplace( tag_as_raw<620>(), FixLegSecurityDesc );
   tagNameByValue.emplace( 620, FixLegSecurityDesc );
   tagByName.emplace( FixLegSecurityDesc, 620 );
+  fieldTypeByValue.emplace( 620, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 620, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<621>(), FixEncodedLegSecurityDescLen );
   tagNameByValue.emplace( 621, FixEncodedLegSecurityDescLen );
   tagByName.emplace( FixEncodedLegSecurityDescLen, 621 );
+  fieldTypeByValue.emplace( 621, FieldType::LENGTH );
+  fieldTypeNameByValue.emplace( 621, "LENGTH" );
 
   tagNameByRaw.emplace( tag_as_raw<622>(), FixEncodedLegSecurityDesc );
   tagNameByValue.emplace( 622, FixEncodedLegSecurityDesc );
   tagByName.emplace( FixEncodedLegSecurityDesc, 622 );
+  fieldTypeByValue.emplace( 622, FieldType::DATA );
+  fieldTypeNameByValue.emplace( 622, "DATA" );
 
   tagNameByRaw.emplace( tag_as_raw<623>(), FixLegRatioQty );
   tagNameByValue.emplace( 623, FixLegRatioQty );
   tagByName.emplace( FixLegRatioQty, 623 );
+  fieldTypeByValue.emplace( 623, FieldType::FLOAT );
+  fieldTypeNameByValue.emplace( 623, "FLOAT" );
 
   tagNameByRaw.emplace( tag_as_raw<624>(), FixLegSide );
   tagNameByValue.emplace( 624, FixLegSide );
   tagByName.emplace( FixLegSide, 624 );
+  fieldTypeByValue.emplace( 624, FieldType::CHAR );
+  fieldTypeNameByValue.emplace( 624, "CHAR" );
 
   tagNameByRaw.emplace( tag_as_raw<625>(), FixTradingSessionSubID );
   tagNameByValue.emplace( 625, FixTradingSessionSubID );
   tagByName.emplace( FixTradingSessionSubID, 625 );
+  fieldTypeByValue.emplace( 625, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 625, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<626>(), FixAllocType );
   tagNameByValue.emplace( 626, FixAllocType );
   tagByName.emplace( FixAllocType, 626 );
+  fieldTypeByValue.emplace( 626, FieldType::INT );
+  fieldTypeNameByValue.emplace( 626, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<627>(), FixNoHops );
   tagNameByValue.emplace( 627, FixNoHops );
   tagByName.emplace( FixNoHops, 627 );
+  fieldTypeByValue.emplace( 627, FieldType::NUMINGROUP );
+  fieldTypeNameByValue.emplace( 627, "NUMINGROUP" );
 
   tagNameByRaw.emplace( tag_as_raw<628>(), FixHopCompID );
   tagNameByValue.emplace( 628, FixHopCompID );
   tagByName.emplace( FixHopCompID, 628 );
+  fieldTypeByValue.emplace( 628, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 628, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<629>(), FixHopSendingTime );
   tagNameByValue.emplace( 629, FixHopSendingTime );
   tagByName.emplace( FixHopSendingTime, 629 );
+  fieldTypeByValue.emplace( 629, FieldType::UTCTIMESTAMP );
+  fieldTypeNameByValue.emplace( 629, "UTCTIMESTAMP" );
 
   tagNameByRaw.emplace( tag_as_raw<630>(), FixHopRefID );
   tagNameByValue.emplace( 630, FixHopRefID );
   tagByName.emplace( FixHopRefID, 630 );
+  fieldTypeByValue.emplace( 630, FieldType::SEQNUM );
+  fieldTypeNameByValue.emplace( 630, "SEQNUM" );
 
   tagNameByRaw.emplace( tag_as_raw<631>(), FixMidPx );
   tagNameByValue.emplace( 631, FixMidPx );
   tagByName.emplace( FixMidPx, 631 );
+  fieldTypeByValue.emplace( 631, FieldType::PRICE );
+  fieldTypeNameByValue.emplace( 631, "PRICE" );
 
   tagNameByRaw.emplace( tag_as_raw<632>(), FixBidYield );
   tagNameByValue.emplace( 632, FixBidYield );
   tagByName.emplace( FixBidYield, 632 );
+  fieldTypeByValue.emplace( 632, FieldType::PERCENTAGE );
+  fieldTypeNameByValue.emplace( 632, "PERCENTAGE" );
 
   tagNameByRaw.emplace( tag_as_raw<633>(), FixMidYield );
   tagNameByValue.emplace( 633, FixMidYield );
   tagByName.emplace( FixMidYield, 633 );
+  fieldTypeByValue.emplace( 633, FieldType::PERCENTAGE );
+  fieldTypeNameByValue.emplace( 633, "PERCENTAGE" );
 
   tagNameByRaw.emplace( tag_as_raw<634>(), FixOfferYield );
   tagNameByValue.emplace( 634, FixOfferYield );
   tagByName.emplace( FixOfferYield, 634 );
+  fieldTypeByValue.emplace( 634, FieldType::PERCENTAGE );
+  fieldTypeNameByValue.emplace( 634, "PERCENTAGE" );
 
   tagNameByRaw.emplace( tag_as_raw<635>(), FixClearingFeeIndicator );
   tagNameByValue.emplace( 635, FixClearingFeeIndicator );
   tagByName.emplace( FixClearingFeeIndicator, 635 );
+  fieldTypeByValue.emplace( 635, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 635, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<636>(), FixWorkingIndicator );
   tagNameByValue.emplace( 636, FixWorkingIndicator );
   tagByName.emplace( FixWorkingIndicator, 636 );
+  fieldTypeByValue.emplace( 636, FieldType::BOOLEAN );
+  fieldTypeNameByValue.emplace( 636, "BOOLEAN" );
 
   tagNameByRaw.emplace( tag_as_raw<637>(), FixLegLastPx );
   tagNameByValue.emplace( 637, FixLegLastPx );
   tagByName.emplace( FixLegLastPx, 637 );
+  fieldTypeByValue.emplace( 637, FieldType::PRICE );
+  fieldTypeNameByValue.emplace( 637, "PRICE" );
 
   tagNameByRaw.emplace( tag_as_raw<638>(), FixPriorityIndicator );
   tagNameByValue.emplace( 638, FixPriorityIndicator );
   tagByName.emplace( FixPriorityIndicator, 638 );
+  fieldTypeByValue.emplace( 638, FieldType::INT );
+  fieldTypeNameByValue.emplace( 638, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<639>(), FixPriceImprovement );
   tagNameByValue.emplace( 639, FixPriceImprovement );
   tagByName.emplace( FixPriceImprovement, 639 );
+  fieldTypeByValue.emplace( 639, FieldType::PRICEOFFSET );
+  fieldTypeNameByValue.emplace( 639, "PRICEOFFSET" );
 
   tagNameByRaw.emplace( tag_as_raw<640>(), FixPrice2 );
   tagNameByValue.emplace( 640, FixPrice2 );
   tagByName.emplace( FixPrice2, 640 );
+  fieldTypeByValue.emplace( 640, FieldType::PRICE );
+  fieldTypeNameByValue.emplace( 640, "PRICE" );
 
   tagNameByRaw.emplace( tag_as_raw<641>(), FixLastForwardPoints2 );
   tagNameByValue.emplace( 641, FixLastForwardPoints2 );
   tagByName.emplace( FixLastForwardPoints2, 641 );
+  fieldTypeByValue.emplace( 641, FieldType::PRICEOFFSET );
+  fieldTypeNameByValue.emplace( 641, "PRICEOFFSET" );
 
   tagNameByRaw.emplace( tag_as_raw<642>(), FixBidForwardPoints2 );
   tagNameByValue.emplace( 642, FixBidForwardPoints2 );
   tagByName.emplace( FixBidForwardPoints2, 642 );
+  fieldTypeByValue.emplace( 642, FieldType::PRICEOFFSET );
+  fieldTypeNameByValue.emplace( 642, "PRICEOFFSET" );
 
   tagNameByRaw.emplace( tag_as_raw<643>(), FixOfferForwardPoints2 );
   tagNameByValue.emplace( 643, FixOfferForwardPoints2 );
   tagByName.emplace( FixOfferForwardPoints2, 643 );
+  fieldTypeByValue.emplace( 643, FieldType::PRICEOFFSET );
+  fieldTypeNameByValue.emplace( 643, "PRICEOFFSET" );
 
   tagNameByRaw.emplace( tag_as_raw<644>(), FixRFQReqID );
   tagNameByValue.emplace( 644, FixRFQReqID );
   tagByName.emplace( FixRFQReqID, 644 );
+  fieldTypeByValue.emplace( 644, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 644, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<645>(), FixMktBidPx );
   tagNameByValue.emplace( 645, FixMktBidPx );
   tagByName.emplace( FixMktBidPx, 645 );
+  fieldTypeByValue.emplace( 645, FieldType::PRICE );
+  fieldTypeNameByValue.emplace( 645, "PRICE" );
 
   tagNameByRaw.emplace( tag_as_raw<646>(), FixMktOfferPx );
   tagNameByValue.emplace( 646, FixMktOfferPx );
   tagByName.emplace( FixMktOfferPx, 646 );
+  fieldTypeByValue.emplace( 646, FieldType::PRICE );
+  fieldTypeNameByValue.emplace( 646, "PRICE" );
 
   tagNameByRaw.emplace( tag_as_raw<647>(), FixMinBidSize );
   tagNameByValue.emplace( 647, FixMinBidSize );
   tagByName.emplace( FixMinBidSize, 647 );
+  fieldTypeByValue.emplace( 647, FieldType::QTY );
+  fieldTypeNameByValue.emplace( 647, "QTY" );
 
   tagNameByRaw.emplace( tag_as_raw<648>(), FixMinOfferSize );
   tagNameByValue.emplace( 648, FixMinOfferSize );
   tagByName.emplace( FixMinOfferSize, 648 );
+  fieldTypeByValue.emplace( 648, FieldType::QTY );
+  fieldTypeNameByValue.emplace( 648, "QTY" );
 
   tagNameByRaw.emplace( tag_as_raw<649>(), FixQuoteStatusReqID );
   tagNameByValue.emplace( 649, FixQuoteStatusReqID );
   tagByName.emplace( FixQuoteStatusReqID, 649 );
+  fieldTypeByValue.emplace( 649, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 649, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<650>(), FixLegalConfirm );
   tagNameByValue.emplace( 650, FixLegalConfirm );
   tagByName.emplace( FixLegalConfirm, 650 );
+  fieldTypeByValue.emplace( 650, FieldType::BOOLEAN );
+  fieldTypeNameByValue.emplace( 650, "BOOLEAN" );
 
   tagNameByRaw.emplace( tag_as_raw<651>(), FixUnderlyingLastPx );
   tagNameByValue.emplace( 651, FixUnderlyingLastPx );
   tagByName.emplace( FixUnderlyingLastPx, 651 );
+  fieldTypeByValue.emplace( 651, FieldType::PRICE );
+  fieldTypeNameByValue.emplace( 651, "PRICE" );
 
   tagNameByRaw.emplace( tag_as_raw<652>(), FixUnderlyingLastQty );
   tagNameByValue.emplace( 652, FixUnderlyingLastQty );
   tagByName.emplace( FixUnderlyingLastQty, 652 );
+  fieldTypeByValue.emplace( 652, FieldType::QTY );
+  fieldTypeNameByValue.emplace( 652, "QTY" );
 
   tagNameByRaw.emplace( tag_as_raw<654>(), FixLegRefID );
   tagNameByValue.emplace( 654, FixLegRefID );
   tagByName.emplace( FixLegRefID, 654 );
+  fieldTypeByValue.emplace( 654, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 654, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<655>(), FixContraLegRefID );
   tagNameByValue.emplace( 655, FixContraLegRefID );
   tagByName.emplace( FixContraLegRefID, 655 );
+  fieldTypeByValue.emplace( 655, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 655, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<656>(), FixSettlCurrBidFxRate );
   tagNameByValue.emplace( 656, FixSettlCurrBidFxRate );
   tagByName.emplace( FixSettlCurrBidFxRate, 656 );
+  fieldTypeByValue.emplace( 656, FieldType::FLOAT );
+  fieldTypeNameByValue.emplace( 656, "FLOAT" );
 
   tagNameByRaw.emplace( tag_as_raw<657>(), FixSettlCurrOfferFxRate );
   tagNameByValue.emplace( 657, FixSettlCurrOfferFxRate );
   tagByName.emplace( FixSettlCurrOfferFxRate, 657 );
+  fieldTypeByValue.emplace( 657, FieldType::FLOAT );
+  fieldTypeNameByValue.emplace( 657, "FLOAT" );
 
   tagNameByRaw.emplace( tag_as_raw<658>(), FixQuoteRequestRejectReason );
   tagNameByValue.emplace( 658, FixQuoteRequestRejectReason );
   tagByName.emplace( FixQuoteRequestRejectReason, 658 );
+  fieldTypeByValue.emplace( 658, FieldType::INT );
+  fieldTypeNameByValue.emplace( 658, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<659>(), FixSideComplianceID );
   tagNameByValue.emplace( 659, FixSideComplianceID );
   tagByName.emplace( FixSideComplianceID, 659 );
+  fieldTypeByValue.emplace( 659, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 659, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<660>(), FixAcctIDSource );
   tagNameByValue.emplace( 660, FixAcctIDSource );
   tagByName.emplace( FixAcctIDSource, 660 );
+  fieldTypeByValue.emplace( 660, FieldType::INT );
+  fieldTypeNameByValue.emplace( 660, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<661>(), FixAllocAcctIDSource );
   tagNameByValue.emplace( 661, FixAllocAcctIDSource );
   tagByName.emplace( FixAllocAcctIDSource, 661 );
+  fieldTypeByValue.emplace( 661, FieldType::INT );
+  fieldTypeNameByValue.emplace( 661, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<662>(), FixBenchmarkPrice );
   tagNameByValue.emplace( 662, FixBenchmarkPrice );
   tagByName.emplace( FixBenchmarkPrice, 662 );
+  fieldTypeByValue.emplace( 662, FieldType::PRICE );
+  fieldTypeNameByValue.emplace( 662, "PRICE" );
 
   tagNameByRaw.emplace( tag_as_raw<663>(), FixBenchmarkPriceType );
   tagNameByValue.emplace( 663, FixBenchmarkPriceType );
   tagByName.emplace( FixBenchmarkPriceType, 663 );
+  fieldTypeByValue.emplace( 663, FieldType::INT );
+  fieldTypeNameByValue.emplace( 663, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<664>(), FixConfirmID );
   tagNameByValue.emplace( 664, FixConfirmID );
   tagByName.emplace( FixConfirmID, 664 );
+  fieldTypeByValue.emplace( 664, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 664, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<665>(), FixConfirmStatus );
   tagNameByValue.emplace( 665, FixConfirmStatus );
   tagByName.emplace( FixConfirmStatus, 665 );
+  fieldTypeByValue.emplace( 665, FieldType::INT );
+  fieldTypeNameByValue.emplace( 665, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<666>(), FixConfirmTransType );
   tagNameByValue.emplace( 666, FixConfirmTransType );
   tagByName.emplace( FixConfirmTransType, 666 );
+  fieldTypeByValue.emplace( 666, FieldType::INT );
+  fieldTypeNameByValue.emplace( 666, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<667>(), FixContractSettlMonth );
   tagNameByValue.emplace( 667, FixContractSettlMonth );
   tagByName.emplace( FixContractSettlMonth, 667 );
+  fieldTypeByValue.emplace( 667, FieldType::MONTHYEAR );
+  fieldTypeNameByValue.emplace( 667, "MONTHYEAR" );
 
   tagNameByRaw.emplace( tag_as_raw<668>(), FixDeliveryForm );
   tagNameByValue.emplace( 668, FixDeliveryForm );
   tagByName.emplace( FixDeliveryForm, 668 );
+  fieldTypeByValue.emplace( 668, FieldType::INT );
+  fieldTypeNameByValue.emplace( 668, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<669>(), FixLastParPx );
   tagNameByValue.emplace( 669, FixLastParPx );
   tagByName.emplace( FixLastParPx, 669 );
+  fieldTypeByValue.emplace( 669, FieldType::PRICE );
+  fieldTypeNameByValue.emplace( 669, "PRICE" );
 
   tagNameByRaw.emplace( tag_as_raw<670>(), FixNoLegAllocs );
   tagNameByValue.emplace( 670, FixNoLegAllocs );
   tagByName.emplace( FixNoLegAllocs, 670 );
+  fieldTypeByValue.emplace( 670, FieldType::NUMINGROUP );
+  fieldTypeNameByValue.emplace( 670, "NUMINGROUP" );
 
   tagNameByRaw.emplace( tag_as_raw<671>(), FixLegAllocAccount );
   tagNameByValue.emplace( 671, FixLegAllocAccount );
   tagByName.emplace( FixLegAllocAccount, 671 );
+  fieldTypeByValue.emplace( 671, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 671, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<672>(), FixLegIndividualAllocID );
   tagNameByValue.emplace( 672, FixLegIndividualAllocID );
   tagByName.emplace( FixLegIndividualAllocID, 672 );
+  fieldTypeByValue.emplace( 672, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 672, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<673>(), FixLegAllocQty );
   tagNameByValue.emplace( 673, FixLegAllocQty );
   tagByName.emplace( FixLegAllocQty, 673 );
+  fieldTypeByValue.emplace( 673, FieldType::QTY );
+  fieldTypeNameByValue.emplace( 673, "QTY" );
 
   tagNameByRaw.emplace( tag_as_raw<674>(), FixLegAllocAcctIDSource );
   tagNameByValue.emplace( 674, FixLegAllocAcctIDSource );
   tagByName.emplace( FixLegAllocAcctIDSource, 674 );
+  fieldTypeByValue.emplace( 674, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 674, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<675>(), FixLegSettlCurrency );
   tagNameByValue.emplace( 675, FixLegSettlCurrency );
   tagByName.emplace( FixLegSettlCurrency, 675 );
+  fieldTypeByValue.emplace( 675, FieldType::CURRENCY );
+  fieldTypeNameByValue.emplace( 675, "CURRENCY" );
 
   tagNameByRaw.emplace( tag_as_raw<676>(), FixLegBenchmarkCurveCurrency );
   tagNameByValue.emplace( 676, FixLegBenchmarkCurveCurrency );
   tagByName.emplace( FixLegBenchmarkCurveCurrency, 676 );
+  fieldTypeByValue.emplace( 676, FieldType::CURRENCY );
+  fieldTypeNameByValue.emplace( 676, "CURRENCY" );
 
   tagNameByRaw.emplace( tag_as_raw<677>(), FixLegBenchmarkCurveName );
   tagNameByValue.emplace( 677, FixLegBenchmarkCurveName );
   tagByName.emplace( FixLegBenchmarkCurveName, 677 );
+  fieldTypeByValue.emplace( 677, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 677, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<678>(), FixLegBenchmarkCurvePoint );
   tagNameByValue.emplace( 678, FixLegBenchmarkCurvePoint );
   tagByName.emplace( FixLegBenchmarkCurvePoint, 678 );
+  fieldTypeByValue.emplace( 678, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 678, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<679>(), FixLegBenchmarkPrice );
   tagNameByValue.emplace( 679, FixLegBenchmarkPrice );
   tagByName.emplace( FixLegBenchmarkPrice, 679 );
+  fieldTypeByValue.emplace( 679, FieldType::PRICE );
+  fieldTypeNameByValue.emplace( 679, "PRICE" );
 
   tagNameByRaw.emplace( tag_as_raw<680>(), FixLegBenchmarkPriceType );
   tagNameByValue.emplace( 680, FixLegBenchmarkPriceType );
   tagByName.emplace( FixLegBenchmarkPriceType, 680 );
+  fieldTypeByValue.emplace( 680, FieldType::INT );
+  fieldTypeNameByValue.emplace( 680, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<681>(), FixLegBidPx );
   tagNameByValue.emplace( 681, FixLegBidPx );
   tagByName.emplace( FixLegBidPx, 681 );
+  fieldTypeByValue.emplace( 681, FieldType::PRICE );
+  fieldTypeNameByValue.emplace( 681, "PRICE" );
 
   tagNameByRaw.emplace( tag_as_raw<682>(), FixLegIOIQty );
   tagNameByValue.emplace( 682, FixLegIOIQty );
   tagByName.emplace( FixLegIOIQty, 682 );
+  fieldTypeByValue.emplace( 682, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 682, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<683>(), FixNoLegStipulations );
   tagNameByValue.emplace( 683, FixNoLegStipulations );
   tagByName.emplace( FixNoLegStipulations, 683 );
+  fieldTypeByValue.emplace( 683, FieldType::NUMINGROUP );
+  fieldTypeNameByValue.emplace( 683, "NUMINGROUP" );
 
   tagNameByRaw.emplace( tag_as_raw<684>(), FixLegOfferPx );
   tagNameByValue.emplace( 684, FixLegOfferPx );
   tagByName.emplace( FixLegOfferPx, 684 );
+  fieldTypeByValue.emplace( 684, FieldType::PRICE );
+  fieldTypeNameByValue.emplace( 684, "PRICE" );
 
   tagNameByRaw.emplace( tag_as_raw<686>(), FixLegPriceType );
   tagNameByValue.emplace( 686, FixLegPriceType );
   tagByName.emplace( FixLegPriceType, 686 );
+  fieldTypeByValue.emplace( 686, FieldType::INT );
+  fieldTypeNameByValue.emplace( 686, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<687>(), FixLegQty );
   tagNameByValue.emplace( 687, FixLegQty );
   tagByName.emplace( FixLegQty, 687 );
+  fieldTypeByValue.emplace( 687, FieldType::QTY );
+  fieldTypeNameByValue.emplace( 687, "QTY" );
 
   tagNameByRaw.emplace( tag_as_raw<688>(), FixLegStipulationType );
   tagNameByValue.emplace( 688, FixLegStipulationType );
   tagByName.emplace( FixLegStipulationType, 688 );
+  fieldTypeByValue.emplace( 688, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 688, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<689>(), FixLegStipulationValue );
   tagNameByValue.emplace( 689, FixLegStipulationValue );
   tagByName.emplace( FixLegStipulationValue, 689 );
+  fieldTypeByValue.emplace( 689, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 689, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<690>(), FixLegSwapType );
   tagNameByValue.emplace( 690, FixLegSwapType );
   tagByName.emplace( FixLegSwapType, 690 );
+  fieldTypeByValue.emplace( 690, FieldType::INT );
+  fieldTypeNameByValue.emplace( 690, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<691>(), FixPool );
   tagNameByValue.emplace( 691, FixPool );
   tagByName.emplace( FixPool, 691 );
+  fieldTypeByValue.emplace( 691, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 691, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<692>(), FixQuotePriceType );
   tagNameByValue.emplace( 692, FixQuotePriceType );
   tagByName.emplace( FixQuotePriceType, 692 );
+  fieldTypeByValue.emplace( 692, FieldType::INT );
+  fieldTypeNameByValue.emplace( 692, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<693>(), FixQuoteRespID );
   tagNameByValue.emplace( 693, FixQuoteRespID );
   tagByName.emplace( FixQuoteRespID, 693 );
+  fieldTypeByValue.emplace( 693, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 693, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<694>(), FixQuoteRespType );
   tagNameByValue.emplace( 694, FixQuoteRespType );
   tagByName.emplace( FixQuoteRespType, 694 );
+  fieldTypeByValue.emplace( 694, FieldType::INT );
+  fieldTypeNameByValue.emplace( 694, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<695>(), FixQuoteQualifier );
   tagNameByValue.emplace( 695, FixQuoteQualifier );
   tagByName.emplace( FixQuoteQualifier, 695 );
+  fieldTypeByValue.emplace( 695, FieldType::CHAR );
+  fieldTypeNameByValue.emplace( 695, "CHAR" );
 
   tagNameByRaw.emplace( tag_as_raw<696>(), FixYieldRedemptionDate );
   tagNameByValue.emplace( 696, FixYieldRedemptionDate );
   tagByName.emplace( FixYieldRedemptionDate, 696 );
+  fieldTypeByValue.emplace( 696, FieldType::LOCALMKTDATE );
+  fieldTypeNameByValue.emplace( 696, "LOCALMKTDATE" );
 
   tagNameByRaw.emplace( tag_as_raw<697>(), FixYieldRedemptionPrice );
   tagNameByValue.emplace( 697, FixYieldRedemptionPrice );
   tagByName.emplace( FixYieldRedemptionPrice, 697 );
+  fieldTypeByValue.emplace( 697, FieldType::PRICE );
+  fieldTypeNameByValue.emplace( 697, "PRICE" );
 
   tagNameByRaw.emplace( tag_as_raw<698>(), FixYieldRedemptionPriceType );
   tagNameByValue.emplace( 698, FixYieldRedemptionPriceType );
   tagByName.emplace( FixYieldRedemptionPriceType, 698 );
+  fieldTypeByValue.emplace( 698, FieldType::INT );
+  fieldTypeNameByValue.emplace( 698, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<699>(), FixBenchmarkSecurityID );
   tagNameByValue.emplace( 699, FixBenchmarkSecurityID );
   tagByName.emplace( FixBenchmarkSecurityID, 699 );
+  fieldTypeByValue.emplace( 699, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 699, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<700>(), FixReversalIndicator );
   tagNameByValue.emplace( 700, FixReversalIndicator );
   tagByName.emplace( FixReversalIndicator, 700 );
+  fieldTypeByValue.emplace( 700, FieldType::BOOLEAN );
+  fieldTypeNameByValue.emplace( 700, "BOOLEAN" );
 
   tagNameByRaw.emplace( tag_as_raw<701>(), FixYieldCalcDate );
   tagNameByValue.emplace( 701, FixYieldCalcDate );
   tagByName.emplace( FixYieldCalcDate, 701 );
+  fieldTypeByValue.emplace( 701, FieldType::LOCALMKTDATE );
+  fieldTypeNameByValue.emplace( 701, "LOCALMKTDATE" );
 
   tagNameByRaw.emplace( tag_as_raw<702>(), FixNoPositions );
   tagNameByValue.emplace( 702, FixNoPositions );
   tagByName.emplace( FixNoPositions, 702 );
+  fieldTypeByValue.emplace( 702, FieldType::NUMINGROUP );
+  fieldTypeNameByValue.emplace( 702, "NUMINGROUP" );
 
   tagNameByRaw.emplace( tag_as_raw<703>(), FixPosType );
   tagNameByValue.emplace( 703, FixPosType );
   tagByName.emplace( FixPosType, 703 );
+  fieldTypeByValue.emplace( 703, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 703, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<704>(), FixLongQty );
   tagNameByValue.emplace( 704, FixLongQty );
   tagByName.emplace( FixLongQty, 704 );
+  fieldTypeByValue.emplace( 704, FieldType::QTY );
+  fieldTypeNameByValue.emplace( 704, "QTY" );
 
   tagNameByRaw.emplace( tag_as_raw<705>(), FixShortQty );
   tagNameByValue.emplace( 705, FixShortQty );
   tagByName.emplace( FixShortQty, 705 );
+  fieldTypeByValue.emplace( 705, FieldType::QTY );
+  fieldTypeNameByValue.emplace( 705, "QTY" );
 
   tagNameByRaw.emplace( tag_as_raw<706>(), FixPosQtyStatus );
   tagNameByValue.emplace( 706, FixPosQtyStatus );
   tagByName.emplace( FixPosQtyStatus, 706 );
+  fieldTypeByValue.emplace( 706, FieldType::INT );
+  fieldTypeNameByValue.emplace( 706, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<707>(), FixPosAmtType );
   tagNameByValue.emplace( 707, FixPosAmtType );
   tagByName.emplace( FixPosAmtType, 707 );
+  fieldTypeByValue.emplace( 707, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 707, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<708>(), FixPosAmt );
   tagNameByValue.emplace( 708, FixPosAmt );
   tagByName.emplace( FixPosAmt, 708 );
+  fieldTypeByValue.emplace( 708, FieldType::AMT );
+  fieldTypeNameByValue.emplace( 708, "AMT" );
 
   tagNameByRaw.emplace( tag_as_raw<709>(), FixPosTransType );
   tagNameByValue.emplace( 709, FixPosTransType );
   tagByName.emplace( FixPosTransType, 709 );
+  fieldTypeByValue.emplace( 709, FieldType::INT );
+  fieldTypeNameByValue.emplace( 709, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<710>(), FixPosReqID );
   tagNameByValue.emplace( 710, FixPosReqID );
   tagByName.emplace( FixPosReqID, 710 );
+  fieldTypeByValue.emplace( 710, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 710, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<711>(), FixNoUnderlyings );
   tagNameByValue.emplace( 711, FixNoUnderlyings );
   tagByName.emplace( FixNoUnderlyings, 711 );
+  fieldTypeByValue.emplace( 711, FieldType::NUMINGROUP );
+  fieldTypeNameByValue.emplace( 711, "NUMINGROUP" );
 
   tagNameByRaw.emplace( tag_as_raw<712>(), FixPosMaintAction );
   tagNameByValue.emplace( 712, FixPosMaintAction );
   tagByName.emplace( FixPosMaintAction, 712 );
+  fieldTypeByValue.emplace( 712, FieldType::INT );
+  fieldTypeNameByValue.emplace( 712, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<713>(), FixOrigPosReqRefID );
   tagNameByValue.emplace( 713, FixOrigPosReqRefID );
   tagByName.emplace( FixOrigPosReqRefID, 713 );
+  fieldTypeByValue.emplace( 713, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 713, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<714>(), FixPosMaintRptRefID );
   tagNameByValue.emplace( 714, FixPosMaintRptRefID );
   tagByName.emplace( FixPosMaintRptRefID, 714 );
+  fieldTypeByValue.emplace( 714, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 714, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<715>(), FixClearingBusinessDate );
   tagNameByValue.emplace( 715, FixClearingBusinessDate );
   tagByName.emplace( FixClearingBusinessDate, 715 );
+  fieldTypeByValue.emplace( 715, FieldType::LOCALMKTDATE );
+  fieldTypeNameByValue.emplace( 715, "LOCALMKTDATE" );
 
   tagNameByRaw.emplace( tag_as_raw<716>(), FixSettlSessID );
   tagNameByValue.emplace( 716, FixSettlSessID );
   tagByName.emplace( FixSettlSessID, 716 );
+  fieldTypeByValue.emplace( 716, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 716, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<717>(), FixSettlSessSubID );
   tagNameByValue.emplace( 717, FixSettlSessSubID );
   tagByName.emplace( FixSettlSessSubID, 717 );
+  fieldTypeByValue.emplace( 717, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 717, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<718>(), FixAdjustmentType );
   tagNameByValue.emplace( 718, FixAdjustmentType );
   tagByName.emplace( FixAdjustmentType, 718 );
+  fieldTypeByValue.emplace( 718, FieldType::INT );
+  fieldTypeNameByValue.emplace( 718, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<719>(), FixContraryInstructionIndicator );
   tagNameByValue.emplace( 719, FixContraryInstructionIndicator );
   tagByName.emplace( FixContraryInstructionIndicator, 719 );
+  fieldTypeByValue.emplace( 719, FieldType::BOOLEAN );
+  fieldTypeNameByValue.emplace( 719, "BOOLEAN" );
 
   tagNameByRaw.emplace( tag_as_raw<720>(), FixPriorSpreadIndicator );
   tagNameByValue.emplace( 720, FixPriorSpreadIndicator );
   tagByName.emplace( FixPriorSpreadIndicator, 720 );
+  fieldTypeByValue.emplace( 720, FieldType::BOOLEAN );
+  fieldTypeNameByValue.emplace( 720, "BOOLEAN" );
 
   tagNameByRaw.emplace( tag_as_raw<721>(), FixPosMaintRptID );
   tagNameByValue.emplace( 721, FixPosMaintRptID );
   tagByName.emplace( FixPosMaintRptID, 721 );
+  fieldTypeByValue.emplace( 721, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 721, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<722>(), FixPosMaintStatus );
   tagNameByValue.emplace( 722, FixPosMaintStatus );
   tagByName.emplace( FixPosMaintStatus, 722 );
+  fieldTypeByValue.emplace( 722, FieldType::INT );
+  fieldTypeNameByValue.emplace( 722, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<723>(), FixPosMaintResult );
   tagNameByValue.emplace( 723, FixPosMaintResult );
   tagByName.emplace( FixPosMaintResult, 723 );
+  fieldTypeByValue.emplace( 723, FieldType::INT );
+  fieldTypeNameByValue.emplace( 723, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<724>(), FixPosReqType );
   tagNameByValue.emplace( 724, FixPosReqType );
   tagByName.emplace( FixPosReqType, 724 );
+  fieldTypeByValue.emplace( 724, FieldType::INT );
+  fieldTypeNameByValue.emplace( 724, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<725>(), FixResponseTransportType );
   tagNameByValue.emplace( 725, FixResponseTransportType );
   tagByName.emplace( FixResponseTransportType, 725 );
+  fieldTypeByValue.emplace( 725, FieldType::INT );
+  fieldTypeNameByValue.emplace( 725, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<726>(), FixResponseDestination );
   tagNameByValue.emplace( 726, FixResponseDestination );
   tagByName.emplace( FixResponseDestination, 726 );
+  fieldTypeByValue.emplace( 726, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 726, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<727>(), FixTotalNumPosReports );
   tagNameByValue.emplace( 727, FixTotalNumPosReports );
   tagByName.emplace( FixTotalNumPosReports, 727 );
+  fieldTypeByValue.emplace( 727, FieldType::INT );
+  fieldTypeNameByValue.emplace( 727, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<728>(), FixPosReqResult );
   tagNameByValue.emplace( 728, FixPosReqResult );
   tagByName.emplace( FixPosReqResult, 728 );
+  fieldTypeByValue.emplace( 728, FieldType::INT );
+  fieldTypeNameByValue.emplace( 728, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<729>(), FixPosReqStatus );
   tagNameByValue.emplace( 729, FixPosReqStatus );
   tagByName.emplace( FixPosReqStatus, 729 );
+  fieldTypeByValue.emplace( 729, FieldType::INT );
+  fieldTypeNameByValue.emplace( 729, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<730>(), FixSettlPrice );
   tagNameByValue.emplace( 730, FixSettlPrice );
   tagByName.emplace( FixSettlPrice, 730 );
+  fieldTypeByValue.emplace( 730, FieldType::PRICE );
+  fieldTypeNameByValue.emplace( 730, "PRICE" );
 
   tagNameByRaw.emplace( tag_as_raw<731>(), FixSettlPriceType );
   tagNameByValue.emplace( 731, FixSettlPriceType );
   tagByName.emplace( FixSettlPriceType, 731 );
+  fieldTypeByValue.emplace( 731, FieldType::INT );
+  fieldTypeNameByValue.emplace( 731, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<732>(), FixUnderlyingSettlPrice );
   tagNameByValue.emplace( 732, FixUnderlyingSettlPrice );
   tagByName.emplace( FixUnderlyingSettlPrice, 732 );
+  fieldTypeByValue.emplace( 732, FieldType::PRICE );
+  fieldTypeNameByValue.emplace( 732, "PRICE" );
 
   tagNameByRaw.emplace( tag_as_raw<733>(), FixUnderlyingSettlPriceType );
   tagNameByValue.emplace( 733, FixUnderlyingSettlPriceType );
   tagByName.emplace( FixUnderlyingSettlPriceType, 733 );
+  fieldTypeByValue.emplace( 733, FieldType::INT );
+  fieldTypeNameByValue.emplace( 733, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<734>(), FixPriorSettlPrice );
   tagNameByValue.emplace( 734, FixPriorSettlPrice );
   tagByName.emplace( FixPriorSettlPrice, 734 );
+  fieldTypeByValue.emplace( 734, FieldType::PRICE );
+  fieldTypeNameByValue.emplace( 734, "PRICE" );
 
   tagNameByRaw.emplace( tag_as_raw<735>(), FixNoQuoteQualifiers );
   tagNameByValue.emplace( 735, FixNoQuoteQualifiers );
   tagByName.emplace( FixNoQuoteQualifiers, 735 );
+  fieldTypeByValue.emplace( 735, FieldType::NUMINGROUP );
+  fieldTypeNameByValue.emplace( 735, "NUMINGROUP" );
 
   tagNameByRaw.emplace( tag_as_raw<736>(), FixAllocSettlCurrency );
   tagNameByValue.emplace( 736, FixAllocSettlCurrency );
   tagByName.emplace( FixAllocSettlCurrency, 736 );
+  fieldTypeByValue.emplace( 736, FieldType::CURRENCY );
+  fieldTypeNameByValue.emplace( 736, "CURRENCY" );
 
   tagNameByRaw.emplace( tag_as_raw<737>(), FixAllocSettlCurrAmt );
   tagNameByValue.emplace( 737, FixAllocSettlCurrAmt );
   tagByName.emplace( FixAllocSettlCurrAmt, 737 );
+  fieldTypeByValue.emplace( 737, FieldType::AMT );
+  fieldTypeNameByValue.emplace( 737, "AMT" );
 
   tagNameByRaw.emplace( tag_as_raw<738>(), FixInterestAtMaturity );
   tagNameByValue.emplace( 738, FixInterestAtMaturity );
   tagByName.emplace( FixInterestAtMaturity, 738 );
+  fieldTypeByValue.emplace( 738, FieldType::AMT );
+  fieldTypeNameByValue.emplace( 738, "AMT" );
 
   tagNameByRaw.emplace( tag_as_raw<739>(), FixLegDatedDate );
   tagNameByValue.emplace( 739, FixLegDatedDate );
   tagByName.emplace( FixLegDatedDate, 739 );
+  fieldTypeByValue.emplace( 739, FieldType::LOCALMKTDATE );
+  fieldTypeNameByValue.emplace( 739, "LOCALMKTDATE" );
 
   tagNameByRaw.emplace( tag_as_raw<740>(), FixLegPool );
   tagNameByValue.emplace( 740, FixLegPool );
   tagByName.emplace( FixLegPool, 740 );
+  fieldTypeByValue.emplace( 740, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 740, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<741>(), FixAllocInterestAtMaturity );
   tagNameByValue.emplace( 741, FixAllocInterestAtMaturity );
   tagByName.emplace( FixAllocInterestAtMaturity, 741 );
+  fieldTypeByValue.emplace( 741, FieldType::AMT );
+  fieldTypeNameByValue.emplace( 741, "AMT" );
 
   tagNameByRaw.emplace( tag_as_raw<742>(), FixAllocAccruedInterestAmt );
   tagNameByValue.emplace( 742, FixAllocAccruedInterestAmt );
   tagByName.emplace( FixAllocAccruedInterestAmt, 742 );
+  fieldTypeByValue.emplace( 742, FieldType::AMT );
+  fieldTypeNameByValue.emplace( 742, "AMT" );
 
   tagNameByRaw.emplace( tag_as_raw<743>(), FixDeliveryDate );
   tagNameByValue.emplace( 743, FixDeliveryDate );
   tagByName.emplace( FixDeliveryDate, 743 );
+  fieldTypeByValue.emplace( 743, FieldType::LOCALMKTDATE );
+  fieldTypeNameByValue.emplace( 743, "LOCALMKTDATE" );
 
   tagNameByRaw.emplace( tag_as_raw<744>(), FixAssignmentMethod );
   tagNameByValue.emplace( 744, FixAssignmentMethod );
   tagByName.emplace( FixAssignmentMethod, 744 );
+  fieldTypeByValue.emplace( 744, FieldType::CHAR );
+  fieldTypeNameByValue.emplace( 744, "CHAR" );
 
   tagNameByRaw.emplace( tag_as_raw<745>(), FixAssignmentUnit );
   tagNameByValue.emplace( 745, FixAssignmentUnit );
   tagByName.emplace( FixAssignmentUnit, 745 );
+  fieldTypeByValue.emplace( 745, FieldType::QTY );
+  fieldTypeNameByValue.emplace( 745, "QTY" );
 
   tagNameByRaw.emplace( tag_as_raw<746>(), FixOpenInterest );
   tagNameByValue.emplace( 746, FixOpenInterest );
   tagByName.emplace( FixOpenInterest, 746 );
+  fieldTypeByValue.emplace( 746, FieldType::AMT );
+  fieldTypeNameByValue.emplace( 746, "AMT" );
 
   tagNameByRaw.emplace( tag_as_raw<747>(), FixExerciseMethod );
   tagNameByValue.emplace( 747, FixExerciseMethod );
   tagByName.emplace( FixExerciseMethod, 747 );
+  fieldTypeByValue.emplace( 747, FieldType::CHAR );
+  fieldTypeNameByValue.emplace( 747, "CHAR" );
 
   tagNameByRaw.emplace( tag_as_raw<748>(), FixTotNumTradeReports );
   tagNameByValue.emplace( 748, FixTotNumTradeReports );
   tagByName.emplace( FixTotNumTradeReports, 748 );
+  fieldTypeByValue.emplace( 748, FieldType::INT );
+  fieldTypeNameByValue.emplace( 748, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<749>(), FixTradeRequestResult );
   tagNameByValue.emplace( 749, FixTradeRequestResult );
   tagByName.emplace( FixTradeRequestResult, 749 );
+  fieldTypeByValue.emplace( 749, FieldType::INT );
+  fieldTypeNameByValue.emplace( 749, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<750>(), FixTradeRequestStatus );
   tagNameByValue.emplace( 750, FixTradeRequestStatus );
   tagByName.emplace( FixTradeRequestStatus, 750 );
+  fieldTypeByValue.emplace( 750, FieldType::INT );
+  fieldTypeNameByValue.emplace( 750, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<751>(), FixTradeReportRejectReason );
   tagNameByValue.emplace( 751, FixTradeReportRejectReason );
   tagByName.emplace( FixTradeReportRejectReason, 751 );
+  fieldTypeByValue.emplace( 751, FieldType::INT );
+  fieldTypeNameByValue.emplace( 751, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<752>(), FixSideMultiLegReportingType );
   tagNameByValue.emplace( 752, FixSideMultiLegReportingType );
   tagByName.emplace( FixSideMultiLegReportingType, 752 );
+  fieldTypeByValue.emplace( 752, FieldType::INT );
+  fieldTypeNameByValue.emplace( 752, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<753>(), FixNoPosAmt );
   tagNameByValue.emplace( 753, FixNoPosAmt );
   tagByName.emplace( FixNoPosAmt, 753 );
+  fieldTypeByValue.emplace( 753, FieldType::NUMINGROUP );
+  fieldTypeNameByValue.emplace( 753, "NUMINGROUP" );
 
   tagNameByRaw.emplace( tag_as_raw<754>(), FixAutoAcceptIndicator );
   tagNameByValue.emplace( 754, FixAutoAcceptIndicator );
   tagByName.emplace( FixAutoAcceptIndicator, 754 );
+  fieldTypeByValue.emplace( 754, FieldType::BOOLEAN );
+  fieldTypeNameByValue.emplace( 754, "BOOLEAN" );
 
   tagNameByRaw.emplace( tag_as_raw<755>(), FixAllocReportID );
   tagNameByValue.emplace( 755, FixAllocReportID );
   tagByName.emplace( FixAllocReportID, 755 );
+  fieldTypeByValue.emplace( 755, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 755, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<756>(), FixNoNested2PartyIDs );
   tagNameByValue.emplace( 756, FixNoNested2PartyIDs );
   tagByName.emplace( FixNoNested2PartyIDs, 756 );
+  fieldTypeByValue.emplace( 756, FieldType::NUMINGROUP );
+  fieldTypeNameByValue.emplace( 756, "NUMINGROUP" );
 
   tagNameByRaw.emplace( tag_as_raw<757>(), FixNested2PartyID );
   tagNameByValue.emplace( 757, FixNested2PartyID );
   tagByName.emplace( FixNested2PartyID, 757 );
+  fieldTypeByValue.emplace( 757, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 757, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<758>(), FixNested2PartyIDSource );
   tagNameByValue.emplace( 758, FixNested2PartyIDSource );
   tagByName.emplace( FixNested2PartyIDSource, 758 );
+  fieldTypeByValue.emplace( 758, FieldType::CHAR );
+  fieldTypeNameByValue.emplace( 758, "CHAR" );
 
   tagNameByRaw.emplace( tag_as_raw<759>(), FixNested2PartyRole );
   tagNameByValue.emplace( 759, FixNested2PartyRole );
   tagByName.emplace( FixNested2PartyRole, 759 );
+  fieldTypeByValue.emplace( 759, FieldType::INT );
+  fieldTypeNameByValue.emplace( 759, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<760>(), FixNested2PartySubID );
   tagNameByValue.emplace( 760, FixNested2PartySubID );
   tagByName.emplace( FixNested2PartySubID, 760 );
+  fieldTypeByValue.emplace( 760, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 760, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<761>(), FixBenchmarkSecurityIDSource );
   tagNameByValue.emplace( 761, FixBenchmarkSecurityIDSource );
   tagByName.emplace( FixBenchmarkSecurityIDSource, 761 );
+  fieldTypeByValue.emplace( 761, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 761, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<762>(), FixSecuritySubType );
   tagNameByValue.emplace( 762, FixSecuritySubType );
   tagByName.emplace( FixSecuritySubType, 762 );
+  fieldTypeByValue.emplace( 762, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 762, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<763>(), FixUnderlyingSecuritySubType );
   tagNameByValue.emplace( 763, FixUnderlyingSecuritySubType );
   tagByName.emplace( FixUnderlyingSecuritySubType, 763 );
+  fieldTypeByValue.emplace( 763, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 763, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<764>(), FixLegSecuritySubType );
   tagNameByValue.emplace( 764, FixLegSecuritySubType );
   tagByName.emplace( FixLegSecuritySubType, 764 );
+  fieldTypeByValue.emplace( 764, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 764, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<765>(), FixAllowableOneSidednessPct );
   tagNameByValue.emplace( 765, FixAllowableOneSidednessPct );
   tagByName.emplace( FixAllowableOneSidednessPct, 765 );
+  fieldTypeByValue.emplace( 765, FieldType::PERCENTAGE );
+  fieldTypeNameByValue.emplace( 765, "PERCENTAGE" );
 
   tagNameByRaw.emplace( tag_as_raw<766>(), FixAllowableOneSidednessValue );
   tagNameByValue.emplace( 766, FixAllowableOneSidednessValue );
   tagByName.emplace( FixAllowableOneSidednessValue, 766 );
+  fieldTypeByValue.emplace( 766, FieldType::AMT );
+  fieldTypeNameByValue.emplace( 766, "AMT" );
 
   tagNameByRaw.emplace( tag_as_raw<767>(), FixAllowableOneSidednessCurr );
   tagNameByValue.emplace( 767, FixAllowableOneSidednessCurr );
   tagByName.emplace( FixAllowableOneSidednessCurr, 767 );
+  fieldTypeByValue.emplace( 767, FieldType::CURRENCY );
+  fieldTypeNameByValue.emplace( 767, "CURRENCY" );
 
   tagNameByRaw.emplace( tag_as_raw<768>(), FixNoTrdRegTimestamps );
   tagNameByValue.emplace( 768, FixNoTrdRegTimestamps );
   tagByName.emplace( FixNoTrdRegTimestamps, 768 );
+  fieldTypeByValue.emplace( 768, FieldType::NUMINGROUP );
+  fieldTypeNameByValue.emplace( 768, "NUMINGROUP" );
 
   tagNameByRaw.emplace( tag_as_raw<769>(), FixTrdRegTimestamp );
   tagNameByValue.emplace( 769, FixTrdRegTimestamp );
   tagByName.emplace( FixTrdRegTimestamp, 769 );
+  fieldTypeByValue.emplace( 769, FieldType::UTCTIMESTAMP );
+  fieldTypeNameByValue.emplace( 769, "UTCTIMESTAMP" );
 
   tagNameByRaw.emplace( tag_as_raw<770>(), FixTrdRegTimestampType );
   tagNameByValue.emplace( 770, FixTrdRegTimestampType );
   tagByName.emplace( FixTrdRegTimestampType, 770 );
+  fieldTypeByValue.emplace( 770, FieldType::INT );
+  fieldTypeNameByValue.emplace( 770, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<771>(), FixTrdRegTimestampOrigin );
   tagNameByValue.emplace( 771, FixTrdRegTimestampOrigin );
   tagByName.emplace( FixTrdRegTimestampOrigin, 771 );
+  fieldTypeByValue.emplace( 771, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 771, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<772>(), FixConfirmRefID );
   tagNameByValue.emplace( 772, FixConfirmRefID );
   tagByName.emplace( FixConfirmRefID, 772 );
+  fieldTypeByValue.emplace( 772, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 772, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<773>(), FixConfirmType );
   tagNameByValue.emplace( 773, FixConfirmType );
   tagByName.emplace( FixConfirmType, 773 );
+  fieldTypeByValue.emplace( 773, FieldType::INT );
+  fieldTypeNameByValue.emplace( 773, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<774>(), FixConfirmRejReason );
   tagNameByValue.emplace( 774, FixConfirmRejReason );
   tagByName.emplace( FixConfirmRejReason, 774 );
+  fieldTypeByValue.emplace( 774, FieldType::INT );
+  fieldTypeNameByValue.emplace( 774, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<775>(), FixBookingType );
   tagNameByValue.emplace( 775, FixBookingType );
   tagByName.emplace( FixBookingType, 775 );
+  fieldTypeByValue.emplace( 775, FieldType::INT );
+  fieldTypeNameByValue.emplace( 775, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<776>(), FixIndividualAllocRejCode );
   tagNameByValue.emplace( 776, FixIndividualAllocRejCode );
   tagByName.emplace( FixIndividualAllocRejCode, 776 );
+  fieldTypeByValue.emplace( 776, FieldType::INT );
+  fieldTypeNameByValue.emplace( 776, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<777>(), FixSettlInstMsgID );
   tagNameByValue.emplace( 777, FixSettlInstMsgID );
   tagByName.emplace( FixSettlInstMsgID, 777 );
+  fieldTypeByValue.emplace( 777, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 777, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<778>(), FixNoSettlInst );
   tagNameByValue.emplace( 778, FixNoSettlInst );
   tagByName.emplace( FixNoSettlInst, 778 );
+  fieldTypeByValue.emplace( 778, FieldType::NUMINGROUP );
+  fieldTypeNameByValue.emplace( 778, "NUMINGROUP" );
 
   tagNameByRaw.emplace( tag_as_raw<779>(), FixLastUpdateTime );
   tagNameByValue.emplace( 779, FixLastUpdateTime );
   tagByName.emplace( FixLastUpdateTime, 779 );
+  fieldTypeByValue.emplace( 779, FieldType::UTCTIMESTAMP );
+  fieldTypeNameByValue.emplace( 779, "UTCTIMESTAMP" );
 
   tagNameByRaw.emplace( tag_as_raw<780>(), FixAllocSettlInstType );
   tagNameByValue.emplace( 780, FixAllocSettlInstType );
   tagByName.emplace( FixAllocSettlInstType, 780 );
+  fieldTypeByValue.emplace( 780, FieldType::INT );
+  fieldTypeNameByValue.emplace( 780, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<781>(), FixNoSettlPartyIDs );
   tagNameByValue.emplace( 781, FixNoSettlPartyIDs );
   tagByName.emplace( FixNoSettlPartyIDs, 781 );
+  fieldTypeByValue.emplace( 781, FieldType::NUMINGROUP );
+  fieldTypeNameByValue.emplace( 781, "NUMINGROUP" );
 
   tagNameByRaw.emplace( tag_as_raw<782>(), FixSettlPartyID );
   tagNameByValue.emplace( 782, FixSettlPartyID );
   tagByName.emplace( FixSettlPartyID, 782 );
+  fieldTypeByValue.emplace( 782, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 782, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<783>(), FixSettlPartyIDSource );
   tagNameByValue.emplace( 783, FixSettlPartyIDSource );
   tagByName.emplace( FixSettlPartyIDSource, 783 );
+  fieldTypeByValue.emplace( 783, FieldType::CHAR );
+  fieldTypeNameByValue.emplace( 783, "CHAR" );
 
   tagNameByRaw.emplace( tag_as_raw<784>(), FixSettlPartyRole );
   tagNameByValue.emplace( 784, FixSettlPartyRole );
   tagByName.emplace( FixSettlPartyRole, 784 );
+  fieldTypeByValue.emplace( 784, FieldType::INT );
+  fieldTypeNameByValue.emplace( 784, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<785>(), FixSettlPartySubID );
   tagNameByValue.emplace( 785, FixSettlPartySubID );
   tagByName.emplace( FixSettlPartySubID, 785 );
+  fieldTypeByValue.emplace( 785, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 785, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<786>(), FixSettlPartySubIDType );
   tagNameByValue.emplace( 786, FixSettlPartySubIDType );
   tagByName.emplace( FixSettlPartySubIDType, 786 );
+  fieldTypeByValue.emplace( 786, FieldType::INT );
+  fieldTypeNameByValue.emplace( 786, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<787>(), FixDlvyInstType );
   tagNameByValue.emplace( 787, FixDlvyInstType );
   tagByName.emplace( FixDlvyInstType, 787 );
+  fieldTypeByValue.emplace( 787, FieldType::CHAR );
+  fieldTypeNameByValue.emplace( 787, "CHAR" );
 
   tagNameByRaw.emplace( tag_as_raw<788>(), FixTerminationType );
   tagNameByValue.emplace( 788, FixTerminationType );
   tagByName.emplace( FixTerminationType, 788 );
+  fieldTypeByValue.emplace( 788, FieldType::INT );
+  fieldTypeNameByValue.emplace( 788, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<789>(), FixNextExpectedMsgSeqNum );
   tagNameByValue.emplace( 789, FixNextExpectedMsgSeqNum );
   tagByName.emplace( FixNextExpectedMsgSeqNum, 789 );
+  fieldTypeByValue.emplace( 789, FieldType::SEQNUM );
+  fieldTypeNameByValue.emplace( 789, "SEQNUM" );
 
   tagNameByRaw.emplace( tag_as_raw<790>(), FixOrdStatusReqID );
   tagNameByValue.emplace( 790, FixOrdStatusReqID );
   tagByName.emplace( FixOrdStatusReqID, 790 );
+  fieldTypeByValue.emplace( 790, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 790, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<791>(), FixSettlInstReqID );
   tagNameByValue.emplace( 791, FixSettlInstReqID );
   tagByName.emplace( FixSettlInstReqID, 791 );
+  fieldTypeByValue.emplace( 791, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 791, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<792>(), FixSettlInstReqRejCode );
   tagNameByValue.emplace( 792, FixSettlInstReqRejCode );
   tagByName.emplace( FixSettlInstReqRejCode, 792 );
+  fieldTypeByValue.emplace( 792, FieldType::INT );
+  fieldTypeNameByValue.emplace( 792, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<793>(), FixSecondaryAllocID );
   tagNameByValue.emplace( 793, FixSecondaryAllocID );
   tagByName.emplace( FixSecondaryAllocID, 793 );
+  fieldTypeByValue.emplace( 793, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 793, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<794>(), FixAllocReportType );
   tagNameByValue.emplace( 794, FixAllocReportType );
   tagByName.emplace( FixAllocReportType, 794 );
+  fieldTypeByValue.emplace( 794, FieldType::INT );
+  fieldTypeNameByValue.emplace( 794, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<795>(), FixAllocReportRefID );
   tagNameByValue.emplace( 795, FixAllocReportRefID );
   tagByName.emplace( FixAllocReportRefID, 795 );
+  fieldTypeByValue.emplace( 795, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 795, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<796>(), FixAllocCancReplaceReason );
   tagNameByValue.emplace( 796, FixAllocCancReplaceReason );
   tagByName.emplace( FixAllocCancReplaceReason, 796 );
+  fieldTypeByValue.emplace( 796, FieldType::INT );
+  fieldTypeNameByValue.emplace( 796, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<797>(), FixCopyMsgIndicator );
   tagNameByValue.emplace( 797, FixCopyMsgIndicator );
   tagByName.emplace( FixCopyMsgIndicator, 797 );
+  fieldTypeByValue.emplace( 797, FieldType::BOOLEAN );
+  fieldTypeNameByValue.emplace( 797, "BOOLEAN" );
 
   tagNameByRaw.emplace( tag_as_raw<798>(), FixAllocAccountType );
   tagNameByValue.emplace( 798, FixAllocAccountType );
   tagByName.emplace( FixAllocAccountType, 798 );
+  fieldTypeByValue.emplace( 798, FieldType::INT );
+  fieldTypeNameByValue.emplace( 798, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<799>(), FixOrderAvgPx );
   tagNameByValue.emplace( 799, FixOrderAvgPx );
   tagByName.emplace( FixOrderAvgPx, 799 );
+  fieldTypeByValue.emplace( 799, FieldType::PRICE );
+  fieldTypeNameByValue.emplace( 799, "PRICE" );
 
   tagNameByRaw.emplace( tag_as_raw<800>(), FixOrderBookingQty );
   tagNameByValue.emplace( 800, FixOrderBookingQty );
   tagByName.emplace( FixOrderBookingQty, 800 );
+  fieldTypeByValue.emplace( 800, FieldType::QTY );
+  fieldTypeNameByValue.emplace( 800, "QTY" );
 
   tagNameByRaw.emplace( tag_as_raw<801>(), FixNoSettlPartySubIDs );
   tagNameByValue.emplace( 801, FixNoSettlPartySubIDs );
   tagByName.emplace( FixNoSettlPartySubIDs, 801 );
+  fieldTypeByValue.emplace( 801, FieldType::NUMINGROUP );
+  fieldTypeNameByValue.emplace( 801, "NUMINGROUP" );
 
   tagNameByRaw.emplace( tag_as_raw<802>(), FixNoPartySubIDs );
   tagNameByValue.emplace( 802, FixNoPartySubIDs );
   tagByName.emplace( FixNoPartySubIDs, 802 );
+  fieldTypeByValue.emplace( 802, FieldType::NUMINGROUP );
+  fieldTypeNameByValue.emplace( 802, "NUMINGROUP" );
 
   tagNameByRaw.emplace( tag_as_raw<803>(), FixPartySubIDType );
   tagNameByValue.emplace( 803, FixPartySubIDType );
   tagByName.emplace( FixPartySubIDType, 803 );
+  fieldTypeByValue.emplace( 803, FieldType::INT );
+  fieldTypeNameByValue.emplace( 803, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<804>(), FixNoNestedPartySubIDs );
   tagNameByValue.emplace( 804, FixNoNestedPartySubIDs );
   tagByName.emplace( FixNoNestedPartySubIDs, 804 );
+  fieldTypeByValue.emplace( 804, FieldType::NUMINGROUP );
+  fieldTypeNameByValue.emplace( 804, "NUMINGROUP" );
 
   tagNameByRaw.emplace( tag_as_raw<805>(), FixNestedPartySubIDType );
   tagNameByValue.emplace( 805, FixNestedPartySubIDType );
   tagByName.emplace( FixNestedPartySubIDType, 805 );
+  fieldTypeByValue.emplace( 805, FieldType::INT );
+  fieldTypeNameByValue.emplace( 805, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<806>(), FixNoNested2PartySubIDs );
   tagNameByValue.emplace( 806, FixNoNested2PartySubIDs );
   tagByName.emplace( FixNoNested2PartySubIDs, 806 );
+  fieldTypeByValue.emplace( 806, FieldType::NUMINGROUP );
+  fieldTypeNameByValue.emplace( 806, "NUMINGROUP" );
 
   tagNameByRaw.emplace( tag_as_raw<807>(), FixNested2PartySubIDType );
   tagNameByValue.emplace( 807, FixNested2PartySubIDType );
   tagByName.emplace( FixNested2PartySubIDType, 807 );
+  fieldTypeByValue.emplace( 807, FieldType::INT );
+  fieldTypeNameByValue.emplace( 807, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<808>(), FixAllocIntermedReqType );
   tagNameByValue.emplace( 808, FixAllocIntermedReqType );
   tagByName.emplace( FixAllocIntermedReqType, 808 );
+  fieldTypeByValue.emplace( 808, FieldType::INT );
+  fieldTypeNameByValue.emplace( 808, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<810>(), FixUnderlyingPx );
   tagNameByValue.emplace( 810, FixUnderlyingPx );
   tagByName.emplace( FixUnderlyingPx, 810 );
+  fieldTypeByValue.emplace( 810, FieldType::PRICE );
+  fieldTypeNameByValue.emplace( 810, "PRICE" );
 
   tagNameByRaw.emplace( tag_as_raw<811>(), FixPriceDelta );
   tagNameByValue.emplace( 811, FixPriceDelta );
   tagByName.emplace( FixPriceDelta, 811 );
+  fieldTypeByValue.emplace( 811, FieldType::FLOAT );
+  fieldTypeNameByValue.emplace( 811, "FLOAT" );
 
   tagNameByRaw.emplace( tag_as_raw<812>(), FixApplQueueMax );
   tagNameByValue.emplace( 812, FixApplQueueMax );
   tagByName.emplace( FixApplQueueMax, 812 );
+  fieldTypeByValue.emplace( 812, FieldType::INT );
+  fieldTypeNameByValue.emplace( 812, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<813>(), FixApplQueueDepth );
   tagNameByValue.emplace( 813, FixApplQueueDepth );
   tagByName.emplace( FixApplQueueDepth, 813 );
+  fieldTypeByValue.emplace( 813, FieldType::INT );
+  fieldTypeNameByValue.emplace( 813, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<814>(), FixApplQueueResolution );
   tagNameByValue.emplace( 814, FixApplQueueResolution );
   tagByName.emplace( FixApplQueueResolution, 814 );
+  fieldTypeByValue.emplace( 814, FieldType::INT );
+  fieldTypeNameByValue.emplace( 814, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<815>(), FixApplQueueAction );
   tagNameByValue.emplace( 815, FixApplQueueAction );
   tagByName.emplace( FixApplQueueAction, 815 );
+  fieldTypeByValue.emplace( 815, FieldType::INT );
+  fieldTypeNameByValue.emplace( 815, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<816>(), FixNoAltMDSource );
   tagNameByValue.emplace( 816, FixNoAltMDSource );
   tagByName.emplace( FixNoAltMDSource, 816 );
+  fieldTypeByValue.emplace( 816, FieldType::NUMINGROUP );
+  fieldTypeNameByValue.emplace( 816, "NUMINGROUP" );
 
   tagNameByRaw.emplace( tag_as_raw<817>(), FixAltMDSourceID );
   tagNameByValue.emplace( 817, FixAltMDSourceID );
   tagByName.emplace( FixAltMDSourceID, 817 );
+  fieldTypeByValue.emplace( 817, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 817, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<818>(), FixSecondaryTradeReportID );
   tagNameByValue.emplace( 818, FixSecondaryTradeReportID );
   tagByName.emplace( FixSecondaryTradeReportID, 818 );
+  fieldTypeByValue.emplace( 818, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 818, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<819>(), FixAvgPxIndicator );
   tagNameByValue.emplace( 819, FixAvgPxIndicator );
   tagByName.emplace( FixAvgPxIndicator, 819 );
+  fieldTypeByValue.emplace( 819, FieldType::INT );
+  fieldTypeNameByValue.emplace( 819, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<820>(), FixTradeLinkID );
   tagNameByValue.emplace( 820, FixTradeLinkID );
   tagByName.emplace( FixTradeLinkID, 820 );
+  fieldTypeByValue.emplace( 820, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 820, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<821>(), FixOrderInputDevice );
   tagNameByValue.emplace( 821, FixOrderInputDevice );
   tagByName.emplace( FixOrderInputDevice, 821 );
+  fieldTypeByValue.emplace( 821, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 821, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<822>(), FixUnderlyingTradingSessionID );
   tagNameByValue.emplace( 822, FixUnderlyingTradingSessionID );
   tagByName.emplace( FixUnderlyingTradingSessionID, 822 );
+  fieldTypeByValue.emplace( 822, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 822, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<823>(), FixUnderlyingTradingSessionSubID );
   tagNameByValue.emplace( 823, FixUnderlyingTradingSessionSubID );
   tagByName.emplace( FixUnderlyingTradingSessionSubID, 823 );
+  fieldTypeByValue.emplace( 823, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 823, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<824>(), FixTradeLegRefID );
   tagNameByValue.emplace( 824, FixTradeLegRefID );
   tagByName.emplace( FixTradeLegRefID, 824 );
+  fieldTypeByValue.emplace( 824, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 824, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<825>(), FixExchangeRule );
   tagNameByValue.emplace( 825, FixExchangeRule );
   tagByName.emplace( FixExchangeRule, 825 );
+  fieldTypeByValue.emplace( 825, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 825, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<826>(), FixTradeAllocIndicator );
   tagNameByValue.emplace( 826, FixTradeAllocIndicator );
   tagByName.emplace( FixTradeAllocIndicator, 826 );
+  fieldTypeByValue.emplace( 826, FieldType::INT );
+  fieldTypeNameByValue.emplace( 826, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<827>(), FixExpirationCycle );
   tagNameByValue.emplace( 827, FixExpirationCycle );
   tagByName.emplace( FixExpirationCycle, 827 );
+  fieldTypeByValue.emplace( 827, FieldType::INT );
+  fieldTypeNameByValue.emplace( 827, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<828>(), FixTrdType );
   tagNameByValue.emplace( 828, FixTrdType );
   tagByName.emplace( FixTrdType, 828 );
+  fieldTypeByValue.emplace( 828, FieldType::INT );
+  fieldTypeNameByValue.emplace( 828, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<829>(), FixTrdSubType );
   tagNameByValue.emplace( 829, FixTrdSubType );
   tagByName.emplace( FixTrdSubType, 829 );
+  fieldTypeByValue.emplace( 829, FieldType::INT );
+  fieldTypeNameByValue.emplace( 829, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<830>(), FixTransferReason );
   tagNameByValue.emplace( 830, FixTransferReason );
   tagByName.emplace( FixTransferReason, 830 );
+  fieldTypeByValue.emplace( 830, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 830, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<832>(), FixTotNumAssignmentReports );
   tagNameByValue.emplace( 832, FixTotNumAssignmentReports );
   tagByName.emplace( FixTotNumAssignmentReports, 832 );
+  fieldTypeByValue.emplace( 832, FieldType::INT );
+  fieldTypeNameByValue.emplace( 832, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<833>(), FixAsgnRptID );
   tagNameByValue.emplace( 833, FixAsgnRptID );
   tagByName.emplace( FixAsgnRptID, 833 );
+  fieldTypeByValue.emplace( 833, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 833, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<834>(), FixThresholdAmount );
   tagNameByValue.emplace( 834, FixThresholdAmount );
   tagByName.emplace( FixThresholdAmount, 834 );
+  fieldTypeByValue.emplace( 834, FieldType::PRICEOFFSET );
+  fieldTypeNameByValue.emplace( 834, "PRICEOFFSET" );
 
   tagNameByRaw.emplace( tag_as_raw<835>(), FixPegMoveType );
   tagNameByValue.emplace( 835, FixPegMoveType );
   tagByName.emplace( FixPegMoveType, 835 );
+  fieldTypeByValue.emplace( 835, FieldType::INT );
+  fieldTypeNameByValue.emplace( 835, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<836>(), FixPegOffsetType );
   tagNameByValue.emplace( 836, FixPegOffsetType );
   tagByName.emplace( FixPegOffsetType, 836 );
+  fieldTypeByValue.emplace( 836, FieldType::INT );
+  fieldTypeNameByValue.emplace( 836, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<837>(), FixPegLimitType );
   tagNameByValue.emplace( 837, FixPegLimitType );
   tagByName.emplace( FixPegLimitType, 837 );
+  fieldTypeByValue.emplace( 837, FieldType::INT );
+  fieldTypeNameByValue.emplace( 837, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<838>(), FixPegRoundDirection );
   tagNameByValue.emplace( 838, FixPegRoundDirection );
   tagByName.emplace( FixPegRoundDirection, 838 );
+  fieldTypeByValue.emplace( 838, FieldType::INT );
+  fieldTypeNameByValue.emplace( 838, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<839>(), FixPeggedPrice );
   tagNameByValue.emplace( 839, FixPeggedPrice );
   tagByName.emplace( FixPeggedPrice, 839 );
+  fieldTypeByValue.emplace( 839, FieldType::PRICE );
+  fieldTypeNameByValue.emplace( 839, "PRICE" );
 
   tagNameByRaw.emplace( tag_as_raw<840>(), FixPegScope );
   tagNameByValue.emplace( 840, FixPegScope );
   tagByName.emplace( FixPegScope, 840 );
+  fieldTypeByValue.emplace( 840, FieldType::INT );
+  fieldTypeNameByValue.emplace( 840, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<841>(), FixDiscretionMoveType );
   tagNameByValue.emplace( 841, FixDiscretionMoveType );
   tagByName.emplace( FixDiscretionMoveType, 841 );
+  fieldTypeByValue.emplace( 841, FieldType::INT );
+  fieldTypeNameByValue.emplace( 841, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<842>(), FixDiscretionOffsetType );
   tagNameByValue.emplace( 842, FixDiscretionOffsetType );
   tagByName.emplace( FixDiscretionOffsetType, 842 );
+  fieldTypeByValue.emplace( 842, FieldType::INT );
+  fieldTypeNameByValue.emplace( 842, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<843>(), FixDiscretionLimitType );
   tagNameByValue.emplace( 843, FixDiscretionLimitType );
   tagByName.emplace( FixDiscretionLimitType, 843 );
+  fieldTypeByValue.emplace( 843, FieldType::INT );
+  fieldTypeNameByValue.emplace( 843, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<844>(), FixDiscretionRoundDirection );
   tagNameByValue.emplace( 844, FixDiscretionRoundDirection );
   tagByName.emplace( FixDiscretionRoundDirection, 844 );
+  fieldTypeByValue.emplace( 844, FieldType::INT );
+  fieldTypeNameByValue.emplace( 844, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<845>(), FixDiscretionPrice );
   tagNameByValue.emplace( 845, FixDiscretionPrice );
   tagByName.emplace( FixDiscretionPrice, 845 );
+  fieldTypeByValue.emplace( 845, FieldType::PRICE );
+  fieldTypeNameByValue.emplace( 845, "PRICE" );
 
   tagNameByRaw.emplace( tag_as_raw<846>(), FixDiscretionScope );
   tagNameByValue.emplace( 846, FixDiscretionScope );
   tagByName.emplace( FixDiscretionScope, 846 );
+  fieldTypeByValue.emplace( 846, FieldType::INT );
+  fieldTypeNameByValue.emplace( 846, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<847>(), FixTargetStrategy );
   tagNameByValue.emplace( 847, FixTargetStrategy );
   tagByName.emplace( FixTargetStrategy, 847 );
+  fieldTypeByValue.emplace( 847, FieldType::INT );
+  fieldTypeNameByValue.emplace( 847, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<848>(), FixTargetStrategyParameters );
   tagNameByValue.emplace( 848, FixTargetStrategyParameters );
   tagByName.emplace( FixTargetStrategyParameters, 848 );
+  fieldTypeByValue.emplace( 848, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 848, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<849>(), FixParticipationRate );
   tagNameByValue.emplace( 849, FixParticipationRate );
   tagByName.emplace( FixParticipationRate, 849 );
+  fieldTypeByValue.emplace( 849, FieldType::PERCENTAGE );
+  fieldTypeNameByValue.emplace( 849, "PERCENTAGE" );
 
   tagNameByRaw.emplace( tag_as_raw<850>(), FixTargetStrategyPerformance );
   tagNameByValue.emplace( 850, FixTargetStrategyPerformance );
   tagByName.emplace( FixTargetStrategyPerformance, 850 );
+  fieldTypeByValue.emplace( 850, FieldType::FLOAT );
+  fieldTypeNameByValue.emplace( 850, "FLOAT" );
 
   tagNameByRaw.emplace( tag_as_raw<851>(), FixLastLiquidityInd );
   tagNameByValue.emplace( 851, FixLastLiquidityInd );
   tagByName.emplace( FixLastLiquidityInd, 851 );
+  fieldTypeByValue.emplace( 851, FieldType::INT );
+  fieldTypeNameByValue.emplace( 851, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<852>(), FixPublishTrdIndicator );
   tagNameByValue.emplace( 852, FixPublishTrdIndicator );
   tagByName.emplace( FixPublishTrdIndicator, 852 );
+  fieldTypeByValue.emplace( 852, FieldType::BOOLEAN );
+  fieldTypeNameByValue.emplace( 852, "BOOLEAN" );
 
   tagNameByRaw.emplace( tag_as_raw<853>(), FixShortSaleReason );
   tagNameByValue.emplace( 853, FixShortSaleReason );
   tagByName.emplace( FixShortSaleReason, 853 );
+  fieldTypeByValue.emplace( 853, FieldType::INT );
+  fieldTypeNameByValue.emplace( 853, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<854>(), FixQtyType );
   tagNameByValue.emplace( 854, FixQtyType );
   tagByName.emplace( FixQtyType, 854 );
+  fieldTypeByValue.emplace( 854, FieldType::INT );
+  fieldTypeNameByValue.emplace( 854, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<855>(), FixSecondaryTrdType );
   tagNameByValue.emplace( 855, FixSecondaryTrdType );
   tagByName.emplace( FixSecondaryTrdType, 855 );
+  fieldTypeByValue.emplace( 855, FieldType::INT );
+  fieldTypeNameByValue.emplace( 855, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<856>(), FixTradeReportType );
   tagNameByValue.emplace( 856, FixTradeReportType );
   tagByName.emplace( FixTradeReportType, 856 );
+  fieldTypeByValue.emplace( 856, FieldType::INT );
+  fieldTypeNameByValue.emplace( 856, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<857>(), FixAllocNoOrdersType );
   tagNameByValue.emplace( 857, FixAllocNoOrdersType );
   tagByName.emplace( FixAllocNoOrdersType, 857 );
+  fieldTypeByValue.emplace( 857, FieldType::INT );
+  fieldTypeNameByValue.emplace( 857, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<858>(), FixSharedCommission );
   tagNameByValue.emplace( 858, FixSharedCommission );
   tagByName.emplace( FixSharedCommission, 858 );
+  fieldTypeByValue.emplace( 858, FieldType::AMT );
+  fieldTypeNameByValue.emplace( 858, "AMT" );
 
   tagNameByRaw.emplace( tag_as_raw<859>(), FixConfirmReqID );
   tagNameByValue.emplace( 859, FixConfirmReqID );
   tagByName.emplace( FixConfirmReqID, 859 );
+  fieldTypeByValue.emplace( 859, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 859, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<860>(), FixAvgParPx );
   tagNameByValue.emplace( 860, FixAvgParPx );
   tagByName.emplace( FixAvgParPx, 860 );
+  fieldTypeByValue.emplace( 860, FieldType::PRICE );
+  fieldTypeNameByValue.emplace( 860, "PRICE" );
 
   tagNameByRaw.emplace( tag_as_raw<861>(), FixReportedPx );
   tagNameByValue.emplace( 861, FixReportedPx );
   tagByName.emplace( FixReportedPx, 861 );
+  fieldTypeByValue.emplace( 861, FieldType::PRICE );
+  fieldTypeNameByValue.emplace( 861, "PRICE" );
 
   tagNameByRaw.emplace( tag_as_raw<862>(), FixNoCapacities );
   tagNameByValue.emplace( 862, FixNoCapacities );
   tagByName.emplace( FixNoCapacities, 862 );
+  fieldTypeByValue.emplace( 862, FieldType::NUMINGROUP );
+  fieldTypeNameByValue.emplace( 862, "NUMINGROUP" );
 
   tagNameByRaw.emplace( tag_as_raw<863>(), FixOrderCapacityQty );
   tagNameByValue.emplace( 863, FixOrderCapacityQty );
   tagByName.emplace( FixOrderCapacityQty, 863 );
+  fieldTypeByValue.emplace( 863, FieldType::QTY );
+  fieldTypeNameByValue.emplace( 863, "QTY" );
 
   tagNameByRaw.emplace( tag_as_raw<864>(), FixNoEvents );
   tagNameByValue.emplace( 864, FixNoEvents );
   tagByName.emplace( FixNoEvents, 864 );
+  fieldTypeByValue.emplace( 864, FieldType::NUMINGROUP );
+  fieldTypeNameByValue.emplace( 864, "NUMINGROUP" );
 
   tagNameByRaw.emplace( tag_as_raw<865>(), FixEventType );
   tagNameByValue.emplace( 865, FixEventType );
   tagByName.emplace( FixEventType, 865 );
+  fieldTypeByValue.emplace( 865, FieldType::INT );
+  fieldTypeNameByValue.emplace( 865, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<866>(), FixEventDate );
   tagNameByValue.emplace( 866, FixEventDate );
   tagByName.emplace( FixEventDate, 866 );
+  fieldTypeByValue.emplace( 866, FieldType::LOCALMKTDATE );
+  fieldTypeNameByValue.emplace( 866, "LOCALMKTDATE" );
 
   tagNameByRaw.emplace( tag_as_raw<867>(), FixEventPx );
   tagNameByValue.emplace( 867, FixEventPx );
   tagByName.emplace( FixEventPx, 867 );
+  fieldTypeByValue.emplace( 867, FieldType::PRICE );
+  fieldTypeNameByValue.emplace( 867, "PRICE" );
 
   tagNameByRaw.emplace( tag_as_raw<868>(), FixEventText );
   tagNameByValue.emplace( 868, FixEventText );
   tagByName.emplace( FixEventText, 868 );
+  fieldTypeByValue.emplace( 868, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 868, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<869>(), FixPctAtRisk );
   tagNameByValue.emplace( 869, FixPctAtRisk );
   tagByName.emplace( FixPctAtRisk, 869 );
+  fieldTypeByValue.emplace( 869, FieldType::PERCENTAGE );
+  fieldTypeNameByValue.emplace( 869, "PERCENTAGE" );
 
   tagNameByRaw.emplace( tag_as_raw<870>(), FixNoInstrAttrib );
   tagNameByValue.emplace( 870, FixNoInstrAttrib );
   tagByName.emplace( FixNoInstrAttrib, 870 );
+  fieldTypeByValue.emplace( 870, FieldType::NUMINGROUP );
+  fieldTypeNameByValue.emplace( 870, "NUMINGROUP" );
 
   tagNameByRaw.emplace( tag_as_raw<871>(), FixInstrAttribType );
   tagNameByValue.emplace( 871, FixInstrAttribType );
   tagByName.emplace( FixInstrAttribType, 871 );
+  fieldTypeByValue.emplace( 871, FieldType::INT );
+  fieldTypeNameByValue.emplace( 871, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<872>(), FixInstrAttribValue );
   tagNameByValue.emplace( 872, FixInstrAttribValue );
   tagByName.emplace( FixInstrAttribValue, 872 );
+  fieldTypeByValue.emplace( 872, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 872, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<873>(), FixDatedDate );
   tagNameByValue.emplace( 873, FixDatedDate );
   tagByName.emplace( FixDatedDate, 873 );
+  fieldTypeByValue.emplace( 873, FieldType::LOCALMKTDATE );
+  fieldTypeNameByValue.emplace( 873, "LOCALMKTDATE" );
 
   tagNameByRaw.emplace( tag_as_raw<874>(), FixInterestAccrualDate );
   tagNameByValue.emplace( 874, FixInterestAccrualDate );
   tagByName.emplace( FixInterestAccrualDate, 874 );
+  fieldTypeByValue.emplace( 874, FieldType::LOCALMKTDATE );
+  fieldTypeNameByValue.emplace( 874, "LOCALMKTDATE" );
 
   tagNameByRaw.emplace( tag_as_raw<875>(), FixCPProgram );
   tagNameByValue.emplace( 875, FixCPProgram );
   tagByName.emplace( FixCPProgram, 875 );
+  fieldTypeByValue.emplace( 875, FieldType::INT );
+  fieldTypeNameByValue.emplace( 875, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<876>(), FixCPRegType );
   tagNameByValue.emplace( 876, FixCPRegType );
   tagByName.emplace( FixCPRegType, 876 );
+  fieldTypeByValue.emplace( 876, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 876, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<877>(), FixUnderlyingCPProgram );
   tagNameByValue.emplace( 877, FixUnderlyingCPProgram );
   tagByName.emplace( FixUnderlyingCPProgram, 877 );
+  fieldTypeByValue.emplace( 877, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 877, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<878>(), FixUnderlyingCPRegType );
   tagNameByValue.emplace( 878, FixUnderlyingCPRegType );
   tagByName.emplace( FixUnderlyingCPRegType, 878 );
+  fieldTypeByValue.emplace( 878, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 878, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<879>(), FixUnderlyingQty );
   tagNameByValue.emplace( 879, FixUnderlyingQty );
   tagByName.emplace( FixUnderlyingQty, 879 );
+  fieldTypeByValue.emplace( 879, FieldType::QTY );
+  fieldTypeNameByValue.emplace( 879, "QTY" );
 
   tagNameByRaw.emplace( tag_as_raw<880>(), FixTrdMatchID );
   tagNameByValue.emplace( 880, FixTrdMatchID );
   tagByName.emplace( FixTrdMatchID, 880 );
+  fieldTypeByValue.emplace( 880, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 880, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<881>(), FixSecondaryTradeReportRefID );
   tagNameByValue.emplace( 881, FixSecondaryTradeReportRefID );
   tagByName.emplace( FixSecondaryTradeReportRefID, 881 );
+  fieldTypeByValue.emplace( 881, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 881, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<882>(), FixUnderlyingDirtyPrice );
   tagNameByValue.emplace( 882, FixUnderlyingDirtyPrice );
   tagByName.emplace( FixUnderlyingDirtyPrice, 882 );
+  fieldTypeByValue.emplace( 882, FieldType::PRICE );
+  fieldTypeNameByValue.emplace( 882, "PRICE" );
 
   tagNameByRaw.emplace( tag_as_raw<883>(), FixUnderlyingEndPrice );
   tagNameByValue.emplace( 883, FixUnderlyingEndPrice );
   tagByName.emplace( FixUnderlyingEndPrice, 883 );
+  fieldTypeByValue.emplace( 883, FieldType::PRICE );
+  fieldTypeNameByValue.emplace( 883, "PRICE" );
 
   tagNameByRaw.emplace( tag_as_raw<884>(), FixUnderlyingStartValue );
   tagNameByValue.emplace( 884, FixUnderlyingStartValue );
   tagByName.emplace( FixUnderlyingStartValue, 884 );
+  fieldTypeByValue.emplace( 884, FieldType::AMT );
+  fieldTypeNameByValue.emplace( 884, "AMT" );
 
   tagNameByRaw.emplace( tag_as_raw<885>(), FixUnderlyingCurrentValue );
   tagNameByValue.emplace( 885, FixUnderlyingCurrentValue );
   tagByName.emplace( FixUnderlyingCurrentValue, 885 );
+  fieldTypeByValue.emplace( 885, FieldType::AMT );
+  fieldTypeNameByValue.emplace( 885, "AMT" );
 
   tagNameByRaw.emplace( tag_as_raw<886>(), FixUnderlyingEndValue );
   tagNameByValue.emplace( 886, FixUnderlyingEndValue );
   tagByName.emplace( FixUnderlyingEndValue, 886 );
+  fieldTypeByValue.emplace( 886, FieldType::AMT );
+  fieldTypeNameByValue.emplace( 886, "AMT" );
 
   tagNameByRaw.emplace( tag_as_raw<887>(), FixNoUnderlyingStips );
   tagNameByValue.emplace( 887, FixNoUnderlyingStips );
   tagByName.emplace( FixNoUnderlyingStips, 887 );
+  fieldTypeByValue.emplace( 887, FieldType::NUMINGROUP );
+  fieldTypeNameByValue.emplace( 887, "NUMINGROUP" );
 
   tagNameByRaw.emplace( tag_as_raw<888>(), FixUnderlyingStipType );
   tagNameByValue.emplace( 888, FixUnderlyingStipType );
   tagByName.emplace( FixUnderlyingStipType, 888 );
+  fieldTypeByValue.emplace( 888, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 888, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<889>(), FixUnderlyingStipValue );
   tagNameByValue.emplace( 889, FixUnderlyingStipValue );
   tagByName.emplace( FixUnderlyingStipValue, 889 );
+  fieldTypeByValue.emplace( 889, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 889, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<890>(), FixMaturityNetMoney );
   tagNameByValue.emplace( 890, FixMaturityNetMoney );
   tagByName.emplace( FixMaturityNetMoney, 890 );
+  fieldTypeByValue.emplace( 890, FieldType::AMT );
+  fieldTypeNameByValue.emplace( 890, "AMT" );
 
   tagNameByRaw.emplace( tag_as_raw<891>(), FixMiscFeeBasis );
   tagNameByValue.emplace( 891, FixMiscFeeBasis );
   tagByName.emplace( FixMiscFeeBasis, 891 );
+  fieldTypeByValue.emplace( 891, FieldType::INT );
+  fieldTypeNameByValue.emplace( 891, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<892>(), FixTotNoAllocs );
   tagNameByValue.emplace( 892, FixTotNoAllocs );
   tagByName.emplace( FixTotNoAllocs, 892 );
+  fieldTypeByValue.emplace( 892, FieldType::INT );
+  fieldTypeNameByValue.emplace( 892, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<893>(), FixLastFragment );
   tagNameByValue.emplace( 893, FixLastFragment );
   tagByName.emplace( FixLastFragment, 893 );
+  fieldTypeByValue.emplace( 893, FieldType::BOOLEAN );
+  fieldTypeNameByValue.emplace( 893, "BOOLEAN" );
 
   tagNameByRaw.emplace( tag_as_raw<894>(), FixCollReqID );
   tagNameByValue.emplace( 894, FixCollReqID );
   tagByName.emplace( FixCollReqID, 894 );
+  fieldTypeByValue.emplace( 894, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 894, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<895>(), FixCollAsgnReason );
   tagNameByValue.emplace( 895, FixCollAsgnReason );
   tagByName.emplace( FixCollAsgnReason, 895 );
+  fieldTypeByValue.emplace( 895, FieldType::INT );
+  fieldTypeNameByValue.emplace( 895, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<896>(), FixCollInquiryQualifier );
   tagNameByValue.emplace( 896, FixCollInquiryQualifier );
   tagByName.emplace( FixCollInquiryQualifier, 896 );
+  fieldTypeByValue.emplace( 896, FieldType::INT );
+  fieldTypeNameByValue.emplace( 896, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<897>(), FixNoTrades );
   tagNameByValue.emplace( 897, FixNoTrades );
   tagByName.emplace( FixNoTrades, 897 );
+  fieldTypeByValue.emplace( 897, FieldType::NUMINGROUP );
+  fieldTypeNameByValue.emplace( 897, "NUMINGROUP" );
 
   tagNameByRaw.emplace( tag_as_raw<898>(), FixMarginRatio );
   tagNameByValue.emplace( 898, FixMarginRatio );
   tagByName.emplace( FixMarginRatio, 898 );
+  fieldTypeByValue.emplace( 898, FieldType::PERCENTAGE );
+  fieldTypeNameByValue.emplace( 898, "PERCENTAGE" );
 
   tagNameByRaw.emplace( tag_as_raw<899>(), FixMarginExcess );
   tagNameByValue.emplace( 899, FixMarginExcess );
   tagByName.emplace( FixMarginExcess, 899 );
+  fieldTypeByValue.emplace( 899, FieldType::AMT );
+  fieldTypeNameByValue.emplace( 899, "AMT" );
 
   tagNameByRaw.emplace( tag_as_raw<900>(), FixTotalNetValue );
   tagNameByValue.emplace( 900, FixTotalNetValue );
   tagByName.emplace( FixTotalNetValue, 900 );
+  fieldTypeByValue.emplace( 900, FieldType::AMT );
+  fieldTypeNameByValue.emplace( 900, "AMT" );
 
   tagNameByRaw.emplace( tag_as_raw<901>(), FixCashOutstanding );
   tagNameByValue.emplace( 901, FixCashOutstanding );
   tagByName.emplace( FixCashOutstanding, 901 );
+  fieldTypeByValue.emplace( 901, FieldType::AMT );
+  fieldTypeNameByValue.emplace( 901, "AMT" );
 
   tagNameByRaw.emplace( tag_as_raw<902>(), FixCollAsgnID );
   tagNameByValue.emplace( 902, FixCollAsgnID );
   tagByName.emplace( FixCollAsgnID, 902 );
+  fieldTypeByValue.emplace( 902, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 902, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<903>(), FixCollAsgnTransType );
   tagNameByValue.emplace( 903, FixCollAsgnTransType );
   tagByName.emplace( FixCollAsgnTransType, 903 );
+  fieldTypeByValue.emplace( 903, FieldType::INT );
+  fieldTypeNameByValue.emplace( 903, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<904>(), FixCollRespID );
   tagNameByValue.emplace( 904, FixCollRespID );
   tagByName.emplace( FixCollRespID, 904 );
+  fieldTypeByValue.emplace( 904, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 904, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<905>(), FixCollAsgnRespType );
   tagNameByValue.emplace( 905, FixCollAsgnRespType );
   tagByName.emplace( FixCollAsgnRespType, 905 );
+  fieldTypeByValue.emplace( 905, FieldType::INT );
+  fieldTypeNameByValue.emplace( 905, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<906>(), FixCollAsgnRejectReason );
   tagNameByValue.emplace( 906, FixCollAsgnRejectReason );
   tagByName.emplace( FixCollAsgnRejectReason, 906 );
+  fieldTypeByValue.emplace( 906, FieldType::INT );
+  fieldTypeNameByValue.emplace( 906, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<907>(), FixCollAsgnRefID );
   tagNameByValue.emplace( 907, FixCollAsgnRefID );
   tagByName.emplace( FixCollAsgnRefID, 907 );
+  fieldTypeByValue.emplace( 907, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 907, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<908>(), FixCollRptID );
   tagNameByValue.emplace( 908, FixCollRptID );
   tagByName.emplace( FixCollRptID, 908 );
+  fieldTypeByValue.emplace( 908, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 908, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<909>(), FixCollInquiryID );
   tagNameByValue.emplace( 909, FixCollInquiryID );
   tagByName.emplace( FixCollInquiryID, 909 );
+  fieldTypeByValue.emplace( 909, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 909, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<910>(), FixCollStatus );
   tagNameByValue.emplace( 910, FixCollStatus );
   tagByName.emplace( FixCollStatus, 910 );
+  fieldTypeByValue.emplace( 910, FieldType::INT );
+  fieldTypeNameByValue.emplace( 910, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<911>(), FixTotNumReports );
   tagNameByValue.emplace( 911, FixTotNumReports );
   tagByName.emplace( FixTotNumReports, 911 );
+  fieldTypeByValue.emplace( 911, FieldType::INT );
+  fieldTypeNameByValue.emplace( 911, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<912>(), FixLastRptRequested );
   tagNameByValue.emplace( 912, FixLastRptRequested );
   tagByName.emplace( FixLastRptRequested, 912 );
+  fieldTypeByValue.emplace( 912, FieldType::BOOLEAN );
+  fieldTypeNameByValue.emplace( 912, "BOOLEAN" );
 
   tagNameByRaw.emplace( tag_as_raw<913>(), FixAgreementDesc );
   tagNameByValue.emplace( 913, FixAgreementDesc );
   tagByName.emplace( FixAgreementDesc, 913 );
+  fieldTypeByValue.emplace( 913, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 913, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<914>(), FixAgreementID );
   tagNameByValue.emplace( 914, FixAgreementID );
   tagByName.emplace( FixAgreementID, 914 );
+  fieldTypeByValue.emplace( 914, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 914, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<915>(), FixAgreementDate );
   tagNameByValue.emplace( 915, FixAgreementDate );
   tagByName.emplace( FixAgreementDate, 915 );
+  fieldTypeByValue.emplace( 915, FieldType::LOCALMKTDATE );
+  fieldTypeNameByValue.emplace( 915, "LOCALMKTDATE" );
 
   tagNameByRaw.emplace( tag_as_raw<916>(), FixStartDate );
   tagNameByValue.emplace( 916, FixStartDate );
   tagByName.emplace( FixStartDate, 916 );
+  fieldTypeByValue.emplace( 916, FieldType::LOCALMKTDATE );
+  fieldTypeNameByValue.emplace( 916, "LOCALMKTDATE" );
 
   tagNameByRaw.emplace( tag_as_raw<917>(), FixEndDate );
   tagNameByValue.emplace( 917, FixEndDate );
   tagByName.emplace( FixEndDate, 917 );
+  fieldTypeByValue.emplace( 917, FieldType::LOCALMKTDATE );
+  fieldTypeNameByValue.emplace( 917, "LOCALMKTDATE" );
 
   tagNameByRaw.emplace( tag_as_raw<918>(), FixAgreementCurrency );
   tagNameByValue.emplace( 918, FixAgreementCurrency );
   tagByName.emplace( FixAgreementCurrency, 918 );
+  fieldTypeByValue.emplace( 918, FieldType::CURRENCY );
+  fieldTypeNameByValue.emplace( 918, "CURRENCY" );
 
   tagNameByRaw.emplace( tag_as_raw<919>(), FixDeliveryType );
   tagNameByValue.emplace( 919, FixDeliveryType );
   tagByName.emplace( FixDeliveryType, 919 );
+  fieldTypeByValue.emplace( 919, FieldType::INT );
+  fieldTypeNameByValue.emplace( 919, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<920>(), FixEndAccruedInterestAmt );
   tagNameByValue.emplace( 920, FixEndAccruedInterestAmt );
   tagByName.emplace( FixEndAccruedInterestAmt, 920 );
+  fieldTypeByValue.emplace( 920, FieldType::AMT );
+  fieldTypeNameByValue.emplace( 920, "AMT" );
 
   tagNameByRaw.emplace( tag_as_raw<921>(), FixStartCash );
   tagNameByValue.emplace( 921, FixStartCash );
   tagByName.emplace( FixStartCash, 921 );
+  fieldTypeByValue.emplace( 921, FieldType::AMT );
+  fieldTypeNameByValue.emplace( 921, "AMT" );
 
   tagNameByRaw.emplace( tag_as_raw<922>(), FixEndCash );
   tagNameByValue.emplace( 922, FixEndCash );
   tagByName.emplace( FixEndCash, 922 );
+  fieldTypeByValue.emplace( 922, FieldType::AMT );
+  fieldTypeNameByValue.emplace( 922, "AMT" );
 
   tagNameByRaw.emplace( tag_as_raw<923>(), FixUserRequestID );
   tagNameByValue.emplace( 923, FixUserRequestID );
   tagByName.emplace( FixUserRequestID, 923 );
+  fieldTypeByValue.emplace( 923, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 923, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<924>(), FixUserRequestType );
   tagNameByValue.emplace( 924, FixUserRequestType );
   tagByName.emplace( FixUserRequestType, 924 );
+  fieldTypeByValue.emplace( 924, FieldType::INT );
+  fieldTypeNameByValue.emplace( 924, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<925>(), FixNewPassword );
   tagNameByValue.emplace( 925, FixNewPassword );
   tagByName.emplace( FixNewPassword, 925 );
+  fieldTypeByValue.emplace( 925, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 925, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<926>(), FixUserStatus );
   tagNameByValue.emplace( 926, FixUserStatus );
   tagByName.emplace( FixUserStatus, 926 );
+  fieldTypeByValue.emplace( 926, FieldType::INT );
+  fieldTypeNameByValue.emplace( 926, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<927>(), FixUserStatusText );
   tagNameByValue.emplace( 927, FixUserStatusText );
   tagByName.emplace( FixUserStatusText, 927 );
+  fieldTypeByValue.emplace( 927, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 927, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<928>(), FixStatusValue );
   tagNameByValue.emplace( 928, FixStatusValue );
   tagByName.emplace( FixStatusValue, 928 );
+  fieldTypeByValue.emplace( 928, FieldType::INT );
+  fieldTypeNameByValue.emplace( 928, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<929>(), FixStatusText );
   tagNameByValue.emplace( 929, FixStatusText );
   tagByName.emplace( FixStatusText, 929 );
+  fieldTypeByValue.emplace( 929, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 929, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<930>(), FixRefCompID );
   tagNameByValue.emplace( 930, FixRefCompID );
   tagByName.emplace( FixRefCompID, 930 );
+  fieldTypeByValue.emplace( 930, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 930, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<931>(), FixRefSubID );
   tagNameByValue.emplace( 931, FixRefSubID );
   tagByName.emplace( FixRefSubID, 931 );
+  fieldTypeByValue.emplace( 931, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 931, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<932>(), FixNetworkResponseID );
   tagNameByValue.emplace( 932, FixNetworkResponseID );
   tagByName.emplace( FixNetworkResponseID, 932 );
+  fieldTypeByValue.emplace( 932, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 932, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<933>(), FixNetworkRequestID );
   tagNameByValue.emplace( 933, FixNetworkRequestID );
   tagByName.emplace( FixNetworkRequestID, 933 );
+  fieldTypeByValue.emplace( 933, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 933, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<934>(), FixLastNetworkResponseID );
   tagNameByValue.emplace( 934, FixLastNetworkResponseID );
   tagByName.emplace( FixLastNetworkResponseID, 934 );
+  fieldTypeByValue.emplace( 934, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 934, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<935>(), FixNetworkRequestType );
   tagNameByValue.emplace( 935, FixNetworkRequestType );
   tagByName.emplace( FixNetworkRequestType, 935 );
+  fieldTypeByValue.emplace( 935, FieldType::INT );
+  fieldTypeNameByValue.emplace( 935, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<936>(), FixNoCompIDs );
   tagNameByValue.emplace( 936, FixNoCompIDs );
   tagByName.emplace( FixNoCompIDs, 936 );
+  fieldTypeByValue.emplace( 936, FieldType::NUMINGROUP );
+  fieldTypeNameByValue.emplace( 936, "NUMINGROUP" );
 
   tagNameByRaw.emplace( tag_as_raw<937>(), FixNetworkStatusResponseType );
   tagNameByValue.emplace( 937, FixNetworkStatusResponseType );
   tagByName.emplace( FixNetworkStatusResponseType, 937 );
+  fieldTypeByValue.emplace( 937, FieldType::INT );
+  fieldTypeNameByValue.emplace( 937, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<938>(), FixNoCollInquiryQualifier );
   tagNameByValue.emplace( 938, FixNoCollInquiryQualifier );
   tagByName.emplace( FixNoCollInquiryQualifier, 938 );
+  fieldTypeByValue.emplace( 938, FieldType::NUMINGROUP );
+  fieldTypeNameByValue.emplace( 938, "NUMINGROUP" );
 
   tagNameByRaw.emplace( tag_as_raw<939>(), FixTrdRptStatus );
   tagNameByValue.emplace( 939, FixTrdRptStatus );
   tagByName.emplace( FixTrdRptStatus, 939 );
+  fieldTypeByValue.emplace( 939, FieldType::INT );
+  fieldTypeNameByValue.emplace( 939, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<940>(), FixAffirmStatus );
   tagNameByValue.emplace( 940, FixAffirmStatus );
   tagByName.emplace( FixAffirmStatus, 940 );
+  fieldTypeByValue.emplace( 940, FieldType::INT );
+  fieldTypeNameByValue.emplace( 940, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<941>(), FixUnderlyingStrikeCurrency );
   tagNameByValue.emplace( 941, FixUnderlyingStrikeCurrency );
   tagByName.emplace( FixUnderlyingStrikeCurrency, 941 );
+  fieldTypeByValue.emplace( 941, FieldType::CURRENCY );
+  fieldTypeNameByValue.emplace( 941, "CURRENCY" );
 
   tagNameByRaw.emplace( tag_as_raw<942>(), FixLegStrikeCurrency );
   tagNameByValue.emplace( 942, FixLegStrikeCurrency );
   tagByName.emplace( FixLegStrikeCurrency, 942 );
+  fieldTypeByValue.emplace( 942, FieldType::CURRENCY );
+  fieldTypeNameByValue.emplace( 942, "CURRENCY" );
 
   tagNameByRaw.emplace( tag_as_raw<943>(), FixTimeBracket );
   tagNameByValue.emplace( 943, FixTimeBracket );
   tagByName.emplace( FixTimeBracket, 943 );
+  fieldTypeByValue.emplace( 943, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 943, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<944>(), FixCollAction );
   tagNameByValue.emplace( 944, FixCollAction );
   tagByName.emplace( FixCollAction, 944 );
+  fieldTypeByValue.emplace( 944, FieldType::INT );
+  fieldTypeNameByValue.emplace( 944, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<945>(), FixCollInquiryStatus );
   tagNameByValue.emplace( 945, FixCollInquiryStatus );
   tagByName.emplace( FixCollInquiryStatus, 945 );
+  fieldTypeByValue.emplace( 945, FieldType::INT );
+  fieldTypeNameByValue.emplace( 945, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<946>(), FixCollInquiryResult );
   tagNameByValue.emplace( 946, FixCollInquiryResult );
   tagByName.emplace( FixCollInquiryResult, 946 );
+  fieldTypeByValue.emplace( 946, FieldType::INT );
+  fieldTypeNameByValue.emplace( 946, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<947>(), FixStrikeCurrency );
   tagNameByValue.emplace( 947, FixStrikeCurrency );
   tagByName.emplace( FixStrikeCurrency, 947 );
+  fieldTypeByValue.emplace( 947, FieldType::CURRENCY );
+  fieldTypeNameByValue.emplace( 947, "CURRENCY" );
 
   tagNameByRaw.emplace( tag_as_raw<948>(), FixNoNested3PartyIDs );
   tagNameByValue.emplace( 948, FixNoNested3PartyIDs );
   tagByName.emplace( FixNoNested3PartyIDs, 948 );
+  fieldTypeByValue.emplace( 948, FieldType::NUMINGROUP );
+  fieldTypeNameByValue.emplace( 948, "NUMINGROUP" );
 
   tagNameByRaw.emplace( tag_as_raw<949>(), FixNested3PartyID );
   tagNameByValue.emplace( 949, FixNested3PartyID );
   tagByName.emplace( FixNested3PartyID, 949 );
+  fieldTypeByValue.emplace( 949, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 949, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<950>(), FixNested3PartyIDSource );
   tagNameByValue.emplace( 950, FixNested3PartyIDSource );
   tagByName.emplace( FixNested3PartyIDSource, 950 );
+  fieldTypeByValue.emplace( 950, FieldType::CHAR );
+  fieldTypeNameByValue.emplace( 950, "CHAR" );
 
   tagNameByRaw.emplace( tag_as_raw<951>(), FixNested3PartyRole );
   tagNameByValue.emplace( 951, FixNested3PartyRole );
   tagByName.emplace( FixNested3PartyRole, 951 );
+  fieldTypeByValue.emplace( 951, FieldType::INT );
+  fieldTypeNameByValue.emplace( 951, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<952>(), FixNoNested3PartySubIDs );
   tagNameByValue.emplace( 952, FixNoNested3PartySubIDs );
   tagByName.emplace( FixNoNested3PartySubIDs, 952 );
+  fieldTypeByValue.emplace( 952, FieldType::NUMINGROUP );
+  fieldTypeNameByValue.emplace( 952, "NUMINGROUP" );
 
   tagNameByRaw.emplace( tag_as_raw<953>(), FixNested3PartySubID );
   tagNameByValue.emplace( 953, FixNested3PartySubID );
   tagByName.emplace( FixNested3PartySubID, 953 );
+  fieldTypeByValue.emplace( 953, FieldType::STRING );
+  fieldTypeNameByValue.emplace( 953, "STRING" );
 
   tagNameByRaw.emplace( tag_as_raw<954>(), FixNested3PartySubIDType );
   tagNameByValue.emplace( 954, FixNested3PartySubIDType );
   tagByName.emplace( FixNested3PartySubIDType, 954 );
+  fieldTypeByValue.emplace( 954, FieldType::INT );
+  fieldTypeNameByValue.emplace( 954, "INT" );
 
   tagNameByRaw.emplace( tag_as_raw<955>(), FixLegContractSettlMonth );
   tagNameByValue.emplace( 955, FixLegContractSettlMonth );
   tagByName.emplace( FixLegContractSettlMonth, 955 );
+  fieldTypeByValue.emplace( 955, FieldType::MONTHYEAR );
+  fieldTypeNameByValue.emplace( 955, "MONTHYEAR" );
 
   tagNameByRaw.emplace( tag_as_raw<956>(), FixLegInterestAccrualDate );
   tagNameByValue.emplace( 956, FixLegInterestAccrualDate );
   tagByName.emplace( FixLegInterestAccrualDate, 956 );
+  fieldTypeByValue.emplace( 956, FieldType::LOCALMKTDATE );
+  fieldTypeNameByValue.emplace( 956, "LOCALMKTDATE" );
 
   FieldAdvSide::enumItems = AdvSideEnums::items;
   enumsByRaw.emplace( FieldAdvSide::RAW, & AdvSideEnums::instance );
+  enumsByTag.emplace( FieldAdvSide::KEY, & AdvSideEnums::instance );
 
   FieldAdvTransType::enumItems = AdvTransTypeEnums::items;
   enumsByRaw.emplace( FieldAdvTransType::RAW, & AdvTransTypeEnums::instance );
+  enumsByTag.emplace( FieldAdvTransType::KEY, & AdvTransTypeEnums::instance );
 
   FieldCommType::enumItems = CommTypeEnums::items;
   enumsByRaw.emplace( FieldCommType::RAW, & CommTypeEnums::instance );
+  enumsByTag.emplace( FieldCommType::KEY, & CommTypeEnums::instance );
 
   FieldExecInst::enumItems = ExecInstEnums::items;
   enumsByRaw.emplace( FieldExecInst::RAW, & ExecInstEnums::instance );
+  enumsByTag.emplace( FieldExecInst::KEY, & ExecInstEnums::instance );
 
   FieldHandlInst::enumItems = HandlInstEnums::items;
   enumsByRaw.emplace( FieldHandlInst::RAW, & HandlInstEnums::instance );
+  enumsByTag.emplace( FieldHandlInst::KEY, & HandlInstEnums::instance );
 
   FieldSecurityIDSource::enumItems = SecurityIDSourceEnums::items;
   enumsByRaw.emplace( FieldSecurityIDSource::RAW, & SecurityIDSourceEnums::instance );
+  enumsByTag.emplace( FieldSecurityIDSource::KEY, & SecurityIDSourceEnums::instance );
 
   FieldIOIQltyInd::enumItems = IOIQltyIndEnums::items;
   enumsByRaw.emplace( FieldIOIQltyInd::RAW, & IOIQltyIndEnums::instance );
+  enumsByTag.emplace( FieldIOIQltyInd::KEY, & IOIQltyIndEnums::instance );
 
   FieldIOIQty::enumItems = IOIQtyEnums::items;
   enumsByRaw.emplace( FieldIOIQty::RAW, & IOIQtyEnums::instance );
+  enumsByTag.emplace( FieldIOIQty::KEY, & IOIQtyEnums::instance );
 
   FieldIOITransType::enumItems = IOITransTypeEnums::items;
   enumsByRaw.emplace( FieldIOITransType::RAW, & IOITransTypeEnums::instance );
+  enumsByTag.emplace( FieldIOITransType::KEY, & IOITransTypeEnums::instance );
 
   FieldLastCapacity::enumItems = LastCapacityEnums::items;
   enumsByRaw.emplace( FieldLastCapacity::RAW, & LastCapacityEnums::instance );
+  enumsByTag.emplace( FieldLastCapacity::KEY, & LastCapacityEnums::instance );
 
   FieldMsgType::enumItems = MsgTypeEnums::items;
   enumsByRaw.emplace( FieldMsgType::RAW, & MsgTypeEnums::instance );
+  enumsByTag.emplace( FieldMsgType::KEY, & MsgTypeEnums::instance );
 
   FieldOrdStatus::enumItems = OrdStatusEnums::items;
   enumsByRaw.emplace( FieldOrdStatus::RAW, & OrdStatusEnums::instance );
+  enumsByTag.emplace( FieldOrdStatus::KEY, & OrdStatusEnums::instance );
 
   FieldOrdType::enumItems = OrdTypeEnums::items;
   enumsByRaw.emplace( FieldOrdType::RAW, & OrdTypeEnums::instance );
+  enumsByTag.emplace( FieldOrdType::KEY, & OrdTypeEnums::instance );
 
   FieldPossDupFlag::enumItems = PossDupFlagEnums::items;
   enumsByRaw.emplace( FieldPossDupFlag::RAW, & PossDupFlagEnums::instance );
+  enumsByTag.emplace( FieldPossDupFlag::KEY, & PossDupFlagEnums::instance );
 
   FieldSide::enumItems = SideEnums::items;
   enumsByRaw.emplace( FieldSide::RAW, & SideEnums::instance );
+  enumsByTag.emplace( FieldSide::KEY, & SideEnums::instance );
 
   FieldTimeInForce::enumItems = TimeInForceEnums::items;
   enumsByRaw.emplace( FieldTimeInForce::RAW, & TimeInForceEnums::instance );
+  enumsByTag.emplace( FieldTimeInForce::KEY, & TimeInForceEnums::instance );
 
   FieldUrgency::enumItems = UrgencyEnums::items;
   enumsByRaw.emplace( FieldUrgency::RAW, & UrgencyEnums::instance );
+  enumsByTag.emplace( FieldUrgency::KEY, & UrgencyEnums::instance );
 
   FieldSettlType::enumItems = SettlTypeEnums::items;
   enumsByRaw.emplace( FieldSettlType::RAW, & SettlTypeEnums::instance );
+  enumsByTag.emplace( FieldSettlType::KEY, & SettlTypeEnums::instance );
 
   FieldAllocTransType::enumItems = AllocTransTypeEnums::items;
   enumsByRaw.emplace( FieldAllocTransType::RAW, & AllocTransTypeEnums::instance );
+  enumsByTag.emplace( FieldAllocTransType::KEY, & AllocTransTypeEnums::instance );
 
   FieldPositionEffect::enumItems = PositionEffectEnums::items;
   enumsByRaw.emplace( FieldPositionEffect::RAW, & PositionEffectEnums::instance );
+  enumsByTag.emplace( FieldPositionEffect::KEY, & PositionEffectEnums::instance );
 
   FieldProcessCode::enumItems = ProcessCodeEnums::items;
   enumsByRaw.emplace( FieldProcessCode::RAW, & ProcessCodeEnums::instance );
+  enumsByTag.emplace( FieldProcessCode::KEY, & ProcessCodeEnums::instance );
 
   FieldAllocStatus::enumItems = AllocStatusEnums::items;
   enumsByRaw.emplace( FieldAllocStatus::RAW, & AllocStatusEnums::instance );
+  enumsByTag.emplace( FieldAllocStatus::KEY, & AllocStatusEnums::instance );
 
   FieldAllocRejCode::enumItems = AllocRejCodeEnums::items;
   enumsByRaw.emplace( FieldAllocRejCode::RAW, & AllocRejCodeEnums::instance );
+  enumsByTag.emplace( FieldAllocRejCode::KEY, & AllocRejCodeEnums::instance );
 
   FieldEmailType::enumItems = EmailTypeEnums::items;
   enumsByRaw.emplace( FieldEmailType::RAW, & EmailTypeEnums::instance );
+  enumsByTag.emplace( FieldEmailType::KEY, & EmailTypeEnums::instance );
 
   FieldPossResend::enumItems = PossResendEnums::items;
   enumsByRaw.emplace( FieldPossResend::RAW, & PossResendEnums::instance );
+  enumsByTag.emplace( FieldPossResend::KEY, & PossResendEnums::instance );
 
   FieldEncryptMethod::enumItems = EncryptMethodEnums::items;
   enumsByRaw.emplace( FieldEncryptMethod::RAW, & EncryptMethodEnums::instance );
+  enumsByTag.emplace( FieldEncryptMethod::KEY, & EncryptMethodEnums::instance );
 
   FieldCxlRejReason::enumItems = CxlRejReasonEnums::items;
   enumsByRaw.emplace( FieldCxlRejReason::RAW, & CxlRejReasonEnums::instance );
+  enumsByTag.emplace( FieldCxlRejReason::KEY, & CxlRejReasonEnums::instance );
 
   FieldOrdRejReason::enumItems = OrdRejReasonEnums::items;
   enumsByRaw.emplace( FieldOrdRejReason::RAW, & OrdRejReasonEnums::instance );
+  enumsByTag.emplace( FieldOrdRejReason::KEY, & OrdRejReasonEnums::instance );
 
   FieldIOIQualifier::enumItems = IOIQualifierEnums::items;
   enumsByRaw.emplace( FieldIOIQualifier::RAW, & IOIQualifierEnums::instance );
+  enumsByTag.emplace( FieldIOIQualifier::KEY, & IOIQualifierEnums::instance );
 
   FieldReportToExch::enumItems = ReportToExchEnums::items;
   enumsByRaw.emplace( FieldReportToExch::RAW, & ReportToExchEnums::instance );
+  enumsByTag.emplace( FieldReportToExch::KEY, & ReportToExchEnums::instance );
 
   FieldLocateReqd::enumItems = LocateReqdEnums::items;
   enumsByRaw.emplace( FieldLocateReqd::RAW, & LocateReqdEnums::instance );
+  enumsByTag.emplace( FieldLocateReqd::KEY, & LocateReqdEnums::instance );
 
   FieldForexReq::enumItems = ForexReqEnums::items;
   enumsByRaw.emplace( FieldForexReq::RAW, & ForexReqEnums::instance );
+  enumsByTag.emplace( FieldForexReq::KEY, & ForexReqEnums::instance );
 
   FieldGapFillFlag::enumItems = GapFillFlagEnums::items;
   enumsByRaw.emplace( FieldGapFillFlag::RAW, & GapFillFlagEnums::instance );
+  enumsByTag.emplace( FieldGapFillFlag::KEY, & GapFillFlagEnums::instance );
 
   FieldDKReason::enumItems = DKReasonEnums::items;
   enumsByRaw.emplace( FieldDKReason::RAW, & DKReasonEnums::instance );
+  enumsByTag.emplace( FieldDKReason::KEY, & DKReasonEnums::instance );
 
   FieldIOINaturalFlag::enumItems = IOINaturalFlagEnums::items;
   enumsByRaw.emplace( FieldIOINaturalFlag::RAW, & IOINaturalFlagEnums::instance );
+  enumsByTag.emplace( FieldIOINaturalFlag::KEY, & IOINaturalFlagEnums::instance );
 
   FieldMiscFeeType::enumItems = MiscFeeTypeEnums::items;
   enumsByRaw.emplace( FieldMiscFeeType::RAW, & MiscFeeTypeEnums::instance );
+  enumsByTag.emplace( FieldMiscFeeType::KEY, & MiscFeeTypeEnums::instance );
 
   FieldResetSeqNumFlag::enumItems = ResetSeqNumFlagEnums::items;
   enumsByRaw.emplace( FieldResetSeqNumFlag::RAW, & ResetSeqNumFlagEnums::instance );
+  enumsByTag.emplace( FieldResetSeqNumFlag::KEY, & ResetSeqNumFlagEnums::instance );
 
   FieldExecType::enumItems = ExecTypeEnums::items;
   enumsByRaw.emplace( FieldExecType::RAW, & ExecTypeEnums::instance );
+  enumsByTag.emplace( FieldExecType::KEY, & ExecTypeEnums::instance );
 
   FieldSettlCurrFxRateCalc::enumItems = SettlCurrFxRateCalcEnums::items;
   enumsByRaw.emplace( FieldSettlCurrFxRateCalc::RAW, & SettlCurrFxRateCalcEnums::instance );
+  enumsByTag.emplace( FieldSettlCurrFxRateCalc::KEY, & SettlCurrFxRateCalcEnums::instance );
 
   FieldSettlInstMode::enumItems = SettlInstModeEnums::items;
   enumsByRaw.emplace( FieldSettlInstMode::RAW, & SettlInstModeEnums::instance );
+  enumsByTag.emplace( FieldSettlInstMode::KEY, & SettlInstModeEnums::instance );
 
   FieldSettlInstTransType::enumItems = SettlInstTransTypeEnums::items;
   enumsByRaw.emplace( FieldSettlInstTransType::RAW, & SettlInstTransTypeEnums::instance );
+  enumsByTag.emplace( FieldSettlInstTransType::KEY, & SettlInstTransTypeEnums::instance );
 
   FieldSettlInstSource::enumItems = SettlInstSourceEnums::items;
   enumsByRaw.emplace( FieldSettlInstSource::RAW, & SettlInstSourceEnums::instance );
+  enumsByTag.emplace( FieldSettlInstSource::KEY, & SettlInstSourceEnums::instance );
 
   FieldSecurityType::enumItems = SecurityTypeEnums::items;
   enumsByRaw.emplace( FieldSecurityType::RAW, & SecurityTypeEnums::instance );
+  enumsByTag.emplace( FieldSecurityType::KEY, & SecurityTypeEnums::instance );
 
   FieldStandInstDbType::enumItems = StandInstDbTypeEnums::items;
   enumsByRaw.emplace( FieldStandInstDbType::RAW, & StandInstDbTypeEnums::instance );
+  enumsByTag.emplace( FieldStandInstDbType::KEY, & StandInstDbTypeEnums::instance );
 
   FieldSettlDeliveryType::enumItems = SettlDeliveryTypeEnums::items;
   enumsByRaw.emplace( FieldSettlDeliveryType::RAW, & SettlDeliveryTypeEnums::instance );
+  enumsByTag.emplace( FieldSettlDeliveryType::KEY, & SettlDeliveryTypeEnums::instance );
 
   FieldAllocLinkType::enumItems = AllocLinkTypeEnums::items;
   enumsByRaw.emplace( FieldAllocLinkType::RAW, & AllocLinkTypeEnums::instance );
+  enumsByTag.emplace( FieldAllocLinkType::KEY, & AllocLinkTypeEnums::instance );
 
   FieldPutOrCall::enumItems = PutOrCallEnums::items;
   enumsByRaw.emplace( FieldPutOrCall::RAW, & PutOrCallEnums::instance );
+  enumsByTag.emplace( FieldPutOrCall::KEY, & PutOrCallEnums::instance );
 
   FieldCoveredOrUncovered::enumItems = CoveredOrUncoveredEnums::items;
   enumsByRaw.emplace( FieldCoveredOrUncovered::RAW, & CoveredOrUncoveredEnums::instance );
+  enumsByTag.emplace( FieldCoveredOrUncovered::KEY, & CoveredOrUncoveredEnums::instance );
 
   FieldNotifyBrokerOfCredit::enumItems = NotifyBrokerOfCreditEnums::items;
   enumsByRaw.emplace( FieldNotifyBrokerOfCredit::RAW, & NotifyBrokerOfCreditEnums::instance );
+  enumsByTag.emplace( FieldNotifyBrokerOfCredit::KEY, & NotifyBrokerOfCreditEnums::instance );
 
   FieldAllocHandlInst::enumItems = AllocHandlInstEnums::items;
   enumsByRaw.emplace( FieldAllocHandlInst::RAW, & AllocHandlInstEnums::instance );
+  enumsByTag.emplace( FieldAllocHandlInst::KEY, & AllocHandlInstEnums::instance );
 
   FieldRoutingType::enumItems = RoutingTypeEnums::items;
   enumsByRaw.emplace( FieldRoutingType::RAW, & RoutingTypeEnums::instance );
+  enumsByTag.emplace( FieldRoutingType::KEY, & RoutingTypeEnums::instance );
 
   FieldStipulationType::enumItems = StipulationTypeEnums::items;
   enumsByRaw.emplace( FieldStipulationType::RAW, & StipulationTypeEnums::instance );
+  enumsByTag.emplace( FieldStipulationType::KEY, & StipulationTypeEnums::instance );
 
   FieldYieldType::enumItems = YieldTypeEnums::items;
   enumsByRaw.emplace( FieldYieldType::RAW, & YieldTypeEnums::instance );
+  enumsByTag.emplace( FieldYieldType::KEY, & YieldTypeEnums::instance );
 
   FieldTradedFlatSwitch::enumItems = TradedFlatSwitchEnums::items;
   enumsByRaw.emplace( FieldTradedFlatSwitch::RAW, & TradedFlatSwitchEnums::instance );
+  enumsByTag.emplace( FieldTradedFlatSwitch::KEY, & TradedFlatSwitchEnums::instance );
 
   FieldSubscriptionRequestType::enumItems = SubscriptionRequestTypeEnums::items;
   enumsByRaw.emplace( FieldSubscriptionRequestType::RAW, & SubscriptionRequestTypeEnums::instance );
+  enumsByTag.emplace( FieldSubscriptionRequestType::KEY, & SubscriptionRequestTypeEnums::instance );
 
   FieldMDUpdateType::enumItems = MDUpdateTypeEnums::items;
   enumsByRaw.emplace( FieldMDUpdateType::RAW, & MDUpdateTypeEnums::instance );
+  enumsByTag.emplace( FieldMDUpdateType::KEY, & MDUpdateTypeEnums::instance );
 
   FieldAggregatedBook::enumItems = AggregatedBookEnums::items;
   enumsByRaw.emplace( FieldAggregatedBook::RAW, & AggregatedBookEnums::instance );
+  enumsByTag.emplace( FieldAggregatedBook::KEY, & AggregatedBookEnums::instance );
 
   FieldMDEntryType::enumItems = MDEntryTypeEnums::items;
   enumsByRaw.emplace( FieldMDEntryType::RAW, & MDEntryTypeEnums::instance );
+  enumsByTag.emplace( FieldMDEntryType::KEY, & MDEntryTypeEnums::instance );
 
   FieldTickDirection::enumItems = TickDirectionEnums::items;
   enumsByRaw.emplace( FieldTickDirection::RAW, & TickDirectionEnums::instance );
+  enumsByTag.emplace( FieldTickDirection::KEY, & TickDirectionEnums::instance );
 
   FieldQuoteCondition::enumItems = QuoteConditionEnums::items;
   enumsByRaw.emplace( FieldQuoteCondition::RAW, & QuoteConditionEnums::instance );
+  enumsByTag.emplace( FieldQuoteCondition::KEY, & QuoteConditionEnums::instance );
 
   FieldTradeCondition::enumItems = TradeConditionEnums::items;
   enumsByRaw.emplace( FieldTradeCondition::RAW, & TradeConditionEnums::instance );
+  enumsByTag.emplace( FieldTradeCondition::KEY, & TradeConditionEnums::instance );
 
   FieldMDUpdateAction::enumItems = MDUpdateActionEnums::items;
   enumsByRaw.emplace( FieldMDUpdateAction::RAW, & MDUpdateActionEnums::instance );
+  enumsByTag.emplace( FieldMDUpdateAction::KEY, & MDUpdateActionEnums::instance );
 
   FieldMDReqRejReason::enumItems = MDReqRejReasonEnums::items;
   enumsByRaw.emplace( FieldMDReqRejReason::RAW, & MDReqRejReasonEnums::instance );
+  enumsByTag.emplace( FieldMDReqRejReason::KEY, & MDReqRejReasonEnums::instance );
 
   FieldDeleteReason::enumItems = DeleteReasonEnums::items;
   enumsByRaw.emplace( FieldDeleteReason::RAW, & DeleteReasonEnums::instance );
+  enumsByTag.emplace( FieldDeleteReason::KEY, & DeleteReasonEnums::instance );
 
   FieldOpenCloseSettlFlag::enumItems = OpenCloseSettlFlagEnums::items;
   enumsByRaw.emplace( FieldOpenCloseSettlFlag::RAW, & OpenCloseSettlFlagEnums::instance );
+  enumsByTag.emplace( FieldOpenCloseSettlFlag::KEY, & OpenCloseSettlFlagEnums::instance );
 
   FieldFinancialStatus::enumItems = FinancialStatusEnums::items;
   enumsByRaw.emplace( FieldFinancialStatus::RAW, & FinancialStatusEnums::instance );
+  enumsByTag.emplace( FieldFinancialStatus::KEY, & FinancialStatusEnums::instance );
 
   FieldCorporateAction::enumItems = CorporateActionEnums::items;
   enumsByRaw.emplace( FieldCorporateAction::RAW, & CorporateActionEnums::instance );
+  enumsByTag.emplace( FieldCorporateAction::KEY, & CorporateActionEnums::instance );
 
   FieldQuoteStatus::enumItems = QuoteStatusEnums::items;
   enumsByRaw.emplace( FieldQuoteStatus::RAW, & QuoteStatusEnums::instance );
+  enumsByTag.emplace( FieldQuoteStatus::KEY, & QuoteStatusEnums::instance );
 
   FieldQuoteCancelType::enumItems = QuoteCancelTypeEnums::items;
   enumsByRaw.emplace( FieldQuoteCancelType::RAW, & QuoteCancelTypeEnums::instance );
+  enumsByTag.emplace( FieldQuoteCancelType::KEY, & QuoteCancelTypeEnums::instance );
 
   FieldQuoteRejectReason::enumItems = QuoteRejectReasonEnums::items;
   enumsByRaw.emplace( FieldQuoteRejectReason::RAW, & QuoteRejectReasonEnums::instance );
+  enumsByTag.emplace( FieldQuoteRejectReason::KEY, & QuoteRejectReasonEnums::instance );
 
   FieldQuoteResponseLevel::enumItems = QuoteResponseLevelEnums::items;
   enumsByRaw.emplace( FieldQuoteResponseLevel::RAW, & QuoteResponseLevelEnums::instance );
+  enumsByTag.emplace( FieldQuoteResponseLevel::KEY, & QuoteResponseLevelEnums::instance );
 
   FieldQuoteRequestType::enumItems = QuoteRequestTypeEnums::items;
   enumsByRaw.emplace( FieldQuoteRequestType::RAW, & QuoteRequestTypeEnums::instance );
+  enumsByTag.emplace( FieldQuoteRequestType::KEY, & QuoteRequestTypeEnums::instance );
 
   FieldSecurityRequestType::enumItems = SecurityRequestTypeEnums::items;
   enumsByRaw.emplace( FieldSecurityRequestType::RAW, & SecurityRequestTypeEnums::instance );
+  enumsByTag.emplace( FieldSecurityRequestType::KEY, & SecurityRequestTypeEnums::instance );
 
   FieldSecurityResponseType::enumItems = SecurityResponseTypeEnums::items;
   enumsByRaw.emplace( FieldSecurityResponseType::RAW, & SecurityResponseTypeEnums::instance );
+  enumsByTag.emplace( FieldSecurityResponseType::KEY, & SecurityResponseTypeEnums::instance );
 
   FieldUnsolicitedIndicator::enumItems = UnsolicitedIndicatorEnums::items;
   enumsByRaw.emplace( FieldUnsolicitedIndicator::RAW, & UnsolicitedIndicatorEnums::instance );
+  enumsByTag.emplace( FieldUnsolicitedIndicator::KEY, & UnsolicitedIndicatorEnums::instance );
 
   FieldSecurityTradingStatus::enumItems = SecurityTradingStatusEnums::items;
   enumsByRaw.emplace( FieldSecurityTradingStatus::RAW, & SecurityTradingStatusEnums::instance );
+  enumsByTag.emplace( FieldSecurityTradingStatus::KEY, & SecurityTradingStatusEnums::instance );
 
   FieldHaltReasonChar::enumItems = HaltReasonCharEnums::items;
   enumsByRaw.emplace( FieldHaltReasonChar::RAW, & HaltReasonCharEnums::instance );
+  enumsByTag.emplace( FieldHaltReasonChar::KEY, & HaltReasonCharEnums::instance );
 
   FieldInViewOfCommon::enumItems = InViewOfCommonEnums::items;
   enumsByRaw.emplace( FieldInViewOfCommon::RAW, & InViewOfCommonEnums::instance );
+  enumsByTag.emplace( FieldInViewOfCommon::KEY, & InViewOfCommonEnums::instance );
 
   FieldDueToRelated::enumItems = DueToRelatedEnums::items;
   enumsByRaw.emplace( FieldDueToRelated::RAW, & DueToRelatedEnums::instance );
+  enumsByTag.emplace( FieldDueToRelated::KEY, & DueToRelatedEnums::instance );
 
   FieldAdjustment::enumItems = AdjustmentEnums::items;
   enumsByRaw.emplace( FieldAdjustment::RAW, & AdjustmentEnums::instance );
+  enumsByTag.emplace( FieldAdjustment::KEY, & AdjustmentEnums::instance );
 
   FieldTradSesMethod::enumItems = TradSesMethodEnums::items;
   enumsByRaw.emplace( FieldTradSesMethod::RAW, & TradSesMethodEnums::instance );
+  enumsByTag.emplace( FieldTradSesMethod::KEY, & TradSesMethodEnums::instance );
 
   FieldTradSesMode::enumItems = TradSesModeEnums::items;
   enumsByRaw.emplace( FieldTradSesMode::RAW, & TradSesModeEnums::instance );
+  enumsByTag.emplace( FieldTradSesMode::KEY, & TradSesModeEnums::instance );
 
   FieldTradSesStatus::enumItems = TradSesStatusEnums::items;
   enumsByRaw.emplace( FieldTradSesStatus::RAW, & TradSesStatusEnums::instance );
+  enumsByTag.emplace( FieldTradSesStatus::KEY, & TradSesStatusEnums::instance );
 
   FieldMessageEncoding::enumItems = MessageEncodingEnums::items;
   enumsByRaw.emplace( FieldMessageEncoding::RAW, & MessageEncodingEnums::instance );
+  enumsByTag.emplace( FieldMessageEncoding::KEY, & MessageEncodingEnums::instance );
 
   FieldSessionRejectReason::enumItems = SessionRejectReasonEnums::items;
   enumsByRaw.emplace( FieldSessionRejectReason::RAW, & SessionRejectReasonEnums::instance );
+  enumsByTag.emplace( FieldSessionRejectReason::KEY, & SessionRejectReasonEnums::instance );
 
   FieldBidRequestTransType::enumItems = BidRequestTransTypeEnums::items;
   enumsByRaw.emplace( FieldBidRequestTransType::RAW, & BidRequestTransTypeEnums::instance );
+  enumsByTag.emplace( FieldBidRequestTransType::KEY, & BidRequestTransTypeEnums::instance );
 
   FieldSolicitedFlag::enumItems = SolicitedFlagEnums::items;
   enumsByRaw.emplace( FieldSolicitedFlag::RAW, & SolicitedFlagEnums::instance );
+  enumsByTag.emplace( FieldSolicitedFlag::KEY, & SolicitedFlagEnums::instance );
 
   FieldExecRestatementReason::enumItems = ExecRestatementReasonEnums::items;
   enumsByRaw.emplace( FieldExecRestatementReason::RAW, & ExecRestatementReasonEnums::instance );
+  enumsByTag.emplace( FieldExecRestatementReason::KEY, & ExecRestatementReasonEnums::instance );
 
   FieldBusinessRejectReason::enumItems = BusinessRejectReasonEnums::items;
   enumsByRaw.emplace( FieldBusinessRejectReason::RAW, & BusinessRejectReasonEnums::instance );
+  enumsByTag.emplace( FieldBusinessRejectReason::KEY, & BusinessRejectReasonEnums::instance );
 
   FieldMsgDirection::enumItems = MsgDirectionEnums::items;
   enumsByRaw.emplace( FieldMsgDirection::RAW, & MsgDirectionEnums::instance );
+  enumsByTag.emplace( FieldMsgDirection::KEY, & MsgDirectionEnums::instance );
 
   FieldDiscretionInst::enumItems = DiscretionInstEnums::items;
   enumsByRaw.emplace( FieldDiscretionInst::RAW, & DiscretionInstEnums::instance );
+  enumsByTag.emplace( FieldDiscretionInst::KEY, & DiscretionInstEnums::instance );
 
   FieldBidType::enumItems = BidTypeEnums::items;
   enumsByRaw.emplace( FieldBidType::RAW, & BidTypeEnums::instance );
+  enumsByTag.emplace( FieldBidType::KEY, & BidTypeEnums::instance );
 
   FieldBidDescriptorType::enumItems = BidDescriptorTypeEnums::items;
   enumsByRaw.emplace( FieldBidDescriptorType::RAW, & BidDescriptorTypeEnums::instance );
+  enumsByTag.emplace( FieldBidDescriptorType::KEY, & BidDescriptorTypeEnums::instance );
 
   FieldSideValueInd::enumItems = SideValueIndEnums::items;
   enumsByRaw.emplace( FieldSideValueInd::RAW, & SideValueIndEnums::instance );
+  enumsByTag.emplace( FieldSideValueInd::KEY, & SideValueIndEnums::instance );
 
   FieldLiquidityIndType::enumItems = LiquidityIndTypeEnums::items;
   enumsByRaw.emplace( FieldLiquidityIndType::RAW, & LiquidityIndTypeEnums::instance );
+  enumsByTag.emplace( FieldLiquidityIndType::KEY, & LiquidityIndTypeEnums::instance );
 
   FieldExchangeForPhysical::enumItems = ExchangeForPhysicalEnums::items;
   enumsByRaw.emplace( FieldExchangeForPhysical::RAW, & ExchangeForPhysicalEnums::instance );
+  enumsByTag.emplace( FieldExchangeForPhysical::KEY, & ExchangeForPhysicalEnums::instance );
 
   FieldProgRptReqs::enumItems = ProgRptReqsEnums::items;
   enumsByRaw.emplace( FieldProgRptReqs::RAW, & ProgRptReqsEnums::instance );
+  enumsByTag.emplace( FieldProgRptReqs::KEY, & ProgRptReqsEnums::instance );
 
   FieldIncTaxInd::enumItems = IncTaxIndEnums::items;
   enumsByRaw.emplace( FieldIncTaxInd::RAW, & IncTaxIndEnums::instance );
+  enumsByTag.emplace( FieldIncTaxInd::KEY, & IncTaxIndEnums::instance );
 
   FieldBidTradeType::enumItems = BidTradeTypeEnums::items;
   enumsByRaw.emplace( FieldBidTradeType::RAW, & BidTradeTypeEnums::instance );
+  enumsByTag.emplace( FieldBidTradeType::KEY, & BidTradeTypeEnums::instance );
 
   FieldBasisPxType::enumItems = BasisPxTypeEnums::items;
   enumsByRaw.emplace( FieldBasisPxType::RAW, & BasisPxTypeEnums::instance );
+  enumsByTag.emplace( FieldBasisPxType::KEY, & BasisPxTypeEnums::instance );
 
   FieldPriceType::enumItems = PriceTypeEnums::items;
   enumsByRaw.emplace( FieldPriceType::RAW, & PriceTypeEnums::instance );
+  enumsByTag.emplace( FieldPriceType::KEY, & PriceTypeEnums::instance );
 
   FieldGTBookingInst::enumItems = GTBookingInstEnums::items;
   enumsByRaw.emplace( FieldGTBookingInst::RAW, & GTBookingInstEnums::instance );
+  enumsByTag.emplace( FieldGTBookingInst::KEY, & GTBookingInstEnums::instance );
 
   FieldListStatusType::enumItems = ListStatusTypeEnums::items;
   enumsByRaw.emplace( FieldListStatusType::RAW, & ListStatusTypeEnums::instance );
+  enumsByTag.emplace( FieldListStatusType::KEY, & ListStatusTypeEnums::instance );
 
   FieldNetGrossInd::enumItems = NetGrossIndEnums::items;
   enumsByRaw.emplace( FieldNetGrossInd::RAW, & NetGrossIndEnums::instance );
+  enumsByTag.emplace( FieldNetGrossInd::KEY, & NetGrossIndEnums::instance );
 
   FieldListOrderStatus::enumItems = ListOrderStatusEnums::items;
   enumsByRaw.emplace( FieldListOrderStatus::RAW, & ListOrderStatusEnums::instance );
+  enumsByTag.emplace( FieldListOrderStatus::KEY, & ListOrderStatusEnums::instance );
 
   FieldListExecInstType::enumItems = ListExecInstTypeEnums::items;
   enumsByRaw.emplace( FieldListExecInstType::RAW, & ListExecInstTypeEnums::instance );
+  enumsByTag.emplace( FieldListExecInstType::KEY, & ListExecInstTypeEnums::instance );
 
   FieldCxlRejResponseTo::enumItems = CxlRejResponseToEnums::items;
   enumsByRaw.emplace( FieldCxlRejResponseTo::RAW, & CxlRejResponseToEnums::instance );
+  enumsByTag.emplace( FieldCxlRejResponseTo::KEY, & CxlRejResponseToEnums::instance );
 
   FieldMultiLegReportingType::enumItems = MultiLegReportingTypeEnums::items;
   enumsByRaw.emplace( FieldMultiLegReportingType::RAW, & MultiLegReportingTypeEnums::instance );
+  enumsByTag.emplace( FieldMultiLegReportingType::KEY, & MultiLegReportingTypeEnums::instance );
 
   FieldPartyIDSource::enumItems = PartyIDSourceEnums::items;
   enumsByRaw.emplace( FieldPartyIDSource::RAW, & PartyIDSourceEnums::instance );
+  enumsByTag.emplace( FieldPartyIDSource::KEY, & PartyIDSourceEnums::instance );
 
   FieldPartyRole::enumItems = PartyRoleEnums::items;
   enumsByRaw.emplace( FieldPartyRole::RAW, & PartyRoleEnums::instance );
+  enumsByTag.emplace( FieldPartyRole::KEY, & PartyRoleEnums::instance );
 
   FieldProduct::enumItems = ProductEnums::items;
   enumsByRaw.emplace( FieldProduct::RAW, & ProductEnums::instance );
+  enumsByTag.emplace( FieldProduct::KEY, & ProductEnums::instance );
 
   FieldTestMessageIndicator::enumItems = TestMessageIndicatorEnums::items;
   enumsByRaw.emplace( FieldTestMessageIndicator::RAW, & TestMessageIndicatorEnums::instance );
+  enumsByTag.emplace( FieldTestMessageIndicator::KEY, & TestMessageIndicatorEnums::instance );
 
   FieldRoundingDirection::enumItems = RoundingDirectionEnums::items;
   enumsByRaw.emplace( FieldRoundingDirection::RAW, & RoundingDirectionEnums::instance );
+  enumsByTag.emplace( FieldRoundingDirection::KEY, & RoundingDirectionEnums::instance );
 
   FieldDistribPaymentMethod::enumItems = DistribPaymentMethodEnums::items;
   enumsByRaw.emplace( FieldDistribPaymentMethod::RAW, & DistribPaymentMethodEnums::instance );
+  enumsByTag.emplace( FieldDistribPaymentMethod::KEY, & DistribPaymentMethodEnums::instance );
 
   FieldCancellationRights::enumItems = CancellationRightsEnums::items;
   enumsByRaw.emplace( FieldCancellationRights::RAW, & CancellationRightsEnums::instance );
+  enumsByTag.emplace( FieldCancellationRights::KEY, & CancellationRightsEnums::instance );
 
   FieldMoneyLaunderingStatus::enumItems = MoneyLaunderingStatusEnums::items;
   enumsByRaw.emplace( FieldMoneyLaunderingStatus::RAW, & MoneyLaunderingStatusEnums::instance );
+  enumsByTag.emplace( FieldMoneyLaunderingStatus::KEY, & MoneyLaunderingStatusEnums::instance );
 
   FieldExecPriceType::enumItems = ExecPriceTypeEnums::items;
   enumsByRaw.emplace( FieldExecPriceType::RAW, & ExecPriceTypeEnums::instance );
+  enumsByTag.emplace( FieldExecPriceType::KEY, & ExecPriceTypeEnums::instance );
 
   FieldPaymentMethod::enumItems = PaymentMethodEnums::items;
   enumsByRaw.emplace( FieldPaymentMethod::RAW, & PaymentMethodEnums::instance );
+  enumsByTag.emplace( FieldPaymentMethod::KEY, & PaymentMethodEnums::instance );
 
   FieldTaxAdvantageType::enumItems = TaxAdvantageTypeEnums::items;
   enumsByRaw.emplace( FieldTaxAdvantageType::RAW, & TaxAdvantageTypeEnums::instance );
+  enumsByTag.emplace( FieldTaxAdvantageType::KEY, & TaxAdvantageTypeEnums::instance );
 
   FieldFundRenewWaiv::enumItems = FundRenewWaivEnums::items;
   enumsByRaw.emplace( FieldFundRenewWaiv::RAW, & FundRenewWaivEnums::instance );
+  enumsByTag.emplace( FieldFundRenewWaiv::KEY, & FundRenewWaivEnums::instance );
 
   FieldRegistStatus::enumItems = RegistStatusEnums::items;
   enumsByRaw.emplace( FieldRegistStatus::RAW, & RegistStatusEnums::instance );
+  enumsByTag.emplace( FieldRegistStatus::KEY, & RegistStatusEnums::instance );
 
   FieldRegistRejReasonCode::enumItems = RegistRejReasonCodeEnums::items;
   enumsByRaw.emplace( FieldRegistRejReasonCode::RAW, & RegistRejReasonCodeEnums::instance );
+  enumsByTag.emplace( FieldRegistRejReasonCode::KEY, & RegistRejReasonCodeEnums::instance );
 
   FieldRegistTransType::enumItems = RegistTransTypeEnums::items;
   enumsByRaw.emplace( FieldRegistTransType::RAW, & RegistTransTypeEnums::instance );
+  enumsByTag.emplace( FieldRegistTransType::KEY, & RegistTransTypeEnums::instance );
 
   FieldOwnershipType::enumItems = OwnershipTypeEnums::items;
   enumsByRaw.emplace( FieldOwnershipType::RAW, & OwnershipTypeEnums::instance );
+  enumsByTag.emplace( FieldOwnershipType::KEY, & OwnershipTypeEnums::instance );
 
   FieldContAmtType::enumItems = ContAmtTypeEnums::items;
   enumsByRaw.emplace( FieldContAmtType::RAW, & ContAmtTypeEnums::instance );
+  enumsByTag.emplace( FieldContAmtType::KEY, & ContAmtTypeEnums::instance );
 
   FieldOwnerType::enumItems = OwnerTypeEnums::items;
   enumsByRaw.emplace( FieldOwnerType::RAW, & OwnerTypeEnums::instance );
+  enumsByTag.emplace( FieldOwnerType::KEY, & OwnerTypeEnums::instance );
 
   FieldOrderCapacity::enumItems = OrderCapacityEnums::items;
   enumsByRaw.emplace( FieldOrderCapacity::RAW, & OrderCapacityEnums::instance );
+  enumsByTag.emplace( FieldOrderCapacity::KEY, & OrderCapacityEnums::instance );
 
   FieldOrderRestrictions::enumItems = OrderRestrictionsEnums::items;
   enumsByRaw.emplace( FieldOrderRestrictions::RAW, & OrderRestrictionsEnums::instance );
+  enumsByTag.emplace( FieldOrderRestrictions::KEY, & OrderRestrictionsEnums::instance );
 
   FieldMassCancelRequestType::enumItems = MassCancelRequestTypeEnums::items;
   enumsByRaw.emplace( FieldMassCancelRequestType::RAW, & MassCancelRequestTypeEnums::instance );
+  enumsByTag.emplace( FieldMassCancelRequestType::KEY, & MassCancelRequestTypeEnums::instance );
 
   FieldMassCancelResponse::enumItems = MassCancelResponseEnums::items;
   enumsByRaw.emplace( FieldMassCancelResponse::RAW, & MassCancelResponseEnums::instance );
+  enumsByTag.emplace( FieldMassCancelResponse::KEY, & MassCancelResponseEnums::instance );
 
   FieldMassCancelRejectReason::enumItems = MassCancelRejectReasonEnums::items;
   enumsByRaw.emplace( FieldMassCancelRejectReason::RAW, & MassCancelRejectReasonEnums::instance );
+  enumsByTag.emplace( FieldMassCancelRejectReason::KEY, & MassCancelRejectReasonEnums::instance );
 
   FieldQuoteType::enumItems = QuoteTypeEnums::items;
   enumsByRaw.emplace( FieldQuoteType::RAW, & QuoteTypeEnums::instance );
+  enumsByTag.emplace( FieldQuoteType::KEY, & QuoteTypeEnums::instance );
 
   FieldCashMargin::enumItems = CashMarginEnums::items;
   enumsByRaw.emplace( FieldCashMargin::RAW, & CashMarginEnums::instance );
+  enumsByTag.emplace( FieldCashMargin::KEY, & CashMarginEnums::instance );
 
   FieldScope::enumItems = ScopeEnums::items;
   enumsByRaw.emplace( FieldScope::RAW, & ScopeEnums::instance );
+  enumsByTag.emplace( FieldScope::KEY, & ScopeEnums::instance );
 
   FieldMDImplicitDelete::enumItems = MDImplicitDeleteEnums::items;
   enumsByRaw.emplace( FieldMDImplicitDelete::RAW, & MDImplicitDeleteEnums::instance );
+  enumsByTag.emplace( FieldMDImplicitDelete::KEY, & MDImplicitDeleteEnums::instance );
 
   FieldCrossType::enumItems = CrossTypeEnums::items;
   enumsByRaw.emplace( FieldCrossType::RAW, & CrossTypeEnums::instance );
+  enumsByTag.emplace( FieldCrossType::KEY, & CrossTypeEnums::instance );
 
   FieldCrossPrioritization::enumItems = CrossPrioritizationEnums::items;
   enumsByRaw.emplace( FieldCrossPrioritization::RAW, & CrossPrioritizationEnums::instance );
+  enumsByTag.emplace( FieldCrossPrioritization::KEY, & CrossPrioritizationEnums::instance );
 
   FieldNoSides::enumItems = NoSidesEnums::items;
   enumsByRaw.emplace( FieldNoSides::RAW, & NoSidesEnums::instance );
+  enumsByTag.emplace( FieldNoSides::KEY, & NoSidesEnums::instance );
 
   FieldSecurityListRequestType::enumItems = SecurityListRequestTypeEnums::items;
   enumsByRaw.emplace( FieldSecurityListRequestType::RAW, & SecurityListRequestTypeEnums::instance );
+  enumsByTag.emplace( FieldSecurityListRequestType::KEY, & SecurityListRequestTypeEnums::instance );
 
   FieldSecurityRequestResult::enumItems = SecurityRequestResultEnums::items;
   enumsByRaw.emplace( FieldSecurityRequestResult::RAW, & SecurityRequestResultEnums::instance );
+  enumsByTag.emplace( FieldSecurityRequestResult::KEY, & SecurityRequestResultEnums::instance );
 
   FieldMultiLegRptTypeReq::enumItems = MultiLegRptTypeReqEnums::items;
   enumsByRaw.emplace( FieldMultiLegRptTypeReq::RAW, & MultiLegRptTypeReqEnums::instance );
+  enumsByTag.emplace( FieldMultiLegRptTypeReq::KEY, & MultiLegRptTypeReqEnums::instance );
 
   FieldTradSesStatusRejReason::enumItems = TradSesStatusRejReasonEnums::items;
   enumsByRaw.emplace( FieldTradSesStatusRejReason::RAW, & TradSesStatusRejReasonEnums::instance );
+  enumsByTag.emplace( FieldTradSesStatusRejReason::KEY, & TradSesStatusRejReasonEnums::instance );
 
   FieldTradeRequestType::enumItems = TradeRequestTypeEnums::items;
   enumsByRaw.emplace( FieldTradeRequestType::RAW, & TradeRequestTypeEnums::instance );
+  enumsByTag.emplace( FieldTradeRequestType::KEY, & TradeRequestTypeEnums::instance );
 
   FieldPreviouslyReported::enumItems = PreviouslyReportedEnums::items;
   enumsByRaw.emplace( FieldPreviouslyReported::RAW, & PreviouslyReportedEnums::instance );
+  enumsByTag.emplace( FieldPreviouslyReported::KEY, & PreviouslyReportedEnums::instance );
 
   FieldMatchStatus::enumItems = MatchStatusEnums::items;
   enumsByRaw.emplace( FieldMatchStatus::RAW, & MatchStatusEnums::instance );
+  enumsByTag.emplace( FieldMatchStatus::KEY, & MatchStatusEnums::instance );
 
   FieldMatchType::enumItems = MatchTypeEnums::items;
   enumsByRaw.emplace( FieldMatchType::RAW, & MatchTypeEnums::instance );
+  enumsByTag.emplace( FieldMatchType::KEY, & MatchTypeEnums::instance );
 
   FieldOddLot::enumItems = OddLotEnums::items;
   enumsByRaw.emplace( FieldOddLot::RAW, & OddLotEnums::instance );
+  enumsByTag.emplace( FieldOddLot::KEY, & OddLotEnums::instance );
 
   FieldClearingInstruction::enumItems = ClearingInstructionEnums::items;
   enumsByRaw.emplace( FieldClearingInstruction::RAW, & ClearingInstructionEnums::instance );
+  enumsByTag.emplace( FieldClearingInstruction::KEY, & ClearingInstructionEnums::instance );
 
   FieldAccountType::enumItems = AccountTypeEnums::items;
   enumsByRaw.emplace( FieldAccountType::RAW, & AccountTypeEnums::instance );
+  enumsByTag.emplace( FieldAccountType::KEY, & AccountTypeEnums::instance );
 
   FieldCustOrderCapacity::enumItems = CustOrderCapacityEnums::items;
   enumsByRaw.emplace( FieldCustOrderCapacity::RAW, & CustOrderCapacityEnums::instance );
+  enumsByTag.emplace( FieldCustOrderCapacity::KEY, & CustOrderCapacityEnums::instance );
 
   FieldMassStatusReqType::enumItems = MassStatusReqTypeEnums::items;
   enumsByRaw.emplace( FieldMassStatusReqType::RAW, & MassStatusReqTypeEnums::instance );
+  enumsByTag.emplace( FieldMassStatusReqType::KEY, & MassStatusReqTypeEnums::instance );
 
   FieldDayBookingInst::enumItems = DayBookingInstEnums::items;
   enumsByRaw.emplace( FieldDayBookingInst::RAW, & DayBookingInstEnums::instance );
+  enumsByTag.emplace( FieldDayBookingInst::KEY, & DayBookingInstEnums::instance );
 
   FieldBookingUnit::enumItems = BookingUnitEnums::items;
   enumsByRaw.emplace( FieldBookingUnit::RAW, & BookingUnitEnums::instance );
+  enumsByTag.emplace( FieldBookingUnit::KEY, & BookingUnitEnums::instance );
 
   FieldPreallocMethod::enumItems = PreallocMethodEnums::items;
   enumsByRaw.emplace( FieldPreallocMethod::RAW, & PreallocMethodEnums::instance );
+  enumsByTag.emplace( FieldPreallocMethod::KEY, & PreallocMethodEnums::instance );
 
   FieldAllocType::enumItems = AllocTypeEnums::items;
   enumsByRaw.emplace( FieldAllocType::RAW, & AllocTypeEnums::instance );
+  enumsByTag.emplace( FieldAllocType::KEY, & AllocTypeEnums::instance );
 
   FieldClearingFeeIndicator::enumItems = ClearingFeeIndicatorEnums::items;
   enumsByRaw.emplace( FieldClearingFeeIndicator::RAW, & ClearingFeeIndicatorEnums::instance );
+  enumsByTag.emplace( FieldClearingFeeIndicator::KEY, & ClearingFeeIndicatorEnums::instance );
 
   FieldWorkingIndicator::enumItems = WorkingIndicatorEnums::items;
   enumsByRaw.emplace( FieldWorkingIndicator::RAW, & WorkingIndicatorEnums::instance );
+  enumsByTag.emplace( FieldWorkingIndicator::KEY, & WorkingIndicatorEnums::instance );
 
   FieldPriorityIndicator::enumItems = PriorityIndicatorEnums::items;
   enumsByRaw.emplace( FieldPriorityIndicator::RAW, & PriorityIndicatorEnums::instance );
+  enumsByTag.emplace( FieldPriorityIndicator::KEY, & PriorityIndicatorEnums::instance );
 
   FieldLegalConfirm::enumItems = LegalConfirmEnums::items;
   enumsByRaw.emplace( FieldLegalConfirm::RAW, & LegalConfirmEnums::instance );
+  enumsByTag.emplace( FieldLegalConfirm::KEY, & LegalConfirmEnums::instance );
 
   FieldQuoteRequestRejectReason::enumItems = QuoteRequestRejectReasonEnums::items;
   enumsByRaw.emplace( FieldQuoteRequestRejectReason::RAW, & QuoteRequestRejectReasonEnums::instance );
+  enumsByTag.emplace( FieldQuoteRequestRejectReason::KEY, & QuoteRequestRejectReasonEnums::instance );
 
   FieldAcctIDSource::enumItems = AcctIDSourceEnums::items;
   enumsByRaw.emplace( FieldAcctIDSource::RAW, & AcctIDSourceEnums::instance );
+  enumsByTag.emplace( FieldAcctIDSource::KEY, & AcctIDSourceEnums::instance );
 
   FieldConfirmStatus::enumItems = ConfirmStatusEnums::items;
   enumsByRaw.emplace( FieldConfirmStatus::RAW, & ConfirmStatusEnums::instance );
+  enumsByTag.emplace( FieldConfirmStatus::KEY, & ConfirmStatusEnums::instance );
 
   FieldConfirmTransType::enumItems = ConfirmTransTypeEnums::items;
   enumsByRaw.emplace( FieldConfirmTransType::RAW, & ConfirmTransTypeEnums::instance );
+  enumsByTag.emplace( FieldConfirmTransType::KEY, & ConfirmTransTypeEnums::instance );
 
   FieldDeliveryForm::enumItems = DeliveryFormEnums::items;
   enumsByRaw.emplace( FieldDeliveryForm::RAW, & DeliveryFormEnums::instance );
+  enumsByTag.emplace( FieldDeliveryForm::KEY, & DeliveryFormEnums::instance );
 
   FieldLegSwapType::enumItems = LegSwapTypeEnums::items;
   enumsByRaw.emplace( FieldLegSwapType::RAW, & LegSwapTypeEnums::instance );
+  enumsByTag.emplace( FieldLegSwapType::KEY, & LegSwapTypeEnums::instance );
 
   FieldQuotePriceType::enumItems = QuotePriceTypeEnums::items;
   enumsByRaw.emplace( FieldQuotePriceType::RAW, & QuotePriceTypeEnums::instance );
+  enumsByTag.emplace( FieldQuotePriceType::KEY, & QuotePriceTypeEnums::instance );
 
   FieldQuoteRespType::enumItems = QuoteRespTypeEnums::items;
   enumsByRaw.emplace( FieldQuoteRespType::RAW, & QuoteRespTypeEnums::instance );
+  enumsByTag.emplace( FieldQuoteRespType::KEY, & QuoteRespTypeEnums::instance );
 
   FieldPosType::enumItems = PosTypeEnums::items;
   enumsByRaw.emplace( FieldPosType::RAW, & PosTypeEnums::instance );
+  enumsByTag.emplace( FieldPosType::KEY, & PosTypeEnums::instance );
 
   FieldPosQtyStatus::enumItems = PosQtyStatusEnums::items;
   enumsByRaw.emplace( FieldPosQtyStatus::RAW, & PosQtyStatusEnums::instance );
+  enumsByTag.emplace( FieldPosQtyStatus::KEY, & PosQtyStatusEnums::instance );
 
   FieldPosAmtType::enumItems = PosAmtTypeEnums::items;
   enumsByRaw.emplace( FieldPosAmtType::RAW, & PosAmtTypeEnums::instance );
+  enumsByTag.emplace( FieldPosAmtType::KEY, & PosAmtTypeEnums::instance );
 
   FieldPosTransType::enumItems = PosTransTypeEnums::items;
   enumsByRaw.emplace( FieldPosTransType::RAW, & PosTransTypeEnums::instance );
+  enumsByTag.emplace( FieldPosTransType::KEY, & PosTransTypeEnums::instance );
 
   FieldPosMaintAction::enumItems = PosMaintActionEnums::items;
   enumsByRaw.emplace( FieldPosMaintAction::RAW, & PosMaintActionEnums::instance );
+  enumsByTag.emplace( FieldPosMaintAction::KEY, & PosMaintActionEnums::instance );
 
   FieldSettlSessID::enumItems = SettlSessIDEnums::items;
   enumsByRaw.emplace( FieldSettlSessID::RAW, & SettlSessIDEnums::instance );
+  enumsByTag.emplace( FieldSettlSessID::KEY, & SettlSessIDEnums::instance );
 
   FieldAdjustmentType::enumItems = AdjustmentTypeEnums::items;
   enumsByRaw.emplace( FieldAdjustmentType::RAW, & AdjustmentTypeEnums::instance );
+  enumsByTag.emplace( FieldAdjustmentType::KEY, & AdjustmentTypeEnums::instance );
 
   FieldPosMaintStatus::enumItems = PosMaintStatusEnums::items;
   enumsByRaw.emplace( FieldPosMaintStatus::RAW, & PosMaintStatusEnums::instance );
+  enumsByTag.emplace( FieldPosMaintStatus::KEY, & PosMaintStatusEnums::instance );
 
   FieldPosMaintResult::enumItems = PosMaintResultEnums::items;
   enumsByRaw.emplace( FieldPosMaintResult::RAW, & PosMaintResultEnums::instance );
+  enumsByTag.emplace( FieldPosMaintResult::KEY, & PosMaintResultEnums::instance );
 
   FieldPosReqType::enumItems = PosReqTypeEnums::items;
   enumsByRaw.emplace( FieldPosReqType::RAW, & PosReqTypeEnums::instance );
+  enumsByTag.emplace( FieldPosReqType::KEY, & PosReqTypeEnums::instance );
 
   FieldResponseTransportType::enumItems = ResponseTransportTypeEnums::items;
   enumsByRaw.emplace( FieldResponseTransportType::RAW, & ResponseTransportTypeEnums::instance );
+  enumsByTag.emplace( FieldResponseTransportType::KEY, & ResponseTransportTypeEnums::instance );
 
   FieldPosReqResult::enumItems = PosReqResultEnums::items;
   enumsByRaw.emplace( FieldPosReqResult::RAW, & PosReqResultEnums::instance );
+  enumsByTag.emplace( FieldPosReqResult::KEY, & PosReqResultEnums::instance );
 
   FieldPosReqStatus::enumItems = PosReqStatusEnums::items;
   enumsByRaw.emplace( FieldPosReqStatus::RAW, & PosReqStatusEnums::instance );
+  enumsByTag.emplace( FieldPosReqStatus::KEY, & PosReqStatusEnums::instance );
 
   FieldSettlPriceType::enumItems = SettlPriceTypeEnums::items;
   enumsByRaw.emplace( FieldSettlPriceType::RAW, & SettlPriceTypeEnums::instance );
+  enumsByTag.emplace( FieldSettlPriceType::KEY, & SettlPriceTypeEnums::instance );
 
   FieldAssignmentMethod::enumItems = AssignmentMethodEnums::items;
   enumsByRaw.emplace( FieldAssignmentMethod::RAW, & AssignmentMethodEnums::instance );
+  enumsByTag.emplace( FieldAssignmentMethod::KEY, & AssignmentMethodEnums::instance );
 
   FieldExerciseMethod::enumItems = ExerciseMethodEnums::items;
   enumsByRaw.emplace( FieldExerciseMethod::RAW, & ExerciseMethodEnums::instance );
+  enumsByTag.emplace( FieldExerciseMethod::KEY, & ExerciseMethodEnums::instance );
 
   FieldTradeRequestResult::enumItems = TradeRequestResultEnums::items;
   enumsByRaw.emplace( FieldTradeRequestResult::RAW, & TradeRequestResultEnums::instance );
+  enumsByTag.emplace( FieldTradeRequestResult::KEY, & TradeRequestResultEnums::instance );
 
   FieldTradeRequestStatus::enumItems = TradeRequestStatusEnums::items;
   enumsByRaw.emplace( FieldTradeRequestStatus::RAW, & TradeRequestStatusEnums::instance );
+  enumsByTag.emplace( FieldTradeRequestStatus::KEY, & TradeRequestStatusEnums::instance );
 
   FieldTradeReportRejectReason::enumItems = TradeReportRejectReasonEnums::items;
   enumsByRaw.emplace( FieldTradeReportRejectReason::RAW, & TradeReportRejectReasonEnums::instance );
+  enumsByTag.emplace( FieldTradeReportRejectReason::KEY, & TradeReportRejectReasonEnums::instance );
 
   FieldSideMultiLegReportingType::enumItems = SideMultiLegReportingTypeEnums::items;
   enumsByRaw.emplace( FieldSideMultiLegReportingType::RAW, & SideMultiLegReportingTypeEnums::instance );
+  enumsByTag.emplace( FieldSideMultiLegReportingType::KEY, & SideMultiLegReportingTypeEnums::instance );
 
   FieldTrdRegTimestampType::enumItems = TrdRegTimestampTypeEnums::items;
   enumsByRaw.emplace( FieldTrdRegTimestampType::RAW, & TrdRegTimestampTypeEnums::instance );
+  enumsByTag.emplace( FieldTrdRegTimestampType::KEY, & TrdRegTimestampTypeEnums::instance );
 
   FieldConfirmType::enumItems = ConfirmTypeEnums::items;
   enumsByRaw.emplace( FieldConfirmType::RAW, & ConfirmTypeEnums::instance );
+  enumsByTag.emplace( FieldConfirmType::KEY, & ConfirmTypeEnums::instance );
 
   FieldConfirmRejReason::enumItems = ConfirmRejReasonEnums::items;
   enumsByRaw.emplace( FieldConfirmRejReason::RAW, & ConfirmRejReasonEnums::instance );
+  enumsByTag.emplace( FieldConfirmRejReason::KEY, & ConfirmRejReasonEnums::instance );
 
   FieldBookingType::enumItems = BookingTypeEnums::items;
   enumsByRaw.emplace( FieldBookingType::RAW, & BookingTypeEnums::instance );
+  enumsByTag.emplace( FieldBookingType::KEY, & BookingTypeEnums::instance );
 
   FieldAllocSettlInstType::enumItems = AllocSettlInstTypeEnums::items;
   enumsByRaw.emplace( FieldAllocSettlInstType::RAW, & AllocSettlInstTypeEnums::instance );
+  enumsByTag.emplace( FieldAllocSettlInstType::KEY, & AllocSettlInstTypeEnums::instance );
 
   FieldDlvyInstType::enumItems = DlvyInstTypeEnums::items;
   enumsByRaw.emplace( FieldDlvyInstType::RAW, & DlvyInstTypeEnums::instance );
+  enumsByTag.emplace( FieldDlvyInstType::KEY, & DlvyInstTypeEnums::instance );
 
   FieldTerminationType::enumItems = TerminationTypeEnums::items;
   enumsByRaw.emplace( FieldTerminationType::RAW, & TerminationTypeEnums::instance );
+  enumsByTag.emplace( FieldTerminationType::KEY, & TerminationTypeEnums::instance );
 
   FieldSettlInstReqRejCode::enumItems = SettlInstReqRejCodeEnums::items;
   enumsByRaw.emplace( FieldSettlInstReqRejCode::RAW, & SettlInstReqRejCodeEnums::instance );
+  enumsByTag.emplace( FieldSettlInstReqRejCode::KEY, & SettlInstReqRejCodeEnums::instance );
 
   FieldAllocReportType::enumItems = AllocReportTypeEnums::items;
   enumsByRaw.emplace( FieldAllocReportType::RAW, & AllocReportTypeEnums::instance );
+  enumsByTag.emplace( FieldAllocReportType::KEY, & AllocReportTypeEnums::instance );
 
   FieldAllocCancReplaceReason::enumItems = AllocCancReplaceReasonEnums::items;
   enumsByRaw.emplace( FieldAllocCancReplaceReason::RAW, & AllocCancReplaceReasonEnums::instance );
+  enumsByTag.emplace( FieldAllocCancReplaceReason::KEY, & AllocCancReplaceReasonEnums::instance );
 
   FieldAllocAccountType::enumItems = AllocAccountTypeEnums::items;
   enumsByRaw.emplace( FieldAllocAccountType::RAW, & AllocAccountTypeEnums::instance );
+  enumsByTag.emplace( FieldAllocAccountType::KEY, & AllocAccountTypeEnums::instance );
 
   FieldPartySubIDType::enumItems = PartySubIDTypeEnums::items;
   enumsByRaw.emplace( FieldPartySubIDType::RAW, & PartySubIDTypeEnums::instance );
+  enumsByTag.emplace( FieldPartySubIDType::KEY, & PartySubIDTypeEnums::instance );
 
   FieldAllocIntermedReqType::enumItems = AllocIntermedReqTypeEnums::items;
   enumsByRaw.emplace( FieldAllocIntermedReqType::RAW, & AllocIntermedReqTypeEnums::instance );
+  enumsByTag.emplace( FieldAllocIntermedReqType::KEY, & AllocIntermedReqTypeEnums::instance );
 
   FieldApplQueueResolution::enumItems = ApplQueueResolutionEnums::items;
   enumsByRaw.emplace( FieldApplQueueResolution::RAW, & ApplQueueResolutionEnums::instance );
+  enumsByTag.emplace( FieldApplQueueResolution::KEY, & ApplQueueResolutionEnums::instance );
 
   FieldApplQueueAction::enumItems = ApplQueueActionEnums::items;
   enumsByRaw.emplace( FieldApplQueueAction::RAW, & ApplQueueActionEnums::instance );
+  enumsByTag.emplace( FieldApplQueueAction::KEY, & ApplQueueActionEnums::instance );
 
   FieldAvgPxIndicator::enumItems = AvgPxIndicatorEnums::items;
   enumsByRaw.emplace( FieldAvgPxIndicator::RAW, & AvgPxIndicatorEnums::instance );
+  enumsByTag.emplace( FieldAvgPxIndicator::KEY, & AvgPxIndicatorEnums::instance );
 
   FieldTradeAllocIndicator::enumItems = TradeAllocIndicatorEnums::items;
   enumsByRaw.emplace( FieldTradeAllocIndicator::RAW, & TradeAllocIndicatorEnums::instance );
+  enumsByTag.emplace( FieldTradeAllocIndicator::KEY, & TradeAllocIndicatorEnums::instance );
 
   FieldExpirationCycle::enumItems = ExpirationCycleEnums::items;
   enumsByRaw.emplace( FieldExpirationCycle::RAW, & ExpirationCycleEnums::instance );
+  enumsByTag.emplace( FieldExpirationCycle::KEY, & ExpirationCycleEnums::instance );
 
   FieldTrdType::enumItems = TrdTypeEnums::items;
   enumsByRaw.emplace( FieldTrdType::RAW, & TrdTypeEnums::instance );
+  enumsByTag.emplace( FieldTrdType::KEY, & TrdTypeEnums::instance );
 
   FieldPegMoveType::enumItems = PegMoveTypeEnums::items;
   enumsByRaw.emplace( FieldPegMoveType::RAW, & PegMoveTypeEnums::instance );
+  enumsByTag.emplace( FieldPegMoveType::KEY, & PegMoveTypeEnums::instance );
 
   FieldPegOffsetType::enumItems = PegOffsetTypeEnums::items;
   enumsByRaw.emplace( FieldPegOffsetType::RAW, & PegOffsetTypeEnums::instance );
+  enumsByTag.emplace( FieldPegOffsetType::KEY, & PegOffsetTypeEnums::instance );
 
   FieldPegLimitType::enumItems = PegLimitTypeEnums::items;
   enumsByRaw.emplace( FieldPegLimitType::RAW, & PegLimitTypeEnums::instance );
+  enumsByTag.emplace( FieldPegLimitType::KEY, & PegLimitTypeEnums::instance );
 
   FieldPegRoundDirection::enumItems = PegRoundDirectionEnums::items;
   enumsByRaw.emplace( FieldPegRoundDirection::RAW, & PegRoundDirectionEnums::instance );
+  enumsByTag.emplace( FieldPegRoundDirection::KEY, & PegRoundDirectionEnums::instance );
 
   FieldPegScope::enumItems = PegScopeEnums::items;
   enumsByRaw.emplace( FieldPegScope::RAW, & PegScopeEnums::instance );
+  enumsByTag.emplace( FieldPegScope::KEY, & PegScopeEnums::instance );
 
   FieldDiscretionMoveType::enumItems = DiscretionMoveTypeEnums::items;
   enumsByRaw.emplace( FieldDiscretionMoveType::RAW, & DiscretionMoveTypeEnums::instance );
+  enumsByTag.emplace( FieldDiscretionMoveType::KEY, & DiscretionMoveTypeEnums::instance );
 
   FieldDiscretionOffsetType::enumItems = DiscretionOffsetTypeEnums::items;
   enumsByRaw.emplace( FieldDiscretionOffsetType::RAW, & DiscretionOffsetTypeEnums::instance );
+  enumsByTag.emplace( FieldDiscretionOffsetType::KEY, & DiscretionOffsetTypeEnums::instance );
 
   FieldDiscretionLimitType::enumItems = DiscretionLimitTypeEnums::items;
   enumsByRaw.emplace( FieldDiscretionLimitType::RAW, & DiscretionLimitTypeEnums::instance );
+  enumsByTag.emplace( FieldDiscretionLimitType::KEY, & DiscretionLimitTypeEnums::instance );
 
   FieldDiscretionRoundDirection::enumItems = DiscretionRoundDirectionEnums::items;
   enumsByRaw.emplace( FieldDiscretionRoundDirection::RAW, & DiscretionRoundDirectionEnums::instance );
+  enumsByTag.emplace( FieldDiscretionRoundDirection::KEY, & DiscretionRoundDirectionEnums::instance );
 
   FieldDiscretionScope::enumItems = DiscretionScopeEnums::items;
   enumsByRaw.emplace( FieldDiscretionScope::RAW, & DiscretionScopeEnums::instance );
+  enumsByTag.emplace( FieldDiscretionScope::KEY, & DiscretionScopeEnums::instance );
 
   FieldTargetStrategy::enumItems = TargetStrategyEnums::items;
   enumsByRaw.emplace( FieldTargetStrategy::RAW, & TargetStrategyEnums::instance );
+  enumsByTag.emplace( FieldTargetStrategy::KEY, & TargetStrategyEnums::instance );
 
   FieldLastLiquidityInd::enumItems = LastLiquidityIndEnums::items;
   enumsByRaw.emplace( FieldLastLiquidityInd::RAW, & LastLiquidityIndEnums::instance );
+  enumsByTag.emplace( FieldLastLiquidityInd::KEY, & LastLiquidityIndEnums::instance );
 
   FieldPublishTrdIndicator::enumItems = PublishTrdIndicatorEnums::items;
   enumsByRaw.emplace( FieldPublishTrdIndicator::RAW, & PublishTrdIndicatorEnums::instance );
+  enumsByTag.emplace( FieldPublishTrdIndicator::KEY, & PublishTrdIndicatorEnums::instance );
 
   FieldShortSaleReason::enumItems = ShortSaleReasonEnums::items;
   enumsByRaw.emplace( FieldShortSaleReason::RAW, & ShortSaleReasonEnums::instance );
+  enumsByTag.emplace( FieldShortSaleReason::KEY, & ShortSaleReasonEnums::instance );
 
   FieldQtyType::enumItems = QtyTypeEnums::items;
   enumsByRaw.emplace( FieldQtyType::RAW, & QtyTypeEnums::instance );
+  enumsByTag.emplace( FieldQtyType::KEY, & QtyTypeEnums::instance );
 
   FieldTradeReportType::enumItems = TradeReportTypeEnums::items;
   enumsByRaw.emplace( FieldTradeReportType::RAW, & TradeReportTypeEnums::instance );
+  enumsByTag.emplace( FieldTradeReportType::KEY, & TradeReportTypeEnums::instance );
 
   FieldAllocNoOrdersType::enumItems = AllocNoOrdersTypeEnums::items;
   enumsByRaw.emplace( FieldAllocNoOrdersType::RAW, & AllocNoOrdersTypeEnums::instance );
+  enumsByTag.emplace( FieldAllocNoOrdersType::KEY, & AllocNoOrdersTypeEnums::instance );
 
   FieldEventType::enumItems = EventTypeEnums::items;
   enumsByRaw.emplace( FieldEventType::RAW, & EventTypeEnums::instance );
+  enumsByTag.emplace( FieldEventType::KEY, & EventTypeEnums::instance );
 
   FieldInstrAttribType::enumItems = InstrAttribTypeEnums::items;
   enumsByRaw.emplace( FieldInstrAttribType::RAW, & InstrAttribTypeEnums::instance );
+  enumsByTag.emplace( FieldInstrAttribType::KEY, & InstrAttribTypeEnums::instance );
 
   FieldCPProgram::enumItems = CPProgramEnums::items;
   enumsByRaw.emplace( FieldCPProgram::RAW, & CPProgramEnums::instance );
+  enumsByTag.emplace( FieldCPProgram::KEY, & CPProgramEnums::instance );
 
   FieldMiscFeeBasis::enumItems = MiscFeeBasisEnums::items;
   enumsByRaw.emplace( FieldMiscFeeBasis::RAW, & MiscFeeBasisEnums::instance );
+  enumsByTag.emplace( FieldMiscFeeBasis::KEY, & MiscFeeBasisEnums::instance );
 
   FieldLastFragment::enumItems = LastFragmentEnums::items;
   enumsByRaw.emplace( FieldLastFragment::RAW, & LastFragmentEnums::instance );
+  enumsByTag.emplace( FieldLastFragment::KEY, & LastFragmentEnums::instance );
 
   FieldCollAsgnReason::enumItems = CollAsgnReasonEnums::items;
   enumsByRaw.emplace( FieldCollAsgnReason::RAW, & CollAsgnReasonEnums::instance );
+  enumsByTag.emplace( FieldCollAsgnReason::KEY, & CollAsgnReasonEnums::instance );
 
   FieldCollInquiryQualifier::enumItems = CollInquiryQualifierEnums::items;
   enumsByRaw.emplace( FieldCollInquiryQualifier::RAW, & CollInquiryQualifierEnums::instance );
+  enumsByTag.emplace( FieldCollInquiryQualifier::KEY, & CollInquiryQualifierEnums::instance );
 
   FieldCollAsgnTransType::enumItems = CollAsgnTransTypeEnums::items;
   enumsByRaw.emplace( FieldCollAsgnTransType::RAW, & CollAsgnTransTypeEnums::instance );
+  enumsByTag.emplace( FieldCollAsgnTransType::KEY, & CollAsgnTransTypeEnums::instance );
 
   FieldCollAsgnRespType::enumItems = CollAsgnRespTypeEnums::items;
   enumsByRaw.emplace( FieldCollAsgnRespType::RAW, & CollAsgnRespTypeEnums::instance );
+  enumsByTag.emplace( FieldCollAsgnRespType::KEY, & CollAsgnRespTypeEnums::instance );
 
   FieldCollAsgnRejectReason::enumItems = CollAsgnRejectReasonEnums::items;
   enumsByRaw.emplace( FieldCollAsgnRejectReason::RAW, & CollAsgnRejectReasonEnums::instance );
+  enumsByTag.emplace( FieldCollAsgnRejectReason::KEY, & CollAsgnRejectReasonEnums::instance );
 
   FieldCollStatus::enumItems = CollStatusEnums::items;
   enumsByRaw.emplace( FieldCollStatus::RAW, & CollStatusEnums::instance );
+  enumsByTag.emplace( FieldCollStatus::KEY, & CollStatusEnums::instance );
 
   FieldDeliveryType::enumItems = DeliveryTypeEnums::items;
   enumsByRaw.emplace( FieldDeliveryType::RAW, & DeliveryTypeEnums::instance );
+  enumsByTag.emplace( FieldDeliveryType::KEY, & DeliveryTypeEnums::instance );
 
   FieldUserRequestType::enumItems = UserRequestTypeEnums::items;
   enumsByRaw.emplace( FieldUserRequestType::RAW, & UserRequestTypeEnums::instance );
+  enumsByTag.emplace( FieldUserRequestType::KEY, & UserRequestTypeEnums::instance );
 
   FieldUserStatus::enumItems = UserStatusEnums::items;
   enumsByRaw.emplace( FieldUserStatus::RAW, & UserStatusEnums::instance );
+  enumsByTag.emplace( FieldUserStatus::KEY, & UserStatusEnums::instance );
 
   FieldStatusValue::enumItems = StatusValueEnums::items;
   enumsByRaw.emplace( FieldStatusValue::RAW, & StatusValueEnums::instance );
+  enumsByTag.emplace( FieldStatusValue::KEY, & StatusValueEnums::instance );
 
   FieldNetworkRequestType::enumItems = NetworkRequestTypeEnums::items;
   enumsByRaw.emplace( FieldNetworkRequestType::RAW, & NetworkRequestTypeEnums::instance );
+  enumsByTag.emplace( FieldNetworkRequestType::KEY, & NetworkRequestTypeEnums::instance );
 
   FieldNetworkStatusResponseType::enumItems = NetworkStatusResponseTypeEnums::items;
   enumsByRaw.emplace( FieldNetworkStatusResponseType::RAW, & NetworkStatusResponseTypeEnums::instance );
+  enumsByTag.emplace( FieldNetworkStatusResponseType::KEY, & NetworkStatusResponseTypeEnums::instance );
 
   FieldTrdRptStatus::enumItems = TrdRptStatusEnums::items;
   enumsByRaw.emplace( FieldTrdRptStatus::RAW, & TrdRptStatusEnums::instance );
+  enumsByTag.emplace( FieldTrdRptStatus::KEY, & TrdRptStatusEnums::instance );
 
   FieldAffirmStatus::enumItems = AffirmStatusEnums::items;
   enumsByRaw.emplace( FieldAffirmStatus::RAW, & AffirmStatusEnums::instance );
+  enumsByTag.emplace( FieldAffirmStatus::KEY, & AffirmStatusEnums::instance );
 
   FieldCollAction::enumItems = CollActionEnums::items;
   enumsByRaw.emplace( FieldCollAction::RAW, & CollActionEnums::instance );
+  enumsByTag.emplace( FieldCollAction::KEY, & CollActionEnums::instance );
 
   FieldCollInquiryStatus::enumItems = CollInquiryStatusEnums::items;
   enumsByRaw.emplace( FieldCollInquiryStatus::RAW, & CollInquiryStatusEnums::instance );
+  enumsByTag.emplace( FieldCollInquiryStatus::KEY, & CollInquiryStatusEnums::instance );
 
   FieldCollInquiryResult::enumItems = CollInquiryResultEnums::items;
   enumsByRaw.emplace( FieldCollInquiryResult::RAW, & CollInquiryResultEnums::instance );
+  enumsByTag.emplace( FieldCollInquiryResult::KEY, & CollInquiryResultEnums::instance );
   return 1;
 }
 

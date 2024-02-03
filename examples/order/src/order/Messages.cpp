@@ -1006,9 +1006,9 @@ void ParserDispatcher::unprocessedMessage( raw_enum_t msgType, MessageBase & msg
 {
 }
 
-std::set< raw_tag_t > headerFields =
+std::set< raw_tag_t > headerRawTags =
 {
-// start of Header.cxx
+// start of HeaderRaw.cxx
  FieldBeginString::RAW,
  FieldBodyLength::RAW,
  FieldMsgType::RAW,
@@ -1016,7 +1016,7 @@ std::set< raw_tag_t > headerFields =
  FieldTargetCompID::RAW,
  FieldMsgSeqNum::RAW,
  FieldSendingTime::RAW,
-// end of Header.cxx
+// end of HeaderRaw.cxx
 };
 
 const FixFormatStyle defaultStyle =
@@ -1195,8 +1195,8 @@ const char * getEnumName( const char * fix, int valueOffset )
         return nullptr;
     }
 
-    auto eit = rawToEnum.find( tag );
-    if( eit == rawToEnum.end() )
+    auto eit = RAW_TO_ENUM.find( tag );
+    if( eit == RAW_TO_ENUM.end() )
     {
         return nullptr;
     }
@@ -1223,11 +1223,11 @@ std::ostream & fixToHuman( const char * fix, offset_t & pos, std::ostream & os, 
 
         os << style.fieldBegin;
 
-        auto it = rawToTagName.find( tag );
+        auto it = RAW_TAG_TO_NAME.find( tag );
         const FieldEnumsBase * enums = nullptr;
-        if( it != rawToTagName.end() )
+        if( it != RAW_TAG_TO_NAME.end() )
         {
-            if( headerFields.find( tag ) != headerFields.end() )
+            if( headerRawTags.find( tag ) != headerRawTags.end() )
             {
                 if( style.headerTagNameStart )
                 {
@@ -1255,8 +1255,8 @@ std::ostream & fixToHuman( const char * fix, offset_t & pos, std::ostream & os, 
                 }
             }
 
-            auto eit = rawToEnum.find( tag );
-            if( eit != rawToEnum.end() )
+            auto eit = RAW_TO_ENUM.find( tag );
+            if( eit != RAW_TO_ENUM.end() )
             {
                 enums = eit->second;
             }

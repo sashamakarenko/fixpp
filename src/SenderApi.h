@@ -346,10 +346,10 @@ struct HeaderTemplate: FixBufferStream
         end += msgType.size();
     }
 
-    HeaderTemplate():
-        FixBufferStream( nullptr ),
-        buffer(),
-        chksum( 0 )
+    HeaderTemplate()
+    : FixBufferStream( nullptr )
+    , buffer()
+    , chksum( 0 )
     {
     }
 

@@ -30,15 +30,15 @@ std::ostream & fixToTwoLines( const char * fix, offset_t & pos, std::ostream & o
             return os;
         }
 
-        auto it = rawToTagName.find( tag );
+        auto it = RAW_TAG_TO_NAME.find( tag );
         const FieldEnumsBase * enums = nullptr;
-        if( it != rawToTagName.end() )
+        if( it != RAW_TAG_TO_NAME.end() )
         {
             uwidth += strlen( it->second );
             upperLine << style.tagNameStart << it->second << style.tagNameStop;
 
-            auto eit = rawToEnum.find( tag );
-            if( eit != rawToEnum.end() )
+            auto eit = RAW_TO_ENUM.find( tag );
+            if( eit != RAW_TO_ENUM.end() )
             {
                 enums = eit->second;
             }

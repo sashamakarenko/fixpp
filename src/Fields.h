@@ -22,14 +22,23 @@ struct FieldDepth
 
 typedef FieldDepth (*GetDepthMethod)( raw_tag_t );
 
-extern const std::map< raw_tag_t  , const char * const >           & rawToTagName;
-extern const std::map< tag_t      , const char * const >           & valueToTagName;
-extern const std::map< raw_tag_t  , const FieldEnumsBase * const > & rawToEnum;
-extern const std::map< std::string, tag_t >                        & nameToTag;
+extern const std::map< raw_tag_t  , const char * const >           & RAW_TAG_TO_NAME;
+extern const std::map< tag_t      , const char * const >           & TAG_TO_NAME;
+extern const std::map< raw_tag_t  , const FieldEnumsBase * const > & RAW_TO_ENUM;
+extern const std::map< tag_t      , const FieldEnumsBase * const > & TAG_TO_ENUM;
+extern const std::map< std::string, tag_t >                        & FIELD_NAME_TO_TAG;
+extern const std::map< tag_t      , FieldType >                    & TAG_TO_FIELD_TYPE;
+extern const std::map< tag_t      , const std::string >            & TAG_TO_FIELD_NAME;
 
 tag_t getFieldTag( const std::string & fieldName );
 
 const char * getFieldName( tag_t tagValue );
+
+FieldType getFieldType( tag_t tagValue );
+
+const std::string & getFieldTypeName( tag_t tagValue );
+
+bool isHeaderField( tag_t tagValue );
 
 #include <DSTINCDIR/Fields.hxx>
 

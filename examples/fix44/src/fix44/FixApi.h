@@ -520,6 +520,13 @@ inline std::string toString<sohstr>( const sohstr & value )
     return std::string( value.ptr, (std::size_t)pos-1 );
 }
 
+
+template<>
+inline std::string toString<char>( const char & value )
+{
+    return std::string( &value, 1 );
+}
+
 inline unsigned copyRawEnum( const char * from, char * to )
 {
     unsigned len = 0;
@@ -613,6 +620,47 @@ struct FieldEnumsBase
 };
 
 
+enum class FieldType: unsigned
+{
+    UNKNOWN,
+    AMT,
+    BOOLEAN,
+    CHAR,
+    COUNTRY,
+    CURRENCY,
+    DATA,
+    EXCHANGE,
+    FLOAT,
+    INT,
+    LENGTH,
+    LOCALMKTDATE,
+    LOCALMKTTIME,
+    DAYOFMONTH,
+    MONTHYEAR,
+    MULTIPLEVALUESTRING,
+    NUMINGROUP,
+    PERCENTAGE,
+    PRICE,
+    PRICEOFFSET,
+    QTY,
+    SEQNUM,
+    STRING,
+    MULTIPLECHARVALUE,
+    MULTIPLESTRINGVALUE,
+    UTCDATEONLY,
+    UTCTIMEONLY,
+    UTCTIMESTAMP,
+    UTCDATE,
+    TZTIMEONLY,
+    LANGUAGE,
+    TZTIMESTAMP,
+    XMLDATA,
+    XID,
+    XIDREF,
+    EURIBOR,
+    TAGNUM
+};
+
 struct FieldBase
 {
     offset_t offset = -1;
@@ -643,6 +691,10 @@ struct Field: FieldBase
     {
         return tag_width<K>();
     }
+
+    static FieldType getType();
+
+    static const std::string & getTypeName();
 
     ValueType getValue( const char * buf ) const
     {
@@ -776,7 +828,7 @@ class Iterator
         offset_t     _pos, _valueOffset;
 };
 
-
+// underlying types :
 // typedef double     AMT;
 typedef Quantity   AMT;
 typedef bool       BOOLEAN;

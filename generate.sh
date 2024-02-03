@@ -170,9 +170,13 @@ done
 sed "s/MsgTypeEnums::_.str/EMPTY_STRING/" -i ${DSTDIR}/Messages.cxx
 
 # Extract header fields
-dst=${DSTDIR}/Header.cxx
+dst=${DSTDIR}/HeaderRaw.cxx
 echo "  generating $dst"
 sed -n /Header/,/FIX_MSG_END/p ${DEFDIR}/Messages.def | grep FIX_MSG_FIELD | sed 's/FIX_MSG_FIELD( \(.*\) )/ Field\1::RAW,/' > $dst
+
+dst=${DSTDIR}/Header.cxx
+echo "  generating $dst"
+sed -n /Header/,/FIX_MSG_END/p ${DEFDIR}/Messages.def | grep FIX_MSG_FIELD | sed 's/FIX_MSG_FIELD( \(.*\) )/ Field\1::KEY,/' > $dst
 
 # Build MsgType enums
 dst=${DSTDIR}/Fields.hxx

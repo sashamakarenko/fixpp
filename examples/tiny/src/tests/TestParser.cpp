@@ -35,7 +35,7 @@ int main( int args, const char ** argv )
         const char * value = ler.getFieldValue( tag );
         if( value )
         {
-            std::cout << valueToTagName.at( tag ) << " is " << sohstr( value );
+            std::cout << TAG_TO_NAME.at( tag ) << " is " << sohstr( value );
             const char * enumName = getEnumName( ler.getMessageBuffer(), value - ler.getMessageBuffer() );
             if( enumName ) std::cout << " " << enumName;
             std::cout << "\n";
@@ -52,7 +52,7 @@ int main( int args, const char ** argv )
                 const char * value = leg.getFieldValue( tag );
                 if( value )
                 {
-                    std::cout << valueToTagName.at( tag ) << " is " << sohstr( value );
+                    std::cout << TAG_TO_NAME.at( tag ) << " is " << sohstr( value );
                     const char * enumName = getEnumName( leg.getMessageBuffer(), value - leg.getMessageBuffer() );
                     if( enumName ) std::cout << " " << enumName;
                     std::cout << "\n";
@@ -101,7 +101,7 @@ int main( int args, const char ** argv )
     while( fix[pos] )
     {
         raw_tag_t raw = nextRawTag( fix+pos, pos );
-        const char * tagName = rawToTagName.at( raw );
+        const char * tagName = RAW_TAG_TO_NAME.at( raw );
         std::cout << tagName << " = " << sohstr( fix+pos ) << "\n";
         gotoNextField(fix,pos);
         if( raw == FieldCheckSum::RAW ) break;

@@ -11,8 +11,8 @@ void printBuffer( const char * begin, const char * end = nullptr )
         raw_tag_t rtag = it.getRawTag();
         if( rtag )
         {
-            const auto & field = rawToTagName.find( rtag );
-            if( field != rawToTagName.end() )
+            const auto & field = RAW_TAG_TO_NAME.find( rtag );
+            if( field != RAW_TAG_TO_NAME.end() )
             {
                 std::cout << field->second << " = " << sohstr( it.getValuePtr() ) << "\n";
             }
