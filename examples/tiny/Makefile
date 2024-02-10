@@ -9,10 +9,12 @@ ifneq ($(wildcard $(PE_PRJ_DIR)),)
     TestPerf_EXTRA_LD_PATH             := $(PE_PRJ_DIR)/build/lib/release
     TestPerf_EXTRA_LINK_FLAGS          := -L$(TestPerf_EXTRA_LD_PATH) -lpe-1.0
     TestPerf_EXTRA_DEPENDENCY          := $(PE_PRJ_DIR)/build/lib/release/libpe-1.0.so
+    TestPerf_EXTRA_LAUNCHER            := LD_PRELOAD=$(PE_PRJ_DIR)/build/lib/release/libPePreload-1.0.so
     TestSenderPerf_EXTRA_CPP_FLAGS     := $(TestPerf_EXTRA_CPP_FLAGS)
     TestSenderPerf_EXTRA_LD_PATH       := $(TestPerf_EXTRA_LD_PATH)
     TestSenderPerf_EXTRA_LINK_FLAGS    := $(TestPerf_EXTRA_LINK_FLAGS)
     TestSenderPerf_EXTRA_DEPENDENCY    := $(TestPerf_EXTRA_DEPENDENCY)
+    TestSenderPerf_EXTRA_LAUNCHER      := LD_PRELOAD=$(PE_PRJ_DIR)/build/lib/release/libPePreload-1.0.so
     TestSendForexPerf_EXTRA_CPP_FLAGS  := $(TestPerf_EXTRA_CPP_FLAGS)
     TestSendForexPerf_EXTRA_LD_PATH    := $(TestPerf_EXTRA_LD_PATH)
     TestSendForexPerf_EXTRA_LINK_FLAGS := $(TestPerf_EXTRA_LINK_FLAGS)
@@ -41,7 +43,7 @@ build/fixgenerated.mk: src/$(PRJ_NAME)/FixApi.h
 	$(V)mkdir -p $(@D)
 	$(V)touch $@
 
-OUTBOUND_MESAGES=LOGON ORDER_SINGLE
+OUTBOUND_MESAGES=LOGON NEW_ORDER_SINGLE
 
 src/$(PRJ_NAME)/FixApi.h: $(wildcard src/spec/*.def) $(wildcard ../../src/*.h) $(wildcard ../../src/*.cpp) $(wildcard ../../src/*.pp) ../../generate.sh
 	$(V)../../generate.sh --clean-fields -d $$PWD/src/$(PRJ_NAME) -s $$PWD/src/spec -i $(PRJ_NAME) -n $(PRJ_NAME) -p $$PWD/src/gdb
