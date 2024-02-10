@@ -183,7 +183,7 @@ enum class ClockPrecision: unsigned
 
 struct FixBufferStream
 {
-    FixBufferStream( char * buf ): begin{buf}, end{buf} {}
+    explicit FixBufferStream( char * buf ): begin{buf}, end{buf} {}
 
     template< typename FIELD >
     FixBufferStream & pushTag()
@@ -378,7 +378,7 @@ struct TimestampKeeper
 
     inline unsigned length() const { return DATE_TIME_SECONDS_LENGTH + ( secFraction != Precision::SECONDS ? 1 : 0 ) + (unsigned)secFraction; }
 
-    TimestampKeeper( char * buffer = nullptr, Precision secPrecision = Precision::SECONDS )
+    explicit TimestampKeeper( char * buffer = nullptr, Precision secPrecision = Precision::SECONDS )
     : startOfDay  ( 0 )
     , endOfDay    ( 0 )
     , begin       ( buffer )
