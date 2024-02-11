@@ -17,6 +17,78 @@ std::ostream & operator << ( std::ostream & os, const fix44::sohstr & str )
 namespace fix44
 {
 
+FieldEnumsBase::~FieldEnumsBase()
+{
+}
+
+Iterator::Iterator( const char * begin, const char * end )
+: _begin      { begin }
+, _end        { end }
+, _pos        { 0 }
+, _valueOffset{ 0 }
+{
+    ptrdiff_t len = _end - _begin;
+    if( _begin != nullptr and _begin[_pos] != 0 and ( _end == nullptr or len < (ptrdiff_t)std::numeric_limits< offset_t >::max() ) )
+    {
+        update();
+    }
+}
+
+bool Iterator::hasNext() const
+{
+    return _valueOffset > 0;
+}
+
+bool Iterator::next()
+{
+    if( _valueOffset == 0 or _begin == nullptr or _begin[_pos] == 0 or ( _end != nullptr and _begin + _pos >= _end  ) )
+    {
+        return false;
+    }
+    gotoNextField( _begin, _pos );
+    if( _end != nullptr and _begin + _pos >= _end )
+    {
+        _valueOffset = 0;
+    }
+    else
+    {
+        update();
+    }
+    return _valueOffset > 0;
+}
+
+const char * Iterator::getTagPtr() const
+{
+    return _begin + _pos;
+}
+
+const char * Iterator::getValuePtr() const
+{
+    return _valueOffset ? _begin + _valueOffset : nullptr;
+}
+
+raw_tag_t Iterator::getRawTag() const
+{
+    if( _valueOffset )
+    {
+        offset_t len = 0;
+        return loadRawTag( _begin + _pos, len );
+    }
+    return 0;
+}
+
+raw_tag_t Iterator::update()
+{
+    _valueOffset = _pos;
+    raw_tag_t tag = loadRawTag( _begin + _pos, _valueOffset );
+    if( tag == 0 )
+    {
+        _valueOffset = 0;
+    }
+    return tag;
+}
+
+
 std::map< raw_tag_t  , const char * const >           tagNameByRaw;
 std::map< tag_t      , const char * const >           tagNameByValue;
 std::map< raw_tag_t  , const FieldEnumsBase * const > enumsByRaw;
@@ -25,13 +97,13 @@ std::map< std::string, tag_t >                        tagByName;
 std::map< tag_t      , FieldType >                    fieldTypeByValue;
 std::map< tag_t      , const std::string >            fieldTypeNameByValue;
 
-const std::map< raw_tag_t  , const char * const >           & RAW_TAG_TO_NAME       = tagNameByRaw;
-const std::map< tag_t      , const char * const >           & TAG_TO_NAME           = tagNameByValue;
-const std::map< raw_tag_t  , const FieldEnumsBase * const > & RAW_TO_ENUM           = enumsByRaw;
-const std::map< tag_t      , const FieldEnumsBase * const > & TAG_TO_ENUM           = enumsByTag;
-const std::map< std::string, tag_t >                        & FIELD_NAME_TO_TAG     = tagByName;
-const std::map< tag_t      , FieldType >                    & TAG_TO_FIELD_TYPE     = fieldTypeByValue;
-const std::map< tag_t      , const std::string >            & TAG_TO_FIELD_NAME     = fieldTypeNameByValue;
+const std::map< raw_tag_t  , const char * const >           & RAW_TAG_TO_NAME   = tagNameByRaw;
+const std::map< tag_t      , const char * const >           & TAG_TO_NAME       = tagNameByValue;
+const std::map< raw_tag_t  , const FieldEnumsBase * const > & RAW_TO_ENUM       = enumsByRaw;
+const std::map< tag_t      , const FieldEnumsBase * const > & TAG_TO_ENUM       = enumsByTag;
+const std::map< std::string, tag_t >                        & FIELD_NAME_TO_TAG = tagByName;
+const std::map< tag_t      , FieldType >                    & TAG_TO_FIELD_TYPE = fieldTypeByValue;
+const std::map< tag_t      , const std::string >            & TAG_TO_FIELD_NAME = fieldTypeNameByValue;
 
 tag_t getFieldTag( const std::string & fieldName )
 {
@@ -61,32 +133,32 @@ const std::string & getFieldTypeName( tag_t tagValue )
 std::set< tag_t > headerTags =
 {
 // start of Header.cxx
- FieldBeginString::KEY,
- FieldBodyLength::KEY,
- FieldMsgType::KEY,
- FieldSenderCompID::KEY,
- FieldTargetCompID::KEY,
- FieldOnBehalfOfCompID::KEY,
- FieldDeliverToCompID::KEY,
- FieldSecureDataLen::KEY,
- FieldSecureData::KEY,
- FieldMsgSeqNum::KEY,
- FieldSenderSubID::KEY,
- FieldSenderLocationID::KEY,
- FieldTargetSubID::KEY,
- FieldTargetLocationID::KEY,
- FieldOnBehalfOfSubID::KEY,
- FieldOnBehalfOfLocationID::KEY,
- FieldDeliverToSubID::KEY,
- FieldDeliverToLocationID::KEY,
- FieldPossDupFlag::KEY,
- FieldPossResend::KEY,
- FieldSendingTime::KEY,
- FieldOrigSendingTime::KEY,
- FieldXmlDataLen::KEY,
- FieldXmlData::KEY,
- FieldMessageEncoding::KEY,
- FieldLastMsgSeqNumProcessed::KEY,
+ FieldBeginString::TAG,
+ FieldBodyLength::TAG,
+ FieldMsgType::TAG,
+ FieldSenderCompID::TAG,
+ FieldTargetCompID::TAG,
+ FieldOnBehalfOfCompID::TAG,
+ FieldDeliverToCompID::TAG,
+ FieldSecureDataLen::TAG,
+ FieldSecureData::TAG,
+ FieldMsgSeqNum::TAG,
+ FieldSenderSubID::TAG,
+ FieldSenderLocationID::TAG,
+ FieldTargetSubID::TAG,
+ FieldTargetLocationID::TAG,
+ FieldOnBehalfOfSubID::TAG,
+ FieldOnBehalfOfLocationID::TAG,
+ FieldDeliverToSubID::TAG,
+ FieldDeliverToLocationID::TAG,
+ FieldPossDupFlag::TAG,
+ FieldPossResend::TAG,
+ FieldSendingTime::TAG,
+ FieldOrigSendingTime::TAG,
+ FieldXmlDataLen::TAG,
+ FieldXmlData::TAG,
+ FieldMessageEncoding::TAG,
+ FieldLastMsgSeqNumProcessed::TAG,
 // end of Header.cxx
 };
 
@@ -17797,984 +17869,984 @@ int initStatics()
   fieldTypeNameByValue.emplace( 956, "LOCALMKTDATE" );
 
   FieldAdvSide::enumItems = AdvSideEnums::items;
-  enumsByRaw.emplace( FieldAdvSide::RAW, & AdvSideEnums::instance );
-  enumsByTag.emplace( FieldAdvSide::KEY, & AdvSideEnums::instance );
+  enumsByRaw.emplace( FieldAdvSide::RAW_TAG, & AdvSideEnums::instance );
+  enumsByTag.emplace( FieldAdvSide::TAG, & AdvSideEnums::instance );
 
   FieldAdvTransType::enumItems = AdvTransTypeEnums::items;
-  enumsByRaw.emplace( FieldAdvTransType::RAW, & AdvTransTypeEnums::instance );
-  enumsByTag.emplace( FieldAdvTransType::KEY, & AdvTransTypeEnums::instance );
+  enumsByRaw.emplace( FieldAdvTransType::RAW_TAG, & AdvTransTypeEnums::instance );
+  enumsByTag.emplace( FieldAdvTransType::TAG, & AdvTransTypeEnums::instance );
 
   FieldCommType::enumItems = CommTypeEnums::items;
-  enumsByRaw.emplace( FieldCommType::RAW, & CommTypeEnums::instance );
-  enumsByTag.emplace( FieldCommType::KEY, & CommTypeEnums::instance );
+  enumsByRaw.emplace( FieldCommType::RAW_TAG, & CommTypeEnums::instance );
+  enumsByTag.emplace( FieldCommType::TAG, & CommTypeEnums::instance );
 
   FieldExecInst::enumItems = ExecInstEnums::items;
-  enumsByRaw.emplace( FieldExecInst::RAW, & ExecInstEnums::instance );
-  enumsByTag.emplace( FieldExecInst::KEY, & ExecInstEnums::instance );
+  enumsByRaw.emplace( FieldExecInst::RAW_TAG, & ExecInstEnums::instance );
+  enumsByTag.emplace( FieldExecInst::TAG, & ExecInstEnums::instance );
 
   FieldHandlInst::enumItems = HandlInstEnums::items;
-  enumsByRaw.emplace( FieldHandlInst::RAW, & HandlInstEnums::instance );
-  enumsByTag.emplace( FieldHandlInst::KEY, & HandlInstEnums::instance );
+  enumsByRaw.emplace( FieldHandlInst::RAW_TAG, & HandlInstEnums::instance );
+  enumsByTag.emplace( FieldHandlInst::TAG, & HandlInstEnums::instance );
 
   FieldSecurityIDSource::enumItems = SecurityIDSourceEnums::items;
-  enumsByRaw.emplace( FieldSecurityIDSource::RAW, & SecurityIDSourceEnums::instance );
-  enumsByTag.emplace( FieldSecurityIDSource::KEY, & SecurityIDSourceEnums::instance );
+  enumsByRaw.emplace( FieldSecurityIDSource::RAW_TAG, & SecurityIDSourceEnums::instance );
+  enumsByTag.emplace( FieldSecurityIDSource::TAG, & SecurityIDSourceEnums::instance );
 
   FieldIOIQltyInd::enumItems = IOIQltyIndEnums::items;
-  enumsByRaw.emplace( FieldIOIQltyInd::RAW, & IOIQltyIndEnums::instance );
-  enumsByTag.emplace( FieldIOIQltyInd::KEY, & IOIQltyIndEnums::instance );
+  enumsByRaw.emplace( FieldIOIQltyInd::RAW_TAG, & IOIQltyIndEnums::instance );
+  enumsByTag.emplace( FieldIOIQltyInd::TAG, & IOIQltyIndEnums::instance );
 
   FieldIOIQty::enumItems = IOIQtyEnums::items;
-  enumsByRaw.emplace( FieldIOIQty::RAW, & IOIQtyEnums::instance );
-  enumsByTag.emplace( FieldIOIQty::KEY, & IOIQtyEnums::instance );
+  enumsByRaw.emplace( FieldIOIQty::RAW_TAG, & IOIQtyEnums::instance );
+  enumsByTag.emplace( FieldIOIQty::TAG, & IOIQtyEnums::instance );
 
   FieldIOITransType::enumItems = IOITransTypeEnums::items;
-  enumsByRaw.emplace( FieldIOITransType::RAW, & IOITransTypeEnums::instance );
-  enumsByTag.emplace( FieldIOITransType::KEY, & IOITransTypeEnums::instance );
+  enumsByRaw.emplace( FieldIOITransType::RAW_TAG, & IOITransTypeEnums::instance );
+  enumsByTag.emplace( FieldIOITransType::TAG, & IOITransTypeEnums::instance );
 
   FieldLastCapacity::enumItems = LastCapacityEnums::items;
-  enumsByRaw.emplace( FieldLastCapacity::RAW, & LastCapacityEnums::instance );
-  enumsByTag.emplace( FieldLastCapacity::KEY, & LastCapacityEnums::instance );
+  enumsByRaw.emplace( FieldLastCapacity::RAW_TAG, & LastCapacityEnums::instance );
+  enumsByTag.emplace( FieldLastCapacity::TAG, & LastCapacityEnums::instance );
 
   FieldMsgType::enumItems = MsgTypeEnums::items;
-  enumsByRaw.emplace( FieldMsgType::RAW, & MsgTypeEnums::instance );
-  enumsByTag.emplace( FieldMsgType::KEY, & MsgTypeEnums::instance );
+  enumsByRaw.emplace( FieldMsgType::RAW_TAG, & MsgTypeEnums::instance );
+  enumsByTag.emplace( FieldMsgType::TAG, & MsgTypeEnums::instance );
 
   FieldOrdStatus::enumItems = OrdStatusEnums::items;
-  enumsByRaw.emplace( FieldOrdStatus::RAW, & OrdStatusEnums::instance );
-  enumsByTag.emplace( FieldOrdStatus::KEY, & OrdStatusEnums::instance );
+  enumsByRaw.emplace( FieldOrdStatus::RAW_TAG, & OrdStatusEnums::instance );
+  enumsByTag.emplace( FieldOrdStatus::TAG, & OrdStatusEnums::instance );
 
   FieldOrdType::enumItems = OrdTypeEnums::items;
-  enumsByRaw.emplace( FieldOrdType::RAW, & OrdTypeEnums::instance );
-  enumsByTag.emplace( FieldOrdType::KEY, & OrdTypeEnums::instance );
+  enumsByRaw.emplace( FieldOrdType::RAW_TAG, & OrdTypeEnums::instance );
+  enumsByTag.emplace( FieldOrdType::TAG, & OrdTypeEnums::instance );
 
   FieldPossDupFlag::enumItems = PossDupFlagEnums::items;
-  enumsByRaw.emplace( FieldPossDupFlag::RAW, & PossDupFlagEnums::instance );
-  enumsByTag.emplace( FieldPossDupFlag::KEY, & PossDupFlagEnums::instance );
+  enumsByRaw.emplace( FieldPossDupFlag::RAW_TAG, & PossDupFlagEnums::instance );
+  enumsByTag.emplace( FieldPossDupFlag::TAG, & PossDupFlagEnums::instance );
 
   FieldSide::enumItems = SideEnums::items;
-  enumsByRaw.emplace( FieldSide::RAW, & SideEnums::instance );
-  enumsByTag.emplace( FieldSide::KEY, & SideEnums::instance );
+  enumsByRaw.emplace( FieldSide::RAW_TAG, & SideEnums::instance );
+  enumsByTag.emplace( FieldSide::TAG, & SideEnums::instance );
 
   FieldTimeInForce::enumItems = TimeInForceEnums::items;
-  enumsByRaw.emplace( FieldTimeInForce::RAW, & TimeInForceEnums::instance );
-  enumsByTag.emplace( FieldTimeInForce::KEY, & TimeInForceEnums::instance );
+  enumsByRaw.emplace( FieldTimeInForce::RAW_TAG, & TimeInForceEnums::instance );
+  enumsByTag.emplace( FieldTimeInForce::TAG, & TimeInForceEnums::instance );
 
   FieldUrgency::enumItems = UrgencyEnums::items;
-  enumsByRaw.emplace( FieldUrgency::RAW, & UrgencyEnums::instance );
-  enumsByTag.emplace( FieldUrgency::KEY, & UrgencyEnums::instance );
+  enumsByRaw.emplace( FieldUrgency::RAW_TAG, & UrgencyEnums::instance );
+  enumsByTag.emplace( FieldUrgency::TAG, & UrgencyEnums::instance );
 
   FieldSettlType::enumItems = SettlTypeEnums::items;
-  enumsByRaw.emplace( FieldSettlType::RAW, & SettlTypeEnums::instance );
-  enumsByTag.emplace( FieldSettlType::KEY, & SettlTypeEnums::instance );
+  enumsByRaw.emplace( FieldSettlType::RAW_TAG, & SettlTypeEnums::instance );
+  enumsByTag.emplace( FieldSettlType::TAG, & SettlTypeEnums::instance );
 
   FieldAllocTransType::enumItems = AllocTransTypeEnums::items;
-  enumsByRaw.emplace( FieldAllocTransType::RAW, & AllocTransTypeEnums::instance );
-  enumsByTag.emplace( FieldAllocTransType::KEY, & AllocTransTypeEnums::instance );
+  enumsByRaw.emplace( FieldAllocTransType::RAW_TAG, & AllocTransTypeEnums::instance );
+  enumsByTag.emplace( FieldAllocTransType::TAG, & AllocTransTypeEnums::instance );
 
   FieldPositionEffect::enumItems = PositionEffectEnums::items;
-  enumsByRaw.emplace( FieldPositionEffect::RAW, & PositionEffectEnums::instance );
-  enumsByTag.emplace( FieldPositionEffect::KEY, & PositionEffectEnums::instance );
+  enumsByRaw.emplace( FieldPositionEffect::RAW_TAG, & PositionEffectEnums::instance );
+  enumsByTag.emplace( FieldPositionEffect::TAG, & PositionEffectEnums::instance );
 
   FieldProcessCode::enumItems = ProcessCodeEnums::items;
-  enumsByRaw.emplace( FieldProcessCode::RAW, & ProcessCodeEnums::instance );
-  enumsByTag.emplace( FieldProcessCode::KEY, & ProcessCodeEnums::instance );
+  enumsByRaw.emplace( FieldProcessCode::RAW_TAG, & ProcessCodeEnums::instance );
+  enumsByTag.emplace( FieldProcessCode::TAG, & ProcessCodeEnums::instance );
 
   FieldAllocStatus::enumItems = AllocStatusEnums::items;
-  enumsByRaw.emplace( FieldAllocStatus::RAW, & AllocStatusEnums::instance );
-  enumsByTag.emplace( FieldAllocStatus::KEY, & AllocStatusEnums::instance );
+  enumsByRaw.emplace( FieldAllocStatus::RAW_TAG, & AllocStatusEnums::instance );
+  enumsByTag.emplace( FieldAllocStatus::TAG, & AllocStatusEnums::instance );
 
   FieldAllocRejCode::enumItems = AllocRejCodeEnums::items;
-  enumsByRaw.emplace( FieldAllocRejCode::RAW, & AllocRejCodeEnums::instance );
-  enumsByTag.emplace( FieldAllocRejCode::KEY, & AllocRejCodeEnums::instance );
+  enumsByRaw.emplace( FieldAllocRejCode::RAW_TAG, & AllocRejCodeEnums::instance );
+  enumsByTag.emplace( FieldAllocRejCode::TAG, & AllocRejCodeEnums::instance );
 
   FieldEmailType::enumItems = EmailTypeEnums::items;
-  enumsByRaw.emplace( FieldEmailType::RAW, & EmailTypeEnums::instance );
-  enumsByTag.emplace( FieldEmailType::KEY, & EmailTypeEnums::instance );
+  enumsByRaw.emplace( FieldEmailType::RAW_TAG, & EmailTypeEnums::instance );
+  enumsByTag.emplace( FieldEmailType::TAG, & EmailTypeEnums::instance );
 
   FieldPossResend::enumItems = PossResendEnums::items;
-  enumsByRaw.emplace( FieldPossResend::RAW, & PossResendEnums::instance );
-  enumsByTag.emplace( FieldPossResend::KEY, & PossResendEnums::instance );
+  enumsByRaw.emplace( FieldPossResend::RAW_TAG, & PossResendEnums::instance );
+  enumsByTag.emplace( FieldPossResend::TAG, & PossResendEnums::instance );
 
   FieldEncryptMethod::enumItems = EncryptMethodEnums::items;
-  enumsByRaw.emplace( FieldEncryptMethod::RAW, & EncryptMethodEnums::instance );
-  enumsByTag.emplace( FieldEncryptMethod::KEY, & EncryptMethodEnums::instance );
+  enumsByRaw.emplace( FieldEncryptMethod::RAW_TAG, & EncryptMethodEnums::instance );
+  enumsByTag.emplace( FieldEncryptMethod::TAG, & EncryptMethodEnums::instance );
 
   FieldCxlRejReason::enumItems = CxlRejReasonEnums::items;
-  enumsByRaw.emplace( FieldCxlRejReason::RAW, & CxlRejReasonEnums::instance );
-  enumsByTag.emplace( FieldCxlRejReason::KEY, & CxlRejReasonEnums::instance );
+  enumsByRaw.emplace( FieldCxlRejReason::RAW_TAG, & CxlRejReasonEnums::instance );
+  enumsByTag.emplace( FieldCxlRejReason::TAG, & CxlRejReasonEnums::instance );
 
   FieldOrdRejReason::enumItems = OrdRejReasonEnums::items;
-  enumsByRaw.emplace( FieldOrdRejReason::RAW, & OrdRejReasonEnums::instance );
-  enumsByTag.emplace( FieldOrdRejReason::KEY, & OrdRejReasonEnums::instance );
+  enumsByRaw.emplace( FieldOrdRejReason::RAW_TAG, & OrdRejReasonEnums::instance );
+  enumsByTag.emplace( FieldOrdRejReason::TAG, & OrdRejReasonEnums::instance );
 
   FieldIOIQualifier::enumItems = IOIQualifierEnums::items;
-  enumsByRaw.emplace( FieldIOIQualifier::RAW, & IOIQualifierEnums::instance );
-  enumsByTag.emplace( FieldIOIQualifier::KEY, & IOIQualifierEnums::instance );
+  enumsByRaw.emplace( FieldIOIQualifier::RAW_TAG, & IOIQualifierEnums::instance );
+  enumsByTag.emplace( FieldIOIQualifier::TAG, & IOIQualifierEnums::instance );
 
   FieldReportToExch::enumItems = ReportToExchEnums::items;
-  enumsByRaw.emplace( FieldReportToExch::RAW, & ReportToExchEnums::instance );
-  enumsByTag.emplace( FieldReportToExch::KEY, & ReportToExchEnums::instance );
+  enumsByRaw.emplace( FieldReportToExch::RAW_TAG, & ReportToExchEnums::instance );
+  enumsByTag.emplace( FieldReportToExch::TAG, & ReportToExchEnums::instance );
 
   FieldLocateReqd::enumItems = LocateReqdEnums::items;
-  enumsByRaw.emplace( FieldLocateReqd::RAW, & LocateReqdEnums::instance );
-  enumsByTag.emplace( FieldLocateReqd::KEY, & LocateReqdEnums::instance );
+  enumsByRaw.emplace( FieldLocateReqd::RAW_TAG, & LocateReqdEnums::instance );
+  enumsByTag.emplace( FieldLocateReqd::TAG, & LocateReqdEnums::instance );
 
   FieldForexReq::enumItems = ForexReqEnums::items;
-  enumsByRaw.emplace( FieldForexReq::RAW, & ForexReqEnums::instance );
-  enumsByTag.emplace( FieldForexReq::KEY, & ForexReqEnums::instance );
+  enumsByRaw.emplace( FieldForexReq::RAW_TAG, & ForexReqEnums::instance );
+  enumsByTag.emplace( FieldForexReq::TAG, & ForexReqEnums::instance );
 
   FieldGapFillFlag::enumItems = GapFillFlagEnums::items;
-  enumsByRaw.emplace( FieldGapFillFlag::RAW, & GapFillFlagEnums::instance );
-  enumsByTag.emplace( FieldGapFillFlag::KEY, & GapFillFlagEnums::instance );
+  enumsByRaw.emplace( FieldGapFillFlag::RAW_TAG, & GapFillFlagEnums::instance );
+  enumsByTag.emplace( FieldGapFillFlag::TAG, & GapFillFlagEnums::instance );
 
   FieldDKReason::enumItems = DKReasonEnums::items;
-  enumsByRaw.emplace( FieldDKReason::RAW, & DKReasonEnums::instance );
-  enumsByTag.emplace( FieldDKReason::KEY, & DKReasonEnums::instance );
+  enumsByRaw.emplace( FieldDKReason::RAW_TAG, & DKReasonEnums::instance );
+  enumsByTag.emplace( FieldDKReason::TAG, & DKReasonEnums::instance );
 
   FieldIOINaturalFlag::enumItems = IOINaturalFlagEnums::items;
-  enumsByRaw.emplace( FieldIOINaturalFlag::RAW, & IOINaturalFlagEnums::instance );
-  enumsByTag.emplace( FieldIOINaturalFlag::KEY, & IOINaturalFlagEnums::instance );
+  enumsByRaw.emplace( FieldIOINaturalFlag::RAW_TAG, & IOINaturalFlagEnums::instance );
+  enumsByTag.emplace( FieldIOINaturalFlag::TAG, & IOINaturalFlagEnums::instance );
 
   FieldMiscFeeType::enumItems = MiscFeeTypeEnums::items;
-  enumsByRaw.emplace( FieldMiscFeeType::RAW, & MiscFeeTypeEnums::instance );
-  enumsByTag.emplace( FieldMiscFeeType::KEY, & MiscFeeTypeEnums::instance );
+  enumsByRaw.emplace( FieldMiscFeeType::RAW_TAG, & MiscFeeTypeEnums::instance );
+  enumsByTag.emplace( FieldMiscFeeType::TAG, & MiscFeeTypeEnums::instance );
 
   FieldResetSeqNumFlag::enumItems = ResetSeqNumFlagEnums::items;
-  enumsByRaw.emplace( FieldResetSeqNumFlag::RAW, & ResetSeqNumFlagEnums::instance );
-  enumsByTag.emplace( FieldResetSeqNumFlag::KEY, & ResetSeqNumFlagEnums::instance );
+  enumsByRaw.emplace( FieldResetSeqNumFlag::RAW_TAG, & ResetSeqNumFlagEnums::instance );
+  enumsByTag.emplace( FieldResetSeqNumFlag::TAG, & ResetSeqNumFlagEnums::instance );
 
   FieldExecType::enumItems = ExecTypeEnums::items;
-  enumsByRaw.emplace( FieldExecType::RAW, & ExecTypeEnums::instance );
-  enumsByTag.emplace( FieldExecType::KEY, & ExecTypeEnums::instance );
+  enumsByRaw.emplace( FieldExecType::RAW_TAG, & ExecTypeEnums::instance );
+  enumsByTag.emplace( FieldExecType::TAG, & ExecTypeEnums::instance );
 
   FieldSettlCurrFxRateCalc::enumItems = SettlCurrFxRateCalcEnums::items;
-  enumsByRaw.emplace( FieldSettlCurrFxRateCalc::RAW, & SettlCurrFxRateCalcEnums::instance );
-  enumsByTag.emplace( FieldSettlCurrFxRateCalc::KEY, & SettlCurrFxRateCalcEnums::instance );
+  enumsByRaw.emplace( FieldSettlCurrFxRateCalc::RAW_TAG, & SettlCurrFxRateCalcEnums::instance );
+  enumsByTag.emplace( FieldSettlCurrFxRateCalc::TAG, & SettlCurrFxRateCalcEnums::instance );
 
   FieldSettlInstMode::enumItems = SettlInstModeEnums::items;
-  enumsByRaw.emplace( FieldSettlInstMode::RAW, & SettlInstModeEnums::instance );
-  enumsByTag.emplace( FieldSettlInstMode::KEY, & SettlInstModeEnums::instance );
+  enumsByRaw.emplace( FieldSettlInstMode::RAW_TAG, & SettlInstModeEnums::instance );
+  enumsByTag.emplace( FieldSettlInstMode::TAG, & SettlInstModeEnums::instance );
 
   FieldSettlInstTransType::enumItems = SettlInstTransTypeEnums::items;
-  enumsByRaw.emplace( FieldSettlInstTransType::RAW, & SettlInstTransTypeEnums::instance );
-  enumsByTag.emplace( FieldSettlInstTransType::KEY, & SettlInstTransTypeEnums::instance );
+  enumsByRaw.emplace( FieldSettlInstTransType::RAW_TAG, & SettlInstTransTypeEnums::instance );
+  enumsByTag.emplace( FieldSettlInstTransType::TAG, & SettlInstTransTypeEnums::instance );
 
   FieldSettlInstSource::enumItems = SettlInstSourceEnums::items;
-  enumsByRaw.emplace( FieldSettlInstSource::RAW, & SettlInstSourceEnums::instance );
-  enumsByTag.emplace( FieldSettlInstSource::KEY, & SettlInstSourceEnums::instance );
+  enumsByRaw.emplace( FieldSettlInstSource::RAW_TAG, & SettlInstSourceEnums::instance );
+  enumsByTag.emplace( FieldSettlInstSource::TAG, & SettlInstSourceEnums::instance );
 
   FieldSecurityType::enumItems = SecurityTypeEnums::items;
-  enumsByRaw.emplace( FieldSecurityType::RAW, & SecurityTypeEnums::instance );
-  enumsByTag.emplace( FieldSecurityType::KEY, & SecurityTypeEnums::instance );
+  enumsByRaw.emplace( FieldSecurityType::RAW_TAG, & SecurityTypeEnums::instance );
+  enumsByTag.emplace( FieldSecurityType::TAG, & SecurityTypeEnums::instance );
 
   FieldStandInstDbType::enumItems = StandInstDbTypeEnums::items;
-  enumsByRaw.emplace( FieldStandInstDbType::RAW, & StandInstDbTypeEnums::instance );
-  enumsByTag.emplace( FieldStandInstDbType::KEY, & StandInstDbTypeEnums::instance );
+  enumsByRaw.emplace( FieldStandInstDbType::RAW_TAG, & StandInstDbTypeEnums::instance );
+  enumsByTag.emplace( FieldStandInstDbType::TAG, & StandInstDbTypeEnums::instance );
 
   FieldSettlDeliveryType::enumItems = SettlDeliveryTypeEnums::items;
-  enumsByRaw.emplace( FieldSettlDeliveryType::RAW, & SettlDeliveryTypeEnums::instance );
-  enumsByTag.emplace( FieldSettlDeliveryType::KEY, & SettlDeliveryTypeEnums::instance );
+  enumsByRaw.emplace( FieldSettlDeliveryType::RAW_TAG, & SettlDeliveryTypeEnums::instance );
+  enumsByTag.emplace( FieldSettlDeliveryType::TAG, & SettlDeliveryTypeEnums::instance );
 
   FieldAllocLinkType::enumItems = AllocLinkTypeEnums::items;
-  enumsByRaw.emplace( FieldAllocLinkType::RAW, & AllocLinkTypeEnums::instance );
-  enumsByTag.emplace( FieldAllocLinkType::KEY, & AllocLinkTypeEnums::instance );
+  enumsByRaw.emplace( FieldAllocLinkType::RAW_TAG, & AllocLinkTypeEnums::instance );
+  enumsByTag.emplace( FieldAllocLinkType::TAG, & AllocLinkTypeEnums::instance );
 
   FieldPutOrCall::enumItems = PutOrCallEnums::items;
-  enumsByRaw.emplace( FieldPutOrCall::RAW, & PutOrCallEnums::instance );
-  enumsByTag.emplace( FieldPutOrCall::KEY, & PutOrCallEnums::instance );
+  enumsByRaw.emplace( FieldPutOrCall::RAW_TAG, & PutOrCallEnums::instance );
+  enumsByTag.emplace( FieldPutOrCall::TAG, & PutOrCallEnums::instance );
 
   FieldCoveredOrUncovered::enumItems = CoveredOrUncoveredEnums::items;
-  enumsByRaw.emplace( FieldCoveredOrUncovered::RAW, & CoveredOrUncoveredEnums::instance );
-  enumsByTag.emplace( FieldCoveredOrUncovered::KEY, & CoveredOrUncoveredEnums::instance );
+  enumsByRaw.emplace( FieldCoveredOrUncovered::RAW_TAG, & CoveredOrUncoveredEnums::instance );
+  enumsByTag.emplace( FieldCoveredOrUncovered::TAG, & CoveredOrUncoveredEnums::instance );
 
   FieldNotifyBrokerOfCredit::enumItems = NotifyBrokerOfCreditEnums::items;
-  enumsByRaw.emplace( FieldNotifyBrokerOfCredit::RAW, & NotifyBrokerOfCreditEnums::instance );
-  enumsByTag.emplace( FieldNotifyBrokerOfCredit::KEY, & NotifyBrokerOfCreditEnums::instance );
+  enumsByRaw.emplace( FieldNotifyBrokerOfCredit::RAW_TAG, & NotifyBrokerOfCreditEnums::instance );
+  enumsByTag.emplace( FieldNotifyBrokerOfCredit::TAG, & NotifyBrokerOfCreditEnums::instance );
 
   FieldAllocHandlInst::enumItems = AllocHandlInstEnums::items;
-  enumsByRaw.emplace( FieldAllocHandlInst::RAW, & AllocHandlInstEnums::instance );
-  enumsByTag.emplace( FieldAllocHandlInst::KEY, & AllocHandlInstEnums::instance );
+  enumsByRaw.emplace( FieldAllocHandlInst::RAW_TAG, & AllocHandlInstEnums::instance );
+  enumsByTag.emplace( FieldAllocHandlInst::TAG, & AllocHandlInstEnums::instance );
 
   FieldRoutingType::enumItems = RoutingTypeEnums::items;
-  enumsByRaw.emplace( FieldRoutingType::RAW, & RoutingTypeEnums::instance );
-  enumsByTag.emplace( FieldRoutingType::KEY, & RoutingTypeEnums::instance );
+  enumsByRaw.emplace( FieldRoutingType::RAW_TAG, & RoutingTypeEnums::instance );
+  enumsByTag.emplace( FieldRoutingType::TAG, & RoutingTypeEnums::instance );
 
   FieldStipulationType::enumItems = StipulationTypeEnums::items;
-  enumsByRaw.emplace( FieldStipulationType::RAW, & StipulationTypeEnums::instance );
-  enumsByTag.emplace( FieldStipulationType::KEY, & StipulationTypeEnums::instance );
+  enumsByRaw.emplace( FieldStipulationType::RAW_TAG, & StipulationTypeEnums::instance );
+  enumsByTag.emplace( FieldStipulationType::TAG, & StipulationTypeEnums::instance );
 
   FieldYieldType::enumItems = YieldTypeEnums::items;
-  enumsByRaw.emplace( FieldYieldType::RAW, & YieldTypeEnums::instance );
-  enumsByTag.emplace( FieldYieldType::KEY, & YieldTypeEnums::instance );
+  enumsByRaw.emplace( FieldYieldType::RAW_TAG, & YieldTypeEnums::instance );
+  enumsByTag.emplace( FieldYieldType::TAG, & YieldTypeEnums::instance );
 
   FieldTradedFlatSwitch::enumItems = TradedFlatSwitchEnums::items;
-  enumsByRaw.emplace( FieldTradedFlatSwitch::RAW, & TradedFlatSwitchEnums::instance );
-  enumsByTag.emplace( FieldTradedFlatSwitch::KEY, & TradedFlatSwitchEnums::instance );
+  enumsByRaw.emplace( FieldTradedFlatSwitch::RAW_TAG, & TradedFlatSwitchEnums::instance );
+  enumsByTag.emplace( FieldTradedFlatSwitch::TAG, & TradedFlatSwitchEnums::instance );
 
   FieldSubscriptionRequestType::enumItems = SubscriptionRequestTypeEnums::items;
-  enumsByRaw.emplace( FieldSubscriptionRequestType::RAW, & SubscriptionRequestTypeEnums::instance );
-  enumsByTag.emplace( FieldSubscriptionRequestType::KEY, & SubscriptionRequestTypeEnums::instance );
+  enumsByRaw.emplace( FieldSubscriptionRequestType::RAW_TAG, & SubscriptionRequestTypeEnums::instance );
+  enumsByTag.emplace( FieldSubscriptionRequestType::TAG, & SubscriptionRequestTypeEnums::instance );
 
   FieldMDUpdateType::enumItems = MDUpdateTypeEnums::items;
-  enumsByRaw.emplace( FieldMDUpdateType::RAW, & MDUpdateTypeEnums::instance );
-  enumsByTag.emplace( FieldMDUpdateType::KEY, & MDUpdateTypeEnums::instance );
+  enumsByRaw.emplace( FieldMDUpdateType::RAW_TAG, & MDUpdateTypeEnums::instance );
+  enumsByTag.emplace( FieldMDUpdateType::TAG, & MDUpdateTypeEnums::instance );
 
   FieldAggregatedBook::enumItems = AggregatedBookEnums::items;
-  enumsByRaw.emplace( FieldAggregatedBook::RAW, & AggregatedBookEnums::instance );
-  enumsByTag.emplace( FieldAggregatedBook::KEY, & AggregatedBookEnums::instance );
+  enumsByRaw.emplace( FieldAggregatedBook::RAW_TAG, & AggregatedBookEnums::instance );
+  enumsByTag.emplace( FieldAggregatedBook::TAG, & AggregatedBookEnums::instance );
 
   FieldMDEntryType::enumItems = MDEntryTypeEnums::items;
-  enumsByRaw.emplace( FieldMDEntryType::RAW, & MDEntryTypeEnums::instance );
-  enumsByTag.emplace( FieldMDEntryType::KEY, & MDEntryTypeEnums::instance );
+  enumsByRaw.emplace( FieldMDEntryType::RAW_TAG, & MDEntryTypeEnums::instance );
+  enumsByTag.emplace( FieldMDEntryType::TAG, & MDEntryTypeEnums::instance );
 
   FieldTickDirection::enumItems = TickDirectionEnums::items;
-  enumsByRaw.emplace( FieldTickDirection::RAW, & TickDirectionEnums::instance );
-  enumsByTag.emplace( FieldTickDirection::KEY, & TickDirectionEnums::instance );
+  enumsByRaw.emplace( FieldTickDirection::RAW_TAG, & TickDirectionEnums::instance );
+  enumsByTag.emplace( FieldTickDirection::TAG, & TickDirectionEnums::instance );
 
   FieldQuoteCondition::enumItems = QuoteConditionEnums::items;
-  enumsByRaw.emplace( FieldQuoteCondition::RAW, & QuoteConditionEnums::instance );
-  enumsByTag.emplace( FieldQuoteCondition::KEY, & QuoteConditionEnums::instance );
+  enumsByRaw.emplace( FieldQuoteCondition::RAW_TAG, & QuoteConditionEnums::instance );
+  enumsByTag.emplace( FieldQuoteCondition::TAG, & QuoteConditionEnums::instance );
 
   FieldTradeCondition::enumItems = TradeConditionEnums::items;
-  enumsByRaw.emplace( FieldTradeCondition::RAW, & TradeConditionEnums::instance );
-  enumsByTag.emplace( FieldTradeCondition::KEY, & TradeConditionEnums::instance );
+  enumsByRaw.emplace( FieldTradeCondition::RAW_TAG, & TradeConditionEnums::instance );
+  enumsByTag.emplace( FieldTradeCondition::TAG, & TradeConditionEnums::instance );
 
   FieldMDUpdateAction::enumItems = MDUpdateActionEnums::items;
-  enumsByRaw.emplace( FieldMDUpdateAction::RAW, & MDUpdateActionEnums::instance );
-  enumsByTag.emplace( FieldMDUpdateAction::KEY, & MDUpdateActionEnums::instance );
+  enumsByRaw.emplace( FieldMDUpdateAction::RAW_TAG, & MDUpdateActionEnums::instance );
+  enumsByTag.emplace( FieldMDUpdateAction::TAG, & MDUpdateActionEnums::instance );
 
   FieldMDReqRejReason::enumItems = MDReqRejReasonEnums::items;
-  enumsByRaw.emplace( FieldMDReqRejReason::RAW, & MDReqRejReasonEnums::instance );
-  enumsByTag.emplace( FieldMDReqRejReason::KEY, & MDReqRejReasonEnums::instance );
+  enumsByRaw.emplace( FieldMDReqRejReason::RAW_TAG, & MDReqRejReasonEnums::instance );
+  enumsByTag.emplace( FieldMDReqRejReason::TAG, & MDReqRejReasonEnums::instance );
 
   FieldDeleteReason::enumItems = DeleteReasonEnums::items;
-  enumsByRaw.emplace( FieldDeleteReason::RAW, & DeleteReasonEnums::instance );
-  enumsByTag.emplace( FieldDeleteReason::KEY, & DeleteReasonEnums::instance );
+  enumsByRaw.emplace( FieldDeleteReason::RAW_TAG, & DeleteReasonEnums::instance );
+  enumsByTag.emplace( FieldDeleteReason::TAG, & DeleteReasonEnums::instance );
 
   FieldOpenCloseSettlFlag::enumItems = OpenCloseSettlFlagEnums::items;
-  enumsByRaw.emplace( FieldOpenCloseSettlFlag::RAW, & OpenCloseSettlFlagEnums::instance );
-  enumsByTag.emplace( FieldOpenCloseSettlFlag::KEY, & OpenCloseSettlFlagEnums::instance );
+  enumsByRaw.emplace( FieldOpenCloseSettlFlag::RAW_TAG, & OpenCloseSettlFlagEnums::instance );
+  enumsByTag.emplace( FieldOpenCloseSettlFlag::TAG, & OpenCloseSettlFlagEnums::instance );
 
   FieldFinancialStatus::enumItems = FinancialStatusEnums::items;
-  enumsByRaw.emplace( FieldFinancialStatus::RAW, & FinancialStatusEnums::instance );
-  enumsByTag.emplace( FieldFinancialStatus::KEY, & FinancialStatusEnums::instance );
+  enumsByRaw.emplace( FieldFinancialStatus::RAW_TAG, & FinancialStatusEnums::instance );
+  enumsByTag.emplace( FieldFinancialStatus::TAG, & FinancialStatusEnums::instance );
 
   FieldCorporateAction::enumItems = CorporateActionEnums::items;
-  enumsByRaw.emplace( FieldCorporateAction::RAW, & CorporateActionEnums::instance );
-  enumsByTag.emplace( FieldCorporateAction::KEY, & CorporateActionEnums::instance );
+  enumsByRaw.emplace( FieldCorporateAction::RAW_TAG, & CorporateActionEnums::instance );
+  enumsByTag.emplace( FieldCorporateAction::TAG, & CorporateActionEnums::instance );
 
   FieldQuoteStatus::enumItems = QuoteStatusEnums::items;
-  enumsByRaw.emplace( FieldQuoteStatus::RAW, & QuoteStatusEnums::instance );
-  enumsByTag.emplace( FieldQuoteStatus::KEY, & QuoteStatusEnums::instance );
+  enumsByRaw.emplace( FieldQuoteStatus::RAW_TAG, & QuoteStatusEnums::instance );
+  enumsByTag.emplace( FieldQuoteStatus::TAG, & QuoteStatusEnums::instance );
 
   FieldQuoteCancelType::enumItems = QuoteCancelTypeEnums::items;
-  enumsByRaw.emplace( FieldQuoteCancelType::RAW, & QuoteCancelTypeEnums::instance );
-  enumsByTag.emplace( FieldQuoteCancelType::KEY, & QuoteCancelTypeEnums::instance );
+  enumsByRaw.emplace( FieldQuoteCancelType::RAW_TAG, & QuoteCancelTypeEnums::instance );
+  enumsByTag.emplace( FieldQuoteCancelType::TAG, & QuoteCancelTypeEnums::instance );
 
   FieldQuoteRejectReason::enumItems = QuoteRejectReasonEnums::items;
-  enumsByRaw.emplace( FieldQuoteRejectReason::RAW, & QuoteRejectReasonEnums::instance );
-  enumsByTag.emplace( FieldQuoteRejectReason::KEY, & QuoteRejectReasonEnums::instance );
+  enumsByRaw.emplace( FieldQuoteRejectReason::RAW_TAG, & QuoteRejectReasonEnums::instance );
+  enumsByTag.emplace( FieldQuoteRejectReason::TAG, & QuoteRejectReasonEnums::instance );
 
   FieldQuoteResponseLevel::enumItems = QuoteResponseLevelEnums::items;
-  enumsByRaw.emplace( FieldQuoteResponseLevel::RAW, & QuoteResponseLevelEnums::instance );
-  enumsByTag.emplace( FieldQuoteResponseLevel::KEY, & QuoteResponseLevelEnums::instance );
+  enumsByRaw.emplace( FieldQuoteResponseLevel::RAW_TAG, & QuoteResponseLevelEnums::instance );
+  enumsByTag.emplace( FieldQuoteResponseLevel::TAG, & QuoteResponseLevelEnums::instance );
 
   FieldQuoteRequestType::enumItems = QuoteRequestTypeEnums::items;
-  enumsByRaw.emplace( FieldQuoteRequestType::RAW, & QuoteRequestTypeEnums::instance );
-  enumsByTag.emplace( FieldQuoteRequestType::KEY, & QuoteRequestTypeEnums::instance );
+  enumsByRaw.emplace( FieldQuoteRequestType::RAW_TAG, & QuoteRequestTypeEnums::instance );
+  enumsByTag.emplace( FieldQuoteRequestType::TAG, & QuoteRequestTypeEnums::instance );
 
   FieldSecurityRequestType::enumItems = SecurityRequestTypeEnums::items;
-  enumsByRaw.emplace( FieldSecurityRequestType::RAW, & SecurityRequestTypeEnums::instance );
-  enumsByTag.emplace( FieldSecurityRequestType::KEY, & SecurityRequestTypeEnums::instance );
+  enumsByRaw.emplace( FieldSecurityRequestType::RAW_TAG, & SecurityRequestTypeEnums::instance );
+  enumsByTag.emplace( FieldSecurityRequestType::TAG, & SecurityRequestTypeEnums::instance );
 
   FieldSecurityResponseType::enumItems = SecurityResponseTypeEnums::items;
-  enumsByRaw.emplace( FieldSecurityResponseType::RAW, & SecurityResponseTypeEnums::instance );
-  enumsByTag.emplace( FieldSecurityResponseType::KEY, & SecurityResponseTypeEnums::instance );
+  enumsByRaw.emplace( FieldSecurityResponseType::RAW_TAG, & SecurityResponseTypeEnums::instance );
+  enumsByTag.emplace( FieldSecurityResponseType::TAG, & SecurityResponseTypeEnums::instance );
 
   FieldUnsolicitedIndicator::enumItems = UnsolicitedIndicatorEnums::items;
-  enumsByRaw.emplace( FieldUnsolicitedIndicator::RAW, & UnsolicitedIndicatorEnums::instance );
-  enumsByTag.emplace( FieldUnsolicitedIndicator::KEY, & UnsolicitedIndicatorEnums::instance );
+  enumsByRaw.emplace( FieldUnsolicitedIndicator::RAW_TAG, & UnsolicitedIndicatorEnums::instance );
+  enumsByTag.emplace( FieldUnsolicitedIndicator::TAG, & UnsolicitedIndicatorEnums::instance );
 
   FieldSecurityTradingStatus::enumItems = SecurityTradingStatusEnums::items;
-  enumsByRaw.emplace( FieldSecurityTradingStatus::RAW, & SecurityTradingStatusEnums::instance );
-  enumsByTag.emplace( FieldSecurityTradingStatus::KEY, & SecurityTradingStatusEnums::instance );
+  enumsByRaw.emplace( FieldSecurityTradingStatus::RAW_TAG, & SecurityTradingStatusEnums::instance );
+  enumsByTag.emplace( FieldSecurityTradingStatus::TAG, & SecurityTradingStatusEnums::instance );
 
   FieldHaltReasonChar::enumItems = HaltReasonCharEnums::items;
-  enumsByRaw.emplace( FieldHaltReasonChar::RAW, & HaltReasonCharEnums::instance );
-  enumsByTag.emplace( FieldHaltReasonChar::KEY, & HaltReasonCharEnums::instance );
+  enumsByRaw.emplace( FieldHaltReasonChar::RAW_TAG, & HaltReasonCharEnums::instance );
+  enumsByTag.emplace( FieldHaltReasonChar::TAG, & HaltReasonCharEnums::instance );
 
   FieldInViewOfCommon::enumItems = InViewOfCommonEnums::items;
-  enumsByRaw.emplace( FieldInViewOfCommon::RAW, & InViewOfCommonEnums::instance );
-  enumsByTag.emplace( FieldInViewOfCommon::KEY, & InViewOfCommonEnums::instance );
+  enumsByRaw.emplace( FieldInViewOfCommon::RAW_TAG, & InViewOfCommonEnums::instance );
+  enumsByTag.emplace( FieldInViewOfCommon::TAG, & InViewOfCommonEnums::instance );
 
   FieldDueToRelated::enumItems = DueToRelatedEnums::items;
-  enumsByRaw.emplace( FieldDueToRelated::RAW, & DueToRelatedEnums::instance );
-  enumsByTag.emplace( FieldDueToRelated::KEY, & DueToRelatedEnums::instance );
+  enumsByRaw.emplace( FieldDueToRelated::RAW_TAG, & DueToRelatedEnums::instance );
+  enumsByTag.emplace( FieldDueToRelated::TAG, & DueToRelatedEnums::instance );
 
   FieldAdjustment::enumItems = AdjustmentEnums::items;
-  enumsByRaw.emplace( FieldAdjustment::RAW, & AdjustmentEnums::instance );
-  enumsByTag.emplace( FieldAdjustment::KEY, & AdjustmentEnums::instance );
+  enumsByRaw.emplace( FieldAdjustment::RAW_TAG, & AdjustmentEnums::instance );
+  enumsByTag.emplace( FieldAdjustment::TAG, & AdjustmentEnums::instance );
 
   FieldTradSesMethod::enumItems = TradSesMethodEnums::items;
-  enumsByRaw.emplace( FieldTradSesMethod::RAW, & TradSesMethodEnums::instance );
-  enumsByTag.emplace( FieldTradSesMethod::KEY, & TradSesMethodEnums::instance );
+  enumsByRaw.emplace( FieldTradSesMethod::RAW_TAG, & TradSesMethodEnums::instance );
+  enumsByTag.emplace( FieldTradSesMethod::TAG, & TradSesMethodEnums::instance );
 
   FieldTradSesMode::enumItems = TradSesModeEnums::items;
-  enumsByRaw.emplace( FieldTradSesMode::RAW, & TradSesModeEnums::instance );
-  enumsByTag.emplace( FieldTradSesMode::KEY, & TradSesModeEnums::instance );
+  enumsByRaw.emplace( FieldTradSesMode::RAW_TAG, & TradSesModeEnums::instance );
+  enumsByTag.emplace( FieldTradSesMode::TAG, & TradSesModeEnums::instance );
 
   FieldTradSesStatus::enumItems = TradSesStatusEnums::items;
-  enumsByRaw.emplace( FieldTradSesStatus::RAW, & TradSesStatusEnums::instance );
-  enumsByTag.emplace( FieldTradSesStatus::KEY, & TradSesStatusEnums::instance );
+  enumsByRaw.emplace( FieldTradSesStatus::RAW_TAG, & TradSesStatusEnums::instance );
+  enumsByTag.emplace( FieldTradSesStatus::TAG, & TradSesStatusEnums::instance );
 
   FieldMessageEncoding::enumItems = MessageEncodingEnums::items;
-  enumsByRaw.emplace( FieldMessageEncoding::RAW, & MessageEncodingEnums::instance );
-  enumsByTag.emplace( FieldMessageEncoding::KEY, & MessageEncodingEnums::instance );
+  enumsByRaw.emplace( FieldMessageEncoding::RAW_TAG, & MessageEncodingEnums::instance );
+  enumsByTag.emplace( FieldMessageEncoding::TAG, & MessageEncodingEnums::instance );
 
   FieldSessionRejectReason::enumItems = SessionRejectReasonEnums::items;
-  enumsByRaw.emplace( FieldSessionRejectReason::RAW, & SessionRejectReasonEnums::instance );
-  enumsByTag.emplace( FieldSessionRejectReason::KEY, & SessionRejectReasonEnums::instance );
+  enumsByRaw.emplace( FieldSessionRejectReason::RAW_TAG, & SessionRejectReasonEnums::instance );
+  enumsByTag.emplace( FieldSessionRejectReason::TAG, & SessionRejectReasonEnums::instance );
 
   FieldBidRequestTransType::enumItems = BidRequestTransTypeEnums::items;
-  enumsByRaw.emplace( FieldBidRequestTransType::RAW, & BidRequestTransTypeEnums::instance );
-  enumsByTag.emplace( FieldBidRequestTransType::KEY, & BidRequestTransTypeEnums::instance );
+  enumsByRaw.emplace( FieldBidRequestTransType::RAW_TAG, & BidRequestTransTypeEnums::instance );
+  enumsByTag.emplace( FieldBidRequestTransType::TAG, & BidRequestTransTypeEnums::instance );
 
   FieldSolicitedFlag::enumItems = SolicitedFlagEnums::items;
-  enumsByRaw.emplace( FieldSolicitedFlag::RAW, & SolicitedFlagEnums::instance );
-  enumsByTag.emplace( FieldSolicitedFlag::KEY, & SolicitedFlagEnums::instance );
+  enumsByRaw.emplace( FieldSolicitedFlag::RAW_TAG, & SolicitedFlagEnums::instance );
+  enumsByTag.emplace( FieldSolicitedFlag::TAG, & SolicitedFlagEnums::instance );
 
   FieldExecRestatementReason::enumItems = ExecRestatementReasonEnums::items;
-  enumsByRaw.emplace( FieldExecRestatementReason::RAW, & ExecRestatementReasonEnums::instance );
-  enumsByTag.emplace( FieldExecRestatementReason::KEY, & ExecRestatementReasonEnums::instance );
+  enumsByRaw.emplace( FieldExecRestatementReason::RAW_TAG, & ExecRestatementReasonEnums::instance );
+  enumsByTag.emplace( FieldExecRestatementReason::TAG, & ExecRestatementReasonEnums::instance );
 
   FieldBusinessRejectReason::enumItems = BusinessRejectReasonEnums::items;
-  enumsByRaw.emplace( FieldBusinessRejectReason::RAW, & BusinessRejectReasonEnums::instance );
-  enumsByTag.emplace( FieldBusinessRejectReason::KEY, & BusinessRejectReasonEnums::instance );
+  enumsByRaw.emplace( FieldBusinessRejectReason::RAW_TAG, & BusinessRejectReasonEnums::instance );
+  enumsByTag.emplace( FieldBusinessRejectReason::TAG, & BusinessRejectReasonEnums::instance );
 
   FieldMsgDirection::enumItems = MsgDirectionEnums::items;
-  enumsByRaw.emplace( FieldMsgDirection::RAW, & MsgDirectionEnums::instance );
-  enumsByTag.emplace( FieldMsgDirection::KEY, & MsgDirectionEnums::instance );
+  enumsByRaw.emplace( FieldMsgDirection::RAW_TAG, & MsgDirectionEnums::instance );
+  enumsByTag.emplace( FieldMsgDirection::TAG, & MsgDirectionEnums::instance );
 
   FieldDiscretionInst::enumItems = DiscretionInstEnums::items;
-  enumsByRaw.emplace( FieldDiscretionInst::RAW, & DiscretionInstEnums::instance );
-  enumsByTag.emplace( FieldDiscretionInst::KEY, & DiscretionInstEnums::instance );
+  enumsByRaw.emplace( FieldDiscretionInst::RAW_TAG, & DiscretionInstEnums::instance );
+  enumsByTag.emplace( FieldDiscretionInst::TAG, & DiscretionInstEnums::instance );
 
   FieldBidType::enumItems = BidTypeEnums::items;
-  enumsByRaw.emplace( FieldBidType::RAW, & BidTypeEnums::instance );
-  enumsByTag.emplace( FieldBidType::KEY, & BidTypeEnums::instance );
+  enumsByRaw.emplace( FieldBidType::RAW_TAG, & BidTypeEnums::instance );
+  enumsByTag.emplace( FieldBidType::TAG, & BidTypeEnums::instance );
 
   FieldBidDescriptorType::enumItems = BidDescriptorTypeEnums::items;
-  enumsByRaw.emplace( FieldBidDescriptorType::RAW, & BidDescriptorTypeEnums::instance );
-  enumsByTag.emplace( FieldBidDescriptorType::KEY, & BidDescriptorTypeEnums::instance );
+  enumsByRaw.emplace( FieldBidDescriptorType::RAW_TAG, & BidDescriptorTypeEnums::instance );
+  enumsByTag.emplace( FieldBidDescriptorType::TAG, & BidDescriptorTypeEnums::instance );
 
   FieldSideValueInd::enumItems = SideValueIndEnums::items;
-  enumsByRaw.emplace( FieldSideValueInd::RAW, & SideValueIndEnums::instance );
-  enumsByTag.emplace( FieldSideValueInd::KEY, & SideValueIndEnums::instance );
+  enumsByRaw.emplace( FieldSideValueInd::RAW_TAG, & SideValueIndEnums::instance );
+  enumsByTag.emplace( FieldSideValueInd::TAG, & SideValueIndEnums::instance );
 
   FieldLiquidityIndType::enumItems = LiquidityIndTypeEnums::items;
-  enumsByRaw.emplace( FieldLiquidityIndType::RAW, & LiquidityIndTypeEnums::instance );
-  enumsByTag.emplace( FieldLiquidityIndType::KEY, & LiquidityIndTypeEnums::instance );
+  enumsByRaw.emplace( FieldLiquidityIndType::RAW_TAG, & LiquidityIndTypeEnums::instance );
+  enumsByTag.emplace( FieldLiquidityIndType::TAG, & LiquidityIndTypeEnums::instance );
 
   FieldExchangeForPhysical::enumItems = ExchangeForPhysicalEnums::items;
-  enumsByRaw.emplace( FieldExchangeForPhysical::RAW, & ExchangeForPhysicalEnums::instance );
-  enumsByTag.emplace( FieldExchangeForPhysical::KEY, & ExchangeForPhysicalEnums::instance );
+  enumsByRaw.emplace( FieldExchangeForPhysical::RAW_TAG, & ExchangeForPhysicalEnums::instance );
+  enumsByTag.emplace( FieldExchangeForPhysical::TAG, & ExchangeForPhysicalEnums::instance );
 
   FieldProgRptReqs::enumItems = ProgRptReqsEnums::items;
-  enumsByRaw.emplace( FieldProgRptReqs::RAW, & ProgRptReqsEnums::instance );
-  enumsByTag.emplace( FieldProgRptReqs::KEY, & ProgRptReqsEnums::instance );
+  enumsByRaw.emplace( FieldProgRptReqs::RAW_TAG, & ProgRptReqsEnums::instance );
+  enumsByTag.emplace( FieldProgRptReqs::TAG, & ProgRptReqsEnums::instance );
 
   FieldIncTaxInd::enumItems = IncTaxIndEnums::items;
-  enumsByRaw.emplace( FieldIncTaxInd::RAW, & IncTaxIndEnums::instance );
-  enumsByTag.emplace( FieldIncTaxInd::KEY, & IncTaxIndEnums::instance );
+  enumsByRaw.emplace( FieldIncTaxInd::RAW_TAG, & IncTaxIndEnums::instance );
+  enumsByTag.emplace( FieldIncTaxInd::TAG, & IncTaxIndEnums::instance );
 
   FieldBidTradeType::enumItems = BidTradeTypeEnums::items;
-  enumsByRaw.emplace( FieldBidTradeType::RAW, & BidTradeTypeEnums::instance );
-  enumsByTag.emplace( FieldBidTradeType::KEY, & BidTradeTypeEnums::instance );
+  enumsByRaw.emplace( FieldBidTradeType::RAW_TAG, & BidTradeTypeEnums::instance );
+  enumsByTag.emplace( FieldBidTradeType::TAG, & BidTradeTypeEnums::instance );
 
   FieldBasisPxType::enumItems = BasisPxTypeEnums::items;
-  enumsByRaw.emplace( FieldBasisPxType::RAW, & BasisPxTypeEnums::instance );
-  enumsByTag.emplace( FieldBasisPxType::KEY, & BasisPxTypeEnums::instance );
+  enumsByRaw.emplace( FieldBasisPxType::RAW_TAG, & BasisPxTypeEnums::instance );
+  enumsByTag.emplace( FieldBasisPxType::TAG, & BasisPxTypeEnums::instance );
 
   FieldPriceType::enumItems = PriceTypeEnums::items;
-  enumsByRaw.emplace( FieldPriceType::RAW, & PriceTypeEnums::instance );
-  enumsByTag.emplace( FieldPriceType::KEY, & PriceTypeEnums::instance );
+  enumsByRaw.emplace( FieldPriceType::RAW_TAG, & PriceTypeEnums::instance );
+  enumsByTag.emplace( FieldPriceType::TAG, & PriceTypeEnums::instance );
 
   FieldGTBookingInst::enumItems = GTBookingInstEnums::items;
-  enumsByRaw.emplace( FieldGTBookingInst::RAW, & GTBookingInstEnums::instance );
-  enumsByTag.emplace( FieldGTBookingInst::KEY, & GTBookingInstEnums::instance );
+  enumsByRaw.emplace( FieldGTBookingInst::RAW_TAG, & GTBookingInstEnums::instance );
+  enumsByTag.emplace( FieldGTBookingInst::TAG, & GTBookingInstEnums::instance );
 
   FieldListStatusType::enumItems = ListStatusTypeEnums::items;
-  enumsByRaw.emplace( FieldListStatusType::RAW, & ListStatusTypeEnums::instance );
-  enumsByTag.emplace( FieldListStatusType::KEY, & ListStatusTypeEnums::instance );
+  enumsByRaw.emplace( FieldListStatusType::RAW_TAG, & ListStatusTypeEnums::instance );
+  enumsByTag.emplace( FieldListStatusType::TAG, & ListStatusTypeEnums::instance );
 
   FieldNetGrossInd::enumItems = NetGrossIndEnums::items;
-  enumsByRaw.emplace( FieldNetGrossInd::RAW, & NetGrossIndEnums::instance );
-  enumsByTag.emplace( FieldNetGrossInd::KEY, & NetGrossIndEnums::instance );
+  enumsByRaw.emplace( FieldNetGrossInd::RAW_TAG, & NetGrossIndEnums::instance );
+  enumsByTag.emplace( FieldNetGrossInd::TAG, & NetGrossIndEnums::instance );
 
   FieldListOrderStatus::enumItems = ListOrderStatusEnums::items;
-  enumsByRaw.emplace( FieldListOrderStatus::RAW, & ListOrderStatusEnums::instance );
-  enumsByTag.emplace( FieldListOrderStatus::KEY, & ListOrderStatusEnums::instance );
+  enumsByRaw.emplace( FieldListOrderStatus::RAW_TAG, & ListOrderStatusEnums::instance );
+  enumsByTag.emplace( FieldListOrderStatus::TAG, & ListOrderStatusEnums::instance );
 
   FieldListExecInstType::enumItems = ListExecInstTypeEnums::items;
-  enumsByRaw.emplace( FieldListExecInstType::RAW, & ListExecInstTypeEnums::instance );
-  enumsByTag.emplace( FieldListExecInstType::KEY, & ListExecInstTypeEnums::instance );
+  enumsByRaw.emplace( FieldListExecInstType::RAW_TAG, & ListExecInstTypeEnums::instance );
+  enumsByTag.emplace( FieldListExecInstType::TAG, & ListExecInstTypeEnums::instance );
 
   FieldCxlRejResponseTo::enumItems = CxlRejResponseToEnums::items;
-  enumsByRaw.emplace( FieldCxlRejResponseTo::RAW, & CxlRejResponseToEnums::instance );
-  enumsByTag.emplace( FieldCxlRejResponseTo::KEY, & CxlRejResponseToEnums::instance );
+  enumsByRaw.emplace( FieldCxlRejResponseTo::RAW_TAG, & CxlRejResponseToEnums::instance );
+  enumsByTag.emplace( FieldCxlRejResponseTo::TAG, & CxlRejResponseToEnums::instance );
 
   FieldMultiLegReportingType::enumItems = MultiLegReportingTypeEnums::items;
-  enumsByRaw.emplace( FieldMultiLegReportingType::RAW, & MultiLegReportingTypeEnums::instance );
-  enumsByTag.emplace( FieldMultiLegReportingType::KEY, & MultiLegReportingTypeEnums::instance );
+  enumsByRaw.emplace( FieldMultiLegReportingType::RAW_TAG, & MultiLegReportingTypeEnums::instance );
+  enumsByTag.emplace( FieldMultiLegReportingType::TAG, & MultiLegReportingTypeEnums::instance );
 
   FieldPartyIDSource::enumItems = PartyIDSourceEnums::items;
-  enumsByRaw.emplace( FieldPartyIDSource::RAW, & PartyIDSourceEnums::instance );
-  enumsByTag.emplace( FieldPartyIDSource::KEY, & PartyIDSourceEnums::instance );
+  enumsByRaw.emplace( FieldPartyIDSource::RAW_TAG, & PartyIDSourceEnums::instance );
+  enumsByTag.emplace( FieldPartyIDSource::TAG, & PartyIDSourceEnums::instance );
 
   FieldPartyRole::enumItems = PartyRoleEnums::items;
-  enumsByRaw.emplace( FieldPartyRole::RAW, & PartyRoleEnums::instance );
-  enumsByTag.emplace( FieldPartyRole::KEY, & PartyRoleEnums::instance );
+  enumsByRaw.emplace( FieldPartyRole::RAW_TAG, & PartyRoleEnums::instance );
+  enumsByTag.emplace( FieldPartyRole::TAG, & PartyRoleEnums::instance );
 
   FieldProduct::enumItems = ProductEnums::items;
-  enumsByRaw.emplace( FieldProduct::RAW, & ProductEnums::instance );
-  enumsByTag.emplace( FieldProduct::KEY, & ProductEnums::instance );
+  enumsByRaw.emplace( FieldProduct::RAW_TAG, & ProductEnums::instance );
+  enumsByTag.emplace( FieldProduct::TAG, & ProductEnums::instance );
 
   FieldTestMessageIndicator::enumItems = TestMessageIndicatorEnums::items;
-  enumsByRaw.emplace( FieldTestMessageIndicator::RAW, & TestMessageIndicatorEnums::instance );
-  enumsByTag.emplace( FieldTestMessageIndicator::KEY, & TestMessageIndicatorEnums::instance );
+  enumsByRaw.emplace( FieldTestMessageIndicator::RAW_TAG, & TestMessageIndicatorEnums::instance );
+  enumsByTag.emplace( FieldTestMessageIndicator::TAG, & TestMessageIndicatorEnums::instance );
 
   FieldRoundingDirection::enumItems = RoundingDirectionEnums::items;
-  enumsByRaw.emplace( FieldRoundingDirection::RAW, & RoundingDirectionEnums::instance );
-  enumsByTag.emplace( FieldRoundingDirection::KEY, & RoundingDirectionEnums::instance );
+  enumsByRaw.emplace( FieldRoundingDirection::RAW_TAG, & RoundingDirectionEnums::instance );
+  enumsByTag.emplace( FieldRoundingDirection::TAG, & RoundingDirectionEnums::instance );
 
   FieldDistribPaymentMethod::enumItems = DistribPaymentMethodEnums::items;
-  enumsByRaw.emplace( FieldDistribPaymentMethod::RAW, & DistribPaymentMethodEnums::instance );
-  enumsByTag.emplace( FieldDistribPaymentMethod::KEY, & DistribPaymentMethodEnums::instance );
+  enumsByRaw.emplace( FieldDistribPaymentMethod::RAW_TAG, & DistribPaymentMethodEnums::instance );
+  enumsByTag.emplace( FieldDistribPaymentMethod::TAG, & DistribPaymentMethodEnums::instance );
 
   FieldCancellationRights::enumItems = CancellationRightsEnums::items;
-  enumsByRaw.emplace( FieldCancellationRights::RAW, & CancellationRightsEnums::instance );
-  enumsByTag.emplace( FieldCancellationRights::KEY, & CancellationRightsEnums::instance );
+  enumsByRaw.emplace( FieldCancellationRights::RAW_TAG, & CancellationRightsEnums::instance );
+  enumsByTag.emplace( FieldCancellationRights::TAG, & CancellationRightsEnums::instance );
 
   FieldMoneyLaunderingStatus::enumItems = MoneyLaunderingStatusEnums::items;
-  enumsByRaw.emplace( FieldMoneyLaunderingStatus::RAW, & MoneyLaunderingStatusEnums::instance );
-  enumsByTag.emplace( FieldMoneyLaunderingStatus::KEY, & MoneyLaunderingStatusEnums::instance );
+  enumsByRaw.emplace( FieldMoneyLaunderingStatus::RAW_TAG, & MoneyLaunderingStatusEnums::instance );
+  enumsByTag.emplace( FieldMoneyLaunderingStatus::TAG, & MoneyLaunderingStatusEnums::instance );
 
   FieldExecPriceType::enumItems = ExecPriceTypeEnums::items;
-  enumsByRaw.emplace( FieldExecPriceType::RAW, & ExecPriceTypeEnums::instance );
-  enumsByTag.emplace( FieldExecPriceType::KEY, & ExecPriceTypeEnums::instance );
+  enumsByRaw.emplace( FieldExecPriceType::RAW_TAG, & ExecPriceTypeEnums::instance );
+  enumsByTag.emplace( FieldExecPriceType::TAG, & ExecPriceTypeEnums::instance );
 
   FieldPaymentMethod::enumItems = PaymentMethodEnums::items;
-  enumsByRaw.emplace( FieldPaymentMethod::RAW, & PaymentMethodEnums::instance );
-  enumsByTag.emplace( FieldPaymentMethod::KEY, & PaymentMethodEnums::instance );
+  enumsByRaw.emplace( FieldPaymentMethod::RAW_TAG, & PaymentMethodEnums::instance );
+  enumsByTag.emplace( FieldPaymentMethod::TAG, & PaymentMethodEnums::instance );
 
   FieldTaxAdvantageType::enumItems = TaxAdvantageTypeEnums::items;
-  enumsByRaw.emplace( FieldTaxAdvantageType::RAW, & TaxAdvantageTypeEnums::instance );
-  enumsByTag.emplace( FieldTaxAdvantageType::KEY, & TaxAdvantageTypeEnums::instance );
+  enumsByRaw.emplace( FieldTaxAdvantageType::RAW_TAG, & TaxAdvantageTypeEnums::instance );
+  enumsByTag.emplace( FieldTaxAdvantageType::TAG, & TaxAdvantageTypeEnums::instance );
 
   FieldFundRenewWaiv::enumItems = FundRenewWaivEnums::items;
-  enumsByRaw.emplace( FieldFundRenewWaiv::RAW, & FundRenewWaivEnums::instance );
-  enumsByTag.emplace( FieldFundRenewWaiv::KEY, & FundRenewWaivEnums::instance );
+  enumsByRaw.emplace( FieldFundRenewWaiv::RAW_TAG, & FundRenewWaivEnums::instance );
+  enumsByTag.emplace( FieldFundRenewWaiv::TAG, & FundRenewWaivEnums::instance );
 
   FieldRegistStatus::enumItems = RegistStatusEnums::items;
-  enumsByRaw.emplace( FieldRegistStatus::RAW, & RegistStatusEnums::instance );
-  enumsByTag.emplace( FieldRegistStatus::KEY, & RegistStatusEnums::instance );
+  enumsByRaw.emplace( FieldRegistStatus::RAW_TAG, & RegistStatusEnums::instance );
+  enumsByTag.emplace( FieldRegistStatus::TAG, & RegistStatusEnums::instance );
 
   FieldRegistRejReasonCode::enumItems = RegistRejReasonCodeEnums::items;
-  enumsByRaw.emplace( FieldRegistRejReasonCode::RAW, & RegistRejReasonCodeEnums::instance );
-  enumsByTag.emplace( FieldRegistRejReasonCode::KEY, & RegistRejReasonCodeEnums::instance );
+  enumsByRaw.emplace( FieldRegistRejReasonCode::RAW_TAG, & RegistRejReasonCodeEnums::instance );
+  enumsByTag.emplace( FieldRegistRejReasonCode::TAG, & RegistRejReasonCodeEnums::instance );
 
   FieldRegistTransType::enumItems = RegistTransTypeEnums::items;
-  enumsByRaw.emplace( FieldRegistTransType::RAW, & RegistTransTypeEnums::instance );
-  enumsByTag.emplace( FieldRegistTransType::KEY, & RegistTransTypeEnums::instance );
+  enumsByRaw.emplace( FieldRegistTransType::RAW_TAG, & RegistTransTypeEnums::instance );
+  enumsByTag.emplace( FieldRegistTransType::TAG, & RegistTransTypeEnums::instance );
 
   FieldOwnershipType::enumItems = OwnershipTypeEnums::items;
-  enumsByRaw.emplace( FieldOwnershipType::RAW, & OwnershipTypeEnums::instance );
-  enumsByTag.emplace( FieldOwnershipType::KEY, & OwnershipTypeEnums::instance );
+  enumsByRaw.emplace( FieldOwnershipType::RAW_TAG, & OwnershipTypeEnums::instance );
+  enumsByTag.emplace( FieldOwnershipType::TAG, & OwnershipTypeEnums::instance );
 
   FieldContAmtType::enumItems = ContAmtTypeEnums::items;
-  enumsByRaw.emplace( FieldContAmtType::RAW, & ContAmtTypeEnums::instance );
-  enumsByTag.emplace( FieldContAmtType::KEY, & ContAmtTypeEnums::instance );
+  enumsByRaw.emplace( FieldContAmtType::RAW_TAG, & ContAmtTypeEnums::instance );
+  enumsByTag.emplace( FieldContAmtType::TAG, & ContAmtTypeEnums::instance );
 
   FieldOwnerType::enumItems = OwnerTypeEnums::items;
-  enumsByRaw.emplace( FieldOwnerType::RAW, & OwnerTypeEnums::instance );
-  enumsByTag.emplace( FieldOwnerType::KEY, & OwnerTypeEnums::instance );
+  enumsByRaw.emplace( FieldOwnerType::RAW_TAG, & OwnerTypeEnums::instance );
+  enumsByTag.emplace( FieldOwnerType::TAG, & OwnerTypeEnums::instance );
 
   FieldOrderCapacity::enumItems = OrderCapacityEnums::items;
-  enumsByRaw.emplace( FieldOrderCapacity::RAW, & OrderCapacityEnums::instance );
-  enumsByTag.emplace( FieldOrderCapacity::KEY, & OrderCapacityEnums::instance );
+  enumsByRaw.emplace( FieldOrderCapacity::RAW_TAG, & OrderCapacityEnums::instance );
+  enumsByTag.emplace( FieldOrderCapacity::TAG, & OrderCapacityEnums::instance );
 
   FieldOrderRestrictions::enumItems = OrderRestrictionsEnums::items;
-  enumsByRaw.emplace( FieldOrderRestrictions::RAW, & OrderRestrictionsEnums::instance );
-  enumsByTag.emplace( FieldOrderRestrictions::KEY, & OrderRestrictionsEnums::instance );
+  enumsByRaw.emplace( FieldOrderRestrictions::RAW_TAG, & OrderRestrictionsEnums::instance );
+  enumsByTag.emplace( FieldOrderRestrictions::TAG, & OrderRestrictionsEnums::instance );
 
   FieldMassCancelRequestType::enumItems = MassCancelRequestTypeEnums::items;
-  enumsByRaw.emplace( FieldMassCancelRequestType::RAW, & MassCancelRequestTypeEnums::instance );
-  enumsByTag.emplace( FieldMassCancelRequestType::KEY, & MassCancelRequestTypeEnums::instance );
+  enumsByRaw.emplace( FieldMassCancelRequestType::RAW_TAG, & MassCancelRequestTypeEnums::instance );
+  enumsByTag.emplace( FieldMassCancelRequestType::TAG, & MassCancelRequestTypeEnums::instance );
 
   FieldMassCancelResponse::enumItems = MassCancelResponseEnums::items;
-  enumsByRaw.emplace( FieldMassCancelResponse::RAW, & MassCancelResponseEnums::instance );
-  enumsByTag.emplace( FieldMassCancelResponse::KEY, & MassCancelResponseEnums::instance );
+  enumsByRaw.emplace( FieldMassCancelResponse::RAW_TAG, & MassCancelResponseEnums::instance );
+  enumsByTag.emplace( FieldMassCancelResponse::TAG, & MassCancelResponseEnums::instance );
 
   FieldMassCancelRejectReason::enumItems = MassCancelRejectReasonEnums::items;
-  enumsByRaw.emplace( FieldMassCancelRejectReason::RAW, & MassCancelRejectReasonEnums::instance );
-  enumsByTag.emplace( FieldMassCancelRejectReason::KEY, & MassCancelRejectReasonEnums::instance );
+  enumsByRaw.emplace( FieldMassCancelRejectReason::RAW_TAG, & MassCancelRejectReasonEnums::instance );
+  enumsByTag.emplace( FieldMassCancelRejectReason::TAG, & MassCancelRejectReasonEnums::instance );
 
   FieldQuoteType::enumItems = QuoteTypeEnums::items;
-  enumsByRaw.emplace( FieldQuoteType::RAW, & QuoteTypeEnums::instance );
-  enumsByTag.emplace( FieldQuoteType::KEY, & QuoteTypeEnums::instance );
+  enumsByRaw.emplace( FieldQuoteType::RAW_TAG, & QuoteTypeEnums::instance );
+  enumsByTag.emplace( FieldQuoteType::TAG, & QuoteTypeEnums::instance );
 
   FieldCashMargin::enumItems = CashMarginEnums::items;
-  enumsByRaw.emplace( FieldCashMargin::RAW, & CashMarginEnums::instance );
-  enumsByTag.emplace( FieldCashMargin::KEY, & CashMarginEnums::instance );
+  enumsByRaw.emplace( FieldCashMargin::RAW_TAG, & CashMarginEnums::instance );
+  enumsByTag.emplace( FieldCashMargin::TAG, & CashMarginEnums::instance );
 
   FieldScope::enumItems = ScopeEnums::items;
-  enumsByRaw.emplace( FieldScope::RAW, & ScopeEnums::instance );
-  enumsByTag.emplace( FieldScope::KEY, & ScopeEnums::instance );
+  enumsByRaw.emplace( FieldScope::RAW_TAG, & ScopeEnums::instance );
+  enumsByTag.emplace( FieldScope::TAG, & ScopeEnums::instance );
 
   FieldMDImplicitDelete::enumItems = MDImplicitDeleteEnums::items;
-  enumsByRaw.emplace( FieldMDImplicitDelete::RAW, & MDImplicitDeleteEnums::instance );
-  enumsByTag.emplace( FieldMDImplicitDelete::KEY, & MDImplicitDeleteEnums::instance );
+  enumsByRaw.emplace( FieldMDImplicitDelete::RAW_TAG, & MDImplicitDeleteEnums::instance );
+  enumsByTag.emplace( FieldMDImplicitDelete::TAG, & MDImplicitDeleteEnums::instance );
 
   FieldCrossType::enumItems = CrossTypeEnums::items;
-  enumsByRaw.emplace( FieldCrossType::RAW, & CrossTypeEnums::instance );
-  enumsByTag.emplace( FieldCrossType::KEY, & CrossTypeEnums::instance );
+  enumsByRaw.emplace( FieldCrossType::RAW_TAG, & CrossTypeEnums::instance );
+  enumsByTag.emplace( FieldCrossType::TAG, & CrossTypeEnums::instance );
 
   FieldCrossPrioritization::enumItems = CrossPrioritizationEnums::items;
-  enumsByRaw.emplace( FieldCrossPrioritization::RAW, & CrossPrioritizationEnums::instance );
-  enumsByTag.emplace( FieldCrossPrioritization::KEY, & CrossPrioritizationEnums::instance );
+  enumsByRaw.emplace( FieldCrossPrioritization::RAW_TAG, & CrossPrioritizationEnums::instance );
+  enumsByTag.emplace( FieldCrossPrioritization::TAG, & CrossPrioritizationEnums::instance );
 
   FieldNoSides::enumItems = NoSidesEnums::items;
-  enumsByRaw.emplace( FieldNoSides::RAW, & NoSidesEnums::instance );
-  enumsByTag.emplace( FieldNoSides::KEY, & NoSidesEnums::instance );
+  enumsByRaw.emplace( FieldNoSides::RAW_TAG, & NoSidesEnums::instance );
+  enumsByTag.emplace( FieldNoSides::TAG, & NoSidesEnums::instance );
 
   FieldSecurityListRequestType::enumItems = SecurityListRequestTypeEnums::items;
-  enumsByRaw.emplace( FieldSecurityListRequestType::RAW, & SecurityListRequestTypeEnums::instance );
-  enumsByTag.emplace( FieldSecurityListRequestType::KEY, & SecurityListRequestTypeEnums::instance );
+  enumsByRaw.emplace( FieldSecurityListRequestType::RAW_TAG, & SecurityListRequestTypeEnums::instance );
+  enumsByTag.emplace( FieldSecurityListRequestType::TAG, & SecurityListRequestTypeEnums::instance );
 
   FieldSecurityRequestResult::enumItems = SecurityRequestResultEnums::items;
-  enumsByRaw.emplace( FieldSecurityRequestResult::RAW, & SecurityRequestResultEnums::instance );
-  enumsByTag.emplace( FieldSecurityRequestResult::KEY, & SecurityRequestResultEnums::instance );
+  enumsByRaw.emplace( FieldSecurityRequestResult::RAW_TAG, & SecurityRequestResultEnums::instance );
+  enumsByTag.emplace( FieldSecurityRequestResult::TAG, & SecurityRequestResultEnums::instance );
 
   FieldMultiLegRptTypeReq::enumItems = MultiLegRptTypeReqEnums::items;
-  enumsByRaw.emplace( FieldMultiLegRptTypeReq::RAW, & MultiLegRptTypeReqEnums::instance );
-  enumsByTag.emplace( FieldMultiLegRptTypeReq::KEY, & MultiLegRptTypeReqEnums::instance );
+  enumsByRaw.emplace( FieldMultiLegRptTypeReq::RAW_TAG, & MultiLegRptTypeReqEnums::instance );
+  enumsByTag.emplace( FieldMultiLegRptTypeReq::TAG, & MultiLegRptTypeReqEnums::instance );
 
   FieldTradSesStatusRejReason::enumItems = TradSesStatusRejReasonEnums::items;
-  enumsByRaw.emplace( FieldTradSesStatusRejReason::RAW, & TradSesStatusRejReasonEnums::instance );
-  enumsByTag.emplace( FieldTradSesStatusRejReason::KEY, & TradSesStatusRejReasonEnums::instance );
+  enumsByRaw.emplace( FieldTradSesStatusRejReason::RAW_TAG, & TradSesStatusRejReasonEnums::instance );
+  enumsByTag.emplace( FieldTradSesStatusRejReason::TAG, & TradSesStatusRejReasonEnums::instance );
 
   FieldTradeRequestType::enumItems = TradeRequestTypeEnums::items;
-  enumsByRaw.emplace( FieldTradeRequestType::RAW, & TradeRequestTypeEnums::instance );
-  enumsByTag.emplace( FieldTradeRequestType::KEY, & TradeRequestTypeEnums::instance );
+  enumsByRaw.emplace( FieldTradeRequestType::RAW_TAG, & TradeRequestTypeEnums::instance );
+  enumsByTag.emplace( FieldTradeRequestType::TAG, & TradeRequestTypeEnums::instance );
 
   FieldPreviouslyReported::enumItems = PreviouslyReportedEnums::items;
-  enumsByRaw.emplace( FieldPreviouslyReported::RAW, & PreviouslyReportedEnums::instance );
-  enumsByTag.emplace( FieldPreviouslyReported::KEY, & PreviouslyReportedEnums::instance );
+  enumsByRaw.emplace( FieldPreviouslyReported::RAW_TAG, & PreviouslyReportedEnums::instance );
+  enumsByTag.emplace( FieldPreviouslyReported::TAG, & PreviouslyReportedEnums::instance );
 
   FieldMatchStatus::enumItems = MatchStatusEnums::items;
-  enumsByRaw.emplace( FieldMatchStatus::RAW, & MatchStatusEnums::instance );
-  enumsByTag.emplace( FieldMatchStatus::KEY, & MatchStatusEnums::instance );
+  enumsByRaw.emplace( FieldMatchStatus::RAW_TAG, & MatchStatusEnums::instance );
+  enumsByTag.emplace( FieldMatchStatus::TAG, & MatchStatusEnums::instance );
 
   FieldMatchType::enumItems = MatchTypeEnums::items;
-  enumsByRaw.emplace( FieldMatchType::RAW, & MatchTypeEnums::instance );
-  enumsByTag.emplace( FieldMatchType::KEY, & MatchTypeEnums::instance );
+  enumsByRaw.emplace( FieldMatchType::RAW_TAG, & MatchTypeEnums::instance );
+  enumsByTag.emplace( FieldMatchType::TAG, & MatchTypeEnums::instance );
 
   FieldOddLot::enumItems = OddLotEnums::items;
-  enumsByRaw.emplace( FieldOddLot::RAW, & OddLotEnums::instance );
-  enumsByTag.emplace( FieldOddLot::KEY, & OddLotEnums::instance );
+  enumsByRaw.emplace( FieldOddLot::RAW_TAG, & OddLotEnums::instance );
+  enumsByTag.emplace( FieldOddLot::TAG, & OddLotEnums::instance );
 
   FieldClearingInstruction::enumItems = ClearingInstructionEnums::items;
-  enumsByRaw.emplace( FieldClearingInstruction::RAW, & ClearingInstructionEnums::instance );
-  enumsByTag.emplace( FieldClearingInstruction::KEY, & ClearingInstructionEnums::instance );
+  enumsByRaw.emplace( FieldClearingInstruction::RAW_TAG, & ClearingInstructionEnums::instance );
+  enumsByTag.emplace( FieldClearingInstruction::TAG, & ClearingInstructionEnums::instance );
 
   FieldAccountType::enumItems = AccountTypeEnums::items;
-  enumsByRaw.emplace( FieldAccountType::RAW, & AccountTypeEnums::instance );
-  enumsByTag.emplace( FieldAccountType::KEY, & AccountTypeEnums::instance );
+  enumsByRaw.emplace( FieldAccountType::RAW_TAG, & AccountTypeEnums::instance );
+  enumsByTag.emplace( FieldAccountType::TAG, & AccountTypeEnums::instance );
 
   FieldCustOrderCapacity::enumItems = CustOrderCapacityEnums::items;
-  enumsByRaw.emplace( FieldCustOrderCapacity::RAW, & CustOrderCapacityEnums::instance );
-  enumsByTag.emplace( FieldCustOrderCapacity::KEY, & CustOrderCapacityEnums::instance );
+  enumsByRaw.emplace( FieldCustOrderCapacity::RAW_TAG, & CustOrderCapacityEnums::instance );
+  enumsByTag.emplace( FieldCustOrderCapacity::TAG, & CustOrderCapacityEnums::instance );
 
   FieldMassStatusReqType::enumItems = MassStatusReqTypeEnums::items;
-  enumsByRaw.emplace( FieldMassStatusReqType::RAW, & MassStatusReqTypeEnums::instance );
-  enumsByTag.emplace( FieldMassStatusReqType::KEY, & MassStatusReqTypeEnums::instance );
+  enumsByRaw.emplace( FieldMassStatusReqType::RAW_TAG, & MassStatusReqTypeEnums::instance );
+  enumsByTag.emplace( FieldMassStatusReqType::TAG, & MassStatusReqTypeEnums::instance );
 
   FieldDayBookingInst::enumItems = DayBookingInstEnums::items;
-  enumsByRaw.emplace( FieldDayBookingInst::RAW, & DayBookingInstEnums::instance );
-  enumsByTag.emplace( FieldDayBookingInst::KEY, & DayBookingInstEnums::instance );
+  enumsByRaw.emplace( FieldDayBookingInst::RAW_TAG, & DayBookingInstEnums::instance );
+  enumsByTag.emplace( FieldDayBookingInst::TAG, & DayBookingInstEnums::instance );
 
   FieldBookingUnit::enumItems = BookingUnitEnums::items;
-  enumsByRaw.emplace( FieldBookingUnit::RAW, & BookingUnitEnums::instance );
-  enumsByTag.emplace( FieldBookingUnit::KEY, & BookingUnitEnums::instance );
+  enumsByRaw.emplace( FieldBookingUnit::RAW_TAG, & BookingUnitEnums::instance );
+  enumsByTag.emplace( FieldBookingUnit::TAG, & BookingUnitEnums::instance );
 
   FieldPreallocMethod::enumItems = PreallocMethodEnums::items;
-  enumsByRaw.emplace( FieldPreallocMethod::RAW, & PreallocMethodEnums::instance );
-  enumsByTag.emplace( FieldPreallocMethod::KEY, & PreallocMethodEnums::instance );
+  enumsByRaw.emplace( FieldPreallocMethod::RAW_TAG, & PreallocMethodEnums::instance );
+  enumsByTag.emplace( FieldPreallocMethod::TAG, & PreallocMethodEnums::instance );
 
   FieldAllocType::enumItems = AllocTypeEnums::items;
-  enumsByRaw.emplace( FieldAllocType::RAW, & AllocTypeEnums::instance );
-  enumsByTag.emplace( FieldAllocType::KEY, & AllocTypeEnums::instance );
+  enumsByRaw.emplace( FieldAllocType::RAW_TAG, & AllocTypeEnums::instance );
+  enumsByTag.emplace( FieldAllocType::TAG, & AllocTypeEnums::instance );
 
   FieldClearingFeeIndicator::enumItems = ClearingFeeIndicatorEnums::items;
-  enumsByRaw.emplace( FieldClearingFeeIndicator::RAW, & ClearingFeeIndicatorEnums::instance );
-  enumsByTag.emplace( FieldClearingFeeIndicator::KEY, & ClearingFeeIndicatorEnums::instance );
+  enumsByRaw.emplace( FieldClearingFeeIndicator::RAW_TAG, & ClearingFeeIndicatorEnums::instance );
+  enumsByTag.emplace( FieldClearingFeeIndicator::TAG, & ClearingFeeIndicatorEnums::instance );
 
   FieldWorkingIndicator::enumItems = WorkingIndicatorEnums::items;
-  enumsByRaw.emplace( FieldWorkingIndicator::RAW, & WorkingIndicatorEnums::instance );
-  enumsByTag.emplace( FieldWorkingIndicator::KEY, & WorkingIndicatorEnums::instance );
+  enumsByRaw.emplace( FieldWorkingIndicator::RAW_TAG, & WorkingIndicatorEnums::instance );
+  enumsByTag.emplace( FieldWorkingIndicator::TAG, & WorkingIndicatorEnums::instance );
 
   FieldPriorityIndicator::enumItems = PriorityIndicatorEnums::items;
-  enumsByRaw.emplace( FieldPriorityIndicator::RAW, & PriorityIndicatorEnums::instance );
-  enumsByTag.emplace( FieldPriorityIndicator::KEY, & PriorityIndicatorEnums::instance );
+  enumsByRaw.emplace( FieldPriorityIndicator::RAW_TAG, & PriorityIndicatorEnums::instance );
+  enumsByTag.emplace( FieldPriorityIndicator::TAG, & PriorityIndicatorEnums::instance );
 
   FieldLegalConfirm::enumItems = LegalConfirmEnums::items;
-  enumsByRaw.emplace( FieldLegalConfirm::RAW, & LegalConfirmEnums::instance );
-  enumsByTag.emplace( FieldLegalConfirm::KEY, & LegalConfirmEnums::instance );
+  enumsByRaw.emplace( FieldLegalConfirm::RAW_TAG, & LegalConfirmEnums::instance );
+  enumsByTag.emplace( FieldLegalConfirm::TAG, & LegalConfirmEnums::instance );
 
   FieldQuoteRequestRejectReason::enumItems = QuoteRequestRejectReasonEnums::items;
-  enumsByRaw.emplace( FieldQuoteRequestRejectReason::RAW, & QuoteRequestRejectReasonEnums::instance );
-  enumsByTag.emplace( FieldQuoteRequestRejectReason::KEY, & QuoteRequestRejectReasonEnums::instance );
+  enumsByRaw.emplace( FieldQuoteRequestRejectReason::RAW_TAG, & QuoteRequestRejectReasonEnums::instance );
+  enumsByTag.emplace( FieldQuoteRequestRejectReason::TAG, & QuoteRequestRejectReasonEnums::instance );
 
   FieldAcctIDSource::enumItems = AcctIDSourceEnums::items;
-  enumsByRaw.emplace( FieldAcctIDSource::RAW, & AcctIDSourceEnums::instance );
-  enumsByTag.emplace( FieldAcctIDSource::KEY, & AcctIDSourceEnums::instance );
+  enumsByRaw.emplace( FieldAcctIDSource::RAW_TAG, & AcctIDSourceEnums::instance );
+  enumsByTag.emplace( FieldAcctIDSource::TAG, & AcctIDSourceEnums::instance );
 
   FieldConfirmStatus::enumItems = ConfirmStatusEnums::items;
-  enumsByRaw.emplace( FieldConfirmStatus::RAW, & ConfirmStatusEnums::instance );
-  enumsByTag.emplace( FieldConfirmStatus::KEY, & ConfirmStatusEnums::instance );
+  enumsByRaw.emplace( FieldConfirmStatus::RAW_TAG, & ConfirmStatusEnums::instance );
+  enumsByTag.emplace( FieldConfirmStatus::TAG, & ConfirmStatusEnums::instance );
 
   FieldConfirmTransType::enumItems = ConfirmTransTypeEnums::items;
-  enumsByRaw.emplace( FieldConfirmTransType::RAW, & ConfirmTransTypeEnums::instance );
-  enumsByTag.emplace( FieldConfirmTransType::KEY, & ConfirmTransTypeEnums::instance );
+  enumsByRaw.emplace( FieldConfirmTransType::RAW_TAG, & ConfirmTransTypeEnums::instance );
+  enumsByTag.emplace( FieldConfirmTransType::TAG, & ConfirmTransTypeEnums::instance );
 
   FieldDeliveryForm::enumItems = DeliveryFormEnums::items;
-  enumsByRaw.emplace( FieldDeliveryForm::RAW, & DeliveryFormEnums::instance );
-  enumsByTag.emplace( FieldDeliveryForm::KEY, & DeliveryFormEnums::instance );
+  enumsByRaw.emplace( FieldDeliveryForm::RAW_TAG, & DeliveryFormEnums::instance );
+  enumsByTag.emplace( FieldDeliveryForm::TAG, & DeliveryFormEnums::instance );
 
   FieldLegSwapType::enumItems = LegSwapTypeEnums::items;
-  enumsByRaw.emplace( FieldLegSwapType::RAW, & LegSwapTypeEnums::instance );
-  enumsByTag.emplace( FieldLegSwapType::KEY, & LegSwapTypeEnums::instance );
+  enumsByRaw.emplace( FieldLegSwapType::RAW_TAG, & LegSwapTypeEnums::instance );
+  enumsByTag.emplace( FieldLegSwapType::TAG, & LegSwapTypeEnums::instance );
 
   FieldQuotePriceType::enumItems = QuotePriceTypeEnums::items;
-  enumsByRaw.emplace( FieldQuotePriceType::RAW, & QuotePriceTypeEnums::instance );
-  enumsByTag.emplace( FieldQuotePriceType::KEY, & QuotePriceTypeEnums::instance );
+  enumsByRaw.emplace( FieldQuotePriceType::RAW_TAG, & QuotePriceTypeEnums::instance );
+  enumsByTag.emplace( FieldQuotePriceType::TAG, & QuotePriceTypeEnums::instance );
 
   FieldQuoteRespType::enumItems = QuoteRespTypeEnums::items;
-  enumsByRaw.emplace( FieldQuoteRespType::RAW, & QuoteRespTypeEnums::instance );
-  enumsByTag.emplace( FieldQuoteRespType::KEY, & QuoteRespTypeEnums::instance );
+  enumsByRaw.emplace( FieldQuoteRespType::RAW_TAG, & QuoteRespTypeEnums::instance );
+  enumsByTag.emplace( FieldQuoteRespType::TAG, & QuoteRespTypeEnums::instance );
 
   FieldPosType::enumItems = PosTypeEnums::items;
-  enumsByRaw.emplace( FieldPosType::RAW, & PosTypeEnums::instance );
-  enumsByTag.emplace( FieldPosType::KEY, & PosTypeEnums::instance );
+  enumsByRaw.emplace( FieldPosType::RAW_TAG, & PosTypeEnums::instance );
+  enumsByTag.emplace( FieldPosType::TAG, & PosTypeEnums::instance );
 
   FieldPosQtyStatus::enumItems = PosQtyStatusEnums::items;
-  enumsByRaw.emplace( FieldPosQtyStatus::RAW, & PosQtyStatusEnums::instance );
-  enumsByTag.emplace( FieldPosQtyStatus::KEY, & PosQtyStatusEnums::instance );
+  enumsByRaw.emplace( FieldPosQtyStatus::RAW_TAG, & PosQtyStatusEnums::instance );
+  enumsByTag.emplace( FieldPosQtyStatus::TAG, & PosQtyStatusEnums::instance );
 
   FieldPosAmtType::enumItems = PosAmtTypeEnums::items;
-  enumsByRaw.emplace( FieldPosAmtType::RAW, & PosAmtTypeEnums::instance );
-  enumsByTag.emplace( FieldPosAmtType::KEY, & PosAmtTypeEnums::instance );
+  enumsByRaw.emplace( FieldPosAmtType::RAW_TAG, & PosAmtTypeEnums::instance );
+  enumsByTag.emplace( FieldPosAmtType::TAG, & PosAmtTypeEnums::instance );
 
   FieldPosTransType::enumItems = PosTransTypeEnums::items;
-  enumsByRaw.emplace( FieldPosTransType::RAW, & PosTransTypeEnums::instance );
-  enumsByTag.emplace( FieldPosTransType::KEY, & PosTransTypeEnums::instance );
+  enumsByRaw.emplace( FieldPosTransType::RAW_TAG, & PosTransTypeEnums::instance );
+  enumsByTag.emplace( FieldPosTransType::TAG, & PosTransTypeEnums::instance );
 
   FieldPosMaintAction::enumItems = PosMaintActionEnums::items;
-  enumsByRaw.emplace( FieldPosMaintAction::RAW, & PosMaintActionEnums::instance );
-  enumsByTag.emplace( FieldPosMaintAction::KEY, & PosMaintActionEnums::instance );
+  enumsByRaw.emplace( FieldPosMaintAction::RAW_TAG, & PosMaintActionEnums::instance );
+  enumsByTag.emplace( FieldPosMaintAction::TAG, & PosMaintActionEnums::instance );
 
   FieldSettlSessID::enumItems = SettlSessIDEnums::items;
-  enumsByRaw.emplace( FieldSettlSessID::RAW, & SettlSessIDEnums::instance );
-  enumsByTag.emplace( FieldSettlSessID::KEY, & SettlSessIDEnums::instance );
+  enumsByRaw.emplace( FieldSettlSessID::RAW_TAG, & SettlSessIDEnums::instance );
+  enumsByTag.emplace( FieldSettlSessID::TAG, & SettlSessIDEnums::instance );
 
   FieldAdjustmentType::enumItems = AdjustmentTypeEnums::items;
-  enumsByRaw.emplace( FieldAdjustmentType::RAW, & AdjustmentTypeEnums::instance );
-  enumsByTag.emplace( FieldAdjustmentType::KEY, & AdjustmentTypeEnums::instance );
+  enumsByRaw.emplace( FieldAdjustmentType::RAW_TAG, & AdjustmentTypeEnums::instance );
+  enumsByTag.emplace( FieldAdjustmentType::TAG, & AdjustmentTypeEnums::instance );
 
   FieldPosMaintStatus::enumItems = PosMaintStatusEnums::items;
-  enumsByRaw.emplace( FieldPosMaintStatus::RAW, & PosMaintStatusEnums::instance );
-  enumsByTag.emplace( FieldPosMaintStatus::KEY, & PosMaintStatusEnums::instance );
+  enumsByRaw.emplace( FieldPosMaintStatus::RAW_TAG, & PosMaintStatusEnums::instance );
+  enumsByTag.emplace( FieldPosMaintStatus::TAG, & PosMaintStatusEnums::instance );
 
   FieldPosMaintResult::enumItems = PosMaintResultEnums::items;
-  enumsByRaw.emplace( FieldPosMaintResult::RAW, & PosMaintResultEnums::instance );
-  enumsByTag.emplace( FieldPosMaintResult::KEY, & PosMaintResultEnums::instance );
+  enumsByRaw.emplace( FieldPosMaintResult::RAW_TAG, & PosMaintResultEnums::instance );
+  enumsByTag.emplace( FieldPosMaintResult::TAG, & PosMaintResultEnums::instance );
 
   FieldPosReqType::enumItems = PosReqTypeEnums::items;
-  enumsByRaw.emplace( FieldPosReqType::RAW, & PosReqTypeEnums::instance );
-  enumsByTag.emplace( FieldPosReqType::KEY, & PosReqTypeEnums::instance );
+  enumsByRaw.emplace( FieldPosReqType::RAW_TAG, & PosReqTypeEnums::instance );
+  enumsByTag.emplace( FieldPosReqType::TAG, & PosReqTypeEnums::instance );
 
   FieldResponseTransportType::enumItems = ResponseTransportTypeEnums::items;
-  enumsByRaw.emplace( FieldResponseTransportType::RAW, & ResponseTransportTypeEnums::instance );
-  enumsByTag.emplace( FieldResponseTransportType::KEY, & ResponseTransportTypeEnums::instance );
+  enumsByRaw.emplace( FieldResponseTransportType::RAW_TAG, & ResponseTransportTypeEnums::instance );
+  enumsByTag.emplace( FieldResponseTransportType::TAG, & ResponseTransportTypeEnums::instance );
 
   FieldPosReqResult::enumItems = PosReqResultEnums::items;
-  enumsByRaw.emplace( FieldPosReqResult::RAW, & PosReqResultEnums::instance );
-  enumsByTag.emplace( FieldPosReqResult::KEY, & PosReqResultEnums::instance );
+  enumsByRaw.emplace( FieldPosReqResult::RAW_TAG, & PosReqResultEnums::instance );
+  enumsByTag.emplace( FieldPosReqResult::TAG, & PosReqResultEnums::instance );
 
   FieldPosReqStatus::enumItems = PosReqStatusEnums::items;
-  enumsByRaw.emplace( FieldPosReqStatus::RAW, & PosReqStatusEnums::instance );
-  enumsByTag.emplace( FieldPosReqStatus::KEY, & PosReqStatusEnums::instance );
+  enumsByRaw.emplace( FieldPosReqStatus::RAW_TAG, & PosReqStatusEnums::instance );
+  enumsByTag.emplace( FieldPosReqStatus::TAG, & PosReqStatusEnums::instance );
 
   FieldSettlPriceType::enumItems = SettlPriceTypeEnums::items;
-  enumsByRaw.emplace( FieldSettlPriceType::RAW, & SettlPriceTypeEnums::instance );
-  enumsByTag.emplace( FieldSettlPriceType::KEY, & SettlPriceTypeEnums::instance );
+  enumsByRaw.emplace( FieldSettlPriceType::RAW_TAG, & SettlPriceTypeEnums::instance );
+  enumsByTag.emplace( FieldSettlPriceType::TAG, & SettlPriceTypeEnums::instance );
 
   FieldAssignmentMethod::enumItems = AssignmentMethodEnums::items;
-  enumsByRaw.emplace( FieldAssignmentMethod::RAW, & AssignmentMethodEnums::instance );
-  enumsByTag.emplace( FieldAssignmentMethod::KEY, & AssignmentMethodEnums::instance );
+  enumsByRaw.emplace( FieldAssignmentMethod::RAW_TAG, & AssignmentMethodEnums::instance );
+  enumsByTag.emplace( FieldAssignmentMethod::TAG, & AssignmentMethodEnums::instance );
 
   FieldExerciseMethod::enumItems = ExerciseMethodEnums::items;
-  enumsByRaw.emplace( FieldExerciseMethod::RAW, & ExerciseMethodEnums::instance );
-  enumsByTag.emplace( FieldExerciseMethod::KEY, & ExerciseMethodEnums::instance );
+  enumsByRaw.emplace( FieldExerciseMethod::RAW_TAG, & ExerciseMethodEnums::instance );
+  enumsByTag.emplace( FieldExerciseMethod::TAG, & ExerciseMethodEnums::instance );
 
   FieldTradeRequestResult::enumItems = TradeRequestResultEnums::items;
-  enumsByRaw.emplace( FieldTradeRequestResult::RAW, & TradeRequestResultEnums::instance );
-  enumsByTag.emplace( FieldTradeRequestResult::KEY, & TradeRequestResultEnums::instance );
+  enumsByRaw.emplace( FieldTradeRequestResult::RAW_TAG, & TradeRequestResultEnums::instance );
+  enumsByTag.emplace( FieldTradeRequestResult::TAG, & TradeRequestResultEnums::instance );
 
   FieldTradeRequestStatus::enumItems = TradeRequestStatusEnums::items;
-  enumsByRaw.emplace( FieldTradeRequestStatus::RAW, & TradeRequestStatusEnums::instance );
-  enumsByTag.emplace( FieldTradeRequestStatus::KEY, & TradeRequestStatusEnums::instance );
+  enumsByRaw.emplace( FieldTradeRequestStatus::RAW_TAG, & TradeRequestStatusEnums::instance );
+  enumsByTag.emplace( FieldTradeRequestStatus::TAG, & TradeRequestStatusEnums::instance );
 
   FieldTradeReportRejectReason::enumItems = TradeReportRejectReasonEnums::items;
-  enumsByRaw.emplace( FieldTradeReportRejectReason::RAW, & TradeReportRejectReasonEnums::instance );
-  enumsByTag.emplace( FieldTradeReportRejectReason::KEY, & TradeReportRejectReasonEnums::instance );
+  enumsByRaw.emplace( FieldTradeReportRejectReason::RAW_TAG, & TradeReportRejectReasonEnums::instance );
+  enumsByTag.emplace( FieldTradeReportRejectReason::TAG, & TradeReportRejectReasonEnums::instance );
 
   FieldSideMultiLegReportingType::enumItems = SideMultiLegReportingTypeEnums::items;
-  enumsByRaw.emplace( FieldSideMultiLegReportingType::RAW, & SideMultiLegReportingTypeEnums::instance );
-  enumsByTag.emplace( FieldSideMultiLegReportingType::KEY, & SideMultiLegReportingTypeEnums::instance );
+  enumsByRaw.emplace( FieldSideMultiLegReportingType::RAW_TAG, & SideMultiLegReportingTypeEnums::instance );
+  enumsByTag.emplace( FieldSideMultiLegReportingType::TAG, & SideMultiLegReportingTypeEnums::instance );
 
   FieldTrdRegTimestampType::enumItems = TrdRegTimestampTypeEnums::items;
-  enumsByRaw.emplace( FieldTrdRegTimestampType::RAW, & TrdRegTimestampTypeEnums::instance );
-  enumsByTag.emplace( FieldTrdRegTimestampType::KEY, & TrdRegTimestampTypeEnums::instance );
+  enumsByRaw.emplace( FieldTrdRegTimestampType::RAW_TAG, & TrdRegTimestampTypeEnums::instance );
+  enumsByTag.emplace( FieldTrdRegTimestampType::TAG, & TrdRegTimestampTypeEnums::instance );
 
   FieldConfirmType::enumItems = ConfirmTypeEnums::items;
-  enumsByRaw.emplace( FieldConfirmType::RAW, & ConfirmTypeEnums::instance );
-  enumsByTag.emplace( FieldConfirmType::KEY, & ConfirmTypeEnums::instance );
+  enumsByRaw.emplace( FieldConfirmType::RAW_TAG, & ConfirmTypeEnums::instance );
+  enumsByTag.emplace( FieldConfirmType::TAG, & ConfirmTypeEnums::instance );
 
   FieldConfirmRejReason::enumItems = ConfirmRejReasonEnums::items;
-  enumsByRaw.emplace( FieldConfirmRejReason::RAW, & ConfirmRejReasonEnums::instance );
-  enumsByTag.emplace( FieldConfirmRejReason::KEY, & ConfirmRejReasonEnums::instance );
+  enumsByRaw.emplace( FieldConfirmRejReason::RAW_TAG, & ConfirmRejReasonEnums::instance );
+  enumsByTag.emplace( FieldConfirmRejReason::TAG, & ConfirmRejReasonEnums::instance );
 
   FieldBookingType::enumItems = BookingTypeEnums::items;
-  enumsByRaw.emplace( FieldBookingType::RAW, & BookingTypeEnums::instance );
-  enumsByTag.emplace( FieldBookingType::KEY, & BookingTypeEnums::instance );
+  enumsByRaw.emplace( FieldBookingType::RAW_TAG, & BookingTypeEnums::instance );
+  enumsByTag.emplace( FieldBookingType::TAG, & BookingTypeEnums::instance );
 
   FieldAllocSettlInstType::enumItems = AllocSettlInstTypeEnums::items;
-  enumsByRaw.emplace( FieldAllocSettlInstType::RAW, & AllocSettlInstTypeEnums::instance );
-  enumsByTag.emplace( FieldAllocSettlInstType::KEY, & AllocSettlInstTypeEnums::instance );
+  enumsByRaw.emplace( FieldAllocSettlInstType::RAW_TAG, & AllocSettlInstTypeEnums::instance );
+  enumsByTag.emplace( FieldAllocSettlInstType::TAG, & AllocSettlInstTypeEnums::instance );
 
   FieldDlvyInstType::enumItems = DlvyInstTypeEnums::items;
-  enumsByRaw.emplace( FieldDlvyInstType::RAW, & DlvyInstTypeEnums::instance );
-  enumsByTag.emplace( FieldDlvyInstType::KEY, & DlvyInstTypeEnums::instance );
+  enumsByRaw.emplace( FieldDlvyInstType::RAW_TAG, & DlvyInstTypeEnums::instance );
+  enumsByTag.emplace( FieldDlvyInstType::TAG, & DlvyInstTypeEnums::instance );
 
   FieldTerminationType::enumItems = TerminationTypeEnums::items;
-  enumsByRaw.emplace( FieldTerminationType::RAW, & TerminationTypeEnums::instance );
-  enumsByTag.emplace( FieldTerminationType::KEY, & TerminationTypeEnums::instance );
+  enumsByRaw.emplace( FieldTerminationType::RAW_TAG, & TerminationTypeEnums::instance );
+  enumsByTag.emplace( FieldTerminationType::TAG, & TerminationTypeEnums::instance );
 
   FieldSettlInstReqRejCode::enumItems = SettlInstReqRejCodeEnums::items;
-  enumsByRaw.emplace( FieldSettlInstReqRejCode::RAW, & SettlInstReqRejCodeEnums::instance );
-  enumsByTag.emplace( FieldSettlInstReqRejCode::KEY, & SettlInstReqRejCodeEnums::instance );
+  enumsByRaw.emplace( FieldSettlInstReqRejCode::RAW_TAG, & SettlInstReqRejCodeEnums::instance );
+  enumsByTag.emplace( FieldSettlInstReqRejCode::TAG, & SettlInstReqRejCodeEnums::instance );
 
   FieldAllocReportType::enumItems = AllocReportTypeEnums::items;
-  enumsByRaw.emplace( FieldAllocReportType::RAW, & AllocReportTypeEnums::instance );
-  enumsByTag.emplace( FieldAllocReportType::KEY, & AllocReportTypeEnums::instance );
+  enumsByRaw.emplace( FieldAllocReportType::RAW_TAG, & AllocReportTypeEnums::instance );
+  enumsByTag.emplace( FieldAllocReportType::TAG, & AllocReportTypeEnums::instance );
 
   FieldAllocCancReplaceReason::enumItems = AllocCancReplaceReasonEnums::items;
-  enumsByRaw.emplace( FieldAllocCancReplaceReason::RAW, & AllocCancReplaceReasonEnums::instance );
-  enumsByTag.emplace( FieldAllocCancReplaceReason::KEY, & AllocCancReplaceReasonEnums::instance );
+  enumsByRaw.emplace( FieldAllocCancReplaceReason::RAW_TAG, & AllocCancReplaceReasonEnums::instance );
+  enumsByTag.emplace( FieldAllocCancReplaceReason::TAG, & AllocCancReplaceReasonEnums::instance );
 
   FieldAllocAccountType::enumItems = AllocAccountTypeEnums::items;
-  enumsByRaw.emplace( FieldAllocAccountType::RAW, & AllocAccountTypeEnums::instance );
-  enumsByTag.emplace( FieldAllocAccountType::KEY, & AllocAccountTypeEnums::instance );
+  enumsByRaw.emplace( FieldAllocAccountType::RAW_TAG, & AllocAccountTypeEnums::instance );
+  enumsByTag.emplace( FieldAllocAccountType::TAG, & AllocAccountTypeEnums::instance );
 
   FieldPartySubIDType::enumItems = PartySubIDTypeEnums::items;
-  enumsByRaw.emplace( FieldPartySubIDType::RAW, & PartySubIDTypeEnums::instance );
-  enumsByTag.emplace( FieldPartySubIDType::KEY, & PartySubIDTypeEnums::instance );
+  enumsByRaw.emplace( FieldPartySubIDType::RAW_TAG, & PartySubIDTypeEnums::instance );
+  enumsByTag.emplace( FieldPartySubIDType::TAG, & PartySubIDTypeEnums::instance );
 
   FieldAllocIntermedReqType::enumItems = AllocIntermedReqTypeEnums::items;
-  enumsByRaw.emplace( FieldAllocIntermedReqType::RAW, & AllocIntermedReqTypeEnums::instance );
-  enumsByTag.emplace( FieldAllocIntermedReqType::KEY, & AllocIntermedReqTypeEnums::instance );
+  enumsByRaw.emplace( FieldAllocIntermedReqType::RAW_TAG, & AllocIntermedReqTypeEnums::instance );
+  enumsByTag.emplace( FieldAllocIntermedReqType::TAG, & AllocIntermedReqTypeEnums::instance );
 
   FieldApplQueueResolution::enumItems = ApplQueueResolutionEnums::items;
-  enumsByRaw.emplace( FieldApplQueueResolution::RAW, & ApplQueueResolutionEnums::instance );
-  enumsByTag.emplace( FieldApplQueueResolution::KEY, & ApplQueueResolutionEnums::instance );
+  enumsByRaw.emplace( FieldApplQueueResolution::RAW_TAG, & ApplQueueResolutionEnums::instance );
+  enumsByTag.emplace( FieldApplQueueResolution::TAG, & ApplQueueResolutionEnums::instance );
 
   FieldApplQueueAction::enumItems = ApplQueueActionEnums::items;
-  enumsByRaw.emplace( FieldApplQueueAction::RAW, & ApplQueueActionEnums::instance );
-  enumsByTag.emplace( FieldApplQueueAction::KEY, & ApplQueueActionEnums::instance );
+  enumsByRaw.emplace( FieldApplQueueAction::RAW_TAG, & ApplQueueActionEnums::instance );
+  enumsByTag.emplace( FieldApplQueueAction::TAG, & ApplQueueActionEnums::instance );
 
   FieldAvgPxIndicator::enumItems = AvgPxIndicatorEnums::items;
-  enumsByRaw.emplace( FieldAvgPxIndicator::RAW, & AvgPxIndicatorEnums::instance );
-  enumsByTag.emplace( FieldAvgPxIndicator::KEY, & AvgPxIndicatorEnums::instance );
+  enumsByRaw.emplace( FieldAvgPxIndicator::RAW_TAG, & AvgPxIndicatorEnums::instance );
+  enumsByTag.emplace( FieldAvgPxIndicator::TAG, & AvgPxIndicatorEnums::instance );
 
   FieldTradeAllocIndicator::enumItems = TradeAllocIndicatorEnums::items;
-  enumsByRaw.emplace( FieldTradeAllocIndicator::RAW, & TradeAllocIndicatorEnums::instance );
-  enumsByTag.emplace( FieldTradeAllocIndicator::KEY, & TradeAllocIndicatorEnums::instance );
+  enumsByRaw.emplace( FieldTradeAllocIndicator::RAW_TAG, & TradeAllocIndicatorEnums::instance );
+  enumsByTag.emplace( FieldTradeAllocIndicator::TAG, & TradeAllocIndicatorEnums::instance );
 
   FieldExpirationCycle::enumItems = ExpirationCycleEnums::items;
-  enumsByRaw.emplace( FieldExpirationCycle::RAW, & ExpirationCycleEnums::instance );
-  enumsByTag.emplace( FieldExpirationCycle::KEY, & ExpirationCycleEnums::instance );
+  enumsByRaw.emplace( FieldExpirationCycle::RAW_TAG, & ExpirationCycleEnums::instance );
+  enumsByTag.emplace( FieldExpirationCycle::TAG, & ExpirationCycleEnums::instance );
 
   FieldTrdType::enumItems = TrdTypeEnums::items;
-  enumsByRaw.emplace( FieldTrdType::RAW, & TrdTypeEnums::instance );
-  enumsByTag.emplace( FieldTrdType::KEY, & TrdTypeEnums::instance );
+  enumsByRaw.emplace( FieldTrdType::RAW_TAG, & TrdTypeEnums::instance );
+  enumsByTag.emplace( FieldTrdType::TAG, & TrdTypeEnums::instance );
 
   FieldPegMoveType::enumItems = PegMoveTypeEnums::items;
-  enumsByRaw.emplace( FieldPegMoveType::RAW, & PegMoveTypeEnums::instance );
-  enumsByTag.emplace( FieldPegMoveType::KEY, & PegMoveTypeEnums::instance );
+  enumsByRaw.emplace( FieldPegMoveType::RAW_TAG, & PegMoveTypeEnums::instance );
+  enumsByTag.emplace( FieldPegMoveType::TAG, & PegMoveTypeEnums::instance );
 
   FieldPegOffsetType::enumItems = PegOffsetTypeEnums::items;
-  enumsByRaw.emplace( FieldPegOffsetType::RAW, & PegOffsetTypeEnums::instance );
-  enumsByTag.emplace( FieldPegOffsetType::KEY, & PegOffsetTypeEnums::instance );
+  enumsByRaw.emplace( FieldPegOffsetType::RAW_TAG, & PegOffsetTypeEnums::instance );
+  enumsByTag.emplace( FieldPegOffsetType::TAG, & PegOffsetTypeEnums::instance );
 
   FieldPegLimitType::enumItems = PegLimitTypeEnums::items;
-  enumsByRaw.emplace( FieldPegLimitType::RAW, & PegLimitTypeEnums::instance );
-  enumsByTag.emplace( FieldPegLimitType::KEY, & PegLimitTypeEnums::instance );
+  enumsByRaw.emplace( FieldPegLimitType::RAW_TAG, & PegLimitTypeEnums::instance );
+  enumsByTag.emplace( FieldPegLimitType::TAG, & PegLimitTypeEnums::instance );
 
   FieldPegRoundDirection::enumItems = PegRoundDirectionEnums::items;
-  enumsByRaw.emplace( FieldPegRoundDirection::RAW, & PegRoundDirectionEnums::instance );
-  enumsByTag.emplace( FieldPegRoundDirection::KEY, & PegRoundDirectionEnums::instance );
+  enumsByRaw.emplace( FieldPegRoundDirection::RAW_TAG, & PegRoundDirectionEnums::instance );
+  enumsByTag.emplace( FieldPegRoundDirection::TAG, & PegRoundDirectionEnums::instance );
 
   FieldPegScope::enumItems = PegScopeEnums::items;
-  enumsByRaw.emplace( FieldPegScope::RAW, & PegScopeEnums::instance );
-  enumsByTag.emplace( FieldPegScope::KEY, & PegScopeEnums::instance );
+  enumsByRaw.emplace( FieldPegScope::RAW_TAG, & PegScopeEnums::instance );
+  enumsByTag.emplace( FieldPegScope::TAG, & PegScopeEnums::instance );
 
   FieldDiscretionMoveType::enumItems = DiscretionMoveTypeEnums::items;
-  enumsByRaw.emplace( FieldDiscretionMoveType::RAW, & DiscretionMoveTypeEnums::instance );
-  enumsByTag.emplace( FieldDiscretionMoveType::KEY, & DiscretionMoveTypeEnums::instance );
+  enumsByRaw.emplace( FieldDiscretionMoveType::RAW_TAG, & DiscretionMoveTypeEnums::instance );
+  enumsByTag.emplace( FieldDiscretionMoveType::TAG, & DiscretionMoveTypeEnums::instance );
 
   FieldDiscretionOffsetType::enumItems = DiscretionOffsetTypeEnums::items;
-  enumsByRaw.emplace( FieldDiscretionOffsetType::RAW, & DiscretionOffsetTypeEnums::instance );
-  enumsByTag.emplace( FieldDiscretionOffsetType::KEY, & DiscretionOffsetTypeEnums::instance );
+  enumsByRaw.emplace( FieldDiscretionOffsetType::RAW_TAG, & DiscretionOffsetTypeEnums::instance );
+  enumsByTag.emplace( FieldDiscretionOffsetType::TAG, & DiscretionOffsetTypeEnums::instance );
 
   FieldDiscretionLimitType::enumItems = DiscretionLimitTypeEnums::items;
-  enumsByRaw.emplace( FieldDiscretionLimitType::RAW, & DiscretionLimitTypeEnums::instance );
-  enumsByTag.emplace( FieldDiscretionLimitType::KEY, & DiscretionLimitTypeEnums::instance );
+  enumsByRaw.emplace( FieldDiscretionLimitType::RAW_TAG, & DiscretionLimitTypeEnums::instance );
+  enumsByTag.emplace( FieldDiscretionLimitType::TAG, & DiscretionLimitTypeEnums::instance );
 
   FieldDiscretionRoundDirection::enumItems = DiscretionRoundDirectionEnums::items;
-  enumsByRaw.emplace( FieldDiscretionRoundDirection::RAW, & DiscretionRoundDirectionEnums::instance );
-  enumsByTag.emplace( FieldDiscretionRoundDirection::KEY, & DiscretionRoundDirectionEnums::instance );
+  enumsByRaw.emplace( FieldDiscretionRoundDirection::RAW_TAG, & DiscretionRoundDirectionEnums::instance );
+  enumsByTag.emplace( FieldDiscretionRoundDirection::TAG, & DiscretionRoundDirectionEnums::instance );
 
   FieldDiscretionScope::enumItems = DiscretionScopeEnums::items;
-  enumsByRaw.emplace( FieldDiscretionScope::RAW, & DiscretionScopeEnums::instance );
-  enumsByTag.emplace( FieldDiscretionScope::KEY, & DiscretionScopeEnums::instance );
+  enumsByRaw.emplace( FieldDiscretionScope::RAW_TAG, & DiscretionScopeEnums::instance );
+  enumsByTag.emplace( FieldDiscretionScope::TAG, & DiscretionScopeEnums::instance );
 
   FieldTargetStrategy::enumItems = TargetStrategyEnums::items;
-  enumsByRaw.emplace( FieldTargetStrategy::RAW, & TargetStrategyEnums::instance );
-  enumsByTag.emplace( FieldTargetStrategy::KEY, & TargetStrategyEnums::instance );
+  enumsByRaw.emplace( FieldTargetStrategy::RAW_TAG, & TargetStrategyEnums::instance );
+  enumsByTag.emplace( FieldTargetStrategy::TAG, & TargetStrategyEnums::instance );
 
   FieldLastLiquidityInd::enumItems = LastLiquidityIndEnums::items;
-  enumsByRaw.emplace( FieldLastLiquidityInd::RAW, & LastLiquidityIndEnums::instance );
-  enumsByTag.emplace( FieldLastLiquidityInd::KEY, & LastLiquidityIndEnums::instance );
+  enumsByRaw.emplace( FieldLastLiquidityInd::RAW_TAG, & LastLiquidityIndEnums::instance );
+  enumsByTag.emplace( FieldLastLiquidityInd::TAG, & LastLiquidityIndEnums::instance );
 
   FieldPublishTrdIndicator::enumItems = PublishTrdIndicatorEnums::items;
-  enumsByRaw.emplace( FieldPublishTrdIndicator::RAW, & PublishTrdIndicatorEnums::instance );
-  enumsByTag.emplace( FieldPublishTrdIndicator::KEY, & PublishTrdIndicatorEnums::instance );
+  enumsByRaw.emplace( FieldPublishTrdIndicator::RAW_TAG, & PublishTrdIndicatorEnums::instance );
+  enumsByTag.emplace( FieldPublishTrdIndicator::TAG, & PublishTrdIndicatorEnums::instance );
 
   FieldShortSaleReason::enumItems = ShortSaleReasonEnums::items;
-  enumsByRaw.emplace( FieldShortSaleReason::RAW, & ShortSaleReasonEnums::instance );
-  enumsByTag.emplace( FieldShortSaleReason::KEY, & ShortSaleReasonEnums::instance );
+  enumsByRaw.emplace( FieldShortSaleReason::RAW_TAG, & ShortSaleReasonEnums::instance );
+  enumsByTag.emplace( FieldShortSaleReason::TAG, & ShortSaleReasonEnums::instance );
 
   FieldQtyType::enumItems = QtyTypeEnums::items;
-  enumsByRaw.emplace( FieldQtyType::RAW, & QtyTypeEnums::instance );
-  enumsByTag.emplace( FieldQtyType::KEY, & QtyTypeEnums::instance );
+  enumsByRaw.emplace( FieldQtyType::RAW_TAG, & QtyTypeEnums::instance );
+  enumsByTag.emplace( FieldQtyType::TAG, & QtyTypeEnums::instance );
 
   FieldTradeReportType::enumItems = TradeReportTypeEnums::items;
-  enumsByRaw.emplace( FieldTradeReportType::RAW, & TradeReportTypeEnums::instance );
-  enumsByTag.emplace( FieldTradeReportType::KEY, & TradeReportTypeEnums::instance );
+  enumsByRaw.emplace( FieldTradeReportType::RAW_TAG, & TradeReportTypeEnums::instance );
+  enumsByTag.emplace( FieldTradeReportType::TAG, & TradeReportTypeEnums::instance );
 
   FieldAllocNoOrdersType::enumItems = AllocNoOrdersTypeEnums::items;
-  enumsByRaw.emplace( FieldAllocNoOrdersType::RAW, & AllocNoOrdersTypeEnums::instance );
-  enumsByTag.emplace( FieldAllocNoOrdersType::KEY, & AllocNoOrdersTypeEnums::instance );
+  enumsByRaw.emplace( FieldAllocNoOrdersType::RAW_TAG, & AllocNoOrdersTypeEnums::instance );
+  enumsByTag.emplace( FieldAllocNoOrdersType::TAG, & AllocNoOrdersTypeEnums::instance );
 
   FieldEventType::enumItems = EventTypeEnums::items;
-  enumsByRaw.emplace( FieldEventType::RAW, & EventTypeEnums::instance );
-  enumsByTag.emplace( FieldEventType::KEY, & EventTypeEnums::instance );
+  enumsByRaw.emplace( FieldEventType::RAW_TAG, & EventTypeEnums::instance );
+  enumsByTag.emplace( FieldEventType::TAG, & EventTypeEnums::instance );
 
   FieldInstrAttribType::enumItems = InstrAttribTypeEnums::items;
-  enumsByRaw.emplace( FieldInstrAttribType::RAW, & InstrAttribTypeEnums::instance );
-  enumsByTag.emplace( FieldInstrAttribType::KEY, & InstrAttribTypeEnums::instance );
+  enumsByRaw.emplace( FieldInstrAttribType::RAW_TAG, & InstrAttribTypeEnums::instance );
+  enumsByTag.emplace( FieldInstrAttribType::TAG, & InstrAttribTypeEnums::instance );
 
   FieldCPProgram::enumItems = CPProgramEnums::items;
-  enumsByRaw.emplace( FieldCPProgram::RAW, & CPProgramEnums::instance );
-  enumsByTag.emplace( FieldCPProgram::KEY, & CPProgramEnums::instance );
+  enumsByRaw.emplace( FieldCPProgram::RAW_TAG, & CPProgramEnums::instance );
+  enumsByTag.emplace( FieldCPProgram::TAG, & CPProgramEnums::instance );
 
   FieldMiscFeeBasis::enumItems = MiscFeeBasisEnums::items;
-  enumsByRaw.emplace( FieldMiscFeeBasis::RAW, & MiscFeeBasisEnums::instance );
-  enumsByTag.emplace( FieldMiscFeeBasis::KEY, & MiscFeeBasisEnums::instance );
+  enumsByRaw.emplace( FieldMiscFeeBasis::RAW_TAG, & MiscFeeBasisEnums::instance );
+  enumsByTag.emplace( FieldMiscFeeBasis::TAG, & MiscFeeBasisEnums::instance );
 
   FieldLastFragment::enumItems = LastFragmentEnums::items;
-  enumsByRaw.emplace( FieldLastFragment::RAW, & LastFragmentEnums::instance );
-  enumsByTag.emplace( FieldLastFragment::KEY, & LastFragmentEnums::instance );
+  enumsByRaw.emplace( FieldLastFragment::RAW_TAG, & LastFragmentEnums::instance );
+  enumsByTag.emplace( FieldLastFragment::TAG, & LastFragmentEnums::instance );
 
   FieldCollAsgnReason::enumItems = CollAsgnReasonEnums::items;
-  enumsByRaw.emplace( FieldCollAsgnReason::RAW, & CollAsgnReasonEnums::instance );
-  enumsByTag.emplace( FieldCollAsgnReason::KEY, & CollAsgnReasonEnums::instance );
+  enumsByRaw.emplace( FieldCollAsgnReason::RAW_TAG, & CollAsgnReasonEnums::instance );
+  enumsByTag.emplace( FieldCollAsgnReason::TAG, & CollAsgnReasonEnums::instance );
 
   FieldCollInquiryQualifier::enumItems = CollInquiryQualifierEnums::items;
-  enumsByRaw.emplace( FieldCollInquiryQualifier::RAW, & CollInquiryQualifierEnums::instance );
-  enumsByTag.emplace( FieldCollInquiryQualifier::KEY, & CollInquiryQualifierEnums::instance );
+  enumsByRaw.emplace( FieldCollInquiryQualifier::RAW_TAG, & CollInquiryQualifierEnums::instance );
+  enumsByTag.emplace( FieldCollInquiryQualifier::TAG, & CollInquiryQualifierEnums::instance );
 
   FieldCollAsgnTransType::enumItems = CollAsgnTransTypeEnums::items;
-  enumsByRaw.emplace( FieldCollAsgnTransType::RAW, & CollAsgnTransTypeEnums::instance );
-  enumsByTag.emplace( FieldCollAsgnTransType::KEY, & CollAsgnTransTypeEnums::instance );
+  enumsByRaw.emplace( FieldCollAsgnTransType::RAW_TAG, & CollAsgnTransTypeEnums::instance );
+  enumsByTag.emplace( FieldCollAsgnTransType::TAG, & CollAsgnTransTypeEnums::instance );
 
   FieldCollAsgnRespType::enumItems = CollAsgnRespTypeEnums::items;
-  enumsByRaw.emplace( FieldCollAsgnRespType::RAW, & CollAsgnRespTypeEnums::instance );
-  enumsByTag.emplace( FieldCollAsgnRespType::KEY, & CollAsgnRespTypeEnums::instance );
+  enumsByRaw.emplace( FieldCollAsgnRespType::RAW_TAG, & CollAsgnRespTypeEnums::instance );
+  enumsByTag.emplace( FieldCollAsgnRespType::TAG, & CollAsgnRespTypeEnums::instance );
 
   FieldCollAsgnRejectReason::enumItems = CollAsgnRejectReasonEnums::items;
-  enumsByRaw.emplace( FieldCollAsgnRejectReason::RAW, & CollAsgnRejectReasonEnums::instance );
-  enumsByTag.emplace( FieldCollAsgnRejectReason::KEY, & CollAsgnRejectReasonEnums::instance );
+  enumsByRaw.emplace( FieldCollAsgnRejectReason::RAW_TAG, & CollAsgnRejectReasonEnums::instance );
+  enumsByTag.emplace( FieldCollAsgnRejectReason::TAG, & CollAsgnRejectReasonEnums::instance );
 
   FieldCollStatus::enumItems = CollStatusEnums::items;
-  enumsByRaw.emplace( FieldCollStatus::RAW, & CollStatusEnums::instance );
-  enumsByTag.emplace( FieldCollStatus::KEY, & CollStatusEnums::instance );
+  enumsByRaw.emplace( FieldCollStatus::RAW_TAG, & CollStatusEnums::instance );
+  enumsByTag.emplace( FieldCollStatus::TAG, & CollStatusEnums::instance );
 
   FieldDeliveryType::enumItems = DeliveryTypeEnums::items;
-  enumsByRaw.emplace( FieldDeliveryType::RAW, & DeliveryTypeEnums::instance );
-  enumsByTag.emplace( FieldDeliveryType::KEY, & DeliveryTypeEnums::instance );
+  enumsByRaw.emplace( FieldDeliveryType::RAW_TAG, & DeliveryTypeEnums::instance );
+  enumsByTag.emplace( FieldDeliveryType::TAG, & DeliveryTypeEnums::instance );
 
   FieldUserRequestType::enumItems = UserRequestTypeEnums::items;
-  enumsByRaw.emplace( FieldUserRequestType::RAW, & UserRequestTypeEnums::instance );
-  enumsByTag.emplace( FieldUserRequestType::KEY, & UserRequestTypeEnums::instance );
+  enumsByRaw.emplace( FieldUserRequestType::RAW_TAG, & UserRequestTypeEnums::instance );
+  enumsByTag.emplace( FieldUserRequestType::TAG, & UserRequestTypeEnums::instance );
 
   FieldUserStatus::enumItems = UserStatusEnums::items;
-  enumsByRaw.emplace( FieldUserStatus::RAW, & UserStatusEnums::instance );
-  enumsByTag.emplace( FieldUserStatus::KEY, & UserStatusEnums::instance );
+  enumsByRaw.emplace( FieldUserStatus::RAW_TAG, & UserStatusEnums::instance );
+  enumsByTag.emplace( FieldUserStatus::TAG, & UserStatusEnums::instance );
 
   FieldStatusValue::enumItems = StatusValueEnums::items;
-  enumsByRaw.emplace( FieldStatusValue::RAW, & StatusValueEnums::instance );
-  enumsByTag.emplace( FieldStatusValue::KEY, & StatusValueEnums::instance );
+  enumsByRaw.emplace( FieldStatusValue::RAW_TAG, & StatusValueEnums::instance );
+  enumsByTag.emplace( FieldStatusValue::TAG, & StatusValueEnums::instance );
 
   FieldNetworkRequestType::enumItems = NetworkRequestTypeEnums::items;
-  enumsByRaw.emplace( FieldNetworkRequestType::RAW, & NetworkRequestTypeEnums::instance );
-  enumsByTag.emplace( FieldNetworkRequestType::KEY, & NetworkRequestTypeEnums::instance );
+  enumsByRaw.emplace( FieldNetworkRequestType::RAW_TAG, & NetworkRequestTypeEnums::instance );
+  enumsByTag.emplace( FieldNetworkRequestType::TAG, & NetworkRequestTypeEnums::instance );
 
   FieldNetworkStatusResponseType::enumItems = NetworkStatusResponseTypeEnums::items;
-  enumsByRaw.emplace( FieldNetworkStatusResponseType::RAW, & NetworkStatusResponseTypeEnums::instance );
-  enumsByTag.emplace( FieldNetworkStatusResponseType::KEY, & NetworkStatusResponseTypeEnums::instance );
+  enumsByRaw.emplace( FieldNetworkStatusResponseType::RAW_TAG, & NetworkStatusResponseTypeEnums::instance );
+  enumsByTag.emplace( FieldNetworkStatusResponseType::TAG, & NetworkStatusResponseTypeEnums::instance );
 
   FieldTrdRptStatus::enumItems = TrdRptStatusEnums::items;
-  enumsByRaw.emplace( FieldTrdRptStatus::RAW, & TrdRptStatusEnums::instance );
-  enumsByTag.emplace( FieldTrdRptStatus::KEY, & TrdRptStatusEnums::instance );
+  enumsByRaw.emplace( FieldTrdRptStatus::RAW_TAG, & TrdRptStatusEnums::instance );
+  enumsByTag.emplace( FieldTrdRptStatus::TAG, & TrdRptStatusEnums::instance );
 
   FieldAffirmStatus::enumItems = AffirmStatusEnums::items;
-  enumsByRaw.emplace( FieldAffirmStatus::RAW, & AffirmStatusEnums::instance );
-  enumsByTag.emplace( FieldAffirmStatus::KEY, & AffirmStatusEnums::instance );
+  enumsByRaw.emplace( FieldAffirmStatus::RAW_TAG, & AffirmStatusEnums::instance );
+  enumsByTag.emplace( FieldAffirmStatus::TAG, & AffirmStatusEnums::instance );
 
   FieldCollAction::enumItems = CollActionEnums::items;
-  enumsByRaw.emplace( FieldCollAction::RAW, & CollActionEnums::instance );
-  enumsByTag.emplace( FieldCollAction::KEY, & CollActionEnums::instance );
+  enumsByRaw.emplace( FieldCollAction::RAW_TAG, & CollActionEnums::instance );
+  enumsByTag.emplace( FieldCollAction::TAG, & CollActionEnums::instance );
 
   FieldCollInquiryStatus::enumItems = CollInquiryStatusEnums::items;
-  enumsByRaw.emplace( FieldCollInquiryStatus::RAW, & CollInquiryStatusEnums::instance );
-  enumsByTag.emplace( FieldCollInquiryStatus::KEY, & CollInquiryStatusEnums::instance );
+  enumsByRaw.emplace( FieldCollInquiryStatus::RAW_TAG, & CollInquiryStatusEnums::instance );
+  enumsByTag.emplace( FieldCollInquiryStatus::TAG, & CollInquiryStatusEnums::instance );
 
   FieldCollInquiryResult::enumItems = CollInquiryResultEnums::items;
-  enumsByRaw.emplace( FieldCollInquiryResult::RAW, & CollInquiryResultEnums::instance );
-  enumsByTag.emplace( FieldCollInquiryResult::KEY, & CollInquiryResultEnums::instance );
+  enumsByRaw.emplace( FieldCollInquiryResult::RAW_TAG, & CollInquiryResultEnums::instance );
+  enumsByTag.emplace( FieldCollInquiryResult::TAG, & CollInquiryResultEnums::instance );
   return 1;
 }
 
@@ -18782,6 +18854,7 @@ volatile int initIndicator = initStatics();
 #pragma GCC pop_options
 // end of Fields.cxx
 
+// May be used to check whther raw_enum_t to hold uniquely all enum items for each enum field.
 void checkEnums()
 {
     for( auto it : enumsByRaw )

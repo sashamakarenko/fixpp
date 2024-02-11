@@ -100,11 +100,11 @@ int main( int args, const char ** argv )
     const char * fix = FIX_BUFFER_LARGE_EXEC_REPORT;
     while( fix[pos] )
     {
-        raw_tag_t raw = nextRawTag( fix+pos, pos );
+        raw_tag_t raw = loadRawTag( fix+pos, pos );
         const char * tagName = RAW_TAG_TO_NAME.at( raw );
         std::cout << tagName << " = " << sohstr( fix+pos ) << "\n";
         gotoNextField(fix,pos);
-        if( raw == FieldCheckSum::RAW ) break;
+        if( raw == FieldCheckSum::RAW_TAG ) break;
     }
 
     std::cout << "\n\n -- Pretty Printing --" << std::endl;

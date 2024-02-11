@@ -46,10 +46,10 @@ offset_t Group##NAME::scan( Array & arr, const char * fix, unsigned len ){\
 <nl> while( pos < (int)len ) { \
 <n1>  bool isGroupStart = false;\
 <n1>  prev = pos;\
-<n1>  raw_tag_t tag = nextRawTag( fix+pos, pos );\
+<n1>  raw_tag_t tag = loadRawTag( fix+pos, pos );\
 <n1>  gpos = pos - (groupBuf - fix);\
 <n1>  switch( tag ){\
-<n1>  case Field##FIRST_FIELD::RAW :\
+<n1>  case Field##FIRST_FIELD::RAW_TAG :\
 <n2>    FIXPP_PRINT_FIELD(FIRST_FIELD)\
 <n2>    group = groupCount < arr.size() ? & arr[ groupCount ] : & arr.emplace_back();\
 <n2>    group->field##FIRST_FIELD.offset = pos - prev;\
@@ -59,13 +59,13 @@ offset_t Group##NAME::scan( Array & arr, const char * fix, unsigned len ){\
 <n2>    break;\
 
 #define FIX_MSG_FIELD(NAME) \
-<n1>  case Field##NAME::RAW :\
+<n1>  case Field##NAME::RAW_TAG :\
 <n2>    FIXPP_PRINT_FIELD(NAME)\
 <n2>    group->field##NAME.offset = gpos;\
 <n2>    break;\
 
 #define FIX_MSG_GROUP(NAME) \
-<n1>  case FieldNo##NAME::RAW :\
+<n1>  case FieldNo##NAME::RAW_TAG :\
 <n2>    FIXPP_PRINT_FIELD(No##NAME)\
 <n2>    group->fieldNo##NAME.offset = gpos;\
 <n2>    isGroupStart = true;\
@@ -96,17 +96,17 @@ offset_t Group##NAME::skip( const char * fix, unsigned len ){\
 <nl> while( pos < (int)len ) { \
 <n1>  bool isGroupStart = false;\
 <n1>  prev = pos;\
-<n1>  raw_tag_t tag = nextRawTag( fix+pos, pos );\
+<n1>  raw_tag_t tag = loadRawTag( fix+pos, pos );\
 <n1>  switch( tag ){\
-<n1>  case Field##FIRST_FIELD::RAW :\
+<n1>  case Field##FIRST_FIELD::RAW_TAG :\
 <n2>    break;\
 
 #define FIX_MSG_FIELD(NAME) \
-<n1>  case Field##NAME::RAW :\
+<n1>  case Field##NAME::RAW_TAG :\
 <n2>    break;\
 
 #define FIX_MSG_GROUP(NAME) \
-<n1>  case FieldNo##NAME::RAW :\
+<n1>  case FieldNo##NAME::RAW_TAG :\
 <n2>    isGroupStart = true;\
 <n2>    gotoNextField( fix, pos );\
 <n2>    pos += Group##NAME::skip( fix+pos, len - pos );\
@@ -152,14 +152,14 @@ GetDepthMethod Group##NAME::groupGetDepthMethods[] = {
 FieldDepth Group##NAME::getFieldDepth( raw_tag_t tag ){\
 <n1>  FieldDepth ret;\
 <n1>  switch( tag ){\
-<n2>  case Field##FIRST_FIELD::RAW :\
+<n2>  case Field##FIRST_FIELD::RAW_TAG :\
 <n2>     ret.isFirstInGroup = true;
 
 #define FIX_MSG_FIELD(NAME) \
-<t2>  case Field##NAME::RAW :
+<t2>  case Field##NAME::RAW_TAG :
 
 #define FIX_MSG_GROUP(NAME) \
-<t2>  case FieldNo##NAME::RAW : 
+<t2>  case FieldNo##NAME::RAW_TAG : 
 
 #define FIX_MSG_GROUP_END \
 <n2>  ret.depth = 0; \
@@ -182,13 +182,13 @@ FieldDepth Group##NAME::getFieldDepth( raw_tag_t tag ){\
 const char * Group##NAME::getFieldValue( unsigned tag ) const {\
 <n1>  if( buf == nullptr ) return nullptr;\
 <n1>  switch( tag ){\
-<n2>  case Field##FIRST_FIELD::KEY : return field##FIRST_FIELD.offset >= 0 ? buf + field##FIRST_FIELD.offset : nullptr;
+<n2>  case Field##FIRST_FIELD::TAG : return field##FIRST_FIELD.offset >= 0 ? buf + field##FIRST_FIELD.offset : nullptr;
 
 #define FIX_MSG_FIELD(NAME) \
-<t2>  case Field##NAME::KEY : return field##NAME.offset >= 0 ? buf + field##NAME.offset : nullptr; \
+<t2>  case Field##NAME::TAG : return field##NAME.offset >= 0 ? buf + field##NAME.offset : nullptr; \
 
 #define FIX_MSG_GROUP(NAME) \
-<t2>  case FieldNo##NAME::KEY : return fieldNo##NAME.offset >= 0 ? buf + fieldNo##NAME.offset : nullptr; \
+<t2>  case FieldNo##NAME::TAG : return fieldNo##NAME.offset >= 0 ? buf + fieldNo##NAME.offset : nullptr; \
 
 #define FIX_MSG_GROUP_END \
 <n2>  default :  return nullptr; \
@@ -207,11 +207,11 @@ const char * Group##NAME::getFieldValue( unsigned tag ) const {\
 <nl>
 
 #define FIX_MSG_GROUP_BEGIN( NAME, FIRST_FIELD ) \
-const std::vector<unsigned> NAME##_knownFields = { Field##FIRST_FIELD::KEY
+const std::vector<unsigned> NAME##_knownFields = { Field##FIRST_FIELD::TAG
 
-#define FIX_MSG_FIELD(NAME) , Field##NAME::KEY
+#define FIX_MSG_FIELD(NAME) , Field##NAME::TAG
 
-#define FIX_MSG_GROUP(NAME) , FieldNo##NAME::KEY
+#define FIX_MSG_GROUP(NAME) , FieldNo##NAME::TAG
 
 #define FIX_MSG_GROUP_END };
 

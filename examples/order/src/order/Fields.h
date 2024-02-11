@@ -17,9 +17,14 @@ namespace order
 
 struct FieldDepth
 {
-    int16_t depth = -1;
+    int16_t depth          = -1;
     int16_t isFirstInGroup = false;
-    const FieldDepth & inc(){ ++depth; return *this; }
+
+    const FieldDepth & inc()
+    {
+        ++depth;
+        return *this;
+    }
 };
 
 typedef FieldDepth (*GetDepthMethod)( raw_tag_t );

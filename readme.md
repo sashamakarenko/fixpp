@@ -25,6 +25,7 @@ Mindset:
 * No third party dependencies. All the generated code is yours and can go straight into your lib or app.
 * Repeating groups are supported.
 * You can strip off all useless standard FIX tags to fit your venue specs.
+* FIX tags and enums are treated as integeres and not strings thus removing transformations.
 
 Receiving ([read more](#input)):
 
@@ -43,6 +44,8 @@ You have to know:
 * it runs in an optimistic mode and relies on the venue FIX conformance (this saves quite a few CPU cycles...)
 
 ## Performance
+
+Tags and enums are not converted. For instance the sequence like "|49=" will be inserted as a single integer assignment with value 0x3d'39'34'01. On reception, the string "49" will not be translated to decimal value 49 but rather reinterpreted as 0x39'34.
 
 > Results obtained in a tight loop on i9-9900K @ 5GHz
 

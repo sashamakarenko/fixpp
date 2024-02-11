@@ -53,6 +53,7 @@ unsigned computeChecksum( const char * begin, const char * end );
 
 unsigned parseMessageLength( const char * fix, unsigned & msgTypePos );
 
+// To be used with ostream << operator.
 struct fixstr
 {
     explicit fixstr( const char * fix, const FixFormatStyle & fstyle = defaultStyle, GetDepthMethod ind = autoIndentFields ): ptr(fix), style(fstyle), indentator{ind} {}

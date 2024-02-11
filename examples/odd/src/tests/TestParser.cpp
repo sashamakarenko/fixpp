@@ -30,7 +30,7 @@ int main( int args, const char ** argv )
         const char * value = ler.getFieldValue( tag );
         if( value )
         {
-            std::cout << tagToName.at( tag ) << " is " << sohstr( value );
+            std::cout << TAG_TO_NAME.at( tag ) << " is " << sohstr( value );
             const char * enumName = getEnumName( ler.getMessageBuffer(), value - ler.getMessageBuffer() );
             if( enumName ) std::cout << " " << enumName;
             std::cout << "\n";
@@ -42,12 +42,12 @@ int main( int args, const char ** argv )
     const char * fix = FIX_BUFFER_LARGE_EXEC_REPORT;
     while( fix[pos] )
     {
-        raw_tag_t raw = nextRawTag( fix+pos, pos );
-        auto it = rawToTagName.find( raw );
-        const char * tagName = it != rawToTagName.end() ? it->second : "Unknown";
+        raw_tag_t raw = loadRawTag( fix+pos, pos );
+        auto it = RAW_TAG_TO_NAME.find( raw );
+        const char * tagName = it != RAW_TAG_TO_NAME.end() ? it->second : "Unknown";
         std::cout << tagName << " = " << sohstr( fix+pos ) << "\n";
         gotoNextField(fix,pos);
-        if( raw == FieldCheckSum::RAW ) break;
+        if( raw == FieldCheckSum::RAW_TAG ) break;
     }
 
     std::cout << "\n\n -- Pretty Printing --" << std::endl;

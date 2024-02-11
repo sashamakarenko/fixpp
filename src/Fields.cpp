@@ -15,6 +15,78 @@ std::ostream & operator << ( std::ostream & os, const DSTNAMESPACE::sohstr & str
 namespace DSTNAMESPACE
 {
 
+FieldEnumsBase::~FieldEnumsBase()
+{
+}
+
+Iterator::Iterator( const char * begin, const char * end )
+: _begin      { begin }
+, _end        { end }
+, _pos        { 0 }
+, _valueOffset{ 0 }
+{
+    ptrdiff_t len = _end - _begin;
+    if( _begin != nullptr and _begin[_pos] != 0 and ( _end == nullptr or len < (ptrdiff_t)std::numeric_limits< offset_t >::max() ) )
+    {
+        update();
+    }
+}
+
+bool Iterator::hasNext() const
+{
+    return _valueOffset > 0;
+}
+
+bool Iterator::next()
+{
+    if( _valueOffset == 0 or _begin == nullptr or _begin[_pos] == 0 or ( _end != nullptr and _begin + _pos >= _end  ) )
+    {
+        return false;
+    }
+    gotoNextField( _begin, _pos );
+    if( _end != nullptr and _begin + _pos >= _end )
+    {
+        _valueOffset = 0;
+    }
+    else
+    {
+        update();
+    }
+    return _valueOffset > 0;
+}
+
+const char * Iterator::getTagPtr() const
+{
+    return _begin + _pos;
+}
+
+const char * Iterator::getValuePtr() const
+{
+    return _valueOffset ? _begin + _valueOffset : nullptr;
+}
+
+raw_tag_t Iterator::getRawTag() const
+{
+    if( _valueOffset )
+    {
+        offset_t len = 0;
+        return loadRawTag( _begin + _pos, len );
+    }
+    return 0;
+}
+
+raw_tag_t Iterator::update()
+{
+    _valueOffset = _pos;
+    raw_tag_t tag = loadRawTag( _begin + _pos, _valueOffset );
+    if( tag == 0 )
+    {
+        _valueOffset = 0;
+    }
+    return tag;
+}
+
+
 std::map< raw_tag_t  , const char * const >           tagNameByRaw;
 std::map< tag_t      , const char * const >           tagNameByValue;
 std::map< raw_tag_t  , const FieldEnumsBase * const > enumsByRaw;
@@ -23,13 +95,13 @@ std::map< std::string, tag_t >                        tagByName;
 std::map< tag_t      , FieldType >                    fieldTypeByValue;
 std::map< tag_t      , const std::string >            fieldTypeNameByValue;
 
-const std::map< raw_tag_t  , const char * const >           & RAW_TAG_TO_NAME       = tagNameByRaw;
-const std::map< tag_t      , const char * const >           & TAG_TO_NAME           = tagNameByValue;
-const std::map< raw_tag_t  , const FieldEnumsBase * const > & RAW_TO_ENUM           = enumsByRaw;
-const std::map< tag_t      , const FieldEnumsBase * const > & TAG_TO_ENUM           = enumsByTag;
-const std::map< std::string, tag_t >                        & FIELD_NAME_TO_TAG     = tagByName;
-const std::map< tag_t      , FieldType >                    & TAG_TO_FIELD_TYPE     = fieldTypeByValue;
-const std::map< tag_t      , const std::string >            & TAG_TO_FIELD_NAME     = fieldTypeNameByValue;
+const std::map< raw_tag_t  , const char * const >           & RAW_TAG_TO_NAME   = tagNameByRaw;
+const std::map< tag_t      , const char * const >           & TAG_TO_NAME       = tagNameByValue;
+const std::map< raw_tag_t  , const FieldEnumsBase * const > & RAW_TO_ENUM       = enumsByRaw;
+const std::map< tag_t      , const FieldEnumsBase * const > & TAG_TO_ENUM       = enumsByTag;
+const std::map< std::string, tag_t >                        & FIELD_NAME_TO_TAG = tagByName;
+const std::map< tag_t      , FieldType >                    & TAG_TO_FIELD_TYPE = fieldTypeByValue;
+const std::map< tag_t      , const std::string >            & TAG_TO_FIELD_NAME = fieldTypeNameByValue;
 
 tag_t getFieldTag( const std::string & fieldName )
 {
@@ -68,6 +140,7 @@ bool isHeaderField( tag_t tagValue )
 
 #include <DSTINCDIR/Fields.cxx>
 
+// May be used to check whther raw_enum_t to hold uniquely all enum items for each enum field.
 void checkEnums()
 {
     for( auto it : enumsByRaw )

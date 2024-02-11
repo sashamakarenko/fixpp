@@ -80,8 +80,8 @@ const FieldEnumMap NAME##Enums::itemByRaw = { \
 <pragma> GCC optimize("O0")
 
 #define FIX_ENUM_BEGIN( NAME ) <t1>Field##NAME::enumItems = NAME##Enums::items;\
-<n1>enumsByRaw.emplace( Field##NAME::RAW, & NAME##Enums::instance );\
-<n1>enumsByTag.emplace( Field##NAME::KEY, & NAME##Enums::instance );
+<n1>enumsByRaw.emplace( Field##NAME::RAW_TAG, & NAME##Enums::instance );\
+<n1>enumsByTag.emplace( Field##NAME::TAG, & NAME##Enums::instance );
 
 #define FIX_ENUM_DECL( NAME, E, V ) remove-me
 

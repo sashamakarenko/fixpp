@@ -34,18 +34,18 @@ offset_t Message##NAME::scan( const char * fix, unsigned len ){\
 <nl>while( pos < (int)len ) {\
 <n1>  bool isGroupStart = false;\
 <n1>  prev = pos;\
-<n1>  raw_tag_t tag = nextRawTag( fix+pos, pos );\
+<n1>  raw_tag_t tag = loadRawTag( fix+pos, pos );\
 <n1>  switch( tag ){\
 
 
 #define FIX_MSG_FIELD(NAME) \
-<n1>  case Field##NAME::RAW :\
+<n1>  case Field##NAME::RAW_TAG :\
 <n2>    FIXPP_PRINT_FIELD(NAME) \
 <n2>    field##NAME.offset = pos;\
 <n2>    break;\
 
 #define FIX_MSG_GROUP(NAME) \
-<n1>  case FieldNo##NAME::RAW :\
+<n1>  case FieldNo##NAME::RAW_TAG :\
 <n2>    FIXPP_PRINT_FIELD(No##NAME) \
 <n2>    fieldNo##NAME.offset = pos;\
 <n2>    isGroupStart = true;\
@@ -54,7 +54,7 @@ offset_t Message##NAME::scan( const char * fix, unsigned len ){\
 <n2>    break;\
 
 #define FIX_MSG_END \
-<n1>  case FieldCheckSum::RAW :\
+<n1>  case FieldCheckSum::RAW_TAG :\
 <n2>    FIXPP_PRINT_FIELD(CheckSum) \
 <n2>    fieldCheckSum.offset = pos;\
 <n2>    gotoNextField( fix, pos );\
@@ -85,23 +85,23 @@ offset_t Message##NAME::skip( const char * fix, unsigned len ) const\
 <nl>while( pos < (int)len ) {\
 <n1>  bool isGroupStart = false;\
 <n1>  prev = pos;\
-<n1>  raw_tag_t tag = nextRawTag( fix+pos, pos );\
+<n1>  raw_tag_t tag = loadRawTag( fix+pos, pos );\
 <n1>  switch( tag ){\
 
 
 #define FIX_MSG_FIELD(NAME) \
-<n1>  case Field##NAME::RAW :\
+<n1>  case Field##NAME::RAW_TAG :\
 <n2>    break;\
 
 #define FIX_MSG_GROUP(NAME) \
-<n1>  case FieldNo##NAME::RAW :\
+<n1>  case FieldNo##NAME::RAW_TAG :\
 <n2>    isGroupStart = true;\
 <n2>    gotoNextField( fix, pos );\
 <n2>    pos += Group##NAME::skip( fix+pos, len - pos );\
 <n2>    break;\
 
 #define FIX_MSG_END \
-<n1>  case FieldCheckSum::RAW :\
+<n1>  case FieldCheckSum::RAW_TAG :\
 <n2>    gotoNextField( fix, pos );\
 <n2>    return pos;\
 <nl>\
@@ -148,13 +148,13 @@ FieldDepth Message##NAME::getFieldDepth( raw_tag_t tag ){\
 <n1>  switch( tag ){\
 
 #define FIX_MSG_FIELD(NAME) \
-<t2>  case Field##NAME::RAW :
+<t2>  case Field##NAME::RAW_TAG :
 
 #define FIX_MSG_GROUP(NAME) \
-<t2>  case FieldNo##NAME::RAW :
+<t2>  case FieldNo##NAME::RAW_TAG :
 
 #define FIX_MSG_END \
-<t2>  case FieldCheckSum::RAW :\
+<t2>  case FieldCheckSum::RAW_TAG :\
 <n2>  ret.depth = 0; \
 <n2>  return ret; \
 <n1>  }\
@@ -181,13 +181,13 @@ const char * Message##NAME::getFieldValue( unsigned tag ) const {\
 <n1>  switch( tag ){\
 
 #define FIX_MSG_FIELD(NAME) \
-<t2>  case Field##NAME::KEY : return field##NAME.offset >= 0 ? buf + field##NAME.offset : nullptr; \
+<t2>  case Field##NAME::TAG : return field##NAME.offset >= 0 ? buf + field##NAME.offset : nullptr; \
 
 #define FIX_MSG_GROUP(NAME) \
-<t2>  case FieldNo##NAME::KEY : return fieldNo##NAME.offset >= 0 ? buf + fieldNo##NAME.offset : nullptr; \
+<t2>  case FieldNo##NAME::TAG : return fieldNo##NAME.offset >= 0 ? buf + fieldNo##NAME.offset : nullptr; \
 
 #define FIX_MSG_END \
-<t2>  case FieldCheckSum::KEY : return fieldCheckSum.offset >= 0 ? buf + fieldCheckSum.offset : nullptr; \
+<t2>  case FieldCheckSum::TAG : return fieldCheckSum.offset >= 0 ? buf + fieldCheckSum.offset : nullptr; \
 <n2>  default :  return nullptr; \
 <n1>  }\
 <n1>  return nullptr;\
@@ -206,11 +206,11 @@ const char * Message##NAME::getFieldValue( unsigned tag ) const {\
 #define FIX_MSG_BEGIN(NAME,TYPE) \
 const std::vector<tag_t> NAME##_knownFields = {
 
-#define FIX_MSG_FIELD(NAME) Field##NAME::KEY,
+#define FIX_MSG_FIELD(NAME) Field##NAME::TAG,
 
-#define FIX_MSG_GROUP(NAME) FieldNo##NAME::KEY,
+#define FIX_MSG_GROUP(NAME) FieldNo##NAME::TAG,
 
-#define FIX_MSG_END FieldCheckSum::KEY };
+#define FIX_MSG_END FieldCheckSum::TAG };
 
 namespace {
 #include <Messages.def>
@@ -315,7 +315,8 @@ const char * ParserDispatcher::parseAndDipatch( const char * buf, unsigned len, 
     {
 #undef FIX_MSG_BEGIN
 #define FIX_MSG_BEGIN(NAME,TYPE) \
-<nl><com> case-begin-TYPE\
+<com> case-begin-TYPE\
+<com> After generation one can sed this out if TYPE is not incoming message\
 <n3>case MsgTypeRaw_##TYPE : {\
 <n3>  if( resetMessage ) _msg##NAME.reset();\
 <n3>  pos = _msg##NAME.scan( buf, len - pos );\

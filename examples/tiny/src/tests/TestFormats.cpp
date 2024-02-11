@@ -22,7 +22,7 @@ std::ostream & fixToTwoLines( const char * fix, offset_t & pos, std::ostream & o
     {
         unsigned uwidth = 0, lwidth = 0;
         offset_t prev = pos;
-        raw_tag_t tag = nextRawTag( fix+pos, pos );
+        raw_tag_t tag = loadRawTag( fix+pos, pos );
 
         if( tag == 0 )
         {
@@ -100,7 +100,7 @@ std::ostream & fixToTwoLines( const char * fix, offset_t & pos, std::ostream & o
         lowerLine << ' ';
 
         ++pos;
-        if( tag == FieldCheckSum::RAW )
+        if( tag == FieldCheckSum::RAW_TAG )
         {
             break;
         }

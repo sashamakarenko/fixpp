@@ -19,6 +19,12 @@ namespace order
 
 // ------------------------------ primitives -----------------------------
 
+// 'raw' below means represented as is by an integer in memory with little endian byte order.
+// We are using 'raw' for tags and enumm values.
+// This avoids unnecessary transformations involving arithmetics,
+
+// A FIX field is |tag=value| where tag is a digital number.
+
 // field key or tag type
 using tag_t = uint32_t;
 
@@ -71,7 +77,8 @@ constexpr raw_tag_t tag_as_raw()
 }
 
 
-// as uint64_t * pointing to "\001" "TAG" "="
+// insertable := as uint64_t * pointing to "\001" "TAG" "="
+// Thus we can insert a tag along with leading SOH and folowed by equal sign with a single integer asignment.
 template< tag_t K >
 constexpr insertable_tag_t tag_as_insertable()
 {
@@ -114,7 +121,8 @@ constexpr static const double div10Pow[] =
     0.00000000001
 };
 
-// valid for FIX only
+// Valid for FIX only.
+// An integer is supposed to be closed either by SOH or by decimal dot '.'
 constexpr bool isNotDecDigit( char c )
 {
     return c < '0';
@@ -122,7 +130,9 @@ constexpr bool isNotDecDigit( char c )
 
 }
 
-// used to scan integers of type T to reduce the number of arithmetic operations
+// Used to scan integers of type T to reduce the number of arithmetic operations.
+// As if T was filled by N zero chars '0' (not zeros 0).
+// Ex: dec_zeros<uint32_t,2> is an unsigned built of four bytes: \0 \0 '0' '0'
 template< typename T, T N >
 constexpr T dec_zeros()
 {
@@ -165,6 +175,10 @@ constexpr uint64_t dec_zeros<uint64_t,0UL>()
     return 0UL;
 }
 
+// Three improvements:
+// 1 - Rely on micro parallelism to find quickly last digit.
+// 2 - Intel multiplication by 10 is LEA + ADD.
+// 3 - Instead of substructing '0' from every char we do it only once with dec_zeros.
 template< typename T = unsigned >
 inline T parseUInt( const char * ptr, unsigned & len )
 {
@@ -254,7 +268,12 @@ inline T parseUInt( const char * ptr, unsigned & len )
 struct Quantity
 {
     template< typename T >
-    Quantity( const T & value, bool isInt ): value{ value }, isInteger{ isInt }{}
+    Quantity( const T & value, bool isInt )
+    : value{ value }
+    , isInteger{ isInt }
+    {
+    }
+
     union Value
     {
         Value( int64_t  i ): integer{i}{}
@@ -266,7 +285,10 @@ struct Quantity
     };
 
     template< typename T >
-    operator T () const { return isInteger ? value.integer : value.real; }
+    operator T () const
+    {
+        return isInteger ? value.integer : value.real;
+    }
 
     Value value;
     bool  isInteger;
@@ -339,7 +361,7 @@ inline const char * parseTime( const char * ptr, T & hour, T & minute, T & secon
     second = T( ptr[6] ) * 10   + T( ptr[7] ) - dec_zeros<T,(T)2>();
     if( ptr[8] == '.' )
     {
-        // we trust the venue not to exceed 9 digits
+        // we trust the FIX engines not to exceed 9 digits (at most nanoseconds)
         unsigned len = 0;
         nanoseconds = (NT)parseUInt( ptr + 9, len );
         nanoseconds *= (NT)uintPow10[ 9 - len ];
@@ -355,10 +377,14 @@ inline const char * parseTimestamp( const char * ptr, T & year, T & month, T & d
     return parseTime( parseYYYYMMDD( ptr, year, month, day ) + 1, hour, minute, second, nanoseconds );
 }
 
-// FIXPP_SOH terminated string
+// SOH terminated string
 struct sohstr
 {
-    sohstr( const char * buf = nullptr ): ptr( buf ){}
+    sohstr( const char * buf = nullptr ):
+    ptr( buf )
+    {
+    }
+
     const char * ptr;
 };
 
@@ -420,7 +446,8 @@ inline sohstr fromString<sohstr>( const char * ptr )
     return ptr;
 }
 
-// "...;123=ABC;56=value;"
+// Looks for the next SOH char distance from ptr.
+// "...;123=ABC|56=value|"
 //          |
 //          ptr
 inline unsigned getValueLength( const char * ptr )
@@ -453,7 +480,9 @@ inline unsigned getValueLength( const char * ptr )
     } while( true );
 }
 
-// "...;123=whatever;56=nextvalue;"
+// Moves pos to the next tag.
+// @param fix points to the FIX buffer.
+// "...|123=whatever|56=nextvalue|"
 //          |        |
 //          pos in   pos out
 inline void gotoNextField( const char * fix, offset_t & pos )
@@ -506,6 +535,46 @@ inline void gotoNextField( const char * fix, offset_t & pos )
     } while( true );
 }
 
+
+// Converts string pointed to by ptr to raw tag and moves pos to the value.
+// @param ptr points to the next tag to read
+// @param pos initially pos = ptr - fix, on return pos shifts to value.
+// "|1=value|12=value|..."
+//   | |
+//   | pos out
+//   ptr = fix + pos in
+inline raw_tag_t loadRawTag( const char * ptr, offset_t & pos )
+{
+    raw_tag_t rtag = *reinterpret_cast<const raw_tag_t *>(ptr);
+    if( ptr[1] == '=' )
+    {
+        pos += 2;
+        return rtag & 0xff;
+    }
+    else if( ptr[2] == '=' )
+    {
+        pos += 3;
+        return rtag & 0xff'ff;
+    }
+    else if( ptr[3] == '=' )
+    {
+        pos += 4;
+        return rtag & 0xff'ff'ff;
+    }
+    else if( ptr[4] == '=' )
+    {
+        pos += 5;
+        return rtag & 0xff'ff'ff'ff;
+    }
+    else if( ptr[5] == '=' )
+    {
+        pos += 6;
+        return rtag & 0xff'ff'ff'ff'ff;
+    }
+
+    return 0;
+}
+
 template<typename V>
 inline std::string toString( const V & value )
 {
@@ -525,16 +594,6 @@ template<>
 inline std::string toString<char>( const char & value )
 {
     return std::string( &value, 1 );
-}
-
-inline unsigned copyRawEnum( const char * from, char * to )
-{
-    unsigned len = 0;
-    for( ; from[len] != FIXPP_SOH && len < sizeof( raw_enum_t ); ++len )
-    {
-        to[ len ] = from[ len ];
-    }
-    return len;
 }
 
 inline raw_enum_t toRawEnum( char c )
@@ -575,9 +634,18 @@ inline raw_enum_t toRawEnum( const sohstr & str )
 
 // ------------------------------ classes -----------------------------
 
+
+// Base structure for an enum item.
+// Ex: for SideEnums::BUY( "BUY", '1' )
+// name = "BUY"
+// raw  = \0 \0 \0 '1'
+// str  = "1"
 struct FieldEnumBase
 {
-    FieldEnumBase( const char * const n, raw_enum_t r, const std::string & s ): name{n}, raw{r}, str{s}
+    FieldEnumBase( const char * const n, raw_enum_t r, const std::string & s )
+    : name{n}
+    , raw {r}
+    , str {s}
     {
     }
     const char * const name;
@@ -588,7 +656,9 @@ struct FieldEnumBase
 template<typename ValueType>
 struct FieldEnum: FieldEnumBase
 {
-    FieldEnum( const char * const name, ValueType v ): FieldEnumBase{ name, toRawEnum(v), toString(v) }, value{v}
+    FieldEnum( const char * const name, ValueType v )
+    : FieldEnumBase{ name, toRawEnum(v), toString(v) }
+    , value{v}
     {
     }
     const ValueType & operator() () const
@@ -600,9 +670,11 @@ struct FieldEnum: FieldEnumBase
 
 using FieldEnumMap = std::map< raw_enum_t, const FieldEnumBase * >;
 
+// Base structure for all field enums.
 struct FieldEnumsBase
 {
-    virtual ~FieldEnumsBase(){}
+    // implementation is in Fields.cpp
+    virtual ~FieldEnumsBase();
 
     virtual const char * getFieldName() const = 0;
 
@@ -614,7 +686,7 @@ struct FieldEnumsBase
 
     const char * getEnumNameByRaw( raw_enum_t raw ) const
     {
-        const FieldEnumBase * e = getEnumByRaw(raw);
+        const FieldEnumBase * e = getEnumByRaw( raw );
         return e ? e->name : nullptr;
     }
 };
@@ -661,20 +733,22 @@ enum class FieldType: unsigned
     TAGNUM
 };
 
+// Field offset within the message or -1 if not found,
 struct FieldBase
 {
     offset_t offset = -1;
 };
 
-template< const char * const & N, tag_t K, typename Type >
+// N = name, T = tag, V = value type
+template< const char * const & N, tag_t T, typename V >
 struct Field: FieldBase
 {
-    typedef Type ValueType;
+    typedef V ValueType;
 
-    static constexpr raw_tag_t        RAW = tag_as_raw<K>();
-    static constexpr unsigned         TAG_WIDTH = tag_width<K>();
-    static constexpr unsigned         KEY = K;
-    static constexpr insertable_tag_t INSERTABLE_TAG = tag_as_insertable<K>();
+    static constexpr raw_tag_t        RAW_TAG              = tag_as_raw<T>();
+    static constexpr unsigned         TAG                  = T;
+    static constexpr unsigned         TAG_WIDTH            = tag_width<T>();
+    static constexpr insertable_tag_t INSERTABLE_TAG       = tag_as_insertable<T>();
     static constexpr unsigned         INSERTABLE_TAG_WIDTH = TAG_WIDTH + 2; // SOH + '='
 
     static constexpr const char * tagName()
@@ -684,12 +758,12 @@ struct Field: FieldBase
 
     static constexpr unsigned tagKey()
     {
-        return K;
+        return T;
     }
 
     static constexpr unsigned tagWidth()
     {
-        return tag_width<K>();
+        return tag_width<T>();
     }
 
     static FieldType getType();
@@ -710,122 +784,49 @@ struct Field: FieldBase
     static const FieldEnumBase * const * enumItems;
 };
 
-// ";1=value;12=value;..."
-//   |
-//   ptr
-inline raw_tag_t nextRawTag( const char * ptr, offset_t & pos )
-{
-    raw_tag_t rtag = *reinterpret_cast<const raw_tag_t *>(ptr);
-    if( ptr[1] == '=' )
-    {
-        pos += 2;
-        return rtag & 0xff;
-    }
-    else if( ptr[2] == '=' )
-    {
-        pos += 3;
-        return rtag & 0xff'ff;
-    }
-    else if( ptr[3] == '=' )
-    {
-        pos += 4;
-        return rtag & 0xff'ff'ff;
-    }
-    else if( ptr[4] == '=' )
-    {
-        pos += 5;
-        return rtag & 0xff'ff'ff'ff;
-    }
-    else if( ptr[5] == '=' )
-    {
-        pos += 6;
-        return rtag & 0xff'ff'ff'ff'ff;
-    }
 
-    return 0;
-}
-
+// Base structure for parsing messages and groups.
+// buf points to the begining of the FIX message or group within the originally scanned string (no copy is done).
 struct MessageBase
 {
-    protected: const char * buf = nullptr;
-    public: const char * getMessageBuffer() const { return buf; }
+    const char * getMessageBuffer() const
+    {
+        return buf;
+    }
+
+    protected:
+
+        const char * buf = nullptr;
 };
 
+// Helper class for walking through a FIX message.
 class Iterator
 {
+    // implementation is in Fields.cpp
     public:
 
-        Iterator( const char * begin, const char * end = nullptr ):
-            _begin( begin ),
-            _end( end ),
-            _pos( 0 ),
-            _valueOffset( 0 )
-        {
-            ptrdiff_t len = _end - _begin;
-            if( _begin != nullptr and _begin[_pos] != 0 and ( _end == nullptr or len < (ptrdiff_t)std::numeric_limits< offset_t >::max() ) )
-            {
-                update();
-            }
-        }
+        explicit Iterator( const char * begin, const char * end = nullptr );
 
-        bool hasNext() const
-        {
-            return _valueOffset > 0;
-        }
+        Iterator( const Iterator & ) = default;
 
-        bool next()
-        {
-            if( _valueOffset == 0 or _begin == nullptr or _begin[_pos] == 0 or ( _end != nullptr and _begin + _pos >= _end  ) )
-            {
-                return false;
-            }
-            gotoNextField( _begin, _pos );
-            if( _end != nullptr and _begin + _pos >= _end )
-            {
-                _valueOffset = 0;
-            }
-            else
-            {
-                update();
-            }
-            return _valueOffset > 0;
-        }
+        bool hasNext() const;
 
-        const char * getTagPtr() const
-        {
-            return _begin + _pos;
-        }
+        bool next();
 
-        const char * getValuePtr() const
-        {
-            return _valueOffset ? _begin + _valueOffset : nullptr;
-        }
+        const char * getTagPtr() const;
 
-        raw_tag_t getRawTag() const
-        {
-            if( _valueOffset )
-            {
-                offset_t len = 0;
-                return nextRawTag( _begin + _pos, len );
-            }
-            return 0;
-        }
+        const char * getValuePtr() const;
+
+        raw_tag_t getRawTag() const;
 
     private:
 
-        raw_tag_t update()
-        {
-            _valueOffset = _pos;
-            raw_tag_t tag = nextRawTag( _begin + _pos, _valueOffset );
-            if( tag == 0 )
-            {
-                _valueOffset = 0;
-            }
-            return tag;
-        }
+        raw_tag_t update();
 
-        const char * _begin, * _end;
-        offset_t     _pos, _valueOffset;
+        const char * _begin;
+        const char * _end;
+        offset_t     _pos;
+        offset_t     _valueOffset;
 };
 
 // underlying types :
@@ -869,7 +870,10 @@ typedef sohstr     XIDREF;
 typedef sohstr     EURIBOR;
 typedef unsigned   TAGNUM;
 
-inline order::Quantity operator "" _qty( long double q ){ return order::Quantity( (double)q, false ); }
+inline order::Quantity operator "" _qty( long double q )
+{
+    return order::Quantity( (double)q, false );
+}
 
 constexpr unsigned MESSAGE_BEGIN_MIN_BYTES_TO_READ = 20;
 constexpr unsigned CHECKSUM_FIELD_LENGTH = 7;
@@ -879,10 +883,12 @@ constexpr unsigned CHECKSUM_FIELD_LENGTH = 7;
 
 namespace std
 {
-    inline std::string to_string( const order::Quantity & qty ) noexcept
-    {
-        return  qty.isInteger ? std::to_string( qty.value.integer ) : std::to_string( qty.value.real );
-    }
+
+inline std::string to_string( const order::Quantity & qty ) noexcept
+{
+    return  qty.isInteger ? std::to_string( qty.value.integer ) : std::to_string( qty.value.real );
+}
+
 }
 
 #endif /* order_FIXAPI_H */

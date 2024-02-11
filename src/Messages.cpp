@@ -207,7 +207,7 @@ const char * getEnumName( const char * fix, int valueOffset )
         --pos;
     }
 
-    const raw_tag_t tag = nextRawTag( fix+pos, pos );
+    const raw_tag_t tag = loadRawTag( fix+pos, pos );
     if( tag == 0 )
     {
         return nullptr;
@@ -231,7 +231,7 @@ std::ostream & fixToHuman( const char * fix, offset_t & pos, std::ostream & os, 
     while( fix[pos] )
     {
         offset_t prev = pos;
-        const raw_tag_t tag = nextRawTag( fix+pos, pos );
+        const raw_tag_t tag = loadRawTag( fix+pos, pos );
 
         if( tag == 0 )
         {
@@ -315,7 +315,7 @@ std::ostream & fixToHuman( const char * fix, offset_t & pos, std::ostream & os, 
                 os << style.unknownStart << " UNKNOWN" << style.unknownStop;
             }
 
-            if( tag == FieldMsgType::RAW and indentator == autoIndentFields )
+            if( tag == FieldMsgType::RAW_TAG and indentator == autoIndentFields )
             {
                 indentator = getTagDepthMethodByRawMsgType( rawEnum );
             }
@@ -326,7 +326,7 @@ std::ostream & fixToHuman( const char * fix, offset_t & pos, std::ostream & os, 
         os.flush();
 
         ++pos;
-        if( tag == FieldCheckSum::RAW )
+        if( tag == FieldCheckSum::RAW_TAG )
         {
             break;
         }

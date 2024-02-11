@@ -84,48 +84,8 @@ inline int uintWidth( unsigned value )
     return 10;
 }
 
-inline int uintWidth2( unsigned value )
-{
-    if( value < 100000U )
-    {
-        if( value < 10U )
-        {
-            return 1;
-        }
-        if( value < 100U )
-        {
-            return 2;
-        }
-        if( value < 1000U )
-        {
-            return 3;
-        }
-        if( value < 10000U )
-        {
-            return 4;
-        }
-        return 5;
-    }
-    if( value < 1000000U )
-    {
-        return 6;
-    }
-    if( value < 10000000U )
-    {
-        return 7;
-    }
-    if( value < 100000000U )
-    {
-        return 8;
-    }
-    if( value < 1000000000U )
-    {
-        return 9;
-    }
-    return 10;
-}
-
-// suitable for seqnums and message length
+// Suitable for seqnums and message length.
+// value < 1000000
 inline int smallUintWidth( unsigned value )
 {
     if( value < 1000U )
@@ -147,6 +107,8 @@ inline int smallUintWidth( unsigned value )
     return 7;
 }
 
+// Formats value from right to left.
+// @return next left most position.
 inline char * reverseUIntToString( char * ptr, unsigned value )
 {
     do
@@ -157,6 +119,8 @@ inline char * reverseUIntToString( char * ptr, unsigned value )
     return ptr;
 }
 
+// Formats value from right to left and computes check sum of the inserted string.
+// @return next left most position.
 inline char * reverseUIntToString( char * ptr, unsigned value, unsigned & chksum )
 {
     do
@@ -181,9 +145,14 @@ enum class ClockPrecision: unsigned
     NANOSECONDS  = 9
 };
 
+// Used to build FIX messages.
 struct FixBufferStream
 {
-    explicit FixBufferStream( char * buf ): begin{buf}, end{buf} {}
+    explicit FixBufferStream( char * buf )
+    : begin{ buf }
+    , end  { buf }
+    {
+    }
 
     template< typename FIELD >
     FixBufferStream & pushTag()
@@ -322,15 +291,15 @@ struct FixBufferStream
     char * end;
 };
 
+constexpr unsigned BODY_LENGTH_OFFSET = FixBeginStringInsertableTagLength + FieldBodyLength::INSERTABLE_TAG_WIDTH;
+
+// Precompute Header per session and msg type and insert as a single memcpy only if seqnum width changes.
+//
 //  buffer   start                msgType                                    sendingTime                  body
 //  |        |                    |                                          |                            |
 //  "..."   "8=FIX.4.4" I "9=315" I "35=W" I "49=foo" I "56=bar" I "34=1234" I "52=20190101-01:01:01.000" I "..."
 //           ----------------***  -------------------------------------****              --------========
-//           precompute per session and msg type and insert as a single
-//           memcpy only if seqnum width changes
 //
-
-constexpr unsigned BODY_LENGTH_OFFSET = FixBeginStringInsertableTagLength + FieldBodyLength::INSERTABLE_TAG_WIDTH;
 struct HeaderTemplate: FixBufferStream
 {
     HeaderTemplate( unsigned capacity, const std::string & msgType )
@@ -353,7 +322,7 @@ struct HeaderTemplate: FixBufferStream
     {
     }
 
-    // returns countable body length [I 35=.....34=]
+    // Returns countable body length [I 35=.....34=]
     unsigned finalize()
     {
         chksum = computeChecksum( begin, end );
@@ -361,9 +330,12 @@ struct HeaderTemplate: FixBufferStream
     }
 
     std::vector<char> buffer;
-    unsigned          chksum, countableLength;
+    unsigned          chksum;
+    unsigned          countableLength;
 };
 
+// Reusable timestamp strcuture.
+// Updates only changed values - mostly time since date doesn't change often.
 struct TimestampKeeper
 {
     using Precision = ClockPrecision;
@@ -374,17 +346,20 @@ struct TimestampKeeper
     constexpr static unsigned DATE_TIME_MILLIS_LENGTH  = 21;
     constexpr static unsigned DATE_TIME_MICROS_LENGTH  = 24;
     constexpr static unsigned DATE_TIME_NANOS_LENGTH   = 27;
-    constexpr static const char * const PLACE_HOLDER = "11112233-44:55:66.777888999";
+    constexpr static const char * const PLACE_HOLDER   = "11112233-44:55:66.777888999";
 
-    inline unsigned length() const { return DATE_TIME_SECONDS_LENGTH + ( secFraction != Precision::SECONDS ? 1 : 0 ) + (unsigned)secFraction; }
+    inline unsigned length() const
+    {
+        return DATE_TIME_SECONDS_LENGTH + ( secFraction != Precision::SECONDS ? 1 : 0 ) + (unsigned)secFraction;
+    }
 
     explicit TimestampKeeper( char * buffer = nullptr, Precision secPrecision = Precision::SECONDS )
-    : startOfDay  ( 0 )
-    , endOfDay    ( 0 )
-    , begin       ( buffer )
-    , lastSecond  ( 0 )
-    , lastFraction( 0 )
-    , secFraction ( secPrecision )
+    : startOfDay  { 0 }
+    , endOfDay    { 0 }
+    , begin       { buffer }
+    , lastSecond  { 0 }
+    , lastFraction{ 0 }
+    , secFraction { secPrecision }
     {
     }
 
@@ -483,9 +458,11 @@ struct TimestampKeeper
         return begin + len;
     }
 
-    time_t    startOfDay, endOfDay;
+    time_t    startOfDay;
+    time_t    endOfDay;
     char    * begin;
-    unsigned  lastSecond, lastFraction;
+    unsigned  lastSecond;
+    unsigned  lastFraction;
     Precision secFraction;
 };
 
@@ -535,12 +512,15 @@ inline unsigned valueMaxLength( const char * & v )
 
 /*
 
+Convenience class to reuse header, timestamps and the buffer.
+
 buffer   start                msgType                                    sendingTime                  body
 |        |                    |                                          |                            |
 "..."   "8=FIX.4.4" I "9=315" I "35=W" I "49=foo" I "56=bar" I "34=1234" I "52=20190101-01:01:01.000" I "..."
                          ---                                       ----  |                            |
                          | body length and seqno will be updated   |     begin                        end
 
+Since header length depends on seqnum and body length, start is not usable before calling setSeqnumAndUpdateHeaderAndChecksum().
 */
 struct ReusableMessageBuilder: FixBufferStream
 {
@@ -557,6 +537,8 @@ struct ReusableMessageBuilder: FixBufferStream
         begin = end = &buffer[0] + headerTemplateCapacity;
     }
 
+    // To be called just before sending.
+    // Header is supposed to be updated.
     const char * setSeqnumAndUpdateHeaderAndChecksum( unsigned seqnum )
     {
         unsigned chksum = header.chksum;
@@ -597,7 +579,8 @@ struct ReusableMessageBuilder: FixBufferStream
         end = begin + pos;
     }
 
-    // start is not necessary to update here
+    // Resizes the buffer if necessary to receive next value.
+    // start will be updated in setSeqnumAndUpdateHeaderAndChecksum().
     void resizeIfNecessary( unsigned valueLength )
     {
         valueLength += 8; // max "|tag=" length ?
@@ -610,6 +593,9 @@ struct ReusableMessageBuilder: FixBufferStream
             end   = &buffer[0] + endOffset;
         }
     }
+
+    // Methods resizing the buffer if necessary.
+    // Otherwise use FixBufferStream::append().
 
     template< typename FIELD >
     FixBufferStream & appendSafely( const char * v, unsigned len )
@@ -638,11 +624,12 @@ struct ReusableMessageBuilder: FixBufferStream
     const std::string             msgType;
     std::vector<char>             buffer;
     char                        * start;
-    unsigned                      lastSeqnumWidth, lastBodyLengthWidth;
+    unsigned                      lastSeqnumWidth;
+    unsigned                      lastBodyLengthWidth;
     unsigned                      bufferGrowChunk;
     HeaderTemplate                header;
     TimestampKeeper               sendingTime;
-    TimestampKeeper               userTime1;
+    TimestampKeeper               userTime1; // user defined timestamps
     TimestampKeeper               userTime2;
     TimestampKeeper               userTime3;
     TimestampKeeper               userTime4;

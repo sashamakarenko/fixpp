@@ -244,7 +244,6 @@ int main( int args, const char ** argv )
 
     CHECK( 10 * (int)10.023, 10 * (int)qty, == 100 );
 
-    bool res = qty < 20;
-    // CHECK( 10.023 less 20, std::to_string(qty), res );
+    std::cout << std::hex << tiny::FieldSenderCompID::RAW_TAG << " " << tiny::FieldSenderCompID::INSERTABLE_TAG << "\n";
     return 0;
 }
