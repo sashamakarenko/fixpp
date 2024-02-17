@@ -65,6 +65,17 @@ def getEnumName( msg, fieldName ):
     except gdb.error as err:
         return ''
 
+class FieldPrinter:
+
+    def __init__(self, val):
+        self.val = val
+
+    def to_string(self):
+        return 'offset = ' + str(self.val[OFFSET])
+
+    def display_hint(self):
+        return 'string'
+
 class GroupPrinter:
 
     class _iterator(Iterator):
@@ -151,6 +162,7 @@ class MessagePrinter:
 def build_fix_printers():
     pp = gdb.printing.RegexpCollectionPrettyPrinter( "__PRJ_NAME__-__PRJ_BRANCH__" )
     __PRINTERS__
+    pp.add_printer( 'tiny::Field', '^tiny::Field\<.*\>$', FieldPrinter )
     return pp
 
 gdb.printing.register_pretty_printer( gdb.current_objfile(), build_fix_printers() )
