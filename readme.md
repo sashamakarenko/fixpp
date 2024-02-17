@@ -236,29 +236,8 @@ In most cases a latency sensitive implementation will tend to reuse objects and 
 ```cpp
 #include <tiny/Messages.h>
 #include <cstring>
-#include <sstream>
 
-#define I "\001"
-
-const char * buffer =
-// exec report
-"8=FIX.4.4" I "9=156" I "35=8" I "49=foo" I "56=bar" I "52=20071123-05:30:00.000" I "11=OID123456" I "150=E" I "39=A" I "55=XYZ" I "167=CS" I "54=1" I "38=15" I "40=2" I "44=15.001" I "58=EQUITYTESTING" I "59=0" I "32=0" I "31=0" I "151=15" I "14=0" I "6=0" I "10=118" I
-
-// large exec report
-"8=FIX.4.4" I "9=332" I "35=8" I "49=foo" I "56=bar" I "52=20071123-05:30:00.000" I "11=OID123456" I "150=E" I "39=A" I "55=XYZ" I "167=CS" I "54=1" I "38=15" I "40=2" I "44=15.001" I "58=EQUITYTESTING" I "59=0" I "32=0" I "31=0" I "151=15" I "14=0" I "6=0" I
-"555=2" I "600=SYM1" I "624=0" I "687=10" I "683=1" I
-                             "688=A" I "689=a" I
-                             "564=1" I
-                             "539=2" I "524=PARTY1" I "525=S" I
-                                   "524=PARTY2" I "525=S" I
-                                   "804=2" I "545=S1" I "805=1" I "545=S2" I "805=2" I
-      "600=SYM2" I "624=1" I "687=20" I "683=2" I
-                             "688=A" I "689=a" I
-                             "688=B" I "689=b" I
-"10=027" I
-
-// md full refresh
-"8=FIX.4.4" I "9=315" I "35=W" I "49=foo" I "56=bar" I "34=1234" I "52=20190101-01:01:01.000" I "55=EUR/USD" I "268=6" I "269=1" I "290=1" I "270=1.21" I "15=USD" I "271=1000000" I "269=1" I "290=2" I "270=1.211" I "15=USD" I "271=2000000" I "269=1" I "290=3" I "270=1.221" I "15=USD" I "271=3000000" I "269=1" I "290=4" I "270=1.2315" I "15=USD" I "271=4000000" I "269=0" I "290=5" I "270=1.201" I "15=USD" I "271=1000000" I "269=0" I "290=6" I "270=1.205" I "15=USD" I "271=2000000" I "10=075" I;
+const char * buffer = "8=FIX.4.4" I "9=156" I "35=8" I ... I "10=075" I;
 
 using namespace venue::fix;
 
@@ -489,27 +468,26 @@ $> make check
 ```cpp
 const FixFormatStyle htmlRgbStyle =
 {
-    "<pre>",  //  messageBegin
-    "</pre>",  //  messageEnd
-    "  ",//  indent
-    "  ",//  groupFirstField;
-    " ", //  fieldBegin
-    "\n",//  fieldEnd
-    "<font color=\"#444444\">",  //  headerTagNameStart
-    "</font>",  //  headerTagNameStop
-    "<font color=\"black\"><b>",  //  tagNameStart
-    "</b></font>",  //  tagNameStop
-    "<font color=\"grey\">(", //  tagValueStart
-    ")</font>", //  tagValueStop
-    " = ", //  equal
-    "<font color=\"darkblue\">",  //  valueStart
-    "</font>",  //  valueStop
-    " <font color=\"darkgreen\">", //  enumStart
-    "</font>",  //  enumStop
-    "<font color=\"red\">",  //  unknownStart
-    "</font>"      //  unknownStop
+    .messageBegin =       "<pre>",
+    .messageEnd =         "</pre>",
+    .indent =             "  ",
+    .groupFirstField =    " &#x2022;",
+    .fieldBegin =         " ",
+    .fieldEnd =           "\n",
+    .headerTagNameStart = "<font color=\"#444444\">",
+    .headerTagNameStop =  "</font>",
+    .tagNameStart =       "<font color=\"black\"><b>",
+    .tagNameStop =        "</b></font>",
+    .tagValueStart =      "<font color=\"grey\">(",
+    .tagValueStop =       ")</font>",
+    .equal =              " = ",
+    .valueStart =         "<font color=\"darkblue\">",
+    .valueStop =          "</font>",
+    .enumStart =          " <font color=\"darkgreen\">",
+    .enumStop =           "</font>",
+    .unknownStart =       "<font color=\"red\">",
+    .unknownStop =        "</font>"
 };
-
 ...
 
     std::ofstream html;
@@ -567,25 +545,25 @@ Show message as HTML table:
 ```cpp
 const FixFormatStyle htmlTableRgbStyle =
 {
-    "<pre><table>",  //  messageBegin
-    "</table></pre>",  //  messageEnd
-    "&nbsp;&nbsp;",//  indent
-    "&nbsp;&#x2022;",//  groupFirstField;
-    "<tr><td>", //  fieldBegin
-    "</td></tr>\n",//  fieldEnd
-    "<font color=\"#444444\">",  //  headerTagNameStart
-    "</font>",  //  headerTagNameStop
-    "<font color=\"black\"><b>",  //  tagNameStart
-    "</b></font>",  //  tagNameStop
-    "<font color=\"grey\">(", //  tagValueStart
-    ")</font>", //  tagValueStop
-    " </td><td> ", //  equal
-    "<font color=\"darkblue\">",  //  valueStart
-    "</font>",  //  valueStop
-    " <font color=\"darkgreen\">", //  enumStart
-    "</font>",  //  enumStop
-    "<font color=\"red\">",  //  unknownStart
-    "</font>"      //  unknownStop
+    .messageBegin       = "<pre><table>",
+    .messageEnd         = "</table></pre>",
+    .indent             = "&nbsp;&nbsp;",
+    .groupFirstField    = "&nbsp;&#x2022;",
+    .fieldBegin         = "<tr><td>",
+    .fieldEnd           = "</td></tr>\n",
+    .headerTagNameStart = "<font color=\"#444444\">",
+    .headerTagNameStop  = "</font>",
+    .tagNameStart       = "<font color=\"black\"><b>",
+    .tagNameStop        = "</b></font>",
+    .tagValueStart      = "<font color=\"grey\">(",
+    .tagValueStop       = ")</font>",
+    .equal              = " </td><td> ",
+    .valueStart         = "<font color=\"darkblue\">",
+    .valueStop          = "</font>",
+    .enumStart          = " <font color=\"darkgreen\">" ,
+    .enumStop           = "</font>",
+    .unknownStart       = "<font color=\"red\">",
+    .unknownStop        = "</font>"
 };
 ```
 
