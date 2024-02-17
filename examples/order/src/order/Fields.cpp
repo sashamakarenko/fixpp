@@ -97,13 +97,13 @@ std::map< std::string, tag_t >                        tagByName;
 std::map< tag_t      , FieldType >                    fieldTypeByValue;
 std::map< tag_t      , const std::string >            fieldTypeNameByValue;
 
-const std::map< raw_tag_t  , const char * const >           & RAW_TAG_TO_NAME   = tagNameByRaw;
-const std::map< tag_t      , const char * const >           & TAG_TO_NAME       = tagNameByValue;
-const std::map< raw_tag_t  , const FieldEnumsBase * const > & RAW_TO_ENUM       = enumsByRaw;
-const std::map< tag_t      , const FieldEnumsBase * const > & TAG_TO_ENUM       = enumsByTag;
-const std::map< std::string, tag_t >                        & FIELD_NAME_TO_TAG = tagByName;
-const std::map< tag_t      , FieldType >                    & TAG_TO_FIELD_TYPE = fieldTypeByValue;
-const std::map< tag_t      , const std::string >            & TAG_TO_FIELD_NAME = fieldTypeNameByValue;
+const std::map< raw_tag_t  , const char * const >           & RAW_TAG_TO_NAME        = tagNameByRaw;
+const std::map< tag_t      , const char * const >           & TAG_TO_NAME            = tagNameByValue;
+const std::map< raw_tag_t  , const FieldEnumsBase * const > & RAW_TO_ENUM            = enumsByRaw;
+const std::map< tag_t      , const FieldEnumsBase * const > & TAG_TO_ENUM            = enumsByTag;
+const std::map< std::string, tag_t >                        & FIELD_NAME_TO_TAG      = tagByName;
+const std::map< tag_t      , FieldType >                    & TAG_TO_FIELD_TYPE      = fieldTypeByValue;
+const std::map< tag_t      , const std::string >            & TAG_TO_FIELD_TYPE_NAME = fieldTypeNameByValue;
 
 tag_t getFieldTag( const std::string & fieldName )
 {
@@ -565,7 +565,9 @@ template<> const std::string & FieldNestedPartySubIDType::getTypeName() { static
 
 
 const char * QtyTypeEnums::getFieldName() const { return FixQtyType; }
-const FieldEnumBase * QtyTypeEnums::getEnumByRaw( raw_enum_t raw ) const { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : it->second; }
+const FieldEnumBase * QtyTypeEnums::findEnum( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : it->second; }
+const QtyTypeEnums::ValueType * QtyTypeEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
+const FieldEnumBase * QtyTypeEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & QtyTypeEnums::getEnumMapByRaw() const { return QtyTypeEnums::itemByRaw; }
 const FieldEnumBase * const * const QtyTypeEnums::getEnums() const { return items; }
 const QtyTypeEnums QtyTypeEnums::instance;
@@ -576,7 +578,9 @@ nullptr };
 
 
 const char * ProductEnums::getFieldName() const { return FixProduct; }
-const FieldEnumBase * ProductEnums::getEnumByRaw( raw_enum_t raw ) const { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : it->second; }
+const FieldEnumBase * ProductEnums::findEnum( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : it->second; }
+const ProductEnums::ValueType * ProductEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
+const FieldEnumBase * ProductEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & ProductEnums::getEnumMapByRaw() const { return ProductEnums::itemByRaw; }
 const FieldEnumBase * const * const ProductEnums::getEnums() const { return items; }
 const ProductEnums ProductEnums::instance;
@@ -598,7 +602,9 @@ nullptr };
 
 
 const char * MsgTypeEnums::getFieldName() const { return FixMsgType; }
-const FieldEnumBase * MsgTypeEnums::getEnumByRaw( raw_enum_t raw ) const { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : it->second; }
+const FieldEnumBase * MsgTypeEnums::findEnum( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : it->second; }
+const MsgTypeEnums::ValueType * MsgTypeEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
+const FieldEnumBase * MsgTypeEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & MsgTypeEnums::getEnumMapByRaw() const { return MsgTypeEnums::itemByRaw; }
 const FieldEnumBase * const * const MsgTypeEnums::getEnums() const { return items; }
 const MsgTypeEnums MsgTypeEnums::instance;
@@ -609,7 +615,9 @@ nullptr };
 
 
 const char * OrdStatusEnums::getFieldName() const { return FixOrdStatus; }
-const FieldEnumBase * OrdStatusEnums::getEnumByRaw( raw_enum_t raw ) const { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : it->second; }
+const FieldEnumBase * OrdStatusEnums::findEnum( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : it->second; }
+const OrdStatusEnums::ValueType * OrdStatusEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
+const FieldEnumBase * OrdStatusEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & OrdStatusEnums::getEnumMapByRaw() const { return OrdStatusEnums::itemByRaw; }
 const FieldEnumBase * const * const OrdStatusEnums::getEnums() const { return items; }
 const OrdStatusEnums OrdStatusEnums::instance;
@@ -632,7 +640,9 @@ nullptr };
 
 
 const char * OrdTypeEnums::getFieldName() const { return FixOrdType; }
-const FieldEnumBase * OrdTypeEnums::getEnumByRaw( raw_enum_t raw ) const { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : it->second; }
+const FieldEnumBase * OrdTypeEnums::findEnum( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : it->second; }
+const OrdTypeEnums::ValueType * OrdTypeEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
+const FieldEnumBase * OrdTypeEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & OrdTypeEnums::getEnumMapByRaw() const { return OrdTypeEnums::itemByRaw; }
 const FieldEnumBase * const * const OrdTypeEnums::getEnums() const { return items; }
 const OrdTypeEnums OrdTypeEnums::instance;
@@ -658,7 +668,9 @@ nullptr };
 
 
 const char * SideEnums::getFieldName() const { return FixSide; }
-const FieldEnumBase * SideEnums::getEnumByRaw( raw_enum_t raw ) const { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : it->second; }
+const FieldEnumBase * SideEnums::findEnum( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : it->second; }
+const SideEnums::ValueType * SideEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
+const FieldEnumBase * SideEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & SideEnums::getEnumMapByRaw() const { return SideEnums::itemByRaw; }
 const FieldEnumBase * const * const SideEnums::getEnums() const { return items; }
 const SideEnums SideEnums::instance;
@@ -669,7 +681,9 @@ nullptr };
 
 
 const char * TimeInForceEnums::getFieldName() const { return FixTimeInForce; }
-const FieldEnumBase * TimeInForceEnums::getEnumByRaw( raw_enum_t raw ) const { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : it->second; }
+const FieldEnumBase * TimeInForceEnums::findEnum( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : it->second; }
+const TimeInForceEnums::ValueType * TimeInForceEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
+const FieldEnumBase * TimeInForceEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & TimeInForceEnums::getEnumMapByRaw() const { return TimeInForceEnums::itemByRaw; }
 const FieldEnumBase * const * const TimeInForceEnums::getEnums() const { return items; }
 const TimeInForceEnums TimeInForceEnums::instance;
@@ -686,7 +700,9 @@ nullptr };
 
 
 const char * PriceTypeEnums::getFieldName() const { return FixPriceType; }
-const FieldEnumBase * PriceTypeEnums::getEnumByRaw( raw_enum_t raw ) const { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : it->second; }
+const FieldEnumBase * PriceTypeEnums::findEnum( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : it->second; }
+const PriceTypeEnums::ValueType * PriceTypeEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
+const FieldEnumBase * PriceTypeEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & PriceTypeEnums::getEnumMapByRaw() const { return PriceTypeEnums::itemByRaw; }
 const FieldEnumBase * const * const PriceTypeEnums::getEnums() const { return items; }
 const PriceTypeEnums PriceTypeEnums::instance;
@@ -706,7 +722,9 @@ nullptr };
 
 
 const char * SecurityTypeEnums::getFieldName() const { return FixSecurityType; }
-const FieldEnumBase * SecurityTypeEnums::getEnumByRaw( raw_enum_t raw ) const { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : it->second; }
+const FieldEnumBase * SecurityTypeEnums::findEnum( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : it->second; }
+const SecurityTypeEnums::ValueType * SecurityTypeEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
+const FieldEnumBase * SecurityTypeEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & SecurityTypeEnums::getEnumMapByRaw() const { return SecurityTypeEnums::itemByRaw; }
 const FieldEnumBase * const * const SecurityTypeEnums::getEnums() const { return items; }
 const SecurityTypeEnums SecurityTypeEnums::instance;

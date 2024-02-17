@@ -95,13 +95,13 @@ std::map< std::string, tag_t >                        tagByName;
 std::map< tag_t      , FieldType >                    fieldTypeByValue;
 std::map< tag_t      , const std::string >            fieldTypeNameByValue;
 
-const std::map< raw_tag_t  , const char * const >           & RAW_TAG_TO_NAME   = tagNameByRaw;
-const std::map< tag_t      , const char * const >           & TAG_TO_NAME       = tagNameByValue;
-const std::map< raw_tag_t  , const FieldEnumsBase * const > & RAW_TO_ENUM       = enumsByRaw;
-const std::map< tag_t      , const FieldEnumsBase * const > & TAG_TO_ENUM       = enumsByTag;
-const std::map< std::string, tag_t >                        & FIELD_NAME_TO_TAG = tagByName;
-const std::map< tag_t      , FieldType >                    & TAG_TO_FIELD_TYPE = fieldTypeByValue;
-const std::map< tag_t      , const std::string >            & TAG_TO_FIELD_NAME = fieldTypeNameByValue;
+const std::map< raw_tag_t  , const char * const >           & RAW_TAG_TO_NAME        = tagNameByRaw;
+const std::map< tag_t      , const char * const >           & TAG_TO_NAME            = tagNameByValue;
+const std::map< raw_tag_t  , const FieldEnumsBase * const > & RAW_TO_ENUM            = enumsByRaw;
+const std::map< tag_t      , const FieldEnumsBase * const > & TAG_TO_ENUM            = enumsByTag;
+const std::map< std::string, tag_t >                        & FIELD_NAME_TO_TAG      = tagByName;
+const std::map< tag_t      , FieldType >                    & TAG_TO_FIELD_TYPE      = fieldTypeByValue;
+const std::map< tag_t      , const std::string >            & TAG_TO_FIELD_TYPE_NAME = fieldTypeNameByValue;
 
 tag_t getFieldTag( const std::string & fieldName )
 {

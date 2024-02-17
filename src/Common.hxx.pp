@@ -4,6 +4,7 @@
 <n1> bool isSet##NAME() const { return field##NAME.offset >= 0; }\
 <n1> Field##NAME::ValueType get##NAME() const { return field##NAME.getValue( buf ); }\
 <n1> const char * ptrTo##NAME() const { return buf + field##NAME.offset; }\
+<n1> const char * getIfSet##NAME() const { return field##NAME.offset >= 0 ? buf + field##NAME.offset : nullptr; }\
 <n1> private: Field##NAME field##NAME;\
 
 #define FIX_MSG_GROUP(NAME) FIX_MSG_FIELD(No##NAME)\

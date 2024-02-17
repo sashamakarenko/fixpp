@@ -76,10 +76,10 @@ int main( int args, const char ** argv )
     execReport.append<OrigClOrdID>( "2312320210" );
     execReport.append<SecurityID>("dhdddgqgddDDdwuidpdgqe");
     execReport.append<TransactTime>( execReport.sendingTime.begin, TimestampKeeper::DATE_TIME_NANOS_LENGTH );
-    execReport.append<Side>( SideEnums::BUY() );
-    execReport.append<QtyType>( QtyTypeEnums::UNITS() );
+    execReport.append<Side>( SideEnums::BUY );
+    execReport.append<QtyType>( QtyTypeEnums::UNITS );
     execReport.append<Price>( 2.12, 7 );
-    execReport.append<OrdType>( OrdTypeEnums::LIMIT() );
+    execReport.append<OrdType>( OrdTypeEnums::LIMIT );
     execReport.setSeqnumAndUpdateHeaderAndChecksum(123);
     std::cout << fixstr( execReport.start, ttyRgbStyle ) << std::endl;
 

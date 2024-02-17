@@ -26,7 +26,7 @@ int main( int args, const char ** argv )
     ExecutionReport ler;
     pos = ler.scan( FIX_BUFFER_LARGE_EXEC_REPORT + pos, strlen( FIX_BUFFER_LARGE_EXEC_REPORT ) - pos );
     std::cout << ' ' << FixOrdStatus << " = " << ler.getOrdStatus() << " " << computeChecksum( FIX_BUFFER_LARGE_EXEC_REPORT, ler.ptrToCheckSum() )
-              << " body length " <<  ( ler.ptrToCheckSum() - header.ptrToMsgType() ) << std::endl;
+              << " body length " <<  ( ler.ptrToCheckSum() - header.getIfSetMsgType() ) << std::endl;
 
     std::cout << "- Price as double: " << ler.getPrice() << std::endl;
 
@@ -68,10 +68,10 @@ int main( int args, const char ** argv )
     pos = mdsfr.scan( FIX_BUFFER_MD_FULL_REFRESH + pos, strlen( FIX_BUFFER_MD_FULL_REFRESH ) - pos );
 
     raw_enum_t msgTypeRaw = toRawEnum( header.ptrToMsgType() );
-    auto it = MsgTypeEnums::itemByRaw.find( msgTypeRaw );
-    if( it != MsgTypeEnums::itemByRaw.end() )
+    auto enumPtr = MsgTypeEnums::findEnum( msgTypeRaw );
+    if( enumPtr )
     {
-        std::cout << " MsgType = " << it->second->name << std::endl;
+        std::cout << " MsgType = " << enumPtr->name << std::endl;
     }
     std::cout << " sizeof(MessageMarketDataSnapshotFullRefresh)=" << sizeof(mdsfr) << " BodyLength=" << header.getBodyLength() << " SendingTime=" << header.getSendingTime()
               << " " << computeChecksum( FIX_BUFFER_MD_FULL_REFRESH, mdsfr.ptrToCheckSum() )
@@ -83,7 +83,7 @@ int main( int args, const char ** argv )
             break;
 
         case MsgTypeRaw_MARKET_DATA_SNAPSHOT_FULL_REFRESH:
-            std::cout << "MARKET_DATA_SNAPSHOT_FULL_REFRESH" << std::endl;
+            std::cout << " msgTypeRaw = MARKET_DATA_SNAPSHOT_FULL_REFRESH" << std::endl;
             break;
 
         default:
@@ -120,10 +120,10 @@ int main( int args, const char ** argv )
     pos = secdef.scan( fix + pos, strlen( fix ) - pos );
 
     msgTypeRaw = toRawEnum( header.ptrToMsgType() );
-    it = MsgTypeEnums::itemByRaw.find( msgTypeRaw );
-    if( it != MsgTypeEnums::itemByRaw.end() )
+    enumPtr = MsgTypeEnums::findEnum( msgTypeRaw );
+    if( enumPtr )
     {
-        std::cout << " MsgType = " << it->second->name << std::endl;
+        std::cout << " MsgType = " << enumPtr->name << std::endl;
     }
     std::cout << "BodyLength=" << header.getBodyLength()
               << " " << computeChecksum( fix, secdef.ptrToCheckSum() )
@@ -144,6 +144,6 @@ int main( int args, const char ** argv )
               << " body length " <<  ( logon.ptrToCheckSum() - header.ptrToMsgType() )
               << " strlen " <<  strlen( fix )
               << std::endl;
-
+    
     return 0;
 }

@@ -285,6 +285,12 @@ struct FixBufferStream
         return pushValue( v, tp );
     }
 
+    template< typename FIELD >
+    FixBufferStream & append( const FieldEnum< typename FIELD::ValueType > & item  )
+    {
+        return append<FIELD>( item.value );
+    }
+
     // not efficient
     template< typename FIELD >
     FixBufferStream & append( const TimePoint & tp, ClockPrecision precision );

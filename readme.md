@@ -1,24 +1,7 @@
 # fixpp stands for FIX by C++ PreProcessor
 
-* [Motivation](#motivation)
-* [Performance](#performance)
-* [Screenshots](#screenshots)
-  - [TTY output](#tty-output)
-  - [Debugger view in vscode](#debugger-view-in-vscode)
-* [Input](#input)
-* [Output](#output)
-* [Decode messages](#decode-messages)
-  - [Use ParserDispatcher](#use-parserdispatcher)
-  - [How to read from socket or file](#how-to-read-from-socket-or-file)
-  - [DIY](#diy)
-* [Sending API](#sending-api)
-  - [FixBufferStream](#)
-  - [ReusableMessageBuilder](#)
-* [Examples](#examples)
-* [Custom HTML output](#custom-html-output)
-
 ## Motivation
-The idea is to use CPP preprocessing instructions along with standard Linux CLI tools(bash,sed,grep) to generate a FIX API for a given venue.
+The idea is to use CPP preprocessing instructions along with standard Linux CLI tools(bash,sed,grep) to generate FIX API for a given venue.
 
 Mindset:
 
@@ -36,7 +19,7 @@ Receiving ([read more](#input)):
 Sending ([read more](#sending-api)):
 
 * Low latency FIX message building with reusable memory and objects.
-* For a given message type, only fields changing between two sends are to be updated. 
+* For a given message type, only fields changing between two sends are to be updated.
 
 You have to know:
 
@@ -189,9 +172,65 @@ MYPRJ
 
 A fully generated and committed primitive project is available in examples/order.
 
-## Decode messages
+## Receiving API
+
+### Accessing message fields
+
+```c++
+class BusinessLogic
+{
+    void onMessage( const MessageExecutionReport & msg )
+    {
+        // for mandatory fields it is safe to get the value:
+        Quantity qty = msg.getOrderQty();
+
+        // for optional fields:
+        double px = msg.isSetPrice() ? msg.getPrice() : 0;
+    }
+
+    void onMessage( const MessageMarketDataSnapshotFullRefresh & msg )
+    {
+        ...
+    }
+};
+```
+
+### Scanning
+
+In most cases a latency sensitive implementation will tend to reuse objects and avoid allocations on the critical path. Here we suggest keeping a `Header` object and messages separately. The parsing is carried out in two steps:
+
+- scanning the header first,
+- then, after identifying the message type, scanning the relevant message body.
+
+```c++
+    // my class attribute:
+    Header                               _header;
+    MessageExecutionReport               _execReport;
+    MessageMarketDataSnapshotFullRefresh _mdsfr;
+    BusinessLogic                        _businessLogic;
+    ...
+    // after reading the message into fixString
+    offset_t pos = _header.scan( fixString.data(), fixString.size() );
+    const raw_enum_t msgType = toRawEnum( _header_.ptrToMsgType() );
+    switch( msgType )
+    {
+        case MsgTypeRaw_EXECUTION_REPORT:
+            _msgExecutionReport.scan( fixString.data(), fixString.size() - pos );
+            _businessLogic.onMessage( _execReport );
+            break;
+
+        case MsgTypeRaw_MARKET_DATA_SNAPSHOT_FULL_REFRESH:
+            _mdsfr.scan( fixString.data(), fixString.size() - pos );
+            _businessLogic.onMessage( _mdsfr );
+            break;
+        ...
+    }
+```
+
 
 ### Use ParserDispatcher
+
+`fixpp` generates a class `ParserDispatcher` implementing the above switch. You have just to override `onMessage(...)` methods.
 
 ```cpp
 #include <tiny/Messages.h>
@@ -200,12 +239,12 @@ A fully generated and committed primitive project is available in examples/order
 
 #define I "\001"
 
-const char * buffer = 
+const char * buffer =
 // exec report
 "8=FIX.4.4" I "9=156" I "35=8" I "49=foo" I "56=bar" I "52=20071123-05:30:00.000" I "11=OID123456" I "150=E" I "39=A" I "55=XYZ" I "167=CS" I "54=1" I "38=15" I "40=2" I "44=15.001" I "58=EQUITYTESTING" I "59=0" I "32=0" I "31=0" I "151=15" I "14=0" I "6=0" I "10=118" I
 
 // large exec report
-"8=FIX.4.4" I "9=332" I "35=8" I "49=foo" I "56=bar" I "52=20071123-05:30:00.000" I "11=OID123456" I "150=E" I "39=A" I "55=XYZ" I "167=CS" I "54=1" I "38=15" I "40=2" I "44=15.001" I "58=EQUITYTESTING" I "59=0" I "32=0" I "31=0" I "151=15" I "14=0" I "6=0" I 
+"8=FIX.4.4" I "9=332" I "35=8" I "49=foo" I "56=bar" I "52=20071123-05:30:00.000" I "11=OID123456" I "150=E" I "39=A" I "55=XYZ" I "167=CS" I "54=1" I "38=15" I "40=2" I "44=15.001" I "58=EQUITYTESTING" I "59=0" I "32=0" I "31=0" I "151=15" I "14=0" I "6=0" I
 "555=2" I "600=SYM1" I "624=0" I "687=10" I "683=1" I
                              "688=A" I "689=a" I
                              "564=1" I
@@ -276,7 +315,7 @@ int main( int args, const char ** argv )
         {
             break;
         }
-        
+
     }
 ```
 ### DIY
@@ -285,7 +324,7 @@ int main( int args, const char ** argv )
 #include <myprj/fix/Messages.h>
 
 const char * execReport = "8=FIX.4.4" I "9=332" I "35=8" I "49=foo" I "56=bar" I "52=20071123-05:30:00.000" I
-"11=OID123456" I "150=E" I "39=A" I "55=XYZ" I "167=CS" I "54=1" I "38=15" I "40=2" I "44=15.001" I "58=EQUITYTESTING" I "59=0" I "32=0" I "31=0" I "151=15" I "14=0" I "6=0" I 
+"11=OID123456" I "150=E" I "39=A" I "55=XYZ" I "167=CS" I "54=1" I "38=15" I "40=2" I "44=15.001" I "58=EQUITYTESTING" I "59=0" I "32=0" I "31=0" I "151=15" I "14=0" I "6=0" I
 "555=2" I "600=SYM1" I "624=0" I "687=10" I "683=1" I
                              "688=A" I "689=a" I
                              "564=1" I
@@ -297,7 +336,7 @@ const char * execReport = "8=FIX.4.4" I "9=332" I "35=8" I "49=foo" I "56=bar" I
                              "688=B" I "689=b" I
 "10=027" I;
 
-    
+
 
     using namespace venue::fix;
     ...
@@ -308,23 +347,23 @@ const char * execReport = "8=FIX.4.4" I "9=332" I "35=8" I "49=foo" I "56=bar" I
 
     MessageExecutionReport er;
     pos = er.scan( execReport + pos, strlen( execReport ) - pos );
-    
+
     // print single field value
     std::cout << ' ' << FixOrdStatus << " = " << er.getOrdStatus() << std::endl;
 
     // print entire message
     std::cout << "\n\n -- Pretty Printing --" << std::endl;
-    
+
     // use operator <<
     std::cout << fixstr( execReport, ttyRgbStyle ) << std::endl;
 
     // print flat and advance pos
     pos = 0;
     fixToHuman( execReport, pos, std::cout, ttyRgbStyle ) << std::endl;
-    
+
     // indent groups
     pos = 0;
-    fixToHuman( execReport, pos, std::cout, ttyRgbStyle, MessageExecutionReport::getFieldDepth ) << std::endl;    
+    fixToHuman( execReport, pos, std::cout, ttyRgbStyle, MessageExecutionReport::getFieldDepth ) << std::endl;
 
     // iterate over groups
     if( er.isSetNoLegs() )
@@ -342,7 +381,7 @@ const char * execReport = "8=FIX.4.4" I "9=332" I "35=8" I "49=foo" I "56=bar" I
 
 ## Sending API
 
-You will have to include SenderApi.h to build FIX messages with fixpp. It offers both 
+You will have to include SenderApi.h to build FIX messages with fixpp. It offers both
 - low level buffer construction with FixBufferStream
 - and reusable memory approach with ReusableMessageBuilder
 
@@ -372,7 +411,7 @@ This structure inherits the `begin` and `end` pointers from FixBufferStream. But
 buffer   start                msgType                                    sendingTime                  body
 |        |                    |                                          |                            |
 "..."   "8=FIX.4.4" I "9=315" I "35=W" I "49=foo" I "56=bar" I "34=1234" I "52=20190101-01:01:01.000" I "..."
-                                                                         |                            | 
+                                                                         |                            |
                                                                          begin                        end
 ```
 
@@ -449,23 +488,23 @@ $> make check
 ```cpp
 const FixFormatStyle htmlRgbStyle =
 {
-    "<pre>",  //  messageBegin 
+    "<pre>",  //  messageBegin
     "</pre>",  //  messageEnd
     "  ",//  indent
     "  ",//  groupFirstField;
-    " ", //  fieldBegin   
-    "\n",//  fieldEnd     
-    "<font color=\"#444444\">",  //  headerTagNameStart 
-    "</font>",  //  headerTagNameStop  
-    "<font color=\"black\"><b>",  //  tagNameStart 
-    "</b></font>",  //  tagNameStop  
+    " ", //  fieldBegin
+    "\n",//  fieldEnd
+    "<font color=\"#444444\">",  //  headerTagNameStart
+    "</font>",  //  headerTagNameStop
+    "<font color=\"black\"><b>",  //  tagNameStart
+    "</b></font>",  //  tagNameStop
     "<font color=\"grey\">(", //  tagValueStart
-    ")</font>", //  tagValueStop 
-    " = ", //  equal        
-    "<font color=\"darkblue\">",  //  valueStart   
-    "</font>",  //  valueStop    
-    " <font color=\"darkgreen\">", //  enumStart    
-    "</font>",  //  enumStop     
+    ")</font>", //  tagValueStop
+    " = ", //  equal
+    "<font color=\"darkblue\">",  //  valueStart
+    "</font>",  //  valueStop
+    " <font color=\"darkgreen\">", //  enumStart
+    "</font>",  //  enumStop
     "<font color=\"red\">",  //  unknownStart
     "</font>"      //  unknownStop
 };
@@ -475,7 +514,7 @@ const FixFormatStyle htmlRgbStyle =
     std::ofstream html;
     html.open( "mdfr.html" );
     pos = 0;
-    fixToHuman( mdFullRefresh, pos, html, htmlRgbStyle, autoIndentFields );        
+    fixToHuman( mdFullRefresh, pos, html, htmlRgbStyle, autoIndentFields );
     html.close();
 
 ```
@@ -527,23 +566,23 @@ Show message as HTML table:
 ```cpp
 const FixFormatStyle htmlTableRgbStyle =
 {
-    "<pre><table>",  //  messageBegin 
+    "<pre><table>",  //  messageBegin
     "</table></pre>",  //  messageEnd
     "&nbsp;&nbsp;",//  indent
     "&nbsp;&#x2022;",//  groupFirstField;
-    "<tr><td>", //  fieldBegin   
-    "</td></tr>\n",//  fieldEnd     
-    "<font color=\"#444444\">",  //  headerTagNameStart 
-    "</font>",  //  headerTagNameStop  
-    "<font color=\"black\"><b>",  //  tagNameStart 
-    "</b></font>",  //  tagNameStop  
+    "<tr><td>", //  fieldBegin
+    "</td></tr>\n",//  fieldEnd
+    "<font color=\"#444444\">",  //  headerTagNameStart
+    "</font>",  //  headerTagNameStop
+    "<font color=\"black\"><b>",  //  tagNameStart
+    "</b></font>",  //  tagNameStop
     "<font color=\"grey\">(", //  tagValueStart
-    ")</font>", //  tagValueStop 
-    " </td><td> ", //  equal        
-    "<font color=\"darkblue\">",  //  valueStart   
-    "</font>",  //  valueStop    
-    " <font color=\"darkgreen\">", //  enumStart    
-    "</font>",  //  enumStop     
+    ")</font>", //  tagValueStop
+    " </td><td> ", //  equal
+    "<font color=\"darkblue\">",  //  valueStart
+    "</font>",  //  valueStop
+    " <font color=\"darkgreen\">", //  enumStart
+    "</font>",  //  enumStop
     "<font color=\"red\">",  //  unknownStart
     "</font>"      //  unknownStop
 };

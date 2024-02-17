@@ -37,12 +37,14 @@ class GroupLegStipulations : public MessageBase
    bool isSetLegStipulationType() const { return fieldLegStipulationType.offset >= 0; }
    FieldLegStipulationType::ValueType getLegStipulationType() const { return fieldLegStipulationType.getValue( buf ); }
    const char * ptrToLegStipulationType() const { return buf + fieldLegStipulationType.offset; }
+   const char * getIfSetLegStipulationType() const { return fieldLegStipulationType.offset >= 0 ? buf + fieldLegStipulationType.offset : nullptr; }
    private: FieldLegStipulationType fieldLegStipulationType;
 
    public:
    bool isSetLegStipulationValue() const { return fieldLegStipulationValue.offset >= 0; }
    FieldLegStipulationValue::ValueType getLegStipulationValue() const { return fieldLegStipulationValue.getValue( buf ); }
    const char * ptrToLegStipulationValue() const { return buf + fieldLegStipulationValue.offset; }
+   const char * getIfSetLegStipulationValue() const { return fieldLegStipulationValue.offset >= 0 ? buf + fieldLegStipulationValue.offset : nullptr; }
    private: FieldLegStipulationValue fieldLegStipulationValue;
 
 };
@@ -67,12 +69,14 @@ class GroupNestedPartySubIDs : public MessageBase
    bool isSetNestedPartySubID() const { return fieldNestedPartySubID.offset >= 0; }
    FieldNestedPartySubID::ValueType getNestedPartySubID() const { return fieldNestedPartySubID.getValue( buf ); }
    const char * ptrToNestedPartySubID() const { return buf + fieldNestedPartySubID.offset; }
+   const char * getIfSetNestedPartySubID() const { return fieldNestedPartySubID.offset >= 0 ? buf + fieldNestedPartySubID.offset : nullptr; }
    private: FieldNestedPartySubID fieldNestedPartySubID;
 
    public:
    bool isSetNestedPartySubIDType() const { return fieldNestedPartySubIDType.offset >= 0; }
    FieldNestedPartySubIDType::ValueType getNestedPartySubIDType() const { return fieldNestedPartySubIDType.getValue( buf ); }
    const char * ptrToNestedPartySubIDType() const { return buf + fieldNestedPartySubIDType.offset; }
+   const char * getIfSetNestedPartySubIDType() const { return fieldNestedPartySubIDType.offset >= 0 ? buf + fieldNestedPartySubIDType.offset : nullptr; }
    private: FieldNestedPartySubIDType fieldNestedPartySubIDType;
 
 };
@@ -97,24 +101,28 @@ class GroupNestedPartyIDs : public MessageBase
    bool isSetNestedPartyID() const { return fieldNestedPartyID.offset >= 0; }
    FieldNestedPartyID::ValueType getNestedPartyID() const { return fieldNestedPartyID.getValue( buf ); }
    const char * ptrToNestedPartyID() const { return buf + fieldNestedPartyID.offset; }
+   const char * getIfSetNestedPartyID() const { return fieldNestedPartyID.offset >= 0 ? buf + fieldNestedPartyID.offset : nullptr; }
    private: FieldNestedPartyID fieldNestedPartyID;
 
    public:
    bool isSetNestedPartyIDSource() const { return fieldNestedPartyIDSource.offset >= 0; }
    FieldNestedPartyIDSource::ValueType getNestedPartyIDSource() const { return fieldNestedPartyIDSource.getValue( buf ); }
    const char * ptrToNestedPartyIDSource() const { return buf + fieldNestedPartyIDSource.offset; }
+   const char * getIfSetNestedPartyIDSource() const { return fieldNestedPartyIDSource.offset >= 0 ? buf + fieldNestedPartyIDSource.offset : nullptr; }
    private: FieldNestedPartyIDSource fieldNestedPartyIDSource;
 
    public:
    bool isSetNestedPartyRole() const { return fieldNestedPartyRole.offset >= 0; }
    FieldNestedPartyRole::ValueType getNestedPartyRole() const { return fieldNestedPartyRole.getValue( buf ); }
    const char * ptrToNestedPartyRole() const { return buf + fieldNestedPartyRole.offset; }
+   const char * getIfSetNestedPartyRole() const { return fieldNestedPartyRole.offset >= 0 ? buf + fieldNestedPartyRole.offset : nullptr; }
    private: FieldNestedPartyRole fieldNestedPartyRole;
 
    public:
    bool isSetNoNestedPartySubIDs() const { return fieldNoNestedPartySubIDs.offset >= 0; }
    FieldNoNestedPartySubIDs::ValueType getNoNestedPartySubIDs() const { return fieldNoNestedPartySubIDs.getValue( buf ); }
    const char * ptrToNoNestedPartySubIDs() const { return buf + fieldNoNestedPartySubIDs.offset; }
+   const char * getIfSetNoNestedPartySubIDs() const { return fieldNoNestedPartySubIDs.offset >= 0 ? buf + fieldNoNestedPartySubIDs.offset : nullptr; }
    private: FieldNoNestedPartySubIDs fieldNoNestedPartySubIDs;
   
    public:
@@ -144,24 +152,28 @@ class GroupLegs : public MessageBase
    bool isSetLegSymbol() const { return fieldLegSymbol.offset >= 0; }
    FieldLegSymbol::ValueType getLegSymbol() const { return fieldLegSymbol.getValue( buf ); }
    const char * ptrToLegSymbol() const { return buf + fieldLegSymbol.offset; }
+   const char * getIfSetLegSymbol() const { return fieldLegSymbol.offset >= 0 ? buf + fieldLegSymbol.offset : nullptr; }
    private: FieldLegSymbol fieldLegSymbol;
 
    public:
    bool isSetLegSide() const { return fieldLegSide.offset >= 0; }
    FieldLegSide::ValueType getLegSide() const { return fieldLegSide.getValue( buf ); }
    const char * ptrToLegSide() const { return buf + fieldLegSide.offset; }
+   const char * getIfSetLegSide() const { return fieldLegSide.offset >= 0 ? buf + fieldLegSide.offset : nullptr; }
    private: FieldLegSide fieldLegSide;
 
    public:
    bool isSetLegQty() const { return fieldLegQty.offset >= 0; }
    FieldLegQty::ValueType getLegQty() const { return fieldLegQty.getValue( buf ); }
    const char * ptrToLegQty() const { return buf + fieldLegQty.offset; }
+   const char * getIfSetLegQty() const { return fieldLegQty.offset >= 0 ? buf + fieldLegQty.offset : nullptr; }
    private: FieldLegQty fieldLegQty;
 
    public:
    bool isSetNoLegStipulations() const { return fieldNoLegStipulations.offset >= 0; }
    FieldNoLegStipulations::ValueType getNoLegStipulations() const { return fieldNoLegStipulations.getValue( buf ); }
    const char * ptrToNoLegStipulations() const { return buf + fieldNoLegStipulations.offset; }
+   const char * getIfSetNoLegStipulations() const { return fieldNoLegStipulations.offset >= 0 ? buf + fieldNoLegStipulations.offset : nullptr; }
    private: FieldNoLegStipulations fieldNoLegStipulations;
   
    public:
@@ -173,12 +185,14 @@ class GroupLegs : public MessageBase
    bool isSetLegPositionEffect() const { return fieldLegPositionEffect.offset >= 0; }
    FieldLegPositionEffect::ValueType getLegPositionEffect() const { return fieldLegPositionEffect.getValue( buf ); }
    const char * ptrToLegPositionEffect() const { return buf + fieldLegPositionEffect.offset; }
+   const char * getIfSetLegPositionEffect() const { return fieldLegPositionEffect.offset >= 0 ? buf + fieldLegPositionEffect.offset : nullptr; }
    private: FieldLegPositionEffect fieldLegPositionEffect;
 
    public:
    bool isSetNoNestedPartyIDs() const { return fieldNoNestedPartyIDs.offset >= 0; }
    FieldNoNestedPartyIDs::ValueType getNoNestedPartyIDs() const { return fieldNoNestedPartyIDs.getValue( buf ); }
    const char * ptrToNoNestedPartyIDs() const { return buf + fieldNoNestedPartyIDs.offset; }
+   const char * getIfSetNoNestedPartyIDs() const { return fieldNoNestedPartyIDs.offset >= 0 ? buf + fieldNoNestedPartyIDs.offset : nullptr; }
    private: FieldNoNestedPartyIDs fieldNoNestedPartyIDs;
   
    public:
@@ -190,18 +204,21 @@ class GroupLegs : public MessageBase
    bool isSetLegRefID() const { return fieldLegRefID.offset >= 0; }
    FieldLegRefID::ValueType getLegRefID() const { return fieldLegRefID.getValue( buf ); }
    const char * ptrToLegRefID() const { return buf + fieldLegRefID.offset; }
+   const char * getIfSetLegRefID() const { return fieldLegRefID.offset >= 0 ? buf + fieldLegRefID.offset : nullptr; }
    private: FieldLegRefID fieldLegRefID;
 
    public:
    bool isSetLegPrice() const { return fieldLegPrice.offset >= 0; }
    FieldLegPrice::ValueType getLegPrice() const { return fieldLegPrice.getValue( buf ); }
    const char * ptrToLegPrice() const { return buf + fieldLegPrice.offset; }
+   const char * getIfSetLegPrice() const { return fieldLegPrice.offset >= 0 ? buf + fieldLegPrice.offset : nullptr; }
    private: FieldLegPrice fieldLegPrice;
 
    public:
    bool isSetLegLastPx() const { return fieldLegLastPx.offset >= 0; }
    FieldLegLastPx::ValueType getLegLastPx() const { return fieldLegLastPx.getValue( buf ); }
    const char * ptrToLegLastPx() const { return buf + fieldLegLastPx.offset; }
+   const char * getIfSetLegLastPx() const { return fieldLegLastPx.offset >= 0 ? buf + fieldLegLastPx.offset : nullptr; }
    private: FieldLegLastPx fieldLegLastPx;
 
 };

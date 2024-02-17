@@ -33,7 +33,7 @@ extern const std::map< raw_tag_t  , const FieldEnumsBase * const > & RAW_TO_ENUM
 extern const std::map< tag_t      , const FieldEnumsBase * const > & TAG_TO_ENUM;
 extern const std::map< std::string, tag_t >                        & FIELD_NAME_TO_TAG;
 extern const std::map< tag_t      , FieldType >                    & TAG_TO_FIELD_TYPE;
-extern const std::map< tag_t      , const std::string >            & TAG_TO_FIELD_NAME;
+extern const std::map< tag_t      , const std::string >            & TAG_TO_FIELD_TYPE_NAME;
 
 tag_t getFieldTag( const std::string & fieldName );
 

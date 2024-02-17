@@ -76,7 +76,6 @@ constexpr raw_tag_t tag_as_raw()
     return ( ( raw_tag_t('0') + K % 10U ) << ( 8 * ( tag_width<K>() - 1 ) ) ) + tag_as_raw<K/10U>();
 }
 
-
 // insertable := as uint64_t * pointing to "\001" "TAG" "="
 // Thus we can insert a tag along with leading SOH and folowed by equal sign with a single integer asignment.
 template< tag_t K >
@@ -262,6 +261,12 @@ inline T parseUInt( const char * ptr, unsigned & len )
     T next = parseUInt<T>( ptr + 8, tmplen );
     len += tmplen + 8;
     return tmp * (T)uintPow10[ tmplen ] + next;
+}
+
+inline tag_t raw_to_tag( raw_tag_t raw )
+{
+    unsigned len = 0;
+    return parseUInt( reinterpret_cast<const char *>( &raw ), len );
 }
 
 // todo: add pretty printer for Quantity
@@ -667,6 +672,12 @@ struct FieldEnum: FieldEnumBase
     }
     const ValueType value;
 };
+
+template< typename VT >
+inline std::string toString( const FieldEnum< VT > & item )
+{
+    return toString( item.value );
+}
 
 using FieldEnumMap = std::map< raw_enum_t, const FieldEnumBase * >;
 

@@ -32,9 +32,37 @@ int main( int args, const char ** argv )
     // uncomment to test too big tags 
     // [[maybe_unused]] raw_tag_t bigTag = tag_as_raw<123'000>();
 
+    raw_tag_t raw = tag_as_raw<1>();
+    tag_t tag = raw_to_tag( raw );
+    CHECK( tag 1, tag, == 1 );
+
+    raw = tag_as_raw<12>();
+    tag = raw_to_tag( raw );
+    CHECK( tag 12, tag, == 12 );
+
+    raw = tag_as_raw<123>();
+    tag = raw_to_tag( raw );
+    CHECK( tag 123, tag, == 123 );
+
+    raw = tag_as_raw<1234>();
+    tag = raw_to_tag( raw );
+    CHECK( tag 1234, tag, == 1234 );
+
+    raw = tag_as_raw<12345>();
+    tag = raw_to_tag( raw );
+    CHECK( tag 12345, tag, == 12345 );
+
+    offset_t pos = 0;
+    raw = tiny::loadRawTag( "1=", pos );
+    CHECK( load tag 1, raw, == tag_as_raw<1>() );
+
+    pos = 0;
+    raw = tiny::loadRawTag( "12345=", pos );
+    CHECK( load tag 12345, raw, == tag_as_raw<12345>() );
+
     const char * fixBuffer = EXAMPLE_MARKETDATA_FULL_REFRESH;
     tiny::MessageHeader header;
-    offset_t pos = header.scan( fixBuffer, strlen( fixBuffer ) );
+    pos = header.scan( fixBuffer, strlen( fixBuffer ) );
     tiny::MessageMarketDataSnapshotFullRefresh mdsfr;
     pos = mdsfr.scan( fixBuffer + pos, strlen( fixBuffer ) - pos );
 
