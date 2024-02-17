@@ -314,13 +314,12 @@ struct HeaderTemplate: FixBufferStream
     : FixBufferStream( nullptr )
     , buffer( capacity, (char)0 )
     , chksum( 0 )
+    , countableLength( 0 )
     {
         begin = end = &buffer[0];
         end = insert<FieldBeginString>( end );
         end = insert<FieldBodyLength>( end );
-        end = insert<FieldMsgType>( end );
-        memcpy( end, msgType.data(), msgType.size() );
-        end += msgType.size();
+        append<FieldMsgType>( msgType );
     }
 
     HeaderTemplate()
@@ -545,8 +544,10 @@ struct ReusableMessageBuilder: FixBufferStream
         begin = end = &buffer[0] + headerTemplateCapacity;
     }
 
+    ReusableMessageBuilder( const ReusableMessageBuilder & ) = delete;
+
     // To be called just before sending.
-    // Header is supposed to be updated.
+    // Header is supposed to be updated by this time.
     const char * setSeqnumAndUpdateHeaderAndChecksum( unsigned seqnum )
     {
         unsigned chksum = header.chksum;

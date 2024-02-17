@@ -382,12 +382,24 @@ inline const char * parseTimestamp( const char * ptr, T & year, T & month, T & d
     return parseTime( parseYYYYMMDD( ptr, year, month, day ) + 1, hour, minute, second, nanoseconds );
 }
 
+unsigned getValueLength( const char * ptr );
+
 // SOH terminated string
 struct sohstr
 {
-    sohstr( const char * buf = nullptr ):
-    ptr( buf )
+    sohstr( const char * buf = nullptr )
+    : ptr( buf )
     {
+    }
+
+    const char * data() const
+    {
+        return ptr;
+    }
+
+    size_t size() const
+    {
+        return getValueLength( ptr );
     }
 
     const char * ptr;
