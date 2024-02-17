@@ -55,6 +55,7 @@ class MessageHeader: public MessageBase
    public:
    bool isSetMsgType() const { return fieldMsgType.offset >= 0; }
    FieldMsgType::ValueType getMsgType() const { return fieldMsgType.getValue( buf ); }
+   raw_enum_t getRawMsgType() const { return toRawEnum( buf + fieldMsgType.offset ); }
    const char * ptrToMsgType() const { return buf + fieldMsgType.offset; }
    const char * getIfSetMsgType() const { return fieldMsgType.offset >= 0 ? buf + fieldMsgType.offset : nullptr; }
    private: FieldMsgType fieldMsgType;

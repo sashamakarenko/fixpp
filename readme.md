@@ -213,7 +213,7 @@ In most cases a latency sensitive implementation will tend to reuse objects and 
     ...
     // after reading the message into fixString
     offset_t pos = _header.scan( fixString.data(), fixString.size() );
-    switch( toRawEnum( _header_.ptrToMsgType() )
+    switch( _header_.getRawMsgType() )
     {
         case MsgTypeRaw_EXECUTION_REPORT:
             _msgExecutionReport.scan( fixString.data() + pos, fixString.size() - pos );

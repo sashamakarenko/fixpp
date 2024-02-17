@@ -24,32 +24,32 @@ do
             DSTINCDIR="$2"
             shift 2
         ;;
-        
+
         -n)
             DSTNAMESPACE="$2"
             shift 2
         ;;
-        
+
         -s)
             DEFDIR="$2"
             shift 2
         ;;
-        
+
         -d)
             DSTDIR="$2"
             shift 2
         ;;
-        
+
         -p)
             PPDIR="$2"
             shift 2
         ;;
-        
+
         --clean-fields)
             clean_fields=true
             shift 1
         ;;
-        
+
         -*)
             usage
         ;;
@@ -169,6 +169,10 @@ done
 # Fixing Heaader getMessageType
 sed "s/MsgTypeEnums::_.str/EMPTY_STRING/" -i ${DSTDIR}/Messages.cxx
 
+# Injecting getRawMsgType in Heaader
+echo "  injecting getRawMsgType() into ${DSTDIR}/Messages.hxx"
+sed "/ getMsgType/s/}/}\\n   raw_enum_t getRawMsgType() const { return toRawEnum( buf + fieldMsgType.offset ); }/" -i ${DSTDIR}/Messages.hxx
+
 # Extract header fields
 dst=${DSTDIR}/HeaderRaw.cxx
 echo "  generating $dst"
@@ -241,7 +245,7 @@ if [[ -n "$PPDIR" ]]; then
     echo "  generating $dst"
     mkdir -p $PPDIR
     cp $mydir/src/printers.py $dst
-    
+
     for m in $(sed -n -e 's/.*FIX_MSG_BEGIN.*( *\(.*\), .*/\1/gp' ${DEFDIR}/Messages.def); do
         sed "/__PRINTERS__/s/__PRINTERS__/pp.add_printer( '${DSTNAMESPACE}::Message$m', '^${DSTNAMESPACE}::Message$m\$', MessagePrinter )\\n    __PRINTERS__/" -i $dst
     done
@@ -250,7 +254,7 @@ if [[ -n "$PPDIR" ]]; then
         sed "/__PRINTERS__/s/__PRINTERS__/pp.add_printer( '${DSTNAMESPACE}::Group$m', '^${DSTNAMESPACE}::Group$m\$', MessagePrinter )\\n    __PRINTERS__/" -i $dst
         sed "/__PRINTERS__/s/__PRINTERS__/pp.add_printer( '${DSTNAMESPACE}::Group$m::Array', '^std::vector\\\\<${DSTNAMESPACE}::Group$m,.\*\\\\>\$', GroupPrinter )\\n    __PRINTERS__/" -i $dst
     done
-    
+
     sed -e "s%DSTNAMESPACE%${DSTNAMESPACE}%g" -e /__PRINTERS__/d -i $dst
 
     echo "$COPYRIGHT" | while read line; do
