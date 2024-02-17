@@ -23,7 +23,7 @@ Sending ([read more](#sending-api)):
 
 You have to know:
 
-* fixpp is not a FIX engine (yet)
+* `fixpp` is not a FIX engine (yet)
 * it runs in an optimistic mode and relies on the venue FIX conformance (this saves quite a few CPU cycles...)
 
 ## Performance
@@ -186,6 +186,8 @@ class BusinessLogic
 
         // for optional fields:
         double px = msg.isSetPrice() ? msg.getPrice() : 0;
+
+        ...
     }
 
     void onMessage( const MessageMarketDataSnapshotFullRefresh & msg )
@@ -211,16 +213,15 @@ In most cases a latency sensitive implementation will tend to reuse objects and 
     ...
     // after reading the message into fixString
     offset_t pos = _header.scan( fixString.data(), fixString.size() );
-    const raw_enum_t msgType = toRawEnum( _header_.ptrToMsgType() );
-    switch( msgType )
+    switch( toRawEnum( _header_.ptrToMsgType() )
     {
         case MsgTypeRaw_EXECUTION_REPORT:
-            _msgExecutionReport.scan( fixString.data(), fixString.size() - pos );
+            _msgExecutionReport.scan( fixString.data() + pos, fixString.size() - pos );
             _businessLogic.onMessage( _execReport );
             break;
 
         case MsgTypeRaw_MARKET_DATA_SNAPSHOT_FULL_REFRESH:
-            _mdsfr.scan( fixString.data(), fixString.size() - pos );
+            _mdsfr.scan( fixString.data() + pos, fixString.size() - pos );
             _businessLogic.onMessage( _mdsfr );
             break;
         ...
@@ -381,7 +382,7 @@ const char * execReport = "8=FIX.4.4" I "9=332" I "35=8" I "49=foo" I "56=bar" I
 
 ## Sending API
 
-You will have to include SenderApi.h to build FIX messages with fixpp. It offers both
+You will have to include SenderApi.h to build FIX messages with `fixpp`. It offers both
 - low level buffer construction with FixBufferStream
 - and reusable memory approach with ReusableMessageBuilder
 
@@ -468,7 +469,7 @@ A typical scenario will be
 
 ## Examples
 
-To compile the examples you wil have to clone the makefile project next to fixpp:
+To compile the examples you wil have to clone the makefile project next to `fixpp`:
 ```
 $> git clone https://github.com/sashamakarenko/makefile.git makefile
 $> git clone https://github.com/sashamakarenko/fixpp.git fixpp
