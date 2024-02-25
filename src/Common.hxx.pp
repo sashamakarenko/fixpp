@@ -3,6 +3,7 @@
 <n1> public:\
 <n1> bool isSet##NAME() const { return field##NAME.offset >= 0; }\
 <n1> Field##NAME::ValueType get##NAME() const { return field##NAME.getValue( buf ); }\
+<n1> std::string_view get##NAME##View() const { return field##NAME.offset >= 0 ? std::string_view{ buf + field##NAME.offset, getValueLength( buf + field##NAME.offset ) } : std::string_view{}; }\
 <n1> const char * ptrTo##NAME() const { return buf + field##NAME.offset; }\
 <n1> const char * getIfSet##NAME() const { return field##NAME.offset >= 0 ? buf + field##NAME.offset : nullptr; }\
 <n1> private: Field##NAME field##NAME;\

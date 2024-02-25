@@ -36,6 +36,7 @@ class GroupLegStipulations : public MessageBase
    public:
    bool isSetLegStipulationType() const { return fieldLegStipulationType.offset >= 0; }
    FieldLegStipulationType::ValueType getLegStipulationType() const { return fieldLegStipulationType.getValue( buf ); }
+   std::string_view getLegStipulationTypeView() const { return fieldLegStipulationType.offset >= 0 ? std::string_view{ buf + fieldLegStipulationType.offset, getValueLength( buf + fieldLegStipulationType.offset ) } : std::string_view{}; }
    const char * ptrToLegStipulationType() const { return buf + fieldLegStipulationType.offset; }
    const char * getIfSetLegStipulationType() const { return fieldLegStipulationType.offset >= 0 ? buf + fieldLegStipulationType.offset : nullptr; }
    private: FieldLegStipulationType fieldLegStipulationType;
@@ -43,6 +44,7 @@ class GroupLegStipulations : public MessageBase
    public:
    bool isSetLegStipulationValue() const { return fieldLegStipulationValue.offset >= 0; }
    FieldLegStipulationValue::ValueType getLegStipulationValue() const { return fieldLegStipulationValue.getValue( buf ); }
+   std::string_view getLegStipulationValueView() const { return fieldLegStipulationValue.offset >= 0 ? std::string_view{ buf + fieldLegStipulationValue.offset, getValueLength( buf + fieldLegStipulationValue.offset ) } : std::string_view{}; }
    const char * ptrToLegStipulationValue() const { return buf + fieldLegStipulationValue.offset; }
    const char * getIfSetLegStipulationValue() const { return fieldLegStipulationValue.offset >= 0 ? buf + fieldLegStipulationValue.offset : nullptr; }
    private: FieldLegStipulationValue fieldLegStipulationValue;
@@ -68,6 +70,7 @@ class GroupEvents : public MessageBase
    public:
    bool isSetEventType() const { return fieldEventType.offset >= 0; }
    FieldEventType::ValueType getEventType() const { return fieldEventType.getValue( buf ); }
+   std::string_view getEventTypeView() const { return fieldEventType.offset >= 0 ? std::string_view{ buf + fieldEventType.offset, getValueLength( buf + fieldEventType.offset ) } : std::string_view{}; }
    const char * ptrToEventType() const { return buf + fieldEventType.offset; }
    const char * getIfSetEventType() const { return fieldEventType.offset >= 0 ? buf + fieldEventType.offset : nullptr; }
    private: FieldEventType fieldEventType;
@@ -75,6 +78,7 @@ class GroupEvents : public MessageBase
    public:
    bool isSetEventDate() const { return fieldEventDate.offset >= 0; }
    FieldEventDate::ValueType getEventDate() const { return fieldEventDate.getValue( buf ); }
+   std::string_view getEventDateView() const { return fieldEventDate.offset >= 0 ? std::string_view{ buf + fieldEventDate.offset, getValueLength( buf + fieldEventDate.offset ) } : std::string_view{}; }
    const char * ptrToEventDate() const { return buf + fieldEventDate.offset; }
    const char * getIfSetEventDate() const { return fieldEventDate.offset >= 0 ? buf + fieldEventDate.offset : nullptr; }
    private: FieldEventDate fieldEventDate;
@@ -82,6 +86,7 @@ class GroupEvents : public MessageBase
    public:
    bool isSetEventPx() const { return fieldEventPx.offset >= 0; }
    FieldEventPx::ValueType getEventPx() const { return fieldEventPx.getValue( buf ); }
+   std::string_view getEventPxView() const { return fieldEventPx.offset >= 0 ? std::string_view{ buf + fieldEventPx.offset, getValueLength( buf + fieldEventPx.offset ) } : std::string_view{}; }
    const char * ptrToEventPx() const { return buf + fieldEventPx.offset; }
    const char * getIfSetEventPx() const { return fieldEventPx.offset >= 0 ? buf + fieldEventPx.offset : nullptr; }
    private: FieldEventPx fieldEventPx;
@@ -89,6 +94,7 @@ class GroupEvents : public MessageBase
    public:
    bool isSetEventText() const { return fieldEventText.offset >= 0; }
    FieldEventText::ValueType getEventText() const { return fieldEventText.getValue( buf ); }
+   std::string_view getEventTextView() const { return fieldEventText.offset >= 0 ? std::string_view{ buf + fieldEventText.offset, getValueLength( buf + fieldEventText.offset ) } : std::string_view{}; }
    const char * ptrToEventText() const { return buf + fieldEventText.offset; }
    const char * getIfSetEventText() const { return fieldEventText.offset >= 0 ? buf + fieldEventText.offset : nullptr; }
    private: FieldEventText fieldEventText;
@@ -114,6 +120,7 @@ class GroupLegSecurityAltID : public MessageBase
    public:
    bool isSetLegSecurityAltID() const { return fieldLegSecurityAltID.offset >= 0; }
    FieldLegSecurityAltID::ValueType getLegSecurityAltID() const { return fieldLegSecurityAltID.getValue( buf ); }
+   std::string_view getLegSecurityAltIDView() const { return fieldLegSecurityAltID.offset >= 0 ? std::string_view{ buf + fieldLegSecurityAltID.offset, getValueLength( buf + fieldLegSecurityAltID.offset ) } : std::string_view{}; }
    const char * ptrToLegSecurityAltID() const { return buf + fieldLegSecurityAltID.offset; }
    const char * getIfSetLegSecurityAltID() const { return fieldLegSecurityAltID.offset >= 0 ? buf + fieldLegSecurityAltID.offset : nullptr; }
    private: FieldLegSecurityAltID fieldLegSecurityAltID;
@@ -121,6 +128,7 @@ class GroupLegSecurityAltID : public MessageBase
    public:
    bool isSetLegSecurityAltIDSource() const { return fieldLegSecurityAltIDSource.offset >= 0; }
    FieldLegSecurityAltIDSource::ValueType getLegSecurityAltIDSource() const { return fieldLegSecurityAltIDSource.getValue( buf ); }
+   std::string_view getLegSecurityAltIDSourceView() const { return fieldLegSecurityAltIDSource.offset >= 0 ? std::string_view{ buf + fieldLegSecurityAltIDSource.offset, getValueLength( buf + fieldLegSecurityAltIDSource.offset ) } : std::string_view{}; }
    const char * ptrToLegSecurityAltIDSource() const { return buf + fieldLegSecurityAltIDSource.offset; }
    const char * getIfSetLegSecurityAltIDSource() const { return fieldLegSecurityAltIDSource.offset >= 0 ? buf + fieldLegSecurityAltIDSource.offset : nullptr; }
    private: FieldLegSecurityAltIDSource fieldLegSecurityAltIDSource;
@@ -146,6 +154,7 @@ class GroupCapacities : public MessageBase
    public:
    bool isSetOrderCapacity() const { return fieldOrderCapacity.offset >= 0; }
    FieldOrderCapacity::ValueType getOrderCapacity() const { return fieldOrderCapacity.getValue( buf ); }
+   std::string_view getOrderCapacityView() const { return fieldOrderCapacity.offset >= 0 ? std::string_view{ buf + fieldOrderCapacity.offset, getValueLength( buf + fieldOrderCapacity.offset ) } : std::string_view{}; }
    const char * ptrToOrderCapacity() const { return buf + fieldOrderCapacity.offset; }
    const char * getIfSetOrderCapacity() const { return fieldOrderCapacity.offset >= 0 ? buf + fieldOrderCapacity.offset : nullptr; }
    private: FieldOrderCapacity fieldOrderCapacity;
@@ -153,6 +162,7 @@ class GroupCapacities : public MessageBase
    public:
    bool isSetOrderRestrictions() const { return fieldOrderRestrictions.offset >= 0; }
    FieldOrderRestrictions::ValueType getOrderRestrictions() const { return fieldOrderRestrictions.getValue( buf ); }
+   std::string_view getOrderRestrictionsView() const { return fieldOrderRestrictions.offset >= 0 ? std::string_view{ buf + fieldOrderRestrictions.offset, getValueLength( buf + fieldOrderRestrictions.offset ) } : std::string_view{}; }
    const char * ptrToOrderRestrictions() const { return buf + fieldOrderRestrictions.offset; }
    const char * getIfSetOrderRestrictions() const { return fieldOrderRestrictions.offset >= 0 ? buf + fieldOrderRestrictions.offset : nullptr; }
    private: FieldOrderRestrictions fieldOrderRestrictions;
@@ -160,6 +170,7 @@ class GroupCapacities : public MessageBase
    public:
    bool isSetOrderCapacityQty() const { return fieldOrderCapacityQty.offset >= 0; }
    FieldOrderCapacityQty::ValueType getOrderCapacityQty() const { return fieldOrderCapacityQty.getValue( buf ); }
+   std::string_view getOrderCapacityQtyView() const { return fieldOrderCapacityQty.offset >= 0 ? std::string_view{ buf + fieldOrderCapacityQty.offset, getValueLength( buf + fieldOrderCapacityQty.offset ) } : std::string_view{}; }
    const char * ptrToOrderCapacityQty() const { return buf + fieldOrderCapacityQty.offset; }
    const char * getIfSetOrderCapacityQty() const { return fieldOrderCapacityQty.offset >= 0 ? buf + fieldOrderCapacityQty.offset : nullptr; }
    private: FieldOrderCapacityQty fieldOrderCapacityQty;
@@ -185,6 +196,7 @@ class GroupNested3PartySubIDs : public MessageBase
    public:
    bool isSetNested3PartySubID() const { return fieldNested3PartySubID.offset >= 0; }
    FieldNested3PartySubID::ValueType getNested3PartySubID() const { return fieldNested3PartySubID.getValue( buf ); }
+   std::string_view getNested3PartySubIDView() const { return fieldNested3PartySubID.offset >= 0 ? std::string_view{ buf + fieldNested3PartySubID.offset, getValueLength( buf + fieldNested3PartySubID.offset ) } : std::string_view{}; }
    const char * ptrToNested3PartySubID() const { return buf + fieldNested3PartySubID.offset; }
    const char * getIfSetNested3PartySubID() const { return fieldNested3PartySubID.offset >= 0 ? buf + fieldNested3PartySubID.offset : nullptr; }
    private: FieldNested3PartySubID fieldNested3PartySubID;
@@ -192,6 +204,7 @@ class GroupNested3PartySubIDs : public MessageBase
    public:
    bool isSetNested3PartySubIDType() const { return fieldNested3PartySubIDType.offset >= 0; }
    FieldNested3PartySubIDType::ValueType getNested3PartySubIDType() const { return fieldNested3PartySubIDType.getValue( buf ); }
+   std::string_view getNested3PartySubIDTypeView() const { return fieldNested3PartySubIDType.offset >= 0 ? std::string_view{ buf + fieldNested3PartySubIDType.offset, getValueLength( buf + fieldNested3PartySubIDType.offset ) } : std::string_view{}; }
    const char * ptrToNested3PartySubIDType() const { return buf + fieldNested3PartySubIDType.offset; }
    const char * getIfSetNested3PartySubIDType() const { return fieldNested3PartySubIDType.offset >= 0 ? buf + fieldNested3PartySubIDType.offset : nullptr; }
    private: FieldNested3PartySubIDType fieldNested3PartySubIDType;
@@ -217,6 +230,7 @@ class GroupPartySubIDs : public MessageBase
    public:
    bool isSetPartySubID() const { return fieldPartySubID.offset >= 0; }
    FieldPartySubID::ValueType getPartySubID() const { return fieldPartySubID.getValue( buf ); }
+   std::string_view getPartySubIDView() const { return fieldPartySubID.offset >= 0 ? std::string_view{ buf + fieldPartySubID.offset, getValueLength( buf + fieldPartySubID.offset ) } : std::string_view{}; }
    const char * ptrToPartySubID() const { return buf + fieldPartySubID.offset; }
    const char * getIfSetPartySubID() const { return fieldPartySubID.offset >= 0 ? buf + fieldPartySubID.offset : nullptr; }
    private: FieldPartySubID fieldPartySubID;
@@ -224,6 +238,7 @@ class GroupPartySubIDs : public MessageBase
    public:
    bool isSetPartySubIDType() const { return fieldPartySubIDType.offset >= 0; }
    FieldPartySubIDType::ValueType getPartySubIDType() const { return fieldPartySubIDType.getValue( buf ); }
+   std::string_view getPartySubIDTypeView() const { return fieldPartySubIDType.offset >= 0 ? std::string_view{ buf + fieldPartySubIDType.offset, getValueLength( buf + fieldPartySubIDType.offset ) } : std::string_view{}; }
    const char * ptrToPartySubIDType() const { return buf + fieldPartySubIDType.offset; }
    const char * getIfSetPartySubIDType() const { return fieldPartySubIDType.offset >= 0 ? buf + fieldPartySubIDType.offset : nullptr; }
    private: FieldPartySubIDType fieldPartySubIDType;
@@ -249,6 +264,7 @@ class GroupNested2PartySubIDs : public MessageBase
    public:
    bool isSetNested2PartySubID() const { return fieldNested2PartySubID.offset >= 0; }
    FieldNested2PartySubID::ValueType getNested2PartySubID() const { return fieldNested2PartySubID.getValue( buf ); }
+   std::string_view getNested2PartySubIDView() const { return fieldNested2PartySubID.offset >= 0 ? std::string_view{ buf + fieldNested2PartySubID.offset, getValueLength( buf + fieldNested2PartySubID.offset ) } : std::string_view{}; }
    const char * ptrToNested2PartySubID() const { return buf + fieldNested2PartySubID.offset; }
    const char * getIfSetNested2PartySubID() const { return fieldNested2PartySubID.offset >= 0 ? buf + fieldNested2PartySubID.offset : nullptr; }
    private: FieldNested2PartySubID fieldNested2PartySubID;
@@ -256,6 +272,7 @@ class GroupNested2PartySubIDs : public MessageBase
    public:
    bool isSetNested2PartySubIDType() const { return fieldNested2PartySubIDType.offset >= 0; }
    FieldNested2PartySubIDType::ValueType getNested2PartySubIDType() const { return fieldNested2PartySubIDType.getValue( buf ); }
+   std::string_view getNested2PartySubIDTypeView() const { return fieldNested2PartySubIDType.offset >= 0 ? std::string_view{ buf + fieldNested2PartySubIDType.offset, getValueLength( buf + fieldNested2PartySubIDType.offset ) } : std::string_view{}; }
    const char * ptrToNested2PartySubIDType() const { return buf + fieldNested2PartySubIDType.offset; }
    const char * getIfSetNested2PartySubIDType() const { return fieldNested2PartySubIDType.offset >= 0 ? buf + fieldNested2PartySubIDType.offset : nullptr; }
    private: FieldNested2PartySubIDType fieldNested2PartySubIDType;
@@ -281,6 +298,7 @@ class GroupNested2PartyIDs : public MessageBase
    public:
    bool isSetNested2PartyID() const { return fieldNested2PartyID.offset >= 0; }
    FieldNested2PartyID::ValueType getNested2PartyID() const { return fieldNested2PartyID.getValue( buf ); }
+   std::string_view getNested2PartyIDView() const { return fieldNested2PartyID.offset >= 0 ? std::string_view{ buf + fieldNested2PartyID.offset, getValueLength( buf + fieldNested2PartyID.offset ) } : std::string_view{}; }
    const char * ptrToNested2PartyID() const { return buf + fieldNested2PartyID.offset; }
    const char * getIfSetNested2PartyID() const { return fieldNested2PartyID.offset >= 0 ? buf + fieldNested2PartyID.offset : nullptr; }
    private: FieldNested2PartyID fieldNested2PartyID;
@@ -288,6 +306,7 @@ class GroupNested2PartyIDs : public MessageBase
    public:
    bool isSetNested2PartyIDSource() const { return fieldNested2PartyIDSource.offset >= 0; }
    FieldNested2PartyIDSource::ValueType getNested2PartyIDSource() const { return fieldNested2PartyIDSource.getValue( buf ); }
+   std::string_view getNested2PartyIDSourceView() const { return fieldNested2PartyIDSource.offset >= 0 ? std::string_view{ buf + fieldNested2PartyIDSource.offset, getValueLength( buf + fieldNested2PartyIDSource.offset ) } : std::string_view{}; }
    const char * ptrToNested2PartyIDSource() const { return buf + fieldNested2PartyIDSource.offset; }
    const char * getIfSetNested2PartyIDSource() const { return fieldNested2PartyIDSource.offset >= 0 ? buf + fieldNested2PartyIDSource.offset : nullptr; }
    private: FieldNested2PartyIDSource fieldNested2PartyIDSource;
@@ -295,6 +314,7 @@ class GroupNested2PartyIDs : public MessageBase
    public:
    bool isSetNested2PartyRole() const { return fieldNested2PartyRole.offset >= 0; }
    FieldNested2PartyRole::ValueType getNested2PartyRole() const { return fieldNested2PartyRole.getValue( buf ); }
+   std::string_view getNested2PartyRoleView() const { return fieldNested2PartyRole.offset >= 0 ? std::string_view{ buf + fieldNested2PartyRole.offset, getValueLength( buf + fieldNested2PartyRole.offset ) } : std::string_view{}; }
    const char * ptrToNested2PartyRole() const { return buf + fieldNested2PartyRole.offset; }
    const char * getIfSetNested2PartyRole() const { return fieldNested2PartyRole.offset >= 0 ? buf + fieldNested2PartyRole.offset : nullptr; }
    private: FieldNested2PartyRole fieldNested2PartyRole;
@@ -302,6 +322,7 @@ class GroupNested2PartyIDs : public MessageBase
    public:
    bool isSetNoNested2PartySubIDs() const { return fieldNoNested2PartySubIDs.offset >= 0; }
    FieldNoNested2PartySubIDs::ValueType getNoNested2PartySubIDs() const { return fieldNoNested2PartySubIDs.getValue( buf ); }
+   std::string_view getNoNested2PartySubIDsView() const { return fieldNoNested2PartySubIDs.offset >= 0 ? std::string_view{ buf + fieldNoNested2PartySubIDs.offset, getValueLength( buf + fieldNoNested2PartySubIDs.offset ) } : std::string_view{}; }
    const char * ptrToNoNested2PartySubIDs() const { return buf + fieldNoNested2PartySubIDs.offset; }
    const char * getIfSetNoNested2PartySubIDs() const { return fieldNoNested2PartySubIDs.offset >= 0 ? buf + fieldNoNested2PartySubIDs.offset : nullptr; }
    private: FieldNoNested2PartySubIDs fieldNoNested2PartySubIDs;
@@ -332,6 +353,7 @@ class GroupHops : public MessageBase
    public:
    bool isSetHopCompID() const { return fieldHopCompID.offset >= 0; }
    FieldHopCompID::ValueType getHopCompID() const { return fieldHopCompID.getValue( buf ); }
+   std::string_view getHopCompIDView() const { return fieldHopCompID.offset >= 0 ? std::string_view{ buf + fieldHopCompID.offset, getValueLength( buf + fieldHopCompID.offset ) } : std::string_view{}; }
    const char * ptrToHopCompID() const { return buf + fieldHopCompID.offset; }
    const char * getIfSetHopCompID() const { return fieldHopCompID.offset >= 0 ? buf + fieldHopCompID.offset : nullptr; }
    private: FieldHopCompID fieldHopCompID;
@@ -339,6 +361,7 @@ class GroupHops : public MessageBase
    public:
    bool isSetHopSendingTime() const { return fieldHopSendingTime.offset >= 0; }
    FieldHopSendingTime::ValueType getHopSendingTime() const { return fieldHopSendingTime.getValue( buf ); }
+   std::string_view getHopSendingTimeView() const { return fieldHopSendingTime.offset >= 0 ? std::string_view{ buf + fieldHopSendingTime.offset, getValueLength( buf + fieldHopSendingTime.offset ) } : std::string_view{}; }
    const char * ptrToHopSendingTime() const { return buf + fieldHopSendingTime.offset; }
    const char * getIfSetHopSendingTime() const { return fieldHopSendingTime.offset >= 0 ? buf + fieldHopSendingTime.offset : nullptr; }
    private: FieldHopSendingTime fieldHopSendingTime;
@@ -346,6 +369,7 @@ class GroupHops : public MessageBase
    public:
    bool isSetHopRefID() const { return fieldHopRefID.offset >= 0; }
    FieldHopRefID::ValueType getHopRefID() const { return fieldHopRefID.getValue( buf ); }
+   std::string_view getHopRefIDView() const { return fieldHopRefID.offset >= 0 ? std::string_view{ buf + fieldHopRefID.offset, getValueLength( buf + fieldHopRefID.offset ) } : std::string_view{}; }
    const char * ptrToHopRefID() const { return buf + fieldHopRefID.offset; }
    const char * getIfSetHopRefID() const { return fieldHopRefID.offset >= 0 ? buf + fieldHopRefID.offset : nullptr; }
    private: FieldHopRefID fieldHopRefID;
@@ -371,6 +395,7 @@ class GroupCollInquiryQualifier : public MessageBase
    public:
    bool isSetCollInquiryQualifier() const { return fieldCollInquiryQualifier.offset >= 0; }
    FieldCollInquiryQualifier::ValueType getCollInquiryQualifier() const { return fieldCollInquiryQualifier.getValue( buf ); }
+   std::string_view getCollInquiryQualifierView() const { return fieldCollInquiryQualifier.offset >= 0 ? std::string_view{ buf + fieldCollInquiryQualifier.offset, getValueLength( buf + fieldCollInquiryQualifier.offset ) } : std::string_view{}; }
    const char * ptrToCollInquiryQualifier() const { return buf + fieldCollInquiryQualifier.offset; }
    const char * getIfSetCollInquiryQualifier() const { return fieldCollInquiryQualifier.offset >= 0 ? buf + fieldCollInquiryQualifier.offset : nullptr; }
    private: FieldCollInquiryQualifier fieldCollInquiryQualifier;
@@ -396,6 +421,7 @@ class GroupPartyIDs : public MessageBase
    public:
    bool isSetPartyID() const { return fieldPartyID.offset >= 0; }
    FieldPartyID::ValueType getPartyID() const { return fieldPartyID.getValue( buf ); }
+   std::string_view getPartyIDView() const { return fieldPartyID.offset >= 0 ? std::string_view{ buf + fieldPartyID.offset, getValueLength( buf + fieldPartyID.offset ) } : std::string_view{}; }
    const char * ptrToPartyID() const { return buf + fieldPartyID.offset; }
    const char * getIfSetPartyID() const { return fieldPartyID.offset >= 0 ? buf + fieldPartyID.offset : nullptr; }
    private: FieldPartyID fieldPartyID;
@@ -403,6 +429,7 @@ class GroupPartyIDs : public MessageBase
    public:
    bool isSetPartyIDSource() const { return fieldPartyIDSource.offset >= 0; }
    FieldPartyIDSource::ValueType getPartyIDSource() const { return fieldPartyIDSource.getValue( buf ); }
+   std::string_view getPartyIDSourceView() const { return fieldPartyIDSource.offset >= 0 ? std::string_view{ buf + fieldPartyIDSource.offset, getValueLength( buf + fieldPartyIDSource.offset ) } : std::string_view{}; }
    const char * ptrToPartyIDSource() const { return buf + fieldPartyIDSource.offset; }
    const char * getIfSetPartyIDSource() const { return fieldPartyIDSource.offset >= 0 ? buf + fieldPartyIDSource.offset : nullptr; }
    private: FieldPartyIDSource fieldPartyIDSource;
@@ -410,6 +437,7 @@ class GroupPartyIDs : public MessageBase
    public:
    bool isSetPartyRole() const { return fieldPartyRole.offset >= 0; }
    FieldPartyRole::ValueType getPartyRole() const { return fieldPartyRole.getValue( buf ); }
+   std::string_view getPartyRoleView() const { return fieldPartyRole.offset >= 0 ? std::string_view{ buf + fieldPartyRole.offset, getValueLength( buf + fieldPartyRole.offset ) } : std::string_view{}; }
    const char * ptrToPartyRole() const { return buf + fieldPartyRole.offset; }
    const char * getIfSetPartyRole() const { return fieldPartyRole.offset >= 0 ? buf + fieldPartyRole.offset : nullptr; }
    private: FieldPartyRole fieldPartyRole;
@@ -417,6 +445,7 @@ class GroupPartyIDs : public MessageBase
    public:
    bool isSetNoPartySubIDs() const { return fieldNoPartySubIDs.offset >= 0; }
    FieldNoPartySubIDs::ValueType getNoPartySubIDs() const { return fieldNoPartySubIDs.getValue( buf ); }
+   std::string_view getNoPartySubIDsView() const { return fieldNoPartySubIDs.offset >= 0 ? std::string_view{ buf + fieldNoPartySubIDs.offset, getValueLength( buf + fieldNoPartySubIDs.offset ) } : std::string_view{}; }
    const char * ptrToNoPartySubIDs() const { return buf + fieldNoPartySubIDs.offset; }
    const char * getIfSetNoPartySubIDs() const { return fieldNoPartySubIDs.offset >= 0 ? buf + fieldNoPartySubIDs.offset : nullptr; }
    private: FieldNoPartySubIDs fieldNoPartySubIDs;
@@ -447,6 +476,7 @@ class GroupAllocs : public MessageBase
    public:
    bool isSetAllocAccount() const { return fieldAllocAccount.offset >= 0; }
    FieldAllocAccount::ValueType getAllocAccount() const { return fieldAllocAccount.getValue( buf ); }
+   std::string_view getAllocAccountView() const { return fieldAllocAccount.offset >= 0 ? std::string_view{ buf + fieldAllocAccount.offset, getValueLength( buf + fieldAllocAccount.offset ) } : std::string_view{}; }
    const char * ptrToAllocAccount() const { return buf + fieldAllocAccount.offset; }
    const char * getIfSetAllocAccount() const { return fieldAllocAccount.offset >= 0 ? buf + fieldAllocAccount.offset : nullptr; }
    private: FieldAllocAccount fieldAllocAccount;
@@ -454,6 +484,7 @@ class GroupAllocs : public MessageBase
    public:
    bool isSetAllocAcctIDSource() const { return fieldAllocAcctIDSource.offset >= 0; }
    FieldAllocAcctIDSource::ValueType getAllocAcctIDSource() const { return fieldAllocAcctIDSource.getValue( buf ); }
+   std::string_view getAllocAcctIDSourceView() const { return fieldAllocAcctIDSource.offset >= 0 ? std::string_view{ buf + fieldAllocAcctIDSource.offset, getValueLength( buf + fieldAllocAcctIDSource.offset ) } : std::string_view{}; }
    const char * ptrToAllocAcctIDSource() const { return buf + fieldAllocAcctIDSource.offset; }
    const char * getIfSetAllocAcctIDSource() const { return fieldAllocAcctIDSource.offset >= 0 ? buf + fieldAllocAcctIDSource.offset : nullptr; }
    private: FieldAllocAcctIDSource fieldAllocAcctIDSource;
@@ -461,6 +492,7 @@ class GroupAllocs : public MessageBase
    public:
    bool isSetAllocPrice() const { return fieldAllocPrice.offset >= 0; }
    FieldAllocPrice::ValueType getAllocPrice() const { return fieldAllocPrice.getValue( buf ); }
+   std::string_view getAllocPriceView() const { return fieldAllocPrice.offset >= 0 ? std::string_view{ buf + fieldAllocPrice.offset, getValueLength( buf + fieldAllocPrice.offset ) } : std::string_view{}; }
    const char * ptrToAllocPrice() const { return buf + fieldAllocPrice.offset; }
    const char * getIfSetAllocPrice() const { return fieldAllocPrice.offset >= 0 ? buf + fieldAllocPrice.offset : nullptr; }
    private: FieldAllocPrice fieldAllocPrice;
@@ -468,6 +500,7 @@ class GroupAllocs : public MessageBase
    public:
    bool isSetIndividualAllocID() const { return fieldIndividualAllocID.offset >= 0; }
    FieldIndividualAllocID::ValueType getIndividualAllocID() const { return fieldIndividualAllocID.getValue( buf ); }
+   std::string_view getIndividualAllocIDView() const { return fieldIndividualAllocID.offset >= 0 ? std::string_view{ buf + fieldIndividualAllocID.offset, getValueLength( buf + fieldIndividualAllocID.offset ) } : std::string_view{}; }
    const char * ptrToIndividualAllocID() const { return buf + fieldIndividualAllocID.offset; }
    const char * getIfSetIndividualAllocID() const { return fieldIndividualAllocID.offset >= 0 ? buf + fieldIndividualAllocID.offset : nullptr; }
    private: FieldIndividualAllocID fieldIndividualAllocID;
@@ -475,6 +508,7 @@ class GroupAllocs : public MessageBase
    public:
    bool isSetIndividualAllocRejCode() const { return fieldIndividualAllocRejCode.offset >= 0; }
    FieldIndividualAllocRejCode::ValueType getIndividualAllocRejCode() const { return fieldIndividualAllocRejCode.getValue( buf ); }
+   std::string_view getIndividualAllocRejCodeView() const { return fieldIndividualAllocRejCode.offset >= 0 ? std::string_view{ buf + fieldIndividualAllocRejCode.offset, getValueLength( buf + fieldIndividualAllocRejCode.offset ) } : std::string_view{}; }
    const char * ptrToIndividualAllocRejCode() const { return buf + fieldIndividualAllocRejCode.offset; }
    const char * getIfSetIndividualAllocRejCode() const { return fieldIndividualAllocRejCode.offset >= 0 ? buf + fieldIndividualAllocRejCode.offset : nullptr; }
    private: FieldIndividualAllocRejCode fieldIndividualAllocRejCode;
@@ -482,6 +516,7 @@ class GroupAllocs : public MessageBase
    public:
    bool isSetAllocText() const { return fieldAllocText.offset >= 0; }
    FieldAllocText::ValueType getAllocText() const { return fieldAllocText.getValue( buf ); }
+   std::string_view getAllocTextView() const { return fieldAllocText.offset >= 0 ? std::string_view{ buf + fieldAllocText.offset, getValueLength( buf + fieldAllocText.offset ) } : std::string_view{}; }
    const char * ptrToAllocText() const { return buf + fieldAllocText.offset; }
    const char * getIfSetAllocText() const { return fieldAllocText.offset >= 0 ? buf + fieldAllocText.offset : nullptr; }
    private: FieldAllocText fieldAllocText;
@@ -489,6 +524,7 @@ class GroupAllocs : public MessageBase
    public:
    bool isSetEncodedAllocTextLen() const { return fieldEncodedAllocTextLen.offset >= 0; }
    FieldEncodedAllocTextLen::ValueType getEncodedAllocTextLen() const { return fieldEncodedAllocTextLen.getValue( buf ); }
+   std::string_view getEncodedAllocTextLenView() const { return fieldEncodedAllocTextLen.offset >= 0 ? std::string_view{ buf + fieldEncodedAllocTextLen.offset, getValueLength( buf + fieldEncodedAllocTextLen.offset ) } : std::string_view{}; }
    const char * ptrToEncodedAllocTextLen() const { return buf + fieldEncodedAllocTextLen.offset; }
    const char * getIfSetEncodedAllocTextLen() const { return fieldEncodedAllocTextLen.offset >= 0 ? buf + fieldEncodedAllocTextLen.offset : nullptr; }
    private: FieldEncodedAllocTextLen fieldEncodedAllocTextLen;
@@ -496,6 +532,7 @@ class GroupAllocs : public MessageBase
    public:
    bool isSetEncodedAllocText() const { return fieldEncodedAllocText.offset >= 0; }
    FieldEncodedAllocText::ValueType getEncodedAllocText() const { return fieldEncodedAllocText.getValue( buf ); }
+   std::string_view getEncodedAllocTextView() const { return fieldEncodedAllocText.offset >= 0 ? std::string_view{ buf + fieldEncodedAllocText.offset, getValueLength( buf + fieldEncodedAllocText.offset ) } : std::string_view{}; }
    const char * ptrToEncodedAllocText() const { return buf + fieldEncodedAllocText.offset; }
    const char * getIfSetEncodedAllocText() const { return fieldEncodedAllocText.offset >= 0 ? buf + fieldEncodedAllocText.offset : nullptr; }
    private: FieldEncodedAllocText fieldEncodedAllocText;
@@ -521,6 +558,7 @@ class GroupTradingSessions : public MessageBase
    public:
    bool isSetTradingSessionID() const { return fieldTradingSessionID.offset >= 0; }
    FieldTradingSessionID::ValueType getTradingSessionID() const { return fieldTradingSessionID.getValue( buf ); }
+   std::string_view getTradingSessionIDView() const { return fieldTradingSessionID.offset >= 0 ? std::string_view{ buf + fieldTradingSessionID.offset, getValueLength( buf + fieldTradingSessionID.offset ) } : std::string_view{}; }
    const char * ptrToTradingSessionID() const { return buf + fieldTradingSessionID.offset; }
    const char * getIfSetTradingSessionID() const { return fieldTradingSessionID.offset >= 0 ? buf + fieldTradingSessionID.offset : nullptr; }
    private: FieldTradingSessionID fieldTradingSessionID;
@@ -528,6 +566,7 @@ class GroupTradingSessions : public MessageBase
    public:
    bool isSetTradingSessionSubID() const { return fieldTradingSessionSubID.offset >= 0; }
    FieldTradingSessionSubID::ValueType getTradingSessionSubID() const { return fieldTradingSessionSubID.getValue( buf ); }
+   std::string_view getTradingSessionSubIDView() const { return fieldTradingSessionSubID.offset >= 0 ? std::string_view{ buf + fieldTradingSessionSubID.offset, getValueLength( buf + fieldTradingSessionSubID.offset ) } : std::string_view{}; }
    const char * ptrToTradingSessionSubID() const { return buf + fieldTradingSessionSubID.offset; }
    const char * getIfSetTradingSessionSubID() const { return fieldTradingSessionSubID.offset >= 0 ? buf + fieldTradingSessionSubID.offset : nullptr; }
    private: FieldTradingSessionSubID fieldTradingSessionSubID;
@@ -553,6 +592,7 @@ class GroupSecurityAltID : public MessageBase
    public:
    bool isSetSecurityAltID() const { return fieldSecurityAltID.offset >= 0; }
    FieldSecurityAltID::ValueType getSecurityAltID() const { return fieldSecurityAltID.getValue( buf ); }
+   std::string_view getSecurityAltIDView() const { return fieldSecurityAltID.offset >= 0 ? std::string_view{ buf + fieldSecurityAltID.offset, getValueLength( buf + fieldSecurityAltID.offset ) } : std::string_view{}; }
    const char * ptrToSecurityAltID() const { return buf + fieldSecurityAltID.offset; }
    const char * getIfSetSecurityAltID() const { return fieldSecurityAltID.offset >= 0 ? buf + fieldSecurityAltID.offset : nullptr; }
    private: FieldSecurityAltID fieldSecurityAltID;
@@ -560,6 +600,7 @@ class GroupSecurityAltID : public MessageBase
    public:
    bool isSetSecurityAltIDSource() const { return fieldSecurityAltIDSource.offset >= 0; }
    FieldSecurityAltIDSource::ValueType getSecurityAltIDSource() const { return fieldSecurityAltIDSource.getValue( buf ); }
+   std::string_view getSecurityAltIDSourceView() const { return fieldSecurityAltIDSource.offset >= 0 ? std::string_view{ buf + fieldSecurityAltIDSource.offset, getValueLength( buf + fieldSecurityAltIDSource.offset ) } : std::string_view{}; }
    const char * ptrToSecurityAltIDSource() const { return buf + fieldSecurityAltIDSource.offset; }
    const char * getIfSetSecurityAltIDSource() const { return fieldSecurityAltIDSource.offset >= 0 ? buf + fieldSecurityAltIDSource.offset : nullptr; }
    private: FieldSecurityAltIDSource fieldSecurityAltIDSource;
@@ -585,6 +626,7 @@ class GroupUnderlyingSecurityAltID : public MessageBase
    public:
    bool isSetUnderlyingSecurityAltID() const { return fieldUnderlyingSecurityAltID.offset >= 0; }
    FieldUnderlyingSecurityAltID::ValueType getUnderlyingSecurityAltID() const { return fieldUnderlyingSecurityAltID.getValue( buf ); }
+   std::string_view getUnderlyingSecurityAltIDView() const { return fieldUnderlyingSecurityAltID.offset >= 0 ? std::string_view{ buf + fieldUnderlyingSecurityAltID.offset, getValueLength( buf + fieldUnderlyingSecurityAltID.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingSecurityAltID() const { return buf + fieldUnderlyingSecurityAltID.offset; }
    const char * getIfSetUnderlyingSecurityAltID() const { return fieldUnderlyingSecurityAltID.offset >= 0 ? buf + fieldUnderlyingSecurityAltID.offset : nullptr; }
    private: FieldUnderlyingSecurityAltID fieldUnderlyingSecurityAltID;
@@ -592,6 +634,7 @@ class GroupUnderlyingSecurityAltID : public MessageBase
    public:
    bool isSetUnderlyingSecurityAltIDSource() const { return fieldUnderlyingSecurityAltIDSource.offset >= 0; }
    FieldUnderlyingSecurityAltIDSource::ValueType getUnderlyingSecurityAltIDSource() const { return fieldUnderlyingSecurityAltIDSource.getValue( buf ); }
+   std::string_view getUnderlyingSecurityAltIDSourceView() const { return fieldUnderlyingSecurityAltIDSource.offset >= 0 ? std::string_view{ buf + fieldUnderlyingSecurityAltIDSource.offset, getValueLength( buf + fieldUnderlyingSecurityAltIDSource.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingSecurityAltIDSource() const { return buf + fieldUnderlyingSecurityAltIDSource.offset; }
    const char * getIfSetUnderlyingSecurityAltIDSource() const { return fieldUnderlyingSecurityAltIDSource.offset >= 0 ? buf + fieldUnderlyingSecurityAltIDSource.offset : nullptr; }
    private: FieldUnderlyingSecurityAltIDSource fieldUnderlyingSecurityAltIDSource;
@@ -617,6 +660,7 @@ class GroupUnderlyingStips : public MessageBase
    public:
    bool isSetUnderlyingStipType() const { return fieldUnderlyingStipType.offset >= 0; }
    FieldUnderlyingStipType::ValueType getUnderlyingStipType() const { return fieldUnderlyingStipType.getValue( buf ); }
+   std::string_view getUnderlyingStipTypeView() const { return fieldUnderlyingStipType.offset >= 0 ? std::string_view{ buf + fieldUnderlyingStipType.offset, getValueLength( buf + fieldUnderlyingStipType.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingStipType() const { return buf + fieldUnderlyingStipType.offset; }
    const char * getIfSetUnderlyingStipType() const { return fieldUnderlyingStipType.offset >= 0 ? buf + fieldUnderlyingStipType.offset : nullptr; }
    private: FieldUnderlyingStipType fieldUnderlyingStipType;
@@ -624,6 +668,7 @@ class GroupUnderlyingStips : public MessageBase
    public:
    bool isSetUnderlyingStipValue() const { return fieldUnderlyingStipValue.offset >= 0; }
    FieldUnderlyingStipValue::ValueType getUnderlyingStipValue() const { return fieldUnderlyingStipValue.getValue( buf ); }
+   std::string_view getUnderlyingStipValueView() const { return fieldUnderlyingStipValue.offset >= 0 ? std::string_view{ buf + fieldUnderlyingStipValue.offset, getValueLength( buf + fieldUnderlyingStipValue.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingStipValue() const { return buf + fieldUnderlyingStipValue.offset; }
    const char * getIfSetUnderlyingStipValue() const { return fieldUnderlyingStipValue.offset >= 0 ? buf + fieldUnderlyingStipValue.offset : nullptr; }
    private: FieldUnderlyingStipValue fieldUnderlyingStipValue;
@@ -649,6 +694,7 @@ class GroupUnderlyings : public MessageBase
    public:
    bool isSetUnderlyingSymbol() const { return fieldUnderlyingSymbol.offset >= 0; }
    FieldUnderlyingSymbol::ValueType getUnderlyingSymbol() const { return fieldUnderlyingSymbol.getValue( buf ); }
+   std::string_view getUnderlyingSymbolView() const { return fieldUnderlyingSymbol.offset >= 0 ? std::string_view{ buf + fieldUnderlyingSymbol.offset, getValueLength( buf + fieldUnderlyingSymbol.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingSymbol() const { return buf + fieldUnderlyingSymbol.offset; }
    const char * getIfSetUnderlyingSymbol() const { return fieldUnderlyingSymbol.offset >= 0 ? buf + fieldUnderlyingSymbol.offset : nullptr; }
    private: FieldUnderlyingSymbol fieldUnderlyingSymbol;
@@ -656,6 +702,7 @@ class GroupUnderlyings : public MessageBase
    public:
    bool isSetUnderlyingSymbolSfx() const { return fieldUnderlyingSymbolSfx.offset >= 0; }
    FieldUnderlyingSymbolSfx::ValueType getUnderlyingSymbolSfx() const { return fieldUnderlyingSymbolSfx.getValue( buf ); }
+   std::string_view getUnderlyingSymbolSfxView() const { return fieldUnderlyingSymbolSfx.offset >= 0 ? std::string_view{ buf + fieldUnderlyingSymbolSfx.offset, getValueLength( buf + fieldUnderlyingSymbolSfx.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingSymbolSfx() const { return buf + fieldUnderlyingSymbolSfx.offset; }
    const char * getIfSetUnderlyingSymbolSfx() const { return fieldUnderlyingSymbolSfx.offset >= 0 ? buf + fieldUnderlyingSymbolSfx.offset : nullptr; }
    private: FieldUnderlyingSymbolSfx fieldUnderlyingSymbolSfx;
@@ -663,6 +710,7 @@ class GroupUnderlyings : public MessageBase
    public:
    bool isSetUnderlyingSecurityID() const { return fieldUnderlyingSecurityID.offset >= 0; }
    FieldUnderlyingSecurityID::ValueType getUnderlyingSecurityID() const { return fieldUnderlyingSecurityID.getValue( buf ); }
+   std::string_view getUnderlyingSecurityIDView() const { return fieldUnderlyingSecurityID.offset >= 0 ? std::string_view{ buf + fieldUnderlyingSecurityID.offset, getValueLength( buf + fieldUnderlyingSecurityID.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingSecurityID() const { return buf + fieldUnderlyingSecurityID.offset; }
    const char * getIfSetUnderlyingSecurityID() const { return fieldUnderlyingSecurityID.offset >= 0 ? buf + fieldUnderlyingSecurityID.offset : nullptr; }
    private: FieldUnderlyingSecurityID fieldUnderlyingSecurityID;
@@ -670,6 +718,7 @@ class GroupUnderlyings : public MessageBase
    public:
    bool isSetUnderlyingSecurityIDSource() const { return fieldUnderlyingSecurityIDSource.offset >= 0; }
    FieldUnderlyingSecurityIDSource::ValueType getUnderlyingSecurityIDSource() const { return fieldUnderlyingSecurityIDSource.getValue( buf ); }
+   std::string_view getUnderlyingSecurityIDSourceView() const { return fieldUnderlyingSecurityIDSource.offset >= 0 ? std::string_view{ buf + fieldUnderlyingSecurityIDSource.offset, getValueLength( buf + fieldUnderlyingSecurityIDSource.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingSecurityIDSource() const { return buf + fieldUnderlyingSecurityIDSource.offset; }
    const char * getIfSetUnderlyingSecurityIDSource() const { return fieldUnderlyingSecurityIDSource.offset >= 0 ? buf + fieldUnderlyingSecurityIDSource.offset : nullptr; }
    private: FieldUnderlyingSecurityIDSource fieldUnderlyingSecurityIDSource;
@@ -677,6 +726,7 @@ class GroupUnderlyings : public MessageBase
    public:
    bool isSetNoUnderlyingSecurityAltID() const { return fieldNoUnderlyingSecurityAltID.offset >= 0; }
    FieldNoUnderlyingSecurityAltID::ValueType getNoUnderlyingSecurityAltID() const { return fieldNoUnderlyingSecurityAltID.getValue( buf ); }
+   std::string_view getNoUnderlyingSecurityAltIDView() const { return fieldNoUnderlyingSecurityAltID.offset >= 0 ? std::string_view{ buf + fieldNoUnderlyingSecurityAltID.offset, getValueLength( buf + fieldNoUnderlyingSecurityAltID.offset ) } : std::string_view{}; }
    const char * ptrToNoUnderlyingSecurityAltID() const { return buf + fieldNoUnderlyingSecurityAltID.offset; }
    const char * getIfSetNoUnderlyingSecurityAltID() const { return fieldNoUnderlyingSecurityAltID.offset >= 0 ? buf + fieldNoUnderlyingSecurityAltID.offset : nullptr; }
    private: FieldNoUnderlyingSecurityAltID fieldNoUnderlyingSecurityAltID;
@@ -689,6 +739,7 @@ class GroupUnderlyings : public MessageBase
    public:
    bool isSetUnderlyingProduct() const { return fieldUnderlyingProduct.offset >= 0; }
    FieldUnderlyingProduct::ValueType getUnderlyingProduct() const { return fieldUnderlyingProduct.getValue( buf ); }
+   std::string_view getUnderlyingProductView() const { return fieldUnderlyingProduct.offset >= 0 ? std::string_view{ buf + fieldUnderlyingProduct.offset, getValueLength( buf + fieldUnderlyingProduct.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingProduct() const { return buf + fieldUnderlyingProduct.offset; }
    const char * getIfSetUnderlyingProduct() const { return fieldUnderlyingProduct.offset >= 0 ? buf + fieldUnderlyingProduct.offset : nullptr; }
    private: FieldUnderlyingProduct fieldUnderlyingProduct;
@@ -696,6 +747,7 @@ class GroupUnderlyings : public MessageBase
    public:
    bool isSetUnderlyingCFICode() const { return fieldUnderlyingCFICode.offset >= 0; }
    FieldUnderlyingCFICode::ValueType getUnderlyingCFICode() const { return fieldUnderlyingCFICode.getValue( buf ); }
+   std::string_view getUnderlyingCFICodeView() const { return fieldUnderlyingCFICode.offset >= 0 ? std::string_view{ buf + fieldUnderlyingCFICode.offset, getValueLength( buf + fieldUnderlyingCFICode.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingCFICode() const { return buf + fieldUnderlyingCFICode.offset; }
    const char * getIfSetUnderlyingCFICode() const { return fieldUnderlyingCFICode.offset >= 0 ? buf + fieldUnderlyingCFICode.offset : nullptr; }
    private: FieldUnderlyingCFICode fieldUnderlyingCFICode;
@@ -703,6 +755,7 @@ class GroupUnderlyings : public MessageBase
    public:
    bool isSetUnderlyingSecurityType() const { return fieldUnderlyingSecurityType.offset >= 0; }
    FieldUnderlyingSecurityType::ValueType getUnderlyingSecurityType() const { return fieldUnderlyingSecurityType.getValue( buf ); }
+   std::string_view getUnderlyingSecurityTypeView() const { return fieldUnderlyingSecurityType.offset >= 0 ? std::string_view{ buf + fieldUnderlyingSecurityType.offset, getValueLength( buf + fieldUnderlyingSecurityType.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingSecurityType() const { return buf + fieldUnderlyingSecurityType.offset; }
    const char * getIfSetUnderlyingSecurityType() const { return fieldUnderlyingSecurityType.offset >= 0 ? buf + fieldUnderlyingSecurityType.offset : nullptr; }
    private: FieldUnderlyingSecurityType fieldUnderlyingSecurityType;
@@ -710,6 +763,7 @@ class GroupUnderlyings : public MessageBase
    public:
    bool isSetUnderlyingSecuritySubType() const { return fieldUnderlyingSecuritySubType.offset >= 0; }
    FieldUnderlyingSecuritySubType::ValueType getUnderlyingSecuritySubType() const { return fieldUnderlyingSecuritySubType.getValue( buf ); }
+   std::string_view getUnderlyingSecuritySubTypeView() const { return fieldUnderlyingSecuritySubType.offset >= 0 ? std::string_view{ buf + fieldUnderlyingSecuritySubType.offset, getValueLength( buf + fieldUnderlyingSecuritySubType.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingSecuritySubType() const { return buf + fieldUnderlyingSecuritySubType.offset; }
    const char * getIfSetUnderlyingSecuritySubType() const { return fieldUnderlyingSecuritySubType.offset >= 0 ? buf + fieldUnderlyingSecuritySubType.offset : nullptr; }
    private: FieldUnderlyingSecuritySubType fieldUnderlyingSecuritySubType;
@@ -717,6 +771,7 @@ class GroupUnderlyings : public MessageBase
    public:
    bool isSetUnderlyingMaturityMonthYear() const { return fieldUnderlyingMaturityMonthYear.offset >= 0; }
    FieldUnderlyingMaturityMonthYear::ValueType getUnderlyingMaturityMonthYear() const { return fieldUnderlyingMaturityMonthYear.getValue( buf ); }
+   std::string_view getUnderlyingMaturityMonthYearView() const { return fieldUnderlyingMaturityMonthYear.offset >= 0 ? std::string_view{ buf + fieldUnderlyingMaturityMonthYear.offset, getValueLength( buf + fieldUnderlyingMaturityMonthYear.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingMaturityMonthYear() const { return buf + fieldUnderlyingMaturityMonthYear.offset; }
    const char * getIfSetUnderlyingMaturityMonthYear() const { return fieldUnderlyingMaturityMonthYear.offset >= 0 ? buf + fieldUnderlyingMaturityMonthYear.offset : nullptr; }
    private: FieldUnderlyingMaturityMonthYear fieldUnderlyingMaturityMonthYear;
@@ -724,6 +779,7 @@ class GroupUnderlyings : public MessageBase
    public:
    bool isSetUnderlyingMaturityDate() const { return fieldUnderlyingMaturityDate.offset >= 0; }
    FieldUnderlyingMaturityDate::ValueType getUnderlyingMaturityDate() const { return fieldUnderlyingMaturityDate.getValue( buf ); }
+   std::string_view getUnderlyingMaturityDateView() const { return fieldUnderlyingMaturityDate.offset >= 0 ? std::string_view{ buf + fieldUnderlyingMaturityDate.offset, getValueLength( buf + fieldUnderlyingMaturityDate.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingMaturityDate() const { return buf + fieldUnderlyingMaturityDate.offset; }
    const char * getIfSetUnderlyingMaturityDate() const { return fieldUnderlyingMaturityDate.offset >= 0 ? buf + fieldUnderlyingMaturityDate.offset : nullptr; }
    private: FieldUnderlyingMaturityDate fieldUnderlyingMaturityDate;
@@ -731,6 +787,7 @@ class GroupUnderlyings : public MessageBase
    public:
    bool isSetUnderlyingPutOrCall() const { return fieldUnderlyingPutOrCall.offset >= 0; }
    FieldUnderlyingPutOrCall::ValueType getUnderlyingPutOrCall() const { return fieldUnderlyingPutOrCall.getValue( buf ); }
+   std::string_view getUnderlyingPutOrCallView() const { return fieldUnderlyingPutOrCall.offset >= 0 ? std::string_view{ buf + fieldUnderlyingPutOrCall.offset, getValueLength( buf + fieldUnderlyingPutOrCall.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingPutOrCall() const { return buf + fieldUnderlyingPutOrCall.offset; }
    const char * getIfSetUnderlyingPutOrCall() const { return fieldUnderlyingPutOrCall.offset >= 0 ? buf + fieldUnderlyingPutOrCall.offset : nullptr; }
    private: FieldUnderlyingPutOrCall fieldUnderlyingPutOrCall;
@@ -738,6 +795,7 @@ class GroupUnderlyings : public MessageBase
    public:
    bool isSetUnderlyingCouponPaymentDate() const { return fieldUnderlyingCouponPaymentDate.offset >= 0; }
    FieldUnderlyingCouponPaymentDate::ValueType getUnderlyingCouponPaymentDate() const { return fieldUnderlyingCouponPaymentDate.getValue( buf ); }
+   std::string_view getUnderlyingCouponPaymentDateView() const { return fieldUnderlyingCouponPaymentDate.offset >= 0 ? std::string_view{ buf + fieldUnderlyingCouponPaymentDate.offset, getValueLength( buf + fieldUnderlyingCouponPaymentDate.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingCouponPaymentDate() const { return buf + fieldUnderlyingCouponPaymentDate.offset; }
    const char * getIfSetUnderlyingCouponPaymentDate() const { return fieldUnderlyingCouponPaymentDate.offset >= 0 ? buf + fieldUnderlyingCouponPaymentDate.offset : nullptr; }
    private: FieldUnderlyingCouponPaymentDate fieldUnderlyingCouponPaymentDate;
@@ -745,6 +803,7 @@ class GroupUnderlyings : public MessageBase
    public:
    bool isSetUnderlyingIssueDate() const { return fieldUnderlyingIssueDate.offset >= 0; }
    FieldUnderlyingIssueDate::ValueType getUnderlyingIssueDate() const { return fieldUnderlyingIssueDate.getValue( buf ); }
+   std::string_view getUnderlyingIssueDateView() const { return fieldUnderlyingIssueDate.offset >= 0 ? std::string_view{ buf + fieldUnderlyingIssueDate.offset, getValueLength( buf + fieldUnderlyingIssueDate.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingIssueDate() const { return buf + fieldUnderlyingIssueDate.offset; }
    const char * getIfSetUnderlyingIssueDate() const { return fieldUnderlyingIssueDate.offset >= 0 ? buf + fieldUnderlyingIssueDate.offset : nullptr; }
    private: FieldUnderlyingIssueDate fieldUnderlyingIssueDate;
@@ -752,6 +811,7 @@ class GroupUnderlyings : public MessageBase
    public:
    bool isSetUnderlyingRepoCollateralSecurityType() const { return fieldUnderlyingRepoCollateralSecurityType.offset >= 0; }
    FieldUnderlyingRepoCollateralSecurityType::ValueType getUnderlyingRepoCollateralSecurityType() const { return fieldUnderlyingRepoCollateralSecurityType.getValue( buf ); }
+   std::string_view getUnderlyingRepoCollateralSecurityTypeView() const { return fieldUnderlyingRepoCollateralSecurityType.offset >= 0 ? std::string_view{ buf + fieldUnderlyingRepoCollateralSecurityType.offset, getValueLength( buf + fieldUnderlyingRepoCollateralSecurityType.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingRepoCollateralSecurityType() const { return buf + fieldUnderlyingRepoCollateralSecurityType.offset; }
    const char * getIfSetUnderlyingRepoCollateralSecurityType() const { return fieldUnderlyingRepoCollateralSecurityType.offset >= 0 ? buf + fieldUnderlyingRepoCollateralSecurityType.offset : nullptr; }
    private: FieldUnderlyingRepoCollateralSecurityType fieldUnderlyingRepoCollateralSecurityType;
@@ -759,6 +819,7 @@ class GroupUnderlyings : public MessageBase
    public:
    bool isSetUnderlyingRepurchaseTerm() const { return fieldUnderlyingRepurchaseTerm.offset >= 0; }
    FieldUnderlyingRepurchaseTerm::ValueType getUnderlyingRepurchaseTerm() const { return fieldUnderlyingRepurchaseTerm.getValue( buf ); }
+   std::string_view getUnderlyingRepurchaseTermView() const { return fieldUnderlyingRepurchaseTerm.offset >= 0 ? std::string_view{ buf + fieldUnderlyingRepurchaseTerm.offset, getValueLength( buf + fieldUnderlyingRepurchaseTerm.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingRepurchaseTerm() const { return buf + fieldUnderlyingRepurchaseTerm.offset; }
    const char * getIfSetUnderlyingRepurchaseTerm() const { return fieldUnderlyingRepurchaseTerm.offset >= 0 ? buf + fieldUnderlyingRepurchaseTerm.offset : nullptr; }
    private: FieldUnderlyingRepurchaseTerm fieldUnderlyingRepurchaseTerm;
@@ -766,6 +827,7 @@ class GroupUnderlyings : public MessageBase
    public:
    bool isSetUnderlyingRepurchaseRate() const { return fieldUnderlyingRepurchaseRate.offset >= 0; }
    FieldUnderlyingRepurchaseRate::ValueType getUnderlyingRepurchaseRate() const { return fieldUnderlyingRepurchaseRate.getValue( buf ); }
+   std::string_view getUnderlyingRepurchaseRateView() const { return fieldUnderlyingRepurchaseRate.offset >= 0 ? std::string_view{ buf + fieldUnderlyingRepurchaseRate.offset, getValueLength( buf + fieldUnderlyingRepurchaseRate.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingRepurchaseRate() const { return buf + fieldUnderlyingRepurchaseRate.offset; }
    const char * getIfSetUnderlyingRepurchaseRate() const { return fieldUnderlyingRepurchaseRate.offset >= 0 ? buf + fieldUnderlyingRepurchaseRate.offset : nullptr; }
    private: FieldUnderlyingRepurchaseRate fieldUnderlyingRepurchaseRate;
@@ -773,6 +835,7 @@ class GroupUnderlyings : public MessageBase
    public:
    bool isSetUnderlyingFactor() const { return fieldUnderlyingFactor.offset >= 0; }
    FieldUnderlyingFactor::ValueType getUnderlyingFactor() const { return fieldUnderlyingFactor.getValue( buf ); }
+   std::string_view getUnderlyingFactorView() const { return fieldUnderlyingFactor.offset >= 0 ? std::string_view{ buf + fieldUnderlyingFactor.offset, getValueLength( buf + fieldUnderlyingFactor.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingFactor() const { return buf + fieldUnderlyingFactor.offset; }
    const char * getIfSetUnderlyingFactor() const { return fieldUnderlyingFactor.offset >= 0 ? buf + fieldUnderlyingFactor.offset : nullptr; }
    private: FieldUnderlyingFactor fieldUnderlyingFactor;
@@ -780,6 +843,7 @@ class GroupUnderlyings : public MessageBase
    public:
    bool isSetUnderlyingCreditRating() const { return fieldUnderlyingCreditRating.offset >= 0; }
    FieldUnderlyingCreditRating::ValueType getUnderlyingCreditRating() const { return fieldUnderlyingCreditRating.getValue( buf ); }
+   std::string_view getUnderlyingCreditRatingView() const { return fieldUnderlyingCreditRating.offset >= 0 ? std::string_view{ buf + fieldUnderlyingCreditRating.offset, getValueLength( buf + fieldUnderlyingCreditRating.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingCreditRating() const { return buf + fieldUnderlyingCreditRating.offset; }
    const char * getIfSetUnderlyingCreditRating() const { return fieldUnderlyingCreditRating.offset >= 0 ? buf + fieldUnderlyingCreditRating.offset : nullptr; }
    private: FieldUnderlyingCreditRating fieldUnderlyingCreditRating;
@@ -787,6 +851,7 @@ class GroupUnderlyings : public MessageBase
    public:
    bool isSetUnderlyingInstrRegistry() const { return fieldUnderlyingInstrRegistry.offset >= 0; }
    FieldUnderlyingInstrRegistry::ValueType getUnderlyingInstrRegistry() const { return fieldUnderlyingInstrRegistry.getValue( buf ); }
+   std::string_view getUnderlyingInstrRegistryView() const { return fieldUnderlyingInstrRegistry.offset >= 0 ? std::string_view{ buf + fieldUnderlyingInstrRegistry.offset, getValueLength( buf + fieldUnderlyingInstrRegistry.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingInstrRegistry() const { return buf + fieldUnderlyingInstrRegistry.offset; }
    const char * getIfSetUnderlyingInstrRegistry() const { return fieldUnderlyingInstrRegistry.offset >= 0 ? buf + fieldUnderlyingInstrRegistry.offset : nullptr; }
    private: FieldUnderlyingInstrRegistry fieldUnderlyingInstrRegistry;
@@ -794,6 +859,7 @@ class GroupUnderlyings : public MessageBase
    public:
    bool isSetUnderlyingCountryOfIssue() const { return fieldUnderlyingCountryOfIssue.offset >= 0; }
    FieldUnderlyingCountryOfIssue::ValueType getUnderlyingCountryOfIssue() const { return fieldUnderlyingCountryOfIssue.getValue( buf ); }
+   std::string_view getUnderlyingCountryOfIssueView() const { return fieldUnderlyingCountryOfIssue.offset >= 0 ? std::string_view{ buf + fieldUnderlyingCountryOfIssue.offset, getValueLength( buf + fieldUnderlyingCountryOfIssue.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingCountryOfIssue() const { return buf + fieldUnderlyingCountryOfIssue.offset; }
    const char * getIfSetUnderlyingCountryOfIssue() const { return fieldUnderlyingCountryOfIssue.offset >= 0 ? buf + fieldUnderlyingCountryOfIssue.offset : nullptr; }
    private: FieldUnderlyingCountryOfIssue fieldUnderlyingCountryOfIssue;
@@ -801,6 +867,7 @@ class GroupUnderlyings : public MessageBase
    public:
    bool isSetUnderlyingStateOrProvinceOfIssue() const { return fieldUnderlyingStateOrProvinceOfIssue.offset >= 0; }
    FieldUnderlyingStateOrProvinceOfIssue::ValueType getUnderlyingStateOrProvinceOfIssue() const { return fieldUnderlyingStateOrProvinceOfIssue.getValue( buf ); }
+   std::string_view getUnderlyingStateOrProvinceOfIssueView() const { return fieldUnderlyingStateOrProvinceOfIssue.offset >= 0 ? std::string_view{ buf + fieldUnderlyingStateOrProvinceOfIssue.offset, getValueLength( buf + fieldUnderlyingStateOrProvinceOfIssue.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingStateOrProvinceOfIssue() const { return buf + fieldUnderlyingStateOrProvinceOfIssue.offset; }
    const char * getIfSetUnderlyingStateOrProvinceOfIssue() const { return fieldUnderlyingStateOrProvinceOfIssue.offset >= 0 ? buf + fieldUnderlyingStateOrProvinceOfIssue.offset : nullptr; }
    private: FieldUnderlyingStateOrProvinceOfIssue fieldUnderlyingStateOrProvinceOfIssue;
@@ -808,6 +875,7 @@ class GroupUnderlyings : public MessageBase
    public:
    bool isSetUnderlyingLocaleOfIssue() const { return fieldUnderlyingLocaleOfIssue.offset >= 0; }
    FieldUnderlyingLocaleOfIssue::ValueType getUnderlyingLocaleOfIssue() const { return fieldUnderlyingLocaleOfIssue.getValue( buf ); }
+   std::string_view getUnderlyingLocaleOfIssueView() const { return fieldUnderlyingLocaleOfIssue.offset >= 0 ? std::string_view{ buf + fieldUnderlyingLocaleOfIssue.offset, getValueLength( buf + fieldUnderlyingLocaleOfIssue.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingLocaleOfIssue() const { return buf + fieldUnderlyingLocaleOfIssue.offset; }
    const char * getIfSetUnderlyingLocaleOfIssue() const { return fieldUnderlyingLocaleOfIssue.offset >= 0 ? buf + fieldUnderlyingLocaleOfIssue.offset : nullptr; }
    private: FieldUnderlyingLocaleOfIssue fieldUnderlyingLocaleOfIssue;
@@ -815,6 +883,7 @@ class GroupUnderlyings : public MessageBase
    public:
    bool isSetUnderlyingRedemptionDate() const { return fieldUnderlyingRedemptionDate.offset >= 0; }
    FieldUnderlyingRedemptionDate::ValueType getUnderlyingRedemptionDate() const { return fieldUnderlyingRedemptionDate.getValue( buf ); }
+   std::string_view getUnderlyingRedemptionDateView() const { return fieldUnderlyingRedemptionDate.offset >= 0 ? std::string_view{ buf + fieldUnderlyingRedemptionDate.offset, getValueLength( buf + fieldUnderlyingRedemptionDate.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingRedemptionDate() const { return buf + fieldUnderlyingRedemptionDate.offset; }
    const char * getIfSetUnderlyingRedemptionDate() const { return fieldUnderlyingRedemptionDate.offset >= 0 ? buf + fieldUnderlyingRedemptionDate.offset : nullptr; }
    private: FieldUnderlyingRedemptionDate fieldUnderlyingRedemptionDate;
@@ -822,6 +891,7 @@ class GroupUnderlyings : public MessageBase
    public:
    bool isSetUnderlyingStrikePrice() const { return fieldUnderlyingStrikePrice.offset >= 0; }
    FieldUnderlyingStrikePrice::ValueType getUnderlyingStrikePrice() const { return fieldUnderlyingStrikePrice.getValue( buf ); }
+   std::string_view getUnderlyingStrikePriceView() const { return fieldUnderlyingStrikePrice.offset >= 0 ? std::string_view{ buf + fieldUnderlyingStrikePrice.offset, getValueLength( buf + fieldUnderlyingStrikePrice.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingStrikePrice() const { return buf + fieldUnderlyingStrikePrice.offset; }
    const char * getIfSetUnderlyingStrikePrice() const { return fieldUnderlyingStrikePrice.offset >= 0 ? buf + fieldUnderlyingStrikePrice.offset : nullptr; }
    private: FieldUnderlyingStrikePrice fieldUnderlyingStrikePrice;
@@ -829,6 +899,7 @@ class GroupUnderlyings : public MessageBase
    public:
    bool isSetUnderlyingStrikeCurrency() const { return fieldUnderlyingStrikeCurrency.offset >= 0; }
    FieldUnderlyingStrikeCurrency::ValueType getUnderlyingStrikeCurrency() const { return fieldUnderlyingStrikeCurrency.getValue( buf ); }
+   std::string_view getUnderlyingStrikeCurrencyView() const { return fieldUnderlyingStrikeCurrency.offset >= 0 ? std::string_view{ buf + fieldUnderlyingStrikeCurrency.offset, getValueLength( buf + fieldUnderlyingStrikeCurrency.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingStrikeCurrency() const { return buf + fieldUnderlyingStrikeCurrency.offset; }
    const char * getIfSetUnderlyingStrikeCurrency() const { return fieldUnderlyingStrikeCurrency.offset >= 0 ? buf + fieldUnderlyingStrikeCurrency.offset : nullptr; }
    private: FieldUnderlyingStrikeCurrency fieldUnderlyingStrikeCurrency;
@@ -836,6 +907,7 @@ class GroupUnderlyings : public MessageBase
    public:
    bool isSetUnderlyingOptAttribute() const { return fieldUnderlyingOptAttribute.offset >= 0; }
    FieldUnderlyingOptAttribute::ValueType getUnderlyingOptAttribute() const { return fieldUnderlyingOptAttribute.getValue( buf ); }
+   std::string_view getUnderlyingOptAttributeView() const { return fieldUnderlyingOptAttribute.offset >= 0 ? std::string_view{ buf + fieldUnderlyingOptAttribute.offset, getValueLength( buf + fieldUnderlyingOptAttribute.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingOptAttribute() const { return buf + fieldUnderlyingOptAttribute.offset; }
    const char * getIfSetUnderlyingOptAttribute() const { return fieldUnderlyingOptAttribute.offset >= 0 ? buf + fieldUnderlyingOptAttribute.offset : nullptr; }
    private: FieldUnderlyingOptAttribute fieldUnderlyingOptAttribute;
@@ -843,6 +915,7 @@ class GroupUnderlyings : public MessageBase
    public:
    bool isSetUnderlyingContractMultiplier() const { return fieldUnderlyingContractMultiplier.offset >= 0; }
    FieldUnderlyingContractMultiplier::ValueType getUnderlyingContractMultiplier() const { return fieldUnderlyingContractMultiplier.getValue( buf ); }
+   std::string_view getUnderlyingContractMultiplierView() const { return fieldUnderlyingContractMultiplier.offset >= 0 ? std::string_view{ buf + fieldUnderlyingContractMultiplier.offset, getValueLength( buf + fieldUnderlyingContractMultiplier.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingContractMultiplier() const { return buf + fieldUnderlyingContractMultiplier.offset; }
    const char * getIfSetUnderlyingContractMultiplier() const { return fieldUnderlyingContractMultiplier.offset >= 0 ? buf + fieldUnderlyingContractMultiplier.offset : nullptr; }
    private: FieldUnderlyingContractMultiplier fieldUnderlyingContractMultiplier;
@@ -850,6 +923,7 @@ class GroupUnderlyings : public MessageBase
    public:
    bool isSetUnderlyingCouponRate() const { return fieldUnderlyingCouponRate.offset >= 0; }
    FieldUnderlyingCouponRate::ValueType getUnderlyingCouponRate() const { return fieldUnderlyingCouponRate.getValue( buf ); }
+   std::string_view getUnderlyingCouponRateView() const { return fieldUnderlyingCouponRate.offset >= 0 ? std::string_view{ buf + fieldUnderlyingCouponRate.offset, getValueLength( buf + fieldUnderlyingCouponRate.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingCouponRate() const { return buf + fieldUnderlyingCouponRate.offset; }
    const char * getIfSetUnderlyingCouponRate() const { return fieldUnderlyingCouponRate.offset >= 0 ? buf + fieldUnderlyingCouponRate.offset : nullptr; }
    private: FieldUnderlyingCouponRate fieldUnderlyingCouponRate;
@@ -857,6 +931,7 @@ class GroupUnderlyings : public MessageBase
    public:
    bool isSetUnderlyingSecurityExchange() const { return fieldUnderlyingSecurityExchange.offset >= 0; }
    FieldUnderlyingSecurityExchange::ValueType getUnderlyingSecurityExchange() const { return fieldUnderlyingSecurityExchange.getValue( buf ); }
+   std::string_view getUnderlyingSecurityExchangeView() const { return fieldUnderlyingSecurityExchange.offset >= 0 ? std::string_view{ buf + fieldUnderlyingSecurityExchange.offset, getValueLength( buf + fieldUnderlyingSecurityExchange.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingSecurityExchange() const { return buf + fieldUnderlyingSecurityExchange.offset; }
    const char * getIfSetUnderlyingSecurityExchange() const { return fieldUnderlyingSecurityExchange.offset >= 0 ? buf + fieldUnderlyingSecurityExchange.offset : nullptr; }
    private: FieldUnderlyingSecurityExchange fieldUnderlyingSecurityExchange;
@@ -864,6 +939,7 @@ class GroupUnderlyings : public MessageBase
    public:
    bool isSetUnderlyingIssuer() const { return fieldUnderlyingIssuer.offset >= 0; }
    FieldUnderlyingIssuer::ValueType getUnderlyingIssuer() const { return fieldUnderlyingIssuer.getValue( buf ); }
+   std::string_view getUnderlyingIssuerView() const { return fieldUnderlyingIssuer.offset >= 0 ? std::string_view{ buf + fieldUnderlyingIssuer.offset, getValueLength( buf + fieldUnderlyingIssuer.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingIssuer() const { return buf + fieldUnderlyingIssuer.offset; }
    const char * getIfSetUnderlyingIssuer() const { return fieldUnderlyingIssuer.offset >= 0 ? buf + fieldUnderlyingIssuer.offset : nullptr; }
    private: FieldUnderlyingIssuer fieldUnderlyingIssuer;
@@ -871,6 +947,7 @@ class GroupUnderlyings : public MessageBase
    public:
    bool isSetEncodedUnderlyingIssuerLen() const { return fieldEncodedUnderlyingIssuerLen.offset >= 0; }
    FieldEncodedUnderlyingIssuerLen::ValueType getEncodedUnderlyingIssuerLen() const { return fieldEncodedUnderlyingIssuerLen.getValue( buf ); }
+   std::string_view getEncodedUnderlyingIssuerLenView() const { return fieldEncodedUnderlyingIssuerLen.offset >= 0 ? std::string_view{ buf + fieldEncodedUnderlyingIssuerLen.offset, getValueLength( buf + fieldEncodedUnderlyingIssuerLen.offset ) } : std::string_view{}; }
    const char * ptrToEncodedUnderlyingIssuerLen() const { return buf + fieldEncodedUnderlyingIssuerLen.offset; }
    const char * getIfSetEncodedUnderlyingIssuerLen() const { return fieldEncodedUnderlyingIssuerLen.offset >= 0 ? buf + fieldEncodedUnderlyingIssuerLen.offset : nullptr; }
    private: FieldEncodedUnderlyingIssuerLen fieldEncodedUnderlyingIssuerLen;
@@ -878,6 +955,7 @@ class GroupUnderlyings : public MessageBase
    public:
    bool isSetEncodedUnderlyingIssuer() const { return fieldEncodedUnderlyingIssuer.offset >= 0; }
    FieldEncodedUnderlyingIssuer::ValueType getEncodedUnderlyingIssuer() const { return fieldEncodedUnderlyingIssuer.getValue( buf ); }
+   std::string_view getEncodedUnderlyingIssuerView() const { return fieldEncodedUnderlyingIssuer.offset >= 0 ? std::string_view{ buf + fieldEncodedUnderlyingIssuer.offset, getValueLength( buf + fieldEncodedUnderlyingIssuer.offset ) } : std::string_view{}; }
    const char * ptrToEncodedUnderlyingIssuer() const { return buf + fieldEncodedUnderlyingIssuer.offset; }
    const char * getIfSetEncodedUnderlyingIssuer() const { return fieldEncodedUnderlyingIssuer.offset >= 0 ? buf + fieldEncodedUnderlyingIssuer.offset : nullptr; }
    private: FieldEncodedUnderlyingIssuer fieldEncodedUnderlyingIssuer;
@@ -885,6 +963,7 @@ class GroupUnderlyings : public MessageBase
    public:
    bool isSetUnderlyingSecurityDesc() const { return fieldUnderlyingSecurityDesc.offset >= 0; }
    FieldUnderlyingSecurityDesc::ValueType getUnderlyingSecurityDesc() const { return fieldUnderlyingSecurityDesc.getValue( buf ); }
+   std::string_view getUnderlyingSecurityDescView() const { return fieldUnderlyingSecurityDesc.offset >= 0 ? std::string_view{ buf + fieldUnderlyingSecurityDesc.offset, getValueLength( buf + fieldUnderlyingSecurityDesc.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingSecurityDesc() const { return buf + fieldUnderlyingSecurityDesc.offset; }
    const char * getIfSetUnderlyingSecurityDesc() const { return fieldUnderlyingSecurityDesc.offset >= 0 ? buf + fieldUnderlyingSecurityDesc.offset : nullptr; }
    private: FieldUnderlyingSecurityDesc fieldUnderlyingSecurityDesc;
@@ -892,6 +971,7 @@ class GroupUnderlyings : public MessageBase
    public:
    bool isSetEncodedUnderlyingSecurityDescLen() const { return fieldEncodedUnderlyingSecurityDescLen.offset >= 0; }
    FieldEncodedUnderlyingSecurityDescLen::ValueType getEncodedUnderlyingSecurityDescLen() const { return fieldEncodedUnderlyingSecurityDescLen.getValue( buf ); }
+   std::string_view getEncodedUnderlyingSecurityDescLenView() const { return fieldEncodedUnderlyingSecurityDescLen.offset >= 0 ? std::string_view{ buf + fieldEncodedUnderlyingSecurityDescLen.offset, getValueLength( buf + fieldEncodedUnderlyingSecurityDescLen.offset ) } : std::string_view{}; }
    const char * ptrToEncodedUnderlyingSecurityDescLen() const { return buf + fieldEncodedUnderlyingSecurityDescLen.offset; }
    const char * getIfSetEncodedUnderlyingSecurityDescLen() const { return fieldEncodedUnderlyingSecurityDescLen.offset >= 0 ? buf + fieldEncodedUnderlyingSecurityDescLen.offset : nullptr; }
    private: FieldEncodedUnderlyingSecurityDescLen fieldEncodedUnderlyingSecurityDescLen;
@@ -899,6 +979,7 @@ class GroupUnderlyings : public MessageBase
    public:
    bool isSetEncodedUnderlyingSecurityDesc() const { return fieldEncodedUnderlyingSecurityDesc.offset >= 0; }
    FieldEncodedUnderlyingSecurityDesc::ValueType getEncodedUnderlyingSecurityDesc() const { return fieldEncodedUnderlyingSecurityDesc.getValue( buf ); }
+   std::string_view getEncodedUnderlyingSecurityDescView() const { return fieldEncodedUnderlyingSecurityDesc.offset >= 0 ? std::string_view{ buf + fieldEncodedUnderlyingSecurityDesc.offset, getValueLength( buf + fieldEncodedUnderlyingSecurityDesc.offset ) } : std::string_view{}; }
    const char * ptrToEncodedUnderlyingSecurityDesc() const { return buf + fieldEncodedUnderlyingSecurityDesc.offset; }
    const char * getIfSetEncodedUnderlyingSecurityDesc() const { return fieldEncodedUnderlyingSecurityDesc.offset >= 0 ? buf + fieldEncodedUnderlyingSecurityDesc.offset : nullptr; }
    private: FieldEncodedUnderlyingSecurityDesc fieldEncodedUnderlyingSecurityDesc;
@@ -906,6 +987,7 @@ class GroupUnderlyings : public MessageBase
    public:
    bool isSetUnderlyingCPProgram() const { return fieldUnderlyingCPProgram.offset >= 0; }
    FieldUnderlyingCPProgram::ValueType getUnderlyingCPProgram() const { return fieldUnderlyingCPProgram.getValue( buf ); }
+   std::string_view getUnderlyingCPProgramView() const { return fieldUnderlyingCPProgram.offset >= 0 ? std::string_view{ buf + fieldUnderlyingCPProgram.offset, getValueLength( buf + fieldUnderlyingCPProgram.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingCPProgram() const { return buf + fieldUnderlyingCPProgram.offset; }
    const char * getIfSetUnderlyingCPProgram() const { return fieldUnderlyingCPProgram.offset >= 0 ? buf + fieldUnderlyingCPProgram.offset : nullptr; }
    private: FieldUnderlyingCPProgram fieldUnderlyingCPProgram;
@@ -913,6 +995,7 @@ class GroupUnderlyings : public MessageBase
    public:
    bool isSetUnderlyingCPRegType() const { return fieldUnderlyingCPRegType.offset >= 0; }
    FieldUnderlyingCPRegType::ValueType getUnderlyingCPRegType() const { return fieldUnderlyingCPRegType.getValue( buf ); }
+   std::string_view getUnderlyingCPRegTypeView() const { return fieldUnderlyingCPRegType.offset >= 0 ? std::string_view{ buf + fieldUnderlyingCPRegType.offset, getValueLength( buf + fieldUnderlyingCPRegType.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingCPRegType() const { return buf + fieldUnderlyingCPRegType.offset; }
    const char * getIfSetUnderlyingCPRegType() const { return fieldUnderlyingCPRegType.offset >= 0 ? buf + fieldUnderlyingCPRegType.offset : nullptr; }
    private: FieldUnderlyingCPRegType fieldUnderlyingCPRegType;
@@ -920,6 +1003,7 @@ class GroupUnderlyings : public MessageBase
    public:
    bool isSetUnderlyingCurrency() const { return fieldUnderlyingCurrency.offset >= 0; }
    FieldUnderlyingCurrency::ValueType getUnderlyingCurrency() const { return fieldUnderlyingCurrency.getValue( buf ); }
+   std::string_view getUnderlyingCurrencyView() const { return fieldUnderlyingCurrency.offset >= 0 ? std::string_view{ buf + fieldUnderlyingCurrency.offset, getValueLength( buf + fieldUnderlyingCurrency.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingCurrency() const { return buf + fieldUnderlyingCurrency.offset; }
    const char * getIfSetUnderlyingCurrency() const { return fieldUnderlyingCurrency.offset >= 0 ? buf + fieldUnderlyingCurrency.offset : nullptr; }
    private: FieldUnderlyingCurrency fieldUnderlyingCurrency;
@@ -927,6 +1011,7 @@ class GroupUnderlyings : public MessageBase
    public:
    bool isSetUnderlyingQty() const { return fieldUnderlyingQty.offset >= 0; }
    FieldUnderlyingQty::ValueType getUnderlyingQty() const { return fieldUnderlyingQty.getValue( buf ); }
+   std::string_view getUnderlyingQtyView() const { return fieldUnderlyingQty.offset >= 0 ? std::string_view{ buf + fieldUnderlyingQty.offset, getValueLength( buf + fieldUnderlyingQty.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingQty() const { return buf + fieldUnderlyingQty.offset; }
    const char * getIfSetUnderlyingQty() const { return fieldUnderlyingQty.offset >= 0 ? buf + fieldUnderlyingQty.offset : nullptr; }
    private: FieldUnderlyingQty fieldUnderlyingQty;
@@ -934,6 +1019,7 @@ class GroupUnderlyings : public MessageBase
    public:
    bool isSetUnderlyingPx() const { return fieldUnderlyingPx.offset >= 0; }
    FieldUnderlyingPx::ValueType getUnderlyingPx() const { return fieldUnderlyingPx.getValue( buf ); }
+   std::string_view getUnderlyingPxView() const { return fieldUnderlyingPx.offset >= 0 ? std::string_view{ buf + fieldUnderlyingPx.offset, getValueLength( buf + fieldUnderlyingPx.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingPx() const { return buf + fieldUnderlyingPx.offset; }
    const char * getIfSetUnderlyingPx() const { return fieldUnderlyingPx.offset >= 0 ? buf + fieldUnderlyingPx.offset : nullptr; }
    private: FieldUnderlyingPx fieldUnderlyingPx;
@@ -941,6 +1027,7 @@ class GroupUnderlyings : public MessageBase
    public:
    bool isSetUnderlyingDirtyPrice() const { return fieldUnderlyingDirtyPrice.offset >= 0; }
    FieldUnderlyingDirtyPrice::ValueType getUnderlyingDirtyPrice() const { return fieldUnderlyingDirtyPrice.getValue( buf ); }
+   std::string_view getUnderlyingDirtyPriceView() const { return fieldUnderlyingDirtyPrice.offset >= 0 ? std::string_view{ buf + fieldUnderlyingDirtyPrice.offset, getValueLength( buf + fieldUnderlyingDirtyPrice.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingDirtyPrice() const { return buf + fieldUnderlyingDirtyPrice.offset; }
    const char * getIfSetUnderlyingDirtyPrice() const { return fieldUnderlyingDirtyPrice.offset >= 0 ? buf + fieldUnderlyingDirtyPrice.offset : nullptr; }
    private: FieldUnderlyingDirtyPrice fieldUnderlyingDirtyPrice;
@@ -948,6 +1035,7 @@ class GroupUnderlyings : public MessageBase
    public:
    bool isSetUnderlyingEndPrice() const { return fieldUnderlyingEndPrice.offset >= 0; }
    FieldUnderlyingEndPrice::ValueType getUnderlyingEndPrice() const { return fieldUnderlyingEndPrice.getValue( buf ); }
+   std::string_view getUnderlyingEndPriceView() const { return fieldUnderlyingEndPrice.offset >= 0 ? std::string_view{ buf + fieldUnderlyingEndPrice.offset, getValueLength( buf + fieldUnderlyingEndPrice.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingEndPrice() const { return buf + fieldUnderlyingEndPrice.offset; }
    const char * getIfSetUnderlyingEndPrice() const { return fieldUnderlyingEndPrice.offset >= 0 ? buf + fieldUnderlyingEndPrice.offset : nullptr; }
    private: FieldUnderlyingEndPrice fieldUnderlyingEndPrice;
@@ -955,6 +1043,7 @@ class GroupUnderlyings : public MessageBase
    public:
    bool isSetUnderlyingStartValue() const { return fieldUnderlyingStartValue.offset >= 0; }
    FieldUnderlyingStartValue::ValueType getUnderlyingStartValue() const { return fieldUnderlyingStartValue.getValue( buf ); }
+   std::string_view getUnderlyingStartValueView() const { return fieldUnderlyingStartValue.offset >= 0 ? std::string_view{ buf + fieldUnderlyingStartValue.offset, getValueLength( buf + fieldUnderlyingStartValue.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingStartValue() const { return buf + fieldUnderlyingStartValue.offset; }
    const char * getIfSetUnderlyingStartValue() const { return fieldUnderlyingStartValue.offset >= 0 ? buf + fieldUnderlyingStartValue.offset : nullptr; }
    private: FieldUnderlyingStartValue fieldUnderlyingStartValue;
@@ -962,6 +1051,7 @@ class GroupUnderlyings : public MessageBase
    public:
    bool isSetUnderlyingCurrentValue() const { return fieldUnderlyingCurrentValue.offset >= 0; }
    FieldUnderlyingCurrentValue::ValueType getUnderlyingCurrentValue() const { return fieldUnderlyingCurrentValue.getValue( buf ); }
+   std::string_view getUnderlyingCurrentValueView() const { return fieldUnderlyingCurrentValue.offset >= 0 ? std::string_view{ buf + fieldUnderlyingCurrentValue.offset, getValueLength( buf + fieldUnderlyingCurrentValue.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingCurrentValue() const { return buf + fieldUnderlyingCurrentValue.offset; }
    const char * getIfSetUnderlyingCurrentValue() const { return fieldUnderlyingCurrentValue.offset >= 0 ? buf + fieldUnderlyingCurrentValue.offset : nullptr; }
    private: FieldUnderlyingCurrentValue fieldUnderlyingCurrentValue;
@@ -969,6 +1059,7 @@ class GroupUnderlyings : public MessageBase
    public:
    bool isSetUnderlyingEndValue() const { return fieldUnderlyingEndValue.offset >= 0; }
    FieldUnderlyingEndValue::ValueType getUnderlyingEndValue() const { return fieldUnderlyingEndValue.getValue( buf ); }
+   std::string_view getUnderlyingEndValueView() const { return fieldUnderlyingEndValue.offset >= 0 ? std::string_view{ buf + fieldUnderlyingEndValue.offset, getValueLength( buf + fieldUnderlyingEndValue.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingEndValue() const { return buf + fieldUnderlyingEndValue.offset; }
    const char * getIfSetUnderlyingEndValue() const { return fieldUnderlyingEndValue.offset >= 0 ? buf + fieldUnderlyingEndValue.offset : nullptr; }
    private: FieldUnderlyingEndValue fieldUnderlyingEndValue;
@@ -976,6 +1067,7 @@ class GroupUnderlyings : public MessageBase
    public:
    bool isSetNoUnderlyingStips() const { return fieldNoUnderlyingStips.offset >= 0; }
    FieldNoUnderlyingStips::ValueType getNoUnderlyingStips() const { return fieldNoUnderlyingStips.getValue( buf ); }
+   std::string_view getNoUnderlyingStipsView() const { return fieldNoUnderlyingStips.offset >= 0 ? std::string_view{ buf + fieldNoUnderlyingStips.offset, getValueLength( buf + fieldNoUnderlyingStips.offset ) } : std::string_view{}; }
    const char * ptrToNoUnderlyingStips() const { return buf + fieldNoUnderlyingStips.offset; }
    const char * getIfSetNoUnderlyingStips() const { return fieldNoUnderlyingStips.offset >= 0 ? buf + fieldNoUnderlyingStips.offset : nullptr; }
    private: FieldNoUnderlyingStips fieldNoUnderlyingStips;
@@ -988,6 +1080,7 @@ class GroupUnderlyings : public MessageBase
    public:
    bool isSetUnderlyingSettlPrice() const { return fieldUnderlyingSettlPrice.offset >= 0; }
    FieldUnderlyingSettlPrice::ValueType getUnderlyingSettlPrice() const { return fieldUnderlyingSettlPrice.getValue( buf ); }
+   std::string_view getUnderlyingSettlPriceView() const { return fieldUnderlyingSettlPrice.offset >= 0 ? std::string_view{ buf + fieldUnderlyingSettlPrice.offset, getValueLength( buf + fieldUnderlyingSettlPrice.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingSettlPrice() const { return buf + fieldUnderlyingSettlPrice.offset; }
    const char * getIfSetUnderlyingSettlPrice() const { return fieldUnderlyingSettlPrice.offset >= 0 ? buf + fieldUnderlyingSettlPrice.offset : nullptr; }
    private: FieldUnderlyingSettlPrice fieldUnderlyingSettlPrice;
@@ -995,6 +1088,7 @@ class GroupUnderlyings : public MessageBase
    public:
    bool isSetUnderlyingSettlPriceType() const { return fieldUnderlyingSettlPriceType.offset >= 0; }
    FieldUnderlyingSettlPriceType::ValueType getUnderlyingSettlPriceType() const { return fieldUnderlyingSettlPriceType.getValue( buf ); }
+   std::string_view getUnderlyingSettlPriceTypeView() const { return fieldUnderlyingSettlPriceType.offset >= 0 ? std::string_view{ buf + fieldUnderlyingSettlPriceType.offset, getValueLength( buf + fieldUnderlyingSettlPriceType.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingSettlPriceType() const { return buf + fieldUnderlyingSettlPriceType.offset; }
    const char * getIfSetUnderlyingSettlPriceType() const { return fieldUnderlyingSettlPriceType.offset >= 0 ? buf + fieldUnderlyingSettlPriceType.offset : nullptr; }
    private: FieldUnderlyingSettlPriceType fieldUnderlyingSettlPriceType;
@@ -1020,6 +1114,7 @@ class GroupStipulations : public MessageBase
    public:
    bool isSetStipulationType() const { return fieldStipulationType.offset >= 0; }
    FieldStipulationType::ValueType getStipulationType() const { return fieldStipulationType.getValue( buf ); }
+   std::string_view getStipulationTypeView() const { return fieldStipulationType.offset >= 0 ? std::string_view{ buf + fieldStipulationType.offset, getValueLength( buf + fieldStipulationType.offset ) } : std::string_view{}; }
    const char * ptrToStipulationType() const { return buf + fieldStipulationType.offset; }
    const char * getIfSetStipulationType() const { return fieldStipulationType.offset >= 0 ? buf + fieldStipulationType.offset : nullptr; }
    private: FieldStipulationType fieldStipulationType;
@@ -1027,6 +1122,7 @@ class GroupStipulations : public MessageBase
    public:
    bool isSetStipulationValue() const { return fieldStipulationValue.offset >= 0; }
    FieldStipulationValue::ValueType getStipulationValue() const { return fieldStipulationValue.getValue( buf ); }
+   std::string_view getStipulationValueView() const { return fieldStipulationValue.offset >= 0 ? std::string_view{ buf + fieldStipulationValue.offset, getValueLength( buf + fieldStipulationValue.offset ) } : std::string_view{}; }
    const char * ptrToStipulationValue() const { return buf + fieldStipulationValue.offset; }
    const char * getIfSetStipulationValue() const { return fieldStipulationValue.offset >= 0 ? buf + fieldStipulationValue.offset : nullptr; }
    private: FieldStipulationValue fieldStipulationValue;
@@ -1052,6 +1148,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetClOrdID() const { return fieldClOrdID.offset >= 0; }
    FieldClOrdID::ValueType getClOrdID() const { return fieldClOrdID.getValue( buf ); }
+   std::string_view getClOrdIDView() const { return fieldClOrdID.offset >= 0 ? std::string_view{ buf + fieldClOrdID.offset, getValueLength( buf + fieldClOrdID.offset ) } : std::string_view{}; }
    const char * ptrToClOrdID() const { return buf + fieldClOrdID.offset; }
    const char * getIfSetClOrdID() const { return fieldClOrdID.offset >= 0 ? buf + fieldClOrdID.offset : nullptr; }
    private: FieldClOrdID fieldClOrdID;
@@ -1059,6 +1156,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetSecondaryClOrdID() const { return fieldSecondaryClOrdID.offset >= 0; }
    FieldSecondaryClOrdID::ValueType getSecondaryClOrdID() const { return fieldSecondaryClOrdID.getValue( buf ); }
+   std::string_view getSecondaryClOrdIDView() const { return fieldSecondaryClOrdID.offset >= 0 ? std::string_view{ buf + fieldSecondaryClOrdID.offset, getValueLength( buf + fieldSecondaryClOrdID.offset ) } : std::string_view{}; }
    const char * ptrToSecondaryClOrdID() const { return buf + fieldSecondaryClOrdID.offset; }
    const char * getIfSetSecondaryClOrdID() const { return fieldSecondaryClOrdID.offset >= 0 ? buf + fieldSecondaryClOrdID.offset : nullptr; }
    private: FieldSecondaryClOrdID fieldSecondaryClOrdID;
@@ -1066,6 +1164,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetListSeqNo() const { return fieldListSeqNo.offset >= 0; }
    FieldListSeqNo::ValueType getListSeqNo() const { return fieldListSeqNo.getValue( buf ); }
+   std::string_view getListSeqNoView() const { return fieldListSeqNo.offset >= 0 ? std::string_view{ buf + fieldListSeqNo.offset, getValueLength( buf + fieldListSeqNo.offset ) } : std::string_view{}; }
    const char * ptrToListSeqNo() const { return buf + fieldListSeqNo.offset; }
    const char * getIfSetListSeqNo() const { return fieldListSeqNo.offset >= 0 ? buf + fieldListSeqNo.offset : nullptr; }
    private: FieldListSeqNo fieldListSeqNo;
@@ -1073,6 +1172,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetClOrdLinkID() const { return fieldClOrdLinkID.offset >= 0; }
    FieldClOrdLinkID::ValueType getClOrdLinkID() const { return fieldClOrdLinkID.getValue( buf ); }
+   std::string_view getClOrdLinkIDView() const { return fieldClOrdLinkID.offset >= 0 ? std::string_view{ buf + fieldClOrdLinkID.offset, getValueLength( buf + fieldClOrdLinkID.offset ) } : std::string_view{}; }
    const char * ptrToClOrdLinkID() const { return buf + fieldClOrdLinkID.offset; }
    const char * getIfSetClOrdLinkID() const { return fieldClOrdLinkID.offset >= 0 ? buf + fieldClOrdLinkID.offset : nullptr; }
    private: FieldClOrdLinkID fieldClOrdLinkID;
@@ -1080,6 +1180,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetSettlInstMode() const { return fieldSettlInstMode.offset >= 0; }
    FieldSettlInstMode::ValueType getSettlInstMode() const { return fieldSettlInstMode.getValue( buf ); }
+   std::string_view getSettlInstModeView() const { return fieldSettlInstMode.offset >= 0 ? std::string_view{ buf + fieldSettlInstMode.offset, getValueLength( buf + fieldSettlInstMode.offset ) } : std::string_view{}; }
    const char * ptrToSettlInstMode() const { return buf + fieldSettlInstMode.offset; }
    const char * getIfSetSettlInstMode() const { return fieldSettlInstMode.offset >= 0 ? buf + fieldSettlInstMode.offset : nullptr; }
    private: FieldSettlInstMode fieldSettlInstMode;
@@ -1087,6 +1188,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetNoPartyIDs() const { return fieldNoPartyIDs.offset >= 0; }
    FieldNoPartyIDs::ValueType getNoPartyIDs() const { return fieldNoPartyIDs.getValue( buf ); }
+   std::string_view getNoPartyIDsView() const { return fieldNoPartyIDs.offset >= 0 ? std::string_view{ buf + fieldNoPartyIDs.offset, getValueLength( buf + fieldNoPartyIDs.offset ) } : std::string_view{}; }
    const char * ptrToNoPartyIDs() const { return buf + fieldNoPartyIDs.offset; }
    const char * getIfSetNoPartyIDs() const { return fieldNoPartyIDs.offset >= 0 ? buf + fieldNoPartyIDs.offset : nullptr; }
    private: FieldNoPartyIDs fieldNoPartyIDs;
@@ -1099,6 +1201,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetTradeOriginationDate() const { return fieldTradeOriginationDate.offset >= 0; }
    FieldTradeOriginationDate::ValueType getTradeOriginationDate() const { return fieldTradeOriginationDate.getValue( buf ); }
+   std::string_view getTradeOriginationDateView() const { return fieldTradeOriginationDate.offset >= 0 ? std::string_view{ buf + fieldTradeOriginationDate.offset, getValueLength( buf + fieldTradeOriginationDate.offset ) } : std::string_view{}; }
    const char * ptrToTradeOriginationDate() const { return buf + fieldTradeOriginationDate.offset; }
    const char * getIfSetTradeOriginationDate() const { return fieldTradeOriginationDate.offset >= 0 ? buf + fieldTradeOriginationDate.offset : nullptr; }
    private: FieldTradeOriginationDate fieldTradeOriginationDate;
@@ -1106,6 +1209,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetTradeDate() const { return fieldTradeDate.offset >= 0; }
    FieldTradeDate::ValueType getTradeDate() const { return fieldTradeDate.getValue( buf ); }
+   std::string_view getTradeDateView() const { return fieldTradeDate.offset >= 0 ? std::string_view{ buf + fieldTradeDate.offset, getValueLength( buf + fieldTradeDate.offset ) } : std::string_view{}; }
    const char * ptrToTradeDate() const { return buf + fieldTradeDate.offset; }
    const char * getIfSetTradeDate() const { return fieldTradeDate.offset >= 0 ? buf + fieldTradeDate.offset : nullptr; }
    private: FieldTradeDate fieldTradeDate;
@@ -1113,6 +1217,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetAccount() const { return fieldAccount.offset >= 0; }
    FieldAccount::ValueType getAccount() const { return fieldAccount.getValue( buf ); }
+   std::string_view getAccountView() const { return fieldAccount.offset >= 0 ? std::string_view{ buf + fieldAccount.offset, getValueLength( buf + fieldAccount.offset ) } : std::string_view{}; }
    const char * ptrToAccount() const { return buf + fieldAccount.offset; }
    const char * getIfSetAccount() const { return fieldAccount.offset >= 0 ? buf + fieldAccount.offset : nullptr; }
    private: FieldAccount fieldAccount;
@@ -1120,6 +1225,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetAcctIDSource() const { return fieldAcctIDSource.offset >= 0; }
    FieldAcctIDSource::ValueType getAcctIDSource() const { return fieldAcctIDSource.getValue( buf ); }
+   std::string_view getAcctIDSourceView() const { return fieldAcctIDSource.offset >= 0 ? std::string_view{ buf + fieldAcctIDSource.offset, getValueLength( buf + fieldAcctIDSource.offset ) } : std::string_view{}; }
    const char * ptrToAcctIDSource() const { return buf + fieldAcctIDSource.offset; }
    const char * getIfSetAcctIDSource() const { return fieldAcctIDSource.offset >= 0 ? buf + fieldAcctIDSource.offset : nullptr; }
    private: FieldAcctIDSource fieldAcctIDSource;
@@ -1127,6 +1233,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetAccountType() const { return fieldAccountType.offset >= 0; }
    FieldAccountType::ValueType getAccountType() const { return fieldAccountType.getValue( buf ); }
+   std::string_view getAccountTypeView() const { return fieldAccountType.offset >= 0 ? std::string_view{ buf + fieldAccountType.offset, getValueLength( buf + fieldAccountType.offset ) } : std::string_view{}; }
    const char * ptrToAccountType() const { return buf + fieldAccountType.offset; }
    const char * getIfSetAccountType() const { return fieldAccountType.offset >= 0 ? buf + fieldAccountType.offset : nullptr; }
    private: FieldAccountType fieldAccountType;
@@ -1134,6 +1241,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetDayBookingInst() const { return fieldDayBookingInst.offset >= 0; }
    FieldDayBookingInst::ValueType getDayBookingInst() const { return fieldDayBookingInst.getValue( buf ); }
+   std::string_view getDayBookingInstView() const { return fieldDayBookingInst.offset >= 0 ? std::string_view{ buf + fieldDayBookingInst.offset, getValueLength( buf + fieldDayBookingInst.offset ) } : std::string_view{}; }
    const char * ptrToDayBookingInst() const { return buf + fieldDayBookingInst.offset; }
    const char * getIfSetDayBookingInst() const { return fieldDayBookingInst.offset >= 0 ? buf + fieldDayBookingInst.offset : nullptr; }
    private: FieldDayBookingInst fieldDayBookingInst;
@@ -1141,6 +1249,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetBookingUnit() const { return fieldBookingUnit.offset >= 0; }
    FieldBookingUnit::ValueType getBookingUnit() const { return fieldBookingUnit.getValue( buf ); }
+   std::string_view getBookingUnitView() const { return fieldBookingUnit.offset >= 0 ? std::string_view{ buf + fieldBookingUnit.offset, getValueLength( buf + fieldBookingUnit.offset ) } : std::string_view{}; }
    const char * ptrToBookingUnit() const { return buf + fieldBookingUnit.offset; }
    const char * getIfSetBookingUnit() const { return fieldBookingUnit.offset >= 0 ? buf + fieldBookingUnit.offset : nullptr; }
    private: FieldBookingUnit fieldBookingUnit;
@@ -1148,6 +1257,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetAllocID() const { return fieldAllocID.offset >= 0; }
    FieldAllocID::ValueType getAllocID() const { return fieldAllocID.getValue( buf ); }
+   std::string_view getAllocIDView() const { return fieldAllocID.offset >= 0 ? std::string_view{ buf + fieldAllocID.offset, getValueLength( buf + fieldAllocID.offset ) } : std::string_view{}; }
    const char * ptrToAllocID() const { return buf + fieldAllocID.offset; }
    const char * getIfSetAllocID() const { return fieldAllocID.offset >= 0 ? buf + fieldAllocID.offset : nullptr; }
    private: FieldAllocID fieldAllocID;
@@ -1155,6 +1265,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetPreallocMethod() const { return fieldPreallocMethod.offset >= 0; }
    FieldPreallocMethod::ValueType getPreallocMethod() const { return fieldPreallocMethod.getValue( buf ); }
+   std::string_view getPreallocMethodView() const { return fieldPreallocMethod.offset >= 0 ? std::string_view{ buf + fieldPreallocMethod.offset, getValueLength( buf + fieldPreallocMethod.offset ) } : std::string_view{}; }
    const char * ptrToPreallocMethod() const { return buf + fieldPreallocMethod.offset; }
    const char * getIfSetPreallocMethod() const { return fieldPreallocMethod.offset >= 0 ? buf + fieldPreallocMethod.offset : nullptr; }
    private: FieldPreallocMethod fieldPreallocMethod;
@@ -1162,6 +1273,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetNoAllocs() const { return fieldNoAllocs.offset >= 0; }
    FieldNoAllocs::ValueType getNoAllocs() const { return fieldNoAllocs.getValue( buf ); }
+   std::string_view getNoAllocsView() const { return fieldNoAllocs.offset >= 0 ? std::string_view{ buf + fieldNoAllocs.offset, getValueLength( buf + fieldNoAllocs.offset ) } : std::string_view{}; }
    const char * ptrToNoAllocs() const { return buf + fieldNoAllocs.offset; }
    const char * getIfSetNoAllocs() const { return fieldNoAllocs.offset >= 0 ? buf + fieldNoAllocs.offset : nullptr; }
    private: FieldNoAllocs fieldNoAllocs;
@@ -1174,6 +1286,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetSettlType() const { return fieldSettlType.offset >= 0; }
    FieldSettlType::ValueType getSettlType() const { return fieldSettlType.getValue( buf ); }
+   std::string_view getSettlTypeView() const { return fieldSettlType.offset >= 0 ? std::string_view{ buf + fieldSettlType.offset, getValueLength( buf + fieldSettlType.offset ) } : std::string_view{}; }
    const char * ptrToSettlType() const { return buf + fieldSettlType.offset; }
    const char * getIfSetSettlType() const { return fieldSettlType.offset >= 0 ? buf + fieldSettlType.offset : nullptr; }
    private: FieldSettlType fieldSettlType;
@@ -1181,6 +1294,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetSettlDate() const { return fieldSettlDate.offset >= 0; }
    FieldSettlDate::ValueType getSettlDate() const { return fieldSettlDate.getValue( buf ); }
+   std::string_view getSettlDateView() const { return fieldSettlDate.offset >= 0 ? std::string_view{ buf + fieldSettlDate.offset, getValueLength( buf + fieldSettlDate.offset ) } : std::string_view{}; }
    const char * ptrToSettlDate() const { return buf + fieldSettlDate.offset; }
    const char * getIfSetSettlDate() const { return fieldSettlDate.offset >= 0 ? buf + fieldSettlDate.offset : nullptr; }
    private: FieldSettlDate fieldSettlDate;
@@ -1188,6 +1302,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetCashMargin() const { return fieldCashMargin.offset >= 0; }
    FieldCashMargin::ValueType getCashMargin() const { return fieldCashMargin.getValue( buf ); }
+   std::string_view getCashMarginView() const { return fieldCashMargin.offset >= 0 ? std::string_view{ buf + fieldCashMargin.offset, getValueLength( buf + fieldCashMargin.offset ) } : std::string_view{}; }
    const char * ptrToCashMargin() const { return buf + fieldCashMargin.offset; }
    const char * getIfSetCashMargin() const { return fieldCashMargin.offset >= 0 ? buf + fieldCashMargin.offset : nullptr; }
    private: FieldCashMargin fieldCashMargin;
@@ -1195,6 +1310,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetClearingFeeIndicator() const { return fieldClearingFeeIndicator.offset >= 0; }
    FieldClearingFeeIndicator::ValueType getClearingFeeIndicator() const { return fieldClearingFeeIndicator.getValue( buf ); }
+   std::string_view getClearingFeeIndicatorView() const { return fieldClearingFeeIndicator.offset >= 0 ? std::string_view{ buf + fieldClearingFeeIndicator.offset, getValueLength( buf + fieldClearingFeeIndicator.offset ) } : std::string_view{}; }
    const char * ptrToClearingFeeIndicator() const { return buf + fieldClearingFeeIndicator.offset; }
    const char * getIfSetClearingFeeIndicator() const { return fieldClearingFeeIndicator.offset >= 0 ? buf + fieldClearingFeeIndicator.offset : nullptr; }
    private: FieldClearingFeeIndicator fieldClearingFeeIndicator;
@@ -1202,6 +1318,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetHandlInst() const { return fieldHandlInst.offset >= 0; }
    FieldHandlInst::ValueType getHandlInst() const { return fieldHandlInst.getValue( buf ); }
+   std::string_view getHandlInstView() const { return fieldHandlInst.offset >= 0 ? std::string_view{ buf + fieldHandlInst.offset, getValueLength( buf + fieldHandlInst.offset ) } : std::string_view{}; }
    const char * ptrToHandlInst() const { return buf + fieldHandlInst.offset; }
    const char * getIfSetHandlInst() const { return fieldHandlInst.offset >= 0 ? buf + fieldHandlInst.offset : nullptr; }
    private: FieldHandlInst fieldHandlInst;
@@ -1209,6 +1326,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetExecInst() const { return fieldExecInst.offset >= 0; }
    FieldExecInst::ValueType getExecInst() const { return fieldExecInst.getValue( buf ); }
+   std::string_view getExecInstView() const { return fieldExecInst.offset >= 0 ? std::string_view{ buf + fieldExecInst.offset, getValueLength( buf + fieldExecInst.offset ) } : std::string_view{}; }
    const char * ptrToExecInst() const { return buf + fieldExecInst.offset; }
    const char * getIfSetExecInst() const { return fieldExecInst.offset >= 0 ? buf + fieldExecInst.offset : nullptr; }
    private: FieldExecInst fieldExecInst;
@@ -1216,6 +1334,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetMinQty() const { return fieldMinQty.offset >= 0; }
    FieldMinQty::ValueType getMinQty() const { return fieldMinQty.getValue( buf ); }
+   std::string_view getMinQtyView() const { return fieldMinQty.offset >= 0 ? std::string_view{ buf + fieldMinQty.offset, getValueLength( buf + fieldMinQty.offset ) } : std::string_view{}; }
    const char * ptrToMinQty() const { return buf + fieldMinQty.offset; }
    const char * getIfSetMinQty() const { return fieldMinQty.offset >= 0 ? buf + fieldMinQty.offset : nullptr; }
    private: FieldMinQty fieldMinQty;
@@ -1223,6 +1342,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetMaxFloor() const { return fieldMaxFloor.offset >= 0; }
    FieldMaxFloor::ValueType getMaxFloor() const { return fieldMaxFloor.getValue( buf ); }
+   std::string_view getMaxFloorView() const { return fieldMaxFloor.offset >= 0 ? std::string_view{ buf + fieldMaxFloor.offset, getValueLength( buf + fieldMaxFloor.offset ) } : std::string_view{}; }
    const char * ptrToMaxFloor() const { return buf + fieldMaxFloor.offset; }
    const char * getIfSetMaxFloor() const { return fieldMaxFloor.offset >= 0 ? buf + fieldMaxFloor.offset : nullptr; }
    private: FieldMaxFloor fieldMaxFloor;
@@ -1230,6 +1350,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetExDestination() const { return fieldExDestination.offset >= 0; }
    FieldExDestination::ValueType getExDestination() const { return fieldExDestination.getValue( buf ); }
+   std::string_view getExDestinationView() const { return fieldExDestination.offset >= 0 ? std::string_view{ buf + fieldExDestination.offset, getValueLength( buf + fieldExDestination.offset ) } : std::string_view{}; }
    const char * ptrToExDestination() const { return buf + fieldExDestination.offset; }
    const char * getIfSetExDestination() const { return fieldExDestination.offset >= 0 ? buf + fieldExDestination.offset : nullptr; }
    private: FieldExDestination fieldExDestination;
@@ -1237,6 +1358,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetNoTradingSessions() const { return fieldNoTradingSessions.offset >= 0; }
    FieldNoTradingSessions::ValueType getNoTradingSessions() const { return fieldNoTradingSessions.getValue( buf ); }
+   std::string_view getNoTradingSessionsView() const { return fieldNoTradingSessions.offset >= 0 ? std::string_view{ buf + fieldNoTradingSessions.offset, getValueLength( buf + fieldNoTradingSessions.offset ) } : std::string_view{}; }
    const char * ptrToNoTradingSessions() const { return buf + fieldNoTradingSessions.offset; }
    const char * getIfSetNoTradingSessions() const { return fieldNoTradingSessions.offset >= 0 ? buf + fieldNoTradingSessions.offset : nullptr; }
    private: FieldNoTradingSessions fieldNoTradingSessions;
@@ -1249,6 +1371,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetProcessCode() const { return fieldProcessCode.offset >= 0; }
    FieldProcessCode::ValueType getProcessCode() const { return fieldProcessCode.getValue( buf ); }
+   std::string_view getProcessCodeView() const { return fieldProcessCode.offset >= 0 ? std::string_view{ buf + fieldProcessCode.offset, getValueLength( buf + fieldProcessCode.offset ) } : std::string_view{}; }
    const char * ptrToProcessCode() const { return buf + fieldProcessCode.offset; }
    const char * getIfSetProcessCode() const { return fieldProcessCode.offset >= 0 ? buf + fieldProcessCode.offset : nullptr; }
    private: FieldProcessCode fieldProcessCode;
@@ -1256,6 +1379,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetSymbol() const { return fieldSymbol.offset >= 0; }
    FieldSymbol::ValueType getSymbol() const { return fieldSymbol.getValue( buf ); }
+   std::string_view getSymbolView() const { return fieldSymbol.offset >= 0 ? std::string_view{ buf + fieldSymbol.offset, getValueLength( buf + fieldSymbol.offset ) } : std::string_view{}; }
    const char * ptrToSymbol() const { return buf + fieldSymbol.offset; }
    const char * getIfSetSymbol() const { return fieldSymbol.offset >= 0 ? buf + fieldSymbol.offset : nullptr; }
    private: FieldSymbol fieldSymbol;
@@ -1263,6 +1387,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetSymbolSfx() const { return fieldSymbolSfx.offset >= 0; }
    FieldSymbolSfx::ValueType getSymbolSfx() const { return fieldSymbolSfx.getValue( buf ); }
+   std::string_view getSymbolSfxView() const { return fieldSymbolSfx.offset >= 0 ? std::string_view{ buf + fieldSymbolSfx.offset, getValueLength( buf + fieldSymbolSfx.offset ) } : std::string_view{}; }
    const char * ptrToSymbolSfx() const { return buf + fieldSymbolSfx.offset; }
    const char * getIfSetSymbolSfx() const { return fieldSymbolSfx.offset >= 0 ? buf + fieldSymbolSfx.offset : nullptr; }
    private: FieldSymbolSfx fieldSymbolSfx;
@@ -1270,6 +1395,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetSecurityID() const { return fieldSecurityID.offset >= 0; }
    FieldSecurityID::ValueType getSecurityID() const { return fieldSecurityID.getValue( buf ); }
+   std::string_view getSecurityIDView() const { return fieldSecurityID.offset >= 0 ? std::string_view{ buf + fieldSecurityID.offset, getValueLength( buf + fieldSecurityID.offset ) } : std::string_view{}; }
    const char * ptrToSecurityID() const { return buf + fieldSecurityID.offset; }
    const char * getIfSetSecurityID() const { return fieldSecurityID.offset >= 0 ? buf + fieldSecurityID.offset : nullptr; }
    private: FieldSecurityID fieldSecurityID;
@@ -1277,6 +1403,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetSecurityIDSource() const { return fieldSecurityIDSource.offset >= 0; }
    FieldSecurityIDSource::ValueType getSecurityIDSource() const { return fieldSecurityIDSource.getValue( buf ); }
+   std::string_view getSecurityIDSourceView() const { return fieldSecurityIDSource.offset >= 0 ? std::string_view{ buf + fieldSecurityIDSource.offset, getValueLength( buf + fieldSecurityIDSource.offset ) } : std::string_view{}; }
    const char * ptrToSecurityIDSource() const { return buf + fieldSecurityIDSource.offset; }
    const char * getIfSetSecurityIDSource() const { return fieldSecurityIDSource.offset >= 0 ? buf + fieldSecurityIDSource.offset : nullptr; }
    private: FieldSecurityIDSource fieldSecurityIDSource;
@@ -1284,6 +1411,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetNoSecurityAltID() const { return fieldNoSecurityAltID.offset >= 0; }
    FieldNoSecurityAltID::ValueType getNoSecurityAltID() const { return fieldNoSecurityAltID.getValue( buf ); }
+   std::string_view getNoSecurityAltIDView() const { return fieldNoSecurityAltID.offset >= 0 ? std::string_view{ buf + fieldNoSecurityAltID.offset, getValueLength( buf + fieldNoSecurityAltID.offset ) } : std::string_view{}; }
    const char * ptrToNoSecurityAltID() const { return buf + fieldNoSecurityAltID.offset; }
    const char * getIfSetNoSecurityAltID() const { return fieldNoSecurityAltID.offset >= 0 ? buf + fieldNoSecurityAltID.offset : nullptr; }
    private: FieldNoSecurityAltID fieldNoSecurityAltID;
@@ -1296,6 +1424,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetProduct() const { return fieldProduct.offset >= 0; }
    FieldProduct::ValueType getProduct() const { return fieldProduct.getValue( buf ); }
+   std::string_view getProductView() const { return fieldProduct.offset >= 0 ? std::string_view{ buf + fieldProduct.offset, getValueLength( buf + fieldProduct.offset ) } : std::string_view{}; }
    const char * ptrToProduct() const { return buf + fieldProduct.offset; }
    const char * getIfSetProduct() const { return fieldProduct.offset >= 0 ? buf + fieldProduct.offset : nullptr; }
    private: FieldProduct fieldProduct;
@@ -1303,6 +1432,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetCFICode() const { return fieldCFICode.offset >= 0; }
    FieldCFICode::ValueType getCFICode() const { return fieldCFICode.getValue( buf ); }
+   std::string_view getCFICodeView() const { return fieldCFICode.offset >= 0 ? std::string_view{ buf + fieldCFICode.offset, getValueLength( buf + fieldCFICode.offset ) } : std::string_view{}; }
    const char * ptrToCFICode() const { return buf + fieldCFICode.offset; }
    const char * getIfSetCFICode() const { return fieldCFICode.offset >= 0 ? buf + fieldCFICode.offset : nullptr; }
    private: FieldCFICode fieldCFICode;
@@ -1310,6 +1440,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetSecurityType() const { return fieldSecurityType.offset >= 0; }
    FieldSecurityType::ValueType getSecurityType() const { return fieldSecurityType.getValue( buf ); }
+   std::string_view getSecurityTypeView() const { return fieldSecurityType.offset >= 0 ? std::string_view{ buf + fieldSecurityType.offset, getValueLength( buf + fieldSecurityType.offset ) } : std::string_view{}; }
    const char * ptrToSecurityType() const { return buf + fieldSecurityType.offset; }
    const char * getIfSetSecurityType() const { return fieldSecurityType.offset >= 0 ? buf + fieldSecurityType.offset : nullptr; }
    private: FieldSecurityType fieldSecurityType;
@@ -1317,6 +1448,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetSecuritySubType() const { return fieldSecuritySubType.offset >= 0; }
    FieldSecuritySubType::ValueType getSecuritySubType() const { return fieldSecuritySubType.getValue( buf ); }
+   std::string_view getSecuritySubTypeView() const { return fieldSecuritySubType.offset >= 0 ? std::string_view{ buf + fieldSecuritySubType.offset, getValueLength( buf + fieldSecuritySubType.offset ) } : std::string_view{}; }
    const char * ptrToSecuritySubType() const { return buf + fieldSecuritySubType.offset; }
    const char * getIfSetSecuritySubType() const { return fieldSecuritySubType.offset >= 0 ? buf + fieldSecuritySubType.offset : nullptr; }
    private: FieldSecuritySubType fieldSecuritySubType;
@@ -1324,6 +1456,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetMaturityMonthYear() const { return fieldMaturityMonthYear.offset >= 0; }
    FieldMaturityMonthYear::ValueType getMaturityMonthYear() const { return fieldMaturityMonthYear.getValue( buf ); }
+   std::string_view getMaturityMonthYearView() const { return fieldMaturityMonthYear.offset >= 0 ? std::string_view{ buf + fieldMaturityMonthYear.offset, getValueLength( buf + fieldMaturityMonthYear.offset ) } : std::string_view{}; }
    const char * ptrToMaturityMonthYear() const { return buf + fieldMaturityMonthYear.offset; }
    const char * getIfSetMaturityMonthYear() const { return fieldMaturityMonthYear.offset >= 0 ? buf + fieldMaturityMonthYear.offset : nullptr; }
    private: FieldMaturityMonthYear fieldMaturityMonthYear;
@@ -1331,6 +1464,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetMaturityDate() const { return fieldMaturityDate.offset >= 0; }
    FieldMaturityDate::ValueType getMaturityDate() const { return fieldMaturityDate.getValue( buf ); }
+   std::string_view getMaturityDateView() const { return fieldMaturityDate.offset >= 0 ? std::string_view{ buf + fieldMaturityDate.offset, getValueLength( buf + fieldMaturityDate.offset ) } : std::string_view{}; }
    const char * ptrToMaturityDate() const { return buf + fieldMaturityDate.offset; }
    const char * getIfSetMaturityDate() const { return fieldMaturityDate.offset >= 0 ? buf + fieldMaturityDate.offset : nullptr; }
    private: FieldMaturityDate fieldMaturityDate;
@@ -1338,6 +1472,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetPutOrCall() const { return fieldPutOrCall.offset >= 0; }
    FieldPutOrCall::ValueType getPutOrCall() const { return fieldPutOrCall.getValue( buf ); }
+   std::string_view getPutOrCallView() const { return fieldPutOrCall.offset >= 0 ? std::string_view{ buf + fieldPutOrCall.offset, getValueLength( buf + fieldPutOrCall.offset ) } : std::string_view{}; }
    const char * ptrToPutOrCall() const { return buf + fieldPutOrCall.offset; }
    const char * getIfSetPutOrCall() const { return fieldPutOrCall.offset >= 0 ? buf + fieldPutOrCall.offset : nullptr; }
    private: FieldPutOrCall fieldPutOrCall;
@@ -1345,6 +1480,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetCouponPaymentDate() const { return fieldCouponPaymentDate.offset >= 0; }
    FieldCouponPaymentDate::ValueType getCouponPaymentDate() const { return fieldCouponPaymentDate.getValue( buf ); }
+   std::string_view getCouponPaymentDateView() const { return fieldCouponPaymentDate.offset >= 0 ? std::string_view{ buf + fieldCouponPaymentDate.offset, getValueLength( buf + fieldCouponPaymentDate.offset ) } : std::string_view{}; }
    const char * ptrToCouponPaymentDate() const { return buf + fieldCouponPaymentDate.offset; }
    const char * getIfSetCouponPaymentDate() const { return fieldCouponPaymentDate.offset >= 0 ? buf + fieldCouponPaymentDate.offset : nullptr; }
    private: FieldCouponPaymentDate fieldCouponPaymentDate;
@@ -1352,6 +1488,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetIssueDate() const { return fieldIssueDate.offset >= 0; }
    FieldIssueDate::ValueType getIssueDate() const { return fieldIssueDate.getValue( buf ); }
+   std::string_view getIssueDateView() const { return fieldIssueDate.offset >= 0 ? std::string_view{ buf + fieldIssueDate.offset, getValueLength( buf + fieldIssueDate.offset ) } : std::string_view{}; }
    const char * ptrToIssueDate() const { return buf + fieldIssueDate.offset; }
    const char * getIfSetIssueDate() const { return fieldIssueDate.offset >= 0 ? buf + fieldIssueDate.offset : nullptr; }
    private: FieldIssueDate fieldIssueDate;
@@ -1359,6 +1496,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetRepoCollateralSecurityType() const { return fieldRepoCollateralSecurityType.offset >= 0; }
    FieldRepoCollateralSecurityType::ValueType getRepoCollateralSecurityType() const { return fieldRepoCollateralSecurityType.getValue( buf ); }
+   std::string_view getRepoCollateralSecurityTypeView() const { return fieldRepoCollateralSecurityType.offset >= 0 ? std::string_view{ buf + fieldRepoCollateralSecurityType.offset, getValueLength( buf + fieldRepoCollateralSecurityType.offset ) } : std::string_view{}; }
    const char * ptrToRepoCollateralSecurityType() const { return buf + fieldRepoCollateralSecurityType.offset; }
    const char * getIfSetRepoCollateralSecurityType() const { return fieldRepoCollateralSecurityType.offset >= 0 ? buf + fieldRepoCollateralSecurityType.offset : nullptr; }
    private: FieldRepoCollateralSecurityType fieldRepoCollateralSecurityType;
@@ -1366,6 +1504,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetRepurchaseTerm() const { return fieldRepurchaseTerm.offset >= 0; }
    FieldRepurchaseTerm::ValueType getRepurchaseTerm() const { return fieldRepurchaseTerm.getValue( buf ); }
+   std::string_view getRepurchaseTermView() const { return fieldRepurchaseTerm.offset >= 0 ? std::string_view{ buf + fieldRepurchaseTerm.offset, getValueLength( buf + fieldRepurchaseTerm.offset ) } : std::string_view{}; }
    const char * ptrToRepurchaseTerm() const { return buf + fieldRepurchaseTerm.offset; }
    const char * getIfSetRepurchaseTerm() const { return fieldRepurchaseTerm.offset >= 0 ? buf + fieldRepurchaseTerm.offset : nullptr; }
    private: FieldRepurchaseTerm fieldRepurchaseTerm;
@@ -1373,6 +1512,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetRepurchaseRate() const { return fieldRepurchaseRate.offset >= 0; }
    FieldRepurchaseRate::ValueType getRepurchaseRate() const { return fieldRepurchaseRate.getValue( buf ); }
+   std::string_view getRepurchaseRateView() const { return fieldRepurchaseRate.offset >= 0 ? std::string_view{ buf + fieldRepurchaseRate.offset, getValueLength( buf + fieldRepurchaseRate.offset ) } : std::string_view{}; }
    const char * ptrToRepurchaseRate() const { return buf + fieldRepurchaseRate.offset; }
    const char * getIfSetRepurchaseRate() const { return fieldRepurchaseRate.offset >= 0 ? buf + fieldRepurchaseRate.offset : nullptr; }
    private: FieldRepurchaseRate fieldRepurchaseRate;
@@ -1380,6 +1520,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetFactor() const { return fieldFactor.offset >= 0; }
    FieldFactor::ValueType getFactor() const { return fieldFactor.getValue( buf ); }
+   std::string_view getFactorView() const { return fieldFactor.offset >= 0 ? std::string_view{ buf + fieldFactor.offset, getValueLength( buf + fieldFactor.offset ) } : std::string_view{}; }
    const char * ptrToFactor() const { return buf + fieldFactor.offset; }
    const char * getIfSetFactor() const { return fieldFactor.offset >= 0 ? buf + fieldFactor.offset : nullptr; }
    private: FieldFactor fieldFactor;
@@ -1387,6 +1528,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetCreditRating() const { return fieldCreditRating.offset >= 0; }
    FieldCreditRating::ValueType getCreditRating() const { return fieldCreditRating.getValue( buf ); }
+   std::string_view getCreditRatingView() const { return fieldCreditRating.offset >= 0 ? std::string_view{ buf + fieldCreditRating.offset, getValueLength( buf + fieldCreditRating.offset ) } : std::string_view{}; }
    const char * ptrToCreditRating() const { return buf + fieldCreditRating.offset; }
    const char * getIfSetCreditRating() const { return fieldCreditRating.offset >= 0 ? buf + fieldCreditRating.offset : nullptr; }
    private: FieldCreditRating fieldCreditRating;
@@ -1394,6 +1536,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetInstrRegistry() const { return fieldInstrRegistry.offset >= 0; }
    FieldInstrRegistry::ValueType getInstrRegistry() const { return fieldInstrRegistry.getValue( buf ); }
+   std::string_view getInstrRegistryView() const { return fieldInstrRegistry.offset >= 0 ? std::string_view{ buf + fieldInstrRegistry.offset, getValueLength( buf + fieldInstrRegistry.offset ) } : std::string_view{}; }
    const char * ptrToInstrRegistry() const { return buf + fieldInstrRegistry.offset; }
    const char * getIfSetInstrRegistry() const { return fieldInstrRegistry.offset >= 0 ? buf + fieldInstrRegistry.offset : nullptr; }
    private: FieldInstrRegistry fieldInstrRegistry;
@@ -1401,6 +1544,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetCountryOfIssue() const { return fieldCountryOfIssue.offset >= 0; }
    FieldCountryOfIssue::ValueType getCountryOfIssue() const { return fieldCountryOfIssue.getValue( buf ); }
+   std::string_view getCountryOfIssueView() const { return fieldCountryOfIssue.offset >= 0 ? std::string_view{ buf + fieldCountryOfIssue.offset, getValueLength( buf + fieldCountryOfIssue.offset ) } : std::string_view{}; }
    const char * ptrToCountryOfIssue() const { return buf + fieldCountryOfIssue.offset; }
    const char * getIfSetCountryOfIssue() const { return fieldCountryOfIssue.offset >= 0 ? buf + fieldCountryOfIssue.offset : nullptr; }
    private: FieldCountryOfIssue fieldCountryOfIssue;
@@ -1408,6 +1552,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetStateOrProvinceOfIssue() const { return fieldStateOrProvinceOfIssue.offset >= 0; }
    FieldStateOrProvinceOfIssue::ValueType getStateOrProvinceOfIssue() const { return fieldStateOrProvinceOfIssue.getValue( buf ); }
+   std::string_view getStateOrProvinceOfIssueView() const { return fieldStateOrProvinceOfIssue.offset >= 0 ? std::string_view{ buf + fieldStateOrProvinceOfIssue.offset, getValueLength( buf + fieldStateOrProvinceOfIssue.offset ) } : std::string_view{}; }
    const char * ptrToStateOrProvinceOfIssue() const { return buf + fieldStateOrProvinceOfIssue.offset; }
    const char * getIfSetStateOrProvinceOfIssue() const { return fieldStateOrProvinceOfIssue.offset >= 0 ? buf + fieldStateOrProvinceOfIssue.offset : nullptr; }
    private: FieldStateOrProvinceOfIssue fieldStateOrProvinceOfIssue;
@@ -1415,6 +1560,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetLocaleOfIssue() const { return fieldLocaleOfIssue.offset >= 0; }
    FieldLocaleOfIssue::ValueType getLocaleOfIssue() const { return fieldLocaleOfIssue.getValue( buf ); }
+   std::string_view getLocaleOfIssueView() const { return fieldLocaleOfIssue.offset >= 0 ? std::string_view{ buf + fieldLocaleOfIssue.offset, getValueLength( buf + fieldLocaleOfIssue.offset ) } : std::string_view{}; }
    const char * ptrToLocaleOfIssue() const { return buf + fieldLocaleOfIssue.offset; }
    const char * getIfSetLocaleOfIssue() const { return fieldLocaleOfIssue.offset >= 0 ? buf + fieldLocaleOfIssue.offset : nullptr; }
    private: FieldLocaleOfIssue fieldLocaleOfIssue;
@@ -1422,6 +1568,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetRedemptionDate() const { return fieldRedemptionDate.offset >= 0; }
    FieldRedemptionDate::ValueType getRedemptionDate() const { return fieldRedemptionDate.getValue( buf ); }
+   std::string_view getRedemptionDateView() const { return fieldRedemptionDate.offset >= 0 ? std::string_view{ buf + fieldRedemptionDate.offset, getValueLength( buf + fieldRedemptionDate.offset ) } : std::string_view{}; }
    const char * ptrToRedemptionDate() const { return buf + fieldRedemptionDate.offset; }
    const char * getIfSetRedemptionDate() const { return fieldRedemptionDate.offset >= 0 ? buf + fieldRedemptionDate.offset : nullptr; }
    private: FieldRedemptionDate fieldRedemptionDate;
@@ -1429,6 +1576,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetStrikePrice() const { return fieldStrikePrice.offset >= 0; }
    FieldStrikePrice::ValueType getStrikePrice() const { return fieldStrikePrice.getValue( buf ); }
+   std::string_view getStrikePriceView() const { return fieldStrikePrice.offset >= 0 ? std::string_view{ buf + fieldStrikePrice.offset, getValueLength( buf + fieldStrikePrice.offset ) } : std::string_view{}; }
    const char * ptrToStrikePrice() const { return buf + fieldStrikePrice.offset; }
    const char * getIfSetStrikePrice() const { return fieldStrikePrice.offset >= 0 ? buf + fieldStrikePrice.offset : nullptr; }
    private: FieldStrikePrice fieldStrikePrice;
@@ -1436,6 +1584,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetStrikeCurrency() const { return fieldStrikeCurrency.offset >= 0; }
    FieldStrikeCurrency::ValueType getStrikeCurrency() const { return fieldStrikeCurrency.getValue( buf ); }
+   std::string_view getStrikeCurrencyView() const { return fieldStrikeCurrency.offset >= 0 ? std::string_view{ buf + fieldStrikeCurrency.offset, getValueLength( buf + fieldStrikeCurrency.offset ) } : std::string_view{}; }
    const char * ptrToStrikeCurrency() const { return buf + fieldStrikeCurrency.offset; }
    const char * getIfSetStrikeCurrency() const { return fieldStrikeCurrency.offset >= 0 ? buf + fieldStrikeCurrency.offset : nullptr; }
    private: FieldStrikeCurrency fieldStrikeCurrency;
@@ -1443,6 +1592,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetOptAttribute() const { return fieldOptAttribute.offset >= 0; }
    FieldOptAttribute::ValueType getOptAttribute() const { return fieldOptAttribute.getValue( buf ); }
+   std::string_view getOptAttributeView() const { return fieldOptAttribute.offset >= 0 ? std::string_view{ buf + fieldOptAttribute.offset, getValueLength( buf + fieldOptAttribute.offset ) } : std::string_view{}; }
    const char * ptrToOptAttribute() const { return buf + fieldOptAttribute.offset; }
    const char * getIfSetOptAttribute() const { return fieldOptAttribute.offset >= 0 ? buf + fieldOptAttribute.offset : nullptr; }
    private: FieldOptAttribute fieldOptAttribute;
@@ -1450,6 +1600,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetContractMultiplier() const { return fieldContractMultiplier.offset >= 0; }
    FieldContractMultiplier::ValueType getContractMultiplier() const { return fieldContractMultiplier.getValue( buf ); }
+   std::string_view getContractMultiplierView() const { return fieldContractMultiplier.offset >= 0 ? std::string_view{ buf + fieldContractMultiplier.offset, getValueLength( buf + fieldContractMultiplier.offset ) } : std::string_view{}; }
    const char * ptrToContractMultiplier() const { return buf + fieldContractMultiplier.offset; }
    const char * getIfSetContractMultiplier() const { return fieldContractMultiplier.offset >= 0 ? buf + fieldContractMultiplier.offset : nullptr; }
    private: FieldContractMultiplier fieldContractMultiplier;
@@ -1457,6 +1608,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetCouponRate() const { return fieldCouponRate.offset >= 0; }
    FieldCouponRate::ValueType getCouponRate() const { return fieldCouponRate.getValue( buf ); }
+   std::string_view getCouponRateView() const { return fieldCouponRate.offset >= 0 ? std::string_view{ buf + fieldCouponRate.offset, getValueLength( buf + fieldCouponRate.offset ) } : std::string_view{}; }
    const char * ptrToCouponRate() const { return buf + fieldCouponRate.offset; }
    const char * getIfSetCouponRate() const { return fieldCouponRate.offset >= 0 ? buf + fieldCouponRate.offset : nullptr; }
    private: FieldCouponRate fieldCouponRate;
@@ -1464,6 +1616,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetSecurityExchange() const { return fieldSecurityExchange.offset >= 0; }
    FieldSecurityExchange::ValueType getSecurityExchange() const { return fieldSecurityExchange.getValue( buf ); }
+   std::string_view getSecurityExchangeView() const { return fieldSecurityExchange.offset >= 0 ? std::string_view{ buf + fieldSecurityExchange.offset, getValueLength( buf + fieldSecurityExchange.offset ) } : std::string_view{}; }
    const char * ptrToSecurityExchange() const { return buf + fieldSecurityExchange.offset; }
    const char * getIfSetSecurityExchange() const { return fieldSecurityExchange.offset >= 0 ? buf + fieldSecurityExchange.offset : nullptr; }
    private: FieldSecurityExchange fieldSecurityExchange;
@@ -1471,6 +1624,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetIssuer() const { return fieldIssuer.offset >= 0; }
    FieldIssuer::ValueType getIssuer() const { return fieldIssuer.getValue( buf ); }
+   std::string_view getIssuerView() const { return fieldIssuer.offset >= 0 ? std::string_view{ buf + fieldIssuer.offset, getValueLength( buf + fieldIssuer.offset ) } : std::string_view{}; }
    const char * ptrToIssuer() const { return buf + fieldIssuer.offset; }
    const char * getIfSetIssuer() const { return fieldIssuer.offset >= 0 ? buf + fieldIssuer.offset : nullptr; }
    private: FieldIssuer fieldIssuer;
@@ -1478,6 +1632,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetEncodedIssuerLen() const { return fieldEncodedIssuerLen.offset >= 0; }
    FieldEncodedIssuerLen::ValueType getEncodedIssuerLen() const { return fieldEncodedIssuerLen.getValue( buf ); }
+   std::string_view getEncodedIssuerLenView() const { return fieldEncodedIssuerLen.offset >= 0 ? std::string_view{ buf + fieldEncodedIssuerLen.offset, getValueLength( buf + fieldEncodedIssuerLen.offset ) } : std::string_view{}; }
    const char * ptrToEncodedIssuerLen() const { return buf + fieldEncodedIssuerLen.offset; }
    const char * getIfSetEncodedIssuerLen() const { return fieldEncodedIssuerLen.offset >= 0 ? buf + fieldEncodedIssuerLen.offset : nullptr; }
    private: FieldEncodedIssuerLen fieldEncodedIssuerLen;
@@ -1485,6 +1640,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetEncodedIssuer() const { return fieldEncodedIssuer.offset >= 0; }
    FieldEncodedIssuer::ValueType getEncodedIssuer() const { return fieldEncodedIssuer.getValue( buf ); }
+   std::string_view getEncodedIssuerView() const { return fieldEncodedIssuer.offset >= 0 ? std::string_view{ buf + fieldEncodedIssuer.offset, getValueLength( buf + fieldEncodedIssuer.offset ) } : std::string_view{}; }
    const char * ptrToEncodedIssuer() const { return buf + fieldEncodedIssuer.offset; }
    const char * getIfSetEncodedIssuer() const { return fieldEncodedIssuer.offset >= 0 ? buf + fieldEncodedIssuer.offset : nullptr; }
    private: FieldEncodedIssuer fieldEncodedIssuer;
@@ -1492,6 +1648,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetSecurityDesc() const { return fieldSecurityDesc.offset >= 0; }
    FieldSecurityDesc::ValueType getSecurityDesc() const { return fieldSecurityDesc.getValue( buf ); }
+   std::string_view getSecurityDescView() const { return fieldSecurityDesc.offset >= 0 ? std::string_view{ buf + fieldSecurityDesc.offset, getValueLength( buf + fieldSecurityDesc.offset ) } : std::string_view{}; }
    const char * ptrToSecurityDesc() const { return buf + fieldSecurityDesc.offset; }
    const char * getIfSetSecurityDesc() const { return fieldSecurityDesc.offset >= 0 ? buf + fieldSecurityDesc.offset : nullptr; }
    private: FieldSecurityDesc fieldSecurityDesc;
@@ -1499,6 +1656,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetEncodedSecurityDescLen() const { return fieldEncodedSecurityDescLen.offset >= 0; }
    FieldEncodedSecurityDescLen::ValueType getEncodedSecurityDescLen() const { return fieldEncodedSecurityDescLen.getValue( buf ); }
+   std::string_view getEncodedSecurityDescLenView() const { return fieldEncodedSecurityDescLen.offset >= 0 ? std::string_view{ buf + fieldEncodedSecurityDescLen.offset, getValueLength( buf + fieldEncodedSecurityDescLen.offset ) } : std::string_view{}; }
    const char * ptrToEncodedSecurityDescLen() const { return buf + fieldEncodedSecurityDescLen.offset; }
    const char * getIfSetEncodedSecurityDescLen() const { return fieldEncodedSecurityDescLen.offset >= 0 ? buf + fieldEncodedSecurityDescLen.offset : nullptr; }
    private: FieldEncodedSecurityDescLen fieldEncodedSecurityDescLen;
@@ -1506,6 +1664,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetEncodedSecurityDesc() const { return fieldEncodedSecurityDesc.offset >= 0; }
    FieldEncodedSecurityDesc::ValueType getEncodedSecurityDesc() const { return fieldEncodedSecurityDesc.getValue( buf ); }
+   std::string_view getEncodedSecurityDescView() const { return fieldEncodedSecurityDesc.offset >= 0 ? std::string_view{ buf + fieldEncodedSecurityDesc.offset, getValueLength( buf + fieldEncodedSecurityDesc.offset ) } : std::string_view{}; }
    const char * ptrToEncodedSecurityDesc() const { return buf + fieldEncodedSecurityDesc.offset; }
    const char * getIfSetEncodedSecurityDesc() const { return fieldEncodedSecurityDesc.offset >= 0 ? buf + fieldEncodedSecurityDesc.offset : nullptr; }
    private: FieldEncodedSecurityDesc fieldEncodedSecurityDesc;
@@ -1513,6 +1672,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetPool() const { return fieldPool.offset >= 0; }
    FieldPool::ValueType getPool() const { return fieldPool.getValue( buf ); }
+   std::string_view getPoolView() const { return fieldPool.offset >= 0 ? std::string_view{ buf + fieldPool.offset, getValueLength( buf + fieldPool.offset ) } : std::string_view{}; }
    const char * ptrToPool() const { return buf + fieldPool.offset; }
    const char * getIfSetPool() const { return fieldPool.offset >= 0 ? buf + fieldPool.offset : nullptr; }
    private: FieldPool fieldPool;
@@ -1520,6 +1680,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetContractSettlMonth() const { return fieldContractSettlMonth.offset >= 0; }
    FieldContractSettlMonth::ValueType getContractSettlMonth() const { return fieldContractSettlMonth.getValue( buf ); }
+   std::string_view getContractSettlMonthView() const { return fieldContractSettlMonth.offset >= 0 ? std::string_view{ buf + fieldContractSettlMonth.offset, getValueLength( buf + fieldContractSettlMonth.offset ) } : std::string_view{}; }
    const char * ptrToContractSettlMonth() const { return buf + fieldContractSettlMonth.offset; }
    const char * getIfSetContractSettlMonth() const { return fieldContractSettlMonth.offset >= 0 ? buf + fieldContractSettlMonth.offset : nullptr; }
    private: FieldContractSettlMonth fieldContractSettlMonth;
@@ -1527,6 +1688,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetCPProgram() const { return fieldCPProgram.offset >= 0; }
    FieldCPProgram::ValueType getCPProgram() const { return fieldCPProgram.getValue( buf ); }
+   std::string_view getCPProgramView() const { return fieldCPProgram.offset >= 0 ? std::string_view{ buf + fieldCPProgram.offset, getValueLength( buf + fieldCPProgram.offset ) } : std::string_view{}; }
    const char * ptrToCPProgram() const { return buf + fieldCPProgram.offset; }
    const char * getIfSetCPProgram() const { return fieldCPProgram.offset >= 0 ? buf + fieldCPProgram.offset : nullptr; }
    private: FieldCPProgram fieldCPProgram;
@@ -1534,6 +1696,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetCPRegType() const { return fieldCPRegType.offset >= 0; }
    FieldCPRegType::ValueType getCPRegType() const { return fieldCPRegType.getValue( buf ); }
+   std::string_view getCPRegTypeView() const { return fieldCPRegType.offset >= 0 ? std::string_view{ buf + fieldCPRegType.offset, getValueLength( buf + fieldCPRegType.offset ) } : std::string_view{}; }
    const char * ptrToCPRegType() const { return buf + fieldCPRegType.offset; }
    const char * getIfSetCPRegType() const { return fieldCPRegType.offset >= 0 ? buf + fieldCPRegType.offset : nullptr; }
    private: FieldCPRegType fieldCPRegType;
@@ -1541,6 +1704,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetNoEvents() const { return fieldNoEvents.offset >= 0; }
    FieldNoEvents::ValueType getNoEvents() const { return fieldNoEvents.getValue( buf ); }
+   std::string_view getNoEventsView() const { return fieldNoEvents.offset >= 0 ? std::string_view{ buf + fieldNoEvents.offset, getValueLength( buf + fieldNoEvents.offset ) } : std::string_view{}; }
    const char * ptrToNoEvents() const { return buf + fieldNoEvents.offset; }
    const char * getIfSetNoEvents() const { return fieldNoEvents.offset >= 0 ? buf + fieldNoEvents.offset : nullptr; }
    private: FieldNoEvents fieldNoEvents;
@@ -1553,6 +1717,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetDatedDate() const { return fieldDatedDate.offset >= 0; }
    FieldDatedDate::ValueType getDatedDate() const { return fieldDatedDate.getValue( buf ); }
+   std::string_view getDatedDateView() const { return fieldDatedDate.offset >= 0 ? std::string_view{ buf + fieldDatedDate.offset, getValueLength( buf + fieldDatedDate.offset ) } : std::string_view{}; }
    const char * ptrToDatedDate() const { return buf + fieldDatedDate.offset; }
    const char * getIfSetDatedDate() const { return fieldDatedDate.offset >= 0 ? buf + fieldDatedDate.offset : nullptr; }
    private: FieldDatedDate fieldDatedDate;
@@ -1560,6 +1725,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetInterestAccrualDate() const { return fieldInterestAccrualDate.offset >= 0; }
    FieldInterestAccrualDate::ValueType getInterestAccrualDate() const { return fieldInterestAccrualDate.getValue( buf ); }
+   std::string_view getInterestAccrualDateView() const { return fieldInterestAccrualDate.offset >= 0 ? std::string_view{ buf + fieldInterestAccrualDate.offset, getValueLength( buf + fieldInterestAccrualDate.offset ) } : std::string_view{}; }
    const char * ptrToInterestAccrualDate() const { return buf + fieldInterestAccrualDate.offset; }
    const char * getIfSetInterestAccrualDate() const { return fieldInterestAccrualDate.offset >= 0 ? buf + fieldInterestAccrualDate.offset : nullptr; }
    private: FieldInterestAccrualDate fieldInterestAccrualDate;
@@ -1567,6 +1733,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetNoUnderlyings() const { return fieldNoUnderlyings.offset >= 0; }
    FieldNoUnderlyings::ValueType getNoUnderlyings() const { return fieldNoUnderlyings.getValue( buf ); }
+   std::string_view getNoUnderlyingsView() const { return fieldNoUnderlyings.offset >= 0 ? std::string_view{ buf + fieldNoUnderlyings.offset, getValueLength( buf + fieldNoUnderlyings.offset ) } : std::string_view{}; }
    const char * ptrToNoUnderlyings() const { return buf + fieldNoUnderlyings.offset; }
    const char * getIfSetNoUnderlyings() const { return fieldNoUnderlyings.offset >= 0 ? buf + fieldNoUnderlyings.offset : nullptr; }
    private: FieldNoUnderlyings fieldNoUnderlyings;
@@ -1579,6 +1746,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetPrevClosePx() const { return fieldPrevClosePx.offset >= 0; }
    FieldPrevClosePx::ValueType getPrevClosePx() const { return fieldPrevClosePx.getValue( buf ); }
+   std::string_view getPrevClosePxView() const { return fieldPrevClosePx.offset >= 0 ? std::string_view{ buf + fieldPrevClosePx.offset, getValueLength( buf + fieldPrevClosePx.offset ) } : std::string_view{}; }
    const char * ptrToPrevClosePx() const { return buf + fieldPrevClosePx.offset; }
    const char * getIfSetPrevClosePx() const { return fieldPrevClosePx.offset >= 0 ? buf + fieldPrevClosePx.offset : nullptr; }
    private: FieldPrevClosePx fieldPrevClosePx;
@@ -1586,6 +1754,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetSide() const { return fieldSide.offset >= 0; }
    FieldSide::ValueType getSide() const { return fieldSide.getValue( buf ); }
+   std::string_view getSideView() const { return fieldSide.offset >= 0 ? std::string_view{ buf + fieldSide.offset, getValueLength( buf + fieldSide.offset ) } : std::string_view{}; }
    const char * ptrToSide() const { return buf + fieldSide.offset; }
    const char * getIfSetSide() const { return fieldSide.offset >= 0 ? buf + fieldSide.offset : nullptr; }
    private: FieldSide fieldSide;
@@ -1593,6 +1762,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetSideValueInd() const { return fieldSideValueInd.offset >= 0; }
    FieldSideValueInd::ValueType getSideValueInd() const { return fieldSideValueInd.getValue( buf ); }
+   std::string_view getSideValueIndView() const { return fieldSideValueInd.offset >= 0 ? std::string_view{ buf + fieldSideValueInd.offset, getValueLength( buf + fieldSideValueInd.offset ) } : std::string_view{}; }
    const char * ptrToSideValueInd() const { return buf + fieldSideValueInd.offset; }
    const char * getIfSetSideValueInd() const { return fieldSideValueInd.offset >= 0 ? buf + fieldSideValueInd.offset : nullptr; }
    private: FieldSideValueInd fieldSideValueInd;
@@ -1600,6 +1770,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetLocateReqd() const { return fieldLocateReqd.offset >= 0; }
    FieldLocateReqd::ValueType getLocateReqd() const { return fieldLocateReqd.getValue( buf ); }
+   std::string_view getLocateReqdView() const { return fieldLocateReqd.offset >= 0 ? std::string_view{ buf + fieldLocateReqd.offset, getValueLength( buf + fieldLocateReqd.offset ) } : std::string_view{}; }
    const char * ptrToLocateReqd() const { return buf + fieldLocateReqd.offset; }
    const char * getIfSetLocateReqd() const { return fieldLocateReqd.offset >= 0 ? buf + fieldLocateReqd.offset : nullptr; }
    private: FieldLocateReqd fieldLocateReqd;
@@ -1607,6 +1778,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetTransactTime() const { return fieldTransactTime.offset >= 0; }
    FieldTransactTime::ValueType getTransactTime() const { return fieldTransactTime.getValue( buf ); }
+   std::string_view getTransactTimeView() const { return fieldTransactTime.offset >= 0 ? std::string_view{ buf + fieldTransactTime.offset, getValueLength( buf + fieldTransactTime.offset ) } : std::string_view{}; }
    const char * ptrToTransactTime() const { return buf + fieldTransactTime.offset; }
    const char * getIfSetTransactTime() const { return fieldTransactTime.offset >= 0 ? buf + fieldTransactTime.offset : nullptr; }
    private: FieldTransactTime fieldTransactTime;
@@ -1614,6 +1786,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetNoStipulations() const { return fieldNoStipulations.offset >= 0; }
    FieldNoStipulations::ValueType getNoStipulations() const { return fieldNoStipulations.getValue( buf ); }
+   std::string_view getNoStipulationsView() const { return fieldNoStipulations.offset >= 0 ? std::string_view{ buf + fieldNoStipulations.offset, getValueLength( buf + fieldNoStipulations.offset ) } : std::string_view{}; }
    const char * ptrToNoStipulations() const { return buf + fieldNoStipulations.offset; }
    const char * getIfSetNoStipulations() const { return fieldNoStipulations.offset >= 0 ? buf + fieldNoStipulations.offset : nullptr; }
    private: FieldNoStipulations fieldNoStipulations;
@@ -1626,6 +1799,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetQtyType() const { return fieldQtyType.offset >= 0; }
    FieldQtyType::ValueType getQtyType() const { return fieldQtyType.getValue( buf ); }
+   std::string_view getQtyTypeView() const { return fieldQtyType.offset >= 0 ? std::string_view{ buf + fieldQtyType.offset, getValueLength( buf + fieldQtyType.offset ) } : std::string_view{}; }
    const char * ptrToQtyType() const { return buf + fieldQtyType.offset; }
    const char * getIfSetQtyType() const { return fieldQtyType.offset >= 0 ? buf + fieldQtyType.offset : nullptr; }
    private: FieldQtyType fieldQtyType;
@@ -1633,6 +1807,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetOrderQty() const { return fieldOrderQty.offset >= 0; }
    FieldOrderQty::ValueType getOrderQty() const { return fieldOrderQty.getValue( buf ); }
+   std::string_view getOrderQtyView() const { return fieldOrderQty.offset >= 0 ? std::string_view{ buf + fieldOrderQty.offset, getValueLength( buf + fieldOrderQty.offset ) } : std::string_view{}; }
    const char * ptrToOrderQty() const { return buf + fieldOrderQty.offset; }
    const char * getIfSetOrderQty() const { return fieldOrderQty.offset >= 0 ? buf + fieldOrderQty.offset : nullptr; }
    private: FieldOrderQty fieldOrderQty;
@@ -1640,6 +1815,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetCashOrderQty() const { return fieldCashOrderQty.offset >= 0; }
    FieldCashOrderQty::ValueType getCashOrderQty() const { return fieldCashOrderQty.getValue( buf ); }
+   std::string_view getCashOrderQtyView() const { return fieldCashOrderQty.offset >= 0 ? std::string_view{ buf + fieldCashOrderQty.offset, getValueLength( buf + fieldCashOrderQty.offset ) } : std::string_view{}; }
    const char * ptrToCashOrderQty() const { return buf + fieldCashOrderQty.offset; }
    const char * getIfSetCashOrderQty() const { return fieldCashOrderQty.offset >= 0 ? buf + fieldCashOrderQty.offset : nullptr; }
    private: FieldCashOrderQty fieldCashOrderQty;
@@ -1647,6 +1823,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetOrderPercent() const { return fieldOrderPercent.offset >= 0; }
    FieldOrderPercent::ValueType getOrderPercent() const { return fieldOrderPercent.getValue( buf ); }
+   std::string_view getOrderPercentView() const { return fieldOrderPercent.offset >= 0 ? std::string_view{ buf + fieldOrderPercent.offset, getValueLength( buf + fieldOrderPercent.offset ) } : std::string_view{}; }
    const char * ptrToOrderPercent() const { return buf + fieldOrderPercent.offset; }
    const char * getIfSetOrderPercent() const { return fieldOrderPercent.offset >= 0 ? buf + fieldOrderPercent.offset : nullptr; }
    private: FieldOrderPercent fieldOrderPercent;
@@ -1654,6 +1831,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetRoundingDirection() const { return fieldRoundingDirection.offset >= 0; }
    FieldRoundingDirection::ValueType getRoundingDirection() const { return fieldRoundingDirection.getValue( buf ); }
+   std::string_view getRoundingDirectionView() const { return fieldRoundingDirection.offset >= 0 ? std::string_view{ buf + fieldRoundingDirection.offset, getValueLength( buf + fieldRoundingDirection.offset ) } : std::string_view{}; }
    const char * ptrToRoundingDirection() const { return buf + fieldRoundingDirection.offset; }
    const char * getIfSetRoundingDirection() const { return fieldRoundingDirection.offset >= 0 ? buf + fieldRoundingDirection.offset : nullptr; }
    private: FieldRoundingDirection fieldRoundingDirection;
@@ -1661,6 +1839,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetRoundingModulus() const { return fieldRoundingModulus.offset >= 0; }
    FieldRoundingModulus::ValueType getRoundingModulus() const { return fieldRoundingModulus.getValue( buf ); }
+   std::string_view getRoundingModulusView() const { return fieldRoundingModulus.offset >= 0 ? std::string_view{ buf + fieldRoundingModulus.offset, getValueLength( buf + fieldRoundingModulus.offset ) } : std::string_view{}; }
    const char * ptrToRoundingModulus() const { return buf + fieldRoundingModulus.offset; }
    const char * getIfSetRoundingModulus() const { return fieldRoundingModulus.offset >= 0 ? buf + fieldRoundingModulus.offset : nullptr; }
    private: FieldRoundingModulus fieldRoundingModulus;
@@ -1668,6 +1847,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetOrdType() const { return fieldOrdType.offset >= 0; }
    FieldOrdType::ValueType getOrdType() const { return fieldOrdType.getValue( buf ); }
+   std::string_view getOrdTypeView() const { return fieldOrdType.offset >= 0 ? std::string_view{ buf + fieldOrdType.offset, getValueLength( buf + fieldOrdType.offset ) } : std::string_view{}; }
    const char * ptrToOrdType() const { return buf + fieldOrdType.offset; }
    const char * getIfSetOrdType() const { return fieldOrdType.offset >= 0 ? buf + fieldOrdType.offset : nullptr; }
    private: FieldOrdType fieldOrdType;
@@ -1675,6 +1855,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetPriceType() const { return fieldPriceType.offset >= 0; }
    FieldPriceType::ValueType getPriceType() const { return fieldPriceType.getValue( buf ); }
+   std::string_view getPriceTypeView() const { return fieldPriceType.offset >= 0 ? std::string_view{ buf + fieldPriceType.offset, getValueLength( buf + fieldPriceType.offset ) } : std::string_view{}; }
    const char * ptrToPriceType() const { return buf + fieldPriceType.offset; }
    const char * getIfSetPriceType() const { return fieldPriceType.offset >= 0 ? buf + fieldPriceType.offset : nullptr; }
    private: FieldPriceType fieldPriceType;
@@ -1682,6 +1863,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetPrice() const { return fieldPrice.offset >= 0; }
    FieldPrice::ValueType getPrice() const { return fieldPrice.getValue( buf ); }
+   std::string_view getPriceView() const { return fieldPrice.offset >= 0 ? std::string_view{ buf + fieldPrice.offset, getValueLength( buf + fieldPrice.offset ) } : std::string_view{}; }
    const char * ptrToPrice() const { return buf + fieldPrice.offset; }
    const char * getIfSetPrice() const { return fieldPrice.offset >= 0 ? buf + fieldPrice.offset : nullptr; }
    private: FieldPrice fieldPrice;
@@ -1689,6 +1871,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetStopPx() const { return fieldStopPx.offset >= 0; }
    FieldStopPx::ValueType getStopPx() const { return fieldStopPx.getValue( buf ); }
+   std::string_view getStopPxView() const { return fieldStopPx.offset >= 0 ? std::string_view{ buf + fieldStopPx.offset, getValueLength( buf + fieldStopPx.offset ) } : std::string_view{}; }
    const char * ptrToStopPx() const { return buf + fieldStopPx.offset; }
    const char * getIfSetStopPx() const { return fieldStopPx.offset >= 0 ? buf + fieldStopPx.offset : nullptr; }
    private: FieldStopPx fieldStopPx;
@@ -1696,6 +1879,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetSpread() const { return fieldSpread.offset >= 0; }
    FieldSpread::ValueType getSpread() const { return fieldSpread.getValue( buf ); }
+   std::string_view getSpreadView() const { return fieldSpread.offset >= 0 ? std::string_view{ buf + fieldSpread.offset, getValueLength( buf + fieldSpread.offset ) } : std::string_view{}; }
    const char * ptrToSpread() const { return buf + fieldSpread.offset; }
    const char * getIfSetSpread() const { return fieldSpread.offset >= 0 ? buf + fieldSpread.offset : nullptr; }
    private: FieldSpread fieldSpread;
@@ -1703,6 +1887,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetBenchmarkCurveCurrency() const { return fieldBenchmarkCurveCurrency.offset >= 0; }
    FieldBenchmarkCurveCurrency::ValueType getBenchmarkCurveCurrency() const { return fieldBenchmarkCurveCurrency.getValue( buf ); }
+   std::string_view getBenchmarkCurveCurrencyView() const { return fieldBenchmarkCurveCurrency.offset >= 0 ? std::string_view{ buf + fieldBenchmarkCurveCurrency.offset, getValueLength( buf + fieldBenchmarkCurveCurrency.offset ) } : std::string_view{}; }
    const char * ptrToBenchmarkCurveCurrency() const { return buf + fieldBenchmarkCurveCurrency.offset; }
    const char * getIfSetBenchmarkCurveCurrency() const { return fieldBenchmarkCurveCurrency.offset >= 0 ? buf + fieldBenchmarkCurveCurrency.offset : nullptr; }
    private: FieldBenchmarkCurveCurrency fieldBenchmarkCurveCurrency;
@@ -1710,6 +1895,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetBenchmarkCurveName() const { return fieldBenchmarkCurveName.offset >= 0; }
    FieldBenchmarkCurveName::ValueType getBenchmarkCurveName() const { return fieldBenchmarkCurveName.getValue( buf ); }
+   std::string_view getBenchmarkCurveNameView() const { return fieldBenchmarkCurveName.offset >= 0 ? std::string_view{ buf + fieldBenchmarkCurveName.offset, getValueLength( buf + fieldBenchmarkCurveName.offset ) } : std::string_view{}; }
    const char * ptrToBenchmarkCurveName() const { return buf + fieldBenchmarkCurveName.offset; }
    const char * getIfSetBenchmarkCurveName() const { return fieldBenchmarkCurveName.offset >= 0 ? buf + fieldBenchmarkCurveName.offset : nullptr; }
    private: FieldBenchmarkCurveName fieldBenchmarkCurveName;
@@ -1717,6 +1903,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetBenchmarkCurvePoint() const { return fieldBenchmarkCurvePoint.offset >= 0; }
    FieldBenchmarkCurvePoint::ValueType getBenchmarkCurvePoint() const { return fieldBenchmarkCurvePoint.getValue( buf ); }
+   std::string_view getBenchmarkCurvePointView() const { return fieldBenchmarkCurvePoint.offset >= 0 ? std::string_view{ buf + fieldBenchmarkCurvePoint.offset, getValueLength( buf + fieldBenchmarkCurvePoint.offset ) } : std::string_view{}; }
    const char * ptrToBenchmarkCurvePoint() const { return buf + fieldBenchmarkCurvePoint.offset; }
    const char * getIfSetBenchmarkCurvePoint() const { return fieldBenchmarkCurvePoint.offset >= 0 ? buf + fieldBenchmarkCurvePoint.offset : nullptr; }
    private: FieldBenchmarkCurvePoint fieldBenchmarkCurvePoint;
@@ -1724,6 +1911,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetBenchmarkPrice() const { return fieldBenchmarkPrice.offset >= 0; }
    FieldBenchmarkPrice::ValueType getBenchmarkPrice() const { return fieldBenchmarkPrice.getValue( buf ); }
+   std::string_view getBenchmarkPriceView() const { return fieldBenchmarkPrice.offset >= 0 ? std::string_view{ buf + fieldBenchmarkPrice.offset, getValueLength( buf + fieldBenchmarkPrice.offset ) } : std::string_view{}; }
    const char * ptrToBenchmarkPrice() const { return buf + fieldBenchmarkPrice.offset; }
    const char * getIfSetBenchmarkPrice() const { return fieldBenchmarkPrice.offset >= 0 ? buf + fieldBenchmarkPrice.offset : nullptr; }
    private: FieldBenchmarkPrice fieldBenchmarkPrice;
@@ -1731,6 +1919,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetBenchmarkPriceType() const { return fieldBenchmarkPriceType.offset >= 0; }
    FieldBenchmarkPriceType::ValueType getBenchmarkPriceType() const { return fieldBenchmarkPriceType.getValue( buf ); }
+   std::string_view getBenchmarkPriceTypeView() const { return fieldBenchmarkPriceType.offset >= 0 ? std::string_view{ buf + fieldBenchmarkPriceType.offset, getValueLength( buf + fieldBenchmarkPriceType.offset ) } : std::string_view{}; }
    const char * ptrToBenchmarkPriceType() const { return buf + fieldBenchmarkPriceType.offset; }
    const char * getIfSetBenchmarkPriceType() const { return fieldBenchmarkPriceType.offset >= 0 ? buf + fieldBenchmarkPriceType.offset : nullptr; }
    private: FieldBenchmarkPriceType fieldBenchmarkPriceType;
@@ -1738,6 +1927,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetBenchmarkSecurityID() const { return fieldBenchmarkSecurityID.offset >= 0; }
    FieldBenchmarkSecurityID::ValueType getBenchmarkSecurityID() const { return fieldBenchmarkSecurityID.getValue( buf ); }
+   std::string_view getBenchmarkSecurityIDView() const { return fieldBenchmarkSecurityID.offset >= 0 ? std::string_view{ buf + fieldBenchmarkSecurityID.offset, getValueLength( buf + fieldBenchmarkSecurityID.offset ) } : std::string_view{}; }
    const char * ptrToBenchmarkSecurityID() const { return buf + fieldBenchmarkSecurityID.offset; }
    const char * getIfSetBenchmarkSecurityID() const { return fieldBenchmarkSecurityID.offset >= 0 ? buf + fieldBenchmarkSecurityID.offset : nullptr; }
    private: FieldBenchmarkSecurityID fieldBenchmarkSecurityID;
@@ -1745,6 +1935,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetBenchmarkSecurityIDSource() const { return fieldBenchmarkSecurityIDSource.offset >= 0; }
    FieldBenchmarkSecurityIDSource::ValueType getBenchmarkSecurityIDSource() const { return fieldBenchmarkSecurityIDSource.getValue( buf ); }
+   std::string_view getBenchmarkSecurityIDSourceView() const { return fieldBenchmarkSecurityIDSource.offset >= 0 ? std::string_view{ buf + fieldBenchmarkSecurityIDSource.offset, getValueLength( buf + fieldBenchmarkSecurityIDSource.offset ) } : std::string_view{}; }
    const char * ptrToBenchmarkSecurityIDSource() const { return buf + fieldBenchmarkSecurityIDSource.offset; }
    const char * getIfSetBenchmarkSecurityIDSource() const { return fieldBenchmarkSecurityIDSource.offset >= 0 ? buf + fieldBenchmarkSecurityIDSource.offset : nullptr; }
    private: FieldBenchmarkSecurityIDSource fieldBenchmarkSecurityIDSource;
@@ -1752,6 +1943,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetYieldType() const { return fieldYieldType.offset >= 0; }
    FieldYieldType::ValueType getYieldType() const { return fieldYieldType.getValue( buf ); }
+   std::string_view getYieldTypeView() const { return fieldYieldType.offset >= 0 ? std::string_view{ buf + fieldYieldType.offset, getValueLength( buf + fieldYieldType.offset ) } : std::string_view{}; }
    const char * ptrToYieldType() const { return buf + fieldYieldType.offset; }
    const char * getIfSetYieldType() const { return fieldYieldType.offset >= 0 ? buf + fieldYieldType.offset : nullptr; }
    private: FieldYieldType fieldYieldType;
@@ -1759,6 +1951,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetYield() const { return fieldYield.offset >= 0; }
    FieldYield::ValueType getYield() const { return fieldYield.getValue( buf ); }
+   std::string_view getYieldView() const { return fieldYield.offset >= 0 ? std::string_view{ buf + fieldYield.offset, getValueLength( buf + fieldYield.offset ) } : std::string_view{}; }
    const char * ptrToYield() const { return buf + fieldYield.offset; }
    const char * getIfSetYield() const { return fieldYield.offset >= 0 ? buf + fieldYield.offset : nullptr; }
    private: FieldYield fieldYield;
@@ -1766,6 +1959,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetYieldCalcDate() const { return fieldYieldCalcDate.offset >= 0; }
    FieldYieldCalcDate::ValueType getYieldCalcDate() const { return fieldYieldCalcDate.getValue( buf ); }
+   std::string_view getYieldCalcDateView() const { return fieldYieldCalcDate.offset >= 0 ? std::string_view{ buf + fieldYieldCalcDate.offset, getValueLength( buf + fieldYieldCalcDate.offset ) } : std::string_view{}; }
    const char * ptrToYieldCalcDate() const { return buf + fieldYieldCalcDate.offset; }
    const char * getIfSetYieldCalcDate() const { return fieldYieldCalcDate.offset >= 0 ? buf + fieldYieldCalcDate.offset : nullptr; }
    private: FieldYieldCalcDate fieldYieldCalcDate;
@@ -1773,6 +1967,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetYieldRedemptionDate() const { return fieldYieldRedemptionDate.offset >= 0; }
    FieldYieldRedemptionDate::ValueType getYieldRedemptionDate() const { return fieldYieldRedemptionDate.getValue( buf ); }
+   std::string_view getYieldRedemptionDateView() const { return fieldYieldRedemptionDate.offset >= 0 ? std::string_view{ buf + fieldYieldRedemptionDate.offset, getValueLength( buf + fieldYieldRedemptionDate.offset ) } : std::string_view{}; }
    const char * ptrToYieldRedemptionDate() const { return buf + fieldYieldRedemptionDate.offset; }
    const char * getIfSetYieldRedemptionDate() const { return fieldYieldRedemptionDate.offset >= 0 ? buf + fieldYieldRedemptionDate.offset : nullptr; }
    private: FieldYieldRedemptionDate fieldYieldRedemptionDate;
@@ -1780,6 +1975,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetYieldRedemptionPrice() const { return fieldYieldRedemptionPrice.offset >= 0; }
    FieldYieldRedemptionPrice::ValueType getYieldRedemptionPrice() const { return fieldYieldRedemptionPrice.getValue( buf ); }
+   std::string_view getYieldRedemptionPriceView() const { return fieldYieldRedemptionPrice.offset >= 0 ? std::string_view{ buf + fieldYieldRedemptionPrice.offset, getValueLength( buf + fieldYieldRedemptionPrice.offset ) } : std::string_view{}; }
    const char * ptrToYieldRedemptionPrice() const { return buf + fieldYieldRedemptionPrice.offset; }
    const char * getIfSetYieldRedemptionPrice() const { return fieldYieldRedemptionPrice.offset >= 0 ? buf + fieldYieldRedemptionPrice.offset : nullptr; }
    private: FieldYieldRedemptionPrice fieldYieldRedemptionPrice;
@@ -1787,6 +1983,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetYieldRedemptionPriceType() const { return fieldYieldRedemptionPriceType.offset >= 0; }
    FieldYieldRedemptionPriceType::ValueType getYieldRedemptionPriceType() const { return fieldYieldRedemptionPriceType.getValue( buf ); }
+   std::string_view getYieldRedemptionPriceTypeView() const { return fieldYieldRedemptionPriceType.offset >= 0 ? std::string_view{ buf + fieldYieldRedemptionPriceType.offset, getValueLength( buf + fieldYieldRedemptionPriceType.offset ) } : std::string_view{}; }
    const char * ptrToYieldRedemptionPriceType() const { return buf + fieldYieldRedemptionPriceType.offset; }
    const char * getIfSetYieldRedemptionPriceType() const { return fieldYieldRedemptionPriceType.offset >= 0 ? buf + fieldYieldRedemptionPriceType.offset : nullptr; }
    private: FieldYieldRedemptionPriceType fieldYieldRedemptionPriceType;
@@ -1794,6 +1991,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetCurrency() const { return fieldCurrency.offset >= 0; }
    FieldCurrency::ValueType getCurrency() const { return fieldCurrency.getValue( buf ); }
+   std::string_view getCurrencyView() const { return fieldCurrency.offset >= 0 ? std::string_view{ buf + fieldCurrency.offset, getValueLength( buf + fieldCurrency.offset ) } : std::string_view{}; }
    const char * ptrToCurrency() const { return buf + fieldCurrency.offset; }
    const char * getIfSetCurrency() const { return fieldCurrency.offset >= 0 ? buf + fieldCurrency.offset : nullptr; }
    private: FieldCurrency fieldCurrency;
@@ -1801,6 +1999,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetComplianceID() const { return fieldComplianceID.offset >= 0; }
    FieldComplianceID::ValueType getComplianceID() const { return fieldComplianceID.getValue( buf ); }
+   std::string_view getComplianceIDView() const { return fieldComplianceID.offset >= 0 ? std::string_view{ buf + fieldComplianceID.offset, getValueLength( buf + fieldComplianceID.offset ) } : std::string_view{}; }
    const char * ptrToComplianceID() const { return buf + fieldComplianceID.offset; }
    const char * getIfSetComplianceID() const { return fieldComplianceID.offset >= 0 ? buf + fieldComplianceID.offset : nullptr; }
    private: FieldComplianceID fieldComplianceID;
@@ -1808,6 +2007,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetSolicitedFlag() const { return fieldSolicitedFlag.offset >= 0; }
    FieldSolicitedFlag::ValueType getSolicitedFlag() const { return fieldSolicitedFlag.getValue( buf ); }
+   std::string_view getSolicitedFlagView() const { return fieldSolicitedFlag.offset >= 0 ? std::string_view{ buf + fieldSolicitedFlag.offset, getValueLength( buf + fieldSolicitedFlag.offset ) } : std::string_view{}; }
    const char * ptrToSolicitedFlag() const { return buf + fieldSolicitedFlag.offset; }
    const char * getIfSetSolicitedFlag() const { return fieldSolicitedFlag.offset >= 0 ? buf + fieldSolicitedFlag.offset : nullptr; }
    private: FieldSolicitedFlag fieldSolicitedFlag;
@@ -1815,6 +2015,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetIOIID() const { return fieldIOIID.offset >= 0; }
    FieldIOIID::ValueType getIOIID() const { return fieldIOIID.getValue( buf ); }
+   std::string_view getIOIIDView() const { return fieldIOIID.offset >= 0 ? std::string_view{ buf + fieldIOIID.offset, getValueLength( buf + fieldIOIID.offset ) } : std::string_view{}; }
    const char * ptrToIOIID() const { return buf + fieldIOIID.offset; }
    const char * getIfSetIOIID() const { return fieldIOIID.offset >= 0 ? buf + fieldIOIID.offset : nullptr; }
    private: FieldIOIID fieldIOIID;
@@ -1822,6 +2023,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetQuoteID() const { return fieldQuoteID.offset >= 0; }
    FieldQuoteID::ValueType getQuoteID() const { return fieldQuoteID.getValue( buf ); }
+   std::string_view getQuoteIDView() const { return fieldQuoteID.offset >= 0 ? std::string_view{ buf + fieldQuoteID.offset, getValueLength( buf + fieldQuoteID.offset ) } : std::string_view{}; }
    const char * ptrToQuoteID() const { return buf + fieldQuoteID.offset; }
    const char * getIfSetQuoteID() const { return fieldQuoteID.offset >= 0 ? buf + fieldQuoteID.offset : nullptr; }
    private: FieldQuoteID fieldQuoteID;
@@ -1829,6 +2031,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetTimeInForce() const { return fieldTimeInForce.offset >= 0; }
    FieldTimeInForce::ValueType getTimeInForce() const { return fieldTimeInForce.getValue( buf ); }
+   std::string_view getTimeInForceView() const { return fieldTimeInForce.offset >= 0 ? std::string_view{ buf + fieldTimeInForce.offset, getValueLength( buf + fieldTimeInForce.offset ) } : std::string_view{}; }
    const char * ptrToTimeInForce() const { return buf + fieldTimeInForce.offset; }
    const char * getIfSetTimeInForce() const { return fieldTimeInForce.offset >= 0 ? buf + fieldTimeInForce.offset : nullptr; }
    private: FieldTimeInForce fieldTimeInForce;
@@ -1836,6 +2039,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetEffectiveTime() const { return fieldEffectiveTime.offset >= 0; }
    FieldEffectiveTime::ValueType getEffectiveTime() const { return fieldEffectiveTime.getValue( buf ); }
+   std::string_view getEffectiveTimeView() const { return fieldEffectiveTime.offset >= 0 ? std::string_view{ buf + fieldEffectiveTime.offset, getValueLength( buf + fieldEffectiveTime.offset ) } : std::string_view{}; }
    const char * ptrToEffectiveTime() const { return buf + fieldEffectiveTime.offset; }
    const char * getIfSetEffectiveTime() const { return fieldEffectiveTime.offset >= 0 ? buf + fieldEffectiveTime.offset : nullptr; }
    private: FieldEffectiveTime fieldEffectiveTime;
@@ -1843,6 +2047,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetExpireDate() const { return fieldExpireDate.offset >= 0; }
    FieldExpireDate::ValueType getExpireDate() const { return fieldExpireDate.getValue( buf ); }
+   std::string_view getExpireDateView() const { return fieldExpireDate.offset >= 0 ? std::string_view{ buf + fieldExpireDate.offset, getValueLength( buf + fieldExpireDate.offset ) } : std::string_view{}; }
    const char * ptrToExpireDate() const { return buf + fieldExpireDate.offset; }
    const char * getIfSetExpireDate() const { return fieldExpireDate.offset >= 0 ? buf + fieldExpireDate.offset : nullptr; }
    private: FieldExpireDate fieldExpireDate;
@@ -1850,6 +2055,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetExpireTime() const { return fieldExpireTime.offset >= 0; }
    FieldExpireTime::ValueType getExpireTime() const { return fieldExpireTime.getValue( buf ); }
+   std::string_view getExpireTimeView() const { return fieldExpireTime.offset >= 0 ? std::string_view{ buf + fieldExpireTime.offset, getValueLength( buf + fieldExpireTime.offset ) } : std::string_view{}; }
    const char * ptrToExpireTime() const { return buf + fieldExpireTime.offset; }
    const char * getIfSetExpireTime() const { return fieldExpireTime.offset >= 0 ? buf + fieldExpireTime.offset : nullptr; }
    private: FieldExpireTime fieldExpireTime;
@@ -1857,6 +2063,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetGTBookingInst() const { return fieldGTBookingInst.offset >= 0; }
    FieldGTBookingInst::ValueType getGTBookingInst() const { return fieldGTBookingInst.getValue( buf ); }
+   std::string_view getGTBookingInstView() const { return fieldGTBookingInst.offset >= 0 ? std::string_view{ buf + fieldGTBookingInst.offset, getValueLength( buf + fieldGTBookingInst.offset ) } : std::string_view{}; }
    const char * ptrToGTBookingInst() const { return buf + fieldGTBookingInst.offset; }
    const char * getIfSetGTBookingInst() const { return fieldGTBookingInst.offset >= 0 ? buf + fieldGTBookingInst.offset : nullptr; }
    private: FieldGTBookingInst fieldGTBookingInst;
@@ -1864,6 +2071,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetCommission() const { return fieldCommission.offset >= 0; }
    FieldCommission::ValueType getCommission() const { return fieldCommission.getValue( buf ); }
+   std::string_view getCommissionView() const { return fieldCommission.offset >= 0 ? std::string_view{ buf + fieldCommission.offset, getValueLength( buf + fieldCommission.offset ) } : std::string_view{}; }
    const char * ptrToCommission() const { return buf + fieldCommission.offset; }
    const char * getIfSetCommission() const { return fieldCommission.offset >= 0 ? buf + fieldCommission.offset : nullptr; }
    private: FieldCommission fieldCommission;
@@ -1871,6 +2079,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetCommType() const { return fieldCommType.offset >= 0; }
    FieldCommType::ValueType getCommType() const { return fieldCommType.getValue( buf ); }
+   std::string_view getCommTypeView() const { return fieldCommType.offset >= 0 ? std::string_view{ buf + fieldCommType.offset, getValueLength( buf + fieldCommType.offset ) } : std::string_view{}; }
    const char * ptrToCommType() const { return buf + fieldCommType.offset; }
    const char * getIfSetCommType() const { return fieldCommType.offset >= 0 ? buf + fieldCommType.offset : nullptr; }
    private: FieldCommType fieldCommType;
@@ -1878,6 +2087,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetCommCurrency() const { return fieldCommCurrency.offset >= 0; }
    FieldCommCurrency::ValueType getCommCurrency() const { return fieldCommCurrency.getValue( buf ); }
+   std::string_view getCommCurrencyView() const { return fieldCommCurrency.offset >= 0 ? std::string_view{ buf + fieldCommCurrency.offset, getValueLength( buf + fieldCommCurrency.offset ) } : std::string_view{}; }
    const char * ptrToCommCurrency() const { return buf + fieldCommCurrency.offset; }
    const char * getIfSetCommCurrency() const { return fieldCommCurrency.offset >= 0 ? buf + fieldCommCurrency.offset : nullptr; }
    private: FieldCommCurrency fieldCommCurrency;
@@ -1885,6 +2095,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetFundRenewWaiv() const { return fieldFundRenewWaiv.offset >= 0; }
    FieldFundRenewWaiv::ValueType getFundRenewWaiv() const { return fieldFundRenewWaiv.getValue( buf ); }
+   std::string_view getFundRenewWaivView() const { return fieldFundRenewWaiv.offset >= 0 ? std::string_view{ buf + fieldFundRenewWaiv.offset, getValueLength( buf + fieldFundRenewWaiv.offset ) } : std::string_view{}; }
    const char * ptrToFundRenewWaiv() const { return buf + fieldFundRenewWaiv.offset; }
    const char * getIfSetFundRenewWaiv() const { return fieldFundRenewWaiv.offset >= 0 ? buf + fieldFundRenewWaiv.offset : nullptr; }
    private: FieldFundRenewWaiv fieldFundRenewWaiv;
@@ -1892,6 +2103,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetOrderCapacity() const { return fieldOrderCapacity.offset >= 0; }
    FieldOrderCapacity::ValueType getOrderCapacity() const { return fieldOrderCapacity.getValue( buf ); }
+   std::string_view getOrderCapacityView() const { return fieldOrderCapacity.offset >= 0 ? std::string_view{ buf + fieldOrderCapacity.offset, getValueLength( buf + fieldOrderCapacity.offset ) } : std::string_view{}; }
    const char * ptrToOrderCapacity() const { return buf + fieldOrderCapacity.offset; }
    const char * getIfSetOrderCapacity() const { return fieldOrderCapacity.offset >= 0 ? buf + fieldOrderCapacity.offset : nullptr; }
    private: FieldOrderCapacity fieldOrderCapacity;
@@ -1899,6 +2111,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetOrderRestrictions() const { return fieldOrderRestrictions.offset >= 0; }
    FieldOrderRestrictions::ValueType getOrderRestrictions() const { return fieldOrderRestrictions.getValue( buf ); }
+   std::string_view getOrderRestrictionsView() const { return fieldOrderRestrictions.offset >= 0 ? std::string_view{ buf + fieldOrderRestrictions.offset, getValueLength( buf + fieldOrderRestrictions.offset ) } : std::string_view{}; }
    const char * ptrToOrderRestrictions() const { return buf + fieldOrderRestrictions.offset; }
    const char * getIfSetOrderRestrictions() const { return fieldOrderRestrictions.offset >= 0 ? buf + fieldOrderRestrictions.offset : nullptr; }
    private: FieldOrderRestrictions fieldOrderRestrictions;
@@ -1906,6 +2119,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetCustOrderCapacity() const { return fieldCustOrderCapacity.offset >= 0; }
    FieldCustOrderCapacity::ValueType getCustOrderCapacity() const { return fieldCustOrderCapacity.getValue( buf ); }
+   std::string_view getCustOrderCapacityView() const { return fieldCustOrderCapacity.offset >= 0 ? std::string_view{ buf + fieldCustOrderCapacity.offset, getValueLength( buf + fieldCustOrderCapacity.offset ) } : std::string_view{}; }
    const char * ptrToCustOrderCapacity() const { return buf + fieldCustOrderCapacity.offset; }
    const char * getIfSetCustOrderCapacity() const { return fieldCustOrderCapacity.offset >= 0 ? buf + fieldCustOrderCapacity.offset : nullptr; }
    private: FieldCustOrderCapacity fieldCustOrderCapacity;
@@ -1913,6 +2127,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetForexReq() const { return fieldForexReq.offset >= 0; }
    FieldForexReq::ValueType getForexReq() const { return fieldForexReq.getValue( buf ); }
+   std::string_view getForexReqView() const { return fieldForexReq.offset >= 0 ? std::string_view{ buf + fieldForexReq.offset, getValueLength( buf + fieldForexReq.offset ) } : std::string_view{}; }
    const char * ptrToForexReq() const { return buf + fieldForexReq.offset; }
    const char * getIfSetForexReq() const { return fieldForexReq.offset >= 0 ? buf + fieldForexReq.offset : nullptr; }
    private: FieldForexReq fieldForexReq;
@@ -1920,6 +2135,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetSettlCurrency() const { return fieldSettlCurrency.offset >= 0; }
    FieldSettlCurrency::ValueType getSettlCurrency() const { return fieldSettlCurrency.getValue( buf ); }
+   std::string_view getSettlCurrencyView() const { return fieldSettlCurrency.offset >= 0 ? std::string_view{ buf + fieldSettlCurrency.offset, getValueLength( buf + fieldSettlCurrency.offset ) } : std::string_view{}; }
    const char * ptrToSettlCurrency() const { return buf + fieldSettlCurrency.offset; }
    const char * getIfSetSettlCurrency() const { return fieldSettlCurrency.offset >= 0 ? buf + fieldSettlCurrency.offset : nullptr; }
    private: FieldSettlCurrency fieldSettlCurrency;
@@ -1927,6 +2143,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetBookingType() const { return fieldBookingType.offset >= 0; }
    FieldBookingType::ValueType getBookingType() const { return fieldBookingType.getValue( buf ); }
+   std::string_view getBookingTypeView() const { return fieldBookingType.offset >= 0 ? std::string_view{ buf + fieldBookingType.offset, getValueLength( buf + fieldBookingType.offset ) } : std::string_view{}; }
    const char * ptrToBookingType() const { return buf + fieldBookingType.offset; }
    const char * getIfSetBookingType() const { return fieldBookingType.offset >= 0 ? buf + fieldBookingType.offset : nullptr; }
    private: FieldBookingType fieldBookingType;
@@ -1934,6 +2151,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetText() const { return fieldText.offset >= 0; }
    FieldText::ValueType getText() const { return fieldText.getValue( buf ); }
+   std::string_view getTextView() const { return fieldText.offset >= 0 ? std::string_view{ buf + fieldText.offset, getValueLength( buf + fieldText.offset ) } : std::string_view{}; }
    const char * ptrToText() const { return buf + fieldText.offset; }
    const char * getIfSetText() const { return fieldText.offset >= 0 ? buf + fieldText.offset : nullptr; }
    private: FieldText fieldText;
@@ -1941,6 +2159,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetEncodedTextLen() const { return fieldEncodedTextLen.offset >= 0; }
    FieldEncodedTextLen::ValueType getEncodedTextLen() const { return fieldEncodedTextLen.getValue( buf ); }
+   std::string_view getEncodedTextLenView() const { return fieldEncodedTextLen.offset >= 0 ? std::string_view{ buf + fieldEncodedTextLen.offset, getValueLength( buf + fieldEncodedTextLen.offset ) } : std::string_view{}; }
    const char * ptrToEncodedTextLen() const { return buf + fieldEncodedTextLen.offset; }
    const char * getIfSetEncodedTextLen() const { return fieldEncodedTextLen.offset >= 0 ? buf + fieldEncodedTextLen.offset : nullptr; }
    private: FieldEncodedTextLen fieldEncodedTextLen;
@@ -1948,6 +2167,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetEncodedText() const { return fieldEncodedText.offset >= 0; }
    FieldEncodedText::ValueType getEncodedText() const { return fieldEncodedText.getValue( buf ); }
+   std::string_view getEncodedTextView() const { return fieldEncodedText.offset >= 0 ? std::string_view{ buf + fieldEncodedText.offset, getValueLength( buf + fieldEncodedText.offset ) } : std::string_view{}; }
    const char * ptrToEncodedText() const { return buf + fieldEncodedText.offset; }
    const char * getIfSetEncodedText() const { return fieldEncodedText.offset >= 0 ? buf + fieldEncodedText.offset : nullptr; }
    private: FieldEncodedText fieldEncodedText;
@@ -1955,6 +2175,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetSettlDate2() const { return fieldSettlDate2.offset >= 0; }
    FieldSettlDate2::ValueType getSettlDate2() const { return fieldSettlDate2.getValue( buf ); }
+   std::string_view getSettlDate2View() const { return fieldSettlDate2.offset >= 0 ? std::string_view{ buf + fieldSettlDate2.offset, getValueLength( buf + fieldSettlDate2.offset ) } : std::string_view{}; }
    const char * ptrToSettlDate2() const { return buf + fieldSettlDate2.offset; }
    const char * getIfSetSettlDate2() const { return fieldSettlDate2.offset >= 0 ? buf + fieldSettlDate2.offset : nullptr; }
    private: FieldSettlDate2 fieldSettlDate2;
@@ -1962,6 +2183,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetOrderQty2() const { return fieldOrderQty2.offset >= 0; }
    FieldOrderQty2::ValueType getOrderQty2() const { return fieldOrderQty2.getValue( buf ); }
+   std::string_view getOrderQty2View() const { return fieldOrderQty2.offset >= 0 ? std::string_view{ buf + fieldOrderQty2.offset, getValueLength( buf + fieldOrderQty2.offset ) } : std::string_view{}; }
    const char * ptrToOrderQty2() const { return buf + fieldOrderQty2.offset; }
    const char * getIfSetOrderQty2() const { return fieldOrderQty2.offset >= 0 ? buf + fieldOrderQty2.offset : nullptr; }
    private: FieldOrderQty2 fieldOrderQty2;
@@ -1969,6 +2191,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetPrice2() const { return fieldPrice2.offset >= 0; }
    FieldPrice2::ValueType getPrice2() const { return fieldPrice2.getValue( buf ); }
+   std::string_view getPrice2View() const { return fieldPrice2.offset >= 0 ? std::string_view{ buf + fieldPrice2.offset, getValueLength( buf + fieldPrice2.offset ) } : std::string_view{}; }
    const char * ptrToPrice2() const { return buf + fieldPrice2.offset; }
    const char * getIfSetPrice2() const { return fieldPrice2.offset >= 0 ? buf + fieldPrice2.offset : nullptr; }
    private: FieldPrice2 fieldPrice2;
@@ -1976,6 +2199,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetPositionEffect() const { return fieldPositionEffect.offset >= 0; }
    FieldPositionEffect::ValueType getPositionEffect() const { return fieldPositionEffect.getValue( buf ); }
+   std::string_view getPositionEffectView() const { return fieldPositionEffect.offset >= 0 ? std::string_view{ buf + fieldPositionEffect.offset, getValueLength( buf + fieldPositionEffect.offset ) } : std::string_view{}; }
    const char * ptrToPositionEffect() const { return buf + fieldPositionEffect.offset; }
    const char * getIfSetPositionEffect() const { return fieldPositionEffect.offset >= 0 ? buf + fieldPositionEffect.offset : nullptr; }
    private: FieldPositionEffect fieldPositionEffect;
@@ -1983,6 +2207,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetCoveredOrUncovered() const { return fieldCoveredOrUncovered.offset >= 0; }
    FieldCoveredOrUncovered::ValueType getCoveredOrUncovered() const { return fieldCoveredOrUncovered.getValue( buf ); }
+   std::string_view getCoveredOrUncoveredView() const { return fieldCoveredOrUncovered.offset >= 0 ? std::string_view{ buf + fieldCoveredOrUncovered.offset, getValueLength( buf + fieldCoveredOrUncovered.offset ) } : std::string_view{}; }
    const char * ptrToCoveredOrUncovered() const { return buf + fieldCoveredOrUncovered.offset; }
    const char * getIfSetCoveredOrUncovered() const { return fieldCoveredOrUncovered.offset >= 0 ? buf + fieldCoveredOrUncovered.offset : nullptr; }
    private: FieldCoveredOrUncovered fieldCoveredOrUncovered;
@@ -1990,6 +2215,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetMaxShow() const { return fieldMaxShow.offset >= 0; }
    FieldMaxShow::ValueType getMaxShow() const { return fieldMaxShow.getValue( buf ); }
+   std::string_view getMaxShowView() const { return fieldMaxShow.offset >= 0 ? std::string_view{ buf + fieldMaxShow.offset, getValueLength( buf + fieldMaxShow.offset ) } : std::string_view{}; }
    const char * ptrToMaxShow() const { return buf + fieldMaxShow.offset; }
    const char * getIfSetMaxShow() const { return fieldMaxShow.offset >= 0 ? buf + fieldMaxShow.offset : nullptr; }
    private: FieldMaxShow fieldMaxShow;
@@ -1997,6 +2223,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetPegOffsetValue() const { return fieldPegOffsetValue.offset >= 0; }
    FieldPegOffsetValue::ValueType getPegOffsetValue() const { return fieldPegOffsetValue.getValue( buf ); }
+   std::string_view getPegOffsetValueView() const { return fieldPegOffsetValue.offset >= 0 ? std::string_view{ buf + fieldPegOffsetValue.offset, getValueLength( buf + fieldPegOffsetValue.offset ) } : std::string_view{}; }
    const char * ptrToPegOffsetValue() const { return buf + fieldPegOffsetValue.offset; }
    const char * getIfSetPegOffsetValue() const { return fieldPegOffsetValue.offset >= 0 ? buf + fieldPegOffsetValue.offset : nullptr; }
    private: FieldPegOffsetValue fieldPegOffsetValue;
@@ -2004,6 +2231,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetPegMoveType() const { return fieldPegMoveType.offset >= 0; }
    FieldPegMoveType::ValueType getPegMoveType() const { return fieldPegMoveType.getValue( buf ); }
+   std::string_view getPegMoveTypeView() const { return fieldPegMoveType.offset >= 0 ? std::string_view{ buf + fieldPegMoveType.offset, getValueLength( buf + fieldPegMoveType.offset ) } : std::string_view{}; }
    const char * ptrToPegMoveType() const { return buf + fieldPegMoveType.offset; }
    const char * getIfSetPegMoveType() const { return fieldPegMoveType.offset >= 0 ? buf + fieldPegMoveType.offset : nullptr; }
    private: FieldPegMoveType fieldPegMoveType;
@@ -2011,6 +2239,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetPegOffsetType() const { return fieldPegOffsetType.offset >= 0; }
    FieldPegOffsetType::ValueType getPegOffsetType() const { return fieldPegOffsetType.getValue( buf ); }
+   std::string_view getPegOffsetTypeView() const { return fieldPegOffsetType.offset >= 0 ? std::string_view{ buf + fieldPegOffsetType.offset, getValueLength( buf + fieldPegOffsetType.offset ) } : std::string_view{}; }
    const char * ptrToPegOffsetType() const { return buf + fieldPegOffsetType.offset; }
    const char * getIfSetPegOffsetType() const { return fieldPegOffsetType.offset >= 0 ? buf + fieldPegOffsetType.offset : nullptr; }
    private: FieldPegOffsetType fieldPegOffsetType;
@@ -2018,6 +2247,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetPegLimitType() const { return fieldPegLimitType.offset >= 0; }
    FieldPegLimitType::ValueType getPegLimitType() const { return fieldPegLimitType.getValue( buf ); }
+   std::string_view getPegLimitTypeView() const { return fieldPegLimitType.offset >= 0 ? std::string_view{ buf + fieldPegLimitType.offset, getValueLength( buf + fieldPegLimitType.offset ) } : std::string_view{}; }
    const char * ptrToPegLimitType() const { return buf + fieldPegLimitType.offset; }
    const char * getIfSetPegLimitType() const { return fieldPegLimitType.offset >= 0 ? buf + fieldPegLimitType.offset : nullptr; }
    private: FieldPegLimitType fieldPegLimitType;
@@ -2025,6 +2255,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetPegRoundDirection() const { return fieldPegRoundDirection.offset >= 0; }
    FieldPegRoundDirection::ValueType getPegRoundDirection() const { return fieldPegRoundDirection.getValue( buf ); }
+   std::string_view getPegRoundDirectionView() const { return fieldPegRoundDirection.offset >= 0 ? std::string_view{ buf + fieldPegRoundDirection.offset, getValueLength( buf + fieldPegRoundDirection.offset ) } : std::string_view{}; }
    const char * ptrToPegRoundDirection() const { return buf + fieldPegRoundDirection.offset; }
    const char * getIfSetPegRoundDirection() const { return fieldPegRoundDirection.offset >= 0 ? buf + fieldPegRoundDirection.offset : nullptr; }
    private: FieldPegRoundDirection fieldPegRoundDirection;
@@ -2032,6 +2263,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetPegScope() const { return fieldPegScope.offset >= 0; }
    FieldPegScope::ValueType getPegScope() const { return fieldPegScope.getValue( buf ); }
+   std::string_view getPegScopeView() const { return fieldPegScope.offset >= 0 ? std::string_view{ buf + fieldPegScope.offset, getValueLength( buf + fieldPegScope.offset ) } : std::string_view{}; }
    const char * ptrToPegScope() const { return buf + fieldPegScope.offset; }
    const char * getIfSetPegScope() const { return fieldPegScope.offset >= 0 ? buf + fieldPegScope.offset : nullptr; }
    private: FieldPegScope fieldPegScope;
@@ -2039,6 +2271,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetDiscretionInst() const { return fieldDiscretionInst.offset >= 0; }
    FieldDiscretionInst::ValueType getDiscretionInst() const { return fieldDiscretionInst.getValue( buf ); }
+   std::string_view getDiscretionInstView() const { return fieldDiscretionInst.offset >= 0 ? std::string_view{ buf + fieldDiscretionInst.offset, getValueLength( buf + fieldDiscretionInst.offset ) } : std::string_view{}; }
    const char * ptrToDiscretionInst() const { return buf + fieldDiscretionInst.offset; }
    const char * getIfSetDiscretionInst() const { return fieldDiscretionInst.offset >= 0 ? buf + fieldDiscretionInst.offset : nullptr; }
    private: FieldDiscretionInst fieldDiscretionInst;
@@ -2046,6 +2279,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetDiscretionOffsetValue() const { return fieldDiscretionOffsetValue.offset >= 0; }
    FieldDiscretionOffsetValue::ValueType getDiscretionOffsetValue() const { return fieldDiscretionOffsetValue.getValue( buf ); }
+   std::string_view getDiscretionOffsetValueView() const { return fieldDiscretionOffsetValue.offset >= 0 ? std::string_view{ buf + fieldDiscretionOffsetValue.offset, getValueLength( buf + fieldDiscretionOffsetValue.offset ) } : std::string_view{}; }
    const char * ptrToDiscretionOffsetValue() const { return buf + fieldDiscretionOffsetValue.offset; }
    const char * getIfSetDiscretionOffsetValue() const { return fieldDiscretionOffsetValue.offset >= 0 ? buf + fieldDiscretionOffsetValue.offset : nullptr; }
    private: FieldDiscretionOffsetValue fieldDiscretionOffsetValue;
@@ -2053,6 +2287,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetDiscretionMoveType() const { return fieldDiscretionMoveType.offset >= 0; }
    FieldDiscretionMoveType::ValueType getDiscretionMoveType() const { return fieldDiscretionMoveType.getValue( buf ); }
+   std::string_view getDiscretionMoveTypeView() const { return fieldDiscretionMoveType.offset >= 0 ? std::string_view{ buf + fieldDiscretionMoveType.offset, getValueLength( buf + fieldDiscretionMoveType.offset ) } : std::string_view{}; }
    const char * ptrToDiscretionMoveType() const { return buf + fieldDiscretionMoveType.offset; }
    const char * getIfSetDiscretionMoveType() const { return fieldDiscretionMoveType.offset >= 0 ? buf + fieldDiscretionMoveType.offset : nullptr; }
    private: FieldDiscretionMoveType fieldDiscretionMoveType;
@@ -2060,6 +2295,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetDiscretionOffsetType() const { return fieldDiscretionOffsetType.offset >= 0; }
    FieldDiscretionOffsetType::ValueType getDiscretionOffsetType() const { return fieldDiscretionOffsetType.getValue( buf ); }
+   std::string_view getDiscretionOffsetTypeView() const { return fieldDiscretionOffsetType.offset >= 0 ? std::string_view{ buf + fieldDiscretionOffsetType.offset, getValueLength( buf + fieldDiscretionOffsetType.offset ) } : std::string_view{}; }
    const char * ptrToDiscretionOffsetType() const { return buf + fieldDiscretionOffsetType.offset; }
    const char * getIfSetDiscretionOffsetType() const { return fieldDiscretionOffsetType.offset >= 0 ? buf + fieldDiscretionOffsetType.offset : nullptr; }
    private: FieldDiscretionOffsetType fieldDiscretionOffsetType;
@@ -2067,6 +2303,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetDiscretionLimitType() const { return fieldDiscretionLimitType.offset >= 0; }
    FieldDiscretionLimitType::ValueType getDiscretionLimitType() const { return fieldDiscretionLimitType.getValue( buf ); }
+   std::string_view getDiscretionLimitTypeView() const { return fieldDiscretionLimitType.offset >= 0 ? std::string_view{ buf + fieldDiscretionLimitType.offset, getValueLength( buf + fieldDiscretionLimitType.offset ) } : std::string_view{}; }
    const char * ptrToDiscretionLimitType() const { return buf + fieldDiscretionLimitType.offset; }
    const char * getIfSetDiscretionLimitType() const { return fieldDiscretionLimitType.offset >= 0 ? buf + fieldDiscretionLimitType.offset : nullptr; }
    private: FieldDiscretionLimitType fieldDiscretionLimitType;
@@ -2074,6 +2311,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetDiscretionRoundDirection() const { return fieldDiscretionRoundDirection.offset >= 0; }
    FieldDiscretionRoundDirection::ValueType getDiscretionRoundDirection() const { return fieldDiscretionRoundDirection.getValue( buf ); }
+   std::string_view getDiscretionRoundDirectionView() const { return fieldDiscretionRoundDirection.offset >= 0 ? std::string_view{ buf + fieldDiscretionRoundDirection.offset, getValueLength( buf + fieldDiscretionRoundDirection.offset ) } : std::string_view{}; }
    const char * ptrToDiscretionRoundDirection() const { return buf + fieldDiscretionRoundDirection.offset; }
    const char * getIfSetDiscretionRoundDirection() const { return fieldDiscretionRoundDirection.offset >= 0 ? buf + fieldDiscretionRoundDirection.offset : nullptr; }
    private: FieldDiscretionRoundDirection fieldDiscretionRoundDirection;
@@ -2081,6 +2319,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetDiscretionScope() const { return fieldDiscretionScope.offset >= 0; }
    FieldDiscretionScope::ValueType getDiscretionScope() const { return fieldDiscretionScope.getValue( buf ); }
+   std::string_view getDiscretionScopeView() const { return fieldDiscretionScope.offset >= 0 ? std::string_view{ buf + fieldDiscretionScope.offset, getValueLength( buf + fieldDiscretionScope.offset ) } : std::string_view{}; }
    const char * ptrToDiscretionScope() const { return buf + fieldDiscretionScope.offset; }
    const char * getIfSetDiscretionScope() const { return fieldDiscretionScope.offset >= 0 ? buf + fieldDiscretionScope.offset : nullptr; }
    private: FieldDiscretionScope fieldDiscretionScope;
@@ -2088,6 +2327,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetTargetStrategy() const { return fieldTargetStrategy.offset >= 0; }
    FieldTargetStrategy::ValueType getTargetStrategy() const { return fieldTargetStrategy.getValue( buf ); }
+   std::string_view getTargetStrategyView() const { return fieldTargetStrategy.offset >= 0 ? std::string_view{ buf + fieldTargetStrategy.offset, getValueLength( buf + fieldTargetStrategy.offset ) } : std::string_view{}; }
    const char * ptrToTargetStrategy() const { return buf + fieldTargetStrategy.offset; }
    const char * getIfSetTargetStrategy() const { return fieldTargetStrategy.offset >= 0 ? buf + fieldTargetStrategy.offset : nullptr; }
    private: FieldTargetStrategy fieldTargetStrategy;
@@ -2095,6 +2335,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetTargetStrategyParameters() const { return fieldTargetStrategyParameters.offset >= 0; }
    FieldTargetStrategyParameters::ValueType getTargetStrategyParameters() const { return fieldTargetStrategyParameters.getValue( buf ); }
+   std::string_view getTargetStrategyParametersView() const { return fieldTargetStrategyParameters.offset >= 0 ? std::string_view{ buf + fieldTargetStrategyParameters.offset, getValueLength( buf + fieldTargetStrategyParameters.offset ) } : std::string_view{}; }
    const char * ptrToTargetStrategyParameters() const { return buf + fieldTargetStrategyParameters.offset; }
    const char * getIfSetTargetStrategyParameters() const { return fieldTargetStrategyParameters.offset >= 0 ? buf + fieldTargetStrategyParameters.offset : nullptr; }
    private: FieldTargetStrategyParameters fieldTargetStrategyParameters;
@@ -2102,6 +2343,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetParticipationRate() const { return fieldParticipationRate.offset >= 0; }
    FieldParticipationRate::ValueType getParticipationRate() const { return fieldParticipationRate.getValue( buf ); }
+   std::string_view getParticipationRateView() const { return fieldParticipationRate.offset >= 0 ? std::string_view{ buf + fieldParticipationRate.offset, getValueLength( buf + fieldParticipationRate.offset ) } : std::string_view{}; }
    const char * ptrToParticipationRate() const { return buf + fieldParticipationRate.offset; }
    const char * getIfSetParticipationRate() const { return fieldParticipationRate.offset >= 0 ? buf + fieldParticipationRate.offset : nullptr; }
    private: FieldParticipationRate fieldParticipationRate;
@@ -2109,6 +2351,7 @@ class GroupOrders : public MessageBase
    public:
    bool isSetDesignation() const { return fieldDesignation.offset >= 0; }
    FieldDesignation::ValueType getDesignation() const { return fieldDesignation.getValue( buf ); }
+   std::string_view getDesignationView() const { return fieldDesignation.offset >= 0 ? std::string_view{ buf + fieldDesignation.offset, getValueLength( buf + fieldDesignation.offset ) } : std::string_view{}; }
    const char * ptrToDesignation() const { return buf + fieldDesignation.offset; }
    const char * getIfSetDesignation() const { return fieldDesignation.offset >= 0 ? buf + fieldDesignation.offset : nullptr; }
    private: FieldDesignation fieldDesignation;
@@ -2134,6 +2377,7 @@ class GroupSettlPartySubIDs : public MessageBase
    public:
    bool isSetSettlPartySubID() const { return fieldSettlPartySubID.offset >= 0; }
    FieldSettlPartySubID::ValueType getSettlPartySubID() const { return fieldSettlPartySubID.getValue( buf ); }
+   std::string_view getSettlPartySubIDView() const { return fieldSettlPartySubID.offset >= 0 ? std::string_view{ buf + fieldSettlPartySubID.offset, getValueLength( buf + fieldSettlPartySubID.offset ) } : std::string_view{}; }
    const char * ptrToSettlPartySubID() const { return buf + fieldSettlPartySubID.offset; }
    const char * getIfSetSettlPartySubID() const { return fieldSettlPartySubID.offset >= 0 ? buf + fieldSettlPartySubID.offset : nullptr; }
    private: FieldSettlPartySubID fieldSettlPartySubID;
@@ -2141,6 +2385,7 @@ class GroupSettlPartySubIDs : public MessageBase
    public:
    bool isSetSettlPartySubIDType() const { return fieldSettlPartySubIDType.offset >= 0; }
    FieldSettlPartySubIDType::ValueType getSettlPartySubIDType() const { return fieldSettlPartySubIDType.getValue( buf ); }
+   std::string_view getSettlPartySubIDTypeView() const { return fieldSettlPartySubIDType.offset >= 0 ? std::string_view{ buf + fieldSettlPartySubIDType.offset, getValueLength( buf + fieldSettlPartySubIDType.offset ) } : std::string_view{}; }
    const char * ptrToSettlPartySubIDType() const { return buf + fieldSettlPartySubIDType.offset; }
    const char * getIfSetSettlPartySubIDType() const { return fieldSettlPartySubIDType.offset >= 0 ? buf + fieldSettlPartySubIDType.offset : nullptr; }
    private: FieldSettlPartySubIDType fieldSettlPartySubIDType;
@@ -2166,6 +2411,7 @@ class GroupSettlPartyIDs : public MessageBase
    public:
    bool isSetSettlPartyID() const { return fieldSettlPartyID.offset >= 0; }
    FieldSettlPartyID::ValueType getSettlPartyID() const { return fieldSettlPartyID.getValue( buf ); }
+   std::string_view getSettlPartyIDView() const { return fieldSettlPartyID.offset >= 0 ? std::string_view{ buf + fieldSettlPartyID.offset, getValueLength( buf + fieldSettlPartyID.offset ) } : std::string_view{}; }
    const char * ptrToSettlPartyID() const { return buf + fieldSettlPartyID.offset; }
    const char * getIfSetSettlPartyID() const { return fieldSettlPartyID.offset >= 0 ? buf + fieldSettlPartyID.offset : nullptr; }
    private: FieldSettlPartyID fieldSettlPartyID;
@@ -2173,6 +2419,7 @@ class GroupSettlPartyIDs : public MessageBase
    public:
    bool isSetSettlPartyIDSource() const { return fieldSettlPartyIDSource.offset >= 0; }
    FieldSettlPartyIDSource::ValueType getSettlPartyIDSource() const { return fieldSettlPartyIDSource.getValue( buf ); }
+   std::string_view getSettlPartyIDSourceView() const { return fieldSettlPartyIDSource.offset >= 0 ? std::string_view{ buf + fieldSettlPartyIDSource.offset, getValueLength( buf + fieldSettlPartyIDSource.offset ) } : std::string_view{}; }
    const char * ptrToSettlPartyIDSource() const { return buf + fieldSettlPartyIDSource.offset; }
    const char * getIfSetSettlPartyIDSource() const { return fieldSettlPartyIDSource.offset >= 0 ? buf + fieldSettlPartyIDSource.offset : nullptr; }
    private: FieldSettlPartyIDSource fieldSettlPartyIDSource;
@@ -2180,6 +2427,7 @@ class GroupSettlPartyIDs : public MessageBase
    public:
    bool isSetSettlPartyRole() const { return fieldSettlPartyRole.offset >= 0; }
    FieldSettlPartyRole::ValueType getSettlPartyRole() const { return fieldSettlPartyRole.getValue( buf ); }
+   std::string_view getSettlPartyRoleView() const { return fieldSettlPartyRole.offset >= 0 ? std::string_view{ buf + fieldSettlPartyRole.offset, getValueLength( buf + fieldSettlPartyRole.offset ) } : std::string_view{}; }
    const char * ptrToSettlPartyRole() const { return buf + fieldSettlPartyRole.offset; }
    const char * getIfSetSettlPartyRole() const { return fieldSettlPartyRole.offset >= 0 ? buf + fieldSettlPartyRole.offset : nullptr; }
    private: FieldSettlPartyRole fieldSettlPartyRole;
@@ -2187,6 +2435,7 @@ class GroupSettlPartyIDs : public MessageBase
    public:
    bool isSetNoSettlPartySubIDs() const { return fieldNoSettlPartySubIDs.offset >= 0; }
    FieldNoSettlPartySubIDs::ValueType getNoSettlPartySubIDs() const { return fieldNoSettlPartySubIDs.getValue( buf ); }
+   std::string_view getNoSettlPartySubIDsView() const { return fieldNoSettlPartySubIDs.offset >= 0 ? std::string_view{ buf + fieldNoSettlPartySubIDs.offset, getValueLength( buf + fieldNoSettlPartySubIDs.offset ) } : std::string_view{}; }
    const char * ptrToNoSettlPartySubIDs() const { return buf + fieldNoSettlPartySubIDs.offset; }
    const char * getIfSetNoSettlPartySubIDs() const { return fieldNoSettlPartySubIDs.offset >= 0 ? buf + fieldNoSettlPartySubIDs.offset : nullptr; }
    private: FieldNoSettlPartySubIDs fieldNoSettlPartySubIDs;
@@ -2217,6 +2466,7 @@ class GroupDlvyInst : public MessageBase
    public:
    bool isSetSettlInstSource() const { return fieldSettlInstSource.offset >= 0; }
    FieldSettlInstSource::ValueType getSettlInstSource() const { return fieldSettlInstSource.getValue( buf ); }
+   std::string_view getSettlInstSourceView() const { return fieldSettlInstSource.offset >= 0 ? std::string_view{ buf + fieldSettlInstSource.offset, getValueLength( buf + fieldSettlInstSource.offset ) } : std::string_view{}; }
    const char * ptrToSettlInstSource() const { return buf + fieldSettlInstSource.offset; }
    const char * getIfSetSettlInstSource() const { return fieldSettlInstSource.offset >= 0 ? buf + fieldSettlInstSource.offset : nullptr; }
    private: FieldSettlInstSource fieldSettlInstSource;
@@ -2224,6 +2474,7 @@ class GroupDlvyInst : public MessageBase
    public:
    bool isSetDlvyInstType() const { return fieldDlvyInstType.offset >= 0; }
    FieldDlvyInstType::ValueType getDlvyInstType() const { return fieldDlvyInstType.getValue( buf ); }
+   std::string_view getDlvyInstTypeView() const { return fieldDlvyInstType.offset >= 0 ? std::string_view{ buf + fieldDlvyInstType.offset, getValueLength( buf + fieldDlvyInstType.offset ) } : std::string_view{}; }
    const char * ptrToDlvyInstType() const { return buf + fieldDlvyInstType.offset; }
    const char * getIfSetDlvyInstType() const { return fieldDlvyInstType.offset >= 0 ? buf + fieldDlvyInstType.offset : nullptr; }
    private: FieldDlvyInstType fieldDlvyInstType;
@@ -2231,6 +2482,7 @@ class GroupDlvyInst : public MessageBase
    public:
    bool isSetNoSettlPartyIDs() const { return fieldNoSettlPartyIDs.offset >= 0; }
    FieldNoSettlPartyIDs::ValueType getNoSettlPartyIDs() const { return fieldNoSettlPartyIDs.getValue( buf ); }
+   std::string_view getNoSettlPartyIDsView() const { return fieldNoSettlPartyIDs.offset >= 0 ? std::string_view{ buf + fieldNoSettlPartyIDs.offset, getValueLength( buf + fieldNoSettlPartyIDs.offset ) } : std::string_view{}; }
    const char * ptrToNoSettlPartyIDs() const { return buf + fieldNoSettlPartyIDs.offset; }
    const char * getIfSetNoSettlPartyIDs() const { return fieldNoSettlPartyIDs.offset >= 0 ? buf + fieldNoSettlPartyIDs.offset : nullptr; }
    private: FieldNoSettlPartyIDs fieldNoSettlPartyIDs;
@@ -2261,6 +2513,7 @@ class GroupClearingInstructions : public MessageBase
    public:
    bool isSetClearingInstruction() const { return fieldClearingInstruction.offset >= 0; }
    FieldClearingInstruction::ValueType getClearingInstruction() const { return fieldClearingInstruction.getValue( buf ); }
+   std::string_view getClearingInstructionView() const { return fieldClearingInstruction.offset >= 0 ? std::string_view{ buf + fieldClearingInstruction.offset, getValueLength( buf + fieldClearingInstruction.offset ) } : std::string_view{}; }
    const char * ptrToClearingInstruction() const { return buf + fieldClearingInstruction.offset; }
    const char * getIfSetClearingInstruction() const { return fieldClearingInstruction.offset >= 0 ? buf + fieldClearingInstruction.offset : nullptr; }
    private: FieldClearingInstruction fieldClearingInstruction;
@@ -2286,6 +2539,7 @@ class GroupNestedPartySubIDs : public MessageBase
    public:
    bool isSetNestedPartySubID() const { return fieldNestedPartySubID.offset >= 0; }
    FieldNestedPartySubID::ValueType getNestedPartySubID() const { return fieldNestedPartySubID.getValue( buf ); }
+   std::string_view getNestedPartySubIDView() const { return fieldNestedPartySubID.offset >= 0 ? std::string_view{ buf + fieldNestedPartySubID.offset, getValueLength( buf + fieldNestedPartySubID.offset ) } : std::string_view{}; }
    const char * ptrToNestedPartySubID() const { return buf + fieldNestedPartySubID.offset; }
    const char * getIfSetNestedPartySubID() const { return fieldNestedPartySubID.offset >= 0 ? buf + fieldNestedPartySubID.offset : nullptr; }
    private: FieldNestedPartySubID fieldNestedPartySubID;
@@ -2293,6 +2547,7 @@ class GroupNestedPartySubIDs : public MessageBase
    public:
    bool isSetNestedPartySubIDType() const { return fieldNestedPartySubIDType.offset >= 0; }
    FieldNestedPartySubIDType::ValueType getNestedPartySubIDType() const { return fieldNestedPartySubIDType.getValue( buf ); }
+   std::string_view getNestedPartySubIDTypeView() const { return fieldNestedPartySubIDType.offset >= 0 ? std::string_view{ buf + fieldNestedPartySubIDType.offset, getValueLength( buf + fieldNestedPartySubIDType.offset ) } : std::string_view{}; }
    const char * ptrToNestedPartySubIDType() const { return buf + fieldNestedPartySubIDType.offset; }
    const char * getIfSetNestedPartySubIDType() const { return fieldNestedPartySubIDType.offset >= 0 ? buf + fieldNestedPartySubIDType.offset : nullptr; }
    private: FieldNestedPartySubIDType fieldNestedPartySubIDType;
@@ -2318,6 +2573,7 @@ class GroupNestedPartyIDs : public MessageBase
    public:
    bool isSetNestedPartyID() const { return fieldNestedPartyID.offset >= 0; }
    FieldNestedPartyID::ValueType getNestedPartyID() const { return fieldNestedPartyID.getValue( buf ); }
+   std::string_view getNestedPartyIDView() const { return fieldNestedPartyID.offset >= 0 ? std::string_view{ buf + fieldNestedPartyID.offset, getValueLength( buf + fieldNestedPartyID.offset ) } : std::string_view{}; }
    const char * ptrToNestedPartyID() const { return buf + fieldNestedPartyID.offset; }
    const char * getIfSetNestedPartyID() const { return fieldNestedPartyID.offset >= 0 ? buf + fieldNestedPartyID.offset : nullptr; }
    private: FieldNestedPartyID fieldNestedPartyID;
@@ -2325,6 +2581,7 @@ class GroupNestedPartyIDs : public MessageBase
    public:
    bool isSetNestedPartyIDSource() const { return fieldNestedPartyIDSource.offset >= 0; }
    FieldNestedPartyIDSource::ValueType getNestedPartyIDSource() const { return fieldNestedPartyIDSource.getValue( buf ); }
+   std::string_view getNestedPartyIDSourceView() const { return fieldNestedPartyIDSource.offset >= 0 ? std::string_view{ buf + fieldNestedPartyIDSource.offset, getValueLength( buf + fieldNestedPartyIDSource.offset ) } : std::string_view{}; }
    const char * ptrToNestedPartyIDSource() const { return buf + fieldNestedPartyIDSource.offset; }
    const char * getIfSetNestedPartyIDSource() const { return fieldNestedPartyIDSource.offset >= 0 ? buf + fieldNestedPartyIDSource.offset : nullptr; }
    private: FieldNestedPartyIDSource fieldNestedPartyIDSource;
@@ -2332,6 +2589,7 @@ class GroupNestedPartyIDs : public MessageBase
    public:
    bool isSetNestedPartyRole() const { return fieldNestedPartyRole.offset >= 0; }
    FieldNestedPartyRole::ValueType getNestedPartyRole() const { return fieldNestedPartyRole.getValue( buf ); }
+   std::string_view getNestedPartyRoleView() const { return fieldNestedPartyRole.offset >= 0 ? std::string_view{ buf + fieldNestedPartyRole.offset, getValueLength( buf + fieldNestedPartyRole.offset ) } : std::string_view{}; }
    const char * ptrToNestedPartyRole() const { return buf + fieldNestedPartyRole.offset; }
    const char * getIfSetNestedPartyRole() const { return fieldNestedPartyRole.offset >= 0 ? buf + fieldNestedPartyRole.offset : nullptr; }
    private: FieldNestedPartyRole fieldNestedPartyRole;
@@ -2339,6 +2597,7 @@ class GroupNestedPartyIDs : public MessageBase
    public:
    bool isSetNoNestedPartySubIDs() const { return fieldNoNestedPartySubIDs.offset >= 0; }
    FieldNoNestedPartySubIDs::ValueType getNoNestedPartySubIDs() const { return fieldNoNestedPartySubIDs.getValue( buf ); }
+   std::string_view getNoNestedPartySubIDsView() const { return fieldNoNestedPartySubIDs.offset >= 0 ? std::string_view{ buf + fieldNoNestedPartySubIDs.offset, getValueLength( buf + fieldNoNestedPartySubIDs.offset ) } : std::string_view{}; }
    const char * ptrToNoNestedPartySubIDs() const { return buf + fieldNoNestedPartySubIDs.offset; }
    const char * getIfSetNoNestedPartySubIDs() const { return fieldNoNestedPartySubIDs.offset >= 0 ? buf + fieldNoNestedPartySubIDs.offset : nullptr; }
    private: FieldNoNestedPartySubIDs fieldNoNestedPartySubIDs;
@@ -2369,6 +2628,7 @@ class GroupLegs : public MessageBase
    public:
    bool isSetLegSymbol() const { return fieldLegSymbol.offset >= 0; }
    FieldLegSymbol::ValueType getLegSymbol() const { return fieldLegSymbol.getValue( buf ); }
+   std::string_view getLegSymbolView() const { return fieldLegSymbol.offset >= 0 ? std::string_view{ buf + fieldLegSymbol.offset, getValueLength( buf + fieldLegSymbol.offset ) } : std::string_view{}; }
    const char * ptrToLegSymbol() const { return buf + fieldLegSymbol.offset; }
    const char * getIfSetLegSymbol() const { return fieldLegSymbol.offset >= 0 ? buf + fieldLegSymbol.offset : nullptr; }
    private: FieldLegSymbol fieldLegSymbol;
@@ -2376,6 +2636,7 @@ class GroupLegs : public MessageBase
    public:
    bool isSetLegSymbolSfx() const { return fieldLegSymbolSfx.offset >= 0; }
    FieldLegSymbolSfx::ValueType getLegSymbolSfx() const { return fieldLegSymbolSfx.getValue( buf ); }
+   std::string_view getLegSymbolSfxView() const { return fieldLegSymbolSfx.offset >= 0 ? std::string_view{ buf + fieldLegSymbolSfx.offset, getValueLength( buf + fieldLegSymbolSfx.offset ) } : std::string_view{}; }
    const char * ptrToLegSymbolSfx() const { return buf + fieldLegSymbolSfx.offset; }
    const char * getIfSetLegSymbolSfx() const { return fieldLegSymbolSfx.offset >= 0 ? buf + fieldLegSymbolSfx.offset : nullptr; }
    private: FieldLegSymbolSfx fieldLegSymbolSfx;
@@ -2383,6 +2644,7 @@ class GroupLegs : public MessageBase
    public:
    bool isSetLegSecurityID() const { return fieldLegSecurityID.offset >= 0; }
    FieldLegSecurityID::ValueType getLegSecurityID() const { return fieldLegSecurityID.getValue( buf ); }
+   std::string_view getLegSecurityIDView() const { return fieldLegSecurityID.offset >= 0 ? std::string_view{ buf + fieldLegSecurityID.offset, getValueLength( buf + fieldLegSecurityID.offset ) } : std::string_view{}; }
    const char * ptrToLegSecurityID() const { return buf + fieldLegSecurityID.offset; }
    const char * getIfSetLegSecurityID() const { return fieldLegSecurityID.offset >= 0 ? buf + fieldLegSecurityID.offset : nullptr; }
    private: FieldLegSecurityID fieldLegSecurityID;
@@ -2390,6 +2652,7 @@ class GroupLegs : public MessageBase
    public:
    bool isSetLegSecurityIDSource() const { return fieldLegSecurityIDSource.offset >= 0; }
    FieldLegSecurityIDSource::ValueType getLegSecurityIDSource() const { return fieldLegSecurityIDSource.getValue( buf ); }
+   std::string_view getLegSecurityIDSourceView() const { return fieldLegSecurityIDSource.offset >= 0 ? std::string_view{ buf + fieldLegSecurityIDSource.offset, getValueLength( buf + fieldLegSecurityIDSource.offset ) } : std::string_view{}; }
    const char * ptrToLegSecurityIDSource() const { return buf + fieldLegSecurityIDSource.offset; }
    const char * getIfSetLegSecurityIDSource() const { return fieldLegSecurityIDSource.offset >= 0 ? buf + fieldLegSecurityIDSource.offset : nullptr; }
    private: FieldLegSecurityIDSource fieldLegSecurityIDSource;
@@ -2397,6 +2660,7 @@ class GroupLegs : public MessageBase
    public:
    bool isSetNoLegSecurityAltID() const { return fieldNoLegSecurityAltID.offset >= 0; }
    FieldNoLegSecurityAltID::ValueType getNoLegSecurityAltID() const { return fieldNoLegSecurityAltID.getValue( buf ); }
+   std::string_view getNoLegSecurityAltIDView() const { return fieldNoLegSecurityAltID.offset >= 0 ? std::string_view{ buf + fieldNoLegSecurityAltID.offset, getValueLength( buf + fieldNoLegSecurityAltID.offset ) } : std::string_view{}; }
    const char * ptrToNoLegSecurityAltID() const { return buf + fieldNoLegSecurityAltID.offset; }
    const char * getIfSetNoLegSecurityAltID() const { return fieldNoLegSecurityAltID.offset >= 0 ? buf + fieldNoLegSecurityAltID.offset : nullptr; }
    private: FieldNoLegSecurityAltID fieldNoLegSecurityAltID;
@@ -2409,6 +2673,7 @@ class GroupLegs : public MessageBase
    public:
    bool isSetLegProduct() const { return fieldLegProduct.offset >= 0; }
    FieldLegProduct::ValueType getLegProduct() const { return fieldLegProduct.getValue( buf ); }
+   std::string_view getLegProductView() const { return fieldLegProduct.offset >= 0 ? std::string_view{ buf + fieldLegProduct.offset, getValueLength( buf + fieldLegProduct.offset ) } : std::string_view{}; }
    const char * ptrToLegProduct() const { return buf + fieldLegProduct.offset; }
    const char * getIfSetLegProduct() const { return fieldLegProduct.offset >= 0 ? buf + fieldLegProduct.offset : nullptr; }
    private: FieldLegProduct fieldLegProduct;
@@ -2416,6 +2681,7 @@ class GroupLegs : public MessageBase
    public:
    bool isSetLegCFICode() const { return fieldLegCFICode.offset >= 0; }
    FieldLegCFICode::ValueType getLegCFICode() const { return fieldLegCFICode.getValue( buf ); }
+   std::string_view getLegCFICodeView() const { return fieldLegCFICode.offset >= 0 ? std::string_view{ buf + fieldLegCFICode.offset, getValueLength( buf + fieldLegCFICode.offset ) } : std::string_view{}; }
    const char * ptrToLegCFICode() const { return buf + fieldLegCFICode.offset; }
    const char * getIfSetLegCFICode() const { return fieldLegCFICode.offset >= 0 ? buf + fieldLegCFICode.offset : nullptr; }
    private: FieldLegCFICode fieldLegCFICode;
@@ -2423,6 +2689,7 @@ class GroupLegs : public MessageBase
    public:
    bool isSetLegSecurityType() const { return fieldLegSecurityType.offset >= 0; }
    FieldLegSecurityType::ValueType getLegSecurityType() const { return fieldLegSecurityType.getValue( buf ); }
+   std::string_view getLegSecurityTypeView() const { return fieldLegSecurityType.offset >= 0 ? std::string_view{ buf + fieldLegSecurityType.offset, getValueLength( buf + fieldLegSecurityType.offset ) } : std::string_view{}; }
    const char * ptrToLegSecurityType() const { return buf + fieldLegSecurityType.offset; }
    const char * getIfSetLegSecurityType() const { return fieldLegSecurityType.offset >= 0 ? buf + fieldLegSecurityType.offset : nullptr; }
    private: FieldLegSecurityType fieldLegSecurityType;
@@ -2430,6 +2697,7 @@ class GroupLegs : public MessageBase
    public:
    bool isSetLegSecuritySubType() const { return fieldLegSecuritySubType.offset >= 0; }
    FieldLegSecuritySubType::ValueType getLegSecuritySubType() const { return fieldLegSecuritySubType.getValue( buf ); }
+   std::string_view getLegSecuritySubTypeView() const { return fieldLegSecuritySubType.offset >= 0 ? std::string_view{ buf + fieldLegSecuritySubType.offset, getValueLength( buf + fieldLegSecuritySubType.offset ) } : std::string_view{}; }
    const char * ptrToLegSecuritySubType() const { return buf + fieldLegSecuritySubType.offset; }
    const char * getIfSetLegSecuritySubType() const { return fieldLegSecuritySubType.offset >= 0 ? buf + fieldLegSecuritySubType.offset : nullptr; }
    private: FieldLegSecuritySubType fieldLegSecuritySubType;
@@ -2437,6 +2705,7 @@ class GroupLegs : public MessageBase
    public:
    bool isSetLegMaturityMonthYear() const { return fieldLegMaturityMonthYear.offset >= 0; }
    FieldLegMaturityMonthYear::ValueType getLegMaturityMonthYear() const { return fieldLegMaturityMonthYear.getValue( buf ); }
+   std::string_view getLegMaturityMonthYearView() const { return fieldLegMaturityMonthYear.offset >= 0 ? std::string_view{ buf + fieldLegMaturityMonthYear.offset, getValueLength( buf + fieldLegMaturityMonthYear.offset ) } : std::string_view{}; }
    const char * ptrToLegMaturityMonthYear() const { return buf + fieldLegMaturityMonthYear.offset; }
    const char * getIfSetLegMaturityMonthYear() const { return fieldLegMaturityMonthYear.offset >= 0 ? buf + fieldLegMaturityMonthYear.offset : nullptr; }
    private: FieldLegMaturityMonthYear fieldLegMaturityMonthYear;
@@ -2444,6 +2713,7 @@ class GroupLegs : public MessageBase
    public:
    bool isSetLegMaturityDate() const { return fieldLegMaturityDate.offset >= 0; }
    FieldLegMaturityDate::ValueType getLegMaturityDate() const { return fieldLegMaturityDate.getValue( buf ); }
+   std::string_view getLegMaturityDateView() const { return fieldLegMaturityDate.offset >= 0 ? std::string_view{ buf + fieldLegMaturityDate.offset, getValueLength( buf + fieldLegMaturityDate.offset ) } : std::string_view{}; }
    const char * ptrToLegMaturityDate() const { return buf + fieldLegMaturityDate.offset; }
    const char * getIfSetLegMaturityDate() const { return fieldLegMaturityDate.offset >= 0 ? buf + fieldLegMaturityDate.offset : nullptr; }
    private: FieldLegMaturityDate fieldLegMaturityDate;
@@ -2451,6 +2721,7 @@ class GroupLegs : public MessageBase
    public:
    bool isSetLegCouponPaymentDate() const { return fieldLegCouponPaymentDate.offset >= 0; }
    FieldLegCouponPaymentDate::ValueType getLegCouponPaymentDate() const { return fieldLegCouponPaymentDate.getValue( buf ); }
+   std::string_view getLegCouponPaymentDateView() const { return fieldLegCouponPaymentDate.offset >= 0 ? std::string_view{ buf + fieldLegCouponPaymentDate.offset, getValueLength( buf + fieldLegCouponPaymentDate.offset ) } : std::string_view{}; }
    const char * ptrToLegCouponPaymentDate() const { return buf + fieldLegCouponPaymentDate.offset; }
    const char * getIfSetLegCouponPaymentDate() const { return fieldLegCouponPaymentDate.offset >= 0 ? buf + fieldLegCouponPaymentDate.offset : nullptr; }
    private: FieldLegCouponPaymentDate fieldLegCouponPaymentDate;
@@ -2458,6 +2729,7 @@ class GroupLegs : public MessageBase
    public:
    bool isSetLegIssueDate() const { return fieldLegIssueDate.offset >= 0; }
    FieldLegIssueDate::ValueType getLegIssueDate() const { return fieldLegIssueDate.getValue( buf ); }
+   std::string_view getLegIssueDateView() const { return fieldLegIssueDate.offset >= 0 ? std::string_view{ buf + fieldLegIssueDate.offset, getValueLength( buf + fieldLegIssueDate.offset ) } : std::string_view{}; }
    const char * ptrToLegIssueDate() const { return buf + fieldLegIssueDate.offset; }
    const char * getIfSetLegIssueDate() const { return fieldLegIssueDate.offset >= 0 ? buf + fieldLegIssueDate.offset : nullptr; }
    private: FieldLegIssueDate fieldLegIssueDate;
@@ -2465,6 +2737,7 @@ class GroupLegs : public MessageBase
    public:
    bool isSetLegRepoCollateralSecurityType() const { return fieldLegRepoCollateralSecurityType.offset >= 0; }
    FieldLegRepoCollateralSecurityType::ValueType getLegRepoCollateralSecurityType() const { return fieldLegRepoCollateralSecurityType.getValue( buf ); }
+   std::string_view getLegRepoCollateralSecurityTypeView() const { return fieldLegRepoCollateralSecurityType.offset >= 0 ? std::string_view{ buf + fieldLegRepoCollateralSecurityType.offset, getValueLength( buf + fieldLegRepoCollateralSecurityType.offset ) } : std::string_view{}; }
    const char * ptrToLegRepoCollateralSecurityType() const { return buf + fieldLegRepoCollateralSecurityType.offset; }
    const char * getIfSetLegRepoCollateralSecurityType() const { return fieldLegRepoCollateralSecurityType.offset >= 0 ? buf + fieldLegRepoCollateralSecurityType.offset : nullptr; }
    private: FieldLegRepoCollateralSecurityType fieldLegRepoCollateralSecurityType;
@@ -2472,6 +2745,7 @@ class GroupLegs : public MessageBase
    public:
    bool isSetLegRepurchaseTerm() const { return fieldLegRepurchaseTerm.offset >= 0; }
    FieldLegRepurchaseTerm::ValueType getLegRepurchaseTerm() const { return fieldLegRepurchaseTerm.getValue( buf ); }
+   std::string_view getLegRepurchaseTermView() const { return fieldLegRepurchaseTerm.offset >= 0 ? std::string_view{ buf + fieldLegRepurchaseTerm.offset, getValueLength( buf + fieldLegRepurchaseTerm.offset ) } : std::string_view{}; }
    const char * ptrToLegRepurchaseTerm() const { return buf + fieldLegRepurchaseTerm.offset; }
    const char * getIfSetLegRepurchaseTerm() const { return fieldLegRepurchaseTerm.offset >= 0 ? buf + fieldLegRepurchaseTerm.offset : nullptr; }
    private: FieldLegRepurchaseTerm fieldLegRepurchaseTerm;
@@ -2479,6 +2753,7 @@ class GroupLegs : public MessageBase
    public:
    bool isSetLegRepurchaseRate() const { return fieldLegRepurchaseRate.offset >= 0; }
    FieldLegRepurchaseRate::ValueType getLegRepurchaseRate() const { return fieldLegRepurchaseRate.getValue( buf ); }
+   std::string_view getLegRepurchaseRateView() const { return fieldLegRepurchaseRate.offset >= 0 ? std::string_view{ buf + fieldLegRepurchaseRate.offset, getValueLength( buf + fieldLegRepurchaseRate.offset ) } : std::string_view{}; }
    const char * ptrToLegRepurchaseRate() const { return buf + fieldLegRepurchaseRate.offset; }
    const char * getIfSetLegRepurchaseRate() const { return fieldLegRepurchaseRate.offset >= 0 ? buf + fieldLegRepurchaseRate.offset : nullptr; }
    private: FieldLegRepurchaseRate fieldLegRepurchaseRate;
@@ -2486,6 +2761,7 @@ class GroupLegs : public MessageBase
    public:
    bool isSetLegFactor() const { return fieldLegFactor.offset >= 0; }
    FieldLegFactor::ValueType getLegFactor() const { return fieldLegFactor.getValue( buf ); }
+   std::string_view getLegFactorView() const { return fieldLegFactor.offset >= 0 ? std::string_view{ buf + fieldLegFactor.offset, getValueLength( buf + fieldLegFactor.offset ) } : std::string_view{}; }
    const char * ptrToLegFactor() const { return buf + fieldLegFactor.offset; }
    const char * getIfSetLegFactor() const { return fieldLegFactor.offset >= 0 ? buf + fieldLegFactor.offset : nullptr; }
    private: FieldLegFactor fieldLegFactor;
@@ -2493,6 +2769,7 @@ class GroupLegs : public MessageBase
    public:
    bool isSetLegCreditRating() const { return fieldLegCreditRating.offset >= 0; }
    FieldLegCreditRating::ValueType getLegCreditRating() const { return fieldLegCreditRating.getValue( buf ); }
+   std::string_view getLegCreditRatingView() const { return fieldLegCreditRating.offset >= 0 ? std::string_view{ buf + fieldLegCreditRating.offset, getValueLength( buf + fieldLegCreditRating.offset ) } : std::string_view{}; }
    const char * ptrToLegCreditRating() const { return buf + fieldLegCreditRating.offset; }
    const char * getIfSetLegCreditRating() const { return fieldLegCreditRating.offset >= 0 ? buf + fieldLegCreditRating.offset : nullptr; }
    private: FieldLegCreditRating fieldLegCreditRating;
@@ -2500,6 +2777,7 @@ class GroupLegs : public MessageBase
    public:
    bool isSetLegInstrRegistry() const { return fieldLegInstrRegistry.offset >= 0; }
    FieldLegInstrRegistry::ValueType getLegInstrRegistry() const { return fieldLegInstrRegistry.getValue( buf ); }
+   std::string_view getLegInstrRegistryView() const { return fieldLegInstrRegistry.offset >= 0 ? std::string_view{ buf + fieldLegInstrRegistry.offset, getValueLength( buf + fieldLegInstrRegistry.offset ) } : std::string_view{}; }
    const char * ptrToLegInstrRegistry() const { return buf + fieldLegInstrRegistry.offset; }
    const char * getIfSetLegInstrRegistry() const { return fieldLegInstrRegistry.offset >= 0 ? buf + fieldLegInstrRegistry.offset : nullptr; }
    private: FieldLegInstrRegistry fieldLegInstrRegistry;
@@ -2507,6 +2785,7 @@ class GroupLegs : public MessageBase
    public:
    bool isSetLegCountryOfIssue() const { return fieldLegCountryOfIssue.offset >= 0; }
    FieldLegCountryOfIssue::ValueType getLegCountryOfIssue() const { return fieldLegCountryOfIssue.getValue( buf ); }
+   std::string_view getLegCountryOfIssueView() const { return fieldLegCountryOfIssue.offset >= 0 ? std::string_view{ buf + fieldLegCountryOfIssue.offset, getValueLength( buf + fieldLegCountryOfIssue.offset ) } : std::string_view{}; }
    const char * ptrToLegCountryOfIssue() const { return buf + fieldLegCountryOfIssue.offset; }
    const char * getIfSetLegCountryOfIssue() const { return fieldLegCountryOfIssue.offset >= 0 ? buf + fieldLegCountryOfIssue.offset : nullptr; }
    private: FieldLegCountryOfIssue fieldLegCountryOfIssue;
@@ -2514,6 +2793,7 @@ class GroupLegs : public MessageBase
    public:
    bool isSetLegStateOrProvinceOfIssue() const { return fieldLegStateOrProvinceOfIssue.offset >= 0; }
    FieldLegStateOrProvinceOfIssue::ValueType getLegStateOrProvinceOfIssue() const { return fieldLegStateOrProvinceOfIssue.getValue( buf ); }
+   std::string_view getLegStateOrProvinceOfIssueView() const { return fieldLegStateOrProvinceOfIssue.offset >= 0 ? std::string_view{ buf + fieldLegStateOrProvinceOfIssue.offset, getValueLength( buf + fieldLegStateOrProvinceOfIssue.offset ) } : std::string_view{}; }
    const char * ptrToLegStateOrProvinceOfIssue() const { return buf + fieldLegStateOrProvinceOfIssue.offset; }
    const char * getIfSetLegStateOrProvinceOfIssue() const { return fieldLegStateOrProvinceOfIssue.offset >= 0 ? buf + fieldLegStateOrProvinceOfIssue.offset : nullptr; }
    private: FieldLegStateOrProvinceOfIssue fieldLegStateOrProvinceOfIssue;
@@ -2521,6 +2801,7 @@ class GroupLegs : public MessageBase
    public:
    bool isSetLegLocaleOfIssue() const { return fieldLegLocaleOfIssue.offset >= 0; }
    FieldLegLocaleOfIssue::ValueType getLegLocaleOfIssue() const { return fieldLegLocaleOfIssue.getValue( buf ); }
+   std::string_view getLegLocaleOfIssueView() const { return fieldLegLocaleOfIssue.offset >= 0 ? std::string_view{ buf + fieldLegLocaleOfIssue.offset, getValueLength( buf + fieldLegLocaleOfIssue.offset ) } : std::string_view{}; }
    const char * ptrToLegLocaleOfIssue() const { return buf + fieldLegLocaleOfIssue.offset; }
    const char * getIfSetLegLocaleOfIssue() const { return fieldLegLocaleOfIssue.offset >= 0 ? buf + fieldLegLocaleOfIssue.offset : nullptr; }
    private: FieldLegLocaleOfIssue fieldLegLocaleOfIssue;
@@ -2528,6 +2809,7 @@ class GroupLegs : public MessageBase
    public:
    bool isSetLegRedemptionDate() const { return fieldLegRedemptionDate.offset >= 0; }
    FieldLegRedemptionDate::ValueType getLegRedemptionDate() const { return fieldLegRedemptionDate.getValue( buf ); }
+   std::string_view getLegRedemptionDateView() const { return fieldLegRedemptionDate.offset >= 0 ? std::string_view{ buf + fieldLegRedemptionDate.offset, getValueLength( buf + fieldLegRedemptionDate.offset ) } : std::string_view{}; }
    const char * ptrToLegRedemptionDate() const { return buf + fieldLegRedemptionDate.offset; }
    const char * getIfSetLegRedemptionDate() const { return fieldLegRedemptionDate.offset >= 0 ? buf + fieldLegRedemptionDate.offset : nullptr; }
    private: FieldLegRedemptionDate fieldLegRedemptionDate;
@@ -2535,6 +2817,7 @@ class GroupLegs : public MessageBase
    public:
    bool isSetLegStrikePrice() const { return fieldLegStrikePrice.offset >= 0; }
    FieldLegStrikePrice::ValueType getLegStrikePrice() const { return fieldLegStrikePrice.getValue( buf ); }
+   std::string_view getLegStrikePriceView() const { return fieldLegStrikePrice.offset >= 0 ? std::string_view{ buf + fieldLegStrikePrice.offset, getValueLength( buf + fieldLegStrikePrice.offset ) } : std::string_view{}; }
    const char * ptrToLegStrikePrice() const { return buf + fieldLegStrikePrice.offset; }
    const char * getIfSetLegStrikePrice() const { return fieldLegStrikePrice.offset >= 0 ? buf + fieldLegStrikePrice.offset : nullptr; }
    private: FieldLegStrikePrice fieldLegStrikePrice;
@@ -2542,6 +2825,7 @@ class GroupLegs : public MessageBase
    public:
    bool isSetLegStrikeCurrency() const { return fieldLegStrikeCurrency.offset >= 0; }
    FieldLegStrikeCurrency::ValueType getLegStrikeCurrency() const { return fieldLegStrikeCurrency.getValue( buf ); }
+   std::string_view getLegStrikeCurrencyView() const { return fieldLegStrikeCurrency.offset >= 0 ? std::string_view{ buf + fieldLegStrikeCurrency.offset, getValueLength( buf + fieldLegStrikeCurrency.offset ) } : std::string_view{}; }
    const char * ptrToLegStrikeCurrency() const { return buf + fieldLegStrikeCurrency.offset; }
    const char * getIfSetLegStrikeCurrency() const { return fieldLegStrikeCurrency.offset >= 0 ? buf + fieldLegStrikeCurrency.offset : nullptr; }
    private: FieldLegStrikeCurrency fieldLegStrikeCurrency;
@@ -2549,6 +2833,7 @@ class GroupLegs : public MessageBase
    public:
    bool isSetLegOptAttribute() const { return fieldLegOptAttribute.offset >= 0; }
    FieldLegOptAttribute::ValueType getLegOptAttribute() const { return fieldLegOptAttribute.getValue( buf ); }
+   std::string_view getLegOptAttributeView() const { return fieldLegOptAttribute.offset >= 0 ? std::string_view{ buf + fieldLegOptAttribute.offset, getValueLength( buf + fieldLegOptAttribute.offset ) } : std::string_view{}; }
    const char * ptrToLegOptAttribute() const { return buf + fieldLegOptAttribute.offset; }
    const char * getIfSetLegOptAttribute() const { return fieldLegOptAttribute.offset >= 0 ? buf + fieldLegOptAttribute.offset : nullptr; }
    private: FieldLegOptAttribute fieldLegOptAttribute;
@@ -2556,6 +2841,7 @@ class GroupLegs : public MessageBase
    public:
    bool isSetLegContractMultiplier() const { return fieldLegContractMultiplier.offset >= 0; }
    FieldLegContractMultiplier::ValueType getLegContractMultiplier() const { return fieldLegContractMultiplier.getValue( buf ); }
+   std::string_view getLegContractMultiplierView() const { return fieldLegContractMultiplier.offset >= 0 ? std::string_view{ buf + fieldLegContractMultiplier.offset, getValueLength( buf + fieldLegContractMultiplier.offset ) } : std::string_view{}; }
    const char * ptrToLegContractMultiplier() const { return buf + fieldLegContractMultiplier.offset; }
    const char * getIfSetLegContractMultiplier() const { return fieldLegContractMultiplier.offset >= 0 ? buf + fieldLegContractMultiplier.offset : nullptr; }
    private: FieldLegContractMultiplier fieldLegContractMultiplier;
@@ -2563,6 +2849,7 @@ class GroupLegs : public MessageBase
    public:
    bool isSetLegCouponRate() const { return fieldLegCouponRate.offset >= 0; }
    FieldLegCouponRate::ValueType getLegCouponRate() const { return fieldLegCouponRate.getValue( buf ); }
+   std::string_view getLegCouponRateView() const { return fieldLegCouponRate.offset >= 0 ? std::string_view{ buf + fieldLegCouponRate.offset, getValueLength( buf + fieldLegCouponRate.offset ) } : std::string_view{}; }
    const char * ptrToLegCouponRate() const { return buf + fieldLegCouponRate.offset; }
    const char * getIfSetLegCouponRate() const { return fieldLegCouponRate.offset >= 0 ? buf + fieldLegCouponRate.offset : nullptr; }
    private: FieldLegCouponRate fieldLegCouponRate;
@@ -2570,6 +2857,7 @@ class GroupLegs : public MessageBase
    public:
    bool isSetLegSecurityExchange() const { return fieldLegSecurityExchange.offset >= 0; }
    FieldLegSecurityExchange::ValueType getLegSecurityExchange() const { return fieldLegSecurityExchange.getValue( buf ); }
+   std::string_view getLegSecurityExchangeView() const { return fieldLegSecurityExchange.offset >= 0 ? std::string_view{ buf + fieldLegSecurityExchange.offset, getValueLength( buf + fieldLegSecurityExchange.offset ) } : std::string_view{}; }
    const char * ptrToLegSecurityExchange() const { return buf + fieldLegSecurityExchange.offset; }
    const char * getIfSetLegSecurityExchange() const { return fieldLegSecurityExchange.offset >= 0 ? buf + fieldLegSecurityExchange.offset : nullptr; }
    private: FieldLegSecurityExchange fieldLegSecurityExchange;
@@ -2577,6 +2865,7 @@ class GroupLegs : public MessageBase
    public:
    bool isSetLegIssuer() const { return fieldLegIssuer.offset >= 0; }
    FieldLegIssuer::ValueType getLegIssuer() const { return fieldLegIssuer.getValue( buf ); }
+   std::string_view getLegIssuerView() const { return fieldLegIssuer.offset >= 0 ? std::string_view{ buf + fieldLegIssuer.offset, getValueLength( buf + fieldLegIssuer.offset ) } : std::string_view{}; }
    const char * ptrToLegIssuer() const { return buf + fieldLegIssuer.offset; }
    const char * getIfSetLegIssuer() const { return fieldLegIssuer.offset >= 0 ? buf + fieldLegIssuer.offset : nullptr; }
    private: FieldLegIssuer fieldLegIssuer;
@@ -2584,6 +2873,7 @@ class GroupLegs : public MessageBase
    public:
    bool isSetEncodedLegIssuerLen() const { return fieldEncodedLegIssuerLen.offset >= 0; }
    FieldEncodedLegIssuerLen::ValueType getEncodedLegIssuerLen() const { return fieldEncodedLegIssuerLen.getValue( buf ); }
+   std::string_view getEncodedLegIssuerLenView() const { return fieldEncodedLegIssuerLen.offset >= 0 ? std::string_view{ buf + fieldEncodedLegIssuerLen.offset, getValueLength( buf + fieldEncodedLegIssuerLen.offset ) } : std::string_view{}; }
    const char * ptrToEncodedLegIssuerLen() const { return buf + fieldEncodedLegIssuerLen.offset; }
    const char * getIfSetEncodedLegIssuerLen() const { return fieldEncodedLegIssuerLen.offset >= 0 ? buf + fieldEncodedLegIssuerLen.offset : nullptr; }
    private: FieldEncodedLegIssuerLen fieldEncodedLegIssuerLen;
@@ -2591,6 +2881,7 @@ class GroupLegs : public MessageBase
    public:
    bool isSetEncodedLegIssuer() const { return fieldEncodedLegIssuer.offset >= 0; }
    FieldEncodedLegIssuer::ValueType getEncodedLegIssuer() const { return fieldEncodedLegIssuer.getValue( buf ); }
+   std::string_view getEncodedLegIssuerView() const { return fieldEncodedLegIssuer.offset >= 0 ? std::string_view{ buf + fieldEncodedLegIssuer.offset, getValueLength( buf + fieldEncodedLegIssuer.offset ) } : std::string_view{}; }
    const char * ptrToEncodedLegIssuer() const { return buf + fieldEncodedLegIssuer.offset; }
    const char * getIfSetEncodedLegIssuer() const { return fieldEncodedLegIssuer.offset >= 0 ? buf + fieldEncodedLegIssuer.offset : nullptr; }
    private: FieldEncodedLegIssuer fieldEncodedLegIssuer;
@@ -2598,6 +2889,7 @@ class GroupLegs : public MessageBase
    public:
    bool isSetLegSecurityDesc() const { return fieldLegSecurityDesc.offset >= 0; }
    FieldLegSecurityDesc::ValueType getLegSecurityDesc() const { return fieldLegSecurityDesc.getValue( buf ); }
+   std::string_view getLegSecurityDescView() const { return fieldLegSecurityDesc.offset >= 0 ? std::string_view{ buf + fieldLegSecurityDesc.offset, getValueLength( buf + fieldLegSecurityDesc.offset ) } : std::string_view{}; }
    const char * ptrToLegSecurityDesc() const { return buf + fieldLegSecurityDesc.offset; }
    const char * getIfSetLegSecurityDesc() const { return fieldLegSecurityDesc.offset >= 0 ? buf + fieldLegSecurityDesc.offset : nullptr; }
    private: FieldLegSecurityDesc fieldLegSecurityDesc;
@@ -2605,6 +2897,7 @@ class GroupLegs : public MessageBase
    public:
    bool isSetEncodedLegSecurityDescLen() const { return fieldEncodedLegSecurityDescLen.offset >= 0; }
    FieldEncodedLegSecurityDescLen::ValueType getEncodedLegSecurityDescLen() const { return fieldEncodedLegSecurityDescLen.getValue( buf ); }
+   std::string_view getEncodedLegSecurityDescLenView() const { return fieldEncodedLegSecurityDescLen.offset >= 0 ? std::string_view{ buf + fieldEncodedLegSecurityDescLen.offset, getValueLength( buf + fieldEncodedLegSecurityDescLen.offset ) } : std::string_view{}; }
    const char * ptrToEncodedLegSecurityDescLen() const { return buf + fieldEncodedLegSecurityDescLen.offset; }
    const char * getIfSetEncodedLegSecurityDescLen() const { return fieldEncodedLegSecurityDescLen.offset >= 0 ? buf + fieldEncodedLegSecurityDescLen.offset : nullptr; }
    private: FieldEncodedLegSecurityDescLen fieldEncodedLegSecurityDescLen;
@@ -2612,6 +2905,7 @@ class GroupLegs : public MessageBase
    public:
    bool isSetEncodedLegSecurityDesc() const { return fieldEncodedLegSecurityDesc.offset >= 0; }
    FieldEncodedLegSecurityDesc::ValueType getEncodedLegSecurityDesc() const { return fieldEncodedLegSecurityDesc.getValue( buf ); }
+   std::string_view getEncodedLegSecurityDescView() const { return fieldEncodedLegSecurityDesc.offset >= 0 ? std::string_view{ buf + fieldEncodedLegSecurityDesc.offset, getValueLength( buf + fieldEncodedLegSecurityDesc.offset ) } : std::string_view{}; }
    const char * ptrToEncodedLegSecurityDesc() const { return buf + fieldEncodedLegSecurityDesc.offset; }
    const char * getIfSetEncodedLegSecurityDesc() const { return fieldEncodedLegSecurityDesc.offset >= 0 ? buf + fieldEncodedLegSecurityDesc.offset : nullptr; }
    private: FieldEncodedLegSecurityDesc fieldEncodedLegSecurityDesc;
@@ -2619,6 +2913,7 @@ class GroupLegs : public MessageBase
    public:
    bool isSetLegRatioQty() const { return fieldLegRatioQty.offset >= 0; }
    FieldLegRatioQty::ValueType getLegRatioQty() const { return fieldLegRatioQty.getValue( buf ); }
+   std::string_view getLegRatioQtyView() const { return fieldLegRatioQty.offset >= 0 ? std::string_view{ buf + fieldLegRatioQty.offset, getValueLength( buf + fieldLegRatioQty.offset ) } : std::string_view{}; }
    const char * ptrToLegRatioQty() const { return buf + fieldLegRatioQty.offset; }
    const char * getIfSetLegRatioQty() const { return fieldLegRatioQty.offset >= 0 ? buf + fieldLegRatioQty.offset : nullptr; }
    private: FieldLegRatioQty fieldLegRatioQty;
@@ -2626,6 +2921,7 @@ class GroupLegs : public MessageBase
    public:
    bool isSetLegSide() const { return fieldLegSide.offset >= 0; }
    FieldLegSide::ValueType getLegSide() const { return fieldLegSide.getValue( buf ); }
+   std::string_view getLegSideView() const { return fieldLegSide.offset >= 0 ? std::string_view{ buf + fieldLegSide.offset, getValueLength( buf + fieldLegSide.offset ) } : std::string_view{}; }
    const char * ptrToLegSide() const { return buf + fieldLegSide.offset; }
    const char * getIfSetLegSide() const { return fieldLegSide.offset >= 0 ? buf + fieldLegSide.offset : nullptr; }
    private: FieldLegSide fieldLegSide;
@@ -2633,6 +2929,7 @@ class GroupLegs : public MessageBase
    public:
    bool isSetLegCurrency() const { return fieldLegCurrency.offset >= 0; }
    FieldLegCurrency::ValueType getLegCurrency() const { return fieldLegCurrency.getValue( buf ); }
+   std::string_view getLegCurrencyView() const { return fieldLegCurrency.offset >= 0 ? std::string_view{ buf + fieldLegCurrency.offset, getValueLength( buf + fieldLegCurrency.offset ) } : std::string_view{}; }
    const char * ptrToLegCurrency() const { return buf + fieldLegCurrency.offset; }
    const char * getIfSetLegCurrency() const { return fieldLegCurrency.offset >= 0 ? buf + fieldLegCurrency.offset : nullptr; }
    private: FieldLegCurrency fieldLegCurrency;
@@ -2640,6 +2937,7 @@ class GroupLegs : public MessageBase
    public:
    bool isSetLegPool() const { return fieldLegPool.offset >= 0; }
    FieldLegPool::ValueType getLegPool() const { return fieldLegPool.getValue( buf ); }
+   std::string_view getLegPoolView() const { return fieldLegPool.offset >= 0 ? std::string_view{ buf + fieldLegPool.offset, getValueLength( buf + fieldLegPool.offset ) } : std::string_view{}; }
    const char * ptrToLegPool() const { return buf + fieldLegPool.offset; }
    const char * getIfSetLegPool() const { return fieldLegPool.offset >= 0 ? buf + fieldLegPool.offset : nullptr; }
    private: FieldLegPool fieldLegPool;
@@ -2647,6 +2945,7 @@ class GroupLegs : public MessageBase
    public:
    bool isSetLegDatedDate() const { return fieldLegDatedDate.offset >= 0; }
    FieldLegDatedDate::ValueType getLegDatedDate() const { return fieldLegDatedDate.getValue( buf ); }
+   std::string_view getLegDatedDateView() const { return fieldLegDatedDate.offset >= 0 ? std::string_view{ buf + fieldLegDatedDate.offset, getValueLength( buf + fieldLegDatedDate.offset ) } : std::string_view{}; }
    const char * ptrToLegDatedDate() const { return buf + fieldLegDatedDate.offset; }
    const char * getIfSetLegDatedDate() const { return fieldLegDatedDate.offset >= 0 ? buf + fieldLegDatedDate.offset : nullptr; }
    private: FieldLegDatedDate fieldLegDatedDate;
@@ -2654,6 +2953,7 @@ class GroupLegs : public MessageBase
    public:
    bool isSetLegContractSettlMonth() const { return fieldLegContractSettlMonth.offset >= 0; }
    FieldLegContractSettlMonth::ValueType getLegContractSettlMonth() const { return fieldLegContractSettlMonth.getValue( buf ); }
+   std::string_view getLegContractSettlMonthView() const { return fieldLegContractSettlMonth.offset >= 0 ? std::string_view{ buf + fieldLegContractSettlMonth.offset, getValueLength( buf + fieldLegContractSettlMonth.offset ) } : std::string_view{}; }
    const char * ptrToLegContractSettlMonth() const { return buf + fieldLegContractSettlMonth.offset; }
    const char * getIfSetLegContractSettlMonth() const { return fieldLegContractSettlMonth.offset >= 0 ? buf + fieldLegContractSettlMonth.offset : nullptr; }
    private: FieldLegContractSettlMonth fieldLegContractSettlMonth;
@@ -2661,6 +2961,7 @@ class GroupLegs : public MessageBase
    public:
    bool isSetLegInterestAccrualDate() const { return fieldLegInterestAccrualDate.offset >= 0; }
    FieldLegInterestAccrualDate::ValueType getLegInterestAccrualDate() const { return fieldLegInterestAccrualDate.getValue( buf ); }
+   std::string_view getLegInterestAccrualDateView() const { return fieldLegInterestAccrualDate.offset >= 0 ? std::string_view{ buf + fieldLegInterestAccrualDate.offset, getValueLength( buf + fieldLegInterestAccrualDate.offset ) } : std::string_view{}; }
    const char * ptrToLegInterestAccrualDate() const { return buf + fieldLegInterestAccrualDate.offset; }
    const char * getIfSetLegInterestAccrualDate() const { return fieldLegInterestAccrualDate.offset >= 0 ? buf + fieldLegInterestAccrualDate.offset : nullptr; }
    private: FieldLegInterestAccrualDate fieldLegInterestAccrualDate;
@@ -2668,6 +2969,7 @@ class GroupLegs : public MessageBase
    public:
    bool isSetLegQty() const { return fieldLegQty.offset >= 0; }
    FieldLegQty::ValueType getLegQty() const { return fieldLegQty.getValue( buf ); }
+   std::string_view getLegQtyView() const { return fieldLegQty.offset >= 0 ? std::string_view{ buf + fieldLegQty.offset, getValueLength( buf + fieldLegQty.offset ) } : std::string_view{}; }
    const char * ptrToLegQty() const { return buf + fieldLegQty.offset; }
    const char * getIfSetLegQty() const { return fieldLegQty.offset >= 0 ? buf + fieldLegQty.offset : nullptr; }
    private: FieldLegQty fieldLegQty;
@@ -2675,6 +2977,7 @@ class GroupLegs : public MessageBase
    public:
    bool isSetLegSwapType() const { return fieldLegSwapType.offset >= 0; }
    FieldLegSwapType::ValueType getLegSwapType() const { return fieldLegSwapType.getValue( buf ); }
+   std::string_view getLegSwapTypeView() const { return fieldLegSwapType.offset >= 0 ? std::string_view{ buf + fieldLegSwapType.offset, getValueLength( buf + fieldLegSwapType.offset ) } : std::string_view{}; }
    const char * ptrToLegSwapType() const { return buf + fieldLegSwapType.offset; }
    const char * getIfSetLegSwapType() const { return fieldLegSwapType.offset >= 0 ? buf + fieldLegSwapType.offset : nullptr; }
    private: FieldLegSwapType fieldLegSwapType;
@@ -2682,6 +2985,7 @@ class GroupLegs : public MessageBase
    public:
    bool isSetNoLegStipulations() const { return fieldNoLegStipulations.offset >= 0; }
    FieldNoLegStipulations::ValueType getNoLegStipulations() const { return fieldNoLegStipulations.getValue( buf ); }
+   std::string_view getNoLegStipulationsView() const { return fieldNoLegStipulations.offset >= 0 ? std::string_view{ buf + fieldNoLegStipulations.offset, getValueLength( buf + fieldNoLegStipulations.offset ) } : std::string_view{}; }
    const char * ptrToNoLegStipulations() const { return buf + fieldNoLegStipulations.offset; }
    const char * getIfSetNoLegStipulations() const { return fieldNoLegStipulations.offset >= 0 ? buf + fieldNoLegStipulations.offset : nullptr; }
    private: FieldNoLegStipulations fieldNoLegStipulations;
@@ -2694,6 +2998,7 @@ class GroupLegs : public MessageBase
    public:
    bool isSetLegPositionEffect() const { return fieldLegPositionEffect.offset >= 0; }
    FieldLegPositionEffect::ValueType getLegPositionEffect() const { return fieldLegPositionEffect.getValue( buf ); }
+   std::string_view getLegPositionEffectView() const { return fieldLegPositionEffect.offset >= 0 ? std::string_view{ buf + fieldLegPositionEffect.offset, getValueLength( buf + fieldLegPositionEffect.offset ) } : std::string_view{}; }
    const char * ptrToLegPositionEffect() const { return buf + fieldLegPositionEffect.offset; }
    const char * getIfSetLegPositionEffect() const { return fieldLegPositionEffect.offset >= 0 ? buf + fieldLegPositionEffect.offset : nullptr; }
    private: FieldLegPositionEffect fieldLegPositionEffect;
@@ -2701,6 +3006,7 @@ class GroupLegs : public MessageBase
    public:
    bool isSetLegCoveredOrUncovered() const { return fieldLegCoveredOrUncovered.offset >= 0; }
    FieldLegCoveredOrUncovered::ValueType getLegCoveredOrUncovered() const { return fieldLegCoveredOrUncovered.getValue( buf ); }
+   std::string_view getLegCoveredOrUncoveredView() const { return fieldLegCoveredOrUncovered.offset >= 0 ? std::string_view{ buf + fieldLegCoveredOrUncovered.offset, getValueLength( buf + fieldLegCoveredOrUncovered.offset ) } : std::string_view{}; }
    const char * ptrToLegCoveredOrUncovered() const { return buf + fieldLegCoveredOrUncovered.offset; }
    const char * getIfSetLegCoveredOrUncovered() const { return fieldLegCoveredOrUncovered.offset >= 0 ? buf + fieldLegCoveredOrUncovered.offset : nullptr; }
    private: FieldLegCoveredOrUncovered fieldLegCoveredOrUncovered;
@@ -2708,6 +3014,7 @@ class GroupLegs : public MessageBase
    public:
    bool isSetNoNestedPartyIDs() const { return fieldNoNestedPartyIDs.offset >= 0; }
    FieldNoNestedPartyIDs::ValueType getNoNestedPartyIDs() const { return fieldNoNestedPartyIDs.getValue( buf ); }
+   std::string_view getNoNestedPartyIDsView() const { return fieldNoNestedPartyIDs.offset >= 0 ? std::string_view{ buf + fieldNoNestedPartyIDs.offset, getValueLength( buf + fieldNoNestedPartyIDs.offset ) } : std::string_view{}; }
    const char * ptrToNoNestedPartyIDs() const { return buf + fieldNoNestedPartyIDs.offset; }
    const char * getIfSetNoNestedPartyIDs() const { return fieldNoNestedPartyIDs.offset >= 0 ? buf + fieldNoNestedPartyIDs.offset : nullptr; }
    private: FieldNoNestedPartyIDs fieldNoNestedPartyIDs;
@@ -2720,6 +3027,7 @@ class GroupLegs : public MessageBase
    public:
    bool isSetLegRefID() const { return fieldLegRefID.offset >= 0; }
    FieldLegRefID::ValueType getLegRefID() const { return fieldLegRefID.getValue( buf ); }
+   std::string_view getLegRefIDView() const { return fieldLegRefID.offset >= 0 ? std::string_view{ buf + fieldLegRefID.offset, getValueLength( buf + fieldLegRefID.offset ) } : std::string_view{}; }
    const char * ptrToLegRefID() const { return buf + fieldLegRefID.offset; }
    const char * getIfSetLegRefID() const { return fieldLegRefID.offset >= 0 ? buf + fieldLegRefID.offset : nullptr; }
    private: FieldLegRefID fieldLegRefID;
@@ -2727,6 +3035,7 @@ class GroupLegs : public MessageBase
    public:
    bool isSetLegPrice() const { return fieldLegPrice.offset >= 0; }
    FieldLegPrice::ValueType getLegPrice() const { return fieldLegPrice.getValue( buf ); }
+   std::string_view getLegPriceView() const { return fieldLegPrice.offset >= 0 ? std::string_view{ buf + fieldLegPrice.offset, getValueLength( buf + fieldLegPrice.offset ) } : std::string_view{}; }
    const char * ptrToLegPrice() const { return buf + fieldLegPrice.offset; }
    const char * getIfSetLegPrice() const { return fieldLegPrice.offset >= 0 ? buf + fieldLegPrice.offset : nullptr; }
    private: FieldLegPrice fieldLegPrice;
@@ -2734,6 +3043,7 @@ class GroupLegs : public MessageBase
    public:
    bool isSetLegSettlType() const { return fieldLegSettlType.offset >= 0; }
    FieldLegSettlType::ValueType getLegSettlType() const { return fieldLegSettlType.getValue( buf ); }
+   std::string_view getLegSettlTypeView() const { return fieldLegSettlType.offset >= 0 ? std::string_view{ buf + fieldLegSettlType.offset, getValueLength( buf + fieldLegSettlType.offset ) } : std::string_view{}; }
    const char * ptrToLegSettlType() const { return buf + fieldLegSettlType.offset; }
    const char * getIfSetLegSettlType() const { return fieldLegSettlType.offset >= 0 ? buf + fieldLegSettlType.offset : nullptr; }
    private: FieldLegSettlType fieldLegSettlType;
@@ -2741,6 +3051,7 @@ class GroupLegs : public MessageBase
    public:
    bool isSetLegSettlDate() const { return fieldLegSettlDate.offset >= 0; }
    FieldLegSettlDate::ValueType getLegSettlDate() const { return fieldLegSettlDate.getValue( buf ); }
+   std::string_view getLegSettlDateView() const { return fieldLegSettlDate.offset >= 0 ? std::string_view{ buf + fieldLegSettlDate.offset, getValueLength( buf + fieldLegSettlDate.offset ) } : std::string_view{}; }
    const char * ptrToLegSettlDate() const { return buf + fieldLegSettlDate.offset; }
    const char * getIfSetLegSettlDate() const { return fieldLegSettlDate.offset >= 0 ? buf + fieldLegSettlDate.offset : nullptr; }
    private: FieldLegSettlDate fieldLegSettlDate;
@@ -2748,6 +3059,7 @@ class GroupLegs : public MessageBase
    public:
    bool isSetLegLastPx() const { return fieldLegLastPx.offset >= 0; }
    FieldLegLastPx::ValueType getLegLastPx() const { return fieldLegLastPx.getValue( buf ); }
+   std::string_view getLegLastPxView() const { return fieldLegLastPx.offset >= 0 ? std::string_view{ buf + fieldLegLastPx.offset, getValueLength( buf + fieldLegLastPx.offset ) } : std::string_view{}; }
    const char * ptrToLegLastPx() const { return buf + fieldLegLastPx.offset; }
    const char * getIfSetLegLastPx() const { return fieldLegLastPx.offset >= 0 ? buf + fieldLegLastPx.offset : nullptr; }
    private: FieldLegLastPx fieldLegLastPx;
@@ -2773,6 +3085,7 @@ class GroupQuoteEntries : public MessageBase
    public:
    bool isSetSymbol() const { return fieldSymbol.offset >= 0; }
    FieldSymbol::ValueType getSymbol() const { return fieldSymbol.getValue( buf ); }
+   std::string_view getSymbolView() const { return fieldSymbol.offset >= 0 ? std::string_view{ buf + fieldSymbol.offset, getValueLength( buf + fieldSymbol.offset ) } : std::string_view{}; }
    const char * ptrToSymbol() const { return buf + fieldSymbol.offset; }
    const char * getIfSetSymbol() const { return fieldSymbol.offset >= 0 ? buf + fieldSymbol.offset : nullptr; }
    private: FieldSymbol fieldSymbol;
@@ -2780,6 +3093,7 @@ class GroupQuoteEntries : public MessageBase
    public:
    bool isSetSymbolSfx() const { return fieldSymbolSfx.offset >= 0; }
    FieldSymbolSfx::ValueType getSymbolSfx() const { return fieldSymbolSfx.getValue( buf ); }
+   std::string_view getSymbolSfxView() const { return fieldSymbolSfx.offset >= 0 ? std::string_view{ buf + fieldSymbolSfx.offset, getValueLength( buf + fieldSymbolSfx.offset ) } : std::string_view{}; }
    const char * ptrToSymbolSfx() const { return buf + fieldSymbolSfx.offset; }
    const char * getIfSetSymbolSfx() const { return fieldSymbolSfx.offset >= 0 ? buf + fieldSymbolSfx.offset : nullptr; }
    private: FieldSymbolSfx fieldSymbolSfx;
@@ -2787,6 +3101,7 @@ class GroupQuoteEntries : public MessageBase
    public:
    bool isSetSecurityID() const { return fieldSecurityID.offset >= 0; }
    FieldSecurityID::ValueType getSecurityID() const { return fieldSecurityID.getValue( buf ); }
+   std::string_view getSecurityIDView() const { return fieldSecurityID.offset >= 0 ? std::string_view{ buf + fieldSecurityID.offset, getValueLength( buf + fieldSecurityID.offset ) } : std::string_view{}; }
    const char * ptrToSecurityID() const { return buf + fieldSecurityID.offset; }
    const char * getIfSetSecurityID() const { return fieldSecurityID.offset >= 0 ? buf + fieldSecurityID.offset : nullptr; }
    private: FieldSecurityID fieldSecurityID;
@@ -2794,6 +3109,7 @@ class GroupQuoteEntries : public MessageBase
    public:
    bool isSetSecurityIDSource() const { return fieldSecurityIDSource.offset >= 0; }
    FieldSecurityIDSource::ValueType getSecurityIDSource() const { return fieldSecurityIDSource.getValue( buf ); }
+   std::string_view getSecurityIDSourceView() const { return fieldSecurityIDSource.offset >= 0 ? std::string_view{ buf + fieldSecurityIDSource.offset, getValueLength( buf + fieldSecurityIDSource.offset ) } : std::string_view{}; }
    const char * ptrToSecurityIDSource() const { return buf + fieldSecurityIDSource.offset; }
    const char * getIfSetSecurityIDSource() const { return fieldSecurityIDSource.offset >= 0 ? buf + fieldSecurityIDSource.offset : nullptr; }
    private: FieldSecurityIDSource fieldSecurityIDSource;
@@ -2801,6 +3117,7 @@ class GroupQuoteEntries : public MessageBase
    public:
    bool isSetNoSecurityAltID() const { return fieldNoSecurityAltID.offset >= 0; }
    FieldNoSecurityAltID::ValueType getNoSecurityAltID() const { return fieldNoSecurityAltID.getValue( buf ); }
+   std::string_view getNoSecurityAltIDView() const { return fieldNoSecurityAltID.offset >= 0 ? std::string_view{ buf + fieldNoSecurityAltID.offset, getValueLength( buf + fieldNoSecurityAltID.offset ) } : std::string_view{}; }
    const char * ptrToNoSecurityAltID() const { return buf + fieldNoSecurityAltID.offset; }
    const char * getIfSetNoSecurityAltID() const { return fieldNoSecurityAltID.offset >= 0 ? buf + fieldNoSecurityAltID.offset : nullptr; }
    private: FieldNoSecurityAltID fieldNoSecurityAltID;
@@ -2813,6 +3130,7 @@ class GroupQuoteEntries : public MessageBase
    public:
    bool isSetProduct() const { return fieldProduct.offset >= 0; }
    FieldProduct::ValueType getProduct() const { return fieldProduct.getValue( buf ); }
+   std::string_view getProductView() const { return fieldProduct.offset >= 0 ? std::string_view{ buf + fieldProduct.offset, getValueLength( buf + fieldProduct.offset ) } : std::string_view{}; }
    const char * ptrToProduct() const { return buf + fieldProduct.offset; }
    const char * getIfSetProduct() const { return fieldProduct.offset >= 0 ? buf + fieldProduct.offset : nullptr; }
    private: FieldProduct fieldProduct;
@@ -2820,6 +3138,7 @@ class GroupQuoteEntries : public MessageBase
    public:
    bool isSetCFICode() const { return fieldCFICode.offset >= 0; }
    FieldCFICode::ValueType getCFICode() const { return fieldCFICode.getValue( buf ); }
+   std::string_view getCFICodeView() const { return fieldCFICode.offset >= 0 ? std::string_view{ buf + fieldCFICode.offset, getValueLength( buf + fieldCFICode.offset ) } : std::string_view{}; }
    const char * ptrToCFICode() const { return buf + fieldCFICode.offset; }
    const char * getIfSetCFICode() const { return fieldCFICode.offset >= 0 ? buf + fieldCFICode.offset : nullptr; }
    private: FieldCFICode fieldCFICode;
@@ -2827,6 +3146,7 @@ class GroupQuoteEntries : public MessageBase
    public:
    bool isSetSecurityType() const { return fieldSecurityType.offset >= 0; }
    FieldSecurityType::ValueType getSecurityType() const { return fieldSecurityType.getValue( buf ); }
+   std::string_view getSecurityTypeView() const { return fieldSecurityType.offset >= 0 ? std::string_view{ buf + fieldSecurityType.offset, getValueLength( buf + fieldSecurityType.offset ) } : std::string_view{}; }
    const char * ptrToSecurityType() const { return buf + fieldSecurityType.offset; }
    const char * getIfSetSecurityType() const { return fieldSecurityType.offset >= 0 ? buf + fieldSecurityType.offset : nullptr; }
    private: FieldSecurityType fieldSecurityType;
@@ -2834,6 +3154,7 @@ class GroupQuoteEntries : public MessageBase
    public:
    bool isSetSecuritySubType() const { return fieldSecuritySubType.offset >= 0; }
    FieldSecuritySubType::ValueType getSecuritySubType() const { return fieldSecuritySubType.getValue( buf ); }
+   std::string_view getSecuritySubTypeView() const { return fieldSecuritySubType.offset >= 0 ? std::string_view{ buf + fieldSecuritySubType.offset, getValueLength( buf + fieldSecuritySubType.offset ) } : std::string_view{}; }
    const char * ptrToSecuritySubType() const { return buf + fieldSecuritySubType.offset; }
    const char * getIfSetSecuritySubType() const { return fieldSecuritySubType.offset >= 0 ? buf + fieldSecuritySubType.offset : nullptr; }
    private: FieldSecuritySubType fieldSecuritySubType;
@@ -2841,6 +3162,7 @@ class GroupQuoteEntries : public MessageBase
    public:
    bool isSetMaturityMonthYear() const { return fieldMaturityMonthYear.offset >= 0; }
    FieldMaturityMonthYear::ValueType getMaturityMonthYear() const { return fieldMaturityMonthYear.getValue( buf ); }
+   std::string_view getMaturityMonthYearView() const { return fieldMaturityMonthYear.offset >= 0 ? std::string_view{ buf + fieldMaturityMonthYear.offset, getValueLength( buf + fieldMaturityMonthYear.offset ) } : std::string_view{}; }
    const char * ptrToMaturityMonthYear() const { return buf + fieldMaturityMonthYear.offset; }
    const char * getIfSetMaturityMonthYear() const { return fieldMaturityMonthYear.offset >= 0 ? buf + fieldMaturityMonthYear.offset : nullptr; }
    private: FieldMaturityMonthYear fieldMaturityMonthYear;
@@ -2848,6 +3170,7 @@ class GroupQuoteEntries : public MessageBase
    public:
    bool isSetMaturityDate() const { return fieldMaturityDate.offset >= 0; }
    FieldMaturityDate::ValueType getMaturityDate() const { return fieldMaturityDate.getValue( buf ); }
+   std::string_view getMaturityDateView() const { return fieldMaturityDate.offset >= 0 ? std::string_view{ buf + fieldMaturityDate.offset, getValueLength( buf + fieldMaturityDate.offset ) } : std::string_view{}; }
    const char * ptrToMaturityDate() const { return buf + fieldMaturityDate.offset; }
    const char * getIfSetMaturityDate() const { return fieldMaturityDate.offset >= 0 ? buf + fieldMaturityDate.offset : nullptr; }
    private: FieldMaturityDate fieldMaturityDate;
@@ -2855,6 +3178,7 @@ class GroupQuoteEntries : public MessageBase
    public:
    bool isSetPutOrCall() const { return fieldPutOrCall.offset >= 0; }
    FieldPutOrCall::ValueType getPutOrCall() const { return fieldPutOrCall.getValue( buf ); }
+   std::string_view getPutOrCallView() const { return fieldPutOrCall.offset >= 0 ? std::string_view{ buf + fieldPutOrCall.offset, getValueLength( buf + fieldPutOrCall.offset ) } : std::string_view{}; }
    const char * ptrToPutOrCall() const { return buf + fieldPutOrCall.offset; }
    const char * getIfSetPutOrCall() const { return fieldPutOrCall.offset >= 0 ? buf + fieldPutOrCall.offset : nullptr; }
    private: FieldPutOrCall fieldPutOrCall;
@@ -2862,6 +3186,7 @@ class GroupQuoteEntries : public MessageBase
    public:
    bool isSetCouponPaymentDate() const { return fieldCouponPaymentDate.offset >= 0; }
    FieldCouponPaymentDate::ValueType getCouponPaymentDate() const { return fieldCouponPaymentDate.getValue( buf ); }
+   std::string_view getCouponPaymentDateView() const { return fieldCouponPaymentDate.offset >= 0 ? std::string_view{ buf + fieldCouponPaymentDate.offset, getValueLength( buf + fieldCouponPaymentDate.offset ) } : std::string_view{}; }
    const char * ptrToCouponPaymentDate() const { return buf + fieldCouponPaymentDate.offset; }
    const char * getIfSetCouponPaymentDate() const { return fieldCouponPaymentDate.offset >= 0 ? buf + fieldCouponPaymentDate.offset : nullptr; }
    private: FieldCouponPaymentDate fieldCouponPaymentDate;
@@ -2869,6 +3194,7 @@ class GroupQuoteEntries : public MessageBase
    public:
    bool isSetIssueDate() const { return fieldIssueDate.offset >= 0; }
    FieldIssueDate::ValueType getIssueDate() const { return fieldIssueDate.getValue( buf ); }
+   std::string_view getIssueDateView() const { return fieldIssueDate.offset >= 0 ? std::string_view{ buf + fieldIssueDate.offset, getValueLength( buf + fieldIssueDate.offset ) } : std::string_view{}; }
    const char * ptrToIssueDate() const { return buf + fieldIssueDate.offset; }
    const char * getIfSetIssueDate() const { return fieldIssueDate.offset >= 0 ? buf + fieldIssueDate.offset : nullptr; }
    private: FieldIssueDate fieldIssueDate;
@@ -2876,6 +3202,7 @@ class GroupQuoteEntries : public MessageBase
    public:
    bool isSetRepoCollateralSecurityType() const { return fieldRepoCollateralSecurityType.offset >= 0; }
    FieldRepoCollateralSecurityType::ValueType getRepoCollateralSecurityType() const { return fieldRepoCollateralSecurityType.getValue( buf ); }
+   std::string_view getRepoCollateralSecurityTypeView() const { return fieldRepoCollateralSecurityType.offset >= 0 ? std::string_view{ buf + fieldRepoCollateralSecurityType.offset, getValueLength( buf + fieldRepoCollateralSecurityType.offset ) } : std::string_view{}; }
    const char * ptrToRepoCollateralSecurityType() const { return buf + fieldRepoCollateralSecurityType.offset; }
    const char * getIfSetRepoCollateralSecurityType() const { return fieldRepoCollateralSecurityType.offset >= 0 ? buf + fieldRepoCollateralSecurityType.offset : nullptr; }
    private: FieldRepoCollateralSecurityType fieldRepoCollateralSecurityType;
@@ -2883,6 +3210,7 @@ class GroupQuoteEntries : public MessageBase
    public:
    bool isSetRepurchaseTerm() const { return fieldRepurchaseTerm.offset >= 0; }
    FieldRepurchaseTerm::ValueType getRepurchaseTerm() const { return fieldRepurchaseTerm.getValue( buf ); }
+   std::string_view getRepurchaseTermView() const { return fieldRepurchaseTerm.offset >= 0 ? std::string_view{ buf + fieldRepurchaseTerm.offset, getValueLength( buf + fieldRepurchaseTerm.offset ) } : std::string_view{}; }
    const char * ptrToRepurchaseTerm() const { return buf + fieldRepurchaseTerm.offset; }
    const char * getIfSetRepurchaseTerm() const { return fieldRepurchaseTerm.offset >= 0 ? buf + fieldRepurchaseTerm.offset : nullptr; }
    private: FieldRepurchaseTerm fieldRepurchaseTerm;
@@ -2890,6 +3218,7 @@ class GroupQuoteEntries : public MessageBase
    public:
    bool isSetRepurchaseRate() const { return fieldRepurchaseRate.offset >= 0; }
    FieldRepurchaseRate::ValueType getRepurchaseRate() const { return fieldRepurchaseRate.getValue( buf ); }
+   std::string_view getRepurchaseRateView() const { return fieldRepurchaseRate.offset >= 0 ? std::string_view{ buf + fieldRepurchaseRate.offset, getValueLength( buf + fieldRepurchaseRate.offset ) } : std::string_view{}; }
    const char * ptrToRepurchaseRate() const { return buf + fieldRepurchaseRate.offset; }
    const char * getIfSetRepurchaseRate() const { return fieldRepurchaseRate.offset >= 0 ? buf + fieldRepurchaseRate.offset : nullptr; }
    private: FieldRepurchaseRate fieldRepurchaseRate;
@@ -2897,6 +3226,7 @@ class GroupQuoteEntries : public MessageBase
    public:
    bool isSetFactor() const { return fieldFactor.offset >= 0; }
    FieldFactor::ValueType getFactor() const { return fieldFactor.getValue( buf ); }
+   std::string_view getFactorView() const { return fieldFactor.offset >= 0 ? std::string_view{ buf + fieldFactor.offset, getValueLength( buf + fieldFactor.offset ) } : std::string_view{}; }
    const char * ptrToFactor() const { return buf + fieldFactor.offset; }
    const char * getIfSetFactor() const { return fieldFactor.offset >= 0 ? buf + fieldFactor.offset : nullptr; }
    private: FieldFactor fieldFactor;
@@ -2904,6 +3234,7 @@ class GroupQuoteEntries : public MessageBase
    public:
    bool isSetCreditRating() const { return fieldCreditRating.offset >= 0; }
    FieldCreditRating::ValueType getCreditRating() const { return fieldCreditRating.getValue( buf ); }
+   std::string_view getCreditRatingView() const { return fieldCreditRating.offset >= 0 ? std::string_view{ buf + fieldCreditRating.offset, getValueLength( buf + fieldCreditRating.offset ) } : std::string_view{}; }
    const char * ptrToCreditRating() const { return buf + fieldCreditRating.offset; }
    const char * getIfSetCreditRating() const { return fieldCreditRating.offset >= 0 ? buf + fieldCreditRating.offset : nullptr; }
    private: FieldCreditRating fieldCreditRating;
@@ -2911,6 +3242,7 @@ class GroupQuoteEntries : public MessageBase
    public:
    bool isSetInstrRegistry() const { return fieldInstrRegistry.offset >= 0; }
    FieldInstrRegistry::ValueType getInstrRegistry() const { return fieldInstrRegistry.getValue( buf ); }
+   std::string_view getInstrRegistryView() const { return fieldInstrRegistry.offset >= 0 ? std::string_view{ buf + fieldInstrRegistry.offset, getValueLength( buf + fieldInstrRegistry.offset ) } : std::string_view{}; }
    const char * ptrToInstrRegistry() const { return buf + fieldInstrRegistry.offset; }
    const char * getIfSetInstrRegistry() const { return fieldInstrRegistry.offset >= 0 ? buf + fieldInstrRegistry.offset : nullptr; }
    private: FieldInstrRegistry fieldInstrRegistry;
@@ -2918,6 +3250,7 @@ class GroupQuoteEntries : public MessageBase
    public:
    bool isSetCountryOfIssue() const { return fieldCountryOfIssue.offset >= 0; }
    FieldCountryOfIssue::ValueType getCountryOfIssue() const { return fieldCountryOfIssue.getValue( buf ); }
+   std::string_view getCountryOfIssueView() const { return fieldCountryOfIssue.offset >= 0 ? std::string_view{ buf + fieldCountryOfIssue.offset, getValueLength( buf + fieldCountryOfIssue.offset ) } : std::string_view{}; }
    const char * ptrToCountryOfIssue() const { return buf + fieldCountryOfIssue.offset; }
    const char * getIfSetCountryOfIssue() const { return fieldCountryOfIssue.offset >= 0 ? buf + fieldCountryOfIssue.offset : nullptr; }
    private: FieldCountryOfIssue fieldCountryOfIssue;
@@ -2925,6 +3258,7 @@ class GroupQuoteEntries : public MessageBase
    public:
    bool isSetStateOrProvinceOfIssue() const { return fieldStateOrProvinceOfIssue.offset >= 0; }
    FieldStateOrProvinceOfIssue::ValueType getStateOrProvinceOfIssue() const { return fieldStateOrProvinceOfIssue.getValue( buf ); }
+   std::string_view getStateOrProvinceOfIssueView() const { return fieldStateOrProvinceOfIssue.offset >= 0 ? std::string_view{ buf + fieldStateOrProvinceOfIssue.offset, getValueLength( buf + fieldStateOrProvinceOfIssue.offset ) } : std::string_view{}; }
    const char * ptrToStateOrProvinceOfIssue() const { return buf + fieldStateOrProvinceOfIssue.offset; }
    const char * getIfSetStateOrProvinceOfIssue() const { return fieldStateOrProvinceOfIssue.offset >= 0 ? buf + fieldStateOrProvinceOfIssue.offset : nullptr; }
    private: FieldStateOrProvinceOfIssue fieldStateOrProvinceOfIssue;
@@ -2932,6 +3266,7 @@ class GroupQuoteEntries : public MessageBase
    public:
    bool isSetLocaleOfIssue() const { return fieldLocaleOfIssue.offset >= 0; }
    FieldLocaleOfIssue::ValueType getLocaleOfIssue() const { return fieldLocaleOfIssue.getValue( buf ); }
+   std::string_view getLocaleOfIssueView() const { return fieldLocaleOfIssue.offset >= 0 ? std::string_view{ buf + fieldLocaleOfIssue.offset, getValueLength( buf + fieldLocaleOfIssue.offset ) } : std::string_view{}; }
    const char * ptrToLocaleOfIssue() const { return buf + fieldLocaleOfIssue.offset; }
    const char * getIfSetLocaleOfIssue() const { return fieldLocaleOfIssue.offset >= 0 ? buf + fieldLocaleOfIssue.offset : nullptr; }
    private: FieldLocaleOfIssue fieldLocaleOfIssue;
@@ -2939,6 +3274,7 @@ class GroupQuoteEntries : public MessageBase
    public:
    bool isSetRedemptionDate() const { return fieldRedemptionDate.offset >= 0; }
    FieldRedemptionDate::ValueType getRedemptionDate() const { return fieldRedemptionDate.getValue( buf ); }
+   std::string_view getRedemptionDateView() const { return fieldRedemptionDate.offset >= 0 ? std::string_view{ buf + fieldRedemptionDate.offset, getValueLength( buf + fieldRedemptionDate.offset ) } : std::string_view{}; }
    const char * ptrToRedemptionDate() const { return buf + fieldRedemptionDate.offset; }
    const char * getIfSetRedemptionDate() const { return fieldRedemptionDate.offset >= 0 ? buf + fieldRedemptionDate.offset : nullptr; }
    private: FieldRedemptionDate fieldRedemptionDate;
@@ -2946,6 +3282,7 @@ class GroupQuoteEntries : public MessageBase
    public:
    bool isSetStrikePrice() const { return fieldStrikePrice.offset >= 0; }
    FieldStrikePrice::ValueType getStrikePrice() const { return fieldStrikePrice.getValue( buf ); }
+   std::string_view getStrikePriceView() const { return fieldStrikePrice.offset >= 0 ? std::string_view{ buf + fieldStrikePrice.offset, getValueLength( buf + fieldStrikePrice.offset ) } : std::string_view{}; }
    const char * ptrToStrikePrice() const { return buf + fieldStrikePrice.offset; }
    const char * getIfSetStrikePrice() const { return fieldStrikePrice.offset >= 0 ? buf + fieldStrikePrice.offset : nullptr; }
    private: FieldStrikePrice fieldStrikePrice;
@@ -2953,6 +3290,7 @@ class GroupQuoteEntries : public MessageBase
    public:
    bool isSetStrikeCurrency() const { return fieldStrikeCurrency.offset >= 0; }
    FieldStrikeCurrency::ValueType getStrikeCurrency() const { return fieldStrikeCurrency.getValue( buf ); }
+   std::string_view getStrikeCurrencyView() const { return fieldStrikeCurrency.offset >= 0 ? std::string_view{ buf + fieldStrikeCurrency.offset, getValueLength( buf + fieldStrikeCurrency.offset ) } : std::string_view{}; }
    const char * ptrToStrikeCurrency() const { return buf + fieldStrikeCurrency.offset; }
    const char * getIfSetStrikeCurrency() const { return fieldStrikeCurrency.offset >= 0 ? buf + fieldStrikeCurrency.offset : nullptr; }
    private: FieldStrikeCurrency fieldStrikeCurrency;
@@ -2960,6 +3298,7 @@ class GroupQuoteEntries : public MessageBase
    public:
    bool isSetOptAttribute() const { return fieldOptAttribute.offset >= 0; }
    FieldOptAttribute::ValueType getOptAttribute() const { return fieldOptAttribute.getValue( buf ); }
+   std::string_view getOptAttributeView() const { return fieldOptAttribute.offset >= 0 ? std::string_view{ buf + fieldOptAttribute.offset, getValueLength( buf + fieldOptAttribute.offset ) } : std::string_view{}; }
    const char * ptrToOptAttribute() const { return buf + fieldOptAttribute.offset; }
    const char * getIfSetOptAttribute() const { return fieldOptAttribute.offset >= 0 ? buf + fieldOptAttribute.offset : nullptr; }
    private: FieldOptAttribute fieldOptAttribute;
@@ -2967,6 +3306,7 @@ class GroupQuoteEntries : public MessageBase
    public:
    bool isSetContractMultiplier() const { return fieldContractMultiplier.offset >= 0; }
    FieldContractMultiplier::ValueType getContractMultiplier() const { return fieldContractMultiplier.getValue( buf ); }
+   std::string_view getContractMultiplierView() const { return fieldContractMultiplier.offset >= 0 ? std::string_view{ buf + fieldContractMultiplier.offset, getValueLength( buf + fieldContractMultiplier.offset ) } : std::string_view{}; }
    const char * ptrToContractMultiplier() const { return buf + fieldContractMultiplier.offset; }
    const char * getIfSetContractMultiplier() const { return fieldContractMultiplier.offset >= 0 ? buf + fieldContractMultiplier.offset : nullptr; }
    private: FieldContractMultiplier fieldContractMultiplier;
@@ -2974,6 +3314,7 @@ class GroupQuoteEntries : public MessageBase
    public:
    bool isSetCouponRate() const { return fieldCouponRate.offset >= 0; }
    FieldCouponRate::ValueType getCouponRate() const { return fieldCouponRate.getValue( buf ); }
+   std::string_view getCouponRateView() const { return fieldCouponRate.offset >= 0 ? std::string_view{ buf + fieldCouponRate.offset, getValueLength( buf + fieldCouponRate.offset ) } : std::string_view{}; }
    const char * ptrToCouponRate() const { return buf + fieldCouponRate.offset; }
    const char * getIfSetCouponRate() const { return fieldCouponRate.offset >= 0 ? buf + fieldCouponRate.offset : nullptr; }
    private: FieldCouponRate fieldCouponRate;
@@ -2981,6 +3322,7 @@ class GroupQuoteEntries : public MessageBase
    public:
    bool isSetSecurityExchange() const { return fieldSecurityExchange.offset >= 0; }
    FieldSecurityExchange::ValueType getSecurityExchange() const { return fieldSecurityExchange.getValue( buf ); }
+   std::string_view getSecurityExchangeView() const { return fieldSecurityExchange.offset >= 0 ? std::string_view{ buf + fieldSecurityExchange.offset, getValueLength( buf + fieldSecurityExchange.offset ) } : std::string_view{}; }
    const char * ptrToSecurityExchange() const { return buf + fieldSecurityExchange.offset; }
    const char * getIfSetSecurityExchange() const { return fieldSecurityExchange.offset >= 0 ? buf + fieldSecurityExchange.offset : nullptr; }
    private: FieldSecurityExchange fieldSecurityExchange;
@@ -2988,6 +3330,7 @@ class GroupQuoteEntries : public MessageBase
    public:
    bool isSetIssuer() const { return fieldIssuer.offset >= 0; }
    FieldIssuer::ValueType getIssuer() const { return fieldIssuer.getValue( buf ); }
+   std::string_view getIssuerView() const { return fieldIssuer.offset >= 0 ? std::string_view{ buf + fieldIssuer.offset, getValueLength( buf + fieldIssuer.offset ) } : std::string_view{}; }
    const char * ptrToIssuer() const { return buf + fieldIssuer.offset; }
    const char * getIfSetIssuer() const { return fieldIssuer.offset >= 0 ? buf + fieldIssuer.offset : nullptr; }
    private: FieldIssuer fieldIssuer;
@@ -2995,6 +3338,7 @@ class GroupQuoteEntries : public MessageBase
    public:
    bool isSetEncodedIssuerLen() const { return fieldEncodedIssuerLen.offset >= 0; }
    FieldEncodedIssuerLen::ValueType getEncodedIssuerLen() const { return fieldEncodedIssuerLen.getValue( buf ); }
+   std::string_view getEncodedIssuerLenView() const { return fieldEncodedIssuerLen.offset >= 0 ? std::string_view{ buf + fieldEncodedIssuerLen.offset, getValueLength( buf + fieldEncodedIssuerLen.offset ) } : std::string_view{}; }
    const char * ptrToEncodedIssuerLen() const { return buf + fieldEncodedIssuerLen.offset; }
    const char * getIfSetEncodedIssuerLen() const { return fieldEncodedIssuerLen.offset >= 0 ? buf + fieldEncodedIssuerLen.offset : nullptr; }
    private: FieldEncodedIssuerLen fieldEncodedIssuerLen;
@@ -3002,6 +3346,7 @@ class GroupQuoteEntries : public MessageBase
    public:
    bool isSetEncodedIssuer() const { return fieldEncodedIssuer.offset >= 0; }
    FieldEncodedIssuer::ValueType getEncodedIssuer() const { return fieldEncodedIssuer.getValue( buf ); }
+   std::string_view getEncodedIssuerView() const { return fieldEncodedIssuer.offset >= 0 ? std::string_view{ buf + fieldEncodedIssuer.offset, getValueLength( buf + fieldEncodedIssuer.offset ) } : std::string_view{}; }
    const char * ptrToEncodedIssuer() const { return buf + fieldEncodedIssuer.offset; }
    const char * getIfSetEncodedIssuer() const { return fieldEncodedIssuer.offset >= 0 ? buf + fieldEncodedIssuer.offset : nullptr; }
    private: FieldEncodedIssuer fieldEncodedIssuer;
@@ -3009,6 +3354,7 @@ class GroupQuoteEntries : public MessageBase
    public:
    bool isSetSecurityDesc() const { return fieldSecurityDesc.offset >= 0; }
    FieldSecurityDesc::ValueType getSecurityDesc() const { return fieldSecurityDesc.getValue( buf ); }
+   std::string_view getSecurityDescView() const { return fieldSecurityDesc.offset >= 0 ? std::string_view{ buf + fieldSecurityDesc.offset, getValueLength( buf + fieldSecurityDesc.offset ) } : std::string_view{}; }
    const char * ptrToSecurityDesc() const { return buf + fieldSecurityDesc.offset; }
    const char * getIfSetSecurityDesc() const { return fieldSecurityDesc.offset >= 0 ? buf + fieldSecurityDesc.offset : nullptr; }
    private: FieldSecurityDesc fieldSecurityDesc;
@@ -3016,6 +3362,7 @@ class GroupQuoteEntries : public MessageBase
    public:
    bool isSetEncodedSecurityDescLen() const { return fieldEncodedSecurityDescLen.offset >= 0; }
    FieldEncodedSecurityDescLen::ValueType getEncodedSecurityDescLen() const { return fieldEncodedSecurityDescLen.getValue( buf ); }
+   std::string_view getEncodedSecurityDescLenView() const { return fieldEncodedSecurityDescLen.offset >= 0 ? std::string_view{ buf + fieldEncodedSecurityDescLen.offset, getValueLength( buf + fieldEncodedSecurityDescLen.offset ) } : std::string_view{}; }
    const char * ptrToEncodedSecurityDescLen() const { return buf + fieldEncodedSecurityDescLen.offset; }
    const char * getIfSetEncodedSecurityDescLen() const { return fieldEncodedSecurityDescLen.offset >= 0 ? buf + fieldEncodedSecurityDescLen.offset : nullptr; }
    private: FieldEncodedSecurityDescLen fieldEncodedSecurityDescLen;
@@ -3023,6 +3370,7 @@ class GroupQuoteEntries : public MessageBase
    public:
    bool isSetEncodedSecurityDesc() const { return fieldEncodedSecurityDesc.offset >= 0; }
    FieldEncodedSecurityDesc::ValueType getEncodedSecurityDesc() const { return fieldEncodedSecurityDesc.getValue( buf ); }
+   std::string_view getEncodedSecurityDescView() const { return fieldEncodedSecurityDesc.offset >= 0 ? std::string_view{ buf + fieldEncodedSecurityDesc.offset, getValueLength( buf + fieldEncodedSecurityDesc.offset ) } : std::string_view{}; }
    const char * ptrToEncodedSecurityDesc() const { return buf + fieldEncodedSecurityDesc.offset; }
    const char * getIfSetEncodedSecurityDesc() const { return fieldEncodedSecurityDesc.offset >= 0 ? buf + fieldEncodedSecurityDesc.offset : nullptr; }
    private: FieldEncodedSecurityDesc fieldEncodedSecurityDesc;
@@ -3030,6 +3378,7 @@ class GroupQuoteEntries : public MessageBase
    public:
    bool isSetPool() const { return fieldPool.offset >= 0; }
    FieldPool::ValueType getPool() const { return fieldPool.getValue( buf ); }
+   std::string_view getPoolView() const { return fieldPool.offset >= 0 ? std::string_view{ buf + fieldPool.offset, getValueLength( buf + fieldPool.offset ) } : std::string_view{}; }
    const char * ptrToPool() const { return buf + fieldPool.offset; }
    const char * getIfSetPool() const { return fieldPool.offset >= 0 ? buf + fieldPool.offset : nullptr; }
    private: FieldPool fieldPool;
@@ -3037,6 +3386,7 @@ class GroupQuoteEntries : public MessageBase
    public:
    bool isSetContractSettlMonth() const { return fieldContractSettlMonth.offset >= 0; }
    FieldContractSettlMonth::ValueType getContractSettlMonth() const { return fieldContractSettlMonth.getValue( buf ); }
+   std::string_view getContractSettlMonthView() const { return fieldContractSettlMonth.offset >= 0 ? std::string_view{ buf + fieldContractSettlMonth.offset, getValueLength( buf + fieldContractSettlMonth.offset ) } : std::string_view{}; }
    const char * ptrToContractSettlMonth() const { return buf + fieldContractSettlMonth.offset; }
    const char * getIfSetContractSettlMonth() const { return fieldContractSettlMonth.offset >= 0 ? buf + fieldContractSettlMonth.offset : nullptr; }
    private: FieldContractSettlMonth fieldContractSettlMonth;
@@ -3044,6 +3394,7 @@ class GroupQuoteEntries : public MessageBase
    public:
    bool isSetCPProgram() const { return fieldCPProgram.offset >= 0; }
    FieldCPProgram::ValueType getCPProgram() const { return fieldCPProgram.getValue( buf ); }
+   std::string_view getCPProgramView() const { return fieldCPProgram.offset >= 0 ? std::string_view{ buf + fieldCPProgram.offset, getValueLength( buf + fieldCPProgram.offset ) } : std::string_view{}; }
    const char * ptrToCPProgram() const { return buf + fieldCPProgram.offset; }
    const char * getIfSetCPProgram() const { return fieldCPProgram.offset >= 0 ? buf + fieldCPProgram.offset : nullptr; }
    private: FieldCPProgram fieldCPProgram;
@@ -3051,6 +3402,7 @@ class GroupQuoteEntries : public MessageBase
    public:
    bool isSetCPRegType() const { return fieldCPRegType.offset >= 0; }
    FieldCPRegType::ValueType getCPRegType() const { return fieldCPRegType.getValue( buf ); }
+   std::string_view getCPRegTypeView() const { return fieldCPRegType.offset >= 0 ? std::string_view{ buf + fieldCPRegType.offset, getValueLength( buf + fieldCPRegType.offset ) } : std::string_view{}; }
    const char * ptrToCPRegType() const { return buf + fieldCPRegType.offset; }
    const char * getIfSetCPRegType() const { return fieldCPRegType.offset >= 0 ? buf + fieldCPRegType.offset : nullptr; }
    private: FieldCPRegType fieldCPRegType;
@@ -3058,6 +3410,7 @@ class GroupQuoteEntries : public MessageBase
    public:
    bool isSetNoEvents() const { return fieldNoEvents.offset >= 0; }
    FieldNoEvents::ValueType getNoEvents() const { return fieldNoEvents.getValue( buf ); }
+   std::string_view getNoEventsView() const { return fieldNoEvents.offset >= 0 ? std::string_view{ buf + fieldNoEvents.offset, getValueLength( buf + fieldNoEvents.offset ) } : std::string_view{}; }
    const char * ptrToNoEvents() const { return buf + fieldNoEvents.offset; }
    const char * getIfSetNoEvents() const { return fieldNoEvents.offset >= 0 ? buf + fieldNoEvents.offset : nullptr; }
    private: FieldNoEvents fieldNoEvents;
@@ -3070,6 +3423,7 @@ class GroupQuoteEntries : public MessageBase
    public:
    bool isSetDatedDate() const { return fieldDatedDate.offset >= 0; }
    FieldDatedDate::ValueType getDatedDate() const { return fieldDatedDate.getValue( buf ); }
+   std::string_view getDatedDateView() const { return fieldDatedDate.offset >= 0 ? std::string_view{ buf + fieldDatedDate.offset, getValueLength( buf + fieldDatedDate.offset ) } : std::string_view{}; }
    const char * ptrToDatedDate() const { return buf + fieldDatedDate.offset; }
    const char * getIfSetDatedDate() const { return fieldDatedDate.offset >= 0 ? buf + fieldDatedDate.offset : nullptr; }
    private: FieldDatedDate fieldDatedDate;
@@ -3077,6 +3431,7 @@ class GroupQuoteEntries : public MessageBase
    public:
    bool isSetInterestAccrualDate() const { return fieldInterestAccrualDate.offset >= 0; }
    FieldInterestAccrualDate::ValueType getInterestAccrualDate() const { return fieldInterestAccrualDate.getValue( buf ); }
+   std::string_view getInterestAccrualDateView() const { return fieldInterestAccrualDate.offset >= 0 ? std::string_view{ buf + fieldInterestAccrualDate.offset, getValueLength( buf + fieldInterestAccrualDate.offset ) } : std::string_view{}; }
    const char * ptrToInterestAccrualDate() const { return buf + fieldInterestAccrualDate.offset; }
    const char * getIfSetInterestAccrualDate() const { return fieldInterestAccrualDate.offset >= 0 ? buf + fieldInterestAccrualDate.offset : nullptr; }
    private: FieldInterestAccrualDate fieldInterestAccrualDate;
@@ -3084,6 +3439,7 @@ class GroupQuoteEntries : public MessageBase
    public:
    bool isSetAgreementDesc() const { return fieldAgreementDesc.offset >= 0; }
    FieldAgreementDesc::ValueType getAgreementDesc() const { return fieldAgreementDesc.getValue( buf ); }
+   std::string_view getAgreementDescView() const { return fieldAgreementDesc.offset >= 0 ? std::string_view{ buf + fieldAgreementDesc.offset, getValueLength( buf + fieldAgreementDesc.offset ) } : std::string_view{}; }
    const char * ptrToAgreementDesc() const { return buf + fieldAgreementDesc.offset; }
    const char * getIfSetAgreementDesc() const { return fieldAgreementDesc.offset >= 0 ? buf + fieldAgreementDesc.offset : nullptr; }
    private: FieldAgreementDesc fieldAgreementDesc;
@@ -3091,6 +3447,7 @@ class GroupQuoteEntries : public MessageBase
    public:
    bool isSetAgreementID() const { return fieldAgreementID.offset >= 0; }
    FieldAgreementID::ValueType getAgreementID() const { return fieldAgreementID.getValue( buf ); }
+   std::string_view getAgreementIDView() const { return fieldAgreementID.offset >= 0 ? std::string_view{ buf + fieldAgreementID.offset, getValueLength( buf + fieldAgreementID.offset ) } : std::string_view{}; }
    const char * ptrToAgreementID() const { return buf + fieldAgreementID.offset; }
    const char * getIfSetAgreementID() const { return fieldAgreementID.offset >= 0 ? buf + fieldAgreementID.offset : nullptr; }
    private: FieldAgreementID fieldAgreementID;
@@ -3098,6 +3455,7 @@ class GroupQuoteEntries : public MessageBase
    public:
    bool isSetAgreementDate() const { return fieldAgreementDate.offset >= 0; }
    FieldAgreementDate::ValueType getAgreementDate() const { return fieldAgreementDate.getValue( buf ); }
+   std::string_view getAgreementDateView() const { return fieldAgreementDate.offset >= 0 ? std::string_view{ buf + fieldAgreementDate.offset, getValueLength( buf + fieldAgreementDate.offset ) } : std::string_view{}; }
    const char * ptrToAgreementDate() const { return buf + fieldAgreementDate.offset; }
    const char * getIfSetAgreementDate() const { return fieldAgreementDate.offset >= 0 ? buf + fieldAgreementDate.offset : nullptr; }
    private: FieldAgreementDate fieldAgreementDate;
@@ -3105,6 +3463,7 @@ class GroupQuoteEntries : public MessageBase
    public:
    bool isSetAgreementCurrency() const { return fieldAgreementCurrency.offset >= 0; }
    FieldAgreementCurrency::ValueType getAgreementCurrency() const { return fieldAgreementCurrency.getValue( buf ); }
+   std::string_view getAgreementCurrencyView() const { return fieldAgreementCurrency.offset >= 0 ? std::string_view{ buf + fieldAgreementCurrency.offset, getValueLength( buf + fieldAgreementCurrency.offset ) } : std::string_view{}; }
    const char * ptrToAgreementCurrency() const { return buf + fieldAgreementCurrency.offset; }
    const char * getIfSetAgreementCurrency() const { return fieldAgreementCurrency.offset >= 0 ? buf + fieldAgreementCurrency.offset : nullptr; }
    private: FieldAgreementCurrency fieldAgreementCurrency;
@@ -3112,6 +3471,7 @@ class GroupQuoteEntries : public MessageBase
    public:
    bool isSetTerminationType() const { return fieldTerminationType.offset >= 0; }
    FieldTerminationType::ValueType getTerminationType() const { return fieldTerminationType.getValue( buf ); }
+   std::string_view getTerminationTypeView() const { return fieldTerminationType.offset >= 0 ? std::string_view{ buf + fieldTerminationType.offset, getValueLength( buf + fieldTerminationType.offset ) } : std::string_view{}; }
    const char * ptrToTerminationType() const { return buf + fieldTerminationType.offset; }
    const char * getIfSetTerminationType() const { return fieldTerminationType.offset >= 0 ? buf + fieldTerminationType.offset : nullptr; }
    private: FieldTerminationType fieldTerminationType;
@@ -3119,6 +3479,7 @@ class GroupQuoteEntries : public MessageBase
    public:
    bool isSetStartDate() const { return fieldStartDate.offset >= 0; }
    FieldStartDate::ValueType getStartDate() const { return fieldStartDate.getValue( buf ); }
+   std::string_view getStartDateView() const { return fieldStartDate.offset >= 0 ? std::string_view{ buf + fieldStartDate.offset, getValueLength( buf + fieldStartDate.offset ) } : std::string_view{}; }
    const char * ptrToStartDate() const { return buf + fieldStartDate.offset; }
    const char * getIfSetStartDate() const { return fieldStartDate.offset >= 0 ? buf + fieldStartDate.offset : nullptr; }
    private: FieldStartDate fieldStartDate;
@@ -3126,6 +3487,7 @@ class GroupQuoteEntries : public MessageBase
    public:
    bool isSetEndDate() const { return fieldEndDate.offset >= 0; }
    FieldEndDate::ValueType getEndDate() const { return fieldEndDate.getValue( buf ); }
+   std::string_view getEndDateView() const { return fieldEndDate.offset >= 0 ? std::string_view{ buf + fieldEndDate.offset, getValueLength( buf + fieldEndDate.offset ) } : std::string_view{}; }
    const char * ptrToEndDate() const { return buf + fieldEndDate.offset; }
    const char * getIfSetEndDate() const { return fieldEndDate.offset >= 0 ? buf + fieldEndDate.offset : nullptr; }
    private: FieldEndDate fieldEndDate;
@@ -3133,6 +3495,7 @@ class GroupQuoteEntries : public MessageBase
    public:
    bool isSetDeliveryType() const { return fieldDeliveryType.offset >= 0; }
    FieldDeliveryType::ValueType getDeliveryType() const { return fieldDeliveryType.getValue( buf ); }
+   std::string_view getDeliveryTypeView() const { return fieldDeliveryType.offset >= 0 ? std::string_view{ buf + fieldDeliveryType.offset, getValueLength( buf + fieldDeliveryType.offset ) } : std::string_view{}; }
    const char * ptrToDeliveryType() const { return buf + fieldDeliveryType.offset; }
    const char * getIfSetDeliveryType() const { return fieldDeliveryType.offset >= 0 ? buf + fieldDeliveryType.offset : nullptr; }
    private: FieldDeliveryType fieldDeliveryType;
@@ -3140,6 +3503,7 @@ class GroupQuoteEntries : public MessageBase
    public:
    bool isSetMarginRatio() const { return fieldMarginRatio.offset >= 0; }
    FieldMarginRatio::ValueType getMarginRatio() const { return fieldMarginRatio.getValue( buf ); }
+   std::string_view getMarginRatioView() const { return fieldMarginRatio.offset >= 0 ? std::string_view{ buf + fieldMarginRatio.offset, getValueLength( buf + fieldMarginRatio.offset ) } : std::string_view{}; }
    const char * ptrToMarginRatio() const { return buf + fieldMarginRatio.offset; }
    const char * getIfSetMarginRatio() const { return fieldMarginRatio.offset >= 0 ? buf + fieldMarginRatio.offset : nullptr; }
    private: FieldMarginRatio fieldMarginRatio;
@@ -3147,6 +3511,7 @@ class GroupQuoteEntries : public MessageBase
    public:
    bool isSetNoUnderlyings() const { return fieldNoUnderlyings.offset >= 0; }
    FieldNoUnderlyings::ValueType getNoUnderlyings() const { return fieldNoUnderlyings.getValue( buf ); }
+   std::string_view getNoUnderlyingsView() const { return fieldNoUnderlyings.offset >= 0 ? std::string_view{ buf + fieldNoUnderlyings.offset, getValueLength( buf + fieldNoUnderlyings.offset ) } : std::string_view{}; }
    const char * ptrToNoUnderlyings() const { return buf + fieldNoUnderlyings.offset; }
    const char * getIfSetNoUnderlyings() const { return fieldNoUnderlyings.offset >= 0 ? buf + fieldNoUnderlyings.offset : nullptr; }
    private: FieldNoUnderlyings fieldNoUnderlyings;
@@ -3159,6 +3524,7 @@ class GroupQuoteEntries : public MessageBase
    public:
    bool isSetNoLegs() const { return fieldNoLegs.offset >= 0; }
    FieldNoLegs::ValueType getNoLegs() const { return fieldNoLegs.getValue( buf ); }
+   std::string_view getNoLegsView() const { return fieldNoLegs.offset >= 0 ? std::string_view{ buf + fieldNoLegs.offset, getValueLength( buf + fieldNoLegs.offset ) } : std::string_view{}; }
    const char * ptrToNoLegs() const { return buf + fieldNoLegs.offset; }
    const char * getIfSetNoLegs() const { return fieldNoLegs.offset >= 0 ? buf + fieldNoLegs.offset : nullptr; }
    private: FieldNoLegs fieldNoLegs;
@@ -3189,6 +3555,7 @@ class GroupQuoteSets : public MessageBase
    public:
    bool isSetQuoteSetID() const { return fieldQuoteSetID.offset >= 0; }
    FieldQuoteSetID::ValueType getQuoteSetID() const { return fieldQuoteSetID.getValue( buf ); }
+   std::string_view getQuoteSetIDView() const { return fieldQuoteSetID.offset >= 0 ? std::string_view{ buf + fieldQuoteSetID.offset, getValueLength( buf + fieldQuoteSetID.offset ) } : std::string_view{}; }
    const char * ptrToQuoteSetID() const { return buf + fieldQuoteSetID.offset; }
    const char * getIfSetQuoteSetID() const { return fieldQuoteSetID.offset >= 0 ? buf + fieldQuoteSetID.offset : nullptr; }
    private: FieldQuoteSetID fieldQuoteSetID;
@@ -3196,6 +3563,7 @@ class GroupQuoteSets : public MessageBase
    public:
    bool isSetUnderlyingSymbol() const { return fieldUnderlyingSymbol.offset >= 0; }
    FieldUnderlyingSymbol::ValueType getUnderlyingSymbol() const { return fieldUnderlyingSymbol.getValue( buf ); }
+   std::string_view getUnderlyingSymbolView() const { return fieldUnderlyingSymbol.offset >= 0 ? std::string_view{ buf + fieldUnderlyingSymbol.offset, getValueLength( buf + fieldUnderlyingSymbol.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingSymbol() const { return buf + fieldUnderlyingSymbol.offset; }
    const char * getIfSetUnderlyingSymbol() const { return fieldUnderlyingSymbol.offset >= 0 ? buf + fieldUnderlyingSymbol.offset : nullptr; }
    private: FieldUnderlyingSymbol fieldUnderlyingSymbol;
@@ -3203,6 +3571,7 @@ class GroupQuoteSets : public MessageBase
    public:
    bool isSetUnderlyingSymbolSfx() const { return fieldUnderlyingSymbolSfx.offset >= 0; }
    FieldUnderlyingSymbolSfx::ValueType getUnderlyingSymbolSfx() const { return fieldUnderlyingSymbolSfx.getValue( buf ); }
+   std::string_view getUnderlyingSymbolSfxView() const { return fieldUnderlyingSymbolSfx.offset >= 0 ? std::string_view{ buf + fieldUnderlyingSymbolSfx.offset, getValueLength( buf + fieldUnderlyingSymbolSfx.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingSymbolSfx() const { return buf + fieldUnderlyingSymbolSfx.offset; }
    const char * getIfSetUnderlyingSymbolSfx() const { return fieldUnderlyingSymbolSfx.offset >= 0 ? buf + fieldUnderlyingSymbolSfx.offset : nullptr; }
    private: FieldUnderlyingSymbolSfx fieldUnderlyingSymbolSfx;
@@ -3210,6 +3579,7 @@ class GroupQuoteSets : public MessageBase
    public:
    bool isSetUnderlyingSecurityID() const { return fieldUnderlyingSecurityID.offset >= 0; }
    FieldUnderlyingSecurityID::ValueType getUnderlyingSecurityID() const { return fieldUnderlyingSecurityID.getValue( buf ); }
+   std::string_view getUnderlyingSecurityIDView() const { return fieldUnderlyingSecurityID.offset >= 0 ? std::string_view{ buf + fieldUnderlyingSecurityID.offset, getValueLength( buf + fieldUnderlyingSecurityID.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingSecurityID() const { return buf + fieldUnderlyingSecurityID.offset; }
    const char * getIfSetUnderlyingSecurityID() const { return fieldUnderlyingSecurityID.offset >= 0 ? buf + fieldUnderlyingSecurityID.offset : nullptr; }
    private: FieldUnderlyingSecurityID fieldUnderlyingSecurityID;
@@ -3217,6 +3587,7 @@ class GroupQuoteSets : public MessageBase
    public:
    bool isSetUnderlyingSecurityIDSource() const { return fieldUnderlyingSecurityIDSource.offset >= 0; }
    FieldUnderlyingSecurityIDSource::ValueType getUnderlyingSecurityIDSource() const { return fieldUnderlyingSecurityIDSource.getValue( buf ); }
+   std::string_view getUnderlyingSecurityIDSourceView() const { return fieldUnderlyingSecurityIDSource.offset >= 0 ? std::string_view{ buf + fieldUnderlyingSecurityIDSource.offset, getValueLength( buf + fieldUnderlyingSecurityIDSource.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingSecurityIDSource() const { return buf + fieldUnderlyingSecurityIDSource.offset; }
    const char * getIfSetUnderlyingSecurityIDSource() const { return fieldUnderlyingSecurityIDSource.offset >= 0 ? buf + fieldUnderlyingSecurityIDSource.offset : nullptr; }
    private: FieldUnderlyingSecurityIDSource fieldUnderlyingSecurityIDSource;
@@ -3224,6 +3595,7 @@ class GroupQuoteSets : public MessageBase
    public:
    bool isSetNoUnderlyingSecurityAltID() const { return fieldNoUnderlyingSecurityAltID.offset >= 0; }
    FieldNoUnderlyingSecurityAltID::ValueType getNoUnderlyingSecurityAltID() const { return fieldNoUnderlyingSecurityAltID.getValue( buf ); }
+   std::string_view getNoUnderlyingSecurityAltIDView() const { return fieldNoUnderlyingSecurityAltID.offset >= 0 ? std::string_view{ buf + fieldNoUnderlyingSecurityAltID.offset, getValueLength( buf + fieldNoUnderlyingSecurityAltID.offset ) } : std::string_view{}; }
    const char * ptrToNoUnderlyingSecurityAltID() const { return buf + fieldNoUnderlyingSecurityAltID.offset; }
    const char * getIfSetNoUnderlyingSecurityAltID() const { return fieldNoUnderlyingSecurityAltID.offset >= 0 ? buf + fieldNoUnderlyingSecurityAltID.offset : nullptr; }
    private: FieldNoUnderlyingSecurityAltID fieldNoUnderlyingSecurityAltID;
@@ -3236,6 +3608,7 @@ class GroupQuoteSets : public MessageBase
    public:
    bool isSetUnderlyingProduct() const { return fieldUnderlyingProduct.offset >= 0; }
    FieldUnderlyingProduct::ValueType getUnderlyingProduct() const { return fieldUnderlyingProduct.getValue( buf ); }
+   std::string_view getUnderlyingProductView() const { return fieldUnderlyingProduct.offset >= 0 ? std::string_view{ buf + fieldUnderlyingProduct.offset, getValueLength( buf + fieldUnderlyingProduct.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingProduct() const { return buf + fieldUnderlyingProduct.offset; }
    const char * getIfSetUnderlyingProduct() const { return fieldUnderlyingProduct.offset >= 0 ? buf + fieldUnderlyingProduct.offset : nullptr; }
    private: FieldUnderlyingProduct fieldUnderlyingProduct;
@@ -3243,6 +3616,7 @@ class GroupQuoteSets : public MessageBase
    public:
    bool isSetUnderlyingCFICode() const { return fieldUnderlyingCFICode.offset >= 0; }
    FieldUnderlyingCFICode::ValueType getUnderlyingCFICode() const { return fieldUnderlyingCFICode.getValue( buf ); }
+   std::string_view getUnderlyingCFICodeView() const { return fieldUnderlyingCFICode.offset >= 0 ? std::string_view{ buf + fieldUnderlyingCFICode.offset, getValueLength( buf + fieldUnderlyingCFICode.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingCFICode() const { return buf + fieldUnderlyingCFICode.offset; }
    const char * getIfSetUnderlyingCFICode() const { return fieldUnderlyingCFICode.offset >= 0 ? buf + fieldUnderlyingCFICode.offset : nullptr; }
    private: FieldUnderlyingCFICode fieldUnderlyingCFICode;
@@ -3250,6 +3624,7 @@ class GroupQuoteSets : public MessageBase
    public:
    bool isSetUnderlyingSecurityType() const { return fieldUnderlyingSecurityType.offset >= 0; }
    FieldUnderlyingSecurityType::ValueType getUnderlyingSecurityType() const { return fieldUnderlyingSecurityType.getValue( buf ); }
+   std::string_view getUnderlyingSecurityTypeView() const { return fieldUnderlyingSecurityType.offset >= 0 ? std::string_view{ buf + fieldUnderlyingSecurityType.offset, getValueLength( buf + fieldUnderlyingSecurityType.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingSecurityType() const { return buf + fieldUnderlyingSecurityType.offset; }
    const char * getIfSetUnderlyingSecurityType() const { return fieldUnderlyingSecurityType.offset >= 0 ? buf + fieldUnderlyingSecurityType.offset : nullptr; }
    private: FieldUnderlyingSecurityType fieldUnderlyingSecurityType;
@@ -3257,6 +3632,7 @@ class GroupQuoteSets : public MessageBase
    public:
    bool isSetUnderlyingSecuritySubType() const { return fieldUnderlyingSecuritySubType.offset >= 0; }
    FieldUnderlyingSecuritySubType::ValueType getUnderlyingSecuritySubType() const { return fieldUnderlyingSecuritySubType.getValue( buf ); }
+   std::string_view getUnderlyingSecuritySubTypeView() const { return fieldUnderlyingSecuritySubType.offset >= 0 ? std::string_view{ buf + fieldUnderlyingSecuritySubType.offset, getValueLength( buf + fieldUnderlyingSecuritySubType.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingSecuritySubType() const { return buf + fieldUnderlyingSecuritySubType.offset; }
    const char * getIfSetUnderlyingSecuritySubType() const { return fieldUnderlyingSecuritySubType.offset >= 0 ? buf + fieldUnderlyingSecuritySubType.offset : nullptr; }
    private: FieldUnderlyingSecuritySubType fieldUnderlyingSecuritySubType;
@@ -3264,6 +3640,7 @@ class GroupQuoteSets : public MessageBase
    public:
    bool isSetUnderlyingMaturityMonthYear() const { return fieldUnderlyingMaturityMonthYear.offset >= 0; }
    FieldUnderlyingMaturityMonthYear::ValueType getUnderlyingMaturityMonthYear() const { return fieldUnderlyingMaturityMonthYear.getValue( buf ); }
+   std::string_view getUnderlyingMaturityMonthYearView() const { return fieldUnderlyingMaturityMonthYear.offset >= 0 ? std::string_view{ buf + fieldUnderlyingMaturityMonthYear.offset, getValueLength( buf + fieldUnderlyingMaturityMonthYear.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingMaturityMonthYear() const { return buf + fieldUnderlyingMaturityMonthYear.offset; }
    const char * getIfSetUnderlyingMaturityMonthYear() const { return fieldUnderlyingMaturityMonthYear.offset >= 0 ? buf + fieldUnderlyingMaturityMonthYear.offset : nullptr; }
    private: FieldUnderlyingMaturityMonthYear fieldUnderlyingMaturityMonthYear;
@@ -3271,6 +3648,7 @@ class GroupQuoteSets : public MessageBase
    public:
    bool isSetUnderlyingMaturityDate() const { return fieldUnderlyingMaturityDate.offset >= 0; }
    FieldUnderlyingMaturityDate::ValueType getUnderlyingMaturityDate() const { return fieldUnderlyingMaturityDate.getValue( buf ); }
+   std::string_view getUnderlyingMaturityDateView() const { return fieldUnderlyingMaturityDate.offset >= 0 ? std::string_view{ buf + fieldUnderlyingMaturityDate.offset, getValueLength( buf + fieldUnderlyingMaturityDate.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingMaturityDate() const { return buf + fieldUnderlyingMaturityDate.offset; }
    const char * getIfSetUnderlyingMaturityDate() const { return fieldUnderlyingMaturityDate.offset >= 0 ? buf + fieldUnderlyingMaturityDate.offset : nullptr; }
    private: FieldUnderlyingMaturityDate fieldUnderlyingMaturityDate;
@@ -3278,6 +3656,7 @@ class GroupQuoteSets : public MessageBase
    public:
    bool isSetUnderlyingPutOrCall() const { return fieldUnderlyingPutOrCall.offset >= 0; }
    FieldUnderlyingPutOrCall::ValueType getUnderlyingPutOrCall() const { return fieldUnderlyingPutOrCall.getValue( buf ); }
+   std::string_view getUnderlyingPutOrCallView() const { return fieldUnderlyingPutOrCall.offset >= 0 ? std::string_view{ buf + fieldUnderlyingPutOrCall.offset, getValueLength( buf + fieldUnderlyingPutOrCall.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingPutOrCall() const { return buf + fieldUnderlyingPutOrCall.offset; }
    const char * getIfSetUnderlyingPutOrCall() const { return fieldUnderlyingPutOrCall.offset >= 0 ? buf + fieldUnderlyingPutOrCall.offset : nullptr; }
    private: FieldUnderlyingPutOrCall fieldUnderlyingPutOrCall;
@@ -3285,6 +3664,7 @@ class GroupQuoteSets : public MessageBase
    public:
    bool isSetUnderlyingCouponPaymentDate() const { return fieldUnderlyingCouponPaymentDate.offset >= 0; }
    FieldUnderlyingCouponPaymentDate::ValueType getUnderlyingCouponPaymentDate() const { return fieldUnderlyingCouponPaymentDate.getValue( buf ); }
+   std::string_view getUnderlyingCouponPaymentDateView() const { return fieldUnderlyingCouponPaymentDate.offset >= 0 ? std::string_view{ buf + fieldUnderlyingCouponPaymentDate.offset, getValueLength( buf + fieldUnderlyingCouponPaymentDate.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingCouponPaymentDate() const { return buf + fieldUnderlyingCouponPaymentDate.offset; }
    const char * getIfSetUnderlyingCouponPaymentDate() const { return fieldUnderlyingCouponPaymentDate.offset >= 0 ? buf + fieldUnderlyingCouponPaymentDate.offset : nullptr; }
    private: FieldUnderlyingCouponPaymentDate fieldUnderlyingCouponPaymentDate;
@@ -3292,6 +3672,7 @@ class GroupQuoteSets : public MessageBase
    public:
    bool isSetUnderlyingIssueDate() const { return fieldUnderlyingIssueDate.offset >= 0; }
    FieldUnderlyingIssueDate::ValueType getUnderlyingIssueDate() const { return fieldUnderlyingIssueDate.getValue( buf ); }
+   std::string_view getUnderlyingIssueDateView() const { return fieldUnderlyingIssueDate.offset >= 0 ? std::string_view{ buf + fieldUnderlyingIssueDate.offset, getValueLength( buf + fieldUnderlyingIssueDate.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingIssueDate() const { return buf + fieldUnderlyingIssueDate.offset; }
    const char * getIfSetUnderlyingIssueDate() const { return fieldUnderlyingIssueDate.offset >= 0 ? buf + fieldUnderlyingIssueDate.offset : nullptr; }
    private: FieldUnderlyingIssueDate fieldUnderlyingIssueDate;
@@ -3299,6 +3680,7 @@ class GroupQuoteSets : public MessageBase
    public:
    bool isSetUnderlyingRepoCollateralSecurityType() const { return fieldUnderlyingRepoCollateralSecurityType.offset >= 0; }
    FieldUnderlyingRepoCollateralSecurityType::ValueType getUnderlyingRepoCollateralSecurityType() const { return fieldUnderlyingRepoCollateralSecurityType.getValue( buf ); }
+   std::string_view getUnderlyingRepoCollateralSecurityTypeView() const { return fieldUnderlyingRepoCollateralSecurityType.offset >= 0 ? std::string_view{ buf + fieldUnderlyingRepoCollateralSecurityType.offset, getValueLength( buf + fieldUnderlyingRepoCollateralSecurityType.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingRepoCollateralSecurityType() const { return buf + fieldUnderlyingRepoCollateralSecurityType.offset; }
    const char * getIfSetUnderlyingRepoCollateralSecurityType() const { return fieldUnderlyingRepoCollateralSecurityType.offset >= 0 ? buf + fieldUnderlyingRepoCollateralSecurityType.offset : nullptr; }
    private: FieldUnderlyingRepoCollateralSecurityType fieldUnderlyingRepoCollateralSecurityType;
@@ -3306,6 +3688,7 @@ class GroupQuoteSets : public MessageBase
    public:
    bool isSetUnderlyingRepurchaseTerm() const { return fieldUnderlyingRepurchaseTerm.offset >= 0; }
    FieldUnderlyingRepurchaseTerm::ValueType getUnderlyingRepurchaseTerm() const { return fieldUnderlyingRepurchaseTerm.getValue( buf ); }
+   std::string_view getUnderlyingRepurchaseTermView() const { return fieldUnderlyingRepurchaseTerm.offset >= 0 ? std::string_view{ buf + fieldUnderlyingRepurchaseTerm.offset, getValueLength( buf + fieldUnderlyingRepurchaseTerm.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingRepurchaseTerm() const { return buf + fieldUnderlyingRepurchaseTerm.offset; }
    const char * getIfSetUnderlyingRepurchaseTerm() const { return fieldUnderlyingRepurchaseTerm.offset >= 0 ? buf + fieldUnderlyingRepurchaseTerm.offset : nullptr; }
    private: FieldUnderlyingRepurchaseTerm fieldUnderlyingRepurchaseTerm;
@@ -3313,6 +3696,7 @@ class GroupQuoteSets : public MessageBase
    public:
    bool isSetUnderlyingRepurchaseRate() const { return fieldUnderlyingRepurchaseRate.offset >= 0; }
    FieldUnderlyingRepurchaseRate::ValueType getUnderlyingRepurchaseRate() const { return fieldUnderlyingRepurchaseRate.getValue( buf ); }
+   std::string_view getUnderlyingRepurchaseRateView() const { return fieldUnderlyingRepurchaseRate.offset >= 0 ? std::string_view{ buf + fieldUnderlyingRepurchaseRate.offset, getValueLength( buf + fieldUnderlyingRepurchaseRate.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingRepurchaseRate() const { return buf + fieldUnderlyingRepurchaseRate.offset; }
    const char * getIfSetUnderlyingRepurchaseRate() const { return fieldUnderlyingRepurchaseRate.offset >= 0 ? buf + fieldUnderlyingRepurchaseRate.offset : nullptr; }
    private: FieldUnderlyingRepurchaseRate fieldUnderlyingRepurchaseRate;
@@ -3320,6 +3704,7 @@ class GroupQuoteSets : public MessageBase
    public:
    bool isSetUnderlyingFactor() const { return fieldUnderlyingFactor.offset >= 0; }
    FieldUnderlyingFactor::ValueType getUnderlyingFactor() const { return fieldUnderlyingFactor.getValue( buf ); }
+   std::string_view getUnderlyingFactorView() const { return fieldUnderlyingFactor.offset >= 0 ? std::string_view{ buf + fieldUnderlyingFactor.offset, getValueLength( buf + fieldUnderlyingFactor.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingFactor() const { return buf + fieldUnderlyingFactor.offset; }
    const char * getIfSetUnderlyingFactor() const { return fieldUnderlyingFactor.offset >= 0 ? buf + fieldUnderlyingFactor.offset : nullptr; }
    private: FieldUnderlyingFactor fieldUnderlyingFactor;
@@ -3327,6 +3712,7 @@ class GroupQuoteSets : public MessageBase
    public:
    bool isSetUnderlyingCreditRating() const { return fieldUnderlyingCreditRating.offset >= 0; }
    FieldUnderlyingCreditRating::ValueType getUnderlyingCreditRating() const { return fieldUnderlyingCreditRating.getValue( buf ); }
+   std::string_view getUnderlyingCreditRatingView() const { return fieldUnderlyingCreditRating.offset >= 0 ? std::string_view{ buf + fieldUnderlyingCreditRating.offset, getValueLength( buf + fieldUnderlyingCreditRating.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingCreditRating() const { return buf + fieldUnderlyingCreditRating.offset; }
    const char * getIfSetUnderlyingCreditRating() const { return fieldUnderlyingCreditRating.offset >= 0 ? buf + fieldUnderlyingCreditRating.offset : nullptr; }
    private: FieldUnderlyingCreditRating fieldUnderlyingCreditRating;
@@ -3334,6 +3720,7 @@ class GroupQuoteSets : public MessageBase
    public:
    bool isSetUnderlyingInstrRegistry() const { return fieldUnderlyingInstrRegistry.offset >= 0; }
    FieldUnderlyingInstrRegistry::ValueType getUnderlyingInstrRegistry() const { return fieldUnderlyingInstrRegistry.getValue( buf ); }
+   std::string_view getUnderlyingInstrRegistryView() const { return fieldUnderlyingInstrRegistry.offset >= 0 ? std::string_view{ buf + fieldUnderlyingInstrRegistry.offset, getValueLength( buf + fieldUnderlyingInstrRegistry.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingInstrRegistry() const { return buf + fieldUnderlyingInstrRegistry.offset; }
    const char * getIfSetUnderlyingInstrRegistry() const { return fieldUnderlyingInstrRegistry.offset >= 0 ? buf + fieldUnderlyingInstrRegistry.offset : nullptr; }
    private: FieldUnderlyingInstrRegistry fieldUnderlyingInstrRegistry;
@@ -3341,6 +3728,7 @@ class GroupQuoteSets : public MessageBase
    public:
    bool isSetUnderlyingCountryOfIssue() const { return fieldUnderlyingCountryOfIssue.offset >= 0; }
    FieldUnderlyingCountryOfIssue::ValueType getUnderlyingCountryOfIssue() const { return fieldUnderlyingCountryOfIssue.getValue( buf ); }
+   std::string_view getUnderlyingCountryOfIssueView() const { return fieldUnderlyingCountryOfIssue.offset >= 0 ? std::string_view{ buf + fieldUnderlyingCountryOfIssue.offset, getValueLength( buf + fieldUnderlyingCountryOfIssue.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingCountryOfIssue() const { return buf + fieldUnderlyingCountryOfIssue.offset; }
    const char * getIfSetUnderlyingCountryOfIssue() const { return fieldUnderlyingCountryOfIssue.offset >= 0 ? buf + fieldUnderlyingCountryOfIssue.offset : nullptr; }
    private: FieldUnderlyingCountryOfIssue fieldUnderlyingCountryOfIssue;
@@ -3348,6 +3736,7 @@ class GroupQuoteSets : public MessageBase
    public:
    bool isSetUnderlyingStateOrProvinceOfIssue() const { return fieldUnderlyingStateOrProvinceOfIssue.offset >= 0; }
    FieldUnderlyingStateOrProvinceOfIssue::ValueType getUnderlyingStateOrProvinceOfIssue() const { return fieldUnderlyingStateOrProvinceOfIssue.getValue( buf ); }
+   std::string_view getUnderlyingStateOrProvinceOfIssueView() const { return fieldUnderlyingStateOrProvinceOfIssue.offset >= 0 ? std::string_view{ buf + fieldUnderlyingStateOrProvinceOfIssue.offset, getValueLength( buf + fieldUnderlyingStateOrProvinceOfIssue.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingStateOrProvinceOfIssue() const { return buf + fieldUnderlyingStateOrProvinceOfIssue.offset; }
    const char * getIfSetUnderlyingStateOrProvinceOfIssue() const { return fieldUnderlyingStateOrProvinceOfIssue.offset >= 0 ? buf + fieldUnderlyingStateOrProvinceOfIssue.offset : nullptr; }
    private: FieldUnderlyingStateOrProvinceOfIssue fieldUnderlyingStateOrProvinceOfIssue;
@@ -3355,6 +3744,7 @@ class GroupQuoteSets : public MessageBase
    public:
    bool isSetUnderlyingLocaleOfIssue() const { return fieldUnderlyingLocaleOfIssue.offset >= 0; }
    FieldUnderlyingLocaleOfIssue::ValueType getUnderlyingLocaleOfIssue() const { return fieldUnderlyingLocaleOfIssue.getValue( buf ); }
+   std::string_view getUnderlyingLocaleOfIssueView() const { return fieldUnderlyingLocaleOfIssue.offset >= 0 ? std::string_view{ buf + fieldUnderlyingLocaleOfIssue.offset, getValueLength( buf + fieldUnderlyingLocaleOfIssue.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingLocaleOfIssue() const { return buf + fieldUnderlyingLocaleOfIssue.offset; }
    const char * getIfSetUnderlyingLocaleOfIssue() const { return fieldUnderlyingLocaleOfIssue.offset >= 0 ? buf + fieldUnderlyingLocaleOfIssue.offset : nullptr; }
    private: FieldUnderlyingLocaleOfIssue fieldUnderlyingLocaleOfIssue;
@@ -3362,6 +3752,7 @@ class GroupQuoteSets : public MessageBase
    public:
    bool isSetUnderlyingRedemptionDate() const { return fieldUnderlyingRedemptionDate.offset >= 0; }
    FieldUnderlyingRedemptionDate::ValueType getUnderlyingRedemptionDate() const { return fieldUnderlyingRedemptionDate.getValue( buf ); }
+   std::string_view getUnderlyingRedemptionDateView() const { return fieldUnderlyingRedemptionDate.offset >= 0 ? std::string_view{ buf + fieldUnderlyingRedemptionDate.offset, getValueLength( buf + fieldUnderlyingRedemptionDate.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingRedemptionDate() const { return buf + fieldUnderlyingRedemptionDate.offset; }
    const char * getIfSetUnderlyingRedemptionDate() const { return fieldUnderlyingRedemptionDate.offset >= 0 ? buf + fieldUnderlyingRedemptionDate.offset : nullptr; }
    private: FieldUnderlyingRedemptionDate fieldUnderlyingRedemptionDate;
@@ -3369,6 +3760,7 @@ class GroupQuoteSets : public MessageBase
    public:
    bool isSetUnderlyingStrikePrice() const { return fieldUnderlyingStrikePrice.offset >= 0; }
    FieldUnderlyingStrikePrice::ValueType getUnderlyingStrikePrice() const { return fieldUnderlyingStrikePrice.getValue( buf ); }
+   std::string_view getUnderlyingStrikePriceView() const { return fieldUnderlyingStrikePrice.offset >= 0 ? std::string_view{ buf + fieldUnderlyingStrikePrice.offset, getValueLength( buf + fieldUnderlyingStrikePrice.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingStrikePrice() const { return buf + fieldUnderlyingStrikePrice.offset; }
    const char * getIfSetUnderlyingStrikePrice() const { return fieldUnderlyingStrikePrice.offset >= 0 ? buf + fieldUnderlyingStrikePrice.offset : nullptr; }
    private: FieldUnderlyingStrikePrice fieldUnderlyingStrikePrice;
@@ -3376,6 +3768,7 @@ class GroupQuoteSets : public MessageBase
    public:
    bool isSetUnderlyingStrikeCurrency() const { return fieldUnderlyingStrikeCurrency.offset >= 0; }
    FieldUnderlyingStrikeCurrency::ValueType getUnderlyingStrikeCurrency() const { return fieldUnderlyingStrikeCurrency.getValue( buf ); }
+   std::string_view getUnderlyingStrikeCurrencyView() const { return fieldUnderlyingStrikeCurrency.offset >= 0 ? std::string_view{ buf + fieldUnderlyingStrikeCurrency.offset, getValueLength( buf + fieldUnderlyingStrikeCurrency.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingStrikeCurrency() const { return buf + fieldUnderlyingStrikeCurrency.offset; }
    const char * getIfSetUnderlyingStrikeCurrency() const { return fieldUnderlyingStrikeCurrency.offset >= 0 ? buf + fieldUnderlyingStrikeCurrency.offset : nullptr; }
    private: FieldUnderlyingStrikeCurrency fieldUnderlyingStrikeCurrency;
@@ -3383,6 +3776,7 @@ class GroupQuoteSets : public MessageBase
    public:
    bool isSetUnderlyingOptAttribute() const { return fieldUnderlyingOptAttribute.offset >= 0; }
    FieldUnderlyingOptAttribute::ValueType getUnderlyingOptAttribute() const { return fieldUnderlyingOptAttribute.getValue( buf ); }
+   std::string_view getUnderlyingOptAttributeView() const { return fieldUnderlyingOptAttribute.offset >= 0 ? std::string_view{ buf + fieldUnderlyingOptAttribute.offset, getValueLength( buf + fieldUnderlyingOptAttribute.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingOptAttribute() const { return buf + fieldUnderlyingOptAttribute.offset; }
    const char * getIfSetUnderlyingOptAttribute() const { return fieldUnderlyingOptAttribute.offset >= 0 ? buf + fieldUnderlyingOptAttribute.offset : nullptr; }
    private: FieldUnderlyingOptAttribute fieldUnderlyingOptAttribute;
@@ -3390,6 +3784,7 @@ class GroupQuoteSets : public MessageBase
    public:
    bool isSetUnderlyingContractMultiplier() const { return fieldUnderlyingContractMultiplier.offset >= 0; }
    FieldUnderlyingContractMultiplier::ValueType getUnderlyingContractMultiplier() const { return fieldUnderlyingContractMultiplier.getValue( buf ); }
+   std::string_view getUnderlyingContractMultiplierView() const { return fieldUnderlyingContractMultiplier.offset >= 0 ? std::string_view{ buf + fieldUnderlyingContractMultiplier.offset, getValueLength( buf + fieldUnderlyingContractMultiplier.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingContractMultiplier() const { return buf + fieldUnderlyingContractMultiplier.offset; }
    const char * getIfSetUnderlyingContractMultiplier() const { return fieldUnderlyingContractMultiplier.offset >= 0 ? buf + fieldUnderlyingContractMultiplier.offset : nullptr; }
    private: FieldUnderlyingContractMultiplier fieldUnderlyingContractMultiplier;
@@ -3397,6 +3792,7 @@ class GroupQuoteSets : public MessageBase
    public:
    bool isSetUnderlyingCouponRate() const { return fieldUnderlyingCouponRate.offset >= 0; }
    FieldUnderlyingCouponRate::ValueType getUnderlyingCouponRate() const { return fieldUnderlyingCouponRate.getValue( buf ); }
+   std::string_view getUnderlyingCouponRateView() const { return fieldUnderlyingCouponRate.offset >= 0 ? std::string_view{ buf + fieldUnderlyingCouponRate.offset, getValueLength( buf + fieldUnderlyingCouponRate.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingCouponRate() const { return buf + fieldUnderlyingCouponRate.offset; }
    const char * getIfSetUnderlyingCouponRate() const { return fieldUnderlyingCouponRate.offset >= 0 ? buf + fieldUnderlyingCouponRate.offset : nullptr; }
    private: FieldUnderlyingCouponRate fieldUnderlyingCouponRate;
@@ -3404,6 +3800,7 @@ class GroupQuoteSets : public MessageBase
    public:
    bool isSetUnderlyingSecurityExchange() const { return fieldUnderlyingSecurityExchange.offset >= 0; }
    FieldUnderlyingSecurityExchange::ValueType getUnderlyingSecurityExchange() const { return fieldUnderlyingSecurityExchange.getValue( buf ); }
+   std::string_view getUnderlyingSecurityExchangeView() const { return fieldUnderlyingSecurityExchange.offset >= 0 ? std::string_view{ buf + fieldUnderlyingSecurityExchange.offset, getValueLength( buf + fieldUnderlyingSecurityExchange.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingSecurityExchange() const { return buf + fieldUnderlyingSecurityExchange.offset; }
    const char * getIfSetUnderlyingSecurityExchange() const { return fieldUnderlyingSecurityExchange.offset >= 0 ? buf + fieldUnderlyingSecurityExchange.offset : nullptr; }
    private: FieldUnderlyingSecurityExchange fieldUnderlyingSecurityExchange;
@@ -3411,6 +3808,7 @@ class GroupQuoteSets : public MessageBase
    public:
    bool isSetUnderlyingIssuer() const { return fieldUnderlyingIssuer.offset >= 0; }
    FieldUnderlyingIssuer::ValueType getUnderlyingIssuer() const { return fieldUnderlyingIssuer.getValue( buf ); }
+   std::string_view getUnderlyingIssuerView() const { return fieldUnderlyingIssuer.offset >= 0 ? std::string_view{ buf + fieldUnderlyingIssuer.offset, getValueLength( buf + fieldUnderlyingIssuer.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingIssuer() const { return buf + fieldUnderlyingIssuer.offset; }
    const char * getIfSetUnderlyingIssuer() const { return fieldUnderlyingIssuer.offset >= 0 ? buf + fieldUnderlyingIssuer.offset : nullptr; }
    private: FieldUnderlyingIssuer fieldUnderlyingIssuer;
@@ -3418,6 +3816,7 @@ class GroupQuoteSets : public MessageBase
    public:
    bool isSetEncodedUnderlyingIssuerLen() const { return fieldEncodedUnderlyingIssuerLen.offset >= 0; }
    FieldEncodedUnderlyingIssuerLen::ValueType getEncodedUnderlyingIssuerLen() const { return fieldEncodedUnderlyingIssuerLen.getValue( buf ); }
+   std::string_view getEncodedUnderlyingIssuerLenView() const { return fieldEncodedUnderlyingIssuerLen.offset >= 0 ? std::string_view{ buf + fieldEncodedUnderlyingIssuerLen.offset, getValueLength( buf + fieldEncodedUnderlyingIssuerLen.offset ) } : std::string_view{}; }
    const char * ptrToEncodedUnderlyingIssuerLen() const { return buf + fieldEncodedUnderlyingIssuerLen.offset; }
    const char * getIfSetEncodedUnderlyingIssuerLen() const { return fieldEncodedUnderlyingIssuerLen.offset >= 0 ? buf + fieldEncodedUnderlyingIssuerLen.offset : nullptr; }
    private: FieldEncodedUnderlyingIssuerLen fieldEncodedUnderlyingIssuerLen;
@@ -3425,6 +3824,7 @@ class GroupQuoteSets : public MessageBase
    public:
    bool isSetEncodedUnderlyingIssuer() const { return fieldEncodedUnderlyingIssuer.offset >= 0; }
    FieldEncodedUnderlyingIssuer::ValueType getEncodedUnderlyingIssuer() const { return fieldEncodedUnderlyingIssuer.getValue( buf ); }
+   std::string_view getEncodedUnderlyingIssuerView() const { return fieldEncodedUnderlyingIssuer.offset >= 0 ? std::string_view{ buf + fieldEncodedUnderlyingIssuer.offset, getValueLength( buf + fieldEncodedUnderlyingIssuer.offset ) } : std::string_view{}; }
    const char * ptrToEncodedUnderlyingIssuer() const { return buf + fieldEncodedUnderlyingIssuer.offset; }
    const char * getIfSetEncodedUnderlyingIssuer() const { return fieldEncodedUnderlyingIssuer.offset >= 0 ? buf + fieldEncodedUnderlyingIssuer.offset : nullptr; }
    private: FieldEncodedUnderlyingIssuer fieldEncodedUnderlyingIssuer;
@@ -3432,6 +3832,7 @@ class GroupQuoteSets : public MessageBase
    public:
    bool isSetUnderlyingSecurityDesc() const { return fieldUnderlyingSecurityDesc.offset >= 0; }
    FieldUnderlyingSecurityDesc::ValueType getUnderlyingSecurityDesc() const { return fieldUnderlyingSecurityDesc.getValue( buf ); }
+   std::string_view getUnderlyingSecurityDescView() const { return fieldUnderlyingSecurityDesc.offset >= 0 ? std::string_view{ buf + fieldUnderlyingSecurityDesc.offset, getValueLength( buf + fieldUnderlyingSecurityDesc.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingSecurityDesc() const { return buf + fieldUnderlyingSecurityDesc.offset; }
    const char * getIfSetUnderlyingSecurityDesc() const { return fieldUnderlyingSecurityDesc.offset >= 0 ? buf + fieldUnderlyingSecurityDesc.offset : nullptr; }
    private: FieldUnderlyingSecurityDesc fieldUnderlyingSecurityDesc;
@@ -3439,6 +3840,7 @@ class GroupQuoteSets : public MessageBase
    public:
    bool isSetEncodedUnderlyingSecurityDescLen() const { return fieldEncodedUnderlyingSecurityDescLen.offset >= 0; }
    FieldEncodedUnderlyingSecurityDescLen::ValueType getEncodedUnderlyingSecurityDescLen() const { return fieldEncodedUnderlyingSecurityDescLen.getValue( buf ); }
+   std::string_view getEncodedUnderlyingSecurityDescLenView() const { return fieldEncodedUnderlyingSecurityDescLen.offset >= 0 ? std::string_view{ buf + fieldEncodedUnderlyingSecurityDescLen.offset, getValueLength( buf + fieldEncodedUnderlyingSecurityDescLen.offset ) } : std::string_view{}; }
    const char * ptrToEncodedUnderlyingSecurityDescLen() const { return buf + fieldEncodedUnderlyingSecurityDescLen.offset; }
    const char * getIfSetEncodedUnderlyingSecurityDescLen() const { return fieldEncodedUnderlyingSecurityDescLen.offset >= 0 ? buf + fieldEncodedUnderlyingSecurityDescLen.offset : nullptr; }
    private: FieldEncodedUnderlyingSecurityDescLen fieldEncodedUnderlyingSecurityDescLen;
@@ -3446,6 +3848,7 @@ class GroupQuoteSets : public MessageBase
    public:
    bool isSetEncodedUnderlyingSecurityDesc() const { return fieldEncodedUnderlyingSecurityDesc.offset >= 0; }
    FieldEncodedUnderlyingSecurityDesc::ValueType getEncodedUnderlyingSecurityDesc() const { return fieldEncodedUnderlyingSecurityDesc.getValue( buf ); }
+   std::string_view getEncodedUnderlyingSecurityDescView() const { return fieldEncodedUnderlyingSecurityDesc.offset >= 0 ? std::string_view{ buf + fieldEncodedUnderlyingSecurityDesc.offset, getValueLength( buf + fieldEncodedUnderlyingSecurityDesc.offset ) } : std::string_view{}; }
    const char * ptrToEncodedUnderlyingSecurityDesc() const { return buf + fieldEncodedUnderlyingSecurityDesc.offset; }
    const char * getIfSetEncodedUnderlyingSecurityDesc() const { return fieldEncodedUnderlyingSecurityDesc.offset >= 0 ? buf + fieldEncodedUnderlyingSecurityDesc.offset : nullptr; }
    private: FieldEncodedUnderlyingSecurityDesc fieldEncodedUnderlyingSecurityDesc;
@@ -3453,6 +3856,7 @@ class GroupQuoteSets : public MessageBase
    public:
    bool isSetUnderlyingCPProgram() const { return fieldUnderlyingCPProgram.offset >= 0; }
    FieldUnderlyingCPProgram::ValueType getUnderlyingCPProgram() const { return fieldUnderlyingCPProgram.getValue( buf ); }
+   std::string_view getUnderlyingCPProgramView() const { return fieldUnderlyingCPProgram.offset >= 0 ? std::string_view{ buf + fieldUnderlyingCPProgram.offset, getValueLength( buf + fieldUnderlyingCPProgram.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingCPProgram() const { return buf + fieldUnderlyingCPProgram.offset; }
    const char * getIfSetUnderlyingCPProgram() const { return fieldUnderlyingCPProgram.offset >= 0 ? buf + fieldUnderlyingCPProgram.offset : nullptr; }
    private: FieldUnderlyingCPProgram fieldUnderlyingCPProgram;
@@ -3460,6 +3864,7 @@ class GroupQuoteSets : public MessageBase
    public:
    bool isSetUnderlyingCPRegType() const { return fieldUnderlyingCPRegType.offset >= 0; }
    FieldUnderlyingCPRegType::ValueType getUnderlyingCPRegType() const { return fieldUnderlyingCPRegType.getValue( buf ); }
+   std::string_view getUnderlyingCPRegTypeView() const { return fieldUnderlyingCPRegType.offset >= 0 ? std::string_view{ buf + fieldUnderlyingCPRegType.offset, getValueLength( buf + fieldUnderlyingCPRegType.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingCPRegType() const { return buf + fieldUnderlyingCPRegType.offset; }
    const char * getIfSetUnderlyingCPRegType() const { return fieldUnderlyingCPRegType.offset >= 0 ? buf + fieldUnderlyingCPRegType.offset : nullptr; }
    private: FieldUnderlyingCPRegType fieldUnderlyingCPRegType;
@@ -3467,6 +3872,7 @@ class GroupQuoteSets : public MessageBase
    public:
    bool isSetUnderlyingCurrency() const { return fieldUnderlyingCurrency.offset >= 0; }
    FieldUnderlyingCurrency::ValueType getUnderlyingCurrency() const { return fieldUnderlyingCurrency.getValue( buf ); }
+   std::string_view getUnderlyingCurrencyView() const { return fieldUnderlyingCurrency.offset >= 0 ? std::string_view{ buf + fieldUnderlyingCurrency.offset, getValueLength( buf + fieldUnderlyingCurrency.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingCurrency() const { return buf + fieldUnderlyingCurrency.offset; }
    const char * getIfSetUnderlyingCurrency() const { return fieldUnderlyingCurrency.offset >= 0 ? buf + fieldUnderlyingCurrency.offset : nullptr; }
    private: FieldUnderlyingCurrency fieldUnderlyingCurrency;
@@ -3474,6 +3880,7 @@ class GroupQuoteSets : public MessageBase
    public:
    bool isSetUnderlyingQty() const { return fieldUnderlyingQty.offset >= 0; }
    FieldUnderlyingQty::ValueType getUnderlyingQty() const { return fieldUnderlyingQty.getValue( buf ); }
+   std::string_view getUnderlyingQtyView() const { return fieldUnderlyingQty.offset >= 0 ? std::string_view{ buf + fieldUnderlyingQty.offset, getValueLength( buf + fieldUnderlyingQty.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingQty() const { return buf + fieldUnderlyingQty.offset; }
    const char * getIfSetUnderlyingQty() const { return fieldUnderlyingQty.offset >= 0 ? buf + fieldUnderlyingQty.offset : nullptr; }
    private: FieldUnderlyingQty fieldUnderlyingQty;
@@ -3481,6 +3888,7 @@ class GroupQuoteSets : public MessageBase
    public:
    bool isSetUnderlyingPx() const { return fieldUnderlyingPx.offset >= 0; }
    FieldUnderlyingPx::ValueType getUnderlyingPx() const { return fieldUnderlyingPx.getValue( buf ); }
+   std::string_view getUnderlyingPxView() const { return fieldUnderlyingPx.offset >= 0 ? std::string_view{ buf + fieldUnderlyingPx.offset, getValueLength( buf + fieldUnderlyingPx.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingPx() const { return buf + fieldUnderlyingPx.offset; }
    const char * getIfSetUnderlyingPx() const { return fieldUnderlyingPx.offset >= 0 ? buf + fieldUnderlyingPx.offset : nullptr; }
    private: FieldUnderlyingPx fieldUnderlyingPx;
@@ -3488,6 +3896,7 @@ class GroupQuoteSets : public MessageBase
    public:
    bool isSetUnderlyingDirtyPrice() const { return fieldUnderlyingDirtyPrice.offset >= 0; }
    FieldUnderlyingDirtyPrice::ValueType getUnderlyingDirtyPrice() const { return fieldUnderlyingDirtyPrice.getValue( buf ); }
+   std::string_view getUnderlyingDirtyPriceView() const { return fieldUnderlyingDirtyPrice.offset >= 0 ? std::string_view{ buf + fieldUnderlyingDirtyPrice.offset, getValueLength( buf + fieldUnderlyingDirtyPrice.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingDirtyPrice() const { return buf + fieldUnderlyingDirtyPrice.offset; }
    const char * getIfSetUnderlyingDirtyPrice() const { return fieldUnderlyingDirtyPrice.offset >= 0 ? buf + fieldUnderlyingDirtyPrice.offset : nullptr; }
    private: FieldUnderlyingDirtyPrice fieldUnderlyingDirtyPrice;
@@ -3495,6 +3904,7 @@ class GroupQuoteSets : public MessageBase
    public:
    bool isSetUnderlyingEndPrice() const { return fieldUnderlyingEndPrice.offset >= 0; }
    FieldUnderlyingEndPrice::ValueType getUnderlyingEndPrice() const { return fieldUnderlyingEndPrice.getValue( buf ); }
+   std::string_view getUnderlyingEndPriceView() const { return fieldUnderlyingEndPrice.offset >= 0 ? std::string_view{ buf + fieldUnderlyingEndPrice.offset, getValueLength( buf + fieldUnderlyingEndPrice.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingEndPrice() const { return buf + fieldUnderlyingEndPrice.offset; }
    const char * getIfSetUnderlyingEndPrice() const { return fieldUnderlyingEndPrice.offset >= 0 ? buf + fieldUnderlyingEndPrice.offset : nullptr; }
    private: FieldUnderlyingEndPrice fieldUnderlyingEndPrice;
@@ -3502,6 +3912,7 @@ class GroupQuoteSets : public MessageBase
    public:
    bool isSetUnderlyingStartValue() const { return fieldUnderlyingStartValue.offset >= 0; }
    FieldUnderlyingStartValue::ValueType getUnderlyingStartValue() const { return fieldUnderlyingStartValue.getValue( buf ); }
+   std::string_view getUnderlyingStartValueView() const { return fieldUnderlyingStartValue.offset >= 0 ? std::string_view{ buf + fieldUnderlyingStartValue.offset, getValueLength( buf + fieldUnderlyingStartValue.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingStartValue() const { return buf + fieldUnderlyingStartValue.offset; }
    const char * getIfSetUnderlyingStartValue() const { return fieldUnderlyingStartValue.offset >= 0 ? buf + fieldUnderlyingStartValue.offset : nullptr; }
    private: FieldUnderlyingStartValue fieldUnderlyingStartValue;
@@ -3509,6 +3920,7 @@ class GroupQuoteSets : public MessageBase
    public:
    bool isSetUnderlyingCurrentValue() const { return fieldUnderlyingCurrentValue.offset >= 0; }
    FieldUnderlyingCurrentValue::ValueType getUnderlyingCurrentValue() const { return fieldUnderlyingCurrentValue.getValue( buf ); }
+   std::string_view getUnderlyingCurrentValueView() const { return fieldUnderlyingCurrentValue.offset >= 0 ? std::string_view{ buf + fieldUnderlyingCurrentValue.offset, getValueLength( buf + fieldUnderlyingCurrentValue.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingCurrentValue() const { return buf + fieldUnderlyingCurrentValue.offset; }
    const char * getIfSetUnderlyingCurrentValue() const { return fieldUnderlyingCurrentValue.offset >= 0 ? buf + fieldUnderlyingCurrentValue.offset : nullptr; }
    private: FieldUnderlyingCurrentValue fieldUnderlyingCurrentValue;
@@ -3516,6 +3928,7 @@ class GroupQuoteSets : public MessageBase
    public:
    bool isSetUnderlyingEndValue() const { return fieldUnderlyingEndValue.offset >= 0; }
    FieldUnderlyingEndValue::ValueType getUnderlyingEndValue() const { return fieldUnderlyingEndValue.getValue( buf ); }
+   std::string_view getUnderlyingEndValueView() const { return fieldUnderlyingEndValue.offset >= 0 ? std::string_view{ buf + fieldUnderlyingEndValue.offset, getValueLength( buf + fieldUnderlyingEndValue.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingEndValue() const { return buf + fieldUnderlyingEndValue.offset; }
    const char * getIfSetUnderlyingEndValue() const { return fieldUnderlyingEndValue.offset >= 0 ? buf + fieldUnderlyingEndValue.offset : nullptr; }
    private: FieldUnderlyingEndValue fieldUnderlyingEndValue;
@@ -3523,6 +3936,7 @@ class GroupQuoteSets : public MessageBase
    public:
    bool isSetNoUnderlyingStips() const { return fieldNoUnderlyingStips.offset >= 0; }
    FieldNoUnderlyingStips::ValueType getNoUnderlyingStips() const { return fieldNoUnderlyingStips.getValue( buf ); }
+   std::string_view getNoUnderlyingStipsView() const { return fieldNoUnderlyingStips.offset >= 0 ? std::string_view{ buf + fieldNoUnderlyingStips.offset, getValueLength( buf + fieldNoUnderlyingStips.offset ) } : std::string_view{}; }
    const char * ptrToNoUnderlyingStips() const { return buf + fieldNoUnderlyingStips.offset; }
    const char * getIfSetNoUnderlyingStips() const { return fieldNoUnderlyingStips.offset >= 0 ? buf + fieldNoUnderlyingStips.offset : nullptr; }
    private: FieldNoUnderlyingStips fieldNoUnderlyingStips;
@@ -3535,6 +3949,7 @@ class GroupQuoteSets : public MessageBase
    public:
    bool isSetTotNoQuoteEntries() const { return fieldTotNoQuoteEntries.offset >= 0; }
    FieldTotNoQuoteEntries::ValueType getTotNoQuoteEntries() const { return fieldTotNoQuoteEntries.getValue( buf ); }
+   std::string_view getTotNoQuoteEntriesView() const { return fieldTotNoQuoteEntries.offset >= 0 ? std::string_view{ buf + fieldTotNoQuoteEntries.offset, getValueLength( buf + fieldTotNoQuoteEntries.offset ) } : std::string_view{}; }
    const char * ptrToTotNoQuoteEntries() const { return buf + fieldTotNoQuoteEntries.offset; }
    const char * getIfSetTotNoQuoteEntries() const { return fieldTotNoQuoteEntries.offset >= 0 ? buf + fieldTotNoQuoteEntries.offset : nullptr; }
    private: FieldTotNoQuoteEntries fieldTotNoQuoteEntries;
@@ -3542,6 +3957,7 @@ class GroupQuoteSets : public MessageBase
    public:
    bool isSetLastFragment() const { return fieldLastFragment.offset >= 0; }
    FieldLastFragment::ValueType getLastFragment() const { return fieldLastFragment.getValue( buf ); }
+   std::string_view getLastFragmentView() const { return fieldLastFragment.offset >= 0 ? std::string_view{ buf + fieldLastFragment.offset, getValueLength( buf + fieldLastFragment.offset ) } : std::string_view{}; }
    const char * ptrToLastFragment() const { return buf + fieldLastFragment.offset; }
    const char * getIfSetLastFragment() const { return fieldLastFragment.offset >= 0 ? buf + fieldLastFragment.offset : nullptr; }
    private: FieldLastFragment fieldLastFragment;
@@ -3549,6 +3965,7 @@ class GroupQuoteSets : public MessageBase
    public:
    bool isSetNoQuoteEntries() const { return fieldNoQuoteEntries.offset >= 0; }
    FieldNoQuoteEntries::ValueType getNoQuoteEntries() const { return fieldNoQuoteEntries.getValue( buf ); }
+   std::string_view getNoQuoteEntriesView() const { return fieldNoQuoteEntries.offset >= 0 ? std::string_view{ buf + fieldNoQuoteEntries.offset, getValueLength( buf + fieldNoQuoteEntries.offset ) } : std::string_view{}; }
    const char * ptrToNoQuoteEntries() const { return buf + fieldNoQuoteEntries.offset; }
    const char * getIfSetNoQuoteEntries() const { return fieldNoQuoteEntries.offset >= 0 ? buf + fieldNoQuoteEntries.offset : nullptr; }
    private: FieldNoQuoteEntries fieldNoQuoteEntries;
@@ -3579,6 +3996,7 @@ class GroupSecurityTypes : public MessageBase
    public:
    bool isSetSecurityType() const { return fieldSecurityType.offset >= 0; }
    FieldSecurityType::ValueType getSecurityType() const { return fieldSecurityType.getValue( buf ); }
+   std::string_view getSecurityTypeView() const { return fieldSecurityType.offset >= 0 ? std::string_view{ buf + fieldSecurityType.offset, getValueLength( buf + fieldSecurityType.offset ) } : std::string_view{}; }
    const char * ptrToSecurityType() const { return buf + fieldSecurityType.offset; }
    const char * getIfSetSecurityType() const { return fieldSecurityType.offset >= 0 ? buf + fieldSecurityType.offset : nullptr; }
    private: FieldSecurityType fieldSecurityType;
@@ -3586,6 +4004,7 @@ class GroupSecurityTypes : public MessageBase
    public:
    bool isSetSecuritySubType() const { return fieldSecuritySubType.offset >= 0; }
    FieldSecuritySubType::ValueType getSecuritySubType() const { return fieldSecuritySubType.getValue( buf ); }
+   std::string_view getSecuritySubTypeView() const { return fieldSecuritySubType.offset >= 0 ? std::string_view{ buf + fieldSecuritySubType.offset, getValueLength( buf + fieldSecuritySubType.offset ) } : std::string_view{}; }
    const char * ptrToSecuritySubType() const { return buf + fieldSecuritySubType.offset; }
    const char * getIfSetSecuritySubType() const { return fieldSecuritySubType.offset >= 0 ? buf + fieldSecuritySubType.offset : nullptr; }
    private: FieldSecuritySubType fieldSecuritySubType;
@@ -3593,6 +4012,7 @@ class GroupSecurityTypes : public MessageBase
    public:
    bool isSetProduct() const { return fieldProduct.offset >= 0; }
    FieldProduct::ValueType getProduct() const { return fieldProduct.getValue( buf ); }
+   std::string_view getProductView() const { return fieldProduct.offset >= 0 ? std::string_view{ buf + fieldProduct.offset, getValueLength( buf + fieldProduct.offset ) } : std::string_view{}; }
    const char * ptrToProduct() const { return buf + fieldProduct.offset; }
    const char * getIfSetProduct() const { return fieldProduct.offset >= 0 ? buf + fieldProduct.offset : nullptr; }
    private: FieldProduct fieldProduct;
@@ -3600,6 +4020,7 @@ class GroupSecurityTypes : public MessageBase
    public:
    bool isSetCFICode() const { return fieldCFICode.offset >= 0; }
    FieldCFICode::ValueType getCFICode() const { return fieldCFICode.getValue( buf ); }
+   std::string_view getCFICodeView() const { return fieldCFICode.offset >= 0 ? std::string_view{ buf + fieldCFICode.offset, getValueLength( buf + fieldCFICode.offset ) } : std::string_view{}; }
    const char * ptrToCFICode() const { return buf + fieldCFICode.offset; }
    const char * getIfSetCFICode() const { return fieldCFICode.offset >= 0 ? buf + fieldCFICode.offset : nullptr; }
    private: FieldCFICode fieldCFICode;
@@ -3625,6 +4046,7 @@ class GroupNested3PartyIDs : public MessageBase
    public:
    bool isSetNested3PartyID() const { return fieldNested3PartyID.offset >= 0; }
    FieldNested3PartyID::ValueType getNested3PartyID() const { return fieldNested3PartyID.getValue( buf ); }
+   std::string_view getNested3PartyIDView() const { return fieldNested3PartyID.offset >= 0 ? std::string_view{ buf + fieldNested3PartyID.offset, getValueLength( buf + fieldNested3PartyID.offset ) } : std::string_view{}; }
    const char * ptrToNested3PartyID() const { return buf + fieldNested3PartyID.offset; }
    const char * getIfSetNested3PartyID() const { return fieldNested3PartyID.offset >= 0 ? buf + fieldNested3PartyID.offset : nullptr; }
    private: FieldNested3PartyID fieldNested3PartyID;
@@ -3632,6 +4054,7 @@ class GroupNested3PartyIDs : public MessageBase
    public:
    bool isSetNested3PartyIDSource() const { return fieldNested3PartyIDSource.offset >= 0; }
    FieldNested3PartyIDSource::ValueType getNested3PartyIDSource() const { return fieldNested3PartyIDSource.getValue( buf ); }
+   std::string_view getNested3PartyIDSourceView() const { return fieldNested3PartyIDSource.offset >= 0 ? std::string_view{ buf + fieldNested3PartyIDSource.offset, getValueLength( buf + fieldNested3PartyIDSource.offset ) } : std::string_view{}; }
    const char * ptrToNested3PartyIDSource() const { return buf + fieldNested3PartyIDSource.offset; }
    const char * getIfSetNested3PartyIDSource() const { return fieldNested3PartyIDSource.offset >= 0 ? buf + fieldNested3PartyIDSource.offset : nullptr; }
    private: FieldNested3PartyIDSource fieldNested3PartyIDSource;
@@ -3639,6 +4062,7 @@ class GroupNested3PartyIDs : public MessageBase
    public:
    bool isSetNested3PartyRole() const { return fieldNested3PartyRole.offset >= 0; }
    FieldNested3PartyRole::ValueType getNested3PartyRole() const { return fieldNested3PartyRole.getValue( buf ); }
+   std::string_view getNested3PartyRoleView() const { return fieldNested3PartyRole.offset >= 0 ? std::string_view{ buf + fieldNested3PartyRole.offset, getValueLength( buf + fieldNested3PartyRole.offset ) } : std::string_view{}; }
    const char * ptrToNested3PartyRole() const { return buf + fieldNested3PartyRole.offset; }
    const char * getIfSetNested3PartyRole() const { return fieldNested3PartyRole.offset >= 0 ? buf + fieldNested3PartyRole.offset : nullptr; }
    private: FieldNested3PartyRole fieldNested3PartyRole;
@@ -3646,6 +4070,7 @@ class GroupNested3PartyIDs : public MessageBase
    public:
    bool isSetNoNested3PartySubIDs() const { return fieldNoNested3PartySubIDs.offset >= 0; }
    FieldNoNested3PartySubIDs::ValueType getNoNested3PartySubIDs() const { return fieldNoNested3PartySubIDs.getValue( buf ); }
+   std::string_view getNoNested3PartySubIDsView() const { return fieldNoNested3PartySubIDs.offset >= 0 ? std::string_view{ buf + fieldNoNested3PartySubIDs.offset, getValueLength( buf + fieldNoNested3PartySubIDs.offset ) } : std::string_view{}; }
    const char * ptrToNoNested3PartySubIDs() const { return buf + fieldNoNested3PartySubIDs.offset; }
    const char * getIfSetNoNested3PartySubIDs() const { return fieldNoNested3PartySubIDs.offset >= 0 ? buf + fieldNoNested3PartySubIDs.offset : nullptr; }
    private: FieldNoNested3PartySubIDs fieldNoNested3PartySubIDs;
@@ -3676,6 +4101,7 @@ class GroupPositions : public MessageBase
    public:
    bool isSetPosType() const { return fieldPosType.offset >= 0; }
    FieldPosType::ValueType getPosType() const { return fieldPosType.getValue( buf ); }
+   std::string_view getPosTypeView() const { return fieldPosType.offset >= 0 ? std::string_view{ buf + fieldPosType.offset, getValueLength( buf + fieldPosType.offset ) } : std::string_view{}; }
    const char * ptrToPosType() const { return buf + fieldPosType.offset; }
    const char * getIfSetPosType() const { return fieldPosType.offset >= 0 ? buf + fieldPosType.offset : nullptr; }
    private: FieldPosType fieldPosType;
@@ -3683,6 +4109,7 @@ class GroupPositions : public MessageBase
    public:
    bool isSetLongQty() const { return fieldLongQty.offset >= 0; }
    FieldLongQty::ValueType getLongQty() const { return fieldLongQty.getValue( buf ); }
+   std::string_view getLongQtyView() const { return fieldLongQty.offset >= 0 ? std::string_view{ buf + fieldLongQty.offset, getValueLength( buf + fieldLongQty.offset ) } : std::string_view{}; }
    const char * ptrToLongQty() const { return buf + fieldLongQty.offset; }
    const char * getIfSetLongQty() const { return fieldLongQty.offset >= 0 ? buf + fieldLongQty.offset : nullptr; }
    private: FieldLongQty fieldLongQty;
@@ -3690,6 +4117,7 @@ class GroupPositions : public MessageBase
    public:
    bool isSetShortQty() const { return fieldShortQty.offset >= 0; }
    FieldShortQty::ValueType getShortQty() const { return fieldShortQty.getValue( buf ); }
+   std::string_view getShortQtyView() const { return fieldShortQty.offset >= 0 ? std::string_view{ buf + fieldShortQty.offset, getValueLength( buf + fieldShortQty.offset ) } : std::string_view{}; }
    const char * ptrToShortQty() const { return buf + fieldShortQty.offset; }
    const char * getIfSetShortQty() const { return fieldShortQty.offset >= 0 ? buf + fieldShortQty.offset : nullptr; }
    private: FieldShortQty fieldShortQty;
@@ -3697,6 +4125,7 @@ class GroupPositions : public MessageBase
    public:
    bool isSetPosQtyStatus() const { return fieldPosQtyStatus.offset >= 0; }
    FieldPosQtyStatus::ValueType getPosQtyStatus() const { return fieldPosQtyStatus.getValue( buf ); }
+   std::string_view getPosQtyStatusView() const { return fieldPosQtyStatus.offset >= 0 ? std::string_view{ buf + fieldPosQtyStatus.offset, getValueLength( buf + fieldPosQtyStatus.offset ) } : std::string_view{}; }
    const char * ptrToPosQtyStatus() const { return buf + fieldPosQtyStatus.offset; }
    const char * getIfSetPosQtyStatus() const { return fieldPosQtyStatus.offset >= 0 ? buf + fieldPosQtyStatus.offset : nullptr; }
    private: FieldPosQtyStatus fieldPosQtyStatus;
@@ -3704,6 +4133,7 @@ class GroupPositions : public MessageBase
    public:
    bool isSetNoNestedPartyIDs() const { return fieldNoNestedPartyIDs.offset >= 0; }
    FieldNoNestedPartyIDs::ValueType getNoNestedPartyIDs() const { return fieldNoNestedPartyIDs.getValue( buf ); }
+   std::string_view getNoNestedPartyIDsView() const { return fieldNoNestedPartyIDs.offset >= 0 ? std::string_view{ buf + fieldNoNestedPartyIDs.offset, getValueLength( buf + fieldNoNestedPartyIDs.offset ) } : std::string_view{}; }
    const char * ptrToNoNestedPartyIDs() const { return buf + fieldNoNestedPartyIDs.offset; }
    const char * getIfSetNoNestedPartyIDs() const { return fieldNoNestedPartyIDs.offset >= 0 ? buf + fieldNoNestedPartyIDs.offset : nullptr; }
    private: FieldNoNestedPartyIDs fieldNoNestedPartyIDs;
@@ -3734,6 +4164,7 @@ class GroupAffectedOrders : public MessageBase
    public:
    bool isSetOrigClOrdID() const { return fieldOrigClOrdID.offset >= 0; }
    FieldOrigClOrdID::ValueType getOrigClOrdID() const { return fieldOrigClOrdID.getValue( buf ); }
+   std::string_view getOrigClOrdIDView() const { return fieldOrigClOrdID.offset >= 0 ? std::string_view{ buf + fieldOrigClOrdID.offset, getValueLength( buf + fieldOrigClOrdID.offset ) } : std::string_view{}; }
    const char * ptrToOrigClOrdID() const { return buf + fieldOrigClOrdID.offset; }
    const char * getIfSetOrigClOrdID() const { return fieldOrigClOrdID.offset >= 0 ? buf + fieldOrigClOrdID.offset : nullptr; }
    private: FieldOrigClOrdID fieldOrigClOrdID;
@@ -3741,6 +4172,7 @@ class GroupAffectedOrders : public MessageBase
    public:
    bool isSetAffectedOrderID() const { return fieldAffectedOrderID.offset >= 0; }
    FieldAffectedOrderID::ValueType getAffectedOrderID() const { return fieldAffectedOrderID.getValue( buf ); }
+   std::string_view getAffectedOrderIDView() const { return fieldAffectedOrderID.offset >= 0 ? std::string_view{ buf + fieldAffectedOrderID.offset, getValueLength( buf + fieldAffectedOrderID.offset ) } : std::string_view{}; }
    const char * ptrToAffectedOrderID() const { return buf + fieldAffectedOrderID.offset; }
    const char * getIfSetAffectedOrderID() const { return fieldAffectedOrderID.offset >= 0 ? buf + fieldAffectedOrderID.offset : nullptr; }
    private: FieldAffectedOrderID fieldAffectedOrderID;
@@ -3748,6 +4180,7 @@ class GroupAffectedOrders : public MessageBase
    public:
    bool isSetAffectedSecondaryOrderID() const { return fieldAffectedSecondaryOrderID.offset >= 0; }
    FieldAffectedSecondaryOrderID::ValueType getAffectedSecondaryOrderID() const { return fieldAffectedSecondaryOrderID.getValue( buf ); }
+   std::string_view getAffectedSecondaryOrderIDView() const { return fieldAffectedSecondaryOrderID.offset >= 0 ? std::string_view{ buf + fieldAffectedSecondaryOrderID.offset, getValueLength( buf + fieldAffectedSecondaryOrderID.offset ) } : std::string_view{}; }
    const char * ptrToAffectedSecondaryOrderID() const { return buf + fieldAffectedSecondaryOrderID.offset; }
    const char * getIfSetAffectedSecondaryOrderID() const { return fieldAffectedSecondaryOrderID.offset >= 0 ? buf + fieldAffectedSecondaryOrderID.offset : nullptr; }
    private: FieldAffectedSecondaryOrderID fieldAffectedSecondaryOrderID;
@@ -3773,6 +4206,7 @@ class GroupExecs : public MessageBase
    public:
    bool isSetLastQty() const { return fieldLastQty.offset >= 0; }
    FieldLastQty::ValueType getLastQty() const { return fieldLastQty.getValue( buf ); }
+   std::string_view getLastQtyView() const { return fieldLastQty.offset >= 0 ? std::string_view{ buf + fieldLastQty.offset, getValueLength( buf + fieldLastQty.offset ) } : std::string_view{}; }
    const char * ptrToLastQty() const { return buf + fieldLastQty.offset; }
    const char * getIfSetLastQty() const { return fieldLastQty.offset >= 0 ? buf + fieldLastQty.offset : nullptr; }
    private: FieldLastQty fieldLastQty;
@@ -3780,6 +4214,7 @@ class GroupExecs : public MessageBase
    public:
    bool isSetExecID() const { return fieldExecID.offset >= 0; }
    FieldExecID::ValueType getExecID() const { return fieldExecID.getValue( buf ); }
+   std::string_view getExecIDView() const { return fieldExecID.offset >= 0 ? std::string_view{ buf + fieldExecID.offset, getValueLength( buf + fieldExecID.offset ) } : std::string_view{}; }
    const char * ptrToExecID() const { return buf + fieldExecID.offset; }
    const char * getIfSetExecID() const { return fieldExecID.offset >= 0 ? buf + fieldExecID.offset : nullptr; }
    private: FieldExecID fieldExecID;
@@ -3787,6 +4222,7 @@ class GroupExecs : public MessageBase
    public:
    bool isSetSecondaryExecID() const { return fieldSecondaryExecID.offset >= 0; }
    FieldSecondaryExecID::ValueType getSecondaryExecID() const { return fieldSecondaryExecID.getValue( buf ); }
+   std::string_view getSecondaryExecIDView() const { return fieldSecondaryExecID.offset >= 0 ? std::string_view{ buf + fieldSecondaryExecID.offset, getValueLength( buf + fieldSecondaryExecID.offset ) } : std::string_view{}; }
    const char * ptrToSecondaryExecID() const { return buf + fieldSecondaryExecID.offset; }
    const char * getIfSetSecondaryExecID() const { return fieldSecondaryExecID.offset >= 0 ? buf + fieldSecondaryExecID.offset : nullptr; }
    private: FieldSecondaryExecID fieldSecondaryExecID;
@@ -3794,6 +4230,7 @@ class GroupExecs : public MessageBase
    public:
    bool isSetLastPx() const { return fieldLastPx.offset >= 0; }
    FieldLastPx::ValueType getLastPx() const { return fieldLastPx.getValue( buf ); }
+   std::string_view getLastPxView() const { return fieldLastPx.offset >= 0 ? std::string_view{ buf + fieldLastPx.offset, getValueLength( buf + fieldLastPx.offset ) } : std::string_view{}; }
    const char * ptrToLastPx() const { return buf + fieldLastPx.offset; }
    const char * getIfSetLastPx() const { return fieldLastPx.offset >= 0 ? buf + fieldLastPx.offset : nullptr; }
    private: FieldLastPx fieldLastPx;
@@ -3801,6 +4238,7 @@ class GroupExecs : public MessageBase
    public:
    bool isSetLastParPx() const { return fieldLastParPx.offset >= 0; }
    FieldLastParPx::ValueType getLastParPx() const { return fieldLastParPx.getValue( buf ); }
+   std::string_view getLastParPxView() const { return fieldLastParPx.offset >= 0 ? std::string_view{ buf + fieldLastParPx.offset, getValueLength( buf + fieldLastParPx.offset ) } : std::string_view{}; }
    const char * ptrToLastParPx() const { return buf + fieldLastParPx.offset; }
    const char * getIfSetLastParPx() const { return fieldLastParPx.offset >= 0 ? buf + fieldLastParPx.offset : nullptr; }
    private: FieldLastParPx fieldLastParPx;
@@ -3808,6 +4246,7 @@ class GroupExecs : public MessageBase
    public:
    bool isSetLastCapacity() const { return fieldLastCapacity.offset >= 0; }
    FieldLastCapacity::ValueType getLastCapacity() const { return fieldLastCapacity.getValue( buf ); }
+   std::string_view getLastCapacityView() const { return fieldLastCapacity.offset >= 0 ? std::string_view{ buf + fieldLastCapacity.offset, getValueLength( buf + fieldLastCapacity.offset ) } : std::string_view{}; }
    const char * ptrToLastCapacity() const { return buf + fieldLastCapacity.offset; }
    const char * getIfSetLastCapacity() const { return fieldLastCapacity.offset >= 0 ? buf + fieldLastCapacity.offset : nullptr; }
    private: FieldLastCapacity fieldLastCapacity;
@@ -3833,6 +4272,7 @@ class GroupMsgTypes : public MessageBase
    public:
    bool isSetRefMsgType() const { return fieldRefMsgType.offset >= 0; }
    FieldRefMsgType::ValueType getRefMsgType() const { return fieldRefMsgType.getValue( buf ); }
+   std::string_view getRefMsgTypeView() const { return fieldRefMsgType.offset >= 0 ? std::string_view{ buf + fieldRefMsgType.offset, getValueLength( buf + fieldRefMsgType.offset ) } : std::string_view{}; }
    const char * ptrToRefMsgType() const { return buf + fieldRefMsgType.offset; }
    const char * getIfSetRefMsgType() const { return fieldRefMsgType.offset >= 0 ? buf + fieldRefMsgType.offset : nullptr; }
    private: FieldRefMsgType fieldRefMsgType;
@@ -3840,6 +4280,7 @@ class GroupMsgTypes : public MessageBase
    public:
    bool isSetMsgDirection() const { return fieldMsgDirection.offset >= 0; }
    FieldMsgDirection::ValueType getMsgDirection() const { return fieldMsgDirection.getValue( buf ); }
+   std::string_view getMsgDirectionView() const { return fieldMsgDirection.offset >= 0 ? std::string_view{ buf + fieldMsgDirection.offset, getValueLength( buf + fieldMsgDirection.offset ) } : std::string_view{}; }
    const char * ptrToMsgDirection() const { return buf + fieldMsgDirection.offset; }
    const char * getIfSetMsgDirection() const { return fieldMsgDirection.offset >= 0 ? buf + fieldMsgDirection.offset : nullptr; }
    private: FieldMsgDirection fieldMsgDirection;
@@ -3865,6 +4306,7 @@ class GroupBidComponents : public MessageBase
    public:
    bool isSetListID() const { return fieldListID.offset >= 0; }
    FieldListID::ValueType getListID() const { return fieldListID.getValue( buf ); }
+   std::string_view getListIDView() const { return fieldListID.offset >= 0 ? std::string_view{ buf + fieldListID.offset, getValueLength( buf + fieldListID.offset ) } : std::string_view{}; }
    const char * ptrToListID() const { return buf + fieldListID.offset; }
    const char * getIfSetListID() const { return fieldListID.offset >= 0 ? buf + fieldListID.offset : nullptr; }
    private: FieldListID fieldListID;
@@ -3872,6 +4314,7 @@ class GroupBidComponents : public MessageBase
    public:
    bool isSetSide() const { return fieldSide.offset >= 0; }
    FieldSide::ValueType getSide() const { return fieldSide.getValue( buf ); }
+   std::string_view getSideView() const { return fieldSide.offset >= 0 ? std::string_view{ buf + fieldSide.offset, getValueLength( buf + fieldSide.offset ) } : std::string_view{}; }
    const char * ptrToSide() const { return buf + fieldSide.offset; }
    const char * getIfSetSide() const { return fieldSide.offset >= 0 ? buf + fieldSide.offset : nullptr; }
    private: FieldSide fieldSide;
@@ -3879,6 +4322,7 @@ class GroupBidComponents : public MessageBase
    public:
    bool isSetTradingSessionID() const { return fieldTradingSessionID.offset >= 0; }
    FieldTradingSessionID::ValueType getTradingSessionID() const { return fieldTradingSessionID.getValue( buf ); }
+   std::string_view getTradingSessionIDView() const { return fieldTradingSessionID.offset >= 0 ? std::string_view{ buf + fieldTradingSessionID.offset, getValueLength( buf + fieldTradingSessionID.offset ) } : std::string_view{}; }
    const char * ptrToTradingSessionID() const { return buf + fieldTradingSessionID.offset; }
    const char * getIfSetTradingSessionID() const { return fieldTradingSessionID.offset >= 0 ? buf + fieldTradingSessionID.offset : nullptr; }
    private: FieldTradingSessionID fieldTradingSessionID;
@@ -3886,6 +4330,7 @@ class GroupBidComponents : public MessageBase
    public:
    bool isSetTradingSessionSubID() const { return fieldTradingSessionSubID.offset >= 0; }
    FieldTradingSessionSubID::ValueType getTradingSessionSubID() const { return fieldTradingSessionSubID.getValue( buf ); }
+   std::string_view getTradingSessionSubIDView() const { return fieldTradingSessionSubID.offset >= 0 ? std::string_view{ buf + fieldTradingSessionSubID.offset, getValueLength( buf + fieldTradingSessionSubID.offset ) } : std::string_view{}; }
    const char * ptrToTradingSessionSubID() const { return buf + fieldTradingSessionSubID.offset; }
    const char * getIfSetTradingSessionSubID() const { return fieldTradingSessionSubID.offset >= 0 ? buf + fieldTradingSessionSubID.offset : nullptr; }
    private: FieldTradingSessionSubID fieldTradingSessionSubID;
@@ -3893,6 +4338,7 @@ class GroupBidComponents : public MessageBase
    public:
    bool isSetNetGrossInd() const { return fieldNetGrossInd.offset >= 0; }
    FieldNetGrossInd::ValueType getNetGrossInd() const { return fieldNetGrossInd.getValue( buf ); }
+   std::string_view getNetGrossIndView() const { return fieldNetGrossInd.offset >= 0 ? std::string_view{ buf + fieldNetGrossInd.offset, getValueLength( buf + fieldNetGrossInd.offset ) } : std::string_view{}; }
    const char * ptrToNetGrossInd() const { return buf + fieldNetGrossInd.offset; }
    const char * getIfSetNetGrossInd() const { return fieldNetGrossInd.offset >= 0 ? buf + fieldNetGrossInd.offset : nullptr; }
    private: FieldNetGrossInd fieldNetGrossInd;
@@ -3900,6 +4346,7 @@ class GroupBidComponents : public MessageBase
    public:
    bool isSetSettlType() const { return fieldSettlType.offset >= 0; }
    FieldSettlType::ValueType getSettlType() const { return fieldSettlType.getValue( buf ); }
+   std::string_view getSettlTypeView() const { return fieldSettlType.offset >= 0 ? std::string_view{ buf + fieldSettlType.offset, getValueLength( buf + fieldSettlType.offset ) } : std::string_view{}; }
    const char * ptrToSettlType() const { return buf + fieldSettlType.offset; }
    const char * getIfSetSettlType() const { return fieldSettlType.offset >= 0 ? buf + fieldSettlType.offset : nullptr; }
    private: FieldSettlType fieldSettlType;
@@ -3907,6 +4354,7 @@ class GroupBidComponents : public MessageBase
    public:
    bool isSetSettlDate() const { return fieldSettlDate.offset >= 0; }
    FieldSettlDate::ValueType getSettlDate() const { return fieldSettlDate.getValue( buf ); }
+   std::string_view getSettlDateView() const { return fieldSettlDate.offset >= 0 ? std::string_view{ buf + fieldSettlDate.offset, getValueLength( buf + fieldSettlDate.offset ) } : std::string_view{}; }
    const char * ptrToSettlDate() const { return buf + fieldSettlDate.offset; }
    const char * getIfSetSettlDate() const { return fieldSettlDate.offset >= 0 ? buf + fieldSettlDate.offset : nullptr; }
    private: FieldSettlDate fieldSettlDate;
@@ -3914,6 +4362,7 @@ class GroupBidComponents : public MessageBase
    public:
    bool isSetAccount() const { return fieldAccount.offset >= 0; }
    FieldAccount::ValueType getAccount() const { return fieldAccount.getValue( buf ); }
+   std::string_view getAccountView() const { return fieldAccount.offset >= 0 ? std::string_view{ buf + fieldAccount.offset, getValueLength( buf + fieldAccount.offset ) } : std::string_view{}; }
    const char * ptrToAccount() const { return buf + fieldAccount.offset; }
    const char * getIfSetAccount() const { return fieldAccount.offset >= 0 ? buf + fieldAccount.offset : nullptr; }
    private: FieldAccount fieldAccount;
@@ -3921,6 +4370,7 @@ class GroupBidComponents : public MessageBase
    public:
    bool isSetAcctIDSource() const { return fieldAcctIDSource.offset >= 0; }
    FieldAcctIDSource::ValueType getAcctIDSource() const { return fieldAcctIDSource.getValue( buf ); }
+   std::string_view getAcctIDSourceView() const { return fieldAcctIDSource.offset >= 0 ? std::string_view{ buf + fieldAcctIDSource.offset, getValueLength( buf + fieldAcctIDSource.offset ) } : std::string_view{}; }
    const char * ptrToAcctIDSource() const { return buf + fieldAcctIDSource.offset; }
    const char * getIfSetAcctIDSource() const { return fieldAcctIDSource.offset >= 0 ? buf + fieldAcctIDSource.offset : nullptr; }
    private: FieldAcctIDSource fieldAcctIDSource;
@@ -3946,6 +4396,7 @@ class GroupSettlInst : public MessageBase
    public:
    bool isSetSettlInstID() const { return fieldSettlInstID.offset >= 0; }
    FieldSettlInstID::ValueType getSettlInstID() const { return fieldSettlInstID.getValue( buf ); }
+   std::string_view getSettlInstIDView() const { return fieldSettlInstID.offset >= 0 ? std::string_view{ buf + fieldSettlInstID.offset, getValueLength( buf + fieldSettlInstID.offset ) } : std::string_view{}; }
    const char * ptrToSettlInstID() const { return buf + fieldSettlInstID.offset; }
    const char * getIfSetSettlInstID() const { return fieldSettlInstID.offset >= 0 ? buf + fieldSettlInstID.offset : nullptr; }
    private: FieldSettlInstID fieldSettlInstID;
@@ -3953,6 +4404,7 @@ class GroupSettlInst : public MessageBase
    public:
    bool isSetSettlInstTransType() const { return fieldSettlInstTransType.offset >= 0; }
    FieldSettlInstTransType::ValueType getSettlInstTransType() const { return fieldSettlInstTransType.getValue( buf ); }
+   std::string_view getSettlInstTransTypeView() const { return fieldSettlInstTransType.offset >= 0 ? std::string_view{ buf + fieldSettlInstTransType.offset, getValueLength( buf + fieldSettlInstTransType.offset ) } : std::string_view{}; }
    const char * ptrToSettlInstTransType() const { return buf + fieldSettlInstTransType.offset; }
    const char * getIfSetSettlInstTransType() const { return fieldSettlInstTransType.offset >= 0 ? buf + fieldSettlInstTransType.offset : nullptr; }
    private: FieldSettlInstTransType fieldSettlInstTransType;
@@ -3960,6 +4412,7 @@ class GroupSettlInst : public MessageBase
    public:
    bool isSetSettlInstRefID() const { return fieldSettlInstRefID.offset >= 0; }
    FieldSettlInstRefID::ValueType getSettlInstRefID() const { return fieldSettlInstRefID.getValue( buf ); }
+   std::string_view getSettlInstRefIDView() const { return fieldSettlInstRefID.offset >= 0 ? std::string_view{ buf + fieldSettlInstRefID.offset, getValueLength( buf + fieldSettlInstRefID.offset ) } : std::string_view{}; }
    const char * ptrToSettlInstRefID() const { return buf + fieldSettlInstRefID.offset; }
    const char * getIfSetSettlInstRefID() const { return fieldSettlInstRefID.offset >= 0 ? buf + fieldSettlInstRefID.offset : nullptr; }
    private: FieldSettlInstRefID fieldSettlInstRefID;
@@ -3967,6 +4420,7 @@ class GroupSettlInst : public MessageBase
    public:
    bool isSetNoPartyIDs() const { return fieldNoPartyIDs.offset >= 0; }
    FieldNoPartyIDs::ValueType getNoPartyIDs() const { return fieldNoPartyIDs.getValue( buf ); }
+   std::string_view getNoPartyIDsView() const { return fieldNoPartyIDs.offset >= 0 ? std::string_view{ buf + fieldNoPartyIDs.offset, getValueLength( buf + fieldNoPartyIDs.offset ) } : std::string_view{}; }
    const char * ptrToNoPartyIDs() const { return buf + fieldNoPartyIDs.offset; }
    const char * getIfSetNoPartyIDs() const { return fieldNoPartyIDs.offset >= 0 ? buf + fieldNoPartyIDs.offset : nullptr; }
    private: FieldNoPartyIDs fieldNoPartyIDs;
@@ -3979,6 +4433,7 @@ class GroupSettlInst : public MessageBase
    public:
    bool isSetSide() const { return fieldSide.offset >= 0; }
    FieldSide::ValueType getSide() const { return fieldSide.getValue( buf ); }
+   std::string_view getSideView() const { return fieldSide.offset >= 0 ? std::string_view{ buf + fieldSide.offset, getValueLength( buf + fieldSide.offset ) } : std::string_view{}; }
    const char * ptrToSide() const { return buf + fieldSide.offset; }
    const char * getIfSetSide() const { return fieldSide.offset >= 0 ? buf + fieldSide.offset : nullptr; }
    private: FieldSide fieldSide;
@@ -3986,6 +4441,7 @@ class GroupSettlInst : public MessageBase
    public:
    bool isSetProduct() const { return fieldProduct.offset >= 0; }
    FieldProduct::ValueType getProduct() const { return fieldProduct.getValue( buf ); }
+   std::string_view getProductView() const { return fieldProduct.offset >= 0 ? std::string_view{ buf + fieldProduct.offset, getValueLength( buf + fieldProduct.offset ) } : std::string_view{}; }
    const char * ptrToProduct() const { return buf + fieldProduct.offset; }
    const char * getIfSetProduct() const { return fieldProduct.offset >= 0 ? buf + fieldProduct.offset : nullptr; }
    private: FieldProduct fieldProduct;
@@ -3993,6 +4449,7 @@ class GroupSettlInst : public MessageBase
    public:
    bool isSetSecurityType() const { return fieldSecurityType.offset >= 0; }
    FieldSecurityType::ValueType getSecurityType() const { return fieldSecurityType.getValue( buf ); }
+   std::string_view getSecurityTypeView() const { return fieldSecurityType.offset >= 0 ? std::string_view{ buf + fieldSecurityType.offset, getValueLength( buf + fieldSecurityType.offset ) } : std::string_view{}; }
    const char * ptrToSecurityType() const { return buf + fieldSecurityType.offset; }
    const char * getIfSetSecurityType() const { return fieldSecurityType.offset >= 0 ? buf + fieldSecurityType.offset : nullptr; }
    private: FieldSecurityType fieldSecurityType;
@@ -4000,6 +4457,7 @@ class GroupSettlInst : public MessageBase
    public:
    bool isSetCFICode() const { return fieldCFICode.offset >= 0; }
    FieldCFICode::ValueType getCFICode() const { return fieldCFICode.getValue( buf ); }
+   std::string_view getCFICodeView() const { return fieldCFICode.offset >= 0 ? std::string_view{ buf + fieldCFICode.offset, getValueLength( buf + fieldCFICode.offset ) } : std::string_view{}; }
    const char * ptrToCFICode() const { return buf + fieldCFICode.offset; }
    const char * getIfSetCFICode() const { return fieldCFICode.offset >= 0 ? buf + fieldCFICode.offset : nullptr; }
    private: FieldCFICode fieldCFICode;
@@ -4007,6 +4465,7 @@ class GroupSettlInst : public MessageBase
    public:
    bool isSetEffectiveTime() const { return fieldEffectiveTime.offset >= 0; }
    FieldEffectiveTime::ValueType getEffectiveTime() const { return fieldEffectiveTime.getValue( buf ); }
+   std::string_view getEffectiveTimeView() const { return fieldEffectiveTime.offset >= 0 ? std::string_view{ buf + fieldEffectiveTime.offset, getValueLength( buf + fieldEffectiveTime.offset ) } : std::string_view{}; }
    const char * ptrToEffectiveTime() const { return buf + fieldEffectiveTime.offset; }
    const char * getIfSetEffectiveTime() const { return fieldEffectiveTime.offset >= 0 ? buf + fieldEffectiveTime.offset : nullptr; }
    private: FieldEffectiveTime fieldEffectiveTime;
@@ -4014,6 +4473,7 @@ class GroupSettlInst : public MessageBase
    public:
    bool isSetExpireTime() const { return fieldExpireTime.offset >= 0; }
    FieldExpireTime::ValueType getExpireTime() const { return fieldExpireTime.getValue( buf ); }
+   std::string_view getExpireTimeView() const { return fieldExpireTime.offset >= 0 ? std::string_view{ buf + fieldExpireTime.offset, getValueLength( buf + fieldExpireTime.offset ) } : std::string_view{}; }
    const char * ptrToExpireTime() const { return buf + fieldExpireTime.offset; }
    const char * getIfSetExpireTime() const { return fieldExpireTime.offset >= 0 ? buf + fieldExpireTime.offset : nullptr; }
    private: FieldExpireTime fieldExpireTime;
@@ -4021,6 +4481,7 @@ class GroupSettlInst : public MessageBase
    public:
    bool isSetLastUpdateTime() const { return fieldLastUpdateTime.offset >= 0; }
    FieldLastUpdateTime::ValueType getLastUpdateTime() const { return fieldLastUpdateTime.getValue( buf ); }
+   std::string_view getLastUpdateTimeView() const { return fieldLastUpdateTime.offset >= 0 ? std::string_view{ buf + fieldLastUpdateTime.offset, getValueLength( buf + fieldLastUpdateTime.offset ) } : std::string_view{}; }
    const char * ptrToLastUpdateTime() const { return buf + fieldLastUpdateTime.offset; }
    const char * getIfSetLastUpdateTime() const { return fieldLastUpdateTime.offset >= 0 ? buf + fieldLastUpdateTime.offset : nullptr; }
    private: FieldLastUpdateTime fieldLastUpdateTime;
@@ -4028,6 +4489,7 @@ class GroupSettlInst : public MessageBase
    public:
    bool isSetSettlDeliveryType() const { return fieldSettlDeliveryType.offset >= 0; }
    FieldSettlDeliveryType::ValueType getSettlDeliveryType() const { return fieldSettlDeliveryType.getValue( buf ); }
+   std::string_view getSettlDeliveryTypeView() const { return fieldSettlDeliveryType.offset >= 0 ? std::string_view{ buf + fieldSettlDeliveryType.offset, getValueLength( buf + fieldSettlDeliveryType.offset ) } : std::string_view{}; }
    const char * ptrToSettlDeliveryType() const { return buf + fieldSettlDeliveryType.offset; }
    const char * getIfSetSettlDeliveryType() const { return fieldSettlDeliveryType.offset >= 0 ? buf + fieldSettlDeliveryType.offset : nullptr; }
    private: FieldSettlDeliveryType fieldSettlDeliveryType;
@@ -4035,6 +4497,7 @@ class GroupSettlInst : public MessageBase
    public:
    bool isSetStandInstDbType() const { return fieldStandInstDbType.offset >= 0; }
    FieldStandInstDbType::ValueType getStandInstDbType() const { return fieldStandInstDbType.getValue( buf ); }
+   std::string_view getStandInstDbTypeView() const { return fieldStandInstDbType.offset >= 0 ? std::string_view{ buf + fieldStandInstDbType.offset, getValueLength( buf + fieldStandInstDbType.offset ) } : std::string_view{}; }
    const char * ptrToStandInstDbType() const { return buf + fieldStandInstDbType.offset; }
    const char * getIfSetStandInstDbType() const { return fieldStandInstDbType.offset >= 0 ? buf + fieldStandInstDbType.offset : nullptr; }
    private: FieldStandInstDbType fieldStandInstDbType;
@@ -4042,6 +4505,7 @@ class GroupSettlInst : public MessageBase
    public:
    bool isSetStandInstDbName() const { return fieldStandInstDbName.offset >= 0; }
    FieldStandInstDbName::ValueType getStandInstDbName() const { return fieldStandInstDbName.getValue( buf ); }
+   std::string_view getStandInstDbNameView() const { return fieldStandInstDbName.offset >= 0 ? std::string_view{ buf + fieldStandInstDbName.offset, getValueLength( buf + fieldStandInstDbName.offset ) } : std::string_view{}; }
    const char * ptrToStandInstDbName() const { return buf + fieldStandInstDbName.offset; }
    const char * getIfSetStandInstDbName() const { return fieldStandInstDbName.offset >= 0 ? buf + fieldStandInstDbName.offset : nullptr; }
    private: FieldStandInstDbName fieldStandInstDbName;
@@ -4049,6 +4513,7 @@ class GroupSettlInst : public MessageBase
    public:
    bool isSetStandInstDbID() const { return fieldStandInstDbID.offset >= 0; }
    FieldStandInstDbID::ValueType getStandInstDbID() const { return fieldStandInstDbID.getValue( buf ); }
+   std::string_view getStandInstDbIDView() const { return fieldStandInstDbID.offset >= 0 ? std::string_view{ buf + fieldStandInstDbID.offset, getValueLength( buf + fieldStandInstDbID.offset ) } : std::string_view{}; }
    const char * ptrToStandInstDbID() const { return buf + fieldStandInstDbID.offset; }
    const char * getIfSetStandInstDbID() const { return fieldStandInstDbID.offset >= 0 ? buf + fieldStandInstDbID.offset : nullptr; }
    private: FieldStandInstDbID fieldStandInstDbID;
@@ -4056,6 +4521,7 @@ class GroupSettlInst : public MessageBase
    public:
    bool isSetNoDlvyInst() const { return fieldNoDlvyInst.offset >= 0; }
    FieldNoDlvyInst::ValueType getNoDlvyInst() const { return fieldNoDlvyInst.getValue( buf ); }
+   std::string_view getNoDlvyInstView() const { return fieldNoDlvyInst.offset >= 0 ? std::string_view{ buf + fieldNoDlvyInst.offset, getValueLength( buf + fieldNoDlvyInst.offset ) } : std::string_view{}; }
    const char * ptrToNoDlvyInst() const { return buf + fieldNoDlvyInst.offset; }
    const char * getIfSetNoDlvyInst() const { return fieldNoDlvyInst.offset >= 0 ? buf + fieldNoDlvyInst.offset : nullptr; }
    private: FieldNoDlvyInst fieldNoDlvyInst;
@@ -4068,6 +4534,7 @@ class GroupSettlInst : public MessageBase
    public:
    bool isSetPaymentMethod() const { return fieldPaymentMethod.offset >= 0; }
    FieldPaymentMethod::ValueType getPaymentMethod() const { return fieldPaymentMethod.getValue( buf ); }
+   std::string_view getPaymentMethodView() const { return fieldPaymentMethod.offset >= 0 ? std::string_view{ buf + fieldPaymentMethod.offset, getValueLength( buf + fieldPaymentMethod.offset ) } : std::string_view{}; }
    const char * ptrToPaymentMethod() const { return buf + fieldPaymentMethod.offset; }
    const char * getIfSetPaymentMethod() const { return fieldPaymentMethod.offset >= 0 ? buf + fieldPaymentMethod.offset : nullptr; }
    private: FieldPaymentMethod fieldPaymentMethod;
@@ -4075,6 +4542,7 @@ class GroupSettlInst : public MessageBase
    public:
    bool isSetPaymentRef() const { return fieldPaymentRef.offset >= 0; }
    FieldPaymentRef::ValueType getPaymentRef() const { return fieldPaymentRef.getValue( buf ); }
+   std::string_view getPaymentRefView() const { return fieldPaymentRef.offset >= 0 ? std::string_view{ buf + fieldPaymentRef.offset, getValueLength( buf + fieldPaymentRef.offset ) } : std::string_view{}; }
    const char * ptrToPaymentRef() const { return buf + fieldPaymentRef.offset; }
    const char * getIfSetPaymentRef() const { return fieldPaymentRef.offset >= 0 ? buf + fieldPaymentRef.offset : nullptr; }
    private: FieldPaymentRef fieldPaymentRef;
@@ -4082,6 +4550,7 @@ class GroupSettlInst : public MessageBase
    public:
    bool isSetCardHolderName() const { return fieldCardHolderName.offset >= 0; }
    FieldCardHolderName::ValueType getCardHolderName() const { return fieldCardHolderName.getValue( buf ); }
+   std::string_view getCardHolderNameView() const { return fieldCardHolderName.offset >= 0 ? std::string_view{ buf + fieldCardHolderName.offset, getValueLength( buf + fieldCardHolderName.offset ) } : std::string_view{}; }
    const char * ptrToCardHolderName() const { return buf + fieldCardHolderName.offset; }
    const char * getIfSetCardHolderName() const { return fieldCardHolderName.offset >= 0 ? buf + fieldCardHolderName.offset : nullptr; }
    private: FieldCardHolderName fieldCardHolderName;
@@ -4089,6 +4558,7 @@ class GroupSettlInst : public MessageBase
    public:
    bool isSetCardNumber() const { return fieldCardNumber.offset >= 0; }
    FieldCardNumber::ValueType getCardNumber() const { return fieldCardNumber.getValue( buf ); }
+   std::string_view getCardNumberView() const { return fieldCardNumber.offset >= 0 ? std::string_view{ buf + fieldCardNumber.offset, getValueLength( buf + fieldCardNumber.offset ) } : std::string_view{}; }
    const char * ptrToCardNumber() const { return buf + fieldCardNumber.offset; }
    const char * getIfSetCardNumber() const { return fieldCardNumber.offset >= 0 ? buf + fieldCardNumber.offset : nullptr; }
    private: FieldCardNumber fieldCardNumber;
@@ -4096,6 +4566,7 @@ class GroupSettlInst : public MessageBase
    public:
    bool isSetCardStartDate() const { return fieldCardStartDate.offset >= 0; }
    FieldCardStartDate::ValueType getCardStartDate() const { return fieldCardStartDate.getValue( buf ); }
+   std::string_view getCardStartDateView() const { return fieldCardStartDate.offset >= 0 ? std::string_view{ buf + fieldCardStartDate.offset, getValueLength( buf + fieldCardStartDate.offset ) } : std::string_view{}; }
    const char * ptrToCardStartDate() const { return buf + fieldCardStartDate.offset; }
    const char * getIfSetCardStartDate() const { return fieldCardStartDate.offset >= 0 ? buf + fieldCardStartDate.offset : nullptr; }
    private: FieldCardStartDate fieldCardStartDate;
@@ -4103,6 +4574,7 @@ class GroupSettlInst : public MessageBase
    public:
    bool isSetCardExpDate() const { return fieldCardExpDate.offset >= 0; }
    FieldCardExpDate::ValueType getCardExpDate() const { return fieldCardExpDate.getValue( buf ); }
+   std::string_view getCardExpDateView() const { return fieldCardExpDate.offset >= 0 ? std::string_view{ buf + fieldCardExpDate.offset, getValueLength( buf + fieldCardExpDate.offset ) } : std::string_view{}; }
    const char * ptrToCardExpDate() const { return buf + fieldCardExpDate.offset; }
    const char * getIfSetCardExpDate() const { return fieldCardExpDate.offset >= 0 ? buf + fieldCardExpDate.offset : nullptr; }
    private: FieldCardExpDate fieldCardExpDate;
@@ -4110,6 +4582,7 @@ class GroupSettlInst : public MessageBase
    public:
    bool isSetCardIssNum() const { return fieldCardIssNum.offset >= 0; }
    FieldCardIssNum::ValueType getCardIssNum() const { return fieldCardIssNum.getValue( buf ); }
+   std::string_view getCardIssNumView() const { return fieldCardIssNum.offset >= 0 ? std::string_view{ buf + fieldCardIssNum.offset, getValueLength( buf + fieldCardIssNum.offset ) } : std::string_view{}; }
    const char * ptrToCardIssNum() const { return buf + fieldCardIssNum.offset; }
    const char * getIfSetCardIssNum() const { return fieldCardIssNum.offset >= 0 ? buf + fieldCardIssNum.offset : nullptr; }
    private: FieldCardIssNum fieldCardIssNum;
@@ -4117,6 +4590,7 @@ class GroupSettlInst : public MessageBase
    public:
    bool isSetPaymentDate() const { return fieldPaymentDate.offset >= 0; }
    FieldPaymentDate::ValueType getPaymentDate() const { return fieldPaymentDate.getValue( buf ); }
+   std::string_view getPaymentDateView() const { return fieldPaymentDate.offset >= 0 ? std::string_view{ buf + fieldPaymentDate.offset, getValueLength( buf + fieldPaymentDate.offset ) } : std::string_view{}; }
    const char * ptrToPaymentDate() const { return buf + fieldPaymentDate.offset; }
    const char * getIfSetPaymentDate() const { return fieldPaymentDate.offset >= 0 ? buf + fieldPaymentDate.offset : nullptr; }
    private: FieldPaymentDate fieldPaymentDate;
@@ -4124,6 +4598,7 @@ class GroupSettlInst : public MessageBase
    public:
    bool isSetPaymentRemitterID() const { return fieldPaymentRemitterID.offset >= 0; }
    FieldPaymentRemitterID::ValueType getPaymentRemitterID() const { return fieldPaymentRemitterID.getValue( buf ); }
+   std::string_view getPaymentRemitterIDView() const { return fieldPaymentRemitterID.offset >= 0 ? std::string_view{ buf + fieldPaymentRemitterID.offset, getValueLength( buf + fieldPaymentRemitterID.offset ) } : std::string_view{}; }
    const char * ptrToPaymentRemitterID() const { return buf + fieldPaymentRemitterID.offset; }
    const char * getIfSetPaymentRemitterID() const { return fieldPaymentRemitterID.offset >= 0 ? buf + fieldPaymentRemitterID.offset : nullptr; }
    private: FieldPaymentRemitterID fieldPaymentRemitterID;
@@ -4149,6 +4624,7 @@ class GroupInstrAttrib : public MessageBase
    public:
    bool isSetInstrAttribType() const { return fieldInstrAttribType.offset >= 0; }
    FieldInstrAttribType::ValueType getInstrAttribType() const { return fieldInstrAttribType.getValue( buf ); }
+   std::string_view getInstrAttribTypeView() const { return fieldInstrAttribType.offset >= 0 ? std::string_view{ buf + fieldInstrAttribType.offset, getValueLength( buf + fieldInstrAttribType.offset ) } : std::string_view{}; }
    const char * ptrToInstrAttribType() const { return buf + fieldInstrAttribType.offset; }
    const char * getIfSetInstrAttribType() const { return fieldInstrAttribType.offset >= 0 ? buf + fieldInstrAttribType.offset : nullptr; }
    private: FieldInstrAttribType fieldInstrAttribType;
@@ -4156,6 +4632,7 @@ class GroupInstrAttrib : public MessageBase
    public:
    bool isSetInstrAttribValue() const { return fieldInstrAttribValue.offset >= 0; }
    FieldInstrAttribValue::ValueType getInstrAttribValue() const { return fieldInstrAttribValue.getValue( buf ); }
+   std::string_view getInstrAttribValueView() const { return fieldInstrAttribValue.offset >= 0 ? std::string_view{ buf + fieldInstrAttribValue.offset, getValueLength( buf + fieldInstrAttribValue.offset ) } : std::string_view{}; }
    const char * ptrToInstrAttribValue() const { return buf + fieldInstrAttribValue.offset; }
    const char * getIfSetInstrAttribValue() const { return fieldInstrAttribValue.offset >= 0 ? buf + fieldInstrAttribValue.offset : nullptr; }
    private: FieldInstrAttribValue fieldInstrAttribValue;
@@ -4181,6 +4658,7 @@ class GroupMiscFees : public MessageBase
    public:
    bool isSetMiscFeeAmt() const { return fieldMiscFeeAmt.offset >= 0; }
    FieldMiscFeeAmt::ValueType getMiscFeeAmt() const { return fieldMiscFeeAmt.getValue( buf ); }
+   std::string_view getMiscFeeAmtView() const { return fieldMiscFeeAmt.offset >= 0 ? std::string_view{ buf + fieldMiscFeeAmt.offset, getValueLength( buf + fieldMiscFeeAmt.offset ) } : std::string_view{}; }
    const char * ptrToMiscFeeAmt() const { return buf + fieldMiscFeeAmt.offset; }
    const char * getIfSetMiscFeeAmt() const { return fieldMiscFeeAmt.offset >= 0 ? buf + fieldMiscFeeAmt.offset : nullptr; }
    private: FieldMiscFeeAmt fieldMiscFeeAmt;
@@ -4188,6 +4666,7 @@ class GroupMiscFees : public MessageBase
    public:
    bool isSetMiscFeeCurr() const { return fieldMiscFeeCurr.offset >= 0; }
    FieldMiscFeeCurr::ValueType getMiscFeeCurr() const { return fieldMiscFeeCurr.getValue( buf ); }
+   std::string_view getMiscFeeCurrView() const { return fieldMiscFeeCurr.offset >= 0 ? std::string_view{ buf + fieldMiscFeeCurr.offset, getValueLength( buf + fieldMiscFeeCurr.offset ) } : std::string_view{}; }
    const char * ptrToMiscFeeCurr() const { return buf + fieldMiscFeeCurr.offset; }
    const char * getIfSetMiscFeeCurr() const { return fieldMiscFeeCurr.offset >= 0 ? buf + fieldMiscFeeCurr.offset : nullptr; }
    private: FieldMiscFeeCurr fieldMiscFeeCurr;
@@ -4195,6 +4674,7 @@ class GroupMiscFees : public MessageBase
    public:
    bool isSetMiscFeeType() const { return fieldMiscFeeType.offset >= 0; }
    FieldMiscFeeType::ValueType getMiscFeeType() const { return fieldMiscFeeType.getValue( buf ); }
+   std::string_view getMiscFeeTypeView() const { return fieldMiscFeeType.offset >= 0 ? std::string_view{ buf + fieldMiscFeeType.offset, getValueLength( buf + fieldMiscFeeType.offset ) } : std::string_view{}; }
    const char * ptrToMiscFeeType() const { return buf + fieldMiscFeeType.offset; }
    const char * getIfSetMiscFeeType() const { return fieldMiscFeeType.offset >= 0 ? buf + fieldMiscFeeType.offset : nullptr; }
    private: FieldMiscFeeType fieldMiscFeeType;
@@ -4202,6 +4682,7 @@ class GroupMiscFees : public MessageBase
    public:
    bool isSetMiscFeeBasis() const { return fieldMiscFeeBasis.offset >= 0; }
    FieldMiscFeeBasis::ValueType getMiscFeeBasis() const { return fieldMiscFeeBasis.getValue( buf ); }
+   std::string_view getMiscFeeBasisView() const { return fieldMiscFeeBasis.offset >= 0 ? std::string_view{ buf + fieldMiscFeeBasis.offset, getValueLength( buf + fieldMiscFeeBasis.offset ) } : std::string_view{}; }
    const char * ptrToMiscFeeBasis() const { return buf + fieldMiscFeeBasis.offset; }
    const char * getIfSetMiscFeeBasis() const { return fieldMiscFeeBasis.offset >= 0 ? buf + fieldMiscFeeBasis.offset : nullptr; }
    private: FieldMiscFeeBasis fieldMiscFeeBasis;
@@ -4227,6 +4708,7 @@ class GroupQuoteQualifiers : public MessageBase
    public:
    bool isSetQuoteQualifier() const { return fieldQuoteQualifier.offset >= 0; }
    FieldQuoteQualifier::ValueType getQuoteQualifier() const { return fieldQuoteQualifier.getValue( buf ); }
+   std::string_view getQuoteQualifierView() const { return fieldQuoteQualifier.offset >= 0 ? std::string_view{ buf + fieldQuoteQualifier.offset, getValueLength( buf + fieldQuoteQualifier.offset ) } : std::string_view{}; }
    const char * ptrToQuoteQualifier() const { return buf + fieldQuoteQualifier.offset; }
    const char * getIfSetQuoteQualifier() const { return fieldQuoteQualifier.offset >= 0 ? buf + fieldQuoteQualifier.offset : nullptr; }
    private: FieldQuoteQualifier fieldQuoteQualifier;
@@ -4252,6 +4734,7 @@ class GroupDistribInsts : public MessageBase
    public:
    bool isSetDistribPaymentMethod() const { return fieldDistribPaymentMethod.offset >= 0; }
    FieldDistribPaymentMethod::ValueType getDistribPaymentMethod() const { return fieldDistribPaymentMethod.getValue( buf ); }
+   std::string_view getDistribPaymentMethodView() const { return fieldDistribPaymentMethod.offset >= 0 ? std::string_view{ buf + fieldDistribPaymentMethod.offset, getValueLength( buf + fieldDistribPaymentMethod.offset ) } : std::string_view{}; }
    const char * ptrToDistribPaymentMethod() const { return buf + fieldDistribPaymentMethod.offset; }
    const char * getIfSetDistribPaymentMethod() const { return fieldDistribPaymentMethod.offset >= 0 ? buf + fieldDistribPaymentMethod.offset : nullptr; }
    private: FieldDistribPaymentMethod fieldDistribPaymentMethod;
@@ -4259,6 +4742,7 @@ class GroupDistribInsts : public MessageBase
    public:
    bool isSetDistribPercentage() const { return fieldDistribPercentage.offset >= 0; }
    FieldDistribPercentage::ValueType getDistribPercentage() const { return fieldDistribPercentage.getValue( buf ); }
+   std::string_view getDistribPercentageView() const { return fieldDistribPercentage.offset >= 0 ? std::string_view{ buf + fieldDistribPercentage.offset, getValueLength( buf + fieldDistribPercentage.offset ) } : std::string_view{}; }
    const char * ptrToDistribPercentage() const { return buf + fieldDistribPercentage.offset; }
    const char * getIfSetDistribPercentage() const { return fieldDistribPercentage.offset >= 0 ? buf + fieldDistribPercentage.offset : nullptr; }
    private: FieldDistribPercentage fieldDistribPercentage;
@@ -4266,6 +4750,7 @@ class GroupDistribInsts : public MessageBase
    public:
    bool isSetCashDistribCurr() const { return fieldCashDistribCurr.offset >= 0; }
    FieldCashDistribCurr::ValueType getCashDistribCurr() const { return fieldCashDistribCurr.getValue( buf ); }
+   std::string_view getCashDistribCurrView() const { return fieldCashDistribCurr.offset >= 0 ? std::string_view{ buf + fieldCashDistribCurr.offset, getValueLength( buf + fieldCashDistribCurr.offset ) } : std::string_view{}; }
    const char * ptrToCashDistribCurr() const { return buf + fieldCashDistribCurr.offset; }
    const char * getIfSetCashDistribCurr() const { return fieldCashDistribCurr.offset >= 0 ? buf + fieldCashDistribCurr.offset : nullptr; }
    private: FieldCashDistribCurr fieldCashDistribCurr;
@@ -4273,6 +4758,7 @@ class GroupDistribInsts : public MessageBase
    public:
    bool isSetCashDistribAgentName() const { return fieldCashDistribAgentName.offset >= 0; }
    FieldCashDistribAgentName::ValueType getCashDistribAgentName() const { return fieldCashDistribAgentName.getValue( buf ); }
+   std::string_view getCashDistribAgentNameView() const { return fieldCashDistribAgentName.offset >= 0 ? std::string_view{ buf + fieldCashDistribAgentName.offset, getValueLength( buf + fieldCashDistribAgentName.offset ) } : std::string_view{}; }
    const char * ptrToCashDistribAgentName() const { return buf + fieldCashDistribAgentName.offset; }
    const char * getIfSetCashDistribAgentName() const { return fieldCashDistribAgentName.offset >= 0 ? buf + fieldCashDistribAgentName.offset : nullptr; }
    private: FieldCashDistribAgentName fieldCashDistribAgentName;
@@ -4280,6 +4766,7 @@ class GroupDistribInsts : public MessageBase
    public:
    bool isSetCashDistribAgentCode() const { return fieldCashDistribAgentCode.offset >= 0; }
    FieldCashDistribAgentCode::ValueType getCashDistribAgentCode() const { return fieldCashDistribAgentCode.getValue( buf ); }
+   std::string_view getCashDistribAgentCodeView() const { return fieldCashDistribAgentCode.offset >= 0 ? std::string_view{ buf + fieldCashDistribAgentCode.offset, getValueLength( buf + fieldCashDistribAgentCode.offset ) } : std::string_view{}; }
    const char * ptrToCashDistribAgentCode() const { return buf + fieldCashDistribAgentCode.offset; }
    const char * getIfSetCashDistribAgentCode() const { return fieldCashDistribAgentCode.offset >= 0 ? buf + fieldCashDistribAgentCode.offset : nullptr; }
    private: FieldCashDistribAgentCode fieldCashDistribAgentCode;
@@ -4287,6 +4774,7 @@ class GroupDistribInsts : public MessageBase
    public:
    bool isSetCashDistribAgentAcctNumber() const { return fieldCashDistribAgentAcctNumber.offset >= 0; }
    FieldCashDistribAgentAcctNumber::ValueType getCashDistribAgentAcctNumber() const { return fieldCashDistribAgentAcctNumber.getValue( buf ); }
+   std::string_view getCashDistribAgentAcctNumberView() const { return fieldCashDistribAgentAcctNumber.offset >= 0 ? std::string_view{ buf + fieldCashDistribAgentAcctNumber.offset, getValueLength( buf + fieldCashDistribAgentAcctNumber.offset ) } : std::string_view{}; }
    const char * ptrToCashDistribAgentAcctNumber() const { return buf + fieldCashDistribAgentAcctNumber.offset; }
    const char * getIfSetCashDistribAgentAcctNumber() const { return fieldCashDistribAgentAcctNumber.offset >= 0 ? buf + fieldCashDistribAgentAcctNumber.offset : nullptr; }
    private: FieldCashDistribAgentAcctNumber fieldCashDistribAgentAcctNumber;
@@ -4294,6 +4782,7 @@ class GroupDistribInsts : public MessageBase
    public:
    bool isSetCashDistribPayRef() const { return fieldCashDistribPayRef.offset >= 0; }
    FieldCashDistribPayRef::ValueType getCashDistribPayRef() const { return fieldCashDistribPayRef.getValue( buf ); }
+   std::string_view getCashDistribPayRefView() const { return fieldCashDistribPayRef.offset >= 0 ? std::string_view{ buf + fieldCashDistribPayRef.offset, getValueLength( buf + fieldCashDistribPayRef.offset ) } : std::string_view{}; }
    const char * ptrToCashDistribPayRef() const { return buf + fieldCashDistribPayRef.offset; }
    const char * getIfSetCashDistribPayRef() const { return fieldCashDistribPayRef.offset >= 0 ? buf + fieldCashDistribPayRef.offset : nullptr; }
    private: FieldCashDistribPayRef fieldCashDistribPayRef;
@@ -4301,6 +4790,7 @@ class GroupDistribInsts : public MessageBase
    public:
    bool isSetCashDistribAgentAcctName() const { return fieldCashDistribAgentAcctName.offset >= 0; }
    FieldCashDistribAgentAcctName::ValueType getCashDistribAgentAcctName() const { return fieldCashDistribAgentAcctName.getValue( buf ); }
+   std::string_view getCashDistribAgentAcctNameView() const { return fieldCashDistribAgentAcctName.offset >= 0 ? std::string_view{ buf + fieldCashDistribAgentAcctName.offset, getValueLength( buf + fieldCashDistribAgentAcctName.offset ) } : std::string_view{}; }
    const char * ptrToCashDistribAgentAcctName() const { return buf + fieldCashDistribAgentAcctName.offset; }
    const char * getIfSetCashDistribAgentAcctName() const { return fieldCashDistribAgentAcctName.offset >= 0 ? buf + fieldCashDistribAgentAcctName.offset : nullptr; }
    private: FieldCashDistribAgentAcctName fieldCashDistribAgentAcctName;
@@ -4326,6 +4816,7 @@ class GroupTrdRegTimestamps : public MessageBase
    public:
    bool isSetTrdRegTimestamp() const { return fieldTrdRegTimestamp.offset >= 0; }
    FieldTrdRegTimestamp::ValueType getTrdRegTimestamp() const { return fieldTrdRegTimestamp.getValue( buf ); }
+   std::string_view getTrdRegTimestampView() const { return fieldTrdRegTimestamp.offset >= 0 ? std::string_view{ buf + fieldTrdRegTimestamp.offset, getValueLength( buf + fieldTrdRegTimestamp.offset ) } : std::string_view{}; }
    const char * ptrToTrdRegTimestamp() const { return buf + fieldTrdRegTimestamp.offset; }
    const char * getIfSetTrdRegTimestamp() const { return fieldTrdRegTimestamp.offset >= 0 ? buf + fieldTrdRegTimestamp.offset : nullptr; }
    private: FieldTrdRegTimestamp fieldTrdRegTimestamp;
@@ -4333,6 +4824,7 @@ class GroupTrdRegTimestamps : public MessageBase
    public:
    bool isSetTrdRegTimestampType() const { return fieldTrdRegTimestampType.offset >= 0; }
    FieldTrdRegTimestampType::ValueType getTrdRegTimestampType() const { return fieldTrdRegTimestampType.getValue( buf ); }
+   std::string_view getTrdRegTimestampTypeView() const { return fieldTrdRegTimestampType.offset >= 0 ? std::string_view{ buf + fieldTrdRegTimestampType.offset, getValueLength( buf + fieldTrdRegTimestampType.offset ) } : std::string_view{}; }
    const char * ptrToTrdRegTimestampType() const { return buf + fieldTrdRegTimestampType.offset; }
    const char * getIfSetTrdRegTimestampType() const { return fieldTrdRegTimestampType.offset >= 0 ? buf + fieldTrdRegTimestampType.offset : nullptr; }
    private: FieldTrdRegTimestampType fieldTrdRegTimestampType;
@@ -4340,6 +4832,7 @@ class GroupTrdRegTimestamps : public MessageBase
    public:
    bool isSetTrdRegTimestampOrigin() const { return fieldTrdRegTimestampOrigin.offset >= 0; }
    FieldTrdRegTimestampOrigin::ValueType getTrdRegTimestampOrigin() const { return fieldTrdRegTimestampOrigin.getValue( buf ); }
+   std::string_view getTrdRegTimestampOriginView() const { return fieldTrdRegTimestampOrigin.offset >= 0 ? std::string_view{ buf + fieldTrdRegTimestampOrigin.offset, getValueLength( buf + fieldTrdRegTimestampOrigin.offset ) } : std::string_view{}; }
    const char * ptrToTrdRegTimestampOrigin() const { return buf + fieldTrdRegTimestampOrigin.offset; }
    const char * getIfSetTrdRegTimestampOrigin() const { return fieldTrdRegTimestampOrigin.offset >= 0 ? buf + fieldTrdRegTimestampOrigin.offset : nullptr; }
    private: FieldTrdRegTimestampOrigin fieldTrdRegTimestampOrigin;
@@ -4365,6 +4858,7 @@ class GroupAltMDSource : public MessageBase
    public:
    bool isSetAltMDSourceID() const { return fieldAltMDSourceID.offset >= 0; }
    FieldAltMDSourceID::ValueType getAltMDSourceID() const { return fieldAltMDSourceID.getValue( buf ); }
+   std::string_view getAltMDSourceIDView() const { return fieldAltMDSourceID.offset >= 0 ? std::string_view{ buf + fieldAltMDSourceID.offset, getValueLength( buf + fieldAltMDSourceID.offset ) } : std::string_view{}; }
    const char * ptrToAltMDSourceID() const { return buf + fieldAltMDSourceID.offset; }
    const char * getIfSetAltMDSourceID() const { return fieldAltMDSourceID.offset >= 0 ? buf + fieldAltMDSourceID.offset : nullptr; }
    private: FieldAltMDSourceID fieldAltMDSourceID;
@@ -4390,6 +4884,7 @@ class GroupSides : public MessageBase
    public:
    bool isSetSide() const { return fieldSide.offset >= 0; }
    FieldSide::ValueType getSide() const { return fieldSide.getValue( buf ); }
+   std::string_view getSideView() const { return fieldSide.offset >= 0 ? std::string_view{ buf + fieldSide.offset, getValueLength( buf + fieldSide.offset ) } : std::string_view{}; }
    const char * ptrToSide() const { return buf + fieldSide.offset; }
    const char * getIfSetSide() const { return fieldSide.offset >= 0 ? buf + fieldSide.offset : nullptr; }
    private: FieldSide fieldSide;
@@ -4397,6 +4892,7 @@ class GroupSides : public MessageBase
    public:
    bool isSetOrigClOrdID() const { return fieldOrigClOrdID.offset >= 0; }
    FieldOrigClOrdID::ValueType getOrigClOrdID() const { return fieldOrigClOrdID.getValue( buf ); }
+   std::string_view getOrigClOrdIDView() const { return fieldOrigClOrdID.offset >= 0 ? std::string_view{ buf + fieldOrigClOrdID.offset, getValueLength( buf + fieldOrigClOrdID.offset ) } : std::string_view{}; }
    const char * ptrToOrigClOrdID() const { return buf + fieldOrigClOrdID.offset; }
    const char * getIfSetOrigClOrdID() const { return fieldOrigClOrdID.offset >= 0 ? buf + fieldOrigClOrdID.offset : nullptr; }
    private: FieldOrigClOrdID fieldOrigClOrdID;
@@ -4404,6 +4900,7 @@ class GroupSides : public MessageBase
    public:
    bool isSetClOrdID() const { return fieldClOrdID.offset >= 0; }
    FieldClOrdID::ValueType getClOrdID() const { return fieldClOrdID.getValue( buf ); }
+   std::string_view getClOrdIDView() const { return fieldClOrdID.offset >= 0 ? std::string_view{ buf + fieldClOrdID.offset, getValueLength( buf + fieldClOrdID.offset ) } : std::string_view{}; }
    const char * ptrToClOrdID() const { return buf + fieldClOrdID.offset; }
    const char * getIfSetClOrdID() const { return fieldClOrdID.offset >= 0 ? buf + fieldClOrdID.offset : nullptr; }
    private: FieldClOrdID fieldClOrdID;
@@ -4411,6 +4908,7 @@ class GroupSides : public MessageBase
    public:
    bool isSetSecondaryClOrdID() const { return fieldSecondaryClOrdID.offset >= 0; }
    FieldSecondaryClOrdID::ValueType getSecondaryClOrdID() const { return fieldSecondaryClOrdID.getValue( buf ); }
+   std::string_view getSecondaryClOrdIDView() const { return fieldSecondaryClOrdID.offset >= 0 ? std::string_view{ buf + fieldSecondaryClOrdID.offset, getValueLength( buf + fieldSecondaryClOrdID.offset ) } : std::string_view{}; }
    const char * ptrToSecondaryClOrdID() const { return buf + fieldSecondaryClOrdID.offset; }
    const char * getIfSetSecondaryClOrdID() const { return fieldSecondaryClOrdID.offset >= 0 ? buf + fieldSecondaryClOrdID.offset : nullptr; }
    private: FieldSecondaryClOrdID fieldSecondaryClOrdID;
@@ -4418,6 +4916,7 @@ class GroupSides : public MessageBase
    public:
    bool isSetClOrdLinkID() const { return fieldClOrdLinkID.offset >= 0; }
    FieldClOrdLinkID::ValueType getClOrdLinkID() const { return fieldClOrdLinkID.getValue( buf ); }
+   std::string_view getClOrdLinkIDView() const { return fieldClOrdLinkID.offset >= 0 ? std::string_view{ buf + fieldClOrdLinkID.offset, getValueLength( buf + fieldClOrdLinkID.offset ) } : std::string_view{}; }
    const char * ptrToClOrdLinkID() const { return buf + fieldClOrdLinkID.offset; }
    const char * getIfSetClOrdLinkID() const { return fieldClOrdLinkID.offset >= 0 ? buf + fieldClOrdLinkID.offset : nullptr; }
    private: FieldClOrdLinkID fieldClOrdLinkID;
@@ -4425,6 +4924,7 @@ class GroupSides : public MessageBase
    public:
    bool isSetOrigOrdModTime() const { return fieldOrigOrdModTime.offset >= 0; }
    FieldOrigOrdModTime::ValueType getOrigOrdModTime() const { return fieldOrigOrdModTime.getValue( buf ); }
+   std::string_view getOrigOrdModTimeView() const { return fieldOrigOrdModTime.offset >= 0 ? std::string_view{ buf + fieldOrigOrdModTime.offset, getValueLength( buf + fieldOrigOrdModTime.offset ) } : std::string_view{}; }
    const char * ptrToOrigOrdModTime() const { return buf + fieldOrigOrdModTime.offset; }
    const char * getIfSetOrigOrdModTime() const { return fieldOrigOrdModTime.offset >= 0 ? buf + fieldOrigOrdModTime.offset : nullptr; }
    private: FieldOrigOrdModTime fieldOrigOrdModTime;
@@ -4432,6 +4932,7 @@ class GroupSides : public MessageBase
    public:
    bool isSetNoPartyIDs() const { return fieldNoPartyIDs.offset >= 0; }
    FieldNoPartyIDs::ValueType getNoPartyIDs() const { return fieldNoPartyIDs.getValue( buf ); }
+   std::string_view getNoPartyIDsView() const { return fieldNoPartyIDs.offset >= 0 ? std::string_view{ buf + fieldNoPartyIDs.offset, getValueLength( buf + fieldNoPartyIDs.offset ) } : std::string_view{}; }
    const char * ptrToNoPartyIDs() const { return buf + fieldNoPartyIDs.offset; }
    const char * getIfSetNoPartyIDs() const { return fieldNoPartyIDs.offset >= 0 ? buf + fieldNoPartyIDs.offset : nullptr; }
    private: FieldNoPartyIDs fieldNoPartyIDs;
@@ -4444,6 +4945,7 @@ class GroupSides : public MessageBase
    public:
    bool isSetTradeOriginationDate() const { return fieldTradeOriginationDate.offset >= 0; }
    FieldTradeOriginationDate::ValueType getTradeOriginationDate() const { return fieldTradeOriginationDate.getValue( buf ); }
+   std::string_view getTradeOriginationDateView() const { return fieldTradeOriginationDate.offset >= 0 ? std::string_view{ buf + fieldTradeOriginationDate.offset, getValueLength( buf + fieldTradeOriginationDate.offset ) } : std::string_view{}; }
    const char * ptrToTradeOriginationDate() const { return buf + fieldTradeOriginationDate.offset; }
    const char * getIfSetTradeOriginationDate() const { return fieldTradeOriginationDate.offset >= 0 ? buf + fieldTradeOriginationDate.offset : nullptr; }
    private: FieldTradeOriginationDate fieldTradeOriginationDate;
@@ -4451,6 +4953,7 @@ class GroupSides : public MessageBase
    public:
    bool isSetTradeDate() const { return fieldTradeDate.offset >= 0; }
    FieldTradeDate::ValueType getTradeDate() const { return fieldTradeDate.getValue( buf ); }
+   std::string_view getTradeDateView() const { return fieldTradeDate.offset >= 0 ? std::string_view{ buf + fieldTradeDate.offset, getValueLength( buf + fieldTradeDate.offset ) } : std::string_view{}; }
    const char * ptrToTradeDate() const { return buf + fieldTradeDate.offset; }
    const char * getIfSetTradeDate() const { return fieldTradeDate.offset >= 0 ? buf + fieldTradeDate.offset : nullptr; }
    private: FieldTradeDate fieldTradeDate;
@@ -4458,6 +4961,7 @@ class GroupSides : public MessageBase
    public:
    bool isSetOrderQty() const { return fieldOrderQty.offset >= 0; }
    FieldOrderQty::ValueType getOrderQty() const { return fieldOrderQty.getValue( buf ); }
+   std::string_view getOrderQtyView() const { return fieldOrderQty.offset >= 0 ? std::string_view{ buf + fieldOrderQty.offset, getValueLength( buf + fieldOrderQty.offset ) } : std::string_view{}; }
    const char * ptrToOrderQty() const { return buf + fieldOrderQty.offset; }
    const char * getIfSetOrderQty() const { return fieldOrderQty.offset >= 0 ? buf + fieldOrderQty.offset : nullptr; }
    private: FieldOrderQty fieldOrderQty;
@@ -4465,6 +4969,7 @@ class GroupSides : public MessageBase
    public:
    bool isSetCashOrderQty() const { return fieldCashOrderQty.offset >= 0; }
    FieldCashOrderQty::ValueType getCashOrderQty() const { return fieldCashOrderQty.getValue( buf ); }
+   std::string_view getCashOrderQtyView() const { return fieldCashOrderQty.offset >= 0 ? std::string_view{ buf + fieldCashOrderQty.offset, getValueLength( buf + fieldCashOrderQty.offset ) } : std::string_view{}; }
    const char * ptrToCashOrderQty() const { return buf + fieldCashOrderQty.offset; }
    const char * getIfSetCashOrderQty() const { return fieldCashOrderQty.offset >= 0 ? buf + fieldCashOrderQty.offset : nullptr; }
    private: FieldCashOrderQty fieldCashOrderQty;
@@ -4472,6 +4977,7 @@ class GroupSides : public MessageBase
    public:
    bool isSetOrderPercent() const { return fieldOrderPercent.offset >= 0; }
    FieldOrderPercent::ValueType getOrderPercent() const { return fieldOrderPercent.getValue( buf ); }
+   std::string_view getOrderPercentView() const { return fieldOrderPercent.offset >= 0 ? std::string_view{ buf + fieldOrderPercent.offset, getValueLength( buf + fieldOrderPercent.offset ) } : std::string_view{}; }
    const char * ptrToOrderPercent() const { return buf + fieldOrderPercent.offset; }
    const char * getIfSetOrderPercent() const { return fieldOrderPercent.offset >= 0 ? buf + fieldOrderPercent.offset : nullptr; }
    private: FieldOrderPercent fieldOrderPercent;
@@ -4479,6 +4985,7 @@ class GroupSides : public MessageBase
    public:
    bool isSetRoundingDirection() const { return fieldRoundingDirection.offset >= 0; }
    FieldRoundingDirection::ValueType getRoundingDirection() const { return fieldRoundingDirection.getValue( buf ); }
+   std::string_view getRoundingDirectionView() const { return fieldRoundingDirection.offset >= 0 ? std::string_view{ buf + fieldRoundingDirection.offset, getValueLength( buf + fieldRoundingDirection.offset ) } : std::string_view{}; }
    const char * ptrToRoundingDirection() const { return buf + fieldRoundingDirection.offset; }
    const char * getIfSetRoundingDirection() const { return fieldRoundingDirection.offset >= 0 ? buf + fieldRoundingDirection.offset : nullptr; }
    private: FieldRoundingDirection fieldRoundingDirection;
@@ -4486,6 +4993,7 @@ class GroupSides : public MessageBase
    public:
    bool isSetRoundingModulus() const { return fieldRoundingModulus.offset >= 0; }
    FieldRoundingModulus::ValueType getRoundingModulus() const { return fieldRoundingModulus.getValue( buf ); }
+   std::string_view getRoundingModulusView() const { return fieldRoundingModulus.offset >= 0 ? std::string_view{ buf + fieldRoundingModulus.offset, getValueLength( buf + fieldRoundingModulus.offset ) } : std::string_view{}; }
    const char * ptrToRoundingModulus() const { return buf + fieldRoundingModulus.offset; }
    const char * getIfSetRoundingModulus() const { return fieldRoundingModulus.offset >= 0 ? buf + fieldRoundingModulus.offset : nullptr; }
    private: FieldRoundingModulus fieldRoundingModulus;
@@ -4493,6 +5001,7 @@ class GroupSides : public MessageBase
    public:
    bool isSetComplianceID() const { return fieldComplianceID.offset >= 0; }
    FieldComplianceID::ValueType getComplianceID() const { return fieldComplianceID.getValue( buf ); }
+   std::string_view getComplianceIDView() const { return fieldComplianceID.offset >= 0 ? std::string_view{ buf + fieldComplianceID.offset, getValueLength( buf + fieldComplianceID.offset ) } : std::string_view{}; }
    const char * ptrToComplianceID() const { return buf + fieldComplianceID.offset; }
    const char * getIfSetComplianceID() const { return fieldComplianceID.offset >= 0 ? buf + fieldComplianceID.offset : nullptr; }
    private: FieldComplianceID fieldComplianceID;
@@ -4500,6 +5009,7 @@ class GroupSides : public MessageBase
    public:
    bool isSetText() const { return fieldText.offset >= 0; }
    FieldText::ValueType getText() const { return fieldText.getValue( buf ); }
+   std::string_view getTextView() const { return fieldText.offset >= 0 ? std::string_view{ buf + fieldText.offset, getValueLength( buf + fieldText.offset ) } : std::string_view{}; }
    const char * ptrToText() const { return buf + fieldText.offset; }
    const char * getIfSetText() const { return fieldText.offset >= 0 ? buf + fieldText.offset : nullptr; }
    private: FieldText fieldText;
@@ -4507,6 +5017,7 @@ class GroupSides : public MessageBase
    public:
    bool isSetEncodedTextLen() const { return fieldEncodedTextLen.offset >= 0; }
    FieldEncodedTextLen::ValueType getEncodedTextLen() const { return fieldEncodedTextLen.getValue( buf ); }
+   std::string_view getEncodedTextLenView() const { return fieldEncodedTextLen.offset >= 0 ? std::string_view{ buf + fieldEncodedTextLen.offset, getValueLength( buf + fieldEncodedTextLen.offset ) } : std::string_view{}; }
    const char * ptrToEncodedTextLen() const { return buf + fieldEncodedTextLen.offset; }
    const char * getIfSetEncodedTextLen() const { return fieldEncodedTextLen.offset >= 0 ? buf + fieldEncodedTextLen.offset : nullptr; }
    private: FieldEncodedTextLen fieldEncodedTextLen;
@@ -4514,6 +5025,7 @@ class GroupSides : public MessageBase
    public:
    bool isSetEncodedText() const { return fieldEncodedText.offset >= 0; }
    FieldEncodedText::ValueType getEncodedText() const { return fieldEncodedText.getValue( buf ); }
+   std::string_view getEncodedTextView() const { return fieldEncodedText.offset >= 0 ? std::string_view{ buf + fieldEncodedText.offset, getValueLength( buf + fieldEncodedText.offset ) } : std::string_view{}; }
    const char * ptrToEncodedText() const { return buf + fieldEncodedText.offset; }
    const char * getIfSetEncodedText() const { return fieldEncodedText.offset >= 0 ? buf + fieldEncodedText.offset : nullptr; }
    private: FieldEncodedText fieldEncodedText;
@@ -4539,6 +5051,7 @@ class GroupRoutingIDs : public MessageBase
    public:
    bool isSetRoutingType() const { return fieldRoutingType.offset >= 0; }
    FieldRoutingType::ValueType getRoutingType() const { return fieldRoutingType.getValue( buf ); }
+   std::string_view getRoutingTypeView() const { return fieldRoutingType.offset >= 0 ? std::string_view{ buf + fieldRoutingType.offset, getValueLength( buf + fieldRoutingType.offset ) } : std::string_view{}; }
    const char * ptrToRoutingType() const { return buf + fieldRoutingType.offset; }
    const char * getIfSetRoutingType() const { return fieldRoutingType.offset >= 0 ? buf + fieldRoutingType.offset : nullptr; }
    private: FieldRoutingType fieldRoutingType;
@@ -4546,6 +5059,7 @@ class GroupRoutingIDs : public MessageBase
    public:
    bool isSetRoutingID() const { return fieldRoutingID.offset >= 0; }
    FieldRoutingID::ValueType getRoutingID() const { return fieldRoutingID.getValue( buf ); }
+   std::string_view getRoutingIDView() const { return fieldRoutingID.offset >= 0 ? std::string_view{ buf + fieldRoutingID.offset, getValueLength( buf + fieldRoutingID.offset ) } : std::string_view{}; }
    const char * ptrToRoutingID() const { return buf + fieldRoutingID.offset; }
    const char * getIfSetRoutingID() const { return fieldRoutingID.offset >= 0 ? buf + fieldRoutingID.offset : nullptr; }
    private: FieldRoutingID fieldRoutingID;
@@ -4571,6 +5085,7 @@ class GroupPosAmt : public MessageBase
    public:
    bool isSetPosAmtType() const { return fieldPosAmtType.offset >= 0; }
    FieldPosAmtType::ValueType getPosAmtType() const { return fieldPosAmtType.getValue( buf ); }
+   std::string_view getPosAmtTypeView() const { return fieldPosAmtType.offset >= 0 ? std::string_view{ buf + fieldPosAmtType.offset, getValueLength( buf + fieldPosAmtType.offset ) } : std::string_view{}; }
    const char * ptrToPosAmtType() const { return buf + fieldPosAmtType.offset; }
    const char * getIfSetPosAmtType() const { return fieldPosAmtType.offset >= 0 ? buf + fieldPosAmtType.offset : nullptr; }
    private: FieldPosAmtType fieldPosAmtType;
@@ -4578,6 +5093,7 @@ class GroupPosAmt : public MessageBase
    public:
    bool isSetPosAmt() const { return fieldPosAmt.offset >= 0; }
    FieldPosAmt::ValueType getPosAmt() const { return fieldPosAmt.getValue( buf ); }
+   std::string_view getPosAmtView() const { return fieldPosAmt.offset >= 0 ? std::string_view{ buf + fieldPosAmt.offset, getValueLength( buf + fieldPosAmt.offset ) } : std::string_view{}; }
    const char * ptrToPosAmt() const { return buf + fieldPosAmt.offset; }
    const char * getIfSetPosAmt() const { return fieldPosAmt.offset >= 0 ? buf + fieldPosAmt.offset : nullptr; }
    private: FieldPosAmt fieldPosAmt;
@@ -4603,6 +5119,7 @@ class GroupLinesOfText : public MessageBase
    public:
    bool isSetText() const { return fieldText.offset >= 0; }
    FieldText::ValueType getText() const { return fieldText.getValue( buf ); }
+   std::string_view getTextView() const { return fieldText.offset >= 0 ? std::string_view{ buf + fieldText.offset, getValueLength( buf + fieldText.offset ) } : std::string_view{}; }
    const char * ptrToText() const { return buf + fieldText.offset; }
    const char * getIfSetText() const { return fieldText.offset >= 0 ? buf + fieldText.offset : nullptr; }
    private: FieldText fieldText;
@@ -4610,6 +5127,7 @@ class GroupLinesOfText : public MessageBase
    public:
    bool isSetEncodedTextLen() const { return fieldEncodedTextLen.offset >= 0; }
    FieldEncodedTextLen::ValueType getEncodedTextLen() const { return fieldEncodedTextLen.getValue( buf ); }
+   std::string_view getEncodedTextLenView() const { return fieldEncodedTextLen.offset >= 0 ? std::string_view{ buf + fieldEncodedTextLen.offset, getValueLength( buf + fieldEncodedTextLen.offset ) } : std::string_view{}; }
    const char * ptrToEncodedTextLen() const { return buf + fieldEncodedTextLen.offset; }
    const char * getIfSetEncodedTextLen() const { return fieldEncodedTextLen.offset >= 0 ? buf + fieldEncodedTextLen.offset : nullptr; }
    private: FieldEncodedTextLen fieldEncodedTextLen;
@@ -4617,6 +5135,7 @@ class GroupLinesOfText : public MessageBase
    public:
    bool isSetEncodedText() const { return fieldEncodedText.offset >= 0; }
    FieldEncodedText::ValueType getEncodedText() const { return fieldEncodedText.getValue( buf ); }
+   std::string_view getEncodedTextView() const { return fieldEncodedText.offset >= 0 ? std::string_view{ buf + fieldEncodedText.offset, getValueLength( buf + fieldEncodedText.offset ) } : std::string_view{}; }
    const char * ptrToEncodedText() const { return buf + fieldEncodedText.offset; }
    const char * getIfSetEncodedText() const { return fieldEncodedText.offset >= 0 ? buf + fieldEncodedText.offset : nullptr; }
    private: FieldEncodedText fieldEncodedText;
@@ -4642,6 +5161,7 @@ class GroupIOIQualifiers : public MessageBase
    public:
    bool isSetIOIQualifier() const { return fieldIOIQualifier.offset >= 0; }
    FieldIOIQualifier::ValueType getIOIQualifier() const { return fieldIOIQualifier.getValue( buf ); }
+   std::string_view getIOIQualifierView() const { return fieldIOIQualifier.offset >= 0 ? std::string_view{ buf + fieldIOIQualifier.offset, getValueLength( buf + fieldIOIQualifier.offset ) } : std::string_view{}; }
    const char * ptrToIOIQualifier() const { return buf + fieldIOIQualifier.offset; }
    const char * getIfSetIOIQualifier() const { return fieldIOIQualifier.offset >= 0 ? buf + fieldIOIQualifier.offset : nullptr; }
    private: FieldIOIQualifier fieldIOIQualifier;
@@ -4667,6 +5187,7 @@ class GroupDates : public MessageBase
    public:
    bool isSetTradeDate() const { return fieldTradeDate.offset >= 0; }
    FieldTradeDate::ValueType getTradeDate() const { return fieldTradeDate.getValue( buf ); }
+   std::string_view getTradeDateView() const { return fieldTradeDate.offset >= 0 ? std::string_view{ buf + fieldTradeDate.offset, getValueLength( buf + fieldTradeDate.offset ) } : std::string_view{}; }
    const char * ptrToTradeDate() const { return buf + fieldTradeDate.offset; }
    const char * getIfSetTradeDate() const { return fieldTradeDate.offset >= 0 ? buf + fieldTradeDate.offset : nullptr; }
    private: FieldTradeDate fieldTradeDate;
@@ -4674,6 +5195,7 @@ class GroupDates : public MessageBase
    public:
    bool isSetTransactTime() const { return fieldTransactTime.offset >= 0; }
    FieldTransactTime::ValueType getTransactTime() const { return fieldTransactTime.getValue( buf ); }
+   std::string_view getTransactTimeView() const { return fieldTransactTime.offset >= 0 ? std::string_view{ buf + fieldTransactTime.offset, getValueLength( buf + fieldTransactTime.offset ) } : std::string_view{}; }
    const char * ptrToTransactTime() const { return buf + fieldTransactTime.offset; }
    const char * getIfSetTransactTime() const { return fieldTransactTime.offset >= 0 ? buf + fieldTransactTime.offset : nullptr; }
    private: FieldTransactTime fieldTransactTime;
@@ -4699,6 +5221,7 @@ class GroupMDEntryTypes : public MessageBase
    public:
    bool isSetMDEntryType() const { return fieldMDEntryType.offset >= 0; }
    FieldMDEntryType::ValueType getMDEntryType() const { return fieldMDEntryType.getValue( buf ); }
+   std::string_view getMDEntryTypeView() const { return fieldMDEntryType.offset >= 0 ? std::string_view{ buf + fieldMDEntryType.offset, getValueLength( buf + fieldMDEntryType.offset ) } : std::string_view{}; }
    const char * ptrToMDEntryType() const { return buf + fieldMDEntryType.offset; }
    const char * getIfSetMDEntryType() const { return fieldMDEntryType.offset >= 0 ? buf + fieldMDEntryType.offset : nullptr; }
    private: FieldMDEntryType fieldMDEntryType;
@@ -4724,6 +5247,7 @@ class GroupRelatedSym : public MessageBase
    public:
    bool isSetSymbol() const { return fieldSymbol.offset >= 0; }
    FieldSymbol::ValueType getSymbol() const { return fieldSymbol.getValue( buf ); }
+   std::string_view getSymbolView() const { return fieldSymbol.offset >= 0 ? std::string_view{ buf + fieldSymbol.offset, getValueLength( buf + fieldSymbol.offset ) } : std::string_view{}; }
    const char * ptrToSymbol() const { return buf + fieldSymbol.offset; }
    const char * getIfSetSymbol() const { return fieldSymbol.offset >= 0 ? buf + fieldSymbol.offset : nullptr; }
    private: FieldSymbol fieldSymbol;
@@ -4731,6 +5255,7 @@ class GroupRelatedSym : public MessageBase
    public:
    bool isSetSymbolSfx() const { return fieldSymbolSfx.offset >= 0; }
    FieldSymbolSfx::ValueType getSymbolSfx() const { return fieldSymbolSfx.getValue( buf ); }
+   std::string_view getSymbolSfxView() const { return fieldSymbolSfx.offset >= 0 ? std::string_view{ buf + fieldSymbolSfx.offset, getValueLength( buf + fieldSymbolSfx.offset ) } : std::string_view{}; }
    const char * ptrToSymbolSfx() const { return buf + fieldSymbolSfx.offset; }
    const char * getIfSetSymbolSfx() const { return fieldSymbolSfx.offset >= 0 ? buf + fieldSymbolSfx.offset : nullptr; }
    private: FieldSymbolSfx fieldSymbolSfx;
@@ -4738,6 +5263,7 @@ class GroupRelatedSym : public MessageBase
    public:
    bool isSetSecurityID() const { return fieldSecurityID.offset >= 0; }
    FieldSecurityID::ValueType getSecurityID() const { return fieldSecurityID.getValue( buf ); }
+   std::string_view getSecurityIDView() const { return fieldSecurityID.offset >= 0 ? std::string_view{ buf + fieldSecurityID.offset, getValueLength( buf + fieldSecurityID.offset ) } : std::string_view{}; }
    const char * ptrToSecurityID() const { return buf + fieldSecurityID.offset; }
    const char * getIfSetSecurityID() const { return fieldSecurityID.offset >= 0 ? buf + fieldSecurityID.offset : nullptr; }
    private: FieldSecurityID fieldSecurityID;
@@ -4745,6 +5271,7 @@ class GroupRelatedSym : public MessageBase
    public:
    bool isSetSecurityIDSource() const { return fieldSecurityIDSource.offset >= 0; }
    FieldSecurityIDSource::ValueType getSecurityIDSource() const { return fieldSecurityIDSource.getValue( buf ); }
+   std::string_view getSecurityIDSourceView() const { return fieldSecurityIDSource.offset >= 0 ? std::string_view{ buf + fieldSecurityIDSource.offset, getValueLength( buf + fieldSecurityIDSource.offset ) } : std::string_view{}; }
    const char * ptrToSecurityIDSource() const { return buf + fieldSecurityIDSource.offset; }
    const char * getIfSetSecurityIDSource() const { return fieldSecurityIDSource.offset >= 0 ? buf + fieldSecurityIDSource.offset : nullptr; }
    private: FieldSecurityIDSource fieldSecurityIDSource;
@@ -4752,6 +5279,7 @@ class GroupRelatedSym : public MessageBase
    public:
    bool isSetNoSecurityAltID() const { return fieldNoSecurityAltID.offset >= 0; }
    FieldNoSecurityAltID::ValueType getNoSecurityAltID() const { return fieldNoSecurityAltID.getValue( buf ); }
+   std::string_view getNoSecurityAltIDView() const { return fieldNoSecurityAltID.offset >= 0 ? std::string_view{ buf + fieldNoSecurityAltID.offset, getValueLength( buf + fieldNoSecurityAltID.offset ) } : std::string_view{}; }
    const char * ptrToNoSecurityAltID() const { return buf + fieldNoSecurityAltID.offset; }
    const char * getIfSetNoSecurityAltID() const { return fieldNoSecurityAltID.offset >= 0 ? buf + fieldNoSecurityAltID.offset : nullptr; }
    private: FieldNoSecurityAltID fieldNoSecurityAltID;
@@ -4764,6 +5292,7 @@ class GroupRelatedSym : public MessageBase
    public:
    bool isSetProduct() const { return fieldProduct.offset >= 0; }
    FieldProduct::ValueType getProduct() const { return fieldProduct.getValue( buf ); }
+   std::string_view getProductView() const { return fieldProduct.offset >= 0 ? std::string_view{ buf + fieldProduct.offset, getValueLength( buf + fieldProduct.offset ) } : std::string_view{}; }
    const char * ptrToProduct() const { return buf + fieldProduct.offset; }
    const char * getIfSetProduct() const { return fieldProduct.offset >= 0 ? buf + fieldProduct.offset : nullptr; }
    private: FieldProduct fieldProduct;
@@ -4771,6 +5300,7 @@ class GroupRelatedSym : public MessageBase
    public:
    bool isSetCFICode() const { return fieldCFICode.offset >= 0; }
    FieldCFICode::ValueType getCFICode() const { return fieldCFICode.getValue( buf ); }
+   std::string_view getCFICodeView() const { return fieldCFICode.offset >= 0 ? std::string_view{ buf + fieldCFICode.offset, getValueLength( buf + fieldCFICode.offset ) } : std::string_view{}; }
    const char * ptrToCFICode() const { return buf + fieldCFICode.offset; }
    const char * getIfSetCFICode() const { return fieldCFICode.offset >= 0 ? buf + fieldCFICode.offset : nullptr; }
    private: FieldCFICode fieldCFICode;
@@ -4778,6 +5308,7 @@ class GroupRelatedSym : public MessageBase
    public:
    bool isSetSecurityType() const { return fieldSecurityType.offset >= 0; }
    FieldSecurityType::ValueType getSecurityType() const { return fieldSecurityType.getValue( buf ); }
+   std::string_view getSecurityTypeView() const { return fieldSecurityType.offset >= 0 ? std::string_view{ buf + fieldSecurityType.offset, getValueLength( buf + fieldSecurityType.offset ) } : std::string_view{}; }
    const char * ptrToSecurityType() const { return buf + fieldSecurityType.offset; }
    const char * getIfSetSecurityType() const { return fieldSecurityType.offset >= 0 ? buf + fieldSecurityType.offset : nullptr; }
    private: FieldSecurityType fieldSecurityType;
@@ -4785,6 +5316,7 @@ class GroupRelatedSym : public MessageBase
    public:
    bool isSetSecuritySubType() const { return fieldSecuritySubType.offset >= 0; }
    FieldSecuritySubType::ValueType getSecuritySubType() const { return fieldSecuritySubType.getValue( buf ); }
+   std::string_view getSecuritySubTypeView() const { return fieldSecuritySubType.offset >= 0 ? std::string_view{ buf + fieldSecuritySubType.offset, getValueLength( buf + fieldSecuritySubType.offset ) } : std::string_view{}; }
    const char * ptrToSecuritySubType() const { return buf + fieldSecuritySubType.offset; }
    const char * getIfSetSecuritySubType() const { return fieldSecuritySubType.offset >= 0 ? buf + fieldSecuritySubType.offset : nullptr; }
    private: FieldSecuritySubType fieldSecuritySubType;
@@ -4792,6 +5324,7 @@ class GroupRelatedSym : public MessageBase
    public:
    bool isSetMaturityMonthYear() const { return fieldMaturityMonthYear.offset >= 0; }
    FieldMaturityMonthYear::ValueType getMaturityMonthYear() const { return fieldMaturityMonthYear.getValue( buf ); }
+   std::string_view getMaturityMonthYearView() const { return fieldMaturityMonthYear.offset >= 0 ? std::string_view{ buf + fieldMaturityMonthYear.offset, getValueLength( buf + fieldMaturityMonthYear.offset ) } : std::string_view{}; }
    const char * ptrToMaturityMonthYear() const { return buf + fieldMaturityMonthYear.offset; }
    const char * getIfSetMaturityMonthYear() const { return fieldMaturityMonthYear.offset >= 0 ? buf + fieldMaturityMonthYear.offset : nullptr; }
    private: FieldMaturityMonthYear fieldMaturityMonthYear;
@@ -4799,6 +5332,7 @@ class GroupRelatedSym : public MessageBase
    public:
    bool isSetMaturityDate() const { return fieldMaturityDate.offset >= 0; }
    FieldMaturityDate::ValueType getMaturityDate() const { return fieldMaturityDate.getValue( buf ); }
+   std::string_view getMaturityDateView() const { return fieldMaturityDate.offset >= 0 ? std::string_view{ buf + fieldMaturityDate.offset, getValueLength( buf + fieldMaturityDate.offset ) } : std::string_view{}; }
    const char * ptrToMaturityDate() const { return buf + fieldMaturityDate.offset; }
    const char * getIfSetMaturityDate() const { return fieldMaturityDate.offset >= 0 ? buf + fieldMaturityDate.offset : nullptr; }
    private: FieldMaturityDate fieldMaturityDate;
@@ -4806,6 +5340,7 @@ class GroupRelatedSym : public MessageBase
    public:
    bool isSetPutOrCall() const { return fieldPutOrCall.offset >= 0; }
    FieldPutOrCall::ValueType getPutOrCall() const { return fieldPutOrCall.getValue( buf ); }
+   std::string_view getPutOrCallView() const { return fieldPutOrCall.offset >= 0 ? std::string_view{ buf + fieldPutOrCall.offset, getValueLength( buf + fieldPutOrCall.offset ) } : std::string_view{}; }
    const char * ptrToPutOrCall() const { return buf + fieldPutOrCall.offset; }
    const char * getIfSetPutOrCall() const { return fieldPutOrCall.offset >= 0 ? buf + fieldPutOrCall.offset : nullptr; }
    private: FieldPutOrCall fieldPutOrCall;
@@ -4813,6 +5348,7 @@ class GroupRelatedSym : public MessageBase
    public:
    bool isSetCouponPaymentDate() const { return fieldCouponPaymentDate.offset >= 0; }
    FieldCouponPaymentDate::ValueType getCouponPaymentDate() const { return fieldCouponPaymentDate.getValue( buf ); }
+   std::string_view getCouponPaymentDateView() const { return fieldCouponPaymentDate.offset >= 0 ? std::string_view{ buf + fieldCouponPaymentDate.offset, getValueLength( buf + fieldCouponPaymentDate.offset ) } : std::string_view{}; }
    const char * ptrToCouponPaymentDate() const { return buf + fieldCouponPaymentDate.offset; }
    const char * getIfSetCouponPaymentDate() const { return fieldCouponPaymentDate.offset >= 0 ? buf + fieldCouponPaymentDate.offset : nullptr; }
    private: FieldCouponPaymentDate fieldCouponPaymentDate;
@@ -4820,6 +5356,7 @@ class GroupRelatedSym : public MessageBase
    public:
    bool isSetIssueDate() const { return fieldIssueDate.offset >= 0; }
    FieldIssueDate::ValueType getIssueDate() const { return fieldIssueDate.getValue( buf ); }
+   std::string_view getIssueDateView() const { return fieldIssueDate.offset >= 0 ? std::string_view{ buf + fieldIssueDate.offset, getValueLength( buf + fieldIssueDate.offset ) } : std::string_view{}; }
    const char * ptrToIssueDate() const { return buf + fieldIssueDate.offset; }
    const char * getIfSetIssueDate() const { return fieldIssueDate.offset >= 0 ? buf + fieldIssueDate.offset : nullptr; }
    private: FieldIssueDate fieldIssueDate;
@@ -4827,6 +5364,7 @@ class GroupRelatedSym : public MessageBase
    public:
    bool isSetRepoCollateralSecurityType() const { return fieldRepoCollateralSecurityType.offset >= 0; }
    FieldRepoCollateralSecurityType::ValueType getRepoCollateralSecurityType() const { return fieldRepoCollateralSecurityType.getValue( buf ); }
+   std::string_view getRepoCollateralSecurityTypeView() const { return fieldRepoCollateralSecurityType.offset >= 0 ? std::string_view{ buf + fieldRepoCollateralSecurityType.offset, getValueLength( buf + fieldRepoCollateralSecurityType.offset ) } : std::string_view{}; }
    const char * ptrToRepoCollateralSecurityType() const { return buf + fieldRepoCollateralSecurityType.offset; }
    const char * getIfSetRepoCollateralSecurityType() const { return fieldRepoCollateralSecurityType.offset >= 0 ? buf + fieldRepoCollateralSecurityType.offset : nullptr; }
    private: FieldRepoCollateralSecurityType fieldRepoCollateralSecurityType;
@@ -4834,6 +5372,7 @@ class GroupRelatedSym : public MessageBase
    public:
    bool isSetRepurchaseTerm() const { return fieldRepurchaseTerm.offset >= 0; }
    FieldRepurchaseTerm::ValueType getRepurchaseTerm() const { return fieldRepurchaseTerm.getValue( buf ); }
+   std::string_view getRepurchaseTermView() const { return fieldRepurchaseTerm.offset >= 0 ? std::string_view{ buf + fieldRepurchaseTerm.offset, getValueLength( buf + fieldRepurchaseTerm.offset ) } : std::string_view{}; }
    const char * ptrToRepurchaseTerm() const { return buf + fieldRepurchaseTerm.offset; }
    const char * getIfSetRepurchaseTerm() const { return fieldRepurchaseTerm.offset >= 0 ? buf + fieldRepurchaseTerm.offset : nullptr; }
    private: FieldRepurchaseTerm fieldRepurchaseTerm;
@@ -4841,6 +5380,7 @@ class GroupRelatedSym : public MessageBase
    public:
    bool isSetRepurchaseRate() const { return fieldRepurchaseRate.offset >= 0; }
    FieldRepurchaseRate::ValueType getRepurchaseRate() const { return fieldRepurchaseRate.getValue( buf ); }
+   std::string_view getRepurchaseRateView() const { return fieldRepurchaseRate.offset >= 0 ? std::string_view{ buf + fieldRepurchaseRate.offset, getValueLength( buf + fieldRepurchaseRate.offset ) } : std::string_view{}; }
    const char * ptrToRepurchaseRate() const { return buf + fieldRepurchaseRate.offset; }
    const char * getIfSetRepurchaseRate() const { return fieldRepurchaseRate.offset >= 0 ? buf + fieldRepurchaseRate.offset : nullptr; }
    private: FieldRepurchaseRate fieldRepurchaseRate;
@@ -4848,6 +5388,7 @@ class GroupRelatedSym : public MessageBase
    public:
    bool isSetFactor() const { return fieldFactor.offset >= 0; }
    FieldFactor::ValueType getFactor() const { return fieldFactor.getValue( buf ); }
+   std::string_view getFactorView() const { return fieldFactor.offset >= 0 ? std::string_view{ buf + fieldFactor.offset, getValueLength( buf + fieldFactor.offset ) } : std::string_view{}; }
    const char * ptrToFactor() const { return buf + fieldFactor.offset; }
    const char * getIfSetFactor() const { return fieldFactor.offset >= 0 ? buf + fieldFactor.offset : nullptr; }
    private: FieldFactor fieldFactor;
@@ -4855,6 +5396,7 @@ class GroupRelatedSym : public MessageBase
    public:
    bool isSetCreditRating() const { return fieldCreditRating.offset >= 0; }
    FieldCreditRating::ValueType getCreditRating() const { return fieldCreditRating.getValue( buf ); }
+   std::string_view getCreditRatingView() const { return fieldCreditRating.offset >= 0 ? std::string_view{ buf + fieldCreditRating.offset, getValueLength( buf + fieldCreditRating.offset ) } : std::string_view{}; }
    const char * ptrToCreditRating() const { return buf + fieldCreditRating.offset; }
    const char * getIfSetCreditRating() const { return fieldCreditRating.offset >= 0 ? buf + fieldCreditRating.offset : nullptr; }
    private: FieldCreditRating fieldCreditRating;
@@ -4862,6 +5404,7 @@ class GroupRelatedSym : public MessageBase
    public:
    bool isSetInstrRegistry() const { return fieldInstrRegistry.offset >= 0; }
    FieldInstrRegistry::ValueType getInstrRegistry() const { return fieldInstrRegistry.getValue( buf ); }
+   std::string_view getInstrRegistryView() const { return fieldInstrRegistry.offset >= 0 ? std::string_view{ buf + fieldInstrRegistry.offset, getValueLength( buf + fieldInstrRegistry.offset ) } : std::string_view{}; }
    const char * ptrToInstrRegistry() const { return buf + fieldInstrRegistry.offset; }
    const char * getIfSetInstrRegistry() const { return fieldInstrRegistry.offset >= 0 ? buf + fieldInstrRegistry.offset : nullptr; }
    private: FieldInstrRegistry fieldInstrRegistry;
@@ -4869,6 +5412,7 @@ class GroupRelatedSym : public MessageBase
    public:
    bool isSetCountryOfIssue() const { return fieldCountryOfIssue.offset >= 0; }
    FieldCountryOfIssue::ValueType getCountryOfIssue() const { return fieldCountryOfIssue.getValue( buf ); }
+   std::string_view getCountryOfIssueView() const { return fieldCountryOfIssue.offset >= 0 ? std::string_view{ buf + fieldCountryOfIssue.offset, getValueLength( buf + fieldCountryOfIssue.offset ) } : std::string_view{}; }
    const char * ptrToCountryOfIssue() const { return buf + fieldCountryOfIssue.offset; }
    const char * getIfSetCountryOfIssue() const { return fieldCountryOfIssue.offset >= 0 ? buf + fieldCountryOfIssue.offset : nullptr; }
    private: FieldCountryOfIssue fieldCountryOfIssue;
@@ -4876,6 +5420,7 @@ class GroupRelatedSym : public MessageBase
    public:
    bool isSetStateOrProvinceOfIssue() const { return fieldStateOrProvinceOfIssue.offset >= 0; }
    FieldStateOrProvinceOfIssue::ValueType getStateOrProvinceOfIssue() const { return fieldStateOrProvinceOfIssue.getValue( buf ); }
+   std::string_view getStateOrProvinceOfIssueView() const { return fieldStateOrProvinceOfIssue.offset >= 0 ? std::string_view{ buf + fieldStateOrProvinceOfIssue.offset, getValueLength( buf + fieldStateOrProvinceOfIssue.offset ) } : std::string_view{}; }
    const char * ptrToStateOrProvinceOfIssue() const { return buf + fieldStateOrProvinceOfIssue.offset; }
    const char * getIfSetStateOrProvinceOfIssue() const { return fieldStateOrProvinceOfIssue.offset >= 0 ? buf + fieldStateOrProvinceOfIssue.offset : nullptr; }
    private: FieldStateOrProvinceOfIssue fieldStateOrProvinceOfIssue;
@@ -4883,6 +5428,7 @@ class GroupRelatedSym : public MessageBase
    public:
    bool isSetLocaleOfIssue() const { return fieldLocaleOfIssue.offset >= 0; }
    FieldLocaleOfIssue::ValueType getLocaleOfIssue() const { return fieldLocaleOfIssue.getValue( buf ); }
+   std::string_view getLocaleOfIssueView() const { return fieldLocaleOfIssue.offset >= 0 ? std::string_view{ buf + fieldLocaleOfIssue.offset, getValueLength( buf + fieldLocaleOfIssue.offset ) } : std::string_view{}; }
    const char * ptrToLocaleOfIssue() const { return buf + fieldLocaleOfIssue.offset; }
    const char * getIfSetLocaleOfIssue() const { return fieldLocaleOfIssue.offset >= 0 ? buf + fieldLocaleOfIssue.offset : nullptr; }
    private: FieldLocaleOfIssue fieldLocaleOfIssue;
@@ -4890,6 +5436,7 @@ class GroupRelatedSym : public MessageBase
    public:
    bool isSetRedemptionDate() const { return fieldRedemptionDate.offset >= 0; }
    FieldRedemptionDate::ValueType getRedemptionDate() const { return fieldRedemptionDate.getValue( buf ); }
+   std::string_view getRedemptionDateView() const { return fieldRedemptionDate.offset >= 0 ? std::string_view{ buf + fieldRedemptionDate.offset, getValueLength( buf + fieldRedemptionDate.offset ) } : std::string_view{}; }
    const char * ptrToRedemptionDate() const { return buf + fieldRedemptionDate.offset; }
    const char * getIfSetRedemptionDate() const { return fieldRedemptionDate.offset >= 0 ? buf + fieldRedemptionDate.offset : nullptr; }
    private: FieldRedemptionDate fieldRedemptionDate;
@@ -4897,6 +5444,7 @@ class GroupRelatedSym : public MessageBase
    public:
    bool isSetStrikePrice() const { return fieldStrikePrice.offset >= 0; }
    FieldStrikePrice::ValueType getStrikePrice() const { return fieldStrikePrice.getValue( buf ); }
+   std::string_view getStrikePriceView() const { return fieldStrikePrice.offset >= 0 ? std::string_view{ buf + fieldStrikePrice.offset, getValueLength( buf + fieldStrikePrice.offset ) } : std::string_view{}; }
    const char * ptrToStrikePrice() const { return buf + fieldStrikePrice.offset; }
    const char * getIfSetStrikePrice() const { return fieldStrikePrice.offset >= 0 ? buf + fieldStrikePrice.offset : nullptr; }
    private: FieldStrikePrice fieldStrikePrice;
@@ -4904,6 +5452,7 @@ class GroupRelatedSym : public MessageBase
    public:
    bool isSetStrikeCurrency() const { return fieldStrikeCurrency.offset >= 0; }
    FieldStrikeCurrency::ValueType getStrikeCurrency() const { return fieldStrikeCurrency.getValue( buf ); }
+   std::string_view getStrikeCurrencyView() const { return fieldStrikeCurrency.offset >= 0 ? std::string_view{ buf + fieldStrikeCurrency.offset, getValueLength( buf + fieldStrikeCurrency.offset ) } : std::string_view{}; }
    const char * ptrToStrikeCurrency() const { return buf + fieldStrikeCurrency.offset; }
    const char * getIfSetStrikeCurrency() const { return fieldStrikeCurrency.offset >= 0 ? buf + fieldStrikeCurrency.offset : nullptr; }
    private: FieldStrikeCurrency fieldStrikeCurrency;
@@ -4911,6 +5460,7 @@ class GroupRelatedSym : public MessageBase
    public:
    bool isSetOptAttribute() const { return fieldOptAttribute.offset >= 0; }
    FieldOptAttribute::ValueType getOptAttribute() const { return fieldOptAttribute.getValue( buf ); }
+   std::string_view getOptAttributeView() const { return fieldOptAttribute.offset >= 0 ? std::string_view{ buf + fieldOptAttribute.offset, getValueLength( buf + fieldOptAttribute.offset ) } : std::string_view{}; }
    const char * ptrToOptAttribute() const { return buf + fieldOptAttribute.offset; }
    const char * getIfSetOptAttribute() const { return fieldOptAttribute.offset >= 0 ? buf + fieldOptAttribute.offset : nullptr; }
    private: FieldOptAttribute fieldOptAttribute;
@@ -4918,6 +5468,7 @@ class GroupRelatedSym : public MessageBase
    public:
    bool isSetContractMultiplier() const { return fieldContractMultiplier.offset >= 0; }
    FieldContractMultiplier::ValueType getContractMultiplier() const { return fieldContractMultiplier.getValue( buf ); }
+   std::string_view getContractMultiplierView() const { return fieldContractMultiplier.offset >= 0 ? std::string_view{ buf + fieldContractMultiplier.offset, getValueLength( buf + fieldContractMultiplier.offset ) } : std::string_view{}; }
    const char * ptrToContractMultiplier() const { return buf + fieldContractMultiplier.offset; }
    const char * getIfSetContractMultiplier() const { return fieldContractMultiplier.offset >= 0 ? buf + fieldContractMultiplier.offset : nullptr; }
    private: FieldContractMultiplier fieldContractMultiplier;
@@ -4925,6 +5476,7 @@ class GroupRelatedSym : public MessageBase
    public:
    bool isSetCouponRate() const { return fieldCouponRate.offset >= 0; }
    FieldCouponRate::ValueType getCouponRate() const { return fieldCouponRate.getValue( buf ); }
+   std::string_view getCouponRateView() const { return fieldCouponRate.offset >= 0 ? std::string_view{ buf + fieldCouponRate.offset, getValueLength( buf + fieldCouponRate.offset ) } : std::string_view{}; }
    const char * ptrToCouponRate() const { return buf + fieldCouponRate.offset; }
    const char * getIfSetCouponRate() const { return fieldCouponRate.offset >= 0 ? buf + fieldCouponRate.offset : nullptr; }
    private: FieldCouponRate fieldCouponRate;
@@ -4932,6 +5484,7 @@ class GroupRelatedSym : public MessageBase
    public:
    bool isSetSecurityExchange() const { return fieldSecurityExchange.offset >= 0; }
    FieldSecurityExchange::ValueType getSecurityExchange() const { return fieldSecurityExchange.getValue( buf ); }
+   std::string_view getSecurityExchangeView() const { return fieldSecurityExchange.offset >= 0 ? std::string_view{ buf + fieldSecurityExchange.offset, getValueLength( buf + fieldSecurityExchange.offset ) } : std::string_view{}; }
    const char * ptrToSecurityExchange() const { return buf + fieldSecurityExchange.offset; }
    const char * getIfSetSecurityExchange() const { return fieldSecurityExchange.offset >= 0 ? buf + fieldSecurityExchange.offset : nullptr; }
    private: FieldSecurityExchange fieldSecurityExchange;
@@ -4939,6 +5492,7 @@ class GroupRelatedSym : public MessageBase
    public:
    bool isSetIssuer() const { return fieldIssuer.offset >= 0; }
    FieldIssuer::ValueType getIssuer() const { return fieldIssuer.getValue( buf ); }
+   std::string_view getIssuerView() const { return fieldIssuer.offset >= 0 ? std::string_view{ buf + fieldIssuer.offset, getValueLength( buf + fieldIssuer.offset ) } : std::string_view{}; }
    const char * ptrToIssuer() const { return buf + fieldIssuer.offset; }
    const char * getIfSetIssuer() const { return fieldIssuer.offset >= 0 ? buf + fieldIssuer.offset : nullptr; }
    private: FieldIssuer fieldIssuer;
@@ -4946,6 +5500,7 @@ class GroupRelatedSym : public MessageBase
    public:
    bool isSetEncodedIssuerLen() const { return fieldEncodedIssuerLen.offset >= 0; }
    FieldEncodedIssuerLen::ValueType getEncodedIssuerLen() const { return fieldEncodedIssuerLen.getValue( buf ); }
+   std::string_view getEncodedIssuerLenView() const { return fieldEncodedIssuerLen.offset >= 0 ? std::string_view{ buf + fieldEncodedIssuerLen.offset, getValueLength( buf + fieldEncodedIssuerLen.offset ) } : std::string_view{}; }
    const char * ptrToEncodedIssuerLen() const { return buf + fieldEncodedIssuerLen.offset; }
    const char * getIfSetEncodedIssuerLen() const { return fieldEncodedIssuerLen.offset >= 0 ? buf + fieldEncodedIssuerLen.offset : nullptr; }
    private: FieldEncodedIssuerLen fieldEncodedIssuerLen;
@@ -4953,6 +5508,7 @@ class GroupRelatedSym : public MessageBase
    public:
    bool isSetEncodedIssuer() const { return fieldEncodedIssuer.offset >= 0; }
    FieldEncodedIssuer::ValueType getEncodedIssuer() const { return fieldEncodedIssuer.getValue( buf ); }
+   std::string_view getEncodedIssuerView() const { return fieldEncodedIssuer.offset >= 0 ? std::string_view{ buf + fieldEncodedIssuer.offset, getValueLength( buf + fieldEncodedIssuer.offset ) } : std::string_view{}; }
    const char * ptrToEncodedIssuer() const { return buf + fieldEncodedIssuer.offset; }
    const char * getIfSetEncodedIssuer() const { return fieldEncodedIssuer.offset >= 0 ? buf + fieldEncodedIssuer.offset : nullptr; }
    private: FieldEncodedIssuer fieldEncodedIssuer;
@@ -4960,6 +5516,7 @@ class GroupRelatedSym : public MessageBase
    public:
    bool isSetSecurityDesc() const { return fieldSecurityDesc.offset >= 0; }
    FieldSecurityDesc::ValueType getSecurityDesc() const { return fieldSecurityDesc.getValue( buf ); }
+   std::string_view getSecurityDescView() const { return fieldSecurityDesc.offset >= 0 ? std::string_view{ buf + fieldSecurityDesc.offset, getValueLength( buf + fieldSecurityDesc.offset ) } : std::string_view{}; }
    const char * ptrToSecurityDesc() const { return buf + fieldSecurityDesc.offset; }
    const char * getIfSetSecurityDesc() const { return fieldSecurityDesc.offset >= 0 ? buf + fieldSecurityDesc.offset : nullptr; }
    private: FieldSecurityDesc fieldSecurityDesc;
@@ -4967,6 +5524,7 @@ class GroupRelatedSym : public MessageBase
    public:
    bool isSetEncodedSecurityDescLen() const { return fieldEncodedSecurityDescLen.offset >= 0; }
    FieldEncodedSecurityDescLen::ValueType getEncodedSecurityDescLen() const { return fieldEncodedSecurityDescLen.getValue( buf ); }
+   std::string_view getEncodedSecurityDescLenView() const { return fieldEncodedSecurityDescLen.offset >= 0 ? std::string_view{ buf + fieldEncodedSecurityDescLen.offset, getValueLength( buf + fieldEncodedSecurityDescLen.offset ) } : std::string_view{}; }
    const char * ptrToEncodedSecurityDescLen() const { return buf + fieldEncodedSecurityDescLen.offset; }
    const char * getIfSetEncodedSecurityDescLen() const { return fieldEncodedSecurityDescLen.offset >= 0 ? buf + fieldEncodedSecurityDescLen.offset : nullptr; }
    private: FieldEncodedSecurityDescLen fieldEncodedSecurityDescLen;
@@ -4974,6 +5532,7 @@ class GroupRelatedSym : public MessageBase
    public:
    bool isSetEncodedSecurityDesc() const { return fieldEncodedSecurityDesc.offset >= 0; }
    FieldEncodedSecurityDesc::ValueType getEncodedSecurityDesc() const { return fieldEncodedSecurityDesc.getValue( buf ); }
+   std::string_view getEncodedSecurityDescView() const { return fieldEncodedSecurityDesc.offset >= 0 ? std::string_view{ buf + fieldEncodedSecurityDesc.offset, getValueLength( buf + fieldEncodedSecurityDesc.offset ) } : std::string_view{}; }
    const char * ptrToEncodedSecurityDesc() const { return buf + fieldEncodedSecurityDesc.offset; }
    const char * getIfSetEncodedSecurityDesc() const { return fieldEncodedSecurityDesc.offset >= 0 ? buf + fieldEncodedSecurityDesc.offset : nullptr; }
    private: FieldEncodedSecurityDesc fieldEncodedSecurityDesc;
@@ -4981,6 +5540,7 @@ class GroupRelatedSym : public MessageBase
    public:
    bool isSetPool() const { return fieldPool.offset >= 0; }
    FieldPool::ValueType getPool() const { return fieldPool.getValue( buf ); }
+   std::string_view getPoolView() const { return fieldPool.offset >= 0 ? std::string_view{ buf + fieldPool.offset, getValueLength( buf + fieldPool.offset ) } : std::string_view{}; }
    const char * ptrToPool() const { return buf + fieldPool.offset; }
    const char * getIfSetPool() const { return fieldPool.offset >= 0 ? buf + fieldPool.offset : nullptr; }
    private: FieldPool fieldPool;
@@ -4988,6 +5548,7 @@ class GroupRelatedSym : public MessageBase
    public:
    bool isSetContractSettlMonth() const { return fieldContractSettlMonth.offset >= 0; }
    FieldContractSettlMonth::ValueType getContractSettlMonth() const { return fieldContractSettlMonth.getValue( buf ); }
+   std::string_view getContractSettlMonthView() const { return fieldContractSettlMonth.offset >= 0 ? std::string_view{ buf + fieldContractSettlMonth.offset, getValueLength( buf + fieldContractSettlMonth.offset ) } : std::string_view{}; }
    const char * ptrToContractSettlMonth() const { return buf + fieldContractSettlMonth.offset; }
    const char * getIfSetContractSettlMonth() const { return fieldContractSettlMonth.offset >= 0 ? buf + fieldContractSettlMonth.offset : nullptr; }
    private: FieldContractSettlMonth fieldContractSettlMonth;
@@ -4995,6 +5556,7 @@ class GroupRelatedSym : public MessageBase
    public:
    bool isSetCPProgram() const { return fieldCPProgram.offset >= 0; }
    FieldCPProgram::ValueType getCPProgram() const { return fieldCPProgram.getValue( buf ); }
+   std::string_view getCPProgramView() const { return fieldCPProgram.offset >= 0 ? std::string_view{ buf + fieldCPProgram.offset, getValueLength( buf + fieldCPProgram.offset ) } : std::string_view{}; }
    const char * ptrToCPProgram() const { return buf + fieldCPProgram.offset; }
    const char * getIfSetCPProgram() const { return fieldCPProgram.offset >= 0 ? buf + fieldCPProgram.offset : nullptr; }
    private: FieldCPProgram fieldCPProgram;
@@ -5002,6 +5564,7 @@ class GroupRelatedSym : public MessageBase
    public:
    bool isSetCPRegType() const { return fieldCPRegType.offset >= 0; }
    FieldCPRegType::ValueType getCPRegType() const { return fieldCPRegType.getValue( buf ); }
+   std::string_view getCPRegTypeView() const { return fieldCPRegType.offset >= 0 ? std::string_view{ buf + fieldCPRegType.offset, getValueLength( buf + fieldCPRegType.offset ) } : std::string_view{}; }
    const char * ptrToCPRegType() const { return buf + fieldCPRegType.offset; }
    const char * getIfSetCPRegType() const { return fieldCPRegType.offset >= 0 ? buf + fieldCPRegType.offset : nullptr; }
    private: FieldCPRegType fieldCPRegType;
@@ -5009,6 +5572,7 @@ class GroupRelatedSym : public MessageBase
    public:
    bool isSetNoEvents() const { return fieldNoEvents.offset >= 0; }
    FieldNoEvents::ValueType getNoEvents() const { return fieldNoEvents.getValue( buf ); }
+   std::string_view getNoEventsView() const { return fieldNoEvents.offset >= 0 ? std::string_view{ buf + fieldNoEvents.offset, getValueLength( buf + fieldNoEvents.offset ) } : std::string_view{}; }
    const char * ptrToNoEvents() const { return buf + fieldNoEvents.offset; }
    const char * getIfSetNoEvents() const { return fieldNoEvents.offset >= 0 ? buf + fieldNoEvents.offset : nullptr; }
    private: FieldNoEvents fieldNoEvents;
@@ -5021,6 +5585,7 @@ class GroupRelatedSym : public MessageBase
    public:
    bool isSetDatedDate() const { return fieldDatedDate.offset >= 0; }
    FieldDatedDate::ValueType getDatedDate() const { return fieldDatedDate.getValue( buf ); }
+   std::string_view getDatedDateView() const { return fieldDatedDate.offset >= 0 ? std::string_view{ buf + fieldDatedDate.offset, getValueLength( buf + fieldDatedDate.offset ) } : std::string_view{}; }
    const char * ptrToDatedDate() const { return buf + fieldDatedDate.offset; }
    const char * getIfSetDatedDate() const { return fieldDatedDate.offset >= 0 ? buf + fieldDatedDate.offset : nullptr; }
    private: FieldDatedDate fieldDatedDate;
@@ -5028,6 +5593,7 @@ class GroupRelatedSym : public MessageBase
    public:
    bool isSetInterestAccrualDate() const { return fieldInterestAccrualDate.offset >= 0; }
    FieldInterestAccrualDate::ValueType getInterestAccrualDate() const { return fieldInterestAccrualDate.getValue( buf ); }
+   std::string_view getInterestAccrualDateView() const { return fieldInterestAccrualDate.offset >= 0 ? std::string_view{ buf + fieldInterestAccrualDate.offset, getValueLength( buf + fieldInterestAccrualDate.offset ) } : std::string_view{}; }
    const char * ptrToInterestAccrualDate() const { return buf + fieldInterestAccrualDate.offset; }
    const char * getIfSetInterestAccrualDate() const { return fieldInterestAccrualDate.offset >= 0 ? buf + fieldInterestAccrualDate.offset : nullptr; }
    private: FieldInterestAccrualDate fieldInterestAccrualDate;
@@ -5053,6 +5619,7 @@ class GroupContraBrokers : public MessageBase
    public:
    bool isSetContraBroker() const { return fieldContraBroker.offset >= 0; }
    FieldContraBroker::ValueType getContraBroker() const { return fieldContraBroker.getValue( buf ); }
+   std::string_view getContraBrokerView() const { return fieldContraBroker.offset >= 0 ? std::string_view{ buf + fieldContraBroker.offset, getValueLength( buf + fieldContraBroker.offset ) } : std::string_view{}; }
    const char * ptrToContraBroker() const { return buf + fieldContraBroker.offset; }
    const char * getIfSetContraBroker() const { return fieldContraBroker.offset >= 0 ? buf + fieldContraBroker.offset : nullptr; }
    private: FieldContraBroker fieldContraBroker;
@@ -5060,6 +5627,7 @@ class GroupContraBrokers : public MessageBase
    public:
    bool isSetContraTrader() const { return fieldContraTrader.offset >= 0; }
    FieldContraTrader::ValueType getContraTrader() const { return fieldContraTrader.getValue( buf ); }
+   std::string_view getContraTraderView() const { return fieldContraTrader.offset >= 0 ? std::string_view{ buf + fieldContraTrader.offset, getValueLength( buf + fieldContraTrader.offset ) } : std::string_view{}; }
    const char * ptrToContraTrader() const { return buf + fieldContraTrader.offset; }
    const char * getIfSetContraTrader() const { return fieldContraTrader.offset >= 0 ? buf + fieldContraTrader.offset : nullptr; }
    private: FieldContraTrader fieldContraTrader;
@@ -5067,6 +5635,7 @@ class GroupContraBrokers : public MessageBase
    public:
    bool isSetContraTradeQty() const { return fieldContraTradeQty.offset >= 0; }
    FieldContraTradeQty::ValueType getContraTradeQty() const { return fieldContraTradeQty.getValue( buf ); }
+   std::string_view getContraTradeQtyView() const { return fieldContraTradeQty.offset >= 0 ? std::string_view{ buf + fieldContraTradeQty.offset, getValueLength( buf + fieldContraTradeQty.offset ) } : std::string_view{}; }
    const char * ptrToContraTradeQty() const { return buf + fieldContraTradeQty.offset; }
    const char * getIfSetContraTradeQty() const { return fieldContraTradeQty.offset >= 0 ? buf + fieldContraTradeQty.offset : nullptr; }
    private: FieldContraTradeQty fieldContraTradeQty;
@@ -5074,6 +5643,7 @@ class GroupContraBrokers : public MessageBase
    public:
    bool isSetContraTradeTime() const { return fieldContraTradeTime.offset >= 0; }
    FieldContraTradeTime::ValueType getContraTradeTime() const { return fieldContraTradeTime.getValue( buf ); }
+   std::string_view getContraTradeTimeView() const { return fieldContraTradeTime.offset >= 0 ? std::string_view{ buf + fieldContraTradeTime.offset, getValueLength( buf + fieldContraTradeTime.offset ) } : std::string_view{}; }
    const char * ptrToContraTradeTime() const { return buf + fieldContraTradeTime.offset; }
    const char * getIfSetContraTradeTime() const { return fieldContraTradeTime.offset >= 0 ? buf + fieldContraTradeTime.offset : nullptr; }
    private: FieldContraTradeTime fieldContraTradeTime;
@@ -5081,6 +5651,7 @@ class GroupContraBrokers : public MessageBase
    public:
    bool isSetContraLegRefID() const { return fieldContraLegRefID.offset >= 0; }
    FieldContraLegRefID::ValueType getContraLegRefID() const { return fieldContraLegRefID.getValue( buf ); }
+   std::string_view getContraLegRefIDView() const { return fieldContraLegRefID.offset >= 0 ? std::string_view{ buf + fieldContraLegRefID.offset, getValueLength( buf + fieldContraLegRefID.offset ) } : std::string_view{}; }
    const char * ptrToContraLegRefID() const { return buf + fieldContraLegRefID.offset; }
    const char * getIfSetContraLegRefID() const { return fieldContraLegRefID.offset >= 0 ? buf + fieldContraLegRefID.offset : nullptr; }
    private: FieldContraLegRefID fieldContraLegRefID;
@@ -5106,6 +5677,7 @@ class GroupTrades : public MessageBase
    public:
    bool isSetTradeReportID() const { return fieldTradeReportID.offset >= 0; }
    FieldTradeReportID::ValueType getTradeReportID() const { return fieldTradeReportID.getValue( buf ); }
+   std::string_view getTradeReportIDView() const { return fieldTradeReportID.offset >= 0 ? std::string_view{ buf + fieldTradeReportID.offset, getValueLength( buf + fieldTradeReportID.offset ) } : std::string_view{}; }
    const char * ptrToTradeReportID() const { return buf + fieldTradeReportID.offset; }
    const char * getIfSetTradeReportID() const { return fieldTradeReportID.offset >= 0 ? buf + fieldTradeReportID.offset : nullptr; }
    private: FieldTradeReportID fieldTradeReportID;
@@ -5113,6 +5685,7 @@ class GroupTrades : public MessageBase
    public:
    bool isSetSecondaryTradeReportID() const { return fieldSecondaryTradeReportID.offset >= 0; }
    FieldSecondaryTradeReportID::ValueType getSecondaryTradeReportID() const { return fieldSecondaryTradeReportID.getValue( buf ); }
+   std::string_view getSecondaryTradeReportIDView() const { return fieldSecondaryTradeReportID.offset >= 0 ? std::string_view{ buf + fieldSecondaryTradeReportID.offset, getValueLength( buf + fieldSecondaryTradeReportID.offset ) } : std::string_view{}; }
    const char * ptrToSecondaryTradeReportID() const { return buf + fieldSecondaryTradeReportID.offset; }
    const char * getIfSetSecondaryTradeReportID() const { return fieldSecondaryTradeReportID.offset >= 0 ? buf + fieldSecondaryTradeReportID.offset : nullptr; }
    private: FieldSecondaryTradeReportID fieldSecondaryTradeReportID;
@@ -5138,6 +5711,7 @@ class GroupStrikes : public MessageBase
    public:
    bool isSetSymbol() const { return fieldSymbol.offset >= 0; }
    FieldSymbol::ValueType getSymbol() const { return fieldSymbol.getValue( buf ); }
+   std::string_view getSymbolView() const { return fieldSymbol.offset >= 0 ? std::string_view{ buf + fieldSymbol.offset, getValueLength( buf + fieldSymbol.offset ) } : std::string_view{}; }
    const char * ptrToSymbol() const { return buf + fieldSymbol.offset; }
    const char * getIfSetSymbol() const { return fieldSymbol.offset >= 0 ? buf + fieldSymbol.offset : nullptr; }
    private: FieldSymbol fieldSymbol;
@@ -5145,6 +5719,7 @@ class GroupStrikes : public MessageBase
    public:
    bool isSetSymbolSfx() const { return fieldSymbolSfx.offset >= 0; }
    FieldSymbolSfx::ValueType getSymbolSfx() const { return fieldSymbolSfx.getValue( buf ); }
+   std::string_view getSymbolSfxView() const { return fieldSymbolSfx.offset >= 0 ? std::string_view{ buf + fieldSymbolSfx.offset, getValueLength( buf + fieldSymbolSfx.offset ) } : std::string_view{}; }
    const char * ptrToSymbolSfx() const { return buf + fieldSymbolSfx.offset; }
    const char * getIfSetSymbolSfx() const { return fieldSymbolSfx.offset >= 0 ? buf + fieldSymbolSfx.offset : nullptr; }
    private: FieldSymbolSfx fieldSymbolSfx;
@@ -5152,6 +5727,7 @@ class GroupStrikes : public MessageBase
    public:
    bool isSetSecurityID() const { return fieldSecurityID.offset >= 0; }
    FieldSecurityID::ValueType getSecurityID() const { return fieldSecurityID.getValue( buf ); }
+   std::string_view getSecurityIDView() const { return fieldSecurityID.offset >= 0 ? std::string_view{ buf + fieldSecurityID.offset, getValueLength( buf + fieldSecurityID.offset ) } : std::string_view{}; }
    const char * ptrToSecurityID() const { return buf + fieldSecurityID.offset; }
    const char * getIfSetSecurityID() const { return fieldSecurityID.offset >= 0 ? buf + fieldSecurityID.offset : nullptr; }
    private: FieldSecurityID fieldSecurityID;
@@ -5159,6 +5735,7 @@ class GroupStrikes : public MessageBase
    public:
    bool isSetSecurityIDSource() const { return fieldSecurityIDSource.offset >= 0; }
    FieldSecurityIDSource::ValueType getSecurityIDSource() const { return fieldSecurityIDSource.getValue( buf ); }
+   std::string_view getSecurityIDSourceView() const { return fieldSecurityIDSource.offset >= 0 ? std::string_view{ buf + fieldSecurityIDSource.offset, getValueLength( buf + fieldSecurityIDSource.offset ) } : std::string_view{}; }
    const char * ptrToSecurityIDSource() const { return buf + fieldSecurityIDSource.offset; }
    const char * getIfSetSecurityIDSource() const { return fieldSecurityIDSource.offset >= 0 ? buf + fieldSecurityIDSource.offset : nullptr; }
    private: FieldSecurityIDSource fieldSecurityIDSource;
@@ -5166,6 +5743,7 @@ class GroupStrikes : public MessageBase
    public:
    bool isSetNoSecurityAltID() const { return fieldNoSecurityAltID.offset >= 0; }
    FieldNoSecurityAltID::ValueType getNoSecurityAltID() const { return fieldNoSecurityAltID.getValue( buf ); }
+   std::string_view getNoSecurityAltIDView() const { return fieldNoSecurityAltID.offset >= 0 ? std::string_view{ buf + fieldNoSecurityAltID.offset, getValueLength( buf + fieldNoSecurityAltID.offset ) } : std::string_view{}; }
    const char * ptrToNoSecurityAltID() const { return buf + fieldNoSecurityAltID.offset; }
    const char * getIfSetNoSecurityAltID() const { return fieldNoSecurityAltID.offset >= 0 ? buf + fieldNoSecurityAltID.offset : nullptr; }
    private: FieldNoSecurityAltID fieldNoSecurityAltID;
@@ -5178,6 +5756,7 @@ class GroupStrikes : public MessageBase
    public:
    bool isSetProduct() const { return fieldProduct.offset >= 0; }
    FieldProduct::ValueType getProduct() const { return fieldProduct.getValue( buf ); }
+   std::string_view getProductView() const { return fieldProduct.offset >= 0 ? std::string_view{ buf + fieldProduct.offset, getValueLength( buf + fieldProduct.offset ) } : std::string_view{}; }
    const char * ptrToProduct() const { return buf + fieldProduct.offset; }
    const char * getIfSetProduct() const { return fieldProduct.offset >= 0 ? buf + fieldProduct.offset : nullptr; }
    private: FieldProduct fieldProduct;
@@ -5185,6 +5764,7 @@ class GroupStrikes : public MessageBase
    public:
    bool isSetCFICode() const { return fieldCFICode.offset >= 0; }
    FieldCFICode::ValueType getCFICode() const { return fieldCFICode.getValue( buf ); }
+   std::string_view getCFICodeView() const { return fieldCFICode.offset >= 0 ? std::string_view{ buf + fieldCFICode.offset, getValueLength( buf + fieldCFICode.offset ) } : std::string_view{}; }
    const char * ptrToCFICode() const { return buf + fieldCFICode.offset; }
    const char * getIfSetCFICode() const { return fieldCFICode.offset >= 0 ? buf + fieldCFICode.offset : nullptr; }
    private: FieldCFICode fieldCFICode;
@@ -5192,6 +5772,7 @@ class GroupStrikes : public MessageBase
    public:
    bool isSetSecurityType() const { return fieldSecurityType.offset >= 0; }
    FieldSecurityType::ValueType getSecurityType() const { return fieldSecurityType.getValue( buf ); }
+   std::string_view getSecurityTypeView() const { return fieldSecurityType.offset >= 0 ? std::string_view{ buf + fieldSecurityType.offset, getValueLength( buf + fieldSecurityType.offset ) } : std::string_view{}; }
    const char * ptrToSecurityType() const { return buf + fieldSecurityType.offset; }
    const char * getIfSetSecurityType() const { return fieldSecurityType.offset >= 0 ? buf + fieldSecurityType.offset : nullptr; }
    private: FieldSecurityType fieldSecurityType;
@@ -5199,6 +5780,7 @@ class GroupStrikes : public MessageBase
    public:
    bool isSetSecuritySubType() const { return fieldSecuritySubType.offset >= 0; }
    FieldSecuritySubType::ValueType getSecuritySubType() const { return fieldSecuritySubType.getValue( buf ); }
+   std::string_view getSecuritySubTypeView() const { return fieldSecuritySubType.offset >= 0 ? std::string_view{ buf + fieldSecuritySubType.offset, getValueLength( buf + fieldSecuritySubType.offset ) } : std::string_view{}; }
    const char * ptrToSecuritySubType() const { return buf + fieldSecuritySubType.offset; }
    const char * getIfSetSecuritySubType() const { return fieldSecuritySubType.offset >= 0 ? buf + fieldSecuritySubType.offset : nullptr; }
    private: FieldSecuritySubType fieldSecuritySubType;
@@ -5206,6 +5788,7 @@ class GroupStrikes : public MessageBase
    public:
    bool isSetMaturityMonthYear() const { return fieldMaturityMonthYear.offset >= 0; }
    FieldMaturityMonthYear::ValueType getMaturityMonthYear() const { return fieldMaturityMonthYear.getValue( buf ); }
+   std::string_view getMaturityMonthYearView() const { return fieldMaturityMonthYear.offset >= 0 ? std::string_view{ buf + fieldMaturityMonthYear.offset, getValueLength( buf + fieldMaturityMonthYear.offset ) } : std::string_view{}; }
    const char * ptrToMaturityMonthYear() const { return buf + fieldMaturityMonthYear.offset; }
    const char * getIfSetMaturityMonthYear() const { return fieldMaturityMonthYear.offset >= 0 ? buf + fieldMaturityMonthYear.offset : nullptr; }
    private: FieldMaturityMonthYear fieldMaturityMonthYear;
@@ -5213,6 +5796,7 @@ class GroupStrikes : public MessageBase
    public:
    bool isSetMaturityDate() const { return fieldMaturityDate.offset >= 0; }
    FieldMaturityDate::ValueType getMaturityDate() const { return fieldMaturityDate.getValue( buf ); }
+   std::string_view getMaturityDateView() const { return fieldMaturityDate.offset >= 0 ? std::string_view{ buf + fieldMaturityDate.offset, getValueLength( buf + fieldMaturityDate.offset ) } : std::string_view{}; }
    const char * ptrToMaturityDate() const { return buf + fieldMaturityDate.offset; }
    const char * getIfSetMaturityDate() const { return fieldMaturityDate.offset >= 0 ? buf + fieldMaturityDate.offset : nullptr; }
    private: FieldMaturityDate fieldMaturityDate;
@@ -5220,6 +5804,7 @@ class GroupStrikes : public MessageBase
    public:
    bool isSetPutOrCall() const { return fieldPutOrCall.offset >= 0; }
    FieldPutOrCall::ValueType getPutOrCall() const { return fieldPutOrCall.getValue( buf ); }
+   std::string_view getPutOrCallView() const { return fieldPutOrCall.offset >= 0 ? std::string_view{ buf + fieldPutOrCall.offset, getValueLength( buf + fieldPutOrCall.offset ) } : std::string_view{}; }
    const char * ptrToPutOrCall() const { return buf + fieldPutOrCall.offset; }
    const char * getIfSetPutOrCall() const { return fieldPutOrCall.offset >= 0 ? buf + fieldPutOrCall.offset : nullptr; }
    private: FieldPutOrCall fieldPutOrCall;
@@ -5227,6 +5812,7 @@ class GroupStrikes : public MessageBase
    public:
    bool isSetCouponPaymentDate() const { return fieldCouponPaymentDate.offset >= 0; }
    FieldCouponPaymentDate::ValueType getCouponPaymentDate() const { return fieldCouponPaymentDate.getValue( buf ); }
+   std::string_view getCouponPaymentDateView() const { return fieldCouponPaymentDate.offset >= 0 ? std::string_view{ buf + fieldCouponPaymentDate.offset, getValueLength( buf + fieldCouponPaymentDate.offset ) } : std::string_view{}; }
    const char * ptrToCouponPaymentDate() const { return buf + fieldCouponPaymentDate.offset; }
    const char * getIfSetCouponPaymentDate() const { return fieldCouponPaymentDate.offset >= 0 ? buf + fieldCouponPaymentDate.offset : nullptr; }
    private: FieldCouponPaymentDate fieldCouponPaymentDate;
@@ -5234,6 +5820,7 @@ class GroupStrikes : public MessageBase
    public:
    bool isSetIssueDate() const { return fieldIssueDate.offset >= 0; }
    FieldIssueDate::ValueType getIssueDate() const { return fieldIssueDate.getValue( buf ); }
+   std::string_view getIssueDateView() const { return fieldIssueDate.offset >= 0 ? std::string_view{ buf + fieldIssueDate.offset, getValueLength( buf + fieldIssueDate.offset ) } : std::string_view{}; }
    const char * ptrToIssueDate() const { return buf + fieldIssueDate.offset; }
    const char * getIfSetIssueDate() const { return fieldIssueDate.offset >= 0 ? buf + fieldIssueDate.offset : nullptr; }
    private: FieldIssueDate fieldIssueDate;
@@ -5241,6 +5828,7 @@ class GroupStrikes : public MessageBase
    public:
    bool isSetRepoCollateralSecurityType() const { return fieldRepoCollateralSecurityType.offset >= 0; }
    FieldRepoCollateralSecurityType::ValueType getRepoCollateralSecurityType() const { return fieldRepoCollateralSecurityType.getValue( buf ); }
+   std::string_view getRepoCollateralSecurityTypeView() const { return fieldRepoCollateralSecurityType.offset >= 0 ? std::string_view{ buf + fieldRepoCollateralSecurityType.offset, getValueLength( buf + fieldRepoCollateralSecurityType.offset ) } : std::string_view{}; }
    const char * ptrToRepoCollateralSecurityType() const { return buf + fieldRepoCollateralSecurityType.offset; }
    const char * getIfSetRepoCollateralSecurityType() const { return fieldRepoCollateralSecurityType.offset >= 0 ? buf + fieldRepoCollateralSecurityType.offset : nullptr; }
    private: FieldRepoCollateralSecurityType fieldRepoCollateralSecurityType;
@@ -5248,6 +5836,7 @@ class GroupStrikes : public MessageBase
    public:
    bool isSetRepurchaseTerm() const { return fieldRepurchaseTerm.offset >= 0; }
    FieldRepurchaseTerm::ValueType getRepurchaseTerm() const { return fieldRepurchaseTerm.getValue( buf ); }
+   std::string_view getRepurchaseTermView() const { return fieldRepurchaseTerm.offset >= 0 ? std::string_view{ buf + fieldRepurchaseTerm.offset, getValueLength( buf + fieldRepurchaseTerm.offset ) } : std::string_view{}; }
    const char * ptrToRepurchaseTerm() const { return buf + fieldRepurchaseTerm.offset; }
    const char * getIfSetRepurchaseTerm() const { return fieldRepurchaseTerm.offset >= 0 ? buf + fieldRepurchaseTerm.offset : nullptr; }
    private: FieldRepurchaseTerm fieldRepurchaseTerm;
@@ -5255,6 +5844,7 @@ class GroupStrikes : public MessageBase
    public:
    bool isSetRepurchaseRate() const { return fieldRepurchaseRate.offset >= 0; }
    FieldRepurchaseRate::ValueType getRepurchaseRate() const { return fieldRepurchaseRate.getValue( buf ); }
+   std::string_view getRepurchaseRateView() const { return fieldRepurchaseRate.offset >= 0 ? std::string_view{ buf + fieldRepurchaseRate.offset, getValueLength( buf + fieldRepurchaseRate.offset ) } : std::string_view{}; }
    const char * ptrToRepurchaseRate() const { return buf + fieldRepurchaseRate.offset; }
    const char * getIfSetRepurchaseRate() const { return fieldRepurchaseRate.offset >= 0 ? buf + fieldRepurchaseRate.offset : nullptr; }
    private: FieldRepurchaseRate fieldRepurchaseRate;
@@ -5262,6 +5852,7 @@ class GroupStrikes : public MessageBase
    public:
    bool isSetFactor() const { return fieldFactor.offset >= 0; }
    FieldFactor::ValueType getFactor() const { return fieldFactor.getValue( buf ); }
+   std::string_view getFactorView() const { return fieldFactor.offset >= 0 ? std::string_view{ buf + fieldFactor.offset, getValueLength( buf + fieldFactor.offset ) } : std::string_view{}; }
    const char * ptrToFactor() const { return buf + fieldFactor.offset; }
    const char * getIfSetFactor() const { return fieldFactor.offset >= 0 ? buf + fieldFactor.offset : nullptr; }
    private: FieldFactor fieldFactor;
@@ -5269,6 +5860,7 @@ class GroupStrikes : public MessageBase
    public:
    bool isSetCreditRating() const { return fieldCreditRating.offset >= 0; }
    FieldCreditRating::ValueType getCreditRating() const { return fieldCreditRating.getValue( buf ); }
+   std::string_view getCreditRatingView() const { return fieldCreditRating.offset >= 0 ? std::string_view{ buf + fieldCreditRating.offset, getValueLength( buf + fieldCreditRating.offset ) } : std::string_view{}; }
    const char * ptrToCreditRating() const { return buf + fieldCreditRating.offset; }
    const char * getIfSetCreditRating() const { return fieldCreditRating.offset >= 0 ? buf + fieldCreditRating.offset : nullptr; }
    private: FieldCreditRating fieldCreditRating;
@@ -5276,6 +5868,7 @@ class GroupStrikes : public MessageBase
    public:
    bool isSetInstrRegistry() const { return fieldInstrRegistry.offset >= 0; }
    FieldInstrRegistry::ValueType getInstrRegistry() const { return fieldInstrRegistry.getValue( buf ); }
+   std::string_view getInstrRegistryView() const { return fieldInstrRegistry.offset >= 0 ? std::string_view{ buf + fieldInstrRegistry.offset, getValueLength( buf + fieldInstrRegistry.offset ) } : std::string_view{}; }
    const char * ptrToInstrRegistry() const { return buf + fieldInstrRegistry.offset; }
    const char * getIfSetInstrRegistry() const { return fieldInstrRegistry.offset >= 0 ? buf + fieldInstrRegistry.offset : nullptr; }
    private: FieldInstrRegistry fieldInstrRegistry;
@@ -5283,6 +5876,7 @@ class GroupStrikes : public MessageBase
    public:
    bool isSetCountryOfIssue() const { return fieldCountryOfIssue.offset >= 0; }
    FieldCountryOfIssue::ValueType getCountryOfIssue() const { return fieldCountryOfIssue.getValue( buf ); }
+   std::string_view getCountryOfIssueView() const { return fieldCountryOfIssue.offset >= 0 ? std::string_view{ buf + fieldCountryOfIssue.offset, getValueLength( buf + fieldCountryOfIssue.offset ) } : std::string_view{}; }
    const char * ptrToCountryOfIssue() const { return buf + fieldCountryOfIssue.offset; }
    const char * getIfSetCountryOfIssue() const { return fieldCountryOfIssue.offset >= 0 ? buf + fieldCountryOfIssue.offset : nullptr; }
    private: FieldCountryOfIssue fieldCountryOfIssue;
@@ -5290,6 +5884,7 @@ class GroupStrikes : public MessageBase
    public:
    bool isSetStateOrProvinceOfIssue() const { return fieldStateOrProvinceOfIssue.offset >= 0; }
    FieldStateOrProvinceOfIssue::ValueType getStateOrProvinceOfIssue() const { return fieldStateOrProvinceOfIssue.getValue( buf ); }
+   std::string_view getStateOrProvinceOfIssueView() const { return fieldStateOrProvinceOfIssue.offset >= 0 ? std::string_view{ buf + fieldStateOrProvinceOfIssue.offset, getValueLength( buf + fieldStateOrProvinceOfIssue.offset ) } : std::string_view{}; }
    const char * ptrToStateOrProvinceOfIssue() const { return buf + fieldStateOrProvinceOfIssue.offset; }
    const char * getIfSetStateOrProvinceOfIssue() const { return fieldStateOrProvinceOfIssue.offset >= 0 ? buf + fieldStateOrProvinceOfIssue.offset : nullptr; }
    private: FieldStateOrProvinceOfIssue fieldStateOrProvinceOfIssue;
@@ -5297,6 +5892,7 @@ class GroupStrikes : public MessageBase
    public:
    bool isSetLocaleOfIssue() const { return fieldLocaleOfIssue.offset >= 0; }
    FieldLocaleOfIssue::ValueType getLocaleOfIssue() const { return fieldLocaleOfIssue.getValue( buf ); }
+   std::string_view getLocaleOfIssueView() const { return fieldLocaleOfIssue.offset >= 0 ? std::string_view{ buf + fieldLocaleOfIssue.offset, getValueLength( buf + fieldLocaleOfIssue.offset ) } : std::string_view{}; }
    const char * ptrToLocaleOfIssue() const { return buf + fieldLocaleOfIssue.offset; }
    const char * getIfSetLocaleOfIssue() const { return fieldLocaleOfIssue.offset >= 0 ? buf + fieldLocaleOfIssue.offset : nullptr; }
    private: FieldLocaleOfIssue fieldLocaleOfIssue;
@@ -5304,6 +5900,7 @@ class GroupStrikes : public MessageBase
    public:
    bool isSetRedemptionDate() const { return fieldRedemptionDate.offset >= 0; }
    FieldRedemptionDate::ValueType getRedemptionDate() const { return fieldRedemptionDate.getValue( buf ); }
+   std::string_view getRedemptionDateView() const { return fieldRedemptionDate.offset >= 0 ? std::string_view{ buf + fieldRedemptionDate.offset, getValueLength( buf + fieldRedemptionDate.offset ) } : std::string_view{}; }
    const char * ptrToRedemptionDate() const { return buf + fieldRedemptionDate.offset; }
    const char * getIfSetRedemptionDate() const { return fieldRedemptionDate.offset >= 0 ? buf + fieldRedemptionDate.offset : nullptr; }
    private: FieldRedemptionDate fieldRedemptionDate;
@@ -5311,6 +5908,7 @@ class GroupStrikes : public MessageBase
    public:
    bool isSetStrikePrice() const { return fieldStrikePrice.offset >= 0; }
    FieldStrikePrice::ValueType getStrikePrice() const { return fieldStrikePrice.getValue( buf ); }
+   std::string_view getStrikePriceView() const { return fieldStrikePrice.offset >= 0 ? std::string_view{ buf + fieldStrikePrice.offset, getValueLength( buf + fieldStrikePrice.offset ) } : std::string_view{}; }
    const char * ptrToStrikePrice() const { return buf + fieldStrikePrice.offset; }
    const char * getIfSetStrikePrice() const { return fieldStrikePrice.offset >= 0 ? buf + fieldStrikePrice.offset : nullptr; }
    private: FieldStrikePrice fieldStrikePrice;
@@ -5318,6 +5916,7 @@ class GroupStrikes : public MessageBase
    public:
    bool isSetStrikeCurrency() const { return fieldStrikeCurrency.offset >= 0; }
    FieldStrikeCurrency::ValueType getStrikeCurrency() const { return fieldStrikeCurrency.getValue( buf ); }
+   std::string_view getStrikeCurrencyView() const { return fieldStrikeCurrency.offset >= 0 ? std::string_view{ buf + fieldStrikeCurrency.offset, getValueLength( buf + fieldStrikeCurrency.offset ) } : std::string_view{}; }
    const char * ptrToStrikeCurrency() const { return buf + fieldStrikeCurrency.offset; }
    const char * getIfSetStrikeCurrency() const { return fieldStrikeCurrency.offset >= 0 ? buf + fieldStrikeCurrency.offset : nullptr; }
    private: FieldStrikeCurrency fieldStrikeCurrency;
@@ -5325,6 +5924,7 @@ class GroupStrikes : public MessageBase
    public:
    bool isSetOptAttribute() const { return fieldOptAttribute.offset >= 0; }
    FieldOptAttribute::ValueType getOptAttribute() const { return fieldOptAttribute.getValue( buf ); }
+   std::string_view getOptAttributeView() const { return fieldOptAttribute.offset >= 0 ? std::string_view{ buf + fieldOptAttribute.offset, getValueLength( buf + fieldOptAttribute.offset ) } : std::string_view{}; }
    const char * ptrToOptAttribute() const { return buf + fieldOptAttribute.offset; }
    const char * getIfSetOptAttribute() const { return fieldOptAttribute.offset >= 0 ? buf + fieldOptAttribute.offset : nullptr; }
    private: FieldOptAttribute fieldOptAttribute;
@@ -5332,6 +5932,7 @@ class GroupStrikes : public MessageBase
    public:
    bool isSetContractMultiplier() const { return fieldContractMultiplier.offset >= 0; }
    FieldContractMultiplier::ValueType getContractMultiplier() const { return fieldContractMultiplier.getValue( buf ); }
+   std::string_view getContractMultiplierView() const { return fieldContractMultiplier.offset >= 0 ? std::string_view{ buf + fieldContractMultiplier.offset, getValueLength( buf + fieldContractMultiplier.offset ) } : std::string_view{}; }
    const char * ptrToContractMultiplier() const { return buf + fieldContractMultiplier.offset; }
    const char * getIfSetContractMultiplier() const { return fieldContractMultiplier.offset >= 0 ? buf + fieldContractMultiplier.offset : nullptr; }
    private: FieldContractMultiplier fieldContractMultiplier;
@@ -5339,6 +5940,7 @@ class GroupStrikes : public MessageBase
    public:
    bool isSetCouponRate() const { return fieldCouponRate.offset >= 0; }
    FieldCouponRate::ValueType getCouponRate() const { return fieldCouponRate.getValue( buf ); }
+   std::string_view getCouponRateView() const { return fieldCouponRate.offset >= 0 ? std::string_view{ buf + fieldCouponRate.offset, getValueLength( buf + fieldCouponRate.offset ) } : std::string_view{}; }
    const char * ptrToCouponRate() const { return buf + fieldCouponRate.offset; }
    const char * getIfSetCouponRate() const { return fieldCouponRate.offset >= 0 ? buf + fieldCouponRate.offset : nullptr; }
    private: FieldCouponRate fieldCouponRate;
@@ -5346,6 +5948,7 @@ class GroupStrikes : public MessageBase
    public:
    bool isSetSecurityExchange() const { return fieldSecurityExchange.offset >= 0; }
    FieldSecurityExchange::ValueType getSecurityExchange() const { return fieldSecurityExchange.getValue( buf ); }
+   std::string_view getSecurityExchangeView() const { return fieldSecurityExchange.offset >= 0 ? std::string_view{ buf + fieldSecurityExchange.offset, getValueLength( buf + fieldSecurityExchange.offset ) } : std::string_view{}; }
    const char * ptrToSecurityExchange() const { return buf + fieldSecurityExchange.offset; }
    const char * getIfSetSecurityExchange() const { return fieldSecurityExchange.offset >= 0 ? buf + fieldSecurityExchange.offset : nullptr; }
    private: FieldSecurityExchange fieldSecurityExchange;
@@ -5353,6 +5956,7 @@ class GroupStrikes : public MessageBase
    public:
    bool isSetIssuer() const { return fieldIssuer.offset >= 0; }
    FieldIssuer::ValueType getIssuer() const { return fieldIssuer.getValue( buf ); }
+   std::string_view getIssuerView() const { return fieldIssuer.offset >= 0 ? std::string_view{ buf + fieldIssuer.offset, getValueLength( buf + fieldIssuer.offset ) } : std::string_view{}; }
    const char * ptrToIssuer() const { return buf + fieldIssuer.offset; }
    const char * getIfSetIssuer() const { return fieldIssuer.offset >= 0 ? buf + fieldIssuer.offset : nullptr; }
    private: FieldIssuer fieldIssuer;
@@ -5360,6 +5964,7 @@ class GroupStrikes : public MessageBase
    public:
    bool isSetEncodedIssuerLen() const { return fieldEncodedIssuerLen.offset >= 0; }
    FieldEncodedIssuerLen::ValueType getEncodedIssuerLen() const { return fieldEncodedIssuerLen.getValue( buf ); }
+   std::string_view getEncodedIssuerLenView() const { return fieldEncodedIssuerLen.offset >= 0 ? std::string_view{ buf + fieldEncodedIssuerLen.offset, getValueLength( buf + fieldEncodedIssuerLen.offset ) } : std::string_view{}; }
    const char * ptrToEncodedIssuerLen() const { return buf + fieldEncodedIssuerLen.offset; }
    const char * getIfSetEncodedIssuerLen() const { return fieldEncodedIssuerLen.offset >= 0 ? buf + fieldEncodedIssuerLen.offset : nullptr; }
    private: FieldEncodedIssuerLen fieldEncodedIssuerLen;
@@ -5367,6 +5972,7 @@ class GroupStrikes : public MessageBase
    public:
    bool isSetEncodedIssuer() const { return fieldEncodedIssuer.offset >= 0; }
    FieldEncodedIssuer::ValueType getEncodedIssuer() const { return fieldEncodedIssuer.getValue( buf ); }
+   std::string_view getEncodedIssuerView() const { return fieldEncodedIssuer.offset >= 0 ? std::string_view{ buf + fieldEncodedIssuer.offset, getValueLength( buf + fieldEncodedIssuer.offset ) } : std::string_view{}; }
    const char * ptrToEncodedIssuer() const { return buf + fieldEncodedIssuer.offset; }
    const char * getIfSetEncodedIssuer() const { return fieldEncodedIssuer.offset >= 0 ? buf + fieldEncodedIssuer.offset : nullptr; }
    private: FieldEncodedIssuer fieldEncodedIssuer;
@@ -5374,6 +5980,7 @@ class GroupStrikes : public MessageBase
    public:
    bool isSetSecurityDesc() const { return fieldSecurityDesc.offset >= 0; }
    FieldSecurityDesc::ValueType getSecurityDesc() const { return fieldSecurityDesc.getValue( buf ); }
+   std::string_view getSecurityDescView() const { return fieldSecurityDesc.offset >= 0 ? std::string_view{ buf + fieldSecurityDesc.offset, getValueLength( buf + fieldSecurityDesc.offset ) } : std::string_view{}; }
    const char * ptrToSecurityDesc() const { return buf + fieldSecurityDesc.offset; }
    const char * getIfSetSecurityDesc() const { return fieldSecurityDesc.offset >= 0 ? buf + fieldSecurityDesc.offset : nullptr; }
    private: FieldSecurityDesc fieldSecurityDesc;
@@ -5381,6 +5988,7 @@ class GroupStrikes : public MessageBase
    public:
    bool isSetEncodedSecurityDescLen() const { return fieldEncodedSecurityDescLen.offset >= 0; }
    FieldEncodedSecurityDescLen::ValueType getEncodedSecurityDescLen() const { return fieldEncodedSecurityDescLen.getValue( buf ); }
+   std::string_view getEncodedSecurityDescLenView() const { return fieldEncodedSecurityDescLen.offset >= 0 ? std::string_view{ buf + fieldEncodedSecurityDescLen.offset, getValueLength( buf + fieldEncodedSecurityDescLen.offset ) } : std::string_view{}; }
    const char * ptrToEncodedSecurityDescLen() const { return buf + fieldEncodedSecurityDescLen.offset; }
    const char * getIfSetEncodedSecurityDescLen() const { return fieldEncodedSecurityDescLen.offset >= 0 ? buf + fieldEncodedSecurityDescLen.offset : nullptr; }
    private: FieldEncodedSecurityDescLen fieldEncodedSecurityDescLen;
@@ -5388,6 +5996,7 @@ class GroupStrikes : public MessageBase
    public:
    bool isSetEncodedSecurityDesc() const { return fieldEncodedSecurityDesc.offset >= 0; }
    FieldEncodedSecurityDesc::ValueType getEncodedSecurityDesc() const { return fieldEncodedSecurityDesc.getValue( buf ); }
+   std::string_view getEncodedSecurityDescView() const { return fieldEncodedSecurityDesc.offset >= 0 ? std::string_view{ buf + fieldEncodedSecurityDesc.offset, getValueLength( buf + fieldEncodedSecurityDesc.offset ) } : std::string_view{}; }
    const char * ptrToEncodedSecurityDesc() const { return buf + fieldEncodedSecurityDesc.offset; }
    const char * getIfSetEncodedSecurityDesc() const { return fieldEncodedSecurityDesc.offset >= 0 ? buf + fieldEncodedSecurityDesc.offset : nullptr; }
    private: FieldEncodedSecurityDesc fieldEncodedSecurityDesc;
@@ -5395,6 +6004,7 @@ class GroupStrikes : public MessageBase
    public:
    bool isSetPool() const { return fieldPool.offset >= 0; }
    FieldPool::ValueType getPool() const { return fieldPool.getValue( buf ); }
+   std::string_view getPoolView() const { return fieldPool.offset >= 0 ? std::string_view{ buf + fieldPool.offset, getValueLength( buf + fieldPool.offset ) } : std::string_view{}; }
    const char * ptrToPool() const { return buf + fieldPool.offset; }
    const char * getIfSetPool() const { return fieldPool.offset >= 0 ? buf + fieldPool.offset : nullptr; }
    private: FieldPool fieldPool;
@@ -5402,6 +6012,7 @@ class GroupStrikes : public MessageBase
    public:
    bool isSetContractSettlMonth() const { return fieldContractSettlMonth.offset >= 0; }
    FieldContractSettlMonth::ValueType getContractSettlMonth() const { return fieldContractSettlMonth.getValue( buf ); }
+   std::string_view getContractSettlMonthView() const { return fieldContractSettlMonth.offset >= 0 ? std::string_view{ buf + fieldContractSettlMonth.offset, getValueLength( buf + fieldContractSettlMonth.offset ) } : std::string_view{}; }
    const char * ptrToContractSettlMonth() const { return buf + fieldContractSettlMonth.offset; }
    const char * getIfSetContractSettlMonth() const { return fieldContractSettlMonth.offset >= 0 ? buf + fieldContractSettlMonth.offset : nullptr; }
    private: FieldContractSettlMonth fieldContractSettlMonth;
@@ -5409,6 +6020,7 @@ class GroupStrikes : public MessageBase
    public:
    bool isSetCPProgram() const { return fieldCPProgram.offset >= 0; }
    FieldCPProgram::ValueType getCPProgram() const { return fieldCPProgram.getValue( buf ); }
+   std::string_view getCPProgramView() const { return fieldCPProgram.offset >= 0 ? std::string_view{ buf + fieldCPProgram.offset, getValueLength( buf + fieldCPProgram.offset ) } : std::string_view{}; }
    const char * ptrToCPProgram() const { return buf + fieldCPProgram.offset; }
    const char * getIfSetCPProgram() const { return fieldCPProgram.offset >= 0 ? buf + fieldCPProgram.offset : nullptr; }
    private: FieldCPProgram fieldCPProgram;
@@ -5416,6 +6028,7 @@ class GroupStrikes : public MessageBase
    public:
    bool isSetCPRegType() const { return fieldCPRegType.offset >= 0; }
    FieldCPRegType::ValueType getCPRegType() const { return fieldCPRegType.getValue( buf ); }
+   std::string_view getCPRegTypeView() const { return fieldCPRegType.offset >= 0 ? std::string_view{ buf + fieldCPRegType.offset, getValueLength( buf + fieldCPRegType.offset ) } : std::string_view{}; }
    const char * ptrToCPRegType() const { return buf + fieldCPRegType.offset; }
    const char * getIfSetCPRegType() const { return fieldCPRegType.offset >= 0 ? buf + fieldCPRegType.offset : nullptr; }
    private: FieldCPRegType fieldCPRegType;
@@ -5423,6 +6036,7 @@ class GroupStrikes : public MessageBase
    public:
    bool isSetNoEvents() const { return fieldNoEvents.offset >= 0; }
    FieldNoEvents::ValueType getNoEvents() const { return fieldNoEvents.getValue( buf ); }
+   std::string_view getNoEventsView() const { return fieldNoEvents.offset >= 0 ? std::string_view{ buf + fieldNoEvents.offset, getValueLength( buf + fieldNoEvents.offset ) } : std::string_view{}; }
    const char * ptrToNoEvents() const { return buf + fieldNoEvents.offset; }
    const char * getIfSetNoEvents() const { return fieldNoEvents.offset >= 0 ? buf + fieldNoEvents.offset : nullptr; }
    private: FieldNoEvents fieldNoEvents;
@@ -5435,6 +6049,7 @@ class GroupStrikes : public MessageBase
    public:
    bool isSetDatedDate() const { return fieldDatedDate.offset >= 0; }
    FieldDatedDate::ValueType getDatedDate() const { return fieldDatedDate.getValue( buf ); }
+   std::string_view getDatedDateView() const { return fieldDatedDate.offset >= 0 ? std::string_view{ buf + fieldDatedDate.offset, getValueLength( buf + fieldDatedDate.offset ) } : std::string_view{}; }
    const char * ptrToDatedDate() const { return buf + fieldDatedDate.offset; }
    const char * getIfSetDatedDate() const { return fieldDatedDate.offset >= 0 ? buf + fieldDatedDate.offset : nullptr; }
    private: FieldDatedDate fieldDatedDate;
@@ -5442,6 +6057,7 @@ class GroupStrikes : public MessageBase
    public:
    bool isSetInterestAccrualDate() const { return fieldInterestAccrualDate.offset >= 0; }
    FieldInterestAccrualDate::ValueType getInterestAccrualDate() const { return fieldInterestAccrualDate.getValue( buf ); }
+   std::string_view getInterestAccrualDateView() const { return fieldInterestAccrualDate.offset >= 0 ? std::string_view{ buf + fieldInterestAccrualDate.offset, getValueLength( buf + fieldInterestAccrualDate.offset ) } : std::string_view{}; }
    const char * ptrToInterestAccrualDate() const { return buf + fieldInterestAccrualDate.offset; }
    const char * getIfSetInterestAccrualDate() const { return fieldInterestAccrualDate.offset >= 0 ? buf + fieldInterestAccrualDate.offset : nullptr; }
    private: FieldInterestAccrualDate fieldInterestAccrualDate;
@@ -5467,6 +6083,7 @@ class GroupBidDescriptors : public MessageBase
    public:
    bool isSetBidDescriptorType() const { return fieldBidDescriptorType.offset >= 0; }
    FieldBidDescriptorType::ValueType getBidDescriptorType() const { return fieldBidDescriptorType.getValue( buf ); }
+   std::string_view getBidDescriptorTypeView() const { return fieldBidDescriptorType.offset >= 0 ? std::string_view{ buf + fieldBidDescriptorType.offset, getValueLength( buf + fieldBidDescriptorType.offset ) } : std::string_view{}; }
    const char * ptrToBidDescriptorType() const { return buf + fieldBidDescriptorType.offset; }
    const char * getIfSetBidDescriptorType() const { return fieldBidDescriptorType.offset >= 0 ? buf + fieldBidDescriptorType.offset : nullptr; }
    private: FieldBidDescriptorType fieldBidDescriptorType;
@@ -5474,6 +6091,7 @@ class GroupBidDescriptors : public MessageBase
    public:
    bool isSetBidDescriptor() const { return fieldBidDescriptor.offset >= 0; }
    FieldBidDescriptor::ValueType getBidDescriptor() const { return fieldBidDescriptor.getValue( buf ); }
+   std::string_view getBidDescriptorView() const { return fieldBidDescriptor.offset >= 0 ? std::string_view{ buf + fieldBidDescriptor.offset, getValueLength( buf + fieldBidDescriptor.offset ) } : std::string_view{}; }
    const char * ptrToBidDescriptor() const { return buf + fieldBidDescriptor.offset; }
    const char * getIfSetBidDescriptor() const { return fieldBidDescriptor.offset >= 0 ? buf + fieldBidDescriptor.offset : nullptr; }
    private: FieldBidDescriptor fieldBidDescriptor;
@@ -5481,6 +6099,7 @@ class GroupBidDescriptors : public MessageBase
    public:
    bool isSetSideValueInd() const { return fieldSideValueInd.offset >= 0; }
    FieldSideValueInd::ValueType getSideValueInd() const { return fieldSideValueInd.getValue( buf ); }
+   std::string_view getSideValueIndView() const { return fieldSideValueInd.offset >= 0 ? std::string_view{ buf + fieldSideValueInd.offset, getValueLength( buf + fieldSideValueInd.offset ) } : std::string_view{}; }
    const char * ptrToSideValueInd() const { return buf + fieldSideValueInd.offset; }
    const char * getIfSetSideValueInd() const { return fieldSideValueInd.offset >= 0 ? buf + fieldSideValueInd.offset : nullptr; }
    private: FieldSideValueInd fieldSideValueInd;
@@ -5488,6 +6107,7 @@ class GroupBidDescriptors : public MessageBase
    public:
    bool isSetLiquidityValue() const { return fieldLiquidityValue.offset >= 0; }
    FieldLiquidityValue::ValueType getLiquidityValue() const { return fieldLiquidityValue.getValue( buf ); }
+   std::string_view getLiquidityValueView() const { return fieldLiquidityValue.offset >= 0 ? std::string_view{ buf + fieldLiquidityValue.offset, getValueLength( buf + fieldLiquidityValue.offset ) } : std::string_view{}; }
    const char * ptrToLiquidityValue() const { return buf + fieldLiquidityValue.offset; }
    const char * getIfSetLiquidityValue() const { return fieldLiquidityValue.offset >= 0 ? buf + fieldLiquidityValue.offset : nullptr; }
    private: FieldLiquidityValue fieldLiquidityValue;
@@ -5495,6 +6115,7 @@ class GroupBidDescriptors : public MessageBase
    public:
    bool isSetLiquidityNumSecurities() const { return fieldLiquidityNumSecurities.offset >= 0; }
    FieldLiquidityNumSecurities::ValueType getLiquidityNumSecurities() const { return fieldLiquidityNumSecurities.getValue( buf ); }
+   std::string_view getLiquidityNumSecuritiesView() const { return fieldLiquidityNumSecurities.offset >= 0 ? std::string_view{ buf + fieldLiquidityNumSecurities.offset, getValueLength( buf + fieldLiquidityNumSecurities.offset ) } : std::string_view{}; }
    const char * ptrToLiquidityNumSecurities() const { return buf + fieldLiquidityNumSecurities.offset; }
    const char * getIfSetLiquidityNumSecurities() const { return fieldLiquidityNumSecurities.offset >= 0 ? buf + fieldLiquidityNumSecurities.offset : nullptr; }
    private: FieldLiquidityNumSecurities fieldLiquidityNumSecurities;
@@ -5502,6 +6123,7 @@ class GroupBidDescriptors : public MessageBase
    public:
    bool isSetLiquidityPctLow() const { return fieldLiquidityPctLow.offset >= 0; }
    FieldLiquidityPctLow::ValueType getLiquidityPctLow() const { return fieldLiquidityPctLow.getValue( buf ); }
+   std::string_view getLiquidityPctLowView() const { return fieldLiquidityPctLow.offset >= 0 ? std::string_view{ buf + fieldLiquidityPctLow.offset, getValueLength( buf + fieldLiquidityPctLow.offset ) } : std::string_view{}; }
    const char * ptrToLiquidityPctLow() const { return buf + fieldLiquidityPctLow.offset; }
    const char * getIfSetLiquidityPctLow() const { return fieldLiquidityPctLow.offset >= 0 ? buf + fieldLiquidityPctLow.offset : nullptr; }
    private: FieldLiquidityPctLow fieldLiquidityPctLow;
@@ -5509,6 +6131,7 @@ class GroupBidDescriptors : public MessageBase
    public:
    bool isSetLiquidityPctHigh() const { return fieldLiquidityPctHigh.offset >= 0; }
    FieldLiquidityPctHigh::ValueType getLiquidityPctHigh() const { return fieldLiquidityPctHigh.getValue( buf ); }
+   std::string_view getLiquidityPctHighView() const { return fieldLiquidityPctHigh.offset >= 0 ? std::string_view{ buf + fieldLiquidityPctHigh.offset, getValueLength( buf + fieldLiquidityPctHigh.offset ) } : std::string_view{}; }
    const char * ptrToLiquidityPctHigh() const { return buf + fieldLiquidityPctHigh.offset; }
    const char * getIfSetLiquidityPctHigh() const { return fieldLiquidityPctHigh.offset >= 0 ? buf + fieldLiquidityPctHigh.offset : nullptr; }
    private: FieldLiquidityPctHigh fieldLiquidityPctHigh;
@@ -5516,6 +6139,7 @@ class GroupBidDescriptors : public MessageBase
    public:
    bool isSetEFPTrackingError() const { return fieldEFPTrackingError.offset >= 0; }
    FieldEFPTrackingError::ValueType getEFPTrackingError() const { return fieldEFPTrackingError.getValue( buf ); }
+   std::string_view getEFPTrackingErrorView() const { return fieldEFPTrackingError.offset >= 0 ? std::string_view{ buf + fieldEFPTrackingError.offset, getValueLength( buf + fieldEFPTrackingError.offset ) } : std::string_view{}; }
    const char * ptrToEFPTrackingError() const { return buf + fieldEFPTrackingError.offset; }
    const char * getIfSetEFPTrackingError() const { return fieldEFPTrackingError.offset >= 0 ? buf + fieldEFPTrackingError.offset : nullptr; }
    private: FieldEFPTrackingError fieldEFPTrackingError;
@@ -5523,6 +6147,7 @@ class GroupBidDescriptors : public MessageBase
    public:
    bool isSetFairValue() const { return fieldFairValue.offset >= 0; }
    FieldFairValue::ValueType getFairValue() const { return fieldFairValue.getValue( buf ); }
+   std::string_view getFairValueView() const { return fieldFairValue.offset >= 0 ? std::string_view{ buf + fieldFairValue.offset, getValueLength( buf + fieldFairValue.offset ) } : std::string_view{}; }
    const char * ptrToFairValue() const { return buf + fieldFairValue.offset; }
    const char * getIfSetFairValue() const { return fieldFairValue.offset >= 0 ? buf + fieldFairValue.offset : nullptr; }
    private: FieldFairValue fieldFairValue;
@@ -5530,6 +6155,7 @@ class GroupBidDescriptors : public MessageBase
    public:
    bool isSetOutsideIndexPct() const { return fieldOutsideIndexPct.offset >= 0; }
    FieldOutsideIndexPct::ValueType getOutsideIndexPct() const { return fieldOutsideIndexPct.getValue( buf ); }
+   std::string_view getOutsideIndexPctView() const { return fieldOutsideIndexPct.offset >= 0 ? std::string_view{ buf + fieldOutsideIndexPct.offset, getValueLength( buf + fieldOutsideIndexPct.offset ) } : std::string_view{}; }
    const char * ptrToOutsideIndexPct() const { return buf + fieldOutsideIndexPct.offset; }
    const char * getIfSetOutsideIndexPct() const { return fieldOutsideIndexPct.offset >= 0 ? buf + fieldOutsideIndexPct.offset : nullptr; }
    private: FieldOutsideIndexPct fieldOutsideIndexPct;
@@ -5537,6 +6163,7 @@ class GroupBidDescriptors : public MessageBase
    public:
    bool isSetValueOfFutures() const { return fieldValueOfFutures.offset >= 0; }
    FieldValueOfFutures::ValueType getValueOfFutures() const { return fieldValueOfFutures.getValue( buf ); }
+   std::string_view getValueOfFuturesView() const { return fieldValueOfFutures.offset >= 0 ? std::string_view{ buf + fieldValueOfFutures.offset, getValueLength( buf + fieldValueOfFutures.offset ) } : std::string_view{}; }
    const char * ptrToValueOfFutures() const { return buf + fieldValueOfFutures.offset; }
    const char * getIfSetValueOfFutures() const { return fieldValueOfFutures.offset >= 0 ? buf + fieldValueOfFutures.offset : nullptr; }
    private: FieldValueOfFutures fieldValueOfFutures;
@@ -5562,6 +6189,7 @@ class GroupCompIDs : public MessageBase
    public:
    bool isSetRefCompID() const { return fieldRefCompID.offset >= 0; }
    FieldRefCompID::ValueType getRefCompID() const { return fieldRefCompID.getValue( buf ); }
+   std::string_view getRefCompIDView() const { return fieldRefCompID.offset >= 0 ? std::string_view{ buf + fieldRefCompID.offset, getValueLength( buf + fieldRefCompID.offset ) } : std::string_view{}; }
    const char * ptrToRefCompID() const { return buf + fieldRefCompID.offset; }
    const char * getIfSetRefCompID() const { return fieldRefCompID.offset >= 0 ? buf + fieldRefCompID.offset : nullptr; }
    private: FieldRefCompID fieldRefCompID;
@@ -5569,6 +6197,7 @@ class GroupCompIDs : public MessageBase
    public:
    bool isSetRefSubID() const { return fieldRefSubID.offset >= 0; }
    FieldRefSubID::ValueType getRefSubID() const { return fieldRefSubID.getValue( buf ); }
+   std::string_view getRefSubIDView() const { return fieldRefSubID.offset >= 0 ? std::string_view{ buf + fieldRefSubID.offset, getValueLength( buf + fieldRefSubID.offset ) } : std::string_view{}; }
    const char * ptrToRefSubID() const { return buf + fieldRefSubID.offset; }
    const char * getIfSetRefSubID() const { return fieldRefSubID.offset >= 0 ? buf + fieldRefSubID.offset : nullptr; }
    private: FieldRefSubID fieldRefSubID;
@@ -5576,6 +6205,7 @@ class GroupCompIDs : public MessageBase
    public:
    bool isSetLocationID() const { return fieldLocationID.offset >= 0; }
    FieldLocationID::ValueType getLocationID() const { return fieldLocationID.getValue( buf ); }
+   std::string_view getLocationIDView() const { return fieldLocationID.offset >= 0 ? std::string_view{ buf + fieldLocationID.offset, getValueLength( buf + fieldLocationID.offset ) } : std::string_view{}; }
    const char * ptrToLocationID() const { return buf + fieldLocationID.offset; }
    const char * getIfSetLocationID() const { return fieldLocationID.offset >= 0 ? buf + fieldLocationID.offset : nullptr; }
    private: FieldLocationID fieldLocationID;
@@ -5583,6 +6213,7 @@ class GroupCompIDs : public MessageBase
    public:
    bool isSetDeskID() const { return fieldDeskID.offset >= 0; }
    FieldDeskID::ValueType getDeskID() const { return fieldDeskID.getValue( buf ); }
+   std::string_view getDeskIDView() const { return fieldDeskID.offset >= 0 ? std::string_view{ buf + fieldDeskID.offset, getValueLength( buf + fieldDeskID.offset ) } : std::string_view{}; }
    const char * ptrToDeskID() const { return buf + fieldDeskID.offset; }
    const char * getIfSetDeskID() const { return fieldDeskID.offset >= 0 ? buf + fieldDeskID.offset : nullptr; }
    private: FieldDeskID fieldDeskID;
@@ -5608,6 +6239,7 @@ class GroupLegAllocs : public MessageBase
    public:
    bool isSetLegAllocAccount() const { return fieldLegAllocAccount.offset >= 0; }
    FieldLegAllocAccount::ValueType getLegAllocAccount() const { return fieldLegAllocAccount.getValue( buf ); }
+   std::string_view getLegAllocAccountView() const { return fieldLegAllocAccount.offset >= 0 ? std::string_view{ buf + fieldLegAllocAccount.offset, getValueLength( buf + fieldLegAllocAccount.offset ) } : std::string_view{}; }
    const char * ptrToLegAllocAccount() const { return buf + fieldLegAllocAccount.offset; }
    const char * getIfSetLegAllocAccount() const { return fieldLegAllocAccount.offset >= 0 ? buf + fieldLegAllocAccount.offset : nullptr; }
    private: FieldLegAllocAccount fieldLegAllocAccount;
@@ -5615,6 +6247,7 @@ class GroupLegAllocs : public MessageBase
    public:
    bool isSetLegIndividualAllocID() const { return fieldLegIndividualAllocID.offset >= 0; }
    FieldLegIndividualAllocID::ValueType getLegIndividualAllocID() const { return fieldLegIndividualAllocID.getValue( buf ); }
+   std::string_view getLegIndividualAllocIDView() const { return fieldLegIndividualAllocID.offset >= 0 ? std::string_view{ buf + fieldLegIndividualAllocID.offset, getValueLength( buf + fieldLegIndividualAllocID.offset ) } : std::string_view{}; }
    const char * ptrToLegIndividualAllocID() const { return buf + fieldLegIndividualAllocID.offset; }
    const char * getIfSetLegIndividualAllocID() const { return fieldLegIndividualAllocID.offset >= 0 ? buf + fieldLegIndividualAllocID.offset : nullptr; }
    private: FieldLegIndividualAllocID fieldLegIndividualAllocID;
@@ -5622,6 +6255,7 @@ class GroupLegAllocs : public MessageBase
    public:
    bool isSetNoNested2PartyIDs() const { return fieldNoNested2PartyIDs.offset >= 0; }
    FieldNoNested2PartyIDs::ValueType getNoNested2PartyIDs() const { return fieldNoNested2PartyIDs.getValue( buf ); }
+   std::string_view getNoNested2PartyIDsView() const { return fieldNoNested2PartyIDs.offset >= 0 ? std::string_view{ buf + fieldNoNested2PartyIDs.offset, getValueLength( buf + fieldNoNested2PartyIDs.offset ) } : std::string_view{}; }
    const char * ptrToNoNested2PartyIDs() const { return buf + fieldNoNested2PartyIDs.offset; }
    const char * getIfSetNoNested2PartyIDs() const { return fieldNoNested2PartyIDs.offset >= 0 ? buf + fieldNoNested2PartyIDs.offset : nullptr; }
    private: FieldNoNested2PartyIDs fieldNoNested2PartyIDs;
@@ -5634,6 +6268,7 @@ class GroupLegAllocs : public MessageBase
    public:
    bool isSetLegAllocQty() const { return fieldLegAllocQty.offset >= 0; }
    FieldLegAllocQty::ValueType getLegAllocQty() const { return fieldLegAllocQty.getValue( buf ); }
+   std::string_view getLegAllocQtyView() const { return fieldLegAllocQty.offset >= 0 ? std::string_view{ buf + fieldLegAllocQty.offset, getValueLength( buf + fieldLegAllocQty.offset ) } : std::string_view{}; }
    const char * ptrToLegAllocQty() const { return buf + fieldLegAllocQty.offset; }
    const char * getIfSetLegAllocQty() const { return fieldLegAllocQty.offset >= 0 ? buf + fieldLegAllocQty.offset : nullptr; }
    private: FieldLegAllocQty fieldLegAllocQty;
@@ -5641,6 +6276,7 @@ class GroupLegAllocs : public MessageBase
    public:
    bool isSetLegAllocAcctIDSource() const { return fieldLegAllocAcctIDSource.offset >= 0; }
    FieldLegAllocAcctIDSource::ValueType getLegAllocAcctIDSource() const { return fieldLegAllocAcctIDSource.getValue( buf ); }
+   std::string_view getLegAllocAcctIDSourceView() const { return fieldLegAllocAcctIDSource.offset >= 0 ? std::string_view{ buf + fieldLegAllocAcctIDSource.offset, getValueLength( buf + fieldLegAllocAcctIDSource.offset ) } : std::string_view{}; }
    const char * ptrToLegAllocAcctIDSource() const { return buf + fieldLegAllocAcctIDSource.offset; }
    const char * getIfSetLegAllocAcctIDSource() const { return fieldLegAllocAcctIDSource.offset >= 0 ? buf + fieldLegAllocAcctIDSource.offset : nullptr; }
    private: FieldLegAllocAcctIDSource fieldLegAllocAcctIDSource;
@@ -5648,6 +6284,7 @@ class GroupLegAllocs : public MessageBase
    public:
    bool isSetLegSettlCurrency() const { return fieldLegSettlCurrency.offset >= 0; }
    FieldLegSettlCurrency::ValueType getLegSettlCurrency() const { return fieldLegSettlCurrency.getValue( buf ); }
+   std::string_view getLegSettlCurrencyView() const { return fieldLegSettlCurrency.offset >= 0 ? std::string_view{ buf + fieldLegSettlCurrency.offset, getValueLength( buf + fieldLegSettlCurrency.offset ) } : std::string_view{}; }
    const char * ptrToLegSettlCurrency() const { return buf + fieldLegSettlCurrency.offset; }
    const char * getIfSetLegSettlCurrency() const { return fieldLegSettlCurrency.offset >= 0 ? buf + fieldLegSettlCurrency.offset : nullptr; }
    private: FieldLegSettlCurrency fieldLegSettlCurrency;
@@ -5673,6 +6310,7 @@ class GroupRegistDtls : public MessageBase
    public:
    bool isSetRegistDtls() const { return fieldRegistDtls.offset >= 0; }
    FieldRegistDtls::ValueType getRegistDtls() const { return fieldRegistDtls.getValue( buf ); }
+   std::string_view getRegistDtlsView() const { return fieldRegistDtls.offset >= 0 ? std::string_view{ buf + fieldRegistDtls.offset, getValueLength( buf + fieldRegistDtls.offset ) } : std::string_view{}; }
    const char * ptrToRegistDtls() const { return buf + fieldRegistDtls.offset; }
    const char * getIfSetRegistDtls() const { return fieldRegistDtls.offset >= 0 ? buf + fieldRegistDtls.offset : nullptr; }
    private: FieldRegistDtls fieldRegistDtls;
@@ -5680,6 +6318,7 @@ class GroupRegistDtls : public MessageBase
    public:
    bool isSetRegistEmail() const { return fieldRegistEmail.offset >= 0; }
    FieldRegistEmail::ValueType getRegistEmail() const { return fieldRegistEmail.getValue( buf ); }
+   std::string_view getRegistEmailView() const { return fieldRegistEmail.offset >= 0 ? std::string_view{ buf + fieldRegistEmail.offset, getValueLength( buf + fieldRegistEmail.offset ) } : std::string_view{}; }
    const char * ptrToRegistEmail() const { return buf + fieldRegistEmail.offset; }
    const char * getIfSetRegistEmail() const { return fieldRegistEmail.offset >= 0 ? buf + fieldRegistEmail.offset : nullptr; }
    private: FieldRegistEmail fieldRegistEmail;
@@ -5687,6 +6326,7 @@ class GroupRegistDtls : public MessageBase
    public:
    bool isSetMailingDtls() const { return fieldMailingDtls.offset >= 0; }
    FieldMailingDtls::ValueType getMailingDtls() const { return fieldMailingDtls.getValue( buf ); }
+   std::string_view getMailingDtlsView() const { return fieldMailingDtls.offset >= 0 ? std::string_view{ buf + fieldMailingDtls.offset, getValueLength( buf + fieldMailingDtls.offset ) } : std::string_view{}; }
    const char * ptrToMailingDtls() const { return buf + fieldMailingDtls.offset; }
    const char * getIfSetMailingDtls() const { return fieldMailingDtls.offset >= 0 ? buf + fieldMailingDtls.offset : nullptr; }
    private: FieldMailingDtls fieldMailingDtls;
@@ -5694,6 +6334,7 @@ class GroupRegistDtls : public MessageBase
    public:
    bool isSetMailingInst() const { return fieldMailingInst.offset >= 0; }
    FieldMailingInst::ValueType getMailingInst() const { return fieldMailingInst.getValue( buf ); }
+   std::string_view getMailingInstView() const { return fieldMailingInst.offset >= 0 ? std::string_view{ buf + fieldMailingInst.offset, getValueLength( buf + fieldMailingInst.offset ) } : std::string_view{}; }
    const char * ptrToMailingInst() const { return buf + fieldMailingInst.offset; }
    const char * getIfSetMailingInst() const { return fieldMailingInst.offset >= 0 ? buf + fieldMailingInst.offset : nullptr; }
    private: FieldMailingInst fieldMailingInst;
@@ -5701,6 +6342,7 @@ class GroupRegistDtls : public MessageBase
    public:
    bool isSetNoNestedPartyIDs() const { return fieldNoNestedPartyIDs.offset >= 0; }
    FieldNoNestedPartyIDs::ValueType getNoNestedPartyIDs() const { return fieldNoNestedPartyIDs.getValue( buf ); }
+   std::string_view getNoNestedPartyIDsView() const { return fieldNoNestedPartyIDs.offset >= 0 ? std::string_view{ buf + fieldNoNestedPartyIDs.offset, getValueLength( buf + fieldNoNestedPartyIDs.offset ) } : std::string_view{}; }
    const char * ptrToNoNestedPartyIDs() const { return buf + fieldNoNestedPartyIDs.offset; }
    const char * getIfSetNoNestedPartyIDs() const { return fieldNoNestedPartyIDs.offset >= 0 ? buf + fieldNoNestedPartyIDs.offset : nullptr; }
    private: FieldNoNestedPartyIDs fieldNoNestedPartyIDs;
@@ -5713,6 +6355,7 @@ class GroupRegistDtls : public MessageBase
    public:
    bool isSetOwnerType() const { return fieldOwnerType.offset >= 0; }
    FieldOwnerType::ValueType getOwnerType() const { return fieldOwnerType.getValue( buf ); }
+   std::string_view getOwnerTypeView() const { return fieldOwnerType.offset >= 0 ? std::string_view{ buf + fieldOwnerType.offset, getValueLength( buf + fieldOwnerType.offset ) } : std::string_view{}; }
    const char * ptrToOwnerType() const { return buf + fieldOwnerType.offset; }
    const char * getIfSetOwnerType() const { return fieldOwnerType.offset >= 0 ? buf + fieldOwnerType.offset : nullptr; }
    private: FieldOwnerType fieldOwnerType;
@@ -5720,6 +6363,7 @@ class GroupRegistDtls : public MessageBase
    public:
    bool isSetDateOfBirth() const { return fieldDateOfBirth.offset >= 0; }
    FieldDateOfBirth::ValueType getDateOfBirth() const { return fieldDateOfBirth.getValue( buf ); }
+   std::string_view getDateOfBirthView() const { return fieldDateOfBirth.offset >= 0 ? std::string_view{ buf + fieldDateOfBirth.offset, getValueLength( buf + fieldDateOfBirth.offset ) } : std::string_view{}; }
    const char * ptrToDateOfBirth() const { return buf + fieldDateOfBirth.offset; }
    const char * getIfSetDateOfBirth() const { return fieldDateOfBirth.offset >= 0 ? buf + fieldDateOfBirth.offset : nullptr; }
    private: FieldDateOfBirth fieldDateOfBirth;
@@ -5727,6 +6371,7 @@ class GroupRegistDtls : public MessageBase
    public:
    bool isSetInvestorCountryOfResidence() const { return fieldInvestorCountryOfResidence.offset >= 0; }
    FieldInvestorCountryOfResidence::ValueType getInvestorCountryOfResidence() const { return fieldInvestorCountryOfResidence.getValue( buf ); }
+   std::string_view getInvestorCountryOfResidenceView() const { return fieldInvestorCountryOfResidence.offset >= 0 ? std::string_view{ buf + fieldInvestorCountryOfResidence.offset, getValueLength( buf + fieldInvestorCountryOfResidence.offset ) } : std::string_view{}; }
    const char * ptrToInvestorCountryOfResidence() const { return buf + fieldInvestorCountryOfResidence.offset; }
    const char * getIfSetInvestorCountryOfResidence() const { return fieldInvestorCountryOfResidence.offset >= 0 ? buf + fieldInvestorCountryOfResidence.offset : nullptr; }
    private: FieldInvestorCountryOfResidence fieldInvestorCountryOfResidence;
@@ -5752,6 +6397,7 @@ class GroupContAmts : public MessageBase
    public:
    bool isSetContAmtType() const { return fieldContAmtType.offset >= 0; }
    FieldContAmtType::ValueType getContAmtType() const { return fieldContAmtType.getValue( buf ); }
+   std::string_view getContAmtTypeView() const { return fieldContAmtType.offset >= 0 ? std::string_view{ buf + fieldContAmtType.offset, getValueLength( buf + fieldContAmtType.offset ) } : std::string_view{}; }
    const char * ptrToContAmtType() const { return buf + fieldContAmtType.offset; }
    const char * getIfSetContAmtType() const { return fieldContAmtType.offset >= 0 ? buf + fieldContAmtType.offset : nullptr; }
    private: FieldContAmtType fieldContAmtType;
@@ -5759,6 +6405,7 @@ class GroupContAmts : public MessageBase
    public:
    bool isSetContAmtValue() const { return fieldContAmtValue.offset >= 0; }
    FieldContAmtValue::ValueType getContAmtValue() const { return fieldContAmtValue.getValue( buf ); }
+   std::string_view getContAmtValueView() const { return fieldContAmtValue.offset >= 0 ? std::string_view{ buf + fieldContAmtValue.offset, getValueLength( buf + fieldContAmtValue.offset ) } : std::string_view{}; }
    const char * ptrToContAmtValue() const { return buf + fieldContAmtValue.offset; }
    const char * getIfSetContAmtValue() const { return fieldContAmtValue.offset >= 0 ? buf + fieldContAmtValue.offset : nullptr; }
    private: FieldContAmtValue fieldContAmtValue;
@@ -5766,6 +6413,7 @@ class GroupContAmts : public MessageBase
    public:
    bool isSetContAmtCurr() const { return fieldContAmtCurr.offset >= 0; }
    FieldContAmtCurr::ValueType getContAmtCurr() const { return fieldContAmtCurr.getValue( buf ); }
+   std::string_view getContAmtCurrView() const { return fieldContAmtCurr.offset >= 0 ? std::string_view{ buf + fieldContAmtCurr.offset, getValueLength( buf + fieldContAmtCurr.offset ) } : std::string_view{}; }
    const char * ptrToContAmtCurr() const { return buf + fieldContAmtCurr.offset; }
    const char * getIfSetContAmtCurr() const { return fieldContAmtCurr.offset >= 0 ? buf + fieldContAmtCurr.offset : nullptr; }
    private: FieldContAmtCurr fieldContAmtCurr;
@@ -5791,6 +6439,7 @@ class GroupMDEntries : public MessageBase
    public:
    bool isSetMDEntryType() const { return fieldMDEntryType.offset >= 0; }
    FieldMDEntryType::ValueType getMDEntryType() const { return fieldMDEntryType.getValue( buf ); }
+   std::string_view getMDEntryTypeView() const { return fieldMDEntryType.offset >= 0 ? std::string_view{ buf + fieldMDEntryType.offset, getValueLength( buf + fieldMDEntryType.offset ) } : std::string_view{}; }
    const char * ptrToMDEntryType() const { return buf + fieldMDEntryType.offset; }
    const char * getIfSetMDEntryType() const { return fieldMDEntryType.offset >= 0 ? buf + fieldMDEntryType.offset : nullptr; }
    private: FieldMDEntryType fieldMDEntryType;
@@ -5798,6 +6447,7 @@ class GroupMDEntries : public MessageBase
    public:
    bool isSetMDEntryPx() const { return fieldMDEntryPx.offset >= 0; }
    FieldMDEntryPx::ValueType getMDEntryPx() const { return fieldMDEntryPx.getValue( buf ); }
+   std::string_view getMDEntryPxView() const { return fieldMDEntryPx.offset >= 0 ? std::string_view{ buf + fieldMDEntryPx.offset, getValueLength( buf + fieldMDEntryPx.offset ) } : std::string_view{}; }
    const char * ptrToMDEntryPx() const { return buf + fieldMDEntryPx.offset; }
    const char * getIfSetMDEntryPx() const { return fieldMDEntryPx.offset >= 0 ? buf + fieldMDEntryPx.offset : nullptr; }
    private: FieldMDEntryPx fieldMDEntryPx;
@@ -5805,6 +6455,7 @@ class GroupMDEntries : public MessageBase
    public:
    bool isSetCurrency() const { return fieldCurrency.offset >= 0; }
    FieldCurrency::ValueType getCurrency() const { return fieldCurrency.getValue( buf ); }
+   std::string_view getCurrencyView() const { return fieldCurrency.offset >= 0 ? std::string_view{ buf + fieldCurrency.offset, getValueLength( buf + fieldCurrency.offset ) } : std::string_view{}; }
    const char * ptrToCurrency() const { return buf + fieldCurrency.offset; }
    const char * getIfSetCurrency() const { return fieldCurrency.offset >= 0 ? buf + fieldCurrency.offset : nullptr; }
    private: FieldCurrency fieldCurrency;
@@ -5812,6 +6463,7 @@ class GroupMDEntries : public MessageBase
    public:
    bool isSetMDEntrySize() const { return fieldMDEntrySize.offset >= 0; }
    FieldMDEntrySize::ValueType getMDEntrySize() const { return fieldMDEntrySize.getValue( buf ); }
+   std::string_view getMDEntrySizeView() const { return fieldMDEntrySize.offset >= 0 ? std::string_view{ buf + fieldMDEntrySize.offset, getValueLength( buf + fieldMDEntrySize.offset ) } : std::string_view{}; }
    const char * ptrToMDEntrySize() const { return buf + fieldMDEntrySize.offset; }
    const char * getIfSetMDEntrySize() const { return fieldMDEntrySize.offset >= 0 ? buf + fieldMDEntrySize.offset : nullptr; }
    private: FieldMDEntrySize fieldMDEntrySize;
@@ -5819,6 +6471,7 @@ class GroupMDEntries : public MessageBase
    public:
    bool isSetMDEntryDate() const { return fieldMDEntryDate.offset >= 0; }
    FieldMDEntryDate::ValueType getMDEntryDate() const { return fieldMDEntryDate.getValue( buf ); }
+   std::string_view getMDEntryDateView() const { return fieldMDEntryDate.offset >= 0 ? std::string_view{ buf + fieldMDEntryDate.offset, getValueLength( buf + fieldMDEntryDate.offset ) } : std::string_view{}; }
    const char * ptrToMDEntryDate() const { return buf + fieldMDEntryDate.offset; }
    const char * getIfSetMDEntryDate() const { return fieldMDEntryDate.offset >= 0 ? buf + fieldMDEntryDate.offset : nullptr; }
    private: FieldMDEntryDate fieldMDEntryDate;
@@ -5826,6 +6479,7 @@ class GroupMDEntries : public MessageBase
    public:
    bool isSetMDEntryTime() const { return fieldMDEntryTime.offset >= 0; }
    FieldMDEntryTime::ValueType getMDEntryTime() const { return fieldMDEntryTime.getValue( buf ); }
+   std::string_view getMDEntryTimeView() const { return fieldMDEntryTime.offset >= 0 ? std::string_view{ buf + fieldMDEntryTime.offset, getValueLength( buf + fieldMDEntryTime.offset ) } : std::string_view{}; }
    const char * ptrToMDEntryTime() const { return buf + fieldMDEntryTime.offset; }
    const char * getIfSetMDEntryTime() const { return fieldMDEntryTime.offset >= 0 ? buf + fieldMDEntryTime.offset : nullptr; }
    private: FieldMDEntryTime fieldMDEntryTime;
@@ -5833,6 +6487,7 @@ class GroupMDEntries : public MessageBase
    public:
    bool isSetTickDirection() const { return fieldTickDirection.offset >= 0; }
    FieldTickDirection::ValueType getTickDirection() const { return fieldTickDirection.getValue( buf ); }
+   std::string_view getTickDirectionView() const { return fieldTickDirection.offset >= 0 ? std::string_view{ buf + fieldTickDirection.offset, getValueLength( buf + fieldTickDirection.offset ) } : std::string_view{}; }
    const char * ptrToTickDirection() const { return buf + fieldTickDirection.offset; }
    const char * getIfSetTickDirection() const { return fieldTickDirection.offset >= 0 ? buf + fieldTickDirection.offset : nullptr; }
    private: FieldTickDirection fieldTickDirection;
@@ -5840,6 +6495,7 @@ class GroupMDEntries : public MessageBase
    public:
    bool isSetMDMkt() const { return fieldMDMkt.offset >= 0; }
    FieldMDMkt::ValueType getMDMkt() const { return fieldMDMkt.getValue( buf ); }
+   std::string_view getMDMktView() const { return fieldMDMkt.offset >= 0 ? std::string_view{ buf + fieldMDMkt.offset, getValueLength( buf + fieldMDMkt.offset ) } : std::string_view{}; }
    const char * ptrToMDMkt() const { return buf + fieldMDMkt.offset; }
    const char * getIfSetMDMkt() const { return fieldMDMkt.offset >= 0 ? buf + fieldMDMkt.offset : nullptr; }
    private: FieldMDMkt fieldMDMkt;
@@ -5847,6 +6503,7 @@ class GroupMDEntries : public MessageBase
    public:
    bool isSetTradingSessionID() const { return fieldTradingSessionID.offset >= 0; }
    FieldTradingSessionID::ValueType getTradingSessionID() const { return fieldTradingSessionID.getValue( buf ); }
+   std::string_view getTradingSessionIDView() const { return fieldTradingSessionID.offset >= 0 ? std::string_view{ buf + fieldTradingSessionID.offset, getValueLength( buf + fieldTradingSessionID.offset ) } : std::string_view{}; }
    const char * ptrToTradingSessionID() const { return buf + fieldTradingSessionID.offset; }
    const char * getIfSetTradingSessionID() const { return fieldTradingSessionID.offset >= 0 ? buf + fieldTradingSessionID.offset : nullptr; }
    private: FieldTradingSessionID fieldTradingSessionID;
@@ -5854,6 +6511,7 @@ class GroupMDEntries : public MessageBase
    public:
    bool isSetTradingSessionSubID() const { return fieldTradingSessionSubID.offset >= 0; }
    FieldTradingSessionSubID::ValueType getTradingSessionSubID() const { return fieldTradingSessionSubID.getValue( buf ); }
+   std::string_view getTradingSessionSubIDView() const { return fieldTradingSessionSubID.offset >= 0 ? std::string_view{ buf + fieldTradingSessionSubID.offset, getValueLength( buf + fieldTradingSessionSubID.offset ) } : std::string_view{}; }
    const char * ptrToTradingSessionSubID() const { return buf + fieldTradingSessionSubID.offset; }
    const char * getIfSetTradingSessionSubID() const { return fieldTradingSessionSubID.offset >= 0 ? buf + fieldTradingSessionSubID.offset : nullptr; }
    private: FieldTradingSessionSubID fieldTradingSessionSubID;
@@ -5861,6 +6519,7 @@ class GroupMDEntries : public MessageBase
    public:
    bool isSetQuoteCondition() const { return fieldQuoteCondition.offset >= 0; }
    FieldQuoteCondition::ValueType getQuoteCondition() const { return fieldQuoteCondition.getValue( buf ); }
+   std::string_view getQuoteConditionView() const { return fieldQuoteCondition.offset >= 0 ? std::string_view{ buf + fieldQuoteCondition.offset, getValueLength( buf + fieldQuoteCondition.offset ) } : std::string_view{}; }
    const char * ptrToQuoteCondition() const { return buf + fieldQuoteCondition.offset; }
    const char * getIfSetQuoteCondition() const { return fieldQuoteCondition.offset >= 0 ? buf + fieldQuoteCondition.offset : nullptr; }
    private: FieldQuoteCondition fieldQuoteCondition;
@@ -5868,6 +6527,7 @@ class GroupMDEntries : public MessageBase
    public:
    bool isSetTradeCondition() const { return fieldTradeCondition.offset >= 0; }
    FieldTradeCondition::ValueType getTradeCondition() const { return fieldTradeCondition.getValue( buf ); }
+   std::string_view getTradeConditionView() const { return fieldTradeCondition.offset >= 0 ? std::string_view{ buf + fieldTradeCondition.offset, getValueLength( buf + fieldTradeCondition.offset ) } : std::string_view{}; }
    const char * ptrToTradeCondition() const { return buf + fieldTradeCondition.offset; }
    const char * getIfSetTradeCondition() const { return fieldTradeCondition.offset >= 0 ? buf + fieldTradeCondition.offset : nullptr; }
    private: FieldTradeCondition fieldTradeCondition;
@@ -5875,6 +6535,7 @@ class GroupMDEntries : public MessageBase
    public:
    bool isSetMDEntryOriginator() const { return fieldMDEntryOriginator.offset >= 0; }
    FieldMDEntryOriginator::ValueType getMDEntryOriginator() const { return fieldMDEntryOriginator.getValue( buf ); }
+   std::string_view getMDEntryOriginatorView() const { return fieldMDEntryOriginator.offset >= 0 ? std::string_view{ buf + fieldMDEntryOriginator.offset, getValueLength( buf + fieldMDEntryOriginator.offset ) } : std::string_view{}; }
    const char * ptrToMDEntryOriginator() const { return buf + fieldMDEntryOriginator.offset; }
    const char * getIfSetMDEntryOriginator() const { return fieldMDEntryOriginator.offset >= 0 ? buf + fieldMDEntryOriginator.offset : nullptr; }
    private: FieldMDEntryOriginator fieldMDEntryOriginator;
@@ -5882,6 +6543,7 @@ class GroupMDEntries : public MessageBase
    public:
    bool isSetLocationID() const { return fieldLocationID.offset >= 0; }
    FieldLocationID::ValueType getLocationID() const { return fieldLocationID.getValue( buf ); }
+   std::string_view getLocationIDView() const { return fieldLocationID.offset >= 0 ? std::string_view{ buf + fieldLocationID.offset, getValueLength( buf + fieldLocationID.offset ) } : std::string_view{}; }
    const char * ptrToLocationID() const { return buf + fieldLocationID.offset; }
    const char * getIfSetLocationID() const { return fieldLocationID.offset >= 0 ? buf + fieldLocationID.offset : nullptr; }
    private: FieldLocationID fieldLocationID;
@@ -5889,6 +6551,7 @@ class GroupMDEntries : public MessageBase
    public:
    bool isSetDeskID() const { return fieldDeskID.offset >= 0; }
    FieldDeskID::ValueType getDeskID() const { return fieldDeskID.getValue( buf ); }
+   std::string_view getDeskIDView() const { return fieldDeskID.offset >= 0 ? std::string_view{ buf + fieldDeskID.offset, getValueLength( buf + fieldDeskID.offset ) } : std::string_view{}; }
    const char * ptrToDeskID() const { return buf + fieldDeskID.offset; }
    const char * getIfSetDeskID() const { return fieldDeskID.offset >= 0 ? buf + fieldDeskID.offset : nullptr; }
    private: FieldDeskID fieldDeskID;
@@ -5896,6 +6559,7 @@ class GroupMDEntries : public MessageBase
    public:
    bool isSetOpenCloseSettlFlag() const { return fieldOpenCloseSettlFlag.offset >= 0; }
    FieldOpenCloseSettlFlag::ValueType getOpenCloseSettlFlag() const { return fieldOpenCloseSettlFlag.getValue( buf ); }
+   std::string_view getOpenCloseSettlFlagView() const { return fieldOpenCloseSettlFlag.offset >= 0 ? std::string_view{ buf + fieldOpenCloseSettlFlag.offset, getValueLength( buf + fieldOpenCloseSettlFlag.offset ) } : std::string_view{}; }
    const char * ptrToOpenCloseSettlFlag() const { return buf + fieldOpenCloseSettlFlag.offset; }
    const char * getIfSetOpenCloseSettlFlag() const { return fieldOpenCloseSettlFlag.offset >= 0 ? buf + fieldOpenCloseSettlFlag.offset : nullptr; }
    private: FieldOpenCloseSettlFlag fieldOpenCloseSettlFlag;
@@ -5903,6 +6567,7 @@ class GroupMDEntries : public MessageBase
    public:
    bool isSetTimeInForce() const { return fieldTimeInForce.offset >= 0; }
    FieldTimeInForce::ValueType getTimeInForce() const { return fieldTimeInForce.getValue( buf ); }
+   std::string_view getTimeInForceView() const { return fieldTimeInForce.offset >= 0 ? std::string_view{ buf + fieldTimeInForce.offset, getValueLength( buf + fieldTimeInForce.offset ) } : std::string_view{}; }
    const char * ptrToTimeInForce() const { return buf + fieldTimeInForce.offset; }
    const char * getIfSetTimeInForce() const { return fieldTimeInForce.offset >= 0 ? buf + fieldTimeInForce.offset : nullptr; }
    private: FieldTimeInForce fieldTimeInForce;
@@ -5910,6 +6575,7 @@ class GroupMDEntries : public MessageBase
    public:
    bool isSetExpireDate() const { return fieldExpireDate.offset >= 0; }
    FieldExpireDate::ValueType getExpireDate() const { return fieldExpireDate.getValue( buf ); }
+   std::string_view getExpireDateView() const { return fieldExpireDate.offset >= 0 ? std::string_view{ buf + fieldExpireDate.offset, getValueLength( buf + fieldExpireDate.offset ) } : std::string_view{}; }
    const char * ptrToExpireDate() const { return buf + fieldExpireDate.offset; }
    const char * getIfSetExpireDate() const { return fieldExpireDate.offset >= 0 ? buf + fieldExpireDate.offset : nullptr; }
    private: FieldExpireDate fieldExpireDate;
@@ -5917,6 +6583,7 @@ class GroupMDEntries : public MessageBase
    public:
    bool isSetExpireTime() const { return fieldExpireTime.offset >= 0; }
    FieldExpireTime::ValueType getExpireTime() const { return fieldExpireTime.getValue( buf ); }
+   std::string_view getExpireTimeView() const { return fieldExpireTime.offset >= 0 ? std::string_view{ buf + fieldExpireTime.offset, getValueLength( buf + fieldExpireTime.offset ) } : std::string_view{}; }
    const char * ptrToExpireTime() const { return buf + fieldExpireTime.offset; }
    const char * getIfSetExpireTime() const { return fieldExpireTime.offset >= 0 ? buf + fieldExpireTime.offset : nullptr; }
    private: FieldExpireTime fieldExpireTime;
@@ -5924,6 +6591,7 @@ class GroupMDEntries : public MessageBase
    public:
    bool isSetMinQty() const { return fieldMinQty.offset >= 0; }
    FieldMinQty::ValueType getMinQty() const { return fieldMinQty.getValue( buf ); }
+   std::string_view getMinQtyView() const { return fieldMinQty.offset >= 0 ? std::string_view{ buf + fieldMinQty.offset, getValueLength( buf + fieldMinQty.offset ) } : std::string_view{}; }
    const char * ptrToMinQty() const { return buf + fieldMinQty.offset; }
    const char * getIfSetMinQty() const { return fieldMinQty.offset >= 0 ? buf + fieldMinQty.offset : nullptr; }
    private: FieldMinQty fieldMinQty;
@@ -5931,6 +6599,7 @@ class GroupMDEntries : public MessageBase
    public:
    bool isSetExecInst() const { return fieldExecInst.offset >= 0; }
    FieldExecInst::ValueType getExecInst() const { return fieldExecInst.getValue( buf ); }
+   std::string_view getExecInstView() const { return fieldExecInst.offset >= 0 ? std::string_view{ buf + fieldExecInst.offset, getValueLength( buf + fieldExecInst.offset ) } : std::string_view{}; }
    const char * ptrToExecInst() const { return buf + fieldExecInst.offset; }
    const char * getIfSetExecInst() const { return fieldExecInst.offset >= 0 ? buf + fieldExecInst.offset : nullptr; }
    private: FieldExecInst fieldExecInst;
@@ -5938,6 +6607,7 @@ class GroupMDEntries : public MessageBase
    public:
    bool isSetSellerDays() const { return fieldSellerDays.offset >= 0; }
    FieldSellerDays::ValueType getSellerDays() const { return fieldSellerDays.getValue( buf ); }
+   std::string_view getSellerDaysView() const { return fieldSellerDays.offset >= 0 ? std::string_view{ buf + fieldSellerDays.offset, getValueLength( buf + fieldSellerDays.offset ) } : std::string_view{}; }
    const char * ptrToSellerDays() const { return buf + fieldSellerDays.offset; }
    const char * getIfSetSellerDays() const { return fieldSellerDays.offset >= 0 ? buf + fieldSellerDays.offset : nullptr; }
    private: FieldSellerDays fieldSellerDays;
@@ -5945,6 +6615,7 @@ class GroupMDEntries : public MessageBase
    public:
    bool isSetOrderID() const { return fieldOrderID.offset >= 0; }
    FieldOrderID::ValueType getOrderID() const { return fieldOrderID.getValue( buf ); }
+   std::string_view getOrderIDView() const { return fieldOrderID.offset >= 0 ? std::string_view{ buf + fieldOrderID.offset, getValueLength( buf + fieldOrderID.offset ) } : std::string_view{}; }
    const char * ptrToOrderID() const { return buf + fieldOrderID.offset; }
    const char * getIfSetOrderID() const { return fieldOrderID.offset >= 0 ? buf + fieldOrderID.offset : nullptr; }
    private: FieldOrderID fieldOrderID;
@@ -5952,6 +6623,7 @@ class GroupMDEntries : public MessageBase
    public:
    bool isSetQuoteEntryID() const { return fieldQuoteEntryID.offset >= 0; }
    FieldQuoteEntryID::ValueType getQuoteEntryID() const { return fieldQuoteEntryID.getValue( buf ); }
+   std::string_view getQuoteEntryIDView() const { return fieldQuoteEntryID.offset >= 0 ? std::string_view{ buf + fieldQuoteEntryID.offset, getValueLength( buf + fieldQuoteEntryID.offset ) } : std::string_view{}; }
    const char * ptrToQuoteEntryID() const { return buf + fieldQuoteEntryID.offset; }
    const char * getIfSetQuoteEntryID() const { return fieldQuoteEntryID.offset >= 0 ? buf + fieldQuoteEntryID.offset : nullptr; }
    private: FieldQuoteEntryID fieldQuoteEntryID;
@@ -5959,6 +6631,7 @@ class GroupMDEntries : public MessageBase
    public:
    bool isSetMDEntryBuyer() const { return fieldMDEntryBuyer.offset >= 0; }
    FieldMDEntryBuyer::ValueType getMDEntryBuyer() const { return fieldMDEntryBuyer.getValue( buf ); }
+   std::string_view getMDEntryBuyerView() const { return fieldMDEntryBuyer.offset >= 0 ? std::string_view{ buf + fieldMDEntryBuyer.offset, getValueLength( buf + fieldMDEntryBuyer.offset ) } : std::string_view{}; }
    const char * ptrToMDEntryBuyer() const { return buf + fieldMDEntryBuyer.offset; }
    const char * getIfSetMDEntryBuyer() const { return fieldMDEntryBuyer.offset >= 0 ? buf + fieldMDEntryBuyer.offset : nullptr; }
    private: FieldMDEntryBuyer fieldMDEntryBuyer;
@@ -5966,6 +6639,7 @@ class GroupMDEntries : public MessageBase
    public:
    bool isSetMDEntrySeller() const { return fieldMDEntrySeller.offset >= 0; }
    FieldMDEntrySeller::ValueType getMDEntrySeller() const { return fieldMDEntrySeller.getValue( buf ); }
+   std::string_view getMDEntrySellerView() const { return fieldMDEntrySeller.offset >= 0 ? std::string_view{ buf + fieldMDEntrySeller.offset, getValueLength( buf + fieldMDEntrySeller.offset ) } : std::string_view{}; }
    const char * ptrToMDEntrySeller() const { return buf + fieldMDEntrySeller.offset; }
    const char * getIfSetMDEntrySeller() const { return fieldMDEntrySeller.offset >= 0 ? buf + fieldMDEntrySeller.offset : nullptr; }
    private: FieldMDEntrySeller fieldMDEntrySeller;
@@ -5973,6 +6647,7 @@ class GroupMDEntries : public MessageBase
    public:
    bool isSetNumberOfOrders() const { return fieldNumberOfOrders.offset >= 0; }
    FieldNumberOfOrders::ValueType getNumberOfOrders() const { return fieldNumberOfOrders.getValue( buf ); }
+   std::string_view getNumberOfOrdersView() const { return fieldNumberOfOrders.offset >= 0 ? std::string_view{ buf + fieldNumberOfOrders.offset, getValueLength( buf + fieldNumberOfOrders.offset ) } : std::string_view{}; }
    const char * ptrToNumberOfOrders() const { return buf + fieldNumberOfOrders.offset; }
    const char * getIfSetNumberOfOrders() const { return fieldNumberOfOrders.offset >= 0 ? buf + fieldNumberOfOrders.offset : nullptr; }
    private: FieldNumberOfOrders fieldNumberOfOrders;
@@ -5980,6 +6655,7 @@ class GroupMDEntries : public MessageBase
    public:
    bool isSetMDEntryPositionNo() const { return fieldMDEntryPositionNo.offset >= 0; }
    FieldMDEntryPositionNo::ValueType getMDEntryPositionNo() const { return fieldMDEntryPositionNo.getValue( buf ); }
+   std::string_view getMDEntryPositionNoView() const { return fieldMDEntryPositionNo.offset >= 0 ? std::string_view{ buf + fieldMDEntryPositionNo.offset, getValueLength( buf + fieldMDEntryPositionNo.offset ) } : std::string_view{}; }
    const char * ptrToMDEntryPositionNo() const { return buf + fieldMDEntryPositionNo.offset; }
    const char * getIfSetMDEntryPositionNo() const { return fieldMDEntryPositionNo.offset >= 0 ? buf + fieldMDEntryPositionNo.offset : nullptr; }
    private: FieldMDEntryPositionNo fieldMDEntryPositionNo;
@@ -5987,6 +6663,7 @@ class GroupMDEntries : public MessageBase
    public:
    bool isSetScope() const { return fieldScope.offset >= 0; }
    FieldScope::ValueType getScope() const { return fieldScope.getValue( buf ); }
+   std::string_view getScopeView() const { return fieldScope.offset >= 0 ? std::string_view{ buf + fieldScope.offset, getValueLength( buf + fieldScope.offset ) } : std::string_view{}; }
    const char * ptrToScope() const { return buf + fieldScope.offset; }
    const char * getIfSetScope() const { return fieldScope.offset >= 0 ? buf + fieldScope.offset : nullptr; }
    private: FieldScope fieldScope;
@@ -5994,6 +6671,7 @@ class GroupMDEntries : public MessageBase
    public:
    bool isSetPriceDelta() const { return fieldPriceDelta.offset >= 0; }
    FieldPriceDelta::ValueType getPriceDelta() const { return fieldPriceDelta.getValue( buf ); }
+   std::string_view getPriceDeltaView() const { return fieldPriceDelta.offset >= 0 ? std::string_view{ buf + fieldPriceDelta.offset, getValueLength( buf + fieldPriceDelta.offset ) } : std::string_view{}; }
    const char * ptrToPriceDelta() const { return buf + fieldPriceDelta.offset; }
    const char * getIfSetPriceDelta() const { return fieldPriceDelta.offset >= 0 ? buf + fieldPriceDelta.offset : nullptr; }
    private: FieldPriceDelta fieldPriceDelta;
@@ -6001,6 +6679,7 @@ class GroupMDEntries : public MessageBase
    public:
    bool isSetText() const { return fieldText.offset >= 0; }
    FieldText::ValueType getText() const { return fieldText.getValue( buf ); }
+   std::string_view getTextView() const { return fieldText.offset >= 0 ? std::string_view{ buf + fieldText.offset, getValueLength( buf + fieldText.offset ) } : std::string_view{}; }
    const char * ptrToText() const { return buf + fieldText.offset; }
    const char * getIfSetText() const { return fieldText.offset >= 0 ? buf + fieldText.offset : nullptr; }
    private: FieldText fieldText;
@@ -6008,6 +6687,7 @@ class GroupMDEntries : public MessageBase
    public:
    bool isSetEncodedTextLen() const { return fieldEncodedTextLen.offset >= 0; }
    FieldEncodedTextLen::ValueType getEncodedTextLen() const { return fieldEncodedTextLen.getValue( buf ); }
+   std::string_view getEncodedTextLenView() const { return fieldEncodedTextLen.offset >= 0 ? std::string_view{ buf + fieldEncodedTextLen.offset, getValueLength( buf + fieldEncodedTextLen.offset ) } : std::string_view{}; }
    const char * ptrToEncodedTextLen() const { return buf + fieldEncodedTextLen.offset; }
    const char * getIfSetEncodedTextLen() const { return fieldEncodedTextLen.offset >= 0 ? buf + fieldEncodedTextLen.offset : nullptr; }
    private: FieldEncodedTextLen fieldEncodedTextLen;
@@ -6015,6 +6695,7 @@ class GroupMDEntries : public MessageBase
    public:
    bool isSetEncodedText() const { return fieldEncodedText.offset >= 0; }
    FieldEncodedText::ValueType getEncodedText() const { return fieldEncodedText.getValue( buf ); }
+   std::string_view getEncodedTextView() const { return fieldEncodedText.offset >= 0 ? std::string_view{ buf + fieldEncodedText.offset, getValueLength( buf + fieldEncodedText.offset ) } : std::string_view{}; }
    const char * ptrToEncodedText() const { return buf + fieldEncodedText.offset; }
    const char * getIfSetEncodedText() const { return fieldEncodedText.offset >= 0 ? buf + fieldEncodedText.offset : nullptr; }
    private: FieldEncodedText fieldEncodedText;

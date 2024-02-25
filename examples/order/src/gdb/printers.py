@@ -67,6 +67,18 @@ def getEnumName( msg, fieldName ):
     except gdb.error as err:
         return ''
 
+class FloatPrinter:
+
+    def __init__(self, val):
+        self.val = val
+
+    def to_string(self):
+        res = f"(({self.val.type.name}*){self.val.address})->toString(true).c_str()"
+        return gdb.parse_and_eval(res).string()
+
+    def display_hint(self):
+        return 'string'
+
 class FieldPrinter:
 
     def __init__(self, val):
@@ -174,7 +186,8 @@ def build_fix_printers():
     pp.add_printer( 'order::GroupNestedPartyIDs::Array', '^std::vector\<order::GroupNestedPartyIDs,.*\>$', GroupPrinter )
     pp.add_printer( 'order::GroupLegs', '^order::GroupLegs$', MessagePrinter )
     pp.add_printer( 'order::GroupLegs::Array', '^std::vector\<order::GroupLegs,.*\>$', GroupPrinter )
-    pp.add_printer( 'tiny::Field', '^tiny::Field\<.*\>$', FieldPrinter )
+    pp.add_printer( 'order::Field', '^order::Field\<.*\>$', FieldPrinter )
+    pp.add_printer( 'order::Float', '^order::Float$', FloatPrinter )
     return pp
 
 gdb.printing.register_pretty_printer( gdb.current_objfile(), build_fix_printers() )

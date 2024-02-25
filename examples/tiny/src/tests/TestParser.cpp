@@ -5,6 +5,8 @@
 #include <fstream>
 #include <ctime>
 
+#include "Helper.h"
+
 using namespace tiny;
 using namespace tiny::field;
 using namespace tiny::message;
@@ -144,6 +146,9 @@ int main( int args, const char ** argv )
               << " body length " <<  ( logon.ptrToCheckSum() - header.ptrToMsgType() )
               << " strlen " <<  strlen( fix )
               << std::endl;
-    
+
+    std::string_view blv = header.getBodyLengthView();
+    CHECK( body length view, blv, == "120" )
+
     return 0;
 }

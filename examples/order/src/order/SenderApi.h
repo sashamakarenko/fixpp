@@ -7,7 +7,6 @@
 
 #include <order/Messages.h>
 #include <cstring>
-#include <type_traits>
 #include <chrono>
 
 #ifndef likely

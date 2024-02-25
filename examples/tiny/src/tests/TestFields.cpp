@@ -6,6 +6,7 @@
 #include <fstream>
 #include <ctime>
 #include <iomanip>
+#include <set>
 
 using namespace tiny;
 using namespace std::string_literals;
@@ -15,21 +16,9 @@ using namespace std::string_literals;
 #define W3 std::setw(3)  <<  std::setfill('0')
 #define W2 std::setw(2)  <<  std::setfill('0')
 
-template< typename T >
-bool operator < ( const tiny::Quantity & qty, const T & value )
-{
-    return (T)qty < value;
-}
-
-template<>
-bool operator < <tiny::Quantity>( const tiny::Quantity & left, const tiny::Quantity & right )
-{
-    return  left.isInteger and right.isInteger ? left.value.integer < right.value.integer : (double)left < (double)right;
-}
-
 int main( int args, const char ** argv )
 {
-    // uncomment to test too big tags 
+    // uncomment to test too big tags
     // [[maybe_unused]] raw_tag_t bigTag = tag_as_raw<123'000>();
 
     raw_tag_t raw = tag_as_raw<1>();
@@ -229,8 +218,8 @@ int main( int args, const char ** argv )
     for( auto i = 0; i < noMdEntries; ++i )
     {
         const tiny::GroupMDEntries & mdentry = mdsfr.getGroupMDEntries(i);
-        double price = mdentry.getMDEntryPx();
-        unsigned qty = mdentry.getMDEntrySize();
+        Float price = mdentry.getMDEntryPx();
+        Float qty = mdentry.getMDEntrySize();
         std::cout << "MDEntry: " << i << " price: " << price << " quantity: " << qty << std::endl;
     }
 
@@ -258,20 +247,33 @@ int main( int args, const char ** argv )
     d = parseDouble( "-1.345" I );
     CHECK( double -1.345, d, == -1.345 );
 
-    Quantity qty = parseQuantity( "0" I );
-    CHECK( qty 0 is int, qty.isInteger, == true );
-    CHECK( qty 0, qty.value.integer, == 0 );
+    Quantity qty( "0" I );
+    CHECK( qty 0 is int, qty.isInteger(), == true );
+    CHECK( qty 0, qty.asInt(), == 0 );
+    CHECK( qty < 0, qty < 0, == false );
+    CHECK( qty > 0, qty > 0, == false );
+    CHECK( qty < 1, qty < 1, == true );
 
-    qty = parseQuantity( "0.0" I );
-    CHECK( qty 0.0 is int, qty.isInteger, == false );
-    CHECK( qty 0.0, qty.value.real, == 0.0 );
+    qty.parse( "0.0" I );
+    CHECK( qty 0.0 is int, qty.isInteger(), == false );
+    CHECK( qty 0.0, qty.asDouble(), == 0.0 );
 
-    qty = parseQuantity( "10.023" I );
-    CHECK( qty 10.023 is int, qty.isInteger, == false );
-    CHECK( qty 10.023, qty.value.real, == 10.023 );
+    qty.parse( "10.023" I );
+    CHECK( qty 10.023 is int, qty.isInteger(), == false );
+    CHECK( qty 10.023, qty.asDouble(), == 10.023 );
 
-    CHECK( 10 * (int)10.023, 10 * (int)qty, == 100 );
+    qty = 1.2345;
+    CHECK( qty 1.2345 is int, qty.isInteger(), == false );
+    CHECK( qty 1.2345 get double, qty.asDouble(), == 1.2345 );
+    CHECK( qty 1.2345 get int, qty.asInt(), == 1 );
 
-    std::cout << std::hex << tiny::FieldSenderCompID::RAW_TAG << " " << tiny::FieldSenderCompID::INSERTABLE_TAG << "\n";
+    std::set<Quantity> qtySet;
+    qtySet.insert(   0 );
+    qtySet.insert( 0.0 );
+    CHECK( qty set size 1, qtySet.size(), == 1 );
+    qtySet.insert( 1.0 );
+    qtySet.insert(   1 );
+    CHECK( qty set size 2, qtySet.size(), == 2 );
+
     return 0;
 }

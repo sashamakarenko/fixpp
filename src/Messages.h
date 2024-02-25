@@ -6,6 +6,7 @@ __COPYRIGHT__
 #include <DSTINCDIR/Fields.h>
 #include <DSTINCDIR/Groups.h>
 #include <vector>
+#include <string_view>
 
 namespace DSTNAMESPACE
 {

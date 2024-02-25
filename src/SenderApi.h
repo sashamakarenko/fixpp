@@ -5,7 +5,6 @@ __COPYRIGHT__
 
 #include <DSTINCDIR/Messages.h>
 #include <cstring>
-#include <type_traits>
 #include <chrono>
 
 #ifndef likely
