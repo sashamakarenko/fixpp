@@ -52,7 +52,7 @@ src/$(PRJ_NAME)/FixApi.h: $(wildcard src/spec/*.def) $(wildcard ../../src/*.h) $
 endif
 
 $(TestPerf_EXTRA_DEPENDENCY):
-	$(SUBMAKE) -C $(PE_PRJ_DIR)
+	$(REMAKE) -C $(PE_PRJ_DIR)
 
 clean::
 	$(V)rm -rf src/gdb src/$(PRJ_NAME) mdfr.html

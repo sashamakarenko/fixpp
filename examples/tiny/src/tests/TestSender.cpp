@@ -25,7 +25,7 @@ int main( int args, const char ** argv )
     execReport.append<ClOrdID>("OID123");
     execReport.append<TransactTime>( execReport.userTime1 );
     execReport.append<QtyType>( QtyTypeEnums::CONTRACTS() );
-    execReport.append<Price>( 123.04567, 4 );
+    execReport.append<Price>( "123.04567"_ff );
     execReport.setSeqnumAndUpdateHeaderAndChecksum(123);
     std::cout << computeChecksum( execReport.start, execReport.end - 7 ) << "\n";
     std::cout << fixstr( execReport.start, ttyRgbStyle ) << std::endl;

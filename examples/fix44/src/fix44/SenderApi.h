@@ -254,6 +254,12 @@ struct FixBufferStream
         return *this;
     }
 
+    FixBufferStream & pushValue( const Float & v )
+    {
+        end = v.format( end );
+        return *this;
+    }
+
     inline FixBufferStream & pushValue( TimestampKeeper & tk, const TimePoint & tp );
 
     template< typename FIELD >
@@ -509,6 +515,11 @@ inline unsigned valueMaxLength( const sohstr & v )
     offset_t pos = 0;
     gotoNextField( v.ptr, pos );
     return pos-1;
+}
+
+inline unsigned valueMaxLength( const Float & v )
+{
+    return Float::MAX_DIGITS + 5;
 }
 
 inline unsigned valueMaxLength( const char * & v )

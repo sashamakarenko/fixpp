@@ -30,6 +30,31 @@ int main( int args, const char ** argv )
     CHECK( F3 == F2, F3, == F2 )
     CHECK( F3._int == -2345, F3.getUnderlyingInteger(), == -2345 )
 
+    char buf[ 20 ];
+    f1 = 0;
+    f1.format( buf );
+    CHECK( format 0, f1.toString(), == buf )
+
+    f1 = "0.000"_ff;
+    f1.format( buf );
+    CHECK( format 0.000, f1.toString(), == buf )
+
+    f1 = "123"_ff;
+    f1.format( buf );
+    CHECK( format 123, f1.toString(), == buf )
+
+    f1 = "400.000123"_ff;
+    f1.format( buf );
+    CHECK( format 400.000123, f1.toString(), == buf )
+
+    f1 = "-0.10003"_ff;
+    f1.format( buf );
+    CHECK( format -0.10003, f1.toString(), == buf )
+
+    f1 = "-123456789.10003"_ff;
+    f1.format( buf );
+    CHECK( format -123456789.10003, f1.toString(), == buf )
+
     CHECK( Float( 1 5 ) == 0.00001, Float(1,5), == 0.00001_ff )
     CHECK( Float( 1 5 ) == "0.00001", Float(1,5), == "0.00001"_ff )
     CHECK( Float( -1012345678 8 ) == "-10.12345678", Float(-1012345678,8), == "-10.12345678"_ff )
@@ -216,8 +241,8 @@ int main( int args, const char ** argv )
                         opname = "b/a";
                         break;
                 }
-                
-                if( fab.isInfinite() and 
+
+                if( fab.isInfinite() and
                     std::isinf( ab ) )
                 {
                     continue;

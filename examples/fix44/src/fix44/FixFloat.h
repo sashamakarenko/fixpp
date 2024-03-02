@@ -95,6 +95,8 @@ class Float
 
         std::string toString( bool withDetails = false ) const;
 
+        char * format( char * ptr ) const;
+
         // todo: check flags in all ops
         
         // conversions

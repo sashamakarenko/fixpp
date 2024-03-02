@@ -21,6 +21,8 @@ int main( int args, const char ** argv )
     // uncomment to test too big tags
     // [[maybe_unused]] raw_tag_t bigTag = tag_as_raw<123'000>();
 
+    static_assert( std::is_same_v< Float, field_traits<FieldType::AMT>::native_type > );
+
     raw_tag_t raw = tag_as_raw<1>();
     tag_t tag = raw_to_tag( raw );
     CHECK( tag 1, tag, == 1 );

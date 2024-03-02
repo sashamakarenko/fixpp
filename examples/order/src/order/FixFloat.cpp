@@ -3,6 +3,8 @@
 // https://github.com/sashamakarenko/fixpp/blob/main/LICENSE
 
 #include <order/FixFloat.h>
+#include <cstring>
+#include <charconv>
 
 namespace order
 {
@@ -102,6 +104,39 @@ std::string Float::toString( bool withDetails ) const
         result.append( "=[" ).append( std::to_string(_int) ).append( ":" ).append( std::to_string((unsigned)_dot) ).append( "]" );
     }
     return result;
+}
+
+char * Float::format( char * ptr ) const
+{
+    if( _flags != Flag::CLEAR or _dot > MAX_DIGITS )
+    {
+        return ptr;
+    }
+
+    Int integer = _int / (Int)uintPow10[_dot];
+    if( integer == 0 and _int < 0 )
+    {
+        *ptr++ = '-';
+    }
+
+    std::to_chars_result res = std::to_chars( ptr, ptr + 20, integer );
+    ptr = res.ptr;
+
+    if( _dot > 0 )
+    {
+        *ptr++ = '.';
+        std::memset( ptr, '0', (size_t)_dot );
+        Int mantissa = std::abs( _int % (Int)uintPow10[_dot] );
+        ptr += (size_t)_dot;
+        char * fptr = ptr;
+        do
+        {
+            *(--fptr) = '0' + (mantissa % 10);
+            mantissa /= 10;
+        } while ( mantissa > 0 );
+    }
+    *ptr = 0;
+    return ptr;
 }
 
 inline bool Float::rescale( const Float & other, Int & myValue, Int & otherValue, Dot & highestDot ) const

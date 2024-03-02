@@ -180,7 +180,7 @@ struct Field: FieldBase
 
 
 // Base structure for parsing messages and groups.
-// buf points to the begining of the FIX message or group within the originally scanned string (no copy is done).
+// buf points to the beginning of the FIX message or group within the originally scanned string (no copy is done).
 struct MessageBase
 {
     const char * getMessageBuffer() const
@@ -224,7 +224,6 @@ class Iterator
 };
 
 // underlying types :
-// typedef double     AMT;
 typedef Float      AMT;
 typedef bool       BOOLEAN;
 typedef char       CHAR;
@@ -241,11 +240,9 @@ typedef sohstr     DAYOFMONTH;
 typedef sohstr     MONTHYEAR;
 typedef sohstr     MULTIPLEVALUESTRING;
 typedef unsigned   NUMINGROUP;
-typedef double     PERCENTAGE;
+typedef Float      PERCENTAGE;
 typedef Float      PRICE;
 typedef Float      PRICEOFFSET;
-// typedef double     QTY;
-// typedef unsigned   QTY;
 typedef Float      QTY;
 typedef unsigned   SEQNUM;
 typedef sohstr     STRING;
@@ -263,6 +260,49 @@ typedef sohstr     XID;
 typedef sohstr     XIDREF;
 typedef sohstr     EURIBOR;
 typedef unsigned   TAGNUM;
+
+template<FieldType FT>
+struct field_traits
+{
+};
+
+template<> struct field_traits<FieldType::AMT>                { using native_type = AMT; };
+template<> struct field_traits<FieldType::BOOLEAN>            { using native_type = BOOLEAN; };
+template<> struct field_traits<FieldType::CHAR>               { using native_type = CHAR; };
+template<> struct field_traits<FieldType::COUNTRY>            { using native_type = COUNTRY; };
+template<> struct field_traits<FieldType::CURRENCY>           { using native_type = CURRENCY; };
+template<> struct field_traits<FieldType::DATA>               { using native_type = DATA; };
+template<> struct field_traits<FieldType::EXCHANGE>           { using native_type = EXCHANGE; };
+template<> struct field_traits<FieldType::FLOAT>              { using native_type = FLOAT; };
+template<> struct field_traits<FieldType::INT>                { using native_type = INT; };
+template<> struct field_traits<FieldType::LENGTH>             { using native_type = LENGTH; };
+template<> struct field_traits<FieldType::LOCALMKTDATE>       { using native_type = LOCALMKTDATE; };
+template<> struct field_traits<FieldType::LOCALMKTTIME>       { using native_type = LOCALMKTTIME; };
+template<> struct field_traits<FieldType::DAYOFMONTH>         { using native_type = DAYOFMONTH; };
+template<> struct field_traits<FieldType::MONTHYEAR>          { using native_type = MONTHYEAR; };
+template<> struct field_traits<FieldType::MULTIPLEVALUESTRING>{ using native_type = MULTIPLEVALUESTRING; };
+template<> struct field_traits<FieldType::NUMINGROUP>         { using native_type = NUMINGROUP; };
+template<> struct field_traits<FieldType::PERCENTAGE>         { using native_type = PERCENTAGE; };
+template<> struct field_traits<FieldType::PRICE>              { using native_type = PRICE; };
+template<> struct field_traits<FieldType::PRICEOFFSET>        { using native_type = PRICEOFFSET; };
+template<> struct field_traits<FieldType::QTY>                { using native_type = QTY; };
+template<> struct field_traits<FieldType::SEQNUM>             { using native_type = SEQNUM; };
+template<> struct field_traits<FieldType::STRING>             { using native_type = STRING; };
+template<> struct field_traits<FieldType::MULTIPLECHARVALUE>  { using native_type = MULTIPLECHARVALUE; };
+template<> struct field_traits<FieldType::MULTIPLESTRINGVALUE>{ using native_type = MULTIPLESTRINGVALUE; };
+template<> struct field_traits<FieldType::UTCDATEONLY>        { using native_type = UTCDATEONLY; };
+template<> struct field_traits<FieldType::UTCTIMEONLY>        { using native_type = UTCTIMEONLY; };
+template<> struct field_traits<FieldType::UTCTIMESTAMP>       { using native_type = UTCTIMESTAMP; };
+template<> struct field_traits<FieldType::UTCDATE>            { using native_type = UTCDATE; };
+template<> struct field_traits<FieldType::TZTIMEONLY>         { using native_type = TZTIMEONLY; };
+template<> struct field_traits<FieldType::LANGUAGE>           { using native_type = LANGUAGE; };
+template<> struct field_traits<FieldType::TZTIMESTAMP>        { using native_type = TZTIMESTAMP; };
+template<> struct field_traits<FieldType::XMLDATA>            { using native_type = XMLDATA; };
+template<> struct field_traits<FieldType::XID>                { using native_type = XID; };
+template<> struct field_traits<FieldType::XIDREF>             { using native_type = XIDREF; };
+template<> struct field_traits<FieldType::EURIBOR>            { using native_type = EURIBOR; };
+template<> struct field_traits<FieldType::TAGNUM>             { using native_type = TAGNUM; };
+
 
 inline order::Quantity operator "" _qty( long double q )
 {
