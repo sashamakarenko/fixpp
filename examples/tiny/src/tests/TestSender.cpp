@@ -1,5 +1,5 @@
 #include <tiny/SenderApi.h>
-#include "Helper.h"
+#include <utests/TrivialHelper.h>
 
 using namespace tiny;
 using namespace tiny::field;

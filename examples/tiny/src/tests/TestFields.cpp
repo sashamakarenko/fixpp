@@ -1,6 +1,6 @@
 #include <tiny/Messages.h>
 #include "FixSamples.h"
-#include "Helper.h"
+#include <utests/TrivialHelper.h>
 #include <cstring>
 #include <sstream>
 #include <fstream>

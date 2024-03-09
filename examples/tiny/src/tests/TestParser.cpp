@@ -5,7 +5,7 @@
 #include <fstream>
 #include <ctime>
 
-#include "Helper.h"
+#include <utests/TrivialHelper.h>
 
 using namespace tiny;
 using namespace tiny::field;
