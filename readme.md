@@ -8,7 +8,7 @@ Mindset:
 * No third party dependencies. All the generated code is yours and can go straight into your lib or app.
 * Repeating groups are supported.
 * You can strip off all useless standard FIX tags to fit your venue specs.
-* FIX tags and enums are treated as integeres and not strings thus removing transformations.
+* FIX tags and enums are treated as integers and not strings thus removing transformations.
 
 Receiving ([read more](#input)):
 
@@ -28,7 +28,7 @@ You have to know:
 
 ## Performance
 
-Tags and enums are not converted. For instance the sequence like "|49=" will be inserted as a single integer assignment with value 0x3d'39'34'01. On reception, the string "49" will not be translated to decimal value 49 but rather reinterpreted as 0x39'34.
+Tags and enums are not converted. For instance the sequence like `"|49="` will be inserted as a single integer assignment with value `0x3d'39'34'01`. On reception, the string `"49"` will not be translated to decimal value 49 but rather reinterpreted as `0x39'34`.
 
 > Results obtained in a tight loop on i9-9900K @ 5GHz
 
@@ -458,12 +458,12 @@ $> make
 $> make check
 ```
 
-- `fix44` all committed complete lib with all FIX4.4 messages
-- `fixdump` tool to decode FIX messages
-- `odd` lib with unit tests with irregular messages
-- `tiny` venue specific example with unit tests
-- `order` all committed primitive project only with NewOrderSingle and ExecutionReport
-- `spec` input files for different FIX standards
+- [fix44](examples/fix44) all committed complete lib with all FIX4.4 messages
+- [fixdump](examples/fixdump) tool to decode FIX messages
+- [odd](examples/odd) lib with unit tests with irregular messages
+- [tiny](examples/tiny) venue specific example with unit tests
+- [order](examples/order) all committed primitive project only with NewOrderSingle and ExecutionReport
+- [spec](examples/spec) input files for different FIX standards
 
 ## Custom HTML output
 ```cpp
