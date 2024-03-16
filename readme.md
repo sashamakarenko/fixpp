@@ -52,7 +52,8 @@ Tags and enums are not converted. For instance the sequence like "|49=" will be 
 
 ## Input
 
-Based on your venue FIX API prepare files `Fields.def`, `Groups.def` and `Messages.def`. One can pick up ready to use files from examples/spec and adjust `Groups.def` and `Messages.def`. `Fields.def` will be cleaned automatically during generation.
+Based on your venue FIX API prepare files `Fields.def`, `Groups.def` and `Messages.def`. One can pick up ready to use files from [examples/spec](examples/spec) and adjust `Groups.def` and `Messages.def`. `Fields.def` will be cleaned automatically during generation.
+If you have already a [Quickfix](https://github.com/quickfix/quickfix) XML file you can use the [xml2cpp](xml2cpp) converter to generate the definitions.
 
 **src/spec/Fields.def**
 ```
@@ -128,7 +129,7 @@ FIX_MSG_END
 ...
 ```
 
-See more in `examples`.
+See more in [examples](examples).
 
 ## Output
 

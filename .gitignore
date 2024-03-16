@@ -5,6 +5,7 @@ examples/odd/src/odd
 examples/fixdump/src/fixdump/fix*
 examples/tiny/mdfr.html
 target
+PrjInfo.h
 .settings
 .project
 .classpath

@@ -42,12 +42,15 @@ public class Main
     static LinkedHashMap<String,List<Object>>  expGroups     = new LinkedHashMap<>();
     static HashSet<String>                     writtenGroups = new HashSet<>();
 
-    /*
-     2 args: ../spec/FIX44.xml ../examples/spec/fix44
-     3 args: ../spec/FIX50SP2.xml ../spec/FIXT11.xml ../examples/spec/fix50
-     */
     public static void main( String args[] )
     {
+        if( args.length < 2 || args.length > 3 )
+        {
+            System.err.println( "usage: " );
+            System.err.println( "java -cp xml2cpp-1.0.jar phix.xml2cpp.Main /path/to/FIX44.xml /output/path/to/dir/with/defs" );
+            System.err.println( "java -cp xml2cpp-1.0.jar phix.xml2cpp.Main /path/to/FIX50SP2.xml /path/to/FIXT11.xml /output/path/to/dir/with/defs" );
+            System.exit(1);
+        }
         try
         {
             JAXBContext jaxbContent = JAXBContext.newInstance( "phix.xml2cpp.model" );

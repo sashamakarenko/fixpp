@@ -6,7 +6,8 @@
                 "${default}",
                 "${workspaceFolder}/src",
                 "${workspaceFolder}/src/tiny",
-                "${workspaceFolder}/../../../pe/src"
+                "${workspaceFolder}/../../../pe/src",
+                "${workspaceFolder}/../../../makefile"
             ],
             "defines": [],
             "intelliSenseMode": "linux-gcc-x64",
