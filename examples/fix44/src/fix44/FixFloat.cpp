@@ -216,7 +216,6 @@ Float Float::mul( const Float & other ) const
 
 Float Float::div( const Float & other ) const
 {
-#ifdef __SIZEOF_INT128__
     if( other._int == 0 )
     {
         if( _int == 0 )
@@ -233,6 +232,7 @@ Float Float::div( const Float & other ) const
         return FLOAT_0;
     }
 
+#ifdef FIXPP_FLOAT_PRECISE_DIVISION_SUPPORTED
     // todo: check flags
     Int myValue, otherValue;
     Dot newDot;
@@ -260,7 +260,8 @@ Float Float::div( const Float & other ) const
     Float res( (Int)div, newDot );
     return res.squeeze();
 #else
-    retun Float(Flag::NOTSUPPORTED);
+    Float res( this->asDouble() / other.asDouble(), OP_PRECISION );
+    return res.squeeze();
 #endif
 }
 

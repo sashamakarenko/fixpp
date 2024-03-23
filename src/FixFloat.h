@@ -6,6 +6,13 @@ __COPYRIGHT__
 #include <DSTINCDIR/FixTypes.h>
 #include <cmath>
 
+#ifdef __SIZEOF_INT128__
+#ifndef FIXPP_FLOAT_PRECISE_DIVISION_SUPPORTED
+#define FIXPP_FLOAT_PRECISE_DIVISION_SUPPORTED
+#endif
+#else
+#endif
+
 namespace DSTNAMESPACE
 {
 
@@ -23,10 +30,10 @@ class Float
         constexpr static Int      MAX_VALUE           = uintPow10[MAX_DIGITS];
         constexpr static double   MAX_DOUBLE_VALUE    = double(MAX_VALUE);
 
-        #ifdef __SIZEOF_INT128__
-        constexpr static bool     DIVISION_SUPPORTED  = true;
+        #ifdef FIXPP_FLOAT_PRECISE_DIVISION_SUPPORTED
+        constexpr static bool     PRECISE_DIVISION_SUPPORTED  = true;
         #else
-        constexpr static bool     DIVISION_SUPPORTED  = false;
+        constexpr static bool     PRECISE_DIVISION_SUPPORTED  = false;
         #endif
 
         static_assert( MAX_NUMBER_PRECISION >= MAX_DIGITS );

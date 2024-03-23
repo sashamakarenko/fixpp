@@ -372,7 +372,7 @@ This structure has two attributes: `begin` and `end`. Respectively pointing to t
 Each time a new field is inserted `end` will shift forward accordingly. In most cases the fields will be appended as tag-value pairs:
 ```cpp
 execReport.append<ClOrdID>("OID4567");
-execReport.append<QtyType>( QtyTypeEnums::UNITS.value );
+execReport.append<QtyType>( QtyTypeEnums::UNITS );
 execReport.append<Price>( 21123.04567, 2 );
 ```
 

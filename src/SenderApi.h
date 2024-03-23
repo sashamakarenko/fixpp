@@ -638,6 +638,13 @@ struct ReusableMessageBuilder: FixBufferStream
         return pushValue( v, precision );
     }
 
+    template< typename FIELD >
+    FixBufferStream & appendSafely( const FieldEnum< typename FIELD::ValueType > & item  )
+    {
+        resizeIfNecessary( valueMaxLength( item.value ) );
+        return append<FIELD>( item.value );
+    }
+
     const std::string             msgType;
     std::vector<char>             buffer;
     char                        * start;
