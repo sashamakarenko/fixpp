@@ -50,6 +50,18 @@
 			}
 		},
 		{
+			"label": "make release",
+			"type": "shell",
+			"command": "make",
+			"problemMatcher": [
+				"$gcc"
+			],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			}
+		},
+		{
 			"label": "Clean",
 			"type": "shell",
 			"command": "make clean",

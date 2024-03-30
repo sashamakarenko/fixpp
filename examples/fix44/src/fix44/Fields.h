@@ -1897,7 +1897,7 @@ struct AdvSideEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType BUY;
    static const ItemType SELL;
    static const ItemType CROSS;
@@ -1915,7 +1915,7 @@ struct AdvTransTypeEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType NEW;
    static const ItemType CANCEL;
    static const ItemType REPLACE;
@@ -1932,7 +1932,7 @@ struct CommTypeEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType PER_UNIT;
    static const ItemType PERCENTAGE;
    static const ItemType ABSOLUTE;
@@ -1952,7 +1952,7 @@ struct ExecInstEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType NOT_HELD;
    static const ItemType WORK;
    static const ItemType GO_ALONG;
@@ -2006,7 +2006,7 @@ struct HandlInstEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType AUTOMATED_EXECUTION_ORDER_PRIVATE_NO_BROKER_INTERVENTION;
    static const ItemType AUTOMATED_EXECUTION_ORDER_PUBLIC_BROKER_INTERVENTION_OK;
    static const ItemType MANUAL_ORDER_BEST_EXECUTION;
@@ -2023,7 +2023,7 @@ struct SecurityIDSourceEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType CUSIP;
    static const ItemType SEDOL;
    static const ItemType QUIK;
@@ -2056,7 +2056,7 @@ struct IOIQltyIndEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType LOW;
    static const ItemType MEDIUM;
    static const ItemType HIGH;
@@ -2073,7 +2073,7 @@ struct IOIQtyEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType SMALL;
    static const ItemType MEDIUM;
    static const ItemType LARGE;
@@ -2090,7 +2090,7 @@ struct IOITransTypeEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType NEW;
    static const ItemType CANCEL;
    static const ItemType REPLACE;
@@ -2107,7 +2107,7 @@ struct LastCapacityEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType AGENT;
    static const ItemType CROSS_AS_AGENT;
    static const ItemType CROSS_AS_PRINCIPAL;
@@ -2125,7 +2125,7 @@ struct MsgTypeEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType HEARTBEAT;
    static const ItemType TEST_REQUEST;
    static const ItemType RESEND_REQUEST;
@@ -2232,7 +2232,7 @@ struct OrdStatusEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType NEW;
    static const ItemType PARTIALLY_FILLED;
    static const ItemType FILLED;
@@ -2260,7 +2260,7 @@ struct OrdTypeEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType MARKET;
    static const ItemType LIMIT;
    static const ItemType STOP;
@@ -2291,7 +2291,7 @@ struct PossDupFlagEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType YES;
    static const ItemType NO;
 };
@@ -2307,7 +2307,7 @@ struct SideEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType BUY;
    static const ItemType SELL;
    static const ItemType BUY_MINUS;
@@ -2337,7 +2337,7 @@ struct TimeInForceEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType DAY;
    static const ItemType GOOD_TILL_CANCEL;
    static const ItemType AT_THE_OPENING;
@@ -2359,7 +2359,7 @@ struct UrgencyEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType NORMAL;
    static const ItemType FLASH;
    static const ItemType BACKGROUND;
@@ -2376,7 +2376,7 @@ struct SettlTypeEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType REGULAR;
    static const ItemType CASH;
    static const ItemType NEXT_DAY;
@@ -2400,7 +2400,7 @@ struct AllocTransTypeEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType NEW;
    static const ItemType REPLACE;
    static const ItemType CANCEL;
@@ -2417,7 +2417,7 @@ struct PositionEffectEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType OPEN;
    static const ItemType CLOSE;
    static const ItemType ROLLED;
@@ -2435,7 +2435,7 @@ struct ProcessCodeEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType REGULAR;
    static const ItemType SOFT_DOLLAR;
    static const ItemType STEP_IN;
@@ -2456,7 +2456,7 @@ struct AllocStatusEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType ACCEPTED;
    static const ItemType BLOCK_LEVEL_REJECT;
    static const ItemType ACCOUNT_LEVEL_REJECT;
@@ -2476,7 +2476,7 @@ struct AllocRejCodeEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType UNKNOWN_ACCOUNT;
    static const ItemType INCORRECT_QUANTITY;
    static const ItemType INCORRECT_AVERAGE_PRICE;
@@ -2504,7 +2504,7 @@ struct EmailTypeEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType NEW;
    static const ItemType REPLY;
    static const ItemType ADMIN_REPLY;
@@ -2521,7 +2521,7 @@ struct PossResendEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType YES;
    static const ItemType NO;
 };
@@ -2537,7 +2537,7 @@ struct EncryptMethodEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType NONE;
    static const ItemType PKCS;
    static const ItemType DES;
@@ -2558,7 +2558,7 @@ struct CxlRejReasonEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType TOO_LATE_TO_CANCEL;
    static const ItemType UNKNOWN_ORDER;
    static const ItemType BROKER;
@@ -2580,7 +2580,7 @@ struct OrdRejReasonEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType BROKER;
    static const ItemType UNKNOWN_SYMBOL;
    static const ItemType EXCHANGE_CLOSED;
@@ -2610,7 +2610,7 @@ struct IOIQualifierEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType ALL_OR_NONE;
    static const ItemType MARKET_ON_CLOSE;
    static const ItemType AT_THE_CLOSE;
@@ -2642,7 +2642,7 @@ struct ReportToExchEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType YES;
    static const ItemType NO;
 };
@@ -2658,7 +2658,7 @@ struct LocateReqdEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType YES;
    static const ItemType NO;
 };
@@ -2674,7 +2674,7 @@ struct ForexReqEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType YES;
    static const ItemType NO;
 };
@@ -2690,7 +2690,7 @@ struct GapFillFlagEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType YES;
    static const ItemType NO;
 };
@@ -2706,7 +2706,7 @@ struct DKReasonEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType UNKNOWN_SYMBOL;
    static const ItemType WRONG_SIDE;
    static const ItemType QUANTITY_EXCEEDS_ORDER;
@@ -2727,7 +2727,7 @@ struct IOINaturalFlagEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType YES;
    static const ItemType NO;
 };
@@ -2743,7 +2743,7 @@ struct MiscFeeTypeEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType REGULATORY;
    static const ItemType TAX;
    static const ItemType LOCAL_COMMISSION;
@@ -2769,7 +2769,7 @@ struct ResetSeqNumFlagEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType YES;
    static const ItemType NO;
 };
@@ -2785,7 +2785,7 @@ struct ExecTypeEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType NEW;
    static const ItemType DONE_FOR_DAY;
    static const ItemType CANCELED;
@@ -2816,7 +2816,7 @@ struct SettlCurrFxRateCalcEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType MULTIPLY;
    static const ItemType DIVIDE;
 };
@@ -2832,7 +2832,7 @@ struct SettlInstModeEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType STANDING_INSTRUCTIONS_PROVIDED;
    static const ItemType SPECIFIC_ORDER_FOR_A_SINGLE_ACCOUNT;
    static const ItemType REQUEST_REJECT;
@@ -2849,7 +2849,7 @@ struct SettlInstTransTypeEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType NEW;
    static const ItemType CANCEL;
    static const ItemType REPLACE;
@@ -2867,7 +2867,7 @@ struct SettlInstSourceEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType BROKERS_INSTRUCTIONS;
    static const ItemType INSTITUTIONS_INSTRUCTIONS;
    static const ItemType INVESTOR;
@@ -2884,7 +2884,7 @@ struct SecurityTypeEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType FUTURE;
    static const ItemType OPTION;
    static const ItemType EURO_SUPRANATIONAL_COUPONS;
@@ -2993,7 +2993,7 @@ struct StandInstDbTypeEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType OTHER;
    static const ItemType DTC_SID;
    static const ItemType THOMSON_ALERT;
@@ -3012,7 +3012,7 @@ struct SettlDeliveryTypeEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType VERSUS_PAYMENT_DELIVER;
    static const ItemType FREE_DELIVER;
    static const ItemType TRI_PARTY;
@@ -3030,7 +3030,7 @@ struct AllocLinkTypeEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType F_X_NETTING;
    static const ItemType F_X_SWAP;
 };
@@ -3046,7 +3046,7 @@ struct PutOrCallEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType PUT;
    static const ItemType CALL;
 };
@@ -3062,7 +3062,7 @@ struct CoveredOrUncoveredEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType COVERED;
    static const ItemType UNCOVERED;
 };
@@ -3078,7 +3078,7 @@ struct NotifyBrokerOfCreditEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType YES;
    static const ItemType NO;
 };
@@ -3094,7 +3094,7 @@ struct AllocHandlInstEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType MATCH;
    static const ItemType FORWARD;
    static const ItemType FORWARD_AND_MATCH;
@@ -3111,7 +3111,7 @@ struct RoutingTypeEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType TARGET_FIRM;
    static const ItemType TARGET_LIST;
    static const ItemType BLOCK_FIRM;
@@ -3129,7 +3129,7 @@ struct StipulationTypeEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType AMT;
    static const ItemType AUTO_REINVESTMENT_AT_RATE_OR_BETTER;
    static const ItemType BANK_QUALIFIED;
@@ -3193,7 +3193,7 @@ struct YieldTypeEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType AFTER_TAX_YIELD;
    static const ItemType ANNUAL_YIELD;
    static const ItemType YIELD_AT_ISSUE;
@@ -3241,7 +3241,7 @@ struct TradedFlatSwitchEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType YES;
    static const ItemType NO;
 };
@@ -3257,7 +3257,7 @@ struct SubscriptionRequestTypeEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType SNAPSHOT;
    static const ItemType SNAPSHOT_PLUS_UPDATES;
    static const ItemType DISABLE_PREVIOUS_SNAPSHOT_PLUS_UPDATE_REQUEST;
@@ -3274,7 +3274,7 @@ struct MDUpdateTypeEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType FULL_REFRESH;
    static const ItemType INCREMENTAL_REFRESH;
 };
@@ -3290,7 +3290,7 @@ struct AggregatedBookEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType YES;
    static const ItemType NO;
 };
@@ -3306,7 +3306,7 @@ struct MDEntryTypeEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType BID;
    static const ItemType OFFER;
    static const ItemType TRADE;
@@ -3333,7 +3333,7 @@ struct TickDirectionEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType PLUS_TICK;
    static const ItemType ZERO_PLUS_TICK;
    static const ItemType MINUS_TICK;
@@ -3351,7 +3351,7 @@ struct QuoteConditionEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType OPEN;
    static const ItemType CLOSED;
    static const ItemType EXCHANGE_BEST;
@@ -3374,7 +3374,7 @@ struct TradeConditionEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType CASH;
    static const ItemType AVERAGE_PRICE_TRADE;
    static const ItemType CASH_TRADE;
@@ -3405,7 +3405,7 @@ struct MDUpdateActionEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType NEW;
    static const ItemType CHANGE;
    static const ItemType DELETE;
@@ -3422,7 +3422,7 @@ struct MDReqRejReasonEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType UNKNOWN_SYMBOL;
    static const ItemType DUPLICATE_MDREQID;
    static const ItemType INSUFFICIENT_BANDWIDTH;
@@ -3449,7 +3449,7 @@ struct DeleteReasonEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType CANCELATION;
    static const ItemType ERROR;
 };
@@ -3465,7 +3465,7 @@ struct OpenCloseSettlFlagEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType DAILY_OPEN;
    static const ItemType SESSION_OPEN;
    static const ItemType DELIVERY_SETTLEMENT_ENTRY;
@@ -3485,7 +3485,7 @@ struct FinancialStatusEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType BANKRUPT;
    static const ItemType PENDING_DELISTING;
 };
@@ -3501,7 +3501,7 @@ struct CorporateActionEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType EX_DIVIDEND;
    static const ItemType EX_DISTRIBUTION;
    static const ItemType EX_RIGHTS;
@@ -3520,7 +3520,7 @@ struct QuoteStatusEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType ACCEPTED;
    static const ItemType CANCELED_FOR_SYMBOL;
    static const ItemType CANCELED_FOR_SECURITY_TYPE;
@@ -3550,7 +3550,7 @@ struct QuoteCancelTypeEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType CANCEL_FOR_SYMBOL;
    static const ItemType CANCEL_FOR_SECURITY_TYPE;
    static const ItemType CANCEL_FOR_UNDERLYING_SYMBOL;
@@ -3568,7 +3568,7 @@ struct QuoteRejectReasonEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType UNKNOWN_SYMBOL;
    static const ItemType EXCHANGE;
    static const ItemType QUOTE_REQUEST_EXCEEDS_LIMIT;
@@ -3592,7 +3592,7 @@ struct QuoteResponseLevelEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType NO_ACKNOWLEDGEMENT;
    static const ItemType ACKNOWLEDGE_ONLY_NEGATIVE_OR_ERRONEOUS_QUOTES;
    static const ItemType ACKNOWLEDGE_EACH_QUOTE_MESSAGES;
@@ -3609,7 +3609,7 @@ struct QuoteRequestTypeEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType MANUAL;
    static const ItemType AUTOMATIC;
 };
@@ -3625,7 +3625,7 @@ struct SecurityRequestTypeEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType REQUEST_SECURITY_IDENTITY_AND_SPECIFICATIONS;
    static const ItemType REQUEST_SECURITY_IDENTITY_FOR_THE_SPECIFICATIONS_PROVIDED;
    static const ItemType REQUEST_LIST_SECURITY_TYPES;
@@ -3643,7 +3643,7 @@ struct SecurityResponseTypeEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType ACCEPT_SECURITY_PROPOSAL_AS_IS;
    static const ItemType ACCEPT_SECURITY_PROPOSAL_WITH_REVISIONS_AS_INDICATED_IN_THE_MESSAGE;
    static const ItemType REJECT_SECURITY_PROPOSAL;
@@ -3661,7 +3661,7 @@ struct UnsolicitedIndicatorEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType YES;
    static const ItemType NO;
 };
@@ -3677,7 +3677,7 @@ struct SecurityTradingStatusEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType OPENING_DELAY;
    static const ItemType TRADING_HALT;
    static const ItemType RESUME;
@@ -3713,7 +3713,7 @@ struct HaltReasonCharEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType ORDER_IMBALANCE;
    static const ItemType EQUIPMENT_CHANGEOVER;
    static const ItemType NEWS_PENDING;
@@ -3733,7 +3733,7 @@ struct InViewOfCommonEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType YES;
    static const ItemType NO;
 };
@@ -3749,7 +3749,7 @@ struct DueToRelatedEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType YES;
    static const ItemType NO;
 };
@@ -3765,7 +3765,7 @@ struct AdjustmentEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType CANCEL;
    static const ItemType ERROR;
    static const ItemType CORRECTION;
@@ -3782,7 +3782,7 @@ struct TradSesMethodEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType ELECTRONIC;
    static const ItemType OPEN_OUTCRY;
    static const ItemType TWO_PARTY;
@@ -3799,7 +3799,7 @@ struct TradSesModeEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType TESTING;
    static const ItemType SIMULATED;
    static const ItemType PRODUCTION;
@@ -3816,7 +3816,7 @@ struct TradSesStatusEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType UNKNOWN;
    static const ItemType HALTED;
    static const ItemType OPEN;
@@ -3837,7 +3837,7 @@ struct MessageEncodingEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType JIS;
    static const ItemType EUC;
    static const ItemType FOR_USING_SJIS;
@@ -3855,7 +3855,7 @@ struct SessionRejectReasonEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType INVALID_TAG_NUMBER;
    static const ItemType REQUIRED_TAG_MISSING;
    static const ItemType TAG_NOT_DEFINED_FOR_THIS_MESSAGE_TYPE;
@@ -3888,7 +3888,7 @@ struct BidRequestTransTypeEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType NEW;
    static const ItemType CANCEL;
 };
@@ -3904,7 +3904,7 @@ struct SolicitedFlagEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType YES;
    static const ItemType NO;
 };
@@ -3920,7 +3920,7 @@ struct ExecRestatementReasonEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType GT_CORPORATE_ACTION;
    static const ItemType GT_RENEWAL;
    static const ItemType VERBAL_CHANGE;
@@ -3946,7 +3946,7 @@ struct BusinessRejectReasonEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType OTHER;
    static const ItemType UNKOWN_ID;
    static const ItemType UNKNOWN_SECURITY;
@@ -3968,7 +3968,7 @@ struct MsgDirectionEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType SEND;
    static const ItemType RECEIVE;
 };
@@ -3984,7 +3984,7 @@ struct DiscretionInstEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType RELATED_TO_DISPLAYED_PRICE;
    static const ItemType RELATED_TO_MARKET_PRICE;
    static const ItemType RELATED_TO_PRIMARY_PRICE;
@@ -4005,7 +4005,7 @@ struct BidTypeEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType NON_DISCLOSED_STYLE;
    static const ItemType DISCLOSED_STYLE;
    static const ItemType NO_BIDDING_PROCESS;
@@ -4022,7 +4022,7 @@ struct BidDescriptorTypeEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType SECTOR;
    static const ItemType COUNTRY;
    static const ItemType INDEX;
@@ -4039,7 +4039,7 @@ struct SideValueIndEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType SIDEVALUE1;
    static const ItemType SIDEVALUE_2;
 };
@@ -4055,7 +4055,7 @@ struct LiquidityIndTypeEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType _5DAY_MOVING_AVERAGE;
    static const ItemType _20_DAY_MOVING_AVERAGE;
    static const ItemType NORMAL_MARKET_SIZE;
@@ -4073,7 +4073,7 @@ struct ExchangeForPhysicalEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType YES;
    static const ItemType NO;
 };
@@ -4089,7 +4089,7 @@ struct ProgRptReqsEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType BUYSIDE_EXPLICITLY_REQUESTS_STATUS_USING_STATUSREQUEST;
    static const ItemType SELLSIDE_PERIODICALLY_SENDS_STATUS_USING_LISTSTATUS_PERIOD_OPTIONALLY_SPECIFIED_IN_PROGRESSPERIOD;
    static const ItemType REAL_TIME_EXECUTION_REPORTS;
@@ -4106,7 +4106,7 @@ struct IncTaxIndEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType NET;
    static const ItemType GROSS;
 };
@@ -4122,7 +4122,7 @@ struct BidTradeTypeEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType RISK_TRADE;
    static const ItemType VWAP_GUARANTEE;
    static const ItemType AGENCY;
@@ -4140,7 +4140,7 @@ struct BasisPxTypeEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType CLOSING_PRICE_AT_MORNING_SESSION;
    static const ItemType CLOSING_PRICE;
    static const ItemType CURRENT_PRICE;
@@ -4167,7 +4167,7 @@ struct PriceTypeEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType PERCENTAGE;
    static const ItemType PER_UNIT;
    static const ItemType FIXED_AMOUNT;
@@ -4192,7 +4192,7 @@ struct GTBookingInstEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType BOOK_OUT_ALL_TRADES_ON_DAY_OF_EXECUTION;
    static const ItemType ACCUMULATE_EXECUTIONS_UNTIL_ORDER_IS_FILLED_OR_EXPIRES;
    static const ItemType ACCUMULATE_UNTIL_VERBALLY_NOTIFIED_OTHERWISE;
@@ -4209,7 +4209,7 @@ struct ListStatusTypeEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType ACK;
    static const ItemType RESPONSE;
    static const ItemType TIMED;
@@ -4229,7 +4229,7 @@ struct NetGrossIndEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType NET;
    static const ItemType GROSS;
 };
@@ -4245,7 +4245,7 @@ struct ListOrderStatusEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType INBIDDINGPROCESS;
    static const ItemType RECEIVEDFOREXECUTION;
    static const ItemType EXECUTING;
@@ -4266,7 +4266,7 @@ struct ListExecInstTypeEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType IMMEDIATE;
    static const ItemType WAIT_FOR_EXECUTE_INSTRUCTION;
    static const ItemType EXCHANGE_SWITCH_CIV_ORDER_SELL_DRIVEN;
@@ -4285,7 +4285,7 @@ struct CxlRejResponseToEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType ORDER_CANCEL_REQUEST;
    static const ItemType ORDER_CANCEL_REPLACE_REQUEST;
 };
@@ -4301,7 +4301,7 @@ struct MultiLegReportingTypeEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType SINGLE_SECURITY;
    static const ItemType INDIVIDUAL_LEG_OF_A_MULTI_LEG_SECURITY;
    static const ItemType MULTI_LEG_SECURITY;
@@ -4318,7 +4318,7 @@ struct PartyIDSourceEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType BIC;
    static const ItemType GENERALLY_ACCEPTED_MARKET_PARTICIPANT_IDENTIFIER;
    static const ItemType PROPRIETARY_CUSTOM_CODE;
@@ -4350,7 +4350,7 @@ struct PartyRoleEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType EXECUTING_FIRM;
    static const ItemType BROKER_OF_CREDIT;
    static const ItemType CLIENT_ID;
@@ -4401,7 +4401,7 @@ struct ProductEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType AGENCY;
    static const ItemType COMMODITY;
    static const ItemType CORPORATE;
@@ -4428,7 +4428,7 @@ struct TestMessageIndicatorEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType YES;
    static const ItemType NO;
 };
@@ -4444,7 +4444,7 @@ struct RoundingDirectionEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType ROUND_TO_NEAREST;
    static const ItemType ROUND_DOWN;
    static const ItemType ROUND_UP;
@@ -4461,7 +4461,7 @@ struct DistribPaymentMethodEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType CREST;
    static const ItemType NSCC;
    static const ItemType EUROCLEAR;
@@ -4487,7 +4487,7 @@ struct CancellationRightsEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType YES;
    static const ItemType NO_EXECUTION_ONLY;
    static const ItemType NO_WAIVER_AGREEMENT;
@@ -4505,7 +4505,7 @@ struct MoneyLaunderingStatusEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType PASSED;
    static const ItemType NOT_CHECKED;
    static const ItemType EXEMPT_BELOW_THE_LIMIT;
@@ -4524,7 +4524,7 @@ struct ExecPriceTypeEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType BID_PRICE;
    static const ItemType CREATION_PRICE;
    static const ItemType CREATION_PRICE_PLUS_ADJUSTMENT;
@@ -4546,7 +4546,7 @@ struct PaymentMethodEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType CREST;
    static const ItemType NSCC;
    static const ItemType EUROCLEAR;
@@ -4575,7 +4575,7 @@ struct TaxAdvantageTypeEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType NONE_NOT_APPLICABLE;
    static const ItemType MAXI_ISA;
    static const ItemType TESSA;
@@ -4619,7 +4619,7 @@ struct FundRenewWaivEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType YES;
    static const ItemType NO;
 };
@@ -4635,7 +4635,7 @@ struct RegistStatusEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType ACCEPTED;
    static const ItemType REJECTED;
    static const ItemType HELD;
@@ -4653,7 +4653,7 @@ struct RegistRejReasonCodeEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType INVALID_UNACCEPTABLE_ACCOUNT_TYPE;
    static const ItemType INVALID_UNACCEPTABLE_TAX_EXEMPT_TYPE;
    static const ItemType INVALID_UNACCEPTABLE_OWNERSHIP_TYPE;
@@ -4686,7 +4686,7 @@ struct RegistTransTypeEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType NEW;
    static const ItemType REPLACE;
    static const ItemType CANCEL;
@@ -4703,7 +4703,7 @@ struct OwnershipTypeEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType JOINT_INVESTORS;
    static const ItemType TENANTS_IN_COMMON;
    static const ItemType JOINT_TRUSTEES;
@@ -4720,7 +4720,7 @@ struct ContAmtTypeEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType COMMISSION_AMOUNT;
    static const ItemType COMMISSION;
    static const ItemType INITIAL_CHARGE_AMOUNT;
@@ -4749,7 +4749,7 @@ struct OwnerTypeEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType INDIVIDUAL_INVESTOR;
    static const ItemType PUBLIC_COMPANY;
    static const ItemType PRIVATE_COMPANY;
@@ -4776,7 +4776,7 @@ struct OrderCapacityEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType AGENCY;
    static const ItemType PROPRIETARY;
    static const ItemType INDIVIDUAL;
@@ -4796,7 +4796,7 @@ struct OrderRestrictionsEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType PROGRAM_TRADE;
    static const ItemType INDEX_ARBITRAGE;
    static const ItemType NON_INDEX_ARBITRAGE;
@@ -4820,7 +4820,7 @@ struct MassCancelRequestTypeEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType CANCEL_ORDERS_FOR_A_SECURITY;
    static const ItemType CANCEL_ORDERS_FOR_AN_UNDERLYING_SECURITY;
    static const ItemType CANCEL_ORDERS_FOR_A_PRODUCT;
@@ -4841,7 +4841,7 @@ struct MassCancelResponseEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType CANCEL_REQUEST_REJECTED;
    static const ItemType CANCEL_ORDERS_FOR_A_SECURITY;
    static const ItemType CANCEL_ORDERS_FOR_AN_UNDERLYING_SECURITY;
@@ -4863,7 +4863,7 @@ struct MassCancelRejectReasonEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType MASS_CANCEL_NOT_SUPPORTED;
    static const ItemType INVALID_OR_UNKNOWN_SECURITY;
    static const ItemType INVALID_OR_UNKNOWN_UNDERLYING;
@@ -4885,7 +4885,7 @@ struct QuoteTypeEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType INDICATIVE;
    static const ItemType TRADEABLE;
    static const ItemType RESTRICTED_TRADEABLE;
@@ -4903,7 +4903,7 @@ struct CashMarginEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType CASH;
    static const ItemType MARGIN_OPEN;
    static const ItemType MARGIN_CLOSE;
@@ -4920,7 +4920,7 @@ struct ScopeEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType LOCAL;
    static const ItemType NATIONAL;
    static const ItemType GLOBAL;
@@ -4937,7 +4937,7 @@ struct MDImplicitDeleteEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType YES;
    static const ItemType NO;
 };
@@ -4953,7 +4953,7 @@ struct CrossTypeEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType CROSS_TRADE_WHICH_IS_EXECUTED_COMPLETELY_OR_NOT_BOTH_SIDES_ARE_TREATED_IN_THE_SAME_MANNER_THIS_IS_EQUIVALENT_TO_AN_ALL_OR_NONE;
    static const ItemType CROSS_TRADE_WHICH_IS_EXECUTED_PARTIALLY_AND_THE_REST_IS_CANCELLED_ONE_SIDE_IS_FULLY_EXECUTED_THE_OTHER_SIDE_IS_PARTIALLY_EXECUTED_WITH_THE_REMAINDER_BEING_CANCELLED_THIS_IS_EQUIVALENT_TO_AN_IMMEDIATE_OR_CANCEL_ON_THE_OTHER_SIDE_NOTE_THE_CROSSPRIORITZATION;
    static const ItemType CROSS_TRADE_WHICH_IS_PARTIALLY_EXECUTED_WITH_THE_UNFILLED_PORTIONS_REMAINING_ACTIVE_ONE_SIDE_OF_THE_CROSS_IS_FULLY_EXECUTED;
@@ -4971,7 +4971,7 @@ struct CrossPrioritizationEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType NONE;
    static const ItemType BUY_SIDE_IS_PRIORITIZED;
    static const ItemType SELL_SIDE_IS_PRIORITIZED;
@@ -4988,7 +4988,7 @@ struct NoSidesEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType ONE_SIDE;
    static const ItemType BOTH_SIDES;
 };
@@ -5004,7 +5004,7 @@ struct SecurityListRequestTypeEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType SYMBOL;
    static const ItemType SECURITYTYPE_AND_OR_CFICODE;
    static const ItemType PRODUCT;
@@ -5023,7 +5023,7 @@ struct SecurityRequestResultEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType VALID_REQUEST;
    static const ItemType INVALID_OR_UNSUPPORTED_REQUEST;
    static const ItemType NO_INSTRUMENTS_FOUND_THAT_MATCH_SELECTION_CRITERIA;
@@ -5043,7 +5043,7 @@ struct MultiLegRptTypeReqEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType REPORT_BY_MULITLEG_SECURITY_ONLY;
    static const ItemType REPORT_BY_MULTILEG_SECURITY_AND_BY_INSTRUMENT_LEGS_BELONGING_TO_THE_MULTILEG_SECURITY;
    static const ItemType REPORT_BY_INSTRUMENT_LEGS_BELONGING_TO_THE_MULTILEG_SECURITY_ONLY;
@@ -5060,7 +5060,7 @@ struct TradSesStatusRejReasonEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType UNKNOWN_OR_INVALID_TRADINGSESSIONID;
    static const ItemType OTHER;
 };
@@ -5076,7 +5076,7 @@ struct TradeRequestTypeEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType ALL_TRADES;
    static const ItemType MATCHED_TRADES_MATCHING_CRITERIA_PROVIDED_ON_REQUEST;
    static const ItemType UNMATCHED_TRADES_THAT_MATCH_CRITERIA;
@@ -5095,7 +5095,7 @@ struct PreviouslyReportedEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType YES;
    static const ItemType NO;
 };
@@ -5111,7 +5111,7 @@ struct MatchStatusEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType COMPARED_MATCHED_OR_AFFIRMED;
    static const ItemType UNCOMPARED_UNMATCHED_OR_UNAFFIRMED;
    static const ItemType ADVISORY_OR_ALERT;
@@ -5128,7 +5128,7 @@ struct MatchTypeEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType EXACT_MATCH_ON_TRADE_DATE_STOCK_SYMBOL_QUANTITY_PRICE_TRADE_TYPE_AND_SPECIAL_TRADE_INDICATOR_PLUS_FOUR_BADGES_AND_EXECUTION_TIME;
    static const ItemType EXACT_MATCH_ON_TRADE_DATE_STOCK_SYMBOL_QUANTITY_PRICE_TRADE_TYPE_AND_SPECIAL_TRADE_INDICATOR_PLUS_FOUR_BADGES;
    static const ItemType EXACT_MATCH_ON_TRADE_DATE_STOCK_SYMBOL_QUANTITY_PRICE_TRADE_TYPE_AND_SPECIAL_TRADE_INDICATOR_PLUS_TWO_BADGES_AND_EXECUTION_TIME;
@@ -5160,7 +5160,7 @@ struct OddLotEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType YES;
    static const ItemType NO;
 };
@@ -5176,7 +5176,7 @@ struct ClearingInstructionEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType PROCESS_NORMALLY;
    static const ItemType EXCLUDE_FROM_ALL_NETTING;
    static const ItemType BILATERAL_NETTING_ONLY;
@@ -5204,7 +5204,7 @@ struct AccountTypeEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType ACCOUNT_IS_CARRIED_ON_CUSTOMER_SIDE_OF_BOOKS;
    static const ItemType ACCOUNT_IS_CARRIED_ON_NON_CUSTOMER_SIDE_OF_BOOKS;
    static const ItemType HOUSE_TRADER;
@@ -5225,7 +5225,7 @@ struct CustOrderCapacityEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType MEMBER_TRADING_FOR_THEIR_OWN_ACCOUNT;
    static const ItemType CLEARING_FIRM_TRADING_FOR_ITS_PROPRIETARY_ACCOUNT;
    static const ItemType MEMBER_TRADING_FOR_ANOTHER_MEMBER;
@@ -5243,7 +5243,7 @@ struct MassStatusReqTypeEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType STATUS_FOR_ORDERS_FOR_A_SECURITY;
    static const ItemType STATUS_FOR_ORDERS_FOR_AN_UNDERLYING_SECURITY;
    static const ItemType STATUS_FOR_ORDERS_FOR_A_PRODUCT;
@@ -5265,7 +5265,7 @@ struct DayBookingInstEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType CAN_TRIGGER_BOOKING_WITHOUT_REFERENCE_TO_THE_ORDER_INITIATOR;
    static const ItemType SPEAK_WITH_ORDER_INITIATOR_BEFORE_BOOKING;
    static const ItemType ACCUMULATE;
@@ -5282,7 +5282,7 @@ struct BookingUnitEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType EACH_PARTIAL_EXECUTION_IS_A_BOOKABLE_UNIT;
    static const ItemType AGGREGATE_PARTIAL_EXECUTIONS_ON_THIS_ORDER_AND_BOOK_ONE_TRADE_PER_ORDER;
    static const ItemType AGGREGATE_EXECUTIONS_FOR_THIS_SYMBOL_SIDE_AND_SETTLEMENT_DATE;
@@ -5299,7 +5299,7 @@ struct PreallocMethodEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType PRO_RATA;
    static const ItemType DO_NOT_PRO_RATA_DISCUSS_FIRST;
 };
@@ -5315,7 +5315,7 @@ struct AllocTypeEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType CALCULATED;
    static const ItemType PRELIMINARY;
    static const ItemType READY_TO_BOOK;
@@ -5334,7 +5334,7 @@ struct ClearingFeeIndicatorEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType CBOE_MEMBER;
    static const ItemType NON_MEMBER_AND_CUSTOMER;
    static const ItemType EQUITY_MEMBER_AND_CLEARING_MEMBER;
@@ -5362,7 +5362,7 @@ struct WorkingIndicatorEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType YES;
    static const ItemType NO;
 };
@@ -5378,7 +5378,7 @@ struct PriorityIndicatorEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType PRIORITY_UNCHANGED;
    static const ItemType LOST_PRIORITY_AS_RESULT_OF_ORDER_CHANGE;
 };
@@ -5394,7 +5394,7 @@ struct LegalConfirmEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType YES;
    static const ItemType NO;
 };
@@ -5410,7 +5410,7 @@ struct QuoteRequestRejectReasonEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType UNKNOWN_SYMBOL;
    static const ItemType EXCHANGE;
    static const ItemType QUOTE_REQUEST_EXCEEDS_LIMIT;
@@ -5435,7 +5435,7 @@ struct AcctIDSourceEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType BIC;
    static const ItemType SID_CODE;
    static const ItemType TFM;
@@ -5455,7 +5455,7 @@ struct ConfirmStatusEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType RECEIVED;
    static const ItemType MISMATCHED_ACCOUNT;
    static const ItemType MISSING_SETTLEMENT_INSTRUCTIONS;
@@ -5474,7 +5474,7 @@ struct ConfirmTransTypeEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType NEW;
    static const ItemType REPLACE;
    static const ItemType CANCEL;
@@ -5491,7 +5491,7 @@ struct DeliveryFormEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType BOOKENTRY;
    static const ItemType BEARER;
 };
@@ -5507,7 +5507,7 @@ struct LegSwapTypeEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType PAR_FOR_PAR;
    static const ItemType MODIFIED_DURATION;
    static const ItemType RISK;
@@ -5525,7 +5525,7 @@ struct QuotePriceTypeEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType PERCENT;
    static const ItemType PER_SHARE;
    static const ItemType FIXED_AMOUNT;
@@ -5549,7 +5549,7 @@ struct QuoteRespTypeEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType HIT_LIFT;
    static const ItemType COUNTER;
    static const ItemType EXPIRED;
@@ -5569,7 +5569,7 @@ struct PosTypeEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType TRANSACTION_QUANTITY;
    static const ItemType INTRA_SPREAD_QTY;
    static const ItemType INTER_SPREAD_QTY;
@@ -5602,7 +5602,7 @@ struct PosQtyStatusEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType SUBMITTED;
    static const ItemType ACCEPTED;
    static const ItemType REJECTED;
@@ -5619,7 +5619,7 @@ struct PosAmtTypeEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType FINAL_MARK_TO_MARKET_AMOUNT;
    static const ItemType INCREMENTAL_MARK_TO_MARKET_AMOUNT;
    static const ItemType TRADE_VARIATION_AMOUNT;
@@ -5641,7 +5641,7 @@ struct PosTransTypeEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType EXERCISE;
    static const ItemType DO_NOT_EXERCISE;
    static const ItemType POSITION_ADJUSTMENT;
@@ -5660,7 +5660,7 @@ struct PosMaintActionEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType NEW_USED_TO_INCREMENT_THE_OVERALL_TRANSACTION_QUANTITY;
    static const ItemType REPLACE_USED_TO_OVERRIDE_THE_OVERALL_TRANSACTION_QUANTITY_OR_SPECIFIC_ADD_MESSAGES_BASED_ON_THE_REFERENCE_ID;
    static const ItemType CANCEL_USED_TO_REMOVE_THE_OVERALL_TRANSACTION_OR_SPECIFIC_ADD_MESSAGES_BASED_ON_REFERENCE_ID;
@@ -5677,7 +5677,7 @@ struct SettlSessIDEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType INTRADAY;
    static const ItemType REGULAR_TRADING_HOURS;
    static const ItemType ELECTRONIC_TRADING_HOURS;
@@ -5694,7 +5694,7 @@ struct AdjustmentTypeEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType PROCESS_REQUEST_AS_MARGIN_DISPOSITION;
    static const ItemType DELTA_PLUS;
    static const ItemType DELTA_MINUS;
@@ -5712,7 +5712,7 @@ struct PosMaintStatusEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType ACCEPTED;
    static const ItemType ACCEPTED_WITH_WARNINGS;
    static const ItemType REJECTED;
@@ -5731,7 +5731,7 @@ struct PosMaintResultEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType SUCCESSFUL_COMPLETION;
    static const ItemType REJECTED;
    static const ItemType OTHER;
@@ -5748,7 +5748,7 @@ struct PosReqTypeEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType POSITIONS;
    static const ItemType TRADES;
    static const ItemType EXERCISES;
@@ -5766,7 +5766,7 @@ struct ResponseTransportTypeEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType INBAND_TRANSPORT_THE_REQUEST_WAS_SENT_OVER;
    static const ItemType OUT_OF_BAND_PRE_ARRANGED_OUT_OF_BAND_DELIVERY_MECHANISM;
 };
@@ -5782,7 +5782,7 @@ struct PosReqResultEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType VALID_REQUEST;
    static const ItemType INVALID_OR_UNSUPPORTED_REQUEST;
    static const ItemType NO_POSITIONS_FOUND_THAT_MATCH_CRITERIA;
@@ -5802,7 +5802,7 @@ struct PosReqStatusEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType COMPLETED;
    static const ItemType COMPLETED_WITH_WARNINGS;
    static const ItemType REJECTED;
@@ -5819,7 +5819,7 @@ struct SettlPriceTypeEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType FINAL;
    static const ItemType THEORETICAL;
 };
@@ -5835,7 +5835,7 @@ struct AssignmentMethodEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType RANDOM;
    static const ItemType PRORATA;
 };
@@ -5851,7 +5851,7 @@ struct ExerciseMethodEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType AUTOMATIC;
    static const ItemType MANUAL;
 };
@@ -5867,7 +5867,7 @@ struct TradeRequestResultEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType SUCCESSFUL;
    static const ItemType INVALID_OR_UNKNOWN_INSTRUMENT;
    static const ItemType INVALID_TYPE_OF_TRADE_REQUESTED;
@@ -5890,7 +5890,7 @@ struct TradeRequestStatusEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType ACCEPTED;
    static const ItemType COMPLETED;
    static const ItemType REJECTED;
@@ -5907,7 +5907,7 @@ struct TradeReportRejectReasonEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType SUCCESSFUL;
    static const ItemType INVALID_PARTY_INFORMATION;
    static const ItemType UNKNOWN_INSTRUMENT;
@@ -5927,7 +5927,7 @@ struct SideMultiLegReportingTypeEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType SINGLE_SECURITY;
    static const ItemType INDIVIDUAL_LEG_OF_A_MULTI_LEG_SECURITY;
    static const ItemType MULTI_LEG_SECURITY;
@@ -5944,7 +5944,7 @@ struct TrdRegTimestampTypeEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType EXECUTION_TIME;
    static const ItemType TIME_IN;
    static const ItemType TIME_OUT;
@@ -5963,7 +5963,7 @@ struct ConfirmTypeEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType STATUS;
    static const ItemType CONFIRMATION;
    static const ItemType CONFIRMATION_REQUEST_REJECTED;
@@ -5980,7 +5980,7 @@ struct ConfirmRejReasonEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType MISMATCHED_ACCOUNT;
    static const ItemType MISSING_SETTLEMENT_INSTRUCTIONS;
    static const ItemType OTHER;
@@ -5997,7 +5997,7 @@ struct BookingTypeEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType REGULAR_BOOKING;
    static const ItemType CFD;
    static const ItemType TOTAL_RETURN_SWAP;
@@ -6014,7 +6014,7 @@ struct AllocSettlInstTypeEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType USE_DEFAULT_INSTRUCTIONS;
    static const ItemType DERIVE_FROM_PARAMETERS_PROVIDED;
    static const ItemType FULL_DETAILS_PROVIDED;
@@ -6033,7 +6033,7 @@ struct DlvyInstTypeEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType SECURITIES;
    static const ItemType CASH;
 };
@@ -6049,7 +6049,7 @@ struct TerminationTypeEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType OVERNIGHT;
    static const ItemType TERM;
    static const ItemType FLEXIBLE;
@@ -6067,7 +6067,7 @@ struct SettlInstReqRejCodeEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType UNABLE_TO_PROCESS_REQUEST;
    static const ItemType UNKNOWN_ACCOUNT;
    static const ItemType NO_MATCHING_SETTLEMENT_INSTRUCTIONS_FOUND;
@@ -6085,7 +6085,7 @@ struct AllocReportTypeEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType SELLSIDE_CALCULATED_USING_PRELIMINARY;
    static const ItemType SELLSIDE_CALCULATED_WITHOUT_PRELIMINARY;
    static const ItemType WAREHOUSE_RECAP;
@@ -6103,7 +6103,7 @@ struct AllocCancReplaceReasonEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType ORIGINAL_DETAILS_INCOMPLETE_INCORRECT;
    static const ItemType CHANGE_IN_UNDERLYING_ORDER_DETAILS;
    static const ItemType OTHER;
@@ -6120,7 +6120,7 @@ struct AllocAccountTypeEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType ACCOUNT_IS_CARRIED_ON_CUSTOMER_SIDE_OF_BOOKS;
    static const ItemType ACCOUNT_IS_CARRIED_ON_NON_CUSTOMER_SIDE_OF_BOOKS;
    static const ItemType HOUSE_TRADER;
@@ -6141,7 +6141,7 @@ struct PartySubIDTypeEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType FIRM;
    static const ItemType PERSON;
    static const ItemType SYSTEM;
@@ -6181,7 +6181,7 @@ struct AllocIntermedReqTypeEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType PENDING_ACCEPT;
    static const ItemType PENDING_RELEASE;
    static const ItemType PENDING_REVERSAL;
@@ -6201,7 +6201,7 @@ struct ApplQueueResolutionEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType NO_ACTION_TAKEN;
    static const ItemType QUEUE_FLUSHED;
    static const ItemType OVERLAY_LAST;
@@ -6219,7 +6219,7 @@ struct ApplQueueActionEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType NO_ACTION_TAKEN;
    static const ItemType QUEUE_FLUSHED;
    static const ItemType OVERLAY_LAST;
@@ -6237,7 +6237,7 @@ struct AvgPxIndicatorEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType NO_AVERAGE_PRICING;
    static const ItemType TRADE_IS_PART_OF_AN_AVERAGE_PRICE_GROUP_IDENTIFIED_BY_THE_TRADELINKID;
    static const ItemType LAST_TRADE_IN_THE_AVERAGE_PRICE_GROUP_IDENTIFIED_BY_THE_TRADELINKID;
@@ -6254,7 +6254,7 @@ struct TradeAllocIndicatorEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType ALLOCATION_NOT_REQUIRED;
    static const ItemType ALLOCATION_REQUIRED;
    static const ItemType USE_ALLOCATION_PROVIDED_WITH_THE_TRADE;
@@ -6271,7 +6271,7 @@ struct ExpirationCycleEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType EXPIRE_ON_TRADING_SESSION_CLOSE;
    static const ItemType EXPIRE_ON_TRADING_SESSION_OPEN;
 };
@@ -6287,7 +6287,7 @@ struct TrdTypeEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType REGULAR_TRADE;
    static const ItemType BLOCK_TRADE;
    static const ItemType EFP;
@@ -6312,7 +6312,7 @@ struct PegMoveTypeEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType FLOATING;
    static const ItemType FIXED;
 };
@@ -6328,7 +6328,7 @@ struct PegOffsetTypeEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType PRICE;
    static const ItemType BASIS_POINTS;
    static const ItemType TICKS;
@@ -6346,7 +6346,7 @@ struct PegLimitTypeEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType OR_BETTER;
    static const ItemType STRICT_LIMIT_IS_A_STRICT_LIMIT;
    static const ItemType OR_WORSE_FOR_A_BUY_THE_PEG_LIMIT_IS_A_MINIMUM_AND_FOR_A_SELL_THE_PEG_LIMIT_IS_A_MAXIMUM;
@@ -6363,7 +6363,7 @@ struct PegRoundDirectionEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType MORE_AGGRESSIVE_ON_A_BUY_ORDER_ROUND_THE_PRICE_UP_ROUND_UP_TO_THE_NEAREST_TICK_ON_A_SELL_ROUND_DOWN_TO_THE_NEAREST_TICK;
    static const ItemType MORE_PASSIVE_ON_A_BUY_ORDER_ROUND_DOWN_TO_NEAREST_TICK_ON_A_SELL_ORDER_ROUND_UP_TO_NEAREST_TICK;
 };
@@ -6379,7 +6379,7 @@ struct PegScopeEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType LOCAL;
    static const ItemType NATIONAL;
    static const ItemType GLOBAL;
@@ -6397,7 +6397,7 @@ struct DiscretionMoveTypeEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType FLOATING;
    static const ItemType FIXED;
 };
@@ -6413,7 +6413,7 @@ struct DiscretionOffsetTypeEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType PRICE;
    static const ItemType BASIS_POINTS;
    static const ItemType TICKS;
@@ -6431,7 +6431,7 @@ struct DiscretionLimitTypeEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType OR_BETTER;
    static const ItemType STRICT_LIMIT_IS_A_STRICT_LIMIT;
    static const ItemType OR_WORSE_FOR_A_BUY_THE_DISCRETION_PRICE_IS_A_MINIMUM_AND_FOR_A_SELL_THE_DISCRETION_PRICE_IS_A_MAXIMUM;
@@ -6448,7 +6448,7 @@ struct DiscretionRoundDirectionEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType MORE_AGGRESSIVE_ON_A_BUY_ORDER_ROUND_THE_PRICE_UP_ROUND_UP_TO_THE_NEAREST_TICK_ON_A_SELL_ROUND_DOWN_TO_THE_NEAREST_TICK;
    static const ItemType MORE_PASSIVE_ON_A_BUY_ORDER_ROUND_DOWN_TO_NEAREST_TICK_ON_A_SELL_ORDER_ROUND_UP_TO_NEAREST_TICK;
 };
@@ -6464,7 +6464,7 @@ struct DiscretionScopeEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType LOCAL;
    static const ItemType NATIONAL;
    static const ItemType GLOBAL;
@@ -6482,7 +6482,7 @@ struct TargetStrategyEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType VWAP;
    static const ItemType PARTICIPATE;
    static const ItemType MININIZE_MARKET_IMPACT;
@@ -6499,7 +6499,7 @@ struct LastLiquidityIndEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType ADDED_LIQUIDITY;
    static const ItemType REMOVED_LIQUIDITY;
    static const ItemType LIQUIDITY_ROUTED_OUT;
@@ -6516,7 +6516,7 @@ struct PublishTrdIndicatorEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType YES;
    static const ItemType NO;
 };
@@ -6532,7 +6532,7 @@ struct ShortSaleReasonEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType DEALER_SOLD_SHORT;
    static const ItemType DEALER_SOLD_SHORT_EXEMPT;
    static const ItemType SELLING_CUSTOMER_SOLD_SHORT;
@@ -6552,7 +6552,7 @@ struct QtyTypeEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType UNITS;
    static const ItemType CONTRACTS;
 };
@@ -6568,7 +6568,7 @@ struct TradeReportTypeEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType SUBMIT;
    static const ItemType ALLEGED;
    static const ItemType ACCEPT;
@@ -6590,7 +6590,7 @@ struct AllocNoOrdersTypeEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType NOT_SPECIFIED;
    static const ItemType EXPLICIT_LIST_PROVIDED;
 };
@@ -6606,7 +6606,7 @@ struct EventTypeEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType PUT;
    static const ItemType CALL;
    static const ItemType TENDER;
@@ -6625,7 +6625,7 @@ struct InstrAttribTypeEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType FLAT;
    static const ItemType ZERO_COUPON;
    static const ItemType INTEREST_BEARING;
@@ -6662,7 +6662,7 @@ struct CPProgramEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType _3;
    static const ItemType _4;
    static const ItemType OTHER;
@@ -6679,7 +6679,7 @@ struct MiscFeeBasisEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType ABSOLUTE;
    static const ItemType PER_UNIT;
    static const ItemType PERCENTAGE;
@@ -6696,7 +6696,7 @@ struct LastFragmentEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType YES;
    static const ItemType NO;
 };
@@ -6712,7 +6712,7 @@ struct CollAsgnReasonEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType INITIAL;
    static const ItemType SCHEDULED;
    static const ItemType TIME_WARNING;
@@ -6734,7 +6734,7 @@ struct CollInquiryQualifierEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType TRADEDATE;
    static const ItemType GC_INSTRUMENT;
    static const ItemType COLLATERALINSTRUMENT;
@@ -6756,7 +6756,7 @@ struct CollAsgnTransTypeEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType NEW;
    static const ItemType REPLACE;
    static const ItemType CANCEL;
@@ -6775,7 +6775,7 @@ struct CollAsgnRespTypeEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType RECEIVED;
    static const ItemType ACCEPTED;
    static const ItemType DECLINED;
@@ -6793,7 +6793,7 @@ struct CollAsgnRejectReasonEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType UNKNOWN_DEAL;
    static const ItemType UNKNOWN_OR_INVALID_INSTRUMENT;
    static const ItemType UNAUTHORIZED_TRANSACTION;
@@ -6814,7 +6814,7 @@ struct CollStatusEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType UNASSIGNED;
    static const ItemType PARTIALLY_ASSIGNED;
    static const ItemType ASSIGNMENT_PROPOSED;
@@ -6833,7 +6833,7 @@ struct DeliveryTypeEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType VERSUS_PAYMENT_DELIVER;
    static const ItemType FREE_DELIVER;
    static const ItemType TRI_PARTY;
@@ -6851,7 +6851,7 @@ struct UserRequestTypeEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType LOGONUSER;
    static const ItemType LOGOFFUSER;
    static const ItemType CHANGEPASSWORDFORUSER;
@@ -6869,7 +6869,7 @@ struct UserStatusEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType LOGGED_IN;
    static const ItemType NOT_LOGGED_IN;
    static const ItemType USER_NOT_RECOGNISED;
@@ -6889,7 +6889,7 @@ struct StatusValueEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType CONNECTED;
    static const ItemType NOT_CONNECTED_DOWN_EXPECTED_UP;
    static const ItemType NOT_CONNECTED_DOWN_EXPECTED_DOWN;
@@ -6907,7 +6907,7 @@ struct NetworkRequestTypeEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType SNAPSHOT;
    static const ItemType SUBSCRIBE;
    static const ItemType STOP_SUBSCRIBING;
@@ -6925,7 +6925,7 @@ struct NetworkStatusResponseTypeEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType FULL;
    static const ItemType INCREMENTAL_UPDATE;
 };
@@ -6941,7 +6941,7 @@ struct TrdRptStatusEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType ACCEPTED;
    static const ItemType REJECTED;
 };
@@ -6957,7 +6957,7 @@ struct AffirmStatusEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType RECEIVED;
    static const ItemType CONFIRM_REJECTED_IE_NOT_AFFIRMED;
    static const ItemType AFFIRMED;
@@ -6974,7 +6974,7 @@ struct CollActionEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType RETAIN;
    static const ItemType ADD;
    static const ItemType REMOVE;
@@ -6991,7 +6991,7 @@ struct CollInquiryStatusEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType ACCEPTED;
    static const ItemType ACCEPTED_WITH_WARNINGS;
    static const ItemType COMPLETED;
@@ -7010,7 +7010,7 @@ struct CollInquiryResultEnums final: FieldEnumsBase {
    virtual const char * getFieldName() const override;
    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
-   virtual const FieldEnumBase * const * const getEnums() const override;
+   virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType SUCCESSFUL;
    static const ItemType INVALID_OR_UNKNOWN_INSTRUMENT;
    static const ItemType INVALID_OR_UNKNOWN_COLLATERAL_TYPE;

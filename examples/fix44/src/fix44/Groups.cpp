@@ -8744,10 +8744,12 @@ FieldDepth GroupLegStipulations::getFieldDepth( raw_tag_t tag ){
    switch( tag ){
      case FieldLegStipulationType::RAW_TAG :
      ret.isFirstInGroup = true;
+     [[fallthrough]];
      case FieldLegStipulationValue::RAW_TAG :
 
-     ret.depth = 0; 
-     return ret; 
+     case 0: 
+     ret.depth = 0;
+     return ret;
    }
    for( auto m : groupGetDepthMethods ) if( m ){
      FieldDepth gdepth = (*m)( tag ); 
@@ -8761,12 +8763,14 @@ FieldDepth GroupEvents::getFieldDepth( raw_tag_t tag ){
    switch( tag ){
      case FieldEventType::RAW_TAG :
      ret.isFirstInGroup = true;
+     [[fallthrough]];
      case FieldEventDate::RAW_TAG :
      case FieldEventPx::RAW_TAG :
      case FieldEventText::RAW_TAG :
 
-     ret.depth = 0; 
-     return ret; 
+     case 0: 
+     ret.depth = 0;
+     return ret;
    }
    for( auto m : groupGetDepthMethods ) if( m ){
      FieldDepth gdepth = (*m)( tag ); 
@@ -8780,10 +8784,12 @@ FieldDepth GroupLegSecurityAltID::getFieldDepth( raw_tag_t tag ){
    switch( tag ){
      case FieldLegSecurityAltID::RAW_TAG :
      ret.isFirstInGroup = true;
+     [[fallthrough]];
      case FieldLegSecurityAltIDSource::RAW_TAG :
 
-     ret.depth = 0; 
-     return ret; 
+     case 0: 
+     ret.depth = 0;
+     return ret;
    }
    for( auto m : groupGetDepthMethods ) if( m ){
      FieldDepth gdepth = (*m)( tag ); 
@@ -8797,11 +8803,13 @@ FieldDepth GroupCapacities::getFieldDepth( raw_tag_t tag ){
    switch( tag ){
      case FieldOrderCapacity::RAW_TAG :
      ret.isFirstInGroup = true;
+     [[fallthrough]];
      case FieldOrderRestrictions::RAW_TAG :
      case FieldOrderCapacityQty::RAW_TAG :
 
-     ret.depth = 0; 
-     return ret; 
+     case 0: 
+     ret.depth = 0;
+     return ret;
    }
    for( auto m : groupGetDepthMethods ) if( m ){
      FieldDepth gdepth = (*m)( tag ); 
@@ -8815,10 +8823,12 @@ FieldDepth GroupNested3PartySubIDs::getFieldDepth( raw_tag_t tag ){
    switch( tag ){
      case FieldNested3PartySubID::RAW_TAG :
      ret.isFirstInGroup = true;
+     [[fallthrough]];
      case FieldNested3PartySubIDType::RAW_TAG :
 
-     ret.depth = 0; 
-     return ret; 
+     case 0: 
+     ret.depth = 0;
+     return ret;
    }
    for( auto m : groupGetDepthMethods ) if( m ){
      FieldDepth gdepth = (*m)( tag ); 
@@ -8832,10 +8842,12 @@ FieldDepth GroupPartySubIDs::getFieldDepth( raw_tag_t tag ){
    switch( tag ){
      case FieldPartySubID::RAW_TAG :
      ret.isFirstInGroup = true;
+     [[fallthrough]];
      case FieldPartySubIDType::RAW_TAG :
 
-     ret.depth = 0; 
-     return ret; 
+     case 0: 
+     ret.depth = 0;
+     return ret;
    }
    for( auto m : groupGetDepthMethods ) if( m ){
      FieldDepth gdepth = (*m)( tag ); 
@@ -8849,10 +8861,12 @@ FieldDepth GroupNested2PartySubIDs::getFieldDepth( raw_tag_t tag ){
    switch( tag ){
      case FieldNested2PartySubID::RAW_TAG :
      ret.isFirstInGroup = true;
+     [[fallthrough]];
      case FieldNested2PartySubIDType::RAW_TAG :
 
-     ret.depth = 0; 
-     return ret; 
+     case 0: 
+     ret.depth = 0;
+     return ret;
    }
    for( auto m : groupGetDepthMethods ) if( m ){
      FieldDepth gdepth = (*m)( tag ); 
@@ -8866,12 +8880,14 @@ FieldDepth GroupNested2PartyIDs::getFieldDepth( raw_tag_t tag ){
    switch( tag ){
      case FieldNested2PartyID::RAW_TAG :
      ret.isFirstInGroup = true;
+     [[fallthrough]];
      case FieldNested2PartyIDSource::RAW_TAG :
      case FieldNested2PartyRole::RAW_TAG :
      case FieldNoNested2PartySubIDs::RAW_TAG :
 
-     ret.depth = 0; 
-     return ret; 
+     case 0: 
+     ret.depth = 0;
+     return ret;
    }
    for( auto m : groupGetDepthMethods ) if( m ){
      FieldDepth gdepth = (*m)( tag ); 
@@ -8885,11 +8901,13 @@ FieldDepth GroupHops::getFieldDepth( raw_tag_t tag ){
    switch( tag ){
      case FieldHopCompID::RAW_TAG :
      ret.isFirstInGroup = true;
+     [[fallthrough]];
      case FieldHopSendingTime::RAW_TAG :
      case FieldHopRefID::RAW_TAG :
 
-     ret.depth = 0; 
-     return ret; 
+     case 0: 
+     ret.depth = 0;
+     return ret;
    }
    for( auto m : groupGetDepthMethods ) if( m ){
      FieldDepth gdepth = (*m)( tag ); 
@@ -8903,9 +8921,11 @@ FieldDepth GroupCollInquiryQualifier::getFieldDepth( raw_tag_t tag ){
    switch( tag ){
      case FieldCollInquiryQualifier::RAW_TAG :
      ret.isFirstInGroup = true;
+     [[fallthrough]];
 
-     ret.depth = 0; 
-     return ret; 
+     case 0: 
+     ret.depth = 0;
+     return ret;
    }
    for( auto m : groupGetDepthMethods ) if( m ){
      FieldDepth gdepth = (*m)( tag ); 
@@ -8919,12 +8939,14 @@ FieldDepth GroupPartyIDs::getFieldDepth( raw_tag_t tag ){
    switch( tag ){
      case FieldPartyID::RAW_TAG :
      ret.isFirstInGroup = true;
+     [[fallthrough]];
      case FieldPartyIDSource::RAW_TAG :
      case FieldPartyRole::RAW_TAG :
      case FieldNoPartySubIDs::RAW_TAG :
 
-     ret.depth = 0; 
-     return ret; 
+     case 0: 
+     ret.depth = 0;
+     return ret;
    }
    for( auto m : groupGetDepthMethods ) if( m ){
      FieldDepth gdepth = (*m)( tag ); 
@@ -8938,6 +8960,7 @@ FieldDepth GroupAllocs::getFieldDepth( raw_tag_t tag ){
    switch( tag ){
      case FieldAllocAccount::RAW_TAG :
      ret.isFirstInGroup = true;
+     [[fallthrough]];
      case FieldAllocAcctIDSource::RAW_TAG :
      case FieldAllocPrice::RAW_TAG :
      case FieldIndividualAllocID::RAW_TAG :
@@ -8946,8 +8969,9 @@ FieldDepth GroupAllocs::getFieldDepth( raw_tag_t tag ){
      case FieldEncodedAllocTextLen::RAW_TAG :
      case FieldEncodedAllocText::RAW_TAG :
 
-     ret.depth = 0; 
-     return ret; 
+     case 0: 
+     ret.depth = 0;
+     return ret;
    }
    for( auto m : groupGetDepthMethods ) if( m ){
      FieldDepth gdepth = (*m)( tag ); 
@@ -8961,10 +8985,12 @@ FieldDepth GroupTradingSessions::getFieldDepth( raw_tag_t tag ){
    switch( tag ){
      case FieldTradingSessionID::RAW_TAG :
      ret.isFirstInGroup = true;
+     [[fallthrough]];
      case FieldTradingSessionSubID::RAW_TAG :
 
-     ret.depth = 0; 
-     return ret; 
+     case 0: 
+     ret.depth = 0;
+     return ret;
    }
    for( auto m : groupGetDepthMethods ) if( m ){
      FieldDepth gdepth = (*m)( tag ); 
@@ -8978,10 +9004,12 @@ FieldDepth GroupSecurityAltID::getFieldDepth( raw_tag_t tag ){
    switch( tag ){
      case FieldSecurityAltID::RAW_TAG :
      ret.isFirstInGroup = true;
+     [[fallthrough]];
      case FieldSecurityAltIDSource::RAW_TAG :
 
-     ret.depth = 0; 
-     return ret; 
+     case 0: 
+     ret.depth = 0;
+     return ret;
    }
    for( auto m : groupGetDepthMethods ) if( m ){
      FieldDepth gdepth = (*m)( tag ); 
@@ -8995,10 +9023,12 @@ FieldDepth GroupUnderlyingSecurityAltID::getFieldDepth( raw_tag_t tag ){
    switch( tag ){
      case FieldUnderlyingSecurityAltID::RAW_TAG :
      ret.isFirstInGroup = true;
+     [[fallthrough]];
      case FieldUnderlyingSecurityAltIDSource::RAW_TAG :
 
-     ret.depth = 0; 
-     return ret; 
+     case 0: 
+     ret.depth = 0;
+     return ret;
    }
    for( auto m : groupGetDepthMethods ) if( m ){
      FieldDepth gdepth = (*m)( tag ); 
@@ -9012,10 +9042,12 @@ FieldDepth GroupUnderlyingStips::getFieldDepth( raw_tag_t tag ){
    switch( tag ){
      case FieldUnderlyingStipType::RAW_TAG :
      ret.isFirstInGroup = true;
+     [[fallthrough]];
      case FieldUnderlyingStipValue::RAW_TAG :
 
-     ret.depth = 0; 
-     return ret; 
+     case 0: 
+     ret.depth = 0;
+     return ret;
    }
    for( auto m : groupGetDepthMethods ) if( m ){
      FieldDepth gdepth = (*m)( tag ); 
@@ -9029,6 +9061,7 @@ FieldDepth GroupUnderlyings::getFieldDepth( raw_tag_t tag ){
    switch( tag ){
      case FieldUnderlyingSymbol::RAW_TAG :
      ret.isFirstInGroup = true;
+     [[fallthrough]];
      case FieldUnderlyingSymbolSfx::RAW_TAG :
      case FieldUnderlyingSecurityID::RAW_TAG :
      case FieldUnderlyingSecurityIDSource::RAW_TAG :
@@ -9078,8 +9111,9 @@ FieldDepth GroupUnderlyings::getFieldDepth( raw_tag_t tag ){
      case FieldUnderlyingSettlPrice::RAW_TAG :
      case FieldUnderlyingSettlPriceType::RAW_TAG :
 
-     ret.depth = 0; 
-     return ret; 
+     case 0: 
+     ret.depth = 0;
+     return ret;
    }
    for( auto m : groupGetDepthMethods ) if( m ){
      FieldDepth gdepth = (*m)( tag ); 
@@ -9093,10 +9127,12 @@ FieldDepth GroupStipulations::getFieldDepth( raw_tag_t tag ){
    switch( tag ){
      case FieldStipulationType::RAW_TAG :
      ret.isFirstInGroup = true;
+     [[fallthrough]];
      case FieldStipulationValue::RAW_TAG :
 
-     ret.depth = 0; 
-     return ret; 
+     case 0: 
+     ret.depth = 0;
+     return ret;
    }
    for( auto m : groupGetDepthMethods ) if( m ){
      FieldDepth gdepth = (*m)( tag ); 
@@ -9110,6 +9146,7 @@ FieldDepth GroupOrders::getFieldDepth( raw_tag_t tag ){
    switch( tag ){
      case FieldClOrdID::RAW_TAG :
      ret.isFirstInGroup = true;
+     [[fallthrough]];
      case FieldSecondaryClOrdID::RAW_TAG :
      case FieldListSeqNo::RAW_TAG :
      case FieldClOrdLinkID::RAW_TAG :
@@ -9257,8 +9294,9 @@ FieldDepth GroupOrders::getFieldDepth( raw_tag_t tag ){
      case FieldParticipationRate::RAW_TAG :
      case FieldDesignation::RAW_TAG :
 
-     ret.depth = 0; 
-     return ret; 
+     case 0: 
+     ret.depth = 0;
+     return ret;
    }
    for( auto m : groupGetDepthMethods ) if( m ){
      FieldDepth gdepth = (*m)( tag ); 
@@ -9272,10 +9310,12 @@ FieldDepth GroupSettlPartySubIDs::getFieldDepth( raw_tag_t tag ){
    switch( tag ){
      case FieldSettlPartySubID::RAW_TAG :
      ret.isFirstInGroup = true;
+     [[fallthrough]];
      case FieldSettlPartySubIDType::RAW_TAG :
 
-     ret.depth = 0; 
-     return ret; 
+     case 0: 
+     ret.depth = 0;
+     return ret;
    }
    for( auto m : groupGetDepthMethods ) if( m ){
      FieldDepth gdepth = (*m)( tag ); 
@@ -9289,12 +9329,14 @@ FieldDepth GroupSettlPartyIDs::getFieldDepth( raw_tag_t tag ){
    switch( tag ){
      case FieldSettlPartyID::RAW_TAG :
      ret.isFirstInGroup = true;
+     [[fallthrough]];
      case FieldSettlPartyIDSource::RAW_TAG :
      case FieldSettlPartyRole::RAW_TAG :
      case FieldNoSettlPartySubIDs::RAW_TAG :
 
-     ret.depth = 0; 
-     return ret; 
+     case 0: 
+     ret.depth = 0;
+     return ret;
    }
    for( auto m : groupGetDepthMethods ) if( m ){
      FieldDepth gdepth = (*m)( tag ); 
@@ -9308,11 +9350,13 @@ FieldDepth GroupDlvyInst::getFieldDepth( raw_tag_t tag ){
    switch( tag ){
      case FieldSettlInstSource::RAW_TAG :
      ret.isFirstInGroup = true;
+     [[fallthrough]];
      case FieldDlvyInstType::RAW_TAG :
      case FieldNoSettlPartyIDs::RAW_TAG :
 
-     ret.depth = 0; 
-     return ret; 
+     case 0: 
+     ret.depth = 0;
+     return ret;
    }
    for( auto m : groupGetDepthMethods ) if( m ){
      FieldDepth gdepth = (*m)( tag ); 
@@ -9326,9 +9370,11 @@ FieldDepth GroupClearingInstructions::getFieldDepth( raw_tag_t tag ){
    switch( tag ){
      case FieldClearingInstruction::RAW_TAG :
      ret.isFirstInGroup = true;
+     [[fallthrough]];
 
-     ret.depth = 0; 
-     return ret; 
+     case 0: 
+     ret.depth = 0;
+     return ret;
    }
    for( auto m : groupGetDepthMethods ) if( m ){
      FieldDepth gdepth = (*m)( tag ); 
@@ -9342,10 +9388,12 @@ FieldDepth GroupNestedPartySubIDs::getFieldDepth( raw_tag_t tag ){
    switch( tag ){
      case FieldNestedPartySubID::RAW_TAG :
      ret.isFirstInGroup = true;
+     [[fallthrough]];
      case FieldNestedPartySubIDType::RAW_TAG :
 
-     ret.depth = 0; 
-     return ret; 
+     case 0: 
+     ret.depth = 0;
+     return ret;
    }
    for( auto m : groupGetDepthMethods ) if( m ){
      FieldDepth gdepth = (*m)( tag ); 
@@ -9359,12 +9407,14 @@ FieldDepth GroupNestedPartyIDs::getFieldDepth( raw_tag_t tag ){
    switch( tag ){
      case FieldNestedPartyID::RAW_TAG :
      ret.isFirstInGroup = true;
+     [[fallthrough]];
      case FieldNestedPartyIDSource::RAW_TAG :
      case FieldNestedPartyRole::RAW_TAG :
      case FieldNoNestedPartySubIDs::RAW_TAG :
 
-     ret.depth = 0; 
-     return ret; 
+     case 0: 
+     ret.depth = 0;
+     return ret;
    }
    for( auto m : groupGetDepthMethods ) if( m ){
      FieldDepth gdepth = (*m)( tag ); 
@@ -9378,6 +9428,7 @@ FieldDepth GroupLegs::getFieldDepth( raw_tag_t tag ){
    switch( tag ){
      case FieldLegSymbol::RAW_TAG :
      ret.isFirstInGroup = true;
+     [[fallthrough]];
      case FieldLegSymbolSfx::RAW_TAG :
      case FieldLegSecurityID::RAW_TAG :
      case FieldLegSecurityIDSource::RAW_TAG :
@@ -9431,8 +9482,9 @@ FieldDepth GroupLegs::getFieldDepth( raw_tag_t tag ){
      case FieldLegSettlDate::RAW_TAG :
      case FieldLegLastPx::RAW_TAG :
 
-     ret.depth = 0; 
-     return ret; 
+     case 0: 
+     ret.depth = 0;
+     return ret;
    }
    for( auto m : groupGetDepthMethods ) if( m ){
      FieldDepth gdepth = (*m)( tag ); 
@@ -9446,6 +9498,7 @@ FieldDepth GroupQuoteEntries::getFieldDepth( raw_tag_t tag ){
    switch( tag ){
      case FieldSymbol::RAW_TAG :
      ret.isFirstInGroup = true;
+     [[fallthrough]];
      case FieldSymbolSfx::RAW_TAG :
      case FieldSecurityID::RAW_TAG :
      case FieldSecurityIDSource::RAW_TAG :
@@ -9500,8 +9553,9 @@ FieldDepth GroupQuoteEntries::getFieldDepth( raw_tag_t tag ){
      case FieldNoUnderlyings::RAW_TAG :
      case FieldNoLegs::RAW_TAG :
 
-     ret.depth = 0; 
-     return ret; 
+     case 0: 
+     ret.depth = 0;
+     return ret;
    }
    for( auto m : groupGetDepthMethods ) if( m ){
      FieldDepth gdepth = (*m)( tag ); 
@@ -9515,6 +9569,7 @@ FieldDepth GroupQuoteSets::getFieldDepth( raw_tag_t tag ){
    switch( tag ){
      case FieldQuoteSetID::RAW_TAG :
      ret.isFirstInGroup = true;
+     [[fallthrough]];
      case FieldUnderlyingSymbol::RAW_TAG :
      case FieldUnderlyingSymbolSfx::RAW_TAG :
      case FieldUnderlyingSecurityID::RAW_TAG :
@@ -9566,8 +9621,9 @@ FieldDepth GroupQuoteSets::getFieldDepth( raw_tag_t tag ){
      case FieldLastFragment::RAW_TAG :
      case FieldNoQuoteEntries::RAW_TAG :
 
-     ret.depth = 0; 
-     return ret; 
+     case 0: 
+     ret.depth = 0;
+     return ret;
    }
    for( auto m : groupGetDepthMethods ) if( m ){
      FieldDepth gdepth = (*m)( tag ); 
@@ -9581,12 +9637,14 @@ FieldDepth GroupSecurityTypes::getFieldDepth( raw_tag_t tag ){
    switch( tag ){
      case FieldSecurityType::RAW_TAG :
      ret.isFirstInGroup = true;
+     [[fallthrough]];
      case FieldSecuritySubType::RAW_TAG :
      case FieldProduct::RAW_TAG :
      case FieldCFICode::RAW_TAG :
 
-     ret.depth = 0; 
-     return ret; 
+     case 0: 
+     ret.depth = 0;
+     return ret;
    }
    for( auto m : groupGetDepthMethods ) if( m ){
      FieldDepth gdepth = (*m)( tag ); 
@@ -9600,12 +9658,14 @@ FieldDepth GroupNested3PartyIDs::getFieldDepth( raw_tag_t tag ){
    switch( tag ){
      case FieldNested3PartyID::RAW_TAG :
      ret.isFirstInGroup = true;
+     [[fallthrough]];
      case FieldNested3PartyIDSource::RAW_TAG :
      case FieldNested3PartyRole::RAW_TAG :
      case FieldNoNested3PartySubIDs::RAW_TAG :
 
-     ret.depth = 0; 
-     return ret; 
+     case 0: 
+     ret.depth = 0;
+     return ret;
    }
    for( auto m : groupGetDepthMethods ) if( m ){
      FieldDepth gdepth = (*m)( tag ); 
@@ -9619,13 +9679,15 @@ FieldDepth GroupPositions::getFieldDepth( raw_tag_t tag ){
    switch( tag ){
      case FieldPosType::RAW_TAG :
      ret.isFirstInGroup = true;
+     [[fallthrough]];
      case FieldLongQty::RAW_TAG :
      case FieldShortQty::RAW_TAG :
      case FieldPosQtyStatus::RAW_TAG :
      case FieldNoNestedPartyIDs::RAW_TAG :
 
-     ret.depth = 0; 
-     return ret; 
+     case 0: 
+     ret.depth = 0;
+     return ret;
    }
    for( auto m : groupGetDepthMethods ) if( m ){
      FieldDepth gdepth = (*m)( tag ); 
@@ -9639,11 +9701,13 @@ FieldDepth GroupAffectedOrders::getFieldDepth( raw_tag_t tag ){
    switch( tag ){
      case FieldOrigClOrdID::RAW_TAG :
      ret.isFirstInGroup = true;
+     [[fallthrough]];
      case FieldAffectedOrderID::RAW_TAG :
      case FieldAffectedSecondaryOrderID::RAW_TAG :
 
-     ret.depth = 0; 
-     return ret; 
+     case 0: 
+     ret.depth = 0;
+     return ret;
    }
    for( auto m : groupGetDepthMethods ) if( m ){
      FieldDepth gdepth = (*m)( tag ); 
@@ -9657,14 +9721,16 @@ FieldDepth GroupExecs::getFieldDepth( raw_tag_t tag ){
    switch( tag ){
      case FieldLastQty::RAW_TAG :
      ret.isFirstInGroup = true;
+     [[fallthrough]];
      case FieldExecID::RAW_TAG :
      case FieldSecondaryExecID::RAW_TAG :
      case FieldLastPx::RAW_TAG :
      case FieldLastParPx::RAW_TAG :
      case FieldLastCapacity::RAW_TAG :
 
-     ret.depth = 0; 
-     return ret; 
+     case 0: 
+     ret.depth = 0;
+     return ret;
    }
    for( auto m : groupGetDepthMethods ) if( m ){
      FieldDepth gdepth = (*m)( tag ); 
@@ -9678,10 +9744,12 @@ FieldDepth GroupMsgTypes::getFieldDepth( raw_tag_t tag ){
    switch( tag ){
      case FieldRefMsgType::RAW_TAG :
      ret.isFirstInGroup = true;
+     [[fallthrough]];
      case FieldMsgDirection::RAW_TAG :
 
-     ret.depth = 0; 
-     return ret; 
+     case 0: 
+     ret.depth = 0;
+     return ret;
    }
    for( auto m : groupGetDepthMethods ) if( m ){
      FieldDepth gdepth = (*m)( tag ); 
@@ -9695,6 +9763,7 @@ FieldDepth GroupBidComponents::getFieldDepth( raw_tag_t tag ){
    switch( tag ){
      case FieldListID::RAW_TAG :
      ret.isFirstInGroup = true;
+     [[fallthrough]];
      case FieldSide::RAW_TAG :
      case FieldTradingSessionID::RAW_TAG :
      case FieldTradingSessionSubID::RAW_TAG :
@@ -9704,8 +9773,9 @@ FieldDepth GroupBidComponents::getFieldDepth( raw_tag_t tag ){
      case FieldAccount::RAW_TAG :
      case FieldAcctIDSource::RAW_TAG :
 
-     ret.depth = 0; 
-     return ret; 
+     case 0: 
+     ret.depth = 0;
+     return ret;
    }
    for( auto m : groupGetDepthMethods ) if( m ){
      FieldDepth gdepth = (*m)( tag ); 
@@ -9719,6 +9789,7 @@ FieldDepth GroupSettlInst::getFieldDepth( raw_tag_t tag ){
    switch( tag ){
      case FieldSettlInstID::RAW_TAG :
      ret.isFirstInGroup = true;
+     [[fallthrough]];
      case FieldSettlInstTransType::RAW_TAG :
      case FieldSettlInstRefID::RAW_TAG :
      case FieldNoPartyIDs::RAW_TAG :
@@ -9744,8 +9815,9 @@ FieldDepth GroupSettlInst::getFieldDepth( raw_tag_t tag ){
      case FieldPaymentDate::RAW_TAG :
      case FieldPaymentRemitterID::RAW_TAG :
 
-     ret.depth = 0; 
-     return ret; 
+     case 0: 
+     ret.depth = 0;
+     return ret;
    }
    for( auto m : groupGetDepthMethods ) if( m ){
      FieldDepth gdepth = (*m)( tag ); 
@@ -9759,10 +9831,12 @@ FieldDepth GroupInstrAttrib::getFieldDepth( raw_tag_t tag ){
    switch( tag ){
      case FieldInstrAttribType::RAW_TAG :
      ret.isFirstInGroup = true;
+     [[fallthrough]];
      case FieldInstrAttribValue::RAW_TAG :
 
-     ret.depth = 0; 
-     return ret; 
+     case 0: 
+     ret.depth = 0;
+     return ret;
    }
    for( auto m : groupGetDepthMethods ) if( m ){
      FieldDepth gdepth = (*m)( tag ); 
@@ -9776,12 +9850,14 @@ FieldDepth GroupMiscFees::getFieldDepth( raw_tag_t tag ){
    switch( tag ){
      case FieldMiscFeeAmt::RAW_TAG :
      ret.isFirstInGroup = true;
+     [[fallthrough]];
      case FieldMiscFeeCurr::RAW_TAG :
      case FieldMiscFeeType::RAW_TAG :
      case FieldMiscFeeBasis::RAW_TAG :
 
-     ret.depth = 0; 
-     return ret; 
+     case 0: 
+     ret.depth = 0;
+     return ret;
    }
    for( auto m : groupGetDepthMethods ) if( m ){
      FieldDepth gdepth = (*m)( tag ); 
@@ -9795,9 +9871,11 @@ FieldDepth GroupQuoteQualifiers::getFieldDepth( raw_tag_t tag ){
    switch( tag ){
      case FieldQuoteQualifier::RAW_TAG :
      ret.isFirstInGroup = true;
+     [[fallthrough]];
 
-     ret.depth = 0; 
-     return ret; 
+     case 0: 
+     ret.depth = 0;
+     return ret;
    }
    for( auto m : groupGetDepthMethods ) if( m ){
      FieldDepth gdepth = (*m)( tag ); 
@@ -9811,6 +9889,7 @@ FieldDepth GroupDistribInsts::getFieldDepth( raw_tag_t tag ){
    switch( tag ){
      case FieldDistribPaymentMethod::RAW_TAG :
      ret.isFirstInGroup = true;
+     [[fallthrough]];
      case FieldDistribPercentage::RAW_TAG :
      case FieldCashDistribCurr::RAW_TAG :
      case FieldCashDistribAgentName::RAW_TAG :
@@ -9819,8 +9898,9 @@ FieldDepth GroupDistribInsts::getFieldDepth( raw_tag_t tag ){
      case FieldCashDistribPayRef::RAW_TAG :
      case FieldCashDistribAgentAcctName::RAW_TAG :
 
-     ret.depth = 0; 
-     return ret; 
+     case 0: 
+     ret.depth = 0;
+     return ret;
    }
    for( auto m : groupGetDepthMethods ) if( m ){
      FieldDepth gdepth = (*m)( tag ); 
@@ -9834,11 +9914,13 @@ FieldDepth GroupTrdRegTimestamps::getFieldDepth( raw_tag_t tag ){
    switch( tag ){
      case FieldTrdRegTimestamp::RAW_TAG :
      ret.isFirstInGroup = true;
+     [[fallthrough]];
      case FieldTrdRegTimestampType::RAW_TAG :
      case FieldTrdRegTimestampOrigin::RAW_TAG :
 
-     ret.depth = 0; 
-     return ret; 
+     case 0: 
+     ret.depth = 0;
+     return ret;
    }
    for( auto m : groupGetDepthMethods ) if( m ){
      FieldDepth gdepth = (*m)( tag ); 
@@ -9852,9 +9934,11 @@ FieldDepth GroupAltMDSource::getFieldDepth( raw_tag_t tag ){
    switch( tag ){
      case FieldAltMDSourceID::RAW_TAG :
      ret.isFirstInGroup = true;
+     [[fallthrough]];
 
-     ret.depth = 0; 
-     return ret; 
+     case 0: 
+     ret.depth = 0;
+     return ret;
    }
    for( auto m : groupGetDepthMethods ) if( m ){
      FieldDepth gdepth = (*m)( tag ); 
@@ -9868,6 +9952,7 @@ FieldDepth GroupSides::getFieldDepth( raw_tag_t tag ){
    switch( tag ){
      case FieldSide::RAW_TAG :
      ret.isFirstInGroup = true;
+     [[fallthrough]];
      case FieldOrigClOrdID::RAW_TAG :
      case FieldClOrdID::RAW_TAG :
      case FieldSecondaryClOrdID::RAW_TAG :
@@ -9886,8 +9971,9 @@ FieldDepth GroupSides::getFieldDepth( raw_tag_t tag ){
      case FieldEncodedTextLen::RAW_TAG :
      case FieldEncodedText::RAW_TAG :
 
-     ret.depth = 0; 
-     return ret; 
+     case 0: 
+     ret.depth = 0;
+     return ret;
    }
    for( auto m : groupGetDepthMethods ) if( m ){
      FieldDepth gdepth = (*m)( tag ); 
@@ -9901,10 +9987,12 @@ FieldDepth GroupRoutingIDs::getFieldDepth( raw_tag_t tag ){
    switch( tag ){
      case FieldRoutingType::RAW_TAG :
      ret.isFirstInGroup = true;
+     [[fallthrough]];
      case FieldRoutingID::RAW_TAG :
 
-     ret.depth = 0; 
-     return ret; 
+     case 0: 
+     ret.depth = 0;
+     return ret;
    }
    for( auto m : groupGetDepthMethods ) if( m ){
      FieldDepth gdepth = (*m)( tag ); 
@@ -9918,10 +10006,12 @@ FieldDepth GroupPosAmt::getFieldDepth( raw_tag_t tag ){
    switch( tag ){
      case FieldPosAmtType::RAW_TAG :
      ret.isFirstInGroup = true;
+     [[fallthrough]];
      case FieldPosAmt::RAW_TAG :
 
-     ret.depth = 0; 
-     return ret; 
+     case 0: 
+     ret.depth = 0;
+     return ret;
    }
    for( auto m : groupGetDepthMethods ) if( m ){
      FieldDepth gdepth = (*m)( tag ); 
@@ -9935,11 +10025,13 @@ FieldDepth GroupLinesOfText::getFieldDepth( raw_tag_t tag ){
    switch( tag ){
      case FieldText::RAW_TAG :
      ret.isFirstInGroup = true;
+     [[fallthrough]];
      case FieldEncodedTextLen::RAW_TAG :
      case FieldEncodedText::RAW_TAG :
 
-     ret.depth = 0; 
-     return ret; 
+     case 0: 
+     ret.depth = 0;
+     return ret;
    }
    for( auto m : groupGetDepthMethods ) if( m ){
      FieldDepth gdepth = (*m)( tag ); 
@@ -9953,9 +10045,11 @@ FieldDepth GroupIOIQualifiers::getFieldDepth( raw_tag_t tag ){
    switch( tag ){
      case FieldIOIQualifier::RAW_TAG :
      ret.isFirstInGroup = true;
+     [[fallthrough]];
 
-     ret.depth = 0; 
-     return ret; 
+     case 0: 
+     ret.depth = 0;
+     return ret;
    }
    for( auto m : groupGetDepthMethods ) if( m ){
      FieldDepth gdepth = (*m)( tag ); 
@@ -9969,10 +10063,12 @@ FieldDepth GroupDates::getFieldDepth( raw_tag_t tag ){
    switch( tag ){
      case FieldTradeDate::RAW_TAG :
      ret.isFirstInGroup = true;
+     [[fallthrough]];
      case FieldTransactTime::RAW_TAG :
 
-     ret.depth = 0; 
-     return ret; 
+     case 0: 
+     ret.depth = 0;
+     return ret;
    }
    for( auto m : groupGetDepthMethods ) if( m ){
      FieldDepth gdepth = (*m)( tag ); 
@@ -9986,9 +10082,11 @@ FieldDepth GroupMDEntryTypes::getFieldDepth( raw_tag_t tag ){
    switch( tag ){
      case FieldMDEntryType::RAW_TAG :
      ret.isFirstInGroup = true;
+     [[fallthrough]];
 
-     ret.depth = 0; 
-     return ret; 
+     case 0: 
+     ret.depth = 0;
+     return ret;
    }
    for( auto m : groupGetDepthMethods ) if( m ){
      FieldDepth gdepth = (*m)( tag ); 
@@ -10002,6 +10100,7 @@ FieldDepth GroupRelatedSym::getFieldDepth( raw_tag_t tag ){
    switch( tag ){
      case FieldSymbol::RAW_TAG :
      ret.isFirstInGroup = true;
+     [[fallthrough]];
      case FieldSymbolSfx::RAW_TAG :
      case FieldSecurityID::RAW_TAG :
      case FieldSecurityIDSource::RAW_TAG :
@@ -10045,8 +10144,9 @@ FieldDepth GroupRelatedSym::getFieldDepth( raw_tag_t tag ){
      case FieldDatedDate::RAW_TAG :
      case FieldInterestAccrualDate::RAW_TAG :
 
-     ret.depth = 0; 
-     return ret; 
+     case 0: 
+     ret.depth = 0;
+     return ret;
    }
    for( auto m : groupGetDepthMethods ) if( m ){
      FieldDepth gdepth = (*m)( tag ); 
@@ -10060,13 +10160,15 @@ FieldDepth GroupContraBrokers::getFieldDepth( raw_tag_t tag ){
    switch( tag ){
      case FieldContraBroker::RAW_TAG :
      ret.isFirstInGroup = true;
+     [[fallthrough]];
      case FieldContraTrader::RAW_TAG :
      case FieldContraTradeQty::RAW_TAG :
      case FieldContraTradeTime::RAW_TAG :
      case FieldContraLegRefID::RAW_TAG :
 
-     ret.depth = 0; 
-     return ret; 
+     case 0: 
+     ret.depth = 0;
+     return ret;
    }
    for( auto m : groupGetDepthMethods ) if( m ){
      FieldDepth gdepth = (*m)( tag ); 
@@ -10080,10 +10182,12 @@ FieldDepth GroupTrades::getFieldDepth( raw_tag_t tag ){
    switch( tag ){
      case FieldTradeReportID::RAW_TAG :
      ret.isFirstInGroup = true;
+     [[fallthrough]];
      case FieldSecondaryTradeReportID::RAW_TAG :
 
-     ret.depth = 0; 
-     return ret; 
+     case 0: 
+     ret.depth = 0;
+     return ret;
    }
    for( auto m : groupGetDepthMethods ) if( m ){
      FieldDepth gdepth = (*m)( tag ); 
@@ -10097,6 +10201,7 @@ FieldDepth GroupStrikes::getFieldDepth( raw_tag_t tag ){
    switch( tag ){
      case FieldSymbol::RAW_TAG :
      ret.isFirstInGroup = true;
+     [[fallthrough]];
      case FieldSymbolSfx::RAW_TAG :
      case FieldSecurityID::RAW_TAG :
      case FieldSecurityIDSource::RAW_TAG :
@@ -10140,8 +10245,9 @@ FieldDepth GroupStrikes::getFieldDepth( raw_tag_t tag ){
      case FieldDatedDate::RAW_TAG :
      case FieldInterestAccrualDate::RAW_TAG :
 
-     ret.depth = 0; 
-     return ret; 
+     case 0: 
+     ret.depth = 0;
+     return ret;
    }
    for( auto m : groupGetDepthMethods ) if( m ){
      FieldDepth gdepth = (*m)( tag ); 
@@ -10155,6 +10261,7 @@ FieldDepth GroupBidDescriptors::getFieldDepth( raw_tag_t tag ){
    switch( tag ){
      case FieldBidDescriptorType::RAW_TAG :
      ret.isFirstInGroup = true;
+     [[fallthrough]];
      case FieldBidDescriptor::RAW_TAG :
      case FieldSideValueInd::RAW_TAG :
      case FieldLiquidityValue::RAW_TAG :
@@ -10166,8 +10273,9 @@ FieldDepth GroupBidDescriptors::getFieldDepth( raw_tag_t tag ){
      case FieldOutsideIndexPct::RAW_TAG :
      case FieldValueOfFutures::RAW_TAG :
 
-     ret.depth = 0; 
-     return ret; 
+     case 0: 
+     ret.depth = 0;
+     return ret;
    }
    for( auto m : groupGetDepthMethods ) if( m ){
      FieldDepth gdepth = (*m)( tag ); 
@@ -10181,12 +10289,14 @@ FieldDepth GroupCompIDs::getFieldDepth( raw_tag_t tag ){
    switch( tag ){
      case FieldRefCompID::RAW_TAG :
      ret.isFirstInGroup = true;
+     [[fallthrough]];
      case FieldRefSubID::RAW_TAG :
      case FieldLocationID::RAW_TAG :
      case FieldDeskID::RAW_TAG :
 
-     ret.depth = 0; 
-     return ret; 
+     case 0: 
+     ret.depth = 0;
+     return ret;
    }
    for( auto m : groupGetDepthMethods ) if( m ){
      FieldDepth gdepth = (*m)( tag ); 
@@ -10200,14 +10310,16 @@ FieldDepth GroupLegAllocs::getFieldDepth( raw_tag_t tag ){
    switch( tag ){
      case FieldLegAllocAccount::RAW_TAG :
      ret.isFirstInGroup = true;
+     [[fallthrough]];
      case FieldLegIndividualAllocID::RAW_TAG :
      case FieldNoNested2PartyIDs::RAW_TAG :
      case FieldLegAllocQty::RAW_TAG :
      case FieldLegAllocAcctIDSource::RAW_TAG :
      case FieldLegSettlCurrency::RAW_TAG :
 
-     ret.depth = 0; 
-     return ret; 
+     case 0: 
+     ret.depth = 0;
+     return ret;
    }
    for( auto m : groupGetDepthMethods ) if( m ){
      FieldDepth gdepth = (*m)( tag ); 
@@ -10221,6 +10333,7 @@ FieldDepth GroupRegistDtls::getFieldDepth( raw_tag_t tag ){
    switch( tag ){
      case FieldRegistDtls::RAW_TAG :
      ret.isFirstInGroup = true;
+     [[fallthrough]];
      case FieldRegistEmail::RAW_TAG :
      case FieldMailingDtls::RAW_TAG :
      case FieldMailingInst::RAW_TAG :
@@ -10229,8 +10342,9 @@ FieldDepth GroupRegistDtls::getFieldDepth( raw_tag_t tag ){
      case FieldDateOfBirth::RAW_TAG :
      case FieldInvestorCountryOfResidence::RAW_TAG :
 
-     ret.depth = 0; 
-     return ret; 
+     case 0: 
+     ret.depth = 0;
+     return ret;
    }
    for( auto m : groupGetDepthMethods ) if( m ){
      FieldDepth gdepth = (*m)( tag ); 
@@ -10244,11 +10358,13 @@ FieldDepth GroupContAmts::getFieldDepth( raw_tag_t tag ){
    switch( tag ){
      case FieldContAmtType::RAW_TAG :
      ret.isFirstInGroup = true;
+     [[fallthrough]];
      case FieldContAmtValue::RAW_TAG :
      case FieldContAmtCurr::RAW_TAG :
 
-     ret.depth = 0; 
-     return ret; 
+     case 0: 
+     ret.depth = 0;
+     return ret;
    }
    for( auto m : groupGetDepthMethods ) if( m ){
      FieldDepth gdepth = (*m)( tag ); 
@@ -10262,6 +10378,7 @@ FieldDepth GroupMDEntries::getFieldDepth( raw_tag_t tag ){
    switch( tag ){
      case FieldMDEntryType::RAW_TAG :
      ret.isFirstInGroup = true;
+     [[fallthrough]];
      case FieldMDEntryPx::RAW_TAG :
      case FieldCurrency::RAW_TAG :
      case FieldMDEntrySize::RAW_TAG :
@@ -10295,8 +10412,9 @@ FieldDepth GroupMDEntries::getFieldDepth( raw_tag_t tag ){
      case FieldEncodedTextLen::RAW_TAG :
      case FieldEncodedText::RAW_TAG :
 
-     ret.depth = 0; 
-     return ret; 
+     case 0: 
+     ret.depth = 0;
+     return ret;
    }
    for( auto m : groupGetDepthMethods ) if( m ){
      FieldDepth gdepth = (*m)( tag ); 

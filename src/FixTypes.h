@@ -193,7 +193,7 @@ constexpr uint64_t dec_zeros<uint64_t,0UL>()
 // 1 - Rely on micro parallelism to find quickly last digit.
 // 2 - Intel multiplication by 10 is LEA + ADD.
 // 3 - Instead of subtracting '0' from every char we do it only once with dec_zeros.
-template< typename T = unsigned >
+template< typename T = unsigned, bool isTag = false >
 inline T parseUInt( const char * ptr, unsigned & len )
 {
     if( isNotDecDigit( ptr[0] ) )
@@ -266,7 +266,7 @@ inline T parseUInt( const char * ptr, unsigned & len )
                T( ptr[5] ) ) * 10 +
                T( ptr[6] ) ) * 10 +
                T( ptr[7] ) - dec_zeros<T,T(8)>();
-    if( isNotDecDigit( ptr[8] ) )
+    if( isTag or isNotDecDigit( ptr[8] ) )
     {
         len += 8;
         return tmp;
@@ -281,7 +281,7 @@ inline T parseUInt( const char * ptr, unsigned & len )
 inline tag_t raw_to_tag( raw_tag_t raw )
 {
     unsigned len = 0;
-    return parseUInt( reinterpret_cast<const char *>( &raw ), len );
+    return parseUInt<unsigned,true>( reinterpret_cast<const char *>( &raw ), len );
 }
 
 inline double parseDouble( const char * ptr )

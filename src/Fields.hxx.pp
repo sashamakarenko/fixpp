@@ -39,7 +39,7 @@ struct NAME##Enums final: FieldEnumsBase {\
 <n1>    virtual const char * getFieldName() const override;\
 <n1>    virtual const FieldEnumBase * getEnumByRaw( raw_enum_t raw ) const override;\
 <n1>    virtual const FieldEnumMap & getEnumMapByRaw() const override;\
-<n1>    virtual const FieldEnumBase * const * const getEnums() const override;
+<n1>    virtual const FieldEnumBase ** getEnums() const override;
 
 
 #define FIX_ENUM_DECL( NAME, E, V ) \

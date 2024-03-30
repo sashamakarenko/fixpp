@@ -37,7 +37,7 @@ template<> const FieldEnumBase * const * Field##NAME::enumItems = nullptr;\
 <nl>const NAME##Enums::ValueType * NAME##Enums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }\
 <nl>const FieldEnumBase * NAME##Enums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }\
 <nl>const FieldEnumMap & NAME##Enums::getEnumMapByRaw() const { return NAME##Enums::itemByRaw; }\
-<nl>const FieldEnumBase * const * const NAME##Enums::getEnums() const { return items; }\
+<nl>const FieldEnumBase ** NAME##Enums::getEnums() const { return items; }\
 <nl>const NAME##Enums NAME##Enums::instance;\
 <nl>const FieldEnumBase * NAME##Enums::items[] = {\
 

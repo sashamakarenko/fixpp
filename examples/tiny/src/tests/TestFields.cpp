@@ -217,7 +217,7 @@ int main( int args, const char ** argv )
     CHECK( 12:34:56.00000003, result.str(), == timeptr )
 
     auto noMdEntries = mdsfr.getNoMDEntries();
-    for( auto i = 0; i < noMdEntries; ++i )
+    for( unsigned i = 0; i < noMdEntries; ++i )
     {
         const tiny::GroupMDEntries & mdentry = mdsfr.getGroupMDEntries(i);
         Float price = mdentry.getMDEntryPx();

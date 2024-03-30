@@ -76,7 +76,7 @@ struct FieldEnumsBase
 
     virtual const FieldEnumMap & getEnumMapByRaw() const = 0;
 
-    virtual const FieldEnumBase * const * const getEnums() const = 0;
+    virtual const FieldEnumBase ** getEnums() const = 0;
 
     const char * getEnumNameByRaw( raw_enum_t raw ) const
     {

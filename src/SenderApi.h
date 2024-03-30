@@ -541,13 +541,13 @@ struct ReusableMessageBuilder: FixBufferStream
 {
     ReusableMessageBuilder( const std::string & messageType, unsigned maxBodyLength, unsigned headerTemplateCapacity = 128 )
     : FixBufferStream    ( nullptr )
+    , msgType            ( messageType )
     , buffer             ( maxBodyLength + 1, (char)0 )
     , start              ( nullptr )
     , lastSeqnumWidth    ( 0 )
     , lastBodyLengthWidth( 0 )
     , bufferGrowChunk    ( 1024 )
     , header             ( headerTemplateCapacity, messageType )
-    , msgType            ( messageType )
     {
         begin = end = &buffer[0] + headerTemplateCapacity;
     }
@@ -602,7 +602,7 @@ struct ReusableMessageBuilder: FixBufferStream
     {
         valueLength += 8; // max "|tag=" length ?
         auto endOffset = end - &buffer[0];
-        if( endOffset + valueLength >= buffer.size() )
+        if( endOffset + (ssize_t)valueLength >= (ssize_t)buffer.size() )
         {
             auto beginOffset = begin - &buffer[0];
             buffer.resize( ( 1 + ( endOffset + valueLength ) / bufferGrowChunk ) * bufferGrowChunk );

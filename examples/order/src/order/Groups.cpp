@@ -389,10 +389,12 @@ FieldDepth GroupLegStipulations::getFieldDepth( raw_tag_t tag ){
    switch( tag ){
      case FieldLegStipulationType::RAW_TAG :
      ret.isFirstInGroup = true;
+     [[fallthrough]];
      case FieldLegStipulationValue::RAW_TAG :
 
-     ret.depth = 0; 
-     return ret; 
+     case 0: 
+     ret.depth = 0;
+     return ret;
    }
    for( auto m : groupGetDepthMethods ) if( m ){
      FieldDepth gdepth = (*m)( tag ); 
@@ -406,10 +408,12 @@ FieldDepth GroupNestedPartySubIDs::getFieldDepth( raw_tag_t tag ){
    switch( tag ){
      case FieldNestedPartySubID::RAW_TAG :
      ret.isFirstInGroup = true;
+     [[fallthrough]];
      case FieldNestedPartySubIDType::RAW_TAG :
 
-     ret.depth = 0; 
-     return ret; 
+     case 0: 
+     ret.depth = 0;
+     return ret;
    }
    for( auto m : groupGetDepthMethods ) if( m ){
      FieldDepth gdepth = (*m)( tag ); 
@@ -423,12 +427,14 @@ FieldDepth GroupNestedPartyIDs::getFieldDepth( raw_tag_t tag ){
    switch( tag ){
      case FieldNestedPartyID::RAW_TAG :
      ret.isFirstInGroup = true;
+     [[fallthrough]];
      case FieldNestedPartyIDSource::RAW_TAG :
      case FieldNestedPartyRole::RAW_TAG :
      case FieldNoNestedPartySubIDs::RAW_TAG :
 
-     ret.depth = 0; 
-     return ret; 
+     case 0: 
+     ret.depth = 0;
+     return ret;
    }
    for( auto m : groupGetDepthMethods ) if( m ){
      FieldDepth gdepth = (*m)( tag ); 
@@ -442,6 +448,7 @@ FieldDepth GroupLegs::getFieldDepth( raw_tag_t tag ){
    switch( tag ){
      case FieldLegSymbol::RAW_TAG :
      ret.isFirstInGroup = true;
+     [[fallthrough]];
      case FieldLegSide::RAW_TAG :
      case FieldLegQty::RAW_TAG :
      case FieldNoLegStipulations::RAW_TAG :
@@ -451,8 +458,9 @@ FieldDepth GroupLegs::getFieldDepth( raw_tag_t tag ){
      case FieldLegPrice::RAW_TAG :
      case FieldLegLastPx::RAW_TAG :
 
-     ret.depth = 0; 
-     return ret; 
+     case 0: 
+     ret.depth = 0;
+     return ret;
    }
    for( auto m : groupGetDepthMethods ) if( m ){
      FieldDepth gdepth = (*m)( tag ); 

@@ -82,7 +82,7 @@ int main( int args, const char ** argv )
         std::cout << fixstr( order.start, ttyRgbStyle ) << std::endl;
     }
 
-    for( int i = 0; i < m.getMaxCaptures(); ++i )
+    for( unsigned i = 0; i < m.getMaxCaptures(); ++i )
     {
         const OrderFields & of = orders[ i % 8 ];
         m.startCapture();
@@ -115,7 +115,7 @@ int main( int args, const char ** argv )
     m.showAverageValues( std::cout );
     m.rewind();
 
-    for( int i = 0; i < m.getMaxCaptures(); ++i )
+    for( unsigned i = 0; i < m.getMaxCaptures(); ++i )
     {
         order.rewind( sendingTimeLength );
         m.startCapture();
@@ -128,7 +128,7 @@ int main( int args, const char ** argv )
     m.showAverageValues( std::cout );
     m.rewind();
 
-    for( int i = 0; i < m.getMaxCaptures(); ++i )
+    for( unsigned i = 0; i < m.getMaxCaptures(); ++i )
     {
         const OrderFields & of = orders[ i % 8 ];
         order.rewind( sendingTimeLength );
@@ -142,7 +142,7 @@ int main( int args, const char ** argv )
     m.showAverageValues( std::cout );
     m.rewind();
 
-    for( int i = 0; i < m.getMaxCaptures(); ++i )
+    for( unsigned i = 0; i < m.getMaxCaptures(); ++i )
     {
         const OrderFields & of = orders[ i % 8 ];
         order.rewind( sendingTimeLength );
@@ -156,7 +156,7 @@ int main( int args, const char ** argv )
     m.showAverageValues( std::cout );
     m.rewind();
 
-    for( int i = 0; i < m.getMaxCaptures(); ++i )
+    for( unsigned i = 0; i < m.getMaxCaptures(); ++i )
     {
         const OrderFields & of = orders[ i % 8 ];
         order.rewind( sendingTimeLength );
@@ -170,7 +170,7 @@ int main( int args, const char ** argv )
     m.showAverageValues( std::cout );
     m.rewind();
 
-    for( int i = 0; i < m.getMaxCaptures(); ++i )
+    for( unsigned i = 0; i < m.getMaxCaptures(); ++i )
     {
         const OrderFields & of = orders[ i % 8 ];
         order.rewind( sendingTimeLength );

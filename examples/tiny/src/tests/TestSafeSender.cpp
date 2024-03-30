@@ -18,8 +18,6 @@ int main( int args, const char ** argv )
     execReport.appendSafely<SendingTime>( TimestampKeeper::PLACE_HOLDER, TimestampKeeper::DATE_TIME_NANOS_LENGTH );
     execReport.sendingTime.setup( execReport.end - TimestampKeeper::DATE_TIME_NANOS_LENGTH, TimestampKeeper::Precision::NANOSECONDS );
     execReport.sendingTime.update();
-    const unsigned sendingTimeLength = execReport.end - execReport.begin;
-
     execReport.appendSafely<ClOrdID>("OID123");
     execReport.appendSafely<QtyType>( QtyTypeEnums::CONTRACTS );
     execReport.appendSafely<Price>( 123.04567, 4 );

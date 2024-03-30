@@ -6032,7 +6032,7 @@ const FieldEnumBase * AdvSideEnums::findEnum( raw_enum_t raw ) { auto it = itemB
 const AdvSideEnums::ValueType * AdvSideEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * AdvSideEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & AdvSideEnums::getEnumMapByRaw() const { return AdvSideEnums::itemByRaw; }
-const FieldEnumBase * const * const AdvSideEnums::getEnums() const { return items; }
+const FieldEnumBase ** AdvSideEnums::getEnums() const { return items; }
 const AdvSideEnums AdvSideEnums::instance;
 const FieldEnumBase * AdvSideEnums::items[] = {
 & AdvSideEnums::BUY,
@@ -6047,7 +6047,7 @@ const FieldEnumBase * AdvTransTypeEnums::findEnum( raw_enum_t raw ) { auto it = 
 const AdvTransTypeEnums::ValueType * AdvTransTypeEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * AdvTransTypeEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & AdvTransTypeEnums::getEnumMapByRaw() const { return AdvTransTypeEnums::itemByRaw; }
-const FieldEnumBase * const * const AdvTransTypeEnums::getEnums() const { return items; }
+const FieldEnumBase ** AdvTransTypeEnums::getEnums() const { return items; }
 const AdvTransTypeEnums AdvTransTypeEnums::instance;
 const FieldEnumBase * AdvTransTypeEnums::items[] = {
 & AdvTransTypeEnums::NEW,
@@ -6061,7 +6061,7 @@ const FieldEnumBase * CommTypeEnums::findEnum( raw_enum_t raw ) { auto it = item
 const CommTypeEnums::ValueType * CommTypeEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * CommTypeEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & CommTypeEnums::getEnumMapByRaw() const { return CommTypeEnums::itemByRaw; }
-const FieldEnumBase * const * const CommTypeEnums::getEnums() const { return items; }
+const FieldEnumBase ** CommTypeEnums::getEnums() const { return items; }
 const CommTypeEnums CommTypeEnums::instance;
 const FieldEnumBase * CommTypeEnums::items[] = {
 & CommTypeEnums::PER_UNIT,
@@ -6078,7 +6078,7 @@ const FieldEnumBase * ExecInstEnums::findEnum( raw_enum_t raw ) { auto it = item
 const ExecInstEnums::ValueType * ExecInstEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * ExecInstEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & ExecInstEnums::getEnumMapByRaw() const { return ExecInstEnums::itemByRaw; }
-const FieldEnumBase * const * const ExecInstEnums::getEnums() const { return items; }
+const FieldEnumBase ** ExecInstEnums::getEnums() const { return items; }
 const ExecInstEnums ExecInstEnums::instance;
 const FieldEnumBase * ExecInstEnums::items[] = {
 & ExecInstEnums::NOT_HELD,
@@ -6129,7 +6129,7 @@ const FieldEnumBase * HandlInstEnums::findEnum( raw_enum_t raw ) { auto it = ite
 const HandlInstEnums::ValueType * HandlInstEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * HandlInstEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & HandlInstEnums::getEnumMapByRaw() const { return HandlInstEnums::itemByRaw; }
-const FieldEnumBase * const * const HandlInstEnums::getEnums() const { return items; }
+const FieldEnumBase ** HandlInstEnums::getEnums() const { return items; }
 const HandlInstEnums HandlInstEnums::instance;
 const FieldEnumBase * HandlInstEnums::items[] = {
 & HandlInstEnums::AUTOMATED_EXECUTION_ORDER_PRIVATE_NO_BROKER_INTERVENTION,
@@ -6143,7 +6143,7 @@ const FieldEnumBase * SecurityIDSourceEnums::findEnum( raw_enum_t raw ) { auto i
 const SecurityIDSourceEnums::ValueType * SecurityIDSourceEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * SecurityIDSourceEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & SecurityIDSourceEnums::getEnumMapByRaw() const { return SecurityIDSourceEnums::itemByRaw; }
-const FieldEnumBase * const * const SecurityIDSourceEnums::getEnums() const { return items; }
+const FieldEnumBase ** SecurityIDSourceEnums::getEnums() const { return items; }
 const SecurityIDSourceEnums SecurityIDSourceEnums::instance;
 const FieldEnumBase * SecurityIDSourceEnums::items[] = {
 & SecurityIDSourceEnums::CUSIP,
@@ -6173,7 +6173,7 @@ const FieldEnumBase * IOIQltyIndEnums::findEnum( raw_enum_t raw ) { auto it = it
 const IOIQltyIndEnums::ValueType * IOIQltyIndEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * IOIQltyIndEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & IOIQltyIndEnums::getEnumMapByRaw() const { return IOIQltyIndEnums::itemByRaw; }
-const FieldEnumBase * const * const IOIQltyIndEnums::getEnums() const { return items; }
+const FieldEnumBase ** IOIQltyIndEnums::getEnums() const { return items; }
 const IOIQltyIndEnums IOIQltyIndEnums::instance;
 const FieldEnumBase * IOIQltyIndEnums::items[] = {
 & IOIQltyIndEnums::LOW,
@@ -6187,7 +6187,7 @@ const FieldEnumBase * IOIQtyEnums::findEnum( raw_enum_t raw ) { auto it = itemBy
 const IOIQtyEnums::ValueType * IOIQtyEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * IOIQtyEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & IOIQtyEnums::getEnumMapByRaw() const { return IOIQtyEnums::itemByRaw; }
-const FieldEnumBase * const * const IOIQtyEnums::getEnums() const { return items; }
+const FieldEnumBase ** IOIQtyEnums::getEnums() const { return items; }
 const IOIQtyEnums IOIQtyEnums::instance;
 const FieldEnumBase * IOIQtyEnums::items[] = {
 & IOIQtyEnums::SMALL,
@@ -6201,7 +6201,7 @@ const FieldEnumBase * IOITransTypeEnums::findEnum( raw_enum_t raw ) { auto it = 
 const IOITransTypeEnums::ValueType * IOITransTypeEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * IOITransTypeEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & IOITransTypeEnums::getEnumMapByRaw() const { return IOITransTypeEnums::itemByRaw; }
-const FieldEnumBase * const * const IOITransTypeEnums::getEnums() const { return items; }
+const FieldEnumBase ** IOITransTypeEnums::getEnums() const { return items; }
 const IOITransTypeEnums IOITransTypeEnums::instance;
 const FieldEnumBase * IOITransTypeEnums::items[] = {
 & IOITransTypeEnums::NEW,
@@ -6215,7 +6215,7 @@ const FieldEnumBase * LastCapacityEnums::findEnum( raw_enum_t raw ) { auto it = 
 const LastCapacityEnums::ValueType * LastCapacityEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * LastCapacityEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & LastCapacityEnums::getEnumMapByRaw() const { return LastCapacityEnums::itemByRaw; }
-const FieldEnumBase * const * const LastCapacityEnums::getEnums() const { return items; }
+const FieldEnumBase ** LastCapacityEnums::getEnums() const { return items; }
 const LastCapacityEnums LastCapacityEnums::instance;
 const FieldEnumBase * LastCapacityEnums::items[] = {
 & LastCapacityEnums::AGENT,
@@ -6230,7 +6230,7 @@ const FieldEnumBase * MsgTypeEnums::findEnum( raw_enum_t raw ) { auto it = itemB
 const MsgTypeEnums::ValueType * MsgTypeEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * MsgTypeEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & MsgTypeEnums::getEnumMapByRaw() const { return MsgTypeEnums::itemByRaw; }
-const FieldEnumBase * const * const MsgTypeEnums::getEnums() const { return items; }
+const FieldEnumBase ** MsgTypeEnums::getEnums() const { return items; }
 const MsgTypeEnums MsgTypeEnums::instance;
 const FieldEnumBase * MsgTypeEnums::items[] = {
 & MsgTypeEnums::HEARTBEAT,
@@ -6334,7 +6334,7 @@ const FieldEnumBase * OrdStatusEnums::findEnum( raw_enum_t raw ) { auto it = ite
 const OrdStatusEnums::ValueType * OrdStatusEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * OrdStatusEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & OrdStatusEnums::getEnumMapByRaw() const { return OrdStatusEnums::itemByRaw; }
-const FieldEnumBase * const * const OrdStatusEnums::getEnums() const { return items; }
+const FieldEnumBase ** OrdStatusEnums::getEnums() const { return items; }
 const OrdStatusEnums OrdStatusEnums::instance;
 const FieldEnumBase * OrdStatusEnums::items[] = {
 & OrdStatusEnums::NEW,
@@ -6359,7 +6359,7 @@ const FieldEnumBase * OrdTypeEnums::findEnum( raw_enum_t raw ) { auto it = itemB
 const OrdTypeEnums::ValueType * OrdTypeEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * OrdTypeEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & OrdTypeEnums::getEnumMapByRaw() const { return OrdTypeEnums::itemByRaw; }
-const FieldEnumBase * const * const OrdTypeEnums::getEnums() const { return items; }
+const FieldEnumBase ** OrdTypeEnums::getEnums() const { return items; }
 const OrdTypeEnums OrdTypeEnums::instance;
 const FieldEnumBase * OrdTypeEnums::items[] = {
 & OrdTypeEnums::MARKET,
@@ -6387,7 +6387,7 @@ const FieldEnumBase * PossDupFlagEnums::findEnum( raw_enum_t raw ) { auto it = i
 const PossDupFlagEnums::ValueType * PossDupFlagEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * PossDupFlagEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & PossDupFlagEnums::getEnumMapByRaw() const { return PossDupFlagEnums::itemByRaw; }
-const FieldEnumBase * const * const PossDupFlagEnums::getEnums() const { return items; }
+const FieldEnumBase ** PossDupFlagEnums::getEnums() const { return items; }
 const PossDupFlagEnums PossDupFlagEnums::instance;
 const FieldEnumBase * PossDupFlagEnums::items[] = {
 & PossDupFlagEnums::YES,
@@ -6400,7 +6400,7 @@ const FieldEnumBase * SideEnums::findEnum( raw_enum_t raw ) { auto it = itemByRa
 const SideEnums::ValueType * SideEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * SideEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & SideEnums::getEnumMapByRaw() const { return SideEnums::itemByRaw; }
-const FieldEnumBase * const * const SideEnums::getEnums() const { return items; }
+const FieldEnumBase ** SideEnums::getEnums() const { return items; }
 const SideEnums SideEnums::instance;
 const FieldEnumBase * SideEnums::items[] = {
 & SideEnums::BUY,
@@ -6427,7 +6427,7 @@ const FieldEnumBase * TimeInForceEnums::findEnum( raw_enum_t raw ) { auto it = i
 const TimeInForceEnums::ValueType * TimeInForceEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * TimeInForceEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & TimeInForceEnums::getEnumMapByRaw() const { return TimeInForceEnums::itemByRaw; }
-const FieldEnumBase * const * const TimeInForceEnums::getEnums() const { return items; }
+const FieldEnumBase ** TimeInForceEnums::getEnums() const { return items; }
 const TimeInForceEnums TimeInForceEnums::instance;
 const FieldEnumBase * TimeInForceEnums::items[] = {
 & TimeInForceEnums::DAY,
@@ -6446,7 +6446,7 @@ const FieldEnumBase * UrgencyEnums::findEnum( raw_enum_t raw ) { auto it = itemB
 const UrgencyEnums::ValueType * UrgencyEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * UrgencyEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & UrgencyEnums::getEnumMapByRaw() const { return UrgencyEnums::itemByRaw; }
-const FieldEnumBase * const * const UrgencyEnums::getEnums() const { return items; }
+const FieldEnumBase ** UrgencyEnums::getEnums() const { return items; }
 const UrgencyEnums UrgencyEnums::instance;
 const FieldEnumBase * UrgencyEnums::items[] = {
 & UrgencyEnums::NORMAL,
@@ -6460,7 +6460,7 @@ const FieldEnumBase * SettlTypeEnums::findEnum( raw_enum_t raw ) { auto it = ite
 const SettlTypeEnums::ValueType * SettlTypeEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * SettlTypeEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & SettlTypeEnums::getEnumMapByRaw() const { return SettlTypeEnums::itemByRaw; }
-const FieldEnumBase * const * const SettlTypeEnums::getEnums() const { return items; }
+const FieldEnumBase ** SettlTypeEnums::getEnums() const { return items; }
 const SettlTypeEnums SettlTypeEnums::instance;
 const FieldEnumBase * SettlTypeEnums::items[] = {
 & SettlTypeEnums::REGULAR,
@@ -6481,7 +6481,7 @@ const FieldEnumBase * AllocTransTypeEnums::findEnum( raw_enum_t raw ) { auto it 
 const AllocTransTypeEnums::ValueType * AllocTransTypeEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * AllocTransTypeEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & AllocTransTypeEnums::getEnumMapByRaw() const { return AllocTransTypeEnums::itemByRaw; }
-const FieldEnumBase * const * const AllocTransTypeEnums::getEnums() const { return items; }
+const FieldEnumBase ** AllocTransTypeEnums::getEnums() const { return items; }
 const AllocTransTypeEnums AllocTransTypeEnums::instance;
 const FieldEnumBase * AllocTransTypeEnums::items[] = {
 & AllocTransTypeEnums::NEW,
@@ -6495,7 +6495,7 @@ const FieldEnumBase * PositionEffectEnums::findEnum( raw_enum_t raw ) { auto it 
 const PositionEffectEnums::ValueType * PositionEffectEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * PositionEffectEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & PositionEffectEnums::getEnumMapByRaw() const { return PositionEffectEnums::itemByRaw; }
-const FieldEnumBase * const * const PositionEffectEnums::getEnums() const { return items; }
+const FieldEnumBase ** PositionEffectEnums::getEnums() const { return items; }
 const PositionEffectEnums PositionEffectEnums::instance;
 const FieldEnumBase * PositionEffectEnums::items[] = {
 & PositionEffectEnums::OPEN,
@@ -6510,7 +6510,7 @@ const FieldEnumBase * ProcessCodeEnums::findEnum( raw_enum_t raw ) { auto it = i
 const ProcessCodeEnums::ValueType * ProcessCodeEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * ProcessCodeEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & ProcessCodeEnums::getEnumMapByRaw() const { return ProcessCodeEnums::itemByRaw; }
-const FieldEnumBase * const * const ProcessCodeEnums::getEnums() const { return items; }
+const FieldEnumBase ** ProcessCodeEnums::getEnums() const { return items; }
 const ProcessCodeEnums ProcessCodeEnums::instance;
 const FieldEnumBase * ProcessCodeEnums::items[] = {
 & ProcessCodeEnums::REGULAR,
@@ -6528,7 +6528,7 @@ const FieldEnumBase * AllocStatusEnums::findEnum( raw_enum_t raw ) { auto it = i
 const AllocStatusEnums::ValueType * AllocStatusEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * AllocStatusEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & AllocStatusEnums::getEnumMapByRaw() const { return AllocStatusEnums::itemByRaw; }
-const FieldEnumBase * const * const AllocStatusEnums::getEnums() const { return items; }
+const FieldEnumBase ** AllocStatusEnums::getEnums() const { return items; }
 const AllocStatusEnums AllocStatusEnums::instance;
 const FieldEnumBase * AllocStatusEnums::items[] = {
 & AllocStatusEnums::ACCEPTED,
@@ -6545,7 +6545,7 @@ const FieldEnumBase * AllocRejCodeEnums::findEnum( raw_enum_t raw ) { auto it = 
 const AllocRejCodeEnums::ValueType * AllocRejCodeEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * AllocRejCodeEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & AllocRejCodeEnums::getEnumMapByRaw() const { return AllocRejCodeEnums::itemByRaw; }
-const FieldEnumBase * const * const AllocRejCodeEnums::getEnums() const { return items; }
+const FieldEnumBase ** AllocRejCodeEnums::getEnums() const { return items; }
 const AllocRejCodeEnums AllocRejCodeEnums::instance;
 const FieldEnumBase * AllocRejCodeEnums::items[] = {
 & AllocRejCodeEnums::UNKNOWN_ACCOUNT,
@@ -6570,7 +6570,7 @@ const FieldEnumBase * EmailTypeEnums::findEnum( raw_enum_t raw ) { auto it = ite
 const EmailTypeEnums::ValueType * EmailTypeEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * EmailTypeEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & EmailTypeEnums::getEnumMapByRaw() const { return EmailTypeEnums::itemByRaw; }
-const FieldEnumBase * const * const EmailTypeEnums::getEnums() const { return items; }
+const FieldEnumBase ** EmailTypeEnums::getEnums() const { return items; }
 const EmailTypeEnums EmailTypeEnums::instance;
 const FieldEnumBase * EmailTypeEnums::items[] = {
 & EmailTypeEnums::NEW,
@@ -6584,7 +6584,7 @@ const FieldEnumBase * PossResendEnums::findEnum( raw_enum_t raw ) { auto it = it
 const PossResendEnums::ValueType * PossResendEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * PossResendEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & PossResendEnums::getEnumMapByRaw() const { return PossResendEnums::itemByRaw; }
-const FieldEnumBase * const * const PossResendEnums::getEnums() const { return items; }
+const FieldEnumBase ** PossResendEnums::getEnums() const { return items; }
 const PossResendEnums PossResendEnums::instance;
 const FieldEnumBase * PossResendEnums::items[] = {
 & PossResendEnums::YES,
@@ -6597,7 +6597,7 @@ const FieldEnumBase * EncryptMethodEnums::findEnum( raw_enum_t raw ) { auto it =
 const EncryptMethodEnums::ValueType * EncryptMethodEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * EncryptMethodEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & EncryptMethodEnums::getEnumMapByRaw() const { return EncryptMethodEnums::itemByRaw; }
-const FieldEnumBase * const * const EncryptMethodEnums::getEnums() const { return items; }
+const FieldEnumBase ** EncryptMethodEnums::getEnums() const { return items; }
 const EncryptMethodEnums EncryptMethodEnums::instance;
 const FieldEnumBase * EncryptMethodEnums::items[] = {
 & EncryptMethodEnums::NONE,
@@ -6615,7 +6615,7 @@ const FieldEnumBase * CxlRejReasonEnums::findEnum( raw_enum_t raw ) { auto it = 
 const CxlRejReasonEnums::ValueType * CxlRejReasonEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * CxlRejReasonEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & CxlRejReasonEnums::getEnumMapByRaw() const { return CxlRejReasonEnums::itemByRaw; }
-const FieldEnumBase * const * const CxlRejReasonEnums::getEnums() const { return items; }
+const FieldEnumBase ** CxlRejReasonEnums::getEnums() const { return items; }
 const CxlRejReasonEnums CxlRejReasonEnums::instance;
 const FieldEnumBase * CxlRejReasonEnums::items[] = {
 & CxlRejReasonEnums::TOO_LATE_TO_CANCEL,
@@ -6634,7 +6634,7 @@ const FieldEnumBase * OrdRejReasonEnums::findEnum( raw_enum_t raw ) { auto it = 
 const OrdRejReasonEnums::ValueType * OrdRejReasonEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * OrdRejReasonEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & OrdRejReasonEnums::getEnumMapByRaw() const { return OrdRejReasonEnums::itemByRaw; }
-const FieldEnumBase * const * const OrdRejReasonEnums::getEnums() const { return items; }
+const FieldEnumBase ** OrdRejReasonEnums::getEnums() const { return items; }
 const OrdRejReasonEnums OrdRejReasonEnums::instance;
 const FieldEnumBase * OrdRejReasonEnums::items[] = {
 & OrdRejReasonEnums::BROKER,
@@ -6661,7 +6661,7 @@ const FieldEnumBase * IOIQualifierEnums::findEnum( raw_enum_t raw ) { auto it = 
 const IOIQualifierEnums::ValueType * IOIQualifierEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * IOIQualifierEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & IOIQualifierEnums::getEnumMapByRaw() const { return IOIQualifierEnums::itemByRaw; }
-const FieldEnumBase * const * const IOIQualifierEnums::getEnums() const { return items; }
+const FieldEnumBase ** IOIQualifierEnums::getEnums() const { return items; }
 const IOIQualifierEnums IOIQualifierEnums::instance;
 const FieldEnumBase * IOIQualifierEnums::items[] = {
 & IOIQualifierEnums::ALL_OR_NONE,
@@ -6690,7 +6690,7 @@ const FieldEnumBase * ReportToExchEnums::findEnum( raw_enum_t raw ) { auto it = 
 const ReportToExchEnums::ValueType * ReportToExchEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * ReportToExchEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & ReportToExchEnums::getEnumMapByRaw() const { return ReportToExchEnums::itemByRaw; }
-const FieldEnumBase * const * const ReportToExchEnums::getEnums() const { return items; }
+const FieldEnumBase ** ReportToExchEnums::getEnums() const { return items; }
 const ReportToExchEnums ReportToExchEnums::instance;
 const FieldEnumBase * ReportToExchEnums::items[] = {
 & ReportToExchEnums::YES,
@@ -6703,7 +6703,7 @@ const FieldEnumBase * LocateReqdEnums::findEnum( raw_enum_t raw ) { auto it = it
 const LocateReqdEnums::ValueType * LocateReqdEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * LocateReqdEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & LocateReqdEnums::getEnumMapByRaw() const { return LocateReqdEnums::itemByRaw; }
-const FieldEnumBase * const * const LocateReqdEnums::getEnums() const { return items; }
+const FieldEnumBase ** LocateReqdEnums::getEnums() const { return items; }
 const LocateReqdEnums LocateReqdEnums::instance;
 const FieldEnumBase * LocateReqdEnums::items[] = {
 & LocateReqdEnums::YES,
@@ -6716,7 +6716,7 @@ const FieldEnumBase * ForexReqEnums::findEnum( raw_enum_t raw ) { auto it = item
 const ForexReqEnums::ValueType * ForexReqEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * ForexReqEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & ForexReqEnums::getEnumMapByRaw() const { return ForexReqEnums::itemByRaw; }
-const FieldEnumBase * const * const ForexReqEnums::getEnums() const { return items; }
+const FieldEnumBase ** ForexReqEnums::getEnums() const { return items; }
 const ForexReqEnums ForexReqEnums::instance;
 const FieldEnumBase * ForexReqEnums::items[] = {
 & ForexReqEnums::YES,
@@ -6729,7 +6729,7 @@ const FieldEnumBase * GapFillFlagEnums::findEnum( raw_enum_t raw ) { auto it = i
 const GapFillFlagEnums::ValueType * GapFillFlagEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * GapFillFlagEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & GapFillFlagEnums::getEnumMapByRaw() const { return GapFillFlagEnums::itemByRaw; }
-const FieldEnumBase * const * const GapFillFlagEnums::getEnums() const { return items; }
+const FieldEnumBase ** GapFillFlagEnums::getEnums() const { return items; }
 const GapFillFlagEnums GapFillFlagEnums::instance;
 const FieldEnumBase * GapFillFlagEnums::items[] = {
 & GapFillFlagEnums::YES,
@@ -6742,7 +6742,7 @@ const FieldEnumBase * DKReasonEnums::findEnum( raw_enum_t raw ) { auto it = item
 const DKReasonEnums::ValueType * DKReasonEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * DKReasonEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & DKReasonEnums::getEnumMapByRaw() const { return DKReasonEnums::itemByRaw; }
-const FieldEnumBase * const * const DKReasonEnums::getEnums() const { return items; }
+const FieldEnumBase ** DKReasonEnums::getEnums() const { return items; }
 const DKReasonEnums DKReasonEnums::instance;
 const FieldEnumBase * DKReasonEnums::items[] = {
 & DKReasonEnums::UNKNOWN_SYMBOL,
@@ -6760,7 +6760,7 @@ const FieldEnumBase * IOINaturalFlagEnums::findEnum( raw_enum_t raw ) { auto it 
 const IOINaturalFlagEnums::ValueType * IOINaturalFlagEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * IOINaturalFlagEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & IOINaturalFlagEnums::getEnumMapByRaw() const { return IOINaturalFlagEnums::itemByRaw; }
-const FieldEnumBase * const * const IOINaturalFlagEnums::getEnums() const { return items; }
+const FieldEnumBase ** IOINaturalFlagEnums::getEnums() const { return items; }
 const IOINaturalFlagEnums IOINaturalFlagEnums::instance;
 const FieldEnumBase * IOINaturalFlagEnums::items[] = {
 & IOINaturalFlagEnums::YES,
@@ -6773,7 +6773,7 @@ const FieldEnumBase * MiscFeeTypeEnums::findEnum( raw_enum_t raw ) { auto it = i
 const MiscFeeTypeEnums::ValueType * MiscFeeTypeEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * MiscFeeTypeEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & MiscFeeTypeEnums::getEnumMapByRaw() const { return MiscFeeTypeEnums::itemByRaw; }
-const FieldEnumBase * const * const MiscFeeTypeEnums::getEnums() const { return items; }
+const FieldEnumBase ** MiscFeeTypeEnums::getEnums() const { return items; }
 const MiscFeeTypeEnums MiscFeeTypeEnums::instance;
 const FieldEnumBase * MiscFeeTypeEnums::items[] = {
 & MiscFeeTypeEnums::REGULATORY,
@@ -6796,7 +6796,7 @@ const FieldEnumBase * ResetSeqNumFlagEnums::findEnum( raw_enum_t raw ) { auto it
 const ResetSeqNumFlagEnums::ValueType * ResetSeqNumFlagEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * ResetSeqNumFlagEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & ResetSeqNumFlagEnums::getEnumMapByRaw() const { return ResetSeqNumFlagEnums::itemByRaw; }
-const FieldEnumBase * const * const ResetSeqNumFlagEnums::getEnums() const { return items; }
+const FieldEnumBase ** ResetSeqNumFlagEnums::getEnums() const { return items; }
 const ResetSeqNumFlagEnums ResetSeqNumFlagEnums::instance;
 const FieldEnumBase * ResetSeqNumFlagEnums::items[] = {
 & ResetSeqNumFlagEnums::YES,
@@ -6809,7 +6809,7 @@ const FieldEnumBase * ExecTypeEnums::findEnum( raw_enum_t raw ) { auto it = item
 const ExecTypeEnums::ValueType * ExecTypeEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * ExecTypeEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & ExecTypeEnums::getEnumMapByRaw() const { return ExecTypeEnums::itemByRaw; }
-const FieldEnumBase * const * const ExecTypeEnums::getEnums() const { return items; }
+const FieldEnumBase ** ExecTypeEnums::getEnums() const { return items; }
 const ExecTypeEnums ExecTypeEnums::instance;
 const FieldEnumBase * ExecTypeEnums::items[] = {
 & ExecTypeEnums::NEW,
@@ -6837,7 +6837,7 @@ const FieldEnumBase * SettlCurrFxRateCalcEnums::findEnum( raw_enum_t raw ) { aut
 const SettlCurrFxRateCalcEnums::ValueType * SettlCurrFxRateCalcEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * SettlCurrFxRateCalcEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & SettlCurrFxRateCalcEnums::getEnumMapByRaw() const { return SettlCurrFxRateCalcEnums::itemByRaw; }
-const FieldEnumBase * const * const SettlCurrFxRateCalcEnums::getEnums() const { return items; }
+const FieldEnumBase ** SettlCurrFxRateCalcEnums::getEnums() const { return items; }
 const SettlCurrFxRateCalcEnums SettlCurrFxRateCalcEnums::instance;
 const FieldEnumBase * SettlCurrFxRateCalcEnums::items[] = {
 & SettlCurrFxRateCalcEnums::MULTIPLY,
@@ -6850,7 +6850,7 @@ const FieldEnumBase * SettlInstModeEnums::findEnum( raw_enum_t raw ) { auto it =
 const SettlInstModeEnums::ValueType * SettlInstModeEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * SettlInstModeEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & SettlInstModeEnums::getEnumMapByRaw() const { return SettlInstModeEnums::itemByRaw; }
-const FieldEnumBase * const * const SettlInstModeEnums::getEnums() const { return items; }
+const FieldEnumBase ** SettlInstModeEnums::getEnums() const { return items; }
 const SettlInstModeEnums SettlInstModeEnums::instance;
 const FieldEnumBase * SettlInstModeEnums::items[] = {
 & SettlInstModeEnums::STANDING_INSTRUCTIONS_PROVIDED,
@@ -6864,7 +6864,7 @@ const FieldEnumBase * SettlInstTransTypeEnums::findEnum( raw_enum_t raw ) { auto
 const SettlInstTransTypeEnums::ValueType * SettlInstTransTypeEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * SettlInstTransTypeEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & SettlInstTransTypeEnums::getEnumMapByRaw() const { return SettlInstTransTypeEnums::itemByRaw; }
-const FieldEnumBase * const * const SettlInstTransTypeEnums::getEnums() const { return items; }
+const FieldEnumBase ** SettlInstTransTypeEnums::getEnums() const { return items; }
 const SettlInstTransTypeEnums SettlInstTransTypeEnums::instance;
 const FieldEnumBase * SettlInstTransTypeEnums::items[] = {
 & SettlInstTransTypeEnums::NEW,
@@ -6879,7 +6879,7 @@ const FieldEnumBase * SettlInstSourceEnums::findEnum( raw_enum_t raw ) { auto it
 const SettlInstSourceEnums::ValueType * SettlInstSourceEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * SettlInstSourceEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & SettlInstSourceEnums::getEnumMapByRaw() const { return SettlInstSourceEnums::itemByRaw; }
-const FieldEnumBase * const * const SettlInstSourceEnums::getEnums() const { return items; }
+const FieldEnumBase ** SettlInstSourceEnums::getEnums() const { return items; }
 const SettlInstSourceEnums SettlInstSourceEnums::instance;
 const FieldEnumBase * SettlInstSourceEnums::items[] = {
 & SettlInstSourceEnums::BROKERS_INSTRUCTIONS,
@@ -6893,7 +6893,7 @@ const FieldEnumBase * SecurityTypeEnums::findEnum( raw_enum_t raw ) { auto it = 
 const SecurityTypeEnums::ValueType * SecurityTypeEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * SecurityTypeEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & SecurityTypeEnums::getEnumMapByRaw() const { return SecurityTypeEnums::itemByRaw; }
-const FieldEnumBase * const * const SecurityTypeEnums::getEnums() const { return items; }
+const FieldEnumBase ** SecurityTypeEnums::getEnums() const { return items; }
 const SecurityTypeEnums SecurityTypeEnums::instance;
 const FieldEnumBase * SecurityTypeEnums::items[] = {
 & SecurityTypeEnums::FUTURE,
@@ -6999,7 +6999,7 @@ const FieldEnumBase * StandInstDbTypeEnums::findEnum( raw_enum_t raw ) { auto it
 const StandInstDbTypeEnums::ValueType * StandInstDbTypeEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * StandInstDbTypeEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & StandInstDbTypeEnums::getEnumMapByRaw() const { return StandInstDbTypeEnums::itemByRaw; }
-const FieldEnumBase * const * const StandInstDbTypeEnums::getEnums() const { return items; }
+const FieldEnumBase ** StandInstDbTypeEnums::getEnums() const { return items; }
 const StandInstDbTypeEnums StandInstDbTypeEnums::instance;
 const FieldEnumBase * StandInstDbTypeEnums::items[] = {
 & StandInstDbTypeEnums::OTHER,
@@ -7015,7 +7015,7 @@ const FieldEnumBase * SettlDeliveryTypeEnums::findEnum( raw_enum_t raw ) { auto 
 const SettlDeliveryTypeEnums::ValueType * SettlDeliveryTypeEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * SettlDeliveryTypeEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & SettlDeliveryTypeEnums::getEnumMapByRaw() const { return SettlDeliveryTypeEnums::itemByRaw; }
-const FieldEnumBase * const * const SettlDeliveryTypeEnums::getEnums() const { return items; }
+const FieldEnumBase ** SettlDeliveryTypeEnums::getEnums() const { return items; }
 const SettlDeliveryTypeEnums SettlDeliveryTypeEnums::instance;
 const FieldEnumBase * SettlDeliveryTypeEnums::items[] = {
 & SettlDeliveryTypeEnums::VERSUS_PAYMENT_DELIVER,
@@ -7030,7 +7030,7 @@ const FieldEnumBase * AllocLinkTypeEnums::findEnum( raw_enum_t raw ) { auto it =
 const AllocLinkTypeEnums::ValueType * AllocLinkTypeEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * AllocLinkTypeEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & AllocLinkTypeEnums::getEnumMapByRaw() const { return AllocLinkTypeEnums::itemByRaw; }
-const FieldEnumBase * const * const AllocLinkTypeEnums::getEnums() const { return items; }
+const FieldEnumBase ** AllocLinkTypeEnums::getEnums() const { return items; }
 const AllocLinkTypeEnums AllocLinkTypeEnums::instance;
 const FieldEnumBase * AllocLinkTypeEnums::items[] = {
 & AllocLinkTypeEnums::F_X_NETTING,
@@ -7043,7 +7043,7 @@ const FieldEnumBase * PutOrCallEnums::findEnum( raw_enum_t raw ) { auto it = ite
 const PutOrCallEnums::ValueType * PutOrCallEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * PutOrCallEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & PutOrCallEnums::getEnumMapByRaw() const { return PutOrCallEnums::itemByRaw; }
-const FieldEnumBase * const * const PutOrCallEnums::getEnums() const { return items; }
+const FieldEnumBase ** PutOrCallEnums::getEnums() const { return items; }
 const PutOrCallEnums PutOrCallEnums::instance;
 const FieldEnumBase * PutOrCallEnums::items[] = {
 & PutOrCallEnums::PUT,
@@ -7056,7 +7056,7 @@ const FieldEnumBase * CoveredOrUncoveredEnums::findEnum( raw_enum_t raw ) { auto
 const CoveredOrUncoveredEnums::ValueType * CoveredOrUncoveredEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * CoveredOrUncoveredEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & CoveredOrUncoveredEnums::getEnumMapByRaw() const { return CoveredOrUncoveredEnums::itemByRaw; }
-const FieldEnumBase * const * const CoveredOrUncoveredEnums::getEnums() const { return items; }
+const FieldEnumBase ** CoveredOrUncoveredEnums::getEnums() const { return items; }
 const CoveredOrUncoveredEnums CoveredOrUncoveredEnums::instance;
 const FieldEnumBase * CoveredOrUncoveredEnums::items[] = {
 & CoveredOrUncoveredEnums::COVERED,
@@ -7069,7 +7069,7 @@ const FieldEnumBase * NotifyBrokerOfCreditEnums::findEnum( raw_enum_t raw ) { au
 const NotifyBrokerOfCreditEnums::ValueType * NotifyBrokerOfCreditEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * NotifyBrokerOfCreditEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & NotifyBrokerOfCreditEnums::getEnumMapByRaw() const { return NotifyBrokerOfCreditEnums::itemByRaw; }
-const FieldEnumBase * const * const NotifyBrokerOfCreditEnums::getEnums() const { return items; }
+const FieldEnumBase ** NotifyBrokerOfCreditEnums::getEnums() const { return items; }
 const NotifyBrokerOfCreditEnums NotifyBrokerOfCreditEnums::instance;
 const FieldEnumBase * NotifyBrokerOfCreditEnums::items[] = {
 & NotifyBrokerOfCreditEnums::YES,
@@ -7082,7 +7082,7 @@ const FieldEnumBase * AllocHandlInstEnums::findEnum( raw_enum_t raw ) { auto it 
 const AllocHandlInstEnums::ValueType * AllocHandlInstEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * AllocHandlInstEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & AllocHandlInstEnums::getEnumMapByRaw() const { return AllocHandlInstEnums::itemByRaw; }
-const FieldEnumBase * const * const AllocHandlInstEnums::getEnums() const { return items; }
+const FieldEnumBase ** AllocHandlInstEnums::getEnums() const { return items; }
 const AllocHandlInstEnums AllocHandlInstEnums::instance;
 const FieldEnumBase * AllocHandlInstEnums::items[] = {
 & AllocHandlInstEnums::MATCH,
@@ -7096,7 +7096,7 @@ const FieldEnumBase * RoutingTypeEnums::findEnum( raw_enum_t raw ) { auto it = i
 const RoutingTypeEnums::ValueType * RoutingTypeEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * RoutingTypeEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & RoutingTypeEnums::getEnumMapByRaw() const { return RoutingTypeEnums::itemByRaw; }
-const FieldEnumBase * const * const RoutingTypeEnums::getEnums() const { return items; }
+const FieldEnumBase ** RoutingTypeEnums::getEnums() const { return items; }
 const RoutingTypeEnums RoutingTypeEnums::instance;
 const FieldEnumBase * RoutingTypeEnums::items[] = {
 & RoutingTypeEnums::TARGET_FIRM,
@@ -7111,7 +7111,7 @@ const FieldEnumBase * StipulationTypeEnums::findEnum( raw_enum_t raw ) { auto it
 const StipulationTypeEnums::ValueType * StipulationTypeEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * StipulationTypeEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & StipulationTypeEnums::getEnumMapByRaw() const { return StipulationTypeEnums::itemByRaw; }
-const FieldEnumBase * const * const StipulationTypeEnums::getEnums() const { return items; }
+const FieldEnumBase ** StipulationTypeEnums::getEnums() const { return items; }
 const StipulationTypeEnums StipulationTypeEnums::instance;
 const FieldEnumBase * StipulationTypeEnums::items[] = {
 & StipulationTypeEnums::AMT,
@@ -7172,7 +7172,7 @@ const FieldEnumBase * YieldTypeEnums::findEnum( raw_enum_t raw ) { auto it = ite
 const YieldTypeEnums::ValueType * YieldTypeEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * YieldTypeEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & YieldTypeEnums::getEnumMapByRaw() const { return YieldTypeEnums::itemByRaw; }
-const FieldEnumBase * const * const YieldTypeEnums::getEnums() const { return items; }
+const FieldEnumBase ** YieldTypeEnums::getEnums() const { return items; }
 const YieldTypeEnums YieldTypeEnums::instance;
 const FieldEnumBase * YieldTypeEnums::items[] = {
 & YieldTypeEnums::AFTER_TAX_YIELD,
@@ -7217,7 +7217,7 @@ const FieldEnumBase * TradedFlatSwitchEnums::findEnum( raw_enum_t raw ) { auto i
 const TradedFlatSwitchEnums::ValueType * TradedFlatSwitchEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * TradedFlatSwitchEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & TradedFlatSwitchEnums::getEnumMapByRaw() const { return TradedFlatSwitchEnums::itemByRaw; }
-const FieldEnumBase * const * const TradedFlatSwitchEnums::getEnums() const { return items; }
+const FieldEnumBase ** TradedFlatSwitchEnums::getEnums() const { return items; }
 const TradedFlatSwitchEnums TradedFlatSwitchEnums::instance;
 const FieldEnumBase * TradedFlatSwitchEnums::items[] = {
 & TradedFlatSwitchEnums::YES,
@@ -7230,7 +7230,7 @@ const FieldEnumBase * SubscriptionRequestTypeEnums::findEnum( raw_enum_t raw ) {
 const SubscriptionRequestTypeEnums::ValueType * SubscriptionRequestTypeEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * SubscriptionRequestTypeEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & SubscriptionRequestTypeEnums::getEnumMapByRaw() const { return SubscriptionRequestTypeEnums::itemByRaw; }
-const FieldEnumBase * const * const SubscriptionRequestTypeEnums::getEnums() const { return items; }
+const FieldEnumBase ** SubscriptionRequestTypeEnums::getEnums() const { return items; }
 const SubscriptionRequestTypeEnums SubscriptionRequestTypeEnums::instance;
 const FieldEnumBase * SubscriptionRequestTypeEnums::items[] = {
 & SubscriptionRequestTypeEnums::SNAPSHOT,
@@ -7244,7 +7244,7 @@ const FieldEnumBase * MDUpdateTypeEnums::findEnum( raw_enum_t raw ) { auto it = 
 const MDUpdateTypeEnums::ValueType * MDUpdateTypeEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * MDUpdateTypeEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & MDUpdateTypeEnums::getEnumMapByRaw() const { return MDUpdateTypeEnums::itemByRaw; }
-const FieldEnumBase * const * const MDUpdateTypeEnums::getEnums() const { return items; }
+const FieldEnumBase ** MDUpdateTypeEnums::getEnums() const { return items; }
 const MDUpdateTypeEnums MDUpdateTypeEnums::instance;
 const FieldEnumBase * MDUpdateTypeEnums::items[] = {
 & MDUpdateTypeEnums::FULL_REFRESH,
@@ -7257,7 +7257,7 @@ const FieldEnumBase * AggregatedBookEnums::findEnum( raw_enum_t raw ) { auto it 
 const AggregatedBookEnums::ValueType * AggregatedBookEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * AggregatedBookEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & AggregatedBookEnums::getEnumMapByRaw() const { return AggregatedBookEnums::itemByRaw; }
-const FieldEnumBase * const * const AggregatedBookEnums::getEnums() const { return items; }
+const FieldEnumBase ** AggregatedBookEnums::getEnums() const { return items; }
 const AggregatedBookEnums AggregatedBookEnums::instance;
 const FieldEnumBase * AggregatedBookEnums::items[] = {
 & AggregatedBookEnums::YES,
@@ -7270,7 +7270,7 @@ const FieldEnumBase * MDEntryTypeEnums::findEnum( raw_enum_t raw ) { auto it = i
 const MDEntryTypeEnums::ValueType * MDEntryTypeEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * MDEntryTypeEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & MDEntryTypeEnums::getEnumMapByRaw() const { return MDEntryTypeEnums::itemByRaw; }
-const FieldEnumBase * const * const MDEntryTypeEnums::getEnums() const { return items; }
+const FieldEnumBase ** MDEntryTypeEnums::getEnums() const { return items; }
 const MDEntryTypeEnums MDEntryTypeEnums::instance;
 const FieldEnumBase * MDEntryTypeEnums::items[] = {
 & MDEntryTypeEnums::BID,
@@ -7294,7 +7294,7 @@ const FieldEnumBase * TickDirectionEnums::findEnum( raw_enum_t raw ) { auto it =
 const TickDirectionEnums::ValueType * TickDirectionEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * TickDirectionEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & TickDirectionEnums::getEnumMapByRaw() const { return TickDirectionEnums::itemByRaw; }
-const FieldEnumBase * const * const TickDirectionEnums::getEnums() const { return items; }
+const FieldEnumBase ** TickDirectionEnums::getEnums() const { return items; }
 const TickDirectionEnums TickDirectionEnums::instance;
 const FieldEnumBase * TickDirectionEnums::items[] = {
 & TickDirectionEnums::PLUS_TICK,
@@ -7309,7 +7309,7 @@ const FieldEnumBase * QuoteConditionEnums::findEnum( raw_enum_t raw ) { auto it 
 const QuoteConditionEnums::ValueType * QuoteConditionEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * QuoteConditionEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & QuoteConditionEnums::getEnumMapByRaw() const { return QuoteConditionEnums::itemByRaw; }
-const FieldEnumBase * const * const QuoteConditionEnums::getEnums() const { return items; }
+const FieldEnumBase ** QuoteConditionEnums::getEnums() const { return items; }
 const QuoteConditionEnums QuoteConditionEnums::instance;
 const FieldEnumBase * QuoteConditionEnums::items[] = {
 & QuoteConditionEnums::OPEN,
@@ -7329,7 +7329,7 @@ const FieldEnumBase * TradeConditionEnums::findEnum( raw_enum_t raw ) { auto it 
 const TradeConditionEnums::ValueType * TradeConditionEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * TradeConditionEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & TradeConditionEnums::getEnumMapByRaw() const { return TradeConditionEnums::itemByRaw; }
-const FieldEnumBase * const * const TradeConditionEnums::getEnums() const { return items; }
+const FieldEnumBase ** TradeConditionEnums::getEnums() const { return items; }
 const TradeConditionEnums TradeConditionEnums::instance;
 const FieldEnumBase * TradeConditionEnums::items[] = {
 & TradeConditionEnums::CASH,
@@ -7357,7 +7357,7 @@ const FieldEnumBase * MDUpdateActionEnums::findEnum( raw_enum_t raw ) { auto it 
 const MDUpdateActionEnums::ValueType * MDUpdateActionEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * MDUpdateActionEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & MDUpdateActionEnums::getEnumMapByRaw() const { return MDUpdateActionEnums::itemByRaw; }
-const FieldEnumBase * const * const MDUpdateActionEnums::getEnums() const { return items; }
+const FieldEnumBase ** MDUpdateActionEnums::getEnums() const { return items; }
 const MDUpdateActionEnums MDUpdateActionEnums::instance;
 const FieldEnumBase * MDUpdateActionEnums::items[] = {
 & MDUpdateActionEnums::NEW,
@@ -7371,7 +7371,7 @@ const FieldEnumBase * MDReqRejReasonEnums::findEnum( raw_enum_t raw ) { auto it 
 const MDReqRejReasonEnums::ValueType * MDReqRejReasonEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * MDReqRejReasonEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & MDReqRejReasonEnums::getEnumMapByRaw() const { return MDReqRejReasonEnums::itemByRaw; }
-const FieldEnumBase * const * const MDReqRejReasonEnums::getEnums() const { return items; }
+const FieldEnumBase ** MDReqRejReasonEnums::getEnums() const { return items; }
 const MDReqRejReasonEnums MDReqRejReasonEnums::instance;
 const FieldEnumBase * MDReqRejReasonEnums::items[] = {
 & MDReqRejReasonEnums::UNKNOWN_SYMBOL,
@@ -7395,7 +7395,7 @@ const FieldEnumBase * DeleteReasonEnums::findEnum( raw_enum_t raw ) { auto it = 
 const DeleteReasonEnums::ValueType * DeleteReasonEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * DeleteReasonEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & DeleteReasonEnums::getEnumMapByRaw() const { return DeleteReasonEnums::itemByRaw; }
-const FieldEnumBase * const * const DeleteReasonEnums::getEnums() const { return items; }
+const FieldEnumBase ** DeleteReasonEnums::getEnums() const { return items; }
 const DeleteReasonEnums DeleteReasonEnums::instance;
 const FieldEnumBase * DeleteReasonEnums::items[] = {
 & DeleteReasonEnums::CANCELATION,
@@ -7408,7 +7408,7 @@ const FieldEnumBase * OpenCloseSettlFlagEnums::findEnum( raw_enum_t raw ) { auto
 const OpenCloseSettlFlagEnums::ValueType * OpenCloseSettlFlagEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * OpenCloseSettlFlagEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & OpenCloseSettlFlagEnums::getEnumMapByRaw() const { return OpenCloseSettlFlagEnums::itemByRaw; }
-const FieldEnumBase * const * const OpenCloseSettlFlagEnums::getEnums() const { return items; }
+const FieldEnumBase ** OpenCloseSettlFlagEnums::getEnums() const { return items; }
 const OpenCloseSettlFlagEnums OpenCloseSettlFlagEnums::instance;
 const FieldEnumBase * OpenCloseSettlFlagEnums::items[] = {
 & OpenCloseSettlFlagEnums::DAILY_OPEN,
@@ -7425,7 +7425,7 @@ const FieldEnumBase * FinancialStatusEnums::findEnum( raw_enum_t raw ) { auto it
 const FinancialStatusEnums::ValueType * FinancialStatusEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * FinancialStatusEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & FinancialStatusEnums::getEnumMapByRaw() const { return FinancialStatusEnums::itemByRaw; }
-const FieldEnumBase * const * const FinancialStatusEnums::getEnums() const { return items; }
+const FieldEnumBase ** FinancialStatusEnums::getEnums() const { return items; }
 const FinancialStatusEnums FinancialStatusEnums::instance;
 const FieldEnumBase * FinancialStatusEnums::items[] = {
 & FinancialStatusEnums::BANKRUPT,
@@ -7438,7 +7438,7 @@ const FieldEnumBase * CorporateActionEnums::findEnum( raw_enum_t raw ) { auto it
 const CorporateActionEnums::ValueType * CorporateActionEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * CorporateActionEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & CorporateActionEnums::getEnumMapByRaw() const { return CorporateActionEnums::itemByRaw; }
-const FieldEnumBase * const * const CorporateActionEnums::getEnums() const { return items; }
+const FieldEnumBase ** CorporateActionEnums::getEnums() const { return items; }
 const CorporateActionEnums CorporateActionEnums::instance;
 const FieldEnumBase * CorporateActionEnums::items[] = {
 & CorporateActionEnums::EX_DIVIDEND,
@@ -7454,7 +7454,7 @@ const FieldEnumBase * QuoteStatusEnums::findEnum( raw_enum_t raw ) { auto it = i
 const QuoteStatusEnums::ValueType * QuoteStatusEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * QuoteStatusEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & QuoteStatusEnums::getEnumMapByRaw() const { return QuoteStatusEnums::itemByRaw; }
-const FieldEnumBase * const * const QuoteStatusEnums::getEnums() const { return items; }
+const FieldEnumBase ** QuoteStatusEnums::getEnums() const { return items; }
 const QuoteStatusEnums QuoteStatusEnums::instance;
 const FieldEnumBase * QuoteStatusEnums::items[] = {
 & QuoteStatusEnums::ACCEPTED,
@@ -7481,7 +7481,7 @@ const FieldEnumBase * QuoteCancelTypeEnums::findEnum( raw_enum_t raw ) { auto it
 const QuoteCancelTypeEnums::ValueType * QuoteCancelTypeEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * QuoteCancelTypeEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & QuoteCancelTypeEnums::getEnumMapByRaw() const { return QuoteCancelTypeEnums::itemByRaw; }
-const FieldEnumBase * const * const QuoteCancelTypeEnums::getEnums() const { return items; }
+const FieldEnumBase ** QuoteCancelTypeEnums::getEnums() const { return items; }
 const QuoteCancelTypeEnums QuoteCancelTypeEnums::instance;
 const FieldEnumBase * QuoteCancelTypeEnums::items[] = {
 & QuoteCancelTypeEnums::CANCEL_FOR_SYMBOL,
@@ -7496,7 +7496,7 @@ const FieldEnumBase * QuoteRejectReasonEnums::findEnum( raw_enum_t raw ) { auto 
 const QuoteRejectReasonEnums::ValueType * QuoteRejectReasonEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * QuoteRejectReasonEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & QuoteRejectReasonEnums::getEnumMapByRaw() const { return QuoteRejectReasonEnums::itemByRaw; }
-const FieldEnumBase * const * const QuoteRejectReasonEnums::getEnums() const { return items; }
+const FieldEnumBase ** QuoteRejectReasonEnums::getEnums() const { return items; }
 const QuoteRejectReasonEnums QuoteRejectReasonEnums::instance;
 const FieldEnumBase * QuoteRejectReasonEnums::items[] = {
 & QuoteRejectReasonEnums::UNKNOWN_SYMBOL,
@@ -7517,7 +7517,7 @@ const FieldEnumBase * QuoteResponseLevelEnums::findEnum( raw_enum_t raw ) { auto
 const QuoteResponseLevelEnums::ValueType * QuoteResponseLevelEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * QuoteResponseLevelEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & QuoteResponseLevelEnums::getEnumMapByRaw() const { return QuoteResponseLevelEnums::itemByRaw; }
-const FieldEnumBase * const * const QuoteResponseLevelEnums::getEnums() const { return items; }
+const FieldEnumBase ** QuoteResponseLevelEnums::getEnums() const { return items; }
 const QuoteResponseLevelEnums QuoteResponseLevelEnums::instance;
 const FieldEnumBase * QuoteResponseLevelEnums::items[] = {
 & QuoteResponseLevelEnums::NO_ACKNOWLEDGEMENT,
@@ -7531,7 +7531,7 @@ const FieldEnumBase * QuoteRequestTypeEnums::findEnum( raw_enum_t raw ) { auto i
 const QuoteRequestTypeEnums::ValueType * QuoteRequestTypeEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * QuoteRequestTypeEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & QuoteRequestTypeEnums::getEnumMapByRaw() const { return QuoteRequestTypeEnums::itemByRaw; }
-const FieldEnumBase * const * const QuoteRequestTypeEnums::getEnums() const { return items; }
+const FieldEnumBase ** QuoteRequestTypeEnums::getEnums() const { return items; }
 const QuoteRequestTypeEnums QuoteRequestTypeEnums::instance;
 const FieldEnumBase * QuoteRequestTypeEnums::items[] = {
 & QuoteRequestTypeEnums::MANUAL,
@@ -7544,7 +7544,7 @@ const FieldEnumBase * SecurityRequestTypeEnums::findEnum( raw_enum_t raw ) { aut
 const SecurityRequestTypeEnums::ValueType * SecurityRequestTypeEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * SecurityRequestTypeEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & SecurityRequestTypeEnums::getEnumMapByRaw() const { return SecurityRequestTypeEnums::itemByRaw; }
-const FieldEnumBase * const * const SecurityRequestTypeEnums::getEnums() const { return items; }
+const FieldEnumBase ** SecurityRequestTypeEnums::getEnums() const { return items; }
 const SecurityRequestTypeEnums SecurityRequestTypeEnums::instance;
 const FieldEnumBase * SecurityRequestTypeEnums::items[] = {
 & SecurityRequestTypeEnums::REQUEST_SECURITY_IDENTITY_AND_SPECIFICATIONS,
@@ -7559,7 +7559,7 @@ const FieldEnumBase * SecurityResponseTypeEnums::findEnum( raw_enum_t raw ) { au
 const SecurityResponseTypeEnums::ValueType * SecurityResponseTypeEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * SecurityResponseTypeEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & SecurityResponseTypeEnums::getEnumMapByRaw() const { return SecurityResponseTypeEnums::itemByRaw; }
-const FieldEnumBase * const * const SecurityResponseTypeEnums::getEnums() const { return items; }
+const FieldEnumBase ** SecurityResponseTypeEnums::getEnums() const { return items; }
 const SecurityResponseTypeEnums SecurityResponseTypeEnums::instance;
 const FieldEnumBase * SecurityResponseTypeEnums::items[] = {
 & SecurityResponseTypeEnums::ACCEPT_SECURITY_PROPOSAL_AS_IS,
@@ -7574,7 +7574,7 @@ const FieldEnumBase * UnsolicitedIndicatorEnums::findEnum( raw_enum_t raw ) { au
 const UnsolicitedIndicatorEnums::ValueType * UnsolicitedIndicatorEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * UnsolicitedIndicatorEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & UnsolicitedIndicatorEnums::getEnumMapByRaw() const { return UnsolicitedIndicatorEnums::itemByRaw; }
-const FieldEnumBase * const * const UnsolicitedIndicatorEnums::getEnums() const { return items; }
+const FieldEnumBase ** UnsolicitedIndicatorEnums::getEnums() const { return items; }
 const UnsolicitedIndicatorEnums UnsolicitedIndicatorEnums::instance;
 const FieldEnumBase * UnsolicitedIndicatorEnums::items[] = {
 & UnsolicitedIndicatorEnums::YES,
@@ -7587,7 +7587,7 @@ const FieldEnumBase * SecurityTradingStatusEnums::findEnum( raw_enum_t raw ) { a
 const SecurityTradingStatusEnums::ValueType * SecurityTradingStatusEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * SecurityTradingStatusEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & SecurityTradingStatusEnums::getEnumMapByRaw() const { return SecurityTradingStatusEnums::itemByRaw; }
-const FieldEnumBase * const * const SecurityTradingStatusEnums::getEnums() const { return items; }
+const FieldEnumBase ** SecurityTradingStatusEnums::getEnums() const { return items; }
 const SecurityTradingStatusEnums SecurityTradingStatusEnums::instance;
 const FieldEnumBase * SecurityTradingStatusEnums::items[] = {
 & SecurityTradingStatusEnums::OPENING_DELAY,
@@ -7620,7 +7620,7 @@ const FieldEnumBase * HaltReasonCharEnums::findEnum( raw_enum_t raw ) { auto it 
 const HaltReasonCharEnums::ValueType * HaltReasonCharEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * HaltReasonCharEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & HaltReasonCharEnums::getEnumMapByRaw() const { return HaltReasonCharEnums::itemByRaw; }
-const FieldEnumBase * const * const HaltReasonCharEnums::getEnums() const { return items; }
+const FieldEnumBase ** HaltReasonCharEnums::getEnums() const { return items; }
 const HaltReasonCharEnums HaltReasonCharEnums::instance;
 const FieldEnumBase * HaltReasonCharEnums::items[] = {
 & HaltReasonCharEnums::ORDER_IMBALANCE,
@@ -7637,7 +7637,7 @@ const FieldEnumBase * InViewOfCommonEnums::findEnum( raw_enum_t raw ) { auto it 
 const InViewOfCommonEnums::ValueType * InViewOfCommonEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * InViewOfCommonEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & InViewOfCommonEnums::getEnumMapByRaw() const { return InViewOfCommonEnums::itemByRaw; }
-const FieldEnumBase * const * const InViewOfCommonEnums::getEnums() const { return items; }
+const FieldEnumBase ** InViewOfCommonEnums::getEnums() const { return items; }
 const InViewOfCommonEnums InViewOfCommonEnums::instance;
 const FieldEnumBase * InViewOfCommonEnums::items[] = {
 & InViewOfCommonEnums::YES,
@@ -7650,7 +7650,7 @@ const FieldEnumBase * DueToRelatedEnums::findEnum( raw_enum_t raw ) { auto it = 
 const DueToRelatedEnums::ValueType * DueToRelatedEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * DueToRelatedEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & DueToRelatedEnums::getEnumMapByRaw() const { return DueToRelatedEnums::itemByRaw; }
-const FieldEnumBase * const * const DueToRelatedEnums::getEnums() const { return items; }
+const FieldEnumBase ** DueToRelatedEnums::getEnums() const { return items; }
 const DueToRelatedEnums DueToRelatedEnums::instance;
 const FieldEnumBase * DueToRelatedEnums::items[] = {
 & DueToRelatedEnums::YES,
@@ -7663,7 +7663,7 @@ const FieldEnumBase * AdjustmentEnums::findEnum( raw_enum_t raw ) { auto it = it
 const AdjustmentEnums::ValueType * AdjustmentEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * AdjustmentEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & AdjustmentEnums::getEnumMapByRaw() const { return AdjustmentEnums::itemByRaw; }
-const FieldEnumBase * const * const AdjustmentEnums::getEnums() const { return items; }
+const FieldEnumBase ** AdjustmentEnums::getEnums() const { return items; }
 const AdjustmentEnums AdjustmentEnums::instance;
 const FieldEnumBase * AdjustmentEnums::items[] = {
 & AdjustmentEnums::CANCEL,
@@ -7677,7 +7677,7 @@ const FieldEnumBase * TradSesMethodEnums::findEnum( raw_enum_t raw ) { auto it =
 const TradSesMethodEnums::ValueType * TradSesMethodEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * TradSesMethodEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & TradSesMethodEnums::getEnumMapByRaw() const { return TradSesMethodEnums::itemByRaw; }
-const FieldEnumBase * const * const TradSesMethodEnums::getEnums() const { return items; }
+const FieldEnumBase ** TradSesMethodEnums::getEnums() const { return items; }
 const TradSesMethodEnums TradSesMethodEnums::instance;
 const FieldEnumBase * TradSesMethodEnums::items[] = {
 & TradSesMethodEnums::ELECTRONIC,
@@ -7691,7 +7691,7 @@ const FieldEnumBase * TradSesModeEnums::findEnum( raw_enum_t raw ) { auto it = i
 const TradSesModeEnums::ValueType * TradSesModeEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * TradSesModeEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & TradSesModeEnums::getEnumMapByRaw() const { return TradSesModeEnums::itemByRaw; }
-const FieldEnumBase * const * const TradSesModeEnums::getEnums() const { return items; }
+const FieldEnumBase ** TradSesModeEnums::getEnums() const { return items; }
 const TradSesModeEnums TradSesModeEnums::instance;
 const FieldEnumBase * TradSesModeEnums::items[] = {
 & TradSesModeEnums::TESTING,
@@ -7705,7 +7705,7 @@ const FieldEnumBase * TradSesStatusEnums::findEnum( raw_enum_t raw ) { auto it =
 const TradSesStatusEnums::ValueType * TradSesStatusEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * TradSesStatusEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & TradSesStatusEnums::getEnumMapByRaw() const { return TradSesStatusEnums::itemByRaw; }
-const FieldEnumBase * const * const TradSesStatusEnums::getEnums() const { return items; }
+const FieldEnumBase ** TradSesStatusEnums::getEnums() const { return items; }
 const TradSesStatusEnums TradSesStatusEnums::instance;
 const FieldEnumBase * TradSesStatusEnums::items[] = {
 & TradSesStatusEnums::UNKNOWN,
@@ -7723,7 +7723,7 @@ const FieldEnumBase * MessageEncodingEnums::findEnum( raw_enum_t raw ) { auto it
 const MessageEncodingEnums::ValueType * MessageEncodingEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * MessageEncodingEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & MessageEncodingEnums::getEnumMapByRaw() const { return MessageEncodingEnums::itemByRaw; }
-const FieldEnumBase * const * const MessageEncodingEnums::getEnums() const { return items; }
+const FieldEnumBase ** MessageEncodingEnums::getEnums() const { return items; }
 const MessageEncodingEnums MessageEncodingEnums::instance;
 const FieldEnumBase * MessageEncodingEnums::items[] = {
 & MessageEncodingEnums::JIS,
@@ -7738,7 +7738,7 @@ const FieldEnumBase * SessionRejectReasonEnums::findEnum( raw_enum_t raw ) { aut
 const SessionRejectReasonEnums::ValueType * SessionRejectReasonEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * SessionRejectReasonEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & SessionRejectReasonEnums::getEnumMapByRaw() const { return SessionRejectReasonEnums::itemByRaw; }
-const FieldEnumBase * const * const SessionRejectReasonEnums::getEnums() const { return items; }
+const FieldEnumBase ** SessionRejectReasonEnums::getEnums() const { return items; }
 const SessionRejectReasonEnums SessionRejectReasonEnums::instance;
 const FieldEnumBase * SessionRejectReasonEnums::items[] = {
 & SessionRejectReasonEnums::INVALID_TAG_NUMBER,
@@ -7768,7 +7768,7 @@ const FieldEnumBase * BidRequestTransTypeEnums::findEnum( raw_enum_t raw ) { aut
 const BidRequestTransTypeEnums::ValueType * BidRequestTransTypeEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * BidRequestTransTypeEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & BidRequestTransTypeEnums::getEnumMapByRaw() const { return BidRequestTransTypeEnums::itemByRaw; }
-const FieldEnumBase * const * const BidRequestTransTypeEnums::getEnums() const { return items; }
+const FieldEnumBase ** BidRequestTransTypeEnums::getEnums() const { return items; }
 const BidRequestTransTypeEnums BidRequestTransTypeEnums::instance;
 const FieldEnumBase * BidRequestTransTypeEnums::items[] = {
 & BidRequestTransTypeEnums::NEW,
@@ -7781,7 +7781,7 @@ const FieldEnumBase * SolicitedFlagEnums::findEnum( raw_enum_t raw ) { auto it =
 const SolicitedFlagEnums::ValueType * SolicitedFlagEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * SolicitedFlagEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & SolicitedFlagEnums::getEnumMapByRaw() const { return SolicitedFlagEnums::itemByRaw; }
-const FieldEnumBase * const * const SolicitedFlagEnums::getEnums() const { return items; }
+const FieldEnumBase ** SolicitedFlagEnums::getEnums() const { return items; }
 const SolicitedFlagEnums SolicitedFlagEnums::instance;
 const FieldEnumBase * SolicitedFlagEnums::items[] = {
 & SolicitedFlagEnums::YES,
@@ -7794,7 +7794,7 @@ const FieldEnumBase * ExecRestatementReasonEnums::findEnum( raw_enum_t raw ) { a
 const ExecRestatementReasonEnums::ValueType * ExecRestatementReasonEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * ExecRestatementReasonEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & ExecRestatementReasonEnums::getEnumMapByRaw() const { return ExecRestatementReasonEnums::itemByRaw; }
-const FieldEnumBase * const * const ExecRestatementReasonEnums::getEnums() const { return items; }
+const FieldEnumBase ** ExecRestatementReasonEnums::getEnums() const { return items; }
 const ExecRestatementReasonEnums ExecRestatementReasonEnums::instance;
 const FieldEnumBase * ExecRestatementReasonEnums::items[] = {
 & ExecRestatementReasonEnums::GT_CORPORATE_ACTION,
@@ -7817,7 +7817,7 @@ const FieldEnumBase * BusinessRejectReasonEnums::findEnum( raw_enum_t raw ) { au
 const BusinessRejectReasonEnums::ValueType * BusinessRejectReasonEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * BusinessRejectReasonEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & BusinessRejectReasonEnums::getEnumMapByRaw() const { return BusinessRejectReasonEnums::itemByRaw; }
-const FieldEnumBase * const * const BusinessRejectReasonEnums::getEnums() const { return items; }
+const FieldEnumBase ** BusinessRejectReasonEnums::getEnums() const { return items; }
 const BusinessRejectReasonEnums BusinessRejectReasonEnums::instance;
 const FieldEnumBase * BusinessRejectReasonEnums::items[] = {
 & BusinessRejectReasonEnums::OTHER,
@@ -7836,7 +7836,7 @@ const FieldEnumBase * MsgDirectionEnums::findEnum( raw_enum_t raw ) { auto it = 
 const MsgDirectionEnums::ValueType * MsgDirectionEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * MsgDirectionEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & MsgDirectionEnums::getEnumMapByRaw() const { return MsgDirectionEnums::itemByRaw; }
-const FieldEnumBase * const * const MsgDirectionEnums::getEnums() const { return items; }
+const FieldEnumBase ** MsgDirectionEnums::getEnums() const { return items; }
 const MsgDirectionEnums MsgDirectionEnums::instance;
 const FieldEnumBase * MsgDirectionEnums::items[] = {
 & MsgDirectionEnums::SEND,
@@ -7849,7 +7849,7 @@ const FieldEnumBase * DiscretionInstEnums::findEnum( raw_enum_t raw ) { auto it 
 const DiscretionInstEnums::ValueType * DiscretionInstEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * DiscretionInstEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & DiscretionInstEnums::getEnumMapByRaw() const { return DiscretionInstEnums::itemByRaw; }
-const FieldEnumBase * const * const DiscretionInstEnums::getEnums() const { return items; }
+const FieldEnumBase ** DiscretionInstEnums::getEnums() const { return items; }
 const DiscretionInstEnums DiscretionInstEnums::instance;
 const FieldEnumBase * DiscretionInstEnums::items[] = {
 & DiscretionInstEnums::RELATED_TO_DISPLAYED_PRICE,
@@ -7867,7 +7867,7 @@ const FieldEnumBase * BidTypeEnums::findEnum( raw_enum_t raw ) { auto it = itemB
 const BidTypeEnums::ValueType * BidTypeEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * BidTypeEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & BidTypeEnums::getEnumMapByRaw() const { return BidTypeEnums::itemByRaw; }
-const FieldEnumBase * const * const BidTypeEnums::getEnums() const { return items; }
+const FieldEnumBase ** BidTypeEnums::getEnums() const { return items; }
 const BidTypeEnums BidTypeEnums::instance;
 const FieldEnumBase * BidTypeEnums::items[] = {
 & BidTypeEnums::NON_DISCLOSED_STYLE,
@@ -7881,7 +7881,7 @@ const FieldEnumBase * BidDescriptorTypeEnums::findEnum( raw_enum_t raw ) { auto 
 const BidDescriptorTypeEnums::ValueType * BidDescriptorTypeEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * BidDescriptorTypeEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & BidDescriptorTypeEnums::getEnumMapByRaw() const { return BidDescriptorTypeEnums::itemByRaw; }
-const FieldEnumBase * const * const BidDescriptorTypeEnums::getEnums() const { return items; }
+const FieldEnumBase ** BidDescriptorTypeEnums::getEnums() const { return items; }
 const BidDescriptorTypeEnums BidDescriptorTypeEnums::instance;
 const FieldEnumBase * BidDescriptorTypeEnums::items[] = {
 & BidDescriptorTypeEnums::SECTOR,
@@ -7895,7 +7895,7 @@ const FieldEnumBase * SideValueIndEnums::findEnum( raw_enum_t raw ) { auto it = 
 const SideValueIndEnums::ValueType * SideValueIndEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * SideValueIndEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & SideValueIndEnums::getEnumMapByRaw() const { return SideValueIndEnums::itemByRaw; }
-const FieldEnumBase * const * const SideValueIndEnums::getEnums() const { return items; }
+const FieldEnumBase ** SideValueIndEnums::getEnums() const { return items; }
 const SideValueIndEnums SideValueIndEnums::instance;
 const FieldEnumBase * SideValueIndEnums::items[] = {
 & SideValueIndEnums::SIDEVALUE1,
@@ -7908,7 +7908,7 @@ const FieldEnumBase * LiquidityIndTypeEnums::findEnum( raw_enum_t raw ) { auto i
 const LiquidityIndTypeEnums::ValueType * LiquidityIndTypeEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * LiquidityIndTypeEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & LiquidityIndTypeEnums::getEnumMapByRaw() const { return LiquidityIndTypeEnums::itemByRaw; }
-const FieldEnumBase * const * const LiquidityIndTypeEnums::getEnums() const { return items; }
+const FieldEnumBase ** LiquidityIndTypeEnums::getEnums() const { return items; }
 const LiquidityIndTypeEnums LiquidityIndTypeEnums::instance;
 const FieldEnumBase * LiquidityIndTypeEnums::items[] = {
 & LiquidityIndTypeEnums::_5DAY_MOVING_AVERAGE,
@@ -7923,7 +7923,7 @@ const FieldEnumBase * ExchangeForPhysicalEnums::findEnum( raw_enum_t raw ) { aut
 const ExchangeForPhysicalEnums::ValueType * ExchangeForPhysicalEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * ExchangeForPhysicalEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & ExchangeForPhysicalEnums::getEnumMapByRaw() const { return ExchangeForPhysicalEnums::itemByRaw; }
-const FieldEnumBase * const * const ExchangeForPhysicalEnums::getEnums() const { return items; }
+const FieldEnumBase ** ExchangeForPhysicalEnums::getEnums() const { return items; }
 const ExchangeForPhysicalEnums ExchangeForPhysicalEnums::instance;
 const FieldEnumBase * ExchangeForPhysicalEnums::items[] = {
 & ExchangeForPhysicalEnums::YES,
@@ -7936,7 +7936,7 @@ const FieldEnumBase * ProgRptReqsEnums::findEnum( raw_enum_t raw ) { auto it = i
 const ProgRptReqsEnums::ValueType * ProgRptReqsEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * ProgRptReqsEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & ProgRptReqsEnums::getEnumMapByRaw() const { return ProgRptReqsEnums::itemByRaw; }
-const FieldEnumBase * const * const ProgRptReqsEnums::getEnums() const { return items; }
+const FieldEnumBase ** ProgRptReqsEnums::getEnums() const { return items; }
 const ProgRptReqsEnums ProgRptReqsEnums::instance;
 const FieldEnumBase * ProgRptReqsEnums::items[] = {
 & ProgRptReqsEnums::BUYSIDE_EXPLICITLY_REQUESTS_STATUS_USING_STATUSREQUEST,
@@ -7950,7 +7950,7 @@ const FieldEnumBase * IncTaxIndEnums::findEnum( raw_enum_t raw ) { auto it = ite
 const IncTaxIndEnums::ValueType * IncTaxIndEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * IncTaxIndEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & IncTaxIndEnums::getEnumMapByRaw() const { return IncTaxIndEnums::itemByRaw; }
-const FieldEnumBase * const * const IncTaxIndEnums::getEnums() const { return items; }
+const FieldEnumBase ** IncTaxIndEnums::getEnums() const { return items; }
 const IncTaxIndEnums IncTaxIndEnums::instance;
 const FieldEnumBase * IncTaxIndEnums::items[] = {
 & IncTaxIndEnums::NET,
@@ -7963,7 +7963,7 @@ const FieldEnumBase * BidTradeTypeEnums::findEnum( raw_enum_t raw ) { auto it = 
 const BidTradeTypeEnums::ValueType * BidTradeTypeEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * BidTradeTypeEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & BidTradeTypeEnums::getEnumMapByRaw() const { return BidTradeTypeEnums::itemByRaw; }
-const FieldEnumBase * const * const BidTradeTypeEnums::getEnums() const { return items; }
+const FieldEnumBase ** BidTradeTypeEnums::getEnums() const { return items; }
 const BidTradeTypeEnums BidTradeTypeEnums::instance;
 const FieldEnumBase * BidTradeTypeEnums::items[] = {
 & BidTradeTypeEnums::RISK_TRADE,
@@ -7978,7 +7978,7 @@ const FieldEnumBase * BasisPxTypeEnums::findEnum( raw_enum_t raw ) { auto it = i
 const BasisPxTypeEnums::ValueType * BasisPxTypeEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * BasisPxTypeEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & BasisPxTypeEnums::getEnumMapByRaw() const { return BasisPxTypeEnums::itemByRaw; }
-const FieldEnumBase * const * const BasisPxTypeEnums::getEnums() const { return items; }
+const FieldEnumBase ** BasisPxTypeEnums::getEnums() const { return items; }
 const BasisPxTypeEnums BasisPxTypeEnums::instance;
 const FieldEnumBase * BasisPxTypeEnums::items[] = {
 & BasisPxTypeEnums::CLOSING_PRICE_AT_MORNING_SESSION,
@@ -8002,7 +8002,7 @@ const FieldEnumBase * PriceTypeEnums::findEnum( raw_enum_t raw ) { auto it = ite
 const PriceTypeEnums::ValueType * PriceTypeEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * PriceTypeEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & PriceTypeEnums::getEnumMapByRaw() const { return PriceTypeEnums::itemByRaw; }
-const FieldEnumBase * const * const PriceTypeEnums::getEnums() const { return items; }
+const FieldEnumBase ** PriceTypeEnums::getEnums() const { return items; }
 const PriceTypeEnums PriceTypeEnums::instance;
 const FieldEnumBase * PriceTypeEnums::items[] = {
 & PriceTypeEnums::PERCENTAGE,
@@ -8024,7 +8024,7 @@ const FieldEnumBase * GTBookingInstEnums::findEnum( raw_enum_t raw ) { auto it =
 const GTBookingInstEnums::ValueType * GTBookingInstEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * GTBookingInstEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & GTBookingInstEnums::getEnumMapByRaw() const { return GTBookingInstEnums::itemByRaw; }
-const FieldEnumBase * const * const GTBookingInstEnums::getEnums() const { return items; }
+const FieldEnumBase ** GTBookingInstEnums::getEnums() const { return items; }
 const GTBookingInstEnums GTBookingInstEnums::instance;
 const FieldEnumBase * GTBookingInstEnums::items[] = {
 & GTBookingInstEnums::BOOK_OUT_ALL_TRADES_ON_DAY_OF_EXECUTION,
@@ -8038,7 +8038,7 @@ const FieldEnumBase * ListStatusTypeEnums::findEnum( raw_enum_t raw ) { auto it 
 const ListStatusTypeEnums::ValueType * ListStatusTypeEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * ListStatusTypeEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & ListStatusTypeEnums::getEnumMapByRaw() const { return ListStatusTypeEnums::itemByRaw; }
-const FieldEnumBase * const * const ListStatusTypeEnums::getEnums() const { return items; }
+const FieldEnumBase ** ListStatusTypeEnums::getEnums() const { return items; }
 const ListStatusTypeEnums ListStatusTypeEnums::instance;
 const FieldEnumBase * ListStatusTypeEnums::items[] = {
 & ListStatusTypeEnums::ACK,
@@ -8055,7 +8055,7 @@ const FieldEnumBase * NetGrossIndEnums::findEnum( raw_enum_t raw ) { auto it = i
 const NetGrossIndEnums::ValueType * NetGrossIndEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * NetGrossIndEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & NetGrossIndEnums::getEnumMapByRaw() const { return NetGrossIndEnums::itemByRaw; }
-const FieldEnumBase * const * const NetGrossIndEnums::getEnums() const { return items; }
+const FieldEnumBase ** NetGrossIndEnums::getEnums() const { return items; }
 const NetGrossIndEnums NetGrossIndEnums::instance;
 const FieldEnumBase * NetGrossIndEnums::items[] = {
 & NetGrossIndEnums::NET,
@@ -8068,7 +8068,7 @@ const FieldEnumBase * ListOrderStatusEnums::findEnum( raw_enum_t raw ) { auto it
 const ListOrderStatusEnums::ValueType * ListOrderStatusEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * ListOrderStatusEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & ListOrderStatusEnums::getEnumMapByRaw() const { return ListOrderStatusEnums::itemByRaw; }
-const FieldEnumBase * const * const ListOrderStatusEnums::getEnums() const { return items; }
+const FieldEnumBase ** ListOrderStatusEnums::getEnums() const { return items; }
 const ListOrderStatusEnums ListOrderStatusEnums::instance;
 const FieldEnumBase * ListOrderStatusEnums::items[] = {
 & ListOrderStatusEnums::INBIDDINGPROCESS,
@@ -8086,7 +8086,7 @@ const FieldEnumBase * ListExecInstTypeEnums::findEnum( raw_enum_t raw ) { auto i
 const ListExecInstTypeEnums::ValueType * ListExecInstTypeEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * ListExecInstTypeEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & ListExecInstTypeEnums::getEnumMapByRaw() const { return ListExecInstTypeEnums::itemByRaw; }
-const FieldEnumBase * const * const ListExecInstTypeEnums::getEnums() const { return items; }
+const FieldEnumBase ** ListExecInstTypeEnums::getEnums() const { return items; }
 const ListExecInstTypeEnums ListExecInstTypeEnums::instance;
 const FieldEnumBase * ListExecInstTypeEnums::items[] = {
 & ListExecInstTypeEnums::IMMEDIATE,
@@ -8102,7 +8102,7 @@ const FieldEnumBase * CxlRejResponseToEnums::findEnum( raw_enum_t raw ) { auto i
 const CxlRejResponseToEnums::ValueType * CxlRejResponseToEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * CxlRejResponseToEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & CxlRejResponseToEnums::getEnumMapByRaw() const { return CxlRejResponseToEnums::itemByRaw; }
-const FieldEnumBase * const * const CxlRejResponseToEnums::getEnums() const { return items; }
+const FieldEnumBase ** CxlRejResponseToEnums::getEnums() const { return items; }
 const CxlRejResponseToEnums CxlRejResponseToEnums::instance;
 const FieldEnumBase * CxlRejResponseToEnums::items[] = {
 & CxlRejResponseToEnums::ORDER_CANCEL_REQUEST,
@@ -8115,7 +8115,7 @@ const FieldEnumBase * MultiLegReportingTypeEnums::findEnum( raw_enum_t raw ) { a
 const MultiLegReportingTypeEnums::ValueType * MultiLegReportingTypeEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * MultiLegReportingTypeEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & MultiLegReportingTypeEnums::getEnumMapByRaw() const { return MultiLegReportingTypeEnums::itemByRaw; }
-const FieldEnumBase * const * const MultiLegReportingTypeEnums::getEnums() const { return items; }
+const FieldEnumBase ** MultiLegReportingTypeEnums::getEnums() const { return items; }
 const MultiLegReportingTypeEnums MultiLegReportingTypeEnums::instance;
 const FieldEnumBase * MultiLegReportingTypeEnums::items[] = {
 & MultiLegReportingTypeEnums::SINGLE_SECURITY,
@@ -8129,7 +8129,7 @@ const FieldEnumBase * PartyIDSourceEnums::findEnum( raw_enum_t raw ) { auto it =
 const PartyIDSourceEnums::ValueType * PartyIDSourceEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * PartyIDSourceEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & PartyIDSourceEnums::getEnumMapByRaw() const { return PartyIDSourceEnums::itemByRaw; }
-const FieldEnumBase * const * const PartyIDSourceEnums::getEnums() const { return items; }
+const FieldEnumBase ** PartyIDSourceEnums::getEnums() const { return items; }
 const PartyIDSourceEnums PartyIDSourceEnums::instance;
 const FieldEnumBase * PartyIDSourceEnums::items[] = {
 & PartyIDSourceEnums::BIC,
@@ -8158,7 +8158,7 @@ const FieldEnumBase * PartyRoleEnums::findEnum( raw_enum_t raw ) { auto it = ite
 const PartyRoleEnums::ValueType * PartyRoleEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * PartyRoleEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & PartyRoleEnums::getEnumMapByRaw() const { return PartyRoleEnums::itemByRaw; }
-const FieldEnumBase * const * const PartyRoleEnums::getEnums() const { return items; }
+const FieldEnumBase ** PartyRoleEnums::getEnums() const { return items; }
 const PartyRoleEnums PartyRoleEnums::instance;
 const FieldEnumBase * PartyRoleEnums::items[] = {
 & PartyRoleEnums::EXECUTING_FIRM,
@@ -8206,7 +8206,7 @@ const FieldEnumBase * ProductEnums::findEnum( raw_enum_t raw ) { auto it = itemB
 const ProductEnums::ValueType * ProductEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * ProductEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & ProductEnums::getEnumMapByRaw() const { return ProductEnums::itemByRaw; }
-const FieldEnumBase * const * const ProductEnums::getEnums() const { return items; }
+const FieldEnumBase ** ProductEnums::getEnums() const { return items; }
 const ProductEnums ProductEnums::instance;
 const FieldEnumBase * ProductEnums::items[] = {
 & ProductEnums::AGENCY,
@@ -8230,7 +8230,7 @@ const FieldEnumBase * TestMessageIndicatorEnums::findEnum( raw_enum_t raw ) { au
 const TestMessageIndicatorEnums::ValueType * TestMessageIndicatorEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * TestMessageIndicatorEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & TestMessageIndicatorEnums::getEnumMapByRaw() const { return TestMessageIndicatorEnums::itemByRaw; }
-const FieldEnumBase * const * const TestMessageIndicatorEnums::getEnums() const { return items; }
+const FieldEnumBase ** TestMessageIndicatorEnums::getEnums() const { return items; }
 const TestMessageIndicatorEnums TestMessageIndicatorEnums::instance;
 const FieldEnumBase * TestMessageIndicatorEnums::items[] = {
 & TestMessageIndicatorEnums::YES,
@@ -8243,7 +8243,7 @@ const FieldEnumBase * RoundingDirectionEnums::findEnum( raw_enum_t raw ) { auto 
 const RoundingDirectionEnums::ValueType * RoundingDirectionEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * RoundingDirectionEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & RoundingDirectionEnums::getEnumMapByRaw() const { return RoundingDirectionEnums::itemByRaw; }
-const FieldEnumBase * const * const RoundingDirectionEnums::getEnums() const { return items; }
+const FieldEnumBase ** RoundingDirectionEnums::getEnums() const { return items; }
 const RoundingDirectionEnums RoundingDirectionEnums::instance;
 const FieldEnumBase * RoundingDirectionEnums::items[] = {
 & RoundingDirectionEnums::ROUND_TO_NEAREST,
@@ -8257,7 +8257,7 @@ const FieldEnumBase * DistribPaymentMethodEnums::findEnum( raw_enum_t raw ) { au
 const DistribPaymentMethodEnums::ValueType * DistribPaymentMethodEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * DistribPaymentMethodEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & DistribPaymentMethodEnums::getEnumMapByRaw() const { return DistribPaymentMethodEnums::itemByRaw; }
-const FieldEnumBase * const * const DistribPaymentMethodEnums::getEnums() const { return items; }
+const FieldEnumBase ** DistribPaymentMethodEnums::getEnums() const { return items; }
 const DistribPaymentMethodEnums DistribPaymentMethodEnums::instance;
 const FieldEnumBase * DistribPaymentMethodEnums::items[] = {
 & DistribPaymentMethodEnums::CREST,
@@ -8280,7 +8280,7 @@ const FieldEnumBase * CancellationRightsEnums::findEnum( raw_enum_t raw ) { auto
 const CancellationRightsEnums::ValueType * CancellationRightsEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * CancellationRightsEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & CancellationRightsEnums::getEnumMapByRaw() const { return CancellationRightsEnums::itemByRaw; }
-const FieldEnumBase * const * const CancellationRightsEnums::getEnums() const { return items; }
+const FieldEnumBase ** CancellationRightsEnums::getEnums() const { return items; }
 const CancellationRightsEnums CancellationRightsEnums::instance;
 const FieldEnumBase * CancellationRightsEnums::items[] = {
 & CancellationRightsEnums::YES,
@@ -8295,7 +8295,7 @@ const FieldEnumBase * MoneyLaunderingStatusEnums::findEnum( raw_enum_t raw ) { a
 const MoneyLaunderingStatusEnums::ValueType * MoneyLaunderingStatusEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * MoneyLaunderingStatusEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & MoneyLaunderingStatusEnums::getEnumMapByRaw() const { return MoneyLaunderingStatusEnums::itemByRaw; }
-const FieldEnumBase * const * const MoneyLaunderingStatusEnums::getEnums() const { return items; }
+const FieldEnumBase ** MoneyLaunderingStatusEnums::getEnums() const { return items; }
 const MoneyLaunderingStatusEnums MoneyLaunderingStatusEnums::instance;
 const FieldEnumBase * MoneyLaunderingStatusEnums::items[] = {
 & MoneyLaunderingStatusEnums::PASSED,
@@ -8311,7 +8311,7 @@ const FieldEnumBase * ExecPriceTypeEnums::findEnum( raw_enum_t raw ) { auto it =
 const ExecPriceTypeEnums::ValueType * ExecPriceTypeEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * ExecPriceTypeEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & ExecPriceTypeEnums::getEnumMapByRaw() const { return ExecPriceTypeEnums::itemByRaw; }
-const FieldEnumBase * const * const ExecPriceTypeEnums::getEnums() const { return items; }
+const FieldEnumBase ** ExecPriceTypeEnums::getEnums() const { return items; }
 const ExecPriceTypeEnums ExecPriceTypeEnums::instance;
 const FieldEnumBase * ExecPriceTypeEnums::items[] = {
 & ExecPriceTypeEnums::BID_PRICE,
@@ -8330,7 +8330,7 @@ const FieldEnumBase * PaymentMethodEnums::findEnum( raw_enum_t raw ) { auto it =
 const PaymentMethodEnums::ValueType * PaymentMethodEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * PaymentMethodEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & PaymentMethodEnums::getEnumMapByRaw() const { return PaymentMethodEnums::itemByRaw; }
-const FieldEnumBase * const * const PaymentMethodEnums::getEnums() const { return items; }
+const FieldEnumBase ** PaymentMethodEnums::getEnums() const { return items; }
 const PaymentMethodEnums PaymentMethodEnums::instance;
 const FieldEnumBase * PaymentMethodEnums::items[] = {
 & PaymentMethodEnums::CREST,
@@ -8356,7 +8356,7 @@ const FieldEnumBase * TaxAdvantageTypeEnums::findEnum( raw_enum_t raw ) { auto i
 const TaxAdvantageTypeEnums::ValueType * TaxAdvantageTypeEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * TaxAdvantageTypeEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & TaxAdvantageTypeEnums::getEnumMapByRaw() const { return TaxAdvantageTypeEnums::itemByRaw; }
-const FieldEnumBase * const * const TaxAdvantageTypeEnums::getEnums() const { return items; }
+const FieldEnumBase ** TaxAdvantageTypeEnums::getEnums() const { return items; }
 const TaxAdvantageTypeEnums TaxAdvantageTypeEnums::instance;
 const FieldEnumBase * TaxAdvantageTypeEnums::items[] = {
 & TaxAdvantageTypeEnums::NONE_NOT_APPLICABLE,
@@ -8397,7 +8397,7 @@ const FieldEnumBase * FundRenewWaivEnums::findEnum( raw_enum_t raw ) { auto it =
 const FundRenewWaivEnums::ValueType * FundRenewWaivEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * FundRenewWaivEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & FundRenewWaivEnums::getEnumMapByRaw() const { return FundRenewWaivEnums::itemByRaw; }
-const FieldEnumBase * const * const FundRenewWaivEnums::getEnums() const { return items; }
+const FieldEnumBase ** FundRenewWaivEnums::getEnums() const { return items; }
 const FundRenewWaivEnums FundRenewWaivEnums::instance;
 const FieldEnumBase * FundRenewWaivEnums::items[] = {
 & FundRenewWaivEnums::YES,
@@ -8410,7 +8410,7 @@ const FieldEnumBase * RegistStatusEnums::findEnum( raw_enum_t raw ) { auto it = 
 const RegistStatusEnums::ValueType * RegistStatusEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * RegistStatusEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & RegistStatusEnums::getEnumMapByRaw() const { return RegistStatusEnums::itemByRaw; }
-const FieldEnumBase * const * const RegistStatusEnums::getEnums() const { return items; }
+const FieldEnumBase ** RegistStatusEnums::getEnums() const { return items; }
 const RegistStatusEnums RegistStatusEnums::instance;
 const FieldEnumBase * RegistStatusEnums::items[] = {
 & RegistStatusEnums::ACCEPTED,
@@ -8425,7 +8425,7 @@ const FieldEnumBase * RegistRejReasonCodeEnums::findEnum( raw_enum_t raw ) { aut
 const RegistRejReasonCodeEnums::ValueType * RegistRejReasonCodeEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * RegistRejReasonCodeEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & RegistRejReasonCodeEnums::getEnumMapByRaw() const { return RegistRejReasonCodeEnums::itemByRaw; }
-const FieldEnumBase * const * const RegistRejReasonCodeEnums::getEnums() const { return items; }
+const FieldEnumBase ** RegistRejReasonCodeEnums::getEnums() const { return items; }
 const RegistRejReasonCodeEnums RegistRejReasonCodeEnums::instance;
 const FieldEnumBase * RegistRejReasonCodeEnums::items[] = {
 & RegistRejReasonCodeEnums::INVALID_UNACCEPTABLE_ACCOUNT_TYPE,
@@ -8455,7 +8455,7 @@ const FieldEnumBase * RegistTransTypeEnums::findEnum( raw_enum_t raw ) { auto it
 const RegistTransTypeEnums::ValueType * RegistTransTypeEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * RegistTransTypeEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & RegistTransTypeEnums::getEnumMapByRaw() const { return RegistTransTypeEnums::itemByRaw; }
-const FieldEnumBase * const * const RegistTransTypeEnums::getEnums() const { return items; }
+const FieldEnumBase ** RegistTransTypeEnums::getEnums() const { return items; }
 const RegistTransTypeEnums RegistTransTypeEnums::instance;
 const FieldEnumBase * RegistTransTypeEnums::items[] = {
 & RegistTransTypeEnums::NEW,
@@ -8469,7 +8469,7 @@ const FieldEnumBase * OwnershipTypeEnums::findEnum( raw_enum_t raw ) { auto it =
 const OwnershipTypeEnums::ValueType * OwnershipTypeEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * OwnershipTypeEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & OwnershipTypeEnums::getEnumMapByRaw() const { return OwnershipTypeEnums::itemByRaw; }
-const FieldEnumBase * const * const OwnershipTypeEnums::getEnums() const { return items; }
+const FieldEnumBase ** OwnershipTypeEnums::getEnums() const { return items; }
 const OwnershipTypeEnums OwnershipTypeEnums::instance;
 const FieldEnumBase * OwnershipTypeEnums::items[] = {
 & OwnershipTypeEnums::JOINT_INVESTORS,
@@ -8483,7 +8483,7 @@ const FieldEnumBase * ContAmtTypeEnums::findEnum( raw_enum_t raw ) { auto it = i
 const ContAmtTypeEnums::ValueType * ContAmtTypeEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * ContAmtTypeEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & ContAmtTypeEnums::getEnumMapByRaw() const { return ContAmtTypeEnums::itemByRaw; }
-const FieldEnumBase * const * const ContAmtTypeEnums::getEnums() const { return items; }
+const FieldEnumBase ** ContAmtTypeEnums::getEnums() const { return items; }
 const ContAmtTypeEnums ContAmtTypeEnums::instance;
 const FieldEnumBase * ContAmtTypeEnums::items[] = {
 & ContAmtTypeEnums::COMMISSION_AMOUNT,
@@ -8509,7 +8509,7 @@ const FieldEnumBase * OwnerTypeEnums::findEnum( raw_enum_t raw ) { auto it = ite
 const OwnerTypeEnums::ValueType * OwnerTypeEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * OwnerTypeEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & OwnerTypeEnums::getEnumMapByRaw() const { return OwnerTypeEnums::itemByRaw; }
-const FieldEnumBase * const * const OwnerTypeEnums::getEnums() const { return items; }
+const FieldEnumBase ** OwnerTypeEnums::getEnums() const { return items; }
 const OwnerTypeEnums OwnerTypeEnums::instance;
 const FieldEnumBase * OwnerTypeEnums::items[] = {
 & OwnerTypeEnums::INDIVIDUAL_INVESTOR,
@@ -8533,7 +8533,7 @@ const FieldEnumBase * OrderCapacityEnums::findEnum( raw_enum_t raw ) { auto it =
 const OrderCapacityEnums::ValueType * OrderCapacityEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * OrderCapacityEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & OrderCapacityEnums::getEnumMapByRaw() const { return OrderCapacityEnums::itemByRaw; }
-const FieldEnumBase * const * const OrderCapacityEnums::getEnums() const { return items; }
+const FieldEnumBase ** OrderCapacityEnums::getEnums() const { return items; }
 const OrderCapacityEnums OrderCapacityEnums::instance;
 const FieldEnumBase * OrderCapacityEnums::items[] = {
 & OrderCapacityEnums::AGENCY,
@@ -8550,7 +8550,7 @@ const FieldEnumBase * OrderRestrictionsEnums::findEnum( raw_enum_t raw ) { auto 
 const OrderRestrictionsEnums::ValueType * OrderRestrictionsEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * OrderRestrictionsEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & OrderRestrictionsEnums::getEnumMapByRaw() const { return OrderRestrictionsEnums::itemByRaw; }
-const FieldEnumBase * const * const OrderRestrictionsEnums::getEnums() const { return items; }
+const FieldEnumBase ** OrderRestrictionsEnums::getEnums() const { return items; }
 const OrderRestrictionsEnums OrderRestrictionsEnums::instance;
 const FieldEnumBase * OrderRestrictionsEnums::items[] = {
 & OrderRestrictionsEnums::PROGRAM_TRADE,
@@ -8571,7 +8571,7 @@ const FieldEnumBase * MassCancelRequestTypeEnums::findEnum( raw_enum_t raw ) { a
 const MassCancelRequestTypeEnums::ValueType * MassCancelRequestTypeEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * MassCancelRequestTypeEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & MassCancelRequestTypeEnums::getEnumMapByRaw() const { return MassCancelRequestTypeEnums::itemByRaw; }
-const FieldEnumBase * const * const MassCancelRequestTypeEnums::getEnums() const { return items; }
+const FieldEnumBase ** MassCancelRequestTypeEnums::getEnums() const { return items; }
 const MassCancelRequestTypeEnums MassCancelRequestTypeEnums::instance;
 const FieldEnumBase * MassCancelRequestTypeEnums::items[] = {
 & MassCancelRequestTypeEnums::CANCEL_ORDERS_FOR_A_SECURITY,
@@ -8589,7 +8589,7 @@ const FieldEnumBase * MassCancelResponseEnums::findEnum( raw_enum_t raw ) { auto
 const MassCancelResponseEnums::ValueType * MassCancelResponseEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * MassCancelResponseEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & MassCancelResponseEnums::getEnumMapByRaw() const { return MassCancelResponseEnums::itemByRaw; }
-const FieldEnumBase * const * const MassCancelResponseEnums::getEnums() const { return items; }
+const FieldEnumBase ** MassCancelResponseEnums::getEnums() const { return items; }
 const MassCancelResponseEnums MassCancelResponseEnums::instance;
 const FieldEnumBase * MassCancelResponseEnums::items[] = {
 & MassCancelResponseEnums::CANCEL_REQUEST_REJECTED,
@@ -8608,7 +8608,7 @@ const FieldEnumBase * MassCancelRejectReasonEnums::findEnum( raw_enum_t raw ) { 
 const MassCancelRejectReasonEnums::ValueType * MassCancelRejectReasonEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * MassCancelRejectReasonEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & MassCancelRejectReasonEnums::getEnumMapByRaw() const { return MassCancelRejectReasonEnums::itemByRaw; }
-const FieldEnumBase * const * const MassCancelRejectReasonEnums::getEnums() const { return items; }
+const FieldEnumBase ** MassCancelRejectReasonEnums::getEnums() const { return items; }
 const MassCancelRejectReasonEnums MassCancelRejectReasonEnums::instance;
 const FieldEnumBase * MassCancelRejectReasonEnums::items[] = {
 & MassCancelRejectReasonEnums::MASS_CANCEL_NOT_SUPPORTED,
@@ -8627,7 +8627,7 @@ const FieldEnumBase * QuoteTypeEnums::findEnum( raw_enum_t raw ) { auto it = ite
 const QuoteTypeEnums::ValueType * QuoteTypeEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * QuoteTypeEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & QuoteTypeEnums::getEnumMapByRaw() const { return QuoteTypeEnums::itemByRaw; }
-const FieldEnumBase * const * const QuoteTypeEnums::getEnums() const { return items; }
+const FieldEnumBase ** QuoteTypeEnums::getEnums() const { return items; }
 const QuoteTypeEnums QuoteTypeEnums::instance;
 const FieldEnumBase * QuoteTypeEnums::items[] = {
 & QuoteTypeEnums::INDICATIVE,
@@ -8642,7 +8642,7 @@ const FieldEnumBase * CashMarginEnums::findEnum( raw_enum_t raw ) { auto it = it
 const CashMarginEnums::ValueType * CashMarginEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * CashMarginEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & CashMarginEnums::getEnumMapByRaw() const { return CashMarginEnums::itemByRaw; }
-const FieldEnumBase * const * const CashMarginEnums::getEnums() const { return items; }
+const FieldEnumBase ** CashMarginEnums::getEnums() const { return items; }
 const CashMarginEnums CashMarginEnums::instance;
 const FieldEnumBase * CashMarginEnums::items[] = {
 & CashMarginEnums::CASH,
@@ -8656,7 +8656,7 @@ const FieldEnumBase * ScopeEnums::findEnum( raw_enum_t raw ) { auto it = itemByR
 const ScopeEnums::ValueType * ScopeEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * ScopeEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & ScopeEnums::getEnumMapByRaw() const { return ScopeEnums::itemByRaw; }
-const FieldEnumBase * const * const ScopeEnums::getEnums() const { return items; }
+const FieldEnumBase ** ScopeEnums::getEnums() const { return items; }
 const ScopeEnums ScopeEnums::instance;
 const FieldEnumBase * ScopeEnums::items[] = {
 & ScopeEnums::LOCAL,
@@ -8670,7 +8670,7 @@ const FieldEnumBase * MDImplicitDeleteEnums::findEnum( raw_enum_t raw ) { auto i
 const MDImplicitDeleteEnums::ValueType * MDImplicitDeleteEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * MDImplicitDeleteEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & MDImplicitDeleteEnums::getEnumMapByRaw() const { return MDImplicitDeleteEnums::itemByRaw; }
-const FieldEnumBase * const * const MDImplicitDeleteEnums::getEnums() const { return items; }
+const FieldEnumBase ** MDImplicitDeleteEnums::getEnums() const { return items; }
 const MDImplicitDeleteEnums MDImplicitDeleteEnums::instance;
 const FieldEnumBase * MDImplicitDeleteEnums::items[] = {
 & MDImplicitDeleteEnums::YES,
@@ -8683,7 +8683,7 @@ const FieldEnumBase * CrossTypeEnums::findEnum( raw_enum_t raw ) { auto it = ite
 const CrossTypeEnums::ValueType * CrossTypeEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * CrossTypeEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & CrossTypeEnums::getEnumMapByRaw() const { return CrossTypeEnums::itemByRaw; }
-const FieldEnumBase * const * const CrossTypeEnums::getEnums() const { return items; }
+const FieldEnumBase ** CrossTypeEnums::getEnums() const { return items; }
 const CrossTypeEnums CrossTypeEnums::instance;
 const FieldEnumBase * CrossTypeEnums::items[] = {
 & CrossTypeEnums::CROSS_TRADE_WHICH_IS_EXECUTED_COMPLETELY_OR_NOT_BOTH_SIDES_ARE_TREATED_IN_THE_SAME_MANNER_THIS_IS_EQUIVALENT_TO_AN_ALL_OR_NONE,
@@ -8698,7 +8698,7 @@ const FieldEnumBase * CrossPrioritizationEnums::findEnum( raw_enum_t raw ) { aut
 const CrossPrioritizationEnums::ValueType * CrossPrioritizationEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * CrossPrioritizationEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & CrossPrioritizationEnums::getEnumMapByRaw() const { return CrossPrioritizationEnums::itemByRaw; }
-const FieldEnumBase * const * const CrossPrioritizationEnums::getEnums() const { return items; }
+const FieldEnumBase ** CrossPrioritizationEnums::getEnums() const { return items; }
 const CrossPrioritizationEnums CrossPrioritizationEnums::instance;
 const FieldEnumBase * CrossPrioritizationEnums::items[] = {
 & CrossPrioritizationEnums::NONE,
@@ -8712,7 +8712,7 @@ const FieldEnumBase * NoSidesEnums::findEnum( raw_enum_t raw ) { auto it = itemB
 const NoSidesEnums::ValueType * NoSidesEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * NoSidesEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & NoSidesEnums::getEnumMapByRaw() const { return NoSidesEnums::itemByRaw; }
-const FieldEnumBase * const * const NoSidesEnums::getEnums() const { return items; }
+const FieldEnumBase ** NoSidesEnums::getEnums() const { return items; }
 const NoSidesEnums NoSidesEnums::instance;
 const FieldEnumBase * NoSidesEnums::items[] = {
 & NoSidesEnums::ONE_SIDE,
@@ -8725,7 +8725,7 @@ const FieldEnumBase * SecurityListRequestTypeEnums::findEnum( raw_enum_t raw ) {
 const SecurityListRequestTypeEnums::ValueType * SecurityListRequestTypeEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * SecurityListRequestTypeEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & SecurityListRequestTypeEnums::getEnumMapByRaw() const { return SecurityListRequestTypeEnums::itemByRaw; }
-const FieldEnumBase * const * const SecurityListRequestTypeEnums::getEnums() const { return items; }
+const FieldEnumBase ** SecurityListRequestTypeEnums::getEnums() const { return items; }
 const SecurityListRequestTypeEnums SecurityListRequestTypeEnums::instance;
 const FieldEnumBase * SecurityListRequestTypeEnums::items[] = {
 & SecurityListRequestTypeEnums::SYMBOL,
@@ -8741,7 +8741,7 @@ const FieldEnumBase * SecurityRequestResultEnums::findEnum( raw_enum_t raw ) { a
 const SecurityRequestResultEnums::ValueType * SecurityRequestResultEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * SecurityRequestResultEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & SecurityRequestResultEnums::getEnumMapByRaw() const { return SecurityRequestResultEnums::itemByRaw; }
-const FieldEnumBase * const * const SecurityRequestResultEnums::getEnums() const { return items; }
+const FieldEnumBase ** SecurityRequestResultEnums::getEnums() const { return items; }
 const SecurityRequestResultEnums SecurityRequestResultEnums::instance;
 const FieldEnumBase * SecurityRequestResultEnums::items[] = {
 & SecurityRequestResultEnums::VALID_REQUEST,
@@ -8758,7 +8758,7 @@ const FieldEnumBase * MultiLegRptTypeReqEnums::findEnum( raw_enum_t raw ) { auto
 const MultiLegRptTypeReqEnums::ValueType * MultiLegRptTypeReqEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * MultiLegRptTypeReqEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & MultiLegRptTypeReqEnums::getEnumMapByRaw() const { return MultiLegRptTypeReqEnums::itemByRaw; }
-const FieldEnumBase * const * const MultiLegRptTypeReqEnums::getEnums() const { return items; }
+const FieldEnumBase ** MultiLegRptTypeReqEnums::getEnums() const { return items; }
 const MultiLegRptTypeReqEnums MultiLegRptTypeReqEnums::instance;
 const FieldEnumBase * MultiLegRptTypeReqEnums::items[] = {
 & MultiLegRptTypeReqEnums::REPORT_BY_MULITLEG_SECURITY_ONLY,
@@ -8772,7 +8772,7 @@ const FieldEnumBase * TradSesStatusRejReasonEnums::findEnum( raw_enum_t raw ) { 
 const TradSesStatusRejReasonEnums::ValueType * TradSesStatusRejReasonEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * TradSesStatusRejReasonEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & TradSesStatusRejReasonEnums::getEnumMapByRaw() const { return TradSesStatusRejReasonEnums::itemByRaw; }
-const FieldEnumBase * const * const TradSesStatusRejReasonEnums::getEnums() const { return items; }
+const FieldEnumBase ** TradSesStatusRejReasonEnums::getEnums() const { return items; }
 const TradSesStatusRejReasonEnums TradSesStatusRejReasonEnums::instance;
 const FieldEnumBase * TradSesStatusRejReasonEnums::items[] = {
 & TradSesStatusRejReasonEnums::UNKNOWN_OR_INVALID_TRADINGSESSIONID,
@@ -8785,7 +8785,7 @@ const FieldEnumBase * TradeRequestTypeEnums::findEnum( raw_enum_t raw ) { auto i
 const TradeRequestTypeEnums::ValueType * TradeRequestTypeEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * TradeRequestTypeEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & TradeRequestTypeEnums::getEnumMapByRaw() const { return TradeRequestTypeEnums::itemByRaw; }
-const FieldEnumBase * const * const TradeRequestTypeEnums::getEnums() const { return items; }
+const FieldEnumBase ** TradeRequestTypeEnums::getEnums() const { return items; }
 const TradeRequestTypeEnums TradeRequestTypeEnums::instance;
 const FieldEnumBase * TradeRequestTypeEnums::items[] = {
 & TradeRequestTypeEnums::ALL_TRADES,
@@ -8801,7 +8801,7 @@ const FieldEnumBase * PreviouslyReportedEnums::findEnum( raw_enum_t raw ) { auto
 const PreviouslyReportedEnums::ValueType * PreviouslyReportedEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * PreviouslyReportedEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & PreviouslyReportedEnums::getEnumMapByRaw() const { return PreviouslyReportedEnums::itemByRaw; }
-const FieldEnumBase * const * const PreviouslyReportedEnums::getEnums() const { return items; }
+const FieldEnumBase ** PreviouslyReportedEnums::getEnums() const { return items; }
 const PreviouslyReportedEnums PreviouslyReportedEnums::instance;
 const FieldEnumBase * PreviouslyReportedEnums::items[] = {
 & PreviouslyReportedEnums::YES,
@@ -8814,7 +8814,7 @@ const FieldEnumBase * MatchStatusEnums::findEnum( raw_enum_t raw ) { auto it = i
 const MatchStatusEnums::ValueType * MatchStatusEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * MatchStatusEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & MatchStatusEnums::getEnumMapByRaw() const { return MatchStatusEnums::itemByRaw; }
-const FieldEnumBase * const * const MatchStatusEnums::getEnums() const { return items; }
+const FieldEnumBase ** MatchStatusEnums::getEnums() const { return items; }
 const MatchStatusEnums MatchStatusEnums::instance;
 const FieldEnumBase * MatchStatusEnums::items[] = {
 & MatchStatusEnums::COMPARED_MATCHED_OR_AFFIRMED,
@@ -8828,7 +8828,7 @@ const FieldEnumBase * MatchTypeEnums::findEnum( raw_enum_t raw ) { auto it = ite
 const MatchTypeEnums::ValueType * MatchTypeEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * MatchTypeEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & MatchTypeEnums::getEnumMapByRaw() const { return MatchTypeEnums::itemByRaw; }
-const FieldEnumBase * const * const MatchTypeEnums::getEnums() const { return items; }
+const FieldEnumBase ** MatchTypeEnums::getEnums() const { return items; }
 const MatchTypeEnums MatchTypeEnums::instance;
 const FieldEnumBase * MatchTypeEnums::items[] = {
 & MatchTypeEnums::EXACT_MATCH_ON_TRADE_DATE_STOCK_SYMBOL_QUANTITY_PRICE_TRADE_TYPE_AND_SPECIAL_TRADE_INDICATOR_PLUS_FOUR_BADGES_AND_EXECUTION_TIME,
@@ -8857,7 +8857,7 @@ const FieldEnumBase * OddLotEnums::findEnum( raw_enum_t raw ) { auto it = itemBy
 const OddLotEnums::ValueType * OddLotEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * OddLotEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & OddLotEnums::getEnumMapByRaw() const { return OddLotEnums::itemByRaw; }
-const FieldEnumBase * const * const OddLotEnums::getEnums() const { return items; }
+const FieldEnumBase ** OddLotEnums::getEnums() const { return items; }
 const OddLotEnums OddLotEnums::instance;
 const FieldEnumBase * OddLotEnums::items[] = {
 & OddLotEnums::YES,
@@ -8870,7 +8870,7 @@ const FieldEnumBase * ClearingInstructionEnums::findEnum( raw_enum_t raw ) { aut
 const ClearingInstructionEnums::ValueType * ClearingInstructionEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * ClearingInstructionEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & ClearingInstructionEnums::getEnumMapByRaw() const { return ClearingInstructionEnums::itemByRaw; }
-const FieldEnumBase * const * const ClearingInstructionEnums::getEnums() const { return items; }
+const FieldEnumBase ** ClearingInstructionEnums::getEnums() const { return items; }
 const ClearingInstructionEnums ClearingInstructionEnums::instance;
 const FieldEnumBase * ClearingInstructionEnums::items[] = {
 & ClearingInstructionEnums::PROCESS_NORMALLY,
@@ -8895,7 +8895,7 @@ const FieldEnumBase * AccountTypeEnums::findEnum( raw_enum_t raw ) { auto it = i
 const AccountTypeEnums::ValueType * AccountTypeEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * AccountTypeEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & AccountTypeEnums::getEnumMapByRaw() const { return AccountTypeEnums::itemByRaw; }
-const FieldEnumBase * const * const AccountTypeEnums::getEnums() const { return items; }
+const FieldEnumBase ** AccountTypeEnums::getEnums() const { return items; }
 const AccountTypeEnums AccountTypeEnums::instance;
 const FieldEnumBase * AccountTypeEnums::items[] = {
 & AccountTypeEnums::ACCOUNT_IS_CARRIED_ON_CUSTOMER_SIDE_OF_BOOKS,
@@ -8913,7 +8913,7 @@ const FieldEnumBase * CustOrderCapacityEnums::findEnum( raw_enum_t raw ) { auto 
 const CustOrderCapacityEnums::ValueType * CustOrderCapacityEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * CustOrderCapacityEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & CustOrderCapacityEnums::getEnumMapByRaw() const { return CustOrderCapacityEnums::itemByRaw; }
-const FieldEnumBase * const * const CustOrderCapacityEnums::getEnums() const { return items; }
+const FieldEnumBase ** CustOrderCapacityEnums::getEnums() const { return items; }
 const CustOrderCapacityEnums CustOrderCapacityEnums::instance;
 const FieldEnumBase * CustOrderCapacityEnums::items[] = {
 & CustOrderCapacityEnums::MEMBER_TRADING_FOR_THEIR_OWN_ACCOUNT,
@@ -8928,7 +8928,7 @@ const FieldEnumBase * MassStatusReqTypeEnums::findEnum( raw_enum_t raw ) { auto 
 const MassStatusReqTypeEnums::ValueType * MassStatusReqTypeEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * MassStatusReqTypeEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & MassStatusReqTypeEnums::getEnumMapByRaw() const { return MassStatusReqTypeEnums::itemByRaw; }
-const FieldEnumBase * const * const MassStatusReqTypeEnums::getEnums() const { return items; }
+const FieldEnumBase ** MassStatusReqTypeEnums::getEnums() const { return items; }
 const MassStatusReqTypeEnums MassStatusReqTypeEnums::instance;
 const FieldEnumBase * MassStatusReqTypeEnums::items[] = {
 & MassStatusReqTypeEnums::STATUS_FOR_ORDERS_FOR_A_SECURITY,
@@ -8947,7 +8947,7 @@ const FieldEnumBase * DayBookingInstEnums::findEnum( raw_enum_t raw ) { auto it 
 const DayBookingInstEnums::ValueType * DayBookingInstEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * DayBookingInstEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & DayBookingInstEnums::getEnumMapByRaw() const { return DayBookingInstEnums::itemByRaw; }
-const FieldEnumBase * const * const DayBookingInstEnums::getEnums() const { return items; }
+const FieldEnumBase ** DayBookingInstEnums::getEnums() const { return items; }
 const DayBookingInstEnums DayBookingInstEnums::instance;
 const FieldEnumBase * DayBookingInstEnums::items[] = {
 & DayBookingInstEnums::CAN_TRIGGER_BOOKING_WITHOUT_REFERENCE_TO_THE_ORDER_INITIATOR,
@@ -8961,7 +8961,7 @@ const FieldEnumBase * BookingUnitEnums::findEnum( raw_enum_t raw ) { auto it = i
 const BookingUnitEnums::ValueType * BookingUnitEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * BookingUnitEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & BookingUnitEnums::getEnumMapByRaw() const { return BookingUnitEnums::itemByRaw; }
-const FieldEnumBase * const * const BookingUnitEnums::getEnums() const { return items; }
+const FieldEnumBase ** BookingUnitEnums::getEnums() const { return items; }
 const BookingUnitEnums BookingUnitEnums::instance;
 const FieldEnumBase * BookingUnitEnums::items[] = {
 & BookingUnitEnums::EACH_PARTIAL_EXECUTION_IS_A_BOOKABLE_UNIT,
@@ -8975,7 +8975,7 @@ const FieldEnumBase * PreallocMethodEnums::findEnum( raw_enum_t raw ) { auto it 
 const PreallocMethodEnums::ValueType * PreallocMethodEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * PreallocMethodEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & PreallocMethodEnums::getEnumMapByRaw() const { return PreallocMethodEnums::itemByRaw; }
-const FieldEnumBase * const * const PreallocMethodEnums::getEnums() const { return items; }
+const FieldEnumBase ** PreallocMethodEnums::getEnums() const { return items; }
 const PreallocMethodEnums PreallocMethodEnums::instance;
 const FieldEnumBase * PreallocMethodEnums::items[] = {
 & PreallocMethodEnums::PRO_RATA,
@@ -8988,7 +8988,7 @@ const FieldEnumBase * AllocTypeEnums::findEnum( raw_enum_t raw ) { auto it = ite
 const AllocTypeEnums::ValueType * AllocTypeEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * AllocTypeEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & AllocTypeEnums::getEnumMapByRaw() const { return AllocTypeEnums::itemByRaw; }
-const FieldEnumBase * const * const AllocTypeEnums::getEnums() const { return items; }
+const FieldEnumBase ** AllocTypeEnums::getEnums() const { return items; }
 const AllocTypeEnums AllocTypeEnums::instance;
 const FieldEnumBase * AllocTypeEnums::items[] = {
 & AllocTypeEnums::CALCULATED,
@@ -9004,7 +9004,7 @@ const FieldEnumBase * ClearingFeeIndicatorEnums::findEnum( raw_enum_t raw ) { au
 const ClearingFeeIndicatorEnums::ValueType * ClearingFeeIndicatorEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * ClearingFeeIndicatorEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & ClearingFeeIndicatorEnums::getEnumMapByRaw() const { return ClearingFeeIndicatorEnums::itemByRaw; }
-const FieldEnumBase * const * const ClearingFeeIndicatorEnums::getEnums() const { return items; }
+const FieldEnumBase ** ClearingFeeIndicatorEnums::getEnums() const { return items; }
 const ClearingFeeIndicatorEnums ClearingFeeIndicatorEnums::instance;
 const FieldEnumBase * ClearingFeeIndicatorEnums::items[] = {
 & ClearingFeeIndicatorEnums::CBOE_MEMBER,
@@ -9029,7 +9029,7 @@ const FieldEnumBase * WorkingIndicatorEnums::findEnum( raw_enum_t raw ) { auto i
 const WorkingIndicatorEnums::ValueType * WorkingIndicatorEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * WorkingIndicatorEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & WorkingIndicatorEnums::getEnumMapByRaw() const { return WorkingIndicatorEnums::itemByRaw; }
-const FieldEnumBase * const * const WorkingIndicatorEnums::getEnums() const { return items; }
+const FieldEnumBase ** WorkingIndicatorEnums::getEnums() const { return items; }
 const WorkingIndicatorEnums WorkingIndicatorEnums::instance;
 const FieldEnumBase * WorkingIndicatorEnums::items[] = {
 & WorkingIndicatorEnums::YES,
@@ -9042,7 +9042,7 @@ const FieldEnumBase * PriorityIndicatorEnums::findEnum( raw_enum_t raw ) { auto 
 const PriorityIndicatorEnums::ValueType * PriorityIndicatorEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * PriorityIndicatorEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & PriorityIndicatorEnums::getEnumMapByRaw() const { return PriorityIndicatorEnums::itemByRaw; }
-const FieldEnumBase * const * const PriorityIndicatorEnums::getEnums() const { return items; }
+const FieldEnumBase ** PriorityIndicatorEnums::getEnums() const { return items; }
 const PriorityIndicatorEnums PriorityIndicatorEnums::instance;
 const FieldEnumBase * PriorityIndicatorEnums::items[] = {
 & PriorityIndicatorEnums::PRIORITY_UNCHANGED,
@@ -9055,7 +9055,7 @@ const FieldEnumBase * LegalConfirmEnums::findEnum( raw_enum_t raw ) { auto it = 
 const LegalConfirmEnums::ValueType * LegalConfirmEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * LegalConfirmEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & LegalConfirmEnums::getEnumMapByRaw() const { return LegalConfirmEnums::itemByRaw; }
-const FieldEnumBase * const * const LegalConfirmEnums::getEnums() const { return items; }
+const FieldEnumBase ** LegalConfirmEnums::getEnums() const { return items; }
 const LegalConfirmEnums LegalConfirmEnums::instance;
 const FieldEnumBase * LegalConfirmEnums::items[] = {
 & LegalConfirmEnums::YES,
@@ -9068,7 +9068,7 @@ const FieldEnumBase * QuoteRequestRejectReasonEnums::findEnum( raw_enum_t raw ) 
 const QuoteRequestRejectReasonEnums::ValueType * QuoteRequestRejectReasonEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * QuoteRequestRejectReasonEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & QuoteRequestRejectReasonEnums::getEnumMapByRaw() const { return QuoteRequestRejectReasonEnums::itemByRaw; }
-const FieldEnumBase * const * const QuoteRequestRejectReasonEnums::getEnums() const { return items; }
+const FieldEnumBase ** QuoteRequestRejectReasonEnums::getEnums() const { return items; }
 const QuoteRequestRejectReasonEnums QuoteRequestRejectReasonEnums::instance;
 const FieldEnumBase * QuoteRequestRejectReasonEnums::items[] = {
 & QuoteRequestRejectReasonEnums::UNKNOWN_SYMBOL,
@@ -9090,7 +9090,7 @@ const FieldEnumBase * AcctIDSourceEnums::findEnum( raw_enum_t raw ) { auto it = 
 const AcctIDSourceEnums::ValueType * AcctIDSourceEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * AcctIDSourceEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & AcctIDSourceEnums::getEnumMapByRaw() const { return AcctIDSourceEnums::itemByRaw; }
-const FieldEnumBase * const * const AcctIDSourceEnums::getEnums() const { return items; }
+const FieldEnumBase ** AcctIDSourceEnums::getEnums() const { return items; }
 const AcctIDSourceEnums AcctIDSourceEnums::instance;
 const FieldEnumBase * AcctIDSourceEnums::items[] = {
 & AcctIDSourceEnums::BIC,
@@ -9107,7 +9107,7 @@ const FieldEnumBase * ConfirmStatusEnums::findEnum( raw_enum_t raw ) { auto it =
 const ConfirmStatusEnums::ValueType * ConfirmStatusEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * ConfirmStatusEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & ConfirmStatusEnums::getEnumMapByRaw() const { return ConfirmStatusEnums::itemByRaw; }
-const FieldEnumBase * const * const ConfirmStatusEnums::getEnums() const { return items; }
+const FieldEnumBase ** ConfirmStatusEnums::getEnums() const { return items; }
 const ConfirmStatusEnums ConfirmStatusEnums::instance;
 const FieldEnumBase * ConfirmStatusEnums::items[] = {
 & ConfirmStatusEnums::RECEIVED,
@@ -9123,7 +9123,7 @@ const FieldEnumBase * ConfirmTransTypeEnums::findEnum( raw_enum_t raw ) { auto i
 const ConfirmTransTypeEnums::ValueType * ConfirmTransTypeEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * ConfirmTransTypeEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & ConfirmTransTypeEnums::getEnumMapByRaw() const { return ConfirmTransTypeEnums::itemByRaw; }
-const FieldEnumBase * const * const ConfirmTransTypeEnums::getEnums() const { return items; }
+const FieldEnumBase ** ConfirmTransTypeEnums::getEnums() const { return items; }
 const ConfirmTransTypeEnums ConfirmTransTypeEnums::instance;
 const FieldEnumBase * ConfirmTransTypeEnums::items[] = {
 & ConfirmTransTypeEnums::NEW,
@@ -9137,7 +9137,7 @@ const FieldEnumBase * DeliveryFormEnums::findEnum( raw_enum_t raw ) { auto it = 
 const DeliveryFormEnums::ValueType * DeliveryFormEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * DeliveryFormEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & DeliveryFormEnums::getEnumMapByRaw() const { return DeliveryFormEnums::itemByRaw; }
-const FieldEnumBase * const * const DeliveryFormEnums::getEnums() const { return items; }
+const FieldEnumBase ** DeliveryFormEnums::getEnums() const { return items; }
 const DeliveryFormEnums DeliveryFormEnums::instance;
 const FieldEnumBase * DeliveryFormEnums::items[] = {
 & DeliveryFormEnums::BOOKENTRY,
@@ -9150,7 +9150,7 @@ const FieldEnumBase * LegSwapTypeEnums::findEnum( raw_enum_t raw ) { auto it = i
 const LegSwapTypeEnums::ValueType * LegSwapTypeEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * LegSwapTypeEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & LegSwapTypeEnums::getEnumMapByRaw() const { return LegSwapTypeEnums::itemByRaw; }
-const FieldEnumBase * const * const LegSwapTypeEnums::getEnums() const { return items; }
+const FieldEnumBase ** LegSwapTypeEnums::getEnums() const { return items; }
 const LegSwapTypeEnums LegSwapTypeEnums::instance;
 const FieldEnumBase * LegSwapTypeEnums::items[] = {
 & LegSwapTypeEnums::PAR_FOR_PAR,
@@ -9165,7 +9165,7 @@ const FieldEnumBase * QuotePriceTypeEnums::findEnum( raw_enum_t raw ) { auto it 
 const QuotePriceTypeEnums::ValueType * QuotePriceTypeEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * QuotePriceTypeEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & QuotePriceTypeEnums::getEnumMapByRaw() const { return QuotePriceTypeEnums::itemByRaw; }
-const FieldEnumBase * const * const QuotePriceTypeEnums::getEnums() const { return items; }
+const FieldEnumBase ** QuotePriceTypeEnums::getEnums() const { return items; }
 const QuotePriceTypeEnums QuotePriceTypeEnums::instance;
 const FieldEnumBase * QuotePriceTypeEnums::items[] = {
 & QuotePriceTypeEnums::PERCENT,
@@ -9186,7 +9186,7 @@ const FieldEnumBase * QuoteRespTypeEnums::findEnum( raw_enum_t raw ) { auto it =
 const QuoteRespTypeEnums::ValueType * QuoteRespTypeEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * QuoteRespTypeEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & QuoteRespTypeEnums::getEnumMapByRaw() const { return QuoteRespTypeEnums::itemByRaw; }
-const FieldEnumBase * const * const QuoteRespTypeEnums::getEnums() const { return items; }
+const FieldEnumBase ** QuoteRespTypeEnums::getEnums() const { return items; }
 const QuoteRespTypeEnums QuoteRespTypeEnums::instance;
 const FieldEnumBase * QuoteRespTypeEnums::items[] = {
 & QuoteRespTypeEnums::HIT_LIFT,
@@ -9203,7 +9203,7 @@ const FieldEnumBase * PosTypeEnums::findEnum( raw_enum_t raw ) { auto it = itemB
 const PosTypeEnums::ValueType * PosTypeEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * PosTypeEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & PosTypeEnums::getEnumMapByRaw() const { return PosTypeEnums::itemByRaw; }
-const FieldEnumBase * const * const PosTypeEnums::getEnums() const { return items; }
+const FieldEnumBase ** PosTypeEnums::getEnums() const { return items; }
 const PosTypeEnums PosTypeEnums::instance;
 const FieldEnumBase * PosTypeEnums::items[] = {
 & PosTypeEnums::TRANSACTION_QUANTITY,
@@ -9233,7 +9233,7 @@ const FieldEnumBase * PosQtyStatusEnums::findEnum( raw_enum_t raw ) { auto it = 
 const PosQtyStatusEnums::ValueType * PosQtyStatusEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * PosQtyStatusEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & PosQtyStatusEnums::getEnumMapByRaw() const { return PosQtyStatusEnums::itemByRaw; }
-const FieldEnumBase * const * const PosQtyStatusEnums::getEnums() const { return items; }
+const FieldEnumBase ** PosQtyStatusEnums::getEnums() const { return items; }
 const PosQtyStatusEnums PosQtyStatusEnums::instance;
 const FieldEnumBase * PosQtyStatusEnums::items[] = {
 & PosQtyStatusEnums::SUBMITTED,
@@ -9247,7 +9247,7 @@ const FieldEnumBase * PosAmtTypeEnums::findEnum( raw_enum_t raw ) { auto it = it
 const PosAmtTypeEnums::ValueType * PosAmtTypeEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * PosAmtTypeEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & PosAmtTypeEnums::getEnumMapByRaw() const { return PosAmtTypeEnums::itemByRaw; }
-const FieldEnumBase * const * const PosAmtTypeEnums::getEnums() const { return items; }
+const FieldEnumBase ** PosAmtTypeEnums::getEnums() const { return items; }
 const PosAmtTypeEnums PosAmtTypeEnums::instance;
 const FieldEnumBase * PosAmtTypeEnums::items[] = {
 & PosAmtTypeEnums::FINAL_MARK_TO_MARKET_AMOUNT,
@@ -9266,7 +9266,7 @@ const FieldEnumBase * PosTransTypeEnums::findEnum( raw_enum_t raw ) { auto it = 
 const PosTransTypeEnums::ValueType * PosTransTypeEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * PosTransTypeEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & PosTransTypeEnums::getEnumMapByRaw() const { return PosTransTypeEnums::itemByRaw; }
-const FieldEnumBase * const * const PosTransTypeEnums::getEnums() const { return items; }
+const FieldEnumBase ** PosTransTypeEnums::getEnums() const { return items; }
 const PosTransTypeEnums PosTransTypeEnums::instance;
 const FieldEnumBase * PosTransTypeEnums::items[] = {
 & PosTransTypeEnums::EXERCISE,
@@ -9282,7 +9282,7 @@ const FieldEnumBase * PosMaintActionEnums::findEnum( raw_enum_t raw ) { auto it 
 const PosMaintActionEnums::ValueType * PosMaintActionEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * PosMaintActionEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & PosMaintActionEnums::getEnumMapByRaw() const { return PosMaintActionEnums::itemByRaw; }
-const FieldEnumBase * const * const PosMaintActionEnums::getEnums() const { return items; }
+const FieldEnumBase ** PosMaintActionEnums::getEnums() const { return items; }
 const PosMaintActionEnums PosMaintActionEnums::instance;
 const FieldEnumBase * PosMaintActionEnums::items[] = {
 & PosMaintActionEnums::NEW_USED_TO_INCREMENT_THE_OVERALL_TRANSACTION_QUANTITY,
@@ -9296,7 +9296,7 @@ const FieldEnumBase * SettlSessIDEnums::findEnum( raw_enum_t raw ) { auto it = i
 const SettlSessIDEnums::ValueType * SettlSessIDEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * SettlSessIDEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & SettlSessIDEnums::getEnumMapByRaw() const { return SettlSessIDEnums::itemByRaw; }
-const FieldEnumBase * const * const SettlSessIDEnums::getEnums() const { return items; }
+const FieldEnumBase ** SettlSessIDEnums::getEnums() const { return items; }
 const SettlSessIDEnums SettlSessIDEnums::instance;
 const FieldEnumBase * SettlSessIDEnums::items[] = {
 & SettlSessIDEnums::INTRADAY,
@@ -9310,7 +9310,7 @@ const FieldEnumBase * AdjustmentTypeEnums::findEnum( raw_enum_t raw ) { auto it 
 const AdjustmentTypeEnums::ValueType * AdjustmentTypeEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * AdjustmentTypeEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & AdjustmentTypeEnums::getEnumMapByRaw() const { return AdjustmentTypeEnums::itemByRaw; }
-const FieldEnumBase * const * const AdjustmentTypeEnums::getEnums() const { return items; }
+const FieldEnumBase ** AdjustmentTypeEnums::getEnums() const { return items; }
 const AdjustmentTypeEnums AdjustmentTypeEnums::instance;
 const FieldEnumBase * AdjustmentTypeEnums::items[] = {
 & AdjustmentTypeEnums::PROCESS_REQUEST_AS_MARGIN_DISPOSITION,
@@ -9325,7 +9325,7 @@ const FieldEnumBase * PosMaintStatusEnums::findEnum( raw_enum_t raw ) { auto it 
 const PosMaintStatusEnums::ValueType * PosMaintStatusEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * PosMaintStatusEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & PosMaintStatusEnums::getEnumMapByRaw() const { return PosMaintStatusEnums::itemByRaw; }
-const FieldEnumBase * const * const PosMaintStatusEnums::getEnums() const { return items; }
+const FieldEnumBase ** PosMaintStatusEnums::getEnums() const { return items; }
 const PosMaintStatusEnums PosMaintStatusEnums::instance;
 const FieldEnumBase * PosMaintStatusEnums::items[] = {
 & PosMaintStatusEnums::ACCEPTED,
@@ -9341,7 +9341,7 @@ const FieldEnumBase * PosMaintResultEnums::findEnum( raw_enum_t raw ) { auto it 
 const PosMaintResultEnums::ValueType * PosMaintResultEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * PosMaintResultEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & PosMaintResultEnums::getEnumMapByRaw() const { return PosMaintResultEnums::itemByRaw; }
-const FieldEnumBase * const * const PosMaintResultEnums::getEnums() const { return items; }
+const FieldEnumBase ** PosMaintResultEnums::getEnums() const { return items; }
 const PosMaintResultEnums PosMaintResultEnums::instance;
 const FieldEnumBase * PosMaintResultEnums::items[] = {
 & PosMaintResultEnums::SUCCESSFUL_COMPLETION,
@@ -9355,7 +9355,7 @@ const FieldEnumBase * PosReqTypeEnums::findEnum( raw_enum_t raw ) { auto it = it
 const PosReqTypeEnums::ValueType * PosReqTypeEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * PosReqTypeEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & PosReqTypeEnums::getEnumMapByRaw() const { return PosReqTypeEnums::itemByRaw; }
-const FieldEnumBase * const * const PosReqTypeEnums::getEnums() const { return items; }
+const FieldEnumBase ** PosReqTypeEnums::getEnums() const { return items; }
 const PosReqTypeEnums PosReqTypeEnums::instance;
 const FieldEnumBase * PosReqTypeEnums::items[] = {
 & PosReqTypeEnums::POSITIONS,
@@ -9370,7 +9370,7 @@ const FieldEnumBase * ResponseTransportTypeEnums::findEnum( raw_enum_t raw ) { a
 const ResponseTransportTypeEnums::ValueType * ResponseTransportTypeEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * ResponseTransportTypeEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & ResponseTransportTypeEnums::getEnumMapByRaw() const { return ResponseTransportTypeEnums::itemByRaw; }
-const FieldEnumBase * const * const ResponseTransportTypeEnums::getEnums() const { return items; }
+const FieldEnumBase ** ResponseTransportTypeEnums::getEnums() const { return items; }
 const ResponseTransportTypeEnums ResponseTransportTypeEnums::instance;
 const FieldEnumBase * ResponseTransportTypeEnums::items[] = {
 & ResponseTransportTypeEnums::INBAND_TRANSPORT_THE_REQUEST_WAS_SENT_OVER,
@@ -9383,7 +9383,7 @@ const FieldEnumBase * PosReqResultEnums::findEnum( raw_enum_t raw ) { auto it = 
 const PosReqResultEnums::ValueType * PosReqResultEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * PosReqResultEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & PosReqResultEnums::getEnumMapByRaw() const { return PosReqResultEnums::itemByRaw; }
-const FieldEnumBase * const * const PosReqResultEnums::getEnums() const { return items; }
+const FieldEnumBase ** PosReqResultEnums::getEnums() const { return items; }
 const PosReqResultEnums PosReqResultEnums::instance;
 const FieldEnumBase * PosReqResultEnums::items[] = {
 & PosReqResultEnums::VALID_REQUEST,
@@ -9400,7 +9400,7 @@ const FieldEnumBase * PosReqStatusEnums::findEnum( raw_enum_t raw ) { auto it = 
 const PosReqStatusEnums::ValueType * PosReqStatusEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * PosReqStatusEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & PosReqStatusEnums::getEnumMapByRaw() const { return PosReqStatusEnums::itemByRaw; }
-const FieldEnumBase * const * const PosReqStatusEnums::getEnums() const { return items; }
+const FieldEnumBase ** PosReqStatusEnums::getEnums() const { return items; }
 const PosReqStatusEnums PosReqStatusEnums::instance;
 const FieldEnumBase * PosReqStatusEnums::items[] = {
 & PosReqStatusEnums::COMPLETED,
@@ -9414,7 +9414,7 @@ const FieldEnumBase * SettlPriceTypeEnums::findEnum( raw_enum_t raw ) { auto it 
 const SettlPriceTypeEnums::ValueType * SettlPriceTypeEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * SettlPriceTypeEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & SettlPriceTypeEnums::getEnumMapByRaw() const { return SettlPriceTypeEnums::itemByRaw; }
-const FieldEnumBase * const * const SettlPriceTypeEnums::getEnums() const { return items; }
+const FieldEnumBase ** SettlPriceTypeEnums::getEnums() const { return items; }
 const SettlPriceTypeEnums SettlPriceTypeEnums::instance;
 const FieldEnumBase * SettlPriceTypeEnums::items[] = {
 & SettlPriceTypeEnums::FINAL,
@@ -9427,7 +9427,7 @@ const FieldEnumBase * AssignmentMethodEnums::findEnum( raw_enum_t raw ) { auto i
 const AssignmentMethodEnums::ValueType * AssignmentMethodEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * AssignmentMethodEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & AssignmentMethodEnums::getEnumMapByRaw() const { return AssignmentMethodEnums::itemByRaw; }
-const FieldEnumBase * const * const AssignmentMethodEnums::getEnums() const { return items; }
+const FieldEnumBase ** AssignmentMethodEnums::getEnums() const { return items; }
 const AssignmentMethodEnums AssignmentMethodEnums::instance;
 const FieldEnumBase * AssignmentMethodEnums::items[] = {
 & AssignmentMethodEnums::RANDOM,
@@ -9440,7 +9440,7 @@ const FieldEnumBase * ExerciseMethodEnums::findEnum( raw_enum_t raw ) { auto it 
 const ExerciseMethodEnums::ValueType * ExerciseMethodEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * ExerciseMethodEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & ExerciseMethodEnums::getEnumMapByRaw() const { return ExerciseMethodEnums::itemByRaw; }
-const FieldEnumBase * const * const ExerciseMethodEnums::getEnums() const { return items; }
+const FieldEnumBase ** ExerciseMethodEnums::getEnums() const { return items; }
 const ExerciseMethodEnums ExerciseMethodEnums::instance;
 const FieldEnumBase * ExerciseMethodEnums::items[] = {
 & ExerciseMethodEnums::AUTOMATIC,
@@ -9453,7 +9453,7 @@ const FieldEnumBase * TradeRequestResultEnums::findEnum( raw_enum_t raw ) { auto
 const TradeRequestResultEnums::ValueType * TradeRequestResultEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * TradeRequestResultEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & TradeRequestResultEnums::getEnumMapByRaw() const { return TradeRequestResultEnums::itemByRaw; }
-const FieldEnumBase * const * const TradeRequestResultEnums::getEnums() const { return items; }
+const FieldEnumBase ** TradeRequestResultEnums::getEnums() const { return items; }
 const TradeRequestResultEnums TradeRequestResultEnums::instance;
 const FieldEnumBase * TradeRequestResultEnums::items[] = {
 & TradeRequestResultEnums::SUCCESSFUL,
@@ -9473,7 +9473,7 @@ const FieldEnumBase * TradeRequestStatusEnums::findEnum( raw_enum_t raw ) { auto
 const TradeRequestStatusEnums::ValueType * TradeRequestStatusEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * TradeRequestStatusEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & TradeRequestStatusEnums::getEnumMapByRaw() const { return TradeRequestStatusEnums::itemByRaw; }
-const FieldEnumBase * const * const TradeRequestStatusEnums::getEnums() const { return items; }
+const FieldEnumBase ** TradeRequestStatusEnums::getEnums() const { return items; }
 const TradeRequestStatusEnums TradeRequestStatusEnums::instance;
 const FieldEnumBase * TradeRequestStatusEnums::items[] = {
 & TradeRequestStatusEnums::ACCEPTED,
@@ -9487,7 +9487,7 @@ const FieldEnumBase * TradeReportRejectReasonEnums::findEnum( raw_enum_t raw ) {
 const TradeReportRejectReasonEnums::ValueType * TradeReportRejectReasonEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * TradeReportRejectReasonEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & TradeReportRejectReasonEnums::getEnumMapByRaw() const { return TradeReportRejectReasonEnums::itemByRaw; }
-const FieldEnumBase * const * const TradeReportRejectReasonEnums::getEnums() const { return items; }
+const FieldEnumBase ** TradeReportRejectReasonEnums::getEnums() const { return items; }
 const TradeReportRejectReasonEnums TradeReportRejectReasonEnums::instance;
 const FieldEnumBase * TradeReportRejectReasonEnums::items[] = {
 & TradeReportRejectReasonEnums::SUCCESSFUL,
@@ -9504,7 +9504,7 @@ const FieldEnumBase * SideMultiLegReportingTypeEnums::findEnum( raw_enum_t raw )
 const SideMultiLegReportingTypeEnums::ValueType * SideMultiLegReportingTypeEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * SideMultiLegReportingTypeEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & SideMultiLegReportingTypeEnums::getEnumMapByRaw() const { return SideMultiLegReportingTypeEnums::itemByRaw; }
-const FieldEnumBase * const * const SideMultiLegReportingTypeEnums::getEnums() const { return items; }
+const FieldEnumBase ** SideMultiLegReportingTypeEnums::getEnums() const { return items; }
 const SideMultiLegReportingTypeEnums SideMultiLegReportingTypeEnums::instance;
 const FieldEnumBase * SideMultiLegReportingTypeEnums::items[] = {
 & SideMultiLegReportingTypeEnums::SINGLE_SECURITY,
@@ -9518,7 +9518,7 @@ const FieldEnumBase * TrdRegTimestampTypeEnums::findEnum( raw_enum_t raw ) { aut
 const TrdRegTimestampTypeEnums::ValueType * TrdRegTimestampTypeEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * TrdRegTimestampTypeEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & TrdRegTimestampTypeEnums::getEnumMapByRaw() const { return TrdRegTimestampTypeEnums::itemByRaw; }
-const FieldEnumBase * const * const TrdRegTimestampTypeEnums::getEnums() const { return items; }
+const FieldEnumBase ** TrdRegTimestampTypeEnums::getEnums() const { return items; }
 const TrdRegTimestampTypeEnums TrdRegTimestampTypeEnums::instance;
 const FieldEnumBase * TrdRegTimestampTypeEnums::items[] = {
 & TrdRegTimestampTypeEnums::EXECUTION_TIME,
@@ -9534,7 +9534,7 @@ const FieldEnumBase * ConfirmTypeEnums::findEnum( raw_enum_t raw ) { auto it = i
 const ConfirmTypeEnums::ValueType * ConfirmTypeEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * ConfirmTypeEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & ConfirmTypeEnums::getEnumMapByRaw() const { return ConfirmTypeEnums::itemByRaw; }
-const FieldEnumBase * const * const ConfirmTypeEnums::getEnums() const { return items; }
+const FieldEnumBase ** ConfirmTypeEnums::getEnums() const { return items; }
 const ConfirmTypeEnums ConfirmTypeEnums::instance;
 const FieldEnumBase * ConfirmTypeEnums::items[] = {
 & ConfirmTypeEnums::STATUS,
@@ -9548,7 +9548,7 @@ const FieldEnumBase * ConfirmRejReasonEnums::findEnum( raw_enum_t raw ) { auto i
 const ConfirmRejReasonEnums::ValueType * ConfirmRejReasonEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * ConfirmRejReasonEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & ConfirmRejReasonEnums::getEnumMapByRaw() const { return ConfirmRejReasonEnums::itemByRaw; }
-const FieldEnumBase * const * const ConfirmRejReasonEnums::getEnums() const { return items; }
+const FieldEnumBase ** ConfirmRejReasonEnums::getEnums() const { return items; }
 const ConfirmRejReasonEnums ConfirmRejReasonEnums::instance;
 const FieldEnumBase * ConfirmRejReasonEnums::items[] = {
 & ConfirmRejReasonEnums::MISMATCHED_ACCOUNT,
@@ -9562,7 +9562,7 @@ const FieldEnumBase * BookingTypeEnums::findEnum( raw_enum_t raw ) { auto it = i
 const BookingTypeEnums::ValueType * BookingTypeEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * BookingTypeEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & BookingTypeEnums::getEnumMapByRaw() const { return BookingTypeEnums::itemByRaw; }
-const FieldEnumBase * const * const BookingTypeEnums::getEnums() const { return items; }
+const FieldEnumBase ** BookingTypeEnums::getEnums() const { return items; }
 const BookingTypeEnums BookingTypeEnums::instance;
 const FieldEnumBase * BookingTypeEnums::items[] = {
 & BookingTypeEnums::REGULAR_BOOKING,
@@ -9576,7 +9576,7 @@ const FieldEnumBase * AllocSettlInstTypeEnums::findEnum( raw_enum_t raw ) { auto
 const AllocSettlInstTypeEnums::ValueType * AllocSettlInstTypeEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * AllocSettlInstTypeEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & AllocSettlInstTypeEnums::getEnumMapByRaw() const { return AllocSettlInstTypeEnums::itemByRaw; }
-const FieldEnumBase * const * const AllocSettlInstTypeEnums::getEnums() const { return items; }
+const FieldEnumBase ** AllocSettlInstTypeEnums::getEnums() const { return items; }
 const AllocSettlInstTypeEnums AllocSettlInstTypeEnums::instance;
 const FieldEnumBase * AllocSettlInstTypeEnums::items[] = {
 & AllocSettlInstTypeEnums::USE_DEFAULT_INSTRUCTIONS,
@@ -9592,7 +9592,7 @@ const FieldEnumBase * DlvyInstTypeEnums::findEnum( raw_enum_t raw ) { auto it = 
 const DlvyInstTypeEnums::ValueType * DlvyInstTypeEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * DlvyInstTypeEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & DlvyInstTypeEnums::getEnumMapByRaw() const { return DlvyInstTypeEnums::itemByRaw; }
-const FieldEnumBase * const * const DlvyInstTypeEnums::getEnums() const { return items; }
+const FieldEnumBase ** DlvyInstTypeEnums::getEnums() const { return items; }
 const DlvyInstTypeEnums DlvyInstTypeEnums::instance;
 const FieldEnumBase * DlvyInstTypeEnums::items[] = {
 & DlvyInstTypeEnums::SECURITIES,
@@ -9605,7 +9605,7 @@ const FieldEnumBase * TerminationTypeEnums::findEnum( raw_enum_t raw ) { auto it
 const TerminationTypeEnums::ValueType * TerminationTypeEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * TerminationTypeEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & TerminationTypeEnums::getEnumMapByRaw() const { return TerminationTypeEnums::itemByRaw; }
-const FieldEnumBase * const * const TerminationTypeEnums::getEnums() const { return items; }
+const FieldEnumBase ** TerminationTypeEnums::getEnums() const { return items; }
 const TerminationTypeEnums TerminationTypeEnums::instance;
 const FieldEnumBase * TerminationTypeEnums::items[] = {
 & TerminationTypeEnums::OVERNIGHT,
@@ -9620,7 +9620,7 @@ const FieldEnumBase * SettlInstReqRejCodeEnums::findEnum( raw_enum_t raw ) { aut
 const SettlInstReqRejCodeEnums::ValueType * SettlInstReqRejCodeEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * SettlInstReqRejCodeEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & SettlInstReqRejCodeEnums::getEnumMapByRaw() const { return SettlInstReqRejCodeEnums::itemByRaw; }
-const FieldEnumBase * const * const SettlInstReqRejCodeEnums::getEnums() const { return items; }
+const FieldEnumBase ** SettlInstReqRejCodeEnums::getEnums() const { return items; }
 const SettlInstReqRejCodeEnums SettlInstReqRejCodeEnums::instance;
 const FieldEnumBase * SettlInstReqRejCodeEnums::items[] = {
 & SettlInstReqRejCodeEnums::UNABLE_TO_PROCESS_REQUEST,
@@ -9635,7 +9635,7 @@ const FieldEnumBase * AllocReportTypeEnums::findEnum( raw_enum_t raw ) { auto it
 const AllocReportTypeEnums::ValueType * AllocReportTypeEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * AllocReportTypeEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & AllocReportTypeEnums::getEnumMapByRaw() const { return AllocReportTypeEnums::itemByRaw; }
-const FieldEnumBase * const * const AllocReportTypeEnums::getEnums() const { return items; }
+const FieldEnumBase ** AllocReportTypeEnums::getEnums() const { return items; }
 const AllocReportTypeEnums AllocReportTypeEnums::instance;
 const FieldEnumBase * AllocReportTypeEnums::items[] = {
 & AllocReportTypeEnums::SELLSIDE_CALCULATED_USING_PRELIMINARY,
@@ -9650,7 +9650,7 @@ const FieldEnumBase * AllocCancReplaceReasonEnums::findEnum( raw_enum_t raw ) { 
 const AllocCancReplaceReasonEnums::ValueType * AllocCancReplaceReasonEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * AllocCancReplaceReasonEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & AllocCancReplaceReasonEnums::getEnumMapByRaw() const { return AllocCancReplaceReasonEnums::itemByRaw; }
-const FieldEnumBase * const * const AllocCancReplaceReasonEnums::getEnums() const { return items; }
+const FieldEnumBase ** AllocCancReplaceReasonEnums::getEnums() const { return items; }
 const AllocCancReplaceReasonEnums AllocCancReplaceReasonEnums::instance;
 const FieldEnumBase * AllocCancReplaceReasonEnums::items[] = {
 & AllocCancReplaceReasonEnums::ORIGINAL_DETAILS_INCOMPLETE_INCORRECT,
@@ -9664,7 +9664,7 @@ const FieldEnumBase * AllocAccountTypeEnums::findEnum( raw_enum_t raw ) { auto i
 const AllocAccountTypeEnums::ValueType * AllocAccountTypeEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * AllocAccountTypeEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & AllocAccountTypeEnums::getEnumMapByRaw() const { return AllocAccountTypeEnums::itemByRaw; }
-const FieldEnumBase * const * const AllocAccountTypeEnums::getEnums() const { return items; }
+const FieldEnumBase ** AllocAccountTypeEnums::getEnums() const { return items; }
 const AllocAccountTypeEnums AllocAccountTypeEnums::instance;
 const FieldEnumBase * AllocAccountTypeEnums::items[] = {
 & AllocAccountTypeEnums::ACCOUNT_IS_CARRIED_ON_CUSTOMER_SIDE_OF_BOOKS,
@@ -9682,7 +9682,7 @@ const FieldEnumBase * PartySubIDTypeEnums::findEnum( raw_enum_t raw ) { auto it 
 const PartySubIDTypeEnums::ValueType * PartySubIDTypeEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * PartySubIDTypeEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & PartySubIDTypeEnums::getEnumMapByRaw() const { return PartySubIDTypeEnums::itemByRaw; }
-const FieldEnumBase * const * const PartySubIDTypeEnums::getEnums() const { return items; }
+const FieldEnumBase ** PartySubIDTypeEnums::getEnums() const { return items; }
 const PartySubIDTypeEnums PartySubIDTypeEnums::instance;
 const FieldEnumBase * PartySubIDTypeEnums::items[] = {
 & PartySubIDTypeEnums::FIRM,
@@ -9719,7 +9719,7 @@ const FieldEnumBase * AllocIntermedReqTypeEnums::findEnum( raw_enum_t raw ) { au
 const AllocIntermedReqTypeEnums::ValueType * AllocIntermedReqTypeEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * AllocIntermedReqTypeEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & AllocIntermedReqTypeEnums::getEnumMapByRaw() const { return AllocIntermedReqTypeEnums::itemByRaw; }
-const FieldEnumBase * const * const AllocIntermedReqTypeEnums::getEnums() const { return items; }
+const FieldEnumBase ** AllocIntermedReqTypeEnums::getEnums() const { return items; }
 const AllocIntermedReqTypeEnums AllocIntermedReqTypeEnums::instance;
 const FieldEnumBase * AllocIntermedReqTypeEnums::items[] = {
 & AllocIntermedReqTypeEnums::PENDING_ACCEPT,
@@ -9736,7 +9736,7 @@ const FieldEnumBase * ApplQueueResolutionEnums::findEnum( raw_enum_t raw ) { aut
 const ApplQueueResolutionEnums::ValueType * ApplQueueResolutionEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * ApplQueueResolutionEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & ApplQueueResolutionEnums::getEnumMapByRaw() const { return ApplQueueResolutionEnums::itemByRaw; }
-const FieldEnumBase * const * const ApplQueueResolutionEnums::getEnums() const { return items; }
+const FieldEnumBase ** ApplQueueResolutionEnums::getEnums() const { return items; }
 const ApplQueueResolutionEnums ApplQueueResolutionEnums::instance;
 const FieldEnumBase * ApplQueueResolutionEnums::items[] = {
 & ApplQueueResolutionEnums::NO_ACTION_TAKEN,
@@ -9751,7 +9751,7 @@ const FieldEnumBase * ApplQueueActionEnums::findEnum( raw_enum_t raw ) { auto it
 const ApplQueueActionEnums::ValueType * ApplQueueActionEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * ApplQueueActionEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & ApplQueueActionEnums::getEnumMapByRaw() const { return ApplQueueActionEnums::itemByRaw; }
-const FieldEnumBase * const * const ApplQueueActionEnums::getEnums() const { return items; }
+const FieldEnumBase ** ApplQueueActionEnums::getEnums() const { return items; }
 const ApplQueueActionEnums ApplQueueActionEnums::instance;
 const FieldEnumBase * ApplQueueActionEnums::items[] = {
 & ApplQueueActionEnums::NO_ACTION_TAKEN,
@@ -9766,7 +9766,7 @@ const FieldEnumBase * AvgPxIndicatorEnums::findEnum( raw_enum_t raw ) { auto it 
 const AvgPxIndicatorEnums::ValueType * AvgPxIndicatorEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * AvgPxIndicatorEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & AvgPxIndicatorEnums::getEnumMapByRaw() const { return AvgPxIndicatorEnums::itemByRaw; }
-const FieldEnumBase * const * const AvgPxIndicatorEnums::getEnums() const { return items; }
+const FieldEnumBase ** AvgPxIndicatorEnums::getEnums() const { return items; }
 const AvgPxIndicatorEnums AvgPxIndicatorEnums::instance;
 const FieldEnumBase * AvgPxIndicatorEnums::items[] = {
 & AvgPxIndicatorEnums::NO_AVERAGE_PRICING,
@@ -9780,7 +9780,7 @@ const FieldEnumBase * TradeAllocIndicatorEnums::findEnum( raw_enum_t raw ) { aut
 const TradeAllocIndicatorEnums::ValueType * TradeAllocIndicatorEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * TradeAllocIndicatorEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & TradeAllocIndicatorEnums::getEnumMapByRaw() const { return TradeAllocIndicatorEnums::itemByRaw; }
-const FieldEnumBase * const * const TradeAllocIndicatorEnums::getEnums() const { return items; }
+const FieldEnumBase ** TradeAllocIndicatorEnums::getEnums() const { return items; }
 const TradeAllocIndicatorEnums TradeAllocIndicatorEnums::instance;
 const FieldEnumBase * TradeAllocIndicatorEnums::items[] = {
 & TradeAllocIndicatorEnums::ALLOCATION_NOT_REQUIRED,
@@ -9794,7 +9794,7 @@ const FieldEnumBase * ExpirationCycleEnums::findEnum( raw_enum_t raw ) { auto it
 const ExpirationCycleEnums::ValueType * ExpirationCycleEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * ExpirationCycleEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & ExpirationCycleEnums::getEnumMapByRaw() const { return ExpirationCycleEnums::itemByRaw; }
-const FieldEnumBase * const * const ExpirationCycleEnums::getEnums() const { return items; }
+const FieldEnumBase ** ExpirationCycleEnums::getEnums() const { return items; }
 const ExpirationCycleEnums ExpirationCycleEnums::instance;
 const FieldEnumBase * ExpirationCycleEnums::items[] = {
 & ExpirationCycleEnums::EXPIRE_ON_TRADING_SESSION_CLOSE,
@@ -9807,7 +9807,7 @@ const FieldEnumBase * TrdTypeEnums::findEnum( raw_enum_t raw ) { auto it = itemB
 const TrdTypeEnums::ValueType * TrdTypeEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * TrdTypeEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & TrdTypeEnums::getEnumMapByRaw() const { return TrdTypeEnums::itemByRaw; }
-const FieldEnumBase * const * const TrdTypeEnums::getEnums() const { return items; }
+const FieldEnumBase ** TrdTypeEnums::getEnums() const { return items; }
 const TrdTypeEnums TrdTypeEnums::instance;
 const FieldEnumBase * TrdTypeEnums::items[] = {
 & TrdTypeEnums::REGULAR_TRADE,
@@ -9829,7 +9829,7 @@ const FieldEnumBase * PegMoveTypeEnums::findEnum( raw_enum_t raw ) { auto it = i
 const PegMoveTypeEnums::ValueType * PegMoveTypeEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * PegMoveTypeEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & PegMoveTypeEnums::getEnumMapByRaw() const { return PegMoveTypeEnums::itemByRaw; }
-const FieldEnumBase * const * const PegMoveTypeEnums::getEnums() const { return items; }
+const FieldEnumBase ** PegMoveTypeEnums::getEnums() const { return items; }
 const PegMoveTypeEnums PegMoveTypeEnums::instance;
 const FieldEnumBase * PegMoveTypeEnums::items[] = {
 & PegMoveTypeEnums::FLOATING,
@@ -9842,7 +9842,7 @@ const FieldEnumBase * PegOffsetTypeEnums::findEnum( raw_enum_t raw ) { auto it =
 const PegOffsetTypeEnums::ValueType * PegOffsetTypeEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * PegOffsetTypeEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & PegOffsetTypeEnums::getEnumMapByRaw() const { return PegOffsetTypeEnums::itemByRaw; }
-const FieldEnumBase * const * const PegOffsetTypeEnums::getEnums() const { return items; }
+const FieldEnumBase ** PegOffsetTypeEnums::getEnums() const { return items; }
 const PegOffsetTypeEnums PegOffsetTypeEnums::instance;
 const FieldEnumBase * PegOffsetTypeEnums::items[] = {
 & PegOffsetTypeEnums::PRICE,
@@ -9857,7 +9857,7 @@ const FieldEnumBase * PegLimitTypeEnums::findEnum( raw_enum_t raw ) { auto it = 
 const PegLimitTypeEnums::ValueType * PegLimitTypeEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * PegLimitTypeEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & PegLimitTypeEnums::getEnumMapByRaw() const { return PegLimitTypeEnums::itemByRaw; }
-const FieldEnumBase * const * const PegLimitTypeEnums::getEnums() const { return items; }
+const FieldEnumBase ** PegLimitTypeEnums::getEnums() const { return items; }
 const PegLimitTypeEnums PegLimitTypeEnums::instance;
 const FieldEnumBase * PegLimitTypeEnums::items[] = {
 & PegLimitTypeEnums::OR_BETTER,
@@ -9871,7 +9871,7 @@ const FieldEnumBase * PegRoundDirectionEnums::findEnum( raw_enum_t raw ) { auto 
 const PegRoundDirectionEnums::ValueType * PegRoundDirectionEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * PegRoundDirectionEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & PegRoundDirectionEnums::getEnumMapByRaw() const { return PegRoundDirectionEnums::itemByRaw; }
-const FieldEnumBase * const * const PegRoundDirectionEnums::getEnums() const { return items; }
+const FieldEnumBase ** PegRoundDirectionEnums::getEnums() const { return items; }
 const PegRoundDirectionEnums PegRoundDirectionEnums::instance;
 const FieldEnumBase * PegRoundDirectionEnums::items[] = {
 & PegRoundDirectionEnums::MORE_AGGRESSIVE_ON_A_BUY_ORDER_ROUND_THE_PRICE_UP_ROUND_UP_TO_THE_NEAREST_TICK_ON_A_SELL_ROUND_DOWN_TO_THE_NEAREST_TICK,
@@ -9884,7 +9884,7 @@ const FieldEnumBase * PegScopeEnums::findEnum( raw_enum_t raw ) { auto it = item
 const PegScopeEnums::ValueType * PegScopeEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * PegScopeEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & PegScopeEnums::getEnumMapByRaw() const { return PegScopeEnums::itemByRaw; }
-const FieldEnumBase * const * const PegScopeEnums::getEnums() const { return items; }
+const FieldEnumBase ** PegScopeEnums::getEnums() const { return items; }
 const PegScopeEnums PegScopeEnums::instance;
 const FieldEnumBase * PegScopeEnums::items[] = {
 & PegScopeEnums::LOCAL,
@@ -9899,7 +9899,7 @@ const FieldEnumBase * DiscretionMoveTypeEnums::findEnum( raw_enum_t raw ) { auto
 const DiscretionMoveTypeEnums::ValueType * DiscretionMoveTypeEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * DiscretionMoveTypeEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & DiscretionMoveTypeEnums::getEnumMapByRaw() const { return DiscretionMoveTypeEnums::itemByRaw; }
-const FieldEnumBase * const * const DiscretionMoveTypeEnums::getEnums() const { return items; }
+const FieldEnumBase ** DiscretionMoveTypeEnums::getEnums() const { return items; }
 const DiscretionMoveTypeEnums DiscretionMoveTypeEnums::instance;
 const FieldEnumBase * DiscretionMoveTypeEnums::items[] = {
 & DiscretionMoveTypeEnums::FLOATING,
@@ -9912,7 +9912,7 @@ const FieldEnumBase * DiscretionOffsetTypeEnums::findEnum( raw_enum_t raw ) { au
 const DiscretionOffsetTypeEnums::ValueType * DiscretionOffsetTypeEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * DiscretionOffsetTypeEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & DiscretionOffsetTypeEnums::getEnumMapByRaw() const { return DiscretionOffsetTypeEnums::itemByRaw; }
-const FieldEnumBase * const * const DiscretionOffsetTypeEnums::getEnums() const { return items; }
+const FieldEnumBase ** DiscretionOffsetTypeEnums::getEnums() const { return items; }
 const DiscretionOffsetTypeEnums DiscretionOffsetTypeEnums::instance;
 const FieldEnumBase * DiscretionOffsetTypeEnums::items[] = {
 & DiscretionOffsetTypeEnums::PRICE,
@@ -9927,7 +9927,7 @@ const FieldEnumBase * DiscretionLimitTypeEnums::findEnum( raw_enum_t raw ) { aut
 const DiscretionLimitTypeEnums::ValueType * DiscretionLimitTypeEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * DiscretionLimitTypeEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & DiscretionLimitTypeEnums::getEnumMapByRaw() const { return DiscretionLimitTypeEnums::itemByRaw; }
-const FieldEnumBase * const * const DiscretionLimitTypeEnums::getEnums() const { return items; }
+const FieldEnumBase ** DiscretionLimitTypeEnums::getEnums() const { return items; }
 const DiscretionLimitTypeEnums DiscretionLimitTypeEnums::instance;
 const FieldEnumBase * DiscretionLimitTypeEnums::items[] = {
 & DiscretionLimitTypeEnums::OR_BETTER,
@@ -9941,7 +9941,7 @@ const FieldEnumBase * DiscretionRoundDirectionEnums::findEnum( raw_enum_t raw ) 
 const DiscretionRoundDirectionEnums::ValueType * DiscretionRoundDirectionEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * DiscretionRoundDirectionEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & DiscretionRoundDirectionEnums::getEnumMapByRaw() const { return DiscretionRoundDirectionEnums::itemByRaw; }
-const FieldEnumBase * const * const DiscretionRoundDirectionEnums::getEnums() const { return items; }
+const FieldEnumBase ** DiscretionRoundDirectionEnums::getEnums() const { return items; }
 const DiscretionRoundDirectionEnums DiscretionRoundDirectionEnums::instance;
 const FieldEnumBase * DiscretionRoundDirectionEnums::items[] = {
 & DiscretionRoundDirectionEnums::MORE_AGGRESSIVE_ON_A_BUY_ORDER_ROUND_THE_PRICE_UP_ROUND_UP_TO_THE_NEAREST_TICK_ON_A_SELL_ROUND_DOWN_TO_THE_NEAREST_TICK,
@@ -9954,7 +9954,7 @@ const FieldEnumBase * DiscretionScopeEnums::findEnum( raw_enum_t raw ) { auto it
 const DiscretionScopeEnums::ValueType * DiscretionScopeEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * DiscretionScopeEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & DiscretionScopeEnums::getEnumMapByRaw() const { return DiscretionScopeEnums::itemByRaw; }
-const FieldEnumBase * const * const DiscretionScopeEnums::getEnums() const { return items; }
+const FieldEnumBase ** DiscretionScopeEnums::getEnums() const { return items; }
 const DiscretionScopeEnums DiscretionScopeEnums::instance;
 const FieldEnumBase * DiscretionScopeEnums::items[] = {
 & DiscretionScopeEnums::LOCAL,
@@ -9969,7 +9969,7 @@ const FieldEnumBase * TargetStrategyEnums::findEnum( raw_enum_t raw ) { auto it 
 const TargetStrategyEnums::ValueType * TargetStrategyEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * TargetStrategyEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & TargetStrategyEnums::getEnumMapByRaw() const { return TargetStrategyEnums::itemByRaw; }
-const FieldEnumBase * const * const TargetStrategyEnums::getEnums() const { return items; }
+const FieldEnumBase ** TargetStrategyEnums::getEnums() const { return items; }
 const TargetStrategyEnums TargetStrategyEnums::instance;
 const FieldEnumBase * TargetStrategyEnums::items[] = {
 & TargetStrategyEnums::VWAP,
@@ -9983,7 +9983,7 @@ const FieldEnumBase * LastLiquidityIndEnums::findEnum( raw_enum_t raw ) { auto i
 const LastLiquidityIndEnums::ValueType * LastLiquidityIndEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * LastLiquidityIndEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & LastLiquidityIndEnums::getEnumMapByRaw() const { return LastLiquidityIndEnums::itemByRaw; }
-const FieldEnumBase * const * const LastLiquidityIndEnums::getEnums() const { return items; }
+const FieldEnumBase ** LastLiquidityIndEnums::getEnums() const { return items; }
 const LastLiquidityIndEnums LastLiquidityIndEnums::instance;
 const FieldEnumBase * LastLiquidityIndEnums::items[] = {
 & LastLiquidityIndEnums::ADDED_LIQUIDITY,
@@ -9997,7 +9997,7 @@ const FieldEnumBase * PublishTrdIndicatorEnums::findEnum( raw_enum_t raw ) { aut
 const PublishTrdIndicatorEnums::ValueType * PublishTrdIndicatorEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * PublishTrdIndicatorEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & PublishTrdIndicatorEnums::getEnumMapByRaw() const { return PublishTrdIndicatorEnums::itemByRaw; }
-const FieldEnumBase * const * const PublishTrdIndicatorEnums::getEnums() const { return items; }
+const FieldEnumBase ** PublishTrdIndicatorEnums::getEnums() const { return items; }
 const PublishTrdIndicatorEnums PublishTrdIndicatorEnums::instance;
 const FieldEnumBase * PublishTrdIndicatorEnums::items[] = {
 & PublishTrdIndicatorEnums::YES,
@@ -10010,7 +10010,7 @@ const FieldEnumBase * ShortSaleReasonEnums::findEnum( raw_enum_t raw ) { auto it
 const ShortSaleReasonEnums::ValueType * ShortSaleReasonEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * ShortSaleReasonEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & ShortSaleReasonEnums::getEnumMapByRaw() const { return ShortSaleReasonEnums::itemByRaw; }
-const FieldEnumBase * const * const ShortSaleReasonEnums::getEnums() const { return items; }
+const FieldEnumBase ** ShortSaleReasonEnums::getEnums() const { return items; }
 const ShortSaleReasonEnums ShortSaleReasonEnums::instance;
 const FieldEnumBase * ShortSaleReasonEnums::items[] = {
 & ShortSaleReasonEnums::DEALER_SOLD_SHORT,
@@ -10027,7 +10027,7 @@ const FieldEnumBase * QtyTypeEnums::findEnum( raw_enum_t raw ) { auto it = itemB
 const QtyTypeEnums::ValueType * QtyTypeEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * QtyTypeEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & QtyTypeEnums::getEnumMapByRaw() const { return QtyTypeEnums::itemByRaw; }
-const FieldEnumBase * const * const QtyTypeEnums::getEnums() const { return items; }
+const FieldEnumBase ** QtyTypeEnums::getEnums() const { return items; }
 const QtyTypeEnums QtyTypeEnums::instance;
 const FieldEnumBase * QtyTypeEnums::items[] = {
 & QtyTypeEnums::UNITS,
@@ -10040,7 +10040,7 @@ const FieldEnumBase * TradeReportTypeEnums::findEnum( raw_enum_t raw ) { auto it
 const TradeReportTypeEnums::ValueType * TradeReportTypeEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * TradeReportTypeEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & TradeReportTypeEnums::getEnumMapByRaw() const { return TradeReportTypeEnums::itemByRaw; }
-const FieldEnumBase * const * const TradeReportTypeEnums::getEnums() const { return items; }
+const FieldEnumBase ** TradeReportTypeEnums::getEnums() const { return items; }
 const TradeReportTypeEnums TradeReportTypeEnums::instance;
 const FieldEnumBase * TradeReportTypeEnums::items[] = {
 & TradeReportTypeEnums::SUBMIT,
@@ -10059,7 +10059,7 @@ const FieldEnumBase * AllocNoOrdersTypeEnums::findEnum( raw_enum_t raw ) { auto 
 const AllocNoOrdersTypeEnums::ValueType * AllocNoOrdersTypeEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * AllocNoOrdersTypeEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & AllocNoOrdersTypeEnums::getEnumMapByRaw() const { return AllocNoOrdersTypeEnums::itemByRaw; }
-const FieldEnumBase * const * const AllocNoOrdersTypeEnums::getEnums() const { return items; }
+const FieldEnumBase ** AllocNoOrdersTypeEnums::getEnums() const { return items; }
 const AllocNoOrdersTypeEnums AllocNoOrdersTypeEnums::instance;
 const FieldEnumBase * AllocNoOrdersTypeEnums::items[] = {
 & AllocNoOrdersTypeEnums::NOT_SPECIFIED,
@@ -10072,7 +10072,7 @@ const FieldEnumBase * EventTypeEnums::findEnum( raw_enum_t raw ) { auto it = ite
 const EventTypeEnums::ValueType * EventTypeEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * EventTypeEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & EventTypeEnums::getEnumMapByRaw() const { return EventTypeEnums::itemByRaw; }
-const FieldEnumBase * const * const EventTypeEnums::getEnums() const { return items; }
+const FieldEnumBase ** EventTypeEnums::getEnums() const { return items; }
 const EventTypeEnums EventTypeEnums::instance;
 const FieldEnumBase * EventTypeEnums::items[] = {
 & EventTypeEnums::PUT,
@@ -10088,7 +10088,7 @@ const FieldEnumBase * InstrAttribTypeEnums::findEnum( raw_enum_t raw ) { auto it
 const InstrAttribTypeEnums::ValueType * InstrAttribTypeEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * InstrAttribTypeEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & InstrAttribTypeEnums::getEnumMapByRaw() const { return InstrAttribTypeEnums::itemByRaw; }
-const FieldEnumBase * const * const InstrAttribTypeEnums::getEnums() const { return items; }
+const FieldEnumBase ** InstrAttribTypeEnums::getEnums() const { return items; }
 const InstrAttribTypeEnums InstrAttribTypeEnums::instance;
 const FieldEnumBase * InstrAttribTypeEnums::items[] = {
 & InstrAttribTypeEnums::FLAT,
@@ -10122,7 +10122,7 @@ const FieldEnumBase * CPProgramEnums::findEnum( raw_enum_t raw ) { auto it = ite
 const CPProgramEnums::ValueType * CPProgramEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * CPProgramEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & CPProgramEnums::getEnumMapByRaw() const { return CPProgramEnums::itemByRaw; }
-const FieldEnumBase * const * const CPProgramEnums::getEnums() const { return items; }
+const FieldEnumBase ** CPProgramEnums::getEnums() const { return items; }
 const CPProgramEnums CPProgramEnums::instance;
 const FieldEnumBase * CPProgramEnums::items[] = {
 & CPProgramEnums::_3,
@@ -10136,7 +10136,7 @@ const FieldEnumBase * MiscFeeBasisEnums::findEnum( raw_enum_t raw ) { auto it = 
 const MiscFeeBasisEnums::ValueType * MiscFeeBasisEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * MiscFeeBasisEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & MiscFeeBasisEnums::getEnumMapByRaw() const { return MiscFeeBasisEnums::itemByRaw; }
-const FieldEnumBase * const * const MiscFeeBasisEnums::getEnums() const { return items; }
+const FieldEnumBase ** MiscFeeBasisEnums::getEnums() const { return items; }
 const MiscFeeBasisEnums MiscFeeBasisEnums::instance;
 const FieldEnumBase * MiscFeeBasisEnums::items[] = {
 & MiscFeeBasisEnums::ABSOLUTE,
@@ -10150,7 +10150,7 @@ const FieldEnumBase * LastFragmentEnums::findEnum( raw_enum_t raw ) { auto it = 
 const LastFragmentEnums::ValueType * LastFragmentEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * LastFragmentEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & LastFragmentEnums::getEnumMapByRaw() const { return LastFragmentEnums::itemByRaw; }
-const FieldEnumBase * const * const LastFragmentEnums::getEnums() const { return items; }
+const FieldEnumBase ** LastFragmentEnums::getEnums() const { return items; }
 const LastFragmentEnums LastFragmentEnums::instance;
 const FieldEnumBase * LastFragmentEnums::items[] = {
 & LastFragmentEnums::YES,
@@ -10163,7 +10163,7 @@ const FieldEnumBase * CollAsgnReasonEnums::findEnum( raw_enum_t raw ) { auto it 
 const CollAsgnReasonEnums::ValueType * CollAsgnReasonEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * CollAsgnReasonEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & CollAsgnReasonEnums::getEnumMapByRaw() const { return CollAsgnReasonEnums::itemByRaw; }
-const FieldEnumBase * const * const CollAsgnReasonEnums::getEnums() const { return items; }
+const FieldEnumBase ** CollAsgnReasonEnums::getEnums() const { return items; }
 const CollAsgnReasonEnums CollAsgnReasonEnums::instance;
 const FieldEnumBase * CollAsgnReasonEnums::items[] = {
 & CollAsgnReasonEnums::INITIAL,
@@ -10182,7 +10182,7 @@ const FieldEnumBase * CollInquiryQualifierEnums::findEnum( raw_enum_t raw ) { au
 const CollInquiryQualifierEnums::ValueType * CollInquiryQualifierEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * CollInquiryQualifierEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & CollInquiryQualifierEnums::getEnumMapByRaw() const { return CollInquiryQualifierEnums::itemByRaw; }
-const FieldEnumBase * const * const CollInquiryQualifierEnums::getEnums() const { return items; }
+const FieldEnumBase ** CollInquiryQualifierEnums::getEnums() const { return items; }
 const CollInquiryQualifierEnums CollInquiryQualifierEnums::instance;
 const FieldEnumBase * CollInquiryQualifierEnums::items[] = {
 & CollInquiryQualifierEnums::TRADEDATE,
@@ -10201,7 +10201,7 @@ const FieldEnumBase * CollAsgnTransTypeEnums::findEnum( raw_enum_t raw ) { auto 
 const CollAsgnTransTypeEnums::ValueType * CollAsgnTransTypeEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * CollAsgnTransTypeEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & CollAsgnTransTypeEnums::getEnumMapByRaw() const { return CollAsgnTransTypeEnums::itemByRaw; }
-const FieldEnumBase * const * const CollAsgnTransTypeEnums::getEnums() const { return items; }
+const FieldEnumBase ** CollAsgnTransTypeEnums::getEnums() const { return items; }
 const CollAsgnTransTypeEnums CollAsgnTransTypeEnums::instance;
 const FieldEnumBase * CollAsgnTransTypeEnums::items[] = {
 & CollAsgnTransTypeEnums::NEW,
@@ -10217,7 +10217,7 @@ const FieldEnumBase * CollAsgnRespTypeEnums::findEnum( raw_enum_t raw ) { auto i
 const CollAsgnRespTypeEnums::ValueType * CollAsgnRespTypeEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * CollAsgnRespTypeEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & CollAsgnRespTypeEnums::getEnumMapByRaw() const { return CollAsgnRespTypeEnums::itemByRaw; }
-const FieldEnumBase * const * const CollAsgnRespTypeEnums::getEnums() const { return items; }
+const FieldEnumBase ** CollAsgnRespTypeEnums::getEnums() const { return items; }
 const CollAsgnRespTypeEnums CollAsgnRespTypeEnums::instance;
 const FieldEnumBase * CollAsgnRespTypeEnums::items[] = {
 & CollAsgnRespTypeEnums::RECEIVED,
@@ -10232,7 +10232,7 @@ const FieldEnumBase * CollAsgnRejectReasonEnums::findEnum( raw_enum_t raw ) { au
 const CollAsgnRejectReasonEnums::ValueType * CollAsgnRejectReasonEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * CollAsgnRejectReasonEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & CollAsgnRejectReasonEnums::getEnumMapByRaw() const { return CollAsgnRejectReasonEnums::itemByRaw; }
-const FieldEnumBase * const * const CollAsgnRejectReasonEnums::getEnums() const { return items; }
+const FieldEnumBase ** CollAsgnRejectReasonEnums::getEnums() const { return items; }
 const CollAsgnRejectReasonEnums CollAsgnRejectReasonEnums::instance;
 const FieldEnumBase * CollAsgnRejectReasonEnums::items[] = {
 & CollAsgnRejectReasonEnums::UNKNOWN_DEAL,
@@ -10250,7 +10250,7 @@ const FieldEnumBase * CollStatusEnums::findEnum( raw_enum_t raw ) { auto it = it
 const CollStatusEnums::ValueType * CollStatusEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * CollStatusEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & CollStatusEnums::getEnumMapByRaw() const { return CollStatusEnums::itemByRaw; }
-const FieldEnumBase * const * const CollStatusEnums::getEnums() const { return items; }
+const FieldEnumBase ** CollStatusEnums::getEnums() const { return items; }
 const CollStatusEnums CollStatusEnums::instance;
 const FieldEnumBase * CollStatusEnums::items[] = {
 & CollStatusEnums::UNASSIGNED,
@@ -10266,7 +10266,7 @@ const FieldEnumBase * DeliveryTypeEnums::findEnum( raw_enum_t raw ) { auto it = 
 const DeliveryTypeEnums::ValueType * DeliveryTypeEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * DeliveryTypeEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & DeliveryTypeEnums::getEnumMapByRaw() const { return DeliveryTypeEnums::itemByRaw; }
-const FieldEnumBase * const * const DeliveryTypeEnums::getEnums() const { return items; }
+const FieldEnumBase ** DeliveryTypeEnums::getEnums() const { return items; }
 const DeliveryTypeEnums DeliveryTypeEnums::instance;
 const FieldEnumBase * DeliveryTypeEnums::items[] = {
 & DeliveryTypeEnums::VERSUS_PAYMENT_DELIVER,
@@ -10281,7 +10281,7 @@ const FieldEnumBase * UserRequestTypeEnums::findEnum( raw_enum_t raw ) { auto it
 const UserRequestTypeEnums::ValueType * UserRequestTypeEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * UserRequestTypeEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & UserRequestTypeEnums::getEnumMapByRaw() const { return UserRequestTypeEnums::itemByRaw; }
-const FieldEnumBase * const * const UserRequestTypeEnums::getEnums() const { return items; }
+const FieldEnumBase ** UserRequestTypeEnums::getEnums() const { return items; }
 const UserRequestTypeEnums UserRequestTypeEnums::instance;
 const FieldEnumBase * UserRequestTypeEnums::items[] = {
 & UserRequestTypeEnums::LOGONUSER,
@@ -10296,7 +10296,7 @@ const FieldEnumBase * UserStatusEnums::findEnum( raw_enum_t raw ) { auto it = it
 const UserStatusEnums::ValueType * UserStatusEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * UserStatusEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & UserStatusEnums::getEnumMapByRaw() const { return UserStatusEnums::itemByRaw; }
-const FieldEnumBase * const * const UserStatusEnums::getEnums() const { return items; }
+const FieldEnumBase ** UserStatusEnums::getEnums() const { return items; }
 const UserStatusEnums UserStatusEnums::instance;
 const FieldEnumBase * UserStatusEnums::items[] = {
 & UserStatusEnums::LOGGED_IN,
@@ -10313,7 +10313,7 @@ const FieldEnumBase * StatusValueEnums::findEnum( raw_enum_t raw ) { auto it = i
 const StatusValueEnums::ValueType * StatusValueEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * StatusValueEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & StatusValueEnums::getEnumMapByRaw() const { return StatusValueEnums::itemByRaw; }
-const FieldEnumBase * const * const StatusValueEnums::getEnums() const { return items; }
+const FieldEnumBase ** StatusValueEnums::getEnums() const { return items; }
 const StatusValueEnums StatusValueEnums::instance;
 const FieldEnumBase * StatusValueEnums::items[] = {
 & StatusValueEnums::CONNECTED,
@@ -10328,7 +10328,7 @@ const FieldEnumBase * NetworkRequestTypeEnums::findEnum( raw_enum_t raw ) { auto
 const NetworkRequestTypeEnums::ValueType * NetworkRequestTypeEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * NetworkRequestTypeEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & NetworkRequestTypeEnums::getEnumMapByRaw() const { return NetworkRequestTypeEnums::itemByRaw; }
-const FieldEnumBase * const * const NetworkRequestTypeEnums::getEnums() const { return items; }
+const FieldEnumBase ** NetworkRequestTypeEnums::getEnums() const { return items; }
 const NetworkRequestTypeEnums NetworkRequestTypeEnums::instance;
 const FieldEnumBase * NetworkRequestTypeEnums::items[] = {
 & NetworkRequestTypeEnums::SNAPSHOT,
@@ -10343,7 +10343,7 @@ const FieldEnumBase * NetworkStatusResponseTypeEnums::findEnum( raw_enum_t raw )
 const NetworkStatusResponseTypeEnums::ValueType * NetworkStatusResponseTypeEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * NetworkStatusResponseTypeEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & NetworkStatusResponseTypeEnums::getEnumMapByRaw() const { return NetworkStatusResponseTypeEnums::itemByRaw; }
-const FieldEnumBase * const * const NetworkStatusResponseTypeEnums::getEnums() const { return items; }
+const FieldEnumBase ** NetworkStatusResponseTypeEnums::getEnums() const { return items; }
 const NetworkStatusResponseTypeEnums NetworkStatusResponseTypeEnums::instance;
 const FieldEnumBase * NetworkStatusResponseTypeEnums::items[] = {
 & NetworkStatusResponseTypeEnums::FULL,
@@ -10356,7 +10356,7 @@ const FieldEnumBase * TrdRptStatusEnums::findEnum( raw_enum_t raw ) { auto it = 
 const TrdRptStatusEnums::ValueType * TrdRptStatusEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * TrdRptStatusEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & TrdRptStatusEnums::getEnumMapByRaw() const { return TrdRptStatusEnums::itemByRaw; }
-const FieldEnumBase * const * const TrdRptStatusEnums::getEnums() const { return items; }
+const FieldEnumBase ** TrdRptStatusEnums::getEnums() const { return items; }
 const TrdRptStatusEnums TrdRptStatusEnums::instance;
 const FieldEnumBase * TrdRptStatusEnums::items[] = {
 & TrdRptStatusEnums::ACCEPTED,
@@ -10369,7 +10369,7 @@ const FieldEnumBase * AffirmStatusEnums::findEnum( raw_enum_t raw ) { auto it = 
 const AffirmStatusEnums::ValueType * AffirmStatusEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * AffirmStatusEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & AffirmStatusEnums::getEnumMapByRaw() const { return AffirmStatusEnums::itemByRaw; }
-const FieldEnumBase * const * const AffirmStatusEnums::getEnums() const { return items; }
+const FieldEnumBase ** AffirmStatusEnums::getEnums() const { return items; }
 const AffirmStatusEnums AffirmStatusEnums::instance;
 const FieldEnumBase * AffirmStatusEnums::items[] = {
 & AffirmStatusEnums::RECEIVED,
@@ -10383,7 +10383,7 @@ const FieldEnumBase * CollActionEnums::findEnum( raw_enum_t raw ) { auto it = it
 const CollActionEnums::ValueType * CollActionEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * CollActionEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & CollActionEnums::getEnumMapByRaw() const { return CollActionEnums::itemByRaw; }
-const FieldEnumBase * const * const CollActionEnums::getEnums() const { return items; }
+const FieldEnumBase ** CollActionEnums::getEnums() const { return items; }
 const CollActionEnums CollActionEnums::instance;
 const FieldEnumBase * CollActionEnums::items[] = {
 & CollActionEnums::RETAIN,
@@ -10397,7 +10397,7 @@ const FieldEnumBase * CollInquiryStatusEnums::findEnum( raw_enum_t raw ) { auto 
 const CollInquiryStatusEnums::ValueType * CollInquiryStatusEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * CollInquiryStatusEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & CollInquiryStatusEnums::getEnumMapByRaw() const { return CollInquiryStatusEnums::itemByRaw; }
-const FieldEnumBase * const * const CollInquiryStatusEnums::getEnums() const { return items; }
+const FieldEnumBase ** CollInquiryStatusEnums::getEnums() const { return items; }
 const CollInquiryStatusEnums CollInquiryStatusEnums::instance;
 const FieldEnumBase * CollInquiryStatusEnums::items[] = {
 & CollInquiryStatusEnums::ACCEPTED,
@@ -10413,7 +10413,7 @@ const FieldEnumBase * CollInquiryResultEnums::findEnum( raw_enum_t raw ) { auto 
 const CollInquiryResultEnums::ValueType * CollInquiryResultEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
 const FieldEnumBase * CollInquiryResultEnums::getEnumByRaw( raw_enum_t raw ) const { return findEnum( raw ); }
 const FieldEnumMap & CollInquiryResultEnums::getEnumMapByRaw() const { return CollInquiryResultEnums::itemByRaw; }
-const FieldEnumBase * const * const CollInquiryResultEnums::getEnums() const { return items; }
+const FieldEnumBase ** CollInquiryResultEnums::getEnums() const { return items; }
 const CollInquiryResultEnums CollInquiryResultEnums::instance;
 const FieldEnumBase * CollInquiryResultEnums::items[] = {
 & CollInquiryResultEnums::SUCCESSFUL,

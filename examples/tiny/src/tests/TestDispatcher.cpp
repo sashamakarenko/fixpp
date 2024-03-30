@@ -31,7 +31,7 @@ int main( int args, const char ** argv )
     const char * cursor = buffer;
 
     MyProcessor mp;
-    while( cursor = mp.parseAndDipatch( cursor, len - ( cursor - buffer ) ) )
+    while( ( cursor = mp.parseAndDipatch( cursor, len - ( cursor - buffer ) ) ) != nullptr )
     {
     }
     

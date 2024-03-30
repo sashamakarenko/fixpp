@@ -132,7 +132,7 @@ int main( int args, const char ** argv )
         std::cout << fixstr( order.start, ttyRgbStyle ) << std::endl;
     }
 
-    for( int i = 0; i < m.getMaxCaptures(); ++i )
+    for( unsigned i = 0; i < m.getMaxCaptures(); ++i )
     {
         const OrderFields & of = orders[ i % 8 ];
         m.startCapture();

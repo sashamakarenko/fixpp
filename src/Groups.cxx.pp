@@ -153,17 +153,19 @@ FieldDepth Group##NAME::getFieldDepth( raw_tag_t tag ){\
 <n1>  FieldDepth ret;\
 <n1>  switch( tag ){\
 <n2>  case Field##FIRST_FIELD::RAW_TAG :\
-<n2>     ret.isFirstInGroup = true;
+<n2>     ret.isFirstInGroup = true;\
+<n2>     [[fallthrough]];
 
 #define FIX_MSG_FIELD(NAME) \
 <t2>  case Field##NAME::RAW_TAG :
 
 #define FIX_MSG_GROUP(NAME) \
-<t2>  case FieldNo##NAME::RAW_TAG : 
+<t2>  case FieldNo##NAME::RAW_TAG :
 
 #define FIX_MSG_GROUP_END \
-<n2>  ret.depth = 0; \
-<n2>  return ret; \
+<n2>  case 0: \
+<n2>  ret.depth = 0;\
+<n2>  return ret;\
 <n1>  }\
 <n1>  for( auto m : groupGetDepthMethods ) if( m ){\
 <n2>      FieldDepth gdepth = (*m)( tag ); \
