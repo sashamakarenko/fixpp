@@ -633,10 +633,11 @@ offset_t GroupLegStipulations::scan( Array & arr, const char * fix, unsigned len
    switch( tag ){
    case FieldLegStipulationType::RAW_TAG :
      FIXPP_PRINT_FIELD(LegStipulationType)
+     if( group ) group->_fixLength = gpos;
      group = groupCount < arr.size() ? & arr[ groupCount ] : & arr.emplace_back();
      group->fieldLegStipulationType.offset = pos - prev;
-     group->buf = fix+prev;
      groupBuf = fix+prev;
+     group->_fixPtr = groupBuf;
      ++groupCount;
      break;
 
@@ -646,10 +647,12 @@ offset_t GroupLegStipulations::scan( Array & arr, const char * fix, unsigned len
      break;
 
    default: FIXPP_PRINT_UNKNOWN_FIELD
+     if( group ) group->_fixLength = gpos;
      return prev;
    }
    if( ! isGroupStart ) gotoNextField( fix, pos );
  }
+ if( group ) group->_fixLength = gpos;
  return pos;
 }
 
@@ -666,10 +669,11 @@ offset_t GroupEvents::scan( Array & arr, const char * fix, unsigned len ){
    switch( tag ){
    case FieldEventType::RAW_TAG :
      FIXPP_PRINT_FIELD(EventType)
+     if( group ) group->_fixLength = gpos;
      group = groupCount < arr.size() ? & arr[ groupCount ] : & arr.emplace_back();
      group->fieldEventType.offset = pos - prev;
-     group->buf = fix+prev;
      groupBuf = fix+prev;
+     group->_fixPtr = groupBuf;
      ++groupCount;
      break;
 
@@ -689,10 +693,12 @@ offset_t GroupEvents::scan( Array & arr, const char * fix, unsigned len ){
      break;
 
    default: FIXPP_PRINT_UNKNOWN_FIELD
+     if( group ) group->_fixLength = gpos;
      return prev;
    }
    if( ! isGroupStart ) gotoNextField( fix, pos );
  }
+ if( group ) group->_fixLength = gpos;
  return pos;
 }
 
@@ -709,10 +715,11 @@ offset_t GroupLegSecurityAltID::scan( Array & arr, const char * fix, unsigned le
    switch( tag ){
    case FieldLegSecurityAltID::RAW_TAG :
      FIXPP_PRINT_FIELD(LegSecurityAltID)
+     if( group ) group->_fixLength = gpos;
      group = groupCount < arr.size() ? & arr[ groupCount ] : & arr.emplace_back();
      group->fieldLegSecurityAltID.offset = pos - prev;
-     group->buf = fix+prev;
      groupBuf = fix+prev;
+     group->_fixPtr = groupBuf;
      ++groupCount;
      break;
 
@@ -722,10 +729,12 @@ offset_t GroupLegSecurityAltID::scan( Array & arr, const char * fix, unsigned le
      break;
 
    default: FIXPP_PRINT_UNKNOWN_FIELD
+     if( group ) group->_fixLength = gpos;
      return prev;
    }
    if( ! isGroupStart ) gotoNextField( fix, pos );
  }
+ if( group ) group->_fixLength = gpos;
  return pos;
 }
 
@@ -742,10 +751,11 @@ offset_t GroupCapacities::scan( Array & arr, const char * fix, unsigned len ){
    switch( tag ){
    case FieldOrderCapacity::RAW_TAG :
      FIXPP_PRINT_FIELD(OrderCapacity)
+     if( group ) group->_fixLength = gpos;
      group = groupCount < arr.size() ? & arr[ groupCount ] : & arr.emplace_back();
      group->fieldOrderCapacity.offset = pos - prev;
-     group->buf = fix+prev;
      groupBuf = fix+prev;
+     group->_fixPtr = groupBuf;
      ++groupCount;
      break;
 
@@ -760,10 +770,12 @@ offset_t GroupCapacities::scan( Array & arr, const char * fix, unsigned len ){
      break;
 
    default: FIXPP_PRINT_UNKNOWN_FIELD
+     if( group ) group->_fixLength = gpos;
      return prev;
    }
    if( ! isGroupStart ) gotoNextField( fix, pos );
  }
+ if( group ) group->_fixLength = gpos;
  return pos;
 }
 
@@ -780,10 +792,11 @@ offset_t GroupNested3PartySubIDs::scan( Array & arr, const char * fix, unsigned 
    switch( tag ){
    case FieldNested3PartySubID::RAW_TAG :
      FIXPP_PRINT_FIELD(Nested3PartySubID)
+     if( group ) group->_fixLength = gpos;
      group = groupCount < arr.size() ? & arr[ groupCount ] : & arr.emplace_back();
      group->fieldNested3PartySubID.offset = pos - prev;
-     group->buf = fix+prev;
      groupBuf = fix+prev;
+     group->_fixPtr = groupBuf;
      ++groupCount;
      break;
 
@@ -793,10 +806,12 @@ offset_t GroupNested3PartySubIDs::scan( Array & arr, const char * fix, unsigned 
      break;
 
    default: FIXPP_PRINT_UNKNOWN_FIELD
+     if( group ) group->_fixLength = gpos;
      return prev;
    }
    if( ! isGroupStart ) gotoNextField( fix, pos );
  }
+ if( group ) group->_fixLength = gpos;
  return pos;
 }
 
@@ -813,10 +828,11 @@ offset_t GroupPartySubIDs::scan( Array & arr, const char * fix, unsigned len ){
    switch( tag ){
    case FieldPartySubID::RAW_TAG :
      FIXPP_PRINT_FIELD(PartySubID)
+     if( group ) group->_fixLength = gpos;
      group = groupCount < arr.size() ? & arr[ groupCount ] : & arr.emplace_back();
      group->fieldPartySubID.offset = pos - prev;
-     group->buf = fix+prev;
      groupBuf = fix+prev;
+     group->_fixPtr = groupBuf;
      ++groupCount;
      break;
 
@@ -826,10 +842,12 @@ offset_t GroupPartySubIDs::scan( Array & arr, const char * fix, unsigned len ){
      break;
 
    default: FIXPP_PRINT_UNKNOWN_FIELD
+     if( group ) group->_fixLength = gpos;
      return prev;
    }
    if( ! isGroupStart ) gotoNextField( fix, pos );
  }
+ if( group ) group->_fixLength = gpos;
  return pos;
 }
 
@@ -846,10 +864,11 @@ offset_t GroupNested2PartySubIDs::scan( Array & arr, const char * fix, unsigned 
    switch( tag ){
    case FieldNested2PartySubID::RAW_TAG :
      FIXPP_PRINT_FIELD(Nested2PartySubID)
+     if( group ) group->_fixLength = gpos;
      group = groupCount < arr.size() ? & arr[ groupCount ] : & arr.emplace_back();
      group->fieldNested2PartySubID.offset = pos - prev;
-     group->buf = fix+prev;
      groupBuf = fix+prev;
+     group->_fixPtr = groupBuf;
      ++groupCount;
      break;
 
@@ -859,10 +878,12 @@ offset_t GroupNested2PartySubIDs::scan( Array & arr, const char * fix, unsigned 
      break;
 
    default: FIXPP_PRINT_UNKNOWN_FIELD
+     if( group ) group->_fixLength = gpos;
      return prev;
    }
    if( ! isGroupStart ) gotoNextField( fix, pos );
  }
+ if( group ) group->_fixLength = gpos;
  return pos;
 }
 
@@ -879,10 +900,11 @@ offset_t GroupNested2PartyIDs::scan( Array & arr, const char * fix, unsigned len
    switch( tag ){
    case FieldNested2PartyID::RAW_TAG :
      FIXPP_PRINT_FIELD(Nested2PartyID)
+     if( group ) group->_fixLength = gpos;
      group = groupCount < arr.size() ? & arr[ groupCount ] : & arr.emplace_back();
      group->fieldNested2PartyID.offset = pos - prev;
-     group->buf = fix+prev;
      groupBuf = fix+prev;
+     group->_fixPtr = groupBuf;
      ++groupCount;
      break;
 
@@ -905,10 +927,12 @@ offset_t GroupNested2PartyIDs::scan( Array & arr, const char * fix, unsigned len
      break;
 
    default: FIXPP_PRINT_UNKNOWN_FIELD
+     if( group ) group->_fixLength = gpos;
      return prev;
    }
    if( ! isGroupStart ) gotoNextField( fix, pos );
  }
+ if( group ) group->_fixLength = gpos;
  return pos;
 }
 
@@ -925,10 +949,11 @@ offset_t GroupHops::scan( Array & arr, const char * fix, unsigned len ){
    switch( tag ){
    case FieldHopCompID::RAW_TAG :
      FIXPP_PRINT_FIELD(HopCompID)
+     if( group ) group->_fixLength = gpos;
      group = groupCount < arr.size() ? & arr[ groupCount ] : & arr.emplace_back();
      group->fieldHopCompID.offset = pos - prev;
-     group->buf = fix+prev;
      groupBuf = fix+prev;
+     group->_fixPtr = groupBuf;
      ++groupCount;
      break;
 
@@ -943,10 +968,12 @@ offset_t GroupHops::scan( Array & arr, const char * fix, unsigned len ){
      break;
 
    default: FIXPP_PRINT_UNKNOWN_FIELD
+     if( group ) group->_fixLength = gpos;
      return prev;
    }
    if( ! isGroupStart ) gotoNextField( fix, pos );
  }
+ if( group ) group->_fixLength = gpos;
  return pos;
 }
 
@@ -963,18 +990,21 @@ offset_t GroupCollInquiryQualifier::scan( Array & arr, const char * fix, unsigne
    switch( tag ){
    case FieldCollInquiryQualifier::RAW_TAG :
      FIXPP_PRINT_FIELD(CollInquiryQualifier)
+     if( group ) group->_fixLength = gpos;
      group = groupCount < arr.size() ? & arr[ groupCount ] : & arr.emplace_back();
      group->fieldCollInquiryQualifier.offset = pos - prev;
-     group->buf = fix+prev;
      groupBuf = fix+prev;
+     group->_fixPtr = groupBuf;
      ++groupCount;
      break;
 
    default: FIXPP_PRINT_UNKNOWN_FIELD
+     if( group ) group->_fixLength = gpos;
      return prev;
    }
    if( ! isGroupStart ) gotoNextField( fix, pos );
  }
+ if( group ) group->_fixLength = gpos;
  return pos;
 }
 
@@ -991,10 +1021,11 @@ offset_t GroupPartyIDs::scan( Array & arr, const char * fix, unsigned len ){
    switch( tag ){
    case FieldPartyID::RAW_TAG :
      FIXPP_PRINT_FIELD(PartyID)
+     if( group ) group->_fixLength = gpos;
      group = groupCount < arr.size() ? & arr[ groupCount ] : & arr.emplace_back();
      group->fieldPartyID.offset = pos - prev;
-     group->buf = fix+prev;
      groupBuf = fix+prev;
+     group->_fixPtr = groupBuf;
      ++groupCount;
      break;
 
@@ -1017,10 +1048,12 @@ offset_t GroupPartyIDs::scan( Array & arr, const char * fix, unsigned len ){
      break;
 
    default: FIXPP_PRINT_UNKNOWN_FIELD
+     if( group ) group->_fixLength = gpos;
      return prev;
    }
    if( ! isGroupStart ) gotoNextField( fix, pos );
  }
+ if( group ) group->_fixLength = gpos;
  return pos;
 }
 
@@ -1037,10 +1070,11 @@ offset_t GroupAllocs::scan( Array & arr, const char * fix, unsigned len ){
    switch( tag ){
    case FieldAllocAccount::RAW_TAG :
      FIXPP_PRINT_FIELD(AllocAccount)
+     if( group ) group->_fixLength = gpos;
      group = groupCount < arr.size() ? & arr[ groupCount ] : & arr.emplace_back();
      group->fieldAllocAccount.offset = pos - prev;
-     group->buf = fix+prev;
      groupBuf = fix+prev;
+     group->_fixPtr = groupBuf;
      ++groupCount;
      break;
 
@@ -1080,10 +1114,12 @@ offset_t GroupAllocs::scan( Array & arr, const char * fix, unsigned len ){
      break;
 
    default: FIXPP_PRINT_UNKNOWN_FIELD
+     if( group ) group->_fixLength = gpos;
      return prev;
    }
    if( ! isGroupStart ) gotoNextField( fix, pos );
  }
+ if( group ) group->_fixLength = gpos;
  return pos;
 }
 
@@ -1100,10 +1136,11 @@ offset_t GroupTradingSessions::scan( Array & arr, const char * fix, unsigned len
    switch( tag ){
    case FieldTradingSessionID::RAW_TAG :
      FIXPP_PRINT_FIELD(TradingSessionID)
+     if( group ) group->_fixLength = gpos;
      group = groupCount < arr.size() ? & arr[ groupCount ] : & arr.emplace_back();
      group->fieldTradingSessionID.offset = pos - prev;
-     group->buf = fix+prev;
      groupBuf = fix+prev;
+     group->_fixPtr = groupBuf;
      ++groupCount;
      break;
 
@@ -1113,10 +1150,12 @@ offset_t GroupTradingSessions::scan( Array & arr, const char * fix, unsigned len
      break;
 
    default: FIXPP_PRINT_UNKNOWN_FIELD
+     if( group ) group->_fixLength = gpos;
      return prev;
    }
    if( ! isGroupStart ) gotoNextField( fix, pos );
  }
+ if( group ) group->_fixLength = gpos;
  return pos;
 }
 
@@ -1133,10 +1172,11 @@ offset_t GroupSecurityAltID::scan( Array & arr, const char * fix, unsigned len )
    switch( tag ){
    case FieldSecurityAltID::RAW_TAG :
      FIXPP_PRINT_FIELD(SecurityAltID)
+     if( group ) group->_fixLength = gpos;
      group = groupCount < arr.size() ? & arr[ groupCount ] : & arr.emplace_back();
      group->fieldSecurityAltID.offset = pos - prev;
-     group->buf = fix+prev;
      groupBuf = fix+prev;
+     group->_fixPtr = groupBuf;
      ++groupCount;
      break;
 
@@ -1146,10 +1186,12 @@ offset_t GroupSecurityAltID::scan( Array & arr, const char * fix, unsigned len )
      break;
 
    default: FIXPP_PRINT_UNKNOWN_FIELD
+     if( group ) group->_fixLength = gpos;
      return prev;
    }
    if( ! isGroupStart ) gotoNextField( fix, pos );
  }
+ if( group ) group->_fixLength = gpos;
  return pos;
 }
 
@@ -1166,10 +1208,11 @@ offset_t GroupUnderlyingSecurityAltID::scan( Array & arr, const char * fix, unsi
    switch( tag ){
    case FieldUnderlyingSecurityAltID::RAW_TAG :
      FIXPP_PRINT_FIELD(UnderlyingSecurityAltID)
+     if( group ) group->_fixLength = gpos;
      group = groupCount < arr.size() ? & arr[ groupCount ] : & arr.emplace_back();
      group->fieldUnderlyingSecurityAltID.offset = pos - prev;
-     group->buf = fix+prev;
      groupBuf = fix+prev;
+     group->_fixPtr = groupBuf;
      ++groupCount;
      break;
 
@@ -1179,10 +1222,12 @@ offset_t GroupUnderlyingSecurityAltID::scan( Array & arr, const char * fix, unsi
      break;
 
    default: FIXPP_PRINT_UNKNOWN_FIELD
+     if( group ) group->_fixLength = gpos;
      return prev;
    }
    if( ! isGroupStart ) gotoNextField( fix, pos );
  }
+ if( group ) group->_fixLength = gpos;
  return pos;
 }
 
@@ -1199,10 +1244,11 @@ offset_t GroupUnderlyingStips::scan( Array & arr, const char * fix, unsigned len
    switch( tag ){
    case FieldUnderlyingStipType::RAW_TAG :
      FIXPP_PRINT_FIELD(UnderlyingStipType)
+     if( group ) group->_fixLength = gpos;
      group = groupCount < arr.size() ? & arr[ groupCount ] : & arr.emplace_back();
      group->fieldUnderlyingStipType.offset = pos - prev;
-     group->buf = fix+prev;
      groupBuf = fix+prev;
+     group->_fixPtr = groupBuf;
      ++groupCount;
      break;
 
@@ -1212,10 +1258,12 @@ offset_t GroupUnderlyingStips::scan( Array & arr, const char * fix, unsigned len
      break;
 
    default: FIXPP_PRINT_UNKNOWN_FIELD
+     if( group ) group->_fixLength = gpos;
      return prev;
    }
    if( ! isGroupStart ) gotoNextField( fix, pos );
  }
+ if( group ) group->_fixLength = gpos;
  return pos;
 }
 
@@ -1232,10 +1280,11 @@ offset_t GroupUnderlyings::scan( Array & arr, const char * fix, unsigned len ){
    switch( tag ){
    case FieldUnderlyingSymbol::RAW_TAG :
      FIXPP_PRINT_FIELD(UnderlyingSymbol)
+     if( group ) group->_fixLength = gpos;
      group = groupCount < arr.size() ? & arr[ groupCount ] : & arr.emplace_back();
      group->fieldUnderlyingSymbol.offset = pos - prev;
-     group->buf = fix+prev;
      groupBuf = fix+prev;
+     group->_fixPtr = groupBuf;
      ++groupCount;
      break;
 
@@ -1486,10 +1535,12 @@ offset_t GroupUnderlyings::scan( Array & arr, const char * fix, unsigned len ){
      break;
 
    default: FIXPP_PRINT_UNKNOWN_FIELD
+     if( group ) group->_fixLength = gpos;
      return prev;
    }
    if( ! isGroupStart ) gotoNextField( fix, pos );
  }
+ if( group ) group->_fixLength = gpos;
  return pos;
 }
 
@@ -1506,10 +1557,11 @@ offset_t GroupStipulations::scan( Array & arr, const char * fix, unsigned len ){
    switch( tag ){
    case FieldStipulationType::RAW_TAG :
      FIXPP_PRINT_FIELD(StipulationType)
+     if( group ) group->_fixLength = gpos;
      group = groupCount < arr.size() ? & arr[ groupCount ] : & arr.emplace_back();
      group->fieldStipulationType.offset = pos - prev;
-     group->buf = fix+prev;
      groupBuf = fix+prev;
+     group->_fixPtr = groupBuf;
      ++groupCount;
      break;
 
@@ -1519,10 +1571,12 @@ offset_t GroupStipulations::scan( Array & arr, const char * fix, unsigned len ){
      break;
 
    default: FIXPP_PRINT_UNKNOWN_FIELD
+     if( group ) group->_fixLength = gpos;
      return prev;
    }
    if( ! isGroupStart ) gotoNextField( fix, pos );
  }
+ if( group ) group->_fixLength = gpos;
  return pos;
 }
 
@@ -1539,10 +1593,11 @@ offset_t GroupOrders::scan( Array & arr, const char * fix, unsigned len ){
    switch( tag ){
    case FieldClOrdID::RAW_TAG :
      FIXPP_PRINT_FIELD(ClOrdID)
+     if( group ) group->_fixLength = gpos;
      group = groupCount < arr.size() ? & arr[ groupCount ] : & arr.emplace_back();
      group->fieldClOrdID.offset = pos - prev;
-     group->buf = fix+prev;
      groupBuf = fix+prev;
+     group->_fixPtr = groupBuf;
      ++groupCount;
      break;
 
@@ -2298,10 +2353,12 @@ offset_t GroupOrders::scan( Array & arr, const char * fix, unsigned len ){
      break;
 
    default: FIXPP_PRINT_UNKNOWN_FIELD
+     if( group ) group->_fixLength = gpos;
      return prev;
    }
    if( ! isGroupStart ) gotoNextField( fix, pos );
  }
+ if( group ) group->_fixLength = gpos;
  return pos;
 }
 
@@ -2318,10 +2375,11 @@ offset_t GroupSettlPartySubIDs::scan( Array & arr, const char * fix, unsigned le
    switch( tag ){
    case FieldSettlPartySubID::RAW_TAG :
      FIXPP_PRINT_FIELD(SettlPartySubID)
+     if( group ) group->_fixLength = gpos;
      group = groupCount < arr.size() ? & arr[ groupCount ] : & arr.emplace_back();
      group->fieldSettlPartySubID.offset = pos - prev;
-     group->buf = fix+prev;
      groupBuf = fix+prev;
+     group->_fixPtr = groupBuf;
      ++groupCount;
      break;
 
@@ -2331,10 +2389,12 @@ offset_t GroupSettlPartySubIDs::scan( Array & arr, const char * fix, unsigned le
      break;
 
    default: FIXPP_PRINT_UNKNOWN_FIELD
+     if( group ) group->_fixLength = gpos;
      return prev;
    }
    if( ! isGroupStart ) gotoNextField( fix, pos );
  }
+ if( group ) group->_fixLength = gpos;
  return pos;
 }
 
@@ -2351,10 +2411,11 @@ offset_t GroupSettlPartyIDs::scan( Array & arr, const char * fix, unsigned len )
    switch( tag ){
    case FieldSettlPartyID::RAW_TAG :
      FIXPP_PRINT_FIELD(SettlPartyID)
+     if( group ) group->_fixLength = gpos;
      group = groupCount < arr.size() ? & arr[ groupCount ] : & arr.emplace_back();
      group->fieldSettlPartyID.offset = pos - prev;
-     group->buf = fix+prev;
      groupBuf = fix+prev;
+     group->_fixPtr = groupBuf;
      ++groupCount;
      break;
 
@@ -2377,10 +2438,12 @@ offset_t GroupSettlPartyIDs::scan( Array & arr, const char * fix, unsigned len )
      break;
 
    default: FIXPP_PRINT_UNKNOWN_FIELD
+     if( group ) group->_fixLength = gpos;
      return prev;
    }
    if( ! isGroupStart ) gotoNextField( fix, pos );
  }
+ if( group ) group->_fixLength = gpos;
  return pos;
 }
 
@@ -2397,10 +2460,11 @@ offset_t GroupDlvyInst::scan( Array & arr, const char * fix, unsigned len ){
    switch( tag ){
    case FieldSettlInstSource::RAW_TAG :
      FIXPP_PRINT_FIELD(SettlInstSource)
+     if( group ) group->_fixLength = gpos;
      group = groupCount < arr.size() ? & arr[ groupCount ] : & arr.emplace_back();
      group->fieldSettlInstSource.offset = pos - prev;
-     group->buf = fix+prev;
      groupBuf = fix+prev;
+     group->_fixPtr = groupBuf;
      ++groupCount;
      break;
 
@@ -2418,10 +2482,12 @@ offset_t GroupDlvyInst::scan( Array & arr, const char * fix, unsigned len ){
      break;
 
    default: FIXPP_PRINT_UNKNOWN_FIELD
+     if( group ) group->_fixLength = gpos;
      return prev;
    }
    if( ! isGroupStart ) gotoNextField( fix, pos );
  }
+ if( group ) group->_fixLength = gpos;
  return pos;
 }
 
@@ -2438,18 +2504,21 @@ offset_t GroupClearingInstructions::scan( Array & arr, const char * fix, unsigne
    switch( tag ){
    case FieldClearingInstruction::RAW_TAG :
      FIXPP_PRINT_FIELD(ClearingInstruction)
+     if( group ) group->_fixLength = gpos;
      group = groupCount < arr.size() ? & arr[ groupCount ] : & arr.emplace_back();
      group->fieldClearingInstruction.offset = pos - prev;
-     group->buf = fix+prev;
      groupBuf = fix+prev;
+     group->_fixPtr = groupBuf;
      ++groupCount;
      break;
 
    default: FIXPP_PRINT_UNKNOWN_FIELD
+     if( group ) group->_fixLength = gpos;
      return prev;
    }
    if( ! isGroupStart ) gotoNextField( fix, pos );
  }
+ if( group ) group->_fixLength = gpos;
  return pos;
 }
 
@@ -2466,10 +2535,11 @@ offset_t GroupNestedPartySubIDs::scan( Array & arr, const char * fix, unsigned l
    switch( tag ){
    case FieldNestedPartySubID::RAW_TAG :
      FIXPP_PRINT_FIELD(NestedPartySubID)
+     if( group ) group->_fixLength = gpos;
      group = groupCount < arr.size() ? & arr[ groupCount ] : & arr.emplace_back();
      group->fieldNestedPartySubID.offset = pos - prev;
-     group->buf = fix+prev;
      groupBuf = fix+prev;
+     group->_fixPtr = groupBuf;
      ++groupCount;
      break;
 
@@ -2479,10 +2549,12 @@ offset_t GroupNestedPartySubIDs::scan( Array & arr, const char * fix, unsigned l
      break;
 
    default: FIXPP_PRINT_UNKNOWN_FIELD
+     if( group ) group->_fixLength = gpos;
      return prev;
    }
    if( ! isGroupStart ) gotoNextField( fix, pos );
  }
+ if( group ) group->_fixLength = gpos;
  return pos;
 }
 
@@ -2499,10 +2571,11 @@ offset_t GroupNestedPartyIDs::scan( Array & arr, const char * fix, unsigned len 
    switch( tag ){
    case FieldNestedPartyID::RAW_TAG :
      FIXPP_PRINT_FIELD(NestedPartyID)
+     if( group ) group->_fixLength = gpos;
      group = groupCount < arr.size() ? & arr[ groupCount ] : & arr.emplace_back();
      group->fieldNestedPartyID.offset = pos - prev;
-     group->buf = fix+prev;
      groupBuf = fix+prev;
+     group->_fixPtr = groupBuf;
      ++groupCount;
      break;
 
@@ -2525,10 +2598,12 @@ offset_t GroupNestedPartyIDs::scan( Array & arr, const char * fix, unsigned len 
      break;
 
    default: FIXPP_PRINT_UNKNOWN_FIELD
+     if( group ) group->_fixLength = gpos;
      return prev;
    }
    if( ! isGroupStart ) gotoNextField( fix, pos );
  }
+ if( group ) group->_fixLength = gpos;
  return pos;
 }
 
@@ -2545,10 +2620,11 @@ offset_t GroupLegs::scan( Array & arr, const char * fix, unsigned len ){
    switch( tag ){
    case FieldLegSymbol::RAW_TAG :
      FIXPP_PRINT_FIELD(LegSymbol)
+     if( group ) group->_fixLength = gpos;
      group = groupCount < arr.size() ? & arr[ groupCount ] : & arr.emplace_back();
      group->fieldLegSymbol.offset = pos - prev;
-     group->buf = fix+prev;
      groupBuf = fix+prev;
+     group->_fixPtr = groupBuf;
      ++groupCount;
      break;
 
@@ -2822,10 +2898,12 @@ offset_t GroupLegs::scan( Array & arr, const char * fix, unsigned len ){
      break;
 
    default: FIXPP_PRINT_UNKNOWN_FIELD
+     if( group ) group->_fixLength = gpos;
      return prev;
    }
    if( ! isGroupStart ) gotoNextField( fix, pos );
  }
+ if( group ) group->_fixLength = gpos;
  return pos;
 }
 
@@ -2842,10 +2920,11 @@ offset_t GroupQuoteEntries::scan( Array & arr, const char * fix, unsigned len ){
    switch( tag ){
    case FieldSymbol::RAW_TAG :
      FIXPP_PRINT_FIELD(Symbol)
+     if( group ) group->_fixLength = gpos;
      group = groupCount < arr.size() ? & arr[ groupCount ] : & arr.emplace_back();
      group->fieldSymbol.offset = pos - prev;
-     group->buf = fix+prev;
      groupBuf = fix+prev;
+     group->_fixPtr = groupBuf;
      ++groupCount;
      break;
 
@@ -3127,10 +3206,12 @@ offset_t GroupQuoteEntries::scan( Array & arr, const char * fix, unsigned len ){
      break;
 
    default: FIXPP_PRINT_UNKNOWN_FIELD
+     if( group ) group->_fixLength = gpos;
      return prev;
    }
    if( ! isGroupStart ) gotoNextField( fix, pos );
  }
+ if( group ) group->_fixLength = gpos;
  return pos;
 }
 
@@ -3147,10 +3228,11 @@ offset_t GroupQuoteSets::scan( Array & arr, const char * fix, unsigned len ){
    switch( tag ){
    case FieldQuoteSetID::RAW_TAG :
      FIXPP_PRINT_FIELD(QuoteSetID)
+     if( group ) group->_fixLength = gpos;
      group = groupCount < arr.size() ? & arr[ groupCount ] : & arr.emplace_back();
      group->fieldQuoteSetID.offset = pos - prev;
-     group->buf = fix+prev;
      groupBuf = fix+prev;
+     group->_fixPtr = groupBuf;
      ++groupCount;
      break;
 
@@ -3414,10 +3496,12 @@ offset_t GroupQuoteSets::scan( Array & arr, const char * fix, unsigned len ){
      break;
 
    default: FIXPP_PRINT_UNKNOWN_FIELD
+     if( group ) group->_fixLength = gpos;
      return prev;
    }
    if( ! isGroupStart ) gotoNextField( fix, pos );
  }
+ if( group ) group->_fixLength = gpos;
  return pos;
 }
 
@@ -3434,10 +3518,11 @@ offset_t GroupSecurityTypes::scan( Array & arr, const char * fix, unsigned len )
    switch( tag ){
    case FieldSecurityType::RAW_TAG :
      FIXPP_PRINT_FIELD(SecurityType)
+     if( group ) group->_fixLength = gpos;
      group = groupCount < arr.size() ? & arr[ groupCount ] : & arr.emplace_back();
      group->fieldSecurityType.offset = pos - prev;
-     group->buf = fix+prev;
      groupBuf = fix+prev;
+     group->_fixPtr = groupBuf;
      ++groupCount;
      break;
 
@@ -3457,10 +3542,12 @@ offset_t GroupSecurityTypes::scan( Array & arr, const char * fix, unsigned len )
      break;
 
    default: FIXPP_PRINT_UNKNOWN_FIELD
+     if( group ) group->_fixLength = gpos;
      return prev;
    }
    if( ! isGroupStart ) gotoNextField( fix, pos );
  }
+ if( group ) group->_fixLength = gpos;
  return pos;
 }
 
@@ -3477,10 +3564,11 @@ offset_t GroupNested3PartyIDs::scan( Array & arr, const char * fix, unsigned len
    switch( tag ){
    case FieldNested3PartyID::RAW_TAG :
      FIXPP_PRINT_FIELD(Nested3PartyID)
+     if( group ) group->_fixLength = gpos;
      group = groupCount < arr.size() ? & arr[ groupCount ] : & arr.emplace_back();
      group->fieldNested3PartyID.offset = pos - prev;
-     group->buf = fix+prev;
      groupBuf = fix+prev;
+     group->_fixPtr = groupBuf;
      ++groupCount;
      break;
 
@@ -3503,10 +3591,12 @@ offset_t GroupNested3PartyIDs::scan( Array & arr, const char * fix, unsigned len
      break;
 
    default: FIXPP_PRINT_UNKNOWN_FIELD
+     if( group ) group->_fixLength = gpos;
      return prev;
    }
    if( ! isGroupStart ) gotoNextField( fix, pos );
  }
+ if( group ) group->_fixLength = gpos;
  return pos;
 }
 
@@ -3523,10 +3613,11 @@ offset_t GroupPositions::scan( Array & arr, const char * fix, unsigned len ){
    switch( tag ){
    case FieldPosType::RAW_TAG :
      FIXPP_PRINT_FIELD(PosType)
+     if( group ) group->_fixLength = gpos;
      group = groupCount < arr.size() ? & arr[ groupCount ] : & arr.emplace_back();
      group->fieldPosType.offset = pos - prev;
-     group->buf = fix+prev;
      groupBuf = fix+prev;
+     group->_fixPtr = groupBuf;
      ++groupCount;
      break;
 
@@ -3554,10 +3645,12 @@ offset_t GroupPositions::scan( Array & arr, const char * fix, unsigned len ){
      break;
 
    default: FIXPP_PRINT_UNKNOWN_FIELD
+     if( group ) group->_fixLength = gpos;
      return prev;
    }
    if( ! isGroupStart ) gotoNextField( fix, pos );
  }
+ if( group ) group->_fixLength = gpos;
  return pos;
 }
 
@@ -3574,10 +3667,11 @@ offset_t GroupAffectedOrders::scan( Array & arr, const char * fix, unsigned len 
    switch( tag ){
    case FieldOrigClOrdID::RAW_TAG :
      FIXPP_PRINT_FIELD(OrigClOrdID)
+     if( group ) group->_fixLength = gpos;
      group = groupCount < arr.size() ? & arr[ groupCount ] : & arr.emplace_back();
      group->fieldOrigClOrdID.offset = pos - prev;
-     group->buf = fix+prev;
      groupBuf = fix+prev;
+     group->_fixPtr = groupBuf;
      ++groupCount;
      break;
 
@@ -3592,10 +3686,12 @@ offset_t GroupAffectedOrders::scan( Array & arr, const char * fix, unsigned len 
      break;
 
    default: FIXPP_PRINT_UNKNOWN_FIELD
+     if( group ) group->_fixLength = gpos;
      return prev;
    }
    if( ! isGroupStart ) gotoNextField( fix, pos );
  }
+ if( group ) group->_fixLength = gpos;
  return pos;
 }
 
@@ -3612,10 +3708,11 @@ offset_t GroupExecs::scan( Array & arr, const char * fix, unsigned len ){
    switch( tag ){
    case FieldLastQty::RAW_TAG :
      FIXPP_PRINT_FIELD(LastQty)
+     if( group ) group->_fixLength = gpos;
      group = groupCount < arr.size() ? & arr[ groupCount ] : & arr.emplace_back();
      group->fieldLastQty.offset = pos - prev;
-     group->buf = fix+prev;
      groupBuf = fix+prev;
+     group->_fixPtr = groupBuf;
      ++groupCount;
      break;
 
@@ -3645,10 +3742,12 @@ offset_t GroupExecs::scan( Array & arr, const char * fix, unsigned len ){
      break;
 
    default: FIXPP_PRINT_UNKNOWN_FIELD
+     if( group ) group->_fixLength = gpos;
      return prev;
    }
    if( ! isGroupStart ) gotoNextField( fix, pos );
  }
+ if( group ) group->_fixLength = gpos;
  return pos;
 }
 
@@ -3665,10 +3764,11 @@ offset_t GroupMsgTypes::scan( Array & arr, const char * fix, unsigned len ){
    switch( tag ){
    case FieldRefMsgType::RAW_TAG :
      FIXPP_PRINT_FIELD(RefMsgType)
+     if( group ) group->_fixLength = gpos;
      group = groupCount < arr.size() ? & arr[ groupCount ] : & arr.emplace_back();
      group->fieldRefMsgType.offset = pos - prev;
-     group->buf = fix+prev;
      groupBuf = fix+prev;
+     group->_fixPtr = groupBuf;
      ++groupCount;
      break;
 
@@ -3678,10 +3778,12 @@ offset_t GroupMsgTypes::scan( Array & arr, const char * fix, unsigned len ){
      break;
 
    default: FIXPP_PRINT_UNKNOWN_FIELD
+     if( group ) group->_fixLength = gpos;
      return prev;
    }
    if( ! isGroupStart ) gotoNextField( fix, pos );
  }
+ if( group ) group->_fixLength = gpos;
  return pos;
 }
 
@@ -3698,10 +3800,11 @@ offset_t GroupBidComponents::scan( Array & arr, const char * fix, unsigned len )
    switch( tag ){
    case FieldListID::RAW_TAG :
      FIXPP_PRINT_FIELD(ListID)
+     if( group ) group->_fixLength = gpos;
      group = groupCount < arr.size() ? & arr[ groupCount ] : & arr.emplace_back();
      group->fieldListID.offset = pos - prev;
-     group->buf = fix+prev;
      groupBuf = fix+prev;
+     group->_fixPtr = groupBuf;
      ++groupCount;
      break;
 
@@ -3746,10 +3849,12 @@ offset_t GroupBidComponents::scan( Array & arr, const char * fix, unsigned len )
      break;
 
    default: FIXPP_PRINT_UNKNOWN_FIELD
+     if( group ) group->_fixLength = gpos;
      return prev;
    }
    if( ! isGroupStart ) gotoNextField( fix, pos );
  }
+ if( group ) group->_fixLength = gpos;
  return pos;
 }
 
@@ -3766,10 +3871,11 @@ offset_t GroupSettlInst::scan( Array & arr, const char * fix, unsigned len ){
    switch( tag ){
    case FieldSettlInstID::RAW_TAG :
      FIXPP_PRINT_FIELD(SettlInstID)
+     if( group ) group->_fixLength = gpos;
      group = groupCount < arr.size() ? & arr[ groupCount ] : & arr.emplace_back();
      group->fieldSettlInstID.offset = pos - prev;
-     group->buf = fix+prev;
      groupBuf = fix+prev;
+     group->_fixPtr = groupBuf;
      ++groupCount;
      break;
 
@@ -3900,10 +4006,12 @@ offset_t GroupSettlInst::scan( Array & arr, const char * fix, unsigned len ){
      break;
 
    default: FIXPP_PRINT_UNKNOWN_FIELD
+     if( group ) group->_fixLength = gpos;
      return prev;
    }
    if( ! isGroupStart ) gotoNextField( fix, pos );
  }
+ if( group ) group->_fixLength = gpos;
  return pos;
 }
 
@@ -3920,10 +4028,11 @@ offset_t GroupInstrAttrib::scan( Array & arr, const char * fix, unsigned len ){
    switch( tag ){
    case FieldInstrAttribType::RAW_TAG :
      FIXPP_PRINT_FIELD(InstrAttribType)
+     if( group ) group->_fixLength = gpos;
      group = groupCount < arr.size() ? & arr[ groupCount ] : & arr.emplace_back();
      group->fieldInstrAttribType.offset = pos - prev;
-     group->buf = fix+prev;
      groupBuf = fix+prev;
+     group->_fixPtr = groupBuf;
      ++groupCount;
      break;
 
@@ -3933,10 +4042,12 @@ offset_t GroupInstrAttrib::scan( Array & arr, const char * fix, unsigned len ){
      break;
 
    default: FIXPP_PRINT_UNKNOWN_FIELD
+     if( group ) group->_fixLength = gpos;
      return prev;
    }
    if( ! isGroupStart ) gotoNextField( fix, pos );
  }
+ if( group ) group->_fixLength = gpos;
  return pos;
 }
 
@@ -3953,10 +4064,11 @@ offset_t GroupMiscFees::scan( Array & arr, const char * fix, unsigned len ){
    switch( tag ){
    case FieldMiscFeeAmt::RAW_TAG :
      FIXPP_PRINT_FIELD(MiscFeeAmt)
+     if( group ) group->_fixLength = gpos;
      group = groupCount < arr.size() ? & arr[ groupCount ] : & arr.emplace_back();
      group->fieldMiscFeeAmt.offset = pos - prev;
-     group->buf = fix+prev;
      groupBuf = fix+prev;
+     group->_fixPtr = groupBuf;
      ++groupCount;
      break;
 
@@ -3976,10 +4088,12 @@ offset_t GroupMiscFees::scan( Array & arr, const char * fix, unsigned len ){
      break;
 
    default: FIXPP_PRINT_UNKNOWN_FIELD
+     if( group ) group->_fixLength = gpos;
      return prev;
    }
    if( ! isGroupStart ) gotoNextField( fix, pos );
  }
+ if( group ) group->_fixLength = gpos;
  return pos;
 }
 
@@ -3996,18 +4110,21 @@ offset_t GroupQuoteQualifiers::scan( Array & arr, const char * fix, unsigned len
    switch( tag ){
    case FieldQuoteQualifier::RAW_TAG :
      FIXPP_PRINT_FIELD(QuoteQualifier)
+     if( group ) group->_fixLength = gpos;
      group = groupCount < arr.size() ? & arr[ groupCount ] : & arr.emplace_back();
      group->fieldQuoteQualifier.offset = pos - prev;
-     group->buf = fix+prev;
      groupBuf = fix+prev;
+     group->_fixPtr = groupBuf;
      ++groupCount;
      break;
 
    default: FIXPP_PRINT_UNKNOWN_FIELD
+     if( group ) group->_fixLength = gpos;
      return prev;
    }
    if( ! isGroupStart ) gotoNextField( fix, pos );
  }
+ if( group ) group->_fixLength = gpos;
  return pos;
 }
 
@@ -4024,10 +4141,11 @@ offset_t GroupDistribInsts::scan( Array & arr, const char * fix, unsigned len ){
    switch( tag ){
    case FieldDistribPaymentMethod::RAW_TAG :
      FIXPP_PRINT_FIELD(DistribPaymentMethod)
+     if( group ) group->_fixLength = gpos;
      group = groupCount < arr.size() ? & arr[ groupCount ] : & arr.emplace_back();
      group->fieldDistribPaymentMethod.offset = pos - prev;
-     group->buf = fix+prev;
      groupBuf = fix+prev;
+     group->_fixPtr = groupBuf;
      ++groupCount;
      break;
 
@@ -4067,10 +4185,12 @@ offset_t GroupDistribInsts::scan( Array & arr, const char * fix, unsigned len ){
      break;
 
    default: FIXPP_PRINT_UNKNOWN_FIELD
+     if( group ) group->_fixLength = gpos;
      return prev;
    }
    if( ! isGroupStart ) gotoNextField( fix, pos );
  }
+ if( group ) group->_fixLength = gpos;
  return pos;
 }
 
@@ -4087,10 +4207,11 @@ offset_t GroupTrdRegTimestamps::scan( Array & arr, const char * fix, unsigned le
    switch( tag ){
    case FieldTrdRegTimestamp::RAW_TAG :
      FIXPP_PRINT_FIELD(TrdRegTimestamp)
+     if( group ) group->_fixLength = gpos;
      group = groupCount < arr.size() ? & arr[ groupCount ] : & arr.emplace_back();
      group->fieldTrdRegTimestamp.offset = pos - prev;
-     group->buf = fix+prev;
      groupBuf = fix+prev;
+     group->_fixPtr = groupBuf;
      ++groupCount;
      break;
 
@@ -4105,10 +4226,12 @@ offset_t GroupTrdRegTimestamps::scan( Array & arr, const char * fix, unsigned le
      break;
 
    default: FIXPP_PRINT_UNKNOWN_FIELD
+     if( group ) group->_fixLength = gpos;
      return prev;
    }
    if( ! isGroupStart ) gotoNextField( fix, pos );
  }
+ if( group ) group->_fixLength = gpos;
  return pos;
 }
 
@@ -4125,18 +4248,21 @@ offset_t GroupAltMDSource::scan( Array & arr, const char * fix, unsigned len ){
    switch( tag ){
    case FieldAltMDSourceID::RAW_TAG :
      FIXPP_PRINT_FIELD(AltMDSourceID)
+     if( group ) group->_fixLength = gpos;
      group = groupCount < arr.size() ? & arr[ groupCount ] : & arr.emplace_back();
      group->fieldAltMDSourceID.offset = pos - prev;
-     group->buf = fix+prev;
      groupBuf = fix+prev;
+     group->_fixPtr = groupBuf;
      ++groupCount;
      break;
 
    default: FIXPP_PRINT_UNKNOWN_FIELD
+     if( group ) group->_fixLength = gpos;
      return prev;
    }
    if( ! isGroupStart ) gotoNextField( fix, pos );
  }
+ if( group ) group->_fixLength = gpos;
  return pos;
 }
 
@@ -4153,10 +4279,11 @@ offset_t GroupSides::scan( Array & arr, const char * fix, unsigned len ){
    switch( tag ){
    case FieldSide::RAW_TAG :
      FIXPP_PRINT_FIELD(Side)
+     if( group ) group->_fixLength = gpos;
      group = groupCount < arr.size() ? & arr[ groupCount ] : & arr.emplace_back();
      group->fieldSide.offset = pos - prev;
-     group->buf = fix+prev;
      groupBuf = fix+prev;
+     group->_fixPtr = groupBuf;
      ++groupCount;
      break;
 
@@ -4249,10 +4376,12 @@ offset_t GroupSides::scan( Array & arr, const char * fix, unsigned len ){
      break;
 
    default: FIXPP_PRINT_UNKNOWN_FIELD
+     if( group ) group->_fixLength = gpos;
      return prev;
    }
    if( ! isGroupStart ) gotoNextField( fix, pos );
  }
+ if( group ) group->_fixLength = gpos;
  return pos;
 }
 
@@ -4269,10 +4398,11 @@ offset_t GroupRoutingIDs::scan( Array & arr, const char * fix, unsigned len ){
    switch( tag ){
    case FieldRoutingType::RAW_TAG :
      FIXPP_PRINT_FIELD(RoutingType)
+     if( group ) group->_fixLength = gpos;
      group = groupCount < arr.size() ? & arr[ groupCount ] : & arr.emplace_back();
      group->fieldRoutingType.offset = pos - prev;
-     group->buf = fix+prev;
      groupBuf = fix+prev;
+     group->_fixPtr = groupBuf;
      ++groupCount;
      break;
 
@@ -4282,10 +4412,12 @@ offset_t GroupRoutingIDs::scan( Array & arr, const char * fix, unsigned len ){
      break;
 
    default: FIXPP_PRINT_UNKNOWN_FIELD
+     if( group ) group->_fixLength = gpos;
      return prev;
    }
    if( ! isGroupStart ) gotoNextField( fix, pos );
  }
+ if( group ) group->_fixLength = gpos;
  return pos;
 }
 
@@ -4302,10 +4434,11 @@ offset_t GroupPosAmt::scan( Array & arr, const char * fix, unsigned len ){
    switch( tag ){
    case FieldPosAmtType::RAW_TAG :
      FIXPP_PRINT_FIELD(PosAmtType)
+     if( group ) group->_fixLength = gpos;
      group = groupCount < arr.size() ? & arr[ groupCount ] : & arr.emplace_back();
      group->fieldPosAmtType.offset = pos - prev;
-     group->buf = fix+prev;
      groupBuf = fix+prev;
+     group->_fixPtr = groupBuf;
      ++groupCount;
      break;
 
@@ -4315,10 +4448,12 @@ offset_t GroupPosAmt::scan( Array & arr, const char * fix, unsigned len ){
      break;
 
    default: FIXPP_PRINT_UNKNOWN_FIELD
+     if( group ) group->_fixLength = gpos;
      return prev;
    }
    if( ! isGroupStart ) gotoNextField( fix, pos );
  }
+ if( group ) group->_fixLength = gpos;
  return pos;
 }
 
@@ -4335,10 +4470,11 @@ offset_t GroupLinesOfText::scan( Array & arr, const char * fix, unsigned len ){
    switch( tag ){
    case FieldText::RAW_TAG :
      FIXPP_PRINT_FIELD(Text)
+     if( group ) group->_fixLength = gpos;
      group = groupCount < arr.size() ? & arr[ groupCount ] : & arr.emplace_back();
      group->fieldText.offset = pos - prev;
-     group->buf = fix+prev;
      groupBuf = fix+prev;
+     group->_fixPtr = groupBuf;
      ++groupCount;
      break;
 
@@ -4353,10 +4489,12 @@ offset_t GroupLinesOfText::scan( Array & arr, const char * fix, unsigned len ){
      break;
 
    default: FIXPP_PRINT_UNKNOWN_FIELD
+     if( group ) group->_fixLength = gpos;
      return prev;
    }
    if( ! isGroupStart ) gotoNextField( fix, pos );
  }
+ if( group ) group->_fixLength = gpos;
  return pos;
 }
 
@@ -4373,18 +4511,21 @@ offset_t GroupIOIQualifiers::scan( Array & arr, const char * fix, unsigned len )
    switch( tag ){
    case FieldIOIQualifier::RAW_TAG :
      FIXPP_PRINT_FIELD(IOIQualifier)
+     if( group ) group->_fixLength = gpos;
      group = groupCount < arr.size() ? & arr[ groupCount ] : & arr.emplace_back();
      group->fieldIOIQualifier.offset = pos - prev;
-     group->buf = fix+prev;
      groupBuf = fix+prev;
+     group->_fixPtr = groupBuf;
      ++groupCount;
      break;
 
    default: FIXPP_PRINT_UNKNOWN_FIELD
+     if( group ) group->_fixLength = gpos;
      return prev;
    }
    if( ! isGroupStart ) gotoNextField( fix, pos );
  }
+ if( group ) group->_fixLength = gpos;
  return pos;
 }
 
@@ -4401,10 +4542,11 @@ offset_t GroupDates::scan( Array & arr, const char * fix, unsigned len ){
    switch( tag ){
    case FieldTradeDate::RAW_TAG :
      FIXPP_PRINT_FIELD(TradeDate)
+     if( group ) group->_fixLength = gpos;
      group = groupCount < arr.size() ? & arr[ groupCount ] : & arr.emplace_back();
      group->fieldTradeDate.offset = pos - prev;
-     group->buf = fix+prev;
      groupBuf = fix+prev;
+     group->_fixPtr = groupBuf;
      ++groupCount;
      break;
 
@@ -4414,10 +4556,12 @@ offset_t GroupDates::scan( Array & arr, const char * fix, unsigned len ){
      break;
 
    default: FIXPP_PRINT_UNKNOWN_FIELD
+     if( group ) group->_fixLength = gpos;
      return prev;
    }
    if( ! isGroupStart ) gotoNextField( fix, pos );
  }
+ if( group ) group->_fixLength = gpos;
  return pos;
 }
 
@@ -4434,18 +4578,21 @@ offset_t GroupMDEntryTypes::scan( Array & arr, const char * fix, unsigned len ){
    switch( tag ){
    case FieldMDEntryType::RAW_TAG :
      FIXPP_PRINT_FIELD(MDEntryType)
+     if( group ) group->_fixLength = gpos;
      group = groupCount < arr.size() ? & arr[ groupCount ] : & arr.emplace_back();
      group->fieldMDEntryType.offset = pos - prev;
-     group->buf = fix+prev;
      groupBuf = fix+prev;
+     group->_fixPtr = groupBuf;
      ++groupCount;
      break;
 
    default: FIXPP_PRINT_UNKNOWN_FIELD
+     if( group ) group->_fixLength = gpos;
      return prev;
    }
    if( ! isGroupStart ) gotoNextField( fix, pos );
  }
+ if( group ) group->_fixLength = gpos;
  return pos;
 }
 
@@ -4462,10 +4609,11 @@ offset_t GroupRelatedSym::scan( Array & arr, const char * fix, unsigned len ){
    switch( tag ){
    case FieldSymbol::RAW_TAG :
      FIXPP_PRINT_FIELD(Symbol)
+     if( group ) group->_fixLength = gpos;
      group = groupCount < arr.size() ? & arr[ groupCount ] : & arr.emplace_back();
      group->fieldSymbol.offset = pos - prev;
-     group->buf = fix+prev;
      groupBuf = fix+prev;
+     group->_fixPtr = groupBuf;
      ++groupCount;
      break;
 
@@ -4686,10 +4834,12 @@ offset_t GroupRelatedSym::scan( Array & arr, const char * fix, unsigned len ){
      break;
 
    default: FIXPP_PRINT_UNKNOWN_FIELD
+     if( group ) group->_fixLength = gpos;
      return prev;
    }
    if( ! isGroupStart ) gotoNextField( fix, pos );
  }
+ if( group ) group->_fixLength = gpos;
  return pos;
 }
 
@@ -4706,10 +4856,11 @@ offset_t GroupContraBrokers::scan( Array & arr, const char * fix, unsigned len )
    switch( tag ){
    case FieldContraBroker::RAW_TAG :
      FIXPP_PRINT_FIELD(ContraBroker)
+     if( group ) group->_fixLength = gpos;
      group = groupCount < arr.size() ? & arr[ groupCount ] : & arr.emplace_back();
      group->fieldContraBroker.offset = pos - prev;
-     group->buf = fix+prev;
      groupBuf = fix+prev;
+     group->_fixPtr = groupBuf;
      ++groupCount;
      break;
 
@@ -4734,10 +4885,12 @@ offset_t GroupContraBrokers::scan( Array & arr, const char * fix, unsigned len )
      break;
 
    default: FIXPP_PRINT_UNKNOWN_FIELD
+     if( group ) group->_fixLength = gpos;
      return prev;
    }
    if( ! isGroupStart ) gotoNextField( fix, pos );
  }
+ if( group ) group->_fixLength = gpos;
  return pos;
 }
 
@@ -4754,10 +4907,11 @@ offset_t GroupTrades::scan( Array & arr, const char * fix, unsigned len ){
    switch( tag ){
    case FieldTradeReportID::RAW_TAG :
      FIXPP_PRINT_FIELD(TradeReportID)
+     if( group ) group->_fixLength = gpos;
      group = groupCount < arr.size() ? & arr[ groupCount ] : & arr.emplace_back();
      group->fieldTradeReportID.offset = pos - prev;
-     group->buf = fix+prev;
      groupBuf = fix+prev;
+     group->_fixPtr = groupBuf;
      ++groupCount;
      break;
 
@@ -4767,10 +4921,12 @@ offset_t GroupTrades::scan( Array & arr, const char * fix, unsigned len ){
      break;
 
    default: FIXPP_PRINT_UNKNOWN_FIELD
+     if( group ) group->_fixLength = gpos;
      return prev;
    }
    if( ! isGroupStart ) gotoNextField( fix, pos );
  }
+ if( group ) group->_fixLength = gpos;
  return pos;
 }
 
@@ -4787,10 +4943,11 @@ offset_t GroupStrikes::scan( Array & arr, const char * fix, unsigned len ){
    switch( tag ){
    case FieldSymbol::RAW_TAG :
      FIXPP_PRINT_FIELD(Symbol)
+     if( group ) group->_fixLength = gpos;
      group = groupCount < arr.size() ? & arr[ groupCount ] : & arr.emplace_back();
      group->fieldSymbol.offset = pos - prev;
-     group->buf = fix+prev;
      groupBuf = fix+prev;
+     group->_fixPtr = groupBuf;
      ++groupCount;
      break;
 
@@ -5011,10 +5168,12 @@ offset_t GroupStrikes::scan( Array & arr, const char * fix, unsigned len ){
      break;
 
    default: FIXPP_PRINT_UNKNOWN_FIELD
+     if( group ) group->_fixLength = gpos;
      return prev;
    }
    if( ! isGroupStart ) gotoNextField( fix, pos );
  }
+ if( group ) group->_fixLength = gpos;
  return pos;
 }
 
@@ -5031,10 +5190,11 @@ offset_t GroupBidDescriptors::scan( Array & arr, const char * fix, unsigned len 
    switch( tag ){
    case FieldBidDescriptorType::RAW_TAG :
      FIXPP_PRINT_FIELD(BidDescriptorType)
+     if( group ) group->_fixLength = gpos;
      group = groupCount < arr.size() ? & arr[ groupCount ] : & arr.emplace_back();
      group->fieldBidDescriptorType.offset = pos - prev;
-     group->buf = fix+prev;
      groupBuf = fix+prev;
+     group->_fixPtr = groupBuf;
      ++groupCount;
      break;
 
@@ -5089,10 +5249,12 @@ offset_t GroupBidDescriptors::scan( Array & arr, const char * fix, unsigned len 
      break;
 
    default: FIXPP_PRINT_UNKNOWN_FIELD
+     if( group ) group->_fixLength = gpos;
      return prev;
    }
    if( ! isGroupStart ) gotoNextField( fix, pos );
  }
+ if( group ) group->_fixLength = gpos;
  return pos;
 }
 
@@ -5109,10 +5271,11 @@ offset_t GroupCompIDs::scan( Array & arr, const char * fix, unsigned len ){
    switch( tag ){
    case FieldRefCompID::RAW_TAG :
      FIXPP_PRINT_FIELD(RefCompID)
+     if( group ) group->_fixLength = gpos;
      group = groupCount < arr.size() ? & arr[ groupCount ] : & arr.emplace_back();
      group->fieldRefCompID.offset = pos - prev;
-     group->buf = fix+prev;
      groupBuf = fix+prev;
+     group->_fixPtr = groupBuf;
      ++groupCount;
      break;
 
@@ -5132,10 +5295,12 @@ offset_t GroupCompIDs::scan( Array & arr, const char * fix, unsigned len ){
      break;
 
    default: FIXPP_PRINT_UNKNOWN_FIELD
+     if( group ) group->_fixLength = gpos;
      return prev;
    }
    if( ! isGroupStart ) gotoNextField( fix, pos );
  }
+ if( group ) group->_fixLength = gpos;
  return pos;
 }
 
@@ -5152,10 +5317,11 @@ offset_t GroupLegAllocs::scan( Array & arr, const char * fix, unsigned len ){
    switch( tag ){
    case FieldLegAllocAccount::RAW_TAG :
      FIXPP_PRINT_FIELD(LegAllocAccount)
+     if( group ) group->_fixLength = gpos;
      group = groupCount < arr.size() ? & arr[ groupCount ] : & arr.emplace_back();
      group->fieldLegAllocAccount.offset = pos - prev;
-     group->buf = fix+prev;
      groupBuf = fix+prev;
+     group->_fixPtr = groupBuf;
      ++groupCount;
      break;
 
@@ -5188,10 +5354,12 @@ offset_t GroupLegAllocs::scan( Array & arr, const char * fix, unsigned len ){
      break;
 
    default: FIXPP_PRINT_UNKNOWN_FIELD
+     if( group ) group->_fixLength = gpos;
      return prev;
    }
    if( ! isGroupStart ) gotoNextField( fix, pos );
  }
+ if( group ) group->_fixLength = gpos;
  return pos;
 }
 
@@ -5208,10 +5376,11 @@ offset_t GroupRegistDtls::scan( Array & arr, const char * fix, unsigned len ){
    switch( tag ){
    case FieldRegistDtls::RAW_TAG :
      FIXPP_PRINT_FIELD(RegistDtls)
+     if( group ) group->_fixLength = gpos;
      group = groupCount < arr.size() ? & arr[ groupCount ] : & arr.emplace_back();
      group->fieldRegistDtls.offset = pos - prev;
-     group->buf = fix+prev;
      groupBuf = fix+prev;
+     group->_fixPtr = groupBuf;
      ++groupCount;
      break;
 
@@ -5254,10 +5423,12 @@ offset_t GroupRegistDtls::scan( Array & arr, const char * fix, unsigned len ){
      break;
 
    default: FIXPP_PRINT_UNKNOWN_FIELD
+     if( group ) group->_fixLength = gpos;
      return prev;
    }
    if( ! isGroupStart ) gotoNextField( fix, pos );
  }
+ if( group ) group->_fixLength = gpos;
  return pos;
 }
 
@@ -5274,10 +5445,11 @@ offset_t GroupContAmts::scan( Array & arr, const char * fix, unsigned len ){
    switch( tag ){
    case FieldContAmtType::RAW_TAG :
      FIXPP_PRINT_FIELD(ContAmtType)
+     if( group ) group->_fixLength = gpos;
      group = groupCount < arr.size() ? & arr[ groupCount ] : & arr.emplace_back();
      group->fieldContAmtType.offset = pos - prev;
-     group->buf = fix+prev;
      groupBuf = fix+prev;
+     group->_fixPtr = groupBuf;
      ++groupCount;
      break;
 
@@ -5292,10 +5464,12 @@ offset_t GroupContAmts::scan( Array & arr, const char * fix, unsigned len ){
      break;
 
    default: FIXPP_PRINT_UNKNOWN_FIELD
+     if( group ) group->_fixLength = gpos;
      return prev;
    }
    if( ! isGroupStart ) gotoNextField( fix, pos );
  }
+ if( group ) group->_fixLength = gpos;
  return pos;
 }
 
@@ -5312,10 +5486,11 @@ offset_t GroupMDEntries::scan( Array & arr, const char * fix, unsigned len ){
    switch( tag ){
    case FieldMDEntryType::RAW_TAG :
      FIXPP_PRINT_FIELD(MDEntryType)
+     if( group ) group->_fixLength = gpos;
      group = groupCount < arr.size() ? & arr[ groupCount ] : & arr.emplace_back();
      group->fieldMDEntryType.offset = pos - prev;
-     group->buf = fix+prev;
      groupBuf = fix+prev;
+     group->_fixPtr = groupBuf;
      ++groupCount;
      break;
 
@@ -5480,10 +5655,12 @@ offset_t GroupMDEntries::scan( Array & arr, const char * fix, unsigned len ){
      break;
 
    default: FIXPP_PRINT_UNKNOWN_FIELD
+     if( group ) group->_fixLength = gpos;
      return prev;
    }
    if( ! isGroupStart ) gotoNextField( fix, pos );
  }
+ if( group ) group->_fixLength = gpos;
  return pos;
 }
 
@@ -10424,10 +10601,10 @@ FieldDepth GroupMDEntries::getFieldDepth( raw_tag_t tag ){
 }
 
 const char * GroupLegStipulations::getFieldValue( unsigned tag ) const {
-   if( buf == nullptr ) return nullptr;
+   if( _fixPtr == nullptr ) return nullptr;
    switch( tag ){
-     case FieldLegStipulationType::TAG : return fieldLegStipulationType.offset >= 0 ? buf + fieldLegStipulationType.offset : nullptr;
-     case FieldLegStipulationValue::TAG : return fieldLegStipulationValue.offset >= 0 ? buf + fieldLegStipulationValue.offset : nullptr;
+     case FieldLegStipulationType::TAG : return fieldLegStipulationType.offset >= 0 ? _fixPtr + fieldLegStipulationType.offset : nullptr;
+     case FieldLegStipulationValue::TAG : return fieldLegStipulationValue.offset >= 0 ? _fixPtr + fieldLegStipulationValue.offset : nullptr;
 
      default : return nullptr; 
    }
@@ -10435,12 +10612,12 @@ const char * GroupLegStipulations::getFieldValue( unsigned tag ) const {
 }
 
 const char * GroupEvents::getFieldValue( unsigned tag ) const {
-   if( buf == nullptr ) return nullptr;
+   if( _fixPtr == nullptr ) return nullptr;
    switch( tag ){
-     case FieldEventType::TAG : return fieldEventType.offset >= 0 ? buf + fieldEventType.offset : nullptr;
-     case FieldEventDate::TAG : return fieldEventDate.offset >= 0 ? buf + fieldEventDate.offset : nullptr;
-     case FieldEventPx::TAG : return fieldEventPx.offset >= 0 ? buf + fieldEventPx.offset : nullptr;
-     case FieldEventText::TAG : return fieldEventText.offset >= 0 ? buf + fieldEventText.offset : nullptr;
+     case FieldEventType::TAG : return fieldEventType.offset >= 0 ? _fixPtr + fieldEventType.offset : nullptr;
+     case FieldEventDate::TAG : return fieldEventDate.offset >= 0 ? _fixPtr + fieldEventDate.offset : nullptr;
+     case FieldEventPx::TAG : return fieldEventPx.offset >= 0 ? _fixPtr + fieldEventPx.offset : nullptr;
+     case FieldEventText::TAG : return fieldEventText.offset >= 0 ? _fixPtr + fieldEventText.offset : nullptr;
 
      default : return nullptr; 
    }
@@ -10448,10 +10625,10 @@ const char * GroupEvents::getFieldValue( unsigned tag ) const {
 }
 
 const char * GroupLegSecurityAltID::getFieldValue( unsigned tag ) const {
-   if( buf == nullptr ) return nullptr;
+   if( _fixPtr == nullptr ) return nullptr;
    switch( tag ){
-     case FieldLegSecurityAltID::TAG : return fieldLegSecurityAltID.offset >= 0 ? buf + fieldLegSecurityAltID.offset : nullptr;
-     case FieldLegSecurityAltIDSource::TAG : return fieldLegSecurityAltIDSource.offset >= 0 ? buf + fieldLegSecurityAltIDSource.offset : nullptr;
+     case FieldLegSecurityAltID::TAG : return fieldLegSecurityAltID.offset >= 0 ? _fixPtr + fieldLegSecurityAltID.offset : nullptr;
+     case FieldLegSecurityAltIDSource::TAG : return fieldLegSecurityAltIDSource.offset >= 0 ? _fixPtr + fieldLegSecurityAltIDSource.offset : nullptr;
 
      default : return nullptr; 
    }
@@ -10459,11 +10636,11 @@ const char * GroupLegSecurityAltID::getFieldValue( unsigned tag ) const {
 }
 
 const char * GroupCapacities::getFieldValue( unsigned tag ) const {
-   if( buf == nullptr ) return nullptr;
+   if( _fixPtr == nullptr ) return nullptr;
    switch( tag ){
-     case FieldOrderCapacity::TAG : return fieldOrderCapacity.offset >= 0 ? buf + fieldOrderCapacity.offset : nullptr;
-     case FieldOrderRestrictions::TAG : return fieldOrderRestrictions.offset >= 0 ? buf + fieldOrderRestrictions.offset : nullptr;
-     case FieldOrderCapacityQty::TAG : return fieldOrderCapacityQty.offset >= 0 ? buf + fieldOrderCapacityQty.offset : nullptr;
+     case FieldOrderCapacity::TAG : return fieldOrderCapacity.offset >= 0 ? _fixPtr + fieldOrderCapacity.offset : nullptr;
+     case FieldOrderRestrictions::TAG : return fieldOrderRestrictions.offset >= 0 ? _fixPtr + fieldOrderRestrictions.offset : nullptr;
+     case FieldOrderCapacityQty::TAG : return fieldOrderCapacityQty.offset >= 0 ? _fixPtr + fieldOrderCapacityQty.offset : nullptr;
 
      default : return nullptr; 
    }
@@ -10471,10 +10648,10 @@ const char * GroupCapacities::getFieldValue( unsigned tag ) const {
 }
 
 const char * GroupNested3PartySubIDs::getFieldValue( unsigned tag ) const {
-   if( buf == nullptr ) return nullptr;
+   if( _fixPtr == nullptr ) return nullptr;
    switch( tag ){
-     case FieldNested3PartySubID::TAG : return fieldNested3PartySubID.offset >= 0 ? buf + fieldNested3PartySubID.offset : nullptr;
-     case FieldNested3PartySubIDType::TAG : return fieldNested3PartySubIDType.offset >= 0 ? buf + fieldNested3PartySubIDType.offset : nullptr;
+     case FieldNested3PartySubID::TAG : return fieldNested3PartySubID.offset >= 0 ? _fixPtr + fieldNested3PartySubID.offset : nullptr;
+     case FieldNested3PartySubIDType::TAG : return fieldNested3PartySubIDType.offset >= 0 ? _fixPtr + fieldNested3PartySubIDType.offset : nullptr;
 
      default : return nullptr; 
    }
@@ -10482,10 +10659,10 @@ const char * GroupNested3PartySubIDs::getFieldValue( unsigned tag ) const {
 }
 
 const char * GroupPartySubIDs::getFieldValue( unsigned tag ) const {
-   if( buf == nullptr ) return nullptr;
+   if( _fixPtr == nullptr ) return nullptr;
    switch( tag ){
-     case FieldPartySubID::TAG : return fieldPartySubID.offset >= 0 ? buf + fieldPartySubID.offset : nullptr;
-     case FieldPartySubIDType::TAG : return fieldPartySubIDType.offset >= 0 ? buf + fieldPartySubIDType.offset : nullptr;
+     case FieldPartySubID::TAG : return fieldPartySubID.offset >= 0 ? _fixPtr + fieldPartySubID.offset : nullptr;
+     case FieldPartySubIDType::TAG : return fieldPartySubIDType.offset >= 0 ? _fixPtr + fieldPartySubIDType.offset : nullptr;
 
      default : return nullptr; 
    }
@@ -10493,10 +10670,10 @@ const char * GroupPartySubIDs::getFieldValue( unsigned tag ) const {
 }
 
 const char * GroupNested2PartySubIDs::getFieldValue( unsigned tag ) const {
-   if( buf == nullptr ) return nullptr;
+   if( _fixPtr == nullptr ) return nullptr;
    switch( tag ){
-     case FieldNested2PartySubID::TAG : return fieldNested2PartySubID.offset >= 0 ? buf + fieldNested2PartySubID.offset : nullptr;
-     case FieldNested2PartySubIDType::TAG : return fieldNested2PartySubIDType.offset >= 0 ? buf + fieldNested2PartySubIDType.offset : nullptr;
+     case FieldNested2PartySubID::TAG : return fieldNested2PartySubID.offset >= 0 ? _fixPtr + fieldNested2PartySubID.offset : nullptr;
+     case FieldNested2PartySubIDType::TAG : return fieldNested2PartySubIDType.offset >= 0 ? _fixPtr + fieldNested2PartySubIDType.offset : nullptr;
 
      default : return nullptr; 
    }
@@ -10504,12 +10681,12 @@ const char * GroupNested2PartySubIDs::getFieldValue( unsigned tag ) const {
 }
 
 const char * GroupNested2PartyIDs::getFieldValue( unsigned tag ) const {
-   if( buf == nullptr ) return nullptr;
+   if( _fixPtr == nullptr ) return nullptr;
    switch( tag ){
-     case FieldNested2PartyID::TAG : return fieldNested2PartyID.offset >= 0 ? buf + fieldNested2PartyID.offset : nullptr;
-     case FieldNested2PartyIDSource::TAG : return fieldNested2PartyIDSource.offset >= 0 ? buf + fieldNested2PartyIDSource.offset : nullptr;
-     case FieldNested2PartyRole::TAG : return fieldNested2PartyRole.offset >= 0 ? buf + fieldNested2PartyRole.offset : nullptr;
-     case FieldNoNested2PartySubIDs::TAG : return fieldNoNested2PartySubIDs.offset >= 0 ? buf + fieldNoNested2PartySubIDs.offset : nullptr;
+     case FieldNested2PartyID::TAG : return fieldNested2PartyID.offset >= 0 ? _fixPtr + fieldNested2PartyID.offset : nullptr;
+     case FieldNested2PartyIDSource::TAG : return fieldNested2PartyIDSource.offset >= 0 ? _fixPtr + fieldNested2PartyIDSource.offset : nullptr;
+     case FieldNested2PartyRole::TAG : return fieldNested2PartyRole.offset >= 0 ? _fixPtr + fieldNested2PartyRole.offset : nullptr;
+     case FieldNoNested2PartySubIDs::TAG : return fieldNoNested2PartySubIDs.offset >= 0 ? _fixPtr + fieldNoNested2PartySubIDs.offset : nullptr;
 
      default : return nullptr; 
    }
@@ -10517,11 +10694,11 @@ const char * GroupNested2PartyIDs::getFieldValue( unsigned tag ) const {
 }
 
 const char * GroupHops::getFieldValue( unsigned tag ) const {
-   if( buf == nullptr ) return nullptr;
+   if( _fixPtr == nullptr ) return nullptr;
    switch( tag ){
-     case FieldHopCompID::TAG : return fieldHopCompID.offset >= 0 ? buf + fieldHopCompID.offset : nullptr;
-     case FieldHopSendingTime::TAG : return fieldHopSendingTime.offset >= 0 ? buf + fieldHopSendingTime.offset : nullptr;
-     case FieldHopRefID::TAG : return fieldHopRefID.offset >= 0 ? buf + fieldHopRefID.offset : nullptr;
+     case FieldHopCompID::TAG : return fieldHopCompID.offset >= 0 ? _fixPtr + fieldHopCompID.offset : nullptr;
+     case FieldHopSendingTime::TAG : return fieldHopSendingTime.offset >= 0 ? _fixPtr + fieldHopSendingTime.offset : nullptr;
+     case FieldHopRefID::TAG : return fieldHopRefID.offset >= 0 ? _fixPtr + fieldHopRefID.offset : nullptr;
 
      default : return nullptr; 
    }
@@ -10529,9 +10706,9 @@ const char * GroupHops::getFieldValue( unsigned tag ) const {
 }
 
 const char * GroupCollInquiryQualifier::getFieldValue( unsigned tag ) const {
-   if( buf == nullptr ) return nullptr;
+   if( _fixPtr == nullptr ) return nullptr;
    switch( tag ){
-     case FieldCollInquiryQualifier::TAG : return fieldCollInquiryQualifier.offset >= 0 ? buf + fieldCollInquiryQualifier.offset : nullptr;
+     case FieldCollInquiryQualifier::TAG : return fieldCollInquiryQualifier.offset >= 0 ? _fixPtr + fieldCollInquiryQualifier.offset : nullptr;
 
      default : return nullptr; 
    }
@@ -10539,12 +10716,12 @@ const char * GroupCollInquiryQualifier::getFieldValue( unsigned tag ) const {
 }
 
 const char * GroupPartyIDs::getFieldValue( unsigned tag ) const {
-   if( buf == nullptr ) return nullptr;
+   if( _fixPtr == nullptr ) return nullptr;
    switch( tag ){
-     case FieldPartyID::TAG : return fieldPartyID.offset >= 0 ? buf + fieldPartyID.offset : nullptr;
-     case FieldPartyIDSource::TAG : return fieldPartyIDSource.offset >= 0 ? buf + fieldPartyIDSource.offset : nullptr;
-     case FieldPartyRole::TAG : return fieldPartyRole.offset >= 0 ? buf + fieldPartyRole.offset : nullptr;
-     case FieldNoPartySubIDs::TAG : return fieldNoPartySubIDs.offset >= 0 ? buf + fieldNoPartySubIDs.offset : nullptr;
+     case FieldPartyID::TAG : return fieldPartyID.offset >= 0 ? _fixPtr + fieldPartyID.offset : nullptr;
+     case FieldPartyIDSource::TAG : return fieldPartyIDSource.offset >= 0 ? _fixPtr + fieldPartyIDSource.offset : nullptr;
+     case FieldPartyRole::TAG : return fieldPartyRole.offset >= 0 ? _fixPtr + fieldPartyRole.offset : nullptr;
+     case FieldNoPartySubIDs::TAG : return fieldNoPartySubIDs.offset >= 0 ? _fixPtr + fieldNoPartySubIDs.offset : nullptr;
 
      default : return nullptr; 
    }
@@ -10552,16 +10729,16 @@ const char * GroupPartyIDs::getFieldValue( unsigned tag ) const {
 }
 
 const char * GroupAllocs::getFieldValue( unsigned tag ) const {
-   if( buf == nullptr ) return nullptr;
+   if( _fixPtr == nullptr ) return nullptr;
    switch( tag ){
-     case FieldAllocAccount::TAG : return fieldAllocAccount.offset >= 0 ? buf + fieldAllocAccount.offset : nullptr;
-     case FieldAllocAcctIDSource::TAG : return fieldAllocAcctIDSource.offset >= 0 ? buf + fieldAllocAcctIDSource.offset : nullptr;
-     case FieldAllocPrice::TAG : return fieldAllocPrice.offset >= 0 ? buf + fieldAllocPrice.offset : nullptr;
-     case FieldIndividualAllocID::TAG : return fieldIndividualAllocID.offset >= 0 ? buf + fieldIndividualAllocID.offset : nullptr;
-     case FieldIndividualAllocRejCode::TAG : return fieldIndividualAllocRejCode.offset >= 0 ? buf + fieldIndividualAllocRejCode.offset : nullptr;
-     case FieldAllocText::TAG : return fieldAllocText.offset >= 0 ? buf + fieldAllocText.offset : nullptr;
-     case FieldEncodedAllocTextLen::TAG : return fieldEncodedAllocTextLen.offset >= 0 ? buf + fieldEncodedAllocTextLen.offset : nullptr;
-     case FieldEncodedAllocText::TAG : return fieldEncodedAllocText.offset >= 0 ? buf + fieldEncodedAllocText.offset : nullptr;
+     case FieldAllocAccount::TAG : return fieldAllocAccount.offset >= 0 ? _fixPtr + fieldAllocAccount.offset : nullptr;
+     case FieldAllocAcctIDSource::TAG : return fieldAllocAcctIDSource.offset >= 0 ? _fixPtr + fieldAllocAcctIDSource.offset : nullptr;
+     case FieldAllocPrice::TAG : return fieldAllocPrice.offset >= 0 ? _fixPtr + fieldAllocPrice.offset : nullptr;
+     case FieldIndividualAllocID::TAG : return fieldIndividualAllocID.offset >= 0 ? _fixPtr + fieldIndividualAllocID.offset : nullptr;
+     case FieldIndividualAllocRejCode::TAG : return fieldIndividualAllocRejCode.offset >= 0 ? _fixPtr + fieldIndividualAllocRejCode.offset : nullptr;
+     case FieldAllocText::TAG : return fieldAllocText.offset >= 0 ? _fixPtr + fieldAllocText.offset : nullptr;
+     case FieldEncodedAllocTextLen::TAG : return fieldEncodedAllocTextLen.offset >= 0 ? _fixPtr + fieldEncodedAllocTextLen.offset : nullptr;
+     case FieldEncodedAllocText::TAG : return fieldEncodedAllocText.offset >= 0 ? _fixPtr + fieldEncodedAllocText.offset : nullptr;
 
      default : return nullptr; 
    }
@@ -10569,10 +10746,10 @@ const char * GroupAllocs::getFieldValue( unsigned tag ) const {
 }
 
 const char * GroupTradingSessions::getFieldValue( unsigned tag ) const {
-   if( buf == nullptr ) return nullptr;
+   if( _fixPtr == nullptr ) return nullptr;
    switch( tag ){
-     case FieldTradingSessionID::TAG : return fieldTradingSessionID.offset >= 0 ? buf + fieldTradingSessionID.offset : nullptr;
-     case FieldTradingSessionSubID::TAG : return fieldTradingSessionSubID.offset >= 0 ? buf + fieldTradingSessionSubID.offset : nullptr;
+     case FieldTradingSessionID::TAG : return fieldTradingSessionID.offset >= 0 ? _fixPtr + fieldTradingSessionID.offset : nullptr;
+     case FieldTradingSessionSubID::TAG : return fieldTradingSessionSubID.offset >= 0 ? _fixPtr + fieldTradingSessionSubID.offset : nullptr;
 
      default : return nullptr; 
    }
@@ -10580,10 +10757,10 @@ const char * GroupTradingSessions::getFieldValue( unsigned tag ) const {
 }
 
 const char * GroupSecurityAltID::getFieldValue( unsigned tag ) const {
-   if( buf == nullptr ) return nullptr;
+   if( _fixPtr == nullptr ) return nullptr;
    switch( tag ){
-     case FieldSecurityAltID::TAG : return fieldSecurityAltID.offset >= 0 ? buf + fieldSecurityAltID.offset : nullptr;
-     case FieldSecurityAltIDSource::TAG : return fieldSecurityAltIDSource.offset >= 0 ? buf + fieldSecurityAltIDSource.offset : nullptr;
+     case FieldSecurityAltID::TAG : return fieldSecurityAltID.offset >= 0 ? _fixPtr + fieldSecurityAltID.offset : nullptr;
+     case FieldSecurityAltIDSource::TAG : return fieldSecurityAltIDSource.offset >= 0 ? _fixPtr + fieldSecurityAltIDSource.offset : nullptr;
 
      default : return nullptr; 
    }
@@ -10591,10 +10768,10 @@ const char * GroupSecurityAltID::getFieldValue( unsigned tag ) const {
 }
 
 const char * GroupUnderlyingSecurityAltID::getFieldValue( unsigned tag ) const {
-   if( buf == nullptr ) return nullptr;
+   if( _fixPtr == nullptr ) return nullptr;
    switch( tag ){
-     case FieldUnderlyingSecurityAltID::TAG : return fieldUnderlyingSecurityAltID.offset >= 0 ? buf + fieldUnderlyingSecurityAltID.offset : nullptr;
-     case FieldUnderlyingSecurityAltIDSource::TAG : return fieldUnderlyingSecurityAltIDSource.offset >= 0 ? buf + fieldUnderlyingSecurityAltIDSource.offset : nullptr;
+     case FieldUnderlyingSecurityAltID::TAG : return fieldUnderlyingSecurityAltID.offset >= 0 ? _fixPtr + fieldUnderlyingSecurityAltID.offset : nullptr;
+     case FieldUnderlyingSecurityAltIDSource::TAG : return fieldUnderlyingSecurityAltIDSource.offset >= 0 ? _fixPtr + fieldUnderlyingSecurityAltIDSource.offset : nullptr;
 
      default : return nullptr; 
    }
@@ -10602,10 +10779,10 @@ const char * GroupUnderlyingSecurityAltID::getFieldValue( unsigned tag ) const {
 }
 
 const char * GroupUnderlyingStips::getFieldValue( unsigned tag ) const {
-   if( buf == nullptr ) return nullptr;
+   if( _fixPtr == nullptr ) return nullptr;
    switch( tag ){
-     case FieldUnderlyingStipType::TAG : return fieldUnderlyingStipType.offset >= 0 ? buf + fieldUnderlyingStipType.offset : nullptr;
-     case FieldUnderlyingStipValue::TAG : return fieldUnderlyingStipValue.offset >= 0 ? buf + fieldUnderlyingStipValue.offset : nullptr;
+     case FieldUnderlyingStipType::TAG : return fieldUnderlyingStipType.offset >= 0 ? _fixPtr + fieldUnderlyingStipType.offset : nullptr;
+     case FieldUnderlyingStipValue::TAG : return fieldUnderlyingStipValue.offset >= 0 ? _fixPtr + fieldUnderlyingStipValue.offset : nullptr;
 
      default : return nullptr; 
    }
@@ -10613,57 +10790,57 @@ const char * GroupUnderlyingStips::getFieldValue( unsigned tag ) const {
 }
 
 const char * GroupUnderlyings::getFieldValue( unsigned tag ) const {
-   if( buf == nullptr ) return nullptr;
+   if( _fixPtr == nullptr ) return nullptr;
    switch( tag ){
-     case FieldUnderlyingSymbol::TAG : return fieldUnderlyingSymbol.offset >= 0 ? buf + fieldUnderlyingSymbol.offset : nullptr;
-     case FieldUnderlyingSymbolSfx::TAG : return fieldUnderlyingSymbolSfx.offset >= 0 ? buf + fieldUnderlyingSymbolSfx.offset : nullptr;
-     case FieldUnderlyingSecurityID::TAG : return fieldUnderlyingSecurityID.offset >= 0 ? buf + fieldUnderlyingSecurityID.offset : nullptr;
-     case FieldUnderlyingSecurityIDSource::TAG : return fieldUnderlyingSecurityIDSource.offset >= 0 ? buf + fieldUnderlyingSecurityIDSource.offset : nullptr;
-     case FieldNoUnderlyingSecurityAltID::TAG : return fieldNoUnderlyingSecurityAltID.offset >= 0 ? buf + fieldNoUnderlyingSecurityAltID.offset : nullptr;
-     case FieldUnderlyingProduct::TAG : return fieldUnderlyingProduct.offset >= 0 ? buf + fieldUnderlyingProduct.offset : nullptr;
-     case FieldUnderlyingCFICode::TAG : return fieldUnderlyingCFICode.offset >= 0 ? buf + fieldUnderlyingCFICode.offset : nullptr;
-     case FieldUnderlyingSecurityType::TAG : return fieldUnderlyingSecurityType.offset >= 0 ? buf + fieldUnderlyingSecurityType.offset : nullptr;
-     case FieldUnderlyingSecuritySubType::TAG : return fieldUnderlyingSecuritySubType.offset >= 0 ? buf + fieldUnderlyingSecuritySubType.offset : nullptr;
-     case FieldUnderlyingMaturityMonthYear::TAG : return fieldUnderlyingMaturityMonthYear.offset >= 0 ? buf + fieldUnderlyingMaturityMonthYear.offset : nullptr;
-     case FieldUnderlyingMaturityDate::TAG : return fieldUnderlyingMaturityDate.offset >= 0 ? buf + fieldUnderlyingMaturityDate.offset : nullptr;
-     case FieldUnderlyingPutOrCall::TAG : return fieldUnderlyingPutOrCall.offset >= 0 ? buf + fieldUnderlyingPutOrCall.offset : nullptr;
-     case FieldUnderlyingCouponPaymentDate::TAG : return fieldUnderlyingCouponPaymentDate.offset >= 0 ? buf + fieldUnderlyingCouponPaymentDate.offset : nullptr;
-     case FieldUnderlyingIssueDate::TAG : return fieldUnderlyingIssueDate.offset >= 0 ? buf + fieldUnderlyingIssueDate.offset : nullptr;
-     case FieldUnderlyingRepoCollateralSecurityType::TAG : return fieldUnderlyingRepoCollateralSecurityType.offset >= 0 ? buf + fieldUnderlyingRepoCollateralSecurityType.offset : nullptr;
-     case FieldUnderlyingRepurchaseTerm::TAG : return fieldUnderlyingRepurchaseTerm.offset >= 0 ? buf + fieldUnderlyingRepurchaseTerm.offset : nullptr;
-     case FieldUnderlyingRepurchaseRate::TAG : return fieldUnderlyingRepurchaseRate.offset >= 0 ? buf + fieldUnderlyingRepurchaseRate.offset : nullptr;
-     case FieldUnderlyingFactor::TAG : return fieldUnderlyingFactor.offset >= 0 ? buf + fieldUnderlyingFactor.offset : nullptr;
-     case FieldUnderlyingCreditRating::TAG : return fieldUnderlyingCreditRating.offset >= 0 ? buf + fieldUnderlyingCreditRating.offset : nullptr;
-     case FieldUnderlyingInstrRegistry::TAG : return fieldUnderlyingInstrRegistry.offset >= 0 ? buf + fieldUnderlyingInstrRegistry.offset : nullptr;
-     case FieldUnderlyingCountryOfIssue::TAG : return fieldUnderlyingCountryOfIssue.offset >= 0 ? buf + fieldUnderlyingCountryOfIssue.offset : nullptr;
-     case FieldUnderlyingStateOrProvinceOfIssue::TAG : return fieldUnderlyingStateOrProvinceOfIssue.offset >= 0 ? buf + fieldUnderlyingStateOrProvinceOfIssue.offset : nullptr;
-     case FieldUnderlyingLocaleOfIssue::TAG : return fieldUnderlyingLocaleOfIssue.offset >= 0 ? buf + fieldUnderlyingLocaleOfIssue.offset : nullptr;
-     case FieldUnderlyingRedemptionDate::TAG : return fieldUnderlyingRedemptionDate.offset >= 0 ? buf + fieldUnderlyingRedemptionDate.offset : nullptr;
-     case FieldUnderlyingStrikePrice::TAG : return fieldUnderlyingStrikePrice.offset >= 0 ? buf + fieldUnderlyingStrikePrice.offset : nullptr;
-     case FieldUnderlyingStrikeCurrency::TAG : return fieldUnderlyingStrikeCurrency.offset >= 0 ? buf + fieldUnderlyingStrikeCurrency.offset : nullptr;
-     case FieldUnderlyingOptAttribute::TAG : return fieldUnderlyingOptAttribute.offset >= 0 ? buf + fieldUnderlyingOptAttribute.offset : nullptr;
-     case FieldUnderlyingContractMultiplier::TAG : return fieldUnderlyingContractMultiplier.offset >= 0 ? buf + fieldUnderlyingContractMultiplier.offset : nullptr;
-     case FieldUnderlyingCouponRate::TAG : return fieldUnderlyingCouponRate.offset >= 0 ? buf + fieldUnderlyingCouponRate.offset : nullptr;
-     case FieldUnderlyingSecurityExchange::TAG : return fieldUnderlyingSecurityExchange.offset >= 0 ? buf + fieldUnderlyingSecurityExchange.offset : nullptr;
-     case FieldUnderlyingIssuer::TAG : return fieldUnderlyingIssuer.offset >= 0 ? buf + fieldUnderlyingIssuer.offset : nullptr;
-     case FieldEncodedUnderlyingIssuerLen::TAG : return fieldEncodedUnderlyingIssuerLen.offset >= 0 ? buf + fieldEncodedUnderlyingIssuerLen.offset : nullptr;
-     case FieldEncodedUnderlyingIssuer::TAG : return fieldEncodedUnderlyingIssuer.offset >= 0 ? buf + fieldEncodedUnderlyingIssuer.offset : nullptr;
-     case FieldUnderlyingSecurityDesc::TAG : return fieldUnderlyingSecurityDesc.offset >= 0 ? buf + fieldUnderlyingSecurityDesc.offset : nullptr;
-     case FieldEncodedUnderlyingSecurityDescLen::TAG : return fieldEncodedUnderlyingSecurityDescLen.offset >= 0 ? buf + fieldEncodedUnderlyingSecurityDescLen.offset : nullptr;
-     case FieldEncodedUnderlyingSecurityDesc::TAG : return fieldEncodedUnderlyingSecurityDesc.offset >= 0 ? buf + fieldEncodedUnderlyingSecurityDesc.offset : nullptr;
-     case FieldUnderlyingCPProgram::TAG : return fieldUnderlyingCPProgram.offset >= 0 ? buf + fieldUnderlyingCPProgram.offset : nullptr;
-     case FieldUnderlyingCPRegType::TAG : return fieldUnderlyingCPRegType.offset >= 0 ? buf + fieldUnderlyingCPRegType.offset : nullptr;
-     case FieldUnderlyingCurrency::TAG : return fieldUnderlyingCurrency.offset >= 0 ? buf + fieldUnderlyingCurrency.offset : nullptr;
-     case FieldUnderlyingQty::TAG : return fieldUnderlyingQty.offset >= 0 ? buf + fieldUnderlyingQty.offset : nullptr;
-     case FieldUnderlyingPx::TAG : return fieldUnderlyingPx.offset >= 0 ? buf + fieldUnderlyingPx.offset : nullptr;
-     case FieldUnderlyingDirtyPrice::TAG : return fieldUnderlyingDirtyPrice.offset >= 0 ? buf + fieldUnderlyingDirtyPrice.offset : nullptr;
-     case FieldUnderlyingEndPrice::TAG : return fieldUnderlyingEndPrice.offset >= 0 ? buf + fieldUnderlyingEndPrice.offset : nullptr;
-     case FieldUnderlyingStartValue::TAG : return fieldUnderlyingStartValue.offset >= 0 ? buf + fieldUnderlyingStartValue.offset : nullptr;
-     case FieldUnderlyingCurrentValue::TAG : return fieldUnderlyingCurrentValue.offset >= 0 ? buf + fieldUnderlyingCurrentValue.offset : nullptr;
-     case FieldUnderlyingEndValue::TAG : return fieldUnderlyingEndValue.offset >= 0 ? buf + fieldUnderlyingEndValue.offset : nullptr;
-     case FieldNoUnderlyingStips::TAG : return fieldNoUnderlyingStips.offset >= 0 ? buf + fieldNoUnderlyingStips.offset : nullptr;
-     case FieldUnderlyingSettlPrice::TAG : return fieldUnderlyingSettlPrice.offset >= 0 ? buf + fieldUnderlyingSettlPrice.offset : nullptr;
-     case FieldUnderlyingSettlPriceType::TAG : return fieldUnderlyingSettlPriceType.offset >= 0 ? buf + fieldUnderlyingSettlPriceType.offset : nullptr;
+     case FieldUnderlyingSymbol::TAG : return fieldUnderlyingSymbol.offset >= 0 ? _fixPtr + fieldUnderlyingSymbol.offset : nullptr;
+     case FieldUnderlyingSymbolSfx::TAG : return fieldUnderlyingSymbolSfx.offset >= 0 ? _fixPtr + fieldUnderlyingSymbolSfx.offset : nullptr;
+     case FieldUnderlyingSecurityID::TAG : return fieldUnderlyingSecurityID.offset >= 0 ? _fixPtr + fieldUnderlyingSecurityID.offset : nullptr;
+     case FieldUnderlyingSecurityIDSource::TAG : return fieldUnderlyingSecurityIDSource.offset >= 0 ? _fixPtr + fieldUnderlyingSecurityIDSource.offset : nullptr;
+     case FieldNoUnderlyingSecurityAltID::TAG : return fieldNoUnderlyingSecurityAltID.offset >= 0 ? _fixPtr + fieldNoUnderlyingSecurityAltID.offset : nullptr;
+     case FieldUnderlyingProduct::TAG : return fieldUnderlyingProduct.offset >= 0 ? _fixPtr + fieldUnderlyingProduct.offset : nullptr;
+     case FieldUnderlyingCFICode::TAG : return fieldUnderlyingCFICode.offset >= 0 ? _fixPtr + fieldUnderlyingCFICode.offset : nullptr;
+     case FieldUnderlyingSecurityType::TAG : return fieldUnderlyingSecurityType.offset >= 0 ? _fixPtr + fieldUnderlyingSecurityType.offset : nullptr;
+     case FieldUnderlyingSecuritySubType::TAG : return fieldUnderlyingSecuritySubType.offset >= 0 ? _fixPtr + fieldUnderlyingSecuritySubType.offset : nullptr;
+     case FieldUnderlyingMaturityMonthYear::TAG : return fieldUnderlyingMaturityMonthYear.offset >= 0 ? _fixPtr + fieldUnderlyingMaturityMonthYear.offset : nullptr;
+     case FieldUnderlyingMaturityDate::TAG : return fieldUnderlyingMaturityDate.offset >= 0 ? _fixPtr + fieldUnderlyingMaturityDate.offset : nullptr;
+     case FieldUnderlyingPutOrCall::TAG : return fieldUnderlyingPutOrCall.offset >= 0 ? _fixPtr + fieldUnderlyingPutOrCall.offset : nullptr;
+     case FieldUnderlyingCouponPaymentDate::TAG : return fieldUnderlyingCouponPaymentDate.offset >= 0 ? _fixPtr + fieldUnderlyingCouponPaymentDate.offset : nullptr;
+     case FieldUnderlyingIssueDate::TAG : return fieldUnderlyingIssueDate.offset >= 0 ? _fixPtr + fieldUnderlyingIssueDate.offset : nullptr;
+     case FieldUnderlyingRepoCollateralSecurityType::TAG : return fieldUnderlyingRepoCollateralSecurityType.offset >= 0 ? _fixPtr + fieldUnderlyingRepoCollateralSecurityType.offset : nullptr;
+     case FieldUnderlyingRepurchaseTerm::TAG : return fieldUnderlyingRepurchaseTerm.offset >= 0 ? _fixPtr + fieldUnderlyingRepurchaseTerm.offset : nullptr;
+     case FieldUnderlyingRepurchaseRate::TAG : return fieldUnderlyingRepurchaseRate.offset >= 0 ? _fixPtr + fieldUnderlyingRepurchaseRate.offset : nullptr;
+     case FieldUnderlyingFactor::TAG : return fieldUnderlyingFactor.offset >= 0 ? _fixPtr + fieldUnderlyingFactor.offset : nullptr;
+     case FieldUnderlyingCreditRating::TAG : return fieldUnderlyingCreditRating.offset >= 0 ? _fixPtr + fieldUnderlyingCreditRating.offset : nullptr;
+     case FieldUnderlyingInstrRegistry::TAG : return fieldUnderlyingInstrRegistry.offset >= 0 ? _fixPtr + fieldUnderlyingInstrRegistry.offset : nullptr;
+     case FieldUnderlyingCountryOfIssue::TAG : return fieldUnderlyingCountryOfIssue.offset >= 0 ? _fixPtr + fieldUnderlyingCountryOfIssue.offset : nullptr;
+     case FieldUnderlyingStateOrProvinceOfIssue::TAG : return fieldUnderlyingStateOrProvinceOfIssue.offset >= 0 ? _fixPtr + fieldUnderlyingStateOrProvinceOfIssue.offset : nullptr;
+     case FieldUnderlyingLocaleOfIssue::TAG : return fieldUnderlyingLocaleOfIssue.offset >= 0 ? _fixPtr + fieldUnderlyingLocaleOfIssue.offset : nullptr;
+     case FieldUnderlyingRedemptionDate::TAG : return fieldUnderlyingRedemptionDate.offset >= 0 ? _fixPtr + fieldUnderlyingRedemptionDate.offset : nullptr;
+     case FieldUnderlyingStrikePrice::TAG : return fieldUnderlyingStrikePrice.offset >= 0 ? _fixPtr + fieldUnderlyingStrikePrice.offset : nullptr;
+     case FieldUnderlyingStrikeCurrency::TAG : return fieldUnderlyingStrikeCurrency.offset >= 0 ? _fixPtr + fieldUnderlyingStrikeCurrency.offset : nullptr;
+     case FieldUnderlyingOptAttribute::TAG : return fieldUnderlyingOptAttribute.offset >= 0 ? _fixPtr + fieldUnderlyingOptAttribute.offset : nullptr;
+     case FieldUnderlyingContractMultiplier::TAG : return fieldUnderlyingContractMultiplier.offset >= 0 ? _fixPtr + fieldUnderlyingContractMultiplier.offset : nullptr;
+     case FieldUnderlyingCouponRate::TAG : return fieldUnderlyingCouponRate.offset >= 0 ? _fixPtr + fieldUnderlyingCouponRate.offset : nullptr;
+     case FieldUnderlyingSecurityExchange::TAG : return fieldUnderlyingSecurityExchange.offset >= 0 ? _fixPtr + fieldUnderlyingSecurityExchange.offset : nullptr;
+     case FieldUnderlyingIssuer::TAG : return fieldUnderlyingIssuer.offset >= 0 ? _fixPtr + fieldUnderlyingIssuer.offset : nullptr;
+     case FieldEncodedUnderlyingIssuerLen::TAG : return fieldEncodedUnderlyingIssuerLen.offset >= 0 ? _fixPtr + fieldEncodedUnderlyingIssuerLen.offset : nullptr;
+     case FieldEncodedUnderlyingIssuer::TAG : return fieldEncodedUnderlyingIssuer.offset >= 0 ? _fixPtr + fieldEncodedUnderlyingIssuer.offset : nullptr;
+     case FieldUnderlyingSecurityDesc::TAG : return fieldUnderlyingSecurityDesc.offset >= 0 ? _fixPtr + fieldUnderlyingSecurityDesc.offset : nullptr;
+     case FieldEncodedUnderlyingSecurityDescLen::TAG : return fieldEncodedUnderlyingSecurityDescLen.offset >= 0 ? _fixPtr + fieldEncodedUnderlyingSecurityDescLen.offset : nullptr;
+     case FieldEncodedUnderlyingSecurityDesc::TAG : return fieldEncodedUnderlyingSecurityDesc.offset >= 0 ? _fixPtr + fieldEncodedUnderlyingSecurityDesc.offset : nullptr;
+     case FieldUnderlyingCPProgram::TAG : return fieldUnderlyingCPProgram.offset >= 0 ? _fixPtr + fieldUnderlyingCPProgram.offset : nullptr;
+     case FieldUnderlyingCPRegType::TAG : return fieldUnderlyingCPRegType.offset >= 0 ? _fixPtr + fieldUnderlyingCPRegType.offset : nullptr;
+     case FieldUnderlyingCurrency::TAG : return fieldUnderlyingCurrency.offset >= 0 ? _fixPtr + fieldUnderlyingCurrency.offset : nullptr;
+     case FieldUnderlyingQty::TAG : return fieldUnderlyingQty.offset >= 0 ? _fixPtr + fieldUnderlyingQty.offset : nullptr;
+     case FieldUnderlyingPx::TAG : return fieldUnderlyingPx.offset >= 0 ? _fixPtr + fieldUnderlyingPx.offset : nullptr;
+     case FieldUnderlyingDirtyPrice::TAG : return fieldUnderlyingDirtyPrice.offset >= 0 ? _fixPtr + fieldUnderlyingDirtyPrice.offset : nullptr;
+     case FieldUnderlyingEndPrice::TAG : return fieldUnderlyingEndPrice.offset >= 0 ? _fixPtr + fieldUnderlyingEndPrice.offset : nullptr;
+     case FieldUnderlyingStartValue::TAG : return fieldUnderlyingStartValue.offset >= 0 ? _fixPtr + fieldUnderlyingStartValue.offset : nullptr;
+     case FieldUnderlyingCurrentValue::TAG : return fieldUnderlyingCurrentValue.offset >= 0 ? _fixPtr + fieldUnderlyingCurrentValue.offset : nullptr;
+     case FieldUnderlyingEndValue::TAG : return fieldUnderlyingEndValue.offset >= 0 ? _fixPtr + fieldUnderlyingEndValue.offset : nullptr;
+     case FieldNoUnderlyingStips::TAG : return fieldNoUnderlyingStips.offset >= 0 ? _fixPtr + fieldNoUnderlyingStips.offset : nullptr;
+     case FieldUnderlyingSettlPrice::TAG : return fieldUnderlyingSettlPrice.offset >= 0 ? _fixPtr + fieldUnderlyingSettlPrice.offset : nullptr;
+     case FieldUnderlyingSettlPriceType::TAG : return fieldUnderlyingSettlPriceType.offset >= 0 ? _fixPtr + fieldUnderlyingSettlPriceType.offset : nullptr;
 
      default : return nullptr; 
    }
@@ -10671,10 +10848,10 @@ const char * GroupUnderlyings::getFieldValue( unsigned tag ) const {
 }
 
 const char * GroupStipulations::getFieldValue( unsigned tag ) const {
-   if( buf == nullptr ) return nullptr;
+   if( _fixPtr == nullptr ) return nullptr;
    switch( tag ){
-     case FieldStipulationType::TAG : return fieldStipulationType.offset >= 0 ? buf + fieldStipulationType.offset : nullptr;
-     case FieldStipulationValue::TAG : return fieldStipulationValue.offset >= 0 ? buf + fieldStipulationValue.offset : nullptr;
+     case FieldStipulationType::TAG : return fieldStipulationType.offset >= 0 ? _fixPtr + fieldStipulationType.offset : nullptr;
+     case FieldStipulationValue::TAG : return fieldStipulationValue.offset >= 0 ? _fixPtr + fieldStipulationValue.offset : nullptr;
 
      default : return nullptr; 
    }
@@ -10682,155 +10859,155 @@ const char * GroupStipulations::getFieldValue( unsigned tag ) const {
 }
 
 const char * GroupOrders::getFieldValue( unsigned tag ) const {
-   if( buf == nullptr ) return nullptr;
+   if( _fixPtr == nullptr ) return nullptr;
    switch( tag ){
-     case FieldClOrdID::TAG : return fieldClOrdID.offset >= 0 ? buf + fieldClOrdID.offset : nullptr;
-     case FieldSecondaryClOrdID::TAG : return fieldSecondaryClOrdID.offset >= 0 ? buf + fieldSecondaryClOrdID.offset : nullptr;
-     case FieldListSeqNo::TAG : return fieldListSeqNo.offset >= 0 ? buf + fieldListSeqNo.offset : nullptr;
-     case FieldClOrdLinkID::TAG : return fieldClOrdLinkID.offset >= 0 ? buf + fieldClOrdLinkID.offset : nullptr;
-     case FieldSettlInstMode::TAG : return fieldSettlInstMode.offset >= 0 ? buf + fieldSettlInstMode.offset : nullptr;
-     case FieldNoPartyIDs::TAG : return fieldNoPartyIDs.offset >= 0 ? buf + fieldNoPartyIDs.offset : nullptr;
-     case FieldTradeOriginationDate::TAG : return fieldTradeOriginationDate.offset >= 0 ? buf + fieldTradeOriginationDate.offset : nullptr;
-     case FieldTradeDate::TAG : return fieldTradeDate.offset >= 0 ? buf + fieldTradeDate.offset : nullptr;
-     case FieldAccount::TAG : return fieldAccount.offset >= 0 ? buf + fieldAccount.offset : nullptr;
-     case FieldAcctIDSource::TAG : return fieldAcctIDSource.offset >= 0 ? buf + fieldAcctIDSource.offset : nullptr;
-     case FieldAccountType::TAG : return fieldAccountType.offset >= 0 ? buf + fieldAccountType.offset : nullptr;
-     case FieldDayBookingInst::TAG : return fieldDayBookingInst.offset >= 0 ? buf + fieldDayBookingInst.offset : nullptr;
-     case FieldBookingUnit::TAG : return fieldBookingUnit.offset >= 0 ? buf + fieldBookingUnit.offset : nullptr;
-     case FieldAllocID::TAG : return fieldAllocID.offset >= 0 ? buf + fieldAllocID.offset : nullptr;
-     case FieldPreallocMethod::TAG : return fieldPreallocMethod.offset >= 0 ? buf + fieldPreallocMethod.offset : nullptr;
-     case FieldNoAllocs::TAG : return fieldNoAllocs.offset >= 0 ? buf + fieldNoAllocs.offset : nullptr;
-     case FieldSettlType::TAG : return fieldSettlType.offset >= 0 ? buf + fieldSettlType.offset : nullptr;
-     case FieldSettlDate::TAG : return fieldSettlDate.offset >= 0 ? buf + fieldSettlDate.offset : nullptr;
-     case FieldCashMargin::TAG : return fieldCashMargin.offset >= 0 ? buf + fieldCashMargin.offset : nullptr;
-     case FieldClearingFeeIndicator::TAG : return fieldClearingFeeIndicator.offset >= 0 ? buf + fieldClearingFeeIndicator.offset : nullptr;
-     case FieldHandlInst::TAG : return fieldHandlInst.offset >= 0 ? buf + fieldHandlInst.offset : nullptr;
-     case FieldExecInst::TAG : return fieldExecInst.offset >= 0 ? buf + fieldExecInst.offset : nullptr;
-     case FieldMinQty::TAG : return fieldMinQty.offset >= 0 ? buf + fieldMinQty.offset : nullptr;
-     case FieldMaxFloor::TAG : return fieldMaxFloor.offset >= 0 ? buf + fieldMaxFloor.offset : nullptr;
-     case FieldExDestination::TAG : return fieldExDestination.offset >= 0 ? buf + fieldExDestination.offset : nullptr;
-     case FieldNoTradingSessions::TAG : return fieldNoTradingSessions.offset >= 0 ? buf + fieldNoTradingSessions.offset : nullptr;
-     case FieldProcessCode::TAG : return fieldProcessCode.offset >= 0 ? buf + fieldProcessCode.offset : nullptr;
-     case FieldSymbol::TAG : return fieldSymbol.offset >= 0 ? buf + fieldSymbol.offset : nullptr;
-     case FieldSymbolSfx::TAG : return fieldSymbolSfx.offset >= 0 ? buf + fieldSymbolSfx.offset : nullptr;
-     case FieldSecurityID::TAG : return fieldSecurityID.offset >= 0 ? buf + fieldSecurityID.offset : nullptr;
-     case FieldSecurityIDSource::TAG : return fieldSecurityIDSource.offset >= 0 ? buf + fieldSecurityIDSource.offset : nullptr;
-     case FieldNoSecurityAltID::TAG : return fieldNoSecurityAltID.offset >= 0 ? buf + fieldNoSecurityAltID.offset : nullptr;
-     case FieldProduct::TAG : return fieldProduct.offset >= 0 ? buf + fieldProduct.offset : nullptr;
-     case FieldCFICode::TAG : return fieldCFICode.offset >= 0 ? buf + fieldCFICode.offset : nullptr;
-     case FieldSecurityType::TAG : return fieldSecurityType.offset >= 0 ? buf + fieldSecurityType.offset : nullptr;
-     case FieldSecuritySubType::TAG : return fieldSecuritySubType.offset >= 0 ? buf + fieldSecuritySubType.offset : nullptr;
-     case FieldMaturityMonthYear::TAG : return fieldMaturityMonthYear.offset >= 0 ? buf + fieldMaturityMonthYear.offset : nullptr;
-     case FieldMaturityDate::TAG : return fieldMaturityDate.offset >= 0 ? buf + fieldMaturityDate.offset : nullptr;
-     case FieldPutOrCall::TAG : return fieldPutOrCall.offset >= 0 ? buf + fieldPutOrCall.offset : nullptr;
-     case FieldCouponPaymentDate::TAG : return fieldCouponPaymentDate.offset >= 0 ? buf + fieldCouponPaymentDate.offset : nullptr;
-     case FieldIssueDate::TAG : return fieldIssueDate.offset >= 0 ? buf + fieldIssueDate.offset : nullptr;
-     case FieldRepoCollateralSecurityType::TAG : return fieldRepoCollateralSecurityType.offset >= 0 ? buf + fieldRepoCollateralSecurityType.offset : nullptr;
-     case FieldRepurchaseTerm::TAG : return fieldRepurchaseTerm.offset >= 0 ? buf + fieldRepurchaseTerm.offset : nullptr;
-     case FieldRepurchaseRate::TAG : return fieldRepurchaseRate.offset >= 0 ? buf + fieldRepurchaseRate.offset : nullptr;
-     case FieldFactor::TAG : return fieldFactor.offset >= 0 ? buf + fieldFactor.offset : nullptr;
-     case FieldCreditRating::TAG : return fieldCreditRating.offset >= 0 ? buf + fieldCreditRating.offset : nullptr;
-     case FieldInstrRegistry::TAG : return fieldInstrRegistry.offset >= 0 ? buf + fieldInstrRegistry.offset : nullptr;
-     case FieldCountryOfIssue::TAG : return fieldCountryOfIssue.offset >= 0 ? buf + fieldCountryOfIssue.offset : nullptr;
-     case FieldStateOrProvinceOfIssue::TAG : return fieldStateOrProvinceOfIssue.offset >= 0 ? buf + fieldStateOrProvinceOfIssue.offset : nullptr;
-     case FieldLocaleOfIssue::TAG : return fieldLocaleOfIssue.offset >= 0 ? buf + fieldLocaleOfIssue.offset : nullptr;
-     case FieldRedemptionDate::TAG : return fieldRedemptionDate.offset >= 0 ? buf + fieldRedemptionDate.offset : nullptr;
-     case FieldStrikePrice::TAG : return fieldStrikePrice.offset >= 0 ? buf + fieldStrikePrice.offset : nullptr;
-     case FieldStrikeCurrency::TAG : return fieldStrikeCurrency.offset >= 0 ? buf + fieldStrikeCurrency.offset : nullptr;
-     case FieldOptAttribute::TAG : return fieldOptAttribute.offset >= 0 ? buf + fieldOptAttribute.offset : nullptr;
-     case FieldContractMultiplier::TAG : return fieldContractMultiplier.offset >= 0 ? buf + fieldContractMultiplier.offset : nullptr;
-     case FieldCouponRate::TAG : return fieldCouponRate.offset >= 0 ? buf + fieldCouponRate.offset : nullptr;
-     case FieldSecurityExchange::TAG : return fieldSecurityExchange.offset >= 0 ? buf + fieldSecurityExchange.offset : nullptr;
-     case FieldIssuer::TAG : return fieldIssuer.offset >= 0 ? buf + fieldIssuer.offset : nullptr;
-     case FieldEncodedIssuerLen::TAG : return fieldEncodedIssuerLen.offset >= 0 ? buf + fieldEncodedIssuerLen.offset : nullptr;
-     case FieldEncodedIssuer::TAG : return fieldEncodedIssuer.offset >= 0 ? buf + fieldEncodedIssuer.offset : nullptr;
-     case FieldSecurityDesc::TAG : return fieldSecurityDesc.offset >= 0 ? buf + fieldSecurityDesc.offset : nullptr;
-     case FieldEncodedSecurityDescLen::TAG : return fieldEncodedSecurityDescLen.offset >= 0 ? buf + fieldEncodedSecurityDescLen.offset : nullptr;
-     case FieldEncodedSecurityDesc::TAG : return fieldEncodedSecurityDesc.offset >= 0 ? buf + fieldEncodedSecurityDesc.offset : nullptr;
-     case FieldPool::TAG : return fieldPool.offset >= 0 ? buf + fieldPool.offset : nullptr;
-     case FieldContractSettlMonth::TAG : return fieldContractSettlMonth.offset >= 0 ? buf + fieldContractSettlMonth.offset : nullptr;
-     case FieldCPProgram::TAG : return fieldCPProgram.offset >= 0 ? buf + fieldCPProgram.offset : nullptr;
-     case FieldCPRegType::TAG : return fieldCPRegType.offset >= 0 ? buf + fieldCPRegType.offset : nullptr;
-     case FieldNoEvents::TAG : return fieldNoEvents.offset >= 0 ? buf + fieldNoEvents.offset : nullptr;
-     case FieldDatedDate::TAG : return fieldDatedDate.offset >= 0 ? buf + fieldDatedDate.offset : nullptr;
-     case FieldInterestAccrualDate::TAG : return fieldInterestAccrualDate.offset >= 0 ? buf + fieldInterestAccrualDate.offset : nullptr;
-     case FieldNoUnderlyings::TAG : return fieldNoUnderlyings.offset >= 0 ? buf + fieldNoUnderlyings.offset : nullptr;
-     case FieldPrevClosePx::TAG : return fieldPrevClosePx.offset >= 0 ? buf + fieldPrevClosePx.offset : nullptr;
-     case FieldSide::TAG : return fieldSide.offset >= 0 ? buf + fieldSide.offset : nullptr;
-     case FieldSideValueInd::TAG : return fieldSideValueInd.offset >= 0 ? buf + fieldSideValueInd.offset : nullptr;
-     case FieldLocateReqd::TAG : return fieldLocateReqd.offset >= 0 ? buf + fieldLocateReqd.offset : nullptr;
-     case FieldTransactTime::TAG : return fieldTransactTime.offset >= 0 ? buf + fieldTransactTime.offset : nullptr;
-     case FieldNoStipulations::TAG : return fieldNoStipulations.offset >= 0 ? buf + fieldNoStipulations.offset : nullptr;
-     case FieldQtyType::TAG : return fieldQtyType.offset >= 0 ? buf + fieldQtyType.offset : nullptr;
-     case FieldOrderQty::TAG : return fieldOrderQty.offset >= 0 ? buf + fieldOrderQty.offset : nullptr;
-     case FieldCashOrderQty::TAG : return fieldCashOrderQty.offset >= 0 ? buf + fieldCashOrderQty.offset : nullptr;
-     case FieldOrderPercent::TAG : return fieldOrderPercent.offset >= 0 ? buf + fieldOrderPercent.offset : nullptr;
-     case FieldRoundingDirection::TAG : return fieldRoundingDirection.offset >= 0 ? buf + fieldRoundingDirection.offset : nullptr;
-     case FieldRoundingModulus::TAG : return fieldRoundingModulus.offset >= 0 ? buf + fieldRoundingModulus.offset : nullptr;
-     case FieldOrdType::TAG : return fieldOrdType.offset >= 0 ? buf + fieldOrdType.offset : nullptr;
-     case FieldPriceType::TAG : return fieldPriceType.offset >= 0 ? buf + fieldPriceType.offset : nullptr;
-     case FieldPrice::TAG : return fieldPrice.offset >= 0 ? buf + fieldPrice.offset : nullptr;
-     case FieldStopPx::TAG : return fieldStopPx.offset >= 0 ? buf + fieldStopPx.offset : nullptr;
-     case FieldSpread::TAG : return fieldSpread.offset >= 0 ? buf + fieldSpread.offset : nullptr;
-     case FieldBenchmarkCurveCurrency::TAG : return fieldBenchmarkCurveCurrency.offset >= 0 ? buf + fieldBenchmarkCurveCurrency.offset : nullptr;
-     case FieldBenchmarkCurveName::TAG : return fieldBenchmarkCurveName.offset >= 0 ? buf + fieldBenchmarkCurveName.offset : nullptr;
-     case FieldBenchmarkCurvePoint::TAG : return fieldBenchmarkCurvePoint.offset >= 0 ? buf + fieldBenchmarkCurvePoint.offset : nullptr;
-     case FieldBenchmarkPrice::TAG : return fieldBenchmarkPrice.offset >= 0 ? buf + fieldBenchmarkPrice.offset : nullptr;
-     case FieldBenchmarkPriceType::TAG : return fieldBenchmarkPriceType.offset >= 0 ? buf + fieldBenchmarkPriceType.offset : nullptr;
-     case FieldBenchmarkSecurityID::TAG : return fieldBenchmarkSecurityID.offset >= 0 ? buf + fieldBenchmarkSecurityID.offset : nullptr;
-     case FieldBenchmarkSecurityIDSource::TAG : return fieldBenchmarkSecurityIDSource.offset >= 0 ? buf + fieldBenchmarkSecurityIDSource.offset : nullptr;
-     case FieldYieldType::TAG : return fieldYieldType.offset >= 0 ? buf + fieldYieldType.offset : nullptr;
-     case FieldYield::TAG : return fieldYield.offset >= 0 ? buf + fieldYield.offset : nullptr;
-     case FieldYieldCalcDate::TAG : return fieldYieldCalcDate.offset >= 0 ? buf + fieldYieldCalcDate.offset : nullptr;
-     case FieldYieldRedemptionDate::TAG : return fieldYieldRedemptionDate.offset >= 0 ? buf + fieldYieldRedemptionDate.offset : nullptr;
-     case FieldYieldRedemptionPrice::TAG : return fieldYieldRedemptionPrice.offset >= 0 ? buf + fieldYieldRedemptionPrice.offset : nullptr;
-     case FieldYieldRedemptionPriceType::TAG : return fieldYieldRedemptionPriceType.offset >= 0 ? buf + fieldYieldRedemptionPriceType.offset : nullptr;
-     case FieldCurrency::TAG : return fieldCurrency.offset >= 0 ? buf + fieldCurrency.offset : nullptr;
-     case FieldComplianceID::TAG : return fieldComplianceID.offset >= 0 ? buf + fieldComplianceID.offset : nullptr;
-     case FieldSolicitedFlag::TAG : return fieldSolicitedFlag.offset >= 0 ? buf + fieldSolicitedFlag.offset : nullptr;
-     case FieldIOIID::TAG : return fieldIOIID.offset >= 0 ? buf + fieldIOIID.offset : nullptr;
-     case FieldQuoteID::TAG : return fieldQuoteID.offset >= 0 ? buf + fieldQuoteID.offset : nullptr;
-     case FieldTimeInForce::TAG : return fieldTimeInForce.offset >= 0 ? buf + fieldTimeInForce.offset : nullptr;
-     case FieldEffectiveTime::TAG : return fieldEffectiveTime.offset >= 0 ? buf + fieldEffectiveTime.offset : nullptr;
-     case FieldExpireDate::TAG : return fieldExpireDate.offset >= 0 ? buf + fieldExpireDate.offset : nullptr;
-     case FieldExpireTime::TAG : return fieldExpireTime.offset >= 0 ? buf + fieldExpireTime.offset : nullptr;
-     case FieldGTBookingInst::TAG : return fieldGTBookingInst.offset >= 0 ? buf + fieldGTBookingInst.offset : nullptr;
-     case FieldCommission::TAG : return fieldCommission.offset >= 0 ? buf + fieldCommission.offset : nullptr;
-     case FieldCommType::TAG : return fieldCommType.offset >= 0 ? buf + fieldCommType.offset : nullptr;
-     case FieldCommCurrency::TAG : return fieldCommCurrency.offset >= 0 ? buf + fieldCommCurrency.offset : nullptr;
-     case FieldFundRenewWaiv::TAG : return fieldFundRenewWaiv.offset >= 0 ? buf + fieldFundRenewWaiv.offset : nullptr;
-     case FieldOrderCapacity::TAG : return fieldOrderCapacity.offset >= 0 ? buf + fieldOrderCapacity.offset : nullptr;
-     case FieldOrderRestrictions::TAG : return fieldOrderRestrictions.offset >= 0 ? buf + fieldOrderRestrictions.offset : nullptr;
-     case FieldCustOrderCapacity::TAG : return fieldCustOrderCapacity.offset >= 0 ? buf + fieldCustOrderCapacity.offset : nullptr;
-     case FieldForexReq::TAG : return fieldForexReq.offset >= 0 ? buf + fieldForexReq.offset : nullptr;
-     case FieldSettlCurrency::TAG : return fieldSettlCurrency.offset >= 0 ? buf + fieldSettlCurrency.offset : nullptr;
-     case FieldBookingType::TAG : return fieldBookingType.offset >= 0 ? buf + fieldBookingType.offset : nullptr;
-     case FieldText::TAG : return fieldText.offset >= 0 ? buf + fieldText.offset : nullptr;
-     case FieldEncodedTextLen::TAG : return fieldEncodedTextLen.offset >= 0 ? buf + fieldEncodedTextLen.offset : nullptr;
-     case FieldEncodedText::TAG : return fieldEncodedText.offset >= 0 ? buf + fieldEncodedText.offset : nullptr;
-     case FieldSettlDate2::TAG : return fieldSettlDate2.offset >= 0 ? buf + fieldSettlDate2.offset : nullptr;
-     case FieldOrderQty2::TAG : return fieldOrderQty2.offset >= 0 ? buf + fieldOrderQty2.offset : nullptr;
-     case FieldPrice2::TAG : return fieldPrice2.offset >= 0 ? buf + fieldPrice2.offset : nullptr;
-     case FieldPositionEffect::TAG : return fieldPositionEffect.offset >= 0 ? buf + fieldPositionEffect.offset : nullptr;
-     case FieldCoveredOrUncovered::TAG : return fieldCoveredOrUncovered.offset >= 0 ? buf + fieldCoveredOrUncovered.offset : nullptr;
-     case FieldMaxShow::TAG : return fieldMaxShow.offset >= 0 ? buf + fieldMaxShow.offset : nullptr;
-     case FieldPegOffsetValue::TAG : return fieldPegOffsetValue.offset >= 0 ? buf + fieldPegOffsetValue.offset : nullptr;
-     case FieldPegMoveType::TAG : return fieldPegMoveType.offset >= 0 ? buf + fieldPegMoveType.offset : nullptr;
-     case FieldPegOffsetType::TAG : return fieldPegOffsetType.offset >= 0 ? buf + fieldPegOffsetType.offset : nullptr;
-     case FieldPegLimitType::TAG : return fieldPegLimitType.offset >= 0 ? buf + fieldPegLimitType.offset : nullptr;
-     case FieldPegRoundDirection::TAG : return fieldPegRoundDirection.offset >= 0 ? buf + fieldPegRoundDirection.offset : nullptr;
-     case FieldPegScope::TAG : return fieldPegScope.offset >= 0 ? buf + fieldPegScope.offset : nullptr;
-     case FieldDiscretionInst::TAG : return fieldDiscretionInst.offset >= 0 ? buf + fieldDiscretionInst.offset : nullptr;
-     case FieldDiscretionOffsetValue::TAG : return fieldDiscretionOffsetValue.offset >= 0 ? buf + fieldDiscretionOffsetValue.offset : nullptr;
-     case FieldDiscretionMoveType::TAG : return fieldDiscretionMoveType.offset >= 0 ? buf + fieldDiscretionMoveType.offset : nullptr;
-     case FieldDiscretionOffsetType::TAG : return fieldDiscretionOffsetType.offset >= 0 ? buf + fieldDiscretionOffsetType.offset : nullptr;
-     case FieldDiscretionLimitType::TAG : return fieldDiscretionLimitType.offset >= 0 ? buf + fieldDiscretionLimitType.offset : nullptr;
-     case FieldDiscretionRoundDirection::TAG : return fieldDiscretionRoundDirection.offset >= 0 ? buf + fieldDiscretionRoundDirection.offset : nullptr;
-     case FieldDiscretionScope::TAG : return fieldDiscretionScope.offset >= 0 ? buf + fieldDiscretionScope.offset : nullptr;
-     case FieldTargetStrategy::TAG : return fieldTargetStrategy.offset >= 0 ? buf + fieldTargetStrategy.offset : nullptr;
-     case FieldTargetStrategyParameters::TAG : return fieldTargetStrategyParameters.offset >= 0 ? buf + fieldTargetStrategyParameters.offset : nullptr;
-     case FieldParticipationRate::TAG : return fieldParticipationRate.offset >= 0 ? buf + fieldParticipationRate.offset : nullptr;
-     case FieldDesignation::TAG : return fieldDesignation.offset >= 0 ? buf + fieldDesignation.offset : nullptr;
+     case FieldClOrdID::TAG : return fieldClOrdID.offset >= 0 ? _fixPtr + fieldClOrdID.offset : nullptr;
+     case FieldSecondaryClOrdID::TAG : return fieldSecondaryClOrdID.offset >= 0 ? _fixPtr + fieldSecondaryClOrdID.offset : nullptr;
+     case FieldListSeqNo::TAG : return fieldListSeqNo.offset >= 0 ? _fixPtr + fieldListSeqNo.offset : nullptr;
+     case FieldClOrdLinkID::TAG : return fieldClOrdLinkID.offset >= 0 ? _fixPtr + fieldClOrdLinkID.offset : nullptr;
+     case FieldSettlInstMode::TAG : return fieldSettlInstMode.offset >= 0 ? _fixPtr + fieldSettlInstMode.offset : nullptr;
+     case FieldNoPartyIDs::TAG : return fieldNoPartyIDs.offset >= 0 ? _fixPtr + fieldNoPartyIDs.offset : nullptr;
+     case FieldTradeOriginationDate::TAG : return fieldTradeOriginationDate.offset >= 0 ? _fixPtr + fieldTradeOriginationDate.offset : nullptr;
+     case FieldTradeDate::TAG : return fieldTradeDate.offset >= 0 ? _fixPtr + fieldTradeDate.offset : nullptr;
+     case FieldAccount::TAG : return fieldAccount.offset >= 0 ? _fixPtr + fieldAccount.offset : nullptr;
+     case FieldAcctIDSource::TAG : return fieldAcctIDSource.offset >= 0 ? _fixPtr + fieldAcctIDSource.offset : nullptr;
+     case FieldAccountType::TAG : return fieldAccountType.offset >= 0 ? _fixPtr + fieldAccountType.offset : nullptr;
+     case FieldDayBookingInst::TAG : return fieldDayBookingInst.offset >= 0 ? _fixPtr + fieldDayBookingInst.offset : nullptr;
+     case FieldBookingUnit::TAG : return fieldBookingUnit.offset >= 0 ? _fixPtr + fieldBookingUnit.offset : nullptr;
+     case FieldAllocID::TAG : return fieldAllocID.offset >= 0 ? _fixPtr + fieldAllocID.offset : nullptr;
+     case FieldPreallocMethod::TAG : return fieldPreallocMethod.offset >= 0 ? _fixPtr + fieldPreallocMethod.offset : nullptr;
+     case FieldNoAllocs::TAG : return fieldNoAllocs.offset >= 0 ? _fixPtr + fieldNoAllocs.offset : nullptr;
+     case FieldSettlType::TAG : return fieldSettlType.offset >= 0 ? _fixPtr + fieldSettlType.offset : nullptr;
+     case FieldSettlDate::TAG : return fieldSettlDate.offset >= 0 ? _fixPtr + fieldSettlDate.offset : nullptr;
+     case FieldCashMargin::TAG : return fieldCashMargin.offset >= 0 ? _fixPtr + fieldCashMargin.offset : nullptr;
+     case FieldClearingFeeIndicator::TAG : return fieldClearingFeeIndicator.offset >= 0 ? _fixPtr + fieldClearingFeeIndicator.offset : nullptr;
+     case FieldHandlInst::TAG : return fieldHandlInst.offset >= 0 ? _fixPtr + fieldHandlInst.offset : nullptr;
+     case FieldExecInst::TAG : return fieldExecInst.offset >= 0 ? _fixPtr + fieldExecInst.offset : nullptr;
+     case FieldMinQty::TAG : return fieldMinQty.offset >= 0 ? _fixPtr + fieldMinQty.offset : nullptr;
+     case FieldMaxFloor::TAG : return fieldMaxFloor.offset >= 0 ? _fixPtr + fieldMaxFloor.offset : nullptr;
+     case FieldExDestination::TAG : return fieldExDestination.offset >= 0 ? _fixPtr + fieldExDestination.offset : nullptr;
+     case FieldNoTradingSessions::TAG : return fieldNoTradingSessions.offset >= 0 ? _fixPtr + fieldNoTradingSessions.offset : nullptr;
+     case FieldProcessCode::TAG : return fieldProcessCode.offset >= 0 ? _fixPtr + fieldProcessCode.offset : nullptr;
+     case FieldSymbol::TAG : return fieldSymbol.offset >= 0 ? _fixPtr + fieldSymbol.offset : nullptr;
+     case FieldSymbolSfx::TAG : return fieldSymbolSfx.offset >= 0 ? _fixPtr + fieldSymbolSfx.offset : nullptr;
+     case FieldSecurityID::TAG : return fieldSecurityID.offset >= 0 ? _fixPtr + fieldSecurityID.offset : nullptr;
+     case FieldSecurityIDSource::TAG : return fieldSecurityIDSource.offset >= 0 ? _fixPtr + fieldSecurityIDSource.offset : nullptr;
+     case FieldNoSecurityAltID::TAG : return fieldNoSecurityAltID.offset >= 0 ? _fixPtr + fieldNoSecurityAltID.offset : nullptr;
+     case FieldProduct::TAG : return fieldProduct.offset >= 0 ? _fixPtr + fieldProduct.offset : nullptr;
+     case FieldCFICode::TAG : return fieldCFICode.offset >= 0 ? _fixPtr + fieldCFICode.offset : nullptr;
+     case FieldSecurityType::TAG : return fieldSecurityType.offset >= 0 ? _fixPtr + fieldSecurityType.offset : nullptr;
+     case FieldSecuritySubType::TAG : return fieldSecuritySubType.offset >= 0 ? _fixPtr + fieldSecuritySubType.offset : nullptr;
+     case FieldMaturityMonthYear::TAG : return fieldMaturityMonthYear.offset >= 0 ? _fixPtr + fieldMaturityMonthYear.offset : nullptr;
+     case FieldMaturityDate::TAG : return fieldMaturityDate.offset >= 0 ? _fixPtr + fieldMaturityDate.offset : nullptr;
+     case FieldPutOrCall::TAG : return fieldPutOrCall.offset >= 0 ? _fixPtr + fieldPutOrCall.offset : nullptr;
+     case FieldCouponPaymentDate::TAG : return fieldCouponPaymentDate.offset >= 0 ? _fixPtr + fieldCouponPaymentDate.offset : nullptr;
+     case FieldIssueDate::TAG : return fieldIssueDate.offset >= 0 ? _fixPtr + fieldIssueDate.offset : nullptr;
+     case FieldRepoCollateralSecurityType::TAG : return fieldRepoCollateralSecurityType.offset >= 0 ? _fixPtr + fieldRepoCollateralSecurityType.offset : nullptr;
+     case FieldRepurchaseTerm::TAG : return fieldRepurchaseTerm.offset >= 0 ? _fixPtr + fieldRepurchaseTerm.offset : nullptr;
+     case FieldRepurchaseRate::TAG : return fieldRepurchaseRate.offset >= 0 ? _fixPtr + fieldRepurchaseRate.offset : nullptr;
+     case FieldFactor::TAG : return fieldFactor.offset >= 0 ? _fixPtr + fieldFactor.offset : nullptr;
+     case FieldCreditRating::TAG : return fieldCreditRating.offset >= 0 ? _fixPtr + fieldCreditRating.offset : nullptr;
+     case FieldInstrRegistry::TAG : return fieldInstrRegistry.offset >= 0 ? _fixPtr + fieldInstrRegistry.offset : nullptr;
+     case FieldCountryOfIssue::TAG : return fieldCountryOfIssue.offset >= 0 ? _fixPtr + fieldCountryOfIssue.offset : nullptr;
+     case FieldStateOrProvinceOfIssue::TAG : return fieldStateOrProvinceOfIssue.offset >= 0 ? _fixPtr + fieldStateOrProvinceOfIssue.offset : nullptr;
+     case FieldLocaleOfIssue::TAG : return fieldLocaleOfIssue.offset >= 0 ? _fixPtr + fieldLocaleOfIssue.offset : nullptr;
+     case FieldRedemptionDate::TAG : return fieldRedemptionDate.offset >= 0 ? _fixPtr + fieldRedemptionDate.offset : nullptr;
+     case FieldStrikePrice::TAG : return fieldStrikePrice.offset >= 0 ? _fixPtr + fieldStrikePrice.offset : nullptr;
+     case FieldStrikeCurrency::TAG : return fieldStrikeCurrency.offset >= 0 ? _fixPtr + fieldStrikeCurrency.offset : nullptr;
+     case FieldOptAttribute::TAG : return fieldOptAttribute.offset >= 0 ? _fixPtr + fieldOptAttribute.offset : nullptr;
+     case FieldContractMultiplier::TAG : return fieldContractMultiplier.offset >= 0 ? _fixPtr + fieldContractMultiplier.offset : nullptr;
+     case FieldCouponRate::TAG : return fieldCouponRate.offset >= 0 ? _fixPtr + fieldCouponRate.offset : nullptr;
+     case FieldSecurityExchange::TAG : return fieldSecurityExchange.offset >= 0 ? _fixPtr + fieldSecurityExchange.offset : nullptr;
+     case FieldIssuer::TAG : return fieldIssuer.offset >= 0 ? _fixPtr + fieldIssuer.offset : nullptr;
+     case FieldEncodedIssuerLen::TAG : return fieldEncodedIssuerLen.offset >= 0 ? _fixPtr + fieldEncodedIssuerLen.offset : nullptr;
+     case FieldEncodedIssuer::TAG : return fieldEncodedIssuer.offset >= 0 ? _fixPtr + fieldEncodedIssuer.offset : nullptr;
+     case FieldSecurityDesc::TAG : return fieldSecurityDesc.offset >= 0 ? _fixPtr + fieldSecurityDesc.offset : nullptr;
+     case FieldEncodedSecurityDescLen::TAG : return fieldEncodedSecurityDescLen.offset >= 0 ? _fixPtr + fieldEncodedSecurityDescLen.offset : nullptr;
+     case FieldEncodedSecurityDesc::TAG : return fieldEncodedSecurityDesc.offset >= 0 ? _fixPtr + fieldEncodedSecurityDesc.offset : nullptr;
+     case FieldPool::TAG : return fieldPool.offset >= 0 ? _fixPtr + fieldPool.offset : nullptr;
+     case FieldContractSettlMonth::TAG : return fieldContractSettlMonth.offset >= 0 ? _fixPtr + fieldContractSettlMonth.offset : nullptr;
+     case FieldCPProgram::TAG : return fieldCPProgram.offset >= 0 ? _fixPtr + fieldCPProgram.offset : nullptr;
+     case FieldCPRegType::TAG : return fieldCPRegType.offset >= 0 ? _fixPtr + fieldCPRegType.offset : nullptr;
+     case FieldNoEvents::TAG : return fieldNoEvents.offset >= 0 ? _fixPtr + fieldNoEvents.offset : nullptr;
+     case FieldDatedDate::TAG : return fieldDatedDate.offset >= 0 ? _fixPtr + fieldDatedDate.offset : nullptr;
+     case FieldInterestAccrualDate::TAG : return fieldInterestAccrualDate.offset >= 0 ? _fixPtr + fieldInterestAccrualDate.offset : nullptr;
+     case FieldNoUnderlyings::TAG : return fieldNoUnderlyings.offset >= 0 ? _fixPtr + fieldNoUnderlyings.offset : nullptr;
+     case FieldPrevClosePx::TAG : return fieldPrevClosePx.offset >= 0 ? _fixPtr + fieldPrevClosePx.offset : nullptr;
+     case FieldSide::TAG : return fieldSide.offset >= 0 ? _fixPtr + fieldSide.offset : nullptr;
+     case FieldSideValueInd::TAG : return fieldSideValueInd.offset >= 0 ? _fixPtr + fieldSideValueInd.offset : nullptr;
+     case FieldLocateReqd::TAG : return fieldLocateReqd.offset >= 0 ? _fixPtr + fieldLocateReqd.offset : nullptr;
+     case FieldTransactTime::TAG : return fieldTransactTime.offset >= 0 ? _fixPtr + fieldTransactTime.offset : nullptr;
+     case FieldNoStipulations::TAG : return fieldNoStipulations.offset >= 0 ? _fixPtr + fieldNoStipulations.offset : nullptr;
+     case FieldQtyType::TAG : return fieldQtyType.offset >= 0 ? _fixPtr + fieldQtyType.offset : nullptr;
+     case FieldOrderQty::TAG : return fieldOrderQty.offset >= 0 ? _fixPtr + fieldOrderQty.offset : nullptr;
+     case FieldCashOrderQty::TAG : return fieldCashOrderQty.offset >= 0 ? _fixPtr + fieldCashOrderQty.offset : nullptr;
+     case FieldOrderPercent::TAG : return fieldOrderPercent.offset >= 0 ? _fixPtr + fieldOrderPercent.offset : nullptr;
+     case FieldRoundingDirection::TAG : return fieldRoundingDirection.offset >= 0 ? _fixPtr + fieldRoundingDirection.offset : nullptr;
+     case FieldRoundingModulus::TAG : return fieldRoundingModulus.offset >= 0 ? _fixPtr + fieldRoundingModulus.offset : nullptr;
+     case FieldOrdType::TAG : return fieldOrdType.offset >= 0 ? _fixPtr + fieldOrdType.offset : nullptr;
+     case FieldPriceType::TAG : return fieldPriceType.offset >= 0 ? _fixPtr + fieldPriceType.offset : nullptr;
+     case FieldPrice::TAG : return fieldPrice.offset >= 0 ? _fixPtr + fieldPrice.offset : nullptr;
+     case FieldStopPx::TAG : return fieldStopPx.offset >= 0 ? _fixPtr + fieldStopPx.offset : nullptr;
+     case FieldSpread::TAG : return fieldSpread.offset >= 0 ? _fixPtr + fieldSpread.offset : nullptr;
+     case FieldBenchmarkCurveCurrency::TAG : return fieldBenchmarkCurveCurrency.offset >= 0 ? _fixPtr + fieldBenchmarkCurveCurrency.offset : nullptr;
+     case FieldBenchmarkCurveName::TAG : return fieldBenchmarkCurveName.offset >= 0 ? _fixPtr + fieldBenchmarkCurveName.offset : nullptr;
+     case FieldBenchmarkCurvePoint::TAG : return fieldBenchmarkCurvePoint.offset >= 0 ? _fixPtr + fieldBenchmarkCurvePoint.offset : nullptr;
+     case FieldBenchmarkPrice::TAG : return fieldBenchmarkPrice.offset >= 0 ? _fixPtr + fieldBenchmarkPrice.offset : nullptr;
+     case FieldBenchmarkPriceType::TAG : return fieldBenchmarkPriceType.offset >= 0 ? _fixPtr + fieldBenchmarkPriceType.offset : nullptr;
+     case FieldBenchmarkSecurityID::TAG : return fieldBenchmarkSecurityID.offset >= 0 ? _fixPtr + fieldBenchmarkSecurityID.offset : nullptr;
+     case FieldBenchmarkSecurityIDSource::TAG : return fieldBenchmarkSecurityIDSource.offset >= 0 ? _fixPtr + fieldBenchmarkSecurityIDSource.offset : nullptr;
+     case FieldYieldType::TAG : return fieldYieldType.offset >= 0 ? _fixPtr + fieldYieldType.offset : nullptr;
+     case FieldYield::TAG : return fieldYield.offset >= 0 ? _fixPtr + fieldYield.offset : nullptr;
+     case FieldYieldCalcDate::TAG : return fieldYieldCalcDate.offset >= 0 ? _fixPtr + fieldYieldCalcDate.offset : nullptr;
+     case FieldYieldRedemptionDate::TAG : return fieldYieldRedemptionDate.offset >= 0 ? _fixPtr + fieldYieldRedemptionDate.offset : nullptr;
+     case FieldYieldRedemptionPrice::TAG : return fieldYieldRedemptionPrice.offset >= 0 ? _fixPtr + fieldYieldRedemptionPrice.offset : nullptr;
+     case FieldYieldRedemptionPriceType::TAG : return fieldYieldRedemptionPriceType.offset >= 0 ? _fixPtr + fieldYieldRedemptionPriceType.offset : nullptr;
+     case FieldCurrency::TAG : return fieldCurrency.offset >= 0 ? _fixPtr + fieldCurrency.offset : nullptr;
+     case FieldComplianceID::TAG : return fieldComplianceID.offset >= 0 ? _fixPtr + fieldComplianceID.offset : nullptr;
+     case FieldSolicitedFlag::TAG : return fieldSolicitedFlag.offset >= 0 ? _fixPtr + fieldSolicitedFlag.offset : nullptr;
+     case FieldIOIID::TAG : return fieldIOIID.offset >= 0 ? _fixPtr + fieldIOIID.offset : nullptr;
+     case FieldQuoteID::TAG : return fieldQuoteID.offset >= 0 ? _fixPtr + fieldQuoteID.offset : nullptr;
+     case FieldTimeInForce::TAG : return fieldTimeInForce.offset >= 0 ? _fixPtr + fieldTimeInForce.offset : nullptr;
+     case FieldEffectiveTime::TAG : return fieldEffectiveTime.offset >= 0 ? _fixPtr + fieldEffectiveTime.offset : nullptr;
+     case FieldExpireDate::TAG : return fieldExpireDate.offset >= 0 ? _fixPtr + fieldExpireDate.offset : nullptr;
+     case FieldExpireTime::TAG : return fieldExpireTime.offset >= 0 ? _fixPtr + fieldExpireTime.offset : nullptr;
+     case FieldGTBookingInst::TAG : return fieldGTBookingInst.offset >= 0 ? _fixPtr + fieldGTBookingInst.offset : nullptr;
+     case FieldCommission::TAG : return fieldCommission.offset >= 0 ? _fixPtr + fieldCommission.offset : nullptr;
+     case FieldCommType::TAG : return fieldCommType.offset >= 0 ? _fixPtr + fieldCommType.offset : nullptr;
+     case FieldCommCurrency::TAG : return fieldCommCurrency.offset >= 0 ? _fixPtr + fieldCommCurrency.offset : nullptr;
+     case FieldFundRenewWaiv::TAG : return fieldFundRenewWaiv.offset >= 0 ? _fixPtr + fieldFundRenewWaiv.offset : nullptr;
+     case FieldOrderCapacity::TAG : return fieldOrderCapacity.offset >= 0 ? _fixPtr + fieldOrderCapacity.offset : nullptr;
+     case FieldOrderRestrictions::TAG : return fieldOrderRestrictions.offset >= 0 ? _fixPtr + fieldOrderRestrictions.offset : nullptr;
+     case FieldCustOrderCapacity::TAG : return fieldCustOrderCapacity.offset >= 0 ? _fixPtr + fieldCustOrderCapacity.offset : nullptr;
+     case FieldForexReq::TAG : return fieldForexReq.offset >= 0 ? _fixPtr + fieldForexReq.offset : nullptr;
+     case FieldSettlCurrency::TAG : return fieldSettlCurrency.offset >= 0 ? _fixPtr + fieldSettlCurrency.offset : nullptr;
+     case FieldBookingType::TAG : return fieldBookingType.offset >= 0 ? _fixPtr + fieldBookingType.offset : nullptr;
+     case FieldText::TAG : return fieldText.offset >= 0 ? _fixPtr + fieldText.offset : nullptr;
+     case FieldEncodedTextLen::TAG : return fieldEncodedTextLen.offset >= 0 ? _fixPtr + fieldEncodedTextLen.offset : nullptr;
+     case FieldEncodedText::TAG : return fieldEncodedText.offset >= 0 ? _fixPtr + fieldEncodedText.offset : nullptr;
+     case FieldSettlDate2::TAG : return fieldSettlDate2.offset >= 0 ? _fixPtr + fieldSettlDate2.offset : nullptr;
+     case FieldOrderQty2::TAG : return fieldOrderQty2.offset >= 0 ? _fixPtr + fieldOrderQty2.offset : nullptr;
+     case FieldPrice2::TAG : return fieldPrice2.offset >= 0 ? _fixPtr + fieldPrice2.offset : nullptr;
+     case FieldPositionEffect::TAG : return fieldPositionEffect.offset >= 0 ? _fixPtr + fieldPositionEffect.offset : nullptr;
+     case FieldCoveredOrUncovered::TAG : return fieldCoveredOrUncovered.offset >= 0 ? _fixPtr + fieldCoveredOrUncovered.offset : nullptr;
+     case FieldMaxShow::TAG : return fieldMaxShow.offset >= 0 ? _fixPtr + fieldMaxShow.offset : nullptr;
+     case FieldPegOffsetValue::TAG : return fieldPegOffsetValue.offset >= 0 ? _fixPtr + fieldPegOffsetValue.offset : nullptr;
+     case FieldPegMoveType::TAG : return fieldPegMoveType.offset >= 0 ? _fixPtr + fieldPegMoveType.offset : nullptr;
+     case FieldPegOffsetType::TAG : return fieldPegOffsetType.offset >= 0 ? _fixPtr + fieldPegOffsetType.offset : nullptr;
+     case FieldPegLimitType::TAG : return fieldPegLimitType.offset >= 0 ? _fixPtr + fieldPegLimitType.offset : nullptr;
+     case FieldPegRoundDirection::TAG : return fieldPegRoundDirection.offset >= 0 ? _fixPtr + fieldPegRoundDirection.offset : nullptr;
+     case FieldPegScope::TAG : return fieldPegScope.offset >= 0 ? _fixPtr + fieldPegScope.offset : nullptr;
+     case FieldDiscretionInst::TAG : return fieldDiscretionInst.offset >= 0 ? _fixPtr + fieldDiscretionInst.offset : nullptr;
+     case FieldDiscretionOffsetValue::TAG : return fieldDiscretionOffsetValue.offset >= 0 ? _fixPtr + fieldDiscretionOffsetValue.offset : nullptr;
+     case FieldDiscretionMoveType::TAG : return fieldDiscretionMoveType.offset >= 0 ? _fixPtr + fieldDiscretionMoveType.offset : nullptr;
+     case FieldDiscretionOffsetType::TAG : return fieldDiscretionOffsetType.offset >= 0 ? _fixPtr + fieldDiscretionOffsetType.offset : nullptr;
+     case FieldDiscretionLimitType::TAG : return fieldDiscretionLimitType.offset >= 0 ? _fixPtr + fieldDiscretionLimitType.offset : nullptr;
+     case FieldDiscretionRoundDirection::TAG : return fieldDiscretionRoundDirection.offset >= 0 ? _fixPtr + fieldDiscretionRoundDirection.offset : nullptr;
+     case FieldDiscretionScope::TAG : return fieldDiscretionScope.offset >= 0 ? _fixPtr + fieldDiscretionScope.offset : nullptr;
+     case FieldTargetStrategy::TAG : return fieldTargetStrategy.offset >= 0 ? _fixPtr + fieldTargetStrategy.offset : nullptr;
+     case FieldTargetStrategyParameters::TAG : return fieldTargetStrategyParameters.offset >= 0 ? _fixPtr + fieldTargetStrategyParameters.offset : nullptr;
+     case FieldParticipationRate::TAG : return fieldParticipationRate.offset >= 0 ? _fixPtr + fieldParticipationRate.offset : nullptr;
+     case FieldDesignation::TAG : return fieldDesignation.offset >= 0 ? _fixPtr + fieldDesignation.offset : nullptr;
 
      default : return nullptr; 
    }
@@ -10838,10 +11015,10 @@ const char * GroupOrders::getFieldValue( unsigned tag ) const {
 }
 
 const char * GroupSettlPartySubIDs::getFieldValue( unsigned tag ) const {
-   if( buf == nullptr ) return nullptr;
+   if( _fixPtr == nullptr ) return nullptr;
    switch( tag ){
-     case FieldSettlPartySubID::TAG : return fieldSettlPartySubID.offset >= 0 ? buf + fieldSettlPartySubID.offset : nullptr;
-     case FieldSettlPartySubIDType::TAG : return fieldSettlPartySubIDType.offset >= 0 ? buf + fieldSettlPartySubIDType.offset : nullptr;
+     case FieldSettlPartySubID::TAG : return fieldSettlPartySubID.offset >= 0 ? _fixPtr + fieldSettlPartySubID.offset : nullptr;
+     case FieldSettlPartySubIDType::TAG : return fieldSettlPartySubIDType.offset >= 0 ? _fixPtr + fieldSettlPartySubIDType.offset : nullptr;
 
      default : return nullptr; 
    }
@@ -10849,12 +11026,12 @@ const char * GroupSettlPartySubIDs::getFieldValue( unsigned tag ) const {
 }
 
 const char * GroupSettlPartyIDs::getFieldValue( unsigned tag ) const {
-   if( buf == nullptr ) return nullptr;
+   if( _fixPtr == nullptr ) return nullptr;
    switch( tag ){
-     case FieldSettlPartyID::TAG : return fieldSettlPartyID.offset >= 0 ? buf + fieldSettlPartyID.offset : nullptr;
-     case FieldSettlPartyIDSource::TAG : return fieldSettlPartyIDSource.offset >= 0 ? buf + fieldSettlPartyIDSource.offset : nullptr;
-     case FieldSettlPartyRole::TAG : return fieldSettlPartyRole.offset >= 0 ? buf + fieldSettlPartyRole.offset : nullptr;
-     case FieldNoSettlPartySubIDs::TAG : return fieldNoSettlPartySubIDs.offset >= 0 ? buf + fieldNoSettlPartySubIDs.offset : nullptr;
+     case FieldSettlPartyID::TAG : return fieldSettlPartyID.offset >= 0 ? _fixPtr + fieldSettlPartyID.offset : nullptr;
+     case FieldSettlPartyIDSource::TAG : return fieldSettlPartyIDSource.offset >= 0 ? _fixPtr + fieldSettlPartyIDSource.offset : nullptr;
+     case FieldSettlPartyRole::TAG : return fieldSettlPartyRole.offset >= 0 ? _fixPtr + fieldSettlPartyRole.offset : nullptr;
+     case FieldNoSettlPartySubIDs::TAG : return fieldNoSettlPartySubIDs.offset >= 0 ? _fixPtr + fieldNoSettlPartySubIDs.offset : nullptr;
 
      default : return nullptr; 
    }
@@ -10862,11 +11039,11 @@ const char * GroupSettlPartyIDs::getFieldValue( unsigned tag ) const {
 }
 
 const char * GroupDlvyInst::getFieldValue( unsigned tag ) const {
-   if( buf == nullptr ) return nullptr;
+   if( _fixPtr == nullptr ) return nullptr;
    switch( tag ){
-     case FieldSettlInstSource::TAG : return fieldSettlInstSource.offset >= 0 ? buf + fieldSettlInstSource.offset : nullptr;
-     case FieldDlvyInstType::TAG : return fieldDlvyInstType.offset >= 0 ? buf + fieldDlvyInstType.offset : nullptr;
-     case FieldNoSettlPartyIDs::TAG : return fieldNoSettlPartyIDs.offset >= 0 ? buf + fieldNoSettlPartyIDs.offset : nullptr;
+     case FieldSettlInstSource::TAG : return fieldSettlInstSource.offset >= 0 ? _fixPtr + fieldSettlInstSource.offset : nullptr;
+     case FieldDlvyInstType::TAG : return fieldDlvyInstType.offset >= 0 ? _fixPtr + fieldDlvyInstType.offset : nullptr;
+     case FieldNoSettlPartyIDs::TAG : return fieldNoSettlPartyIDs.offset >= 0 ? _fixPtr + fieldNoSettlPartyIDs.offset : nullptr;
 
      default : return nullptr; 
    }
@@ -10874,9 +11051,9 @@ const char * GroupDlvyInst::getFieldValue( unsigned tag ) const {
 }
 
 const char * GroupClearingInstructions::getFieldValue( unsigned tag ) const {
-   if( buf == nullptr ) return nullptr;
+   if( _fixPtr == nullptr ) return nullptr;
    switch( tag ){
-     case FieldClearingInstruction::TAG : return fieldClearingInstruction.offset >= 0 ? buf + fieldClearingInstruction.offset : nullptr;
+     case FieldClearingInstruction::TAG : return fieldClearingInstruction.offset >= 0 ? _fixPtr + fieldClearingInstruction.offset : nullptr;
 
      default : return nullptr; 
    }
@@ -10884,10 +11061,10 @@ const char * GroupClearingInstructions::getFieldValue( unsigned tag ) const {
 }
 
 const char * GroupNestedPartySubIDs::getFieldValue( unsigned tag ) const {
-   if( buf == nullptr ) return nullptr;
+   if( _fixPtr == nullptr ) return nullptr;
    switch( tag ){
-     case FieldNestedPartySubID::TAG : return fieldNestedPartySubID.offset >= 0 ? buf + fieldNestedPartySubID.offset : nullptr;
-     case FieldNestedPartySubIDType::TAG : return fieldNestedPartySubIDType.offset >= 0 ? buf + fieldNestedPartySubIDType.offset : nullptr;
+     case FieldNestedPartySubID::TAG : return fieldNestedPartySubID.offset >= 0 ? _fixPtr + fieldNestedPartySubID.offset : nullptr;
+     case FieldNestedPartySubIDType::TAG : return fieldNestedPartySubIDType.offset >= 0 ? _fixPtr + fieldNestedPartySubIDType.offset : nullptr;
 
      default : return nullptr; 
    }
@@ -10895,12 +11072,12 @@ const char * GroupNestedPartySubIDs::getFieldValue( unsigned tag ) const {
 }
 
 const char * GroupNestedPartyIDs::getFieldValue( unsigned tag ) const {
-   if( buf == nullptr ) return nullptr;
+   if( _fixPtr == nullptr ) return nullptr;
    switch( tag ){
-     case FieldNestedPartyID::TAG : return fieldNestedPartyID.offset >= 0 ? buf + fieldNestedPartyID.offset : nullptr;
-     case FieldNestedPartyIDSource::TAG : return fieldNestedPartyIDSource.offset >= 0 ? buf + fieldNestedPartyIDSource.offset : nullptr;
-     case FieldNestedPartyRole::TAG : return fieldNestedPartyRole.offset >= 0 ? buf + fieldNestedPartyRole.offset : nullptr;
-     case FieldNoNestedPartySubIDs::TAG : return fieldNoNestedPartySubIDs.offset >= 0 ? buf + fieldNoNestedPartySubIDs.offset : nullptr;
+     case FieldNestedPartyID::TAG : return fieldNestedPartyID.offset >= 0 ? _fixPtr + fieldNestedPartyID.offset : nullptr;
+     case FieldNestedPartyIDSource::TAG : return fieldNestedPartyIDSource.offset >= 0 ? _fixPtr + fieldNestedPartyIDSource.offset : nullptr;
+     case FieldNestedPartyRole::TAG : return fieldNestedPartyRole.offset >= 0 ? _fixPtr + fieldNestedPartyRole.offset : nullptr;
+     case FieldNoNestedPartySubIDs::TAG : return fieldNoNestedPartySubIDs.offset >= 0 ? _fixPtr + fieldNoNestedPartySubIDs.offset : nullptr;
 
      default : return nullptr; 
    }
@@ -10908,61 +11085,61 @@ const char * GroupNestedPartyIDs::getFieldValue( unsigned tag ) const {
 }
 
 const char * GroupLegs::getFieldValue( unsigned tag ) const {
-   if( buf == nullptr ) return nullptr;
+   if( _fixPtr == nullptr ) return nullptr;
    switch( tag ){
-     case FieldLegSymbol::TAG : return fieldLegSymbol.offset >= 0 ? buf + fieldLegSymbol.offset : nullptr;
-     case FieldLegSymbolSfx::TAG : return fieldLegSymbolSfx.offset >= 0 ? buf + fieldLegSymbolSfx.offset : nullptr;
-     case FieldLegSecurityID::TAG : return fieldLegSecurityID.offset >= 0 ? buf + fieldLegSecurityID.offset : nullptr;
-     case FieldLegSecurityIDSource::TAG : return fieldLegSecurityIDSource.offset >= 0 ? buf + fieldLegSecurityIDSource.offset : nullptr;
-     case FieldNoLegSecurityAltID::TAG : return fieldNoLegSecurityAltID.offset >= 0 ? buf + fieldNoLegSecurityAltID.offset : nullptr;
-     case FieldLegProduct::TAG : return fieldLegProduct.offset >= 0 ? buf + fieldLegProduct.offset : nullptr;
-     case FieldLegCFICode::TAG : return fieldLegCFICode.offset >= 0 ? buf + fieldLegCFICode.offset : nullptr;
-     case FieldLegSecurityType::TAG : return fieldLegSecurityType.offset >= 0 ? buf + fieldLegSecurityType.offset : nullptr;
-     case FieldLegSecuritySubType::TAG : return fieldLegSecuritySubType.offset >= 0 ? buf + fieldLegSecuritySubType.offset : nullptr;
-     case FieldLegMaturityMonthYear::TAG : return fieldLegMaturityMonthYear.offset >= 0 ? buf + fieldLegMaturityMonthYear.offset : nullptr;
-     case FieldLegMaturityDate::TAG : return fieldLegMaturityDate.offset >= 0 ? buf + fieldLegMaturityDate.offset : nullptr;
-     case FieldLegCouponPaymentDate::TAG : return fieldLegCouponPaymentDate.offset >= 0 ? buf + fieldLegCouponPaymentDate.offset : nullptr;
-     case FieldLegIssueDate::TAG : return fieldLegIssueDate.offset >= 0 ? buf + fieldLegIssueDate.offset : nullptr;
-     case FieldLegRepoCollateralSecurityType::TAG : return fieldLegRepoCollateralSecurityType.offset >= 0 ? buf + fieldLegRepoCollateralSecurityType.offset : nullptr;
-     case FieldLegRepurchaseTerm::TAG : return fieldLegRepurchaseTerm.offset >= 0 ? buf + fieldLegRepurchaseTerm.offset : nullptr;
-     case FieldLegRepurchaseRate::TAG : return fieldLegRepurchaseRate.offset >= 0 ? buf + fieldLegRepurchaseRate.offset : nullptr;
-     case FieldLegFactor::TAG : return fieldLegFactor.offset >= 0 ? buf + fieldLegFactor.offset : nullptr;
-     case FieldLegCreditRating::TAG : return fieldLegCreditRating.offset >= 0 ? buf + fieldLegCreditRating.offset : nullptr;
-     case FieldLegInstrRegistry::TAG : return fieldLegInstrRegistry.offset >= 0 ? buf + fieldLegInstrRegistry.offset : nullptr;
-     case FieldLegCountryOfIssue::TAG : return fieldLegCountryOfIssue.offset >= 0 ? buf + fieldLegCountryOfIssue.offset : nullptr;
-     case FieldLegStateOrProvinceOfIssue::TAG : return fieldLegStateOrProvinceOfIssue.offset >= 0 ? buf + fieldLegStateOrProvinceOfIssue.offset : nullptr;
-     case FieldLegLocaleOfIssue::TAG : return fieldLegLocaleOfIssue.offset >= 0 ? buf + fieldLegLocaleOfIssue.offset : nullptr;
-     case FieldLegRedemptionDate::TAG : return fieldLegRedemptionDate.offset >= 0 ? buf + fieldLegRedemptionDate.offset : nullptr;
-     case FieldLegStrikePrice::TAG : return fieldLegStrikePrice.offset >= 0 ? buf + fieldLegStrikePrice.offset : nullptr;
-     case FieldLegStrikeCurrency::TAG : return fieldLegStrikeCurrency.offset >= 0 ? buf + fieldLegStrikeCurrency.offset : nullptr;
-     case FieldLegOptAttribute::TAG : return fieldLegOptAttribute.offset >= 0 ? buf + fieldLegOptAttribute.offset : nullptr;
-     case FieldLegContractMultiplier::TAG : return fieldLegContractMultiplier.offset >= 0 ? buf + fieldLegContractMultiplier.offset : nullptr;
-     case FieldLegCouponRate::TAG : return fieldLegCouponRate.offset >= 0 ? buf + fieldLegCouponRate.offset : nullptr;
-     case FieldLegSecurityExchange::TAG : return fieldLegSecurityExchange.offset >= 0 ? buf + fieldLegSecurityExchange.offset : nullptr;
-     case FieldLegIssuer::TAG : return fieldLegIssuer.offset >= 0 ? buf + fieldLegIssuer.offset : nullptr;
-     case FieldEncodedLegIssuerLen::TAG : return fieldEncodedLegIssuerLen.offset >= 0 ? buf + fieldEncodedLegIssuerLen.offset : nullptr;
-     case FieldEncodedLegIssuer::TAG : return fieldEncodedLegIssuer.offset >= 0 ? buf + fieldEncodedLegIssuer.offset : nullptr;
-     case FieldLegSecurityDesc::TAG : return fieldLegSecurityDesc.offset >= 0 ? buf + fieldLegSecurityDesc.offset : nullptr;
-     case FieldEncodedLegSecurityDescLen::TAG : return fieldEncodedLegSecurityDescLen.offset >= 0 ? buf + fieldEncodedLegSecurityDescLen.offset : nullptr;
-     case FieldEncodedLegSecurityDesc::TAG : return fieldEncodedLegSecurityDesc.offset >= 0 ? buf + fieldEncodedLegSecurityDesc.offset : nullptr;
-     case FieldLegRatioQty::TAG : return fieldLegRatioQty.offset >= 0 ? buf + fieldLegRatioQty.offset : nullptr;
-     case FieldLegSide::TAG : return fieldLegSide.offset >= 0 ? buf + fieldLegSide.offset : nullptr;
-     case FieldLegCurrency::TAG : return fieldLegCurrency.offset >= 0 ? buf + fieldLegCurrency.offset : nullptr;
-     case FieldLegPool::TAG : return fieldLegPool.offset >= 0 ? buf + fieldLegPool.offset : nullptr;
-     case FieldLegDatedDate::TAG : return fieldLegDatedDate.offset >= 0 ? buf + fieldLegDatedDate.offset : nullptr;
-     case FieldLegContractSettlMonth::TAG : return fieldLegContractSettlMonth.offset >= 0 ? buf + fieldLegContractSettlMonth.offset : nullptr;
-     case FieldLegInterestAccrualDate::TAG : return fieldLegInterestAccrualDate.offset >= 0 ? buf + fieldLegInterestAccrualDate.offset : nullptr;
-     case FieldLegQty::TAG : return fieldLegQty.offset >= 0 ? buf + fieldLegQty.offset : nullptr;
-     case FieldLegSwapType::TAG : return fieldLegSwapType.offset >= 0 ? buf + fieldLegSwapType.offset : nullptr;
-     case FieldNoLegStipulations::TAG : return fieldNoLegStipulations.offset >= 0 ? buf + fieldNoLegStipulations.offset : nullptr;
-     case FieldLegPositionEffect::TAG : return fieldLegPositionEffect.offset >= 0 ? buf + fieldLegPositionEffect.offset : nullptr;
-     case FieldLegCoveredOrUncovered::TAG : return fieldLegCoveredOrUncovered.offset >= 0 ? buf + fieldLegCoveredOrUncovered.offset : nullptr;
-     case FieldNoNestedPartyIDs::TAG : return fieldNoNestedPartyIDs.offset >= 0 ? buf + fieldNoNestedPartyIDs.offset : nullptr;
-     case FieldLegRefID::TAG : return fieldLegRefID.offset >= 0 ? buf + fieldLegRefID.offset : nullptr;
-     case FieldLegPrice::TAG : return fieldLegPrice.offset >= 0 ? buf + fieldLegPrice.offset : nullptr;
-     case FieldLegSettlType::TAG : return fieldLegSettlType.offset >= 0 ? buf + fieldLegSettlType.offset : nullptr;
-     case FieldLegSettlDate::TAG : return fieldLegSettlDate.offset >= 0 ? buf + fieldLegSettlDate.offset : nullptr;
-     case FieldLegLastPx::TAG : return fieldLegLastPx.offset >= 0 ? buf + fieldLegLastPx.offset : nullptr;
+     case FieldLegSymbol::TAG : return fieldLegSymbol.offset >= 0 ? _fixPtr + fieldLegSymbol.offset : nullptr;
+     case FieldLegSymbolSfx::TAG : return fieldLegSymbolSfx.offset >= 0 ? _fixPtr + fieldLegSymbolSfx.offset : nullptr;
+     case FieldLegSecurityID::TAG : return fieldLegSecurityID.offset >= 0 ? _fixPtr + fieldLegSecurityID.offset : nullptr;
+     case FieldLegSecurityIDSource::TAG : return fieldLegSecurityIDSource.offset >= 0 ? _fixPtr + fieldLegSecurityIDSource.offset : nullptr;
+     case FieldNoLegSecurityAltID::TAG : return fieldNoLegSecurityAltID.offset >= 0 ? _fixPtr + fieldNoLegSecurityAltID.offset : nullptr;
+     case FieldLegProduct::TAG : return fieldLegProduct.offset >= 0 ? _fixPtr + fieldLegProduct.offset : nullptr;
+     case FieldLegCFICode::TAG : return fieldLegCFICode.offset >= 0 ? _fixPtr + fieldLegCFICode.offset : nullptr;
+     case FieldLegSecurityType::TAG : return fieldLegSecurityType.offset >= 0 ? _fixPtr + fieldLegSecurityType.offset : nullptr;
+     case FieldLegSecuritySubType::TAG : return fieldLegSecuritySubType.offset >= 0 ? _fixPtr + fieldLegSecuritySubType.offset : nullptr;
+     case FieldLegMaturityMonthYear::TAG : return fieldLegMaturityMonthYear.offset >= 0 ? _fixPtr + fieldLegMaturityMonthYear.offset : nullptr;
+     case FieldLegMaturityDate::TAG : return fieldLegMaturityDate.offset >= 0 ? _fixPtr + fieldLegMaturityDate.offset : nullptr;
+     case FieldLegCouponPaymentDate::TAG : return fieldLegCouponPaymentDate.offset >= 0 ? _fixPtr + fieldLegCouponPaymentDate.offset : nullptr;
+     case FieldLegIssueDate::TAG : return fieldLegIssueDate.offset >= 0 ? _fixPtr + fieldLegIssueDate.offset : nullptr;
+     case FieldLegRepoCollateralSecurityType::TAG : return fieldLegRepoCollateralSecurityType.offset >= 0 ? _fixPtr + fieldLegRepoCollateralSecurityType.offset : nullptr;
+     case FieldLegRepurchaseTerm::TAG : return fieldLegRepurchaseTerm.offset >= 0 ? _fixPtr + fieldLegRepurchaseTerm.offset : nullptr;
+     case FieldLegRepurchaseRate::TAG : return fieldLegRepurchaseRate.offset >= 0 ? _fixPtr + fieldLegRepurchaseRate.offset : nullptr;
+     case FieldLegFactor::TAG : return fieldLegFactor.offset >= 0 ? _fixPtr + fieldLegFactor.offset : nullptr;
+     case FieldLegCreditRating::TAG : return fieldLegCreditRating.offset >= 0 ? _fixPtr + fieldLegCreditRating.offset : nullptr;
+     case FieldLegInstrRegistry::TAG : return fieldLegInstrRegistry.offset >= 0 ? _fixPtr + fieldLegInstrRegistry.offset : nullptr;
+     case FieldLegCountryOfIssue::TAG : return fieldLegCountryOfIssue.offset >= 0 ? _fixPtr + fieldLegCountryOfIssue.offset : nullptr;
+     case FieldLegStateOrProvinceOfIssue::TAG : return fieldLegStateOrProvinceOfIssue.offset >= 0 ? _fixPtr + fieldLegStateOrProvinceOfIssue.offset : nullptr;
+     case FieldLegLocaleOfIssue::TAG : return fieldLegLocaleOfIssue.offset >= 0 ? _fixPtr + fieldLegLocaleOfIssue.offset : nullptr;
+     case FieldLegRedemptionDate::TAG : return fieldLegRedemptionDate.offset >= 0 ? _fixPtr + fieldLegRedemptionDate.offset : nullptr;
+     case FieldLegStrikePrice::TAG : return fieldLegStrikePrice.offset >= 0 ? _fixPtr + fieldLegStrikePrice.offset : nullptr;
+     case FieldLegStrikeCurrency::TAG : return fieldLegStrikeCurrency.offset >= 0 ? _fixPtr + fieldLegStrikeCurrency.offset : nullptr;
+     case FieldLegOptAttribute::TAG : return fieldLegOptAttribute.offset >= 0 ? _fixPtr + fieldLegOptAttribute.offset : nullptr;
+     case FieldLegContractMultiplier::TAG : return fieldLegContractMultiplier.offset >= 0 ? _fixPtr + fieldLegContractMultiplier.offset : nullptr;
+     case FieldLegCouponRate::TAG : return fieldLegCouponRate.offset >= 0 ? _fixPtr + fieldLegCouponRate.offset : nullptr;
+     case FieldLegSecurityExchange::TAG : return fieldLegSecurityExchange.offset >= 0 ? _fixPtr + fieldLegSecurityExchange.offset : nullptr;
+     case FieldLegIssuer::TAG : return fieldLegIssuer.offset >= 0 ? _fixPtr + fieldLegIssuer.offset : nullptr;
+     case FieldEncodedLegIssuerLen::TAG : return fieldEncodedLegIssuerLen.offset >= 0 ? _fixPtr + fieldEncodedLegIssuerLen.offset : nullptr;
+     case FieldEncodedLegIssuer::TAG : return fieldEncodedLegIssuer.offset >= 0 ? _fixPtr + fieldEncodedLegIssuer.offset : nullptr;
+     case FieldLegSecurityDesc::TAG : return fieldLegSecurityDesc.offset >= 0 ? _fixPtr + fieldLegSecurityDesc.offset : nullptr;
+     case FieldEncodedLegSecurityDescLen::TAG : return fieldEncodedLegSecurityDescLen.offset >= 0 ? _fixPtr + fieldEncodedLegSecurityDescLen.offset : nullptr;
+     case FieldEncodedLegSecurityDesc::TAG : return fieldEncodedLegSecurityDesc.offset >= 0 ? _fixPtr + fieldEncodedLegSecurityDesc.offset : nullptr;
+     case FieldLegRatioQty::TAG : return fieldLegRatioQty.offset >= 0 ? _fixPtr + fieldLegRatioQty.offset : nullptr;
+     case FieldLegSide::TAG : return fieldLegSide.offset >= 0 ? _fixPtr + fieldLegSide.offset : nullptr;
+     case FieldLegCurrency::TAG : return fieldLegCurrency.offset >= 0 ? _fixPtr + fieldLegCurrency.offset : nullptr;
+     case FieldLegPool::TAG : return fieldLegPool.offset >= 0 ? _fixPtr + fieldLegPool.offset : nullptr;
+     case FieldLegDatedDate::TAG : return fieldLegDatedDate.offset >= 0 ? _fixPtr + fieldLegDatedDate.offset : nullptr;
+     case FieldLegContractSettlMonth::TAG : return fieldLegContractSettlMonth.offset >= 0 ? _fixPtr + fieldLegContractSettlMonth.offset : nullptr;
+     case FieldLegInterestAccrualDate::TAG : return fieldLegInterestAccrualDate.offset >= 0 ? _fixPtr + fieldLegInterestAccrualDate.offset : nullptr;
+     case FieldLegQty::TAG : return fieldLegQty.offset >= 0 ? _fixPtr + fieldLegQty.offset : nullptr;
+     case FieldLegSwapType::TAG : return fieldLegSwapType.offset >= 0 ? _fixPtr + fieldLegSwapType.offset : nullptr;
+     case FieldNoLegStipulations::TAG : return fieldNoLegStipulations.offset >= 0 ? _fixPtr + fieldNoLegStipulations.offset : nullptr;
+     case FieldLegPositionEffect::TAG : return fieldLegPositionEffect.offset >= 0 ? _fixPtr + fieldLegPositionEffect.offset : nullptr;
+     case FieldLegCoveredOrUncovered::TAG : return fieldLegCoveredOrUncovered.offset >= 0 ? _fixPtr + fieldLegCoveredOrUncovered.offset : nullptr;
+     case FieldNoNestedPartyIDs::TAG : return fieldNoNestedPartyIDs.offset >= 0 ? _fixPtr + fieldNoNestedPartyIDs.offset : nullptr;
+     case FieldLegRefID::TAG : return fieldLegRefID.offset >= 0 ? _fixPtr + fieldLegRefID.offset : nullptr;
+     case FieldLegPrice::TAG : return fieldLegPrice.offset >= 0 ? _fixPtr + fieldLegPrice.offset : nullptr;
+     case FieldLegSettlType::TAG : return fieldLegSettlType.offset >= 0 ? _fixPtr + fieldLegSettlType.offset : nullptr;
+     case FieldLegSettlDate::TAG : return fieldLegSettlDate.offset >= 0 ? _fixPtr + fieldLegSettlDate.offset : nullptr;
+     case FieldLegLastPx::TAG : return fieldLegLastPx.offset >= 0 ? _fixPtr + fieldLegLastPx.offset : nullptr;
 
      default : return nullptr; 
    }
@@ -10970,62 +11147,62 @@ const char * GroupLegs::getFieldValue( unsigned tag ) const {
 }
 
 const char * GroupQuoteEntries::getFieldValue( unsigned tag ) const {
-   if( buf == nullptr ) return nullptr;
+   if( _fixPtr == nullptr ) return nullptr;
    switch( tag ){
-     case FieldSymbol::TAG : return fieldSymbol.offset >= 0 ? buf + fieldSymbol.offset : nullptr;
-     case FieldSymbolSfx::TAG : return fieldSymbolSfx.offset >= 0 ? buf + fieldSymbolSfx.offset : nullptr;
-     case FieldSecurityID::TAG : return fieldSecurityID.offset >= 0 ? buf + fieldSecurityID.offset : nullptr;
-     case FieldSecurityIDSource::TAG : return fieldSecurityIDSource.offset >= 0 ? buf + fieldSecurityIDSource.offset : nullptr;
-     case FieldNoSecurityAltID::TAG : return fieldNoSecurityAltID.offset >= 0 ? buf + fieldNoSecurityAltID.offset : nullptr;
-     case FieldProduct::TAG : return fieldProduct.offset >= 0 ? buf + fieldProduct.offset : nullptr;
-     case FieldCFICode::TAG : return fieldCFICode.offset >= 0 ? buf + fieldCFICode.offset : nullptr;
-     case FieldSecurityType::TAG : return fieldSecurityType.offset >= 0 ? buf + fieldSecurityType.offset : nullptr;
-     case FieldSecuritySubType::TAG : return fieldSecuritySubType.offset >= 0 ? buf + fieldSecuritySubType.offset : nullptr;
-     case FieldMaturityMonthYear::TAG : return fieldMaturityMonthYear.offset >= 0 ? buf + fieldMaturityMonthYear.offset : nullptr;
-     case FieldMaturityDate::TAG : return fieldMaturityDate.offset >= 0 ? buf + fieldMaturityDate.offset : nullptr;
-     case FieldPutOrCall::TAG : return fieldPutOrCall.offset >= 0 ? buf + fieldPutOrCall.offset : nullptr;
-     case FieldCouponPaymentDate::TAG : return fieldCouponPaymentDate.offset >= 0 ? buf + fieldCouponPaymentDate.offset : nullptr;
-     case FieldIssueDate::TAG : return fieldIssueDate.offset >= 0 ? buf + fieldIssueDate.offset : nullptr;
-     case FieldRepoCollateralSecurityType::TAG : return fieldRepoCollateralSecurityType.offset >= 0 ? buf + fieldRepoCollateralSecurityType.offset : nullptr;
-     case FieldRepurchaseTerm::TAG : return fieldRepurchaseTerm.offset >= 0 ? buf + fieldRepurchaseTerm.offset : nullptr;
-     case FieldRepurchaseRate::TAG : return fieldRepurchaseRate.offset >= 0 ? buf + fieldRepurchaseRate.offset : nullptr;
-     case FieldFactor::TAG : return fieldFactor.offset >= 0 ? buf + fieldFactor.offset : nullptr;
-     case FieldCreditRating::TAG : return fieldCreditRating.offset >= 0 ? buf + fieldCreditRating.offset : nullptr;
-     case FieldInstrRegistry::TAG : return fieldInstrRegistry.offset >= 0 ? buf + fieldInstrRegistry.offset : nullptr;
-     case FieldCountryOfIssue::TAG : return fieldCountryOfIssue.offset >= 0 ? buf + fieldCountryOfIssue.offset : nullptr;
-     case FieldStateOrProvinceOfIssue::TAG : return fieldStateOrProvinceOfIssue.offset >= 0 ? buf + fieldStateOrProvinceOfIssue.offset : nullptr;
-     case FieldLocaleOfIssue::TAG : return fieldLocaleOfIssue.offset >= 0 ? buf + fieldLocaleOfIssue.offset : nullptr;
-     case FieldRedemptionDate::TAG : return fieldRedemptionDate.offset >= 0 ? buf + fieldRedemptionDate.offset : nullptr;
-     case FieldStrikePrice::TAG : return fieldStrikePrice.offset >= 0 ? buf + fieldStrikePrice.offset : nullptr;
-     case FieldStrikeCurrency::TAG : return fieldStrikeCurrency.offset >= 0 ? buf + fieldStrikeCurrency.offset : nullptr;
-     case FieldOptAttribute::TAG : return fieldOptAttribute.offset >= 0 ? buf + fieldOptAttribute.offset : nullptr;
-     case FieldContractMultiplier::TAG : return fieldContractMultiplier.offset >= 0 ? buf + fieldContractMultiplier.offset : nullptr;
-     case FieldCouponRate::TAG : return fieldCouponRate.offset >= 0 ? buf + fieldCouponRate.offset : nullptr;
-     case FieldSecurityExchange::TAG : return fieldSecurityExchange.offset >= 0 ? buf + fieldSecurityExchange.offset : nullptr;
-     case FieldIssuer::TAG : return fieldIssuer.offset >= 0 ? buf + fieldIssuer.offset : nullptr;
-     case FieldEncodedIssuerLen::TAG : return fieldEncodedIssuerLen.offset >= 0 ? buf + fieldEncodedIssuerLen.offset : nullptr;
-     case FieldEncodedIssuer::TAG : return fieldEncodedIssuer.offset >= 0 ? buf + fieldEncodedIssuer.offset : nullptr;
-     case FieldSecurityDesc::TAG : return fieldSecurityDesc.offset >= 0 ? buf + fieldSecurityDesc.offset : nullptr;
-     case FieldEncodedSecurityDescLen::TAG : return fieldEncodedSecurityDescLen.offset >= 0 ? buf + fieldEncodedSecurityDescLen.offset : nullptr;
-     case FieldEncodedSecurityDesc::TAG : return fieldEncodedSecurityDesc.offset >= 0 ? buf + fieldEncodedSecurityDesc.offset : nullptr;
-     case FieldPool::TAG : return fieldPool.offset >= 0 ? buf + fieldPool.offset : nullptr;
-     case FieldContractSettlMonth::TAG : return fieldContractSettlMonth.offset >= 0 ? buf + fieldContractSettlMonth.offset : nullptr;
-     case FieldCPProgram::TAG : return fieldCPProgram.offset >= 0 ? buf + fieldCPProgram.offset : nullptr;
-     case FieldCPRegType::TAG : return fieldCPRegType.offset >= 0 ? buf + fieldCPRegType.offset : nullptr;
-     case FieldNoEvents::TAG : return fieldNoEvents.offset >= 0 ? buf + fieldNoEvents.offset : nullptr;
-     case FieldDatedDate::TAG : return fieldDatedDate.offset >= 0 ? buf + fieldDatedDate.offset : nullptr;
-     case FieldInterestAccrualDate::TAG : return fieldInterestAccrualDate.offset >= 0 ? buf + fieldInterestAccrualDate.offset : nullptr;
-     case FieldAgreementDesc::TAG : return fieldAgreementDesc.offset >= 0 ? buf + fieldAgreementDesc.offset : nullptr;
-     case FieldAgreementID::TAG : return fieldAgreementID.offset >= 0 ? buf + fieldAgreementID.offset : nullptr;
-     case FieldAgreementDate::TAG : return fieldAgreementDate.offset >= 0 ? buf + fieldAgreementDate.offset : nullptr;
-     case FieldAgreementCurrency::TAG : return fieldAgreementCurrency.offset >= 0 ? buf + fieldAgreementCurrency.offset : nullptr;
-     case FieldTerminationType::TAG : return fieldTerminationType.offset >= 0 ? buf + fieldTerminationType.offset : nullptr;
-     case FieldStartDate::TAG : return fieldStartDate.offset >= 0 ? buf + fieldStartDate.offset : nullptr;
-     case FieldEndDate::TAG : return fieldEndDate.offset >= 0 ? buf + fieldEndDate.offset : nullptr;
-     case FieldDeliveryType::TAG : return fieldDeliveryType.offset >= 0 ? buf + fieldDeliveryType.offset : nullptr;
-     case FieldMarginRatio::TAG : return fieldMarginRatio.offset >= 0 ? buf + fieldMarginRatio.offset : nullptr;
-     case FieldNoUnderlyings::TAG : return fieldNoUnderlyings.offset >= 0 ? buf + fieldNoUnderlyings.offset : nullptr;
-     case FieldNoLegs::TAG : return fieldNoLegs.offset >= 0 ? buf + fieldNoLegs.offset : nullptr;
+     case FieldSymbol::TAG : return fieldSymbol.offset >= 0 ? _fixPtr + fieldSymbol.offset : nullptr;
+     case FieldSymbolSfx::TAG : return fieldSymbolSfx.offset >= 0 ? _fixPtr + fieldSymbolSfx.offset : nullptr;
+     case FieldSecurityID::TAG : return fieldSecurityID.offset >= 0 ? _fixPtr + fieldSecurityID.offset : nullptr;
+     case FieldSecurityIDSource::TAG : return fieldSecurityIDSource.offset >= 0 ? _fixPtr + fieldSecurityIDSource.offset : nullptr;
+     case FieldNoSecurityAltID::TAG : return fieldNoSecurityAltID.offset >= 0 ? _fixPtr + fieldNoSecurityAltID.offset : nullptr;
+     case FieldProduct::TAG : return fieldProduct.offset >= 0 ? _fixPtr + fieldProduct.offset : nullptr;
+     case FieldCFICode::TAG : return fieldCFICode.offset >= 0 ? _fixPtr + fieldCFICode.offset : nullptr;
+     case FieldSecurityType::TAG : return fieldSecurityType.offset >= 0 ? _fixPtr + fieldSecurityType.offset : nullptr;
+     case FieldSecuritySubType::TAG : return fieldSecuritySubType.offset >= 0 ? _fixPtr + fieldSecuritySubType.offset : nullptr;
+     case FieldMaturityMonthYear::TAG : return fieldMaturityMonthYear.offset >= 0 ? _fixPtr + fieldMaturityMonthYear.offset : nullptr;
+     case FieldMaturityDate::TAG : return fieldMaturityDate.offset >= 0 ? _fixPtr + fieldMaturityDate.offset : nullptr;
+     case FieldPutOrCall::TAG : return fieldPutOrCall.offset >= 0 ? _fixPtr + fieldPutOrCall.offset : nullptr;
+     case FieldCouponPaymentDate::TAG : return fieldCouponPaymentDate.offset >= 0 ? _fixPtr + fieldCouponPaymentDate.offset : nullptr;
+     case FieldIssueDate::TAG : return fieldIssueDate.offset >= 0 ? _fixPtr + fieldIssueDate.offset : nullptr;
+     case FieldRepoCollateralSecurityType::TAG : return fieldRepoCollateralSecurityType.offset >= 0 ? _fixPtr + fieldRepoCollateralSecurityType.offset : nullptr;
+     case FieldRepurchaseTerm::TAG : return fieldRepurchaseTerm.offset >= 0 ? _fixPtr + fieldRepurchaseTerm.offset : nullptr;
+     case FieldRepurchaseRate::TAG : return fieldRepurchaseRate.offset >= 0 ? _fixPtr + fieldRepurchaseRate.offset : nullptr;
+     case FieldFactor::TAG : return fieldFactor.offset >= 0 ? _fixPtr + fieldFactor.offset : nullptr;
+     case FieldCreditRating::TAG : return fieldCreditRating.offset >= 0 ? _fixPtr + fieldCreditRating.offset : nullptr;
+     case FieldInstrRegistry::TAG : return fieldInstrRegistry.offset >= 0 ? _fixPtr + fieldInstrRegistry.offset : nullptr;
+     case FieldCountryOfIssue::TAG : return fieldCountryOfIssue.offset >= 0 ? _fixPtr + fieldCountryOfIssue.offset : nullptr;
+     case FieldStateOrProvinceOfIssue::TAG : return fieldStateOrProvinceOfIssue.offset >= 0 ? _fixPtr + fieldStateOrProvinceOfIssue.offset : nullptr;
+     case FieldLocaleOfIssue::TAG : return fieldLocaleOfIssue.offset >= 0 ? _fixPtr + fieldLocaleOfIssue.offset : nullptr;
+     case FieldRedemptionDate::TAG : return fieldRedemptionDate.offset >= 0 ? _fixPtr + fieldRedemptionDate.offset : nullptr;
+     case FieldStrikePrice::TAG : return fieldStrikePrice.offset >= 0 ? _fixPtr + fieldStrikePrice.offset : nullptr;
+     case FieldStrikeCurrency::TAG : return fieldStrikeCurrency.offset >= 0 ? _fixPtr + fieldStrikeCurrency.offset : nullptr;
+     case FieldOptAttribute::TAG : return fieldOptAttribute.offset >= 0 ? _fixPtr + fieldOptAttribute.offset : nullptr;
+     case FieldContractMultiplier::TAG : return fieldContractMultiplier.offset >= 0 ? _fixPtr + fieldContractMultiplier.offset : nullptr;
+     case FieldCouponRate::TAG : return fieldCouponRate.offset >= 0 ? _fixPtr + fieldCouponRate.offset : nullptr;
+     case FieldSecurityExchange::TAG : return fieldSecurityExchange.offset >= 0 ? _fixPtr + fieldSecurityExchange.offset : nullptr;
+     case FieldIssuer::TAG : return fieldIssuer.offset >= 0 ? _fixPtr + fieldIssuer.offset : nullptr;
+     case FieldEncodedIssuerLen::TAG : return fieldEncodedIssuerLen.offset >= 0 ? _fixPtr + fieldEncodedIssuerLen.offset : nullptr;
+     case FieldEncodedIssuer::TAG : return fieldEncodedIssuer.offset >= 0 ? _fixPtr + fieldEncodedIssuer.offset : nullptr;
+     case FieldSecurityDesc::TAG : return fieldSecurityDesc.offset >= 0 ? _fixPtr + fieldSecurityDesc.offset : nullptr;
+     case FieldEncodedSecurityDescLen::TAG : return fieldEncodedSecurityDescLen.offset >= 0 ? _fixPtr + fieldEncodedSecurityDescLen.offset : nullptr;
+     case FieldEncodedSecurityDesc::TAG : return fieldEncodedSecurityDesc.offset >= 0 ? _fixPtr + fieldEncodedSecurityDesc.offset : nullptr;
+     case FieldPool::TAG : return fieldPool.offset >= 0 ? _fixPtr + fieldPool.offset : nullptr;
+     case FieldContractSettlMonth::TAG : return fieldContractSettlMonth.offset >= 0 ? _fixPtr + fieldContractSettlMonth.offset : nullptr;
+     case FieldCPProgram::TAG : return fieldCPProgram.offset >= 0 ? _fixPtr + fieldCPProgram.offset : nullptr;
+     case FieldCPRegType::TAG : return fieldCPRegType.offset >= 0 ? _fixPtr + fieldCPRegType.offset : nullptr;
+     case FieldNoEvents::TAG : return fieldNoEvents.offset >= 0 ? _fixPtr + fieldNoEvents.offset : nullptr;
+     case FieldDatedDate::TAG : return fieldDatedDate.offset >= 0 ? _fixPtr + fieldDatedDate.offset : nullptr;
+     case FieldInterestAccrualDate::TAG : return fieldInterestAccrualDate.offset >= 0 ? _fixPtr + fieldInterestAccrualDate.offset : nullptr;
+     case FieldAgreementDesc::TAG : return fieldAgreementDesc.offset >= 0 ? _fixPtr + fieldAgreementDesc.offset : nullptr;
+     case FieldAgreementID::TAG : return fieldAgreementID.offset >= 0 ? _fixPtr + fieldAgreementID.offset : nullptr;
+     case FieldAgreementDate::TAG : return fieldAgreementDate.offset >= 0 ? _fixPtr + fieldAgreementDate.offset : nullptr;
+     case FieldAgreementCurrency::TAG : return fieldAgreementCurrency.offset >= 0 ? _fixPtr + fieldAgreementCurrency.offset : nullptr;
+     case FieldTerminationType::TAG : return fieldTerminationType.offset >= 0 ? _fixPtr + fieldTerminationType.offset : nullptr;
+     case FieldStartDate::TAG : return fieldStartDate.offset >= 0 ? _fixPtr + fieldStartDate.offset : nullptr;
+     case FieldEndDate::TAG : return fieldEndDate.offset >= 0 ? _fixPtr + fieldEndDate.offset : nullptr;
+     case FieldDeliveryType::TAG : return fieldDeliveryType.offset >= 0 ? _fixPtr + fieldDeliveryType.offset : nullptr;
+     case FieldMarginRatio::TAG : return fieldMarginRatio.offset >= 0 ? _fixPtr + fieldMarginRatio.offset : nullptr;
+     case FieldNoUnderlyings::TAG : return fieldNoUnderlyings.offset >= 0 ? _fixPtr + fieldNoUnderlyings.offset : nullptr;
+     case FieldNoLegs::TAG : return fieldNoLegs.offset >= 0 ? _fixPtr + fieldNoLegs.offset : nullptr;
 
      default : return nullptr; 
    }
@@ -11033,59 +11210,59 @@ const char * GroupQuoteEntries::getFieldValue( unsigned tag ) const {
 }
 
 const char * GroupQuoteSets::getFieldValue( unsigned tag ) const {
-   if( buf == nullptr ) return nullptr;
+   if( _fixPtr == nullptr ) return nullptr;
    switch( tag ){
-     case FieldQuoteSetID::TAG : return fieldQuoteSetID.offset >= 0 ? buf + fieldQuoteSetID.offset : nullptr;
-     case FieldUnderlyingSymbol::TAG : return fieldUnderlyingSymbol.offset >= 0 ? buf + fieldUnderlyingSymbol.offset : nullptr;
-     case FieldUnderlyingSymbolSfx::TAG : return fieldUnderlyingSymbolSfx.offset >= 0 ? buf + fieldUnderlyingSymbolSfx.offset : nullptr;
-     case FieldUnderlyingSecurityID::TAG : return fieldUnderlyingSecurityID.offset >= 0 ? buf + fieldUnderlyingSecurityID.offset : nullptr;
-     case FieldUnderlyingSecurityIDSource::TAG : return fieldUnderlyingSecurityIDSource.offset >= 0 ? buf + fieldUnderlyingSecurityIDSource.offset : nullptr;
-     case FieldNoUnderlyingSecurityAltID::TAG : return fieldNoUnderlyingSecurityAltID.offset >= 0 ? buf + fieldNoUnderlyingSecurityAltID.offset : nullptr;
-     case FieldUnderlyingProduct::TAG : return fieldUnderlyingProduct.offset >= 0 ? buf + fieldUnderlyingProduct.offset : nullptr;
-     case FieldUnderlyingCFICode::TAG : return fieldUnderlyingCFICode.offset >= 0 ? buf + fieldUnderlyingCFICode.offset : nullptr;
-     case FieldUnderlyingSecurityType::TAG : return fieldUnderlyingSecurityType.offset >= 0 ? buf + fieldUnderlyingSecurityType.offset : nullptr;
-     case FieldUnderlyingSecuritySubType::TAG : return fieldUnderlyingSecuritySubType.offset >= 0 ? buf + fieldUnderlyingSecuritySubType.offset : nullptr;
-     case FieldUnderlyingMaturityMonthYear::TAG : return fieldUnderlyingMaturityMonthYear.offset >= 0 ? buf + fieldUnderlyingMaturityMonthYear.offset : nullptr;
-     case FieldUnderlyingMaturityDate::TAG : return fieldUnderlyingMaturityDate.offset >= 0 ? buf + fieldUnderlyingMaturityDate.offset : nullptr;
-     case FieldUnderlyingPutOrCall::TAG : return fieldUnderlyingPutOrCall.offset >= 0 ? buf + fieldUnderlyingPutOrCall.offset : nullptr;
-     case FieldUnderlyingCouponPaymentDate::TAG : return fieldUnderlyingCouponPaymentDate.offset >= 0 ? buf + fieldUnderlyingCouponPaymentDate.offset : nullptr;
-     case FieldUnderlyingIssueDate::TAG : return fieldUnderlyingIssueDate.offset >= 0 ? buf + fieldUnderlyingIssueDate.offset : nullptr;
-     case FieldUnderlyingRepoCollateralSecurityType::TAG : return fieldUnderlyingRepoCollateralSecurityType.offset >= 0 ? buf + fieldUnderlyingRepoCollateralSecurityType.offset : nullptr;
-     case FieldUnderlyingRepurchaseTerm::TAG : return fieldUnderlyingRepurchaseTerm.offset >= 0 ? buf + fieldUnderlyingRepurchaseTerm.offset : nullptr;
-     case FieldUnderlyingRepurchaseRate::TAG : return fieldUnderlyingRepurchaseRate.offset >= 0 ? buf + fieldUnderlyingRepurchaseRate.offset : nullptr;
-     case FieldUnderlyingFactor::TAG : return fieldUnderlyingFactor.offset >= 0 ? buf + fieldUnderlyingFactor.offset : nullptr;
-     case FieldUnderlyingCreditRating::TAG : return fieldUnderlyingCreditRating.offset >= 0 ? buf + fieldUnderlyingCreditRating.offset : nullptr;
-     case FieldUnderlyingInstrRegistry::TAG : return fieldUnderlyingInstrRegistry.offset >= 0 ? buf + fieldUnderlyingInstrRegistry.offset : nullptr;
-     case FieldUnderlyingCountryOfIssue::TAG : return fieldUnderlyingCountryOfIssue.offset >= 0 ? buf + fieldUnderlyingCountryOfIssue.offset : nullptr;
-     case FieldUnderlyingStateOrProvinceOfIssue::TAG : return fieldUnderlyingStateOrProvinceOfIssue.offset >= 0 ? buf + fieldUnderlyingStateOrProvinceOfIssue.offset : nullptr;
-     case FieldUnderlyingLocaleOfIssue::TAG : return fieldUnderlyingLocaleOfIssue.offset >= 0 ? buf + fieldUnderlyingLocaleOfIssue.offset : nullptr;
-     case FieldUnderlyingRedemptionDate::TAG : return fieldUnderlyingRedemptionDate.offset >= 0 ? buf + fieldUnderlyingRedemptionDate.offset : nullptr;
-     case FieldUnderlyingStrikePrice::TAG : return fieldUnderlyingStrikePrice.offset >= 0 ? buf + fieldUnderlyingStrikePrice.offset : nullptr;
-     case FieldUnderlyingStrikeCurrency::TAG : return fieldUnderlyingStrikeCurrency.offset >= 0 ? buf + fieldUnderlyingStrikeCurrency.offset : nullptr;
-     case FieldUnderlyingOptAttribute::TAG : return fieldUnderlyingOptAttribute.offset >= 0 ? buf + fieldUnderlyingOptAttribute.offset : nullptr;
-     case FieldUnderlyingContractMultiplier::TAG : return fieldUnderlyingContractMultiplier.offset >= 0 ? buf + fieldUnderlyingContractMultiplier.offset : nullptr;
-     case FieldUnderlyingCouponRate::TAG : return fieldUnderlyingCouponRate.offset >= 0 ? buf + fieldUnderlyingCouponRate.offset : nullptr;
-     case FieldUnderlyingSecurityExchange::TAG : return fieldUnderlyingSecurityExchange.offset >= 0 ? buf + fieldUnderlyingSecurityExchange.offset : nullptr;
-     case FieldUnderlyingIssuer::TAG : return fieldUnderlyingIssuer.offset >= 0 ? buf + fieldUnderlyingIssuer.offset : nullptr;
-     case FieldEncodedUnderlyingIssuerLen::TAG : return fieldEncodedUnderlyingIssuerLen.offset >= 0 ? buf + fieldEncodedUnderlyingIssuerLen.offset : nullptr;
-     case FieldEncodedUnderlyingIssuer::TAG : return fieldEncodedUnderlyingIssuer.offset >= 0 ? buf + fieldEncodedUnderlyingIssuer.offset : nullptr;
-     case FieldUnderlyingSecurityDesc::TAG : return fieldUnderlyingSecurityDesc.offset >= 0 ? buf + fieldUnderlyingSecurityDesc.offset : nullptr;
-     case FieldEncodedUnderlyingSecurityDescLen::TAG : return fieldEncodedUnderlyingSecurityDescLen.offset >= 0 ? buf + fieldEncodedUnderlyingSecurityDescLen.offset : nullptr;
-     case FieldEncodedUnderlyingSecurityDesc::TAG : return fieldEncodedUnderlyingSecurityDesc.offset >= 0 ? buf + fieldEncodedUnderlyingSecurityDesc.offset : nullptr;
-     case FieldUnderlyingCPProgram::TAG : return fieldUnderlyingCPProgram.offset >= 0 ? buf + fieldUnderlyingCPProgram.offset : nullptr;
-     case FieldUnderlyingCPRegType::TAG : return fieldUnderlyingCPRegType.offset >= 0 ? buf + fieldUnderlyingCPRegType.offset : nullptr;
-     case FieldUnderlyingCurrency::TAG : return fieldUnderlyingCurrency.offset >= 0 ? buf + fieldUnderlyingCurrency.offset : nullptr;
-     case FieldUnderlyingQty::TAG : return fieldUnderlyingQty.offset >= 0 ? buf + fieldUnderlyingQty.offset : nullptr;
-     case FieldUnderlyingPx::TAG : return fieldUnderlyingPx.offset >= 0 ? buf + fieldUnderlyingPx.offset : nullptr;
-     case FieldUnderlyingDirtyPrice::TAG : return fieldUnderlyingDirtyPrice.offset >= 0 ? buf + fieldUnderlyingDirtyPrice.offset : nullptr;
-     case FieldUnderlyingEndPrice::TAG : return fieldUnderlyingEndPrice.offset >= 0 ? buf + fieldUnderlyingEndPrice.offset : nullptr;
-     case FieldUnderlyingStartValue::TAG : return fieldUnderlyingStartValue.offset >= 0 ? buf + fieldUnderlyingStartValue.offset : nullptr;
-     case FieldUnderlyingCurrentValue::TAG : return fieldUnderlyingCurrentValue.offset >= 0 ? buf + fieldUnderlyingCurrentValue.offset : nullptr;
-     case FieldUnderlyingEndValue::TAG : return fieldUnderlyingEndValue.offset >= 0 ? buf + fieldUnderlyingEndValue.offset : nullptr;
-     case FieldNoUnderlyingStips::TAG : return fieldNoUnderlyingStips.offset >= 0 ? buf + fieldNoUnderlyingStips.offset : nullptr;
-     case FieldTotNoQuoteEntries::TAG : return fieldTotNoQuoteEntries.offset >= 0 ? buf + fieldTotNoQuoteEntries.offset : nullptr;
-     case FieldLastFragment::TAG : return fieldLastFragment.offset >= 0 ? buf + fieldLastFragment.offset : nullptr;
-     case FieldNoQuoteEntries::TAG : return fieldNoQuoteEntries.offset >= 0 ? buf + fieldNoQuoteEntries.offset : nullptr;
+     case FieldQuoteSetID::TAG : return fieldQuoteSetID.offset >= 0 ? _fixPtr + fieldQuoteSetID.offset : nullptr;
+     case FieldUnderlyingSymbol::TAG : return fieldUnderlyingSymbol.offset >= 0 ? _fixPtr + fieldUnderlyingSymbol.offset : nullptr;
+     case FieldUnderlyingSymbolSfx::TAG : return fieldUnderlyingSymbolSfx.offset >= 0 ? _fixPtr + fieldUnderlyingSymbolSfx.offset : nullptr;
+     case FieldUnderlyingSecurityID::TAG : return fieldUnderlyingSecurityID.offset >= 0 ? _fixPtr + fieldUnderlyingSecurityID.offset : nullptr;
+     case FieldUnderlyingSecurityIDSource::TAG : return fieldUnderlyingSecurityIDSource.offset >= 0 ? _fixPtr + fieldUnderlyingSecurityIDSource.offset : nullptr;
+     case FieldNoUnderlyingSecurityAltID::TAG : return fieldNoUnderlyingSecurityAltID.offset >= 0 ? _fixPtr + fieldNoUnderlyingSecurityAltID.offset : nullptr;
+     case FieldUnderlyingProduct::TAG : return fieldUnderlyingProduct.offset >= 0 ? _fixPtr + fieldUnderlyingProduct.offset : nullptr;
+     case FieldUnderlyingCFICode::TAG : return fieldUnderlyingCFICode.offset >= 0 ? _fixPtr + fieldUnderlyingCFICode.offset : nullptr;
+     case FieldUnderlyingSecurityType::TAG : return fieldUnderlyingSecurityType.offset >= 0 ? _fixPtr + fieldUnderlyingSecurityType.offset : nullptr;
+     case FieldUnderlyingSecuritySubType::TAG : return fieldUnderlyingSecuritySubType.offset >= 0 ? _fixPtr + fieldUnderlyingSecuritySubType.offset : nullptr;
+     case FieldUnderlyingMaturityMonthYear::TAG : return fieldUnderlyingMaturityMonthYear.offset >= 0 ? _fixPtr + fieldUnderlyingMaturityMonthYear.offset : nullptr;
+     case FieldUnderlyingMaturityDate::TAG : return fieldUnderlyingMaturityDate.offset >= 0 ? _fixPtr + fieldUnderlyingMaturityDate.offset : nullptr;
+     case FieldUnderlyingPutOrCall::TAG : return fieldUnderlyingPutOrCall.offset >= 0 ? _fixPtr + fieldUnderlyingPutOrCall.offset : nullptr;
+     case FieldUnderlyingCouponPaymentDate::TAG : return fieldUnderlyingCouponPaymentDate.offset >= 0 ? _fixPtr + fieldUnderlyingCouponPaymentDate.offset : nullptr;
+     case FieldUnderlyingIssueDate::TAG : return fieldUnderlyingIssueDate.offset >= 0 ? _fixPtr + fieldUnderlyingIssueDate.offset : nullptr;
+     case FieldUnderlyingRepoCollateralSecurityType::TAG : return fieldUnderlyingRepoCollateralSecurityType.offset >= 0 ? _fixPtr + fieldUnderlyingRepoCollateralSecurityType.offset : nullptr;
+     case FieldUnderlyingRepurchaseTerm::TAG : return fieldUnderlyingRepurchaseTerm.offset >= 0 ? _fixPtr + fieldUnderlyingRepurchaseTerm.offset : nullptr;
+     case FieldUnderlyingRepurchaseRate::TAG : return fieldUnderlyingRepurchaseRate.offset >= 0 ? _fixPtr + fieldUnderlyingRepurchaseRate.offset : nullptr;
+     case FieldUnderlyingFactor::TAG : return fieldUnderlyingFactor.offset >= 0 ? _fixPtr + fieldUnderlyingFactor.offset : nullptr;
+     case FieldUnderlyingCreditRating::TAG : return fieldUnderlyingCreditRating.offset >= 0 ? _fixPtr + fieldUnderlyingCreditRating.offset : nullptr;
+     case FieldUnderlyingInstrRegistry::TAG : return fieldUnderlyingInstrRegistry.offset >= 0 ? _fixPtr + fieldUnderlyingInstrRegistry.offset : nullptr;
+     case FieldUnderlyingCountryOfIssue::TAG : return fieldUnderlyingCountryOfIssue.offset >= 0 ? _fixPtr + fieldUnderlyingCountryOfIssue.offset : nullptr;
+     case FieldUnderlyingStateOrProvinceOfIssue::TAG : return fieldUnderlyingStateOrProvinceOfIssue.offset >= 0 ? _fixPtr + fieldUnderlyingStateOrProvinceOfIssue.offset : nullptr;
+     case FieldUnderlyingLocaleOfIssue::TAG : return fieldUnderlyingLocaleOfIssue.offset >= 0 ? _fixPtr + fieldUnderlyingLocaleOfIssue.offset : nullptr;
+     case FieldUnderlyingRedemptionDate::TAG : return fieldUnderlyingRedemptionDate.offset >= 0 ? _fixPtr + fieldUnderlyingRedemptionDate.offset : nullptr;
+     case FieldUnderlyingStrikePrice::TAG : return fieldUnderlyingStrikePrice.offset >= 0 ? _fixPtr + fieldUnderlyingStrikePrice.offset : nullptr;
+     case FieldUnderlyingStrikeCurrency::TAG : return fieldUnderlyingStrikeCurrency.offset >= 0 ? _fixPtr + fieldUnderlyingStrikeCurrency.offset : nullptr;
+     case FieldUnderlyingOptAttribute::TAG : return fieldUnderlyingOptAttribute.offset >= 0 ? _fixPtr + fieldUnderlyingOptAttribute.offset : nullptr;
+     case FieldUnderlyingContractMultiplier::TAG : return fieldUnderlyingContractMultiplier.offset >= 0 ? _fixPtr + fieldUnderlyingContractMultiplier.offset : nullptr;
+     case FieldUnderlyingCouponRate::TAG : return fieldUnderlyingCouponRate.offset >= 0 ? _fixPtr + fieldUnderlyingCouponRate.offset : nullptr;
+     case FieldUnderlyingSecurityExchange::TAG : return fieldUnderlyingSecurityExchange.offset >= 0 ? _fixPtr + fieldUnderlyingSecurityExchange.offset : nullptr;
+     case FieldUnderlyingIssuer::TAG : return fieldUnderlyingIssuer.offset >= 0 ? _fixPtr + fieldUnderlyingIssuer.offset : nullptr;
+     case FieldEncodedUnderlyingIssuerLen::TAG : return fieldEncodedUnderlyingIssuerLen.offset >= 0 ? _fixPtr + fieldEncodedUnderlyingIssuerLen.offset : nullptr;
+     case FieldEncodedUnderlyingIssuer::TAG : return fieldEncodedUnderlyingIssuer.offset >= 0 ? _fixPtr + fieldEncodedUnderlyingIssuer.offset : nullptr;
+     case FieldUnderlyingSecurityDesc::TAG : return fieldUnderlyingSecurityDesc.offset >= 0 ? _fixPtr + fieldUnderlyingSecurityDesc.offset : nullptr;
+     case FieldEncodedUnderlyingSecurityDescLen::TAG : return fieldEncodedUnderlyingSecurityDescLen.offset >= 0 ? _fixPtr + fieldEncodedUnderlyingSecurityDescLen.offset : nullptr;
+     case FieldEncodedUnderlyingSecurityDesc::TAG : return fieldEncodedUnderlyingSecurityDesc.offset >= 0 ? _fixPtr + fieldEncodedUnderlyingSecurityDesc.offset : nullptr;
+     case FieldUnderlyingCPProgram::TAG : return fieldUnderlyingCPProgram.offset >= 0 ? _fixPtr + fieldUnderlyingCPProgram.offset : nullptr;
+     case FieldUnderlyingCPRegType::TAG : return fieldUnderlyingCPRegType.offset >= 0 ? _fixPtr + fieldUnderlyingCPRegType.offset : nullptr;
+     case FieldUnderlyingCurrency::TAG : return fieldUnderlyingCurrency.offset >= 0 ? _fixPtr + fieldUnderlyingCurrency.offset : nullptr;
+     case FieldUnderlyingQty::TAG : return fieldUnderlyingQty.offset >= 0 ? _fixPtr + fieldUnderlyingQty.offset : nullptr;
+     case FieldUnderlyingPx::TAG : return fieldUnderlyingPx.offset >= 0 ? _fixPtr + fieldUnderlyingPx.offset : nullptr;
+     case FieldUnderlyingDirtyPrice::TAG : return fieldUnderlyingDirtyPrice.offset >= 0 ? _fixPtr + fieldUnderlyingDirtyPrice.offset : nullptr;
+     case FieldUnderlyingEndPrice::TAG : return fieldUnderlyingEndPrice.offset >= 0 ? _fixPtr + fieldUnderlyingEndPrice.offset : nullptr;
+     case FieldUnderlyingStartValue::TAG : return fieldUnderlyingStartValue.offset >= 0 ? _fixPtr + fieldUnderlyingStartValue.offset : nullptr;
+     case FieldUnderlyingCurrentValue::TAG : return fieldUnderlyingCurrentValue.offset >= 0 ? _fixPtr + fieldUnderlyingCurrentValue.offset : nullptr;
+     case FieldUnderlyingEndValue::TAG : return fieldUnderlyingEndValue.offset >= 0 ? _fixPtr + fieldUnderlyingEndValue.offset : nullptr;
+     case FieldNoUnderlyingStips::TAG : return fieldNoUnderlyingStips.offset >= 0 ? _fixPtr + fieldNoUnderlyingStips.offset : nullptr;
+     case FieldTotNoQuoteEntries::TAG : return fieldTotNoQuoteEntries.offset >= 0 ? _fixPtr + fieldTotNoQuoteEntries.offset : nullptr;
+     case FieldLastFragment::TAG : return fieldLastFragment.offset >= 0 ? _fixPtr + fieldLastFragment.offset : nullptr;
+     case FieldNoQuoteEntries::TAG : return fieldNoQuoteEntries.offset >= 0 ? _fixPtr + fieldNoQuoteEntries.offset : nullptr;
 
      default : return nullptr; 
    }
@@ -11093,12 +11270,12 @@ const char * GroupQuoteSets::getFieldValue( unsigned tag ) const {
 }
 
 const char * GroupSecurityTypes::getFieldValue( unsigned tag ) const {
-   if( buf == nullptr ) return nullptr;
+   if( _fixPtr == nullptr ) return nullptr;
    switch( tag ){
-     case FieldSecurityType::TAG : return fieldSecurityType.offset >= 0 ? buf + fieldSecurityType.offset : nullptr;
-     case FieldSecuritySubType::TAG : return fieldSecuritySubType.offset >= 0 ? buf + fieldSecuritySubType.offset : nullptr;
-     case FieldProduct::TAG : return fieldProduct.offset >= 0 ? buf + fieldProduct.offset : nullptr;
-     case FieldCFICode::TAG : return fieldCFICode.offset >= 0 ? buf + fieldCFICode.offset : nullptr;
+     case FieldSecurityType::TAG : return fieldSecurityType.offset >= 0 ? _fixPtr + fieldSecurityType.offset : nullptr;
+     case FieldSecuritySubType::TAG : return fieldSecuritySubType.offset >= 0 ? _fixPtr + fieldSecuritySubType.offset : nullptr;
+     case FieldProduct::TAG : return fieldProduct.offset >= 0 ? _fixPtr + fieldProduct.offset : nullptr;
+     case FieldCFICode::TAG : return fieldCFICode.offset >= 0 ? _fixPtr + fieldCFICode.offset : nullptr;
 
      default : return nullptr; 
    }
@@ -11106,12 +11283,12 @@ const char * GroupSecurityTypes::getFieldValue( unsigned tag ) const {
 }
 
 const char * GroupNested3PartyIDs::getFieldValue( unsigned tag ) const {
-   if( buf == nullptr ) return nullptr;
+   if( _fixPtr == nullptr ) return nullptr;
    switch( tag ){
-     case FieldNested3PartyID::TAG : return fieldNested3PartyID.offset >= 0 ? buf + fieldNested3PartyID.offset : nullptr;
-     case FieldNested3PartyIDSource::TAG : return fieldNested3PartyIDSource.offset >= 0 ? buf + fieldNested3PartyIDSource.offset : nullptr;
-     case FieldNested3PartyRole::TAG : return fieldNested3PartyRole.offset >= 0 ? buf + fieldNested3PartyRole.offset : nullptr;
-     case FieldNoNested3PartySubIDs::TAG : return fieldNoNested3PartySubIDs.offset >= 0 ? buf + fieldNoNested3PartySubIDs.offset : nullptr;
+     case FieldNested3PartyID::TAG : return fieldNested3PartyID.offset >= 0 ? _fixPtr + fieldNested3PartyID.offset : nullptr;
+     case FieldNested3PartyIDSource::TAG : return fieldNested3PartyIDSource.offset >= 0 ? _fixPtr + fieldNested3PartyIDSource.offset : nullptr;
+     case FieldNested3PartyRole::TAG : return fieldNested3PartyRole.offset >= 0 ? _fixPtr + fieldNested3PartyRole.offset : nullptr;
+     case FieldNoNested3PartySubIDs::TAG : return fieldNoNested3PartySubIDs.offset >= 0 ? _fixPtr + fieldNoNested3PartySubIDs.offset : nullptr;
 
      default : return nullptr; 
    }
@@ -11119,13 +11296,13 @@ const char * GroupNested3PartyIDs::getFieldValue( unsigned tag ) const {
 }
 
 const char * GroupPositions::getFieldValue( unsigned tag ) const {
-   if( buf == nullptr ) return nullptr;
+   if( _fixPtr == nullptr ) return nullptr;
    switch( tag ){
-     case FieldPosType::TAG : return fieldPosType.offset >= 0 ? buf + fieldPosType.offset : nullptr;
-     case FieldLongQty::TAG : return fieldLongQty.offset >= 0 ? buf + fieldLongQty.offset : nullptr;
-     case FieldShortQty::TAG : return fieldShortQty.offset >= 0 ? buf + fieldShortQty.offset : nullptr;
-     case FieldPosQtyStatus::TAG : return fieldPosQtyStatus.offset >= 0 ? buf + fieldPosQtyStatus.offset : nullptr;
-     case FieldNoNestedPartyIDs::TAG : return fieldNoNestedPartyIDs.offset >= 0 ? buf + fieldNoNestedPartyIDs.offset : nullptr;
+     case FieldPosType::TAG : return fieldPosType.offset >= 0 ? _fixPtr + fieldPosType.offset : nullptr;
+     case FieldLongQty::TAG : return fieldLongQty.offset >= 0 ? _fixPtr + fieldLongQty.offset : nullptr;
+     case FieldShortQty::TAG : return fieldShortQty.offset >= 0 ? _fixPtr + fieldShortQty.offset : nullptr;
+     case FieldPosQtyStatus::TAG : return fieldPosQtyStatus.offset >= 0 ? _fixPtr + fieldPosQtyStatus.offset : nullptr;
+     case FieldNoNestedPartyIDs::TAG : return fieldNoNestedPartyIDs.offset >= 0 ? _fixPtr + fieldNoNestedPartyIDs.offset : nullptr;
 
      default : return nullptr; 
    }
@@ -11133,11 +11310,11 @@ const char * GroupPositions::getFieldValue( unsigned tag ) const {
 }
 
 const char * GroupAffectedOrders::getFieldValue( unsigned tag ) const {
-   if( buf == nullptr ) return nullptr;
+   if( _fixPtr == nullptr ) return nullptr;
    switch( tag ){
-     case FieldOrigClOrdID::TAG : return fieldOrigClOrdID.offset >= 0 ? buf + fieldOrigClOrdID.offset : nullptr;
-     case FieldAffectedOrderID::TAG : return fieldAffectedOrderID.offset >= 0 ? buf + fieldAffectedOrderID.offset : nullptr;
-     case FieldAffectedSecondaryOrderID::TAG : return fieldAffectedSecondaryOrderID.offset >= 0 ? buf + fieldAffectedSecondaryOrderID.offset : nullptr;
+     case FieldOrigClOrdID::TAG : return fieldOrigClOrdID.offset >= 0 ? _fixPtr + fieldOrigClOrdID.offset : nullptr;
+     case FieldAffectedOrderID::TAG : return fieldAffectedOrderID.offset >= 0 ? _fixPtr + fieldAffectedOrderID.offset : nullptr;
+     case FieldAffectedSecondaryOrderID::TAG : return fieldAffectedSecondaryOrderID.offset >= 0 ? _fixPtr + fieldAffectedSecondaryOrderID.offset : nullptr;
 
      default : return nullptr; 
    }
@@ -11145,14 +11322,14 @@ const char * GroupAffectedOrders::getFieldValue( unsigned tag ) const {
 }
 
 const char * GroupExecs::getFieldValue( unsigned tag ) const {
-   if( buf == nullptr ) return nullptr;
+   if( _fixPtr == nullptr ) return nullptr;
    switch( tag ){
-     case FieldLastQty::TAG : return fieldLastQty.offset >= 0 ? buf + fieldLastQty.offset : nullptr;
-     case FieldExecID::TAG : return fieldExecID.offset >= 0 ? buf + fieldExecID.offset : nullptr;
-     case FieldSecondaryExecID::TAG : return fieldSecondaryExecID.offset >= 0 ? buf + fieldSecondaryExecID.offset : nullptr;
-     case FieldLastPx::TAG : return fieldLastPx.offset >= 0 ? buf + fieldLastPx.offset : nullptr;
-     case FieldLastParPx::TAG : return fieldLastParPx.offset >= 0 ? buf + fieldLastParPx.offset : nullptr;
-     case FieldLastCapacity::TAG : return fieldLastCapacity.offset >= 0 ? buf + fieldLastCapacity.offset : nullptr;
+     case FieldLastQty::TAG : return fieldLastQty.offset >= 0 ? _fixPtr + fieldLastQty.offset : nullptr;
+     case FieldExecID::TAG : return fieldExecID.offset >= 0 ? _fixPtr + fieldExecID.offset : nullptr;
+     case FieldSecondaryExecID::TAG : return fieldSecondaryExecID.offset >= 0 ? _fixPtr + fieldSecondaryExecID.offset : nullptr;
+     case FieldLastPx::TAG : return fieldLastPx.offset >= 0 ? _fixPtr + fieldLastPx.offset : nullptr;
+     case FieldLastParPx::TAG : return fieldLastParPx.offset >= 0 ? _fixPtr + fieldLastParPx.offset : nullptr;
+     case FieldLastCapacity::TAG : return fieldLastCapacity.offset >= 0 ? _fixPtr + fieldLastCapacity.offset : nullptr;
 
      default : return nullptr; 
    }
@@ -11160,10 +11337,10 @@ const char * GroupExecs::getFieldValue( unsigned tag ) const {
 }
 
 const char * GroupMsgTypes::getFieldValue( unsigned tag ) const {
-   if( buf == nullptr ) return nullptr;
+   if( _fixPtr == nullptr ) return nullptr;
    switch( tag ){
-     case FieldRefMsgType::TAG : return fieldRefMsgType.offset >= 0 ? buf + fieldRefMsgType.offset : nullptr;
-     case FieldMsgDirection::TAG : return fieldMsgDirection.offset >= 0 ? buf + fieldMsgDirection.offset : nullptr;
+     case FieldRefMsgType::TAG : return fieldRefMsgType.offset >= 0 ? _fixPtr + fieldRefMsgType.offset : nullptr;
+     case FieldMsgDirection::TAG : return fieldMsgDirection.offset >= 0 ? _fixPtr + fieldMsgDirection.offset : nullptr;
 
      default : return nullptr; 
    }
@@ -11171,17 +11348,17 @@ const char * GroupMsgTypes::getFieldValue( unsigned tag ) const {
 }
 
 const char * GroupBidComponents::getFieldValue( unsigned tag ) const {
-   if( buf == nullptr ) return nullptr;
+   if( _fixPtr == nullptr ) return nullptr;
    switch( tag ){
-     case FieldListID::TAG : return fieldListID.offset >= 0 ? buf + fieldListID.offset : nullptr;
-     case FieldSide::TAG : return fieldSide.offset >= 0 ? buf + fieldSide.offset : nullptr;
-     case FieldTradingSessionID::TAG : return fieldTradingSessionID.offset >= 0 ? buf + fieldTradingSessionID.offset : nullptr;
-     case FieldTradingSessionSubID::TAG : return fieldTradingSessionSubID.offset >= 0 ? buf + fieldTradingSessionSubID.offset : nullptr;
-     case FieldNetGrossInd::TAG : return fieldNetGrossInd.offset >= 0 ? buf + fieldNetGrossInd.offset : nullptr;
-     case FieldSettlType::TAG : return fieldSettlType.offset >= 0 ? buf + fieldSettlType.offset : nullptr;
-     case FieldSettlDate::TAG : return fieldSettlDate.offset >= 0 ? buf + fieldSettlDate.offset : nullptr;
-     case FieldAccount::TAG : return fieldAccount.offset >= 0 ? buf + fieldAccount.offset : nullptr;
-     case FieldAcctIDSource::TAG : return fieldAcctIDSource.offset >= 0 ? buf + fieldAcctIDSource.offset : nullptr;
+     case FieldListID::TAG : return fieldListID.offset >= 0 ? _fixPtr + fieldListID.offset : nullptr;
+     case FieldSide::TAG : return fieldSide.offset >= 0 ? _fixPtr + fieldSide.offset : nullptr;
+     case FieldTradingSessionID::TAG : return fieldTradingSessionID.offset >= 0 ? _fixPtr + fieldTradingSessionID.offset : nullptr;
+     case FieldTradingSessionSubID::TAG : return fieldTradingSessionSubID.offset >= 0 ? _fixPtr + fieldTradingSessionSubID.offset : nullptr;
+     case FieldNetGrossInd::TAG : return fieldNetGrossInd.offset >= 0 ? _fixPtr + fieldNetGrossInd.offset : nullptr;
+     case FieldSettlType::TAG : return fieldSettlType.offset >= 0 ? _fixPtr + fieldSettlType.offset : nullptr;
+     case FieldSettlDate::TAG : return fieldSettlDate.offset >= 0 ? _fixPtr + fieldSettlDate.offset : nullptr;
+     case FieldAccount::TAG : return fieldAccount.offset >= 0 ? _fixPtr + fieldAccount.offset : nullptr;
+     case FieldAcctIDSource::TAG : return fieldAcctIDSource.offset >= 0 ? _fixPtr + fieldAcctIDSource.offset : nullptr;
 
      default : return nullptr; 
    }
@@ -11189,33 +11366,33 @@ const char * GroupBidComponents::getFieldValue( unsigned tag ) const {
 }
 
 const char * GroupSettlInst::getFieldValue( unsigned tag ) const {
-   if( buf == nullptr ) return nullptr;
+   if( _fixPtr == nullptr ) return nullptr;
    switch( tag ){
-     case FieldSettlInstID::TAG : return fieldSettlInstID.offset >= 0 ? buf + fieldSettlInstID.offset : nullptr;
-     case FieldSettlInstTransType::TAG : return fieldSettlInstTransType.offset >= 0 ? buf + fieldSettlInstTransType.offset : nullptr;
-     case FieldSettlInstRefID::TAG : return fieldSettlInstRefID.offset >= 0 ? buf + fieldSettlInstRefID.offset : nullptr;
-     case FieldNoPartyIDs::TAG : return fieldNoPartyIDs.offset >= 0 ? buf + fieldNoPartyIDs.offset : nullptr;
-     case FieldSide::TAG : return fieldSide.offset >= 0 ? buf + fieldSide.offset : nullptr;
-     case FieldProduct::TAG : return fieldProduct.offset >= 0 ? buf + fieldProduct.offset : nullptr;
-     case FieldSecurityType::TAG : return fieldSecurityType.offset >= 0 ? buf + fieldSecurityType.offset : nullptr;
-     case FieldCFICode::TAG : return fieldCFICode.offset >= 0 ? buf + fieldCFICode.offset : nullptr;
-     case FieldEffectiveTime::TAG : return fieldEffectiveTime.offset >= 0 ? buf + fieldEffectiveTime.offset : nullptr;
-     case FieldExpireTime::TAG : return fieldExpireTime.offset >= 0 ? buf + fieldExpireTime.offset : nullptr;
-     case FieldLastUpdateTime::TAG : return fieldLastUpdateTime.offset >= 0 ? buf + fieldLastUpdateTime.offset : nullptr;
-     case FieldSettlDeliveryType::TAG : return fieldSettlDeliveryType.offset >= 0 ? buf + fieldSettlDeliveryType.offset : nullptr;
-     case FieldStandInstDbType::TAG : return fieldStandInstDbType.offset >= 0 ? buf + fieldStandInstDbType.offset : nullptr;
-     case FieldStandInstDbName::TAG : return fieldStandInstDbName.offset >= 0 ? buf + fieldStandInstDbName.offset : nullptr;
-     case FieldStandInstDbID::TAG : return fieldStandInstDbID.offset >= 0 ? buf + fieldStandInstDbID.offset : nullptr;
-     case FieldNoDlvyInst::TAG : return fieldNoDlvyInst.offset >= 0 ? buf + fieldNoDlvyInst.offset : nullptr;
-     case FieldPaymentMethod::TAG : return fieldPaymentMethod.offset >= 0 ? buf + fieldPaymentMethod.offset : nullptr;
-     case FieldPaymentRef::TAG : return fieldPaymentRef.offset >= 0 ? buf + fieldPaymentRef.offset : nullptr;
-     case FieldCardHolderName::TAG : return fieldCardHolderName.offset >= 0 ? buf + fieldCardHolderName.offset : nullptr;
-     case FieldCardNumber::TAG : return fieldCardNumber.offset >= 0 ? buf + fieldCardNumber.offset : nullptr;
-     case FieldCardStartDate::TAG : return fieldCardStartDate.offset >= 0 ? buf + fieldCardStartDate.offset : nullptr;
-     case FieldCardExpDate::TAG : return fieldCardExpDate.offset >= 0 ? buf + fieldCardExpDate.offset : nullptr;
-     case FieldCardIssNum::TAG : return fieldCardIssNum.offset >= 0 ? buf + fieldCardIssNum.offset : nullptr;
-     case FieldPaymentDate::TAG : return fieldPaymentDate.offset >= 0 ? buf + fieldPaymentDate.offset : nullptr;
-     case FieldPaymentRemitterID::TAG : return fieldPaymentRemitterID.offset >= 0 ? buf + fieldPaymentRemitterID.offset : nullptr;
+     case FieldSettlInstID::TAG : return fieldSettlInstID.offset >= 0 ? _fixPtr + fieldSettlInstID.offset : nullptr;
+     case FieldSettlInstTransType::TAG : return fieldSettlInstTransType.offset >= 0 ? _fixPtr + fieldSettlInstTransType.offset : nullptr;
+     case FieldSettlInstRefID::TAG : return fieldSettlInstRefID.offset >= 0 ? _fixPtr + fieldSettlInstRefID.offset : nullptr;
+     case FieldNoPartyIDs::TAG : return fieldNoPartyIDs.offset >= 0 ? _fixPtr + fieldNoPartyIDs.offset : nullptr;
+     case FieldSide::TAG : return fieldSide.offset >= 0 ? _fixPtr + fieldSide.offset : nullptr;
+     case FieldProduct::TAG : return fieldProduct.offset >= 0 ? _fixPtr + fieldProduct.offset : nullptr;
+     case FieldSecurityType::TAG : return fieldSecurityType.offset >= 0 ? _fixPtr + fieldSecurityType.offset : nullptr;
+     case FieldCFICode::TAG : return fieldCFICode.offset >= 0 ? _fixPtr + fieldCFICode.offset : nullptr;
+     case FieldEffectiveTime::TAG : return fieldEffectiveTime.offset >= 0 ? _fixPtr + fieldEffectiveTime.offset : nullptr;
+     case FieldExpireTime::TAG : return fieldExpireTime.offset >= 0 ? _fixPtr + fieldExpireTime.offset : nullptr;
+     case FieldLastUpdateTime::TAG : return fieldLastUpdateTime.offset >= 0 ? _fixPtr + fieldLastUpdateTime.offset : nullptr;
+     case FieldSettlDeliveryType::TAG : return fieldSettlDeliveryType.offset >= 0 ? _fixPtr + fieldSettlDeliveryType.offset : nullptr;
+     case FieldStandInstDbType::TAG : return fieldStandInstDbType.offset >= 0 ? _fixPtr + fieldStandInstDbType.offset : nullptr;
+     case FieldStandInstDbName::TAG : return fieldStandInstDbName.offset >= 0 ? _fixPtr + fieldStandInstDbName.offset : nullptr;
+     case FieldStandInstDbID::TAG : return fieldStandInstDbID.offset >= 0 ? _fixPtr + fieldStandInstDbID.offset : nullptr;
+     case FieldNoDlvyInst::TAG : return fieldNoDlvyInst.offset >= 0 ? _fixPtr + fieldNoDlvyInst.offset : nullptr;
+     case FieldPaymentMethod::TAG : return fieldPaymentMethod.offset >= 0 ? _fixPtr + fieldPaymentMethod.offset : nullptr;
+     case FieldPaymentRef::TAG : return fieldPaymentRef.offset >= 0 ? _fixPtr + fieldPaymentRef.offset : nullptr;
+     case FieldCardHolderName::TAG : return fieldCardHolderName.offset >= 0 ? _fixPtr + fieldCardHolderName.offset : nullptr;
+     case FieldCardNumber::TAG : return fieldCardNumber.offset >= 0 ? _fixPtr + fieldCardNumber.offset : nullptr;
+     case FieldCardStartDate::TAG : return fieldCardStartDate.offset >= 0 ? _fixPtr + fieldCardStartDate.offset : nullptr;
+     case FieldCardExpDate::TAG : return fieldCardExpDate.offset >= 0 ? _fixPtr + fieldCardExpDate.offset : nullptr;
+     case FieldCardIssNum::TAG : return fieldCardIssNum.offset >= 0 ? _fixPtr + fieldCardIssNum.offset : nullptr;
+     case FieldPaymentDate::TAG : return fieldPaymentDate.offset >= 0 ? _fixPtr + fieldPaymentDate.offset : nullptr;
+     case FieldPaymentRemitterID::TAG : return fieldPaymentRemitterID.offset >= 0 ? _fixPtr + fieldPaymentRemitterID.offset : nullptr;
 
      default : return nullptr; 
    }
@@ -11223,10 +11400,10 @@ const char * GroupSettlInst::getFieldValue( unsigned tag ) const {
 }
 
 const char * GroupInstrAttrib::getFieldValue( unsigned tag ) const {
-   if( buf == nullptr ) return nullptr;
+   if( _fixPtr == nullptr ) return nullptr;
    switch( tag ){
-     case FieldInstrAttribType::TAG : return fieldInstrAttribType.offset >= 0 ? buf + fieldInstrAttribType.offset : nullptr;
-     case FieldInstrAttribValue::TAG : return fieldInstrAttribValue.offset >= 0 ? buf + fieldInstrAttribValue.offset : nullptr;
+     case FieldInstrAttribType::TAG : return fieldInstrAttribType.offset >= 0 ? _fixPtr + fieldInstrAttribType.offset : nullptr;
+     case FieldInstrAttribValue::TAG : return fieldInstrAttribValue.offset >= 0 ? _fixPtr + fieldInstrAttribValue.offset : nullptr;
 
      default : return nullptr; 
    }
@@ -11234,12 +11411,12 @@ const char * GroupInstrAttrib::getFieldValue( unsigned tag ) const {
 }
 
 const char * GroupMiscFees::getFieldValue( unsigned tag ) const {
-   if( buf == nullptr ) return nullptr;
+   if( _fixPtr == nullptr ) return nullptr;
    switch( tag ){
-     case FieldMiscFeeAmt::TAG : return fieldMiscFeeAmt.offset >= 0 ? buf + fieldMiscFeeAmt.offset : nullptr;
-     case FieldMiscFeeCurr::TAG : return fieldMiscFeeCurr.offset >= 0 ? buf + fieldMiscFeeCurr.offset : nullptr;
-     case FieldMiscFeeType::TAG : return fieldMiscFeeType.offset >= 0 ? buf + fieldMiscFeeType.offset : nullptr;
-     case FieldMiscFeeBasis::TAG : return fieldMiscFeeBasis.offset >= 0 ? buf + fieldMiscFeeBasis.offset : nullptr;
+     case FieldMiscFeeAmt::TAG : return fieldMiscFeeAmt.offset >= 0 ? _fixPtr + fieldMiscFeeAmt.offset : nullptr;
+     case FieldMiscFeeCurr::TAG : return fieldMiscFeeCurr.offset >= 0 ? _fixPtr + fieldMiscFeeCurr.offset : nullptr;
+     case FieldMiscFeeType::TAG : return fieldMiscFeeType.offset >= 0 ? _fixPtr + fieldMiscFeeType.offset : nullptr;
+     case FieldMiscFeeBasis::TAG : return fieldMiscFeeBasis.offset >= 0 ? _fixPtr + fieldMiscFeeBasis.offset : nullptr;
 
      default : return nullptr; 
    }
@@ -11247,9 +11424,9 @@ const char * GroupMiscFees::getFieldValue( unsigned tag ) const {
 }
 
 const char * GroupQuoteQualifiers::getFieldValue( unsigned tag ) const {
-   if( buf == nullptr ) return nullptr;
+   if( _fixPtr == nullptr ) return nullptr;
    switch( tag ){
-     case FieldQuoteQualifier::TAG : return fieldQuoteQualifier.offset >= 0 ? buf + fieldQuoteQualifier.offset : nullptr;
+     case FieldQuoteQualifier::TAG : return fieldQuoteQualifier.offset >= 0 ? _fixPtr + fieldQuoteQualifier.offset : nullptr;
 
      default : return nullptr; 
    }
@@ -11257,16 +11434,16 @@ const char * GroupQuoteQualifiers::getFieldValue( unsigned tag ) const {
 }
 
 const char * GroupDistribInsts::getFieldValue( unsigned tag ) const {
-   if( buf == nullptr ) return nullptr;
+   if( _fixPtr == nullptr ) return nullptr;
    switch( tag ){
-     case FieldDistribPaymentMethod::TAG : return fieldDistribPaymentMethod.offset >= 0 ? buf + fieldDistribPaymentMethod.offset : nullptr;
-     case FieldDistribPercentage::TAG : return fieldDistribPercentage.offset >= 0 ? buf + fieldDistribPercentage.offset : nullptr;
-     case FieldCashDistribCurr::TAG : return fieldCashDistribCurr.offset >= 0 ? buf + fieldCashDistribCurr.offset : nullptr;
-     case FieldCashDistribAgentName::TAG : return fieldCashDistribAgentName.offset >= 0 ? buf + fieldCashDistribAgentName.offset : nullptr;
-     case FieldCashDistribAgentCode::TAG : return fieldCashDistribAgentCode.offset >= 0 ? buf + fieldCashDistribAgentCode.offset : nullptr;
-     case FieldCashDistribAgentAcctNumber::TAG : return fieldCashDistribAgentAcctNumber.offset >= 0 ? buf + fieldCashDistribAgentAcctNumber.offset : nullptr;
-     case FieldCashDistribPayRef::TAG : return fieldCashDistribPayRef.offset >= 0 ? buf + fieldCashDistribPayRef.offset : nullptr;
-     case FieldCashDistribAgentAcctName::TAG : return fieldCashDistribAgentAcctName.offset >= 0 ? buf + fieldCashDistribAgentAcctName.offset : nullptr;
+     case FieldDistribPaymentMethod::TAG : return fieldDistribPaymentMethod.offset >= 0 ? _fixPtr + fieldDistribPaymentMethod.offset : nullptr;
+     case FieldDistribPercentage::TAG : return fieldDistribPercentage.offset >= 0 ? _fixPtr + fieldDistribPercentage.offset : nullptr;
+     case FieldCashDistribCurr::TAG : return fieldCashDistribCurr.offset >= 0 ? _fixPtr + fieldCashDistribCurr.offset : nullptr;
+     case FieldCashDistribAgentName::TAG : return fieldCashDistribAgentName.offset >= 0 ? _fixPtr + fieldCashDistribAgentName.offset : nullptr;
+     case FieldCashDistribAgentCode::TAG : return fieldCashDistribAgentCode.offset >= 0 ? _fixPtr + fieldCashDistribAgentCode.offset : nullptr;
+     case FieldCashDistribAgentAcctNumber::TAG : return fieldCashDistribAgentAcctNumber.offset >= 0 ? _fixPtr + fieldCashDistribAgentAcctNumber.offset : nullptr;
+     case FieldCashDistribPayRef::TAG : return fieldCashDistribPayRef.offset >= 0 ? _fixPtr + fieldCashDistribPayRef.offset : nullptr;
+     case FieldCashDistribAgentAcctName::TAG : return fieldCashDistribAgentAcctName.offset >= 0 ? _fixPtr + fieldCashDistribAgentAcctName.offset : nullptr;
 
      default : return nullptr; 
    }
@@ -11274,11 +11451,11 @@ const char * GroupDistribInsts::getFieldValue( unsigned tag ) const {
 }
 
 const char * GroupTrdRegTimestamps::getFieldValue( unsigned tag ) const {
-   if( buf == nullptr ) return nullptr;
+   if( _fixPtr == nullptr ) return nullptr;
    switch( tag ){
-     case FieldTrdRegTimestamp::TAG : return fieldTrdRegTimestamp.offset >= 0 ? buf + fieldTrdRegTimestamp.offset : nullptr;
-     case FieldTrdRegTimestampType::TAG : return fieldTrdRegTimestampType.offset >= 0 ? buf + fieldTrdRegTimestampType.offset : nullptr;
-     case FieldTrdRegTimestampOrigin::TAG : return fieldTrdRegTimestampOrigin.offset >= 0 ? buf + fieldTrdRegTimestampOrigin.offset : nullptr;
+     case FieldTrdRegTimestamp::TAG : return fieldTrdRegTimestamp.offset >= 0 ? _fixPtr + fieldTrdRegTimestamp.offset : nullptr;
+     case FieldTrdRegTimestampType::TAG : return fieldTrdRegTimestampType.offset >= 0 ? _fixPtr + fieldTrdRegTimestampType.offset : nullptr;
+     case FieldTrdRegTimestampOrigin::TAG : return fieldTrdRegTimestampOrigin.offset >= 0 ? _fixPtr + fieldTrdRegTimestampOrigin.offset : nullptr;
 
      default : return nullptr; 
    }
@@ -11286,9 +11463,9 @@ const char * GroupTrdRegTimestamps::getFieldValue( unsigned tag ) const {
 }
 
 const char * GroupAltMDSource::getFieldValue( unsigned tag ) const {
-   if( buf == nullptr ) return nullptr;
+   if( _fixPtr == nullptr ) return nullptr;
    switch( tag ){
-     case FieldAltMDSourceID::TAG : return fieldAltMDSourceID.offset >= 0 ? buf + fieldAltMDSourceID.offset : nullptr;
+     case FieldAltMDSourceID::TAG : return fieldAltMDSourceID.offset >= 0 ? _fixPtr + fieldAltMDSourceID.offset : nullptr;
 
      default : return nullptr; 
    }
@@ -11296,26 +11473,26 @@ const char * GroupAltMDSource::getFieldValue( unsigned tag ) const {
 }
 
 const char * GroupSides::getFieldValue( unsigned tag ) const {
-   if( buf == nullptr ) return nullptr;
+   if( _fixPtr == nullptr ) return nullptr;
    switch( tag ){
-     case FieldSide::TAG : return fieldSide.offset >= 0 ? buf + fieldSide.offset : nullptr;
-     case FieldOrigClOrdID::TAG : return fieldOrigClOrdID.offset >= 0 ? buf + fieldOrigClOrdID.offset : nullptr;
-     case FieldClOrdID::TAG : return fieldClOrdID.offset >= 0 ? buf + fieldClOrdID.offset : nullptr;
-     case FieldSecondaryClOrdID::TAG : return fieldSecondaryClOrdID.offset >= 0 ? buf + fieldSecondaryClOrdID.offset : nullptr;
-     case FieldClOrdLinkID::TAG : return fieldClOrdLinkID.offset >= 0 ? buf + fieldClOrdLinkID.offset : nullptr;
-     case FieldOrigOrdModTime::TAG : return fieldOrigOrdModTime.offset >= 0 ? buf + fieldOrigOrdModTime.offset : nullptr;
-     case FieldNoPartyIDs::TAG : return fieldNoPartyIDs.offset >= 0 ? buf + fieldNoPartyIDs.offset : nullptr;
-     case FieldTradeOriginationDate::TAG : return fieldTradeOriginationDate.offset >= 0 ? buf + fieldTradeOriginationDate.offset : nullptr;
-     case FieldTradeDate::TAG : return fieldTradeDate.offset >= 0 ? buf + fieldTradeDate.offset : nullptr;
-     case FieldOrderQty::TAG : return fieldOrderQty.offset >= 0 ? buf + fieldOrderQty.offset : nullptr;
-     case FieldCashOrderQty::TAG : return fieldCashOrderQty.offset >= 0 ? buf + fieldCashOrderQty.offset : nullptr;
-     case FieldOrderPercent::TAG : return fieldOrderPercent.offset >= 0 ? buf + fieldOrderPercent.offset : nullptr;
-     case FieldRoundingDirection::TAG : return fieldRoundingDirection.offset >= 0 ? buf + fieldRoundingDirection.offset : nullptr;
-     case FieldRoundingModulus::TAG : return fieldRoundingModulus.offset >= 0 ? buf + fieldRoundingModulus.offset : nullptr;
-     case FieldComplianceID::TAG : return fieldComplianceID.offset >= 0 ? buf + fieldComplianceID.offset : nullptr;
-     case FieldText::TAG : return fieldText.offset >= 0 ? buf + fieldText.offset : nullptr;
-     case FieldEncodedTextLen::TAG : return fieldEncodedTextLen.offset >= 0 ? buf + fieldEncodedTextLen.offset : nullptr;
-     case FieldEncodedText::TAG : return fieldEncodedText.offset >= 0 ? buf + fieldEncodedText.offset : nullptr;
+     case FieldSide::TAG : return fieldSide.offset >= 0 ? _fixPtr + fieldSide.offset : nullptr;
+     case FieldOrigClOrdID::TAG : return fieldOrigClOrdID.offset >= 0 ? _fixPtr + fieldOrigClOrdID.offset : nullptr;
+     case FieldClOrdID::TAG : return fieldClOrdID.offset >= 0 ? _fixPtr + fieldClOrdID.offset : nullptr;
+     case FieldSecondaryClOrdID::TAG : return fieldSecondaryClOrdID.offset >= 0 ? _fixPtr + fieldSecondaryClOrdID.offset : nullptr;
+     case FieldClOrdLinkID::TAG : return fieldClOrdLinkID.offset >= 0 ? _fixPtr + fieldClOrdLinkID.offset : nullptr;
+     case FieldOrigOrdModTime::TAG : return fieldOrigOrdModTime.offset >= 0 ? _fixPtr + fieldOrigOrdModTime.offset : nullptr;
+     case FieldNoPartyIDs::TAG : return fieldNoPartyIDs.offset >= 0 ? _fixPtr + fieldNoPartyIDs.offset : nullptr;
+     case FieldTradeOriginationDate::TAG : return fieldTradeOriginationDate.offset >= 0 ? _fixPtr + fieldTradeOriginationDate.offset : nullptr;
+     case FieldTradeDate::TAG : return fieldTradeDate.offset >= 0 ? _fixPtr + fieldTradeDate.offset : nullptr;
+     case FieldOrderQty::TAG : return fieldOrderQty.offset >= 0 ? _fixPtr + fieldOrderQty.offset : nullptr;
+     case FieldCashOrderQty::TAG : return fieldCashOrderQty.offset >= 0 ? _fixPtr + fieldCashOrderQty.offset : nullptr;
+     case FieldOrderPercent::TAG : return fieldOrderPercent.offset >= 0 ? _fixPtr + fieldOrderPercent.offset : nullptr;
+     case FieldRoundingDirection::TAG : return fieldRoundingDirection.offset >= 0 ? _fixPtr + fieldRoundingDirection.offset : nullptr;
+     case FieldRoundingModulus::TAG : return fieldRoundingModulus.offset >= 0 ? _fixPtr + fieldRoundingModulus.offset : nullptr;
+     case FieldComplianceID::TAG : return fieldComplianceID.offset >= 0 ? _fixPtr + fieldComplianceID.offset : nullptr;
+     case FieldText::TAG : return fieldText.offset >= 0 ? _fixPtr + fieldText.offset : nullptr;
+     case FieldEncodedTextLen::TAG : return fieldEncodedTextLen.offset >= 0 ? _fixPtr + fieldEncodedTextLen.offset : nullptr;
+     case FieldEncodedText::TAG : return fieldEncodedText.offset >= 0 ? _fixPtr + fieldEncodedText.offset : nullptr;
 
      default : return nullptr; 
    }
@@ -11323,10 +11500,10 @@ const char * GroupSides::getFieldValue( unsigned tag ) const {
 }
 
 const char * GroupRoutingIDs::getFieldValue( unsigned tag ) const {
-   if( buf == nullptr ) return nullptr;
+   if( _fixPtr == nullptr ) return nullptr;
    switch( tag ){
-     case FieldRoutingType::TAG : return fieldRoutingType.offset >= 0 ? buf + fieldRoutingType.offset : nullptr;
-     case FieldRoutingID::TAG : return fieldRoutingID.offset >= 0 ? buf + fieldRoutingID.offset : nullptr;
+     case FieldRoutingType::TAG : return fieldRoutingType.offset >= 0 ? _fixPtr + fieldRoutingType.offset : nullptr;
+     case FieldRoutingID::TAG : return fieldRoutingID.offset >= 0 ? _fixPtr + fieldRoutingID.offset : nullptr;
 
      default : return nullptr; 
    }
@@ -11334,10 +11511,10 @@ const char * GroupRoutingIDs::getFieldValue( unsigned tag ) const {
 }
 
 const char * GroupPosAmt::getFieldValue( unsigned tag ) const {
-   if( buf == nullptr ) return nullptr;
+   if( _fixPtr == nullptr ) return nullptr;
    switch( tag ){
-     case FieldPosAmtType::TAG : return fieldPosAmtType.offset >= 0 ? buf + fieldPosAmtType.offset : nullptr;
-     case FieldPosAmt::TAG : return fieldPosAmt.offset >= 0 ? buf + fieldPosAmt.offset : nullptr;
+     case FieldPosAmtType::TAG : return fieldPosAmtType.offset >= 0 ? _fixPtr + fieldPosAmtType.offset : nullptr;
+     case FieldPosAmt::TAG : return fieldPosAmt.offset >= 0 ? _fixPtr + fieldPosAmt.offset : nullptr;
 
      default : return nullptr; 
    }
@@ -11345,11 +11522,11 @@ const char * GroupPosAmt::getFieldValue( unsigned tag ) const {
 }
 
 const char * GroupLinesOfText::getFieldValue( unsigned tag ) const {
-   if( buf == nullptr ) return nullptr;
+   if( _fixPtr == nullptr ) return nullptr;
    switch( tag ){
-     case FieldText::TAG : return fieldText.offset >= 0 ? buf + fieldText.offset : nullptr;
-     case FieldEncodedTextLen::TAG : return fieldEncodedTextLen.offset >= 0 ? buf + fieldEncodedTextLen.offset : nullptr;
-     case FieldEncodedText::TAG : return fieldEncodedText.offset >= 0 ? buf + fieldEncodedText.offset : nullptr;
+     case FieldText::TAG : return fieldText.offset >= 0 ? _fixPtr + fieldText.offset : nullptr;
+     case FieldEncodedTextLen::TAG : return fieldEncodedTextLen.offset >= 0 ? _fixPtr + fieldEncodedTextLen.offset : nullptr;
+     case FieldEncodedText::TAG : return fieldEncodedText.offset >= 0 ? _fixPtr + fieldEncodedText.offset : nullptr;
 
      default : return nullptr; 
    }
@@ -11357,9 +11534,9 @@ const char * GroupLinesOfText::getFieldValue( unsigned tag ) const {
 }
 
 const char * GroupIOIQualifiers::getFieldValue( unsigned tag ) const {
-   if( buf == nullptr ) return nullptr;
+   if( _fixPtr == nullptr ) return nullptr;
    switch( tag ){
-     case FieldIOIQualifier::TAG : return fieldIOIQualifier.offset >= 0 ? buf + fieldIOIQualifier.offset : nullptr;
+     case FieldIOIQualifier::TAG : return fieldIOIQualifier.offset >= 0 ? _fixPtr + fieldIOIQualifier.offset : nullptr;
 
      default : return nullptr; 
    }
@@ -11367,10 +11544,10 @@ const char * GroupIOIQualifiers::getFieldValue( unsigned tag ) const {
 }
 
 const char * GroupDates::getFieldValue( unsigned tag ) const {
-   if( buf == nullptr ) return nullptr;
+   if( _fixPtr == nullptr ) return nullptr;
    switch( tag ){
-     case FieldTradeDate::TAG : return fieldTradeDate.offset >= 0 ? buf + fieldTradeDate.offset : nullptr;
-     case FieldTransactTime::TAG : return fieldTransactTime.offset >= 0 ? buf + fieldTransactTime.offset : nullptr;
+     case FieldTradeDate::TAG : return fieldTradeDate.offset >= 0 ? _fixPtr + fieldTradeDate.offset : nullptr;
+     case FieldTransactTime::TAG : return fieldTransactTime.offset >= 0 ? _fixPtr + fieldTransactTime.offset : nullptr;
 
      default : return nullptr; 
    }
@@ -11378,9 +11555,9 @@ const char * GroupDates::getFieldValue( unsigned tag ) const {
 }
 
 const char * GroupMDEntryTypes::getFieldValue( unsigned tag ) const {
-   if( buf == nullptr ) return nullptr;
+   if( _fixPtr == nullptr ) return nullptr;
    switch( tag ){
-     case FieldMDEntryType::TAG : return fieldMDEntryType.offset >= 0 ? buf + fieldMDEntryType.offset : nullptr;
+     case FieldMDEntryType::TAG : return fieldMDEntryType.offset >= 0 ? _fixPtr + fieldMDEntryType.offset : nullptr;
 
      default : return nullptr; 
    }
@@ -11388,51 +11565,51 @@ const char * GroupMDEntryTypes::getFieldValue( unsigned tag ) const {
 }
 
 const char * GroupRelatedSym::getFieldValue( unsigned tag ) const {
-   if( buf == nullptr ) return nullptr;
+   if( _fixPtr == nullptr ) return nullptr;
    switch( tag ){
-     case FieldSymbol::TAG : return fieldSymbol.offset >= 0 ? buf + fieldSymbol.offset : nullptr;
-     case FieldSymbolSfx::TAG : return fieldSymbolSfx.offset >= 0 ? buf + fieldSymbolSfx.offset : nullptr;
-     case FieldSecurityID::TAG : return fieldSecurityID.offset >= 0 ? buf + fieldSecurityID.offset : nullptr;
-     case FieldSecurityIDSource::TAG : return fieldSecurityIDSource.offset >= 0 ? buf + fieldSecurityIDSource.offset : nullptr;
-     case FieldNoSecurityAltID::TAG : return fieldNoSecurityAltID.offset >= 0 ? buf + fieldNoSecurityAltID.offset : nullptr;
-     case FieldProduct::TAG : return fieldProduct.offset >= 0 ? buf + fieldProduct.offset : nullptr;
-     case FieldCFICode::TAG : return fieldCFICode.offset >= 0 ? buf + fieldCFICode.offset : nullptr;
-     case FieldSecurityType::TAG : return fieldSecurityType.offset >= 0 ? buf + fieldSecurityType.offset : nullptr;
-     case FieldSecuritySubType::TAG : return fieldSecuritySubType.offset >= 0 ? buf + fieldSecuritySubType.offset : nullptr;
-     case FieldMaturityMonthYear::TAG : return fieldMaturityMonthYear.offset >= 0 ? buf + fieldMaturityMonthYear.offset : nullptr;
-     case FieldMaturityDate::TAG : return fieldMaturityDate.offset >= 0 ? buf + fieldMaturityDate.offset : nullptr;
-     case FieldPutOrCall::TAG : return fieldPutOrCall.offset >= 0 ? buf + fieldPutOrCall.offset : nullptr;
-     case FieldCouponPaymentDate::TAG : return fieldCouponPaymentDate.offset >= 0 ? buf + fieldCouponPaymentDate.offset : nullptr;
-     case FieldIssueDate::TAG : return fieldIssueDate.offset >= 0 ? buf + fieldIssueDate.offset : nullptr;
-     case FieldRepoCollateralSecurityType::TAG : return fieldRepoCollateralSecurityType.offset >= 0 ? buf + fieldRepoCollateralSecurityType.offset : nullptr;
-     case FieldRepurchaseTerm::TAG : return fieldRepurchaseTerm.offset >= 0 ? buf + fieldRepurchaseTerm.offset : nullptr;
-     case FieldRepurchaseRate::TAG : return fieldRepurchaseRate.offset >= 0 ? buf + fieldRepurchaseRate.offset : nullptr;
-     case FieldFactor::TAG : return fieldFactor.offset >= 0 ? buf + fieldFactor.offset : nullptr;
-     case FieldCreditRating::TAG : return fieldCreditRating.offset >= 0 ? buf + fieldCreditRating.offset : nullptr;
-     case FieldInstrRegistry::TAG : return fieldInstrRegistry.offset >= 0 ? buf + fieldInstrRegistry.offset : nullptr;
-     case FieldCountryOfIssue::TAG : return fieldCountryOfIssue.offset >= 0 ? buf + fieldCountryOfIssue.offset : nullptr;
-     case FieldStateOrProvinceOfIssue::TAG : return fieldStateOrProvinceOfIssue.offset >= 0 ? buf + fieldStateOrProvinceOfIssue.offset : nullptr;
-     case FieldLocaleOfIssue::TAG : return fieldLocaleOfIssue.offset >= 0 ? buf + fieldLocaleOfIssue.offset : nullptr;
-     case FieldRedemptionDate::TAG : return fieldRedemptionDate.offset >= 0 ? buf + fieldRedemptionDate.offset : nullptr;
-     case FieldStrikePrice::TAG : return fieldStrikePrice.offset >= 0 ? buf + fieldStrikePrice.offset : nullptr;
-     case FieldStrikeCurrency::TAG : return fieldStrikeCurrency.offset >= 0 ? buf + fieldStrikeCurrency.offset : nullptr;
-     case FieldOptAttribute::TAG : return fieldOptAttribute.offset >= 0 ? buf + fieldOptAttribute.offset : nullptr;
-     case FieldContractMultiplier::TAG : return fieldContractMultiplier.offset >= 0 ? buf + fieldContractMultiplier.offset : nullptr;
-     case FieldCouponRate::TAG : return fieldCouponRate.offset >= 0 ? buf + fieldCouponRate.offset : nullptr;
-     case FieldSecurityExchange::TAG : return fieldSecurityExchange.offset >= 0 ? buf + fieldSecurityExchange.offset : nullptr;
-     case FieldIssuer::TAG : return fieldIssuer.offset >= 0 ? buf + fieldIssuer.offset : nullptr;
-     case FieldEncodedIssuerLen::TAG : return fieldEncodedIssuerLen.offset >= 0 ? buf + fieldEncodedIssuerLen.offset : nullptr;
-     case FieldEncodedIssuer::TAG : return fieldEncodedIssuer.offset >= 0 ? buf + fieldEncodedIssuer.offset : nullptr;
-     case FieldSecurityDesc::TAG : return fieldSecurityDesc.offset >= 0 ? buf + fieldSecurityDesc.offset : nullptr;
-     case FieldEncodedSecurityDescLen::TAG : return fieldEncodedSecurityDescLen.offset >= 0 ? buf + fieldEncodedSecurityDescLen.offset : nullptr;
-     case FieldEncodedSecurityDesc::TAG : return fieldEncodedSecurityDesc.offset >= 0 ? buf + fieldEncodedSecurityDesc.offset : nullptr;
-     case FieldPool::TAG : return fieldPool.offset >= 0 ? buf + fieldPool.offset : nullptr;
-     case FieldContractSettlMonth::TAG : return fieldContractSettlMonth.offset >= 0 ? buf + fieldContractSettlMonth.offset : nullptr;
-     case FieldCPProgram::TAG : return fieldCPProgram.offset >= 0 ? buf + fieldCPProgram.offset : nullptr;
-     case FieldCPRegType::TAG : return fieldCPRegType.offset >= 0 ? buf + fieldCPRegType.offset : nullptr;
-     case FieldNoEvents::TAG : return fieldNoEvents.offset >= 0 ? buf + fieldNoEvents.offset : nullptr;
-     case FieldDatedDate::TAG : return fieldDatedDate.offset >= 0 ? buf + fieldDatedDate.offset : nullptr;
-     case FieldInterestAccrualDate::TAG : return fieldInterestAccrualDate.offset >= 0 ? buf + fieldInterestAccrualDate.offset : nullptr;
+     case FieldSymbol::TAG : return fieldSymbol.offset >= 0 ? _fixPtr + fieldSymbol.offset : nullptr;
+     case FieldSymbolSfx::TAG : return fieldSymbolSfx.offset >= 0 ? _fixPtr + fieldSymbolSfx.offset : nullptr;
+     case FieldSecurityID::TAG : return fieldSecurityID.offset >= 0 ? _fixPtr + fieldSecurityID.offset : nullptr;
+     case FieldSecurityIDSource::TAG : return fieldSecurityIDSource.offset >= 0 ? _fixPtr + fieldSecurityIDSource.offset : nullptr;
+     case FieldNoSecurityAltID::TAG : return fieldNoSecurityAltID.offset >= 0 ? _fixPtr + fieldNoSecurityAltID.offset : nullptr;
+     case FieldProduct::TAG : return fieldProduct.offset >= 0 ? _fixPtr + fieldProduct.offset : nullptr;
+     case FieldCFICode::TAG : return fieldCFICode.offset >= 0 ? _fixPtr + fieldCFICode.offset : nullptr;
+     case FieldSecurityType::TAG : return fieldSecurityType.offset >= 0 ? _fixPtr + fieldSecurityType.offset : nullptr;
+     case FieldSecuritySubType::TAG : return fieldSecuritySubType.offset >= 0 ? _fixPtr + fieldSecuritySubType.offset : nullptr;
+     case FieldMaturityMonthYear::TAG : return fieldMaturityMonthYear.offset >= 0 ? _fixPtr + fieldMaturityMonthYear.offset : nullptr;
+     case FieldMaturityDate::TAG : return fieldMaturityDate.offset >= 0 ? _fixPtr + fieldMaturityDate.offset : nullptr;
+     case FieldPutOrCall::TAG : return fieldPutOrCall.offset >= 0 ? _fixPtr + fieldPutOrCall.offset : nullptr;
+     case FieldCouponPaymentDate::TAG : return fieldCouponPaymentDate.offset >= 0 ? _fixPtr + fieldCouponPaymentDate.offset : nullptr;
+     case FieldIssueDate::TAG : return fieldIssueDate.offset >= 0 ? _fixPtr + fieldIssueDate.offset : nullptr;
+     case FieldRepoCollateralSecurityType::TAG : return fieldRepoCollateralSecurityType.offset >= 0 ? _fixPtr + fieldRepoCollateralSecurityType.offset : nullptr;
+     case FieldRepurchaseTerm::TAG : return fieldRepurchaseTerm.offset >= 0 ? _fixPtr + fieldRepurchaseTerm.offset : nullptr;
+     case FieldRepurchaseRate::TAG : return fieldRepurchaseRate.offset >= 0 ? _fixPtr + fieldRepurchaseRate.offset : nullptr;
+     case FieldFactor::TAG : return fieldFactor.offset >= 0 ? _fixPtr + fieldFactor.offset : nullptr;
+     case FieldCreditRating::TAG : return fieldCreditRating.offset >= 0 ? _fixPtr + fieldCreditRating.offset : nullptr;
+     case FieldInstrRegistry::TAG : return fieldInstrRegistry.offset >= 0 ? _fixPtr + fieldInstrRegistry.offset : nullptr;
+     case FieldCountryOfIssue::TAG : return fieldCountryOfIssue.offset >= 0 ? _fixPtr + fieldCountryOfIssue.offset : nullptr;
+     case FieldStateOrProvinceOfIssue::TAG : return fieldStateOrProvinceOfIssue.offset >= 0 ? _fixPtr + fieldStateOrProvinceOfIssue.offset : nullptr;
+     case FieldLocaleOfIssue::TAG : return fieldLocaleOfIssue.offset >= 0 ? _fixPtr + fieldLocaleOfIssue.offset : nullptr;
+     case FieldRedemptionDate::TAG : return fieldRedemptionDate.offset >= 0 ? _fixPtr + fieldRedemptionDate.offset : nullptr;
+     case FieldStrikePrice::TAG : return fieldStrikePrice.offset >= 0 ? _fixPtr + fieldStrikePrice.offset : nullptr;
+     case FieldStrikeCurrency::TAG : return fieldStrikeCurrency.offset >= 0 ? _fixPtr + fieldStrikeCurrency.offset : nullptr;
+     case FieldOptAttribute::TAG : return fieldOptAttribute.offset >= 0 ? _fixPtr + fieldOptAttribute.offset : nullptr;
+     case FieldContractMultiplier::TAG : return fieldContractMultiplier.offset >= 0 ? _fixPtr + fieldContractMultiplier.offset : nullptr;
+     case FieldCouponRate::TAG : return fieldCouponRate.offset >= 0 ? _fixPtr + fieldCouponRate.offset : nullptr;
+     case FieldSecurityExchange::TAG : return fieldSecurityExchange.offset >= 0 ? _fixPtr + fieldSecurityExchange.offset : nullptr;
+     case FieldIssuer::TAG : return fieldIssuer.offset >= 0 ? _fixPtr + fieldIssuer.offset : nullptr;
+     case FieldEncodedIssuerLen::TAG : return fieldEncodedIssuerLen.offset >= 0 ? _fixPtr + fieldEncodedIssuerLen.offset : nullptr;
+     case FieldEncodedIssuer::TAG : return fieldEncodedIssuer.offset >= 0 ? _fixPtr + fieldEncodedIssuer.offset : nullptr;
+     case FieldSecurityDesc::TAG : return fieldSecurityDesc.offset >= 0 ? _fixPtr + fieldSecurityDesc.offset : nullptr;
+     case FieldEncodedSecurityDescLen::TAG : return fieldEncodedSecurityDescLen.offset >= 0 ? _fixPtr + fieldEncodedSecurityDescLen.offset : nullptr;
+     case FieldEncodedSecurityDesc::TAG : return fieldEncodedSecurityDesc.offset >= 0 ? _fixPtr + fieldEncodedSecurityDesc.offset : nullptr;
+     case FieldPool::TAG : return fieldPool.offset >= 0 ? _fixPtr + fieldPool.offset : nullptr;
+     case FieldContractSettlMonth::TAG : return fieldContractSettlMonth.offset >= 0 ? _fixPtr + fieldContractSettlMonth.offset : nullptr;
+     case FieldCPProgram::TAG : return fieldCPProgram.offset >= 0 ? _fixPtr + fieldCPProgram.offset : nullptr;
+     case FieldCPRegType::TAG : return fieldCPRegType.offset >= 0 ? _fixPtr + fieldCPRegType.offset : nullptr;
+     case FieldNoEvents::TAG : return fieldNoEvents.offset >= 0 ? _fixPtr + fieldNoEvents.offset : nullptr;
+     case FieldDatedDate::TAG : return fieldDatedDate.offset >= 0 ? _fixPtr + fieldDatedDate.offset : nullptr;
+     case FieldInterestAccrualDate::TAG : return fieldInterestAccrualDate.offset >= 0 ? _fixPtr + fieldInterestAccrualDate.offset : nullptr;
 
      default : return nullptr; 
    }
@@ -11440,13 +11617,13 @@ const char * GroupRelatedSym::getFieldValue( unsigned tag ) const {
 }
 
 const char * GroupContraBrokers::getFieldValue( unsigned tag ) const {
-   if( buf == nullptr ) return nullptr;
+   if( _fixPtr == nullptr ) return nullptr;
    switch( tag ){
-     case FieldContraBroker::TAG : return fieldContraBroker.offset >= 0 ? buf + fieldContraBroker.offset : nullptr;
-     case FieldContraTrader::TAG : return fieldContraTrader.offset >= 0 ? buf + fieldContraTrader.offset : nullptr;
-     case FieldContraTradeQty::TAG : return fieldContraTradeQty.offset >= 0 ? buf + fieldContraTradeQty.offset : nullptr;
-     case FieldContraTradeTime::TAG : return fieldContraTradeTime.offset >= 0 ? buf + fieldContraTradeTime.offset : nullptr;
-     case FieldContraLegRefID::TAG : return fieldContraLegRefID.offset >= 0 ? buf + fieldContraLegRefID.offset : nullptr;
+     case FieldContraBroker::TAG : return fieldContraBroker.offset >= 0 ? _fixPtr + fieldContraBroker.offset : nullptr;
+     case FieldContraTrader::TAG : return fieldContraTrader.offset >= 0 ? _fixPtr + fieldContraTrader.offset : nullptr;
+     case FieldContraTradeQty::TAG : return fieldContraTradeQty.offset >= 0 ? _fixPtr + fieldContraTradeQty.offset : nullptr;
+     case FieldContraTradeTime::TAG : return fieldContraTradeTime.offset >= 0 ? _fixPtr + fieldContraTradeTime.offset : nullptr;
+     case FieldContraLegRefID::TAG : return fieldContraLegRefID.offset >= 0 ? _fixPtr + fieldContraLegRefID.offset : nullptr;
 
      default : return nullptr; 
    }
@@ -11454,10 +11631,10 @@ const char * GroupContraBrokers::getFieldValue( unsigned tag ) const {
 }
 
 const char * GroupTrades::getFieldValue( unsigned tag ) const {
-   if( buf == nullptr ) return nullptr;
+   if( _fixPtr == nullptr ) return nullptr;
    switch( tag ){
-     case FieldTradeReportID::TAG : return fieldTradeReportID.offset >= 0 ? buf + fieldTradeReportID.offset : nullptr;
-     case FieldSecondaryTradeReportID::TAG : return fieldSecondaryTradeReportID.offset >= 0 ? buf + fieldSecondaryTradeReportID.offset : nullptr;
+     case FieldTradeReportID::TAG : return fieldTradeReportID.offset >= 0 ? _fixPtr + fieldTradeReportID.offset : nullptr;
+     case FieldSecondaryTradeReportID::TAG : return fieldSecondaryTradeReportID.offset >= 0 ? _fixPtr + fieldSecondaryTradeReportID.offset : nullptr;
 
      default : return nullptr; 
    }
@@ -11465,51 +11642,51 @@ const char * GroupTrades::getFieldValue( unsigned tag ) const {
 }
 
 const char * GroupStrikes::getFieldValue( unsigned tag ) const {
-   if( buf == nullptr ) return nullptr;
+   if( _fixPtr == nullptr ) return nullptr;
    switch( tag ){
-     case FieldSymbol::TAG : return fieldSymbol.offset >= 0 ? buf + fieldSymbol.offset : nullptr;
-     case FieldSymbolSfx::TAG : return fieldSymbolSfx.offset >= 0 ? buf + fieldSymbolSfx.offset : nullptr;
-     case FieldSecurityID::TAG : return fieldSecurityID.offset >= 0 ? buf + fieldSecurityID.offset : nullptr;
-     case FieldSecurityIDSource::TAG : return fieldSecurityIDSource.offset >= 0 ? buf + fieldSecurityIDSource.offset : nullptr;
-     case FieldNoSecurityAltID::TAG : return fieldNoSecurityAltID.offset >= 0 ? buf + fieldNoSecurityAltID.offset : nullptr;
-     case FieldProduct::TAG : return fieldProduct.offset >= 0 ? buf + fieldProduct.offset : nullptr;
-     case FieldCFICode::TAG : return fieldCFICode.offset >= 0 ? buf + fieldCFICode.offset : nullptr;
-     case FieldSecurityType::TAG : return fieldSecurityType.offset >= 0 ? buf + fieldSecurityType.offset : nullptr;
-     case FieldSecuritySubType::TAG : return fieldSecuritySubType.offset >= 0 ? buf + fieldSecuritySubType.offset : nullptr;
-     case FieldMaturityMonthYear::TAG : return fieldMaturityMonthYear.offset >= 0 ? buf + fieldMaturityMonthYear.offset : nullptr;
-     case FieldMaturityDate::TAG : return fieldMaturityDate.offset >= 0 ? buf + fieldMaturityDate.offset : nullptr;
-     case FieldPutOrCall::TAG : return fieldPutOrCall.offset >= 0 ? buf + fieldPutOrCall.offset : nullptr;
-     case FieldCouponPaymentDate::TAG : return fieldCouponPaymentDate.offset >= 0 ? buf + fieldCouponPaymentDate.offset : nullptr;
-     case FieldIssueDate::TAG : return fieldIssueDate.offset >= 0 ? buf + fieldIssueDate.offset : nullptr;
-     case FieldRepoCollateralSecurityType::TAG : return fieldRepoCollateralSecurityType.offset >= 0 ? buf + fieldRepoCollateralSecurityType.offset : nullptr;
-     case FieldRepurchaseTerm::TAG : return fieldRepurchaseTerm.offset >= 0 ? buf + fieldRepurchaseTerm.offset : nullptr;
-     case FieldRepurchaseRate::TAG : return fieldRepurchaseRate.offset >= 0 ? buf + fieldRepurchaseRate.offset : nullptr;
-     case FieldFactor::TAG : return fieldFactor.offset >= 0 ? buf + fieldFactor.offset : nullptr;
-     case FieldCreditRating::TAG : return fieldCreditRating.offset >= 0 ? buf + fieldCreditRating.offset : nullptr;
-     case FieldInstrRegistry::TAG : return fieldInstrRegistry.offset >= 0 ? buf + fieldInstrRegistry.offset : nullptr;
-     case FieldCountryOfIssue::TAG : return fieldCountryOfIssue.offset >= 0 ? buf + fieldCountryOfIssue.offset : nullptr;
-     case FieldStateOrProvinceOfIssue::TAG : return fieldStateOrProvinceOfIssue.offset >= 0 ? buf + fieldStateOrProvinceOfIssue.offset : nullptr;
-     case FieldLocaleOfIssue::TAG : return fieldLocaleOfIssue.offset >= 0 ? buf + fieldLocaleOfIssue.offset : nullptr;
-     case FieldRedemptionDate::TAG : return fieldRedemptionDate.offset >= 0 ? buf + fieldRedemptionDate.offset : nullptr;
-     case FieldStrikePrice::TAG : return fieldStrikePrice.offset >= 0 ? buf + fieldStrikePrice.offset : nullptr;
-     case FieldStrikeCurrency::TAG : return fieldStrikeCurrency.offset >= 0 ? buf + fieldStrikeCurrency.offset : nullptr;
-     case FieldOptAttribute::TAG : return fieldOptAttribute.offset >= 0 ? buf + fieldOptAttribute.offset : nullptr;
-     case FieldContractMultiplier::TAG : return fieldContractMultiplier.offset >= 0 ? buf + fieldContractMultiplier.offset : nullptr;
-     case FieldCouponRate::TAG : return fieldCouponRate.offset >= 0 ? buf + fieldCouponRate.offset : nullptr;
-     case FieldSecurityExchange::TAG : return fieldSecurityExchange.offset >= 0 ? buf + fieldSecurityExchange.offset : nullptr;
-     case FieldIssuer::TAG : return fieldIssuer.offset >= 0 ? buf + fieldIssuer.offset : nullptr;
-     case FieldEncodedIssuerLen::TAG : return fieldEncodedIssuerLen.offset >= 0 ? buf + fieldEncodedIssuerLen.offset : nullptr;
-     case FieldEncodedIssuer::TAG : return fieldEncodedIssuer.offset >= 0 ? buf + fieldEncodedIssuer.offset : nullptr;
-     case FieldSecurityDesc::TAG : return fieldSecurityDesc.offset >= 0 ? buf + fieldSecurityDesc.offset : nullptr;
-     case FieldEncodedSecurityDescLen::TAG : return fieldEncodedSecurityDescLen.offset >= 0 ? buf + fieldEncodedSecurityDescLen.offset : nullptr;
-     case FieldEncodedSecurityDesc::TAG : return fieldEncodedSecurityDesc.offset >= 0 ? buf + fieldEncodedSecurityDesc.offset : nullptr;
-     case FieldPool::TAG : return fieldPool.offset >= 0 ? buf + fieldPool.offset : nullptr;
-     case FieldContractSettlMonth::TAG : return fieldContractSettlMonth.offset >= 0 ? buf + fieldContractSettlMonth.offset : nullptr;
-     case FieldCPProgram::TAG : return fieldCPProgram.offset >= 0 ? buf + fieldCPProgram.offset : nullptr;
-     case FieldCPRegType::TAG : return fieldCPRegType.offset >= 0 ? buf + fieldCPRegType.offset : nullptr;
-     case FieldNoEvents::TAG : return fieldNoEvents.offset >= 0 ? buf + fieldNoEvents.offset : nullptr;
-     case FieldDatedDate::TAG : return fieldDatedDate.offset >= 0 ? buf + fieldDatedDate.offset : nullptr;
-     case FieldInterestAccrualDate::TAG : return fieldInterestAccrualDate.offset >= 0 ? buf + fieldInterestAccrualDate.offset : nullptr;
+     case FieldSymbol::TAG : return fieldSymbol.offset >= 0 ? _fixPtr + fieldSymbol.offset : nullptr;
+     case FieldSymbolSfx::TAG : return fieldSymbolSfx.offset >= 0 ? _fixPtr + fieldSymbolSfx.offset : nullptr;
+     case FieldSecurityID::TAG : return fieldSecurityID.offset >= 0 ? _fixPtr + fieldSecurityID.offset : nullptr;
+     case FieldSecurityIDSource::TAG : return fieldSecurityIDSource.offset >= 0 ? _fixPtr + fieldSecurityIDSource.offset : nullptr;
+     case FieldNoSecurityAltID::TAG : return fieldNoSecurityAltID.offset >= 0 ? _fixPtr + fieldNoSecurityAltID.offset : nullptr;
+     case FieldProduct::TAG : return fieldProduct.offset >= 0 ? _fixPtr + fieldProduct.offset : nullptr;
+     case FieldCFICode::TAG : return fieldCFICode.offset >= 0 ? _fixPtr + fieldCFICode.offset : nullptr;
+     case FieldSecurityType::TAG : return fieldSecurityType.offset >= 0 ? _fixPtr + fieldSecurityType.offset : nullptr;
+     case FieldSecuritySubType::TAG : return fieldSecuritySubType.offset >= 0 ? _fixPtr + fieldSecuritySubType.offset : nullptr;
+     case FieldMaturityMonthYear::TAG : return fieldMaturityMonthYear.offset >= 0 ? _fixPtr + fieldMaturityMonthYear.offset : nullptr;
+     case FieldMaturityDate::TAG : return fieldMaturityDate.offset >= 0 ? _fixPtr + fieldMaturityDate.offset : nullptr;
+     case FieldPutOrCall::TAG : return fieldPutOrCall.offset >= 0 ? _fixPtr + fieldPutOrCall.offset : nullptr;
+     case FieldCouponPaymentDate::TAG : return fieldCouponPaymentDate.offset >= 0 ? _fixPtr + fieldCouponPaymentDate.offset : nullptr;
+     case FieldIssueDate::TAG : return fieldIssueDate.offset >= 0 ? _fixPtr + fieldIssueDate.offset : nullptr;
+     case FieldRepoCollateralSecurityType::TAG : return fieldRepoCollateralSecurityType.offset >= 0 ? _fixPtr + fieldRepoCollateralSecurityType.offset : nullptr;
+     case FieldRepurchaseTerm::TAG : return fieldRepurchaseTerm.offset >= 0 ? _fixPtr + fieldRepurchaseTerm.offset : nullptr;
+     case FieldRepurchaseRate::TAG : return fieldRepurchaseRate.offset >= 0 ? _fixPtr + fieldRepurchaseRate.offset : nullptr;
+     case FieldFactor::TAG : return fieldFactor.offset >= 0 ? _fixPtr + fieldFactor.offset : nullptr;
+     case FieldCreditRating::TAG : return fieldCreditRating.offset >= 0 ? _fixPtr + fieldCreditRating.offset : nullptr;
+     case FieldInstrRegistry::TAG : return fieldInstrRegistry.offset >= 0 ? _fixPtr + fieldInstrRegistry.offset : nullptr;
+     case FieldCountryOfIssue::TAG : return fieldCountryOfIssue.offset >= 0 ? _fixPtr + fieldCountryOfIssue.offset : nullptr;
+     case FieldStateOrProvinceOfIssue::TAG : return fieldStateOrProvinceOfIssue.offset >= 0 ? _fixPtr + fieldStateOrProvinceOfIssue.offset : nullptr;
+     case FieldLocaleOfIssue::TAG : return fieldLocaleOfIssue.offset >= 0 ? _fixPtr + fieldLocaleOfIssue.offset : nullptr;
+     case FieldRedemptionDate::TAG : return fieldRedemptionDate.offset >= 0 ? _fixPtr + fieldRedemptionDate.offset : nullptr;
+     case FieldStrikePrice::TAG : return fieldStrikePrice.offset >= 0 ? _fixPtr + fieldStrikePrice.offset : nullptr;
+     case FieldStrikeCurrency::TAG : return fieldStrikeCurrency.offset >= 0 ? _fixPtr + fieldStrikeCurrency.offset : nullptr;
+     case FieldOptAttribute::TAG : return fieldOptAttribute.offset >= 0 ? _fixPtr + fieldOptAttribute.offset : nullptr;
+     case FieldContractMultiplier::TAG : return fieldContractMultiplier.offset >= 0 ? _fixPtr + fieldContractMultiplier.offset : nullptr;
+     case FieldCouponRate::TAG : return fieldCouponRate.offset >= 0 ? _fixPtr + fieldCouponRate.offset : nullptr;
+     case FieldSecurityExchange::TAG : return fieldSecurityExchange.offset >= 0 ? _fixPtr + fieldSecurityExchange.offset : nullptr;
+     case FieldIssuer::TAG : return fieldIssuer.offset >= 0 ? _fixPtr + fieldIssuer.offset : nullptr;
+     case FieldEncodedIssuerLen::TAG : return fieldEncodedIssuerLen.offset >= 0 ? _fixPtr + fieldEncodedIssuerLen.offset : nullptr;
+     case FieldEncodedIssuer::TAG : return fieldEncodedIssuer.offset >= 0 ? _fixPtr + fieldEncodedIssuer.offset : nullptr;
+     case FieldSecurityDesc::TAG : return fieldSecurityDesc.offset >= 0 ? _fixPtr + fieldSecurityDesc.offset : nullptr;
+     case FieldEncodedSecurityDescLen::TAG : return fieldEncodedSecurityDescLen.offset >= 0 ? _fixPtr + fieldEncodedSecurityDescLen.offset : nullptr;
+     case FieldEncodedSecurityDesc::TAG : return fieldEncodedSecurityDesc.offset >= 0 ? _fixPtr + fieldEncodedSecurityDesc.offset : nullptr;
+     case FieldPool::TAG : return fieldPool.offset >= 0 ? _fixPtr + fieldPool.offset : nullptr;
+     case FieldContractSettlMonth::TAG : return fieldContractSettlMonth.offset >= 0 ? _fixPtr + fieldContractSettlMonth.offset : nullptr;
+     case FieldCPProgram::TAG : return fieldCPProgram.offset >= 0 ? _fixPtr + fieldCPProgram.offset : nullptr;
+     case FieldCPRegType::TAG : return fieldCPRegType.offset >= 0 ? _fixPtr + fieldCPRegType.offset : nullptr;
+     case FieldNoEvents::TAG : return fieldNoEvents.offset >= 0 ? _fixPtr + fieldNoEvents.offset : nullptr;
+     case FieldDatedDate::TAG : return fieldDatedDate.offset >= 0 ? _fixPtr + fieldDatedDate.offset : nullptr;
+     case FieldInterestAccrualDate::TAG : return fieldInterestAccrualDate.offset >= 0 ? _fixPtr + fieldInterestAccrualDate.offset : nullptr;
 
      default : return nullptr; 
    }
@@ -11517,19 +11694,19 @@ const char * GroupStrikes::getFieldValue( unsigned tag ) const {
 }
 
 const char * GroupBidDescriptors::getFieldValue( unsigned tag ) const {
-   if( buf == nullptr ) return nullptr;
+   if( _fixPtr == nullptr ) return nullptr;
    switch( tag ){
-     case FieldBidDescriptorType::TAG : return fieldBidDescriptorType.offset >= 0 ? buf + fieldBidDescriptorType.offset : nullptr;
-     case FieldBidDescriptor::TAG : return fieldBidDescriptor.offset >= 0 ? buf + fieldBidDescriptor.offset : nullptr;
-     case FieldSideValueInd::TAG : return fieldSideValueInd.offset >= 0 ? buf + fieldSideValueInd.offset : nullptr;
-     case FieldLiquidityValue::TAG : return fieldLiquidityValue.offset >= 0 ? buf + fieldLiquidityValue.offset : nullptr;
-     case FieldLiquidityNumSecurities::TAG : return fieldLiquidityNumSecurities.offset >= 0 ? buf + fieldLiquidityNumSecurities.offset : nullptr;
-     case FieldLiquidityPctLow::TAG : return fieldLiquidityPctLow.offset >= 0 ? buf + fieldLiquidityPctLow.offset : nullptr;
-     case FieldLiquidityPctHigh::TAG : return fieldLiquidityPctHigh.offset >= 0 ? buf + fieldLiquidityPctHigh.offset : nullptr;
-     case FieldEFPTrackingError::TAG : return fieldEFPTrackingError.offset >= 0 ? buf + fieldEFPTrackingError.offset : nullptr;
-     case FieldFairValue::TAG : return fieldFairValue.offset >= 0 ? buf + fieldFairValue.offset : nullptr;
-     case FieldOutsideIndexPct::TAG : return fieldOutsideIndexPct.offset >= 0 ? buf + fieldOutsideIndexPct.offset : nullptr;
-     case FieldValueOfFutures::TAG : return fieldValueOfFutures.offset >= 0 ? buf + fieldValueOfFutures.offset : nullptr;
+     case FieldBidDescriptorType::TAG : return fieldBidDescriptorType.offset >= 0 ? _fixPtr + fieldBidDescriptorType.offset : nullptr;
+     case FieldBidDescriptor::TAG : return fieldBidDescriptor.offset >= 0 ? _fixPtr + fieldBidDescriptor.offset : nullptr;
+     case FieldSideValueInd::TAG : return fieldSideValueInd.offset >= 0 ? _fixPtr + fieldSideValueInd.offset : nullptr;
+     case FieldLiquidityValue::TAG : return fieldLiquidityValue.offset >= 0 ? _fixPtr + fieldLiquidityValue.offset : nullptr;
+     case FieldLiquidityNumSecurities::TAG : return fieldLiquidityNumSecurities.offset >= 0 ? _fixPtr + fieldLiquidityNumSecurities.offset : nullptr;
+     case FieldLiquidityPctLow::TAG : return fieldLiquidityPctLow.offset >= 0 ? _fixPtr + fieldLiquidityPctLow.offset : nullptr;
+     case FieldLiquidityPctHigh::TAG : return fieldLiquidityPctHigh.offset >= 0 ? _fixPtr + fieldLiquidityPctHigh.offset : nullptr;
+     case FieldEFPTrackingError::TAG : return fieldEFPTrackingError.offset >= 0 ? _fixPtr + fieldEFPTrackingError.offset : nullptr;
+     case FieldFairValue::TAG : return fieldFairValue.offset >= 0 ? _fixPtr + fieldFairValue.offset : nullptr;
+     case FieldOutsideIndexPct::TAG : return fieldOutsideIndexPct.offset >= 0 ? _fixPtr + fieldOutsideIndexPct.offset : nullptr;
+     case FieldValueOfFutures::TAG : return fieldValueOfFutures.offset >= 0 ? _fixPtr + fieldValueOfFutures.offset : nullptr;
 
      default : return nullptr; 
    }
@@ -11537,12 +11714,12 @@ const char * GroupBidDescriptors::getFieldValue( unsigned tag ) const {
 }
 
 const char * GroupCompIDs::getFieldValue( unsigned tag ) const {
-   if( buf == nullptr ) return nullptr;
+   if( _fixPtr == nullptr ) return nullptr;
    switch( tag ){
-     case FieldRefCompID::TAG : return fieldRefCompID.offset >= 0 ? buf + fieldRefCompID.offset : nullptr;
-     case FieldRefSubID::TAG : return fieldRefSubID.offset >= 0 ? buf + fieldRefSubID.offset : nullptr;
-     case FieldLocationID::TAG : return fieldLocationID.offset >= 0 ? buf + fieldLocationID.offset : nullptr;
-     case FieldDeskID::TAG : return fieldDeskID.offset >= 0 ? buf + fieldDeskID.offset : nullptr;
+     case FieldRefCompID::TAG : return fieldRefCompID.offset >= 0 ? _fixPtr + fieldRefCompID.offset : nullptr;
+     case FieldRefSubID::TAG : return fieldRefSubID.offset >= 0 ? _fixPtr + fieldRefSubID.offset : nullptr;
+     case FieldLocationID::TAG : return fieldLocationID.offset >= 0 ? _fixPtr + fieldLocationID.offset : nullptr;
+     case FieldDeskID::TAG : return fieldDeskID.offset >= 0 ? _fixPtr + fieldDeskID.offset : nullptr;
 
      default : return nullptr; 
    }
@@ -11550,14 +11727,14 @@ const char * GroupCompIDs::getFieldValue( unsigned tag ) const {
 }
 
 const char * GroupLegAllocs::getFieldValue( unsigned tag ) const {
-   if( buf == nullptr ) return nullptr;
+   if( _fixPtr == nullptr ) return nullptr;
    switch( tag ){
-     case FieldLegAllocAccount::TAG : return fieldLegAllocAccount.offset >= 0 ? buf + fieldLegAllocAccount.offset : nullptr;
-     case FieldLegIndividualAllocID::TAG : return fieldLegIndividualAllocID.offset >= 0 ? buf + fieldLegIndividualAllocID.offset : nullptr;
-     case FieldNoNested2PartyIDs::TAG : return fieldNoNested2PartyIDs.offset >= 0 ? buf + fieldNoNested2PartyIDs.offset : nullptr;
-     case FieldLegAllocQty::TAG : return fieldLegAllocQty.offset >= 0 ? buf + fieldLegAllocQty.offset : nullptr;
-     case FieldLegAllocAcctIDSource::TAG : return fieldLegAllocAcctIDSource.offset >= 0 ? buf + fieldLegAllocAcctIDSource.offset : nullptr;
-     case FieldLegSettlCurrency::TAG : return fieldLegSettlCurrency.offset >= 0 ? buf + fieldLegSettlCurrency.offset : nullptr;
+     case FieldLegAllocAccount::TAG : return fieldLegAllocAccount.offset >= 0 ? _fixPtr + fieldLegAllocAccount.offset : nullptr;
+     case FieldLegIndividualAllocID::TAG : return fieldLegIndividualAllocID.offset >= 0 ? _fixPtr + fieldLegIndividualAllocID.offset : nullptr;
+     case FieldNoNested2PartyIDs::TAG : return fieldNoNested2PartyIDs.offset >= 0 ? _fixPtr + fieldNoNested2PartyIDs.offset : nullptr;
+     case FieldLegAllocQty::TAG : return fieldLegAllocQty.offset >= 0 ? _fixPtr + fieldLegAllocQty.offset : nullptr;
+     case FieldLegAllocAcctIDSource::TAG : return fieldLegAllocAcctIDSource.offset >= 0 ? _fixPtr + fieldLegAllocAcctIDSource.offset : nullptr;
+     case FieldLegSettlCurrency::TAG : return fieldLegSettlCurrency.offset >= 0 ? _fixPtr + fieldLegSettlCurrency.offset : nullptr;
 
      default : return nullptr; 
    }
@@ -11565,16 +11742,16 @@ const char * GroupLegAllocs::getFieldValue( unsigned tag ) const {
 }
 
 const char * GroupRegistDtls::getFieldValue( unsigned tag ) const {
-   if( buf == nullptr ) return nullptr;
+   if( _fixPtr == nullptr ) return nullptr;
    switch( tag ){
-     case FieldRegistDtls::TAG : return fieldRegistDtls.offset >= 0 ? buf + fieldRegistDtls.offset : nullptr;
-     case FieldRegistEmail::TAG : return fieldRegistEmail.offset >= 0 ? buf + fieldRegistEmail.offset : nullptr;
-     case FieldMailingDtls::TAG : return fieldMailingDtls.offset >= 0 ? buf + fieldMailingDtls.offset : nullptr;
-     case FieldMailingInst::TAG : return fieldMailingInst.offset >= 0 ? buf + fieldMailingInst.offset : nullptr;
-     case FieldNoNestedPartyIDs::TAG : return fieldNoNestedPartyIDs.offset >= 0 ? buf + fieldNoNestedPartyIDs.offset : nullptr;
-     case FieldOwnerType::TAG : return fieldOwnerType.offset >= 0 ? buf + fieldOwnerType.offset : nullptr;
-     case FieldDateOfBirth::TAG : return fieldDateOfBirth.offset >= 0 ? buf + fieldDateOfBirth.offset : nullptr;
-     case FieldInvestorCountryOfResidence::TAG : return fieldInvestorCountryOfResidence.offset >= 0 ? buf + fieldInvestorCountryOfResidence.offset : nullptr;
+     case FieldRegistDtls::TAG : return fieldRegistDtls.offset >= 0 ? _fixPtr + fieldRegistDtls.offset : nullptr;
+     case FieldRegistEmail::TAG : return fieldRegistEmail.offset >= 0 ? _fixPtr + fieldRegistEmail.offset : nullptr;
+     case FieldMailingDtls::TAG : return fieldMailingDtls.offset >= 0 ? _fixPtr + fieldMailingDtls.offset : nullptr;
+     case FieldMailingInst::TAG : return fieldMailingInst.offset >= 0 ? _fixPtr + fieldMailingInst.offset : nullptr;
+     case FieldNoNestedPartyIDs::TAG : return fieldNoNestedPartyIDs.offset >= 0 ? _fixPtr + fieldNoNestedPartyIDs.offset : nullptr;
+     case FieldOwnerType::TAG : return fieldOwnerType.offset >= 0 ? _fixPtr + fieldOwnerType.offset : nullptr;
+     case FieldDateOfBirth::TAG : return fieldDateOfBirth.offset >= 0 ? _fixPtr + fieldDateOfBirth.offset : nullptr;
+     case FieldInvestorCountryOfResidence::TAG : return fieldInvestorCountryOfResidence.offset >= 0 ? _fixPtr + fieldInvestorCountryOfResidence.offset : nullptr;
 
      default : return nullptr; 
    }
@@ -11582,11 +11759,11 @@ const char * GroupRegistDtls::getFieldValue( unsigned tag ) const {
 }
 
 const char * GroupContAmts::getFieldValue( unsigned tag ) const {
-   if( buf == nullptr ) return nullptr;
+   if( _fixPtr == nullptr ) return nullptr;
    switch( tag ){
-     case FieldContAmtType::TAG : return fieldContAmtType.offset >= 0 ? buf + fieldContAmtType.offset : nullptr;
-     case FieldContAmtValue::TAG : return fieldContAmtValue.offset >= 0 ? buf + fieldContAmtValue.offset : nullptr;
-     case FieldContAmtCurr::TAG : return fieldContAmtCurr.offset >= 0 ? buf + fieldContAmtCurr.offset : nullptr;
+     case FieldContAmtType::TAG : return fieldContAmtType.offset >= 0 ? _fixPtr + fieldContAmtType.offset : nullptr;
+     case FieldContAmtValue::TAG : return fieldContAmtValue.offset >= 0 ? _fixPtr + fieldContAmtValue.offset : nullptr;
+     case FieldContAmtCurr::TAG : return fieldContAmtCurr.offset >= 0 ? _fixPtr + fieldContAmtCurr.offset : nullptr;
 
      default : return nullptr; 
    }
@@ -11594,41 +11771,41 @@ const char * GroupContAmts::getFieldValue( unsigned tag ) const {
 }
 
 const char * GroupMDEntries::getFieldValue( unsigned tag ) const {
-   if( buf == nullptr ) return nullptr;
+   if( _fixPtr == nullptr ) return nullptr;
    switch( tag ){
-     case FieldMDEntryType::TAG : return fieldMDEntryType.offset >= 0 ? buf + fieldMDEntryType.offset : nullptr;
-     case FieldMDEntryPx::TAG : return fieldMDEntryPx.offset >= 0 ? buf + fieldMDEntryPx.offset : nullptr;
-     case FieldCurrency::TAG : return fieldCurrency.offset >= 0 ? buf + fieldCurrency.offset : nullptr;
-     case FieldMDEntrySize::TAG : return fieldMDEntrySize.offset >= 0 ? buf + fieldMDEntrySize.offset : nullptr;
-     case FieldMDEntryDate::TAG : return fieldMDEntryDate.offset >= 0 ? buf + fieldMDEntryDate.offset : nullptr;
-     case FieldMDEntryTime::TAG : return fieldMDEntryTime.offset >= 0 ? buf + fieldMDEntryTime.offset : nullptr;
-     case FieldTickDirection::TAG : return fieldTickDirection.offset >= 0 ? buf + fieldTickDirection.offset : nullptr;
-     case FieldMDMkt::TAG : return fieldMDMkt.offset >= 0 ? buf + fieldMDMkt.offset : nullptr;
-     case FieldTradingSessionID::TAG : return fieldTradingSessionID.offset >= 0 ? buf + fieldTradingSessionID.offset : nullptr;
-     case FieldTradingSessionSubID::TAG : return fieldTradingSessionSubID.offset >= 0 ? buf + fieldTradingSessionSubID.offset : nullptr;
-     case FieldQuoteCondition::TAG : return fieldQuoteCondition.offset >= 0 ? buf + fieldQuoteCondition.offset : nullptr;
-     case FieldTradeCondition::TAG : return fieldTradeCondition.offset >= 0 ? buf + fieldTradeCondition.offset : nullptr;
-     case FieldMDEntryOriginator::TAG : return fieldMDEntryOriginator.offset >= 0 ? buf + fieldMDEntryOriginator.offset : nullptr;
-     case FieldLocationID::TAG : return fieldLocationID.offset >= 0 ? buf + fieldLocationID.offset : nullptr;
-     case FieldDeskID::TAG : return fieldDeskID.offset >= 0 ? buf + fieldDeskID.offset : nullptr;
-     case FieldOpenCloseSettlFlag::TAG : return fieldOpenCloseSettlFlag.offset >= 0 ? buf + fieldOpenCloseSettlFlag.offset : nullptr;
-     case FieldTimeInForce::TAG : return fieldTimeInForce.offset >= 0 ? buf + fieldTimeInForce.offset : nullptr;
-     case FieldExpireDate::TAG : return fieldExpireDate.offset >= 0 ? buf + fieldExpireDate.offset : nullptr;
-     case FieldExpireTime::TAG : return fieldExpireTime.offset >= 0 ? buf + fieldExpireTime.offset : nullptr;
-     case FieldMinQty::TAG : return fieldMinQty.offset >= 0 ? buf + fieldMinQty.offset : nullptr;
-     case FieldExecInst::TAG : return fieldExecInst.offset >= 0 ? buf + fieldExecInst.offset : nullptr;
-     case FieldSellerDays::TAG : return fieldSellerDays.offset >= 0 ? buf + fieldSellerDays.offset : nullptr;
-     case FieldOrderID::TAG : return fieldOrderID.offset >= 0 ? buf + fieldOrderID.offset : nullptr;
-     case FieldQuoteEntryID::TAG : return fieldQuoteEntryID.offset >= 0 ? buf + fieldQuoteEntryID.offset : nullptr;
-     case FieldMDEntryBuyer::TAG : return fieldMDEntryBuyer.offset >= 0 ? buf + fieldMDEntryBuyer.offset : nullptr;
-     case FieldMDEntrySeller::TAG : return fieldMDEntrySeller.offset >= 0 ? buf + fieldMDEntrySeller.offset : nullptr;
-     case FieldNumberOfOrders::TAG : return fieldNumberOfOrders.offset >= 0 ? buf + fieldNumberOfOrders.offset : nullptr;
-     case FieldMDEntryPositionNo::TAG : return fieldMDEntryPositionNo.offset >= 0 ? buf + fieldMDEntryPositionNo.offset : nullptr;
-     case FieldScope::TAG : return fieldScope.offset >= 0 ? buf + fieldScope.offset : nullptr;
-     case FieldPriceDelta::TAG : return fieldPriceDelta.offset >= 0 ? buf + fieldPriceDelta.offset : nullptr;
-     case FieldText::TAG : return fieldText.offset >= 0 ? buf + fieldText.offset : nullptr;
-     case FieldEncodedTextLen::TAG : return fieldEncodedTextLen.offset >= 0 ? buf + fieldEncodedTextLen.offset : nullptr;
-     case FieldEncodedText::TAG : return fieldEncodedText.offset >= 0 ? buf + fieldEncodedText.offset : nullptr;
+     case FieldMDEntryType::TAG : return fieldMDEntryType.offset >= 0 ? _fixPtr + fieldMDEntryType.offset : nullptr;
+     case FieldMDEntryPx::TAG : return fieldMDEntryPx.offset >= 0 ? _fixPtr + fieldMDEntryPx.offset : nullptr;
+     case FieldCurrency::TAG : return fieldCurrency.offset >= 0 ? _fixPtr + fieldCurrency.offset : nullptr;
+     case FieldMDEntrySize::TAG : return fieldMDEntrySize.offset >= 0 ? _fixPtr + fieldMDEntrySize.offset : nullptr;
+     case FieldMDEntryDate::TAG : return fieldMDEntryDate.offset >= 0 ? _fixPtr + fieldMDEntryDate.offset : nullptr;
+     case FieldMDEntryTime::TAG : return fieldMDEntryTime.offset >= 0 ? _fixPtr + fieldMDEntryTime.offset : nullptr;
+     case FieldTickDirection::TAG : return fieldTickDirection.offset >= 0 ? _fixPtr + fieldTickDirection.offset : nullptr;
+     case FieldMDMkt::TAG : return fieldMDMkt.offset >= 0 ? _fixPtr + fieldMDMkt.offset : nullptr;
+     case FieldTradingSessionID::TAG : return fieldTradingSessionID.offset >= 0 ? _fixPtr + fieldTradingSessionID.offset : nullptr;
+     case FieldTradingSessionSubID::TAG : return fieldTradingSessionSubID.offset >= 0 ? _fixPtr + fieldTradingSessionSubID.offset : nullptr;
+     case FieldQuoteCondition::TAG : return fieldQuoteCondition.offset >= 0 ? _fixPtr + fieldQuoteCondition.offset : nullptr;
+     case FieldTradeCondition::TAG : return fieldTradeCondition.offset >= 0 ? _fixPtr + fieldTradeCondition.offset : nullptr;
+     case FieldMDEntryOriginator::TAG : return fieldMDEntryOriginator.offset >= 0 ? _fixPtr + fieldMDEntryOriginator.offset : nullptr;
+     case FieldLocationID::TAG : return fieldLocationID.offset >= 0 ? _fixPtr + fieldLocationID.offset : nullptr;
+     case FieldDeskID::TAG : return fieldDeskID.offset >= 0 ? _fixPtr + fieldDeskID.offset : nullptr;
+     case FieldOpenCloseSettlFlag::TAG : return fieldOpenCloseSettlFlag.offset >= 0 ? _fixPtr + fieldOpenCloseSettlFlag.offset : nullptr;
+     case FieldTimeInForce::TAG : return fieldTimeInForce.offset >= 0 ? _fixPtr + fieldTimeInForce.offset : nullptr;
+     case FieldExpireDate::TAG : return fieldExpireDate.offset >= 0 ? _fixPtr + fieldExpireDate.offset : nullptr;
+     case FieldExpireTime::TAG : return fieldExpireTime.offset >= 0 ? _fixPtr + fieldExpireTime.offset : nullptr;
+     case FieldMinQty::TAG : return fieldMinQty.offset >= 0 ? _fixPtr + fieldMinQty.offset : nullptr;
+     case FieldExecInst::TAG : return fieldExecInst.offset >= 0 ? _fixPtr + fieldExecInst.offset : nullptr;
+     case FieldSellerDays::TAG : return fieldSellerDays.offset >= 0 ? _fixPtr + fieldSellerDays.offset : nullptr;
+     case FieldOrderID::TAG : return fieldOrderID.offset >= 0 ? _fixPtr + fieldOrderID.offset : nullptr;
+     case FieldQuoteEntryID::TAG : return fieldQuoteEntryID.offset >= 0 ? _fixPtr + fieldQuoteEntryID.offset : nullptr;
+     case FieldMDEntryBuyer::TAG : return fieldMDEntryBuyer.offset >= 0 ? _fixPtr + fieldMDEntryBuyer.offset : nullptr;
+     case FieldMDEntrySeller::TAG : return fieldMDEntrySeller.offset >= 0 ? _fixPtr + fieldMDEntrySeller.offset : nullptr;
+     case FieldNumberOfOrders::TAG : return fieldNumberOfOrders.offset >= 0 ? _fixPtr + fieldNumberOfOrders.offset : nullptr;
+     case FieldMDEntryPositionNo::TAG : return fieldMDEntryPositionNo.offset >= 0 ? _fixPtr + fieldMDEntryPositionNo.offset : nullptr;
+     case FieldScope::TAG : return fieldScope.offset >= 0 ? _fixPtr + fieldScope.offset : nullptr;
+     case FieldPriceDelta::TAG : return fieldPriceDelta.offset >= 0 ? _fixPtr + fieldPriceDelta.offset : nullptr;
+     case FieldText::TAG : return fieldText.offset >= 0 ? _fixPtr + fieldText.offset : nullptr;
+     case FieldEncodedTextLen::TAG : return fieldEncodedTextLen.offset >= 0 ? _fixPtr + fieldEncodedTextLen.offset : nullptr;
+     case FieldEncodedText::TAG : return fieldEncodedText.offset >= 0 ? _fixPtr + fieldEncodedText.offset : nullptr;
 
      default : return nullptr; 
    }
@@ -12562,69 +12739,81 @@ const std::vector<unsigned> & GroupMDEntries::getKnownFields(){ return MDEntries
 // -------------------------------------- reset ----------------------------------------
 
 void GroupLegStipulations::reset(){
-     buf = nullptr;
+     _fixPtr = nullptr;
+     _fixLength = 0;
      fieldLegStipulationValue.offset = -1;
 }
 
 void GroupEvents::reset(){
-     buf = nullptr;
+     _fixPtr = nullptr;
+     _fixLength = 0;
      fieldEventDate.offset = -1;
      fieldEventPx.offset = -1;
      fieldEventText.offset = -1;
 }
 
 void GroupLegSecurityAltID::reset(){
-     buf = nullptr;
+     _fixPtr = nullptr;
+     _fixLength = 0;
      fieldLegSecurityAltIDSource.offset = -1;
 }
 
 void GroupCapacities::reset(){
-     buf = nullptr;
+     _fixPtr = nullptr;
+     _fixLength = 0;
      fieldOrderRestrictions.offset = -1;
      fieldOrderCapacityQty.offset = -1;
 }
 
 void GroupNested3PartySubIDs::reset(){
-     buf = nullptr;
+     _fixPtr = nullptr;
+     _fixLength = 0;
      fieldNested3PartySubIDType.offset = -1;
 }
 
 void GroupPartySubIDs::reset(){
-     buf = nullptr;
+     _fixPtr = nullptr;
+     _fixLength = 0;
      fieldPartySubIDType.offset = -1;
 }
 
 void GroupNested2PartySubIDs::reset(){
-     buf = nullptr;
+     _fixPtr = nullptr;
+     _fixLength = 0;
      fieldNested2PartySubIDType.offset = -1;
 }
 
 void GroupNested2PartyIDs::reset(){
-     buf = nullptr;
+     _fixPtr = nullptr;
+     _fixLength = 0;
      fieldNested2PartyIDSource.offset = -1;
      fieldNested2PartyRole.offset = -1;
      for( auto g = groupsNested2PartySubIDs.begin(); g != groupsNested2PartySubIDs.end() and g->getMessageBuffer(); ++g ) g->reset();
 }
 
 void GroupHops::reset(){
-     buf = nullptr;
+     _fixPtr = nullptr;
+     _fixLength = 0;
      fieldHopSendingTime.offset = -1;
      fieldHopRefID.offset = -1;
 }
 
 void GroupCollInquiryQualifier::reset(){
-     buf = nullptr;
+     _fixPtr = nullptr;
+     _fixLength = 0;
 }
 
 void GroupPartyIDs::reset(){
-     buf = nullptr;
+     _fixPtr = nullptr;
+     _fixLength = 0;
      fieldPartyIDSource.offset = -1;
      fieldPartyRole.offset = -1;
      for( auto g = groupsPartySubIDs.begin(); g != groupsPartySubIDs.end() and g->getMessageBuffer(); ++g ) g->reset();
 }
 
 void GroupAllocs::reset(){
-     buf = nullptr;
+     _fixPtr = nullptr;
+     _fixLength = 0;
      fieldAllocAcctIDSource.offset = -1;
      fieldAllocPrice.offset = -1;
      fieldIndividualAllocID.offset = -1;
@@ -12635,27 +12824,32 @@ void GroupAllocs::reset(){
 }
 
 void GroupTradingSessions::reset(){
-     buf = nullptr;
+     _fixPtr = nullptr;
+     _fixLength = 0;
      fieldTradingSessionSubID.offset = -1;
 }
 
 void GroupSecurityAltID::reset(){
-     buf = nullptr;
+     _fixPtr = nullptr;
+     _fixLength = 0;
      fieldSecurityAltIDSource.offset = -1;
 }
 
 void GroupUnderlyingSecurityAltID::reset(){
-     buf = nullptr;
+     _fixPtr = nullptr;
+     _fixLength = 0;
      fieldUnderlyingSecurityAltIDSource.offset = -1;
 }
 
 void GroupUnderlyingStips::reset(){
-     buf = nullptr;
+     _fixPtr = nullptr;
+     _fixLength = 0;
      fieldUnderlyingStipValue.offset = -1;
 }
 
 void GroupUnderlyings::reset(){
-     buf = nullptr;
+     _fixPtr = nullptr;
+     _fixLength = 0;
      fieldUnderlyingSymbolSfx.offset = -1;
      fieldUnderlyingSecurityID.offset = -1;
      fieldUnderlyingSecurityIDSource.offset = -1;
@@ -12707,12 +12901,14 @@ void GroupUnderlyings::reset(){
 }
 
 void GroupStipulations::reset(){
-     buf = nullptr;
+     _fixPtr = nullptr;
+     _fixLength = 0;
      fieldStipulationValue.offset = -1;
 }
 
 void GroupOrders::reset(){
-     buf = nullptr;
+     _fixPtr = nullptr;
+     _fixLength = 0;
      fieldSecondaryClOrdID.offset = -1;
      fieldListSeqNo.offset = -1;
      fieldClOrdLinkID.offset = -1;
@@ -12862,41 +13058,48 @@ void GroupOrders::reset(){
 }
 
 void GroupSettlPartySubIDs::reset(){
-     buf = nullptr;
+     _fixPtr = nullptr;
+     _fixLength = 0;
      fieldSettlPartySubIDType.offset = -1;
 }
 
 void GroupSettlPartyIDs::reset(){
-     buf = nullptr;
+     _fixPtr = nullptr;
+     _fixLength = 0;
      fieldSettlPartyIDSource.offset = -1;
      fieldSettlPartyRole.offset = -1;
      for( auto g = groupsSettlPartySubIDs.begin(); g != groupsSettlPartySubIDs.end() and g->getMessageBuffer(); ++g ) g->reset();
 }
 
 void GroupDlvyInst::reset(){
-     buf = nullptr;
+     _fixPtr = nullptr;
+     _fixLength = 0;
      fieldDlvyInstType.offset = -1;
      for( auto g = groupsSettlPartyIDs.begin(); g != groupsSettlPartyIDs.end() and g->getMessageBuffer(); ++g ) g->reset();
 }
 
 void GroupClearingInstructions::reset(){
-     buf = nullptr;
+     _fixPtr = nullptr;
+     _fixLength = 0;
 }
 
 void GroupNestedPartySubIDs::reset(){
-     buf = nullptr;
+     _fixPtr = nullptr;
+     _fixLength = 0;
      fieldNestedPartySubIDType.offset = -1;
 }
 
 void GroupNestedPartyIDs::reset(){
-     buf = nullptr;
+     _fixPtr = nullptr;
+     _fixLength = 0;
      fieldNestedPartyIDSource.offset = -1;
      fieldNestedPartyRole.offset = -1;
      for( auto g = groupsNestedPartySubIDs.begin(); g != groupsNestedPartySubIDs.end() and g->getMessageBuffer(); ++g ) g->reset();
 }
 
 void GroupLegs::reset(){
-     buf = nullptr;
+     _fixPtr = nullptr;
+     _fixLength = 0;
      fieldLegSymbolSfx.offset = -1;
      fieldLegSecurityID.offset = -1;
      fieldLegSecurityIDSource.offset = -1;
@@ -12952,7 +13155,8 @@ void GroupLegs::reset(){
 }
 
 void GroupQuoteEntries::reset(){
-     buf = nullptr;
+     _fixPtr = nullptr;
+     _fixLength = 0;
      fieldSymbolSfx.offset = -1;
      fieldSecurityID.offset = -1;
      fieldSecurityIDSource.offset = -1;
@@ -13009,7 +13213,8 @@ void GroupQuoteEntries::reset(){
 }
 
 void GroupQuoteSets::reset(){
-     buf = nullptr;
+     _fixPtr = nullptr;
+     _fixLength = 0;
      fieldUnderlyingSymbol.offset = -1;
      fieldUnderlyingSymbolSfx.offset = -1;
      fieldUnderlyingSecurityID.offset = -1;
@@ -13063,21 +13268,24 @@ void GroupQuoteSets::reset(){
 }
 
 void GroupSecurityTypes::reset(){
-     buf = nullptr;
+     _fixPtr = nullptr;
+     _fixLength = 0;
      fieldSecuritySubType.offset = -1;
      fieldProduct.offset = -1;
      fieldCFICode.offset = -1;
 }
 
 void GroupNested3PartyIDs::reset(){
-     buf = nullptr;
+     _fixPtr = nullptr;
+     _fixLength = 0;
      fieldNested3PartyIDSource.offset = -1;
      fieldNested3PartyRole.offset = -1;
      for( auto g = groupsNested3PartySubIDs.begin(); g != groupsNested3PartySubIDs.end() and g->getMessageBuffer(); ++g ) g->reset();
 }
 
 void GroupPositions::reset(){
-     buf = nullptr;
+     _fixPtr = nullptr;
+     _fixLength = 0;
      fieldLongQty.offset = -1;
      fieldShortQty.offset = -1;
      fieldPosQtyStatus.offset = -1;
@@ -13085,13 +13293,15 @@ void GroupPositions::reset(){
 }
 
 void GroupAffectedOrders::reset(){
-     buf = nullptr;
+     _fixPtr = nullptr;
+     _fixLength = 0;
      fieldAffectedOrderID.offset = -1;
      fieldAffectedSecondaryOrderID.offset = -1;
 }
 
 void GroupExecs::reset(){
-     buf = nullptr;
+     _fixPtr = nullptr;
+     _fixLength = 0;
      fieldExecID.offset = -1;
      fieldSecondaryExecID.offset = -1;
      fieldLastPx.offset = -1;
@@ -13100,12 +13310,14 @@ void GroupExecs::reset(){
 }
 
 void GroupMsgTypes::reset(){
-     buf = nullptr;
+     _fixPtr = nullptr;
+     _fixLength = 0;
      fieldMsgDirection.offset = -1;
 }
 
 void GroupBidComponents::reset(){
-     buf = nullptr;
+     _fixPtr = nullptr;
+     _fixLength = 0;
      fieldSide.offset = -1;
      fieldTradingSessionID.offset = -1;
      fieldTradingSessionSubID.offset = -1;
@@ -13117,7 +13329,8 @@ void GroupBidComponents::reset(){
 }
 
 void GroupSettlInst::reset(){
-     buf = nullptr;
+     _fixPtr = nullptr;
+     _fixLength = 0;
      fieldSettlInstTransType.offset = -1;
      fieldSettlInstRefID.offset = -1;
      for( auto g = groupsPartyIDs.begin(); g != groupsPartyIDs.end() and g->getMessageBuffer(); ++g ) g->reset();
@@ -13145,23 +13358,27 @@ void GroupSettlInst::reset(){
 }
 
 void GroupInstrAttrib::reset(){
-     buf = nullptr;
+     _fixPtr = nullptr;
+     _fixLength = 0;
      fieldInstrAttribValue.offset = -1;
 }
 
 void GroupMiscFees::reset(){
-     buf = nullptr;
+     _fixPtr = nullptr;
+     _fixLength = 0;
      fieldMiscFeeCurr.offset = -1;
      fieldMiscFeeType.offset = -1;
      fieldMiscFeeBasis.offset = -1;
 }
 
 void GroupQuoteQualifiers::reset(){
-     buf = nullptr;
+     _fixPtr = nullptr;
+     _fixLength = 0;
 }
 
 void GroupDistribInsts::reset(){
-     buf = nullptr;
+     _fixPtr = nullptr;
+     _fixLength = 0;
      fieldDistribPercentage.offset = -1;
      fieldCashDistribCurr.offset = -1;
      fieldCashDistribAgentName.offset = -1;
@@ -13172,17 +13389,20 @@ void GroupDistribInsts::reset(){
 }
 
 void GroupTrdRegTimestamps::reset(){
-     buf = nullptr;
+     _fixPtr = nullptr;
+     _fixLength = 0;
      fieldTrdRegTimestampType.offset = -1;
      fieldTrdRegTimestampOrigin.offset = -1;
 }
 
 void GroupAltMDSource::reset(){
-     buf = nullptr;
+     _fixPtr = nullptr;
+     _fixLength = 0;
 }
 
 void GroupSides::reset(){
-     buf = nullptr;
+     _fixPtr = nullptr;
+     _fixLength = 0;
      fieldOrigClOrdID.offset = -1;
      fieldClOrdID.offset = -1;
      fieldSecondaryClOrdID.offset = -1;
@@ -13203,36 +13423,43 @@ void GroupSides::reset(){
 }
 
 void GroupRoutingIDs::reset(){
-     buf = nullptr;
+     _fixPtr = nullptr;
+     _fixLength = 0;
      fieldRoutingID.offset = -1;
 }
 
 void GroupPosAmt::reset(){
-     buf = nullptr;
+     _fixPtr = nullptr;
+     _fixLength = 0;
      fieldPosAmt.offset = -1;
 }
 
 void GroupLinesOfText::reset(){
-     buf = nullptr;
+     _fixPtr = nullptr;
+     _fixLength = 0;
      fieldEncodedTextLen.offset = -1;
      fieldEncodedText.offset = -1;
 }
 
 void GroupIOIQualifiers::reset(){
-     buf = nullptr;
+     _fixPtr = nullptr;
+     _fixLength = 0;
 }
 
 void GroupDates::reset(){
-     buf = nullptr;
+     _fixPtr = nullptr;
+     _fixLength = 0;
      fieldTransactTime.offset = -1;
 }
 
 void GroupMDEntryTypes::reset(){
-     buf = nullptr;
+     _fixPtr = nullptr;
+     _fixLength = 0;
 }
 
 void GroupRelatedSym::reset(){
-     buf = nullptr;
+     _fixPtr = nullptr;
+     _fixLength = 0;
      fieldSymbolSfx.offset = -1;
      fieldSecurityID.offset = -1;
      fieldSecurityIDSource.offset = -1;
@@ -13278,7 +13505,8 @@ void GroupRelatedSym::reset(){
 }
 
 void GroupContraBrokers::reset(){
-     buf = nullptr;
+     _fixPtr = nullptr;
+     _fixLength = 0;
      fieldContraTrader.offset = -1;
      fieldContraTradeQty.offset = -1;
      fieldContraTradeTime.offset = -1;
@@ -13286,12 +13514,14 @@ void GroupContraBrokers::reset(){
 }
 
 void GroupTrades::reset(){
-     buf = nullptr;
+     _fixPtr = nullptr;
+     _fixLength = 0;
      fieldSecondaryTradeReportID.offset = -1;
 }
 
 void GroupStrikes::reset(){
-     buf = nullptr;
+     _fixPtr = nullptr;
+     _fixLength = 0;
      fieldSymbolSfx.offset = -1;
      fieldSecurityID.offset = -1;
      fieldSecurityIDSource.offset = -1;
@@ -13337,7 +13567,8 @@ void GroupStrikes::reset(){
 }
 
 void GroupBidDescriptors::reset(){
-     buf = nullptr;
+     _fixPtr = nullptr;
+     _fixLength = 0;
      fieldBidDescriptor.offset = -1;
      fieldSideValueInd.offset = -1;
      fieldLiquidityValue.offset = -1;
@@ -13351,14 +13582,16 @@ void GroupBidDescriptors::reset(){
 }
 
 void GroupCompIDs::reset(){
-     buf = nullptr;
+     _fixPtr = nullptr;
+     _fixLength = 0;
      fieldRefSubID.offset = -1;
      fieldLocationID.offset = -1;
      fieldDeskID.offset = -1;
 }
 
 void GroupLegAllocs::reset(){
-     buf = nullptr;
+     _fixPtr = nullptr;
+     _fixLength = 0;
      fieldLegIndividualAllocID.offset = -1;
      for( auto g = groupsNested2PartyIDs.begin(); g != groupsNested2PartyIDs.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldLegAllocQty.offset = -1;
@@ -13367,7 +13600,8 @@ void GroupLegAllocs::reset(){
 }
 
 void GroupRegistDtls::reset(){
-     buf = nullptr;
+     _fixPtr = nullptr;
+     _fixLength = 0;
      fieldRegistEmail.offset = -1;
      fieldMailingDtls.offset = -1;
      fieldMailingInst.offset = -1;
@@ -13378,13 +13612,15 @@ void GroupRegistDtls::reset(){
 }
 
 void GroupContAmts::reset(){
-     buf = nullptr;
+     _fixPtr = nullptr;
+     _fixLength = 0;
      fieldContAmtValue.offset = -1;
      fieldContAmtCurr.offset = -1;
 }
 
 void GroupMDEntries::reset(){
-     buf = nullptr;
+     _fixPtr = nullptr;
+     _fixLength = 0;
      fieldMDEntryPx.offset = -1;
      fieldCurrency.offset = -1;
      fieldMDEntrySize.offset = -1;

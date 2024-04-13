@@ -14,7 +14,7 @@ VALUE_IN_NAME = os.getenv( "FIXPP_GDB_VALUE_IN_NAME", "false" ) == "true"
 
 # constants
 OFFSET = 'offset'
-BUF = 'buf'
+BUF = '_fixPtr'
 
 if sys.version_info[0] > 2:
     Iterator = object

@@ -179,18 +179,29 @@ struct Field: FieldBase
 };
 
 
-// Base structure for parsing messages and groups.
-// buf points to the beginning of the FIX message or group within the originally scanned string (no copy is done).
-struct MessageBase
+// Base class for parsing messages and groups.
+// _fixPtr points to the beginning of the FIX message or group within the originally scanned buffer (no copy is done).
+class MessageBase
 {
-    const char * getMessageBuffer() const
-    {
-        return buf;
-    }
+    public:
+
+        const char * getMessageBuffer() const
+        {
+            return _fixPtr;
+        }
+
+        std::size_t getMessageLength() const
+        {
+            return _fixLength;
+        }
 
     protected:
 
-        const char * buf = nullptr;
+        MessageBase()  = default;
+        ~MessageBase() = default;
+
+        const char * _fixPtr    = nullptr;
+        std::size_t  _fixLength = 0;
 };
 
 // Helper class for walking through a FIX message.

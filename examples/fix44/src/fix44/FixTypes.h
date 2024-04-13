@@ -20,7 +20,7 @@ namespace fix44
 // ------------------------------ primitives -----------------------------
 
 // 'raw' below means represented as is by an integer in memory with little endian byte order.
-// We are using 'raw' for tags and enumm values.
+// We are using 'raw' for tags and enum values.
 // This avoids unnecessary transformations involving arithmetics,
 
 // A FIX field is |tag=value| where tag is a digital number.
@@ -77,7 +77,7 @@ constexpr raw_tag_t tag_as_raw()
 }
 
 // insertable := as uint64_t * pointing to "\001" "TAG" "="
-// Thus we can insert a tag along with leading SOH and folowed by equal sign with a single integer asignment.
+// Thus we can insert a tag along with leading SOH and followed by equal sign with a single integer assignment.
 template< tag_t K >
 constexpr insertable_tag_t tag_as_insertable()
 {

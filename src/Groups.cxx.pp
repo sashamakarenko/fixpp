@@ -51,10 +51,11 @@ offset_t Group##NAME::scan( Array & arr, const char * fix, unsigned len ){\
 <n1>  switch( tag ){\
 <n1>  case Field##FIRST_FIELD::RAW_TAG :\
 <n2>    FIXPP_PRINT_FIELD(FIRST_FIELD)\
+<n2>    if( group ) group->_fixLength = gpos;\
 <n2>    group = groupCount < arr.size() ? & arr[ groupCount ] : & arr.emplace_back();\
 <n2>    group->field##FIRST_FIELD.offset = pos - prev;\
-<n2>    group->buf = fix+prev;\
 <n2>    groupBuf = fix+prev;\
+<n2>    group->_fixPtr = groupBuf;\
 <n2>    ++groupCount;\
 <n2>    break;\
 
@@ -75,10 +76,12 @@ offset_t Group##NAME::scan( Array & arr, const char * fix, unsigned len ){\
 
 #define FIX_MSG_GROUP_END \
 <n1>  default: FIXPP_PRINT_UNKNOWN_FIELD\
+<n2>    if( group ) group->_fixLength = gpos;\
 <n2>    return prev;\
 <n1>    }\
 <n1>  if( ! isGroupStart ) gotoNextField( fix, pos );\
 <nl>  }\
+<nl>  if( group ) group->_fixLength = gpos;\
 <nl>  return pos;\
 <nl>}\
 
@@ -182,15 +185,15 @@ FieldDepth Group##NAME::getFieldDepth( raw_tag_t tag ){\
 
 #define FIX_MSG_GROUP_BEGIN( NAME, FIRST_FIELD ) \
 const char * Group##NAME::getFieldValue( unsigned tag ) const {\
-<n1>  if( buf == nullptr ) return nullptr;\
+<n1>  if( _fixPtr == nullptr ) return nullptr;\
 <n1>  switch( tag ){\
-<n2>  case Field##FIRST_FIELD::TAG : return field##FIRST_FIELD.offset >= 0 ? buf + field##FIRST_FIELD.offset : nullptr;
+<n2>  case Field##FIRST_FIELD::TAG : return field##FIRST_FIELD.offset >= 0 ? _fixPtr + field##FIRST_FIELD.offset : nullptr;
 
 #define FIX_MSG_FIELD(NAME) \
-<t2>  case Field##NAME::TAG : return field##NAME.offset >= 0 ? buf + field##NAME.offset : nullptr; \
+<t2>  case Field##NAME::TAG : return field##NAME.offset >= 0 ? _fixPtr + field##NAME.offset : nullptr; \
 
 #define FIX_MSG_GROUP(NAME) \
-<t2>  case FieldNo##NAME::TAG : return fieldNo##NAME.offset >= 0 ? buf + fieldNo##NAME.offset : nullptr; \
+<t2>  case FieldNo##NAME::TAG : return fieldNo##NAME.offset >= 0 ? _fixPtr + fieldNo##NAME.offset : nullptr; \
 
 #define FIX_MSG_GROUP_END \
 <n2>  default :  return nullptr; \
@@ -249,7 +252,8 @@ const std::vector<unsigned> & Group##NAME::getKnownFields(){ return NAME##_known
 
 #define FIX_MSG_GROUP_BEGIN( NAME, FIRST_FIELD )\
 void Group##NAME::reset(){\
-<n2>    buf = nullptr;
+<n2>    _fixPtr = nullptr;\
+<n2>    _fixLength = 0;
         
 #define FIX_MSG_FIELD(NAME) <t2> field##NAME.offset = -1;
 

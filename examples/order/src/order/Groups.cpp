@@ -71,10 +71,11 @@ offset_t GroupLegStipulations::scan( Array & arr, const char * fix, unsigned len
    switch( tag ){
    case FieldLegStipulationType::RAW_TAG :
      FIXPP_PRINT_FIELD(LegStipulationType)
+     if( group ) group->_fixLength = gpos;
      group = groupCount < arr.size() ? & arr[ groupCount ] : & arr.emplace_back();
      group->fieldLegStipulationType.offset = pos - prev;
-     group->buf = fix+prev;
      groupBuf = fix+prev;
+     group->_fixPtr = groupBuf;
      ++groupCount;
      break;
 
@@ -84,10 +85,12 @@ offset_t GroupLegStipulations::scan( Array & arr, const char * fix, unsigned len
      break;
 
    default: FIXPP_PRINT_UNKNOWN_FIELD
+     if( group ) group->_fixLength = gpos;
      return prev;
    }
    if( ! isGroupStart ) gotoNextField( fix, pos );
  }
+ if( group ) group->_fixLength = gpos;
  return pos;
 }
 
@@ -104,10 +107,11 @@ offset_t GroupNestedPartySubIDs::scan( Array & arr, const char * fix, unsigned l
    switch( tag ){
    case FieldNestedPartySubID::RAW_TAG :
      FIXPP_PRINT_FIELD(NestedPartySubID)
+     if( group ) group->_fixLength = gpos;
      group = groupCount < arr.size() ? & arr[ groupCount ] : & arr.emplace_back();
      group->fieldNestedPartySubID.offset = pos - prev;
-     group->buf = fix+prev;
      groupBuf = fix+prev;
+     group->_fixPtr = groupBuf;
      ++groupCount;
      break;
 
@@ -117,10 +121,12 @@ offset_t GroupNestedPartySubIDs::scan( Array & arr, const char * fix, unsigned l
      break;
 
    default: FIXPP_PRINT_UNKNOWN_FIELD
+     if( group ) group->_fixLength = gpos;
      return prev;
    }
    if( ! isGroupStart ) gotoNextField( fix, pos );
  }
+ if( group ) group->_fixLength = gpos;
  return pos;
 }
 
@@ -137,10 +143,11 @@ offset_t GroupNestedPartyIDs::scan( Array & arr, const char * fix, unsigned len 
    switch( tag ){
    case FieldNestedPartyID::RAW_TAG :
      FIXPP_PRINT_FIELD(NestedPartyID)
+     if( group ) group->_fixLength = gpos;
      group = groupCount < arr.size() ? & arr[ groupCount ] : & arr.emplace_back();
      group->fieldNestedPartyID.offset = pos - prev;
-     group->buf = fix+prev;
      groupBuf = fix+prev;
+     group->_fixPtr = groupBuf;
      ++groupCount;
      break;
 
@@ -163,10 +170,12 @@ offset_t GroupNestedPartyIDs::scan( Array & arr, const char * fix, unsigned len 
      break;
 
    default: FIXPP_PRINT_UNKNOWN_FIELD
+     if( group ) group->_fixLength = gpos;
      return prev;
    }
    if( ! isGroupStart ) gotoNextField( fix, pos );
  }
+ if( group ) group->_fixLength = gpos;
  return pos;
 }
 
@@ -183,10 +192,11 @@ offset_t GroupLegs::scan( Array & arr, const char * fix, unsigned len ){
    switch( tag ){
    case FieldLegSymbol::RAW_TAG :
      FIXPP_PRINT_FIELD(LegSymbol)
+     if( group ) group->_fixLength = gpos;
      group = groupCount < arr.size() ? & arr[ groupCount ] : & arr.emplace_back();
      group->fieldLegSymbol.offset = pos - prev;
-     group->buf = fix+prev;
      groupBuf = fix+prev;
+     group->_fixPtr = groupBuf;
      ++groupCount;
      break;
 
@@ -237,10 +247,12 @@ offset_t GroupLegs::scan( Array & arr, const char * fix, unsigned len ){
      break;
 
    default: FIXPP_PRINT_UNKNOWN_FIELD
+     if( group ) group->_fixLength = gpos;
      return prev;
    }
    if( ! isGroupStart ) gotoNextField( fix, pos );
  }
+ if( group ) group->_fixLength = gpos;
  return pos;
 }
 
@@ -469,10 +481,10 @@ FieldDepth GroupLegs::getFieldDepth( raw_tag_t tag ){
    return ret;
 }
 const char * GroupLegStipulations::getFieldValue( unsigned tag ) const {
-   if( buf == nullptr ) return nullptr;
+   if( _fixPtr == nullptr ) return nullptr;
    switch( tag ){
-     case FieldLegStipulationType::TAG : return fieldLegStipulationType.offset >= 0 ? buf + fieldLegStipulationType.offset : nullptr;
-     case FieldLegStipulationValue::TAG : return fieldLegStipulationValue.offset >= 0 ? buf + fieldLegStipulationValue.offset : nullptr;
+     case FieldLegStipulationType::TAG : return fieldLegStipulationType.offset >= 0 ? _fixPtr + fieldLegStipulationType.offset : nullptr;
+     case FieldLegStipulationValue::TAG : return fieldLegStipulationValue.offset >= 0 ? _fixPtr + fieldLegStipulationValue.offset : nullptr;
 
      default : return nullptr; 
    }
@@ -480,10 +492,10 @@ const char * GroupLegStipulations::getFieldValue( unsigned tag ) const {
 }
 
 const char * GroupNestedPartySubIDs::getFieldValue( unsigned tag ) const {
-   if( buf == nullptr ) return nullptr;
+   if( _fixPtr == nullptr ) return nullptr;
    switch( tag ){
-     case FieldNestedPartySubID::TAG : return fieldNestedPartySubID.offset >= 0 ? buf + fieldNestedPartySubID.offset : nullptr;
-     case FieldNestedPartySubIDType::TAG : return fieldNestedPartySubIDType.offset >= 0 ? buf + fieldNestedPartySubIDType.offset : nullptr;
+     case FieldNestedPartySubID::TAG : return fieldNestedPartySubID.offset >= 0 ? _fixPtr + fieldNestedPartySubID.offset : nullptr;
+     case FieldNestedPartySubIDType::TAG : return fieldNestedPartySubIDType.offset >= 0 ? _fixPtr + fieldNestedPartySubIDType.offset : nullptr;
 
      default : return nullptr; 
    }
@@ -491,12 +503,12 @@ const char * GroupNestedPartySubIDs::getFieldValue( unsigned tag ) const {
 }
 
 const char * GroupNestedPartyIDs::getFieldValue( unsigned tag ) const {
-   if( buf == nullptr ) return nullptr;
+   if( _fixPtr == nullptr ) return nullptr;
    switch( tag ){
-     case FieldNestedPartyID::TAG : return fieldNestedPartyID.offset >= 0 ? buf + fieldNestedPartyID.offset : nullptr;
-     case FieldNestedPartyIDSource::TAG : return fieldNestedPartyIDSource.offset >= 0 ? buf + fieldNestedPartyIDSource.offset : nullptr;
-     case FieldNestedPartyRole::TAG : return fieldNestedPartyRole.offset >= 0 ? buf + fieldNestedPartyRole.offset : nullptr;
-     case FieldNoNestedPartySubIDs::TAG : return fieldNoNestedPartySubIDs.offset >= 0 ? buf + fieldNoNestedPartySubIDs.offset : nullptr;
+     case FieldNestedPartyID::TAG : return fieldNestedPartyID.offset >= 0 ? _fixPtr + fieldNestedPartyID.offset : nullptr;
+     case FieldNestedPartyIDSource::TAG : return fieldNestedPartyIDSource.offset >= 0 ? _fixPtr + fieldNestedPartyIDSource.offset : nullptr;
+     case FieldNestedPartyRole::TAG : return fieldNestedPartyRole.offset >= 0 ? _fixPtr + fieldNestedPartyRole.offset : nullptr;
+     case FieldNoNestedPartySubIDs::TAG : return fieldNoNestedPartySubIDs.offset >= 0 ? _fixPtr + fieldNoNestedPartySubIDs.offset : nullptr;
 
      default : return nullptr; 
    }
@@ -504,17 +516,17 @@ const char * GroupNestedPartyIDs::getFieldValue( unsigned tag ) const {
 }
 
 const char * GroupLegs::getFieldValue( unsigned tag ) const {
-   if( buf == nullptr ) return nullptr;
+   if( _fixPtr == nullptr ) return nullptr;
    switch( tag ){
-     case FieldLegSymbol::TAG : return fieldLegSymbol.offset >= 0 ? buf + fieldLegSymbol.offset : nullptr;
-     case FieldLegSide::TAG : return fieldLegSide.offset >= 0 ? buf + fieldLegSide.offset : nullptr;
-     case FieldLegQty::TAG : return fieldLegQty.offset >= 0 ? buf + fieldLegQty.offset : nullptr;
-     case FieldNoLegStipulations::TAG : return fieldNoLegStipulations.offset >= 0 ? buf + fieldNoLegStipulations.offset : nullptr;
-     case FieldLegPositionEffect::TAG : return fieldLegPositionEffect.offset >= 0 ? buf + fieldLegPositionEffect.offset : nullptr;
-     case FieldNoNestedPartyIDs::TAG : return fieldNoNestedPartyIDs.offset >= 0 ? buf + fieldNoNestedPartyIDs.offset : nullptr;
-     case FieldLegRefID::TAG : return fieldLegRefID.offset >= 0 ? buf + fieldLegRefID.offset : nullptr;
-     case FieldLegPrice::TAG : return fieldLegPrice.offset >= 0 ? buf + fieldLegPrice.offset : nullptr;
-     case FieldLegLastPx::TAG : return fieldLegLastPx.offset >= 0 ? buf + fieldLegLastPx.offset : nullptr;
+     case FieldLegSymbol::TAG : return fieldLegSymbol.offset >= 0 ? _fixPtr + fieldLegSymbol.offset : nullptr;
+     case FieldLegSide::TAG : return fieldLegSide.offset >= 0 ? _fixPtr + fieldLegSide.offset : nullptr;
+     case FieldLegQty::TAG : return fieldLegQty.offset >= 0 ? _fixPtr + fieldLegQty.offset : nullptr;
+     case FieldNoLegStipulations::TAG : return fieldNoLegStipulations.offset >= 0 ? _fixPtr + fieldNoLegStipulations.offset : nullptr;
+     case FieldLegPositionEffect::TAG : return fieldLegPositionEffect.offset >= 0 ? _fixPtr + fieldLegPositionEffect.offset : nullptr;
+     case FieldNoNestedPartyIDs::TAG : return fieldNoNestedPartyIDs.offset >= 0 ? _fixPtr + fieldNoNestedPartyIDs.offset : nullptr;
+     case FieldLegRefID::TAG : return fieldLegRefID.offset >= 0 ? _fixPtr + fieldLegRefID.offset : nullptr;
+     case FieldLegPrice::TAG : return fieldLegPrice.offset >= 0 ? _fixPtr + fieldLegPrice.offset : nullptr;
+     case FieldLegLastPx::TAG : return fieldLegLastPx.offset >= 0 ? _fixPtr + fieldLegLastPx.offset : nullptr;
 
      default : return nullptr; 
    }
@@ -562,24 +574,28 @@ const std::vector<unsigned> & GroupLegs::getKnownFields(){ return Legs_knownFiel
 
 // -------------------------------------- reset ----------------------------------------
 void GroupLegStipulations::reset(){
-     buf = nullptr;
+     _fixPtr = nullptr;
+     _fixLength = 0;
      fieldLegStipulationValue.offset = -1;
 }
 
 void GroupNestedPartySubIDs::reset(){
-     buf = nullptr;
+     _fixPtr = nullptr;
+     _fixLength = 0;
      fieldNestedPartySubIDType.offset = -1;
 }
 
 void GroupNestedPartyIDs::reset(){
-     buf = nullptr;
+     _fixPtr = nullptr;
+     _fixLength = 0;
      fieldNestedPartyIDSource.offset = -1;
      fieldNestedPartyRole.offset = -1;
      for( auto g = groupsNestedPartySubIDs.begin(); g != groupsNestedPartySubIDs.end() and g->getMessageBuffer(); ++g ) g->reset();
 }
 
 void GroupLegs::reset(){
-     buf = nullptr;
+     _fixPtr = nullptr;
+     _fixLength = 0;
      fieldLegSide.offset = -1;
      fieldLegQty.offset = -1;
      for( auto g = groupsLegStipulations.begin(); g != groupsLegStipulations.end() and g->getMessageBuffer(); ++g ) g->reset();

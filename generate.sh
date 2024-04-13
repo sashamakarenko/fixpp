@@ -171,7 +171,7 @@ sed "s/MsgTypeEnums::_.str/EMPTY_STRING/" -i ${DSTDIR}/Messages.cxx
 
 # Injecting getRawMsgType in Heaader
 echo "  injecting getRawMsgType() into ${DSTDIR}/Messages.hxx"
-sed "/ getMsgType()/s/}/}\\n   raw_enum_t getRawMsgType() const { return toRawEnum( buf + fieldMsgType.offset ); }/" -i ${DSTDIR}/Messages.hxx
+sed "/ getMsgType()/s/}/}\\n   raw_enum_t getRawMsgType() const { return toRawEnum( _fixPtr + fieldMsgType.offset ); }/" -i ${DSTDIR}/Messages.hxx
 
 # Extract header fields
 dst=${DSTDIR}/HeaderRaw.cxx

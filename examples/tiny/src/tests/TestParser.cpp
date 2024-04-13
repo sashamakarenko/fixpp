@@ -17,8 +17,10 @@ int main( int args, const char ** argv )
     std::cout << "\n\n -- ExecutionReport --" << std::endl;
     Header header;
     offset_t pos = header.scan( FIX_BUFFER_EXEC_REPORT, strlen( FIX_BUFFER_EXEC_REPORT ) );
+    CHECK( header length, header.getMessageLength(), == size_t(pos) )
     ExecutionReport er;
     pos = er.scan( FIX_BUFFER_EXEC_REPORT + pos, strlen( FIX_BUFFER_EXEC_REPORT ) - pos );
+    CHECK( exec report length, er.getMessageLength(), == size_t(pos) )
     std::cout << ' ' << FixOrdStatus << " = " << er.getOrdStatus() << " " << computeChecksum( FIX_BUFFER_EXEC_REPORT, er.ptrToCheckSum() )
               << " body length " <<  ( er.ptrToCheckSum() - header.ptrToMsgType() ) << std::endl;
 

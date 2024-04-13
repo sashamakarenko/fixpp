@@ -29,7 +29,7 @@ const char * Message##NAME::getMessageName(){\
 
 #define FIX_MSG_BEGIN(NAME,TYPE) \
 offset_t Message##NAME::scan( const char * fix, unsigned len ){\
-<nl>buf = fix; \
+<nl>_fixPtr = fix; \
 <nl>offset_t prev = 0, pos = 0; \
 <nl>while( pos < (int)len ) {\
 <n1>  bool isGroupStart = false;\
@@ -58,13 +58,16 @@ offset_t Message##NAME::scan( const char * fix, unsigned len ){\
 <n2>    FIXPP_PRINT_FIELD(CheckSum) \
 <n2>    fieldCheckSum.offset = pos;\
 <n2>    gotoNextField( fix, pos );\
+<n2>    _fixLength = pos;\
 <n2>    return pos; \
 <nl>\
 <n1>  default: FIXPP_PRINT_UNKNOWN_FIELD\
+<n2>    _fixLength = prev;\
 <n2>    return prev;\
 <n1>    }\
 <n1>  if( ! isGroupStart ) gotoNextField( fix, pos );\
 <nl>  }\
+<nl>  _fixLength = pos;\
 <nl>  return pos;\
 <nl>}\
 
@@ -177,17 +180,17 @@ FieldDepth Message##NAME::getFieldDepth( raw_tag_t tag ){\
 
 #define FIX_MSG_BEGIN(NAME,TYPE) \
 const char * Message##NAME::getFieldValue( unsigned tag ) const {\
-<n1>  if( buf == nullptr ) return nullptr;\
+<n1>  if( _fixPtr == nullptr ) return nullptr;\
 <n1>  switch( tag ){\
 
 #define FIX_MSG_FIELD(NAME) \
-<t2>  case Field##NAME::TAG : return field##NAME.offset >= 0 ? buf + field##NAME.offset : nullptr; \
+<t2>  case Field##NAME::TAG : return field##NAME.offset >= 0 ? _fixPtr + field##NAME.offset : nullptr; \
 
 #define FIX_MSG_GROUP(NAME) \
-<t2>  case FieldNo##NAME::TAG : return fieldNo##NAME.offset >= 0 ? buf + fieldNo##NAME.offset : nullptr; \
+<t2>  case FieldNo##NAME::TAG : return fieldNo##NAME.offset >= 0 ? _fixPtr + fieldNo##NAME.offset : nullptr; \
 
 #define FIX_MSG_END \
-<t2>  case FieldCheckSum::TAG : return fieldCheckSum.offset >= 0 ? buf + fieldCheckSum.offset : nullptr; \
+<t2>  case FieldCheckSum::TAG : return fieldCheckSum.offset >= 0 ? _fixPtr + fieldCheckSum.offset : nullptr; \
 <n2>  default :  return nullptr; \
 <n1>  }\
 <n1>  return nullptr;\
@@ -265,7 +268,8 @@ GetDepthMethod getTagDepthMethodByRawMsgType( raw_enum_t rawMsgType ){
 
 #define FIX_MSG_BEGIN(NAME,TYPE) \
 void Message##NAME::reset(){\
-<n2> buf = nullptr;
+<n2> _fixPtr = nullptr;\
+<n2> _fixLength = 0;
 
 #define FIX_MSG_FIELD(NAME) <t2> field##NAME.offset = -1;
 
