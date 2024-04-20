@@ -291,7 +291,7 @@ int main( int args, const char ** argv )
     CHECK( "10"_ff + 10, "10"_ff + 10, == "20"_ff )
     CHECK( "10"_ff + 1.2345, "10"_ff + 1.2345, == "11.2345"_ff )
     CHECK( 10 + "10"_ff, 10 + "10"_ff, == "20"_ff )
-    CHECK( 1.2345 + "10"_ff, 1.2345 + "10"_ff, == "11.2345"_ff )
+    CHECK_EQ( 1.2345 + "10"_ff, 1.2345 + "10"_ff, "11.2345"_ff )
 
     return 0;
 }

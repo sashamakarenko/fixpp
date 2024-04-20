@@ -5,6 +5,7 @@ __COPYRIGHT__
 
 #include <cstdint>
 #include <string>
+#include <cstring>
 #include <limits>
 #include <cstddef>
 #include <type_traits>
@@ -60,7 +61,7 @@ constexpr unsigned tag_width( tag_t K )
     if( K < 1000U   ) return 3;
     if( K < 10000U  ) return 4;
     if( K < 100000U ) return 5;
-    return 0; // todo: s?
+    return 0; // todo: ?
 }
 
 template< tag_t K >
@@ -135,7 +136,7 @@ constexpr static const double div10Pow[] =
 
 static_assert( MAX_NUMBER_PRECISION == sizeof(div10Pow) / sizeof(div10Pow[0]) - 1 );
 
-// Valid for FIX only.
+// Valid for FIX values only.
 // An integer is supposed to be closed either by SOH or by decimal dot '.'
 constexpr bool isNotDecDigit( char c )
 {
@@ -366,9 +367,28 @@ struct sohstr
         return getValueLength( ptr );
     }
 
+    bool operator == ( const sohstr & other ) const
+    {
+        if( ptr == other.ptr )
+        {
+            return true;
+        }
+        if( ptr == nullptr or other.ptr == nullptr )
+        {
+            return false;
+        }
+        size_t mySize    = size();
+        size_t otherSize = other.size();
+        return mySize == otherSize and std::strncmp( ptr, other.ptr, mySize ) == 0;
+    }
+
+    bool operator != ( const sohstr & other ) const
+    {
+        return not ( *this == other );
+    }
+
     const char * ptr;
 };
-
 
 template<typename V>
 V fromString( const char * ptr );
@@ -546,8 +566,84 @@ inline raw_tag_t loadRawTag( const char * ptr, offset_t & pos )
         pos += 6;
         return rtag & 0xff'ff'ff'ff'ff;
     }
-
     return 0;
+}
+
+inline tag_t parseTag( const char * ptr )
+{
+    if( ptr[0] == '=' )
+    {
+        return 0;
+    }
+    else if( ptr[1] == '=' )
+    {
+        return tag_t( ptr[0] ) - dec_zeros<tag_t,tag_t(1)>();
+    }
+    else if( ptr[2] == '=' )
+    {
+        return tag_t( ptr[0] ) * 10 + tag_t( ptr[1] ) - dec_zeros<tag_t,tag_t(2)>();
+    }
+    else if( ptr[3] == '=' )
+    {
+        return ( tag_t( ptr[0] ) * 10 + tag_t( ptr[1] ) ) * 10 + tag_t( ptr[2] ) - dec_zeros<tag_t,tag_t(3)>();
+    }
+    else if( ptr[4] == '=' )
+    {
+        return ( (
+               tag_t( ptr[0] )   * 10 +
+               tag_t( ptr[1] ) ) * 10 +
+               tag_t( ptr[2] ) ) * 10 +
+               tag_t( ptr[3] ) - dec_zeros<tag_t,tag_t(4)>();
+    }
+    else if( ptr[5] == '=' )
+    {
+        return ( ( (
+               tag_t( ptr[0] )   * 10 +
+               tag_t( ptr[1] ) ) * 10 +
+               tag_t( ptr[2] ) ) * 10 +
+               tag_t( ptr[3] ) ) * 10 +
+               tag_t( ptr[4] ) - dec_zeros<tag_t,tag_t(5)>();
+    }
+    return 0;
+}
+
+inline bool isGoodTag( const char * ptr )
+{
+    if( ptr[0] == '=' or ptr[0] == '0' )
+    {
+        return false;
+    }
+    else if( ptr[1] == '=' )
+    {
+        return std::isdigit( ptr[0] );
+    }
+    else if( ptr[2] == '=' )
+    {
+        return std::isdigit( ptr[0] ) and
+               std::isdigit( ptr[1] );
+    }
+    else if( ptr[3] == '=' )
+    {
+        return std::isdigit( ptr[0] ) and
+               std::isdigit( ptr[1] ) and
+               std::isdigit( ptr[2] );
+    }
+    else if( ptr[4] == '=' )
+    {
+        return std::isdigit( ptr[0] ) and
+               std::isdigit( ptr[1] ) and
+               std::isdigit( ptr[2] ) and
+               std::isdigit( ptr[3] );
+    }
+    else if( ptr[5] == '=' )
+    {
+        return std::isdigit( ptr[0] ) and
+               std::isdigit( ptr[1] ) and
+               std::isdigit( ptr[2] ) and
+               std::isdigit( ptr[3] ) and
+               std::isdigit( ptr[4] );
+    }
+    return false;
 }
 
 template<typename V>

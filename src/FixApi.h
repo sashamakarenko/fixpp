@@ -7,6 +7,8 @@ __COPYRIGHT__
 
 #include <DSTINCDIR/FixFloat.h>
 
+std::ostream & operator << ( std::ostream & os, const DSTNAMESPACE::sohstr & str );
+
 namespace DSTNAMESPACE
 {
 
@@ -53,6 +55,30 @@ struct FieldEnum: FieldEnumBase
     }
     const ValueType value;
 };
+
+template< typename VT >
+inline bool operator == ( const VT & v, const FieldEnum<VT> & fe )
+{
+    return v == fe.value;
+}
+
+template< typename VT >
+inline bool operator == ( const FieldEnum<VT> & fe, const VT & v )
+{
+    return fe.value == v;
+}
+
+template< typename VT >
+inline bool operator != ( const VT & v, const FieldEnum<VT> & fe )
+{
+    return v != fe.value;
+}
+
+template< typename VT >
+inline bool operator != ( const FieldEnum<VT> & fe, const VT & v )
+{
+    return fe.value != v;
+}
 
 template< typename VT >
 inline std::string toString( const FieldEnum< VT > & item )
@@ -313,15 +339,21 @@ template<> struct field_traits<FieldType::EURIBOR>            { using native_typ
 template<> struct field_traits<FieldType::TAGNUM>             { using native_type = TAGNUM; };
 
 
-inline DSTNAMESPACE::Quantity operator "" _qty( long double q )
+inline Quantity operator "" _qty( long double q )
 {
-    return DSTNAMESPACE::Quantity( (double)q, false );
+    return Quantity( (double)q, false );
 }
 
 constexpr unsigned MESSAGE_BEGIN_MIN_BYTES_TO_READ = 20;
 constexpr unsigned CHECKSUM_FIELD_LENGTH = 7;
 
 } // namespace DSTNAMESPACE
+
+template< typename VT >
+inline std::ostream & operator << ( std::ostream & os, const DSTNAMESPACE::FieldEnum< VT > & item )
+{
+    return os << item.value;
+}
 
 #endif /* DSTHEADERGUARD_FIXAPI_H */
 

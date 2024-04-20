@@ -10,8 +10,6 @@
 #include <iostream>
 #include <map>
 
-std::ostream & operator << ( std::ostream & os, const order::sohstr & str );
-
 namespace order
 {
 

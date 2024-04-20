@@ -15,6 +15,7 @@ VALUE_IN_NAME = os.getenv( "FIXPP_GDB_VALUE_IN_NAME", "false" ) == "true"
 # constants
 OFFSET = 'offset'
 BUF = '_fixPtr'
+BUFLEN = '_fixLength'
 
 if sys.version_info[0] > 2:
     Iterator = object
@@ -143,6 +144,8 @@ class MessagePrinter:
                 raise StopIteration
             self.count = self.count + 1
             f = self.fields[ self.count - 1 ]
+            if isinstance(f,str) and f.startswith('_'):
+                return ( f, self.msg[f] )
             if f.name.startswith('field'):         # f.name = fieldFixName 
                 fn = f.name[ 5 : len(f.name) ]     # fn = FixName
                 fname = fn + ' ' + getFieldTag( self.msg, f.name ) + ' @ ' + str(self.msg[f.name][OFFSET])
@@ -160,6 +163,8 @@ class MessagePrinter:
     def __init__ (self,val):
         self.msg = val
         self.fields = []
+        self.fields.append(BUF)
+        self.fields.append(BUFLEN)
         if val[BUF] != 0:
             for f in self.msg.type.fields():
                 if f.type and f.type.name:

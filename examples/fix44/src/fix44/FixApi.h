@@ -9,6 +9,8 @@
 
 #include <fix44/FixFloat.h>
 
+std::ostream & operator << ( std::ostream & os, const fix44::sohstr & str );
+
 namespace fix44
 {
 
@@ -55,6 +57,30 @@ struct FieldEnum: FieldEnumBase
     }
     const ValueType value;
 };
+
+template< typename VT >
+inline bool operator == ( const VT & v, const FieldEnum<VT> & fe )
+{
+    return v == fe.value;
+}
+
+template< typename VT >
+inline bool operator == ( const FieldEnum<VT> & fe, const VT & v )
+{
+    return fe.value == v;
+}
+
+template< typename VT >
+inline bool operator != ( const VT & v, const FieldEnum<VT> & fe )
+{
+    return v != fe.value;
+}
+
+template< typename VT >
+inline bool operator != ( const FieldEnum<VT> & fe, const VT & v )
+{
+    return fe.value != v;
+}
 
 template< typename VT >
 inline std::string toString( const FieldEnum< VT > & item )
@@ -315,15 +341,21 @@ template<> struct field_traits<FieldType::EURIBOR>            { using native_typ
 template<> struct field_traits<FieldType::TAGNUM>             { using native_type = TAGNUM; };
 
 
-inline fix44::Quantity operator "" _qty( long double q )
+inline Quantity operator "" _qty( long double q )
 {
-    return fix44::Quantity( (double)q, false );
+    return Quantity( (double)q, false );
 }
 
 constexpr unsigned MESSAGE_BEGIN_MIN_BYTES_TO_READ = 20;
 constexpr unsigned CHECKSUM_FIELD_LENGTH = 7;
 
 } // namespace fix44
+
+template< typename VT >
+inline std::ostream & operator << ( std::ostream & os, const fix44::FieldEnum< VT > & item )
+{
+    return os << item.value;
+}
 
 #endif /* fix44_FIXAPI_H */
 

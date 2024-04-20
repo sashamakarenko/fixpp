@@ -27,15 +27,29 @@ int main( int args, const char ** argv )
     execReport.append<QtyType>( QtyTypeEnums::CONTRACTS );
     execReport.append<Price>( "123.04567"_ff );
     execReport.setSeqnumAndUpdateHeaderAndChecksum(123);
-    std::cout << computeChecksum( execReport.start, execReport.end - 7 ) << "\n";
     std::cout << fixstr( execReport.start, ttyRgbStyle ) << std::endl;
 
-    auto len = execReport.end - execReport.start;
-    std::cout.write( execReport.start, len ) << std::endl;
+    int chksum;
+    size_t len;
+    offset_t pos;
     Header header;
-    offset_t pos = header.scan( execReport.start, len );
     ExecutionReport er;
-    pos = er.scan( execReport.start + pos, len - pos );
+    auto parseBack = [&]( int line )
+    {
+        std::cout << " --- line : " << line << " --- " << std::endl;
+        chksum = computeChecksum( execReport.start, execReport.end - 7 );
+        len = execReport.end - execReport.start;
+        header.reset();
+        pos = header.scan( execReport.start, len );
+        er.reset();
+        pos = er.scan( execReport.start + pos, len - pos );
+        CHECK_EQ( exec report all scanned, header.getMessageLength() + er.getMessageLength(), (size_t)len )
+        CHECK_EQ( exec report no bad fields, er.findBadField() == nullptr, true )
+        CHECK_EQ( exec report check sum, er.getCheckSum(), chksum )
+        std::cout << std::endl;
+    };
+
+    parseBack( __LINE__ );
 
     execReport.rewind( sendingTimeLength );
     execReport.sendingTime.update();
@@ -44,8 +58,8 @@ int main( int args, const char ** argv )
     execReport.append<QtyType>( QtyTypeEnums::UNITS );
     execReport.append<Price>( 21123.04567, 2 );
     execReport.setSeqnumAndUpdateHeaderAndChecksum(124);
-    std::cout << computeChecksum( execReport.start, execReport.end - 7 ) << "\n";
     std::cout << fixstr( execReport.start, ttyRgbStyle ) << std::endl;
+    parseBack( __LINE__ );
 
     execReport.rewind( sendingTimeLength );
     execReport.sendingTime.update();
@@ -57,6 +71,7 @@ int main( int args, const char ** argv )
     execReport.append<Price>( 312.1204567, 7 );
     execReport.setSeqnumAndUpdateHeaderAndChecksum(1);
     std::cout << fixstr( execReport.start, ttyRgbStyle ) << std::endl;
+    parseBack( __LINE__ );
 
     execReport.rewind( sendingTimeLength );
     execReport.sendingTime.update();
@@ -68,8 +83,8 @@ int main( int args, const char ** argv )
     execReport.append<Price>( 312.1204567, 7 );
     execReport.setSeqnumAndUpdateHeaderAndChecksum(123456);
     std::cout << fixstr( execReport.start, ttyRgbStyle ) << std::endl;
-    execReport.rewind( sendingTimeLength );
-
+    parseBack( __LINE__ );
+    
     execReport.rewind( sendingTimeLength );
     execReport.sendingTime.update( std::chrono::system_clock::now() + 10 * 24h );
     execReport.append<ClOrdID>("OID36194130303320710274");
@@ -82,6 +97,7 @@ int main( int args, const char ** argv )
     execReport.append<OrdType>( OrdTypeEnums::LIMIT );
     execReport.setSeqnumAndUpdateHeaderAndChecksum(123);
     std::cout << fixstr( execReport.start, ttyRgbStyle ) << std::endl;
+    parseBack( __LINE__ );
 
     execReport.rewind( sendingTimeLength );
     execReport.sendingTime.update();
@@ -91,7 +107,7 @@ int main( int args, const char ** argv )
     execReport.append<Price>( 123.04567, 4 );
     execReport.setSeqnumAndUpdateHeaderAndChecksum(1);
     std::cout << fixstr( execReport.start, ttyRgbStyle ) << std::endl;
-    execReport.rewind( sendingTimeLength );
+    parseBack( __LINE__ );
 
     // second fractions
     const std::chrono::time_point<std::chrono::system_clock> now = std::chrono::system_clock::now();

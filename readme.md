@@ -277,12 +277,12 @@ int main( int args, const char ** argv )
 ### How to read from socket or file
 
 ```cpp
-    constexpr unsigned begStrAndBodyLenBytes = 20; // reasonably large initial number of bytes to read
+    constexpr unsigned begStrAndBodyLenBytes = MESSAGE_BEGIN_MIN_BYTES_TO_READ;
     std::vector<char> recvbuffer( 4096 );
     while( source.read( &recvbuffer[0], begStrAndBodyLenBytes ) )
     {
         unsigned msgTypeOffset;
-        len = parseMessageLength( &recvbuffer[0], msgTypeOffset ) + 7; // 7 = chsum length
+        len = parseMessageLength( &recvbuffer[0], msgTypeOffset ) + CHECKSUM_FIELD_LENGTH;
         if( recvbuffer.size() < len + msgTypeOffset )
         {
             recvbuffer.insert( recvbuffer.end(), len + msgTypeOffset - recvbuffer.size() + 100 , 0 );

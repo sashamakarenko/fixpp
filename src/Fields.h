@@ -8,8 +8,6 @@ __COPYRIGHT__
 #include <iostream>
 #include <map>
 
-std::ostream & operator << ( std::ostream & os, const DSTNAMESPACE::sohstr & str );
-
 namespace DSTNAMESPACE
 {
 

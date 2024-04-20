@@ -51,6 +51,25 @@ int main( int args, const char ** argv )
     raw = tiny::loadRawTag( "12345=", pos );
     CHECK( load tag 12345, raw, == tag_as_raw<12345>() );
 
+    tag = tiny::parseTag( "12345=" );
+    CHECK( parse tag 12345, tag, == 12345 );
+
+    tag = tiny::parseTag( "=" );
+    CHECK( parse empty tag, tag, == 0 );
+
+    CHECK( is good tag 0,      tiny::isGoodTag( "0=" ),      == false );
+    CHECK( is good tag 02,     tiny::isGoodTag( "02=" ),     == false );
+    CHECK( is good tag 123456, tiny::isGoodTag( "123456=" ), == false );
+    CHECK( is good tag 1 2,    tiny::isGoodTag( "1 2=" ),    == false );
+    CHECK( is good tag NaN,    tiny::isGoodTag( "NAN=" ),    == false );
+    CHECK( is good tag empty,  tiny::isGoodTag( "=" ),       == false );
+    CHECK( is good tag SOH,    tiny::isGoodTag( "\1=" ),     == false );
+    CHECK( is good tag 1,      tiny::isGoodTag( "1=" ),      == true );
+    CHECK( is good tag 12345,  tiny::isGoodTag( "12345=" ),  == true );
+
+    tag = tiny::parseTag( "A=" ); // 17=
+    CHECK( parse tag A, tag, == 'A' - '0' );
+
     const char * fixBuffer = EXAMPLE_MARKETDATA_FULL_REFRESH;
     tiny::MessageHeader header;
     pos = header.scan( fixBuffer, strlen( fixBuffer ) );
@@ -93,7 +112,6 @@ int main( int args, const char ** argv )
     const char *timeptr = parseYYYYMMDD( header.ptrToSendingTime(), yyyy, mm, dd ) + 1;
     unsigned short hour, minute, second;
     parseTime( timeptr, hour, minute, second, nanos );
-
     }
 
     {

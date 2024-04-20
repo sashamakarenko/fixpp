@@ -10,8 +10,6 @@
 #include <iostream>
 #include <map>
 
-std::ostream & operator << ( std::ostream & os, const fix44::sohstr & str );
-
 namespace fix44
 {
 

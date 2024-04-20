@@ -29,24 +29,28 @@ class GroupLegStipulations : public MessageBase
    static offset_t scan( Array & arr, const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    const char * getFieldValue( unsigned tag ) const;
+   const char * findBadField() const;
+   const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
-   bool isSetLegStipulationType() const { return fieldLegStipulationType.offset >= 0; }
+   bool isSetLegStipulationType() const { return fieldLegStipulationType.offset > 0; }
    FieldLegStipulationType::ValueType getLegStipulationType() const { return fieldLegStipulationType.getValue( _fixPtr ); }
-   std::string_view getLegStipulationTypeView() const { return fieldLegStipulationType.offset >= 0 ? std::string_view{ _fixPtr + fieldLegStipulationType.offset, getValueLength( _fixPtr + fieldLegStipulationType.offset ) } : std::string_view{}; }
+   std::string_view getLegStipulationTypeView() const { return fieldLegStipulationType.offset > 0 ? std::string_view{ _fixPtr + fieldLegStipulationType.offset, getValueLength( _fixPtr + fieldLegStipulationType.offset ) } : std::string_view{}; }
    const char * ptrToLegStipulationType() const { return _fixPtr + fieldLegStipulationType.offset; }
-   const char * getIfSetLegStipulationType() const { return fieldLegStipulationType.offset >= 0 ? _fixPtr + fieldLegStipulationType.offset : nullptr; }
+   const char * ptrToTagLegStipulationType() const { return _fixPtr + fieldLegStipulationType.offset - 1 - FieldLegStipulationType::tagWidth(); }
+   const char * getIfSetLegStipulationType() const { return fieldLegStipulationType.offset > 0 ? _fixPtr + fieldLegStipulationType.offset : nullptr; }
    private: FieldLegStipulationType fieldLegStipulationType;
 
    public:
-   bool isSetLegStipulationValue() const { return fieldLegStipulationValue.offset >= 0; }
+   bool isSetLegStipulationValue() const { return fieldLegStipulationValue.offset > 0; }
    FieldLegStipulationValue::ValueType getLegStipulationValue() const { return fieldLegStipulationValue.getValue( _fixPtr ); }
-   std::string_view getLegStipulationValueView() const { return fieldLegStipulationValue.offset >= 0 ? std::string_view{ _fixPtr + fieldLegStipulationValue.offset, getValueLength( _fixPtr + fieldLegStipulationValue.offset ) } : std::string_view{}; }
+   std::string_view getLegStipulationValueView() const { return fieldLegStipulationValue.offset > 0 ? std::string_view{ _fixPtr + fieldLegStipulationValue.offset, getValueLength( _fixPtr + fieldLegStipulationValue.offset ) } : std::string_view{}; }
    const char * ptrToLegStipulationValue() const { return _fixPtr + fieldLegStipulationValue.offset; }
-   const char * getIfSetLegStipulationValue() const { return fieldLegStipulationValue.offset >= 0 ? _fixPtr + fieldLegStipulationValue.offset : nullptr; }
+   const char * ptrToTagLegStipulationValue() const { return _fixPtr + fieldLegStipulationValue.offset - 1 - FieldLegStipulationValue::tagWidth(); }
+   const char * getIfSetLegStipulationValue() const { return fieldLegStipulationValue.offset > 0 ? _fixPtr + fieldLegStipulationValue.offset : nullptr; }
    private: FieldLegStipulationValue fieldLegStipulationValue;
 
 };
@@ -63,40 +67,46 @@ class GroupEvents : public MessageBase
    static offset_t scan( Array & arr, const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    const char * getFieldValue( unsigned tag ) const;
+   const char * findBadField() const;
+   const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
-   bool isSetEventType() const { return fieldEventType.offset >= 0; }
+   bool isSetEventType() const { return fieldEventType.offset > 0; }
    FieldEventType::ValueType getEventType() const { return fieldEventType.getValue( _fixPtr ); }
-   std::string_view getEventTypeView() const { return fieldEventType.offset >= 0 ? std::string_view{ _fixPtr + fieldEventType.offset, getValueLength( _fixPtr + fieldEventType.offset ) } : std::string_view{}; }
+   std::string_view getEventTypeView() const { return fieldEventType.offset > 0 ? std::string_view{ _fixPtr + fieldEventType.offset, getValueLength( _fixPtr + fieldEventType.offset ) } : std::string_view{}; }
    const char * ptrToEventType() const { return _fixPtr + fieldEventType.offset; }
-   const char * getIfSetEventType() const { return fieldEventType.offset >= 0 ? _fixPtr + fieldEventType.offset : nullptr; }
+   const char * ptrToTagEventType() const { return _fixPtr + fieldEventType.offset - 1 - FieldEventType::tagWidth(); }
+   const char * getIfSetEventType() const { return fieldEventType.offset > 0 ? _fixPtr + fieldEventType.offset : nullptr; }
    private: FieldEventType fieldEventType;
 
    public:
-   bool isSetEventDate() const { return fieldEventDate.offset >= 0; }
+   bool isSetEventDate() const { return fieldEventDate.offset > 0; }
    FieldEventDate::ValueType getEventDate() const { return fieldEventDate.getValue( _fixPtr ); }
-   std::string_view getEventDateView() const { return fieldEventDate.offset >= 0 ? std::string_view{ _fixPtr + fieldEventDate.offset, getValueLength( _fixPtr + fieldEventDate.offset ) } : std::string_view{}; }
+   std::string_view getEventDateView() const { return fieldEventDate.offset > 0 ? std::string_view{ _fixPtr + fieldEventDate.offset, getValueLength( _fixPtr + fieldEventDate.offset ) } : std::string_view{}; }
    const char * ptrToEventDate() const { return _fixPtr + fieldEventDate.offset; }
-   const char * getIfSetEventDate() const { return fieldEventDate.offset >= 0 ? _fixPtr + fieldEventDate.offset : nullptr; }
+   const char * ptrToTagEventDate() const { return _fixPtr + fieldEventDate.offset - 1 - FieldEventDate::tagWidth(); }
+   const char * getIfSetEventDate() const { return fieldEventDate.offset > 0 ? _fixPtr + fieldEventDate.offset : nullptr; }
    private: FieldEventDate fieldEventDate;
 
    public:
-   bool isSetEventPx() const { return fieldEventPx.offset >= 0; }
+   bool isSetEventPx() const { return fieldEventPx.offset > 0; }
    FieldEventPx::ValueType getEventPx() const { return fieldEventPx.getValue( _fixPtr ); }
-   std::string_view getEventPxView() const { return fieldEventPx.offset >= 0 ? std::string_view{ _fixPtr + fieldEventPx.offset, getValueLength( _fixPtr + fieldEventPx.offset ) } : std::string_view{}; }
+   std::string_view getEventPxView() const { return fieldEventPx.offset > 0 ? std::string_view{ _fixPtr + fieldEventPx.offset, getValueLength( _fixPtr + fieldEventPx.offset ) } : std::string_view{}; }
    const char * ptrToEventPx() const { return _fixPtr + fieldEventPx.offset; }
-   const char * getIfSetEventPx() const { return fieldEventPx.offset >= 0 ? _fixPtr + fieldEventPx.offset : nullptr; }
+   const char * ptrToTagEventPx() const { return _fixPtr + fieldEventPx.offset - 1 - FieldEventPx::tagWidth(); }
+   const char * getIfSetEventPx() const { return fieldEventPx.offset > 0 ? _fixPtr + fieldEventPx.offset : nullptr; }
    private: FieldEventPx fieldEventPx;
 
    public:
-   bool isSetEventText() const { return fieldEventText.offset >= 0; }
+   bool isSetEventText() const { return fieldEventText.offset > 0; }
    FieldEventText::ValueType getEventText() const { return fieldEventText.getValue( _fixPtr ); }
-   std::string_view getEventTextView() const { return fieldEventText.offset >= 0 ? std::string_view{ _fixPtr + fieldEventText.offset, getValueLength( _fixPtr + fieldEventText.offset ) } : std::string_view{}; }
+   std::string_view getEventTextView() const { return fieldEventText.offset > 0 ? std::string_view{ _fixPtr + fieldEventText.offset, getValueLength( _fixPtr + fieldEventText.offset ) } : std::string_view{}; }
    const char * ptrToEventText() const { return _fixPtr + fieldEventText.offset; }
-   const char * getIfSetEventText() const { return fieldEventText.offset >= 0 ? _fixPtr + fieldEventText.offset : nullptr; }
+   const char * ptrToTagEventText() const { return _fixPtr + fieldEventText.offset - 1 - FieldEventText::tagWidth(); }
+   const char * getIfSetEventText() const { return fieldEventText.offset > 0 ? _fixPtr + fieldEventText.offset : nullptr; }
    private: FieldEventText fieldEventText;
 
 };
@@ -113,24 +123,28 @@ class GroupLegSecurityAltID : public MessageBase
    static offset_t scan( Array & arr, const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    const char * getFieldValue( unsigned tag ) const;
+   const char * findBadField() const;
+   const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
-   bool isSetLegSecurityAltID() const { return fieldLegSecurityAltID.offset >= 0; }
+   bool isSetLegSecurityAltID() const { return fieldLegSecurityAltID.offset > 0; }
    FieldLegSecurityAltID::ValueType getLegSecurityAltID() const { return fieldLegSecurityAltID.getValue( _fixPtr ); }
-   std::string_view getLegSecurityAltIDView() const { return fieldLegSecurityAltID.offset >= 0 ? std::string_view{ _fixPtr + fieldLegSecurityAltID.offset, getValueLength( _fixPtr + fieldLegSecurityAltID.offset ) } : std::string_view{}; }
+   std::string_view getLegSecurityAltIDView() const { return fieldLegSecurityAltID.offset > 0 ? std::string_view{ _fixPtr + fieldLegSecurityAltID.offset, getValueLength( _fixPtr + fieldLegSecurityAltID.offset ) } : std::string_view{}; }
    const char * ptrToLegSecurityAltID() const { return _fixPtr + fieldLegSecurityAltID.offset; }
-   const char * getIfSetLegSecurityAltID() const { return fieldLegSecurityAltID.offset >= 0 ? _fixPtr + fieldLegSecurityAltID.offset : nullptr; }
+   const char * ptrToTagLegSecurityAltID() const { return _fixPtr + fieldLegSecurityAltID.offset - 1 - FieldLegSecurityAltID::tagWidth(); }
+   const char * getIfSetLegSecurityAltID() const { return fieldLegSecurityAltID.offset > 0 ? _fixPtr + fieldLegSecurityAltID.offset : nullptr; }
    private: FieldLegSecurityAltID fieldLegSecurityAltID;
 
    public:
-   bool isSetLegSecurityAltIDSource() const { return fieldLegSecurityAltIDSource.offset >= 0; }
+   bool isSetLegSecurityAltIDSource() const { return fieldLegSecurityAltIDSource.offset > 0; }
    FieldLegSecurityAltIDSource::ValueType getLegSecurityAltIDSource() const { return fieldLegSecurityAltIDSource.getValue( _fixPtr ); }
-   std::string_view getLegSecurityAltIDSourceView() const { return fieldLegSecurityAltIDSource.offset >= 0 ? std::string_view{ _fixPtr + fieldLegSecurityAltIDSource.offset, getValueLength( _fixPtr + fieldLegSecurityAltIDSource.offset ) } : std::string_view{}; }
+   std::string_view getLegSecurityAltIDSourceView() const { return fieldLegSecurityAltIDSource.offset > 0 ? std::string_view{ _fixPtr + fieldLegSecurityAltIDSource.offset, getValueLength( _fixPtr + fieldLegSecurityAltIDSource.offset ) } : std::string_view{}; }
    const char * ptrToLegSecurityAltIDSource() const { return _fixPtr + fieldLegSecurityAltIDSource.offset; }
-   const char * getIfSetLegSecurityAltIDSource() const { return fieldLegSecurityAltIDSource.offset >= 0 ? _fixPtr + fieldLegSecurityAltIDSource.offset : nullptr; }
+   const char * ptrToTagLegSecurityAltIDSource() const { return _fixPtr + fieldLegSecurityAltIDSource.offset - 1 - FieldLegSecurityAltIDSource::tagWidth(); }
+   const char * getIfSetLegSecurityAltIDSource() const { return fieldLegSecurityAltIDSource.offset > 0 ? _fixPtr + fieldLegSecurityAltIDSource.offset : nullptr; }
    private: FieldLegSecurityAltIDSource fieldLegSecurityAltIDSource;
 
 };
@@ -147,32 +161,37 @@ class GroupCapacities : public MessageBase
    static offset_t scan( Array & arr, const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    const char * getFieldValue( unsigned tag ) const;
+   const char * findBadField() const;
+   const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
-   bool isSetOrderCapacity() const { return fieldOrderCapacity.offset >= 0; }
+   bool isSetOrderCapacity() const { return fieldOrderCapacity.offset > 0; }
    FieldOrderCapacity::ValueType getOrderCapacity() const { return fieldOrderCapacity.getValue( _fixPtr ); }
-   std::string_view getOrderCapacityView() const { return fieldOrderCapacity.offset >= 0 ? std::string_view{ _fixPtr + fieldOrderCapacity.offset, getValueLength( _fixPtr + fieldOrderCapacity.offset ) } : std::string_view{}; }
+   std::string_view getOrderCapacityView() const { return fieldOrderCapacity.offset > 0 ? std::string_view{ _fixPtr + fieldOrderCapacity.offset, getValueLength( _fixPtr + fieldOrderCapacity.offset ) } : std::string_view{}; }
    const char * ptrToOrderCapacity() const { return _fixPtr + fieldOrderCapacity.offset; }
-   const char * getIfSetOrderCapacity() const { return fieldOrderCapacity.offset >= 0 ? _fixPtr + fieldOrderCapacity.offset : nullptr; }
+   const char * ptrToTagOrderCapacity() const { return _fixPtr + fieldOrderCapacity.offset - 1 - FieldOrderCapacity::tagWidth(); }
+   const char * getIfSetOrderCapacity() const { return fieldOrderCapacity.offset > 0 ? _fixPtr + fieldOrderCapacity.offset : nullptr; }
    private: FieldOrderCapacity fieldOrderCapacity;
 
    public:
-   bool isSetOrderRestrictions() const { return fieldOrderRestrictions.offset >= 0; }
+   bool isSetOrderRestrictions() const { return fieldOrderRestrictions.offset > 0; }
    FieldOrderRestrictions::ValueType getOrderRestrictions() const { return fieldOrderRestrictions.getValue( _fixPtr ); }
-   std::string_view getOrderRestrictionsView() const { return fieldOrderRestrictions.offset >= 0 ? std::string_view{ _fixPtr + fieldOrderRestrictions.offset, getValueLength( _fixPtr + fieldOrderRestrictions.offset ) } : std::string_view{}; }
+   std::string_view getOrderRestrictionsView() const { return fieldOrderRestrictions.offset > 0 ? std::string_view{ _fixPtr + fieldOrderRestrictions.offset, getValueLength( _fixPtr + fieldOrderRestrictions.offset ) } : std::string_view{}; }
    const char * ptrToOrderRestrictions() const { return _fixPtr + fieldOrderRestrictions.offset; }
-   const char * getIfSetOrderRestrictions() const { return fieldOrderRestrictions.offset >= 0 ? _fixPtr + fieldOrderRestrictions.offset : nullptr; }
+   const char * ptrToTagOrderRestrictions() const { return _fixPtr + fieldOrderRestrictions.offset - 1 - FieldOrderRestrictions::tagWidth(); }
+   const char * getIfSetOrderRestrictions() const { return fieldOrderRestrictions.offset > 0 ? _fixPtr + fieldOrderRestrictions.offset : nullptr; }
    private: FieldOrderRestrictions fieldOrderRestrictions;
 
    public:
-   bool isSetOrderCapacityQty() const { return fieldOrderCapacityQty.offset >= 0; }
+   bool isSetOrderCapacityQty() const { return fieldOrderCapacityQty.offset > 0; }
    FieldOrderCapacityQty::ValueType getOrderCapacityQty() const { return fieldOrderCapacityQty.getValue( _fixPtr ); }
-   std::string_view getOrderCapacityQtyView() const { return fieldOrderCapacityQty.offset >= 0 ? std::string_view{ _fixPtr + fieldOrderCapacityQty.offset, getValueLength( _fixPtr + fieldOrderCapacityQty.offset ) } : std::string_view{}; }
+   std::string_view getOrderCapacityQtyView() const { return fieldOrderCapacityQty.offset > 0 ? std::string_view{ _fixPtr + fieldOrderCapacityQty.offset, getValueLength( _fixPtr + fieldOrderCapacityQty.offset ) } : std::string_view{}; }
    const char * ptrToOrderCapacityQty() const { return _fixPtr + fieldOrderCapacityQty.offset; }
-   const char * getIfSetOrderCapacityQty() const { return fieldOrderCapacityQty.offset >= 0 ? _fixPtr + fieldOrderCapacityQty.offset : nullptr; }
+   const char * ptrToTagOrderCapacityQty() const { return _fixPtr + fieldOrderCapacityQty.offset - 1 - FieldOrderCapacityQty::tagWidth(); }
+   const char * getIfSetOrderCapacityQty() const { return fieldOrderCapacityQty.offset > 0 ? _fixPtr + fieldOrderCapacityQty.offset : nullptr; }
    private: FieldOrderCapacityQty fieldOrderCapacityQty;
 
 };
@@ -189,24 +208,28 @@ class GroupNested3PartySubIDs : public MessageBase
    static offset_t scan( Array & arr, const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    const char * getFieldValue( unsigned tag ) const;
+   const char * findBadField() const;
+   const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
-   bool isSetNested3PartySubID() const { return fieldNested3PartySubID.offset >= 0; }
+   bool isSetNested3PartySubID() const { return fieldNested3PartySubID.offset > 0; }
    FieldNested3PartySubID::ValueType getNested3PartySubID() const { return fieldNested3PartySubID.getValue( _fixPtr ); }
-   std::string_view getNested3PartySubIDView() const { return fieldNested3PartySubID.offset >= 0 ? std::string_view{ _fixPtr + fieldNested3PartySubID.offset, getValueLength( _fixPtr + fieldNested3PartySubID.offset ) } : std::string_view{}; }
+   std::string_view getNested3PartySubIDView() const { return fieldNested3PartySubID.offset > 0 ? std::string_view{ _fixPtr + fieldNested3PartySubID.offset, getValueLength( _fixPtr + fieldNested3PartySubID.offset ) } : std::string_view{}; }
    const char * ptrToNested3PartySubID() const { return _fixPtr + fieldNested3PartySubID.offset; }
-   const char * getIfSetNested3PartySubID() const { return fieldNested3PartySubID.offset >= 0 ? _fixPtr + fieldNested3PartySubID.offset : nullptr; }
+   const char * ptrToTagNested3PartySubID() const { return _fixPtr + fieldNested3PartySubID.offset - 1 - FieldNested3PartySubID::tagWidth(); }
+   const char * getIfSetNested3PartySubID() const { return fieldNested3PartySubID.offset > 0 ? _fixPtr + fieldNested3PartySubID.offset : nullptr; }
    private: FieldNested3PartySubID fieldNested3PartySubID;
 
    public:
-   bool isSetNested3PartySubIDType() const { return fieldNested3PartySubIDType.offset >= 0; }
+   bool isSetNested3PartySubIDType() const { return fieldNested3PartySubIDType.offset > 0; }
    FieldNested3PartySubIDType::ValueType getNested3PartySubIDType() const { return fieldNested3PartySubIDType.getValue( _fixPtr ); }
-   std::string_view getNested3PartySubIDTypeView() const { return fieldNested3PartySubIDType.offset >= 0 ? std::string_view{ _fixPtr + fieldNested3PartySubIDType.offset, getValueLength( _fixPtr + fieldNested3PartySubIDType.offset ) } : std::string_view{}; }
+   std::string_view getNested3PartySubIDTypeView() const { return fieldNested3PartySubIDType.offset > 0 ? std::string_view{ _fixPtr + fieldNested3PartySubIDType.offset, getValueLength( _fixPtr + fieldNested3PartySubIDType.offset ) } : std::string_view{}; }
    const char * ptrToNested3PartySubIDType() const { return _fixPtr + fieldNested3PartySubIDType.offset; }
-   const char * getIfSetNested3PartySubIDType() const { return fieldNested3PartySubIDType.offset >= 0 ? _fixPtr + fieldNested3PartySubIDType.offset : nullptr; }
+   const char * ptrToTagNested3PartySubIDType() const { return _fixPtr + fieldNested3PartySubIDType.offset - 1 - FieldNested3PartySubIDType::tagWidth(); }
+   const char * getIfSetNested3PartySubIDType() const { return fieldNested3PartySubIDType.offset > 0 ? _fixPtr + fieldNested3PartySubIDType.offset : nullptr; }
    private: FieldNested3PartySubIDType fieldNested3PartySubIDType;
 
 };
@@ -223,24 +246,28 @@ class GroupPartySubIDs : public MessageBase
    static offset_t scan( Array & arr, const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    const char * getFieldValue( unsigned tag ) const;
+   const char * findBadField() const;
+   const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
-   bool isSetPartySubID() const { return fieldPartySubID.offset >= 0; }
+   bool isSetPartySubID() const { return fieldPartySubID.offset > 0; }
    FieldPartySubID::ValueType getPartySubID() const { return fieldPartySubID.getValue( _fixPtr ); }
-   std::string_view getPartySubIDView() const { return fieldPartySubID.offset >= 0 ? std::string_view{ _fixPtr + fieldPartySubID.offset, getValueLength( _fixPtr + fieldPartySubID.offset ) } : std::string_view{}; }
+   std::string_view getPartySubIDView() const { return fieldPartySubID.offset > 0 ? std::string_view{ _fixPtr + fieldPartySubID.offset, getValueLength( _fixPtr + fieldPartySubID.offset ) } : std::string_view{}; }
    const char * ptrToPartySubID() const { return _fixPtr + fieldPartySubID.offset; }
-   const char * getIfSetPartySubID() const { return fieldPartySubID.offset >= 0 ? _fixPtr + fieldPartySubID.offset : nullptr; }
+   const char * ptrToTagPartySubID() const { return _fixPtr + fieldPartySubID.offset - 1 - FieldPartySubID::tagWidth(); }
+   const char * getIfSetPartySubID() const { return fieldPartySubID.offset > 0 ? _fixPtr + fieldPartySubID.offset : nullptr; }
    private: FieldPartySubID fieldPartySubID;
 
    public:
-   bool isSetPartySubIDType() const { return fieldPartySubIDType.offset >= 0; }
+   bool isSetPartySubIDType() const { return fieldPartySubIDType.offset > 0; }
    FieldPartySubIDType::ValueType getPartySubIDType() const { return fieldPartySubIDType.getValue( _fixPtr ); }
-   std::string_view getPartySubIDTypeView() const { return fieldPartySubIDType.offset >= 0 ? std::string_view{ _fixPtr + fieldPartySubIDType.offset, getValueLength( _fixPtr + fieldPartySubIDType.offset ) } : std::string_view{}; }
+   std::string_view getPartySubIDTypeView() const { return fieldPartySubIDType.offset > 0 ? std::string_view{ _fixPtr + fieldPartySubIDType.offset, getValueLength( _fixPtr + fieldPartySubIDType.offset ) } : std::string_view{}; }
    const char * ptrToPartySubIDType() const { return _fixPtr + fieldPartySubIDType.offset; }
-   const char * getIfSetPartySubIDType() const { return fieldPartySubIDType.offset >= 0 ? _fixPtr + fieldPartySubIDType.offset : nullptr; }
+   const char * ptrToTagPartySubIDType() const { return _fixPtr + fieldPartySubIDType.offset - 1 - FieldPartySubIDType::tagWidth(); }
+   const char * getIfSetPartySubIDType() const { return fieldPartySubIDType.offset > 0 ? _fixPtr + fieldPartySubIDType.offset : nullptr; }
    private: FieldPartySubIDType fieldPartySubIDType;
 
 };
@@ -257,24 +284,28 @@ class GroupNested2PartySubIDs : public MessageBase
    static offset_t scan( Array & arr, const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    const char * getFieldValue( unsigned tag ) const;
+   const char * findBadField() const;
+   const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
-   bool isSetNested2PartySubID() const { return fieldNested2PartySubID.offset >= 0; }
+   bool isSetNested2PartySubID() const { return fieldNested2PartySubID.offset > 0; }
    FieldNested2PartySubID::ValueType getNested2PartySubID() const { return fieldNested2PartySubID.getValue( _fixPtr ); }
-   std::string_view getNested2PartySubIDView() const { return fieldNested2PartySubID.offset >= 0 ? std::string_view{ _fixPtr + fieldNested2PartySubID.offset, getValueLength( _fixPtr + fieldNested2PartySubID.offset ) } : std::string_view{}; }
+   std::string_view getNested2PartySubIDView() const { return fieldNested2PartySubID.offset > 0 ? std::string_view{ _fixPtr + fieldNested2PartySubID.offset, getValueLength( _fixPtr + fieldNested2PartySubID.offset ) } : std::string_view{}; }
    const char * ptrToNested2PartySubID() const { return _fixPtr + fieldNested2PartySubID.offset; }
-   const char * getIfSetNested2PartySubID() const { return fieldNested2PartySubID.offset >= 0 ? _fixPtr + fieldNested2PartySubID.offset : nullptr; }
+   const char * ptrToTagNested2PartySubID() const { return _fixPtr + fieldNested2PartySubID.offset - 1 - FieldNested2PartySubID::tagWidth(); }
+   const char * getIfSetNested2PartySubID() const { return fieldNested2PartySubID.offset > 0 ? _fixPtr + fieldNested2PartySubID.offset : nullptr; }
    private: FieldNested2PartySubID fieldNested2PartySubID;
 
    public:
-   bool isSetNested2PartySubIDType() const { return fieldNested2PartySubIDType.offset >= 0; }
+   bool isSetNested2PartySubIDType() const { return fieldNested2PartySubIDType.offset > 0; }
    FieldNested2PartySubIDType::ValueType getNested2PartySubIDType() const { return fieldNested2PartySubIDType.getValue( _fixPtr ); }
-   std::string_view getNested2PartySubIDTypeView() const { return fieldNested2PartySubIDType.offset >= 0 ? std::string_view{ _fixPtr + fieldNested2PartySubIDType.offset, getValueLength( _fixPtr + fieldNested2PartySubIDType.offset ) } : std::string_view{}; }
+   std::string_view getNested2PartySubIDTypeView() const { return fieldNested2PartySubIDType.offset > 0 ? std::string_view{ _fixPtr + fieldNested2PartySubIDType.offset, getValueLength( _fixPtr + fieldNested2PartySubIDType.offset ) } : std::string_view{}; }
    const char * ptrToNested2PartySubIDType() const { return _fixPtr + fieldNested2PartySubIDType.offset; }
-   const char * getIfSetNested2PartySubIDType() const { return fieldNested2PartySubIDType.offset >= 0 ? _fixPtr + fieldNested2PartySubIDType.offset : nullptr; }
+   const char * ptrToTagNested2PartySubIDType() const { return _fixPtr + fieldNested2PartySubIDType.offset - 1 - FieldNested2PartySubIDType::tagWidth(); }
+   const char * getIfSetNested2PartySubIDType() const { return fieldNested2PartySubIDType.offset > 0 ? _fixPtr + fieldNested2PartySubIDType.offset : nullptr; }
    private: FieldNested2PartySubIDType fieldNested2PartySubIDType;
 
 };
@@ -291,40 +322,46 @@ class GroupNested2PartyIDs : public MessageBase
    static offset_t scan( Array & arr, const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    const char * getFieldValue( unsigned tag ) const;
+   const char * findBadField() const;
+   const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
-   bool isSetNested2PartyID() const { return fieldNested2PartyID.offset >= 0; }
+   bool isSetNested2PartyID() const { return fieldNested2PartyID.offset > 0; }
    FieldNested2PartyID::ValueType getNested2PartyID() const { return fieldNested2PartyID.getValue( _fixPtr ); }
-   std::string_view getNested2PartyIDView() const { return fieldNested2PartyID.offset >= 0 ? std::string_view{ _fixPtr + fieldNested2PartyID.offset, getValueLength( _fixPtr + fieldNested2PartyID.offset ) } : std::string_view{}; }
+   std::string_view getNested2PartyIDView() const { return fieldNested2PartyID.offset > 0 ? std::string_view{ _fixPtr + fieldNested2PartyID.offset, getValueLength( _fixPtr + fieldNested2PartyID.offset ) } : std::string_view{}; }
    const char * ptrToNested2PartyID() const { return _fixPtr + fieldNested2PartyID.offset; }
-   const char * getIfSetNested2PartyID() const { return fieldNested2PartyID.offset >= 0 ? _fixPtr + fieldNested2PartyID.offset : nullptr; }
+   const char * ptrToTagNested2PartyID() const { return _fixPtr + fieldNested2PartyID.offset - 1 - FieldNested2PartyID::tagWidth(); }
+   const char * getIfSetNested2PartyID() const { return fieldNested2PartyID.offset > 0 ? _fixPtr + fieldNested2PartyID.offset : nullptr; }
    private: FieldNested2PartyID fieldNested2PartyID;
 
    public:
-   bool isSetNested2PartyIDSource() const { return fieldNested2PartyIDSource.offset >= 0; }
+   bool isSetNested2PartyIDSource() const { return fieldNested2PartyIDSource.offset > 0; }
    FieldNested2PartyIDSource::ValueType getNested2PartyIDSource() const { return fieldNested2PartyIDSource.getValue( _fixPtr ); }
-   std::string_view getNested2PartyIDSourceView() const { return fieldNested2PartyIDSource.offset >= 0 ? std::string_view{ _fixPtr + fieldNested2PartyIDSource.offset, getValueLength( _fixPtr + fieldNested2PartyIDSource.offset ) } : std::string_view{}; }
+   std::string_view getNested2PartyIDSourceView() const { return fieldNested2PartyIDSource.offset > 0 ? std::string_view{ _fixPtr + fieldNested2PartyIDSource.offset, getValueLength( _fixPtr + fieldNested2PartyIDSource.offset ) } : std::string_view{}; }
    const char * ptrToNested2PartyIDSource() const { return _fixPtr + fieldNested2PartyIDSource.offset; }
-   const char * getIfSetNested2PartyIDSource() const { return fieldNested2PartyIDSource.offset >= 0 ? _fixPtr + fieldNested2PartyIDSource.offset : nullptr; }
+   const char * ptrToTagNested2PartyIDSource() const { return _fixPtr + fieldNested2PartyIDSource.offset - 1 - FieldNested2PartyIDSource::tagWidth(); }
+   const char * getIfSetNested2PartyIDSource() const { return fieldNested2PartyIDSource.offset > 0 ? _fixPtr + fieldNested2PartyIDSource.offset : nullptr; }
    private: FieldNested2PartyIDSource fieldNested2PartyIDSource;
 
    public:
-   bool isSetNested2PartyRole() const { return fieldNested2PartyRole.offset >= 0; }
+   bool isSetNested2PartyRole() const { return fieldNested2PartyRole.offset > 0; }
    FieldNested2PartyRole::ValueType getNested2PartyRole() const { return fieldNested2PartyRole.getValue( _fixPtr ); }
-   std::string_view getNested2PartyRoleView() const { return fieldNested2PartyRole.offset >= 0 ? std::string_view{ _fixPtr + fieldNested2PartyRole.offset, getValueLength( _fixPtr + fieldNested2PartyRole.offset ) } : std::string_view{}; }
+   std::string_view getNested2PartyRoleView() const { return fieldNested2PartyRole.offset > 0 ? std::string_view{ _fixPtr + fieldNested2PartyRole.offset, getValueLength( _fixPtr + fieldNested2PartyRole.offset ) } : std::string_view{}; }
    const char * ptrToNested2PartyRole() const { return _fixPtr + fieldNested2PartyRole.offset; }
-   const char * getIfSetNested2PartyRole() const { return fieldNested2PartyRole.offset >= 0 ? _fixPtr + fieldNested2PartyRole.offset : nullptr; }
+   const char * ptrToTagNested2PartyRole() const { return _fixPtr + fieldNested2PartyRole.offset - 1 - FieldNested2PartyRole::tagWidth(); }
+   const char * getIfSetNested2PartyRole() const { return fieldNested2PartyRole.offset > 0 ? _fixPtr + fieldNested2PartyRole.offset : nullptr; }
    private: FieldNested2PartyRole fieldNested2PartyRole;
 
    public:
-   bool isSetNoNested2PartySubIDs() const { return fieldNoNested2PartySubIDs.offset >= 0; }
+   bool isSetNoNested2PartySubIDs() const { return fieldNoNested2PartySubIDs.offset > 0; }
    FieldNoNested2PartySubIDs::ValueType getNoNested2PartySubIDs() const { return fieldNoNested2PartySubIDs.getValue( _fixPtr ); }
-   std::string_view getNoNested2PartySubIDsView() const { return fieldNoNested2PartySubIDs.offset >= 0 ? std::string_view{ _fixPtr + fieldNoNested2PartySubIDs.offset, getValueLength( _fixPtr + fieldNoNested2PartySubIDs.offset ) } : std::string_view{}; }
+   std::string_view getNoNested2PartySubIDsView() const { return fieldNoNested2PartySubIDs.offset > 0 ? std::string_view{ _fixPtr + fieldNoNested2PartySubIDs.offset, getValueLength( _fixPtr + fieldNoNested2PartySubIDs.offset ) } : std::string_view{}; }
    const char * ptrToNoNested2PartySubIDs() const { return _fixPtr + fieldNoNested2PartySubIDs.offset; }
-   const char * getIfSetNoNested2PartySubIDs() const { return fieldNoNested2PartySubIDs.offset >= 0 ? _fixPtr + fieldNoNested2PartySubIDs.offset : nullptr; }
+   const char * ptrToTagNoNested2PartySubIDs() const { return _fixPtr + fieldNoNested2PartySubIDs.offset - 1 - FieldNoNested2PartySubIDs::tagWidth(); }
+   const char * getIfSetNoNested2PartySubIDs() const { return fieldNoNested2PartySubIDs.offset > 0 ? _fixPtr + fieldNoNested2PartySubIDs.offset : nullptr; }
    private: FieldNoNested2PartySubIDs fieldNoNested2PartySubIDs;
   
    public:
@@ -346,32 +383,37 @@ class GroupHops : public MessageBase
    static offset_t scan( Array & arr, const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    const char * getFieldValue( unsigned tag ) const;
+   const char * findBadField() const;
+   const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
-   bool isSetHopCompID() const { return fieldHopCompID.offset >= 0; }
+   bool isSetHopCompID() const { return fieldHopCompID.offset > 0; }
    FieldHopCompID::ValueType getHopCompID() const { return fieldHopCompID.getValue( _fixPtr ); }
-   std::string_view getHopCompIDView() const { return fieldHopCompID.offset >= 0 ? std::string_view{ _fixPtr + fieldHopCompID.offset, getValueLength( _fixPtr + fieldHopCompID.offset ) } : std::string_view{}; }
+   std::string_view getHopCompIDView() const { return fieldHopCompID.offset > 0 ? std::string_view{ _fixPtr + fieldHopCompID.offset, getValueLength( _fixPtr + fieldHopCompID.offset ) } : std::string_view{}; }
    const char * ptrToHopCompID() const { return _fixPtr + fieldHopCompID.offset; }
-   const char * getIfSetHopCompID() const { return fieldHopCompID.offset >= 0 ? _fixPtr + fieldHopCompID.offset : nullptr; }
+   const char * ptrToTagHopCompID() const { return _fixPtr + fieldHopCompID.offset - 1 - FieldHopCompID::tagWidth(); }
+   const char * getIfSetHopCompID() const { return fieldHopCompID.offset > 0 ? _fixPtr + fieldHopCompID.offset : nullptr; }
    private: FieldHopCompID fieldHopCompID;
 
    public:
-   bool isSetHopSendingTime() const { return fieldHopSendingTime.offset >= 0; }
+   bool isSetHopSendingTime() const { return fieldHopSendingTime.offset > 0; }
    FieldHopSendingTime::ValueType getHopSendingTime() const { return fieldHopSendingTime.getValue( _fixPtr ); }
-   std::string_view getHopSendingTimeView() const { return fieldHopSendingTime.offset >= 0 ? std::string_view{ _fixPtr + fieldHopSendingTime.offset, getValueLength( _fixPtr + fieldHopSendingTime.offset ) } : std::string_view{}; }
+   std::string_view getHopSendingTimeView() const { return fieldHopSendingTime.offset > 0 ? std::string_view{ _fixPtr + fieldHopSendingTime.offset, getValueLength( _fixPtr + fieldHopSendingTime.offset ) } : std::string_view{}; }
    const char * ptrToHopSendingTime() const { return _fixPtr + fieldHopSendingTime.offset; }
-   const char * getIfSetHopSendingTime() const { return fieldHopSendingTime.offset >= 0 ? _fixPtr + fieldHopSendingTime.offset : nullptr; }
+   const char * ptrToTagHopSendingTime() const { return _fixPtr + fieldHopSendingTime.offset - 1 - FieldHopSendingTime::tagWidth(); }
+   const char * getIfSetHopSendingTime() const { return fieldHopSendingTime.offset > 0 ? _fixPtr + fieldHopSendingTime.offset : nullptr; }
    private: FieldHopSendingTime fieldHopSendingTime;
 
    public:
-   bool isSetHopRefID() const { return fieldHopRefID.offset >= 0; }
+   bool isSetHopRefID() const { return fieldHopRefID.offset > 0; }
    FieldHopRefID::ValueType getHopRefID() const { return fieldHopRefID.getValue( _fixPtr ); }
-   std::string_view getHopRefIDView() const { return fieldHopRefID.offset >= 0 ? std::string_view{ _fixPtr + fieldHopRefID.offset, getValueLength( _fixPtr + fieldHopRefID.offset ) } : std::string_view{}; }
+   std::string_view getHopRefIDView() const { return fieldHopRefID.offset > 0 ? std::string_view{ _fixPtr + fieldHopRefID.offset, getValueLength( _fixPtr + fieldHopRefID.offset ) } : std::string_view{}; }
    const char * ptrToHopRefID() const { return _fixPtr + fieldHopRefID.offset; }
-   const char * getIfSetHopRefID() const { return fieldHopRefID.offset >= 0 ? _fixPtr + fieldHopRefID.offset : nullptr; }
+   const char * ptrToTagHopRefID() const { return _fixPtr + fieldHopRefID.offset - 1 - FieldHopRefID::tagWidth(); }
+   const char * getIfSetHopRefID() const { return fieldHopRefID.offset > 0 ? _fixPtr + fieldHopRefID.offset : nullptr; }
    private: FieldHopRefID fieldHopRefID;
 
 };
@@ -388,16 +430,19 @@ class GroupCollInquiryQualifier : public MessageBase
    static offset_t scan( Array & arr, const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    const char * getFieldValue( unsigned tag ) const;
+   const char * findBadField() const;
+   const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
-   bool isSetCollInquiryQualifier() const { return fieldCollInquiryQualifier.offset >= 0; }
+   bool isSetCollInquiryQualifier() const { return fieldCollInquiryQualifier.offset > 0; }
    FieldCollInquiryQualifier::ValueType getCollInquiryQualifier() const { return fieldCollInquiryQualifier.getValue( _fixPtr ); }
-   std::string_view getCollInquiryQualifierView() const { return fieldCollInquiryQualifier.offset >= 0 ? std::string_view{ _fixPtr + fieldCollInquiryQualifier.offset, getValueLength( _fixPtr + fieldCollInquiryQualifier.offset ) } : std::string_view{}; }
+   std::string_view getCollInquiryQualifierView() const { return fieldCollInquiryQualifier.offset > 0 ? std::string_view{ _fixPtr + fieldCollInquiryQualifier.offset, getValueLength( _fixPtr + fieldCollInquiryQualifier.offset ) } : std::string_view{}; }
    const char * ptrToCollInquiryQualifier() const { return _fixPtr + fieldCollInquiryQualifier.offset; }
-   const char * getIfSetCollInquiryQualifier() const { return fieldCollInquiryQualifier.offset >= 0 ? _fixPtr + fieldCollInquiryQualifier.offset : nullptr; }
+   const char * ptrToTagCollInquiryQualifier() const { return _fixPtr + fieldCollInquiryQualifier.offset - 1 - FieldCollInquiryQualifier::tagWidth(); }
+   const char * getIfSetCollInquiryQualifier() const { return fieldCollInquiryQualifier.offset > 0 ? _fixPtr + fieldCollInquiryQualifier.offset : nullptr; }
    private: FieldCollInquiryQualifier fieldCollInquiryQualifier;
 
 };
@@ -414,40 +459,46 @@ class GroupPartyIDs : public MessageBase
    static offset_t scan( Array & arr, const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    const char * getFieldValue( unsigned tag ) const;
+   const char * findBadField() const;
+   const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
-   bool isSetPartyID() const { return fieldPartyID.offset >= 0; }
+   bool isSetPartyID() const { return fieldPartyID.offset > 0; }
    FieldPartyID::ValueType getPartyID() const { return fieldPartyID.getValue( _fixPtr ); }
-   std::string_view getPartyIDView() const { return fieldPartyID.offset >= 0 ? std::string_view{ _fixPtr + fieldPartyID.offset, getValueLength( _fixPtr + fieldPartyID.offset ) } : std::string_view{}; }
+   std::string_view getPartyIDView() const { return fieldPartyID.offset > 0 ? std::string_view{ _fixPtr + fieldPartyID.offset, getValueLength( _fixPtr + fieldPartyID.offset ) } : std::string_view{}; }
    const char * ptrToPartyID() const { return _fixPtr + fieldPartyID.offset; }
-   const char * getIfSetPartyID() const { return fieldPartyID.offset >= 0 ? _fixPtr + fieldPartyID.offset : nullptr; }
+   const char * ptrToTagPartyID() const { return _fixPtr + fieldPartyID.offset - 1 - FieldPartyID::tagWidth(); }
+   const char * getIfSetPartyID() const { return fieldPartyID.offset > 0 ? _fixPtr + fieldPartyID.offset : nullptr; }
    private: FieldPartyID fieldPartyID;
 
    public:
-   bool isSetPartyIDSource() const { return fieldPartyIDSource.offset >= 0; }
+   bool isSetPartyIDSource() const { return fieldPartyIDSource.offset > 0; }
    FieldPartyIDSource::ValueType getPartyIDSource() const { return fieldPartyIDSource.getValue( _fixPtr ); }
-   std::string_view getPartyIDSourceView() const { return fieldPartyIDSource.offset >= 0 ? std::string_view{ _fixPtr + fieldPartyIDSource.offset, getValueLength( _fixPtr + fieldPartyIDSource.offset ) } : std::string_view{}; }
+   std::string_view getPartyIDSourceView() const { return fieldPartyIDSource.offset > 0 ? std::string_view{ _fixPtr + fieldPartyIDSource.offset, getValueLength( _fixPtr + fieldPartyIDSource.offset ) } : std::string_view{}; }
    const char * ptrToPartyIDSource() const { return _fixPtr + fieldPartyIDSource.offset; }
-   const char * getIfSetPartyIDSource() const { return fieldPartyIDSource.offset >= 0 ? _fixPtr + fieldPartyIDSource.offset : nullptr; }
+   const char * ptrToTagPartyIDSource() const { return _fixPtr + fieldPartyIDSource.offset - 1 - FieldPartyIDSource::tagWidth(); }
+   const char * getIfSetPartyIDSource() const { return fieldPartyIDSource.offset > 0 ? _fixPtr + fieldPartyIDSource.offset : nullptr; }
    private: FieldPartyIDSource fieldPartyIDSource;
 
    public:
-   bool isSetPartyRole() const { return fieldPartyRole.offset >= 0; }
+   bool isSetPartyRole() const { return fieldPartyRole.offset > 0; }
    FieldPartyRole::ValueType getPartyRole() const { return fieldPartyRole.getValue( _fixPtr ); }
-   std::string_view getPartyRoleView() const { return fieldPartyRole.offset >= 0 ? std::string_view{ _fixPtr + fieldPartyRole.offset, getValueLength( _fixPtr + fieldPartyRole.offset ) } : std::string_view{}; }
+   std::string_view getPartyRoleView() const { return fieldPartyRole.offset > 0 ? std::string_view{ _fixPtr + fieldPartyRole.offset, getValueLength( _fixPtr + fieldPartyRole.offset ) } : std::string_view{}; }
    const char * ptrToPartyRole() const { return _fixPtr + fieldPartyRole.offset; }
-   const char * getIfSetPartyRole() const { return fieldPartyRole.offset >= 0 ? _fixPtr + fieldPartyRole.offset : nullptr; }
+   const char * ptrToTagPartyRole() const { return _fixPtr + fieldPartyRole.offset - 1 - FieldPartyRole::tagWidth(); }
+   const char * getIfSetPartyRole() const { return fieldPartyRole.offset > 0 ? _fixPtr + fieldPartyRole.offset : nullptr; }
    private: FieldPartyRole fieldPartyRole;
 
    public:
-   bool isSetNoPartySubIDs() const { return fieldNoPartySubIDs.offset >= 0; }
+   bool isSetNoPartySubIDs() const { return fieldNoPartySubIDs.offset > 0; }
    FieldNoPartySubIDs::ValueType getNoPartySubIDs() const { return fieldNoPartySubIDs.getValue( _fixPtr ); }
-   std::string_view getNoPartySubIDsView() const { return fieldNoPartySubIDs.offset >= 0 ? std::string_view{ _fixPtr + fieldNoPartySubIDs.offset, getValueLength( _fixPtr + fieldNoPartySubIDs.offset ) } : std::string_view{}; }
+   std::string_view getNoPartySubIDsView() const { return fieldNoPartySubIDs.offset > 0 ? std::string_view{ _fixPtr + fieldNoPartySubIDs.offset, getValueLength( _fixPtr + fieldNoPartySubIDs.offset ) } : std::string_view{}; }
    const char * ptrToNoPartySubIDs() const { return _fixPtr + fieldNoPartySubIDs.offset; }
-   const char * getIfSetNoPartySubIDs() const { return fieldNoPartySubIDs.offset >= 0 ? _fixPtr + fieldNoPartySubIDs.offset : nullptr; }
+   const char * ptrToTagNoPartySubIDs() const { return _fixPtr + fieldNoPartySubIDs.offset - 1 - FieldNoPartySubIDs::tagWidth(); }
+   const char * getIfSetNoPartySubIDs() const { return fieldNoPartySubIDs.offset > 0 ? _fixPtr + fieldNoPartySubIDs.offset : nullptr; }
    private: FieldNoPartySubIDs fieldNoPartySubIDs;
   
    public:
@@ -469,72 +520,82 @@ class GroupAllocs : public MessageBase
    static offset_t scan( Array & arr, const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    const char * getFieldValue( unsigned tag ) const;
+   const char * findBadField() const;
+   const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
-   bool isSetAllocAccount() const { return fieldAllocAccount.offset >= 0; }
+   bool isSetAllocAccount() const { return fieldAllocAccount.offset > 0; }
    FieldAllocAccount::ValueType getAllocAccount() const { return fieldAllocAccount.getValue( _fixPtr ); }
-   std::string_view getAllocAccountView() const { return fieldAllocAccount.offset >= 0 ? std::string_view{ _fixPtr + fieldAllocAccount.offset, getValueLength( _fixPtr + fieldAllocAccount.offset ) } : std::string_view{}; }
+   std::string_view getAllocAccountView() const { return fieldAllocAccount.offset > 0 ? std::string_view{ _fixPtr + fieldAllocAccount.offset, getValueLength( _fixPtr + fieldAllocAccount.offset ) } : std::string_view{}; }
    const char * ptrToAllocAccount() const { return _fixPtr + fieldAllocAccount.offset; }
-   const char * getIfSetAllocAccount() const { return fieldAllocAccount.offset >= 0 ? _fixPtr + fieldAllocAccount.offset : nullptr; }
+   const char * ptrToTagAllocAccount() const { return _fixPtr + fieldAllocAccount.offset - 1 - FieldAllocAccount::tagWidth(); }
+   const char * getIfSetAllocAccount() const { return fieldAllocAccount.offset > 0 ? _fixPtr + fieldAllocAccount.offset : nullptr; }
    private: FieldAllocAccount fieldAllocAccount;
 
    public:
-   bool isSetAllocAcctIDSource() const { return fieldAllocAcctIDSource.offset >= 0; }
+   bool isSetAllocAcctIDSource() const { return fieldAllocAcctIDSource.offset > 0; }
    FieldAllocAcctIDSource::ValueType getAllocAcctIDSource() const { return fieldAllocAcctIDSource.getValue( _fixPtr ); }
-   std::string_view getAllocAcctIDSourceView() const { return fieldAllocAcctIDSource.offset >= 0 ? std::string_view{ _fixPtr + fieldAllocAcctIDSource.offset, getValueLength( _fixPtr + fieldAllocAcctIDSource.offset ) } : std::string_view{}; }
+   std::string_view getAllocAcctIDSourceView() const { return fieldAllocAcctIDSource.offset > 0 ? std::string_view{ _fixPtr + fieldAllocAcctIDSource.offset, getValueLength( _fixPtr + fieldAllocAcctIDSource.offset ) } : std::string_view{}; }
    const char * ptrToAllocAcctIDSource() const { return _fixPtr + fieldAllocAcctIDSource.offset; }
-   const char * getIfSetAllocAcctIDSource() const { return fieldAllocAcctIDSource.offset >= 0 ? _fixPtr + fieldAllocAcctIDSource.offset : nullptr; }
+   const char * ptrToTagAllocAcctIDSource() const { return _fixPtr + fieldAllocAcctIDSource.offset - 1 - FieldAllocAcctIDSource::tagWidth(); }
+   const char * getIfSetAllocAcctIDSource() const { return fieldAllocAcctIDSource.offset > 0 ? _fixPtr + fieldAllocAcctIDSource.offset : nullptr; }
    private: FieldAllocAcctIDSource fieldAllocAcctIDSource;
 
    public:
-   bool isSetAllocPrice() const { return fieldAllocPrice.offset >= 0; }
+   bool isSetAllocPrice() const { return fieldAllocPrice.offset > 0; }
    FieldAllocPrice::ValueType getAllocPrice() const { return fieldAllocPrice.getValue( _fixPtr ); }
-   std::string_view getAllocPriceView() const { return fieldAllocPrice.offset >= 0 ? std::string_view{ _fixPtr + fieldAllocPrice.offset, getValueLength( _fixPtr + fieldAllocPrice.offset ) } : std::string_view{}; }
+   std::string_view getAllocPriceView() const { return fieldAllocPrice.offset > 0 ? std::string_view{ _fixPtr + fieldAllocPrice.offset, getValueLength( _fixPtr + fieldAllocPrice.offset ) } : std::string_view{}; }
    const char * ptrToAllocPrice() const { return _fixPtr + fieldAllocPrice.offset; }
-   const char * getIfSetAllocPrice() const { return fieldAllocPrice.offset >= 0 ? _fixPtr + fieldAllocPrice.offset : nullptr; }
+   const char * ptrToTagAllocPrice() const { return _fixPtr + fieldAllocPrice.offset - 1 - FieldAllocPrice::tagWidth(); }
+   const char * getIfSetAllocPrice() const { return fieldAllocPrice.offset > 0 ? _fixPtr + fieldAllocPrice.offset : nullptr; }
    private: FieldAllocPrice fieldAllocPrice;
 
    public:
-   bool isSetIndividualAllocID() const { return fieldIndividualAllocID.offset >= 0; }
+   bool isSetIndividualAllocID() const { return fieldIndividualAllocID.offset > 0; }
    FieldIndividualAllocID::ValueType getIndividualAllocID() const { return fieldIndividualAllocID.getValue( _fixPtr ); }
-   std::string_view getIndividualAllocIDView() const { return fieldIndividualAllocID.offset >= 0 ? std::string_view{ _fixPtr + fieldIndividualAllocID.offset, getValueLength( _fixPtr + fieldIndividualAllocID.offset ) } : std::string_view{}; }
+   std::string_view getIndividualAllocIDView() const { return fieldIndividualAllocID.offset > 0 ? std::string_view{ _fixPtr + fieldIndividualAllocID.offset, getValueLength( _fixPtr + fieldIndividualAllocID.offset ) } : std::string_view{}; }
    const char * ptrToIndividualAllocID() const { return _fixPtr + fieldIndividualAllocID.offset; }
-   const char * getIfSetIndividualAllocID() const { return fieldIndividualAllocID.offset >= 0 ? _fixPtr + fieldIndividualAllocID.offset : nullptr; }
+   const char * ptrToTagIndividualAllocID() const { return _fixPtr + fieldIndividualAllocID.offset - 1 - FieldIndividualAllocID::tagWidth(); }
+   const char * getIfSetIndividualAllocID() const { return fieldIndividualAllocID.offset > 0 ? _fixPtr + fieldIndividualAllocID.offset : nullptr; }
    private: FieldIndividualAllocID fieldIndividualAllocID;
 
    public:
-   bool isSetIndividualAllocRejCode() const { return fieldIndividualAllocRejCode.offset >= 0; }
+   bool isSetIndividualAllocRejCode() const { return fieldIndividualAllocRejCode.offset > 0; }
    FieldIndividualAllocRejCode::ValueType getIndividualAllocRejCode() const { return fieldIndividualAllocRejCode.getValue( _fixPtr ); }
-   std::string_view getIndividualAllocRejCodeView() const { return fieldIndividualAllocRejCode.offset >= 0 ? std::string_view{ _fixPtr + fieldIndividualAllocRejCode.offset, getValueLength( _fixPtr + fieldIndividualAllocRejCode.offset ) } : std::string_view{}; }
+   std::string_view getIndividualAllocRejCodeView() const { return fieldIndividualAllocRejCode.offset > 0 ? std::string_view{ _fixPtr + fieldIndividualAllocRejCode.offset, getValueLength( _fixPtr + fieldIndividualAllocRejCode.offset ) } : std::string_view{}; }
    const char * ptrToIndividualAllocRejCode() const { return _fixPtr + fieldIndividualAllocRejCode.offset; }
-   const char * getIfSetIndividualAllocRejCode() const { return fieldIndividualAllocRejCode.offset >= 0 ? _fixPtr + fieldIndividualAllocRejCode.offset : nullptr; }
+   const char * ptrToTagIndividualAllocRejCode() const { return _fixPtr + fieldIndividualAllocRejCode.offset - 1 - FieldIndividualAllocRejCode::tagWidth(); }
+   const char * getIfSetIndividualAllocRejCode() const { return fieldIndividualAllocRejCode.offset > 0 ? _fixPtr + fieldIndividualAllocRejCode.offset : nullptr; }
    private: FieldIndividualAllocRejCode fieldIndividualAllocRejCode;
 
    public:
-   bool isSetAllocText() const { return fieldAllocText.offset >= 0; }
+   bool isSetAllocText() const { return fieldAllocText.offset > 0; }
    FieldAllocText::ValueType getAllocText() const { return fieldAllocText.getValue( _fixPtr ); }
-   std::string_view getAllocTextView() const { return fieldAllocText.offset >= 0 ? std::string_view{ _fixPtr + fieldAllocText.offset, getValueLength( _fixPtr + fieldAllocText.offset ) } : std::string_view{}; }
+   std::string_view getAllocTextView() const { return fieldAllocText.offset > 0 ? std::string_view{ _fixPtr + fieldAllocText.offset, getValueLength( _fixPtr + fieldAllocText.offset ) } : std::string_view{}; }
    const char * ptrToAllocText() const { return _fixPtr + fieldAllocText.offset; }
-   const char * getIfSetAllocText() const { return fieldAllocText.offset >= 0 ? _fixPtr + fieldAllocText.offset : nullptr; }
+   const char * ptrToTagAllocText() const { return _fixPtr + fieldAllocText.offset - 1 - FieldAllocText::tagWidth(); }
+   const char * getIfSetAllocText() const { return fieldAllocText.offset > 0 ? _fixPtr + fieldAllocText.offset : nullptr; }
    private: FieldAllocText fieldAllocText;
 
    public:
-   bool isSetEncodedAllocTextLen() const { return fieldEncodedAllocTextLen.offset >= 0; }
+   bool isSetEncodedAllocTextLen() const { return fieldEncodedAllocTextLen.offset > 0; }
    FieldEncodedAllocTextLen::ValueType getEncodedAllocTextLen() const { return fieldEncodedAllocTextLen.getValue( _fixPtr ); }
-   std::string_view getEncodedAllocTextLenView() const { return fieldEncodedAllocTextLen.offset >= 0 ? std::string_view{ _fixPtr + fieldEncodedAllocTextLen.offset, getValueLength( _fixPtr + fieldEncodedAllocTextLen.offset ) } : std::string_view{}; }
+   std::string_view getEncodedAllocTextLenView() const { return fieldEncodedAllocTextLen.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedAllocTextLen.offset, getValueLength( _fixPtr + fieldEncodedAllocTextLen.offset ) } : std::string_view{}; }
    const char * ptrToEncodedAllocTextLen() const { return _fixPtr + fieldEncodedAllocTextLen.offset; }
-   const char * getIfSetEncodedAllocTextLen() const { return fieldEncodedAllocTextLen.offset >= 0 ? _fixPtr + fieldEncodedAllocTextLen.offset : nullptr; }
+   const char * ptrToTagEncodedAllocTextLen() const { return _fixPtr + fieldEncodedAllocTextLen.offset - 1 - FieldEncodedAllocTextLen::tagWidth(); }
+   const char * getIfSetEncodedAllocTextLen() const { return fieldEncodedAllocTextLen.offset > 0 ? _fixPtr + fieldEncodedAllocTextLen.offset : nullptr; }
    private: FieldEncodedAllocTextLen fieldEncodedAllocTextLen;
 
    public:
-   bool isSetEncodedAllocText() const { return fieldEncodedAllocText.offset >= 0; }
+   bool isSetEncodedAllocText() const { return fieldEncodedAllocText.offset > 0; }
    FieldEncodedAllocText::ValueType getEncodedAllocText() const { return fieldEncodedAllocText.getValue( _fixPtr ); }
-   std::string_view getEncodedAllocTextView() const { return fieldEncodedAllocText.offset >= 0 ? std::string_view{ _fixPtr + fieldEncodedAllocText.offset, getValueLength( _fixPtr + fieldEncodedAllocText.offset ) } : std::string_view{}; }
+   std::string_view getEncodedAllocTextView() const { return fieldEncodedAllocText.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedAllocText.offset, getValueLength( _fixPtr + fieldEncodedAllocText.offset ) } : std::string_view{}; }
    const char * ptrToEncodedAllocText() const { return _fixPtr + fieldEncodedAllocText.offset; }
-   const char * getIfSetEncodedAllocText() const { return fieldEncodedAllocText.offset >= 0 ? _fixPtr + fieldEncodedAllocText.offset : nullptr; }
+   const char * ptrToTagEncodedAllocText() const { return _fixPtr + fieldEncodedAllocText.offset - 1 - FieldEncodedAllocText::tagWidth(); }
+   const char * getIfSetEncodedAllocText() const { return fieldEncodedAllocText.offset > 0 ? _fixPtr + fieldEncodedAllocText.offset : nullptr; }
    private: FieldEncodedAllocText fieldEncodedAllocText;
 
 };
@@ -551,24 +612,28 @@ class GroupTradingSessions : public MessageBase
    static offset_t scan( Array & arr, const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    const char * getFieldValue( unsigned tag ) const;
+   const char * findBadField() const;
+   const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
-   bool isSetTradingSessionID() const { return fieldTradingSessionID.offset >= 0; }
+   bool isSetTradingSessionID() const { return fieldTradingSessionID.offset > 0; }
    FieldTradingSessionID::ValueType getTradingSessionID() const { return fieldTradingSessionID.getValue( _fixPtr ); }
-   std::string_view getTradingSessionIDView() const { return fieldTradingSessionID.offset >= 0 ? std::string_view{ _fixPtr + fieldTradingSessionID.offset, getValueLength( _fixPtr + fieldTradingSessionID.offset ) } : std::string_view{}; }
+   std::string_view getTradingSessionIDView() const { return fieldTradingSessionID.offset > 0 ? std::string_view{ _fixPtr + fieldTradingSessionID.offset, getValueLength( _fixPtr + fieldTradingSessionID.offset ) } : std::string_view{}; }
    const char * ptrToTradingSessionID() const { return _fixPtr + fieldTradingSessionID.offset; }
-   const char * getIfSetTradingSessionID() const { return fieldTradingSessionID.offset >= 0 ? _fixPtr + fieldTradingSessionID.offset : nullptr; }
+   const char * ptrToTagTradingSessionID() const { return _fixPtr + fieldTradingSessionID.offset - 1 - FieldTradingSessionID::tagWidth(); }
+   const char * getIfSetTradingSessionID() const { return fieldTradingSessionID.offset > 0 ? _fixPtr + fieldTradingSessionID.offset : nullptr; }
    private: FieldTradingSessionID fieldTradingSessionID;
 
    public:
-   bool isSetTradingSessionSubID() const { return fieldTradingSessionSubID.offset >= 0; }
+   bool isSetTradingSessionSubID() const { return fieldTradingSessionSubID.offset > 0; }
    FieldTradingSessionSubID::ValueType getTradingSessionSubID() const { return fieldTradingSessionSubID.getValue( _fixPtr ); }
-   std::string_view getTradingSessionSubIDView() const { return fieldTradingSessionSubID.offset >= 0 ? std::string_view{ _fixPtr + fieldTradingSessionSubID.offset, getValueLength( _fixPtr + fieldTradingSessionSubID.offset ) } : std::string_view{}; }
+   std::string_view getTradingSessionSubIDView() const { return fieldTradingSessionSubID.offset > 0 ? std::string_view{ _fixPtr + fieldTradingSessionSubID.offset, getValueLength( _fixPtr + fieldTradingSessionSubID.offset ) } : std::string_view{}; }
    const char * ptrToTradingSessionSubID() const { return _fixPtr + fieldTradingSessionSubID.offset; }
-   const char * getIfSetTradingSessionSubID() const { return fieldTradingSessionSubID.offset >= 0 ? _fixPtr + fieldTradingSessionSubID.offset : nullptr; }
+   const char * ptrToTagTradingSessionSubID() const { return _fixPtr + fieldTradingSessionSubID.offset - 1 - FieldTradingSessionSubID::tagWidth(); }
+   const char * getIfSetTradingSessionSubID() const { return fieldTradingSessionSubID.offset > 0 ? _fixPtr + fieldTradingSessionSubID.offset : nullptr; }
    private: FieldTradingSessionSubID fieldTradingSessionSubID;
 
 };
@@ -585,24 +650,28 @@ class GroupSecurityAltID : public MessageBase
    static offset_t scan( Array & arr, const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    const char * getFieldValue( unsigned tag ) const;
+   const char * findBadField() const;
+   const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
-   bool isSetSecurityAltID() const { return fieldSecurityAltID.offset >= 0; }
+   bool isSetSecurityAltID() const { return fieldSecurityAltID.offset > 0; }
    FieldSecurityAltID::ValueType getSecurityAltID() const { return fieldSecurityAltID.getValue( _fixPtr ); }
-   std::string_view getSecurityAltIDView() const { return fieldSecurityAltID.offset >= 0 ? std::string_view{ _fixPtr + fieldSecurityAltID.offset, getValueLength( _fixPtr + fieldSecurityAltID.offset ) } : std::string_view{}; }
+   std::string_view getSecurityAltIDView() const { return fieldSecurityAltID.offset > 0 ? std::string_view{ _fixPtr + fieldSecurityAltID.offset, getValueLength( _fixPtr + fieldSecurityAltID.offset ) } : std::string_view{}; }
    const char * ptrToSecurityAltID() const { return _fixPtr + fieldSecurityAltID.offset; }
-   const char * getIfSetSecurityAltID() const { return fieldSecurityAltID.offset >= 0 ? _fixPtr + fieldSecurityAltID.offset : nullptr; }
+   const char * ptrToTagSecurityAltID() const { return _fixPtr + fieldSecurityAltID.offset - 1 - FieldSecurityAltID::tagWidth(); }
+   const char * getIfSetSecurityAltID() const { return fieldSecurityAltID.offset > 0 ? _fixPtr + fieldSecurityAltID.offset : nullptr; }
    private: FieldSecurityAltID fieldSecurityAltID;
 
    public:
-   bool isSetSecurityAltIDSource() const { return fieldSecurityAltIDSource.offset >= 0; }
+   bool isSetSecurityAltIDSource() const { return fieldSecurityAltIDSource.offset > 0; }
    FieldSecurityAltIDSource::ValueType getSecurityAltIDSource() const { return fieldSecurityAltIDSource.getValue( _fixPtr ); }
-   std::string_view getSecurityAltIDSourceView() const { return fieldSecurityAltIDSource.offset >= 0 ? std::string_view{ _fixPtr + fieldSecurityAltIDSource.offset, getValueLength( _fixPtr + fieldSecurityAltIDSource.offset ) } : std::string_view{}; }
+   std::string_view getSecurityAltIDSourceView() const { return fieldSecurityAltIDSource.offset > 0 ? std::string_view{ _fixPtr + fieldSecurityAltIDSource.offset, getValueLength( _fixPtr + fieldSecurityAltIDSource.offset ) } : std::string_view{}; }
    const char * ptrToSecurityAltIDSource() const { return _fixPtr + fieldSecurityAltIDSource.offset; }
-   const char * getIfSetSecurityAltIDSource() const { return fieldSecurityAltIDSource.offset >= 0 ? _fixPtr + fieldSecurityAltIDSource.offset : nullptr; }
+   const char * ptrToTagSecurityAltIDSource() const { return _fixPtr + fieldSecurityAltIDSource.offset - 1 - FieldSecurityAltIDSource::tagWidth(); }
+   const char * getIfSetSecurityAltIDSource() const { return fieldSecurityAltIDSource.offset > 0 ? _fixPtr + fieldSecurityAltIDSource.offset : nullptr; }
    private: FieldSecurityAltIDSource fieldSecurityAltIDSource;
 
 };
@@ -619,24 +688,28 @@ class GroupUnderlyingSecurityAltID : public MessageBase
    static offset_t scan( Array & arr, const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    const char * getFieldValue( unsigned tag ) const;
+   const char * findBadField() const;
+   const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
-   bool isSetUnderlyingSecurityAltID() const { return fieldUnderlyingSecurityAltID.offset >= 0; }
+   bool isSetUnderlyingSecurityAltID() const { return fieldUnderlyingSecurityAltID.offset > 0; }
    FieldUnderlyingSecurityAltID::ValueType getUnderlyingSecurityAltID() const { return fieldUnderlyingSecurityAltID.getValue( _fixPtr ); }
-   std::string_view getUnderlyingSecurityAltIDView() const { return fieldUnderlyingSecurityAltID.offset >= 0 ? std::string_view{ _fixPtr + fieldUnderlyingSecurityAltID.offset, getValueLength( _fixPtr + fieldUnderlyingSecurityAltID.offset ) } : std::string_view{}; }
+   std::string_view getUnderlyingSecurityAltIDView() const { return fieldUnderlyingSecurityAltID.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingSecurityAltID.offset, getValueLength( _fixPtr + fieldUnderlyingSecurityAltID.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingSecurityAltID() const { return _fixPtr + fieldUnderlyingSecurityAltID.offset; }
-   const char * getIfSetUnderlyingSecurityAltID() const { return fieldUnderlyingSecurityAltID.offset >= 0 ? _fixPtr + fieldUnderlyingSecurityAltID.offset : nullptr; }
+   const char * ptrToTagUnderlyingSecurityAltID() const { return _fixPtr + fieldUnderlyingSecurityAltID.offset - 1 - FieldUnderlyingSecurityAltID::tagWidth(); }
+   const char * getIfSetUnderlyingSecurityAltID() const { return fieldUnderlyingSecurityAltID.offset > 0 ? _fixPtr + fieldUnderlyingSecurityAltID.offset : nullptr; }
    private: FieldUnderlyingSecurityAltID fieldUnderlyingSecurityAltID;
 
    public:
-   bool isSetUnderlyingSecurityAltIDSource() const { return fieldUnderlyingSecurityAltIDSource.offset >= 0; }
+   bool isSetUnderlyingSecurityAltIDSource() const { return fieldUnderlyingSecurityAltIDSource.offset > 0; }
    FieldUnderlyingSecurityAltIDSource::ValueType getUnderlyingSecurityAltIDSource() const { return fieldUnderlyingSecurityAltIDSource.getValue( _fixPtr ); }
-   std::string_view getUnderlyingSecurityAltIDSourceView() const { return fieldUnderlyingSecurityAltIDSource.offset >= 0 ? std::string_view{ _fixPtr + fieldUnderlyingSecurityAltIDSource.offset, getValueLength( _fixPtr + fieldUnderlyingSecurityAltIDSource.offset ) } : std::string_view{}; }
+   std::string_view getUnderlyingSecurityAltIDSourceView() const { return fieldUnderlyingSecurityAltIDSource.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingSecurityAltIDSource.offset, getValueLength( _fixPtr + fieldUnderlyingSecurityAltIDSource.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingSecurityAltIDSource() const { return _fixPtr + fieldUnderlyingSecurityAltIDSource.offset; }
-   const char * getIfSetUnderlyingSecurityAltIDSource() const { return fieldUnderlyingSecurityAltIDSource.offset >= 0 ? _fixPtr + fieldUnderlyingSecurityAltIDSource.offset : nullptr; }
+   const char * ptrToTagUnderlyingSecurityAltIDSource() const { return _fixPtr + fieldUnderlyingSecurityAltIDSource.offset - 1 - FieldUnderlyingSecurityAltIDSource::tagWidth(); }
+   const char * getIfSetUnderlyingSecurityAltIDSource() const { return fieldUnderlyingSecurityAltIDSource.offset > 0 ? _fixPtr + fieldUnderlyingSecurityAltIDSource.offset : nullptr; }
    private: FieldUnderlyingSecurityAltIDSource fieldUnderlyingSecurityAltIDSource;
 
 };
@@ -653,24 +726,28 @@ class GroupUnderlyingStips : public MessageBase
    static offset_t scan( Array & arr, const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    const char * getFieldValue( unsigned tag ) const;
+   const char * findBadField() const;
+   const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
-   bool isSetUnderlyingStipType() const { return fieldUnderlyingStipType.offset >= 0; }
+   bool isSetUnderlyingStipType() const { return fieldUnderlyingStipType.offset > 0; }
    FieldUnderlyingStipType::ValueType getUnderlyingStipType() const { return fieldUnderlyingStipType.getValue( _fixPtr ); }
-   std::string_view getUnderlyingStipTypeView() const { return fieldUnderlyingStipType.offset >= 0 ? std::string_view{ _fixPtr + fieldUnderlyingStipType.offset, getValueLength( _fixPtr + fieldUnderlyingStipType.offset ) } : std::string_view{}; }
+   std::string_view getUnderlyingStipTypeView() const { return fieldUnderlyingStipType.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingStipType.offset, getValueLength( _fixPtr + fieldUnderlyingStipType.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingStipType() const { return _fixPtr + fieldUnderlyingStipType.offset; }
-   const char * getIfSetUnderlyingStipType() const { return fieldUnderlyingStipType.offset >= 0 ? _fixPtr + fieldUnderlyingStipType.offset : nullptr; }
+   const char * ptrToTagUnderlyingStipType() const { return _fixPtr + fieldUnderlyingStipType.offset - 1 - FieldUnderlyingStipType::tagWidth(); }
+   const char * getIfSetUnderlyingStipType() const { return fieldUnderlyingStipType.offset > 0 ? _fixPtr + fieldUnderlyingStipType.offset : nullptr; }
    private: FieldUnderlyingStipType fieldUnderlyingStipType;
 
    public:
-   bool isSetUnderlyingStipValue() const { return fieldUnderlyingStipValue.offset >= 0; }
+   bool isSetUnderlyingStipValue() const { return fieldUnderlyingStipValue.offset > 0; }
    FieldUnderlyingStipValue::ValueType getUnderlyingStipValue() const { return fieldUnderlyingStipValue.getValue( _fixPtr ); }
-   std::string_view getUnderlyingStipValueView() const { return fieldUnderlyingStipValue.offset >= 0 ? std::string_view{ _fixPtr + fieldUnderlyingStipValue.offset, getValueLength( _fixPtr + fieldUnderlyingStipValue.offset ) } : std::string_view{}; }
+   std::string_view getUnderlyingStipValueView() const { return fieldUnderlyingStipValue.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingStipValue.offset, getValueLength( _fixPtr + fieldUnderlyingStipValue.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingStipValue() const { return _fixPtr + fieldUnderlyingStipValue.offset; }
-   const char * getIfSetUnderlyingStipValue() const { return fieldUnderlyingStipValue.offset >= 0 ? _fixPtr + fieldUnderlyingStipValue.offset : nullptr; }
+   const char * ptrToTagUnderlyingStipValue() const { return _fixPtr + fieldUnderlyingStipValue.offset - 1 - FieldUnderlyingStipValue::tagWidth(); }
+   const char * getIfSetUnderlyingStipValue() const { return fieldUnderlyingStipValue.offset > 0 ? _fixPtr + fieldUnderlyingStipValue.offset : nullptr; }
    private: FieldUnderlyingStipValue fieldUnderlyingStipValue;
 
 };
@@ -687,48 +764,55 @@ class GroupUnderlyings : public MessageBase
    static offset_t scan( Array & arr, const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    const char * getFieldValue( unsigned tag ) const;
+   const char * findBadField() const;
+   const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
-   bool isSetUnderlyingSymbol() const { return fieldUnderlyingSymbol.offset >= 0; }
+   bool isSetUnderlyingSymbol() const { return fieldUnderlyingSymbol.offset > 0; }
    FieldUnderlyingSymbol::ValueType getUnderlyingSymbol() const { return fieldUnderlyingSymbol.getValue( _fixPtr ); }
-   std::string_view getUnderlyingSymbolView() const { return fieldUnderlyingSymbol.offset >= 0 ? std::string_view{ _fixPtr + fieldUnderlyingSymbol.offset, getValueLength( _fixPtr + fieldUnderlyingSymbol.offset ) } : std::string_view{}; }
+   std::string_view getUnderlyingSymbolView() const { return fieldUnderlyingSymbol.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingSymbol.offset, getValueLength( _fixPtr + fieldUnderlyingSymbol.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingSymbol() const { return _fixPtr + fieldUnderlyingSymbol.offset; }
-   const char * getIfSetUnderlyingSymbol() const { return fieldUnderlyingSymbol.offset >= 0 ? _fixPtr + fieldUnderlyingSymbol.offset : nullptr; }
+   const char * ptrToTagUnderlyingSymbol() const { return _fixPtr + fieldUnderlyingSymbol.offset - 1 - FieldUnderlyingSymbol::tagWidth(); }
+   const char * getIfSetUnderlyingSymbol() const { return fieldUnderlyingSymbol.offset > 0 ? _fixPtr + fieldUnderlyingSymbol.offset : nullptr; }
    private: FieldUnderlyingSymbol fieldUnderlyingSymbol;
 
    public:
-   bool isSetUnderlyingSymbolSfx() const { return fieldUnderlyingSymbolSfx.offset >= 0; }
+   bool isSetUnderlyingSymbolSfx() const { return fieldUnderlyingSymbolSfx.offset > 0; }
    FieldUnderlyingSymbolSfx::ValueType getUnderlyingSymbolSfx() const { return fieldUnderlyingSymbolSfx.getValue( _fixPtr ); }
-   std::string_view getUnderlyingSymbolSfxView() const { return fieldUnderlyingSymbolSfx.offset >= 0 ? std::string_view{ _fixPtr + fieldUnderlyingSymbolSfx.offset, getValueLength( _fixPtr + fieldUnderlyingSymbolSfx.offset ) } : std::string_view{}; }
+   std::string_view getUnderlyingSymbolSfxView() const { return fieldUnderlyingSymbolSfx.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingSymbolSfx.offset, getValueLength( _fixPtr + fieldUnderlyingSymbolSfx.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingSymbolSfx() const { return _fixPtr + fieldUnderlyingSymbolSfx.offset; }
-   const char * getIfSetUnderlyingSymbolSfx() const { return fieldUnderlyingSymbolSfx.offset >= 0 ? _fixPtr + fieldUnderlyingSymbolSfx.offset : nullptr; }
+   const char * ptrToTagUnderlyingSymbolSfx() const { return _fixPtr + fieldUnderlyingSymbolSfx.offset - 1 - FieldUnderlyingSymbolSfx::tagWidth(); }
+   const char * getIfSetUnderlyingSymbolSfx() const { return fieldUnderlyingSymbolSfx.offset > 0 ? _fixPtr + fieldUnderlyingSymbolSfx.offset : nullptr; }
    private: FieldUnderlyingSymbolSfx fieldUnderlyingSymbolSfx;
 
    public:
-   bool isSetUnderlyingSecurityID() const { return fieldUnderlyingSecurityID.offset >= 0; }
+   bool isSetUnderlyingSecurityID() const { return fieldUnderlyingSecurityID.offset > 0; }
    FieldUnderlyingSecurityID::ValueType getUnderlyingSecurityID() const { return fieldUnderlyingSecurityID.getValue( _fixPtr ); }
-   std::string_view getUnderlyingSecurityIDView() const { return fieldUnderlyingSecurityID.offset >= 0 ? std::string_view{ _fixPtr + fieldUnderlyingSecurityID.offset, getValueLength( _fixPtr + fieldUnderlyingSecurityID.offset ) } : std::string_view{}; }
+   std::string_view getUnderlyingSecurityIDView() const { return fieldUnderlyingSecurityID.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingSecurityID.offset, getValueLength( _fixPtr + fieldUnderlyingSecurityID.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingSecurityID() const { return _fixPtr + fieldUnderlyingSecurityID.offset; }
-   const char * getIfSetUnderlyingSecurityID() const { return fieldUnderlyingSecurityID.offset >= 0 ? _fixPtr + fieldUnderlyingSecurityID.offset : nullptr; }
+   const char * ptrToTagUnderlyingSecurityID() const { return _fixPtr + fieldUnderlyingSecurityID.offset - 1 - FieldUnderlyingSecurityID::tagWidth(); }
+   const char * getIfSetUnderlyingSecurityID() const { return fieldUnderlyingSecurityID.offset > 0 ? _fixPtr + fieldUnderlyingSecurityID.offset : nullptr; }
    private: FieldUnderlyingSecurityID fieldUnderlyingSecurityID;
 
    public:
-   bool isSetUnderlyingSecurityIDSource() const { return fieldUnderlyingSecurityIDSource.offset >= 0; }
+   bool isSetUnderlyingSecurityIDSource() const { return fieldUnderlyingSecurityIDSource.offset > 0; }
    FieldUnderlyingSecurityIDSource::ValueType getUnderlyingSecurityIDSource() const { return fieldUnderlyingSecurityIDSource.getValue( _fixPtr ); }
-   std::string_view getUnderlyingSecurityIDSourceView() const { return fieldUnderlyingSecurityIDSource.offset >= 0 ? std::string_view{ _fixPtr + fieldUnderlyingSecurityIDSource.offset, getValueLength( _fixPtr + fieldUnderlyingSecurityIDSource.offset ) } : std::string_view{}; }
+   std::string_view getUnderlyingSecurityIDSourceView() const { return fieldUnderlyingSecurityIDSource.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingSecurityIDSource.offset, getValueLength( _fixPtr + fieldUnderlyingSecurityIDSource.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingSecurityIDSource() const { return _fixPtr + fieldUnderlyingSecurityIDSource.offset; }
-   const char * getIfSetUnderlyingSecurityIDSource() const { return fieldUnderlyingSecurityIDSource.offset >= 0 ? _fixPtr + fieldUnderlyingSecurityIDSource.offset : nullptr; }
+   const char * ptrToTagUnderlyingSecurityIDSource() const { return _fixPtr + fieldUnderlyingSecurityIDSource.offset - 1 - FieldUnderlyingSecurityIDSource::tagWidth(); }
+   const char * getIfSetUnderlyingSecurityIDSource() const { return fieldUnderlyingSecurityIDSource.offset > 0 ? _fixPtr + fieldUnderlyingSecurityIDSource.offset : nullptr; }
    private: FieldUnderlyingSecurityIDSource fieldUnderlyingSecurityIDSource;
 
    public:
-   bool isSetNoUnderlyingSecurityAltID() const { return fieldNoUnderlyingSecurityAltID.offset >= 0; }
+   bool isSetNoUnderlyingSecurityAltID() const { return fieldNoUnderlyingSecurityAltID.offset > 0; }
    FieldNoUnderlyingSecurityAltID::ValueType getNoUnderlyingSecurityAltID() const { return fieldNoUnderlyingSecurityAltID.getValue( _fixPtr ); }
-   std::string_view getNoUnderlyingSecurityAltIDView() const { return fieldNoUnderlyingSecurityAltID.offset >= 0 ? std::string_view{ _fixPtr + fieldNoUnderlyingSecurityAltID.offset, getValueLength( _fixPtr + fieldNoUnderlyingSecurityAltID.offset ) } : std::string_view{}; }
+   std::string_view getNoUnderlyingSecurityAltIDView() const { return fieldNoUnderlyingSecurityAltID.offset > 0 ? std::string_view{ _fixPtr + fieldNoUnderlyingSecurityAltID.offset, getValueLength( _fixPtr + fieldNoUnderlyingSecurityAltID.offset ) } : std::string_view{}; }
    const char * ptrToNoUnderlyingSecurityAltID() const { return _fixPtr + fieldNoUnderlyingSecurityAltID.offset; }
-   const char * getIfSetNoUnderlyingSecurityAltID() const { return fieldNoUnderlyingSecurityAltID.offset >= 0 ? _fixPtr + fieldNoUnderlyingSecurityAltID.offset : nullptr; }
+   const char * ptrToTagNoUnderlyingSecurityAltID() const { return _fixPtr + fieldNoUnderlyingSecurityAltID.offset - 1 - FieldNoUnderlyingSecurityAltID::tagWidth(); }
+   const char * getIfSetNoUnderlyingSecurityAltID() const { return fieldNoUnderlyingSecurityAltID.offset > 0 ? _fixPtr + fieldNoUnderlyingSecurityAltID.offset : nullptr; }
    private: FieldNoUnderlyingSecurityAltID fieldNoUnderlyingSecurityAltID;
   
    public:
@@ -737,339 +821,381 @@ class GroupUnderlyings : public MessageBase
    private: GroupUnderlyingSecurityAltID::Array groupsUnderlyingSecurityAltID{ 10 };
 
    public:
-   bool isSetUnderlyingProduct() const { return fieldUnderlyingProduct.offset >= 0; }
+   bool isSetUnderlyingProduct() const { return fieldUnderlyingProduct.offset > 0; }
    FieldUnderlyingProduct::ValueType getUnderlyingProduct() const { return fieldUnderlyingProduct.getValue( _fixPtr ); }
-   std::string_view getUnderlyingProductView() const { return fieldUnderlyingProduct.offset >= 0 ? std::string_view{ _fixPtr + fieldUnderlyingProduct.offset, getValueLength( _fixPtr + fieldUnderlyingProduct.offset ) } : std::string_view{}; }
+   std::string_view getUnderlyingProductView() const { return fieldUnderlyingProduct.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingProduct.offset, getValueLength( _fixPtr + fieldUnderlyingProduct.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingProduct() const { return _fixPtr + fieldUnderlyingProduct.offset; }
-   const char * getIfSetUnderlyingProduct() const { return fieldUnderlyingProduct.offset >= 0 ? _fixPtr + fieldUnderlyingProduct.offset : nullptr; }
+   const char * ptrToTagUnderlyingProduct() const { return _fixPtr + fieldUnderlyingProduct.offset - 1 - FieldUnderlyingProduct::tagWidth(); }
+   const char * getIfSetUnderlyingProduct() const { return fieldUnderlyingProduct.offset > 0 ? _fixPtr + fieldUnderlyingProduct.offset : nullptr; }
    private: FieldUnderlyingProduct fieldUnderlyingProduct;
 
    public:
-   bool isSetUnderlyingCFICode() const { return fieldUnderlyingCFICode.offset >= 0; }
+   bool isSetUnderlyingCFICode() const { return fieldUnderlyingCFICode.offset > 0; }
    FieldUnderlyingCFICode::ValueType getUnderlyingCFICode() const { return fieldUnderlyingCFICode.getValue( _fixPtr ); }
-   std::string_view getUnderlyingCFICodeView() const { return fieldUnderlyingCFICode.offset >= 0 ? std::string_view{ _fixPtr + fieldUnderlyingCFICode.offset, getValueLength( _fixPtr + fieldUnderlyingCFICode.offset ) } : std::string_view{}; }
+   std::string_view getUnderlyingCFICodeView() const { return fieldUnderlyingCFICode.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingCFICode.offset, getValueLength( _fixPtr + fieldUnderlyingCFICode.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingCFICode() const { return _fixPtr + fieldUnderlyingCFICode.offset; }
-   const char * getIfSetUnderlyingCFICode() const { return fieldUnderlyingCFICode.offset >= 0 ? _fixPtr + fieldUnderlyingCFICode.offset : nullptr; }
+   const char * ptrToTagUnderlyingCFICode() const { return _fixPtr + fieldUnderlyingCFICode.offset - 1 - FieldUnderlyingCFICode::tagWidth(); }
+   const char * getIfSetUnderlyingCFICode() const { return fieldUnderlyingCFICode.offset > 0 ? _fixPtr + fieldUnderlyingCFICode.offset : nullptr; }
    private: FieldUnderlyingCFICode fieldUnderlyingCFICode;
 
    public:
-   bool isSetUnderlyingSecurityType() const { return fieldUnderlyingSecurityType.offset >= 0; }
+   bool isSetUnderlyingSecurityType() const { return fieldUnderlyingSecurityType.offset > 0; }
    FieldUnderlyingSecurityType::ValueType getUnderlyingSecurityType() const { return fieldUnderlyingSecurityType.getValue( _fixPtr ); }
-   std::string_view getUnderlyingSecurityTypeView() const { return fieldUnderlyingSecurityType.offset >= 0 ? std::string_view{ _fixPtr + fieldUnderlyingSecurityType.offset, getValueLength( _fixPtr + fieldUnderlyingSecurityType.offset ) } : std::string_view{}; }
+   std::string_view getUnderlyingSecurityTypeView() const { return fieldUnderlyingSecurityType.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingSecurityType.offset, getValueLength( _fixPtr + fieldUnderlyingSecurityType.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingSecurityType() const { return _fixPtr + fieldUnderlyingSecurityType.offset; }
-   const char * getIfSetUnderlyingSecurityType() const { return fieldUnderlyingSecurityType.offset >= 0 ? _fixPtr + fieldUnderlyingSecurityType.offset : nullptr; }
+   const char * ptrToTagUnderlyingSecurityType() const { return _fixPtr + fieldUnderlyingSecurityType.offset - 1 - FieldUnderlyingSecurityType::tagWidth(); }
+   const char * getIfSetUnderlyingSecurityType() const { return fieldUnderlyingSecurityType.offset > 0 ? _fixPtr + fieldUnderlyingSecurityType.offset : nullptr; }
    private: FieldUnderlyingSecurityType fieldUnderlyingSecurityType;
 
    public:
-   bool isSetUnderlyingSecuritySubType() const { return fieldUnderlyingSecuritySubType.offset >= 0; }
+   bool isSetUnderlyingSecuritySubType() const { return fieldUnderlyingSecuritySubType.offset > 0; }
    FieldUnderlyingSecuritySubType::ValueType getUnderlyingSecuritySubType() const { return fieldUnderlyingSecuritySubType.getValue( _fixPtr ); }
-   std::string_view getUnderlyingSecuritySubTypeView() const { return fieldUnderlyingSecuritySubType.offset >= 0 ? std::string_view{ _fixPtr + fieldUnderlyingSecuritySubType.offset, getValueLength( _fixPtr + fieldUnderlyingSecuritySubType.offset ) } : std::string_view{}; }
+   std::string_view getUnderlyingSecuritySubTypeView() const { return fieldUnderlyingSecuritySubType.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingSecuritySubType.offset, getValueLength( _fixPtr + fieldUnderlyingSecuritySubType.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingSecuritySubType() const { return _fixPtr + fieldUnderlyingSecuritySubType.offset; }
-   const char * getIfSetUnderlyingSecuritySubType() const { return fieldUnderlyingSecuritySubType.offset >= 0 ? _fixPtr + fieldUnderlyingSecuritySubType.offset : nullptr; }
+   const char * ptrToTagUnderlyingSecuritySubType() const { return _fixPtr + fieldUnderlyingSecuritySubType.offset - 1 - FieldUnderlyingSecuritySubType::tagWidth(); }
+   const char * getIfSetUnderlyingSecuritySubType() const { return fieldUnderlyingSecuritySubType.offset > 0 ? _fixPtr + fieldUnderlyingSecuritySubType.offset : nullptr; }
    private: FieldUnderlyingSecuritySubType fieldUnderlyingSecuritySubType;
 
    public:
-   bool isSetUnderlyingMaturityMonthYear() const { return fieldUnderlyingMaturityMonthYear.offset >= 0; }
+   bool isSetUnderlyingMaturityMonthYear() const { return fieldUnderlyingMaturityMonthYear.offset > 0; }
    FieldUnderlyingMaturityMonthYear::ValueType getUnderlyingMaturityMonthYear() const { return fieldUnderlyingMaturityMonthYear.getValue( _fixPtr ); }
-   std::string_view getUnderlyingMaturityMonthYearView() const { return fieldUnderlyingMaturityMonthYear.offset >= 0 ? std::string_view{ _fixPtr + fieldUnderlyingMaturityMonthYear.offset, getValueLength( _fixPtr + fieldUnderlyingMaturityMonthYear.offset ) } : std::string_view{}; }
+   std::string_view getUnderlyingMaturityMonthYearView() const { return fieldUnderlyingMaturityMonthYear.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingMaturityMonthYear.offset, getValueLength( _fixPtr + fieldUnderlyingMaturityMonthYear.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingMaturityMonthYear() const { return _fixPtr + fieldUnderlyingMaturityMonthYear.offset; }
-   const char * getIfSetUnderlyingMaturityMonthYear() const { return fieldUnderlyingMaturityMonthYear.offset >= 0 ? _fixPtr + fieldUnderlyingMaturityMonthYear.offset : nullptr; }
+   const char * ptrToTagUnderlyingMaturityMonthYear() const { return _fixPtr + fieldUnderlyingMaturityMonthYear.offset - 1 - FieldUnderlyingMaturityMonthYear::tagWidth(); }
+   const char * getIfSetUnderlyingMaturityMonthYear() const { return fieldUnderlyingMaturityMonthYear.offset > 0 ? _fixPtr + fieldUnderlyingMaturityMonthYear.offset : nullptr; }
    private: FieldUnderlyingMaturityMonthYear fieldUnderlyingMaturityMonthYear;
 
    public:
-   bool isSetUnderlyingMaturityDate() const { return fieldUnderlyingMaturityDate.offset >= 0; }
+   bool isSetUnderlyingMaturityDate() const { return fieldUnderlyingMaturityDate.offset > 0; }
    FieldUnderlyingMaturityDate::ValueType getUnderlyingMaturityDate() const { return fieldUnderlyingMaturityDate.getValue( _fixPtr ); }
-   std::string_view getUnderlyingMaturityDateView() const { return fieldUnderlyingMaturityDate.offset >= 0 ? std::string_view{ _fixPtr + fieldUnderlyingMaturityDate.offset, getValueLength( _fixPtr + fieldUnderlyingMaturityDate.offset ) } : std::string_view{}; }
+   std::string_view getUnderlyingMaturityDateView() const { return fieldUnderlyingMaturityDate.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingMaturityDate.offset, getValueLength( _fixPtr + fieldUnderlyingMaturityDate.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingMaturityDate() const { return _fixPtr + fieldUnderlyingMaturityDate.offset; }
-   const char * getIfSetUnderlyingMaturityDate() const { return fieldUnderlyingMaturityDate.offset >= 0 ? _fixPtr + fieldUnderlyingMaturityDate.offset : nullptr; }
+   const char * ptrToTagUnderlyingMaturityDate() const { return _fixPtr + fieldUnderlyingMaturityDate.offset - 1 - FieldUnderlyingMaturityDate::tagWidth(); }
+   const char * getIfSetUnderlyingMaturityDate() const { return fieldUnderlyingMaturityDate.offset > 0 ? _fixPtr + fieldUnderlyingMaturityDate.offset : nullptr; }
    private: FieldUnderlyingMaturityDate fieldUnderlyingMaturityDate;
 
    public:
-   bool isSetUnderlyingPutOrCall() const { return fieldUnderlyingPutOrCall.offset >= 0; }
+   bool isSetUnderlyingPutOrCall() const { return fieldUnderlyingPutOrCall.offset > 0; }
    FieldUnderlyingPutOrCall::ValueType getUnderlyingPutOrCall() const { return fieldUnderlyingPutOrCall.getValue( _fixPtr ); }
-   std::string_view getUnderlyingPutOrCallView() const { return fieldUnderlyingPutOrCall.offset >= 0 ? std::string_view{ _fixPtr + fieldUnderlyingPutOrCall.offset, getValueLength( _fixPtr + fieldUnderlyingPutOrCall.offset ) } : std::string_view{}; }
+   std::string_view getUnderlyingPutOrCallView() const { return fieldUnderlyingPutOrCall.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingPutOrCall.offset, getValueLength( _fixPtr + fieldUnderlyingPutOrCall.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingPutOrCall() const { return _fixPtr + fieldUnderlyingPutOrCall.offset; }
-   const char * getIfSetUnderlyingPutOrCall() const { return fieldUnderlyingPutOrCall.offset >= 0 ? _fixPtr + fieldUnderlyingPutOrCall.offset : nullptr; }
+   const char * ptrToTagUnderlyingPutOrCall() const { return _fixPtr + fieldUnderlyingPutOrCall.offset - 1 - FieldUnderlyingPutOrCall::tagWidth(); }
+   const char * getIfSetUnderlyingPutOrCall() const { return fieldUnderlyingPutOrCall.offset > 0 ? _fixPtr + fieldUnderlyingPutOrCall.offset : nullptr; }
    private: FieldUnderlyingPutOrCall fieldUnderlyingPutOrCall;
 
    public:
-   bool isSetUnderlyingCouponPaymentDate() const { return fieldUnderlyingCouponPaymentDate.offset >= 0; }
+   bool isSetUnderlyingCouponPaymentDate() const { return fieldUnderlyingCouponPaymentDate.offset > 0; }
    FieldUnderlyingCouponPaymentDate::ValueType getUnderlyingCouponPaymentDate() const { return fieldUnderlyingCouponPaymentDate.getValue( _fixPtr ); }
-   std::string_view getUnderlyingCouponPaymentDateView() const { return fieldUnderlyingCouponPaymentDate.offset >= 0 ? std::string_view{ _fixPtr + fieldUnderlyingCouponPaymentDate.offset, getValueLength( _fixPtr + fieldUnderlyingCouponPaymentDate.offset ) } : std::string_view{}; }
+   std::string_view getUnderlyingCouponPaymentDateView() const { return fieldUnderlyingCouponPaymentDate.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingCouponPaymentDate.offset, getValueLength( _fixPtr + fieldUnderlyingCouponPaymentDate.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingCouponPaymentDate() const { return _fixPtr + fieldUnderlyingCouponPaymentDate.offset; }
-   const char * getIfSetUnderlyingCouponPaymentDate() const { return fieldUnderlyingCouponPaymentDate.offset >= 0 ? _fixPtr + fieldUnderlyingCouponPaymentDate.offset : nullptr; }
+   const char * ptrToTagUnderlyingCouponPaymentDate() const { return _fixPtr + fieldUnderlyingCouponPaymentDate.offset - 1 - FieldUnderlyingCouponPaymentDate::tagWidth(); }
+   const char * getIfSetUnderlyingCouponPaymentDate() const { return fieldUnderlyingCouponPaymentDate.offset > 0 ? _fixPtr + fieldUnderlyingCouponPaymentDate.offset : nullptr; }
    private: FieldUnderlyingCouponPaymentDate fieldUnderlyingCouponPaymentDate;
 
    public:
-   bool isSetUnderlyingIssueDate() const { return fieldUnderlyingIssueDate.offset >= 0; }
+   bool isSetUnderlyingIssueDate() const { return fieldUnderlyingIssueDate.offset > 0; }
    FieldUnderlyingIssueDate::ValueType getUnderlyingIssueDate() const { return fieldUnderlyingIssueDate.getValue( _fixPtr ); }
-   std::string_view getUnderlyingIssueDateView() const { return fieldUnderlyingIssueDate.offset >= 0 ? std::string_view{ _fixPtr + fieldUnderlyingIssueDate.offset, getValueLength( _fixPtr + fieldUnderlyingIssueDate.offset ) } : std::string_view{}; }
+   std::string_view getUnderlyingIssueDateView() const { return fieldUnderlyingIssueDate.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingIssueDate.offset, getValueLength( _fixPtr + fieldUnderlyingIssueDate.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingIssueDate() const { return _fixPtr + fieldUnderlyingIssueDate.offset; }
-   const char * getIfSetUnderlyingIssueDate() const { return fieldUnderlyingIssueDate.offset >= 0 ? _fixPtr + fieldUnderlyingIssueDate.offset : nullptr; }
+   const char * ptrToTagUnderlyingIssueDate() const { return _fixPtr + fieldUnderlyingIssueDate.offset - 1 - FieldUnderlyingIssueDate::tagWidth(); }
+   const char * getIfSetUnderlyingIssueDate() const { return fieldUnderlyingIssueDate.offset > 0 ? _fixPtr + fieldUnderlyingIssueDate.offset : nullptr; }
    private: FieldUnderlyingIssueDate fieldUnderlyingIssueDate;
 
    public:
-   bool isSetUnderlyingRepoCollateralSecurityType() const { return fieldUnderlyingRepoCollateralSecurityType.offset >= 0; }
+   bool isSetUnderlyingRepoCollateralSecurityType() const { return fieldUnderlyingRepoCollateralSecurityType.offset > 0; }
    FieldUnderlyingRepoCollateralSecurityType::ValueType getUnderlyingRepoCollateralSecurityType() const { return fieldUnderlyingRepoCollateralSecurityType.getValue( _fixPtr ); }
-   std::string_view getUnderlyingRepoCollateralSecurityTypeView() const { return fieldUnderlyingRepoCollateralSecurityType.offset >= 0 ? std::string_view{ _fixPtr + fieldUnderlyingRepoCollateralSecurityType.offset, getValueLength( _fixPtr + fieldUnderlyingRepoCollateralSecurityType.offset ) } : std::string_view{}; }
+   std::string_view getUnderlyingRepoCollateralSecurityTypeView() const { return fieldUnderlyingRepoCollateralSecurityType.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingRepoCollateralSecurityType.offset, getValueLength( _fixPtr + fieldUnderlyingRepoCollateralSecurityType.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingRepoCollateralSecurityType() const { return _fixPtr + fieldUnderlyingRepoCollateralSecurityType.offset; }
-   const char * getIfSetUnderlyingRepoCollateralSecurityType() const { return fieldUnderlyingRepoCollateralSecurityType.offset >= 0 ? _fixPtr + fieldUnderlyingRepoCollateralSecurityType.offset : nullptr; }
+   const char * ptrToTagUnderlyingRepoCollateralSecurityType() const { return _fixPtr + fieldUnderlyingRepoCollateralSecurityType.offset - 1 - FieldUnderlyingRepoCollateralSecurityType::tagWidth(); }
+   const char * getIfSetUnderlyingRepoCollateralSecurityType() const { return fieldUnderlyingRepoCollateralSecurityType.offset > 0 ? _fixPtr + fieldUnderlyingRepoCollateralSecurityType.offset : nullptr; }
    private: FieldUnderlyingRepoCollateralSecurityType fieldUnderlyingRepoCollateralSecurityType;
 
    public:
-   bool isSetUnderlyingRepurchaseTerm() const { return fieldUnderlyingRepurchaseTerm.offset >= 0; }
+   bool isSetUnderlyingRepurchaseTerm() const { return fieldUnderlyingRepurchaseTerm.offset > 0; }
    FieldUnderlyingRepurchaseTerm::ValueType getUnderlyingRepurchaseTerm() const { return fieldUnderlyingRepurchaseTerm.getValue( _fixPtr ); }
-   std::string_view getUnderlyingRepurchaseTermView() const { return fieldUnderlyingRepurchaseTerm.offset >= 0 ? std::string_view{ _fixPtr + fieldUnderlyingRepurchaseTerm.offset, getValueLength( _fixPtr + fieldUnderlyingRepurchaseTerm.offset ) } : std::string_view{}; }
+   std::string_view getUnderlyingRepurchaseTermView() const { return fieldUnderlyingRepurchaseTerm.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingRepurchaseTerm.offset, getValueLength( _fixPtr + fieldUnderlyingRepurchaseTerm.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingRepurchaseTerm() const { return _fixPtr + fieldUnderlyingRepurchaseTerm.offset; }
-   const char * getIfSetUnderlyingRepurchaseTerm() const { return fieldUnderlyingRepurchaseTerm.offset >= 0 ? _fixPtr + fieldUnderlyingRepurchaseTerm.offset : nullptr; }
+   const char * ptrToTagUnderlyingRepurchaseTerm() const { return _fixPtr + fieldUnderlyingRepurchaseTerm.offset - 1 - FieldUnderlyingRepurchaseTerm::tagWidth(); }
+   const char * getIfSetUnderlyingRepurchaseTerm() const { return fieldUnderlyingRepurchaseTerm.offset > 0 ? _fixPtr + fieldUnderlyingRepurchaseTerm.offset : nullptr; }
    private: FieldUnderlyingRepurchaseTerm fieldUnderlyingRepurchaseTerm;
 
    public:
-   bool isSetUnderlyingRepurchaseRate() const { return fieldUnderlyingRepurchaseRate.offset >= 0; }
+   bool isSetUnderlyingRepurchaseRate() const { return fieldUnderlyingRepurchaseRate.offset > 0; }
    FieldUnderlyingRepurchaseRate::ValueType getUnderlyingRepurchaseRate() const { return fieldUnderlyingRepurchaseRate.getValue( _fixPtr ); }
-   std::string_view getUnderlyingRepurchaseRateView() const { return fieldUnderlyingRepurchaseRate.offset >= 0 ? std::string_view{ _fixPtr + fieldUnderlyingRepurchaseRate.offset, getValueLength( _fixPtr + fieldUnderlyingRepurchaseRate.offset ) } : std::string_view{}; }
+   std::string_view getUnderlyingRepurchaseRateView() const { return fieldUnderlyingRepurchaseRate.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingRepurchaseRate.offset, getValueLength( _fixPtr + fieldUnderlyingRepurchaseRate.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingRepurchaseRate() const { return _fixPtr + fieldUnderlyingRepurchaseRate.offset; }
-   const char * getIfSetUnderlyingRepurchaseRate() const { return fieldUnderlyingRepurchaseRate.offset >= 0 ? _fixPtr + fieldUnderlyingRepurchaseRate.offset : nullptr; }
+   const char * ptrToTagUnderlyingRepurchaseRate() const { return _fixPtr + fieldUnderlyingRepurchaseRate.offset - 1 - FieldUnderlyingRepurchaseRate::tagWidth(); }
+   const char * getIfSetUnderlyingRepurchaseRate() const { return fieldUnderlyingRepurchaseRate.offset > 0 ? _fixPtr + fieldUnderlyingRepurchaseRate.offset : nullptr; }
    private: FieldUnderlyingRepurchaseRate fieldUnderlyingRepurchaseRate;
 
    public:
-   bool isSetUnderlyingFactor() const { return fieldUnderlyingFactor.offset >= 0; }
+   bool isSetUnderlyingFactor() const { return fieldUnderlyingFactor.offset > 0; }
    FieldUnderlyingFactor::ValueType getUnderlyingFactor() const { return fieldUnderlyingFactor.getValue( _fixPtr ); }
-   std::string_view getUnderlyingFactorView() const { return fieldUnderlyingFactor.offset >= 0 ? std::string_view{ _fixPtr + fieldUnderlyingFactor.offset, getValueLength( _fixPtr + fieldUnderlyingFactor.offset ) } : std::string_view{}; }
+   std::string_view getUnderlyingFactorView() const { return fieldUnderlyingFactor.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingFactor.offset, getValueLength( _fixPtr + fieldUnderlyingFactor.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingFactor() const { return _fixPtr + fieldUnderlyingFactor.offset; }
-   const char * getIfSetUnderlyingFactor() const { return fieldUnderlyingFactor.offset >= 0 ? _fixPtr + fieldUnderlyingFactor.offset : nullptr; }
+   const char * ptrToTagUnderlyingFactor() const { return _fixPtr + fieldUnderlyingFactor.offset - 1 - FieldUnderlyingFactor::tagWidth(); }
+   const char * getIfSetUnderlyingFactor() const { return fieldUnderlyingFactor.offset > 0 ? _fixPtr + fieldUnderlyingFactor.offset : nullptr; }
    private: FieldUnderlyingFactor fieldUnderlyingFactor;
 
    public:
-   bool isSetUnderlyingCreditRating() const { return fieldUnderlyingCreditRating.offset >= 0; }
+   bool isSetUnderlyingCreditRating() const { return fieldUnderlyingCreditRating.offset > 0; }
    FieldUnderlyingCreditRating::ValueType getUnderlyingCreditRating() const { return fieldUnderlyingCreditRating.getValue( _fixPtr ); }
-   std::string_view getUnderlyingCreditRatingView() const { return fieldUnderlyingCreditRating.offset >= 0 ? std::string_view{ _fixPtr + fieldUnderlyingCreditRating.offset, getValueLength( _fixPtr + fieldUnderlyingCreditRating.offset ) } : std::string_view{}; }
+   std::string_view getUnderlyingCreditRatingView() const { return fieldUnderlyingCreditRating.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingCreditRating.offset, getValueLength( _fixPtr + fieldUnderlyingCreditRating.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingCreditRating() const { return _fixPtr + fieldUnderlyingCreditRating.offset; }
-   const char * getIfSetUnderlyingCreditRating() const { return fieldUnderlyingCreditRating.offset >= 0 ? _fixPtr + fieldUnderlyingCreditRating.offset : nullptr; }
+   const char * ptrToTagUnderlyingCreditRating() const { return _fixPtr + fieldUnderlyingCreditRating.offset - 1 - FieldUnderlyingCreditRating::tagWidth(); }
+   const char * getIfSetUnderlyingCreditRating() const { return fieldUnderlyingCreditRating.offset > 0 ? _fixPtr + fieldUnderlyingCreditRating.offset : nullptr; }
    private: FieldUnderlyingCreditRating fieldUnderlyingCreditRating;
 
    public:
-   bool isSetUnderlyingInstrRegistry() const { return fieldUnderlyingInstrRegistry.offset >= 0; }
+   bool isSetUnderlyingInstrRegistry() const { return fieldUnderlyingInstrRegistry.offset > 0; }
    FieldUnderlyingInstrRegistry::ValueType getUnderlyingInstrRegistry() const { return fieldUnderlyingInstrRegistry.getValue( _fixPtr ); }
-   std::string_view getUnderlyingInstrRegistryView() const { return fieldUnderlyingInstrRegistry.offset >= 0 ? std::string_view{ _fixPtr + fieldUnderlyingInstrRegistry.offset, getValueLength( _fixPtr + fieldUnderlyingInstrRegistry.offset ) } : std::string_view{}; }
+   std::string_view getUnderlyingInstrRegistryView() const { return fieldUnderlyingInstrRegistry.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingInstrRegistry.offset, getValueLength( _fixPtr + fieldUnderlyingInstrRegistry.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingInstrRegistry() const { return _fixPtr + fieldUnderlyingInstrRegistry.offset; }
-   const char * getIfSetUnderlyingInstrRegistry() const { return fieldUnderlyingInstrRegistry.offset >= 0 ? _fixPtr + fieldUnderlyingInstrRegistry.offset : nullptr; }
+   const char * ptrToTagUnderlyingInstrRegistry() const { return _fixPtr + fieldUnderlyingInstrRegistry.offset - 1 - FieldUnderlyingInstrRegistry::tagWidth(); }
+   const char * getIfSetUnderlyingInstrRegistry() const { return fieldUnderlyingInstrRegistry.offset > 0 ? _fixPtr + fieldUnderlyingInstrRegistry.offset : nullptr; }
    private: FieldUnderlyingInstrRegistry fieldUnderlyingInstrRegistry;
 
    public:
-   bool isSetUnderlyingCountryOfIssue() const { return fieldUnderlyingCountryOfIssue.offset >= 0; }
+   bool isSetUnderlyingCountryOfIssue() const { return fieldUnderlyingCountryOfIssue.offset > 0; }
    FieldUnderlyingCountryOfIssue::ValueType getUnderlyingCountryOfIssue() const { return fieldUnderlyingCountryOfIssue.getValue( _fixPtr ); }
-   std::string_view getUnderlyingCountryOfIssueView() const { return fieldUnderlyingCountryOfIssue.offset >= 0 ? std::string_view{ _fixPtr + fieldUnderlyingCountryOfIssue.offset, getValueLength( _fixPtr + fieldUnderlyingCountryOfIssue.offset ) } : std::string_view{}; }
+   std::string_view getUnderlyingCountryOfIssueView() const { return fieldUnderlyingCountryOfIssue.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingCountryOfIssue.offset, getValueLength( _fixPtr + fieldUnderlyingCountryOfIssue.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingCountryOfIssue() const { return _fixPtr + fieldUnderlyingCountryOfIssue.offset; }
-   const char * getIfSetUnderlyingCountryOfIssue() const { return fieldUnderlyingCountryOfIssue.offset >= 0 ? _fixPtr + fieldUnderlyingCountryOfIssue.offset : nullptr; }
+   const char * ptrToTagUnderlyingCountryOfIssue() const { return _fixPtr + fieldUnderlyingCountryOfIssue.offset - 1 - FieldUnderlyingCountryOfIssue::tagWidth(); }
+   const char * getIfSetUnderlyingCountryOfIssue() const { return fieldUnderlyingCountryOfIssue.offset > 0 ? _fixPtr + fieldUnderlyingCountryOfIssue.offset : nullptr; }
    private: FieldUnderlyingCountryOfIssue fieldUnderlyingCountryOfIssue;
 
    public:
-   bool isSetUnderlyingStateOrProvinceOfIssue() const { return fieldUnderlyingStateOrProvinceOfIssue.offset >= 0; }
+   bool isSetUnderlyingStateOrProvinceOfIssue() const { return fieldUnderlyingStateOrProvinceOfIssue.offset > 0; }
    FieldUnderlyingStateOrProvinceOfIssue::ValueType getUnderlyingStateOrProvinceOfIssue() const { return fieldUnderlyingStateOrProvinceOfIssue.getValue( _fixPtr ); }
-   std::string_view getUnderlyingStateOrProvinceOfIssueView() const { return fieldUnderlyingStateOrProvinceOfIssue.offset >= 0 ? std::string_view{ _fixPtr + fieldUnderlyingStateOrProvinceOfIssue.offset, getValueLength( _fixPtr + fieldUnderlyingStateOrProvinceOfIssue.offset ) } : std::string_view{}; }
+   std::string_view getUnderlyingStateOrProvinceOfIssueView() const { return fieldUnderlyingStateOrProvinceOfIssue.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingStateOrProvinceOfIssue.offset, getValueLength( _fixPtr + fieldUnderlyingStateOrProvinceOfIssue.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingStateOrProvinceOfIssue() const { return _fixPtr + fieldUnderlyingStateOrProvinceOfIssue.offset; }
-   const char * getIfSetUnderlyingStateOrProvinceOfIssue() const { return fieldUnderlyingStateOrProvinceOfIssue.offset >= 0 ? _fixPtr + fieldUnderlyingStateOrProvinceOfIssue.offset : nullptr; }
+   const char * ptrToTagUnderlyingStateOrProvinceOfIssue() const { return _fixPtr + fieldUnderlyingStateOrProvinceOfIssue.offset - 1 - FieldUnderlyingStateOrProvinceOfIssue::tagWidth(); }
+   const char * getIfSetUnderlyingStateOrProvinceOfIssue() const { return fieldUnderlyingStateOrProvinceOfIssue.offset > 0 ? _fixPtr + fieldUnderlyingStateOrProvinceOfIssue.offset : nullptr; }
    private: FieldUnderlyingStateOrProvinceOfIssue fieldUnderlyingStateOrProvinceOfIssue;
 
    public:
-   bool isSetUnderlyingLocaleOfIssue() const { return fieldUnderlyingLocaleOfIssue.offset >= 0; }
+   bool isSetUnderlyingLocaleOfIssue() const { return fieldUnderlyingLocaleOfIssue.offset > 0; }
    FieldUnderlyingLocaleOfIssue::ValueType getUnderlyingLocaleOfIssue() const { return fieldUnderlyingLocaleOfIssue.getValue( _fixPtr ); }
-   std::string_view getUnderlyingLocaleOfIssueView() const { return fieldUnderlyingLocaleOfIssue.offset >= 0 ? std::string_view{ _fixPtr + fieldUnderlyingLocaleOfIssue.offset, getValueLength( _fixPtr + fieldUnderlyingLocaleOfIssue.offset ) } : std::string_view{}; }
+   std::string_view getUnderlyingLocaleOfIssueView() const { return fieldUnderlyingLocaleOfIssue.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingLocaleOfIssue.offset, getValueLength( _fixPtr + fieldUnderlyingLocaleOfIssue.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingLocaleOfIssue() const { return _fixPtr + fieldUnderlyingLocaleOfIssue.offset; }
-   const char * getIfSetUnderlyingLocaleOfIssue() const { return fieldUnderlyingLocaleOfIssue.offset >= 0 ? _fixPtr + fieldUnderlyingLocaleOfIssue.offset : nullptr; }
+   const char * ptrToTagUnderlyingLocaleOfIssue() const { return _fixPtr + fieldUnderlyingLocaleOfIssue.offset - 1 - FieldUnderlyingLocaleOfIssue::tagWidth(); }
+   const char * getIfSetUnderlyingLocaleOfIssue() const { return fieldUnderlyingLocaleOfIssue.offset > 0 ? _fixPtr + fieldUnderlyingLocaleOfIssue.offset : nullptr; }
    private: FieldUnderlyingLocaleOfIssue fieldUnderlyingLocaleOfIssue;
 
    public:
-   bool isSetUnderlyingRedemptionDate() const { return fieldUnderlyingRedemptionDate.offset >= 0; }
+   bool isSetUnderlyingRedemptionDate() const { return fieldUnderlyingRedemptionDate.offset > 0; }
    FieldUnderlyingRedemptionDate::ValueType getUnderlyingRedemptionDate() const { return fieldUnderlyingRedemptionDate.getValue( _fixPtr ); }
-   std::string_view getUnderlyingRedemptionDateView() const { return fieldUnderlyingRedemptionDate.offset >= 0 ? std::string_view{ _fixPtr + fieldUnderlyingRedemptionDate.offset, getValueLength( _fixPtr + fieldUnderlyingRedemptionDate.offset ) } : std::string_view{}; }
+   std::string_view getUnderlyingRedemptionDateView() const { return fieldUnderlyingRedemptionDate.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingRedemptionDate.offset, getValueLength( _fixPtr + fieldUnderlyingRedemptionDate.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingRedemptionDate() const { return _fixPtr + fieldUnderlyingRedemptionDate.offset; }
-   const char * getIfSetUnderlyingRedemptionDate() const { return fieldUnderlyingRedemptionDate.offset >= 0 ? _fixPtr + fieldUnderlyingRedemptionDate.offset : nullptr; }
+   const char * ptrToTagUnderlyingRedemptionDate() const { return _fixPtr + fieldUnderlyingRedemptionDate.offset - 1 - FieldUnderlyingRedemptionDate::tagWidth(); }
+   const char * getIfSetUnderlyingRedemptionDate() const { return fieldUnderlyingRedemptionDate.offset > 0 ? _fixPtr + fieldUnderlyingRedemptionDate.offset : nullptr; }
    private: FieldUnderlyingRedemptionDate fieldUnderlyingRedemptionDate;
 
    public:
-   bool isSetUnderlyingStrikePrice() const { return fieldUnderlyingStrikePrice.offset >= 0; }
+   bool isSetUnderlyingStrikePrice() const { return fieldUnderlyingStrikePrice.offset > 0; }
    FieldUnderlyingStrikePrice::ValueType getUnderlyingStrikePrice() const { return fieldUnderlyingStrikePrice.getValue( _fixPtr ); }
-   std::string_view getUnderlyingStrikePriceView() const { return fieldUnderlyingStrikePrice.offset >= 0 ? std::string_view{ _fixPtr + fieldUnderlyingStrikePrice.offset, getValueLength( _fixPtr + fieldUnderlyingStrikePrice.offset ) } : std::string_view{}; }
+   std::string_view getUnderlyingStrikePriceView() const { return fieldUnderlyingStrikePrice.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingStrikePrice.offset, getValueLength( _fixPtr + fieldUnderlyingStrikePrice.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingStrikePrice() const { return _fixPtr + fieldUnderlyingStrikePrice.offset; }
-   const char * getIfSetUnderlyingStrikePrice() const { return fieldUnderlyingStrikePrice.offset >= 0 ? _fixPtr + fieldUnderlyingStrikePrice.offset : nullptr; }
+   const char * ptrToTagUnderlyingStrikePrice() const { return _fixPtr + fieldUnderlyingStrikePrice.offset - 1 - FieldUnderlyingStrikePrice::tagWidth(); }
+   const char * getIfSetUnderlyingStrikePrice() const { return fieldUnderlyingStrikePrice.offset > 0 ? _fixPtr + fieldUnderlyingStrikePrice.offset : nullptr; }
    private: FieldUnderlyingStrikePrice fieldUnderlyingStrikePrice;
 
    public:
-   bool isSetUnderlyingStrikeCurrency() const { return fieldUnderlyingStrikeCurrency.offset >= 0; }
+   bool isSetUnderlyingStrikeCurrency() const { return fieldUnderlyingStrikeCurrency.offset > 0; }
    FieldUnderlyingStrikeCurrency::ValueType getUnderlyingStrikeCurrency() const { return fieldUnderlyingStrikeCurrency.getValue( _fixPtr ); }
-   std::string_view getUnderlyingStrikeCurrencyView() const { return fieldUnderlyingStrikeCurrency.offset >= 0 ? std::string_view{ _fixPtr + fieldUnderlyingStrikeCurrency.offset, getValueLength( _fixPtr + fieldUnderlyingStrikeCurrency.offset ) } : std::string_view{}; }
+   std::string_view getUnderlyingStrikeCurrencyView() const { return fieldUnderlyingStrikeCurrency.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingStrikeCurrency.offset, getValueLength( _fixPtr + fieldUnderlyingStrikeCurrency.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingStrikeCurrency() const { return _fixPtr + fieldUnderlyingStrikeCurrency.offset; }
-   const char * getIfSetUnderlyingStrikeCurrency() const { return fieldUnderlyingStrikeCurrency.offset >= 0 ? _fixPtr + fieldUnderlyingStrikeCurrency.offset : nullptr; }
+   const char * ptrToTagUnderlyingStrikeCurrency() const { return _fixPtr + fieldUnderlyingStrikeCurrency.offset - 1 - FieldUnderlyingStrikeCurrency::tagWidth(); }
+   const char * getIfSetUnderlyingStrikeCurrency() const { return fieldUnderlyingStrikeCurrency.offset > 0 ? _fixPtr + fieldUnderlyingStrikeCurrency.offset : nullptr; }
    private: FieldUnderlyingStrikeCurrency fieldUnderlyingStrikeCurrency;
 
    public:
-   bool isSetUnderlyingOptAttribute() const { return fieldUnderlyingOptAttribute.offset >= 0; }
+   bool isSetUnderlyingOptAttribute() const { return fieldUnderlyingOptAttribute.offset > 0; }
    FieldUnderlyingOptAttribute::ValueType getUnderlyingOptAttribute() const { return fieldUnderlyingOptAttribute.getValue( _fixPtr ); }
-   std::string_view getUnderlyingOptAttributeView() const { return fieldUnderlyingOptAttribute.offset >= 0 ? std::string_view{ _fixPtr + fieldUnderlyingOptAttribute.offset, getValueLength( _fixPtr + fieldUnderlyingOptAttribute.offset ) } : std::string_view{}; }
+   std::string_view getUnderlyingOptAttributeView() const { return fieldUnderlyingOptAttribute.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingOptAttribute.offset, getValueLength( _fixPtr + fieldUnderlyingOptAttribute.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingOptAttribute() const { return _fixPtr + fieldUnderlyingOptAttribute.offset; }
-   const char * getIfSetUnderlyingOptAttribute() const { return fieldUnderlyingOptAttribute.offset >= 0 ? _fixPtr + fieldUnderlyingOptAttribute.offset : nullptr; }
+   const char * ptrToTagUnderlyingOptAttribute() const { return _fixPtr + fieldUnderlyingOptAttribute.offset - 1 - FieldUnderlyingOptAttribute::tagWidth(); }
+   const char * getIfSetUnderlyingOptAttribute() const { return fieldUnderlyingOptAttribute.offset > 0 ? _fixPtr + fieldUnderlyingOptAttribute.offset : nullptr; }
    private: FieldUnderlyingOptAttribute fieldUnderlyingOptAttribute;
 
    public:
-   bool isSetUnderlyingContractMultiplier() const { return fieldUnderlyingContractMultiplier.offset >= 0; }
+   bool isSetUnderlyingContractMultiplier() const { return fieldUnderlyingContractMultiplier.offset > 0; }
    FieldUnderlyingContractMultiplier::ValueType getUnderlyingContractMultiplier() const { return fieldUnderlyingContractMultiplier.getValue( _fixPtr ); }
-   std::string_view getUnderlyingContractMultiplierView() const { return fieldUnderlyingContractMultiplier.offset >= 0 ? std::string_view{ _fixPtr + fieldUnderlyingContractMultiplier.offset, getValueLength( _fixPtr + fieldUnderlyingContractMultiplier.offset ) } : std::string_view{}; }
+   std::string_view getUnderlyingContractMultiplierView() const { return fieldUnderlyingContractMultiplier.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingContractMultiplier.offset, getValueLength( _fixPtr + fieldUnderlyingContractMultiplier.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingContractMultiplier() const { return _fixPtr + fieldUnderlyingContractMultiplier.offset; }
-   const char * getIfSetUnderlyingContractMultiplier() const { return fieldUnderlyingContractMultiplier.offset >= 0 ? _fixPtr + fieldUnderlyingContractMultiplier.offset : nullptr; }
+   const char * ptrToTagUnderlyingContractMultiplier() const { return _fixPtr + fieldUnderlyingContractMultiplier.offset - 1 - FieldUnderlyingContractMultiplier::tagWidth(); }
+   const char * getIfSetUnderlyingContractMultiplier() const { return fieldUnderlyingContractMultiplier.offset > 0 ? _fixPtr + fieldUnderlyingContractMultiplier.offset : nullptr; }
    private: FieldUnderlyingContractMultiplier fieldUnderlyingContractMultiplier;
 
    public:
-   bool isSetUnderlyingCouponRate() const { return fieldUnderlyingCouponRate.offset >= 0; }
+   bool isSetUnderlyingCouponRate() const { return fieldUnderlyingCouponRate.offset > 0; }
    FieldUnderlyingCouponRate::ValueType getUnderlyingCouponRate() const { return fieldUnderlyingCouponRate.getValue( _fixPtr ); }
-   std::string_view getUnderlyingCouponRateView() const { return fieldUnderlyingCouponRate.offset >= 0 ? std::string_view{ _fixPtr + fieldUnderlyingCouponRate.offset, getValueLength( _fixPtr + fieldUnderlyingCouponRate.offset ) } : std::string_view{}; }
+   std::string_view getUnderlyingCouponRateView() const { return fieldUnderlyingCouponRate.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingCouponRate.offset, getValueLength( _fixPtr + fieldUnderlyingCouponRate.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingCouponRate() const { return _fixPtr + fieldUnderlyingCouponRate.offset; }
-   const char * getIfSetUnderlyingCouponRate() const { return fieldUnderlyingCouponRate.offset >= 0 ? _fixPtr + fieldUnderlyingCouponRate.offset : nullptr; }
+   const char * ptrToTagUnderlyingCouponRate() const { return _fixPtr + fieldUnderlyingCouponRate.offset - 1 - FieldUnderlyingCouponRate::tagWidth(); }
+   const char * getIfSetUnderlyingCouponRate() const { return fieldUnderlyingCouponRate.offset > 0 ? _fixPtr + fieldUnderlyingCouponRate.offset : nullptr; }
    private: FieldUnderlyingCouponRate fieldUnderlyingCouponRate;
 
    public:
-   bool isSetUnderlyingSecurityExchange() const { return fieldUnderlyingSecurityExchange.offset >= 0; }
+   bool isSetUnderlyingSecurityExchange() const { return fieldUnderlyingSecurityExchange.offset > 0; }
    FieldUnderlyingSecurityExchange::ValueType getUnderlyingSecurityExchange() const { return fieldUnderlyingSecurityExchange.getValue( _fixPtr ); }
-   std::string_view getUnderlyingSecurityExchangeView() const { return fieldUnderlyingSecurityExchange.offset >= 0 ? std::string_view{ _fixPtr + fieldUnderlyingSecurityExchange.offset, getValueLength( _fixPtr + fieldUnderlyingSecurityExchange.offset ) } : std::string_view{}; }
+   std::string_view getUnderlyingSecurityExchangeView() const { return fieldUnderlyingSecurityExchange.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingSecurityExchange.offset, getValueLength( _fixPtr + fieldUnderlyingSecurityExchange.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingSecurityExchange() const { return _fixPtr + fieldUnderlyingSecurityExchange.offset; }
-   const char * getIfSetUnderlyingSecurityExchange() const { return fieldUnderlyingSecurityExchange.offset >= 0 ? _fixPtr + fieldUnderlyingSecurityExchange.offset : nullptr; }
+   const char * ptrToTagUnderlyingSecurityExchange() const { return _fixPtr + fieldUnderlyingSecurityExchange.offset - 1 - FieldUnderlyingSecurityExchange::tagWidth(); }
+   const char * getIfSetUnderlyingSecurityExchange() const { return fieldUnderlyingSecurityExchange.offset > 0 ? _fixPtr + fieldUnderlyingSecurityExchange.offset : nullptr; }
    private: FieldUnderlyingSecurityExchange fieldUnderlyingSecurityExchange;
 
    public:
-   bool isSetUnderlyingIssuer() const { return fieldUnderlyingIssuer.offset >= 0; }
+   bool isSetUnderlyingIssuer() const { return fieldUnderlyingIssuer.offset > 0; }
    FieldUnderlyingIssuer::ValueType getUnderlyingIssuer() const { return fieldUnderlyingIssuer.getValue( _fixPtr ); }
-   std::string_view getUnderlyingIssuerView() const { return fieldUnderlyingIssuer.offset >= 0 ? std::string_view{ _fixPtr + fieldUnderlyingIssuer.offset, getValueLength( _fixPtr + fieldUnderlyingIssuer.offset ) } : std::string_view{}; }
+   std::string_view getUnderlyingIssuerView() const { return fieldUnderlyingIssuer.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingIssuer.offset, getValueLength( _fixPtr + fieldUnderlyingIssuer.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingIssuer() const { return _fixPtr + fieldUnderlyingIssuer.offset; }
-   const char * getIfSetUnderlyingIssuer() const { return fieldUnderlyingIssuer.offset >= 0 ? _fixPtr + fieldUnderlyingIssuer.offset : nullptr; }
+   const char * ptrToTagUnderlyingIssuer() const { return _fixPtr + fieldUnderlyingIssuer.offset - 1 - FieldUnderlyingIssuer::tagWidth(); }
+   const char * getIfSetUnderlyingIssuer() const { return fieldUnderlyingIssuer.offset > 0 ? _fixPtr + fieldUnderlyingIssuer.offset : nullptr; }
    private: FieldUnderlyingIssuer fieldUnderlyingIssuer;
 
    public:
-   bool isSetEncodedUnderlyingIssuerLen() const { return fieldEncodedUnderlyingIssuerLen.offset >= 0; }
+   bool isSetEncodedUnderlyingIssuerLen() const { return fieldEncodedUnderlyingIssuerLen.offset > 0; }
    FieldEncodedUnderlyingIssuerLen::ValueType getEncodedUnderlyingIssuerLen() const { return fieldEncodedUnderlyingIssuerLen.getValue( _fixPtr ); }
-   std::string_view getEncodedUnderlyingIssuerLenView() const { return fieldEncodedUnderlyingIssuerLen.offset >= 0 ? std::string_view{ _fixPtr + fieldEncodedUnderlyingIssuerLen.offset, getValueLength( _fixPtr + fieldEncodedUnderlyingIssuerLen.offset ) } : std::string_view{}; }
+   std::string_view getEncodedUnderlyingIssuerLenView() const { return fieldEncodedUnderlyingIssuerLen.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedUnderlyingIssuerLen.offset, getValueLength( _fixPtr + fieldEncodedUnderlyingIssuerLen.offset ) } : std::string_view{}; }
    const char * ptrToEncodedUnderlyingIssuerLen() const { return _fixPtr + fieldEncodedUnderlyingIssuerLen.offset; }
-   const char * getIfSetEncodedUnderlyingIssuerLen() const { return fieldEncodedUnderlyingIssuerLen.offset >= 0 ? _fixPtr + fieldEncodedUnderlyingIssuerLen.offset : nullptr; }
+   const char * ptrToTagEncodedUnderlyingIssuerLen() const { return _fixPtr + fieldEncodedUnderlyingIssuerLen.offset - 1 - FieldEncodedUnderlyingIssuerLen::tagWidth(); }
+   const char * getIfSetEncodedUnderlyingIssuerLen() const { return fieldEncodedUnderlyingIssuerLen.offset > 0 ? _fixPtr + fieldEncodedUnderlyingIssuerLen.offset : nullptr; }
    private: FieldEncodedUnderlyingIssuerLen fieldEncodedUnderlyingIssuerLen;
 
    public:
-   bool isSetEncodedUnderlyingIssuer() const { return fieldEncodedUnderlyingIssuer.offset >= 0; }
+   bool isSetEncodedUnderlyingIssuer() const { return fieldEncodedUnderlyingIssuer.offset > 0; }
    FieldEncodedUnderlyingIssuer::ValueType getEncodedUnderlyingIssuer() const { return fieldEncodedUnderlyingIssuer.getValue( _fixPtr ); }
-   std::string_view getEncodedUnderlyingIssuerView() const { return fieldEncodedUnderlyingIssuer.offset >= 0 ? std::string_view{ _fixPtr + fieldEncodedUnderlyingIssuer.offset, getValueLength( _fixPtr + fieldEncodedUnderlyingIssuer.offset ) } : std::string_view{}; }
+   std::string_view getEncodedUnderlyingIssuerView() const { return fieldEncodedUnderlyingIssuer.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedUnderlyingIssuer.offset, getValueLength( _fixPtr + fieldEncodedUnderlyingIssuer.offset ) } : std::string_view{}; }
    const char * ptrToEncodedUnderlyingIssuer() const { return _fixPtr + fieldEncodedUnderlyingIssuer.offset; }
-   const char * getIfSetEncodedUnderlyingIssuer() const { return fieldEncodedUnderlyingIssuer.offset >= 0 ? _fixPtr + fieldEncodedUnderlyingIssuer.offset : nullptr; }
+   const char * ptrToTagEncodedUnderlyingIssuer() const { return _fixPtr + fieldEncodedUnderlyingIssuer.offset - 1 - FieldEncodedUnderlyingIssuer::tagWidth(); }
+   const char * getIfSetEncodedUnderlyingIssuer() const { return fieldEncodedUnderlyingIssuer.offset > 0 ? _fixPtr + fieldEncodedUnderlyingIssuer.offset : nullptr; }
    private: FieldEncodedUnderlyingIssuer fieldEncodedUnderlyingIssuer;
 
    public:
-   bool isSetUnderlyingSecurityDesc() const { return fieldUnderlyingSecurityDesc.offset >= 0; }
+   bool isSetUnderlyingSecurityDesc() const { return fieldUnderlyingSecurityDesc.offset > 0; }
    FieldUnderlyingSecurityDesc::ValueType getUnderlyingSecurityDesc() const { return fieldUnderlyingSecurityDesc.getValue( _fixPtr ); }
-   std::string_view getUnderlyingSecurityDescView() const { return fieldUnderlyingSecurityDesc.offset >= 0 ? std::string_view{ _fixPtr + fieldUnderlyingSecurityDesc.offset, getValueLength( _fixPtr + fieldUnderlyingSecurityDesc.offset ) } : std::string_view{}; }
+   std::string_view getUnderlyingSecurityDescView() const { return fieldUnderlyingSecurityDesc.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingSecurityDesc.offset, getValueLength( _fixPtr + fieldUnderlyingSecurityDesc.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingSecurityDesc() const { return _fixPtr + fieldUnderlyingSecurityDesc.offset; }
-   const char * getIfSetUnderlyingSecurityDesc() const { return fieldUnderlyingSecurityDesc.offset >= 0 ? _fixPtr + fieldUnderlyingSecurityDesc.offset : nullptr; }
+   const char * ptrToTagUnderlyingSecurityDesc() const { return _fixPtr + fieldUnderlyingSecurityDesc.offset - 1 - FieldUnderlyingSecurityDesc::tagWidth(); }
+   const char * getIfSetUnderlyingSecurityDesc() const { return fieldUnderlyingSecurityDesc.offset > 0 ? _fixPtr + fieldUnderlyingSecurityDesc.offset : nullptr; }
    private: FieldUnderlyingSecurityDesc fieldUnderlyingSecurityDesc;
 
    public:
-   bool isSetEncodedUnderlyingSecurityDescLen() const { return fieldEncodedUnderlyingSecurityDescLen.offset >= 0; }
+   bool isSetEncodedUnderlyingSecurityDescLen() const { return fieldEncodedUnderlyingSecurityDescLen.offset > 0; }
    FieldEncodedUnderlyingSecurityDescLen::ValueType getEncodedUnderlyingSecurityDescLen() const { return fieldEncodedUnderlyingSecurityDescLen.getValue( _fixPtr ); }
-   std::string_view getEncodedUnderlyingSecurityDescLenView() const { return fieldEncodedUnderlyingSecurityDescLen.offset >= 0 ? std::string_view{ _fixPtr + fieldEncodedUnderlyingSecurityDescLen.offset, getValueLength( _fixPtr + fieldEncodedUnderlyingSecurityDescLen.offset ) } : std::string_view{}; }
+   std::string_view getEncodedUnderlyingSecurityDescLenView() const { return fieldEncodedUnderlyingSecurityDescLen.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedUnderlyingSecurityDescLen.offset, getValueLength( _fixPtr + fieldEncodedUnderlyingSecurityDescLen.offset ) } : std::string_view{}; }
    const char * ptrToEncodedUnderlyingSecurityDescLen() const { return _fixPtr + fieldEncodedUnderlyingSecurityDescLen.offset; }
-   const char * getIfSetEncodedUnderlyingSecurityDescLen() const { return fieldEncodedUnderlyingSecurityDescLen.offset >= 0 ? _fixPtr + fieldEncodedUnderlyingSecurityDescLen.offset : nullptr; }
+   const char * ptrToTagEncodedUnderlyingSecurityDescLen() const { return _fixPtr + fieldEncodedUnderlyingSecurityDescLen.offset - 1 - FieldEncodedUnderlyingSecurityDescLen::tagWidth(); }
+   const char * getIfSetEncodedUnderlyingSecurityDescLen() const { return fieldEncodedUnderlyingSecurityDescLen.offset > 0 ? _fixPtr + fieldEncodedUnderlyingSecurityDescLen.offset : nullptr; }
    private: FieldEncodedUnderlyingSecurityDescLen fieldEncodedUnderlyingSecurityDescLen;
 
    public:
-   bool isSetEncodedUnderlyingSecurityDesc() const { return fieldEncodedUnderlyingSecurityDesc.offset >= 0; }
+   bool isSetEncodedUnderlyingSecurityDesc() const { return fieldEncodedUnderlyingSecurityDesc.offset > 0; }
    FieldEncodedUnderlyingSecurityDesc::ValueType getEncodedUnderlyingSecurityDesc() const { return fieldEncodedUnderlyingSecurityDesc.getValue( _fixPtr ); }
-   std::string_view getEncodedUnderlyingSecurityDescView() const { return fieldEncodedUnderlyingSecurityDesc.offset >= 0 ? std::string_view{ _fixPtr + fieldEncodedUnderlyingSecurityDesc.offset, getValueLength( _fixPtr + fieldEncodedUnderlyingSecurityDesc.offset ) } : std::string_view{}; }
+   std::string_view getEncodedUnderlyingSecurityDescView() const { return fieldEncodedUnderlyingSecurityDesc.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedUnderlyingSecurityDesc.offset, getValueLength( _fixPtr + fieldEncodedUnderlyingSecurityDesc.offset ) } : std::string_view{}; }
    const char * ptrToEncodedUnderlyingSecurityDesc() const { return _fixPtr + fieldEncodedUnderlyingSecurityDesc.offset; }
-   const char * getIfSetEncodedUnderlyingSecurityDesc() const { return fieldEncodedUnderlyingSecurityDesc.offset >= 0 ? _fixPtr + fieldEncodedUnderlyingSecurityDesc.offset : nullptr; }
+   const char * ptrToTagEncodedUnderlyingSecurityDesc() const { return _fixPtr + fieldEncodedUnderlyingSecurityDesc.offset - 1 - FieldEncodedUnderlyingSecurityDesc::tagWidth(); }
+   const char * getIfSetEncodedUnderlyingSecurityDesc() const { return fieldEncodedUnderlyingSecurityDesc.offset > 0 ? _fixPtr + fieldEncodedUnderlyingSecurityDesc.offset : nullptr; }
    private: FieldEncodedUnderlyingSecurityDesc fieldEncodedUnderlyingSecurityDesc;
 
    public:
-   bool isSetUnderlyingCPProgram() const { return fieldUnderlyingCPProgram.offset >= 0; }
+   bool isSetUnderlyingCPProgram() const { return fieldUnderlyingCPProgram.offset > 0; }
    FieldUnderlyingCPProgram::ValueType getUnderlyingCPProgram() const { return fieldUnderlyingCPProgram.getValue( _fixPtr ); }
-   std::string_view getUnderlyingCPProgramView() const { return fieldUnderlyingCPProgram.offset >= 0 ? std::string_view{ _fixPtr + fieldUnderlyingCPProgram.offset, getValueLength( _fixPtr + fieldUnderlyingCPProgram.offset ) } : std::string_view{}; }
+   std::string_view getUnderlyingCPProgramView() const { return fieldUnderlyingCPProgram.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingCPProgram.offset, getValueLength( _fixPtr + fieldUnderlyingCPProgram.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingCPProgram() const { return _fixPtr + fieldUnderlyingCPProgram.offset; }
-   const char * getIfSetUnderlyingCPProgram() const { return fieldUnderlyingCPProgram.offset >= 0 ? _fixPtr + fieldUnderlyingCPProgram.offset : nullptr; }
+   const char * ptrToTagUnderlyingCPProgram() const { return _fixPtr + fieldUnderlyingCPProgram.offset - 1 - FieldUnderlyingCPProgram::tagWidth(); }
+   const char * getIfSetUnderlyingCPProgram() const { return fieldUnderlyingCPProgram.offset > 0 ? _fixPtr + fieldUnderlyingCPProgram.offset : nullptr; }
    private: FieldUnderlyingCPProgram fieldUnderlyingCPProgram;
 
    public:
-   bool isSetUnderlyingCPRegType() const { return fieldUnderlyingCPRegType.offset >= 0; }
+   bool isSetUnderlyingCPRegType() const { return fieldUnderlyingCPRegType.offset > 0; }
    FieldUnderlyingCPRegType::ValueType getUnderlyingCPRegType() const { return fieldUnderlyingCPRegType.getValue( _fixPtr ); }
-   std::string_view getUnderlyingCPRegTypeView() const { return fieldUnderlyingCPRegType.offset >= 0 ? std::string_view{ _fixPtr + fieldUnderlyingCPRegType.offset, getValueLength( _fixPtr + fieldUnderlyingCPRegType.offset ) } : std::string_view{}; }
+   std::string_view getUnderlyingCPRegTypeView() const { return fieldUnderlyingCPRegType.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingCPRegType.offset, getValueLength( _fixPtr + fieldUnderlyingCPRegType.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingCPRegType() const { return _fixPtr + fieldUnderlyingCPRegType.offset; }
-   const char * getIfSetUnderlyingCPRegType() const { return fieldUnderlyingCPRegType.offset >= 0 ? _fixPtr + fieldUnderlyingCPRegType.offset : nullptr; }
+   const char * ptrToTagUnderlyingCPRegType() const { return _fixPtr + fieldUnderlyingCPRegType.offset - 1 - FieldUnderlyingCPRegType::tagWidth(); }
+   const char * getIfSetUnderlyingCPRegType() const { return fieldUnderlyingCPRegType.offset > 0 ? _fixPtr + fieldUnderlyingCPRegType.offset : nullptr; }
    private: FieldUnderlyingCPRegType fieldUnderlyingCPRegType;
 
    public:
-   bool isSetUnderlyingCurrency() const { return fieldUnderlyingCurrency.offset >= 0; }
+   bool isSetUnderlyingCurrency() const { return fieldUnderlyingCurrency.offset > 0; }
    FieldUnderlyingCurrency::ValueType getUnderlyingCurrency() const { return fieldUnderlyingCurrency.getValue( _fixPtr ); }
-   std::string_view getUnderlyingCurrencyView() const { return fieldUnderlyingCurrency.offset >= 0 ? std::string_view{ _fixPtr + fieldUnderlyingCurrency.offset, getValueLength( _fixPtr + fieldUnderlyingCurrency.offset ) } : std::string_view{}; }
+   std::string_view getUnderlyingCurrencyView() const { return fieldUnderlyingCurrency.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingCurrency.offset, getValueLength( _fixPtr + fieldUnderlyingCurrency.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingCurrency() const { return _fixPtr + fieldUnderlyingCurrency.offset; }
-   const char * getIfSetUnderlyingCurrency() const { return fieldUnderlyingCurrency.offset >= 0 ? _fixPtr + fieldUnderlyingCurrency.offset : nullptr; }
+   const char * ptrToTagUnderlyingCurrency() const { return _fixPtr + fieldUnderlyingCurrency.offset - 1 - FieldUnderlyingCurrency::tagWidth(); }
+   const char * getIfSetUnderlyingCurrency() const { return fieldUnderlyingCurrency.offset > 0 ? _fixPtr + fieldUnderlyingCurrency.offset : nullptr; }
    private: FieldUnderlyingCurrency fieldUnderlyingCurrency;
 
    public:
-   bool isSetUnderlyingQty() const { return fieldUnderlyingQty.offset >= 0; }
+   bool isSetUnderlyingQty() const { return fieldUnderlyingQty.offset > 0; }
    FieldUnderlyingQty::ValueType getUnderlyingQty() const { return fieldUnderlyingQty.getValue( _fixPtr ); }
-   std::string_view getUnderlyingQtyView() const { return fieldUnderlyingQty.offset >= 0 ? std::string_view{ _fixPtr + fieldUnderlyingQty.offset, getValueLength( _fixPtr + fieldUnderlyingQty.offset ) } : std::string_view{}; }
+   std::string_view getUnderlyingQtyView() const { return fieldUnderlyingQty.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingQty.offset, getValueLength( _fixPtr + fieldUnderlyingQty.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingQty() const { return _fixPtr + fieldUnderlyingQty.offset; }
-   const char * getIfSetUnderlyingQty() const { return fieldUnderlyingQty.offset >= 0 ? _fixPtr + fieldUnderlyingQty.offset : nullptr; }
+   const char * ptrToTagUnderlyingQty() const { return _fixPtr + fieldUnderlyingQty.offset - 1 - FieldUnderlyingQty::tagWidth(); }
+   const char * getIfSetUnderlyingQty() const { return fieldUnderlyingQty.offset > 0 ? _fixPtr + fieldUnderlyingQty.offset : nullptr; }
    private: FieldUnderlyingQty fieldUnderlyingQty;
 
    public:
-   bool isSetUnderlyingPx() const { return fieldUnderlyingPx.offset >= 0; }
+   bool isSetUnderlyingPx() const { return fieldUnderlyingPx.offset > 0; }
    FieldUnderlyingPx::ValueType getUnderlyingPx() const { return fieldUnderlyingPx.getValue( _fixPtr ); }
-   std::string_view getUnderlyingPxView() const { return fieldUnderlyingPx.offset >= 0 ? std::string_view{ _fixPtr + fieldUnderlyingPx.offset, getValueLength( _fixPtr + fieldUnderlyingPx.offset ) } : std::string_view{}; }
+   std::string_view getUnderlyingPxView() const { return fieldUnderlyingPx.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingPx.offset, getValueLength( _fixPtr + fieldUnderlyingPx.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingPx() const { return _fixPtr + fieldUnderlyingPx.offset; }
-   const char * getIfSetUnderlyingPx() const { return fieldUnderlyingPx.offset >= 0 ? _fixPtr + fieldUnderlyingPx.offset : nullptr; }
+   const char * ptrToTagUnderlyingPx() const { return _fixPtr + fieldUnderlyingPx.offset - 1 - FieldUnderlyingPx::tagWidth(); }
+   const char * getIfSetUnderlyingPx() const { return fieldUnderlyingPx.offset > 0 ? _fixPtr + fieldUnderlyingPx.offset : nullptr; }
    private: FieldUnderlyingPx fieldUnderlyingPx;
 
    public:
-   bool isSetUnderlyingDirtyPrice() const { return fieldUnderlyingDirtyPrice.offset >= 0; }
+   bool isSetUnderlyingDirtyPrice() const { return fieldUnderlyingDirtyPrice.offset > 0; }
    FieldUnderlyingDirtyPrice::ValueType getUnderlyingDirtyPrice() const { return fieldUnderlyingDirtyPrice.getValue( _fixPtr ); }
-   std::string_view getUnderlyingDirtyPriceView() const { return fieldUnderlyingDirtyPrice.offset >= 0 ? std::string_view{ _fixPtr + fieldUnderlyingDirtyPrice.offset, getValueLength( _fixPtr + fieldUnderlyingDirtyPrice.offset ) } : std::string_view{}; }
+   std::string_view getUnderlyingDirtyPriceView() const { return fieldUnderlyingDirtyPrice.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingDirtyPrice.offset, getValueLength( _fixPtr + fieldUnderlyingDirtyPrice.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingDirtyPrice() const { return _fixPtr + fieldUnderlyingDirtyPrice.offset; }
-   const char * getIfSetUnderlyingDirtyPrice() const { return fieldUnderlyingDirtyPrice.offset >= 0 ? _fixPtr + fieldUnderlyingDirtyPrice.offset : nullptr; }
+   const char * ptrToTagUnderlyingDirtyPrice() const { return _fixPtr + fieldUnderlyingDirtyPrice.offset - 1 - FieldUnderlyingDirtyPrice::tagWidth(); }
+   const char * getIfSetUnderlyingDirtyPrice() const { return fieldUnderlyingDirtyPrice.offset > 0 ? _fixPtr + fieldUnderlyingDirtyPrice.offset : nullptr; }
    private: FieldUnderlyingDirtyPrice fieldUnderlyingDirtyPrice;
 
    public:
-   bool isSetUnderlyingEndPrice() const { return fieldUnderlyingEndPrice.offset >= 0; }
+   bool isSetUnderlyingEndPrice() const { return fieldUnderlyingEndPrice.offset > 0; }
    FieldUnderlyingEndPrice::ValueType getUnderlyingEndPrice() const { return fieldUnderlyingEndPrice.getValue( _fixPtr ); }
-   std::string_view getUnderlyingEndPriceView() const { return fieldUnderlyingEndPrice.offset >= 0 ? std::string_view{ _fixPtr + fieldUnderlyingEndPrice.offset, getValueLength( _fixPtr + fieldUnderlyingEndPrice.offset ) } : std::string_view{}; }
+   std::string_view getUnderlyingEndPriceView() const { return fieldUnderlyingEndPrice.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingEndPrice.offset, getValueLength( _fixPtr + fieldUnderlyingEndPrice.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingEndPrice() const { return _fixPtr + fieldUnderlyingEndPrice.offset; }
-   const char * getIfSetUnderlyingEndPrice() const { return fieldUnderlyingEndPrice.offset >= 0 ? _fixPtr + fieldUnderlyingEndPrice.offset : nullptr; }
+   const char * ptrToTagUnderlyingEndPrice() const { return _fixPtr + fieldUnderlyingEndPrice.offset - 1 - FieldUnderlyingEndPrice::tagWidth(); }
+   const char * getIfSetUnderlyingEndPrice() const { return fieldUnderlyingEndPrice.offset > 0 ? _fixPtr + fieldUnderlyingEndPrice.offset : nullptr; }
    private: FieldUnderlyingEndPrice fieldUnderlyingEndPrice;
 
    public:
-   bool isSetUnderlyingStartValue() const { return fieldUnderlyingStartValue.offset >= 0; }
+   bool isSetUnderlyingStartValue() const { return fieldUnderlyingStartValue.offset > 0; }
    FieldUnderlyingStartValue::ValueType getUnderlyingStartValue() const { return fieldUnderlyingStartValue.getValue( _fixPtr ); }
-   std::string_view getUnderlyingStartValueView() const { return fieldUnderlyingStartValue.offset >= 0 ? std::string_view{ _fixPtr + fieldUnderlyingStartValue.offset, getValueLength( _fixPtr + fieldUnderlyingStartValue.offset ) } : std::string_view{}; }
+   std::string_view getUnderlyingStartValueView() const { return fieldUnderlyingStartValue.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingStartValue.offset, getValueLength( _fixPtr + fieldUnderlyingStartValue.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingStartValue() const { return _fixPtr + fieldUnderlyingStartValue.offset; }
-   const char * getIfSetUnderlyingStartValue() const { return fieldUnderlyingStartValue.offset >= 0 ? _fixPtr + fieldUnderlyingStartValue.offset : nullptr; }
+   const char * ptrToTagUnderlyingStartValue() const { return _fixPtr + fieldUnderlyingStartValue.offset - 1 - FieldUnderlyingStartValue::tagWidth(); }
+   const char * getIfSetUnderlyingStartValue() const { return fieldUnderlyingStartValue.offset > 0 ? _fixPtr + fieldUnderlyingStartValue.offset : nullptr; }
    private: FieldUnderlyingStartValue fieldUnderlyingStartValue;
 
    public:
-   bool isSetUnderlyingCurrentValue() const { return fieldUnderlyingCurrentValue.offset >= 0; }
+   bool isSetUnderlyingCurrentValue() const { return fieldUnderlyingCurrentValue.offset > 0; }
    FieldUnderlyingCurrentValue::ValueType getUnderlyingCurrentValue() const { return fieldUnderlyingCurrentValue.getValue( _fixPtr ); }
-   std::string_view getUnderlyingCurrentValueView() const { return fieldUnderlyingCurrentValue.offset >= 0 ? std::string_view{ _fixPtr + fieldUnderlyingCurrentValue.offset, getValueLength( _fixPtr + fieldUnderlyingCurrentValue.offset ) } : std::string_view{}; }
+   std::string_view getUnderlyingCurrentValueView() const { return fieldUnderlyingCurrentValue.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingCurrentValue.offset, getValueLength( _fixPtr + fieldUnderlyingCurrentValue.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingCurrentValue() const { return _fixPtr + fieldUnderlyingCurrentValue.offset; }
-   const char * getIfSetUnderlyingCurrentValue() const { return fieldUnderlyingCurrentValue.offset >= 0 ? _fixPtr + fieldUnderlyingCurrentValue.offset : nullptr; }
+   const char * ptrToTagUnderlyingCurrentValue() const { return _fixPtr + fieldUnderlyingCurrentValue.offset - 1 - FieldUnderlyingCurrentValue::tagWidth(); }
+   const char * getIfSetUnderlyingCurrentValue() const { return fieldUnderlyingCurrentValue.offset > 0 ? _fixPtr + fieldUnderlyingCurrentValue.offset : nullptr; }
    private: FieldUnderlyingCurrentValue fieldUnderlyingCurrentValue;
 
    public:
-   bool isSetUnderlyingEndValue() const { return fieldUnderlyingEndValue.offset >= 0; }
+   bool isSetUnderlyingEndValue() const { return fieldUnderlyingEndValue.offset > 0; }
    FieldUnderlyingEndValue::ValueType getUnderlyingEndValue() const { return fieldUnderlyingEndValue.getValue( _fixPtr ); }
-   std::string_view getUnderlyingEndValueView() const { return fieldUnderlyingEndValue.offset >= 0 ? std::string_view{ _fixPtr + fieldUnderlyingEndValue.offset, getValueLength( _fixPtr + fieldUnderlyingEndValue.offset ) } : std::string_view{}; }
+   std::string_view getUnderlyingEndValueView() const { return fieldUnderlyingEndValue.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingEndValue.offset, getValueLength( _fixPtr + fieldUnderlyingEndValue.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingEndValue() const { return _fixPtr + fieldUnderlyingEndValue.offset; }
-   const char * getIfSetUnderlyingEndValue() const { return fieldUnderlyingEndValue.offset >= 0 ? _fixPtr + fieldUnderlyingEndValue.offset : nullptr; }
+   const char * ptrToTagUnderlyingEndValue() const { return _fixPtr + fieldUnderlyingEndValue.offset - 1 - FieldUnderlyingEndValue::tagWidth(); }
+   const char * getIfSetUnderlyingEndValue() const { return fieldUnderlyingEndValue.offset > 0 ? _fixPtr + fieldUnderlyingEndValue.offset : nullptr; }
    private: FieldUnderlyingEndValue fieldUnderlyingEndValue;
 
    public:
-   bool isSetNoUnderlyingStips() const { return fieldNoUnderlyingStips.offset >= 0; }
+   bool isSetNoUnderlyingStips() const { return fieldNoUnderlyingStips.offset > 0; }
    FieldNoUnderlyingStips::ValueType getNoUnderlyingStips() const { return fieldNoUnderlyingStips.getValue( _fixPtr ); }
-   std::string_view getNoUnderlyingStipsView() const { return fieldNoUnderlyingStips.offset >= 0 ? std::string_view{ _fixPtr + fieldNoUnderlyingStips.offset, getValueLength( _fixPtr + fieldNoUnderlyingStips.offset ) } : std::string_view{}; }
+   std::string_view getNoUnderlyingStipsView() const { return fieldNoUnderlyingStips.offset > 0 ? std::string_view{ _fixPtr + fieldNoUnderlyingStips.offset, getValueLength( _fixPtr + fieldNoUnderlyingStips.offset ) } : std::string_view{}; }
    const char * ptrToNoUnderlyingStips() const { return _fixPtr + fieldNoUnderlyingStips.offset; }
-   const char * getIfSetNoUnderlyingStips() const { return fieldNoUnderlyingStips.offset >= 0 ? _fixPtr + fieldNoUnderlyingStips.offset : nullptr; }
+   const char * ptrToTagNoUnderlyingStips() const { return _fixPtr + fieldNoUnderlyingStips.offset - 1 - FieldNoUnderlyingStips::tagWidth(); }
+   const char * getIfSetNoUnderlyingStips() const { return fieldNoUnderlyingStips.offset > 0 ? _fixPtr + fieldNoUnderlyingStips.offset : nullptr; }
    private: FieldNoUnderlyingStips fieldNoUnderlyingStips;
   
    public:
@@ -1078,19 +1204,21 @@ class GroupUnderlyings : public MessageBase
    private: GroupUnderlyingStips::Array groupsUnderlyingStips{ 10 };
 
    public:
-   bool isSetUnderlyingSettlPrice() const { return fieldUnderlyingSettlPrice.offset >= 0; }
+   bool isSetUnderlyingSettlPrice() const { return fieldUnderlyingSettlPrice.offset > 0; }
    FieldUnderlyingSettlPrice::ValueType getUnderlyingSettlPrice() const { return fieldUnderlyingSettlPrice.getValue( _fixPtr ); }
-   std::string_view getUnderlyingSettlPriceView() const { return fieldUnderlyingSettlPrice.offset >= 0 ? std::string_view{ _fixPtr + fieldUnderlyingSettlPrice.offset, getValueLength( _fixPtr + fieldUnderlyingSettlPrice.offset ) } : std::string_view{}; }
+   std::string_view getUnderlyingSettlPriceView() const { return fieldUnderlyingSettlPrice.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingSettlPrice.offset, getValueLength( _fixPtr + fieldUnderlyingSettlPrice.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingSettlPrice() const { return _fixPtr + fieldUnderlyingSettlPrice.offset; }
-   const char * getIfSetUnderlyingSettlPrice() const { return fieldUnderlyingSettlPrice.offset >= 0 ? _fixPtr + fieldUnderlyingSettlPrice.offset : nullptr; }
+   const char * ptrToTagUnderlyingSettlPrice() const { return _fixPtr + fieldUnderlyingSettlPrice.offset - 1 - FieldUnderlyingSettlPrice::tagWidth(); }
+   const char * getIfSetUnderlyingSettlPrice() const { return fieldUnderlyingSettlPrice.offset > 0 ? _fixPtr + fieldUnderlyingSettlPrice.offset : nullptr; }
    private: FieldUnderlyingSettlPrice fieldUnderlyingSettlPrice;
 
    public:
-   bool isSetUnderlyingSettlPriceType() const { return fieldUnderlyingSettlPriceType.offset >= 0; }
+   bool isSetUnderlyingSettlPriceType() const { return fieldUnderlyingSettlPriceType.offset > 0; }
    FieldUnderlyingSettlPriceType::ValueType getUnderlyingSettlPriceType() const { return fieldUnderlyingSettlPriceType.getValue( _fixPtr ); }
-   std::string_view getUnderlyingSettlPriceTypeView() const { return fieldUnderlyingSettlPriceType.offset >= 0 ? std::string_view{ _fixPtr + fieldUnderlyingSettlPriceType.offset, getValueLength( _fixPtr + fieldUnderlyingSettlPriceType.offset ) } : std::string_view{}; }
+   std::string_view getUnderlyingSettlPriceTypeView() const { return fieldUnderlyingSettlPriceType.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingSettlPriceType.offset, getValueLength( _fixPtr + fieldUnderlyingSettlPriceType.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingSettlPriceType() const { return _fixPtr + fieldUnderlyingSettlPriceType.offset; }
-   const char * getIfSetUnderlyingSettlPriceType() const { return fieldUnderlyingSettlPriceType.offset >= 0 ? _fixPtr + fieldUnderlyingSettlPriceType.offset : nullptr; }
+   const char * ptrToTagUnderlyingSettlPriceType() const { return _fixPtr + fieldUnderlyingSettlPriceType.offset - 1 - FieldUnderlyingSettlPriceType::tagWidth(); }
+   const char * getIfSetUnderlyingSettlPriceType() const { return fieldUnderlyingSettlPriceType.offset > 0 ? _fixPtr + fieldUnderlyingSettlPriceType.offset : nullptr; }
    private: FieldUnderlyingSettlPriceType fieldUnderlyingSettlPriceType;
 
 };
@@ -1107,24 +1235,28 @@ class GroupStipulations : public MessageBase
    static offset_t scan( Array & arr, const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    const char * getFieldValue( unsigned tag ) const;
+   const char * findBadField() const;
+   const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
-   bool isSetStipulationType() const { return fieldStipulationType.offset >= 0; }
+   bool isSetStipulationType() const { return fieldStipulationType.offset > 0; }
    FieldStipulationType::ValueType getStipulationType() const { return fieldStipulationType.getValue( _fixPtr ); }
-   std::string_view getStipulationTypeView() const { return fieldStipulationType.offset >= 0 ? std::string_view{ _fixPtr + fieldStipulationType.offset, getValueLength( _fixPtr + fieldStipulationType.offset ) } : std::string_view{}; }
+   std::string_view getStipulationTypeView() const { return fieldStipulationType.offset > 0 ? std::string_view{ _fixPtr + fieldStipulationType.offset, getValueLength( _fixPtr + fieldStipulationType.offset ) } : std::string_view{}; }
    const char * ptrToStipulationType() const { return _fixPtr + fieldStipulationType.offset; }
-   const char * getIfSetStipulationType() const { return fieldStipulationType.offset >= 0 ? _fixPtr + fieldStipulationType.offset : nullptr; }
+   const char * ptrToTagStipulationType() const { return _fixPtr + fieldStipulationType.offset - 1 - FieldStipulationType::tagWidth(); }
+   const char * getIfSetStipulationType() const { return fieldStipulationType.offset > 0 ? _fixPtr + fieldStipulationType.offset : nullptr; }
    private: FieldStipulationType fieldStipulationType;
 
    public:
-   bool isSetStipulationValue() const { return fieldStipulationValue.offset >= 0; }
+   bool isSetStipulationValue() const { return fieldStipulationValue.offset > 0; }
    FieldStipulationValue::ValueType getStipulationValue() const { return fieldStipulationValue.getValue( _fixPtr ); }
-   std::string_view getStipulationValueView() const { return fieldStipulationValue.offset >= 0 ? std::string_view{ _fixPtr + fieldStipulationValue.offset, getValueLength( _fixPtr + fieldStipulationValue.offset ) } : std::string_view{}; }
+   std::string_view getStipulationValueView() const { return fieldStipulationValue.offset > 0 ? std::string_view{ _fixPtr + fieldStipulationValue.offset, getValueLength( _fixPtr + fieldStipulationValue.offset ) } : std::string_view{}; }
    const char * ptrToStipulationValue() const { return _fixPtr + fieldStipulationValue.offset; }
-   const char * getIfSetStipulationValue() const { return fieldStipulationValue.offset >= 0 ? _fixPtr + fieldStipulationValue.offset : nullptr; }
+   const char * ptrToTagStipulationValue() const { return _fixPtr + fieldStipulationValue.offset - 1 - FieldStipulationValue::tagWidth(); }
+   const char * getIfSetStipulationValue() const { return fieldStipulationValue.offset > 0 ? _fixPtr + fieldStipulationValue.offset : nullptr; }
    private: FieldStipulationValue fieldStipulationValue;
 
 };
@@ -1141,56 +1273,64 @@ class GroupOrders : public MessageBase
    static offset_t scan( Array & arr, const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    const char * getFieldValue( unsigned tag ) const;
+   const char * findBadField() const;
+   const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
-   bool isSetClOrdID() const { return fieldClOrdID.offset >= 0; }
+   bool isSetClOrdID() const { return fieldClOrdID.offset > 0; }
    FieldClOrdID::ValueType getClOrdID() const { return fieldClOrdID.getValue( _fixPtr ); }
-   std::string_view getClOrdIDView() const { return fieldClOrdID.offset >= 0 ? std::string_view{ _fixPtr + fieldClOrdID.offset, getValueLength( _fixPtr + fieldClOrdID.offset ) } : std::string_view{}; }
+   std::string_view getClOrdIDView() const { return fieldClOrdID.offset > 0 ? std::string_view{ _fixPtr + fieldClOrdID.offset, getValueLength( _fixPtr + fieldClOrdID.offset ) } : std::string_view{}; }
    const char * ptrToClOrdID() const { return _fixPtr + fieldClOrdID.offset; }
-   const char * getIfSetClOrdID() const { return fieldClOrdID.offset >= 0 ? _fixPtr + fieldClOrdID.offset : nullptr; }
+   const char * ptrToTagClOrdID() const { return _fixPtr + fieldClOrdID.offset - 1 - FieldClOrdID::tagWidth(); }
+   const char * getIfSetClOrdID() const { return fieldClOrdID.offset > 0 ? _fixPtr + fieldClOrdID.offset : nullptr; }
    private: FieldClOrdID fieldClOrdID;
 
    public:
-   bool isSetSecondaryClOrdID() const { return fieldSecondaryClOrdID.offset >= 0; }
+   bool isSetSecondaryClOrdID() const { return fieldSecondaryClOrdID.offset > 0; }
    FieldSecondaryClOrdID::ValueType getSecondaryClOrdID() const { return fieldSecondaryClOrdID.getValue( _fixPtr ); }
-   std::string_view getSecondaryClOrdIDView() const { return fieldSecondaryClOrdID.offset >= 0 ? std::string_view{ _fixPtr + fieldSecondaryClOrdID.offset, getValueLength( _fixPtr + fieldSecondaryClOrdID.offset ) } : std::string_view{}; }
+   std::string_view getSecondaryClOrdIDView() const { return fieldSecondaryClOrdID.offset > 0 ? std::string_view{ _fixPtr + fieldSecondaryClOrdID.offset, getValueLength( _fixPtr + fieldSecondaryClOrdID.offset ) } : std::string_view{}; }
    const char * ptrToSecondaryClOrdID() const { return _fixPtr + fieldSecondaryClOrdID.offset; }
-   const char * getIfSetSecondaryClOrdID() const { return fieldSecondaryClOrdID.offset >= 0 ? _fixPtr + fieldSecondaryClOrdID.offset : nullptr; }
+   const char * ptrToTagSecondaryClOrdID() const { return _fixPtr + fieldSecondaryClOrdID.offset - 1 - FieldSecondaryClOrdID::tagWidth(); }
+   const char * getIfSetSecondaryClOrdID() const { return fieldSecondaryClOrdID.offset > 0 ? _fixPtr + fieldSecondaryClOrdID.offset : nullptr; }
    private: FieldSecondaryClOrdID fieldSecondaryClOrdID;
 
    public:
-   bool isSetListSeqNo() const { return fieldListSeqNo.offset >= 0; }
+   bool isSetListSeqNo() const { return fieldListSeqNo.offset > 0; }
    FieldListSeqNo::ValueType getListSeqNo() const { return fieldListSeqNo.getValue( _fixPtr ); }
-   std::string_view getListSeqNoView() const { return fieldListSeqNo.offset >= 0 ? std::string_view{ _fixPtr + fieldListSeqNo.offset, getValueLength( _fixPtr + fieldListSeqNo.offset ) } : std::string_view{}; }
+   std::string_view getListSeqNoView() const { return fieldListSeqNo.offset > 0 ? std::string_view{ _fixPtr + fieldListSeqNo.offset, getValueLength( _fixPtr + fieldListSeqNo.offset ) } : std::string_view{}; }
    const char * ptrToListSeqNo() const { return _fixPtr + fieldListSeqNo.offset; }
-   const char * getIfSetListSeqNo() const { return fieldListSeqNo.offset >= 0 ? _fixPtr + fieldListSeqNo.offset : nullptr; }
+   const char * ptrToTagListSeqNo() const { return _fixPtr + fieldListSeqNo.offset - 1 - FieldListSeqNo::tagWidth(); }
+   const char * getIfSetListSeqNo() const { return fieldListSeqNo.offset > 0 ? _fixPtr + fieldListSeqNo.offset : nullptr; }
    private: FieldListSeqNo fieldListSeqNo;
 
    public:
-   bool isSetClOrdLinkID() const { return fieldClOrdLinkID.offset >= 0; }
+   bool isSetClOrdLinkID() const { return fieldClOrdLinkID.offset > 0; }
    FieldClOrdLinkID::ValueType getClOrdLinkID() const { return fieldClOrdLinkID.getValue( _fixPtr ); }
-   std::string_view getClOrdLinkIDView() const { return fieldClOrdLinkID.offset >= 0 ? std::string_view{ _fixPtr + fieldClOrdLinkID.offset, getValueLength( _fixPtr + fieldClOrdLinkID.offset ) } : std::string_view{}; }
+   std::string_view getClOrdLinkIDView() const { return fieldClOrdLinkID.offset > 0 ? std::string_view{ _fixPtr + fieldClOrdLinkID.offset, getValueLength( _fixPtr + fieldClOrdLinkID.offset ) } : std::string_view{}; }
    const char * ptrToClOrdLinkID() const { return _fixPtr + fieldClOrdLinkID.offset; }
-   const char * getIfSetClOrdLinkID() const { return fieldClOrdLinkID.offset >= 0 ? _fixPtr + fieldClOrdLinkID.offset : nullptr; }
+   const char * ptrToTagClOrdLinkID() const { return _fixPtr + fieldClOrdLinkID.offset - 1 - FieldClOrdLinkID::tagWidth(); }
+   const char * getIfSetClOrdLinkID() const { return fieldClOrdLinkID.offset > 0 ? _fixPtr + fieldClOrdLinkID.offset : nullptr; }
    private: FieldClOrdLinkID fieldClOrdLinkID;
 
    public:
-   bool isSetSettlInstMode() const { return fieldSettlInstMode.offset >= 0; }
+   bool isSetSettlInstMode() const { return fieldSettlInstMode.offset > 0; }
    FieldSettlInstMode::ValueType getSettlInstMode() const { return fieldSettlInstMode.getValue( _fixPtr ); }
-   std::string_view getSettlInstModeView() const { return fieldSettlInstMode.offset >= 0 ? std::string_view{ _fixPtr + fieldSettlInstMode.offset, getValueLength( _fixPtr + fieldSettlInstMode.offset ) } : std::string_view{}; }
+   std::string_view getSettlInstModeView() const { return fieldSettlInstMode.offset > 0 ? std::string_view{ _fixPtr + fieldSettlInstMode.offset, getValueLength( _fixPtr + fieldSettlInstMode.offset ) } : std::string_view{}; }
    const char * ptrToSettlInstMode() const { return _fixPtr + fieldSettlInstMode.offset; }
-   const char * getIfSetSettlInstMode() const { return fieldSettlInstMode.offset >= 0 ? _fixPtr + fieldSettlInstMode.offset : nullptr; }
+   const char * ptrToTagSettlInstMode() const { return _fixPtr + fieldSettlInstMode.offset - 1 - FieldSettlInstMode::tagWidth(); }
+   const char * getIfSetSettlInstMode() const { return fieldSettlInstMode.offset > 0 ? _fixPtr + fieldSettlInstMode.offset : nullptr; }
    private: FieldSettlInstMode fieldSettlInstMode;
 
    public:
-   bool isSetNoPartyIDs() const { return fieldNoPartyIDs.offset >= 0; }
+   bool isSetNoPartyIDs() const { return fieldNoPartyIDs.offset > 0; }
    FieldNoPartyIDs::ValueType getNoPartyIDs() const { return fieldNoPartyIDs.getValue( _fixPtr ); }
-   std::string_view getNoPartyIDsView() const { return fieldNoPartyIDs.offset >= 0 ? std::string_view{ _fixPtr + fieldNoPartyIDs.offset, getValueLength( _fixPtr + fieldNoPartyIDs.offset ) } : std::string_view{}; }
+   std::string_view getNoPartyIDsView() const { return fieldNoPartyIDs.offset > 0 ? std::string_view{ _fixPtr + fieldNoPartyIDs.offset, getValueLength( _fixPtr + fieldNoPartyIDs.offset ) } : std::string_view{}; }
    const char * ptrToNoPartyIDs() const { return _fixPtr + fieldNoPartyIDs.offset; }
-   const char * getIfSetNoPartyIDs() const { return fieldNoPartyIDs.offset >= 0 ? _fixPtr + fieldNoPartyIDs.offset : nullptr; }
+   const char * ptrToTagNoPartyIDs() const { return _fixPtr + fieldNoPartyIDs.offset - 1 - FieldNoPartyIDs::tagWidth(); }
+   const char * getIfSetNoPartyIDs() const { return fieldNoPartyIDs.offset > 0 ? _fixPtr + fieldNoPartyIDs.offset : nullptr; }
    private: FieldNoPartyIDs fieldNoPartyIDs;
   
    public:
@@ -1199,83 +1339,93 @@ class GroupOrders : public MessageBase
    private: GroupPartyIDs::Array groupsPartyIDs{ 10 };
 
    public:
-   bool isSetTradeOriginationDate() const { return fieldTradeOriginationDate.offset >= 0; }
+   bool isSetTradeOriginationDate() const { return fieldTradeOriginationDate.offset > 0; }
    FieldTradeOriginationDate::ValueType getTradeOriginationDate() const { return fieldTradeOriginationDate.getValue( _fixPtr ); }
-   std::string_view getTradeOriginationDateView() const { return fieldTradeOriginationDate.offset >= 0 ? std::string_view{ _fixPtr + fieldTradeOriginationDate.offset, getValueLength( _fixPtr + fieldTradeOriginationDate.offset ) } : std::string_view{}; }
+   std::string_view getTradeOriginationDateView() const { return fieldTradeOriginationDate.offset > 0 ? std::string_view{ _fixPtr + fieldTradeOriginationDate.offset, getValueLength( _fixPtr + fieldTradeOriginationDate.offset ) } : std::string_view{}; }
    const char * ptrToTradeOriginationDate() const { return _fixPtr + fieldTradeOriginationDate.offset; }
-   const char * getIfSetTradeOriginationDate() const { return fieldTradeOriginationDate.offset >= 0 ? _fixPtr + fieldTradeOriginationDate.offset : nullptr; }
+   const char * ptrToTagTradeOriginationDate() const { return _fixPtr + fieldTradeOriginationDate.offset - 1 - FieldTradeOriginationDate::tagWidth(); }
+   const char * getIfSetTradeOriginationDate() const { return fieldTradeOriginationDate.offset > 0 ? _fixPtr + fieldTradeOriginationDate.offset : nullptr; }
    private: FieldTradeOriginationDate fieldTradeOriginationDate;
 
    public:
-   bool isSetTradeDate() const { return fieldTradeDate.offset >= 0; }
+   bool isSetTradeDate() const { return fieldTradeDate.offset > 0; }
    FieldTradeDate::ValueType getTradeDate() const { return fieldTradeDate.getValue( _fixPtr ); }
-   std::string_view getTradeDateView() const { return fieldTradeDate.offset >= 0 ? std::string_view{ _fixPtr + fieldTradeDate.offset, getValueLength( _fixPtr + fieldTradeDate.offset ) } : std::string_view{}; }
+   std::string_view getTradeDateView() const { return fieldTradeDate.offset > 0 ? std::string_view{ _fixPtr + fieldTradeDate.offset, getValueLength( _fixPtr + fieldTradeDate.offset ) } : std::string_view{}; }
    const char * ptrToTradeDate() const { return _fixPtr + fieldTradeDate.offset; }
-   const char * getIfSetTradeDate() const { return fieldTradeDate.offset >= 0 ? _fixPtr + fieldTradeDate.offset : nullptr; }
+   const char * ptrToTagTradeDate() const { return _fixPtr + fieldTradeDate.offset - 1 - FieldTradeDate::tagWidth(); }
+   const char * getIfSetTradeDate() const { return fieldTradeDate.offset > 0 ? _fixPtr + fieldTradeDate.offset : nullptr; }
    private: FieldTradeDate fieldTradeDate;
 
    public:
-   bool isSetAccount() const { return fieldAccount.offset >= 0; }
+   bool isSetAccount() const { return fieldAccount.offset > 0; }
    FieldAccount::ValueType getAccount() const { return fieldAccount.getValue( _fixPtr ); }
-   std::string_view getAccountView() const { return fieldAccount.offset >= 0 ? std::string_view{ _fixPtr + fieldAccount.offset, getValueLength( _fixPtr + fieldAccount.offset ) } : std::string_view{}; }
+   std::string_view getAccountView() const { return fieldAccount.offset > 0 ? std::string_view{ _fixPtr + fieldAccount.offset, getValueLength( _fixPtr + fieldAccount.offset ) } : std::string_view{}; }
    const char * ptrToAccount() const { return _fixPtr + fieldAccount.offset; }
-   const char * getIfSetAccount() const { return fieldAccount.offset >= 0 ? _fixPtr + fieldAccount.offset : nullptr; }
+   const char * ptrToTagAccount() const { return _fixPtr + fieldAccount.offset - 1 - FieldAccount::tagWidth(); }
+   const char * getIfSetAccount() const { return fieldAccount.offset > 0 ? _fixPtr + fieldAccount.offset : nullptr; }
    private: FieldAccount fieldAccount;
 
    public:
-   bool isSetAcctIDSource() const { return fieldAcctIDSource.offset >= 0; }
+   bool isSetAcctIDSource() const { return fieldAcctIDSource.offset > 0; }
    FieldAcctIDSource::ValueType getAcctIDSource() const { return fieldAcctIDSource.getValue( _fixPtr ); }
-   std::string_view getAcctIDSourceView() const { return fieldAcctIDSource.offset >= 0 ? std::string_view{ _fixPtr + fieldAcctIDSource.offset, getValueLength( _fixPtr + fieldAcctIDSource.offset ) } : std::string_view{}; }
+   std::string_view getAcctIDSourceView() const { return fieldAcctIDSource.offset > 0 ? std::string_view{ _fixPtr + fieldAcctIDSource.offset, getValueLength( _fixPtr + fieldAcctIDSource.offset ) } : std::string_view{}; }
    const char * ptrToAcctIDSource() const { return _fixPtr + fieldAcctIDSource.offset; }
-   const char * getIfSetAcctIDSource() const { return fieldAcctIDSource.offset >= 0 ? _fixPtr + fieldAcctIDSource.offset : nullptr; }
+   const char * ptrToTagAcctIDSource() const { return _fixPtr + fieldAcctIDSource.offset - 1 - FieldAcctIDSource::tagWidth(); }
+   const char * getIfSetAcctIDSource() const { return fieldAcctIDSource.offset > 0 ? _fixPtr + fieldAcctIDSource.offset : nullptr; }
    private: FieldAcctIDSource fieldAcctIDSource;
 
    public:
-   bool isSetAccountType() const { return fieldAccountType.offset >= 0; }
+   bool isSetAccountType() const { return fieldAccountType.offset > 0; }
    FieldAccountType::ValueType getAccountType() const { return fieldAccountType.getValue( _fixPtr ); }
-   std::string_view getAccountTypeView() const { return fieldAccountType.offset >= 0 ? std::string_view{ _fixPtr + fieldAccountType.offset, getValueLength( _fixPtr + fieldAccountType.offset ) } : std::string_view{}; }
+   std::string_view getAccountTypeView() const { return fieldAccountType.offset > 0 ? std::string_view{ _fixPtr + fieldAccountType.offset, getValueLength( _fixPtr + fieldAccountType.offset ) } : std::string_view{}; }
    const char * ptrToAccountType() const { return _fixPtr + fieldAccountType.offset; }
-   const char * getIfSetAccountType() const { return fieldAccountType.offset >= 0 ? _fixPtr + fieldAccountType.offset : nullptr; }
+   const char * ptrToTagAccountType() const { return _fixPtr + fieldAccountType.offset - 1 - FieldAccountType::tagWidth(); }
+   const char * getIfSetAccountType() const { return fieldAccountType.offset > 0 ? _fixPtr + fieldAccountType.offset : nullptr; }
    private: FieldAccountType fieldAccountType;
 
    public:
-   bool isSetDayBookingInst() const { return fieldDayBookingInst.offset >= 0; }
+   bool isSetDayBookingInst() const { return fieldDayBookingInst.offset > 0; }
    FieldDayBookingInst::ValueType getDayBookingInst() const { return fieldDayBookingInst.getValue( _fixPtr ); }
-   std::string_view getDayBookingInstView() const { return fieldDayBookingInst.offset >= 0 ? std::string_view{ _fixPtr + fieldDayBookingInst.offset, getValueLength( _fixPtr + fieldDayBookingInst.offset ) } : std::string_view{}; }
+   std::string_view getDayBookingInstView() const { return fieldDayBookingInst.offset > 0 ? std::string_view{ _fixPtr + fieldDayBookingInst.offset, getValueLength( _fixPtr + fieldDayBookingInst.offset ) } : std::string_view{}; }
    const char * ptrToDayBookingInst() const { return _fixPtr + fieldDayBookingInst.offset; }
-   const char * getIfSetDayBookingInst() const { return fieldDayBookingInst.offset >= 0 ? _fixPtr + fieldDayBookingInst.offset : nullptr; }
+   const char * ptrToTagDayBookingInst() const { return _fixPtr + fieldDayBookingInst.offset - 1 - FieldDayBookingInst::tagWidth(); }
+   const char * getIfSetDayBookingInst() const { return fieldDayBookingInst.offset > 0 ? _fixPtr + fieldDayBookingInst.offset : nullptr; }
    private: FieldDayBookingInst fieldDayBookingInst;
 
    public:
-   bool isSetBookingUnit() const { return fieldBookingUnit.offset >= 0; }
+   bool isSetBookingUnit() const { return fieldBookingUnit.offset > 0; }
    FieldBookingUnit::ValueType getBookingUnit() const { return fieldBookingUnit.getValue( _fixPtr ); }
-   std::string_view getBookingUnitView() const { return fieldBookingUnit.offset >= 0 ? std::string_view{ _fixPtr + fieldBookingUnit.offset, getValueLength( _fixPtr + fieldBookingUnit.offset ) } : std::string_view{}; }
+   std::string_view getBookingUnitView() const { return fieldBookingUnit.offset > 0 ? std::string_view{ _fixPtr + fieldBookingUnit.offset, getValueLength( _fixPtr + fieldBookingUnit.offset ) } : std::string_view{}; }
    const char * ptrToBookingUnit() const { return _fixPtr + fieldBookingUnit.offset; }
-   const char * getIfSetBookingUnit() const { return fieldBookingUnit.offset >= 0 ? _fixPtr + fieldBookingUnit.offset : nullptr; }
+   const char * ptrToTagBookingUnit() const { return _fixPtr + fieldBookingUnit.offset - 1 - FieldBookingUnit::tagWidth(); }
+   const char * getIfSetBookingUnit() const { return fieldBookingUnit.offset > 0 ? _fixPtr + fieldBookingUnit.offset : nullptr; }
    private: FieldBookingUnit fieldBookingUnit;
 
    public:
-   bool isSetAllocID() const { return fieldAllocID.offset >= 0; }
+   bool isSetAllocID() const { return fieldAllocID.offset > 0; }
    FieldAllocID::ValueType getAllocID() const { return fieldAllocID.getValue( _fixPtr ); }
-   std::string_view getAllocIDView() const { return fieldAllocID.offset >= 0 ? std::string_view{ _fixPtr + fieldAllocID.offset, getValueLength( _fixPtr + fieldAllocID.offset ) } : std::string_view{}; }
+   std::string_view getAllocIDView() const { return fieldAllocID.offset > 0 ? std::string_view{ _fixPtr + fieldAllocID.offset, getValueLength( _fixPtr + fieldAllocID.offset ) } : std::string_view{}; }
    const char * ptrToAllocID() const { return _fixPtr + fieldAllocID.offset; }
-   const char * getIfSetAllocID() const { return fieldAllocID.offset >= 0 ? _fixPtr + fieldAllocID.offset : nullptr; }
+   const char * ptrToTagAllocID() const { return _fixPtr + fieldAllocID.offset - 1 - FieldAllocID::tagWidth(); }
+   const char * getIfSetAllocID() const { return fieldAllocID.offset > 0 ? _fixPtr + fieldAllocID.offset : nullptr; }
    private: FieldAllocID fieldAllocID;
 
    public:
-   bool isSetPreallocMethod() const { return fieldPreallocMethod.offset >= 0; }
+   bool isSetPreallocMethod() const { return fieldPreallocMethod.offset > 0; }
    FieldPreallocMethod::ValueType getPreallocMethod() const { return fieldPreallocMethod.getValue( _fixPtr ); }
-   std::string_view getPreallocMethodView() const { return fieldPreallocMethod.offset >= 0 ? std::string_view{ _fixPtr + fieldPreallocMethod.offset, getValueLength( _fixPtr + fieldPreallocMethod.offset ) } : std::string_view{}; }
+   std::string_view getPreallocMethodView() const { return fieldPreallocMethod.offset > 0 ? std::string_view{ _fixPtr + fieldPreallocMethod.offset, getValueLength( _fixPtr + fieldPreallocMethod.offset ) } : std::string_view{}; }
    const char * ptrToPreallocMethod() const { return _fixPtr + fieldPreallocMethod.offset; }
-   const char * getIfSetPreallocMethod() const { return fieldPreallocMethod.offset >= 0 ? _fixPtr + fieldPreallocMethod.offset : nullptr; }
+   const char * ptrToTagPreallocMethod() const { return _fixPtr + fieldPreallocMethod.offset - 1 - FieldPreallocMethod::tagWidth(); }
+   const char * getIfSetPreallocMethod() const { return fieldPreallocMethod.offset > 0 ? _fixPtr + fieldPreallocMethod.offset : nullptr; }
    private: FieldPreallocMethod fieldPreallocMethod;
 
    public:
-   bool isSetNoAllocs() const { return fieldNoAllocs.offset >= 0; }
+   bool isSetNoAllocs() const { return fieldNoAllocs.offset > 0; }
    FieldNoAllocs::ValueType getNoAllocs() const { return fieldNoAllocs.getValue( _fixPtr ); }
-   std::string_view getNoAllocsView() const { return fieldNoAllocs.offset >= 0 ? std::string_view{ _fixPtr + fieldNoAllocs.offset, getValueLength( _fixPtr + fieldNoAllocs.offset ) } : std::string_view{}; }
+   std::string_view getNoAllocsView() const { return fieldNoAllocs.offset > 0 ? std::string_view{ _fixPtr + fieldNoAllocs.offset, getValueLength( _fixPtr + fieldNoAllocs.offset ) } : std::string_view{}; }
    const char * ptrToNoAllocs() const { return _fixPtr + fieldNoAllocs.offset; }
-   const char * getIfSetNoAllocs() const { return fieldNoAllocs.offset >= 0 ? _fixPtr + fieldNoAllocs.offset : nullptr; }
+   const char * ptrToTagNoAllocs() const { return _fixPtr + fieldNoAllocs.offset - 1 - FieldNoAllocs::tagWidth(); }
+   const char * getIfSetNoAllocs() const { return fieldNoAllocs.offset > 0 ? _fixPtr + fieldNoAllocs.offset : nullptr; }
    private: FieldNoAllocs fieldNoAllocs;
   
    public:
@@ -1284,83 +1434,93 @@ class GroupOrders : public MessageBase
    private: GroupAllocs::Array groupsAllocs{ 10 };
 
    public:
-   bool isSetSettlType() const { return fieldSettlType.offset >= 0; }
+   bool isSetSettlType() const { return fieldSettlType.offset > 0; }
    FieldSettlType::ValueType getSettlType() const { return fieldSettlType.getValue( _fixPtr ); }
-   std::string_view getSettlTypeView() const { return fieldSettlType.offset >= 0 ? std::string_view{ _fixPtr + fieldSettlType.offset, getValueLength( _fixPtr + fieldSettlType.offset ) } : std::string_view{}; }
+   std::string_view getSettlTypeView() const { return fieldSettlType.offset > 0 ? std::string_view{ _fixPtr + fieldSettlType.offset, getValueLength( _fixPtr + fieldSettlType.offset ) } : std::string_view{}; }
    const char * ptrToSettlType() const { return _fixPtr + fieldSettlType.offset; }
-   const char * getIfSetSettlType() const { return fieldSettlType.offset >= 0 ? _fixPtr + fieldSettlType.offset : nullptr; }
+   const char * ptrToTagSettlType() const { return _fixPtr + fieldSettlType.offset - 1 - FieldSettlType::tagWidth(); }
+   const char * getIfSetSettlType() const { return fieldSettlType.offset > 0 ? _fixPtr + fieldSettlType.offset : nullptr; }
    private: FieldSettlType fieldSettlType;
 
    public:
-   bool isSetSettlDate() const { return fieldSettlDate.offset >= 0; }
+   bool isSetSettlDate() const { return fieldSettlDate.offset > 0; }
    FieldSettlDate::ValueType getSettlDate() const { return fieldSettlDate.getValue( _fixPtr ); }
-   std::string_view getSettlDateView() const { return fieldSettlDate.offset >= 0 ? std::string_view{ _fixPtr + fieldSettlDate.offset, getValueLength( _fixPtr + fieldSettlDate.offset ) } : std::string_view{}; }
+   std::string_view getSettlDateView() const { return fieldSettlDate.offset > 0 ? std::string_view{ _fixPtr + fieldSettlDate.offset, getValueLength( _fixPtr + fieldSettlDate.offset ) } : std::string_view{}; }
    const char * ptrToSettlDate() const { return _fixPtr + fieldSettlDate.offset; }
-   const char * getIfSetSettlDate() const { return fieldSettlDate.offset >= 0 ? _fixPtr + fieldSettlDate.offset : nullptr; }
+   const char * ptrToTagSettlDate() const { return _fixPtr + fieldSettlDate.offset - 1 - FieldSettlDate::tagWidth(); }
+   const char * getIfSetSettlDate() const { return fieldSettlDate.offset > 0 ? _fixPtr + fieldSettlDate.offset : nullptr; }
    private: FieldSettlDate fieldSettlDate;
 
    public:
-   bool isSetCashMargin() const { return fieldCashMargin.offset >= 0; }
+   bool isSetCashMargin() const { return fieldCashMargin.offset > 0; }
    FieldCashMargin::ValueType getCashMargin() const { return fieldCashMargin.getValue( _fixPtr ); }
-   std::string_view getCashMarginView() const { return fieldCashMargin.offset >= 0 ? std::string_view{ _fixPtr + fieldCashMargin.offset, getValueLength( _fixPtr + fieldCashMargin.offset ) } : std::string_view{}; }
+   std::string_view getCashMarginView() const { return fieldCashMargin.offset > 0 ? std::string_view{ _fixPtr + fieldCashMargin.offset, getValueLength( _fixPtr + fieldCashMargin.offset ) } : std::string_view{}; }
    const char * ptrToCashMargin() const { return _fixPtr + fieldCashMargin.offset; }
-   const char * getIfSetCashMargin() const { return fieldCashMargin.offset >= 0 ? _fixPtr + fieldCashMargin.offset : nullptr; }
+   const char * ptrToTagCashMargin() const { return _fixPtr + fieldCashMargin.offset - 1 - FieldCashMargin::tagWidth(); }
+   const char * getIfSetCashMargin() const { return fieldCashMargin.offset > 0 ? _fixPtr + fieldCashMargin.offset : nullptr; }
    private: FieldCashMargin fieldCashMargin;
 
    public:
-   bool isSetClearingFeeIndicator() const { return fieldClearingFeeIndicator.offset >= 0; }
+   bool isSetClearingFeeIndicator() const { return fieldClearingFeeIndicator.offset > 0; }
    FieldClearingFeeIndicator::ValueType getClearingFeeIndicator() const { return fieldClearingFeeIndicator.getValue( _fixPtr ); }
-   std::string_view getClearingFeeIndicatorView() const { return fieldClearingFeeIndicator.offset >= 0 ? std::string_view{ _fixPtr + fieldClearingFeeIndicator.offset, getValueLength( _fixPtr + fieldClearingFeeIndicator.offset ) } : std::string_view{}; }
+   std::string_view getClearingFeeIndicatorView() const { return fieldClearingFeeIndicator.offset > 0 ? std::string_view{ _fixPtr + fieldClearingFeeIndicator.offset, getValueLength( _fixPtr + fieldClearingFeeIndicator.offset ) } : std::string_view{}; }
    const char * ptrToClearingFeeIndicator() const { return _fixPtr + fieldClearingFeeIndicator.offset; }
-   const char * getIfSetClearingFeeIndicator() const { return fieldClearingFeeIndicator.offset >= 0 ? _fixPtr + fieldClearingFeeIndicator.offset : nullptr; }
+   const char * ptrToTagClearingFeeIndicator() const { return _fixPtr + fieldClearingFeeIndicator.offset - 1 - FieldClearingFeeIndicator::tagWidth(); }
+   const char * getIfSetClearingFeeIndicator() const { return fieldClearingFeeIndicator.offset > 0 ? _fixPtr + fieldClearingFeeIndicator.offset : nullptr; }
    private: FieldClearingFeeIndicator fieldClearingFeeIndicator;
 
    public:
-   bool isSetHandlInst() const { return fieldHandlInst.offset >= 0; }
+   bool isSetHandlInst() const { return fieldHandlInst.offset > 0; }
    FieldHandlInst::ValueType getHandlInst() const { return fieldHandlInst.getValue( _fixPtr ); }
-   std::string_view getHandlInstView() const { return fieldHandlInst.offset >= 0 ? std::string_view{ _fixPtr + fieldHandlInst.offset, getValueLength( _fixPtr + fieldHandlInst.offset ) } : std::string_view{}; }
+   std::string_view getHandlInstView() const { return fieldHandlInst.offset > 0 ? std::string_view{ _fixPtr + fieldHandlInst.offset, getValueLength( _fixPtr + fieldHandlInst.offset ) } : std::string_view{}; }
    const char * ptrToHandlInst() const { return _fixPtr + fieldHandlInst.offset; }
-   const char * getIfSetHandlInst() const { return fieldHandlInst.offset >= 0 ? _fixPtr + fieldHandlInst.offset : nullptr; }
+   const char * ptrToTagHandlInst() const { return _fixPtr + fieldHandlInst.offset - 1 - FieldHandlInst::tagWidth(); }
+   const char * getIfSetHandlInst() const { return fieldHandlInst.offset > 0 ? _fixPtr + fieldHandlInst.offset : nullptr; }
    private: FieldHandlInst fieldHandlInst;
 
    public:
-   bool isSetExecInst() const { return fieldExecInst.offset >= 0; }
+   bool isSetExecInst() const { return fieldExecInst.offset > 0; }
    FieldExecInst::ValueType getExecInst() const { return fieldExecInst.getValue( _fixPtr ); }
-   std::string_view getExecInstView() const { return fieldExecInst.offset >= 0 ? std::string_view{ _fixPtr + fieldExecInst.offset, getValueLength( _fixPtr + fieldExecInst.offset ) } : std::string_view{}; }
+   std::string_view getExecInstView() const { return fieldExecInst.offset > 0 ? std::string_view{ _fixPtr + fieldExecInst.offset, getValueLength( _fixPtr + fieldExecInst.offset ) } : std::string_view{}; }
    const char * ptrToExecInst() const { return _fixPtr + fieldExecInst.offset; }
-   const char * getIfSetExecInst() const { return fieldExecInst.offset >= 0 ? _fixPtr + fieldExecInst.offset : nullptr; }
+   const char * ptrToTagExecInst() const { return _fixPtr + fieldExecInst.offset - 1 - FieldExecInst::tagWidth(); }
+   const char * getIfSetExecInst() const { return fieldExecInst.offset > 0 ? _fixPtr + fieldExecInst.offset : nullptr; }
    private: FieldExecInst fieldExecInst;
 
    public:
-   bool isSetMinQty() const { return fieldMinQty.offset >= 0; }
+   bool isSetMinQty() const { return fieldMinQty.offset > 0; }
    FieldMinQty::ValueType getMinQty() const { return fieldMinQty.getValue( _fixPtr ); }
-   std::string_view getMinQtyView() const { return fieldMinQty.offset >= 0 ? std::string_view{ _fixPtr + fieldMinQty.offset, getValueLength( _fixPtr + fieldMinQty.offset ) } : std::string_view{}; }
+   std::string_view getMinQtyView() const { return fieldMinQty.offset > 0 ? std::string_view{ _fixPtr + fieldMinQty.offset, getValueLength( _fixPtr + fieldMinQty.offset ) } : std::string_view{}; }
    const char * ptrToMinQty() const { return _fixPtr + fieldMinQty.offset; }
-   const char * getIfSetMinQty() const { return fieldMinQty.offset >= 0 ? _fixPtr + fieldMinQty.offset : nullptr; }
+   const char * ptrToTagMinQty() const { return _fixPtr + fieldMinQty.offset - 1 - FieldMinQty::tagWidth(); }
+   const char * getIfSetMinQty() const { return fieldMinQty.offset > 0 ? _fixPtr + fieldMinQty.offset : nullptr; }
    private: FieldMinQty fieldMinQty;
 
    public:
-   bool isSetMaxFloor() const { return fieldMaxFloor.offset >= 0; }
+   bool isSetMaxFloor() const { return fieldMaxFloor.offset > 0; }
    FieldMaxFloor::ValueType getMaxFloor() const { return fieldMaxFloor.getValue( _fixPtr ); }
-   std::string_view getMaxFloorView() const { return fieldMaxFloor.offset >= 0 ? std::string_view{ _fixPtr + fieldMaxFloor.offset, getValueLength( _fixPtr + fieldMaxFloor.offset ) } : std::string_view{}; }
+   std::string_view getMaxFloorView() const { return fieldMaxFloor.offset > 0 ? std::string_view{ _fixPtr + fieldMaxFloor.offset, getValueLength( _fixPtr + fieldMaxFloor.offset ) } : std::string_view{}; }
    const char * ptrToMaxFloor() const { return _fixPtr + fieldMaxFloor.offset; }
-   const char * getIfSetMaxFloor() const { return fieldMaxFloor.offset >= 0 ? _fixPtr + fieldMaxFloor.offset : nullptr; }
+   const char * ptrToTagMaxFloor() const { return _fixPtr + fieldMaxFloor.offset - 1 - FieldMaxFloor::tagWidth(); }
+   const char * getIfSetMaxFloor() const { return fieldMaxFloor.offset > 0 ? _fixPtr + fieldMaxFloor.offset : nullptr; }
    private: FieldMaxFloor fieldMaxFloor;
 
    public:
-   bool isSetExDestination() const { return fieldExDestination.offset >= 0; }
+   bool isSetExDestination() const { return fieldExDestination.offset > 0; }
    FieldExDestination::ValueType getExDestination() const { return fieldExDestination.getValue( _fixPtr ); }
-   std::string_view getExDestinationView() const { return fieldExDestination.offset >= 0 ? std::string_view{ _fixPtr + fieldExDestination.offset, getValueLength( _fixPtr + fieldExDestination.offset ) } : std::string_view{}; }
+   std::string_view getExDestinationView() const { return fieldExDestination.offset > 0 ? std::string_view{ _fixPtr + fieldExDestination.offset, getValueLength( _fixPtr + fieldExDestination.offset ) } : std::string_view{}; }
    const char * ptrToExDestination() const { return _fixPtr + fieldExDestination.offset; }
-   const char * getIfSetExDestination() const { return fieldExDestination.offset >= 0 ? _fixPtr + fieldExDestination.offset : nullptr; }
+   const char * ptrToTagExDestination() const { return _fixPtr + fieldExDestination.offset - 1 - FieldExDestination::tagWidth(); }
+   const char * getIfSetExDestination() const { return fieldExDestination.offset > 0 ? _fixPtr + fieldExDestination.offset : nullptr; }
    private: FieldExDestination fieldExDestination;
 
    public:
-   bool isSetNoTradingSessions() const { return fieldNoTradingSessions.offset >= 0; }
+   bool isSetNoTradingSessions() const { return fieldNoTradingSessions.offset > 0; }
    FieldNoTradingSessions::ValueType getNoTradingSessions() const { return fieldNoTradingSessions.getValue( _fixPtr ); }
-   std::string_view getNoTradingSessionsView() const { return fieldNoTradingSessions.offset >= 0 ? std::string_view{ _fixPtr + fieldNoTradingSessions.offset, getValueLength( _fixPtr + fieldNoTradingSessions.offset ) } : std::string_view{}; }
+   std::string_view getNoTradingSessionsView() const { return fieldNoTradingSessions.offset > 0 ? std::string_view{ _fixPtr + fieldNoTradingSessions.offset, getValueLength( _fixPtr + fieldNoTradingSessions.offset ) } : std::string_view{}; }
    const char * ptrToNoTradingSessions() const { return _fixPtr + fieldNoTradingSessions.offset; }
-   const char * getIfSetNoTradingSessions() const { return fieldNoTradingSessions.offset >= 0 ? _fixPtr + fieldNoTradingSessions.offset : nullptr; }
+   const char * ptrToTagNoTradingSessions() const { return _fixPtr + fieldNoTradingSessions.offset - 1 - FieldNoTradingSessions::tagWidth(); }
+   const char * getIfSetNoTradingSessions() const { return fieldNoTradingSessions.offset > 0 ? _fixPtr + fieldNoTradingSessions.offset : nullptr; }
    private: FieldNoTradingSessions fieldNoTradingSessions;
   
    public:
@@ -1369,51 +1529,57 @@ class GroupOrders : public MessageBase
    private: GroupTradingSessions::Array groupsTradingSessions{ 10 };
 
    public:
-   bool isSetProcessCode() const { return fieldProcessCode.offset >= 0; }
+   bool isSetProcessCode() const { return fieldProcessCode.offset > 0; }
    FieldProcessCode::ValueType getProcessCode() const { return fieldProcessCode.getValue( _fixPtr ); }
-   std::string_view getProcessCodeView() const { return fieldProcessCode.offset >= 0 ? std::string_view{ _fixPtr + fieldProcessCode.offset, getValueLength( _fixPtr + fieldProcessCode.offset ) } : std::string_view{}; }
+   std::string_view getProcessCodeView() const { return fieldProcessCode.offset > 0 ? std::string_view{ _fixPtr + fieldProcessCode.offset, getValueLength( _fixPtr + fieldProcessCode.offset ) } : std::string_view{}; }
    const char * ptrToProcessCode() const { return _fixPtr + fieldProcessCode.offset; }
-   const char * getIfSetProcessCode() const { return fieldProcessCode.offset >= 0 ? _fixPtr + fieldProcessCode.offset : nullptr; }
+   const char * ptrToTagProcessCode() const { return _fixPtr + fieldProcessCode.offset - 1 - FieldProcessCode::tagWidth(); }
+   const char * getIfSetProcessCode() const { return fieldProcessCode.offset > 0 ? _fixPtr + fieldProcessCode.offset : nullptr; }
    private: FieldProcessCode fieldProcessCode;
 
    public:
-   bool isSetSymbol() const { return fieldSymbol.offset >= 0; }
+   bool isSetSymbol() const { return fieldSymbol.offset > 0; }
    FieldSymbol::ValueType getSymbol() const { return fieldSymbol.getValue( _fixPtr ); }
-   std::string_view getSymbolView() const { return fieldSymbol.offset >= 0 ? std::string_view{ _fixPtr + fieldSymbol.offset, getValueLength( _fixPtr + fieldSymbol.offset ) } : std::string_view{}; }
+   std::string_view getSymbolView() const { return fieldSymbol.offset > 0 ? std::string_view{ _fixPtr + fieldSymbol.offset, getValueLength( _fixPtr + fieldSymbol.offset ) } : std::string_view{}; }
    const char * ptrToSymbol() const { return _fixPtr + fieldSymbol.offset; }
-   const char * getIfSetSymbol() const { return fieldSymbol.offset >= 0 ? _fixPtr + fieldSymbol.offset : nullptr; }
+   const char * ptrToTagSymbol() const { return _fixPtr + fieldSymbol.offset - 1 - FieldSymbol::tagWidth(); }
+   const char * getIfSetSymbol() const { return fieldSymbol.offset > 0 ? _fixPtr + fieldSymbol.offset : nullptr; }
    private: FieldSymbol fieldSymbol;
 
    public:
-   bool isSetSymbolSfx() const { return fieldSymbolSfx.offset >= 0; }
+   bool isSetSymbolSfx() const { return fieldSymbolSfx.offset > 0; }
    FieldSymbolSfx::ValueType getSymbolSfx() const { return fieldSymbolSfx.getValue( _fixPtr ); }
-   std::string_view getSymbolSfxView() const { return fieldSymbolSfx.offset >= 0 ? std::string_view{ _fixPtr + fieldSymbolSfx.offset, getValueLength( _fixPtr + fieldSymbolSfx.offset ) } : std::string_view{}; }
+   std::string_view getSymbolSfxView() const { return fieldSymbolSfx.offset > 0 ? std::string_view{ _fixPtr + fieldSymbolSfx.offset, getValueLength( _fixPtr + fieldSymbolSfx.offset ) } : std::string_view{}; }
    const char * ptrToSymbolSfx() const { return _fixPtr + fieldSymbolSfx.offset; }
-   const char * getIfSetSymbolSfx() const { return fieldSymbolSfx.offset >= 0 ? _fixPtr + fieldSymbolSfx.offset : nullptr; }
+   const char * ptrToTagSymbolSfx() const { return _fixPtr + fieldSymbolSfx.offset - 1 - FieldSymbolSfx::tagWidth(); }
+   const char * getIfSetSymbolSfx() const { return fieldSymbolSfx.offset > 0 ? _fixPtr + fieldSymbolSfx.offset : nullptr; }
    private: FieldSymbolSfx fieldSymbolSfx;
 
    public:
-   bool isSetSecurityID() const { return fieldSecurityID.offset >= 0; }
+   bool isSetSecurityID() const { return fieldSecurityID.offset > 0; }
    FieldSecurityID::ValueType getSecurityID() const { return fieldSecurityID.getValue( _fixPtr ); }
-   std::string_view getSecurityIDView() const { return fieldSecurityID.offset >= 0 ? std::string_view{ _fixPtr + fieldSecurityID.offset, getValueLength( _fixPtr + fieldSecurityID.offset ) } : std::string_view{}; }
+   std::string_view getSecurityIDView() const { return fieldSecurityID.offset > 0 ? std::string_view{ _fixPtr + fieldSecurityID.offset, getValueLength( _fixPtr + fieldSecurityID.offset ) } : std::string_view{}; }
    const char * ptrToSecurityID() const { return _fixPtr + fieldSecurityID.offset; }
-   const char * getIfSetSecurityID() const { return fieldSecurityID.offset >= 0 ? _fixPtr + fieldSecurityID.offset : nullptr; }
+   const char * ptrToTagSecurityID() const { return _fixPtr + fieldSecurityID.offset - 1 - FieldSecurityID::tagWidth(); }
+   const char * getIfSetSecurityID() const { return fieldSecurityID.offset > 0 ? _fixPtr + fieldSecurityID.offset : nullptr; }
    private: FieldSecurityID fieldSecurityID;
 
    public:
-   bool isSetSecurityIDSource() const { return fieldSecurityIDSource.offset >= 0; }
+   bool isSetSecurityIDSource() const { return fieldSecurityIDSource.offset > 0; }
    FieldSecurityIDSource::ValueType getSecurityIDSource() const { return fieldSecurityIDSource.getValue( _fixPtr ); }
-   std::string_view getSecurityIDSourceView() const { return fieldSecurityIDSource.offset >= 0 ? std::string_view{ _fixPtr + fieldSecurityIDSource.offset, getValueLength( _fixPtr + fieldSecurityIDSource.offset ) } : std::string_view{}; }
+   std::string_view getSecurityIDSourceView() const { return fieldSecurityIDSource.offset > 0 ? std::string_view{ _fixPtr + fieldSecurityIDSource.offset, getValueLength( _fixPtr + fieldSecurityIDSource.offset ) } : std::string_view{}; }
    const char * ptrToSecurityIDSource() const { return _fixPtr + fieldSecurityIDSource.offset; }
-   const char * getIfSetSecurityIDSource() const { return fieldSecurityIDSource.offset >= 0 ? _fixPtr + fieldSecurityIDSource.offset : nullptr; }
+   const char * ptrToTagSecurityIDSource() const { return _fixPtr + fieldSecurityIDSource.offset - 1 - FieldSecurityIDSource::tagWidth(); }
+   const char * getIfSetSecurityIDSource() const { return fieldSecurityIDSource.offset > 0 ? _fixPtr + fieldSecurityIDSource.offset : nullptr; }
    private: FieldSecurityIDSource fieldSecurityIDSource;
 
    public:
-   bool isSetNoSecurityAltID() const { return fieldNoSecurityAltID.offset >= 0; }
+   bool isSetNoSecurityAltID() const { return fieldNoSecurityAltID.offset > 0; }
    FieldNoSecurityAltID::ValueType getNoSecurityAltID() const { return fieldNoSecurityAltID.getValue( _fixPtr ); }
-   std::string_view getNoSecurityAltIDView() const { return fieldNoSecurityAltID.offset >= 0 ? std::string_view{ _fixPtr + fieldNoSecurityAltID.offset, getValueLength( _fixPtr + fieldNoSecurityAltID.offset ) } : std::string_view{}; }
+   std::string_view getNoSecurityAltIDView() const { return fieldNoSecurityAltID.offset > 0 ? std::string_view{ _fixPtr + fieldNoSecurityAltID.offset, getValueLength( _fixPtr + fieldNoSecurityAltID.offset ) } : std::string_view{}; }
    const char * ptrToNoSecurityAltID() const { return _fixPtr + fieldNoSecurityAltID.offset; }
-   const char * getIfSetNoSecurityAltID() const { return fieldNoSecurityAltID.offset >= 0 ? _fixPtr + fieldNoSecurityAltID.offset : nullptr; }
+   const char * ptrToTagNoSecurityAltID() const { return _fixPtr + fieldNoSecurityAltID.offset - 1 - FieldNoSecurityAltID::tagWidth(); }
+   const char * getIfSetNoSecurityAltID() const { return fieldNoSecurityAltID.offset > 0 ? _fixPtr + fieldNoSecurityAltID.offset : nullptr; }
    private: FieldNoSecurityAltID fieldNoSecurityAltID;
   
    public:
@@ -1422,291 +1588,327 @@ class GroupOrders : public MessageBase
    private: GroupSecurityAltID::Array groupsSecurityAltID{ 10 };
 
    public:
-   bool isSetProduct() const { return fieldProduct.offset >= 0; }
+   bool isSetProduct() const { return fieldProduct.offset > 0; }
    FieldProduct::ValueType getProduct() const { return fieldProduct.getValue( _fixPtr ); }
-   std::string_view getProductView() const { return fieldProduct.offset >= 0 ? std::string_view{ _fixPtr + fieldProduct.offset, getValueLength( _fixPtr + fieldProduct.offset ) } : std::string_view{}; }
+   std::string_view getProductView() const { return fieldProduct.offset > 0 ? std::string_view{ _fixPtr + fieldProduct.offset, getValueLength( _fixPtr + fieldProduct.offset ) } : std::string_view{}; }
    const char * ptrToProduct() const { return _fixPtr + fieldProduct.offset; }
-   const char * getIfSetProduct() const { return fieldProduct.offset >= 0 ? _fixPtr + fieldProduct.offset : nullptr; }
+   const char * ptrToTagProduct() const { return _fixPtr + fieldProduct.offset - 1 - FieldProduct::tagWidth(); }
+   const char * getIfSetProduct() const { return fieldProduct.offset > 0 ? _fixPtr + fieldProduct.offset : nullptr; }
    private: FieldProduct fieldProduct;
 
    public:
-   bool isSetCFICode() const { return fieldCFICode.offset >= 0; }
+   bool isSetCFICode() const { return fieldCFICode.offset > 0; }
    FieldCFICode::ValueType getCFICode() const { return fieldCFICode.getValue( _fixPtr ); }
-   std::string_view getCFICodeView() const { return fieldCFICode.offset >= 0 ? std::string_view{ _fixPtr + fieldCFICode.offset, getValueLength( _fixPtr + fieldCFICode.offset ) } : std::string_view{}; }
+   std::string_view getCFICodeView() const { return fieldCFICode.offset > 0 ? std::string_view{ _fixPtr + fieldCFICode.offset, getValueLength( _fixPtr + fieldCFICode.offset ) } : std::string_view{}; }
    const char * ptrToCFICode() const { return _fixPtr + fieldCFICode.offset; }
-   const char * getIfSetCFICode() const { return fieldCFICode.offset >= 0 ? _fixPtr + fieldCFICode.offset : nullptr; }
+   const char * ptrToTagCFICode() const { return _fixPtr + fieldCFICode.offset - 1 - FieldCFICode::tagWidth(); }
+   const char * getIfSetCFICode() const { return fieldCFICode.offset > 0 ? _fixPtr + fieldCFICode.offset : nullptr; }
    private: FieldCFICode fieldCFICode;
 
    public:
-   bool isSetSecurityType() const { return fieldSecurityType.offset >= 0; }
+   bool isSetSecurityType() const { return fieldSecurityType.offset > 0; }
    FieldSecurityType::ValueType getSecurityType() const { return fieldSecurityType.getValue( _fixPtr ); }
-   std::string_view getSecurityTypeView() const { return fieldSecurityType.offset >= 0 ? std::string_view{ _fixPtr + fieldSecurityType.offset, getValueLength( _fixPtr + fieldSecurityType.offset ) } : std::string_view{}; }
+   std::string_view getSecurityTypeView() const { return fieldSecurityType.offset > 0 ? std::string_view{ _fixPtr + fieldSecurityType.offset, getValueLength( _fixPtr + fieldSecurityType.offset ) } : std::string_view{}; }
    const char * ptrToSecurityType() const { return _fixPtr + fieldSecurityType.offset; }
-   const char * getIfSetSecurityType() const { return fieldSecurityType.offset >= 0 ? _fixPtr + fieldSecurityType.offset : nullptr; }
+   const char * ptrToTagSecurityType() const { return _fixPtr + fieldSecurityType.offset - 1 - FieldSecurityType::tagWidth(); }
+   const char * getIfSetSecurityType() const { return fieldSecurityType.offset > 0 ? _fixPtr + fieldSecurityType.offset : nullptr; }
    private: FieldSecurityType fieldSecurityType;
 
    public:
-   bool isSetSecuritySubType() const { return fieldSecuritySubType.offset >= 0; }
+   bool isSetSecuritySubType() const { return fieldSecuritySubType.offset > 0; }
    FieldSecuritySubType::ValueType getSecuritySubType() const { return fieldSecuritySubType.getValue( _fixPtr ); }
-   std::string_view getSecuritySubTypeView() const { return fieldSecuritySubType.offset >= 0 ? std::string_view{ _fixPtr + fieldSecuritySubType.offset, getValueLength( _fixPtr + fieldSecuritySubType.offset ) } : std::string_view{}; }
+   std::string_view getSecuritySubTypeView() const { return fieldSecuritySubType.offset > 0 ? std::string_view{ _fixPtr + fieldSecuritySubType.offset, getValueLength( _fixPtr + fieldSecuritySubType.offset ) } : std::string_view{}; }
    const char * ptrToSecuritySubType() const { return _fixPtr + fieldSecuritySubType.offset; }
-   const char * getIfSetSecuritySubType() const { return fieldSecuritySubType.offset >= 0 ? _fixPtr + fieldSecuritySubType.offset : nullptr; }
+   const char * ptrToTagSecuritySubType() const { return _fixPtr + fieldSecuritySubType.offset - 1 - FieldSecuritySubType::tagWidth(); }
+   const char * getIfSetSecuritySubType() const { return fieldSecuritySubType.offset > 0 ? _fixPtr + fieldSecuritySubType.offset : nullptr; }
    private: FieldSecuritySubType fieldSecuritySubType;
 
    public:
-   bool isSetMaturityMonthYear() const { return fieldMaturityMonthYear.offset >= 0; }
+   bool isSetMaturityMonthYear() const { return fieldMaturityMonthYear.offset > 0; }
    FieldMaturityMonthYear::ValueType getMaturityMonthYear() const { return fieldMaturityMonthYear.getValue( _fixPtr ); }
-   std::string_view getMaturityMonthYearView() const { return fieldMaturityMonthYear.offset >= 0 ? std::string_view{ _fixPtr + fieldMaturityMonthYear.offset, getValueLength( _fixPtr + fieldMaturityMonthYear.offset ) } : std::string_view{}; }
+   std::string_view getMaturityMonthYearView() const { return fieldMaturityMonthYear.offset > 0 ? std::string_view{ _fixPtr + fieldMaturityMonthYear.offset, getValueLength( _fixPtr + fieldMaturityMonthYear.offset ) } : std::string_view{}; }
    const char * ptrToMaturityMonthYear() const { return _fixPtr + fieldMaturityMonthYear.offset; }
-   const char * getIfSetMaturityMonthYear() const { return fieldMaturityMonthYear.offset >= 0 ? _fixPtr + fieldMaturityMonthYear.offset : nullptr; }
+   const char * ptrToTagMaturityMonthYear() const { return _fixPtr + fieldMaturityMonthYear.offset - 1 - FieldMaturityMonthYear::tagWidth(); }
+   const char * getIfSetMaturityMonthYear() const { return fieldMaturityMonthYear.offset > 0 ? _fixPtr + fieldMaturityMonthYear.offset : nullptr; }
    private: FieldMaturityMonthYear fieldMaturityMonthYear;
 
    public:
-   bool isSetMaturityDate() const { return fieldMaturityDate.offset >= 0; }
+   bool isSetMaturityDate() const { return fieldMaturityDate.offset > 0; }
    FieldMaturityDate::ValueType getMaturityDate() const { return fieldMaturityDate.getValue( _fixPtr ); }
-   std::string_view getMaturityDateView() const { return fieldMaturityDate.offset >= 0 ? std::string_view{ _fixPtr + fieldMaturityDate.offset, getValueLength( _fixPtr + fieldMaturityDate.offset ) } : std::string_view{}; }
+   std::string_view getMaturityDateView() const { return fieldMaturityDate.offset > 0 ? std::string_view{ _fixPtr + fieldMaturityDate.offset, getValueLength( _fixPtr + fieldMaturityDate.offset ) } : std::string_view{}; }
    const char * ptrToMaturityDate() const { return _fixPtr + fieldMaturityDate.offset; }
-   const char * getIfSetMaturityDate() const { return fieldMaturityDate.offset >= 0 ? _fixPtr + fieldMaturityDate.offset : nullptr; }
+   const char * ptrToTagMaturityDate() const { return _fixPtr + fieldMaturityDate.offset - 1 - FieldMaturityDate::tagWidth(); }
+   const char * getIfSetMaturityDate() const { return fieldMaturityDate.offset > 0 ? _fixPtr + fieldMaturityDate.offset : nullptr; }
    private: FieldMaturityDate fieldMaturityDate;
 
    public:
-   bool isSetPutOrCall() const { return fieldPutOrCall.offset >= 0; }
+   bool isSetPutOrCall() const { return fieldPutOrCall.offset > 0; }
    FieldPutOrCall::ValueType getPutOrCall() const { return fieldPutOrCall.getValue( _fixPtr ); }
-   std::string_view getPutOrCallView() const { return fieldPutOrCall.offset >= 0 ? std::string_view{ _fixPtr + fieldPutOrCall.offset, getValueLength( _fixPtr + fieldPutOrCall.offset ) } : std::string_view{}; }
+   std::string_view getPutOrCallView() const { return fieldPutOrCall.offset > 0 ? std::string_view{ _fixPtr + fieldPutOrCall.offset, getValueLength( _fixPtr + fieldPutOrCall.offset ) } : std::string_view{}; }
    const char * ptrToPutOrCall() const { return _fixPtr + fieldPutOrCall.offset; }
-   const char * getIfSetPutOrCall() const { return fieldPutOrCall.offset >= 0 ? _fixPtr + fieldPutOrCall.offset : nullptr; }
+   const char * ptrToTagPutOrCall() const { return _fixPtr + fieldPutOrCall.offset - 1 - FieldPutOrCall::tagWidth(); }
+   const char * getIfSetPutOrCall() const { return fieldPutOrCall.offset > 0 ? _fixPtr + fieldPutOrCall.offset : nullptr; }
    private: FieldPutOrCall fieldPutOrCall;
 
    public:
-   bool isSetCouponPaymentDate() const { return fieldCouponPaymentDate.offset >= 0; }
+   bool isSetCouponPaymentDate() const { return fieldCouponPaymentDate.offset > 0; }
    FieldCouponPaymentDate::ValueType getCouponPaymentDate() const { return fieldCouponPaymentDate.getValue( _fixPtr ); }
-   std::string_view getCouponPaymentDateView() const { return fieldCouponPaymentDate.offset >= 0 ? std::string_view{ _fixPtr + fieldCouponPaymentDate.offset, getValueLength( _fixPtr + fieldCouponPaymentDate.offset ) } : std::string_view{}; }
+   std::string_view getCouponPaymentDateView() const { return fieldCouponPaymentDate.offset > 0 ? std::string_view{ _fixPtr + fieldCouponPaymentDate.offset, getValueLength( _fixPtr + fieldCouponPaymentDate.offset ) } : std::string_view{}; }
    const char * ptrToCouponPaymentDate() const { return _fixPtr + fieldCouponPaymentDate.offset; }
-   const char * getIfSetCouponPaymentDate() const { return fieldCouponPaymentDate.offset >= 0 ? _fixPtr + fieldCouponPaymentDate.offset : nullptr; }
+   const char * ptrToTagCouponPaymentDate() const { return _fixPtr + fieldCouponPaymentDate.offset - 1 - FieldCouponPaymentDate::tagWidth(); }
+   const char * getIfSetCouponPaymentDate() const { return fieldCouponPaymentDate.offset > 0 ? _fixPtr + fieldCouponPaymentDate.offset : nullptr; }
    private: FieldCouponPaymentDate fieldCouponPaymentDate;
 
    public:
-   bool isSetIssueDate() const { return fieldIssueDate.offset >= 0; }
+   bool isSetIssueDate() const { return fieldIssueDate.offset > 0; }
    FieldIssueDate::ValueType getIssueDate() const { return fieldIssueDate.getValue( _fixPtr ); }
-   std::string_view getIssueDateView() const { return fieldIssueDate.offset >= 0 ? std::string_view{ _fixPtr + fieldIssueDate.offset, getValueLength( _fixPtr + fieldIssueDate.offset ) } : std::string_view{}; }
+   std::string_view getIssueDateView() const { return fieldIssueDate.offset > 0 ? std::string_view{ _fixPtr + fieldIssueDate.offset, getValueLength( _fixPtr + fieldIssueDate.offset ) } : std::string_view{}; }
    const char * ptrToIssueDate() const { return _fixPtr + fieldIssueDate.offset; }
-   const char * getIfSetIssueDate() const { return fieldIssueDate.offset >= 0 ? _fixPtr + fieldIssueDate.offset : nullptr; }
+   const char * ptrToTagIssueDate() const { return _fixPtr + fieldIssueDate.offset - 1 - FieldIssueDate::tagWidth(); }
+   const char * getIfSetIssueDate() const { return fieldIssueDate.offset > 0 ? _fixPtr + fieldIssueDate.offset : nullptr; }
    private: FieldIssueDate fieldIssueDate;
 
    public:
-   bool isSetRepoCollateralSecurityType() const { return fieldRepoCollateralSecurityType.offset >= 0; }
+   bool isSetRepoCollateralSecurityType() const { return fieldRepoCollateralSecurityType.offset > 0; }
    FieldRepoCollateralSecurityType::ValueType getRepoCollateralSecurityType() const { return fieldRepoCollateralSecurityType.getValue( _fixPtr ); }
-   std::string_view getRepoCollateralSecurityTypeView() const { return fieldRepoCollateralSecurityType.offset >= 0 ? std::string_view{ _fixPtr + fieldRepoCollateralSecurityType.offset, getValueLength( _fixPtr + fieldRepoCollateralSecurityType.offset ) } : std::string_view{}; }
+   std::string_view getRepoCollateralSecurityTypeView() const { return fieldRepoCollateralSecurityType.offset > 0 ? std::string_view{ _fixPtr + fieldRepoCollateralSecurityType.offset, getValueLength( _fixPtr + fieldRepoCollateralSecurityType.offset ) } : std::string_view{}; }
    const char * ptrToRepoCollateralSecurityType() const { return _fixPtr + fieldRepoCollateralSecurityType.offset; }
-   const char * getIfSetRepoCollateralSecurityType() const { return fieldRepoCollateralSecurityType.offset >= 0 ? _fixPtr + fieldRepoCollateralSecurityType.offset : nullptr; }
+   const char * ptrToTagRepoCollateralSecurityType() const { return _fixPtr + fieldRepoCollateralSecurityType.offset - 1 - FieldRepoCollateralSecurityType::tagWidth(); }
+   const char * getIfSetRepoCollateralSecurityType() const { return fieldRepoCollateralSecurityType.offset > 0 ? _fixPtr + fieldRepoCollateralSecurityType.offset : nullptr; }
    private: FieldRepoCollateralSecurityType fieldRepoCollateralSecurityType;
 
    public:
-   bool isSetRepurchaseTerm() const { return fieldRepurchaseTerm.offset >= 0; }
+   bool isSetRepurchaseTerm() const { return fieldRepurchaseTerm.offset > 0; }
    FieldRepurchaseTerm::ValueType getRepurchaseTerm() const { return fieldRepurchaseTerm.getValue( _fixPtr ); }
-   std::string_view getRepurchaseTermView() const { return fieldRepurchaseTerm.offset >= 0 ? std::string_view{ _fixPtr + fieldRepurchaseTerm.offset, getValueLength( _fixPtr + fieldRepurchaseTerm.offset ) } : std::string_view{}; }
+   std::string_view getRepurchaseTermView() const { return fieldRepurchaseTerm.offset > 0 ? std::string_view{ _fixPtr + fieldRepurchaseTerm.offset, getValueLength( _fixPtr + fieldRepurchaseTerm.offset ) } : std::string_view{}; }
    const char * ptrToRepurchaseTerm() const { return _fixPtr + fieldRepurchaseTerm.offset; }
-   const char * getIfSetRepurchaseTerm() const { return fieldRepurchaseTerm.offset >= 0 ? _fixPtr + fieldRepurchaseTerm.offset : nullptr; }
+   const char * ptrToTagRepurchaseTerm() const { return _fixPtr + fieldRepurchaseTerm.offset - 1 - FieldRepurchaseTerm::tagWidth(); }
+   const char * getIfSetRepurchaseTerm() const { return fieldRepurchaseTerm.offset > 0 ? _fixPtr + fieldRepurchaseTerm.offset : nullptr; }
    private: FieldRepurchaseTerm fieldRepurchaseTerm;
 
    public:
-   bool isSetRepurchaseRate() const { return fieldRepurchaseRate.offset >= 0; }
+   bool isSetRepurchaseRate() const { return fieldRepurchaseRate.offset > 0; }
    FieldRepurchaseRate::ValueType getRepurchaseRate() const { return fieldRepurchaseRate.getValue( _fixPtr ); }
-   std::string_view getRepurchaseRateView() const { return fieldRepurchaseRate.offset >= 0 ? std::string_view{ _fixPtr + fieldRepurchaseRate.offset, getValueLength( _fixPtr + fieldRepurchaseRate.offset ) } : std::string_view{}; }
+   std::string_view getRepurchaseRateView() const { return fieldRepurchaseRate.offset > 0 ? std::string_view{ _fixPtr + fieldRepurchaseRate.offset, getValueLength( _fixPtr + fieldRepurchaseRate.offset ) } : std::string_view{}; }
    const char * ptrToRepurchaseRate() const { return _fixPtr + fieldRepurchaseRate.offset; }
-   const char * getIfSetRepurchaseRate() const { return fieldRepurchaseRate.offset >= 0 ? _fixPtr + fieldRepurchaseRate.offset : nullptr; }
+   const char * ptrToTagRepurchaseRate() const { return _fixPtr + fieldRepurchaseRate.offset - 1 - FieldRepurchaseRate::tagWidth(); }
+   const char * getIfSetRepurchaseRate() const { return fieldRepurchaseRate.offset > 0 ? _fixPtr + fieldRepurchaseRate.offset : nullptr; }
    private: FieldRepurchaseRate fieldRepurchaseRate;
 
    public:
-   bool isSetFactor() const { return fieldFactor.offset >= 0; }
+   bool isSetFactor() const { return fieldFactor.offset > 0; }
    FieldFactor::ValueType getFactor() const { return fieldFactor.getValue( _fixPtr ); }
-   std::string_view getFactorView() const { return fieldFactor.offset >= 0 ? std::string_view{ _fixPtr + fieldFactor.offset, getValueLength( _fixPtr + fieldFactor.offset ) } : std::string_view{}; }
+   std::string_view getFactorView() const { return fieldFactor.offset > 0 ? std::string_view{ _fixPtr + fieldFactor.offset, getValueLength( _fixPtr + fieldFactor.offset ) } : std::string_view{}; }
    const char * ptrToFactor() const { return _fixPtr + fieldFactor.offset; }
-   const char * getIfSetFactor() const { return fieldFactor.offset >= 0 ? _fixPtr + fieldFactor.offset : nullptr; }
+   const char * ptrToTagFactor() const { return _fixPtr + fieldFactor.offset - 1 - FieldFactor::tagWidth(); }
+   const char * getIfSetFactor() const { return fieldFactor.offset > 0 ? _fixPtr + fieldFactor.offset : nullptr; }
    private: FieldFactor fieldFactor;
 
    public:
-   bool isSetCreditRating() const { return fieldCreditRating.offset >= 0; }
+   bool isSetCreditRating() const { return fieldCreditRating.offset > 0; }
    FieldCreditRating::ValueType getCreditRating() const { return fieldCreditRating.getValue( _fixPtr ); }
-   std::string_view getCreditRatingView() const { return fieldCreditRating.offset >= 0 ? std::string_view{ _fixPtr + fieldCreditRating.offset, getValueLength( _fixPtr + fieldCreditRating.offset ) } : std::string_view{}; }
+   std::string_view getCreditRatingView() const { return fieldCreditRating.offset > 0 ? std::string_view{ _fixPtr + fieldCreditRating.offset, getValueLength( _fixPtr + fieldCreditRating.offset ) } : std::string_view{}; }
    const char * ptrToCreditRating() const { return _fixPtr + fieldCreditRating.offset; }
-   const char * getIfSetCreditRating() const { return fieldCreditRating.offset >= 0 ? _fixPtr + fieldCreditRating.offset : nullptr; }
+   const char * ptrToTagCreditRating() const { return _fixPtr + fieldCreditRating.offset - 1 - FieldCreditRating::tagWidth(); }
+   const char * getIfSetCreditRating() const { return fieldCreditRating.offset > 0 ? _fixPtr + fieldCreditRating.offset : nullptr; }
    private: FieldCreditRating fieldCreditRating;
 
    public:
-   bool isSetInstrRegistry() const { return fieldInstrRegistry.offset >= 0; }
+   bool isSetInstrRegistry() const { return fieldInstrRegistry.offset > 0; }
    FieldInstrRegistry::ValueType getInstrRegistry() const { return fieldInstrRegistry.getValue( _fixPtr ); }
-   std::string_view getInstrRegistryView() const { return fieldInstrRegistry.offset >= 0 ? std::string_view{ _fixPtr + fieldInstrRegistry.offset, getValueLength( _fixPtr + fieldInstrRegistry.offset ) } : std::string_view{}; }
+   std::string_view getInstrRegistryView() const { return fieldInstrRegistry.offset > 0 ? std::string_view{ _fixPtr + fieldInstrRegistry.offset, getValueLength( _fixPtr + fieldInstrRegistry.offset ) } : std::string_view{}; }
    const char * ptrToInstrRegistry() const { return _fixPtr + fieldInstrRegistry.offset; }
-   const char * getIfSetInstrRegistry() const { return fieldInstrRegistry.offset >= 0 ? _fixPtr + fieldInstrRegistry.offset : nullptr; }
+   const char * ptrToTagInstrRegistry() const { return _fixPtr + fieldInstrRegistry.offset - 1 - FieldInstrRegistry::tagWidth(); }
+   const char * getIfSetInstrRegistry() const { return fieldInstrRegistry.offset > 0 ? _fixPtr + fieldInstrRegistry.offset : nullptr; }
    private: FieldInstrRegistry fieldInstrRegistry;
 
    public:
-   bool isSetCountryOfIssue() const { return fieldCountryOfIssue.offset >= 0; }
+   bool isSetCountryOfIssue() const { return fieldCountryOfIssue.offset > 0; }
    FieldCountryOfIssue::ValueType getCountryOfIssue() const { return fieldCountryOfIssue.getValue( _fixPtr ); }
-   std::string_view getCountryOfIssueView() const { return fieldCountryOfIssue.offset >= 0 ? std::string_view{ _fixPtr + fieldCountryOfIssue.offset, getValueLength( _fixPtr + fieldCountryOfIssue.offset ) } : std::string_view{}; }
+   std::string_view getCountryOfIssueView() const { return fieldCountryOfIssue.offset > 0 ? std::string_view{ _fixPtr + fieldCountryOfIssue.offset, getValueLength( _fixPtr + fieldCountryOfIssue.offset ) } : std::string_view{}; }
    const char * ptrToCountryOfIssue() const { return _fixPtr + fieldCountryOfIssue.offset; }
-   const char * getIfSetCountryOfIssue() const { return fieldCountryOfIssue.offset >= 0 ? _fixPtr + fieldCountryOfIssue.offset : nullptr; }
+   const char * ptrToTagCountryOfIssue() const { return _fixPtr + fieldCountryOfIssue.offset - 1 - FieldCountryOfIssue::tagWidth(); }
+   const char * getIfSetCountryOfIssue() const { return fieldCountryOfIssue.offset > 0 ? _fixPtr + fieldCountryOfIssue.offset : nullptr; }
    private: FieldCountryOfIssue fieldCountryOfIssue;
 
    public:
-   bool isSetStateOrProvinceOfIssue() const { return fieldStateOrProvinceOfIssue.offset >= 0; }
+   bool isSetStateOrProvinceOfIssue() const { return fieldStateOrProvinceOfIssue.offset > 0; }
    FieldStateOrProvinceOfIssue::ValueType getStateOrProvinceOfIssue() const { return fieldStateOrProvinceOfIssue.getValue( _fixPtr ); }
-   std::string_view getStateOrProvinceOfIssueView() const { return fieldStateOrProvinceOfIssue.offset >= 0 ? std::string_view{ _fixPtr + fieldStateOrProvinceOfIssue.offset, getValueLength( _fixPtr + fieldStateOrProvinceOfIssue.offset ) } : std::string_view{}; }
+   std::string_view getStateOrProvinceOfIssueView() const { return fieldStateOrProvinceOfIssue.offset > 0 ? std::string_view{ _fixPtr + fieldStateOrProvinceOfIssue.offset, getValueLength( _fixPtr + fieldStateOrProvinceOfIssue.offset ) } : std::string_view{}; }
    const char * ptrToStateOrProvinceOfIssue() const { return _fixPtr + fieldStateOrProvinceOfIssue.offset; }
-   const char * getIfSetStateOrProvinceOfIssue() const { return fieldStateOrProvinceOfIssue.offset >= 0 ? _fixPtr + fieldStateOrProvinceOfIssue.offset : nullptr; }
+   const char * ptrToTagStateOrProvinceOfIssue() const { return _fixPtr + fieldStateOrProvinceOfIssue.offset - 1 - FieldStateOrProvinceOfIssue::tagWidth(); }
+   const char * getIfSetStateOrProvinceOfIssue() const { return fieldStateOrProvinceOfIssue.offset > 0 ? _fixPtr + fieldStateOrProvinceOfIssue.offset : nullptr; }
    private: FieldStateOrProvinceOfIssue fieldStateOrProvinceOfIssue;
 
    public:
-   bool isSetLocaleOfIssue() const { return fieldLocaleOfIssue.offset >= 0; }
+   bool isSetLocaleOfIssue() const { return fieldLocaleOfIssue.offset > 0; }
    FieldLocaleOfIssue::ValueType getLocaleOfIssue() const { return fieldLocaleOfIssue.getValue( _fixPtr ); }
-   std::string_view getLocaleOfIssueView() const { return fieldLocaleOfIssue.offset >= 0 ? std::string_view{ _fixPtr + fieldLocaleOfIssue.offset, getValueLength( _fixPtr + fieldLocaleOfIssue.offset ) } : std::string_view{}; }
+   std::string_view getLocaleOfIssueView() const { return fieldLocaleOfIssue.offset > 0 ? std::string_view{ _fixPtr + fieldLocaleOfIssue.offset, getValueLength( _fixPtr + fieldLocaleOfIssue.offset ) } : std::string_view{}; }
    const char * ptrToLocaleOfIssue() const { return _fixPtr + fieldLocaleOfIssue.offset; }
-   const char * getIfSetLocaleOfIssue() const { return fieldLocaleOfIssue.offset >= 0 ? _fixPtr + fieldLocaleOfIssue.offset : nullptr; }
+   const char * ptrToTagLocaleOfIssue() const { return _fixPtr + fieldLocaleOfIssue.offset - 1 - FieldLocaleOfIssue::tagWidth(); }
+   const char * getIfSetLocaleOfIssue() const { return fieldLocaleOfIssue.offset > 0 ? _fixPtr + fieldLocaleOfIssue.offset : nullptr; }
    private: FieldLocaleOfIssue fieldLocaleOfIssue;
 
    public:
-   bool isSetRedemptionDate() const { return fieldRedemptionDate.offset >= 0; }
+   bool isSetRedemptionDate() const { return fieldRedemptionDate.offset > 0; }
    FieldRedemptionDate::ValueType getRedemptionDate() const { return fieldRedemptionDate.getValue( _fixPtr ); }
-   std::string_view getRedemptionDateView() const { return fieldRedemptionDate.offset >= 0 ? std::string_view{ _fixPtr + fieldRedemptionDate.offset, getValueLength( _fixPtr + fieldRedemptionDate.offset ) } : std::string_view{}; }
+   std::string_view getRedemptionDateView() const { return fieldRedemptionDate.offset > 0 ? std::string_view{ _fixPtr + fieldRedemptionDate.offset, getValueLength( _fixPtr + fieldRedemptionDate.offset ) } : std::string_view{}; }
    const char * ptrToRedemptionDate() const { return _fixPtr + fieldRedemptionDate.offset; }
-   const char * getIfSetRedemptionDate() const { return fieldRedemptionDate.offset >= 0 ? _fixPtr + fieldRedemptionDate.offset : nullptr; }
+   const char * ptrToTagRedemptionDate() const { return _fixPtr + fieldRedemptionDate.offset - 1 - FieldRedemptionDate::tagWidth(); }
+   const char * getIfSetRedemptionDate() const { return fieldRedemptionDate.offset > 0 ? _fixPtr + fieldRedemptionDate.offset : nullptr; }
    private: FieldRedemptionDate fieldRedemptionDate;
 
    public:
-   bool isSetStrikePrice() const { return fieldStrikePrice.offset >= 0; }
+   bool isSetStrikePrice() const { return fieldStrikePrice.offset > 0; }
    FieldStrikePrice::ValueType getStrikePrice() const { return fieldStrikePrice.getValue( _fixPtr ); }
-   std::string_view getStrikePriceView() const { return fieldStrikePrice.offset >= 0 ? std::string_view{ _fixPtr + fieldStrikePrice.offset, getValueLength( _fixPtr + fieldStrikePrice.offset ) } : std::string_view{}; }
+   std::string_view getStrikePriceView() const { return fieldStrikePrice.offset > 0 ? std::string_view{ _fixPtr + fieldStrikePrice.offset, getValueLength( _fixPtr + fieldStrikePrice.offset ) } : std::string_view{}; }
    const char * ptrToStrikePrice() const { return _fixPtr + fieldStrikePrice.offset; }
-   const char * getIfSetStrikePrice() const { return fieldStrikePrice.offset >= 0 ? _fixPtr + fieldStrikePrice.offset : nullptr; }
+   const char * ptrToTagStrikePrice() const { return _fixPtr + fieldStrikePrice.offset - 1 - FieldStrikePrice::tagWidth(); }
+   const char * getIfSetStrikePrice() const { return fieldStrikePrice.offset > 0 ? _fixPtr + fieldStrikePrice.offset : nullptr; }
    private: FieldStrikePrice fieldStrikePrice;
 
    public:
-   bool isSetStrikeCurrency() const { return fieldStrikeCurrency.offset >= 0; }
+   bool isSetStrikeCurrency() const { return fieldStrikeCurrency.offset > 0; }
    FieldStrikeCurrency::ValueType getStrikeCurrency() const { return fieldStrikeCurrency.getValue( _fixPtr ); }
-   std::string_view getStrikeCurrencyView() const { return fieldStrikeCurrency.offset >= 0 ? std::string_view{ _fixPtr + fieldStrikeCurrency.offset, getValueLength( _fixPtr + fieldStrikeCurrency.offset ) } : std::string_view{}; }
+   std::string_view getStrikeCurrencyView() const { return fieldStrikeCurrency.offset > 0 ? std::string_view{ _fixPtr + fieldStrikeCurrency.offset, getValueLength( _fixPtr + fieldStrikeCurrency.offset ) } : std::string_view{}; }
    const char * ptrToStrikeCurrency() const { return _fixPtr + fieldStrikeCurrency.offset; }
-   const char * getIfSetStrikeCurrency() const { return fieldStrikeCurrency.offset >= 0 ? _fixPtr + fieldStrikeCurrency.offset : nullptr; }
+   const char * ptrToTagStrikeCurrency() const { return _fixPtr + fieldStrikeCurrency.offset - 1 - FieldStrikeCurrency::tagWidth(); }
+   const char * getIfSetStrikeCurrency() const { return fieldStrikeCurrency.offset > 0 ? _fixPtr + fieldStrikeCurrency.offset : nullptr; }
    private: FieldStrikeCurrency fieldStrikeCurrency;
 
    public:
-   bool isSetOptAttribute() const { return fieldOptAttribute.offset >= 0; }
+   bool isSetOptAttribute() const { return fieldOptAttribute.offset > 0; }
    FieldOptAttribute::ValueType getOptAttribute() const { return fieldOptAttribute.getValue( _fixPtr ); }
-   std::string_view getOptAttributeView() const { return fieldOptAttribute.offset >= 0 ? std::string_view{ _fixPtr + fieldOptAttribute.offset, getValueLength( _fixPtr + fieldOptAttribute.offset ) } : std::string_view{}; }
+   std::string_view getOptAttributeView() const { return fieldOptAttribute.offset > 0 ? std::string_view{ _fixPtr + fieldOptAttribute.offset, getValueLength( _fixPtr + fieldOptAttribute.offset ) } : std::string_view{}; }
    const char * ptrToOptAttribute() const { return _fixPtr + fieldOptAttribute.offset; }
-   const char * getIfSetOptAttribute() const { return fieldOptAttribute.offset >= 0 ? _fixPtr + fieldOptAttribute.offset : nullptr; }
+   const char * ptrToTagOptAttribute() const { return _fixPtr + fieldOptAttribute.offset - 1 - FieldOptAttribute::tagWidth(); }
+   const char * getIfSetOptAttribute() const { return fieldOptAttribute.offset > 0 ? _fixPtr + fieldOptAttribute.offset : nullptr; }
    private: FieldOptAttribute fieldOptAttribute;
 
    public:
-   bool isSetContractMultiplier() const { return fieldContractMultiplier.offset >= 0; }
+   bool isSetContractMultiplier() const { return fieldContractMultiplier.offset > 0; }
    FieldContractMultiplier::ValueType getContractMultiplier() const { return fieldContractMultiplier.getValue( _fixPtr ); }
-   std::string_view getContractMultiplierView() const { return fieldContractMultiplier.offset >= 0 ? std::string_view{ _fixPtr + fieldContractMultiplier.offset, getValueLength( _fixPtr + fieldContractMultiplier.offset ) } : std::string_view{}; }
+   std::string_view getContractMultiplierView() const { return fieldContractMultiplier.offset > 0 ? std::string_view{ _fixPtr + fieldContractMultiplier.offset, getValueLength( _fixPtr + fieldContractMultiplier.offset ) } : std::string_view{}; }
    const char * ptrToContractMultiplier() const { return _fixPtr + fieldContractMultiplier.offset; }
-   const char * getIfSetContractMultiplier() const { return fieldContractMultiplier.offset >= 0 ? _fixPtr + fieldContractMultiplier.offset : nullptr; }
+   const char * ptrToTagContractMultiplier() const { return _fixPtr + fieldContractMultiplier.offset - 1 - FieldContractMultiplier::tagWidth(); }
+   const char * getIfSetContractMultiplier() const { return fieldContractMultiplier.offset > 0 ? _fixPtr + fieldContractMultiplier.offset : nullptr; }
    private: FieldContractMultiplier fieldContractMultiplier;
 
    public:
-   bool isSetCouponRate() const { return fieldCouponRate.offset >= 0; }
+   bool isSetCouponRate() const { return fieldCouponRate.offset > 0; }
    FieldCouponRate::ValueType getCouponRate() const { return fieldCouponRate.getValue( _fixPtr ); }
-   std::string_view getCouponRateView() const { return fieldCouponRate.offset >= 0 ? std::string_view{ _fixPtr + fieldCouponRate.offset, getValueLength( _fixPtr + fieldCouponRate.offset ) } : std::string_view{}; }
+   std::string_view getCouponRateView() const { return fieldCouponRate.offset > 0 ? std::string_view{ _fixPtr + fieldCouponRate.offset, getValueLength( _fixPtr + fieldCouponRate.offset ) } : std::string_view{}; }
    const char * ptrToCouponRate() const { return _fixPtr + fieldCouponRate.offset; }
-   const char * getIfSetCouponRate() const { return fieldCouponRate.offset >= 0 ? _fixPtr + fieldCouponRate.offset : nullptr; }
+   const char * ptrToTagCouponRate() const { return _fixPtr + fieldCouponRate.offset - 1 - FieldCouponRate::tagWidth(); }
+   const char * getIfSetCouponRate() const { return fieldCouponRate.offset > 0 ? _fixPtr + fieldCouponRate.offset : nullptr; }
    private: FieldCouponRate fieldCouponRate;
 
    public:
-   bool isSetSecurityExchange() const { return fieldSecurityExchange.offset >= 0; }
+   bool isSetSecurityExchange() const { return fieldSecurityExchange.offset > 0; }
    FieldSecurityExchange::ValueType getSecurityExchange() const { return fieldSecurityExchange.getValue( _fixPtr ); }
-   std::string_view getSecurityExchangeView() const { return fieldSecurityExchange.offset >= 0 ? std::string_view{ _fixPtr + fieldSecurityExchange.offset, getValueLength( _fixPtr + fieldSecurityExchange.offset ) } : std::string_view{}; }
+   std::string_view getSecurityExchangeView() const { return fieldSecurityExchange.offset > 0 ? std::string_view{ _fixPtr + fieldSecurityExchange.offset, getValueLength( _fixPtr + fieldSecurityExchange.offset ) } : std::string_view{}; }
    const char * ptrToSecurityExchange() const { return _fixPtr + fieldSecurityExchange.offset; }
-   const char * getIfSetSecurityExchange() const { return fieldSecurityExchange.offset >= 0 ? _fixPtr + fieldSecurityExchange.offset : nullptr; }
+   const char * ptrToTagSecurityExchange() const { return _fixPtr + fieldSecurityExchange.offset - 1 - FieldSecurityExchange::tagWidth(); }
+   const char * getIfSetSecurityExchange() const { return fieldSecurityExchange.offset > 0 ? _fixPtr + fieldSecurityExchange.offset : nullptr; }
    private: FieldSecurityExchange fieldSecurityExchange;
 
    public:
-   bool isSetIssuer() const { return fieldIssuer.offset >= 0; }
+   bool isSetIssuer() const { return fieldIssuer.offset > 0; }
    FieldIssuer::ValueType getIssuer() const { return fieldIssuer.getValue( _fixPtr ); }
-   std::string_view getIssuerView() const { return fieldIssuer.offset >= 0 ? std::string_view{ _fixPtr + fieldIssuer.offset, getValueLength( _fixPtr + fieldIssuer.offset ) } : std::string_view{}; }
+   std::string_view getIssuerView() const { return fieldIssuer.offset > 0 ? std::string_view{ _fixPtr + fieldIssuer.offset, getValueLength( _fixPtr + fieldIssuer.offset ) } : std::string_view{}; }
    const char * ptrToIssuer() const { return _fixPtr + fieldIssuer.offset; }
-   const char * getIfSetIssuer() const { return fieldIssuer.offset >= 0 ? _fixPtr + fieldIssuer.offset : nullptr; }
+   const char * ptrToTagIssuer() const { return _fixPtr + fieldIssuer.offset - 1 - FieldIssuer::tagWidth(); }
+   const char * getIfSetIssuer() const { return fieldIssuer.offset > 0 ? _fixPtr + fieldIssuer.offset : nullptr; }
    private: FieldIssuer fieldIssuer;
 
    public:
-   bool isSetEncodedIssuerLen() const { return fieldEncodedIssuerLen.offset >= 0; }
+   bool isSetEncodedIssuerLen() const { return fieldEncodedIssuerLen.offset > 0; }
    FieldEncodedIssuerLen::ValueType getEncodedIssuerLen() const { return fieldEncodedIssuerLen.getValue( _fixPtr ); }
-   std::string_view getEncodedIssuerLenView() const { return fieldEncodedIssuerLen.offset >= 0 ? std::string_view{ _fixPtr + fieldEncodedIssuerLen.offset, getValueLength( _fixPtr + fieldEncodedIssuerLen.offset ) } : std::string_view{}; }
+   std::string_view getEncodedIssuerLenView() const { return fieldEncodedIssuerLen.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedIssuerLen.offset, getValueLength( _fixPtr + fieldEncodedIssuerLen.offset ) } : std::string_view{}; }
    const char * ptrToEncodedIssuerLen() const { return _fixPtr + fieldEncodedIssuerLen.offset; }
-   const char * getIfSetEncodedIssuerLen() const { return fieldEncodedIssuerLen.offset >= 0 ? _fixPtr + fieldEncodedIssuerLen.offset : nullptr; }
+   const char * ptrToTagEncodedIssuerLen() const { return _fixPtr + fieldEncodedIssuerLen.offset - 1 - FieldEncodedIssuerLen::tagWidth(); }
+   const char * getIfSetEncodedIssuerLen() const { return fieldEncodedIssuerLen.offset > 0 ? _fixPtr + fieldEncodedIssuerLen.offset : nullptr; }
    private: FieldEncodedIssuerLen fieldEncodedIssuerLen;
 
    public:
-   bool isSetEncodedIssuer() const { return fieldEncodedIssuer.offset >= 0; }
+   bool isSetEncodedIssuer() const { return fieldEncodedIssuer.offset > 0; }
    FieldEncodedIssuer::ValueType getEncodedIssuer() const { return fieldEncodedIssuer.getValue( _fixPtr ); }
-   std::string_view getEncodedIssuerView() const { return fieldEncodedIssuer.offset >= 0 ? std::string_view{ _fixPtr + fieldEncodedIssuer.offset, getValueLength( _fixPtr + fieldEncodedIssuer.offset ) } : std::string_view{}; }
+   std::string_view getEncodedIssuerView() const { return fieldEncodedIssuer.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedIssuer.offset, getValueLength( _fixPtr + fieldEncodedIssuer.offset ) } : std::string_view{}; }
    const char * ptrToEncodedIssuer() const { return _fixPtr + fieldEncodedIssuer.offset; }
-   const char * getIfSetEncodedIssuer() const { return fieldEncodedIssuer.offset >= 0 ? _fixPtr + fieldEncodedIssuer.offset : nullptr; }
+   const char * ptrToTagEncodedIssuer() const { return _fixPtr + fieldEncodedIssuer.offset - 1 - FieldEncodedIssuer::tagWidth(); }
+   const char * getIfSetEncodedIssuer() const { return fieldEncodedIssuer.offset > 0 ? _fixPtr + fieldEncodedIssuer.offset : nullptr; }
    private: FieldEncodedIssuer fieldEncodedIssuer;
 
    public:
-   bool isSetSecurityDesc() const { return fieldSecurityDesc.offset >= 0; }
+   bool isSetSecurityDesc() const { return fieldSecurityDesc.offset > 0; }
    FieldSecurityDesc::ValueType getSecurityDesc() const { return fieldSecurityDesc.getValue( _fixPtr ); }
-   std::string_view getSecurityDescView() const { return fieldSecurityDesc.offset >= 0 ? std::string_view{ _fixPtr + fieldSecurityDesc.offset, getValueLength( _fixPtr + fieldSecurityDesc.offset ) } : std::string_view{}; }
+   std::string_view getSecurityDescView() const { return fieldSecurityDesc.offset > 0 ? std::string_view{ _fixPtr + fieldSecurityDesc.offset, getValueLength( _fixPtr + fieldSecurityDesc.offset ) } : std::string_view{}; }
    const char * ptrToSecurityDesc() const { return _fixPtr + fieldSecurityDesc.offset; }
-   const char * getIfSetSecurityDesc() const { return fieldSecurityDesc.offset >= 0 ? _fixPtr + fieldSecurityDesc.offset : nullptr; }
+   const char * ptrToTagSecurityDesc() const { return _fixPtr + fieldSecurityDesc.offset - 1 - FieldSecurityDesc::tagWidth(); }
+   const char * getIfSetSecurityDesc() const { return fieldSecurityDesc.offset > 0 ? _fixPtr + fieldSecurityDesc.offset : nullptr; }
    private: FieldSecurityDesc fieldSecurityDesc;
 
    public:
-   bool isSetEncodedSecurityDescLen() const { return fieldEncodedSecurityDescLen.offset >= 0; }
+   bool isSetEncodedSecurityDescLen() const { return fieldEncodedSecurityDescLen.offset > 0; }
    FieldEncodedSecurityDescLen::ValueType getEncodedSecurityDescLen() const { return fieldEncodedSecurityDescLen.getValue( _fixPtr ); }
-   std::string_view getEncodedSecurityDescLenView() const { return fieldEncodedSecurityDescLen.offset >= 0 ? std::string_view{ _fixPtr + fieldEncodedSecurityDescLen.offset, getValueLength( _fixPtr + fieldEncodedSecurityDescLen.offset ) } : std::string_view{}; }
+   std::string_view getEncodedSecurityDescLenView() const { return fieldEncodedSecurityDescLen.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedSecurityDescLen.offset, getValueLength( _fixPtr + fieldEncodedSecurityDescLen.offset ) } : std::string_view{}; }
    const char * ptrToEncodedSecurityDescLen() const { return _fixPtr + fieldEncodedSecurityDescLen.offset; }
-   const char * getIfSetEncodedSecurityDescLen() const { return fieldEncodedSecurityDescLen.offset >= 0 ? _fixPtr + fieldEncodedSecurityDescLen.offset : nullptr; }
+   const char * ptrToTagEncodedSecurityDescLen() const { return _fixPtr + fieldEncodedSecurityDescLen.offset - 1 - FieldEncodedSecurityDescLen::tagWidth(); }
+   const char * getIfSetEncodedSecurityDescLen() const { return fieldEncodedSecurityDescLen.offset > 0 ? _fixPtr + fieldEncodedSecurityDescLen.offset : nullptr; }
    private: FieldEncodedSecurityDescLen fieldEncodedSecurityDescLen;
 
    public:
-   bool isSetEncodedSecurityDesc() const { return fieldEncodedSecurityDesc.offset >= 0; }
+   bool isSetEncodedSecurityDesc() const { return fieldEncodedSecurityDesc.offset > 0; }
    FieldEncodedSecurityDesc::ValueType getEncodedSecurityDesc() const { return fieldEncodedSecurityDesc.getValue( _fixPtr ); }
-   std::string_view getEncodedSecurityDescView() const { return fieldEncodedSecurityDesc.offset >= 0 ? std::string_view{ _fixPtr + fieldEncodedSecurityDesc.offset, getValueLength( _fixPtr + fieldEncodedSecurityDesc.offset ) } : std::string_view{}; }
+   std::string_view getEncodedSecurityDescView() const { return fieldEncodedSecurityDesc.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedSecurityDesc.offset, getValueLength( _fixPtr + fieldEncodedSecurityDesc.offset ) } : std::string_view{}; }
    const char * ptrToEncodedSecurityDesc() const { return _fixPtr + fieldEncodedSecurityDesc.offset; }
-   const char * getIfSetEncodedSecurityDesc() const { return fieldEncodedSecurityDesc.offset >= 0 ? _fixPtr + fieldEncodedSecurityDesc.offset : nullptr; }
+   const char * ptrToTagEncodedSecurityDesc() const { return _fixPtr + fieldEncodedSecurityDesc.offset - 1 - FieldEncodedSecurityDesc::tagWidth(); }
+   const char * getIfSetEncodedSecurityDesc() const { return fieldEncodedSecurityDesc.offset > 0 ? _fixPtr + fieldEncodedSecurityDesc.offset : nullptr; }
    private: FieldEncodedSecurityDesc fieldEncodedSecurityDesc;
 
    public:
-   bool isSetPool() const { return fieldPool.offset >= 0; }
+   bool isSetPool() const { return fieldPool.offset > 0; }
    FieldPool::ValueType getPool() const { return fieldPool.getValue( _fixPtr ); }
-   std::string_view getPoolView() const { return fieldPool.offset >= 0 ? std::string_view{ _fixPtr + fieldPool.offset, getValueLength( _fixPtr + fieldPool.offset ) } : std::string_view{}; }
+   std::string_view getPoolView() const { return fieldPool.offset > 0 ? std::string_view{ _fixPtr + fieldPool.offset, getValueLength( _fixPtr + fieldPool.offset ) } : std::string_view{}; }
    const char * ptrToPool() const { return _fixPtr + fieldPool.offset; }
-   const char * getIfSetPool() const { return fieldPool.offset >= 0 ? _fixPtr + fieldPool.offset : nullptr; }
+   const char * ptrToTagPool() const { return _fixPtr + fieldPool.offset - 1 - FieldPool::tagWidth(); }
+   const char * getIfSetPool() const { return fieldPool.offset > 0 ? _fixPtr + fieldPool.offset : nullptr; }
    private: FieldPool fieldPool;
 
    public:
-   bool isSetContractSettlMonth() const { return fieldContractSettlMonth.offset >= 0; }
+   bool isSetContractSettlMonth() const { return fieldContractSettlMonth.offset > 0; }
    FieldContractSettlMonth::ValueType getContractSettlMonth() const { return fieldContractSettlMonth.getValue( _fixPtr ); }
-   std::string_view getContractSettlMonthView() const { return fieldContractSettlMonth.offset >= 0 ? std::string_view{ _fixPtr + fieldContractSettlMonth.offset, getValueLength( _fixPtr + fieldContractSettlMonth.offset ) } : std::string_view{}; }
+   std::string_view getContractSettlMonthView() const { return fieldContractSettlMonth.offset > 0 ? std::string_view{ _fixPtr + fieldContractSettlMonth.offset, getValueLength( _fixPtr + fieldContractSettlMonth.offset ) } : std::string_view{}; }
    const char * ptrToContractSettlMonth() const { return _fixPtr + fieldContractSettlMonth.offset; }
-   const char * getIfSetContractSettlMonth() const { return fieldContractSettlMonth.offset >= 0 ? _fixPtr + fieldContractSettlMonth.offset : nullptr; }
+   const char * ptrToTagContractSettlMonth() const { return _fixPtr + fieldContractSettlMonth.offset - 1 - FieldContractSettlMonth::tagWidth(); }
+   const char * getIfSetContractSettlMonth() const { return fieldContractSettlMonth.offset > 0 ? _fixPtr + fieldContractSettlMonth.offset : nullptr; }
    private: FieldContractSettlMonth fieldContractSettlMonth;
 
    public:
-   bool isSetCPProgram() const { return fieldCPProgram.offset >= 0; }
+   bool isSetCPProgram() const { return fieldCPProgram.offset > 0; }
    FieldCPProgram::ValueType getCPProgram() const { return fieldCPProgram.getValue( _fixPtr ); }
-   std::string_view getCPProgramView() const { return fieldCPProgram.offset >= 0 ? std::string_view{ _fixPtr + fieldCPProgram.offset, getValueLength( _fixPtr + fieldCPProgram.offset ) } : std::string_view{}; }
+   std::string_view getCPProgramView() const { return fieldCPProgram.offset > 0 ? std::string_view{ _fixPtr + fieldCPProgram.offset, getValueLength( _fixPtr + fieldCPProgram.offset ) } : std::string_view{}; }
    const char * ptrToCPProgram() const { return _fixPtr + fieldCPProgram.offset; }
-   const char * getIfSetCPProgram() const { return fieldCPProgram.offset >= 0 ? _fixPtr + fieldCPProgram.offset : nullptr; }
+   const char * ptrToTagCPProgram() const { return _fixPtr + fieldCPProgram.offset - 1 - FieldCPProgram::tagWidth(); }
+   const char * getIfSetCPProgram() const { return fieldCPProgram.offset > 0 ? _fixPtr + fieldCPProgram.offset : nullptr; }
    private: FieldCPProgram fieldCPProgram;
 
    public:
-   bool isSetCPRegType() const { return fieldCPRegType.offset >= 0; }
+   bool isSetCPRegType() const { return fieldCPRegType.offset > 0; }
    FieldCPRegType::ValueType getCPRegType() const { return fieldCPRegType.getValue( _fixPtr ); }
-   std::string_view getCPRegTypeView() const { return fieldCPRegType.offset >= 0 ? std::string_view{ _fixPtr + fieldCPRegType.offset, getValueLength( _fixPtr + fieldCPRegType.offset ) } : std::string_view{}; }
+   std::string_view getCPRegTypeView() const { return fieldCPRegType.offset > 0 ? std::string_view{ _fixPtr + fieldCPRegType.offset, getValueLength( _fixPtr + fieldCPRegType.offset ) } : std::string_view{}; }
    const char * ptrToCPRegType() const { return _fixPtr + fieldCPRegType.offset; }
-   const char * getIfSetCPRegType() const { return fieldCPRegType.offset >= 0 ? _fixPtr + fieldCPRegType.offset : nullptr; }
+   const char * ptrToTagCPRegType() const { return _fixPtr + fieldCPRegType.offset - 1 - FieldCPRegType::tagWidth(); }
+   const char * getIfSetCPRegType() const { return fieldCPRegType.offset > 0 ? _fixPtr + fieldCPRegType.offset : nullptr; }
    private: FieldCPRegType fieldCPRegType;
 
    public:
-   bool isSetNoEvents() const { return fieldNoEvents.offset >= 0; }
+   bool isSetNoEvents() const { return fieldNoEvents.offset > 0; }
    FieldNoEvents::ValueType getNoEvents() const { return fieldNoEvents.getValue( _fixPtr ); }
-   std::string_view getNoEventsView() const { return fieldNoEvents.offset >= 0 ? std::string_view{ _fixPtr + fieldNoEvents.offset, getValueLength( _fixPtr + fieldNoEvents.offset ) } : std::string_view{}; }
+   std::string_view getNoEventsView() const { return fieldNoEvents.offset > 0 ? std::string_view{ _fixPtr + fieldNoEvents.offset, getValueLength( _fixPtr + fieldNoEvents.offset ) } : std::string_view{}; }
    const char * ptrToNoEvents() const { return _fixPtr + fieldNoEvents.offset; }
-   const char * getIfSetNoEvents() const { return fieldNoEvents.offset >= 0 ? _fixPtr + fieldNoEvents.offset : nullptr; }
+   const char * ptrToTagNoEvents() const { return _fixPtr + fieldNoEvents.offset - 1 - FieldNoEvents::tagWidth(); }
+   const char * getIfSetNoEvents() const { return fieldNoEvents.offset > 0 ? _fixPtr + fieldNoEvents.offset : nullptr; }
    private: FieldNoEvents fieldNoEvents;
   
    public:
@@ -1715,27 +1917,30 @@ class GroupOrders : public MessageBase
    private: GroupEvents::Array groupsEvents{ 10 };
 
    public:
-   bool isSetDatedDate() const { return fieldDatedDate.offset >= 0; }
+   bool isSetDatedDate() const { return fieldDatedDate.offset > 0; }
    FieldDatedDate::ValueType getDatedDate() const { return fieldDatedDate.getValue( _fixPtr ); }
-   std::string_view getDatedDateView() const { return fieldDatedDate.offset >= 0 ? std::string_view{ _fixPtr + fieldDatedDate.offset, getValueLength( _fixPtr + fieldDatedDate.offset ) } : std::string_view{}; }
+   std::string_view getDatedDateView() const { return fieldDatedDate.offset > 0 ? std::string_view{ _fixPtr + fieldDatedDate.offset, getValueLength( _fixPtr + fieldDatedDate.offset ) } : std::string_view{}; }
    const char * ptrToDatedDate() const { return _fixPtr + fieldDatedDate.offset; }
-   const char * getIfSetDatedDate() const { return fieldDatedDate.offset >= 0 ? _fixPtr + fieldDatedDate.offset : nullptr; }
+   const char * ptrToTagDatedDate() const { return _fixPtr + fieldDatedDate.offset - 1 - FieldDatedDate::tagWidth(); }
+   const char * getIfSetDatedDate() const { return fieldDatedDate.offset > 0 ? _fixPtr + fieldDatedDate.offset : nullptr; }
    private: FieldDatedDate fieldDatedDate;
 
    public:
-   bool isSetInterestAccrualDate() const { return fieldInterestAccrualDate.offset >= 0; }
+   bool isSetInterestAccrualDate() const { return fieldInterestAccrualDate.offset > 0; }
    FieldInterestAccrualDate::ValueType getInterestAccrualDate() const { return fieldInterestAccrualDate.getValue( _fixPtr ); }
-   std::string_view getInterestAccrualDateView() const { return fieldInterestAccrualDate.offset >= 0 ? std::string_view{ _fixPtr + fieldInterestAccrualDate.offset, getValueLength( _fixPtr + fieldInterestAccrualDate.offset ) } : std::string_view{}; }
+   std::string_view getInterestAccrualDateView() const { return fieldInterestAccrualDate.offset > 0 ? std::string_view{ _fixPtr + fieldInterestAccrualDate.offset, getValueLength( _fixPtr + fieldInterestAccrualDate.offset ) } : std::string_view{}; }
    const char * ptrToInterestAccrualDate() const { return _fixPtr + fieldInterestAccrualDate.offset; }
-   const char * getIfSetInterestAccrualDate() const { return fieldInterestAccrualDate.offset >= 0 ? _fixPtr + fieldInterestAccrualDate.offset : nullptr; }
+   const char * ptrToTagInterestAccrualDate() const { return _fixPtr + fieldInterestAccrualDate.offset - 1 - FieldInterestAccrualDate::tagWidth(); }
+   const char * getIfSetInterestAccrualDate() const { return fieldInterestAccrualDate.offset > 0 ? _fixPtr + fieldInterestAccrualDate.offset : nullptr; }
    private: FieldInterestAccrualDate fieldInterestAccrualDate;
 
    public:
-   bool isSetNoUnderlyings() const { return fieldNoUnderlyings.offset >= 0; }
+   bool isSetNoUnderlyings() const { return fieldNoUnderlyings.offset > 0; }
    FieldNoUnderlyings::ValueType getNoUnderlyings() const { return fieldNoUnderlyings.getValue( _fixPtr ); }
-   std::string_view getNoUnderlyingsView() const { return fieldNoUnderlyings.offset >= 0 ? std::string_view{ _fixPtr + fieldNoUnderlyings.offset, getValueLength( _fixPtr + fieldNoUnderlyings.offset ) } : std::string_view{}; }
+   std::string_view getNoUnderlyingsView() const { return fieldNoUnderlyings.offset > 0 ? std::string_view{ _fixPtr + fieldNoUnderlyings.offset, getValueLength( _fixPtr + fieldNoUnderlyings.offset ) } : std::string_view{}; }
    const char * ptrToNoUnderlyings() const { return _fixPtr + fieldNoUnderlyings.offset; }
-   const char * getIfSetNoUnderlyings() const { return fieldNoUnderlyings.offset >= 0 ? _fixPtr + fieldNoUnderlyings.offset : nullptr; }
+   const char * ptrToTagNoUnderlyings() const { return _fixPtr + fieldNoUnderlyings.offset - 1 - FieldNoUnderlyings::tagWidth(); }
+   const char * getIfSetNoUnderlyings() const { return fieldNoUnderlyings.offset > 0 ? _fixPtr + fieldNoUnderlyings.offset : nullptr; }
    private: FieldNoUnderlyings fieldNoUnderlyings;
   
    public:
@@ -1744,51 +1949,57 @@ class GroupOrders : public MessageBase
    private: GroupUnderlyings::Array groupsUnderlyings{ 10 };
 
    public:
-   bool isSetPrevClosePx() const { return fieldPrevClosePx.offset >= 0; }
+   bool isSetPrevClosePx() const { return fieldPrevClosePx.offset > 0; }
    FieldPrevClosePx::ValueType getPrevClosePx() const { return fieldPrevClosePx.getValue( _fixPtr ); }
-   std::string_view getPrevClosePxView() const { return fieldPrevClosePx.offset >= 0 ? std::string_view{ _fixPtr + fieldPrevClosePx.offset, getValueLength( _fixPtr + fieldPrevClosePx.offset ) } : std::string_view{}; }
+   std::string_view getPrevClosePxView() const { return fieldPrevClosePx.offset > 0 ? std::string_view{ _fixPtr + fieldPrevClosePx.offset, getValueLength( _fixPtr + fieldPrevClosePx.offset ) } : std::string_view{}; }
    const char * ptrToPrevClosePx() const { return _fixPtr + fieldPrevClosePx.offset; }
-   const char * getIfSetPrevClosePx() const { return fieldPrevClosePx.offset >= 0 ? _fixPtr + fieldPrevClosePx.offset : nullptr; }
+   const char * ptrToTagPrevClosePx() const { return _fixPtr + fieldPrevClosePx.offset - 1 - FieldPrevClosePx::tagWidth(); }
+   const char * getIfSetPrevClosePx() const { return fieldPrevClosePx.offset > 0 ? _fixPtr + fieldPrevClosePx.offset : nullptr; }
    private: FieldPrevClosePx fieldPrevClosePx;
 
    public:
-   bool isSetSide() const { return fieldSide.offset >= 0; }
+   bool isSetSide() const { return fieldSide.offset > 0; }
    FieldSide::ValueType getSide() const { return fieldSide.getValue( _fixPtr ); }
-   std::string_view getSideView() const { return fieldSide.offset >= 0 ? std::string_view{ _fixPtr + fieldSide.offset, getValueLength( _fixPtr + fieldSide.offset ) } : std::string_view{}; }
+   std::string_view getSideView() const { return fieldSide.offset > 0 ? std::string_view{ _fixPtr + fieldSide.offset, getValueLength( _fixPtr + fieldSide.offset ) } : std::string_view{}; }
    const char * ptrToSide() const { return _fixPtr + fieldSide.offset; }
-   const char * getIfSetSide() const { return fieldSide.offset >= 0 ? _fixPtr + fieldSide.offset : nullptr; }
+   const char * ptrToTagSide() const { return _fixPtr + fieldSide.offset - 1 - FieldSide::tagWidth(); }
+   const char * getIfSetSide() const { return fieldSide.offset > 0 ? _fixPtr + fieldSide.offset : nullptr; }
    private: FieldSide fieldSide;
 
    public:
-   bool isSetSideValueInd() const { return fieldSideValueInd.offset >= 0; }
+   bool isSetSideValueInd() const { return fieldSideValueInd.offset > 0; }
    FieldSideValueInd::ValueType getSideValueInd() const { return fieldSideValueInd.getValue( _fixPtr ); }
-   std::string_view getSideValueIndView() const { return fieldSideValueInd.offset >= 0 ? std::string_view{ _fixPtr + fieldSideValueInd.offset, getValueLength( _fixPtr + fieldSideValueInd.offset ) } : std::string_view{}; }
+   std::string_view getSideValueIndView() const { return fieldSideValueInd.offset > 0 ? std::string_view{ _fixPtr + fieldSideValueInd.offset, getValueLength( _fixPtr + fieldSideValueInd.offset ) } : std::string_view{}; }
    const char * ptrToSideValueInd() const { return _fixPtr + fieldSideValueInd.offset; }
-   const char * getIfSetSideValueInd() const { return fieldSideValueInd.offset >= 0 ? _fixPtr + fieldSideValueInd.offset : nullptr; }
+   const char * ptrToTagSideValueInd() const { return _fixPtr + fieldSideValueInd.offset - 1 - FieldSideValueInd::tagWidth(); }
+   const char * getIfSetSideValueInd() const { return fieldSideValueInd.offset > 0 ? _fixPtr + fieldSideValueInd.offset : nullptr; }
    private: FieldSideValueInd fieldSideValueInd;
 
    public:
-   bool isSetLocateReqd() const { return fieldLocateReqd.offset >= 0; }
+   bool isSetLocateReqd() const { return fieldLocateReqd.offset > 0; }
    FieldLocateReqd::ValueType getLocateReqd() const { return fieldLocateReqd.getValue( _fixPtr ); }
-   std::string_view getLocateReqdView() const { return fieldLocateReqd.offset >= 0 ? std::string_view{ _fixPtr + fieldLocateReqd.offset, getValueLength( _fixPtr + fieldLocateReqd.offset ) } : std::string_view{}; }
+   std::string_view getLocateReqdView() const { return fieldLocateReqd.offset > 0 ? std::string_view{ _fixPtr + fieldLocateReqd.offset, getValueLength( _fixPtr + fieldLocateReqd.offset ) } : std::string_view{}; }
    const char * ptrToLocateReqd() const { return _fixPtr + fieldLocateReqd.offset; }
-   const char * getIfSetLocateReqd() const { return fieldLocateReqd.offset >= 0 ? _fixPtr + fieldLocateReqd.offset : nullptr; }
+   const char * ptrToTagLocateReqd() const { return _fixPtr + fieldLocateReqd.offset - 1 - FieldLocateReqd::tagWidth(); }
+   const char * getIfSetLocateReqd() const { return fieldLocateReqd.offset > 0 ? _fixPtr + fieldLocateReqd.offset : nullptr; }
    private: FieldLocateReqd fieldLocateReqd;
 
    public:
-   bool isSetTransactTime() const { return fieldTransactTime.offset >= 0; }
+   bool isSetTransactTime() const { return fieldTransactTime.offset > 0; }
    FieldTransactTime::ValueType getTransactTime() const { return fieldTransactTime.getValue( _fixPtr ); }
-   std::string_view getTransactTimeView() const { return fieldTransactTime.offset >= 0 ? std::string_view{ _fixPtr + fieldTransactTime.offset, getValueLength( _fixPtr + fieldTransactTime.offset ) } : std::string_view{}; }
+   std::string_view getTransactTimeView() const { return fieldTransactTime.offset > 0 ? std::string_view{ _fixPtr + fieldTransactTime.offset, getValueLength( _fixPtr + fieldTransactTime.offset ) } : std::string_view{}; }
    const char * ptrToTransactTime() const { return _fixPtr + fieldTransactTime.offset; }
-   const char * getIfSetTransactTime() const { return fieldTransactTime.offset >= 0 ? _fixPtr + fieldTransactTime.offset : nullptr; }
+   const char * ptrToTagTransactTime() const { return _fixPtr + fieldTransactTime.offset - 1 - FieldTransactTime::tagWidth(); }
+   const char * getIfSetTransactTime() const { return fieldTransactTime.offset > 0 ? _fixPtr + fieldTransactTime.offset : nullptr; }
    private: FieldTransactTime fieldTransactTime;
 
    public:
-   bool isSetNoStipulations() const { return fieldNoStipulations.offset >= 0; }
+   bool isSetNoStipulations() const { return fieldNoStipulations.offset > 0; }
    FieldNoStipulations::ValueType getNoStipulations() const { return fieldNoStipulations.getValue( _fixPtr ); }
-   std::string_view getNoStipulationsView() const { return fieldNoStipulations.offset >= 0 ? std::string_view{ _fixPtr + fieldNoStipulations.offset, getValueLength( _fixPtr + fieldNoStipulations.offset ) } : std::string_view{}; }
+   std::string_view getNoStipulationsView() const { return fieldNoStipulations.offset > 0 ? std::string_view{ _fixPtr + fieldNoStipulations.offset, getValueLength( _fixPtr + fieldNoStipulations.offset ) } : std::string_view{}; }
    const char * ptrToNoStipulations() const { return _fixPtr + fieldNoStipulations.offset; }
-   const char * getIfSetNoStipulations() const { return fieldNoStipulations.offset >= 0 ? _fixPtr + fieldNoStipulations.offset : nullptr; }
+   const char * ptrToTagNoStipulations() const { return _fixPtr + fieldNoStipulations.offset - 1 - FieldNoStipulations::tagWidth(); }
+   const char * getIfSetNoStipulations() const { return fieldNoStipulations.offset > 0 ? _fixPtr + fieldNoStipulations.offset : nullptr; }
    private: FieldNoStipulations fieldNoStipulations;
   
    public:
@@ -1797,563 +2008,633 @@ class GroupOrders : public MessageBase
    private: GroupStipulations::Array groupsStipulations{ 10 };
 
    public:
-   bool isSetQtyType() const { return fieldQtyType.offset >= 0; }
+   bool isSetQtyType() const { return fieldQtyType.offset > 0; }
    FieldQtyType::ValueType getQtyType() const { return fieldQtyType.getValue( _fixPtr ); }
-   std::string_view getQtyTypeView() const { return fieldQtyType.offset >= 0 ? std::string_view{ _fixPtr + fieldQtyType.offset, getValueLength( _fixPtr + fieldQtyType.offset ) } : std::string_view{}; }
+   std::string_view getQtyTypeView() const { return fieldQtyType.offset > 0 ? std::string_view{ _fixPtr + fieldQtyType.offset, getValueLength( _fixPtr + fieldQtyType.offset ) } : std::string_view{}; }
    const char * ptrToQtyType() const { return _fixPtr + fieldQtyType.offset; }
-   const char * getIfSetQtyType() const { return fieldQtyType.offset >= 0 ? _fixPtr + fieldQtyType.offset : nullptr; }
+   const char * ptrToTagQtyType() const { return _fixPtr + fieldQtyType.offset - 1 - FieldQtyType::tagWidth(); }
+   const char * getIfSetQtyType() const { return fieldQtyType.offset > 0 ? _fixPtr + fieldQtyType.offset : nullptr; }
    private: FieldQtyType fieldQtyType;
 
    public:
-   bool isSetOrderQty() const { return fieldOrderQty.offset >= 0; }
+   bool isSetOrderQty() const { return fieldOrderQty.offset > 0; }
    FieldOrderQty::ValueType getOrderQty() const { return fieldOrderQty.getValue( _fixPtr ); }
-   std::string_view getOrderQtyView() const { return fieldOrderQty.offset >= 0 ? std::string_view{ _fixPtr + fieldOrderQty.offset, getValueLength( _fixPtr + fieldOrderQty.offset ) } : std::string_view{}; }
+   std::string_view getOrderQtyView() const { return fieldOrderQty.offset > 0 ? std::string_view{ _fixPtr + fieldOrderQty.offset, getValueLength( _fixPtr + fieldOrderQty.offset ) } : std::string_view{}; }
    const char * ptrToOrderQty() const { return _fixPtr + fieldOrderQty.offset; }
-   const char * getIfSetOrderQty() const { return fieldOrderQty.offset >= 0 ? _fixPtr + fieldOrderQty.offset : nullptr; }
+   const char * ptrToTagOrderQty() const { return _fixPtr + fieldOrderQty.offset - 1 - FieldOrderQty::tagWidth(); }
+   const char * getIfSetOrderQty() const { return fieldOrderQty.offset > 0 ? _fixPtr + fieldOrderQty.offset : nullptr; }
    private: FieldOrderQty fieldOrderQty;
 
    public:
-   bool isSetCashOrderQty() const { return fieldCashOrderQty.offset >= 0; }
+   bool isSetCashOrderQty() const { return fieldCashOrderQty.offset > 0; }
    FieldCashOrderQty::ValueType getCashOrderQty() const { return fieldCashOrderQty.getValue( _fixPtr ); }
-   std::string_view getCashOrderQtyView() const { return fieldCashOrderQty.offset >= 0 ? std::string_view{ _fixPtr + fieldCashOrderQty.offset, getValueLength( _fixPtr + fieldCashOrderQty.offset ) } : std::string_view{}; }
+   std::string_view getCashOrderQtyView() const { return fieldCashOrderQty.offset > 0 ? std::string_view{ _fixPtr + fieldCashOrderQty.offset, getValueLength( _fixPtr + fieldCashOrderQty.offset ) } : std::string_view{}; }
    const char * ptrToCashOrderQty() const { return _fixPtr + fieldCashOrderQty.offset; }
-   const char * getIfSetCashOrderQty() const { return fieldCashOrderQty.offset >= 0 ? _fixPtr + fieldCashOrderQty.offset : nullptr; }
+   const char * ptrToTagCashOrderQty() const { return _fixPtr + fieldCashOrderQty.offset - 1 - FieldCashOrderQty::tagWidth(); }
+   const char * getIfSetCashOrderQty() const { return fieldCashOrderQty.offset > 0 ? _fixPtr + fieldCashOrderQty.offset : nullptr; }
    private: FieldCashOrderQty fieldCashOrderQty;
 
    public:
-   bool isSetOrderPercent() const { return fieldOrderPercent.offset >= 0; }
+   bool isSetOrderPercent() const { return fieldOrderPercent.offset > 0; }
    FieldOrderPercent::ValueType getOrderPercent() const { return fieldOrderPercent.getValue( _fixPtr ); }
-   std::string_view getOrderPercentView() const { return fieldOrderPercent.offset >= 0 ? std::string_view{ _fixPtr + fieldOrderPercent.offset, getValueLength( _fixPtr + fieldOrderPercent.offset ) } : std::string_view{}; }
+   std::string_view getOrderPercentView() const { return fieldOrderPercent.offset > 0 ? std::string_view{ _fixPtr + fieldOrderPercent.offset, getValueLength( _fixPtr + fieldOrderPercent.offset ) } : std::string_view{}; }
    const char * ptrToOrderPercent() const { return _fixPtr + fieldOrderPercent.offset; }
-   const char * getIfSetOrderPercent() const { return fieldOrderPercent.offset >= 0 ? _fixPtr + fieldOrderPercent.offset : nullptr; }
+   const char * ptrToTagOrderPercent() const { return _fixPtr + fieldOrderPercent.offset - 1 - FieldOrderPercent::tagWidth(); }
+   const char * getIfSetOrderPercent() const { return fieldOrderPercent.offset > 0 ? _fixPtr + fieldOrderPercent.offset : nullptr; }
    private: FieldOrderPercent fieldOrderPercent;
 
    public:
-   bool isSetRoundingDirection() const { return fieldRoundingDirection.offset >= 0; }
+   bool isSetRoundingDirection() const { return fieldRoundingDirection.offset > 0; }
    FieldRoundingDirection::ValueType getRoundingDirection() const { return fieldRoundingDirection.getValue( _fixPtr ); }
-   std::string_view getRoundingDirectionView() const { return fieldRoundingDirection.offset >= 0 ? std::string_view{ _fixPtr + fieldRoundingDirection.offset, getValueLength( _fixPtr + fieldRoundingDirection.offset ) } : std::string_view{}; }
+   std::string_view getRoundingDirectionView() const { return fieldRoundingDirection.offset > 0 ? std::string_view{ _fixPtr + fieldRoundingDirection.offset, getValueLength( _fixPtr + fieldRoundingDirection.offset ) } : std::string_view{}; }
    const char * ptrToRoundingDirection() const { return _fixPtr + fieldRoundingDirection.offset; }
-   const char * getIfSetRoundingDirection() const { return fieldRoundingDirection.offset >= 0 ? _fixPtr + fieldRoundingDirection.offset : nullptr; }
+   const char * ptrToTagRoundingDirection() const { return _fixPtr + fieldRoundingDirection.offset - 1 - FieldRoundingDirection::tagWidth(); }
+   const char * getIfSetRoundingDirection() const { return fieldRoundingDirection.offset > 0 ? _fixPtr + fieldRoundingDirection.offset : nullptr; }
    private: FieldRoundingDirection fieldRoundingDirection;
 
    public:
-   bool isSetRoundingModulus() const { return fieldRoundingModulus.offset >= 0; }
+   bool isSetRoundingModulus() const { return fieldRoundingModulus.offset > 0; }
    FieldRoundingModulus::ValueType getRoundingModulus() const { return fieldRoundingModulus.getValue( _fixPtr ); }
-   std::string_view getRoundingModulusView() const { return fieldRoundingModulus.offset >= 0 ? std::string_view{ _fixPtr + fieldRoundingModulus.offset, getValueLength( _fixPtr + fieldRoundingModulus.offset ) } : std::string_view{}; }
+   std::string_view getRoundingModulusView() const { return fieldRoundingModulus.offset > 0 ? std::string_view{ _fixPtr + fieldRoundingModulus.offset, getValueLength( _fixPtr + fieldRoundingModulus.offset ) } : std::string_view{}; }
    const char * ptrToRoundingModulus() const { return _fixPtr + fieldRoundingModulus.offset; }
-   const char * getIfSetRoundingModulus() const { return fieldRoundingModulus.offset >= 0 ? _fixPtr + fieldRoundingModulus.offset : nullptr; }
+   const char * ptrToTagRoundingModulus() const { return _fixPtr + fieldRoundingModulus.offset - 1 - FieldRoundingModulus::tagWidth(); }
+   const char * getIfSetRoundingModulus() const { return fieldRoundingModulus.offset > 0 ? _fixPtr + fieldRoundingModulus.offset : nullptr; }
    private: FieldRoundingModulus fieldRoundingModulus;
 
    public:
-   bool isSetOrdType() const { return fieldOrdType.offset >= 0; }
+   bool isSetOrdType() const { return fieldOrdType.offset > 0; }
    FieldOrdType::ValueType getOrdType() const { return fieldOrdType.getValue( _fixPtr ); }
-   std::string_view getOrdTypeView() const { return fieldOrdType.offset >= 0 ? std::string_view{ _fixPtr + fieldOrdType.offset, getValueLength( _fixPtr + fieldOrdType.offset ) } : std::string_view{}; }
+   std::string_view getOrdTypeView() const { return fieldOrdType.offset > 0 ? std::string_view{ _fixPtr + fieldOrdType.offset, getValueLength( _fixPtr + fieldOrdType.offset ) } : std::string_view{}; }
    const char * ptrToOrdType() const { return _fixPtr + fieldOrdType.offset; }
-   const char * getIfSetOrdType() const { return fieldOrdType.offset >= 0 ? _fixPtr + fieldOrdType.offset : nullptr; }
+   const char * ptrToTagOrdType() const { return _fixPtr + fieldOrdType.offset - 1 - FieldOrdType::tagWidth(); }
+   const char * getIfSetOrdType() const { return fieldOrdType.offset > 0 ? _fixPtr + fieldOrdType.offset : nullptr; }
    private: FieldOrdType fieldOrdType;
 
    public:
-   bool isSetPriceType() const { return fieldPriceType.offset >= 0; }
+   bool isSetPriceType() const { return fieldPriceType.offset > 0; }
    FieldPriceType::ValueType getPriceType() const { return fieldPriceType.getValue( _fixPtr ); }
-   std::string_view getPriceTypeView() const { return fieldPriceType.offset >= 0 ? std::string_view{ _fixPtr + fieldPriceType.offset, getValueLength( _fixPtr + fieldPriceType.offset ) } : std::string_view{}; }
+   std::string_view getPriceTypeView() const { return fieldPriceType.offset > 0 ? std::string_view{ _fixPtr + fieldPriceType.offset, getValueLength( _fixPtr + fieldPriceType.offset ) } : std::string_view{}; }
    const char * ptrToPriceType() const { return _fixPtr + fieldPriceType.offset; }
-   const char * getIfSetPriceType() const { return fieldPriceType.offset >= 0 ? _fixPtr + fieldPriceType.offset : nullptr; }
+   const char * ptrToTagPriceType() const { return _fixPtr + fieldPriceType.offset - 1 - FieldPriceType::tagWidth(); }
+   const char * getIfSetPriceType() const { return fieldPriceType.offset > 0 ? _fixPtr + fieldPriceType.offset : nullptr; }
    private: FieldPriceType fieldPriceType;
 
    public:
-   bool isSetPrice() const { return fieldPrice.offset >= 0; }
+   bool isSetPrice() const { return fieldPrice.offset > 0; }
    FieldPrice::ValueType getPrice() const { return fieldPrice.getValue( _fixPtr ); }
-   std::string_view getPriceView() const { return fieldPrice.offset >= 0 ? std::string_view{ _fixPtr + fieldPrice.offset, getValueLength( _fixPtr + fieldPrice.offset ) } : std::string_view{}; }
+   std::string_view getPriceView() const { return fieldPrice.offset > 0 ? std::string_view{ _fixPtr + fieldPrice.offset, getValueLength( _fixPtr + fieldPrice.offset ) } : std::string_view{}; }
    const char * ptrToPrice() const { return _fixPtr + fieldPrice.offset; }
-   const char * getIfSetPrice() const { return fieldPrice.offset >= 0 ? _fixPtr + fieldPrice.offset : nullptr; }
+   const char * ptrToTagPrice() const { return _fixPtr + fieldPrice.offset - 1 - FieldPrice::tagWidth(); }
+   const char * getIfSetPrice() const { return fieldPrice.offset > 0 ? _fixPtr + fieldPrice.offset : nullptr; }
    private: FieldPrice fieldPrice;
 
    public:
-   bool isSetStopPx() const { return fieldStopPx.offset >= 0; }
+   bool isSetStopPx() const { return fieldStopPx.offset > 0; }
    FieldStopPx::ValueType getStopPx() const { return fieldStopPx.getValue( _fixPtr ); }
-   std::string_view getStopPxView() const { return fieldStopPx.offset >= 0 ? std::string_view{ _fixPtr + fieldStopPx.offset, getValueLength( _fixPtr + fieldStopPx.offset ) } : std::string_view{}; }
+   std::string_view getStopPxView() const { return fieldStopPx.offset > 0 ? std::string_view{ _fixPtr + fieldStopPx.offset, getValueLength( _fixPtr + fieldStopPx.offset ) } : std::string_view{}; }
    const char * ptrToStopPx() const { return _fixPtr + fieldStopPx.offset; }
-   const char * getIfSetStopPx() const { return fieldStopPx.offset >= 0 ? _fixPtr + fieldStopPx.offset : nullptr; }
+   const char * ptrToTagStopPx() const { return _fixPtr + fieldStopPx.offset - 1 - FieldStopPx::tagWidth(); }
+   const char * getIfSetStopPx() const { return fieldStopPx.offset > 0 ? _fixPtr + fieldStopPx.offset : nullptr; }
    private: FieldStopPx fieldStopPx;
 
    public:
-   bool isSetSpread() const { return fieldSpread.offset >= 0; }
+   bool isSetSpread() const { return fieldSpread.offset > 0; }
    FieldSpread::ValueType getSpread() const { return fieldSpread.getValue( _fixPtr ); }
-   std::string_view getSpreadView() const { return fieldSpread.offset >= 0 ? std::string_view{ _fixPtr + fieldSpread.offset, getValueLength( _fixPtr + fieldSpread.offset ) } : std::string_view{}; }
+   std::string_view getSpreadView() const { return fieldSpread.offset > 0 ? std::string_view{ _fixPtr + fieldSpread.offset, getValueLength( _fixPtr + fieldSpread.offset ) } : std::string_view{}; }
    const char * ptrToSpread() const { return _fixPtr + fieldSpread.offset; }
-   const char * getIfSetSpread() const { return fieldSpread.offset >= 0 ? _fixPtr + fieldSpread.offset : nullptr; }
+   const char * ptrToTagSpread() const { return _fixPtr + fieldSpread.offset - 1 - FieldSpread::tagWidth(); }
+   const char * getIfSetSpread() const { return fieldSpread.offset > 0 ? _fixPtr + fieldSpread.offset : nullptr; }
    private: FieldSpread fieldSpread;
 
    public:
-   bool isSetBenchmarkCurveCurrency() const { return fieldBenchmarkCurveCurrency.offset >= 0; }
+   bool isSetBenchmarkCurveCurrency() const { return fieldBenchmarkCurveCurrency.offset > 0; }
    FieldBenchmarkCurveCurrency::ValueType getBenchmarkCurveCurrency() const { return fieldBenchmarkCurveCurrency.getValue( _fixPtr ); }
-   std::string_view getBenchmarkCurveCurrencyView() const { return fieldBenchmarkCurveCurrency.offset >= 0 ? std::string_view{ _fixPtr + fieldBenchmarkCurveCurrency.offset, getValueLength( _fixPtr + fieldBenchmarkCurveCurrency.offset ) } : std::string_view{}; }
+   std::string_view getBenchmarkCurveCurrencyView() const { return fieldBenchmarkCurveCurrency.offset > 0 ? std::string_view{ _fixPtr + fieldBenchmarkCurveCurrency.offset, getValueLength( _fixPtr + fieldBenchmarkCurveCurrency.offset ) } : std::string_view{}; }
    const char * ptrToBenchmarkCurveCurrency() const { return _fixPtr + fieldBenchmarkCurveCurrency.offset; }
-   const char * getIfSetBenchmarkCurveCurrency() const { return fieldBenchmarkCurveCurrency.offset >= 0 ? _fixPtr + fieldBenchmarkCurveCurrency.offset : nullptr; }
+   const char * ptrToTagBenchmarkCurveCurrency() const { return _fixPtr + fieldBenchmarkCurveCurrency.offset - 1 - FieldBenchmarkCurveCurrency::tagWidth(); }
+   const char * getIfSetBenchmarkCurveCurrency() const { return fieldBenchmarkCurveCurrency.offset > 0 ? _fixPtr + fieldBenchmarkCurveCurrency.offset : nullptr; }
    private: FieldBenchmarkCurveCurrency fieldBenchmarkCurveCurrency;
 
    public:
-   bool isSetBenchmarkCurveName() const { return fieldBenchmarkCurveName.offset >= 0; }
+   bool isSetBenchmarkCurveName() const { return fieldBenchmarkCurveName.offset > 0; }
    FieldBenchmarkCurveName::ValueType getBenchmarkCurveName() const { return fieldBenchmarkCurveName.getValue( _fixPtr ); }
-   std::string_view getBenchmarkCurveNameView() const { return fieldBenchmarkCurveName.offset >= 0 ? std::string_view{ _fixPtr + fieldBenchmarkCurveName.offset, getValueLength( _fixPtr + fieldBenchmarkCurveName.offset ) } : std::string_view{}; }
+   std::string_view getBenchmarkCurveNameView() const { return fieldBenchmarkCurveName.offset > 0 ? std::string_view{ _fixPtr + fieldBenchmarkCurveName.offset, getValueLength( _fixPtr + fieldBenchmarkCurveName.offset ) } : std::string_view{}; }
    const char * ptrToBenchmarkCurveName() const { return _fixPtr + fieldBenchmarkCurveName.offset; }
-   const char * getIfSetBenchmarkCurveName() const { return fieldBenchmarkCurveName.offset >= 0 ? _fixPtr + fieldBenchmarkCurveName.offset : nullptr; }
+   const char * ptrToTagBenchmarkCurveName() const { return _fixPtr + fieldBenchmarkCurveName.offset - 1 - FieldBenchmarkCurveName::tagWidth(); }
+   const char * getIfSetBenchmarkCurveName() const { return fieldBenchmarkCurveName.offset > 0 ? _fixPtr + fieldBenchmarkCurveName.offset : nullptr; }
    private: FieldBenchmarkCurveName fieldBenchmarkCurveName;
 
    public:
-   bool isSetBenchmarkCurvePoint() const { return fieldBenchmarkCurvePoint.offset >= 0; }
+   bool isSetBenchmarkCurvePoint() const { return fieldBenchmarkCurvePoint.offset > 0; }
    FieldBenchmarkCurvePoint::ValueType getBenchmarkCurvePoint() const { return fieldBenchmarkCurvePoint.getValue( _fixPtr ); }
-   std::string_view getBenchmarkCurvePointView() const { return fieldBenchmarkCurvePoint.offset >= 0 ? std::string_view{ _fixPtr + fieldBenchmarkCurvePoint.offset, getValueLength( _fixPtr + fieldBenchmarkCurvePoint.offset ) } : std::string_view{}; }
+   std::string_view getBenchmarkCurvePointView() const { return fieldBenchmarkCurvePoint.offset > 0 ? std::string_view{ _fixPtr + fieldBenchmarkCurvePoint.offset, getValueLength( _fixPtr + fieldBenchmarkCurvePoint.offset ) } : std::string_view{}; }
    const char * ptrToBenchmarkCurvePoint() const { return _fixPtr + fieldBenchmarkCurvePoint.offset; }
-   const char * getIfSetBenchmarkCurvePoint() const { return fieldBenchmarkCurvePoint.offset >= 0 ? _fixPtr + fieldBenchmarkCurvePoint.offset : nullptr; }
+   const char * ptrToTagBenchmarkCurvePoint() const { return _fixPtr + fieldBenchmarkCurvePoint.offset - 1 - FieldBenchmarkCurvePoint::tagWidth(); }
+   const char * getIfSetBenchmarkCurvePoint() const { return fieldBenchmarkCurvePoint.offset > 0 ? _fixPtr + fieldBenchmarkCurvePoint.offset : nullptr; }
    private: FieldBenchmarkCurvePoint fieldBenchmarkCurvePoint;
 
    public:
-   bool isSetBenchmarkPrice() const { return fieldBenchmarkPrice.offset >= 0; }
+   bool isSetBenchmarkPrice() const { return fieldBenchmarkPrice.offset > 0; }
    FieldBenchmarkPrice::ValueType getBenchmarkPrice() const { return fieldBenchmarkPrice.getValue( _fixPtr ); }
-   std::string_view getBenchmarkPriceView() const { return fieldBenchmarkPrice.offset >= 0 ? std::string_view{ _fixPtr + fieldBenchmarkPrice.offset, getValueLength( _fixPtr + fieldBenchmarkPrice.offset ) } : std::string_view{}; }
+   std::string_view getBenchmarkPriceView() const { return fieldBenchmarkPrice.offset > 0 ? std::string_view{ _fixPtr + fieldBenchmarkPrice.offset, getValueLength( _fixPtr + fieldBenchmarkPrice.offset ) } : std::string_view{}; }
    const char * ptrToBenchmarkPrice() const { return _fixPtr + fieldBenchmarkPrice.offset; }
-   const char * getIfSetBenchmarkPrice() const { return fieldBenchmarkPrice.offset >= 0 ? _fixPtr + fieldBenchmarkPrice.offset : nullptr; }
+   const char * ptrToTagBenchmarkPrice() const { return _fixPtr + fieldBenchmarkPrice.offset - 1 - FieldBenchmarkPrice::tagWidth(); }
+   const char * getIfSetBenchmarkPrice() const { return fieldBenchmarkPrice.offset > 0 ? _fixPtr + fieldBenchmarkPrice.offset : nullptr; }
    private: FieldBenchmarkPrice fieldBenchmarkPrice;
 
    public:
-   bool isSetBenchmarkPriceType() const { return fieldBenchmarkPriceType.offset >= 0; }
+   bool isSetBenchmarkPriceType() const { return fieldBenchmarkPriceType.offset > 0; }
    FieldBenchmarkPriceType::ValueType getBenchmarkPriceType() const { return fieldBenchmarkPriceType.getValue( _fixPtr ); }
-   std::string_view getBenchmarkPriceTypeView() const { return fieldBenchmarkPriceType.offset >= 0 ? std::string_view{ _fixPtr + fieldBenchmarkPriceType.offset, getValueLength( _fixPtr + fieldBenchmarkPriceType.offset ) } : std::string_view{}; }
+   std::string_view getBenchmarkPriceTypeView() const { return fieldBenchmarkPriceType.offset > 0 ? std::string_view{ _fixPtr + fieldBenchmarkPriceType.offset, getValueLength( _fixPtr + fieldBenchmarkPriceType.offset ) } : std::string_view{}; }
    const char * ptrToBenchmarkPriceType() const { return _fixPtr + fieldBenchmarkPriceType.offset; }
-   const char * getIfSetBenchmarkPriceType() const { return fieldBenchmarkPriceType.offset >= 0 ? _fixPtr + fieldBenchmarkPriceType.offset : nullptr; }
+   const char * ptrToTagBenchmarkPriceType() const { return _fixPtr + fieldBenchmarkPriceType.offset - 1 - FieldBenchmarkPriceType::tagWidth(); }
+   const char * getIfSetBenchmarkPriceType() const { return fieldBenchmarkPriceType.offset > 0 ? _fixPtr + fieldBenchmarkPriceType.offset : nullptr; }
    private: FieldBenchmarkPriceType fieldBenchmarkPriceType;
 
    public:
-   bool isSetBenchmarkSecurityID() const { return fieldBenchmarkSecurityID.offset >= 0; }
+   bool isSetBenchmarkSecurityID() const { return fieldBenchmarkSecurityID.offset > 0; }
    FieldBenchmarkSecurityID::ValueType getBenchmarkSecurityID() const { return fieldBenchmarkSecurityID.getValue( _fixPtr ); }
-   std::string_view getBenchmarkSecurityIDView() const { return fieldBenchmarkSecurityID.offset >= 0 ? std::string_view{ _fixPtr + fieldBenchmarkSecurityID.offset, getValueLength( _fixPtr + fieldBenchmarkSecurityID.offset ) } : std::string_view{}; }
+   std::string_view getBenchmarkSecurityIDView() const { return fieldBenchmarkSecurityID.offset > 0 ? std::string_view{ _fixPtr + fieldBenchmarkSecurityID.offset, getValueLength( _fixPtr + fieldBenchmarkSecurityID.offset ) } : std::string_view{}; }
    const char * ptrToBenchmarkSecurityID() const { return _fixPtr + fieldBenchmarkSecurityID.offset; }
-   const char * getIfSetBenchmarkSecurityID() const { return fieldBenchmarkSecurityID.offset >= 0 ? _fixPtr + fieldBenchmarkSecurityID.offset : nullptr; }
+   const char * ptrToTagBenchmarkSecurityID() const { return _fixPtr + fieldBenchmarkSecurityID.offset - 1 - FieldBenchmarkSecurityID::tagWidth(); }
+   const char * getIfSetBenchmarkSecurityID() const { return fieldBenchmarkSecurityID.offset > 0 ? _fixPtr + fieldBenchmarkSecurityID.offset : nullptr; }
    private: FieldBenchmarkSecurityID fieldBenchmarkSecurityID;
 
    public:
-   bool isSetBenchmarkSecurityIDSource() const { return fieldBenchmarkSecurityIDSource.offset >= 0; }
+   bool isSetBenchmarkSecurityIDSource() const { return fieldBenchmarkSecurityIDSource.offset > 0; }
    FieldBenchmarkSecurityIDSource::ValueType getBenchmarkSecurityIDSource() const { return fieldBenchmarkSecurityIDSource.getValue( _fixPtr ); }
-   std::string_view getBenchmarkSecurityIDSourceView() const { return fieldBenchmarkSecurityIDSource.offset >= 0 ? std::string_view{ _fixPtr + fieldBenchmarkSecurityIDSource.offset, getValueLength( _fixPtr + fieldBenchmarkSecurityIDSource.offset ) } : std::string_view{}; }
+   std::string_view getBenchmarkSecurityIDSourceView() const { return fieldBenchmarkSecurityIDSource.offset > 0 ? std::string_view{ _fixPtr + fieldBenchmarkSecurityIDSource.offset, getValueLength( _fixPtr + fieldBenchmarkSecurityIDSource.offset ) } : std::string_view{}; }
    const char * ptrToBenchmarkSecurityIDSource() const { return _fixPtr + fieldBenchmarkSecurityIDSource.offset; }
-   const char * getIfSetBenchmarkSecurityIDSource() const { return fieldBenchmarkSecurityIDSource.offset >= 0 ? _fixPtr + fieldBenchmarkSecurityIDSource.offset : nullptr; }
+   const char * ptrToTagBenchmarkSecurityIDSource() const { return _fixPtr + fieldBenchmarkSecurityIDSource.offset - 1 - FieldBenchmarkSecurityIDSource::tagWidth(); }
+   const char * getIfSetBenchmarkSecurityIDSource() const { return fieldBenchmarkSecurityIDSource.offset > 0 ? _fixPtr + fieldBenchmarkSecurityIDSource.offset : nullptr; }
    private: FieldBenchmarkSecurityIDSource fieldBenchmarkSecurityIDSource;
 
    public:
-   bool isSetYieldType() const { return fieldYieldType.offset >= 0; }
+   bool isSetYieldType() const { return fieldYieldType.offset > 0; }
    FieldYieldType::ValueType getYieldType() const { return fieldYieldType.getValue( _fixPtr ); }
-   std::string_view getYieldTypeView() const { return fieldYieldType.offset >= 0 ? std::string_view{ _fixPtr + fieldYieldType.offset, getValueLength( _fixPtr + fieldYieldType.offset ) } : std::string_view{}; }
+   std::string_view getYieldTypeView() const { return fieldYieldType.offset > 0 ? std::string_view{ _fixPtr + fieldYieldType.offset, getValueLength( _fixPtr + fieldYieldType.offset ) } : std::string_view{}; }
    const char * ptrToYieldType() const { return _fixPtr + fieldYieldType.offset; }
-   const char * getIfSetYieldType() const { return fieldYieldType.offset >= 0 ? _fixPtr + fieldYieldType.offset : nullptr; }
+   const char * ptrToTagYieldType() const { return _fixPtr + fieldYieldType.offset - 1 - FieldYieldType::tagWidth(); }
+   const char * getIfSetYieldType() const { return fieldYieldType.offset > 0 ? _fixPtr + fieldYieldType.offset : nullptr; }
    private: FieldYieldType fieldYieldType;
 
    public:
-   bool isSetYield() const { return fieldYield.offset >= 0; }
+   bool isSetYield() const { return fieldYield.offset > 0; }
    FieldYield::ValueType getYield() const { return fieldYield.getValue( _fixPtr ); }
-   std::string_view getYieldView() const { return fieldYield.offset >= 0 ? std::string_view{ _fixPtr + fieldYield.offset, getValueLength( _fixPtr + fieldYield.offset ) } : std::string_view{}; }
+   std::string_view getYieldView() const { return fieldYield.offset > 0 ? std::string_view{ _fixPtr + fieldYield.offset, getValueLength( _fixPtr + fieldYield.offset ) } : std::string_view{}; }
    const char * ptrToYield() const { return _fixPtr + fieldYield.offset; }
-   const char * getIfSetYield() const { return fieldYield.offset >= 0 ? _fixPtr + fieldYield.offset : nullptr; }
+   const char * ptrToTagYield() const { return _fixPtr + fieldYield.offset - 1 - FieldYield::tagWidth(); }
+   const char * getIfSetYield() const { return fieldYield.offset > 0 ? _fixPtr + fieldYield.offset : nullptr; }
    private: FieldYield fieldYield;
 
    public:
-   bool isSetYieldCalcDate() const { return fieldYieldCalcDate.offset >= 0; }
+   bool isSetYieldCalcDate() const { return fieldYieldCalcDate.offset > 0; }
    FieldYieldCalcDate::ValueType getYieldCalcDate() const { return fieldYieldCalcDate.getValue( _fixPtr ); }
-   std::string_view getYieldCalcDateView() const { return fieldYieldCalcDate.offset >= 0 ? std::string_view{ _fixPtr + fieldYieldCalcDate.offset, getValueLength( _fixPtr + fieldYieldCalcDate.offset ) } : std::string_view{}; }
+   std::string_view getYieldCalcDateView() const { return fieldYieldCalcDate.offset > 0 ? std::string_view{ _fixPtr + fieldYieldCalcDate.offset, getValueLength( _fixPtr + fieldYieldCalcDate.offset ) } : std::string_view{}; }
    const char * ptrToYieldCalcDate() const { return _fixPtr + fieldYieldCalcDate.offset; }
-   const char * getIfSetYieldCalcDate() const { return fieldYieldCalcDate.offset >= 0 ? _fixPtr + fieldYieldCalcDate.offset : nullptr; }
+   const char * ptrToTagYieldCalcDate() const { return _fixPtr + fieldYieldCalcDate.offset - 1 - FieldYieldCalcDate::tagWidth(); }
+   const char * getIfSetYieldCalcDate() const { return fieldYieldCalcDate.offset > 0 ? _fixPtr + fieldYieldCalcDate.offset : nullptr; }
    private: FieldYieldCalcDate fieldYieldCalcDate;
 
    public:
-   bool isSetYieldRedemptionDate() const { return fieldYieldRedemptionDate.offset >= 0; }
+   bool isSetYieldRedemptionDate() const { return fieldYieldRedemptionDate.offset > 0; }
    FieldYieldRedemptionDate::ValueType getYieldRedemptionDate() const { return fieldYieldRedemptionDate.getValue( _fixPtr ); }
-   std::string_view getYieldRedemptionDateView() const { return fieldYieldRedemptionDate.offset >= 0 ? std::string_view{ _fixPtr + fieldYieldRedemptionDate.offset, getValueLength( _fixPtr + fieldYieldRedemptionDate.offset ) } : std::string_view{}; }
+   std::string_view getYieldRedemptionDateView() const { return fieldYieldRedemptionDate.offset > 0 ? std::string_view{ _fixPtr + fieldYieldRedemptionDate.offset, getValueLength( _fixPtr + fieldYieldRedemptionDate.offset ) } : std::string_view{}; }
    const char * ptrToYieldRedemptionDate() const { return _fixPtr + fieldYieldRedemptionDate.offset; }
-   const char * getIfSetYieldRedemptionDate() const { return fieldYieldRedemptionDate.offset >= 0 ? _fixPtr + fieldYieldRedemptionDate.offset : nullptr; }
+   const char * ptrToTagYieldRedemptionDate() const { return _fixPtr + fieldYieldRedemptionDate.offset - 1 - FieldYieldRedemptionDate::tagWidth(); }
+   const char * getIfSetYieldRedemptionDate() const { return fieldYieldRedemptionDate.offset > 0 ? _fixPtr + fieldYieldRedemptionDate.offset : nullptr; }
    private: FieldYieldRedemptionDate fieldYieldRedemptionDate;
 
    public:
-   bool isSetYieldRedemptionPrice() const { return fieldYieldRedemptionPrice.offset >= 0; }
+   bool isSetYieldRedemptionPrice() const { return fieldYieldRedemptionPrice.offset > 0; }
    FieldYieldRedemptionPrice::ValueType getYieldRedemptionPrice() const { return fieldYieldRedemptionPrice.getValue( _fixPtr ); }
-   std::string_view getYieldRedemptionPriceView() const { return fieldYieldRedemptionPrice.offset >= 0 ? std::string_view{ _fixPtr + fieldYieldRedemptionPrice.offset, getValueLength( _fixPtr + fieldYieldRedemptionPrice.offset ) } : std::string_view{}; }
+   std::string_view getYieldRedemptionPriceView() const { return fieldYieldRedemptionPrice.offset > 0 ? std::string_view{ _fixPtr + fieldYieldRedemptionPrice.offset, getValueLength( _fixPtr + fieldYieldRedemptionPrice.offset ) } : std::string_view{}; }
    const char * ptrToYieldRedemptionPrice() const { return _fixPtr + fieldYieldRedemptionPrice.offset; }
-   const char * getIfSetYieldRedemptionPrice() const { return fieldYieldRedemptionPrice.offset >= 0 ? _fixPtr + fieldYieldRedemptionPrice.offset : nullptr; }
+   const char * ptrToTagYieldRedemptionPrice() const { return _fixPtr + fieldYieldRedemptionPrice.offset - 1 - FieldYieldRedemptionPrice::tagWidth(); }
+   const char * getIfSetYieldRedemptionPrice() const { return fieldYieldRedemptionPrice.offset > 0 ? _fixPtr + fieldYieldRedemptionPrice.offset : nullptr; }
    private: FieldYieldRedemptionPrice fieldYieldRedemptionPrice;
 
    public:
-   bool isSetYieldRedemptionPriceType() const { return fieldYieldRedemptionPriceType.offset >= 0; }
+   bool isSetYieldRedemptionPriceType() const { return fieldYieldRedemptionPriceType.offset > 0; }
    FieldYieldRedemptionPriceType::ValueType getYieldRedemptionPriceType() const { return fieldYieldRedemptionPriceType.getValue( _fixPtr ); }
-   std::string_view getYieldRedemptionPriceTypeView() const { return fieldYieldRedemptionPriceType.offset >= 0 ? std::string_view{ _fixPtr + fieldYieldRedemptionPriceType.offset, getValueLength( _fixPtr + fieldYieldRedemptionPriceType.offset ) } : std::string_view{}; }
+   std::string_view getYieldRedemptionPriceTypeView() const { return fieldYieldRedemptionPriceType.offset > 0 ? std::string_view{ _fixPtr + fieldYieldRedemptionPriceType.offset, getValueLength( _fixPtr + fieldYieldRedemptionPriceType.offset ) } : std::string_view{}; }
    const char * ptrToYieldRedemptionPriceType() const { return _fixPtr + fieldYieldRedemptionPriceType.offset; }
-   const char * getIfSetYieldRedemptionPriceType() const { return fieldYieldRedemptionPriceType.offset >= 0 ? _fixPtr + fieldYieldRedemptionPriceType.offset : nullptr; }
+   const char * ptrToTagYieldRedemptionPriceType() const { return _fixPtr + fieldYieldRedemptionPriceType.offset - 1 - FieldYieldRedemptionPriceType::tagWidth(); }
+   const char * getIfSetYieldRedemptionPriceType() const { return fieldYieldRedemptionPriceType.offset > 0 ? _fixPtr + fieldYieldRedemptionPriceType.offset : nullptr; }
    private: FieldYieldRedemptionPriceType fieldYieldRedemptionPriceType;
 
    public:
-   bool isSetCurrency() const { return fieldCurrency.offset >= 0; }
+   bool isSetCurrency() const { return fieldCurrency.offset > 0; }
    FieldCurrency::ValueType getCurrency() const { return fieldCurrency.getValue( _fixPtr ); }
-   std::string_view getCurrencyView() const { return fieldCurrency.offset >= 0 ? std::string_view{ _fixPtr + fieldCurrency.offset, getValueLength( _fixPtr + fieldCurrency.offset ) } : std::string_view{}; }
+   std::string_view getCurrencyView() const { return fieldCurrency.offset > 0 ? std::string_view{ _fixPtr + fieldCurrency.offset, getValueLength( _fixPtr + fieldCurrency.offset ) } : std::string_view{}; }
    const char * ptrToCurrency() const { return _fixPtr + fieldCurrency.offset; }
-   const char * getIfSetCurrency() const { return fieldCurrency.offset >= 0 ? _fixPtr + fieldCurrency.offset : nullptr; }
+   const char * ptrToTagCurrency() const { return _fixPtr + fieldCurrency.offset - 1 - FieldCurrency::tagWidth(); }
+   const char * getIfSetCurrency() const { return fieldCurrency.offset > 0 ? _fixPtr + fieldCurrency.offset : nullptr; }
    private: FieldCurrency fieldCurrency;
 
    public:
-   bool isSetComplianceID() const { return fieldComplianceID.offset >= 0; }
+   bool isSetComplianceID() const { return fieldComplianceID.offset > 0; }
    FieldComplianceID::ValueType getComplianceID() const { return fieldComplianceID.getValue( _fixPtr ); }
-   std::string_view getComplianceIDView() const { return fieldComplianceID.offset >= 0 ? std::string_view{ _fixPtr + fieldComplianceID.offset, getValueLength( _fixPtr + fieldComplianceID.offset ) } : std::string_view{}; }
+   std::string_view getComplianceIDView() const { return fieldComplianceID.offset > 0 ? std::string_view{ _fixPtr + fieldComplianceID.offset, getValueLength( _fixPtr + fieldComplianceID.offset ) } : std::string_view{}; }
    const char * ptrToComplianceID() const { return _fixPtr + fieldComplianceID.offset; }
-   const char * getIfSetComplianceID() const { return fieldComplianceID.offset >= 0 ? _fixPtr + fieldComplianceID.offset : nullptr; }
+   const char * ptrToTagComplianceID() const { return _fixPtr + fieldComplianceID.offset - 1 - FieldComplianceID::tagWidth(); }
+   const char * getIfSetComplianceID() const { return fieldComplianceID.offset > 0 ? _fixPtr + fieldComplianceID.offset : nullptr; }
    private: FieldComplianceID fieldComplianceID;
 
    public:
-   bool isSetSolicitedFlag() const { return fieldSolicitedFlag.offset >= 0; }
+   bool isSetSolicitedFlag() const { return fieldSolicitedFlag.offset > 0; }
    FieldSolicitedFlag::ValueType getSolicitedFlag() const { return fieldSolicitedFlag.getValue( _fixPtr ); }
-   std::string_view getSolicitedFlagView() const { return fieldSolicitedFlag.offset >= 0 ? std::string_view{ _fixPtr + fieldSolicitedFlag.offset, getValueLength( _fixPtr + fieldSolicitedFlag.offset ) } : std::string_view{}; }
+   std::string_view getSolicitedFlagView() const { return fieldSolicitedFlag.offset > 0 ? std::string_view{ _fixPtr + fieldSolicitedFlag.offset, getValueLength( _fixPtr + fieldSolicitedFlag.offset ) } : std::string_view{}; }
    const char * ptrToSolicitedFlag() const { return _fixPtr + fieldSolicitedFlag.offset; }
-   const char * getIfSetSolicitedFlag() const { return fieldSolicitedFlag.offset >= 0 ? _fixPtr + fieldSolicitedFlag.offset : nullptr; }
+   const char * ptrToTagSolicitedFlag() const { return _fixPtr + fieldSolicitedFlag.offset - 1 - FieldSolicitedFlag::tagWidth(); }
+   const char * getIfSetSolicitedFlag() const { return fieldSolicitedFlag.offset > 0 ? _fixPtr + fieldSolicitedFlag.offset : nullptr; }
    private: FieldSolicitedFlag fieldSolicitedFlag;
 
    public:
-   bool isSetIOIID() const { return fieldIOIID.offset >= 0; }
+   bool isSetIOIID() const { return fieldIOIID.offset > 0; }
    FieldIOIID::ValueType getIOIID() const { return fieldIOIID.getValue( _fixPtr ); }
-   std::string_view getIOIIDView() const { return fieldIOIID.offset >= 0 ? std::string_view{ _fixPtr + fieldIOIID.offset, getValueLength( _fixPtr + fieldIOIID.offset ) } : std::string_view{}; }
+   std::string_view getIOIIDView() const { return fieldIOIID.offset > 0 ? std::string_view{ _fixPtr + fieldIOIID.offset, getValueLength( _fixPtr + fieldIOIID.offset ) } : std::string_view{}; }
    const char * ptrToIOIID() const { return _fixPtr + fieldIOIID.offset; }
-   const char * getIfSetIOIID() const { return fieldIOIID.offset >= 0 ? _fixPtr + fieldIOIID.offset : nullptr; }
+   const char * ptrToTagIOIID() const { return _fixPtr + fieldIOIID.offset - 1 - FieldIOIID::tagWidth(); }
+   const char * getIfSetIOIID() const { return fieldIOIID.offset > 0 ? _fixPtr + fieldIOIID.offset : nullptr; }
    private: FieldIOIID fieldIOIID;
 
    public:
-   bool isSetQuoteID() const { return fieldQuoteID.offset >= 0; }
+   bool isSetQuoteID() const { return fieldQuoteID.offset > 0; }
    FieldQuoteID::ValueType getQuoteID() const { return fieldQuoteID.getValue( _fixPtr ); }
-   std::string_view getQuoteIDView() const { return fieldQuoteID.offset >= 0 ? std::string_view{ _fixPtr + fieldQuoteID.offset, getValueLength( _fixPtr + fieldQuoteID.offset ) } : std::string_view{}; }
+   std::string_view getQuoteIDView() const { return fieldQuoteID.offset > 0 ? std::string_view{ _fixPtr + fieldQuoteID.offset, getValueLength( _fixPtr + fieldQuoteID.offset ) } : std::string_view{}; }
    const char * ptrToQuoteID() const { return _fixPtr + fieldQuoteID.offset; }
-   const char * getIfSetQuoteID() const { return fieldQuoteID.offset >= 0 ? _fixPtr + fieldQuoteID.offset : nullptr; }
+   const char * ptrToTagQuoteID() const { return _fixPtr + fieldQuoteID.offset - 1 - FieldQuoteID::tagWidth(); }
+   const char * getIfSetQuoteID() const { return fieldQuoteID.offset > 0 ? _fixPtr + fieldQuoteID.offset : nullptr; }
    private: FieldQuoteID fieldQuoteID;
 
    public:
-   bool isSetTimeInForce() const { return fieldTimeInForce.offset >= 0; }
+   bool isSetTimeInForce() const { return fieldTimeInForce.offset > 0; }
    FieldTimeInForce::ValueType getTimeInForce() const { return fieldTimeInForce.getValue( _fixPtr ); }
-   std::string_view getTimeInForceView() const { return fieldTimeInForce.offset >= 0 ? std::string_view{ _fixPtr + fieldTimeInForce.offset, getValueLength( _fixPtr + fieldTimeInForce.offset ) } : std::string_view{}; }
+   std::string_view getTimeInForceView() const { return fieldTimeInForce.offset > 0 ? std::string_view{ _fixPtr + fieldTimeInForce.offset, getValueLength( _fixPtr + fieldTimeInForce.offset ) } : std::string_view{}; }
    const char * ptrToTimeInForce() const { return _fixPtr + fieldTimeInForce.offset; }
-   const char * getIfSetTimeInForce() const { return fieldTimeInForce.offset >= 0 ? _fixPtr + fieldTimeInForce.offset : nullptr; }
+   const char * ptrToTagTimeInForce() const { return _fixPtr + fieldTimeInForce.offset - 1 - FieldTimeInForce::tagWidth(); }
+   const char * getIfSetTimeInForce() const { return fieldTimeInForce.offset > 0 ? _fixPtr + fieldTimeInForce.offset : nullptr; }
    private: FieldTimeInForce fieldTimeInForce;
 
    public:
-   bool isSetEffectiveTime() const { return fieldEffectiveTime.offset >= 0; }
+   bool isSetEffectiveTime() const { return fieldEffectiveTime.offset > 0; }
    FieldEffectiveTime::ValueType getEffectiveTime() const { return fieldEffectiveTime.getValue( _fixPtr ); }
-   std::string_view getEffectiveTimeView() const { return fieldEffectiveTime.offset >= 0 ? std::string_view{ _fixPtr + fieldEffectiveTime.offset, getValueLength( _fixPtr + fieldEffectiveTime.offset ) } : std::string_view{}; }
+   std::string_view getEffectiveTimeView() const { return fieldEffectiveTime.offset > 0 ? std::string_view{ _fixPtr + fieldEffectiveTime.offset, getValueLength( _fixPtr + fieldEffectiveTime.offset ) } : std::string_view{}; }
    const char * ptrToEffectiveTime() const { return _fixPtr + fieldEffectiveTime.offset; }
-   const char * getIfSetEffectiveTime() const { return fieldEffectiveTime.offset >= 0 ? _fixPtr + fieldEffectiveTime.offset : nullptr; }
+   const char * ptrToTagEffectiveTime() const { return _fixPtr + fieldEffectiveTime.offset - 1 - FieldEffectiveTime::tagWidth(); }
+   const char * getIfSetEffectiveTime() const { return fieldEffectiveTime.offset > 0 ? _fixPtr + fieldEffectiveTime.offset : nullptr; }
    private: FieldEffectiveTime fieldEffectiveTime;
 
    public:
-   bool isSetExpireDate() const { return fieldExpireDate.offset >= 0; }
+   bool isSetExpireDate() const { return fieldExpireDate.offset > 0; }
    FieldExpireDate::ValueType getExpireDate() const { return fieldExpireDate.getValue( _fixPtr ); }
-   std::string_view getExpireDateView() const { return fieldExpireDate.offset >= 0 ? std::string_view{ _fixPtr + fieldExpireDate.offset, getValueLength( _fixPtr + fieldExpireDate.offset ) } : std::string_view{}; }
+   std::string_view getExpireDateView() const { return fieldExpireDate.offset > 0 ? std::string_view{ _fixPtr + fieldExpireDate.offset, getValueLength( _fixPtr + fieldExpireDate.offset ) } : std::string_view{}; }
    const char * ptrToExpireDate() const { return _fixPtr + fieldExpireDate.offset; }
-   const char * getIfSetExpireDate() const { return fieldExpireDate.offset >= 0 ? _fixPtr + fieldExpireDate.offset : nullptr; }
+   const char * ptrToTagExpireDate() const { return _fixPtr + fieldExpireDate.offset - 1 - FieldExpireDate::tagWidth(); }
+   const char * getIfSetExpireDate() const { return fieldExpireDate.offset > 0 ? _fixPtr + fieldExpireDate.offset : nullptr; }
    private: FieldExpireDate fieldExpireDate;
 
    public:
-   bool isSetExpireTime() const { return fieldExpireTime.offset >= 0; }
+   bool isSetExpireTime() const { return fieldExpireTime.offset > 0; }
    FieldExpireTime::ValueType getExpireTime() const { return fieldExpireTime.getValue( _fixPtr ); }
-   std::string_view getExpireTimeView() const { return fieldExpireTime.offset >= 0 ? std::string_view{ _fixPtr + fieldExpireTime.offset, getValueLength( _fixPtr + fieldExpireTime.offset ) } : std::string_view{}; }
+   std::string_view getExpireTimeView() const { return fieldExpireTime.offset > 0 ? std::string_view{ _fixPtr + fieldExpireTime.offset, getValueLength( _fixPtr + fieldExpireTime.offset ) } : std::string_view{}; }
    const char * ptrToExpireTime() const { return _fixPtr + fieldExpireTime.offset; }
-   const char * getIfSetExpireTime() const { return fieldExpireTime.offset >= 0 ? _fixPtr + fieldExpireTime.offset : nullptr; }
+   const char * ptrToTagExpireTime() const { return _fixPtr + fieldExpireTime.offset - 1 - FieldExpireTime::tagWidth(); }
+   const char * getIfSetExpireTime() const { return fieldExpireTime.offset > 0 ? _fixPtr + fieldExpireTime.offset : nullptr; }
    private: FieldExpireTime fieldExpireTime;
 
    public:
-   bool isSetGTBookingInst() const { return fieldGTBookingInst.offset >= 0; }
+   bool isSetGTBookingInst() const { return fieldGTBookingInst.offset > 0; }
    FieldGTBookingInst::ValueType getGTBookingInst() const { return fieldGTBookingInst.getValue( _fixPtr ); }
-   std::string_view getGTBookingInstView() const { return fieldGTBookingInst.offset >= 0 ? std::string_view{ _fixPtr + fieldGTBookingInst.offset, getValueLength( _fixPtr + fieldGTBookingInst.offset ) } : std::string_view{}; }
+   std::string_view getGTBookingInstView() const { return fieldGTBookingInst.offset > 0 ? std::string_view{ _fixPtr + fieldGTBookingInst.offset, getValueLength( _fixPtr + fieldGTBookingInst.offset ) } : std::string_view{}; }
    const char * ptrToGTBookingInst() const { return _fixPtr + fieldGTBookingInst.offset; }
-   const char * getIfSetGTBookingInst() const { return fieldGTBookingInst.offset >= 0 ? _fixPtr + fieldGTBookingInst.offset : nullptr; }
+   const char * ptrToTagGTBookingInst() const { return _fixPtr + fieldGTBookingInst.offset - 1 - FieldGTBookingInst::tagWidth(); }
+   const char * getIfSetGTBookingInst() const { return fieldGTBookingInst.offset > 0 ? _fixPtr + fieldGTBookingInst.offset : nullptr; }
    private: FieldGTBookingInst fieldGTBookingInst;
 
    public:
-   bool isSetCommission() const { return fieldCommission.offset >= 0; }
+   bool isSetCommission() const { return fieldCommission.offset > 0; }
    FieldCommission::ValueType getCommission() const { return fieldCommission.getValue( _fixPtr ); }
-   std::string_view getCommissionView() const { return fieldCommission.offset >= 0 ? std::string_view{ _fixPtr + fieldCommission.offset, getValueLength( _fixPtr + fieldCommission.offset ) } : std::string_view{}; }
+   std::string_view getCommissionView() const { return fieldCommission.offset > 0 ? std::string_view{ _fixPtr + fieldCommission.offset, getValueLength( _fixPtr + fieldCommission.offset ) } : std::string_view{}; }
    const char * ptrToCommission() const { return _fixPtr + fieldCommission.offset; }
-   const char * getIfSetCommission() const { return fieldCommission.offset >= 0 ? _fixPtr + fieldCommission.offset : nullptr; }
+   const char * ptrToTagCommission() const { return _fixPtr + fieldCommission.offset - 1 - FieldCommission::tagWidth(); }
+   const char * getIfSetCommission() const { return fieldCommission.offset > 0 ? _fixPtr + fieldCommission.offset : nullptr; }
    private: FieldCommission fieldCommission;
 
    public:
-   bool isSetCommType() const { return fieldCommType.offset >= 0; }
+   bool isSetCommType() const { return fieldCommType.offset > 0; }
    FieldCommType::ValueType getCommType() const { return fieldCommType.getValue( _fixPtr ); }
-   std::string_view getCommTypeView() const { return fieldCommType.offset >= 0 ? std::string_view{ _fixPtr + fieldCommType.offset, getValueLength( _fixPtr + fieldCommType.offset ) } : std::string_view{}; }
+   std::string_view getCommTypeView() const { return fieldCommType.offset > 0 ? std::string_view{ _fixPtr + fieldCommType.offset, getValueLength( _fixPtr + fieldCommType.offset ) } : std::string_view{}; }
    const char * ptrToCommType() const { return _fixPtr + fieldCommType.offset; }
-   const char * getIfSetCommType() const { return fieldCommType.offset >= 0 ? _fixPtr + fieldCommType.offset : nullptr; }
+   const char * ptrToTagCommType() const { return _fixPtr + fieldCommType.offset - 1 - FieldCommType::tagWidth(); }
+   const char * getIfSetCommType() const { return fieldCommType.offset > 0 ? _fixPtr + fieldCommType.offset : nullptr; }
    private: FieldCommType fieldCommType;
 
    public:
-   bool isSetCommCurrency() const { return fieldCommCurrency.offset >= 0; }
+   bool isSetCommCurrency() const { return fieldCommCurrency.offset > 0; }
    FieldCommCurrency::ValueType getCommCurrency() const { return fieldCommCurrency.getValue( _fixPtr ); }
-   std::string_view getCommCurrencyView() const { return fieldCommCurrency.offset >= 0 ? std::string_view{ _fixPtr + fieldCommCurrency.offset, getValueLength( _fixPtr + fieldCommCurrency.offset ) } : std::string_view{}; }
+   std::string_view getCommCurrencyView() const { return fieldCommCurrency.offset > 0 ? std::string_view{ _fixPtr + fieldCommCurrency.offset, getValueLength( _fixPtr + fieldCommCurrency.offset ) } : std::string_view{}; }
    const char * ptrToCommCurrency() const { return _fixPtr + fieldCommCurrency.offset; }
-   const char * getIfSetCommCurrency() const { return fieldCommCurrency.offset >= 0 ? _fixPtr + fieldCommCurrency.offset : nullptr; }
+   const char * ptrToTagCommCurrency() const { return _fixPtr + fieldCommCurrency.offset - 1 - FieldCommCurrency::tagWidth(); }
+   const char * getIfSetCommCurrency() const { return fieldCommCurrency.offset > 0 ? _fixPtr + fieldCommCurrency.offset : nullptr; }
    private: FieldCommCurrency fieldCommCurrency;
 
    public:
-   bool isSetFundRenewWaiv() const { return fieldFundRenewWaiv.offset >= 0; }
+   bool isSetFundRenewWaiv() const { return fieldFundRenewWaiv.offset > 0; }
    FieldFundRenewWaiv::ValueType getFundRenewWaiv() const { return fieldFundRenewWaiv.getValue( _fixPtr ); }
-   std::string_view getFundRenewWaivView() const { return fieldFundRenewWaiv.offset >= 0 ? std::string_view{ _fixPtr + fieldFundRenewWaiv.offset, getValueLength( _fixPtr + fieldFundRenewWaiv.offset ) } : std::string_view{}; }
+   std::string_view getFundRenewWaivView() const { return fieldFundRenewWaiv.offset > 0 ? std::string_view{ _fixPtr + fieldFundRenewWaiv.offset, getValueLength( _fixPtr + fieldFundRenewWaiv.offset ) } : std::string_view{}; }
    const char * ptrToFundRenewWaiv() const { return _fixPtr + fieldFundRenewWaiv.offset; }
-   const char * getIfSetFundRenewWaiv() const { return fieldFundRenewWaiv.offset >= 0 ? _fixPtr + fieldFundRenewWaiv.offset : nullptr; }
+   const char * ptrToTagFundRenewWaiv() const { return _fixPtr + fieldFundRenewWaiv.offset - 1 - FieldFundRenewWaiv::tagWidth(); }
+   const char * getIfSetFundRenewWaiv() const { return fieldFundRenewWaiv.offset > 0 ? _fixPtr + fieldFundRenewWaiv.offset : nullptr; }
    private: FieldFundRenewWaiv fieldFundRenewWaiv;
 
    public:
-   bool isSetOrderCapacity() const { return fieldOrderCapacity.offset >= 0; }
+   bool isSetOrderCapacity() const { return fieldOrderCapacity.offset > 0; }
    FieldOrderCapacity::ValueType getOrderCapacity() const { return fieldOrderCapacity.getValue( _fixPtr ); }
-   std::string_view getOrderCapacityView() const { return fieldOrderCapacity.offset >= 0 ? std::string_view{ _fixPtr + fieldOrderCapacity.offset, getValueLength( _fixPtr + fieldOrderCapacity.offset ) } : std::string_view{}; }
+   std::string_view getOrderCapacityView() const { return fieldOrderCapacity.offset > 0 ? std::string_view{ _fixPtr + fieldOrderCapacity.offset, getValueLength( _fixPtr + fieldOrderCapacity.offset ) } : std::string_view{}; }
    const char * ptrToOrderCapacity() const { return _fixPtr + fieldOrderCapacity.offset; }
-   const char * getIfSetOrderCapacity() const { return fieldOrderCapacity.offset >= 0 ? _fixPtr + fieldOrderCapacity.offset : nullptr; }
+   const char * ptrToTagOrderCapacity() const { return _fixPtr + fieldOrderCapacity.offset - 1 - FieldOrderCapacity::tagWidth(); }
+   const char * getIfSetOrderCapacity() const { return fieldOrderCapacity.offset > 0 ? _fixPtr + fieldOrderCapacity.offset : nullptr; }
    private: FieldOrderCapacity fieldOrderCapacity;
 
    public:
-   bool isSetOrderRestrictions() const { return fieldOrderRestrictions.offset >= 0; }
+   bool isSetOrderRestrictions() const { return fieldOrderRestrictions.offset > 0; }
    FieldOrderRestrictions::ValueType getOrderRestrictions() const { return fieldOrderRestrictions.getValue( _fixPtr ); }
-   std::string_view getOrderRestrictionsView() const { return fieldOrderRestrictions.offset >= 0 ? std::string_view{ _fixPtr + fieldOrderRestrictions.offset, getValueLength( _fixPtr + fieldOrderRestrictions.offset ) } : std::string_view{}; }
+   std::string_view getOrderRestrictionsView() const { return fieldOrderRestrictions.offset > 0 ? std::string_view{ _fixPtr + fieldOrderRestrictions.offset, getValueLength( _fixPtr + fieldOrderRestrictions.offset ) } : std::string_view{}; }
    const char * ptrToOrderRestrictions() const { return _fixPtr + fieldOrderRestrictions.offset; }
-   const char * getIfSetOrderRestrictions() const { return fieldOrderRestrictions.offset >= 0 ? _fixPtr + fieldOrderRestrictions.offset : nullptr; }
+   const char * ptrToTagOrderRestrictions() const { return _fixPtr + fieldOrderRestrictions.offset - 1 - FieldOrderRestrictions::tagWidth(); }
+   const char * getIfSetOrderRestrictions() const { return fieldOrderRestrictions.offset > 0 ? _fixPtr + fieldOrderRestrictions.offset : nullptr; }
    private: FieldOrderRestrictions fieldOrderRestrictions;
 
    public:
-   bool isSetCustOrderCapacity() const { return fieldCustOrderCapacity.offset >= 0; }
+   bool isSetCustOrderCapacity() const { return fieldCustOrderCapacity.offset > 0; }
    FieldCustOrderCapacity::ValueType getCustOrderCapacity() const { return fieldCustOrderCapacity.getValue( _fixPtr ); }
-   std::string_view getCustOrderCapacityView() const { return fieldCustOrderCapacity.offset >= 0 ? std::string_view{ _fixPtr + fieldCustOrderCapacity.offset, getValueLength( _fixPtr + fieldCustOrderCapacity.offset ) } : std::string_view{}; }
+   std::string_view getCustOrderCapacityView() const { return fieldCustOrderCapacity.offset > 0 ? std::string_view{ _fixPtr + fieldCustOrderCapacity.offset, getValueLength( _fixPtr + fieldCustOrderCapacity.offset ) } : std::string_view{}; }
    const char * ptrToCustOrderCapacity() const { return _fixPtr + fieldCustOrderCapacity.offset; }
-   const char * getIfSetCustOrderCapacity() const { return fieldCustOrderCapacity.offset >= 0 ? _fixPtr + fieldCustOrderCapacity.offset : nullptr; }
+   const char * ptrToTagCustOrderCapacity() const { return _fixPtr + fieldCustOrderCapacity.offset - 1 - FieldCustOrderCapacity::tagWidth(); }
+   const char * getIfSetCustOrderCapacity() const { return fieldCustOrderCapacity.offset > 0 ? _fixPtr + fieldCustOrderCapacity.offset : nullptr; }
    private: FieldCustOrderCapacity fieldCustOrderCapacity;
 
    public:
-   bool isSetForexReq() const { return fieldForexReq.offset >= 0; }
+   bool isSetForexReq() const { return fieldForexReq.offset > 0; }
    FieldForexReq::ValueType getForexReq() const { return fieldForexReq.getValue( _fixPtr ); }
-   std::string_view getForexReqView() const { return fieldForexReq.offset >= 0 ? std::string_view{ _fixPtr + fieldForexReq.offset, getValueLength( _fixPtr + fieldForexReq.offset ) } : std::string_view{}; }
+   std::string_view getForexReqView() const { return fieldForexReq.offset > 0 ? std::string_view{ _fixPtr + fieldForexReq.offset, getValueLength( _fixPtr + fieldForexReq.offset ) } : std::string_view{}; }
    const char * ptrToForexReq() const { return _fixPtr + fieldForexReq.offset; }
-   const char * getIfSetForexReq() const { return fieldForexReq.offset >= 0 ? _fixPtr + fieldForexReq.offset : nullptr; }
+   const char * ptrToTagForexReq() const { return _fixPtr + fieldForexReq.offset - 1 - FieldForexReq::tagWidth(); }
+   const char * getIfSetForexReq() const { return fieldForexReq.offset > 0 ? _fixPtr + fieldForexReq.offset : nullptr; }
    private: FieldForexReq fieldForexReq;
 
    public:
-   bool isSetSettlCurrency() const { return fieldSettlCurrency.offset >= 0; }
+   bool isSetSettlCurrency() const { return fieldSettlCurrency.offset > 0; }
    FieldSettlCurrency::ValueType getSettlCurrency() const { return fieldSettlCurrency.getValue( _fixPtr ); }
-   std::string_view getSettlCurrencyView() const { return fieldSettlCurrency.offset >= 0 ? std::string_view{ _fixPtr + fieldSettlCurrency.offset, getValueLength( _fixPtr + fieldSettlCurrency.offset ) } : std::string_view{}; }
+   std::string_view getSettlCurrencyView() const { return fieldSettlCurrency.offset > 0 ? std::string_view{ _fixPtr + fieldSettlCurrency.offset, getValueLength( _fixPtr + fieldSettlCurrency.offset ) } : std::string_view{}; }
    const char * ptrToSettlCurrency() const { return _fixPtr + fieldSettlCurrency.offset; }
-   const char * getIfSetSettlCurrency() const { return fieldSettlCurrency.offset >= 0 ? _fixPtr + fieldSettlCurrency.offset : nullptr; }
+   const char * ptrToTagSettlCurrency() const { return _fixPtr + fieldSettlCurrency.offset - 1 - FieldSettlCurrency::tagWidth(); }
+   const char * getIfSetSettlCurrency() const { return fieldSettlCurrency.offset > 0 ? _fixPtr + fieldSettlCurrency.offset : nullptr; }
    private: FieldSettlCurrency fieldSettlCurrency;
 
    public:
-   bool isSetBookingType() const { return fieldBookingType.offset >= 0; }
+   bool isSetBookingType() const { return fieldBookingType.offset > 0; }
    FieldBookingType::ValueType getBookingType() const { return fieldBookingType.getValue( _fixPtr ); }
-   std::string_view getBookingTypeView() const { return fieldBookingType.offset >= 0 ? std::string_view{ _fixPtr + fieldBookingType.offset, getValueLength( _fixPtr + fieldBookingType.offset ) } : std::string_view{}; }
+   std::string_view getBookingTypeView() const { return fieldBookingType.offset > 0 ? std::string_view{ _fixPtr + fieldBookingType.offset, getValueLength( _fixPtr + fieldBookingType.offset ) } : std::string_view{}; }
    const char * ptrToBookingType() const { return _fixPtr + fieldBookingType.offset; }
-   const char * getIfSetBookingType() const { return fieldBookingType.offset >= 0 ? _fixPtr + fieldBookingType.offset : nullptr; }
+   const char * ptrToTagBookingType() const { return _fixPtr + fieldBookingType.offset - 1 - FieldBookingType::tagWidth(); }
+   const char * getIfSetBookingType() const { return fieldBookingType.offset > 0 ? _fixPtr + fieldBookingType.offset : nullptr; }
    private: FieldBookingType fieldBookingType;
 
    public:
-   bool isSetText() const { return fieldText.offset >= 0; }
+   bool isSetText() const { return fieldText.offset > 0; }
    FieldText::ValueType getText() const { return fieldText.getValue( _fixPtr ); }
-   std::string_view getTextView() const { return fieldText.offset >= 0 ? std::string_view{ _fixPtr + fieldText.offset, getValueLength( _fixPtr + fieldText.offset ) } : std::string_view{}; }
+   std::string_view getTextView() const { return fieldText.offset > 0 ? std::string_view{ _fixPtr + fieldText.offset, getValueLength( _fixPtr + fieldText.offset ) } : std::string_view{}; }
    const char * ptrToText() const { return _fixPtr + fieldText.offset; }
-   const char * getIfSetText() const { return fieldText.offset >= 0 ? _fixPtr + fieldText.offset : nullptr; }
+   const char * ptrToTagText() const { return _fixPtr + fieldText.offset - 1 - FieldText::tagWidth(); }
+   const char * getIfSetText() const { return fieldText.offset > 0 ? _fixPtr + fieldText.offset : nullptr; }
    private: FieldText fieldText;
 
    public:
-   bool isSetEncodedTextLen() const { return fieldEncodedTextLen.offset >= 0; }
+   bool isSetEncodedTextLen() const { return fieldEncodedTextLen.offset > 0; }
    FieldEncodedTextLen::ValueType getEncodedTextLen() const { return fieldEncodedTextLen.getValue( _fixPtr ); }
-   std::string_view getEncodedTextLenView() const { return fieldEncodedTextLen.offset >= 0 ? std::string_view{ _fixPtr + fieldEncodedTextLen.offset, getValueLength( _fixPtr + fieldEncodedTextLen.offset ) } : std::string_view{}; }
+   std::string_view getEncodedTextLenView() const { return fieldEncodedTextLen.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedTextLen.offset, getValueLength( _fixPtr + fieldEncodedTextLen.offset ) } : std::string_view{}; }
    const char * ptrToEncodedTextLen() const { return _fixPtr + fieldEncodedTextLen.offset; }
-   const char * getIfSetEncodedTextLen() const { return fieldEncodedTextLen.offset >= 0 ? _fixPtr + fieldEncodedTextLen.offset : nullptr; }
+   const char * ptrToTagEncodedTextLen() const { return _fixPtr + fieldEncodedTextLen.offset - 1 - FieldEncodedTextLen::tagWidth(); }
+   const char * getIfSetEncodedTextLen() const { return fieldEncodedTextLen.offset > 0 ? _fixPtr + fieldEncodedTextLen.offset : nullptr; }
    private: FieldEncodedTextLen fieldEncodedTextLen;
 
    public:
-   bool isSetEncodedText() const { return fieldEncodedText.offset >= 0; }
+   bool isSetEncodedText() const { return fieldEncodedText.offset > 0; }
    FieldEncodedText::ValueType getEncodedText() const { return fieldEncodedText.getValue( _fixPtr ); }
-   std::string_view getEncodedTextView() const { return fieldEncodedText.offset >= 0 ? std::string_view{ _fixPtr + fieldEncodedText.offset, getValueLength( _fixPtr + fieldEncodedText.offset ) } : std::string_view{}; }
+   std::string_view getEncodedTextView() const { return fieldEncodedText.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedText.offset, getValueLength( _fixPtr + fieldEncodedText.offset ) } : std::string_view{}; }
    const char * ptrToEncodedText() const { return _fixPtr + fieldEncodedText.offset; }
-   const char * getIfSetEncodedText() const { return fieldEncodedText.offset >= 0 ? _fixPtr + fieldEncodedText.offset : nullptr; }
+   const char * ptrToTagEncodedText() const { return _fixPtr + fieldEncodedText.offset - 1 - FieldEncodedText::tagWidth(); }
+   const char * getIfSetEncodedText() const { return fieldEncodedText.offset > 0 ? _fixPtr + fieldEncodedText.offset : nullptr; }
    private: FieldEncodedText fieldEncodedText;
 
    public:
-   bool isSetSettlDate2() const { return fieldSettlDate2.offset >= 0; }
+   bool isSetSettlDate2() const { return fieldSettlDate2.offset > 0; }
    FieldSettlDate2::ValueType getSettlDate2() const { return fieldSettlDate2.getValue( _fixPtr ); }
-   std::string_view getSettlDate2View() const { return fieldSettlDate2.offset >= 0 ? std::string_view{ _fixPtr + fieldSettlDate2.offset, getValueLength( _fixPtr + fieldSettlDate2.offset ) } : std::string_view{}; }
+   std::string_view getSettlDate2View() const { return fieldSettlDate2.offset > 0 ? std::string_view{ _fixPtr + fieldSettlDate2.offset, getValueLength( _fixPtr + fieldSettlDate2.offset ) } : std::string_view{}; }
    const char * ptrToSettlDate2() const { return _fixPtr + fieldSettlDate2.offset; }
-   const char * getIfSetSettlDate2() const { return fieldSettlDate2.offset >= 0 ? _fixPtr + fieldSettlDate2.offset : nullptr; }
+   const char * ptrToTagSettlDate2() const { return _fixPtr + fieldSettlDate2.offset - 1 - FieldSettlDate2::tagWidth(); }
+   const char * getIfSetSettlDate2() const { return fieldSettlDate2.offset > 0 ? _fixPtr + fieldSettlDate2.offset : nullptr; }
    private: FieldSettlDate2 fieldSettlDate2;
 
    public:
-   bool isSetOrderQty2() const { return fieldOrderQty2.offset >= 0; }
+   bool isSetOrderQty2() const { return fieldOrderQty2.offset > 0; }
    FieldOrderQty2::ValueType getOrderQty2() const { return fieldOrderQty2.getValue( _fixPtr ); }
-   std::string_view getOrderQty2View() const { return fieldOrderQty2.offset >= 0 ? std::string_view{ _fixPtr + fieldOrderQty2.offset, getValueLength( _fixPtr + fieldOrderQty2.offset ) } : std::string_view{}; }
+   std::string_view getOrderQty2View() const { return fieldOrderQty2.offset > 0 ? std::string_view{ _fixPtr + fieldOrderQty2.offset, getValueLength( _fixPtr + fieldOrderQty2.offset ) } : std::string_view{}; }
    const char * ptrToOrderQty2() const { return _fixPtr + fieldOrderQty2.offset; }
-   const char * getIfSetOrderQty2() const { return fieldOrderQty2.offset >= 0 ? _fixPtr + fieldOrderQty2.offset : nullptr; }
+   const char * ptrToTagOrderQty2() const { return _fixPtr + fieldOrderQty2.offset - 1 - FieldOrderQty2::tagWidth(); }
+   const char * getIfSetOrderQty2() const { return fieldOrderQty2.offset > 0 ? _fixPtr + fieldOrderQty2.offset : nullptr; }
    private: FieldOrderQty2 fieldOrderQty2;
 
    public:
-   bool isSetPrice2() const { return fieldPrice2.offset >= 0; }
+   bool isSetPrice2() const { return fieldPrice2.offset > 0; }
    FieldPrice2::ValueType getPrice2() const { return fieldPrice2.getValue( _fixPtr ); }
-   std::string_view getPrice2View() const { return fieldPrice2.offset >= 0 ? std::string_view{ _fixPtr + fieldPrice2.offset, getValueLength( _fixPtr + fieldPrice2.offset ) } : std::string_view{}; }
+   std::string_view getPrice2View() const { return fieldPrice2.offset > 0 ? std::string_view{ _fixPtr + fieldPrice2.offset, getValueLength( _fixPtr + fieldPrice2.offset ) } : std::string_view{}; }
    const char * ptrToPrice2() const { return _fixPtr + fieldPrice2.offset; }
-   const char * getIfSetPrice2() const { return fieldPrice2.offset >= 0 ? _fixPtr + fieldPrice2.offset : nullptr; }
+   const char * ptrToTagPrice2() const { return _fixPtr + fieldPrice2.offset - 1 - FieldPrice2::tagWidth(); }
+   const char * getIfSetPrice2() const { return fieldPrice2.offset > 0 ? _fixPtr + fieldPrice2.offset : nullptr; }
    private: FieldPrice2 fieldPrice2;
 
    public:
-   bool isSetPositionEffect() const { return fieldPositionEffect.offset >= 0; }
+   bool isSetPositionEffect() const { return fieldPositionEffect.offset > 0; }
    FieldPositionEffect::ValueType getPositionEffect() const { return fieldPositionEffect.getValue( _fixPtr ); }
-   std::string_view getPositionEffectView() const { return fieldPositionEffect.offset >= 0 ? std::string_view{ _fixPtr + fieldPositionEffect.offset, getValueLength( _fixPtr + fieldPositionEffect.offset ) } : std::string_view{}; }
+   std::string_view getPositionEffectView() const { return fieldPositionEffect.offset > 0 ? std::string_view{ _fixPtr + fieldPositionEffect.offset, getValueLength( _fixPtr + fieldPositionEffect.offset ) } : std::string_view{}; }
    const char * ptrToPositionEffect() const { return _fixPtr + fieldPositionEffect.offset; }
-   const char * getIfSetPositionEffect() const { return fieldPositionEffect.offset >= 0 ? _fixPtr + fieldPositionEffect.offset : nullptr; }
+   const char * ptrToTagPositionEffect() const { return _fixPtr + fieldPositionEffect.offset - 1 - FieldPositionEffect::tagWidth(); }
+   const char * getIfSetPositionEffect() const { return fieldPositionEffect.offset > 0 ? _fixPtr + fieldPositionEffect.offset : nullptr; }
    private: FieldPositionEffect fieldPositionEffect;
 
    public:
-   bool isSetCoveredOrUncovered() const { return fieldCoveredOrUncovered.offset >= 0; }
+   bool isSetCoveredOrUncovered() const { return fieldCoveredOrUncovered.offset > 0; }
    FieldCoveredOrUncovered::ValueType getCoveredOrUncovered() const { return fieldCoveredOrUncovered.getValue( _fixPtr ); }
-   std::string_view getCoveredOrUncoveredView() const { return fieldCoveredOrUncovered.offset >= 0 ? std::string_view{ _fixPtr + fieldCoveredOrUncovered.offset, getValueLength( _fixPtr + fieldCoveredOrUncovered.offset ) } : std::string_view{}; }
+   std::string_view getCoveredOrUncoveredView() const { return fieldCoveredOrUncovered.offset > 0 ? std::string_view{ _fixPtr + fieldCoveredOrUncovered.offset, getValueLength( _fixPtr + fieldCoveredOrUncovered.offset ) } : std::string_view{}; }
    const char * ptrToCoveredOrUncovered() const { return _fixPtr + fieldCoveredOrUncovered.offset; }
-   const char * getIfSetCoveredOrUncovered() const { return fieldCoveredOrUncovered.offset >= 0 ? _fixPtr + fieldCoveredOrUncovered.offset : nullptr; }
+   const char * ptrToTagCoveredOrUncovered() const { return _fixPtr + fieldCoveredOrUncovered.offset - 1 - FieldCoveredOrUncovered::tagWidth(); }
+   const char * getIfSetCoveredOrUncovered() const { return fieldCoveredOrUncovered.offset > 0 ? _fixPtr + fieldCoveredOrUncovered.offset : nullptr; }
    private: FieldCoveredOrUncovered fieldCoveredOrUncovered;
 
    public:
-   bool isSetMaxShow() const { return fieldMaxShow.offset >= 0; }
+   bool isSetMaxShow() const { return fieldMaxShow.offset > 0; }
    FieldMaxShow::ValueType getMaxShow() const { return fieldMaxShow.getValue( _fixPtr ); }
-   std::string_view getMaxShowView() const { return fieldMaxShow.offset >= 0 ? std::string_view{ _fixPtr + fieldMaxShow.offset, getValueLength( _fixPtr + fieldMaxShow.offset ) } : std::string_view{}; }
+   std::string_view getMaxShowView() const { return fieldMaxShow.offset > 0 ? std::string_view{ _fixPtr + fieldMaxShow.offset, getValueLength( _fixPtr + fieldMaxShow.offset ) } : std::string_view{}; }
    const char * ptrToMaxShow() const { return _fixPtr + fieldMaxShow.offset; }
-   const char * getIfSetMaxShow() const { return fieldMaxShow.offset >= 0 ? _fixPtr + fieldMaxShow.offset : nullptr; }
+   const char * ptrToTagMaxShow() const { return _fixPtr + fieldMaxShow.offset - 1 - FieldMaxShow::tagWidth(); }
+   const char * getIfSetMaxShow() const { return fieldMaxShow.offset > 0 ? _fixPtr + fieldMaxShow.offset : nullptr; }
    private: FieldMaxShow fieldMaxShow;
 
    public:
-   bool isSetPegOffsetValue() const { return fieldPegOffsetValue.offset >= 0; }
+   bool isSetPegOffsetValue() const { return fieldPegOffsetValue.offset > 0; }
    FieldPegOffsetValue::ValueType getPegOffsetValue() const { return fieldPegOffsetValue.getValue( _fixPtr ); }
-   std::string_view getPegOffsetValueView() const { return fieldPegOffsetValue.offset >= 0 ? std::string_view{ _fixPtr + fieldPegOffsetValue.offset, getValueLength( _fixPtr + fieldPegOffsetValue.offset ) } : std::string_view{}; }
+   std::string_view getPegOffsetValueView() const { return fieldPegOffsetValue.offset > 0 ? std::string_view{ _fixPtr + fieldPegOffsetValue.offset, getValueLength( _fixPtr + fieldPegOffsetValue.offset ) } : std::string_view{}; }
    const char * ptrToPegOffsetValue() const { return _fixPtr + fieldPegOffsetValue.offset; }
-   const char * getIfSetPegOffsetValue() const { return fieldPegOffsetValue.offset >= 0 ? _fixPtr + fieldPegOffsetValue.offset : nullptr; }
+   const char * ptrToTagPegOffsetValue() const { return _fixPtr + fieldPegOffsetValue.offset - 1 - FieldPegOffsetValue::tagWidth(); }
+   const char * getIfSetPegOffsetValue() const { return fieldPegOffsetValue.offset > 0 ? _fixPtr + fieldPegOffsetValue.offset : nullptr; }
    private: FieldPegOffsetValue fieldPegOffsetValue;
 
    public:
-   bool isSetPegMoveType() const { return fieldPegMoveType.offset >= 0; }
+   bool isSetPegMoveType() const { return fieldPegMoveType.offset > 0; }
    FieldPegMoveType::ValueType getPegMoveType() const { return fieldPegMoveType.getValue( _fixPtr ); }
-   std::string_view getPegMoveTypeView() const { return fieldPegMoveType.offset >= 0 ? std::string_view{ _fixPtr + fieldPegMoveType.offset, getValueLength( _fixPtr + fieldPegMoveType.offset ) } : std::string_view{}; }
+   std::string_view getPegMoveTypeView() const { return fieldPegMoveType.offset > 0 ? std::string_view{ _fixPtr + fieldPegMoveType.offset, getValueLength( _fixPtr + fieldPegMoveType.offset ) } : std::string_view{}; }
    const char * ptrToPegMoveType() const { return _fixPtr + fieldPegMoveType.offset; }
-   const char * getIfSetPegMoveType() const { return fieldPegMoveType.offset >= 0 ? _fixPtr + fieldPegMoveType.offset : nullptr; }
+   const char * ptrToTagPegMoveType() const { return _fixPtr + fieldPegMoveType.offset - 1 - FieldPegMoveType::tagWidth(); }
+   const char * getIfSetPegMoveType() const { return fieldPegMoveType.offset > 0 ? _fixPtr + fieldPegMoveType.offset : nullptr; }
    private: FieldPegMoveType fieldPegMoveType;
 
    public:
-   bool isSetPegOffsetType() const { return fieldPegOffsetType.offset >= 0; }
+   bool isSetPegOffsetType() const { return fieldPegOffsetType.offset > 0; }
    FieldPegOffsetType::ValueType getPegOffsetType() const { return fieldPegOffsetType.getValue( _fixPtr ); }
-   std::string_view getPegOffsetTypeView() const { return fieldPegOffsetType.offset >= 0 ? std::string_view{ _fixPtr + fieldPegOffsetType.offset, getValueLength( _fixPtr + fieldPegOffsetType.offset ) } : std::string_view{}; }
+   std::string_view getPegOffsetTypeView() const { return fieldPegOffsetType.offset > 0 ? std::string_view{ _fixPtr + fieldPegOffsetType.offset, getValueLength( _fixPtr + fieldPegOffsetType.offset ) } : std::string_view{}; }
    const char * ptrToPegOffsetType() const { return _fixPtr + fieldPegOffsetType.offset; }
-   const char * getIfSetPegOffsetType() const { return fieldPegOffsetType.offset >= 0 ? _fixPtr + fieldPegOffsetType.offset : nullptr; }
+   const char * ptrToTagPegOffsetType() const { return _fixPtr + fieldPegOffsetType.offset - 1 - FieldPegOffsetType::tagWidth(); }
+   const char * getIfSetPegOffsetType() const { return fieldPegOffsetType.offset > 0 ? _fixPtr + fieldPegOffsetType.offset : nullptr; }
    private: FieldPegOffsetType fieldPegOffsetType;
 
    public:
-   bool isSetPegLimitType() const { return fieldPegLimitType.offset >= 0; }
+   bool isSetPegLimitType() const { return fieldPegLimitType.offset > 0; }
    FieldPegLimitType::ValueType getPegLimitType() const { return fieldPegLimitType.getValue( _fixPtr ); }
-   std::string_view getPegLimitTypeView() const { return fieldPegLimitType.offset >= 0 ? std::string_view{ _fixPtr + fieldPegLimitType.offset, getValueLength( _fixPtr + fieldPegLimitType.offset ) } : std::string_view{}; }
+   std::string_view getPegLimitTypeView() const { return fieldPegLimitType.offset > 0 ? std::string_view{ _fixPtr + fieldPegLimitType.offset, getValueLength( _fixPtr + fieldPegLimitType.offset ) } : std::string_view{}; }
    const char * ptrToPegLimitType() const { return _fixPtr + fieldPegLimitType.offset; }
-   const char * getIfSetPegLimitType() const { return fieldPegLimitType.offset >= 0 ? _fixPtr + fieldPegLimitType.offset : nullptr; }
+   const char * ptrToTagPegLimitType() const { return _fixPtr + fieldPegLimitType.offset - 1 - FieldPegLimitType::tagWidth(); }
+   const char * getIfSetPegLimitType() const { return fieldPegLimitType.offset > 0 ? _fixPtr + fieldPegLimitType.offset : nullptr; }
    private: FieldPegLimitType fieldPegLimitType;
 
    public:
-   bool isSetPegRoundDirection() const { return fieldPegRoundDirection.offset >= 0; }
+   bool isSetPegRoundDirection() const { return fieldPegRoundDirection.offset > 0; }
    FieldPegRoundDirection::ValueType getPegRoundDirection() const { return fieldPegRoundDirection.getValue( _fixPtr ); }
-   std::string_view getPegRoundDirectionView() const { return fieldPegRoundDirection.offset >= 0 ? std::string_view{ _fixPtr + fieldPegRoundDirection.offset, getValueLength( _fixPtr + fieldPegRoundDirection.offset ) } : std::string_view{}; }
+   std::string_view getPegRoundDirectionView() const { return fieldPegRoundDirection.offset > 0 ? std::string_view{ _fixPtr + fieldPegRoundDirection.offset, getValueLength( _fixPtr + fieldPegRoundDirection.offset ) } : std::string_view{}; }
    const char * ptrToPegRoundDirection() const { return _fixPtr + fieldPegRoundDirection.offset; }
-   const char * getIfSetPegRoundDirection() const { return fieldPegRoundDirection.offset >= 0 ? _fixPtr + fieldPegRoundDirection.offset : nullptr; }
+   const char * ptrToTagPegRoundDirection() const { return _fixPtr + fieldPegRoundDirection.offset - 1 - FieldPegRoundDirection::tagWidth(); }
+   const char * getIfSetPegRoundDirection() const { return fieldPegRoundDirection.offset > 0 ? _fixPtr + fieldPegRoundDirection.offset : nullptr; }
    private: FieldPegRoundDirection fieldPegRoundDirection;
 
    public:
-   bool isSetPegScope() const { return fieldPegScope.offset >= 0; }
+   bool isSetPegScope() const { return fieldPegScope.offset > 0; }
    FieldPegScope::ValueType getPegScope() const { return fieldPegScope.getValue( _fixPtr ); }
-   std::string_view getPegScopeView() const { return fieldPegScope.offset >= 0 ? std::string_view{ _fixPtr + fieldPegScope.offset, getValueLength( _fixPtr + fieldPegScope.offset ) } : std::string_view{}; }
+   std::string_view getPegScopeView() const { return fieldPegScope.offset > 0 ? std::string_view{ _fixPtr + fieldPegScope.offset, getValueLength( _fixPtr + fieldPegScope.offset ) } : std::string_view{}; }
    const char * ptrToPegScope() const { return _fixPtr + fieldPegScope.offset; }
-   const char * getIfSetPegScope() const { return fieldPegScope.offset >= 0 ? _fixPtr + fieldPegScope.offset : nullptr; }
+   const char * ptrToTagPegScope() const { return _fixPtr + fieldPegScope.offset - 1 - FieldPegScope::tagWidth(); }
+   const char * getIfSetPegScope() const { return fieldPegScope.offset > 0 ? _fixPtr + fieldPegScope.offset : nullptr; }
    private: FieldPegScope fieldPegScope;
 
    public:
-   bool isSetDiscretionInst() const { return fieldDiscretionInst.offset >= 0; }
+   bool isSetDiscretionInst() const { return fieldDiscretionInst.offset > 0; }
    FieldDiscretionInst::ValueType getDiscretionInst() const { return fieldDiscretionInst.getValue( _fixPtr ); }
-   std::string_view getDiscretionInstView() const { return fieldDiscretionInst.offset >= 0 ? std::string_view{ _fixPtr + fieldDiscretionInst.offset, getValueLength( _fixPtr + fieldDiscretionInst.offset ) } : std::string_view{}; }
+   std::string_view getDiscretionInstView() const { return fieldDiscretionInst.offset > 0 ? std::string_view{ _fixPtr + fieldDiscretionInst.offset, getValueLength( _fixPtr + fieldDiscretionInst.offset ) } : std::string_view{}; }
    const char * ptrToDiscretionInst() const { return _fixPtr + fieldDiscretionInst.offset; }
-   const char * getIfSetDiscretionInst() const { return fieldDiscretionInst.offset >= 0 ? _fixPtr + fieldDiscretionInst.offset : nullptr; }
+   const char * ptrToTagDiscretionInst() const { return _fixPtr + fieldDiscretionInst.offset - 1 - FieldDiscretionInst::tagWidth(); }
+   const char * getIfSetDiscretionInst() const { return fieldDiscretionInst.offset > 0 ? _fixPtr + fieldDiscretionInst.offset : nullptr; }
    private: FieldDiscretionInst fieldDiscretionInst;
 
    public:
-   bool isSetDiscretionOffsetValue() const { return fieldDiscretionOffsetValue.offset >= 0; }
+   bool isSetDiscretionOffsetValue() const { return fieldDiscretionOffsetValue.offset > 0; }
    FieldDiscretionOffsetValue::ValueType getDiscretionOffsetValue() const { return fieldDiscretionOffsetValue.getValue( _fixPtr ); }
-   std::string_view getDiscretionOffsetValueView() const { return fieldDiscretionOffsetValue.offset >= 0 ? std::string_view{ _fixPtr + fieldDiscretionOffsetValue.offset, getValueLength( _fixPtr + fieldDiscretionOffsetValue.offset ) } : std::string_view{}; }
+   std::string_view getDiscretionOffsetValueView() const { return fieldDiscretionOffsetValue.offset > 0 ? std::string_view{ _fixPtr + fieldDiscretionOffsetValue.offset, getValueLength( _fixPtr + fieldDiscretionOffsetValue.offset ) } : std::string_view{}; }
    const char * ptrToDiscretionOffsetValue() const { return _fixPtr + fieldDiscretionOffsetValue.offset; }
-   const char * getIfSetDiscretionOffsetValue() const { return fieldDiscretionOffsetValue.offset >= 0 ? _fixPtr + fieldDiscretionOffsetValue.offset : nullptr; }
+   const char * ptrToTagDiscretionOffsetValue() const { return _fixPtr + fieldDiscretionOffsetValue.offset - 1 - FieldDiscretionOffsetValue::tagWidth(); }
+   const char * getIfSetDiscretionOffsetValue() const { return fieldDiscretionOffsetValue.offset > 0 ? _fixPtr + fieldDiscretionOffsetValue.offset : nullptr; }
    private: FieldDiscretionOffsetValue fieldDiscretionOffsetValue;
 
    public:
-   bool isSetDiscretionMoveType() const { return fieldDiscretionMoveType.offset >= 0; }
+   bool isSetDiscretionMoveType() const { return fieldDiscretionMoveType.offset > 0; }
    FieldDiscretionMoveType::ValueType getDiscretionMoveType() const { return fieldDiscretionMoveType.getValue( _fixPtr ); }
-   std::string_view getDiscretionMoveTypeView() const { return fieldDiscretionMoveType.offset >= 0 ? std::string_view{ _fixPtr + fieldDiscretionMoveType.offset, getValueLength( _fixPtr + fieldDiscretionMoveType.offset ) } : std::string_view{}; }
+   std::string_view getDiscretionMoveTypeView() const { return fieldDiscretionMoveType.offset > 0 ? std::string_view{ _fixPtr + fieldDiscretionMoveType.offset, getValueLength( _fixPtr + fieldDiscretionMoveType.offset ) } : std::string_view{}; }
    const char * ptrToDiscretionMoveType() const { return _fixPtr + fieldDiscretionMoveType.offset; }
-   const char * getIfSetDiscretionMoveType() const { return fieldDiscretionMoveType.offset >= 0 ? _fixPtr + fieldDiscretionMoveType.offset : nullptr; }
+   const char * ptrToTagDiscretionMoveType() const { return _fixPtr + fieldDiscretionMoveType.offset - 1 - FieldDiscretionMoveType::tagWidth(); }
+   const char * getIfSetDiscretionMoveType() const { return fieldDiscretionMoveType.offset > 0 ? _fixPtr + fieldDiscretionMoveType.offset : nullptr; }
    private: FieldDiscretionMoveType fieldDiscretionMoveType;
 
    public:
-   bool isSetDiscretionOffsetType() const { return fieldDiscretionOffsetType.offset >= 0; }
+   bool isSetDiscretionOffsetType() const { return fieldDiscretionOffsetType.offset > 0; }
    FieldDiscretionOffsetType::ValueType getDiscretionOffsetType() const { return fieldDiscretionOffsetType.getValue( _fixPtr ); }
-   std::string_view getDiscretionOffsetTypeView() const { return fieldDiscretionOffsetType.offset >= 0 ? std::string_view{ _fixPtr + fieldDiscretionOffsetType.offset, getValueLength( _fixPtr + fieldDiscretionOffsetType.offset ) } : std::string_view{}; }
+   std::string_view getDiscretionOffsetTypeView() const { return fieldDiscretionOffsetType.offset > 0 ? std::string_view{ _fixPtr + fieldDiscretionOffsetType.offset, getValueLength( _fixPtr + fieldDiscretionOffsetType.offset ) } : std::string_view{}; }
    const char * ptrToDiscretionOffsetType() const { return _fixPtr + fieldDiscretionOffsetType.offset; }
-   const char * getIfSetDiscretionOffsetType() const { return fieldDiscretionOffsetType.offset >= 0 ? _fixPtr + fieldDiscretionOffsetType.offset : nullptr; }
+   const char * ptrToTagDiscretionOffsetType() const { return _fixPtr + fieldDiscretionOffsetType.offset - 1 - FieldDiscretionOffsetType::tagWidth(); }
+   const char * getIfSetDiscretionOffsetType() const { return fieldDiscretionOffsetType.offset > 0 ? _fixPtr + fieldDiscretionOffsetType.offset : nullptr; }
    private: FieldDiscretionOffsetType fieldDiscretionOffsetType;
 
    public:
-   bool isSetDiscretionLimitType() const { return fieldDiscretionLimitType.offset >= 0; }
+   bool isSetDiscretionLimitType() const { return fieldDiscretionLimitType.offset > 0; }
    FieldDiscretionLimitType::ValueType getDiscretionLimitType() const { return fieldDiscretionLimitType.getValue( _fixPtr ); }
-   std::string_view getDiscretionLimitTypeView() const { return fieldDiscretionLimitType.offset >= 0 ? std::string_view{ _fixPtr + fieldDiscretionLimitType.offset, getValueLength( _fixPtr + fieldDiscretionLimitType.offset ) } : std::string_view{}; }
+   std::string_view getDiscretionLimitTypeView() const { return fieldDiscretionLimitType.offset > 0 ? std::string_view{ _fixPtr + fieldDiscretionLimitType.offset, getValueLength( _fixPtr + fieldDiscretionLimitType.offset ) } : std::string_view{}; }
    const char * ptrToDiscretionLimitType() const { return _fixPtr + fieldDiscretionLimitType.offset; }
-   const char * getIfSetDiscretionLimitType() const { return fieldDiscretionLimitType.offset >= 0 ? _fixPtr + fieldDiscretionLimitType.offset : nullptr; }
+   const char * ptrToTagDiscretionLimitType() const { return _fixPtr + fieldDiscretionLimitType.offset - 1 - FieldDiscretionLimitType::tagWidth(); }
+   const char * getIfSetDiscretionLimitType() const { return fieldDiscretionLimitType.offset > 0 ? _fixPtr + fieldDiscretionLimitType.offset : nullptr; }
    private: FieldDiscretionLimitType fieldDiscretionLimitType;
 
    public:
-   bool isSetDiscretionRoundDirection() const { return fieldDiscretionRoundDirection.offset >= 0; }
+   bool isSetDiscretionRoundDirection() const { return fieldDiscretionRoundDirection.offset > 0; }
    FieldDiscretionRoundDirection::ValueType getDiscretionRoundDirection() const { return fieldDiscretionRoundDirection.getValue( _fixPtr ); }
-   std::string_view getDiscretionRoundDirectionView() const { return fieldDiscretionRoundDirection.offset >= 0 ? std::string_view{ _fixPtr + fieldDiscretionRoundDirection.offset, getValueLength( _fixPtr + fieldDiscretionRoundDirection.offset ) } : std::string_view{}; }
+   std::string_view getDiscretionRoundDirectionView() const { return fieldDiscretionRoundDirection.offset > 0 ? std::string_view{ _fixPtr + fieldDiscretionRoundDirection.offset, getValueLength( _fixPtr + fieldDiscretionRoundDirection.offset ) } : std::string_view{}; }
    const char * ptrToDiscretionRoundDirection() const { return _fixPtr + fieldDiscretionRoundDirection.offset; }
-   const char * getIfSetDiscretionRoundDirection() const { return fieldDiscretionRoundDirection.offset >= 0 ? _fixPtr + fieldDiscretionRoundDirection.offset : nullptr; }
+   const char * ptrToTagDiscretionRoundDirection() const { return _fixPtr + fieldDiscretionRoundDirection.offset - 1 - FieldDiscretionRoundDirection::tagWidth(); }
+   const char * getIfSetDiscretionRoundDirection() const { return fieldDiscretionRoundDirection.offset > 0 ? _fixPtr + fieldDiscretionRoundDirection.offset : nullptr; }
    private: FieldDiscretionRoundDirection fieldDiscretionRoundDirection;
 
    public:
-   bool isSetDiscretionScope() const { return fieldDiscretionScope.offset >= 0; }
+   bool isSetDiscretionScope() const { return fieldDiscretionScope.offset > 0; }
    FieldDiscretionScope::ValueType getDiscretionScope() const { return fieldDiscretionScope.getValue( _fixPtr ); }
-   std::string_view getDiscretionScopeView() const { return fieldDiscretionScope.offset >= 0 ? std::string_view{ _fixPtr + fieldDiscretionScope.offset, getValueLength( _fixPtr + fieldDiscretionScope.offset ) } : std::string_view{}; }
+   std::string_view getDiscretionScopeView() const { return fieldDiscretionScope.offset > 0 ? std::string_view{ _fixPtr + fieldDiscretionScope.offset, getValueLength( _fixPtr + fieldDiscretionScope.offset ) } : std::string_view{}; }
    const char * ptrToDiscretionScope() const { return _fixPtr + fieldDiscretionScope.offset; }
-   const char * getIfSetDiscretionScope() const { return fieldDiscretionScope.offset >= 0 ? _fixPtr + fieldDiscretionScope.offset : nullptr; }
+   const char * ptrToTagDiscretionScope() const { return _fixPtr + fieldDiscretionScope.offset - 1 - FieldDiscretionScope::tagWidth(); }
+   const char * getIfSetDiscretionScope() const { return fieldDiscretionScope.offset > 0 ? _fixPtr + fieldDiscretionScope.offset : nullptr; }
    private: FieldDiscretionScope fieldDiscretionScope;
 
    public:
-   bool isSetTargetStrategy() const { return fieldTargetStrategy.offset >= 0; }
+   bool isSetTargetStrategy() const { return fieldTargetStrategy.offset > 0; }
    FieldTargetStrategy::ValueType getTargetStrategy() const { return fieldTargetStrategy.getValue( _fixPtr ); }
-   std::string_view getTargetStrategyView() const { return fieldTargetStrategy.offset >= 0 ? std::string_view{ _fixPtr + fieldTargetStrategy.offset, getValueLength( _fixPtr + fieldTargetStrategy.offset ) } : std::string_view{}; }
+   std::string_view getTargetStrategyView() const { return fieldTargetStrategy.offset > 0 ? std::string_view{ _fixPtr + fieldTargetStrategy.offset, getValueLength( _fixPtr + fieldTargetStrategy.offset ) } : std::string_view{}; }
    const char * ptrToTargetStrategy() const { return _fixPtr + fieldTargetStrategy.offset; }
-   const char * getIfSetTargetStrategy() const { return fieldTargetStrategy.offset >= 0 ? _fixPtr + fieldTargetStrategy.offset : nullptr; }
+   const char * ptrToTagTargetStrategy() const { return _fixPtr + fieldTargetStrategy.offset - 1 - FieldTargetStrategy::tagWidth(); }
+   const char * getIfSetTargetStrategy() const { return fieldTargetStrategy.offset > 0 ? _fixPtr + fieldTargetStrategy.offset : nullptr; }
    private: FieldTargetStrategy fieldTargetStrategy;
 
    public:
-   bool isSetTargetStrategyParameters() const { return fieldTargetStrategyParameters.offset >= 0; }
+   bool isSetTargetStrategyParameters() const { return fieldTargetStrategyParameters.offset > 0; }
    FieldTargetStrategyParameters::ValueType getTargetStrategyParameters() const { return fieldTargetStrategyParameters.getValue( _fixPtr ); }
-   std::string_view getTargetStrategyParametersView() const { return fieldTargetStrategyParameters.offset >= 0 ? std::string_view{ _fixPtr + fieldTargetStrategyParameters.offset, getValueLength( _fixPtr + fieldTargetStrategyParameters.offset ) } : std::string_view{}; }
+   std::string_view getTargetStrategyParametersView() const { return fieldTargetStrategyParameters.offset > 0 ? std::string_view{ _fixPtr + fieldTargetStrategyParameters.offset, getValueLength( _fixPtr + fieldTargetStrategyParameters.offset ) } : std::string_view{}; }
    const char * ptrToTargetStrategyParameters() const { return _fixPtr + fieldTargetStrategyParameters.offset; }
-   const char * getIfSetTargetStrategyParameters() const { return fieldTargetStrategyParameters.offset >= 0 ? _fixPtr + fieldTargetStrategyParameters.offset : nullptr; }
+   const char * ptrToTagTargetStrategyParameters() const { return _fixPtr + fieldTargetStrategyParameters.offset - 1 - FieldTargetStrategyParameters::tagWidth(); }
+   const char * getIfSetTargetStrategyParameters() const { return fieldTargetStrategyParameters.offset > 0 ? _fixPtr + fieldTargetStrategyParameters.offset : nullptr; }
    private: FieldTargetStrategyParameters fieldTargetStrategyParameters;
 
    public:
-   bool isSetParticipationRate() const { return fieldParticipationRate.offset >= 0; }
+   bool isSetParticipationRate() const { return fieldParticipationRate.offset > 0; }
    FieldParticipationRate::ValueType getParticipationRate() const { return fieldParticipationRate.getValue( _fixPtr ); }
-   std::string_view getParticipationRateView() const { return fieldParticipationRate.offset >= 0 ? std::string_view{ _fixPtr + fieldParticipationRate.offset, getValueLength( _fixPtr + fieldParticipationRate.offset ) } : std::string_view{}; }
+   std::string_view getParticipationRateView() const { return fieldParticipationRate.offset > 0 ? std::string_view{ _fixPtr + fieldParticipationRate.offset, getValueLength( _fixPtr + fieldParticipationRate.offset ) } : std::string_view{}; }
    const char * ptrToParticipationRate() const { return _fixPtr + fieldParticipationRate.offset; }
-   const char * getIfSetParticipationRate() const { return fieldParticipationRate.offset >= 0 ? _fixPtr + fieldParticipationRate.offset : nullptr; }
+   const char * ptrToTagParticipationRate() const { return _fixPtr + fieldParticipationRate.offset - 1 - FieldParticipationRate::tagWidth(); }
+   const char * getIfSetParticipationRate() const { return fieldParticipationRate.offset > 0 ? _fixPtr + fieldParticipationRate.offset : nullptr; }
    private: FieldParticipationRate fieldParticipationRate;
 
    public:
-   bool isSetDesignation() const { return fieldDesignation.offset >= 0; }
+   bool isSetDesignation() const { return fieldDesignation.offset > 0; }
    FieldDesignation::ValueType getDesignation() const { return fieldDesignation.getValue( _fixPtr ); }
-   std::string_view getDesignationView() const { return fieldDesignation.offset >= 0 ? std::string_view{ _fixPtr + fieldDesignation.offset, getValueLength( _fixPtr + fieldDesignation.offset ) } : std::string_view{}; }
+   std::string_view getDesignationView() const { return fieldDesignation.offset > 0 ? std::string_view{ _fixPtr + fieldDesignation.offset, getValueLength( _fixPtr + fieldDesignation.offset ) } : std::string_view{}; }
    const char * ptrToDesignation() const { return _fixPtr + fieldDesignation.offset; }
-   const char * getIfSetDesignation() const { return fieldDesignation.offset >= 0 ? _fixPtr + fieldDesignation.offset : nullptr; }
+   const char * ptrToTagDesignation() const { return _fixPtr + fieldDesignation.offset - 1 - FieldDesignation::tagWidth(); }
+   const char * getIfSetDesignation() const { return fieldDesignation.offset > 0 ? _fixPtr + fieldDesignation.offset : nullptr; }
    private: FieldDesignation fieldDesignation;
 
 };
@@ -2370,24 +2651,28 @@ class GroupSettlPartySubIDs : public MessageBase
    static offset_t scan( Array & arr, const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    const char * getFieldValue( unsigned tag ) const;
+   const char * findBadField() const;
+   const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
-   bool isSetSettlPartySubID() const { return fieldSettlPartySubID.offset >= 0; }
+   bool isSetSettlPartySubID() const { return fieldSettlPartySubID.offset > 0; }
    FieldSettlPartySubID::ValueType getSettlPartySubID() const { return fieldSettlPartySubID.getValue( _fixPtr ); }
-   std::string_view getSettlPartySubIDView() const { return fieldSettlPartySubID.offset >= 0 ? std::string_view{ _fixPtr + fieldSettlPartySubID.offset, getValueLength( _fixPtr + fieldSettlPartySubID.offset ) } : std::string_view{}; }
+   std::string_view getSettlPartySubIDView() const { return fieldSettlPartySubID.offset > 0 ? std::string_view{ _fixPtr + fieldSettlPartySubID.offset, getValueLength( _fixPtr + fieldSettlPartySubID.offset ) } : std::string_view{}; }
    const char * ptrToSettlPartySubID() const { return _fixPtr + fieldSettlPartySubID.offset; }
-   const char * getIfSetSettlPartySubID() const { return fieldSettlPartySubID.offset >= 0 ? _fixPtr + fieldSettlPartySubID.offset : nullptr; }
+   const char * ptrToTagSettlPartySubID() const { return _fixPtr + fieldSettlPartySubID.offset - 1 - FieldSettlPartySubID::tagWidth(); }
+   const char * getIfSetSettlPartySubID() const { return fieldSettlPartySubID.offset > 0 ? _fixPtr + fieldSettlPartySubID.offset : nullptr; }
    private: FieldSettlPartySubID fieldSettlPartySubID;
 
    public:
-   bool isSetSettlPartySubIDType() const { return fieldSettlPartySubIDType.offset >= 0; }
+   bool isSetSettlPartySubIDType() const { return fieldSettlPartySubIDType.offset > 0; }
    FieldSettlPartySubIDType::ValueType getSettlPartySubIDType() const { return fieldSettlPartySubIDType.getValue( _fixPtr ); }
-   std::string_view getSettlPartySubIDTypeView() const { return fieldSettlPartySubIDType.offset >= 0 ? std::string_view{ _fixPtr + fieldSettlPartySubIDType.offset, getValueLength( _fixPtr + fieldSettlPartySubIDType.offset ) } : std::string_view{}; }
+   std::string_view getSettlPartySubIDTypeView() const { return fieldSettlPartySubIDType.offset > 0 ? std::string_view{ _fixPtr + fieldSettlPartySubIDType.offset, getValueLength( _fixPtr + fieldSettlPartySubIDType.offset ) } : std::string_view{}; }
    const char * ptrToSettlPartySubIDType() const { return _fixPtr + fieldSettlPartySubIDType.offset; }
-   const char * getIfSetSettlPartySubIDType() const { return fieldSettlPartySubIDType.offset >= 0 ? _fixPtr + fieldSettlPartySubIDType.offset : nullptr; }
+   const char * ptrToTagSettlPartySubIDType() const { return _fixPtr + fieldSettlPartySubIDType.offset - 1 - FieldSettlPartySubIDType::tagWidth(); }
+   const char * getIfSetSettlPartySubIDType() const { return fieldSettlPartySubIDType.offset > 0 ? _fixPtr + fieldSettlPartySubIDType.offset : nullptr; }
    private: FieldSettlPartySubIDType fieldSettlPartySubIDType;
 
 };
@@ -2404,40 +2689,46 @@ class GroupSettlPartyIDs : public MessageBase
    static offset_t scan( Array & arr, const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    const char * getFieldValue( unsigned tag ) const;
+   const char * findBadField() const;
+   const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
-   bool isSetSettlPartyID() const { return fieldSettlPartyID.offset >= 0; }
+   bool isSetSettlPartyID() const { return fieldSettlPartyID.offset > 0; }
    FieldSettlPartyID::ValueType getSettlPartyID() const { return fieldSettlPartyID.getValue( _fixPtr ); }
-   std::string_view getSettlPartyIDView() const { return fieldSettlPartyID.offset >= 0 ? std::string_view{ _fixPtr + fieldSettlPartyID.offset, getValueLength( _fixPtr + fieldSettlPartyID.offset ) } : std::string_view{}; }
+   std::string_view getSettlPartyIDView() const { return fieldSettlPartyID.offset > 0 ? std::string_view{ _fixPtr + fieldSettlPartyID.offset, getValueLength( _fixPtr + fieldSettlPartyID.offset ) } : std::string_view{}; }
    const char * ptrToSettlPartyID() const { return _fixPtr + fieldSettlPartyID.offset; }
-   const char * getIfSetSettlPartyID() const { return fieldSettlPartyID.offset >= 0 ? _fixPtr + fieldSettlPartyID.offset : nullptr; }
+   const char * ptrToTagSettlPartyID() const { return _fixPtr + fieldSettlPartyID.offset - 1 - FieldSettlPartyID::tagWidth(); }
+   const char * getIfSetSettlPartyID() const { return fieldSettlPartyID.offset > 0 ? _fixPtr + fieldSettlPartyID.offset : nullptr; }
    private: FieldSettlPartyID fieldSettlPartyID;
 
    public:
-   bool isSetSettlPartyIDSource() const { return fieldSettlPartyIDSource.offset >= 0; }
+   bool isSetSettlPartyIDSource() const { return fieldSettlPartyIDSource.offset > 0; }
    FieldSettlPartyIDSource::ValueType getSettlPartyIDSource() const { return fieldSettlPartyIDSource.getValue( _fixPtr ); }
-   std::string_view getSettlPartyIDSourceView() const { return fieldSettlPartyIDSource.offset >= 0 ? std::string_view{ _fixPtr + fieldSettlPartyIDSource.offset, getValueLength( _fixPtr + fieldSettlPartyIDSource.offset ) } : std::string_view{}; }
+   std::string_view getSettlPartyIDSourceView() const { return fieldSettlPartyIDSource.offset > 0 ? std::string_view{ _fixPtr + fieldSettlPartyIDSource.offset, getValueLength( _fixPtr + fieldSettlPartyIDSource.offset ) } : std::string_view{}; }
    const char * ptrToSettlPartyIDSource() const { return _fixPtr + fieldSettlPartyIDSource.offset; }
-   const char * getIfSetSettlPartyIDSource() const { return fieldSettlPartyIDSource.offset >= 0 ? _fixPtr + fieldSettlPartyIDSource.offset : nullptr; }
+   const char * ptrToTagSettlPartyIDSource() const { return _fixPtr + fieldSettlPartyIDSource.offset - 1 - FieldSettlPartyIDSource::tagWidth(); }
+   const char * getIfSetSettlPartyIDSource() const { return fieldSettlPartyIDSource.offset > 0 ? _fixPtr + fieldSettlPartyIDSource.offset : nullptr; }
    private: FieldSettlPartyIDSource fieldSettlPartyIDSource;
 
    public:
-   bool isSetSettlPartyRole() const { return fieldSettlPartyRole.offset >= 0; }
+   bool isSetSettlPartyRole() const { return fieldSettlPartyRole.offset > 0; }
    FieldSettlPartyRole::ValueType getSettlPartyRole() const { return fieldSettlPartyRole.getValue( _fixPtr ); }
-   std::string_view getSettlPartyRoleView() const { return fieldSettlPartyRole.offset >= 0 ? std::string_view{ _fixPtr + fieldSettlPartyRole.offset, getValueLength( _fixPtr + fieldSettlPartyRole.offset ) } : std::string_view{}; }
+   std::string_view getSettlPartyRoleView() const { return fieldSettlPartyRole.offset > 0 ? std::string_view{ _fixPtr + fieldSettlPartyRole.offset, getValueLength( _fixPtr + fieldSettlPartyRole.offset ) } : std::string_view{}; }
    const char * ptrToSettlPartyRole() const { return _fixPtr + fieldSettlPartyRole.offset; }
-   const char * getIfSetSettlPartyRole() const { return fieldSettlPartyRole.offset >= 0 ? _fixPtr + fieldSettlPartyRole.offset : nullptr; }
+   const char * ptrToTagSettlPartyRole() const { return _fixPtr + fieldSettlPartyRole.offset - 1 - FieldSettlPartyRole::tagWidth(); }
+   const char * getIfSetSettlPartyRole() const { return fieldSettlPartyRole.offset > 0 ? _fixPtr + fieldSettlPartyRole.offset : nullptr; }
    private: FieldSettlPartyRole fieldSettlPartyRole;
 
    public:
-   bool isSetNoSettlPartySubIDs() const { return fieldNoSettlPartySubIDs.offset >= 0; }
+   bool isSetNoSettlPartySubIDs() const { return fieldNoSettlPartySubIDs.offset > 0; }
    FieldNoSettlPartySubIDs::ValueType getNoSettlPartySubIDs() const { return fieldNoSettlPartySubIDs.getValue( _fixPtr ); }
-   std::string_view getNoSettlPartySubIDsView() const { return fieldNoSettlPartySubIDs.offset >= 0 ? std::string_view{ _fixPtr + fieldNoSettlPartySubIDs.offset, getValueLength( _fixPtr + fieldNoSettlPartySubIDs.offset ) } : std::string_view{}; }
+   std::string_view getNoSettlPartySubIDsView() const { return fieldNoSettlPartySubIDs.offset > 0 ? std::string_view{ _fixPtr + fieldNoSettlPartySubIDs.offset, getValueLength( _fixPtr + fieldNoSettlPartySubIDs.offset ) } : std::string_view{}; }
    const char * ptrToNoSettlPartySubIDs() const { return _fixPtr + fieldNoSettlPartySubIDs.offset; }
-   const char * getIfSetNoSettlPartySubIDs() const { return fieldNoSettlPartySubIDs.offset >= 0 ? _fixPtr + fieldNoSettlPartySubIDs.offset : nullptr; }
+   const char * ptrToTagNoSettlPartySubIDs() const { return _fixPtr + fieldNoSettlPartySubIDs.offset - 1 - FieldNoSettlPartySubIDs::tagWidth(); }
+   const char * getIfSetNoSettlPartySubIDs() const { return fieldNoSettlPartySubIDs.offset > 0 ? _fixPtr + fieldNoSettlPartySubIDs.offset : nullptr; }
    private: FieldNoSettlPartySubIDs fieldNoSettlPartySubIDs;
   
    public:
@@ -2459,32 +2750,37 @@ class GroupDlvyInst : public MessageBase
    static offset_t scan( Array & arr, const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    const char * getFieldValue( unsigned tag ) const;
+   const char * findBadField() const;
+   const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
-   bool isSetSettlInstSource() const { return fieldSettlInstSource.offset >= 0; }
+   bool isSetSettlInstSource() const { return fieldSettlInstSource.offset > 0; }
    FieldSettlInstSource::ValueType getSettlInstSource() const { return fieldSettlInstSource.getValue( _fixPtr ); }
-   std::string_view getSettlInstSourceView() const { return fieldSettlInstSource.offset >= 0 ? std::string_view{ _fixPtr + fieldSettlInstSource.offset, getValueLength( _fixPtr + fieldSettlInstSource.offset ) } : std::string_view{}; }
+   std::string_view getSettlInstSourceView() const { return fieldSettlInstSource.offset > 0 ? std::string_view{ _fixPtr + fieldSettlInstSource.offset, getValueLength( _fixPtr + fieldSettlInstSource.offset ) } : std::string_view{}; }
    const char * ptrToSettlInstSource() const { return _fixPtr + fieldSettlInstSource.offset; }
-   const char * getIfSetSettlInstSource() const { return fieldSettlInstSource.offset >= 0 ? _fixPtr + fieldSettlInstSource.offset : nullptr; }
+   const char * ptrToTagSettlInstSource() const { return _fixPtr + fieldSettlInstSource.offset - 1 - FieldSettlInstSource::tagWidth(); }
+   const char * getIfSetSettlInstSource() const { return fieldSettlInstSource.offset > 0 ? _fixPtr + fieldSettlInstSource.offset : nullptr; }
    private: FieldSettlInstSource fieldSettlInstSource;
 
    public:
-   bool isSetDlvyInstType() const { return fieldDlvyInstType.offset >= 0; }
+   bool isSetDlvyInstType() const { return fieldDlvyInstType.offset > 0; }
    FieldDlvyInstType::ValueType getDlvyInstType() const { return fieldDlvyInstType.getValue( _fixPtr ); }
-   std::string_view getDlvyInstTypeView() const { return fieldDlvyInstType.offset >= 0 ? std::string_view{ _fixPtr + fieldDlvyInstType.offset, getValueLength( _fixPtr + fieldDlvyInstType.offset ) } : std::string_view{}; }
+   std::string_view getDlvyInstTypeView() const { return fieldDlvyInstType.offset > 0 ? std::string_view{ _fixPtr + fieldDlvyInstType.offset, getValueLength( _fixPtr + fieldDlvyInstType.offset ) } : std::string_view{}; }
    const char * ptrToDlvyInstType() const { return _fixPtr + fieldDlvyInstType.offset; }
-   const char * getIfSetDlvyInstType() const { return fieldDlvyInstType.offset >= 0 ? _fixPtr + fieldDlvyInstType.offset : nullptr; }
+   const char * ptrToTagDlvyInstType() const { return _fixPtr + fieldDlvyInstType.offset - 1 - FieldDlvyInstType::tagWidth(); }
+   const char * getIfSetDlvyInstType() const { return fieldDlvyInstType.offset > 0 ? _fixPtr + fieldDlvyInstType.offset : nullptr; }
    private: FieldDlvyInstType fieldDlvyInstType;
 
    public:
-   bool isSetNoSettlPartyIDs() const { return fieldNoSettlPartyIDs.offset >= 0; }
+   bool isSetNoSettlPartyIDs() const { return fieldNoSettlPartyIDs.offset > 0; }
    FieldNoSettlPartyIDs::ValueType getNoSettlPartyIDs() const { return fieldNoSettlPartyIDs.getValue( _fixPtr ); }
-   std::string_view getNoSettlPartyIDsView() const { return fieldNoSettlPartyIDs.offset >= 0 ? std::string_view{ _fixPtr + fieldNoSettlPartyIDs.offset, getValueLength( _fixPtr + fieldNoSettlPartyIDs.offset ) } : std::string_view{}; }
+   std::string_view getNoSettlPartyIDsView() const { return fieldNoSettlPartyIDs.offset > 0 ? std::string_view{ _fixPtr + fieldNoSettlPartyIDs.offset, getValueLength( _fixPtr + fieldNoSettlPartyIDs.offset ) } : std::string_view{}; }
    const char * ptrToNoSettlPartyIDs() const { return _fixPtr + fieldNoSettlPartyIDs.offset; }
-   const char * getIfSetNoSettlPartyIDs() const { return fieldNoSettlPartyIDs.offset >= 0 ? _fixPtr + fieldNoSettlPartyIDs.offset : nullptr; }
+   const char * ptrToTagNoSettlPartyIDs() const { return _fixPtr + fieldNoSettlPartyIDs.offset - 1 - FieldNoSettlPartyIDs::tagWidth(); }
+   const char * getIfSetNoSettlPartyIDs() const { return fieldNoSettlPartyIDs.offset > 0 ? _fixPtr + fieldNoSettlPartyIDs.offset : nullptr; }
    private: FieldNoSettlPartyIDs fieldNoSettlPartyIDs;
   
    public:
@@ -2506,16 +2802,19 @@ class GroupClearingInstructions : public MessageBase
    static offset_t scan( Array & arr, const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    const char * getFieldValue( unsigned tag ) const;
+   const char * findBadField() const;
+   const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
-   bool isSetClearingInstruction() const { return fieldClearingInstruction.offset >= 0; }
+   bool isSetClearingInstruction() const { return fieldClearingInstruction.offset > 0; }
    FieldClearingInstruction::ValueType getClearingInstruction() const { return fieldClearingInstruction.getValue( _fixPtr ); }
-   std::string_view getClearingInstructionView() const { return fieldClearingInstruction.offset >= 0 ? std::string_view{ _fixPtr + fieldClearingInstruction.offset, getValueLength( _fixPtr + fieldClearingInstruction.offset ) } : std::string_view{}; }
+   std::string_view getClearingInstructionView() const { return fieldClearingInstruction.offset > 0 ? std::string_view{ _fixPtr + fieldClearingInstruction.offset, getValueLength( _fixPtr + fieldClearingInstruction.offset ) } : std::string_view{}; }
    const char * ptrToClearingInstruction() const { return _fixPtr + fieldClearingInstruction.offset; }
-   const char * getIfSetClearingInstruction() const { return fieldClearingInstruction.offset >= 0 ? _fixPtr + fieldClearingInstruction.offset : nullptr; }
+   const char * ptrToTagClearingInstruction() const { return _fixPtr + fieldClearingInstruction.offset - 1 - FieldClearingInstruction::tagWidth(); }
+   const char * getIfSetClearingInstruction() const { return fieldClearingInstruction.offset > 0 ? _fixPtr + fieldClearingInstruction.offset : nullptr; }
    private: FieldClearingInstruction fieldClearingInstruction;
 
 };
@@ -2532,24 +2831,28 @@ class GroupNestedPartySubIDs : public MessageBase
    static offset_t scan( Array & arr, const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    const char * getFieldValue( unsigned tag ) const;
+   const char * findBadField() const;
+   const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
-   bool isSetNestedPartySubID() const { return fieldNestedPartySubID.offset >= 0; }
+   bool isSetNestedPartySubID() const { return fieldNestedPartySubID.offset > 0; }
    FieldNestedPartySubID::ValueType getNestedPartySubID() const { return fieldNestedPartySubID.getValue( _fixPtr ); }
-   std::string_view getNestedPartySubIDView() const { return fieldNestedPartySubID.offset >= 0 ? std::string_view{ _fixPtr + fieldNestedPartySubID.offset, getValueLength( _fixPtr + fieldNestedPartySubID.offset ) } : std::string_view{}; }
+   std::string_view getNestedPartySubIDView() const { return fieldNestedPartySubID.offset > 0 ? std::string_view{ _fixPtr + fieldNestedPartySubID.offset, getValueLength( _fixPtr + fieldNestedPartySubID.offset ) } : std::string_view{}; }
    const char * ptrToNestedPartySubID() const { return _fixPtr + fieldNestedPartySubID.offset; }
-   const char * getIfSetNestedPartySubID() const { return fieldNestedPartySubID.offset >= 0 ? _fixPtr + fieldNestedPartySubID.offset : nullptr; }
+   const char * ptrToTagNestedPartySubID() const { return _fixPtr + fieldNestedPartySubID.offset - 1 - FieldNestedPartySubID::tagWidth(); }
+   const char * getIfSetNestedPartySubID() const { return fieldNestedPartySubID.offset > 0 ? _fixPtr + fieldNestedPartySubID.offset : nullptr; }
    private: FieldNestedPartySubID fieldNestedPartySubID;
 
    public:
-   bool isSetNestedPartySubIDType() const { return fieldNestedPartySubIDType.offset >= 0; }
+   bool isSetNestedPartySubIDType() const { return fieldNestedPartySubIDType.offset > 0; }
    FieldNestedPartySubIDType::ValueType getNestedPartySubIDType() const { return fieldNestedPartySubIDType.getValue( _fixPtr ); }
-   std::string_view getNestedPartySubIDTypeView() const { return fieldNestedPartySubIDType.offset >= 0 ? std::string_view{ _fixPtr + fieldNestedPartySubIDType.offset, getValueLength( _fixPtr + fieldNestedPartySubIDType.offset ) } : std::string_view{}; }
+   std::string_view getNestedPartySubIDTypeView() const { return fieldNestedPartySubIDType.offset > 0 ? std::string_view{ _fixPtr + fieldNestedPartySubIDType.offset, getValueLength( _fixPtr + fieldNestedPartySubIDType.offset ) } : std::string_view{}; }
    const char * ptrToNestedPartySubIDType() const { return _fixPtr + fieldNestedPartySubIDType.offset; }
-   const char * getIfSetNestedPartySubIDType() const { return fieldNestedPartySubIDType.offset >= 0 ? _fixPtr + fieldNestedPartySubIDType.offset : nullptr; }
+   const char * ptrToTagNestedPartySubIDType() const { return _fixPtr + fieldNestedPartySubIDType.offset - 1 - FieldNestedPartySubIDType::tagWidth(); }
+   const char * getIfSetNestedPartySubIDType() const { return fieldNestedPartySubIDType.offset > 0 ? _fixPtr + fieldNestedPartySubIDType.offset : nullptr; }
    private: FieldNestedPartySubIDType fieldNestedPartySubIDType;
 
 };
@@ -2566,40 +2869,46 @@ class GroupNestedPartyIDs : public MessageBase
    static offset_t scan( Array & arr, const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    const char * getFieldValue( unsigned tag ) const;
+   const char * findBadField() const;
+   const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
-   bool isSetNestedPartyID() const { return fieldNestedPartyID.offset >= 0; }
+   bool isSetNestedPartyID() const { return fieldNestedPartyID.offset > 0; }
    FieldNestedPartyID::ValueType getNestedPartyID() const { return fieldNestedPartyID.getValue( _fixPtr ); }
-   std::string_view getNestedPartyIDView() const { return fieldNestedPartyID.offset >= 0 ? std::string_view{ _fixPtr + fieldNestedPartyID.offset, getValueLength( _fixPtr + fieldNestedPartyID.offset ) } : std::string_view{}; }
+   std::string_view getNestedPartyIDView() const { return fieldNestedPartyID.offset > 0 ? std::string_view{ _fixPtr + fieldNestedPartyID.offset, getValueLength( _fixPtr + fieldNestedPartyID.offset ) } : std::string_view{}; }
    const char * ptrToNestedPartyID() const { return _fixPtr + fieldNestedPartyID.offset; }
-   const char * getIfSetNestedPartyID() const { return fieldNestedPartyID.offset >= 0 ? _fixPtr + fieldNestedPartyID.offset : nullptr; }
+   const char * ptrToTagNestedPartyID() const { return _fixPtr + fieldNestedPartyID.offset - 1 - FieldNestedPartyID::tagWidth(); }
+   const char * getIfSetNestedPartyID() const { return fieldNestedPartyID.offset > 0 ? _fixPtr + fieldNestedPartyID.offset : nullptr; }
    private: FieldNestedPartyID fieldNestedPartyID;
 
    public:
-   bool isSetNestedPartyIDSource() const { return fieldNestedPartyIDSource.offset >= 0; }
+   bool isSetNestedPartyIDSource() const { return fieldNestedPartyIDSource.offset > 0; }
    FieldNestedPartyIDSource::ValueType getNestedPartyIDSource() const { return fieldNestedPartyIDSource.getValue( _fixPtr ); }
-   std::string_view getNestedPartyIDSourceView() const { return fieldNestedPartyIDSource.offset >= 0 ? std::string_view{ _fixPtr + fieldNestedPartyIDSource.offset, getValueLength( _fixPtr + fieldNestedPartyIDSource.offset ) } : std::string_view{}; }
+   std::string_view getNestedPartyIDSourceView() const { return fieldNestedPartyIDSource.offset > 0 ? std::string_view{ _fixPtr + fieldNestedPartyIDSource.offset, getValueLength( _fixPtr + fieldNestedPartyIDSource.offset ) } : std::string_view{}; }
    const char * ptrToNestedPartyIDSource() const { return _fixPtr + fieldNestedPartyIDSource.offset; }
-   const char * getIfSetNestedPartyIDSource() const { return fieldNestedPartyIDSource.offset >= 0 ? _fixPtr + fieldNestedPartyIDSource.offset : nullptr; }
+   const char * ptrToTagNestedPartyIDSource() const { return _fixPtr + fieldNestedPartyIDSource.offset - 1 - FieldNestedPartyIDSource::tagWidth(); }
+   const char * getIfSetNestedPartyIDSource() const { return fieldNestedPartyIDSource.offset > 0 ? _fixPtr + fieldNestedPartyIDSource.offset : nullptr; }
    private: FieldNestedPartyIDSource fieldNestedPartyIDSource;
 
    public:
-   bool isSetNestedPartyRole() const { return fieldNestedPartyRole.offset >= 0; }
+   bool isSetNestedPartyRole() const { return fieldNestedPartyRole.offset > 0; }
    FieldNestedPartyRole::ValueType getNestedPartyRole() const { return fieldNestedPartyRole.getValue( _fixPtr ); }
-   std::string_view getNestedPartyRoleView() const { return fieldNestedPartyRole.offset >= 0 ? std::string_view{ _fixPtr + fieldNestedPartyRole.offset, getValueLength( _fixPtr + fieldNestedPartyRole.offset ) } : std::string_view{}; }
+   std::string_view getNestedPartyRoleView() const { return fieldNestedPartyRole.offset > 0 ? std::string_view{ _fixPtr + fieldNestedPartyRole.offset, getValueLength( _fixPtr + fieldNestedPartyRole.offset ) } : std::string_view{}; }
    const char * ptrToNestedPartyRole() const { return _fixPtr + fieldNestedPartyRole.offset; }
-   const char * getIfSetNestedPartyRole() const { return fieldNestedPartyRole.offset >= 0 ? _fixPtr + fieldNestedPartyRole.offset : nullptr; }
+   const char * ptrToTagNestedPartyRole() const { return _fixPtr + fieldNestedPartyRole.offset - 1 - FieldNestedPartyRole::tagWidth(); }
+   const char * getIfSetNestedPartyRole() const { return fieldNestedPartyRole.offset > 0 ? _fixPtr + fieldNestedPartyRole.offset : nullptr; }
    private: FieldNestedPartyRole fieldNestedPartyRole;
 
    public:
-   bool isSetNoNestedPartySubIDs() const { return fieldNoNestedPartySubIDs.offset >= 0; }
+   bool isSetNoNestedPartySubIDs() const { return fieldNoNestedPartySubIDs.offset > 0; }
    FieldNoNestedPartySubIDs::ValueType getNoNestedPartySubIDs() const { return fieldNoNestedPartySubIDs.getValue( _fixPtr ); }
-   std::string_view getNoNestedPartySubIDsView() const { return fieldNoNestedPartySubIDs.offset >= 0 ? std::string_view{ _fixPtr + fieldNoNestedPartySubIDs.offset, getValueLength( _fixPtr + fieldNoNestedPartySubIDs.offset ) } : std::string_view{}; }
+   std::string_view getNoNestedPartySubIDsView() const { return fieldNoNestedPartySubIDs.offset > 0 ? std::string_view{ _fixPtr + fieldNoNestedPartySubIDs.offset, getValueLength( _fixPtr + fieldNoNestedPartySubIDs.offset ) } : std::string_view{}; }
    const char * ptrToNoNestedPartySubIDs() const { return _fixPtr + fieldNoNestedPartySubIDs.offset; }
-   const char * getIfSetNoNestedPartySubIDs() const { return fieldNoNestedPartySubIDs.offset >= 0 ? _fixPtr + fieldNoNestedPartySubIDs.offset : nullptr; }
+   const char * ptrToTagNoNestedPartySubIDs() const { return _fixPtr + fieldNoNestedPartySubIDs.offset - 1 - FieldNoNestedPartySubIDs::tagWidth(); }
+   const char * getIfSetNoNestedPartySubIDs() const { return fieldNoNestedPartySubIDs.offset > 0 ? _fixPtr + fieldNoNestedPartySubIDs.offset : nullptr; }
    private: FieldNoNestedPartySubIDs fieldNoNestedPartySubIDs;
   
    public:
@@ -2621,48 +2930,55 @@ class GroupLegs : public MessageBase
    static offset_t scan( Array & arr, const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    const char * getFieldValue( unsigned tag ) const;
+   const char * findBadField() const;
+   const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
-   bool isSetLegSymbol() const { return fieldLegSymbol.offset >= 0; }
+   bool isSetLegSymbol() const { return fieldLegSymbol.offset > 0; }
    FieldLegSymbol::ValueType getLegSymbol() const { return fieldLegSymbol.getValue( _fixPtr ); }
-   std::string_view getLegSymbolView() const { return fieldLegSymbol.offset >= 0 ? std::string_view{ _fixPtr + fieldLegSymbol.offset, getValueLength( _fixPtr + fieldLegSymbol.offset ) } : std::string_view{}; }
+   std::string_view getLegSymbolView() const { return fieldLegSymbol.offset > 0 ? std::string_view{ _fixPtr + fieldLegSymbol.offset, getValueLength( _fixPtr + fieldLegSymbol.offset ) } : std::string_view{}; }
    const char * ptrToLegSymbol() const { return _fixPtr + fieldLegSymbol.offset; }
-   const char * getIfSetLegSymbol() const { return fieldLegSymbol.offset >= 0 ? _fixPtr + fieldLegSymbol.offset : nullptr; }
+   const char * ptrToTagLegSymbol() const { return _fixPtr + fieldLegSymbol.offset - 1 - FieldLegSymbol::tagWidth(); }
+   const char * getIfSetLegSymbol() const { return fieldLegSymbol.offset > 0 ? _fixPtr + fieldLegSymbol.offset : nullptr; }
    private: FieldLegSymbol fieldLegSymbol;
 
    public:
-   bool isSetLegSymbolSfx() const { return fieldLegSymbolSfx.offset >= 0; }
+   bool isSetLegSymbolSfx() const { return fieldLegSymbolSfx.offset > 0; }
    FieldLegSymbolSfx::ValueType getLegSymbolSfx() const { return fieldLegSymbolSfx.getValue( _fixPtr ); }
-   std::string_view getLegSymbolSfxView() const { return fieldLegSymbolSfx.offset >= 0 ? std::string_view{ _fixPtr + fieldLegSymbolSfx.offset, getValueLength( _fixPtr + fieldLegSymbolSfx.offset ) } : std::string_view{}; }
+   std::string_view getLegSymbolSfxView() const { return fieldLegSymbolSfx.offset > 0 ? std::string_view{ _fixPtr + fieldLegSymbolSfx.offset, getValueLength( _fixPtr + fieldLegSymbolSfx.offset ) } : std::string_view{}; }
    const char * ptrToLegSymbolSfx() const { return _fixPtr + fieldLegSymbolSfx.offset; }
-   const char * getIfSetLegSymbolSfx() const { return fieldLegSymbolSfx.offset >= 0 ? _fixPtr + fieldLegSymbolSfx.offset : nullptr; }
+   const char * ptrToTagLegSymbolSfx() const { return _fixPtr + fieldLegSymbolSfx.offset - 1 - FieldLegSymbolSfx::tagWidth(); }
+   const char * getIfSetLegSymbolSfx() const { return fieldLegSymbolSfx.offset > 0 ? _fixPtr + fieldLegSymbolSfx.offset : nullptr; }
    private: FieldLegSymbolSfx fieldLegSymbolSfx;
 
    public:
-   bool isSetLegSecurityID() const { return fieldLegSecurityID.offset >= 0; }
+   bool isSetLegSecurityID() const { return fieldLegSecurityID.offset > 0; }
    FieldLegSecurityID::ValueType getLegSecurityID() const { return fieldLegSecurityID.getValue( _fixPtr ); }
-   std::string_view getLegSecurityIDView() const { return fieldLegSecurityID.offset >= 0 ? std::string_view{ _fixPtr + fieldLegSecurityID.offset, getValueLength( _fixPtr + fieldLegSecurityID.offset ) } : std::string_view{}; }
+   std::string_view getLegSecurityIDView() const { return fieldLegSecurityID.offset > 0 ? std::string_view{ _fixPtr + fieldLegSecurityID.offset, getValueLength( _fixPtr + fieldLegSecurityID.offset ) } : std::string_view{}; }
    const char * ptrToLegSecurityID() const { return _fixPtr + fieldLegSecurityID.offset; }
-   const char * getIfSetLegSecurityID() const { return fieldLegSecurityID.offset >= 0 ? _fixPtr + fieldLegSecurityID.offset : nullptr; }
+   const char * ptrToTagLegSecurityID() const { return _fixPtr + fieldLegSecurityID.offset - 1 - FieldLegSecurityID::tagWidth(); }
+   const char * getIfSetLegSecurityID() const { return fieldLegSecurityID.offset > 0 ? _fixPtr + fieldLegSecurityID.offset : nullptr; }
    private: FieldLegSecurityID fieldLegSecurityID;
 
    public:
-   bool isSetLegSecurityIDSource() const { return fieldLegSecurityIDSource.offset >= 0; }
+   bool isSetLegSecurityIDSource() const { return fieldLegSecurityIDSource.offset > 0; }
    FieldLegSecurityIDSource::ValueType getLegSecurityIDSource() const { return fieldLegSecurityIDSource.getValue( _fixPtr ); }
-   std::string_view getLegSecurityIDSourceView() const { return fieldLegSecurityIDSource.offset >= 0 ? std::string_view{ _fixPtr + fieldLegSecurityIDSource.offset, getValueLength( _fixPtr + fieldLegSecurityIDSource.offset ) } : std::string_view{}; }
+   std::string_view getLegSecurityIDSourceView() const { return fieldLegSecurityIDSource.offset > 0 ? std::string_view{ _fixPtr + fieldLegSecurityIDSource.offset, getValueLength( _fixPtr + fieldLegSecurityIDSource.offset ) } : std::string_view{}; }
    const char * ptrToLegSecurityIDSource() const { return _fixPtr + fieldLegSecurityIDSource.offset; }
-   const char * getIfSetLegSecurityIDSource() const { return fieldLegSecurityIDSource.offset >= 0 ? _fixPtr + fieldLegSecurityIDSource.offset : nullptr; }
+   const char * ptrToTagLegSecurityIDSource() const { return _fixPtr + fieldLegSecurityIDSource.offset - 1 - FieldLegSecurityIDSource::tagWidth(); }
+   const char * getIfSetLegSecurityIDSource() const { return fieldLegSecurityIDSource.offset > 0 ? _fixPtr + fieldLegSecurityIDSource.offset : nullptr; }
    private: FieldLegSecurityIDSource fieldLegSecurityIDSource;
 
    public:
-   bool isSetNoLegSecurityAltID() const { return fieldNoLegSecurityAltID.offset >= 0; }
+   bool isSetNoLegSecurityAltID() const { return fieldNoLegSecurityAltID.offset > 0; }
    FieldNoLegSecurityAltID::ValueType getNoLegSecurityAltID() const { return fieldNoLegSecurityAltID.getValue( _fixPtr ); }
-   std::string_view getNoLegSecurityAltIDView() const { return fieldNoLegSecurityAltID.offset >= 0 ? std::string_view{ _fixPtr + fieldNoLegSecurityAltID.offset, getValueLength( _fixPtr + fieldNoLegSecurityAltID.offset ) } : std::string_view{}; }
+   std::string_view getNoLegSecurityAltIDView() const { return fieldNoLegSecurityAltID.offset > 0 ? std::string_view{ _fixPtr + fieldNoLegSecurityAltID.offset, getValueLength( _fixPtr + fieldNoLegSecurityAltID.offset ) } : std::string_view{}; }
    const char * ptrToNoLegSecurityAltID() const { return _fixPtr + fieldNoLegSecurityAltID.offset; }
-   const char * getIfSetNoLegSecurityAltID() const { return fieldNoLegSecurityAltID.offset >= 0 ? _fixPtr + fieldNoLegSecurityAltID.offset : nullptr; }
+   const char * ptrToTagNoLegSecurityAltID() const { return _fixPtr + fieldNoLegSecurityAltID.offset - 1 - FieldNoLegSecurityAltID::tagWidth(); }
+   const char * getIfSetNoLegSecurityAltID() const { return fieldNoLegSecurityAltID.offset > 0 ? _fixPtr + fieldNoLegSecurityAltID.offset : nullptr; }
    private: FieldNoLegSecurityAltID fieldNoLegSecurityAltID;
   
    public:
@@ -2671,323 +2987,363 @@ class GroupLegs : public MessageBase
    private: GroupLegSecurityAltID::Array groupsLegSecurityAltID{ 10 };
 
    public:
-   bool isSetLegProduct() const { return fieldLegProduct.offset >= 0; }
+   bool isSetLegProduct() const { return fieldLegProduct.offset > 0; }
    FieldLegProduct::ValueType getLegProduct() const { return fieldLegProduct.getValue( _fixPtr ); }
-   std::string_view getLegProductView() const { return fieldLegProduct.offset >= 0 ? std::string_view{ _fixPtr + fieldLegProduct.offset, getValueLength( _fixPtr + fieldLegProduct.offset ) } : std::string_view{}; }
+   std::string_view getLegProductView() const { return fieldLegProduct.offset > 0 ? std::string_view{ _fixPtr + fieldLegProduct.offset, getValueLength( _fixPtr + fieldLegProduct.offset ) } : std::string_view{}; }
    const char * ptrToLegProduct() const { return _fixPtr + fieldLegProduct.offset; }
-   const char * getIfSetLegProduct() const { return fieldLegProduct.offset >= 0 ? _fixPtr + fieldLegProduct.offset : nullptr; }
+   const char * ptrToTagLegProduct() const { return _fixPtr + fieldLegProduct.offset - 1 - FieldLegProduct::tagWidth(); }
+   const char * getIfSetLegProduct() const { return fieldLegProduct.offset > 0 ? _fixPtr + fieldLegProduct.offset : nullptr; }
    private: FieldLegProduct fieldLegProduct;
 
    public:
-   bool isSetLegCFICode() const { return fieldLegCFICode.offset >= 0; }
+   bool isSetLegCFICode() const { return fieldLegCFICode.offset > 0; }
    FieldLegCFICode::ValueType getLegCFICode() const { return fieldLegCFICode.getValue( _fixPtr ); }
-   std::string_view getLegCFICodeView() const { return fieldLegCFICode.offset >= 0 ? std::string_view{ _fixPtr + fieldLegCFICode.offset, getValueLength( _fixPtr + fieldLegCFICode.offset ) } : std::string_view{}; }
+   std::string_view getLegCFICodeView() const { return fieldLegCFICode.offset > 0 ? std::string_view{ _fixPtr + fieldLegCFICode.offset, getValueLength( _fixPtr + fieldLegCFICode.offset ) } : std::string_view{}; }
    const char * ptrToLegCFICode() const { return _fixPtr + fieldLegCFICode.offset; }
-   const char * getIfSetLegCFICode() const { return fieldLegCFICode.offset >= 0 ? _fixPtr + fieldLegCFICode.offset : nullptr; }
+   const char * ptrToTagLegCFICode() const { return _fixPtr + fieldLegCFICode.offset - 1 - FieldLegCFICode::tagWidth(); }
+   const char * getIfSetLegCFICode() const { return fieldLegCFICode.offset > 0 ? _fixPtr + fieldLegCFICode.offset : nullptr; }
    private: FieldLegCFICode fieldLegCFICode;
 
    public:
-   bool isSetLegSecurityType() const { return fieldLegSecurityType.offset >= 0; }
+   bool isSetLegSecurityType() const { return fieldLegSecurityType.offset > 0; }
    FieldLegSecurityType::ValueType getLegSecurityType() const { return fieldLegSecurityType.getValue( _fixPtr ); }
-   std::string_view getLegSecurityTypeView() const { return fieldLegSecurityType.offset >= 0 ? std::string_view{ _fixPtr + fieldLegSecurityType.offset, getValueLength( _fixPtr + fieldLegSecurityType.offset ) } : std::string_view{}; }
+   std::string_view getLegSecurityTypeView() const { return fieldLegSecurityType.offset > 0 ? std::string_view{ _fixPtr + fieldLegSecurityType.offset, getValueLength( _fixPtr + fieldLegSecurityType.offset ) } : std::string_view{}; }
    const char * ptrToLegSecurityType() const { return _fixPtr + fieldLegSecurityType.offset; }
-   const char * getIfSetLegSecurityType() const { return fieldLegSecurityType.offset >= 0 ? _fixPtr + fieldLegSecurityType.offset : nullptr; }
+   const char * ptrToTagLegSecurityType() const { return _fixPtr + fieldLegSecurityType.offset - 1 - FieldLegSecurityType::tagWidth(); }
+   const char * getIfSetLegSecurityType() const { return fieldLegSecurityType.offset > 0 ? _fixPtr + fieldLegSecurityType.offset : nullptr; }
    private: FieldLegSecurityType fieldLegSecurityType;
 
    public:
-   bool isSetLegSecuritySubType() const { return fieldLegSecuritySubType.offset >= 0; }
+   bool isSetLegSecuritySubType() const { return fieldLegSecuritySubType.offset > 0; }
    FieldLegSecuritySubType::ValueType getLegSecuritySubType() const { return fieldLegSecuritySubType.getValue( _fixPtr ); }
-   std::string_view getLegSecuritySubTypeView() const { return fieldLegSecuritySubType.offset >= 0 ? std::string_view{ _fixPtr + fieldLegSecuritySubType.offset, getValueLength( _fixPtr + fieldLegSecuritySubType.offset ) } : std::string_view{}; }
+   std::string_view getLegSecuritySubTypeView() const { return fieldLegSecuritySubType.offset > 0 ? std::string_view{ _fixPtr + fieldLegSecuritySubType.offset, getValueLength( _fixPtr + fieldLegSecuritySubType.offset ) } : std::string_view{}; }
    const char * ptrToLegSecuritySubType() const { return _fixPtr + fieldLegSecuritySubType.offset; }
-   const char * getIfSetLegSecuritySubType() const { return fieldLegSecuritySubType.offset >= 0 ? _fixPtr + fieldLegSecuritySubType.offset : nullptr; }
+   const char * ptrToTagLegSecuritySubType() const { return _fixPtr + fieldLegSecuritySubType.offset - 1 - FieldLegSecuritySubType::tagWidth(); }
+   const char * getIfSetLegSecuritySubType() const { return fieldLegSecuritySubType.offset > 0 ? _fixPtr + fieldLegSecuritySubType.offset : nullptr; }
    private: FieldLegSecuritySubType fieldLegSecuritySubType;
 
    public:
-   bool isSetLegMaturityMonthYear() const { return fieldLegMaturityMonthYear.offset >= 0; }
+   bool isSetLegMaturityMonthYear() const { return fieldLegMaturityMonthYear.offset > 0; }
    FieldLegMaturityMonthYear::ValueType getLegMaturityMonthYear() const { return fieldLegMaturityMonthYear.getValue( _fixPtr ); }
-   std::string_view getLegMaturityMonthYearView() const { return fieldLegMaturityMonthYear.offset >= 0 ? std::string_view{ _fixPtr + fieldLegMaturityMonthYear.offset, getValueLength( _fixPtr + fieldLegMaturityMonthYear.offset ) } : std::string_view{}; }
+   std::string_view getLegMaturityMonthYearView() const { return fieldLegMaturityMonthYear.offset > 0 ? std::string_view{ _fixPtr + fieldLegMaturityMonthYear.offset, getValueLength( _fixPtr + fieldLegMaturityMonthYear.offset ) } : std::string_view{}; }
    const char * ptrToLegMaturityMonthYear() const { return _fixPtr + fieldLegMaturityMonthYear.offset; }
-   const char * getIfSetLegMaturityMonthYear() const { return fieldLegMaturityMonthYear.offset >= 0 ? _fixPtr + fieldLegMaturityMonthYear.offset : nullptr; }
+   const char * ptrToTagLegMaturityMonthYear() const { return _fixPtr + fieldLegMaturityMonthYear.offset - 1 - FieldLegMaturityMonthYear::tagWidth(); }
+   const char * getIfSetLegMaturityMonthYear() const { return fieldLegMaturityMonthYear.offset > 0 ? _fixPtr + fieldLegMaturityMonthYear.offset : nullptr; }
    private: FieldLegMaturityMonthYear fieldLegMaturityMonthYear;
 
    public:
-   bool isSetLegMaturityDate() const { return fieldLegMaturityDate.offset >= 0; }
+   bool isSetLegMaturityDate() const { return fieldLegMaturityDate.offset > 0; }
    FieldLegMaturityDate::ValueType getLegMaturityDate() const { return fieldLegMaturityDate.getValue( _fixPtr ); }
-   std::string_view getLegMaturityDateView() const { return fieldLegMaturityDate.offset >= 0 ? std::string_view{ _fixPtr + fieldLegMaturityDate.offset, getValueLength( _fixPtr + fieldLegMaturityDate.offset ) } : std::string_view{}; }
+   std::string_view getLegMaturityDateView() const { return fieldLegMaturityDate.offset > 0 ? std::string_view{ _fixPtr + fieldLegMaturityDate.offset, getValueLength( _fixPtr + fieldLegMaturityDate.offset ) } : std::string_view{}; }
    const char * ptrToLegMaturityDate() const { return _fixPtr + fieldLegMaturityDate.offset; }
-   const char * getIfSetLegMaturityDate() const { return fieldLegMaturityDate.offset >= 0 ? _fixPtr + fieldLegMaturityDate.offset : nullptr; }
+   const char * ptrToTagLegMaturityDate() const { return _fixPtr + fieldLegMaturityDate.offset - 1 - FieldLegMaturityDate::tagWidth(); }
+   const char * getIfSetLegMaturityDate() const { return fieldLegMaturityDate.offset > 0 ? _fixPtr + fieldLegMaturityDate.offset : nullptr; }
    private: FieldLegMaturityDate fieldLegMaturityDate;
 
    public:
-   bool isSetLegCouponPaymentDate() const { return fieldLegCouponPaymentDate.offset >= 0; }
+   bool isSetLegCouponPaymentDate() const { return fieldLegCouponPaymentDate.offset > 0; }
    FieldLegCouponPaymentDate::ValueType getLegCouponPaymentDate() const { return fieldLegCouponPaymentDate.getValue( _fixPtr ); }
-   std::string_view getLegCouponPaymentDateView() const { return fieldLegCouponPaymentDate.offset >= 0 ? std::string_view{ _fixPtr + fieldLegCouponPaymentDate.offset, getValueLength( _fixPtr + fieldLegCouponPaymentDate.offset ) } : std::string_view{}; }
+   std::string_view getLegCouponPaymentDateView() const { return fieldLegCouponPaymentDate.offset > 0 ? std::string_view{ _fixPtr + fieldLegCouponPaymentDate.offset, getValueLength( _fixPtr + fieldLegCouponPaymentDate.offset ) } : std::string_view{}; }
    const char * ptrToLegCouponPaymentDate() const { return _fixPtr + fieldLegCouponPaymentDate.offset; }
-   const char * getIfSetLegCouponPaymentDate() const { return fieldLegCouponPaymentDate.offset >= 0 ? _fixPtr + fieldLegCouponPaymentDate.offset : nullptr; }
+   const char * ptrToTagLegCouponPaymentDate() const { return _fixPtr + fieldLegCouponPaymentDate.offset - 1 - FieldLegCouponPaymentDate::tagWidth(); }
+   const char * getIfSetLegCouponPaymentDate() const { return fieldLegCouponPaymentDate.offset > 0 ? _fixPtr + fieldLegCouponPaymentDate.offset : nullptr; }
    private: FieldLegCouponPaymentDate fieldLegCouponPaymentDate;
 
    public:
-   bool isSetLegIssueDate() const { return fieldLegIssueDate.offset >= 0; }
+   bool isSetLegIssueDate() const { return fieldLegIssueDate.offset > 0; }
    FieldLegIssueDate::ValueType getLegIssueDate() const { return fieldLegIssueDate.getValue( _fixPtr ); }
-   std::string_view getLegIssueDateView() const { return fieldLegIssueDate.offset >= 0 ? std::string_view{ _fixPtr + fieldLegIssueDate.offset, getValueLength( _fixPtr + fieldLegIssueDate.offset ) } : std::string_view{}; }
+   std::string_view getLegIssueDateView() const { return fieldLegIssueDate.offset > 0 ? std::string_view{ _fixPtr + fieldLegIssueDate.offset, getValueLength( _fixPtr + fieldLegIssueDate.offset ) } : std::string_view{}; }
    const char * ptrToLegIssueDate() const { return _fixPtr + fieldLegIssueDate.offset; }
-   const char * getIfSetLegIssueDate() const { return fieldLegIssueDate.offset >= 0 ? _fixPtr + fieldLegIssueDate.offset : nullptr; }
+   const char * ptrToTagLegIssueDate() const { return _fixPtr + fieldLegIssueDate.offset - 1 - FieldLegIssueDate::tagWidth(); }
+   const char * getIfSetLegIssueDate() const { return fieldLegIssueDate.offset > 0 ? _fixPtr + fieldLegIssueDate.offset : nullptr; }
    private: FieldLegIssueDate fieldLegIssueDate;
 
    public:
-   bool isSetLegRepoCollateralSecurityType() const { return fieldLegRepoCollateralSecurityType.offset >= 0; }
+   bool isSetLegRepoCollateralSecurityType() const { return fieldLegRepoCollateralSecurityType.offset > 0; }
    FieldLegRepoCollateralSecurityType::ValueType getLegRepoCollateralSecurityType() const { return fieldLegRepoCollateralSecurityType.getValue( _fixPtr ); }
-   std::string_view getLegRepoCollateralSecurityTypeView() const { return fieldLegRepoCollateralSecurityType.offset >= 0 ? std::string_view{ _fixPtr + fieldLegRepoCollateralSecurityType.offset, getValueLength( _fixPtr + fieldLegRepoCollateralSecurityType.offset ) } : std::string_view{}; }
+   std::string_view getLegRepoCollateralSecurityTypeView() const { return fieldLegRepoCollateralSecurityType.offset > 0 ? std::string_view{ _fixPtr + fieldLegRepoCollateralSecurityType.offset, getValueLength( _fixPtr + fieldLegRepoCollateralSecurityType.offset ) } : std::string_view{}; }
    const char * ptrToLegRepoCollateralSecurityType() const { return _fixPtr + fieldLegRepoCollateralSecurityType.offset; }
-   const char * getIfSetLegRepoCollateralSecurityType() const { return fieldLegRepoCollateralSecurityType.offset >= 0 ? _fixPtr + fieldLegRepoCollateralSecurityType.offset : nullptr; }
+   const char * ptrToTagLegRepoCollateralSecurityType() const { return _fixPtr + fieldLegRepoCollateralSecurityType.offset - 1 - FieldLegRepoCollateralSecurityType::tagWidth(); }
+   const char * getIfSetLegRepoCollateralSecurityType() const { return fieldLegRepoCollateralSecurityType.offset > 0 ? _fixPtr + fieldLegRepoCollateralSecurityType.offset : nullptr; }
    private: FieldLegRepoCollateralSecurityType fieldLegRepoCollateralSecurityType;
 
    public:
-   bool isSetLegRepurchaseTerm() const { return fieldLegRepurchaseTerm.offset >= 0; }
+   bool isSetLegRepurchaseTerm() const { return fieldLegRepurchaseTerm.offset > 0; }
    FieldLegRepurchaseTerm::ValueType getLegRepurchaseTerm() const { return fieldLegRepurchaseTerm.getValue( _fixPtr ); }
-   std::string_view getLegRepurchaseTermView() const { return fieldLegRepurchaseTerm.offset >= 0 ? std::string_view{ _fixPtr + fieldLegRepurchaseTerm.offset, getValueLength( _fixPtr + fieldLegRepurchaseTerm.offset ) } : std::string_view{}; }
+   std::string_view getLegRepurchaseTermView() const { return fieldLegRepurchaseTerm.offset > 0 ? std::string_view{ _fixPtr + fieldLegRepurchaseTerm.offset, getValueLength( _fixPtr + fieldLegRepurchaseTerm.offset ) } : std::string_view{}; }
    const char * ptrToLegRepurchaseTerm() const { return _fixPtr + fieldLegRepurchaseTerm.offset; }
-   const char * getIfSetLegRepurchaseTerm() const { return fieldLegRepurchaseTerm.offset >= 0 ? _fixPtr + fieldLegRepurchaseTerm.offset : nullptr; }
+   const char * ptrToTagLegRepurchaseTerm() const { return _fixPtr + fieldLegRepurchaseTerm.offset - 1 - FieldLegRepurchaseTerm::tagWidth(); }
+   const char * getIfSetLegRepurchaseTerm() const { return fieldLegRepurchaseTerm.offset > 0 ? _fixPtr + fieldLegRepurchaseTerm.offset : nullptr; }
    private: FieldLegRepurchaseTerm fieldLegRepurchaseTerm;
 
    public:
-   bool isSetLegRepurchaseRate() const { return fieldLegRepurchaseRate.offset >= 0; }
+   bool isSetLegRepurchaseRate() const { return fieldLegRepurchaseRate.offset > 0; }
    FieldLegRepurchaseRate::ValueType getLegRepurchaseRate() const { return fieldLegRepurchaseRate.getValue( _fixPtr ); }
-   std::string_view getLegRepurchaseRateView() const { return fieldLegRepurchaseRate.offset >= 0 ? std::string_view{ _fixPtr + fieldLegRepurchaseRate.offset, getValueLength( _fixPtr + fieldLegRepurchaseRate.offset ) } : std::string_view{}; }
+   std::string_view getLegRepurchaseRateView() const { return fieldLegRepurchaseRate.offset > 0 ? std::string_view{ _fixPtr + fieldLegRepurchaseRate.offset, getValueLength( _fixPtr + fieldLegRepurchaseRate.offset ) } : std::string_view{}; }
    const char * ptrToLegRepurchaseRate() const { return _fixPtr + fieldLegRepurchaseRate.offset; }
-   const char * getIfSetLegRepurchaseRate() const { return fieldLegRepurchaseRate.offset >= 0 ? _fixPtr + fieldLegRepurchaseRate.offset : nullptr; }
+   const char * ptrToTagLegRepurchaseRate() const { return _fixPtr + fieldLegRepurchaseRate.offset - 1 - FieldLegRepurchaseRate::tagWidth(); }
+   const char * getIfSetLegRepurchaseRate() const { return fieldLegRepurchaseRate.offset > 0 ? _fixPtr + fieldLegRepurchaseRate.offset : nullptr; }
    private: FieldLegRepurchaseRate fieldLegRepurchaseRate;
 
    public:
-   bool isSetLegFactor() const { return fieldLegFactor.offset >= 0; }
+   bool isSetLegFactor() const { return fieldLegFactor.offset > 0; }
    FieldLegFactor::ValueType getLegFactor() const { return fieldLegFactor.getValue( _fixPtr ); }
-   std::string_view getLegFactorView() const { return fieldLegFactor.offset >= 0 ? std::string_view{ _fixPtr + fieldLegFactor.offset, getValueLength( _fixPtr + fieldLegFactor.offset ) } : std::string_view{}; }
+   std::string_view getLegFactorView() const { return fieldLegFactor.offset > 0 ? std::string_view{ _fixPtr + fieldLegFactor.offset, getValueLength( _fixPtr + fieldLegFactor.offset ) } : std::string_view{}; }
    const char * ptrToLegFactor() const { return _fixPtr + fieldLegFactor.offset; }
-   const char * getIfSetLegFactor() const { return fieldLegFactor.offset >= 0 ? _fixPtr + fieldLegFactor.offset : nullptr; }
+   const char * ptrToTagLegFactor() const { return _fixPtr + fieldLegFactor.offset - 1 - FieldLegFactor::tagWidth(); }
+   const char * getIfSetLegFactor() const { return fieldLegFactor.offset > 0 ? _fixPtr + fieldLegFactor.offset : nullptr; }
    private: FieldLegFactor fieldLegFactor;
 
    public:
-   bool isSetLegCreditRating() const { return fieldLegCreditRating.offset >= 0; }
+   bool isSetLegCreditRating() const { return fieldLegCreditRating.offset > 0; }
    FieldLegCreditRating::ValueType getLegCreditRating() const { return fieldLegCreditRating.getValue( _fixPtr ); }
-   std::string_view getLegCreditRatingView() const { return fieldLegCreditRating.offset >= 0 ? std::string_view{ _fixPtr + fieldLegCreditRating.offset, getValueLength( _fixPtr + fieldLegCreditRating.offset ) } : std::string_view{}; }
+   std::string_view getLegCreditRatingView() const { return fieldLegCreditRating.offset > 0 ? std::string_view{ _fixPtr + fieldLegCreditRating.offset, getValueLength( _fixPtr + fieldLegCreditRating.offset ) } : std::string_view{}; }
    const char * ptrToLegCreditRating() const { return _fixPtr + fieldLegCreditRating.offset; }
-   const char * getIfSetLegCreditRating() const { return fieldLegCreditRating.offset >= 0 ? _fixPtr + fieldLegCreditRating.offset : nullptr; }
+   const char * ptrToTagLegCreditRating() const { return _fixPtr + fieldLegCreditRating.offset - 1 - FieldLegCreditRating::tagWidth(); }
+   const char * getIfSetLegCreditRating() const { return fieldLegCreditRating.offset > 0 ? _fixPtr + fieldLegCreditRating.offset : nullptr; }
    private: FieldLegCreditRating fieldLegCreditRating;
 
    public:
-   bool isSetLegInstrRegistry() const { return fieldLegInstrRegistry.offset >= 0; }
+   bool isSetLegInstrRegistry() const { return fieldLegInstrRegistry.offset > 0; }
    FieldLegInstrRegistry::ValueType getLegInstrRegistry() const { return fieldLegInstrRegistry.getValue( _fixPtr ); }
-   std::string_view getLegInstrRegistryView() const { return fieldLegInstrRegistry.offset >= 0 ? std::string_view{ _fixPtr + fieldLegInstrRegistry.offset, getValueLength( _fixPtr + fieldLegInstrRegistry.offset ) } : std::string_view{}; }
+   std::string_view getLegInstrRegistryView() const { return fieldLegInstrRegistry.offset > 0 ? std::string_view{ _fixPtr + fieldLegInstrRegistry.offset, getValueLength( _fixPtr + fieldLegInstrRegistry.offset ) } : std::string_view{}; }
    const char * ptrToLegInstrRegistry() const { return _fixPtr + fieldLegInstrRegistry.offset; }
-   const char * getIfSetLegInstrRegistry() const { return fieldLegInstrRegistry.offset >= 0 ? _fixPtr + fieldLegInstrRegistry.offset : nullptr; }
+   const char * ptrToTagLegInstrRegistry() const { return _fixPtr + fieldLegInstrRegistry.offset - 1 - FieldLegInstrRegistry::tagWidth(); }
+   const char * getIfSetLegInstrRegistry() const { return fieldLegInstrRegistry.offset > 0 ? _fixPtr + fieldLegInstrRegistry.offset : nullptr; }
    private: FieldLegInstrRegistry fieldLegInstrRegistry;
 
    public:
-   bool isSetLegCountryOfIssue() const { return fieldLegCountryOfIssue.offset >= 0; }
+   bool isSetLegCountryOfIssue() const { return fieldLegCountryOfIssue.offset > 0; }
    FieldLegCountryOfIssue::ValueType getLegCountryOfIssue() const { return fieldLegCountryOfIssue.getValue( _fixPtr ); }
-   std::string_view getLegCountryOfIssueView() const { return fieldLegCountryOfIssue.offset >= 0 ? std::string_view{ _fixPtr + fieldLegCountryOfIssue.offset, getValueLength( _fixPtr + fieldLegCountryOfIssue.offset ) } : std::string_view{}; }
+   std::string_view getLegCountryOfIssueView() const { return fieldLegCountryOfIssue.offset > 0 ? std::string_view{ _fixPtr + fieldLegCountryOfIssue.offset, getValueLength( _fixPtr + fieldLegCountryOfIssue.offset ) } : std::string_view{}; }
    const char * ptrToLegCountryOfIssue() const { return _fixPtr + fieldLegCountryOfIssue.offset; }
-   const char * getIfSetLegCountryOfIssue() const { return fieldLegCountryOfIssue.offset >= 0 ? _fixPtr + fieldLegCountryOfIssue.offset : nullptr; }
+   const char * ptrToTagLegCountryOfIssue() const { return _fixPtr + fieldLegCountryOfIssue.offset - 1 - FieldLegCountryOfIssue::tagWidth(); }
+   const char * getIfSetLegCountryOfIssue() const { return fieldLegCountryOfIssue.offset > 0 ? _fixPtr + fieldLegCountryOfIssue.offset : nullptr; }
    private: FieldLegCountryOfIssue fieldLegCountryOfIssue;
 
    public:
-   bool isSetLegStateOrProvinceOfIssue() const { return fieldLegStateOrProvinceOfIssue.offset >= 0; }
+   bool isSetLegStateOrProvinceOfIssue() const { return fieldLegStateOrProvinceOfIssue.offset > 0; }
    FieldLegStateOrProvinceOfIssue::ValueType getLegStateOrProvinceOfIssue() const { return fieldLegStateOrProvinceOfIssue.getValue( _fixPtr ); }
-   std::string_view getLegStateOrProvinceOfIssueView() const { return fieldLegStateOrProvinceOfIssue.offset >= 0 ? std::string_view{ _fixPtr + fieldLegStateOrProvinceOfIssue.offset, getValueLength( _fixPtr + fieldLegStateOrProvinceOfIssue.offset ) } : std::string_view{}; }
+   std::string_view getLegStateOrProvinceOfIssueView() const { return fieldLegStateOrProvinceOfIssue.offset > 0 ? std::string_view{ _fixPtr + fieldLegStateOrProvinceOfIssue.offset, getValueLength( _fixPtr + fieldLegStateOrProvinceOfIssue.offset ) } : std::string_view{}; }
    const char * ptrToLegStateOrProvinceOfIssue() const { return _fixPtr + fieldLegStateOrProvinceOfIssue.offset; }
-   const char * getIfSetLegStateOrProvinceOfIssue() const { return fieldLegStateOrProvinceOfIssue.offset >= 0 ? _fixPtr + fieldLegStateOrProvinceOfIssue.offset : nullptr; }
+   const char * ptrToTagLegStateOrProvinceOfIssue() const { return _fixPtr + fieldLegStateOrProvinceOfIssue.offset - 1 - FieldLegStateOrProvinceOfIssue::tagWidth(); }
+   const char * getIfSetLegStateOrProvinceOfIssue() const { return fieldLegStateOrProvinceOfIssue.offset > 0 ? _fixPtr + fieldLegStateOrProvinceOfIssue.offset : nullptr; }
    private: FieldLegStateOrProvinceOfIssue fieldLegStateOrProvinceOfIssue;
 
    public:
-   bool isSetLegLocaleOfIssue() const { return fieldLegLocaleOfIssue.offset >= 0; }
+   bool isSetLegLocaleOfIssue() const { return fieldLegLocaleOfIssue.offset > 0; }
    FieldLegLocaleOfIssue::ValueType getLegLocaleOfIssue() const { return fieldLegLocaleOfIssue.getValue( _fixPtr ); }
-   std::string_view getLegLocaleOfIssueView() const { return fieldLegLocaleOfIssue.offset >= 0 ? std::string_view{ _fixPtr + fieldLegLocaleOfIssue.offset, getValueLength( _fixPtr + fieldLegLocaleOfIssue.offset ) } : std::string_view{}; }
+   std::string_view getLegLocaleOfIssueView() const { return fieldLegLocaleOfIssue.offset > 0 ? std::string_view{ _fixPtr + fieldLegLocaleOfIssue.offset, getValueLength( _fixPtr + fieldLegLocaleOfIssue.offset ) } : std::string_view{}; }
    const char * ptrToLegLocaleOfIssue() const { return _fixPtr + fieldLegLocaleOfIssue.offset; }
-   const char * getIfSetLegLocaleOfIssue() const { return fieldLegLocaleOfIssue.offset >= 0 ? _fixPtr + fieldLegLocaleOfIssue.offset : nullptr; }
+   const char * ptrToTagLegLocaleOfIssue() const { return _fixPtr + fieldLegLocaleOfIssue.offset - 1 - FieldLegLocaleOfIssue::tagWidth(); }
+   const char * getIfSetLegLocaleOfIssue() const { return fieldLegLocaleOfIssue.offset > 0 ? _fixPtr + fieldLegLocaleOfIssue.offset : nullptr; }
    private: FieldLegLocaleOfIssue fieldLegLocaleOfIssue;
 
    public:
-   bool isSetLegRedemptionDate() const { return fieldLegRedemptionDate.offset >= 0; }
+   bool isSetLegRedemptionDate() const { return fieldLegRedemptionDate.offset > 0; }
    FieldLegRedemptionDate::ValueType getLegRedemptionDate() const { return fieldLegRedemptionDate.getValue( _fixPtr ); }
-   std::string_view getLegRedemptionDateView() const { return fieldLegRedemptionDate.offset >= 0 ? std::string_view{ _fixPtr + fieldLegRedemptionDate.offset, getValueLength( _fixPtr + fieldLegRedemptionDate.offset ) } : std::string_view{}; }
+   std::string_view getLegRedemptionDateView() const { return fieldLegRedemptionDate.offset > 0 ? std::string_view{ _fixPtr + fieldLegRedemptionDate.offset, getValueLength( _fixPtr + fieldLegRedemptionDate.offset ) } : std::string_view{}; }
    const char * ptrToLegRedemptionDate() const { return _fixPtr + fieldLegRedemptionDate.offset; }
-   const char * getIfSetLegRedemptionDate() const { return fieldLegRedemptionDate.offset >= 0 ? _fixPtr + fieldLegRedemptionDate.offset : nullptr; }
+   const char * ptrToTagLegRedemptionDate() const { return _fixPtr + fieldLegRedemptionDate.offset - 1 - FieldLegRedemptionDate::tagWidth(); }
+   const char * getIfSetLegRedemptionDate() const { return fieldLegRedemptionDate.offset > 0 ? _fixPtr + fieldLegRedemptionDate.offset : nullptr; }
    private: FieldLegRedemptionDate fieldLegRedemptionDate;
 
    public:
-   bool isSetLegStrikePrice() const { return fieldLegStrikePrice.offset >= 0; }
+   bool isSetLegStrikePrice() const { return fieldLegStrikePrice.offset > 0; }
    FieldLegStrikePrice::ValueType getLegStrikePrice() const { return fieldLegStrikePrice.getValue( _fixPtr ); }
-   std::string_view getLegStrikePriceView() const { return fieldLegStrikePrice.offset >= 0 ? std::string_view{ _fixPtr + fieldLegStrikePrice.offset, getValueLength( _fixPtr + fieldLegStrikePrice.offset ) } : std::string_view{}; }
+   std::string_view getLegStrikePriceView() const { return fieldLegStrikePrice.offset > 0 ? std::string_view{ _fixPtr + fieldLegStrikePrice.offset, getValueLength( _fixPtr + fieldLegStrikePrice.offset ) } : std::string_view{}; }
    const char * ptrToLegStrikePrice() const { return _fixPtr + fieldLegStrikePrice.offset; }
-   const char * getIfSetLegStrikePrice() const { return fieldLegStrikePrice.offset >= 0 ? _fixPtr + fieldLegStrikePrice.offset : nullptr; }
+   const char * ptrToTagLegStrikePrice() const { return _fixPtr + fieldLegStrikePrice.offset - 1 - FieldLegStrikePrice::tagWidth(); }
+   const char * getIfSetLegStrikePrice() const { return fieldLegStrikePrice.offset > 0 ? _fixPtr + fieldLegStrikePrice.offset : nullptr; }
    private: FieldLegStrikePrice fieldLegStrikePrice;
 
    public:
-   bool isSetLegStrikeCurrency() const { return fieldLegStrikeCurrency.offset >= 0; }
+   bool isSetLegStrikeCurrency() const { return fieldLegStrikeCurrency.offset > 0; }
    FieldLegStrikeCurrency::ValueType getLegStrikeCurrency() const { return fieldLegStrikeCurrency.getValue( _fixPtr ); }
-   std::string_view getLegStrikeCurrencyView() const { return fieldLegStrikeCurrency.offset >= 0 ? std::string_view{ _fixPtr + fieldLegStrikeCurrency.offset, getValueLength( _fixPtr + fieldLegStrikeCurrency.offset ) } : std::string_view{}; }
+   std::string_view getLegStrikeCurrencyView() const { return fieldLegStrikeCurrency.offset > 0 ? std::string_view{ _fixPtr + fieldLegStrikeCurrency.offset, getValueLength( _fixPtr + fieldLegStrikeCurrency.offset ) } : std::string_view{}; }
    const char * ptrToLegStrikeCurrency() const { return _fixPtr + fieldLegStrikeCurrency.offset; }
-   const char * getIfSetLegStrikeCurrency() const { return fieldLegStrikeCurrency.offset >= 0 ? _fixPtr + fieldLegStrikeCurrency.offset : nullptr; }
+   const char * ptrToTagLegStrikeCurrency() const { return _fixPtr + fieldLegStrikeCurrency.offset - 1 - FieldLegStrikeCurrency::tagWidth(); }
+   const char * getIfSetLegStrikeCurrency() const { return fieldLegStrikeCurrency.offset > 0 ? _fixPtr + fieldLegStrikeCurrency.offset : nullptr; }
    private: FieldLegStrikeCurrency fieldLegStrikeCurrency;
 
    public:
-   bool isSetLegOptAttribute() const { return fieldLegOptAttribute.offset >= 0; }
+   bool isSetLegOptAttribute() const { return fieldLegOptAttribute.offset > 0; }
    FieldLegOptAttribute::ValueType getLegOptAttribute() const { return fieldLegOptAttribute.getValue( _fixPtr ); }
-   std::string_view getLegOptAttributeView() const { return fieldLegOptAttribute.offset >= 0 ? std::string_view{ _fixPtr + fieldLegOptAttribute.offset, getValueLength( _fixPtr + fieldLegOptAttribute.offset ) } : std::string_view{}; }
+   std::string_view getLegOptAttributeView() const { return fieldLegOptAttribute.offset > 0 ? std::string_view{ _fixPtr + fieldLegOptAttribute.offset, getValueLength( _fixPtr + fieldLegOptAttribute.offset ) } : std::string_view{}; }
    const char * ptrToLegOptAttribute() const { return _fixPtr + fieldLegOptAttribute.offset; }
-   const char * getIfSetLegOptAttribute() const { return fieldLegOptAttribute.offset >= 0 ? _fixPtr + fieldLegOptAttribute.offset : nullptr; }
+   const char * ptrToTagLegOptAttribute() const { return _fixPtr + fieldLegOptAttribute.offset - 1 - FieldLegOptAttribute::tagWidth(); }
+   const char * getIfSetLegOptAttribute() const { return fieldLegOptAttribute.offset > 0 ? _fixPtr + fieldLegOptAttribute.offset : nullptr; }
    private: FieldLegOptAttribute fieldLegOptAttribute;
 
    public:
-   bool isSetLegContractMultiplier() const { return fieldLegContractMultiplier.offset >= 0; }
+   bool isSetLegContractMultiplier() const { return fieldLegContractMultiplier.offset > 0; }
    FieldLegContractMultiplier::ValueType getLegContractMultiplier() const { return fieldLegContractMultiplier.getValue( _fixPtr ); }
-   std::string_view getLegContractMultiplierView() const { return fieldLegContractMultiplier.offset >= 0 ? std::string_view{ _fixPtr + fieldLegContractMultiplier.offset, getValueLength( _fixPtr + fieldLegContractMultiplier.offset ) } : std::string_view{}; }
+   std::string_view getLegContractMultiplierView() const { return fieldLegContractMultiplier.offset > 0 ? std::string_view{ _fixPtr + fieldLegContractMultiplier.offset, getValueLength( _fixPtr + fieldLegContractMultiplier.offset ) } : std::string_view{}; }
    const char * ptrToLegContractMultiplier() const { return _fixPtr + fieldLegContractMultiplier.offset; }
-   const char * getIfSetLegContractMultiplier() const { return fieldLegContractMultiplier.offset >= 0 ? _fixPtr + fieldLegContractMultiplier.offset : nullptr; }
+   const char * ptrToTagLegContractMultiplier() const { return _fixPtr + fieldLegContractMultiplier.offset - 1 - FieldLegContractMultiplier::tagWidth(); }
+   const char * getIfSetLegContractMultiplier() const { return fieldLegContractMultiplier.offset > 0 ? _fixPtr + fieldLegContractMultiplier.offset : nullptr; }
    private: FieldLegContractMultiplier fieldLegContractMultiplier;
 
    public:
-   bool isSetLegCouponRate() const { return fieldLegCouponRate.offset >= 0; }
+   bool isSetLegCouponRate() const { return fieldLegCouponRate.offset > 0; }
    FieldLegCouponRate::ValueType getLegCouponRate() const { return fieldLegCouponRate.getValue( _fixPtr ); }
-   std::string_view getLegCouponRateView() const { return fieldLegCouponRate.offset >= 0 ? std::string_view{ _fixPtr + fieldLegCouponRate.offset, getValueLength( _fixPtr + fieldLegCouponRate.offset ) } : std::string_view{}; }
+   std::string_view getLegCouponRateView() const { return fieldLegCouponRate.offset > 0 ? std::string_view{ _fixPtr + fieldLegCouponRate.offset, getValueLength( _fixPtr + fieldLegCouponRate.offset ) } : std::string_view{}; }
    const char * ptrToLegCouponRate() const { return _fixPtr + fieldLegCouponRate.offset; }
-   const char * getIfSetLegCouponRate() const { return fieldLegCouponRate.offset >= 0 ? _fixPtr + fieldLegCouponRate.offset : nullptr; }
+   const char * ptrToTagLegCouponRate() const { return _fixPtr + fieldLegCouponRate.offset - 1 - FieldLegCouponRate::tagWidth(); }
+   const char * getIfSetLegCouponRate() const { return fieldLegCouponRate.offset > 0 ? _fixPtr + fieldLegCouponRate.offset : nullptr; }
    private: FieldLegCouponRate fieldLegCouponRate;
 
    public:
-   bool isSetLegSecurityExchange() const { return fieldLegSecurityExchange.offset >= 0; }
+   bool isSetLegSecurityExchange() const { return fieldLegSecurityExchange.offset > 0; }
    FieldLegSecurityExchange::ValueType getLegSecurityExchange() const { return fieldLegSecurityExchange.getValue( _fixPtr ); }
-   std::string_view getLegSecurityExchangeView() const { return fieldLegSecurityExchange.offset >= 0 ? std::string_view{ _fixPtr + fieldLegSecurityExchange.offset, getValueLength( _fixPtr + fieldLegSecurityExchange.offset ) } : std::string_view{}; }
+   std::string_view getLegSecurityExchangeView() const { return fieldLegSecurityExchange.offset > 0 ? std::string_view{ _fixPtr + fieldLegSecurityExchange.offset, getValueLength( _fixPtr + fieldLegSecurityExchange.offset ) } : std::string_view{}; }
    const char * ptrToLegSecurityExchange() const { return _fixPtr + fieldLegSecurityExchange.offset; }
-   const char * getIfSetLegSecurityExchange() const { return fieldLegSecurityExchange.offset >= 0 ? _fixPtr + fieldLegSecurityExchange.offset : nullptr; }
+   const char * ptrToTagLegSecurityExchange() const { return _fixPtr + fieldLegSecurityExchange.offset - 1 - FieldLegSecurityExchange::tagWidth(); }
+   const char * getIfSetLegSecurityExchange() const { return fieldLegSecurityExchange.offset > 0 ? _fixPtr + fieldLegSecurityExchange.offset : nullptr; }
    private: FieldLegSecurityExchange fieldLegSecurityExchange;
 
    public:
-   bool isSetLegIssuer() const { return fieldLegIssuer.offset >= 0; }
+   bool isSetLegIssuer() const { return fieldLegIssuer.offset > 0; }
    FieldLegIssuer::ValueType getLegIssuer() const { return fieldLegIssuer.getValue( _fixPtr ); }
-   std::string_view getLegIssuerView() const { return fieldLegIssuer.offset >= 0 ? std::string_view{ _fixPtr + fieldLegIssuer.offset, getValueLength( _fixPtr + fieldLegIssuer.offset ) } : std::string_view{}; }
+   std::string_view getLegIssuerView() const { return fieldLegIssuer.offset > 0 ? std::string_view{ _fixPtr + fieldLegIssuer.offset, getValueLength( _fixPtr + fieldLegIssuer.offset ) } : std::string_view{}; }
    const char * ptrToLegIssuer() const { return _fixPtr + fieldLegIssuer.offset; }
-   const char * getIfSetLegIssuer() const { return fieldLegIssuer.offset >= 0 ? _fixPtr + fieldLegIssuer.offset : nullptr; }
+   const char * ptrToTagLegIssuer() const { return _fixPtr + fieldLegIssuer.offset - 1 - FieldLegIssuer::tagWidth(); }
+   const char * getIfSetLegIssuer() const { return fieldLegIssuer.offset > 0 ? _fixPtr + fieldLegIssuer.offset : nullptr; }
    private: FieldLegIssuer fieldLegIssuer;
 
    public:
-   bool isSetEncodedLegIssuerLen() const { return fieldEncodedLegIssuerLen.offset >= 0; }
+   bool isSetEncodedLegIssuerLen() const { return fieldEncodedLegIssuerLen.offset > 0; }
    FieldEncodedLegIssuerLen::ValueType getEncodedLegIssuerLen() const { return fieldEncodedLegIssuerLen.getValue( _fixPtr ); }
-   std::string_view getEncodedLegIssuerLenView() const { return fieldEncodedLegIssuerLen.offset >= 0 ? std::string_view{ _fixPtr + fieldEncodedLegIssuerLen.offset, getValueLength( _fixPtr + fieldEncodedLegIssuerLen.offset ) } : std::string_view{}; }
+   std::string_view getEncodedLegIssuerLenView() const { return fieldEncodedLegIssuerLen.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedLegIssuerLen.offset, getValueLength( _fixPtr + fieldEncodedLegIssuerLen.offset ) } : std::string_view{}; }
    const char * ptrToEncodedLegIssuerLen() const { return _fixPtr + fieldEncodedLegIssuerLen.offset; }
-   const char * getIfSetEncodedLegIssuerLen() const { return fieldEncodedLegIssuerLen.offset >= 0 ? _fixPtr + fieldEncodedLegIssuerLen.offset : nullptr; }
+   const char * ptrToTagEncodedLegIssuerLen() const { return _fixPtr + fieldEncodedLegIssuerLen.offset - 1 - FieldEncodedLegIssuerLen::tagWidth(); }
+   const char * getIfSetEncodedLegIssuerLen() const { return fieldEncodedLegIssuerLen.offset > 0 ? _fixPtr + fieldEncodedLegIssuerLen.offset : nullptr; }
    private: FieldEncodedLegIssuerLen fieldEncodedLegIssuerLen;
 
    public:
-   bool isSetEncodedLegIssuer() const { return fieldEncodedLegIssuer.offset >= 0; }
+   bool isSetEncodedLegIssuer() const { return fieldEncodedLegIssuer.offset > 0; }
    FieldEncodedLegIssuer::ValueType getEncodedLegIssuer() const { return fieldEncodedLegIssuer.getValue( _fixPtr ); }
-   std::string_view getEncodedLegIssuerView() const { return fieldEncodedLegIssuer.offset >= 0 ? std::string_view{ _fixPtr + fieldEncodedLegIssuer.offset, getValueLength( _fixPtr + fieldEncodedLegIssuer.offset ) } : std::string_view{}; }
+   std::string_view getEncodedLegIssuerView() const { return fieldEncodedLegIssuer.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedLegIssuer.offset, getValueLength( _fixPtr + fieldEncodedLegIssuer.offset ) } : std::string_view{}; }
    const char * ptrToEncodedLegIssuer() const { return _fixPtr + fieldEncodedLegIssuer.offset; }
-   const char * getIfSetEncodedLegIssuer() const { return fieldEncodedLegIssuer.offset >= 0 ? _fixPtr + fieldEncodedLegIssuer.offset : nullptr; }
+   const char * ptrToTagEncodedLegIssuer() const { return _fixPtr + fieldEncodedLegIssuer.offset - 1 - FieldEncodedLegIssuer::tagWidth(); }
+   const char * getIfSetEncodedLegIssuer() const { return fieldEncodedLegIssuer.offset > 0 ? _fixPtr + fieldEncodedLegIssuer.offset : nullptr; }
    private: FieldEncodedLegIssuer fieldEncodedLegIssuer;
 
    public:
-   bool isSetLegSecurityDesc() const { return fieldLegSecurityDesc.offset >= 0; }
+   bool isSetLegSecurityDesc() const { return fieldLegSecurityDesc.offset > 0; }
    FieldLegSecurityDesc::ValueType getLegSecurityDesc() const { return fieldLegSecurityDesc.getValue( _fixPtr ); }
-   std::string_view getLegSecurityDescView() const { return fieldLegSecurityDesc.offset >= 0 ? std::string_view{ _fixPtr + fieldLegSecurityDesc.offset, getValueLength( _fixPtr + fieldLegSecurityDesc.offset ) } : std::string_view{}; }
+   std::string_view getLegSecurityDescView() const { return fieldLegSecurityDesc.offset > 0 ? std::string_view{ _fixPtr + fieldLegSecurityDesc.offset, getValueLength( _fixPtr + fieldLegSecurityDesc.offset ) } : std::string_view{}; }
    const char * ptrToLegSecurityDesc() const { return _fixPtr + fieldLegSecurityDesc.offset; }
-   const char * getIfSetLegSecurityDesc() const { return fieldLegSecurityDesc.offset >= 0 ? _fixPtr + fieldLegSecurityDesc.offset : nullptr; }
+   const char * ptrToTagLegSecurityDesc() const { return _fixPtr + fieldLegSecurityDesc.offset - 1 - FieldLegSecurityDesc::tagWidth(); }
+   const char * getIfSetLegSecurityDesc() const { return fieldLegSecurityDesc.offset > 0 ? _fixPtr + fieldLegSecurityDesc.offset : nullptr; }
    private: FieldLegSecurityDesc fieldLegSecurityDesc;
 
    public:
-   bool isSetEncodedLegSecurityDescLen() const { return fieldEncodedLegSecurityDescLen.offset >= 0; }
+   bool isSetEncodedLegSecurityDescLen() const { return fieldEncodedLegSecurityDescLen.offset > 0; }
    FieldEncodedLegSecurityDescLen::ValueType getEncodedLegSecurityDescLen() const { return fieldEncodedLegSecurityDescLen.getValue( _fixPtr ); }
-   std::string_view getEncodedLegSecurityDescLenView() const { return fieldEncodedLegSecurityDescLen.offset >= 0 ? std::string_view{ _fixPtr + fieldEncodedLegSecurityDescLen.offset, getValueLength( _fixPtr + fieldEncodedLegSecurityDescLen.offset ) } : std::string_view{}; }
+   std::string_view getEncodedLegSecurityDescLenView() const { return fieldEncodedLegSecurityDescLen.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedLegSecurityDescLen.offset, getValueLength( _fixPtr + fieldEncodedLegSecurityDescLen.offset ) } : std::string_view{}; }
    const char * ptrToEncodedLegSecurityDescLen() const { return _fixPtr + fieldEncodedLegSecurityDescLen.offset; }
-   const char * getIfSetEncodedLegSecurityDescLen() const { return fieldEncodedLegSecurityDescLen.offset >= 0 ? _fixPtr + fieldEncodedLegSecurityDescLen.offset : nullptr; }
+   const char * ptrToTagEncodedLegSecurityDescLen() const { return _fixPtr + fieldEncodedLegSecurityDescLen.offset - 1 - FieldEncodedLegSecurityDescLen::tagWidth(); }
+   const char * getIfSetEncodedLegSecurityDescLen() const { return fieldEncodedLegSecurityDescLen.offset > 0 ? _fixPtr + fieldEncodedLegSecurityDescLen.offset : nullptr; }
    private: FieldEncodedLegSecurityDescLen fieldEncodedLegSecurityDescLen;
 
    public:
-   bool isSetEncodedLegSecurityDesc() const { return fieldEncodedLegSecurityDesc.offset >= 0; }
+   bool isSetEncodedLegSecurityDesc() const { return fieldEncodedLegSecurityDesc.offset > 0; }
    FieldEncodedLegSecurityDesc::ValueType getEncodedLegSecurityDesc() const { return fieldEncodedLegSecurityDesc.getValue( _fixPtr ); }
-   std::string_view getEncodedLegSecurityDescView() const { return fieldEncodedLegSecurityDesc.offset >= 0 ? std::string_view{ _fixPtr + fieldEncodedLegSecurityDesc.offset, getValueLength( _fixPtr + fieldEncodedLegSecurityDesc.offset ) } : std::string_view{}; }
+   std::string_view getEncodedLegSecurityDescView() const { return fieldEncodedLegSecurityDesc.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedLegSecurityDesc.offset, getValueLength( _fixPtr + fieldEncodedLegSecurityDesc.offset ) } : std::string_view{}; }
    const char * ptrToEncodedLegSecurityDesc() const { return _fixPtr + fieldEncodedLegSecurityDesc.offset; }
-   const char * getIfSetEncodedLegSecurityDesc() const { return fieldEncodedLegSecurityDesc.offset >= 0 ? _fixPtr + fieldEncodedLegSecurityDesc.offset : nullptr; }
+   const char * ptrToTagEncodedLegSecurityDesc() const { return _fixPtr + fieldEncodedLegSecurityDesc.offset - 1 - FieldEncodedLegSecurityDesc::tagWidth(); }
+   const char * getIfSetEncodedLegSecurityDesc() const { return fieldEncodedLegSecurityDesc.offset > 0 ? _fixPtr + fieldEncodedLegSecurityDesc.offset : nullptr; }
    private: FieldEncodedLegSecurityDesc fieldEncodedLegSecurityDesc;
 
    public:
-   bool isSetLegRatioQty() const { return fieldLegRatioQty.offset >= 0; }
+   bool isSetLegRatioQty() const { return fieldLegRatioQty.offset > 0; }
    FieldLegRatioQty::ValueType getLegRatioQty() const { return fieldLegRatioQty.getValue( _fixPtr ); }
-   std::string_view getLegRatioQtyView() const { return fieldLegRatioQty.offset >= 0 ? std::string_view{ _fixPtr + fieldLegRatioQty.offset, getValueLength( _fixPtr + fieldLegRatioQty.offset ) } : std::string_view{}; }
+   std::string_view getLegRatioQtyView() const { return fieldLegRatioQty.offset > 0 ? std::string_view{ _fixPtr + fieldLegRatioQty.offset, getValueLength( _fixPtr + fieldLegRatioQty.offset ) } : std::string_view{}; }
    const char * ptrToLegRatioQty() const { return _fixPtr + fieldLegRatioQty.offset; }
-   const char * getIfSetLegRatioQty() const { return fieldLegRatioQty.offset >= 0 ? _fixPtr + fieldLegRatioQty.offset : nullptr; }
+   const char * ptrToTagLegRatioQty() const { return _fixPtr + fieldLegRatioQty.offset - 1 - FieldLegRatioQty::tagWidth(); }
+   const char * getIfSetLegRatioQty() const { return fieldLegRatioQty.offset > 0 ? _fixPtr + fieldLegRatioQty.offset : nullptr; }
    private: FieldLegRatioQty fieldLegRatioQty;
 
    public:
-   bool isSetLegSide() const { return fieldLegSide.offset >= 0; }
+   bool isSetLegSide() const { return fieldLegSide.offset > 0; }
    FieldLegSide::ValueType getLegSide() const { return fieldLegSide.getValue( _fixPtr ); }
-   std::string_view getLegSideView() const { return fieldLegSide.offset >= 0 ? std::string_view{ _fixPtr + fieldLegSide.offset, getValueLength( _fixPtr + fieldLegSide.offset ) } : std::string_view{}; }
+   std::string_view getLegSideView() const { return fieldLegSide.offset > 0 ? std::string_view{ _fixPtr + fieldLegSide.offset, getValueLength( _fixPtr + fieldLegSide.offset ) } : std::string_view{}; }
    const char * ptrToLegSide() const { return _fixPtr + fieldLegSide.offset; }
-   const char * getIfSetLegSide() const { return fieldLegSide.offset >= 0 ? _fixPtr + fieldLegSide.offset : nullptr; }
+   const char * ptrToTagLegSide() const { return _fixPtr + fieldLegSide.offset - 1 - FieldLegSide::tagWidth(); }
+   const char * getIfSetLegSide() const { return fieldLegSide.offset > 0 ? _fixPtr + fieldLegSide.offset : nullptr; }
    private: FieldLegSide fieldLegSide;
 
    public:
-   bool isSetLegCurrency() const { return fieldLegCurrency.offset >= 0; }
+   bool isSetLegCurrency() const { return fieldLegCurrency.offset > 0; }
    FieldLegCurrency::ValueType getLegCurrency() const { return fieldLegCurrency.getValue( _fixPtr ); }
-   std::string_view getLegCurrencyView() const { return fieldLegCurrency.offset >= 0 ? std::string_view{ _fixPtr + fieldLegCurrency.offset, getValueLength( _fixPtr + fieldLegCurrency.offset ) } : std::string_view{}; }
+   std::string_view getLegCurrencyView() const { return fieldLegCurrency.offset > 0 ? std::string_view{ _fixPtr + fieldLegCurrency.offset, getValueLength( _fixPtr + fieldLegCurrency.offset ) } : std::string_view{}; }
    const char * ptrToLegCurrency() const { return _fixPtr + fieldLegCurrency.offset; }
-   const char * getIfSetLegCurrency() const { return fieldLegCurrency.offset >= 0 ? _fixPtr + fieldLegCurrency.offset : nullptr; }
+   const char * ptrToTagLegCurrency() const { return _fixPtr + fieldLegCurrency.offset - 1 - FieldLegCurrency::tagWidth(); }
+   const char * getIfSetLegCurrency() const { return fieldLegCurrency.offset > 0 ? _fixPtr + fieldLegCurrency.offset : nullptr; }
    private: FieldLegCurrency fieldLegCurrency;
 
    public:
-   bool isSetLegPool() const { return fieldLegPool.offset >= 0; }
+   bool isSetLegPool() const { return fieldLegPool.offset > 0; }
    FieldLegPool::ValueType getLegPool() const { return fieldLegPool.getValue( _fixPtr ); }
-   std::string_view getLegPoolView() const { return fieldLegPool.offset >= 0 ? std::string_view{ _fixPtr + fieldLegPool.offset, getValueLength( _fixPtr + fieldLegPool.offset ) } : std::string_view{}; }
+   std::string_view getLegPoolView() const { return fieldLegPool.offset > 0 ? std::string_view{ _fixPtr + fieldLegPool.offset, getValueLength( _fixPtr + fieldLegPool.offset ) } : std::string_view{}; }
    const char * ptrToLegPool() const { return _fixPtr + fieldLegPool.offset; }
-   const char * getIfSetLegPool() const { return fieldLegPool.offset >= 0 ? _fixPtr + fieldLegPool.offset : nullptr; }
+   const char * ptrToTagLegPool() const { return _fixPtr + fieldLegPool.offset - 1 - FieldLegPool::tagWidth(); }
+   const char * getIfSetLegPool() const { return fieldLegPool.offset > 0 ? _fixPtr + fieldLegPool.offset : nullptr; }
    private: FieldLegPool fieldLegPool;
 
    public:
-   bool isSetLegDatedDate() const { return fieldLegDatedDate.offset >= 0; }
+   bool isSetLegDatedDate() const { return fieldLegDatedDate.offset > 0; }
    FieldLegDatedDate::ValueType getLegDatedDate() const { return fieldLegDatedDate.getValue( _fixPtr ); }
-   std::string_view getLegDatedDateView() const { return fieldLegDatedDate.offset >= 0 ? std::string_view{ _fixPtr + fieldLegDatedDate.offset, getValueLength( _fixPtr + fieldLegDatedDate.offset ) } : std::string_view{}; }
+   std::string_view getLegDatedDateView() const { return fieldLegDatedDate.offset > 0 ? std::string_view{ _fixPtr + fieldLegDatedDate.offset, getValueLength( _fixPtr + fieldLegDatedDate.offset ) } : std::string_view{}; }
    const char * ptrToLegDatedDate() const { return _fixPtr + fieldLegDatedDate.offset; }
-   const char * getIfSetLegDatedDate() const { return fieldLegDatedDate.offset >= 0 ? _fixPtr + fieldLegDatedDate.offset : nullptr; }
+   const char * ptrToTagLegDatedDate() const { return _fixPtr + fieldLegDatedDate.offset - 1 - FieldLegDatedDate::tagWidth(); }
+   const char * getIfSetLegDatedDate() const { return fieldLegDatedDate.offset > 0 ? _fixPtr + fieldLegDatedDate.offset : nullptr; }
    private: FieldLegDatedDate fieldLegDatedDate;
 
    public:
-   bool isSetLegContractSettlMonth() const { return fieldLegContractSettlMonth.offset >= 0; }
+   bool isSetLegContractSettlMonth() const { return fieldLegContractSettlMonth.offset > 0; }
    FieldLegContractSettlMonth::ValueType getLegContractSettlMonth() const { return fieldLegContractSettlMonth.getValue( _fixPtr ); }
-   std::string_view getLegContractSettlMonthView() const { return fieldLegContractSettlMonth.offset >= 0 ? std::string_view{ _fixPtr + fieldLegContractSettlMonth.offset, getValueLength( _fixPtr + fieldLegContractSettlMonth.offset ) } : std::string_view{}; }
+   std::string_view getLegContractSettlMonthView() const { return fieldLegContractSettlMonth.offset > 0 ? std::string_view{ _fixPtr + fieldLegContractSettlMonth.offset, getValueLength( _fixPtr + fieldLegContractSettlMonth.offset ) } : std::string_view{}; }
    const char * ptrToLegContractSettlMonth() const { return _fixPtr + fieldLegContractSettlMonth.offset; }
-   const char * getIfSetLegContractSettlMonth() const { return fieldLegContractSettlMonth.offset >= 0 ? _fixPtr + fieldLegContractSettlMonth.offset : nullptr; }
+   const char * ptrToTagLegContractSettlMonth() const { return _fixPtr + fieldLegContractSettlMonth.offset - 1 - FieldLegContractSettlMonth::tagWidth(); }
+   const char * getIfSetLegContractSettlMonth() const { return fieldLegContractSettlMonth.offset > 0 ? _fixPtr + fieldLegContractSettlMonth.offset : nullptr; }
    private: FieldLegContractSettlMonth fieldLegContractSettlMonth;
 
    public:
-   bool isSetLegInterestAccrualDate() const { return fieldLegInterestAccrualDate.offset >= 0; }
+   bool isSetLegInterestAccrualDate() const { return fieldLegInterestAccrualDate.offset > 0; }
    FieldLegInterestAccrualDate::ValueType getLegInterestAccrualDate() const { return fieldLegInterestAccrualDate.getValue( _fixPtr ); }
-   std::string_view getLegInterestAccrualDateView() const { return fieldLegInterestAccrualDate.offset >= 0 ? std::string_view{ _fixPtr + fieldLegInterestAccrualDate.offset, getValueLength( _fixPtr + fieldLegInterestAccrualDate.offset ) } : std::string_view{}; }
+   std::string_view getLegInterestAccrualDateView() const { return fieldLegInterestAccrualDate.offset > 0 ? std::string_view{ _fixPtr + fieldLegInterestAccrualDate.offset, getValueLength( _fixPtr + fieldLegInterestAccrualDate.offset ) } : std::string_view{}; }
    const char * ptrToLegInterestAccrualDate() const { return _fixPtr + fieldLegInterestAccrualDate.offset; }
-   const char * getIfSetLegInterestAccrualDate() const { return fieldLegInterestAccrualDate.offset >= 0 ? _fixPtr + fieldLegInterestAccrualDate.offset : nullptr; }
+   const char * ptrToTagLegInterestAccrualDate() const { return _fixPtr + fieldLegInterestAccrualDate.offset - 1 - FieldLegInterestAccrualDate::tagWidth(); }
+   const char * getIfSetLegInterestAccrualDate() const { return fieldLegInterestAccrualDate.offset > 0 ? _fixPtr + fieldLegInterestAccrualDate.offset : nullptr; }
    private: FieldLegInterestAccrualDate fieldLegInterestAccrualDate;
 
    public:
-   bool isSetLegQty() const { return fieldLegQty.offset >= 0; }
+   bool isSetLegQty() const { return fieldLegQty.offset > 0; }
    FieldLegQty::ValueType getLegQty() const { return fieldLegQty.getValue( _fixPtr ); }
-   std::string_view getLegQtyView() const { return fieldLegQty.offset >= 0 ? std::string_view{ _fixPtr + fieldLegQty.offset, getValueLength( _fixPtr + fieldLegQty.offset ) } : std::string_view{}; }
+   std::string_view getLegQtyView() const { return fieldLegQty.offset > 0 ? std::string_view{ _fixPtr + fieldLegQty.offset, getValueLength( _fixPtr + fieldLegQty.offset ) } : std::string_view{}; }
    const char * ptrToLegQty() const { return _fixPtr + fieldLegQty.offset; }
-   const char * getIfSetLegQty() const { return fieldLegQty.offset >= 0 ? _fixPtr + fieldLegQty.offset : nullptr; }
+   const char * ptrToTagLegQty() const { return _fixPtr + fieldLegQty.offset - 1 - FieldLegQty::tagWidth(); }
+   const char * getIfSetLegQty() const { return fieldLegQty.offset > 0 ? _fixPtr + fieldLegQty.offset : nullptr; }
    private: FieldLegQty fieldLegQty;
 
    public:
-   bool isSetLegSwapType() const { return fieldLegSwapType.offset >= 0; }
+   bool isSetLegSwapType() const { return fieldLegSwapType.offset > 0; }
    FieldLegSwapType::ValueType getLegSwapType() const { return fieldLegSwapType.getValue( _fixPtr ); }
-   std::string_view getLegSwapTypeView() const { return fieldLegSwapType.offset >= 0 ? std::string_view{ _fixPtr + fieldLegSwapType.offset, getValueLength( _fixPtr + fieldLegSwapType.offset ) } : std::string_view{}; }
+   std::string_view getLegSwapTypeView() const { return fieldLegSwapType.offset > 0 ? std::string_view{ _fixPtr + fieldLegSwapType.offset, getValueLength( _fixPtr + fieldLegSwapType.offset ) } : std::string_view{}; }
    const char * ptrToLegSwapType() const { return _fixPtr + fieldLegSwapType.offset; }
-   const char * getIfSetLegSwapType() const { return fieldLegSwapType.offset >= 0 ? _fixPtr + fieldLegSwapType.offset : nullptr; }
+   const char * ptrToTagLegSwapType() const { return _fixPtr + fieldLegSwapType.offset - 1 - FieldLegSwapType::tagWidth(); }
+   const char * getIfSetLegSwapType() const { return fieldLegSwapType.offset > 0 ? _fixPtr + fieldLegSwapType.offset : nullptr; }
    private: FieldLegSwapType fieldLegSwapType;
 
    public:
-   bool isSetNoLegStipulations() const { return fieldNoLegStipulations.offset >= 0; }
+   bool isSetNoLegStipulations() const { return fieldNoLegStipulations.offset > 0; }
    FieldNoLegStipulations::ValueType getNoLegStipulations() const { return fieldNoLegStipulations.getValue( _fixPtr ); }
-   std::string_view getNoLegStipulationsView() const { return fieldNoLegStipulations.offset >= 0 ? std::string_view{ _fixPtr + fieldNoLegStipulations.offset, getValueLength( _fixPtr + fieldNoLegStipulations.offset ) } : std::string_view{}; }
+   std::string_view getNoLegStipulationsView() const { return fieldNoLegStipulations.offset > 0 ? std::string_view{ _fixPtr + fieldNoLegStipulations.offset, getValueLength( _fixPtr + fieldNoLegStipulations.offset ) } : std::string_view{}; }
    const char * ptrToNoLegStipulations() const { return _fixPtr + fieldNoLegStipulations.offset; }
-   const char * getIfSetNoLegStipulations() const { return fieldNoLegStipulations.offset >= 0 ? _fixPtr + fieldNoLegStipulations.offset : nullptr; }
+   const char * ptrToTagNoLegStipulations() const { return _fixPtr + fieldNoLegStipulations.offset - 1 - FieldNoLegStipulations::tagWidth(); }
+   const char * getIfSetNoLegStipulations() const { return fieldNoLegStipulations.offset > 0 ? _fixPtr + fieldNoLegStipulations.offset : nullptr; }
    private: FieldNoLegStipulations fieldNoLegStipulations;
   
    public:
@@ -2996,27 +3352,30 @@ class GroupLegs : public MessageBase
    private: GroupLegStipulations::Array groupsLegStipulations{ 10 };
 
    public:
-   bool isSetLegPositionEffect() const { return fieldLegPositionEffect.offset >= 0; }
+   bool isSetLegPositionEffect() const { return fieldLegPositionEffect.offset > 0; }
    FieldLegPositionEffect::ValueType getLegPositionEffect() const { return fieldLegPositionEffect.getValue( _fixPtr ); }
-   std::string_view getLegPositionEffectView() const { return fieldLegPositionEffect.offset >= 0 ? std::string_view{ _fixPtr + fieldLegPositionEffect.offset, getValueLength( _fixPtr + fieldLegPositionEffect.offset ) } : std::string_view{}; }
+   std::string_view getLegPositionEffectView() const { return fieldLegPositionEffect.offset > 0 ? std::string_view{ _fixPtr + fieldLegPositionEffect.offset, getValueLength( _fixPtr + fieldLegPositionEffect.offset ) } : std::string_view{}; }
    const char * ptrToLegPositionEffect() const { return _fixPtr + fieldLegPositionEffect.offset; }
-   const char * getIfSetLegPositionEffect() const { return fieldLegPositionEffect.offset >= 0 ? _fixPtr + fieldLegPositionEffect.offset : nullptr; }
+   const char * ptrToTagLegPositionEffect() const { return _fixPtr + fieldLegPositionEffect.offset - 1 - FieldLegPositionEffect::tagWidth(); }
+   const char * getIfSetLegPositionEffect() const { return fieldLegPositionEffect.offset > 0 ? _fixPtr + fieldLegPositionEffect.offset : nullptr; }
    private: FieldLegPositionEffect fieldLegPositionEffect;
 
    public:
-   bool isSetLegCoveredOrUncovered() const { return fieldLegCoveredOrUncovered.offset >= 0; }
+   bool isSetLegCoveredOrUncovered() const { return fieldLegCoveredOrUncovered.offset > 0; }
    FieldLegCoveredOrUncovered::ValueType getLegCoveredOrUncovered() const { return fieldLegCoveredOrUncovered.getValue( _fixPtr ); }
-   std::string_view getLegCoveredOrUncoveredView() const { return fieldLegCoveredOrUncovered.offset >= 0 ? std::string_view{ _fixPtr + fieldLegCoveredOrUncovered.offset, getValueLength( _fixPtr + fieldLegCoveredOrUncovered.offset ) } : std::string_view{}; }
+   std::string_view getLegCoveredOrUncoveredView() const { return fieldLegCoveredOrUncovered.offset > 0 ? std::string_view{ _fixPtr + fieldLegCoveredOrUncovered.offset, getValueLength( _fixPtr + fieldLegCoveredOrUncovered.offset ) } : std::string_view{}; }
    const char * ptrToLegCoveredOrUncovered() const { return _fixPtr + fieldLegCoveredOrUncovered.offset; }
-   const char * getIfSetLegCoveredOrUncovered() const { return fieldLegCoveredOrUncovered.offset >= 0 ? _fixPtr + fieldLegCoveredOrUncovered.offset : nullptr; }
+   const char * ptrToTagLegCoveredOrUncovered() const { return _fixPtr + fieldLegCoveredOrUncovered.offset - 1 - FieldLegCoveredOrUncovered::tagWidth(); }
+   const char * getIfSetLegCoveredOrUncovered() const { return fieldLegCoveredOrUncovered.offset > 0 ? _fixPtr + fieldLegCoveredOrUncovered.offset : nullptr; }
    private: FieldLegCoveredOrUncovered fieldLegCoveredOrUncovered;
 
    public:
-   bool isSetNoNestedPartyIDs() const { return fieldNoNestedPartyIDs.offset >= 0; }
+   bool isSetNoNestedPartyIDs() const { return fieldNoNestedPartyIDs.offset > 0; }
    FieldNoNestedPartyIDs::ValueType getNoNestedPartyIDs() const { return fieldNoNestedPartyIDs.getValue( _fixPtr ); }
-   std::string_view getNoNestedPartyIDsView() const { return fieldNoNestedPartyIDs.offset >= 0 ? std::string_view{ _fixPtr + fieldNoNestedPartyIDs.offset, getValueLength( _fixPtr + fieldNoNestedPartyIDs.offset ) } : std::string_view{}; }
+   std::string_view getNoNestedPartyIDsView() const { return fieldNoNestedPartyIDs.offset > 0 ? std::string_view{ _fixPtr + fieldNoNestedPartyIDs.offset, getValueLength( _fixPtr + fieldNoNestedPartyIDs.offset ) } : std::string_view{}; }
    const char * ptrToNoNestedPartyIDs() const { return _fixPtr + fieldNoNestedPartyIDs.offset; }
-   const char * getIfSetNoNestedPartyIDs() const { return fieldNoNestedPartyIDs.offset >= 0 ? _fixPtr + fieldNoNestedPartyIDs.offset : nullptr; }
+   const char * ptrToTagNoNestedPartyIDs() const { return _fixPtr + fieldNoNestedPartyIDs.offset - 1 - FieldNoNestedPartyIDs::tagWidth(); }
+   const char * getIfSetNoNestedPartyIDs() const { return fieldNoNestedPartyIDs.offset > 0 ? _fixPtr + fieldNoNestedPartyIDs.offset : nullptr; }
    private: FieldNoNestedPartyIDs fieldNoNestedPartyIDs;
   
    public:
@@ -3025,43 +3384,48 @@ class GroupLegs : public MessageBase
    private: GroupNestedPartyIDs::Array groupsNestedPartyIDs{ 10 };
 
    public:
-   bool isSetLegRefID() const { return fieldLegRefID.offset >= 0; }
+   bool isSetLegRefID() const { return fieldLegRefID.offset > 0; }
    FieldLegRefID::ValueType getLegRefID() const { return fieldLegRefID.getValue( _fixPtr ); }
-   std::string_view getLegRefIDView() const { return fieldLegRefID.offset >= 0 ? std::string_view{ _fixPtr + fieldLegRefID.offset, getValueLength( _fixPtr + fieldLegRefID.offset ) } : std::string_view{}; }
+   std::string_view getLegRefIDView() const { return fieldLegRefID.offset > 0 ? std::string_view{ _fixPtr + fieldLegRefID.offset, getValueLength( _fixPtr + fieldLegRefID.offset ) } : std::string_view{}; }
    const char * ptrToLegRefID() const { return _fixPtr + fieldLegRefID.offset; }
-   const char * getIfSetLegRefID() const { return fieldLegRefID.offset >= 0 ? _fixPtr + fieldLegRefID.offset : nullptr; }
+   const char * ptrToTagLegRefID() const { return _fixPtr + fieldLegRefID.offset - 1 - FieldLegRefID::tagWidth(); }
+   const char * getIfSetLegRefID() const { return fieldLegRefID.offset > 0 ? _fixPtr + fieldLegRefID.offset : nullptr; }
    private: FieldLegRefID fieldLegRefID;
 
    public:
-   bool isSetLegPrice() const { return fieldLegPrice.offset >= 0; }
+   bool isSetLegPrice() const { return fieldLegPrice.offset > 0; }
    FieldLegPrice::ValueType getLegPrice() const { return fieldLegPrice.getValue( _fixPtr ); }
-   std::string_view getLegPriceView() const { return fieldLegPrice.offset >= 0 ? std::string_view{ _fixPtr + fieldLegPrice.offset, getValueLength( _fixPtr + fieldLegPrice.offset ) } : std::string_view{}; }
+   std::string_view getLegPriceView() const { return fieldLegPrice.offset > 0 ? std::string_view{ _fixPtr + fieldLegPrice.offset, getValueLength( _fixPtr + fieldLegPrice.offset ) } : std::string_view{}; }
    const char * ptrToLegPrice() const { return _fixPtr + fieldLegPrice.offset; }
-   const char * getIfSetLegPrice() const { return fieldLegPrice.offset >= 0 ? _fixPtr + fieldLegPrice.offset : nullptr; }
+   const char * ptrToTagLegPrice() const { return _fixPtr + fieldLegPrice.offset - 1 - FieldLegPrice::tagWidth(); }
+   const char * getIfSetLegPrice() const { return fieldLegPrice.offset > 0 ? _fixPtr + fieldLegPrice.offset : nullptr; }
    private: FieldLegPrice fieldLegPrice;
 
    public:
-   bool isSetLegSettlType() const { return fieldLegSettlType.offset >= 0; }
+   bool isSetLegSettlType() const { return fieldLegSettlType.offset > 0; }
    FieldLegSettlType::ValueType getLegSettlType() const { return fieldLegSettlType.getValue( _fixPtr ); }
-   std::string_view getLegSettlTypeView() const { return fieldLegSettlType.offset >= 0 ? std::string_view{ _fixPtr + fieldLegSettlType.offset, getValueLength( _fixPtr + fieldLegSettlType.offset ) } : std::string_view{}; }
+   std::string_view getLegSettlTypeView() const { return fieldLegSettlType.offset > 0 ? std::string_view{ _fixPtr + fieldLegSettlType.offset, getValueLength( _fixPtr + fieldLegSettlType.offset ) } : std::string_view{}; }
    const char * ptrToLegSettlType() const { return _fixPtr + fieldLegSettlType.offset; }
-   const char * getIfSetLegSettlType() const { return fieldLegSettlType.offset >= 0 ? _fixPtr + fieldLegSettlType.offset : nullptr; }
+   const char * ptrToTagLegSettlType() const { return _fixPtr + fieldLegSettlType.offset - 1 - FieldLegSettlType::tagWidth(); }
+   const char * getIfSetLegSettlType() const { return fieldLegSettlType.offset > 0 ? _fixPtr + fieldLegSettlType.offset : nullptr; }
    private: FieldLegSettlType fieldLegSettlType;
 
    public:
-   bool isSetLegSettlDate() const { return fieldLegSettlDate.offset >= 0; }
+   bool isSetLegSettlDate() const { return fieldLegSettlDate.offset > 0; }
    FieldLegSettlDate::ValueType getLegSettlDate() const { return fieldLegSettlDate.getValue( _fixPtr ); }
-   std::string_view getLegSettlDateView() const { return fieldLegSettlDate.offset >= 0 ? std::string_view{ _fixPtr + fieldLegSettlDate.offset, getValueLength( _fixPtr + fieldLegSettlDate.offset ) } : std::string_view{}; }
+   std::string_view getLegSettlDateView() const { return fieldLegSettlDate.offset > 0 ? std::string_view{ _fixPtr + fieldLegSettlDate.offset, getValueLength( _fixPtr + fieldLegSettlDate.offset ) } : std::string_view{}; }
    const char * ptrToLegSettlDate() const { return _fixPtr + fieldLegSettlDate.offset; }
-   const char * getIfSetLegSettlDate() const { return fieldLegSettlDate.offset >= 0 ? _fixPtr + fieldLegSettlDate.offset : nullptr; }
+   const char * ptrToTagLegSettlDate() const { return _fixPtr + fieldLegSettlDate.offset - 1 - FieldLegSettlDate::tagWidth(); }
+   const char * getIfSetLegSettlDate() const { return fieldLegSettlDate.offset > 0 ? _fixPtr + fieldLegSettlDate.offset : nullptr; }
    private: FieldLegSettlDate fieldLegSettlDate;
 
    public:
-   bool isSetLegLastPx() const { return fieldLegLastPx.offset >= 0; }
+   bool isSetLegLastPx() const { return fieldLegLastPx.offset > 0; }
    FieldLegLastPx::ValueType getLegLastPx() const { return fieldLegLastPx.getValue( _fixPtr ); }
-   std::string_view getLegLastPxView() const { return fieldLegLastPx.offset >= 0 ? std::string_view{ _fixPtr + fieldLegLastPx.offset, getValueLength( _fixPtr + fieldLegLastPx.offset ) } : std::string_view{}; }
+   std::string_view getLegLastPxView() const { return fieldLegLastPx.offset > 0 ? std::string_view{ _fixPtr + fieldLegLastPx.offset, getValueLength( _fixPtr + fieldLegLastPx.offset ) } : std::string_view{}; }
    const char * ptrToLegLastPx() const { return _fixPtr + fieldLegLastPx.offset; }
-   const char * getIfSetLegLastPx() const { return fieldLegLastPx.offset >= 0 ? _fixPtr + fieldLegLastPx.offset : nullptr; }
+   const char * ptrToTagLegLastPx() const { return _fixPtr + fieldLegLastPx.offset - 1 - FieldLegLastPx::tagWidth(); }
+   const char * getIfSetLegLastPx() const { return fieldLegLastPx.offset > 0 ? _fixPtr + fieldLegLastPx.offset : nullptr; }
    private: FieldLegLastPx fieldLegLastPx;
 
 };
@@ -3078,48 +3442,55 @@ class GroupQuoteEntries : public MessageBase
    static offset_t scan( Array & arr, const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    const char * getFieldValue( unsigned tag ) const;
+   const char * findBadField() const;
+   const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
-   bool isSetSymbol() const { return fieldSymbol.offset >= 0; }
+   bool isSetSymbol() const { return fieldSymbol.offset > 0; }
    FieldSymbol::ValueType getSymbol() const { return fieldSymbol.getValue( _fixPtr ); }
-   std::string_view getSymbolView() const { return fieldSymbol.offset >= 0 ? std::string_view{ _fixPtr + fieldSymbol.offset, getValueLength( _fixPtr + fieldSymbol.offset ) } : std::string_view{}; }
+   std::string_view getSymbolView() const { return fieldSymbol.offset > 0 ? std::string_view{ _fixPtr + fieldSymbol.offset, getValueLength( _fixPtr + fieldSymbol.offset ) } : std::string_view{}; }
    const char * ptrToSymbol() const { return _fixPtr + fieldSymbol.offset; }
-   const char * getIfSetSymbol() const { return fieldSymbol.offset >= 0 ? _fixPtr + fieldSymbol.offset : nullptr; }
+   const char * ptrToTagSymbol() const { return _fixPtr + fieldSymbol.offset - 1 - FieldSymbol::tagWidth(); }
+   const char * getIfSetSymbol() const { return fieldSymbol.offset > 0 ? _fixPtr + fieldSymbol.offset : nullptr; }
    private: FieldSymbol fieldSymbol;
 
    public:
-   bool isSetSymbolSfx() const { return fieldSymbolSfx.offset >= 0; }
+   bool isSetSymbolSfx() const { return fieldSymbolSfx.offset > 0; }
    FieldSymbolSfx::ValueType getSymbolSfx() const { return fieldSymbolSfx.getValue( _fixPtr ); }
-   std::string_view getSymbolSfxView() const { return fieldSymbolSfx.offset >= 0 ? std::string_view{ _fixPtr + fieldSymbolSfx.offset, getValueLength( _fixPtr + fieldSymbolSfx.offset ) } : std::string_view{}; }
+   std::string_view getSymbolSfxView() const { return fieldSymbolSfx.offset > 0 ? std::string_view{ _fixPtr + fieldSymbolSfx.offset, getValueLength( _fixPtr + fieldSymbolSfx.offset ) } : std::string_view{}; }
    const char * ptrToSymbolSfx() const { return _fixPtr + fieldSymbolSfx.offset; }
-   const char * getIfSetSymbolSfx() const { return fieldSymbolSfx.offset >= 0 ? _fixPtr + fieldSymbolSfx.offset : nullptr; }
+   const char * ptrToTagSymbolSfx() const { return _fixPtr + fieldSymbolSfx.offset - 1 - FieldSymbolSfx::tagWidth(); }
+   const char * getIfSetSymbolSfx() const { return fieldSymbolSfx.offset > 0 ? _fixPtr + fieldSymbolSfx.offset : nullptr; }
    private: FieldSymbolSfx fieldSymbolSfx;
 
    public:
-   bool isSetSecurityID() const { return fieldSecurityID.offset >= 0; }
+   bool isSetSecurityID() const { return fieldSecurityID.offset > 0; }
    FieldSecurityID::ValueType getSecurityID() const { return fieldSecurityID.getValue( _fixPtr ); }
-   std::string_view getSecurityIDView() const { return fieldSecurityID.offset >= 0 ? std::string_view{ _fixPtr + fieldSecurityID.offset, getValueLength( _fixPtr + fieldSecurityID.offset ) } : std::string_view{}; }
+   std::string_view getSecurityIDView() const { return fieldSecurityID.offset > 0 ? std::string_view{ _fixPtr + fieldSecurityID.offset, getValueLength( _fixPtr + fieldSecurityID.offset ) } : std::string_view{}; }
    const char * ptrToSecurityID() const { return _fixPtr + fieldSecurityID.offset; }
-   const char * getIfSetSecurityID() const { return fieldSecurityID.offset >= 0 ? _fixPtr + fieldSecurityID.offset : nullptr; }
+   const char * ptrToTagSecurityID() const { return _fixPtr + fieldSecurityID.offset - 1 - FieldSecurityID::tagWidth(); }
+   const char * getIfSetSecurityID() const { return fieldSecurityID.offset > 0 ? _fixPtr + fieldSecurityID.offset : nullptr; }
    private: FieldSecurityID fieldSecurityID;
 
    public:
-   bool isSetSecurityIDSource() const { return fieldSecurityIDSource.offset >= 0; }
+   bool isSetSecurityIDSource() const { return fieldSecurityIDSource.offset > 0; }
    FieldSecurityIDSource::ValueType getSecurityIDSource() const { return fieldSecurityIDSource.getValue( _fixPtr ); }
-   std::string_view getSecurityIDSourceView() const { return fieldSecurityIDSource.offset >= 0 ? std::string_view{ _fixPtr + fieldSecurityIDSource.offset, getValueLength( _fixPtr + fieldSecurityIDSource.offset ) } : std::string_view{}; }
+   std::string_view getSecurityIDSourceView() const { return fieldSecurityIDSource.offset > 0 ? std::string_view{ _fixPtr + fieldSecurityIDSource.offset, getValueLength( _fixPtr + fieldSecurityIDSource.offset ) } : std::string_view{}; }
    const char * ptrToSecurityIDSource() const { return _fixPtr + fieldSecurityIDSource.offset; }
-   const char * getIfSetSecurityIDSource() const { return fieldSecurityIDSource.offset >= 0 ? _fixPtr + fieldSecurityIDSource.offset : nullptr; }
+   const char * ptrToTagSecurityIDSource() const { return _fixPtr + fieldSecurityIDSource.offset - 1 - FieldSecurityIDSource::tagWidth(); }
+   const char * getIfSetSecurityIDSource() const { return fieldSecurityIDSource.offset > 0 ? _fixPtr + fieldSecurityIDSource.offset : nullptr; }
    private: FieldSecurityIDSource fieldSecurityIDSource;
 
    public:
-   bool isSetNoSecurityAltID() const { return fieldNoSecurityAltID.offset >= 0; }
+   bool isSetNoSecurityAltID() const { return fieldNoSecurityAltID.offset > 0; }
    FieldNoSecurityAltID::ValueType getNoSecurityAltID() const { return fieldNoSecurityAltID.getValue( _fixPtr ); }
-   std::string_view getNoSecurityAltIDView() const { return fieldNoSecurityAltID.offset >= 0 ? std::string_view{ _fixPtr + fieldNoSecurityAltID.offset, getValueLength( _fixPtr + fieldNoSecurityAltID.offset ) } : std::string_view{}; }
+   std::string_view getNoSecurityAltIDView() const { return fieldNoSecurityAltID.offset > 0 ? std::string_view{ _fixPtr + fieldNoSecurityAltID.offset, getValueLength( _fixPtr + fieldNoSecurityAltID.offset ) } : std::string_view{}; }
    const char * ptrToNoSecurityAltID() const { return _fixPtr + fieldNoSecurityAltID.offset; }
-   const char * getIfSetNoSecurityAltID() const { return fieldNoSecurityAltID.offset >= 0 ? _fixPtr + fieldNoSecurityAltID.offset : nullptr; }
+   const char * ptrToTagNoSecurityAltID() const { return _fixPtr + fieldNoSecurityAltID.offset - 1 - FieldNoSecurityAltID::tagWidth(); }
+   const char * getIfSetNoSecurityAltID() const { return fieldNoSecurityAltID.offset > 0 ? _fixPtr + fieldNoSecurityAltID.offset : nullptr; }
    private: FieldNoSecurityAltID fieldNoSecurityAltID;
   
    public:
@@ -3128,291 +3499,327 @@ class GroupQuoteEntries : public MessageBase
    private: GroupSecurityAltID::Array groupsSecurityAltID{ 10 };
 
    public:
-   bool isSetProduct() const { return fieldProduct.offset >= 0; }
+   bool isSetProduct() const { return fieldProduct.offset > 0; }
    FieldProduct::ValueType getProduct() const { return fieldProduct.getValue( _fixPtr ); }
-   std::string_view getProductView() const { return fieldProduct.offset >= 0 ? std::string_view{ _fixPtr + fieldProduct.offset, getValueLength( _fixPtr + fieldProduct.offset ) } : std::string_view{}; }
+   std::string_view getProductView() const { return fieldProduct.offset > 0 ? std::string_view{ _fixPtr + fieldProduct.offset, getValueLength( _fixPtr + fieldProduct.offset ) } : std::string_view{}; }
    const char * ptrToProduct() const { return _fixPtr + fieldProduct.offset; }
-   const char * getIfSetProduct() const { return fieldProduct.offset >= 0 ? _fixPtr + fieldProduct.offset : nullptr; }
+   const char * ptrToTagProduct() const { return _fixPtr + fieldProduct.offset - 1 - FieldProduct::tagWidth(); }
+   const char * getIfSetProduct() const { return fieldProduct.offset > 0 ? _fixPtr + fieldProduct.offset : nullptr; }
    private: FieldProduct fieldProduct;
 
    public:
-   bool isSetCFICode() const { return fieldCFICode.offset >= 0; }
+   bool isSetCFICode() const { return fieldCFICode.offset > 0; }
    FieldCFICode::ValueType getCFICode() const { return fieldCFICode.getValue( _fixPtr ); }
-   std::string_view getCFICodeView() const { return fieldCFICode.offset >= 0 ? std::string_view{ _fixPtr + fieldCFICode.offset, getValueLength( _fixPtr + fieldCFICode.offset ) } : std::string_view{}; }
+   std::string_view getCFICodeView() const { return fieldCFICode.offset > 0 ? std::string_view{ _fixPtr + fieldCFICode.offset, getValueLength( _fixPtr + fieldCFICode.offset ) } : std::string_view{}; }
    const char * ptrToCFICode() const { return _fixPtr + fieldCFICode.offset; }
-   const char * getIfSetCFICode() const { return fieldCFICode.offset >= 0 ? _fixPtr + fieldCFICode.offset : nullptr; }
+   const char * ptrToTagCFICode() const { return _fixPtr + fieldCFICode.offset - 1 - FieldCFICode::tagWidth(); }
+   const char * getIfSetCFICode() const { return fieldCFICode.offset > 0 ? _fixPtr + fieldCFICode.offset : nullptr; }
    private: FieldCFICode fieldCFICode;
 
    public:
-   bool isSetSecurityType() const { return fieldSecurityType.offset >= 0; }
+   bool isSetSecurityType() const { return fieldSecurityType.offset > 0; }
    FieldSecurityType::ValueType getSecurityType() const { return fieldSecurityType.getValue( _fixPtr ); }
-   std::string_view getSecurityTypeView() const { return fieldSecurityType.offset >= 0 ? std::string_view{ _fixPtr + fieldSecurityType.offset, getValueLength( _fixPtr + fieldSecurityType.offset ) } : std::string_view{}; }
+   std::string_view getSecurityTypeView() const { return fieldSecurityType.offset > 0 ? std::string_view{ _fixPtr + fieldSecurityType.offset, getValueLength( _fixPtr + fieldSecurityType.offset ) } : std::string_view{}; }
    const char * ptrToSecurityType() const { return _fixPtr + fieldSecurityType.offset; }
-   const char * getIfSetSecurityType() const { return fieldSecurityType.offset >= 0 ? _fixPtr + fieldSecurityType.offset : nullptr; }
+   const char * ptrToTagSecurityType() const { return _fixPtr + fieldSecurityType.offset - 1 - FieldSecurityType::tagWidth(); }
+   const char * getIfSetSecurityType() const { return fieldSecurityType.offset > 0 ? _fixPtr + fieldSecurityType.offset : nullptr; }
    private: FieldSecurityType fieldSecurityType;
 
    public:
-   bool isSetSecuritySubType() const { return fieldSecuritySubType.offset >= 0; }
+   bool isSetSecuritySubType() const { return fieldSecuritySubType.offset > 0; }
    FieldSecuritySubType::ValueType getSecuritySubType() const { return fieldSecuritySubType.getValue( _fixPtr ); }
-   std::string_view getSecuritySubTypeView() const { return fieldSecuritySubType.offset >= 0 ? std::string_view{ _fixPtr + fieldSecuritySubType.offset, getValueLength( _fixPtr + fieldSecuritySubType.offset ) } : std::string_view{}; }
+   std::string_view getSecuritySubTypeView() const { return fieldSecuritySubType.offset > 0 ? std::string_view{ _fixPtr + fieldSecuritySubType.offset, getValueLength( _fixPtr + fieldSecuritySubType.offset ) } : std::string_view{}; }
    const char * ptrToSecuritySubType() const { return _fixPtr + fieldSecuritySubType.offset; }
-   const char * getIfSetSecuritySubType() const { return fieldSecuritySubType.offset >= 0 ? _fixPtr + fieldSecuritySubType.offset : nullptr; }
+   const char * ptrToTagSecuritySubType() const { return _fixPtr + fieldSecuritySubType.offset - 1 - FieldSecuritySubType::tagWidth(); }
+   const char * getIfSetSecuritySubType() const { return fieldSecuritySubType.offset > 0 ? _fixPtr + fieldSecuritySubType.offset : nullptr; }
    private: FieldSecuritySubType fieldSecuritySubType;
 
    public:
-   bool isSetMaturityMonthYear() const { return fieldMaturityMonthYear.offset >= 0; }
+   bool isSetMaturityMonthYear() const { return fieldMaturityMonthYear.offset > 0; }
    FieldMaturityMonthYear::ValueType getMaturityMonthYear() const { return fieldMaturityMonthYear.getValue( _fixPtr ); }
-   std::string_view getMaturityMonthYearView() const { return fieldMaturityMonthYear.offset >= 0 ? std::string_view{ _fixPtr + fieldMaturityMonthYear.offset, getValueLength( _fixPtr + fieldMaturityMonthYear.offset ) } : std::string_view{}; }
+   std::string_view getMaturityMonthYearView() const { return fieldMaturityMonthYear.offset > 0 ? std::string_view{ _fixPtr + fieldMaturityMonthYear.offset, getValueLength( _fixPtr + fieldMaturityMonthYear.offset ) } : std::string_view{}; }
    const char * ptrToMaturityMonthYear() const { return _fixPtr + fieldMaturityMonthYear.offset; }
-   const char * getIfSetMaturityMonthYear() const { return fieldMaturityMonthYear.offset >= 0 ? _fixPtr + fieldMaturityMonthYear.offset : nullptr; }
+   const char * ptrToTagMaturityMonthYear() const { return _fixPtr + fieldMaturityMonthYear.offset - 1 - FieldMaturityMonthYear::tagWidth(); }
+   const char * getIfSetMaturityMonthYear() const { return fieldMaturityMonthYear.offset > 0 ? _fixPtr + fieldMaturityMonthYear.offset : nullptr; }
    private: FieldMaturityMonthYear fieldMaturityMonthYear;
 
    public:
-   bool isSetMaturityDate() const { return fieldMaturityDate.offset >= 0; }
+   bool isSetMaturityDate() const { return fieldMaturityDate.offset > 0; }
    FieldMaturityDate::ValueType getMaturityDate() const { return fieldMaturityDate.getValue( _fixPtr ); }
-   std::string_view getMaturityDateView() const { return fieldMaturityDate.offset >= 0 ? std::string_view{ _fixPtr + fieldMaturityDate.offset, getValueLength( _fixPtr + fieldMaturityDate.offset ) } : std::string_view{}; }
+   std::string_view getMaturityDateView() const { return fieldMaturityDate.offset > 0 ? std::string_view{ _fixPtr + fieldMaturityDate.offset, getValueLength( _fixPtr + fieldMaturityDate.offset ) } : std::string_view{}; }
    const char * ptrToMaturityDate() const { return _fixPtr + fieldMaturityDate.offset; }
-   const char * getIfSetMaturityDate() const { return fieldMaturityDate.offset >= 0 ? _fixPtr + fieldMaturityDate.offset : nullptr; }
+   const char * ptrToTagMaturityDate() const { return _fixPtr + fieldMaturityDate.offset - 1 - FieldMaturityDate::tagWidth(); }
+   const char * getIfSetMaturityDate() const { return fieldMaturityDate.offset > 0 ? _fixPtr + fieldMaturityDate.offset : nullptr; }
    private: FieldMaturityDate fieldMaturityDate;
 
    public:
-   bool isSetPutOrCall() const { return fieldPutOrCall.offset >= 0; }
+   bool isSetPutOrCall() const { return fieldPutOrCall.offset > 0; }
    FieldPutOrCall::ValueType getPutOrCall() const { return fieldPutOrCall.getValue( _fixPtr ); }
-   std::string_view getPutOrCallView() const { return fieldPutOrCall.offset >= 0 ? std::string_view{ _fixPtr + fieldPutOrCall.offset, getValueLength( _fixPtr + fieldPutOrCall.offset ) } : std::string_view{}; }
+   std::string_view getPutOrCallView() const { return fieldPutOrCall.offset > 0 ? std::string_view{ _fixPtr + fieldPutOrCall.offset, getValueLength( _fixPtr + fieldPutOrCall.offset ) } : std::string_view{}; }
    const char * ptrToPutOrCall() const { return _fixPtr + fieldPutOrCall.offset; }
-   const char * getIfSetPutOrCall() const { return fieldPutOrCall.offset >= 0 ? _fixPtr + fieldPutOrCall.offset : nullptr; }
+   const char * ptrToTagPutOrCall() const { return _fixPtr + fieldPutOrCall.offset - 1 - FieldPutOrCall::tagWidth(); }
+   const char * getIfSetPutOrCall() const { return fieldPutOrCall.offset > 0 ? _fixPtr + fieldPutOrCall.offset : nullptr; }
    private: FieldPutOrCall fieldPutOrCall;
 
    public:
-   bool isSetCouponPaymentDate() const { return fieldCouponPaymentDate.offset >= 0; }
+   bool isSetCouponPaymentDate() const { return fieldCouponPaymentDate.offset > 0; }
    FieldCouponPaymentDate::ValueType getCouponPaymentDate() const { return fieldCouponPaymentDate.getValue( _fixPtr ); }
-   std::string_view getCouponPaymentDateView() const { return fieldCouponPaymentDate.offset >= 0 ? std::string_view{ _fixPtr + fieldCouponPaymentDate.offset, getValueLength( _fixPtr + fieldCouponPaymentDate.offset ) } : std::string_view{}; }
+   std::string_view getCouponPaymentDateView() const { return fieldCouponPaymentDate.offset > 0 ? std::string_view{ _fixPtr + fieldCouponPaymentDate.offset, getValueLength( _fixPtr + fieldCouponPaymentDate.offset ) } : std::string_view{}; }
    const char * ptrToCouponPaymentDate() const { return _fixPtr + fieldCouponPaymentDate.offset; }
-   const char * getIfSetCouponPaymentDate() const { return fieldCouponPaymentDate.offset >= 0 ? _fixPtr + fieldCouponPaymentDate.offset : nullptr; }
+   const char * ptrToTagCouponPaymentDate() const { return _fixPtr + fieldCouponPaymentDate.offset - 1 - FieldCouponPaymentDate::tagWidth(); }
+   const char * getIfSetCouponPaymentDate() const { return fieldCouponPaymentDate.offset > 0 ? _fixPtr + fieldCouponPaymentDate.offset : nullptr; }
    private: FieldCouponPaymentDate fieldCouponPaymentDate;
 
    public:
-   bool isSetIssueDate() const { return fieldIssueDate.offset >= 0; }
+   bool isSetIssueDate() const { return fieldIssueDate.offset > 0; }
    FieldIssueDate::ValueType getIssueDate() const { return fieldIssueDate.getValue( _fixPtr ); }
-   std::string_view getIssueDateView() const { return fieldIssueDate.offset >= 0 ? std::string_view{ _fixPtr + fieldIssueDate.offset, getValueLength( _fixPtr + fieldIssueDate.offset ) } : std::string_view{}; }
+   std::string_view getIssueDateView() const { return fieldIssueDate.offset > 0 ? std::string_view{ _fixPtr + fieldIssueDate.offset, getValueLength( _fixPtr + fieldIssueDate.offset ) } : std::string_view{}; }
    const char * ptrToIssueDate() const { return _fixPtr + fieldIssueDate.offset; }
-   const char * getIfSetIssueDate() const { return fieldIssueDate.offset >= 0 ? _fixPtr + fieldIssueDate.offset : nullptr; }
+   const char * ptrToTagIssueDate() const { return _fixPtr + fieldIssueDate.offset - 1 - FieldIssueDate::tagWidth(); }
+   const char * getIfSetIssueDate() const { return fieldIssueDate.offset > 0 ? _fixPtr + fieldIssueDate.offset : nullptr; }
    private: FieldIssueDate fieldIssueDate;
 
    public:
-   bool isSetRepoCollateralSecurityType() const { return fieldRepoCollateralSecurityType.offset >= 0; }
+   bool isSetRepoCollateralSecurityType() const { return fieldRepoCollateralSecurityType.offset > 0; }
    FieldRepoCollateralSecurityType::ValueType getRepoCollateralSecurityType() const { return fieldRepoCollateralSecurityType.getValue( _fixPtr ); }
-   std::string_view getRepoCollateralSecurityTypeView() const { return fieldRepoCollateralSecurityType.offset >= 0 ? std::string_view{ _fixPtr + fieldRepoCollateralSecurityType.offset, getValueLength( _fixPtr + fieldRepoCollateralSecurityType.offset ) } : std::string_view{}; }
+   std::string_view getRepoCollateralSecurityTypeView() const { return fieldRepoCollateralSecurityType.offset > 0 ? std::string_view{ _fixPtr + fieldRepoCollateralSecurityType.offset, getValueLength( _fixPtr + fieldRepoCollateralSecurityType.offset ) } : std::string_view{}; }
    const char * ptrToRepoCollateralSecurityType() const { return _fixPtr + fieldRepoCollateralSecurityType.offset; }
-   const char * getIfSetRepoCollateralSecurityType() const { return fieldRepoCollateralSecurityType.offset >= 0 ? _fixPtr + fieldRepoCollateralSecurityType.offset : nullptr; }
+   const char * ptrToTagRepoCollateralSecurityType() const { return _fixPtr + fieldRepoCollateralSecurityType.offset - 1 - FieldRepoCollateralSecurityType::tagWidth(); }
+   const char * getIfSetRepoCollateralSecurityType() const { return fieldRepoCollateralSecurityType.offset > 0 ? _fixPtr + fieldRepoCollateralSecurityType.offset : nullptr; }
    private: FieldRepoCollateralSecurityType fieldRepoCollateralSecurityType;
 
    public:
-   bool isSetRepurchaseTerm() const { return fieldRepurchaseTerm.offset >= 0; }
+   bool isSetRepurchaseTerm() const { return fieldRepurchaseTerm.offset > 0; }
    FieldRepurchaseTerm::ValueType getRepurchaseTerm() const { return fieldRepurchaseTerm.getValue( _fixPtr ); }
-   std::string_view getRepurchaseTermView() const { return fieldRepurchaseTerm.offset >= 0 ? std::string_view{ _fixPtr + fieldRepurchaseTerm.offset, getValueLength( _fixPtr + fieldRepurchaseTerm.offset ) } : std::string_view{}; }
+   std::string_view getRepurchaseTermView() const { return fieldRepurchaseTerm.offset > 0 ? std::string_view{ _fixPtr + fieldRepurchaseTerm.offset, getValueLength( _fixPtr + fieldRepurchaseTerm.offset ) } : std::string_view{}; }
    const char * ptrToRepurchaseTerm() const { return _fixPtr + fieldRepurchaseTerm.offset; }
-   const char * getIfSetRepurchaseTerm() const { return fieldRepurchaseTerm.offset >= 0 ? _fixPtr + fieldRepurchaseTerm.offset : nullptr; }
+   const char * ptrToTagRepurchaseTerm() const { return _fixPtr + fieldRepurchaseTerm.offset - 1 - FieldRepurchaseTerm::tagWidth(); }
+   const char * getIfSetRepurchaseTerm() const { return fieldRepurchaseTerm.offset > 0 ? _fixPtr + fieldRepurchaseTerm.offset : nullptr; }
    private: FieldRepurchaseTerm fieldRepurchaseTerm;
 
    public:
-   bool isSetRepurchaseRate() const { return fieldRepurchaseRate.offset >= 0; }
+   bool isSetRepurchaseRate() const { return fieldRepurchaseRate.offset > 0; }
    FieldRepurchaseRate::ValueType getRepurchaseRate() const { return fieldRepurchaseRate.getValue( _fixPtr ); }
-   std::string_view getRepurchaseRateView() const { return fieldRepurchaseRate.offset >= 0 ? std::string_view{ _fixPtr + fieldRepurchaseRate.offset, getValueLength( _fixPtr + fieldRepurchaseRate.offset ) } : std::string_view{}; }
+   std::string_view getRepurchaseRateView() const { return fieldRepurchaseRate.offset > 0 ? std::string_view{ _fixPtr + fieldRepurchaseRate.offset, getValueLength( _fixPtr + fieldRepurchaseRate.offset ) } : std::string_view{}; }
    const char * ptrToRepurchaseRate() const { return _fixPtr + fieldRepurchaseRate.offset; }
-   const char * getIfSetRepurchaseRate() const { return fieldRepurchaseRate.offset >= 0 ? _fixPtr + fieldRepurchaseRate.offset : nullptr; }
+   const char * ptrToTagRepurchaseRate() const { return _fixPtr + fieldRepurchaseRate.offset - 1 - FieldRepurchaseRate::tagWidth(); }
+   const char * getIfSetRepurchaseRate() const { return fieldRepurchaseRate.offset > 0 ? _fixPtr + fieldRepurchaseRate.offset : nullptr; }
    private: FieldRepurchaseRate fieldRepurchaseRate;
 
    public:
-   bool isSetFactor() const { return fieldFactor.offset >= 0; }
+   bool isSetFactor() const { return fieldFactor.offset > 0; }
    FieldFactor::ValueType getFactor() const { return fieldFactor.getValue( _fixPtr ); }
-   std::string_view getFactorView() const { return fieldFactor.offset >= 0 ? std::string_view{ _fixPtr + fieldFactor.offset, getValueLength( _fixPtr + fieldFactor.offset ) } : std::string_view{}; }
+   std::string_view getFactorView() const { return fieldFactor.offset > 0 ? std::string_view{ _fixPtr + fieldFactor.offset, getValueLength( _fixPtr + fieldFactor.offset ) } : std::string_view{}; }
    const char * ptrToFactor() const { return _fixPtr + fieldFactor.offset; }
-   const char * getIfSetFactor() const { return fieldFactor.offset >= 0 ? _fixPtr + fieldFactor.offset : nullptr; }
+   const char * ptrToTagFactor() const { return _fixPtr + fieldFactor.offset - 1 - FieldFactor::tagWidth(); }
+   const char * getIfSetFactor() const { return fieldFactor.offset > 0 ? _fixPtr + fieldFactor.offset : nullptr; }
    private: FieldFactor fieldFactor;
 
    public:
-   bool isSetCreditRating() const { return fieldCreditRating.offset >= 0; }
+   bool isSetCreditRating() const { return fieldCreditRating.offset > 0; }
    FieldCreditRating::ValueType getCreditRating() const { return fieldCreditRating.getValue( _fixPtr ); }
-   std::string_view getCreditRatingView() const { return fieldCreditRating.offset >= 0 ? std::string_view{ _fixPtr + fieldCreditRating.offset, getValueLength( _fixPtr + fieldCreditRating.offset ) } : std::string_view{}; }
+   std::string_view getCreditRatingView() const { return fieldCreditRating.offset > 0 ? std::string_view{ _fixPtr + fieldCreditRating.offset, getValueLength( _fixPtr + fieldCreditRating.offset ) } : std::string_view{}; }
    const char * ptrToCreditRating() const { return _fixPtr + fieldCreditRating.offset; }
-   const char * getIfSetCreditRating() const { return fieldCreditRating.offset >= 0 ? _fixPtr + fieldCreditRating.offset : nullptr; }
+   const char * ptrToTagCreditRating() const { return _fixPtr + fieldCreditRating.offset - 1 - FieldCreditRating::tagWidth(); }
+   const char * getIfSetCreditRating() const { return fieldCreditRating.offset > 0 ? _fixPtr + fieldCreditRating.offset : nullptr; }
    private: FieldCreditRating fieldCreditRating;
 
    public:
-   bool isSetInstrRegistry() const { return fieldInstrRegistry.offset >= 0; }
+   bool isSetInstrRegistry() const { return fieldInstrRegistry.offset > 0; }
    FieldInstrRegistry::ValueType getInstrRegistry() const { return fieldInstrRegistry.getValue( _fixPtr ); }
-   std::string_view getInstrRegistryView() const { return fieldInstrRegistry.offset >= 0 ? std::string_view{ _fixPtr + fieldInstrRegistry.offset, getValueLength( _fixPtr + fieldInstrRegistry.offset ) } : std::string_view{}; }
+   std::string_view getInstrRegistryView() const { return fieldInstrRegistry.offset > 0 ? std::string_view{ _fixPtr + fieldInstrRegistry.offset, getValueLength( _fixPtr + fieldInstrRegistry.offset ) } : std::string_view{}; }
    const char * ptrToInstrRegistry() const { return _fixPtr + fieldInstrRegistry.offset; }
-   const char * getIfSetInstrRegistry() const { return fieldInstrRegistry.offset >= 0 ? _fixPtr + fieldInstrRegistry.offset : nullptr; }
+   const char * ptrToTagInstrRegistry() const { return _fixPtr + fieldInstrRegistry.offset - 1 - FieldInstrRegistry::tagWidth(); }
+   const char * getIfSetInstrRegistry() const { return fieldInstrRegistry.offset > 0 ? _fixPtr + fieldInstrRegistry.offset : nullptr; }
    private: FieldInstrRegistry fieldInstrRegistry;
 
    public:
-   bool isSetCountryOfIssue() const { return fieldCountryOfIssue.offset >= 0; }
+   bool isSetCountryOfIssue() const { return fieldCountryOfIssue.offset > 0; }
    FieldCountryOfIssue::ValueType getCountryOfIssue() const { return fieldCountryOfIssue.getValue( _fixPtr ); }
-   std::string_view getCountryOfIssueView() const { return fieldCountryOfIssue.offset >= 0 ? std::string_view{ _fixPtr + fieldCountryOfIssue.offset, getValueLength( _fixPtr + fieldCountryOfIssue.offset ) } : std::string_view{}; }
+   std::string_view getCountryOfIssueView() const { return fieldCountryOfIssue.offset > 0 ? std::string_view{ _fixPtr + fieldCountryOfIssue.offset, getValueLength( _fixPtr + fieldCountryOfIssue.offset ) } : std::string_view{}; }
    const char * ptrToCountryOfIssue() const { return _fixPtr + fieldCountryOfIssue.offset; }
-   const char * getIfSetCountryOfIssue() const { return fieldCountryOfIssue.offset >= 0 ? _fixPtr + fieldCountryOfIssue.offset : nullptr; }
+   const char * ptrToTagCountryOfIssue() const { return _fixPtr + fieldCountryOfIssue.offset - 1 - FieldCountryOfIssue::tagWidth(); }
+   const char * getIfSetCountryOfIssue() const { return fieldCountryOfIssue.offset > 0 ? _fixPtr + fieldCountryOfIssue.offset : nullptr; }
    private: FieldCountryOfIssue fieldCountryOfIssue;
 
    public:
-   bool isSetStateOrProvinceOfIssue() const { return fieldStateOrProvinceOfIssue.offset >= 0; }
+   bool isSetStateOrProvinceOfIssue() const { return fieldStateOrProvinceOfIssue.offset > 0; }
    FieldStateOrProvinceOfIssue::ValueType getStateOrProvinceOfIssue() const { return fieldStateOrProvinceOfIssue.getValue( _fixPtr ); }
-   std::string_view getStateOrProvinceOfIssueView() const { return fieldStateOrProvinceOfIssue.offset >= 0 ? std::string_view{ _fixPtr + fieldStateOrProvinceOfIssue.offset, getValueLength( _fixPtr + fieldStateOrProvinceOfIssue.offset ) } : std::string_view{}; }
+   std::string_view getStateOrProvinceOfIssueView() const { return fieldStateOrProvinceOfIssue.offset > 0 ? std::string_view{ _fixPtr + fieldStateOrProvinceOfIssue.offset, getValueLength( _fixPtr + fieldStateOrProvinceOfIssue.offset ) } : std::string_view{}; }
    const char * ptrToStateOrProvinceOfIssue() const { return _fixPtr + fieldStateOrProvinceOfIssue.offset; }
-   const char * getIfSetStateOrProvinceOfIssue() const { return fieldStateOrProvinceOfIssue.offset >= 0 ? _fixPtr + fieldStateOrProvinceOfIssue.offset : nullptr; }
+   const char * ptrToTagStateOrProvinceOfIssue() const { return _fixPtr + fieldStateOrProvinceOfIssue.offset - 1 - FieldStateOrProvinceOfIssue::tagWidth(); }
+   const char * getIfSetStateOrProvinceOfIssue() const { return fieldStateOrProvinceOfIssue.offset > 0 ? _fixPtr + fieldStateOrProvinceOfIssue.offset : nullptr; }
    private: FieldStateOrProvinceOfIssue fieldStateOrProvinceOfIssue;
 
    public:
-   bool isSetLocaleOfIssue() const { return fieldLocaleOfIssue.offset >= 0; }
+   bool isSetLocaleOfIssue() const { return fieldLocaleOfIssue.offset > 0; }
    FieldLocaleOfIssue::ValueType getLocaleOfIssue() const { return fieldLocaleOfIssue.getValue( _fixPtr ); }
-   std::string_view getLocaleOfIssueView() const { return fieldLocaleOfIssue.offset >= 0 ? std::string_view{ _fixPtr + fieldLocaleOfIssue.offset, getValueLength( _fixPtr + fieldLocaleOfIssue.offset ) } : std::string_view{}; }
+   std::string_view getLocaleOfIssueView() const { return fieldLocaleOfIssue.offset > 0 ? std::string_view{ _fixPtr + fieldLocaleOfIssue.offset, getValueLength( _fixPtr + fieldLocaleOfIssue.offset ) } : std::string_view{}; }
    const char * ptrToLocaleOfIssue() const { return _fixPtr + fieldLocaleOfIssue.offset; }
-   const char * getIfSetLocaleOfIssue() const { return fieldLocaleOfIssue.offset >= 0 ? _fixPtr + fieldLocaleOfIssue.offset : nullptr; }
+   const char * ptrToTagLocaleOfIssue() const { return _fixPtr + fieldLocaleOfIssue.offset - 1 - FieldLocaleOfIssue::tagWidth(); }
+   const char * getIfSetLocaleOfIssue() const { return fieldLocaleOfIssue.offset > 0 ? _fixPtr + fieldLocaleOfIssue.offset : nullptr; }
    private: FieldLocaleOfIssue fieldLocaleOfIssue;
 
    public:
-   bool isSetRedemptionDate() const { return fieldRedemptionDate.offset >= 0; }
+   bool isSetRedemptionDate() const { return fieldRedemptionDate.offset > 0; }
    FieldRedemptionDate::ValueType getRedemptionDate() const { return fieldRedemptionDate.getValue( _fixPtr ); }
-   std::string_view getRedemptionDateView() const { return fieldRedemptionDate.offset >= 0 ? std::string_view{ _fixPtr + fieldRedemptionDate.offset, getValueLength( _fixPtr + fieldRedemptionDate.offset ) } : std::string_view{}; }
+   std::string_view getRedemptionDateView() const { return fieldRedemptionDate.offset > 0 ? std::string_view{ _fixPtr + fieldRedemptionDate.offset, getValueLength( _fixPtr + fieldRedemptionDate.offset ) } : std::string_view{}; }
    const char * ptrToRedemptionDate() const { return _fixPtr + fieldRedemptionDate.offset; }
-   const char * getIfSetRedemptionDate() const { return fieldRedemptionDate.offset >= 0 ? _fixPtr + fieldRedemptionDate.offset : nullptr; }
+   const char * ptrToTagRedemptionDate() const { return _fixPtr + fieldRedemptionDate.offset - 1 - FieldRedemptionDate::tagWidth(); }
+   const char * getIfSetRedemptionDate() const { return fieldRedemptionDate.offset > 0 ? _fixPtr + fieldRedemptionDate.offset : nullptr; }
    private: FieldRedemptionDate fieldRedemptionDate;
 
    public:
-   bool isSetStrikePrice() const { return fieldStrikePrice.offset >= 0; }
+   bool isSetStrikePrice() const { return fieldStrikePrice.offset > 0; }
    FieldStrikePrice::ValueType getStrikePrice() const { return fieldStrikePrice.getValue( _fixPtr ); }
-   std::string_view getStrikePriceView() const { return fieldStrikePrice.offset >= 0 ? std::string_view{ _fixPtr + fieldStrikePrice.offset, getValueLength( _fixPtr + fieldStrikePrice.offset ) } : std::string_view{}; }
+   std::string_view getStrikePriceView() const { return fieldStrikePrice.offset > 0 ? std::string_view{ _fixPtr + fieldStrikePrice.offset, getValueLength( _fixPtr + fieldStrikePrice.offset ) } : std::string_view{}; }
    const char * ptrToStrikePrice() const { return _fixPtr + fieldStrikePrice.offset; }
-   const char * getIfSetStrikePrice() const { return fieldStrikePrice.offset >= 0 ? _fixPtr + fieldStrikePrice.offset : nullptr; }
+   const char * ptrToTagStrikePrice() const { return _fixPtr + fieldStrikePrice.offset - 1 - FieldStrikePrice::tagWidth(); }
+   const char * getIfSetStrikePrice() const { return fieldStrikePrice.offset > 0 ? _fixPtr + fieldStrikePrice.offset : nullptr; }
    private: FieldStrikePrice fieldStrikePrice;
 
    public:
-   bool isSetStrikeCurrency() const { return fieldStrikeCurrency.offset >= 0; }
+   bool isSetStrikeCurrency() const { return fieldStrikeCurrency.offset > 0; }
    FieldStrikeCurrency::ValueType getStrikeCurrency() const { return fieldStrikeCurrency.getValue( _fixPtr ); }
-   std::string_view getStrikeCurrencyView() const { return fieldStrikeCurrency.offset >= 0 ? std::string_view{ _fixPtr + fieldStrikeCurrency.offset, getValueLength( _fixPtr + fieldStrikeCurrency.offset ) } : std::string_view{}; }
+   std::string_view getStrikeCurrencyView() const { return fieldStrikeCurrency.offset > 0 ? std::string_view{ _fixPtr + fieldStrikeCurrency.offset, getValueLength( _fixPtr + fieldStrikeCurrency.offset ) } : std::string_view{}; }
    const char * ptrToStrikeCurrency() const { return _fixPtr + fieldStrikeCurrency.offset; }
-   const char * getIfSetStrikeCurrency() const { return fieldStrikeCurrency.offset >= 0 ? _fixPtr + fieldStrikeCurrency.offset : nullptr; }
+   const char * ptrToTagStrikeCurrency() const { return _fixPtr + fieldStrikeCurrency.offset - 1 - FieldStrikeCurrency::tagWidth(); }
+   const char * getIfSetStrikeCurrency() const { return fieldStrikeCurrency.offset > 0 ? _fixPtr + fieldStrikeCurrency.offset : nullptr; }
    private: FieldStrikeCurrency fieldStrikeCurrency;
 
    public:
-   bool isSetOptAttribute() const { return fieldOptAttribute.offset >= 0; }
+   bool isSetOptAttribute() const { return fieldOptAttribute.offset > 0; }
    FieldOptAttribute::ValueType getOptAttribute() const { return fieldOptAttribute.getValue( _fixPtr ); }
-   std::string_view getOptAttributeView() const { return fieldOptAttribute.offset >= 0 ? std::string_view{ _fixPtr + fieldOptAttribute.offset, getValueLength( _fixPtr + fieldOptAttribute.offset ) } : std::string_view{}; }
+   std::string_view getOptAttributeView() const { return fieldOptAttribute.offset > 0 ? std::string_view{ _fixPtr + fieldOptAttribute.offset, getValueLength( _fixPtr + fieldOptAttribute.offset ) } : std::string_view{}; }
    const char * ptrToOptAttribute() const { return _fixPtr + fieldOptAttribute.offset; }
-   const char * getIfSetOptAttribute() const { return fieldOptAttribute.offset >= 0 ? _fixPtr + fieldOptAttribute.offset : nullptr; }
+   const char * ptrToTagOptAttribute() const { return _fixPtr + fieldOptAttribute.offset - 1 - FieldOptAttribute::tagWidth(); }
+   const char * getIfSetOptAttribute() const { return fieldOptAttribute.offset > 0 ? _fixPtr + fieldOptAttribute.offset : nullptr; }
    private: FieldOptAttribute fieldOptAttribute;
 
    public:
-   bool isSetContractMultiplier() const { return fieldContractMultiplier.offset >= 0; }
+   bool isSetContractMultiplier() const { return fieldContractMultiplier.offset > 0; }
    FieldContractMultiplier::ValueType getContractMultiplier() const { return fieldContractMultiplier.getValue( _fixPtr ); }
-   std::string_view getContractMultiplierView() const { return fieldContractMultiplier.offset >= 0 ? std::string_view{ _fixPtr + fieldContractMultiplier.offset, getValueLength( _fixPtr + fieldContractMultiplier.offset ) } : std::string_view{}; }
+   std::string_view getContractMultiplierView() const { return fieldContractMultiplier.offset > 0 ? std::string_view{ _fixPtr + fieldContractMultiplier.offset, getValueLength( _fixPtr + fieldContractMultiplier.offset ) } : std::string_view{}; }
    const char * ptrToContractMultiplier() const { return _fixPtr + fieldContractMultiplier.offset; }
-   const char * getIfSetContractMultiplier() const { return fieldContractMultiplier.offset >= 0 ? _fixPtr + fieldContractMultiplier.offset : nullptr; }
+   const char * ptrToTagContractMultiplier() const { return _fixPtr + fieldContractMultiplier.offset - 1 - FieldContractMultiplier::tagWidth(); }
+   const char * getIfSetContractMultiplier() const { return fieldContractMultiplier.offset > 0 ? _fixPtr + fieldContractMultiplier.offset : nullptr; }
    private: FieldContractMultiplier fieldContractMultiplier;
 
    public:
-   bool isSetCouponRate() const { return fieldCouponRate.offset >= 0; }
+   bool isSetCouponRate() const { return fieldCouponRate.offset > 0; }
    FieldCouponRate::ValueType getCouponRate() const { return fieldCouponRate.getValue( _fixPtr ); }
-   std::string_view getCouponRateView() const { return fieldCouponRate.offset >= 0 ? std::string_view{ _fixPtr + fieldCouponRate.offset, getValueLength( _fixPtr + fieldCouponRate.offset ) } : std::string_view{}; }
+   std::string_view getCouponRateView() const { return fieldCouponRate.offset > 0 ? std::string_view{ _fixPtr + fieldCouponRate.offset, getValueLength( _fixPtr + fieldCouponRate.offset ) } : std::string_view{}; }
    const char * ptrToCouponRate() const { return _fixPtr + fieldCouponRate.offset; }
-   const char * getIfSetCouponRate() const { return fieldCouponRate.offset >= 0 ? _fixPtr + fieldCouponRate.offset : nullptr; }
+   const char * ptrToTagCouponRate() const { return _fixPtr + fieldCouponRate.offset - 1 - FieldCouponRate::tagWidth(); }
+   const char * getIfSetCouponRate() const { return fieldCouponRate.offset > 0 ? _fixPtr + fieldCouponRate.offset : nullptr; }
    private: FieldCouponRate fieldCouponRate;
 
    public:
-   bool isSetSecurityExchange() const { return fieldSecurityExchange.offset >= 0; }
+   bool isSetSecurityExchange() const { return fieldSecurityExchange.offset > 0; }
    FieldSecurityExchange::ValueType getSecurityExchange() const { return fieldSecurityExchange.getValue( _fixPtr ); }
-   std::string_view getSecurityExchangeView() const { return fieldSecurityExchange.offset >= 0 ? std::string_view{ _fixPtr + fieldSecurityExchange.offset, getValueLength( _fixPtr + fieldSecurityExchange.offset ) } : std::string_view{}; }
+   std::string_view getSecurityExchangeView() const { return fieldSecurityExchange.offset > 0 ? std::string_view{ _fixPtr + fieldSecurityExchange.offset, getValueLength( _fixPtr + fieldSecurityExchange.offset ) } : std::string_view{}; }
    const char * ptrToSecurityExchange() const { return _fixPtr + fieldSecurityExchange.offset; }
-   const char * getIfSetSecurityExchange() const { return fieldSecurityExchange.offset >= 0 ? _fixPtr + fieldSecurityExchange.offset : nullptr; }
+   const char * ptrToTagSecurityExchange() const { return _fixPtr + fieldSecurityExchange.offset - 1 - FieldSecurityExchange::tagWidth(); }
+   const char * getIfSetSecurityExchange() const { return fieldSecurityExchange.offset > 0 ? _fixPtr + fieldSecurityExchange.offset : nullptr; }
    private: FieldSecurityExchange fieldSecurityExchange;
 
    public:
-   bool isSetIssuer() const { return fieldIssuer.offset >= 0; }
+   bool isSetIssuer() const { return fieldIssuer.offset > 0; }
    FieldIssuer::ValueType getIssuer() const { return fieldIssuer.getValue( _fixPtr ); }
-   std::string_view getIssuerView() const { return fieldIssuer.offset >= 0 ? std::string_view{ _fixPtr + fieldIssuer.offset, getValueLength( _fixPtr + fieldIssuer.offset ) } : std::string_view{}; }
+   std::string_view getIssuerView() const { return fieldIssuer.offset > 0 ? std::string_view{ _fixPtr + fieldIssuer.offset, getValueLength( _fixPtr + fieldIssuer.offset ) } : std::string_view{}; }
    const char * ptrToIssuer() const { return _fixPtr + fieldIssuer.offset; }
-   const char * getIfSetIssuer() const { return fieldIssuer.offset >= 0 ? _fixPtr + fieldIssuer.offset : nullptr; }
+   const char * ptrToTagIssuer() const { return _fixPtr + fieldIssuer.offset - 1 - FieldIssuer::tagWidth(); }
+   const char * getIfSetIssuer() const { return fieldIssuer.offset > 0 ? _fixPtr + fieldIssuer.offset : nullptr; }
    private: FieldIssuer fieldIssuer;
 
    public:
-   bool isSetEncodedIssuerLen() const { return fieldEncodedIssuerLen.offset >= 0; }
+   bool isSetEncodedIssuerLen() const { return fieldEncodedIssuerLen.offset > 0; }
    FieldEncodedIssuerLen::ValueType getEncodedIssuerLen() const { return fieldEncodedIssuerLen.getValue( _fixPtr ); }
-   std::string_view getEncodedIssuerLenView() const { return fieldEncodedIssuerLen.offset >= 0 ? std::string_view{ _fixPtr + fieldEncodedIssuerLen.offset, getValueLength( _fixPtr + fieldEncodedIssuerLen.offset ) } : std::string_view{}; }
+   std::string_view getEncodedIssuerLenView() const { return fieldEncodedIssuerLen.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedIssuerLen.offset, getValueLength( _fixPtr + fieldEncodedIssuerLen.offset ) } : std::string_view{}; }
    const char * ptrToEncodedIssuerLen() const { return _fixPtr + fieldEncodedIssuerLen.offset; }
-   const char * getIfSetEncodedIssuerLen() const { return fieldEncodedIssuerLen.offset >= 0 ? _fixPtr + fieldEncodedIssuerLen.offset : nullptr; }
+   const char * ptrToTagEncodedIssuerLen() const { return _fixPtr + fieldEncodedIssuerLen.offset - 1 - FieldEncodedIssuerLen::tagWidth(); }
+   const char * getIfSetEncodedIssuerLen() const { return fieldEncodedIssuerLen.offset > 0 ? _fixPtr + fieldEncodedIssuerLen.offset : nullptr; }
    private: FieldEncodedIssuerLen fieldEncodedIssuerLen;
 
    public:
-   bool isSetEncodedIssuer() const { return fieldEncodedIssuer.offset >= 0; }
+   bool isSetEncodedIssuer() const { return fieldEncodedIssuer.offset > 0; }
    FieldEncodedIssuer::ValueType getEncodedIssuer() const { return fieldEncodedIssuer.getValue( _fixPtr ); }
-   std::string_view getEncodedIssuerView() const { return fieldEncodedIssuer.offset >= 0 ? std::string_view{ _fixPtr + fieldEncodedIssuer.offset, getValueLength( _fixPtr + fieldEncodedIssuer.offset ) } : std::string_view{}; }
+   std::string_view getEncodedIssuerView() const { return fieldEncodedIssuer.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedIssuer.offset, getValueLength( _fixPtr + fieldEncodedIssuer.offset ) } : std::string_view{}; }
    const char * ptrToEncodedIssuer() const { return _fixPtr + fieldEncodedIssuer.offset; }
-   const char * getIfSetEncodedIssuer() const { return fieldEncodedIssuer.offset >= 0 ? _fixPtr + fieldEncodedIssuer.offset : nullptr; }
+   const char * ptrToTagEncodedIssuer() const { return _fixPtr + fieldEncodedIssuer.offset - 1 - FieldEncodedIssuer::tagWidth(); }
+   const char * getIfSetEncodedIssuer() const { return fieldEncodedIssuer.offset > 0 ? _fixPtr + fieldEncodedIssuer.offset : nullptr; }
    private: FieldEncodedIssuer fieldEncodedIssuer;
 
    public:
-   bool isSetSecurityDesc() const { return fieldSecurityDesc.offset >= 0; }
+   bool isSetSecurityDesc() const { return fieldSecurityDesc.offset > 0; }
    FieldSecurityDesc::ValueType getSecurityDesc() const { return fieldSecurityDesc.getValue( _fixPtr ); }
-   std::string_view getSecurityDescView() const { return fieldSecurityDesc.offset >= 0 ? std::string_view{ _fixPtr + fieldSecurityDesc.offset, getValueLength( _fixPtr + fieldSecurityDesc.offset ) } : std::string_view{}; }
+   std::string_view getSecurityDescView() const { return fieldSecurityDesc.offset > 0 ? std::string_view{ _fixPtr + fieldSecurityDesc.offset, getValueLength( _fixPtr + fieldSecurityDesc.offset ) } : std::string_view{}; }
    const char * ptrToSecurityDesc() const { return _fixPtr + fieldSecurityDesc.offset; }
-   const char * getIfSetSecurityDesc() const { return fieldSecurityDesc.offset >= 0 ? _fixPtr + fieldSecurityDesc.offset : nullptr; }
+   const char * ptrToTagSecurityDesc() const { return _fixPtr + fieldSecurityDesc.offset - 1 - FieldSecurityDesc::tagWidth(); }
+   const char * getIfSetSecurityDesc() const { return fieldSecurityDesc.offset > 0 ? _fixPtr + fieldSecurityDesc.offset : nullptr; }
    private: FieldSecurityDesc fieldSecurityDesc;
 
    public:
-   bool isSetEncodedSecurityDescLen() const { return fieldEncodedSecurityDescLen.offset >= 0; }
+   bool isSetEncodedSecurityDescLen() const { return fieldEncodedSecurityDescLen.offset > 0; }
    FieldEncodedSecurityDescLen::ValueType getEncodedSecurityDescLen() const { return fieldEncodedSecurityDescLen.getValue( _fixPtr ); }
-   std::string_view getEncodedSecurityDescLenView() const { return fieldEncodedSecurityDescLen.offset >= 0 ? std::string_view{ _fixPtr + fieldEncodedSecurityDescLen.offset, getValueLength( _fixPtr + fieldEncodedSecurityDescLen.offset ) } : std::string_view{}; }
+   std::string_view getEncodedSecurityDescLenView() const { return fieldEncodedSecurityDescLen.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedSecurityDescLen.offset, getValueLength( _fixPtr + fieldEncodedSecurityDescLen.offset ) } : std::string_view{}; }
    const char * ptrToEncodedSecurityDescLen() const { return _fixPtr + fieldEncodedSecurityDescLen.offset; }
-   const char * getIfSetEncodedSecurityDescLen() const { return fieldEncodedSecurityDescLen.offset >= 0 ? _fixPtr + fieldEncodedSecurityDescLen.offset : nullptr; }
+   const char * ptrToTagEncodedSecurityDescLen() const { return _fixPtr + fieldEncodedSecurityDescLen.offset - 1 - FieldEncodedSecurityDescLen::tagWidth(); }
+   const char * getIfSetEncodedSecurityDescLen() const { return fieldEncodedSecurityDescLen.offset > 0 ? _fixPtr + fieldEncodedSecurityDescLen.offset : nullptr; }
    private: FieldEncodedSecurityDescLen fieldEncodedSecurityDescLen;
 
    public:
-   bool isSetEncodedSecurityDesc() const { return fieldEncodedSecurityDesc.offset >= 0; }
+   bool isSetEncodedSecurityDesc() const { return fieldEncodedSecurityDesc.offset > 0; }
    FieldEncodedSecurityDesc::ValueType getEncodedSecurityDesc() const { return fieldEncodedSecurityDesc.getValue( _fixPtr ); }
-   std::string_view getEncodedSecurityDescView() const { return fieldEncodedSecurityDesc.offset >= 0 ? std::string_view{ _fixPtr + fieldEncodedSecurityDesc.offset, getValueLength( _fixPtr + fieldEncodedSecurityDesc.offset ) } : std::string_view{}; }
+   std::string_view getEncodedSecurityDescView() const { return fieldEncodedSecurityDesc.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedSecurityDesc.offset, getValueLength( _fixPtr + fieldEncodedSecurityDesc.offset ) } : std::string_view{}; }
    const char * ptrToEncodedSecurityDesc() const { return _fixPtr + fieldEncodedSecurityDesc.offset; }
-   const char * getIfSetEncodedSecurityDesc() const { return fieldEncodedSecurityDesc.offset >= 0 ? _fixPtr + fieldEncodedSecurityDesc.offset : nullptr; }
+   const char * ptrToTagEncodedSecurityDesc() const { return _fixPtr + fieldEncodedSecurityDesc.offset - 1 - FieldEncodedSecurityDesc::tagWidth(); }
+   const char * getIfSetEncodedSecurityDesc() const { return fieldEncodedSecurityDesc.offset > 0 ? _fixPtr + fieldEncodedSecurityDesc.offset : nullptr; }
    private: FieldEncodedSecurityDesc fieldEncodedSecurityDesc;
 
    public:
-   bool isSetPool() const { return fieldPool.offset >= 0; }
+   bool isSetPool() const { return fieldPool.offset > 0; }
    FieldPool::ValueType getPool() const { return fieldPool.getValue( _fixPtr ); }
-   std::string_view getPoolView() const { return fieldPool.offset >= 0 ? std::string_view{ _fixPtr + fieldPool.offset, getValueLength( _fixPtr + fieldPool.offset ) } : std::string_view{}; }
+   std::string_view getPoolView() const { return fieldPool.offset > 0 ? std::string_view{ _fixPtr + fieldPool.offset, getValueLength( _fixPtr + fieldPool.offset ) } : std::string_view{}; }
    const char * ptrToPool() const { return _fixPtr + fieldPool.offset; }
-   const char * getIfSetPool() const { return fieldPool.offset >= 0 ? _fixPtr + fieldPool.offset : nullptr; }
+   const char * ptrToTagPool() const { return _fixPtr + fieldPool.offset - 1 - FieldPool::tagWidth(); }
+   const char * getIfSetPool() const { return fieldPool.offset > 0 ? _fixPtr + fieldPool.offset : nullptr; }
    private: FieldPool fieldPool;
 
    public:
-   bool isSetContractSettlMonth() const { return fieldContractSettlMonth.offset >= 0; }
+   bool isSetContractSettlMonth() const { return fieldContractSettlMonth.offset > 0; }
    FieldContractSettlMonth::ValueType getContractSettlMonth() const { return fieldContractSettlMonth.getValue( _fixPtr ); }
-   std::string_view getContractSettlMonthView() const { return fieldContractSettlMonth.offset >= 0 ? std::string_view{ _fixPtr + fieldContractSettlMonth.offset, getValueLength( _fixPtr + fieldContractSettlMonth.offset ) } : std::string_view{}; }
+   std::string_view getContractSettlMonthView() const { return fieldContractSettlMonth.offset > 0 ? std::string_view{ _fixPtr + fieldContractSettlMonth.offset, getValueLength( _fixPtr + fieldContractSettlMonth.offset ) } : std::string_view{}; }
    const char * ptrToContractSettlMonth() const { return _fixPtr + fieldContractSettlMonth.offset; }
-   const char * getIfSetContractSettlMonth() const { return fieldContractSettlMonth.offset >= 0 ? _fixPtr + fieldContractSettlMonth.offset : nullptr; }
+   const char * ptrToTagContractSettlMonth() const { return _fixPtr + fieldContractSettlMonth.offset - 1 - FieldContractSettlMonth::tagWidth(); }
+   const char * getIfSetContractSettlMonth() const { return fieldContractSettlMonth.offset > 0 ? _fixPtr + fieldContractSettlMonth.offset : nullptr; }
    private: FieldContractSettlMonth fieldContractSettlMonth;
 
    public:
-   bool isSetCPProgram() const { return fieldCPProgram.offset >= 0; }
+   bool isSetCPProgram() const { return fieldCPProgram.offset > 0; }
    FieldCPProgram::ValueType getCPProgram() const { return fieldCPProgram.getValue( _fixPtr ); }
-   std::string_view getCPProgramView() const { return fieldCPProgram.offset >= 0 ? std::string_view{ _fixPtr + fieldCPProgram.offset, getValueLength( _fixPtr + fieldCPProgram.offset ) } : std::string_view{}; }
+   std::string_view getCPProgramView() const { return fieldCPProgram.offset > 0 ? std::string_view{ _fixPtr + fieldCPProgram.offset, getValueLength( _fixPtr + fieldCPProgram.offset ) } : std::string_view{}; }
    const char * ptrToCPProgram() const { return _fixPtr + fieldCPProgram.offset; }
-   const char * getIfSetCPProgram() const { return fieldCPProgram.offset >= 0 ? _fixPtr + fieldCPProgram.offset : nullptr; }
+   const char * ptrToTagCPProgram() const { return _fixPtr + fieldCPProgram.offset - 1 - FieldCPProgram::tagWidth(); }
+   const char * getIfSetCPProgram() const { return fieldCPProgram.offset > 0 ? _fixPtr + fieldCPProgram.offset : nullptr; }
    private: FieldCPProgram fieldCPProgram;
 
    public:
-   bool isSetCPRegType() const { return fieldCPRegType.offset >= 0; }
+   bool isSetCPRegType() const { return fieldCPRegType.offset > 0; }
    FieldCPRegType::ValueType getCPRegType() const { return fieldCPRegType.getValue( _fixPtr ); }
-   std::string_view getCPRegTypeView() const { return fieldCPRegType.offset >= 0 ? std::string_view{ _fixPtr + fieldCPRegType.offset, getValueLength( _fixPtr + fieldCPRegType.offset ) } : std::string_view{}; }
+   std::string_view getCPRegTypeView() const { return fieldCPRegType.offset > 0 ? std::string_view{ _fixPtr + fieldCPRegType.offset, getValueLength( _fixPtr + fieldCPRegType.offset ) } : std::string_view{}; }
    const char * ptrToCPRegType() const { return _fixPtr + fieldCPRegType.offset; }
-   const char * getIfSetCPRegType() const { return fieldCPRegType.offset >= 0 ? _fixPtr + fieldCPRegType.offset : nullptr; }
+   const char * ptrToTagCPRegType() const { return _fixPtr + fieldCPRegType.offset - 1 - FieldCPRegType::tagWidth(); }
+   const char * getIfSetCPRegType() const { return fieldCPRegType.offset > 0 ? _fixPtr + fieldCPRegType.offset : nullptr; }
    private: FieldCPRegType fieldCPRegType;
 
    public:
-   bool isSetNoEvents() const { return fieldNoEvents.offset >= 0; }
+   bool isSetNoEvents() const { return fieldNoEvents.offset > 0; }
    FieldNoEvents::ValueType getNoEvents() const { return fieldNoEvents.getValue( _fixPtr ); }
-   std::string_view getNoEventsView() const { return fieldNoEvents.offset >= 0 ? std::string_view{ _fixPtr + fieldNoEvents.offset, getValueLength( _fixPtr + fieldNoEvents.offset ) } : std::string_view{}; }
+   std::string_view getNoEventsView() const { return fieldNoEvents.offset > 0 ? std::string_view{ _fixPtr + fieldNoEvents.offset, getValueLength( _fixPtr + fieldNoEvents.offset ) } : std::string_view{}; }
    const char * ptrToNoEvents() const { return _fixPtr + fieldNoEvents.offset; }
-   const char * getIfSetNoEvents() const { return fieldNoEvents.offset >= 0 ? _fixPtr + fieldNoEvents.offset : nullptr; }
+   const char * ptrToTagNoEvents() const { return _fixPtr + fieldNoEvents.offset - 1 - FieldNoEvents::tagWidth(); }
+   const char * getIfSetNoEvents() const { return fieldNoEvents.offset > 0 ? _fixPtr + fieldNoEvents.offset : nullptr; }
    private: FieldNoEvents fieldNoEvents;
   
    public:
@@ -3421,99 +3828,111 @@ class GroupQuoteEntries : public MessageBase
    private: GroupEvents::Array groupsEvents{ 10 };
 
    public:
-   bool isSetDatedDate() const { return fieldDatedDate.offset >= 0; }
+   bool isSetDatedDate() const { return fieldDatedDate.offset > 0; }
    FieldDatedDate::ValueType getDatedDate() const { return fieldDatedDate.getValue( _fixPtr ); }
-   std::string_view getDatedDateView() const { return fieldDatedDate.offset >= 0 ? std::string_view{ _fixPtr + fieldDatedDate.offset, getValueLength( _fixPtr + fieldDatedDate.offset ) } : std::string_view{}; }
+   std::string_view getDatedDateView() const { return fieldDatedDate.offset > 0 ? std::string_view{ _fixPtr + fieldDatedDate.offset, getValueLength( _fixPtr + fieldDatedDate.offset ) } : std::string_view{}; }
    const char * ptrToDatedDate() const { return _fixPtr + fieldDatedDate.offset; }
-   const char * getIfSetDatedDate() const { return fieldDatedDate.offset >= 0 ? _fixPtr + fieldDatedDate.offset : nullptr; }
+   const char * ptrToTagDatedDate() const { return _fixPtr + fieldDatedDate.offset - 1 - FieldDatedDate::tagWidth(); }
+   const char * getIfSetDatedDate() const { return fieldDatedDate.offset > 0 ? _fixPtr + fieldDatedDate.offset : nullptr; }
    private: FieldDatedDate fieldDatedDate;
 
    public:
-   bool isSetInterestAccrualDate() const { return fieldInterestAccrualDate.offset >= 0; }
+   bool isSetInterestAccrualDate() const { return fieldInterestAccrualDate.offset > 0; }
    FieldInterestAccrualDate::ValueType getInterestAccrualDate() const { return fieldInterestAccrualDate.getValue( _fixPtr ); }
-   std::string_view getInterestAccrualDateView() const { return fieldInterestAccrualDate.offset >= 0 ? std::string_view{ _fixPtr + fieldInterestAccrualDate.offset, getValueLength( _fixPtr + fieldInterestAccrualDate.offset ) } : std::string_view{}; }
+   std::string_view getInterestAccrualDateView() const { return fieldInterestAccrualDate.offset > 0 ? std::string_view{ _fixPtr + fieldInterestAccrualDate.offset, getValueLength( _fixPtr + fieldInterestAccrualDate.offset ) } : std::string_view{}; }
    const char * ptrToInterestAccrualDate() const { return _fixPtr + fieldInterestAccrualDate.offset; }
-   const char * getIfSetInterestAccrualDate() const { return fieldInterestAccrualDate.offset >= 0 ? _fixPtr + fieldInterestAccrualDate.offset : nullptr; }
+   const char * ptrToTagInterestAccrualDate() const { return _fixPtr + fieldInterestAccrualDate.offset - 1 - FieldInterestAccrualDate::tagWidth(); }
+   const char * getIfSetInterestAccrualDate() const { return fieldInterestAccrualDate.offset > 0 ? _fixPtr + fieldInterestAccrualDate.offset : nullptr; }
    private: FieldInterestAccrualDate fieldInterestAccrualDate;
 
    public:
-   bool isSetAgreementDesc() const { return fieldAgreementDesc.offset >= 0; }
+   bool isSetAgreementDesc() const { return fieldAgreementDesc.offset > 0; }
    FieldAgreementDesc::ValueType getAgreementDesc() const { return fieldAgreementDesc.getValue( _fixPtr ); }
-   std::string_view getAgreementDescView() const { return fieldAgreementDesc.offset >= 0 ? std::string_view{ _fixPtr + fieldAgreementDesc.offset, getValueLength( _fixPtr + fieldAgreementDesc.offset ) } : std::string_view{}; }
+   std::string_view getAgreementDescView() const { return fieldAgreementDesc.offset > 0 ? std::string_view{ _fixPtr + fieldAgreementDesc.offset, getValueLength( _fixPtr + fieldAgreementDesc.offset ) } : std::string_view{}; }
    const char * ptrToAgreementDesc() const { return _fixPtr + fieldAgreementDesc.offset; }
-   const char * getIfSetAgreementDesc() const { return fieldAgreementDesc.offset >= 0 ? _fixPtr + fieldAgreementDesc.offset : nullptr; }
+   const char * ptrToTagAgreementDesc() const { return _fixPtr + fieldAgreementDesc.offset - 1 - FieldAgreementDesc::tagWidth(); }
+   const char * getIfSetAgreementDesc() const { return fieldAgreementDesc.offset > 0 ? _fixPtr + fieldAgreementDesc.offset : nullptr; }
    private: FieldAgreementDesc fieldAgreementDesc;
 
    public:
-   bool isSetAgreementID() const { return fieldAgreementID.offset >= 0; }
+   bool isSetAgreementID() const { return fieldAgreementID.offset > 0; }
    FieldAgreementID::ValueType getAgreementID() const { return fieldAgreementID.getValue( _fixPtr ); }
-   std::string_view getAgreementIDView() const { return fieldAgreementID.offset >= 0 ? std::string_view{ _fixPtr + fieldAgreementID.offset, getValueLength( _fixPtr + fieldAgreementID.offset ) } : std::string_view{}; }
+   std::string_view getAgreementIDView() const { return fieldAgreementID.offset > 0 ? std::string_view{ _fixPtr + fieldAgreementID.offset, getValueLength( _fixPtr + fieldAgreementID.offset ) } : std::string_view{}; }
    const char * ptrToAgreementID() const { return _fixPtr + fieldAgreementID.offset; }
-   const char * getIfSetAgreementID() const { return fieldAgreementID.offset >= 0 ? _fixPtr + fieldAgreementID.offset : nullptr; }
+   const char * ptrToTagAgreementID() const { return _fixPtr + fieldAgreementID.offset - 1 - FieldAgreementID::tagWidth(); }
+   const char * getIfSetAgreementID() const { return fieldAgreementID.offset > 0 ? _fixPtr + fieldAgreementID.offset : nullptr; }
    private: FieldAgreementID fieldAgreementID;
 
    public:
-   bool isSetAgreementDate() const { return fieldAgreementDate.offset >= 0; }
+   bool isSetAgreementDate() const { return fieldAgreementDate.offset > 0; }
    FieldAgreementDate::ValueType getAgreementDate() const { return fieldAgreementDate.getValue( _fixPtr ); }
-   std::string_view getAgreementDateView() const { return fieldAgreementDate.offset >= 0 ? std::string_view{ _fixPtr + fieldAgreementDate.offset, getValueLength( _fixPtr + fieldAgreementDate.offset ) } : std::string_view{}; }
+   std::string_view getAgreementDateView() const { return fieldAgreementDate.offset > 0 ? std::string_view{ _fixPtr + fieldAgreementDate.offset, getValueLength( _fixPtr + fieldAgreementDate.offset ) } : std::string_view{}; }
    const char * ptrToAgreementDate() const { return _fixPtr + fieldAgreementDate.offset; }
-   const char * getIfSetAgreementDate() const { return fieldAgreementDate.offset >= 0 ? _fixPtr + fieldAgreementDate.offset : nullptr; }
+   const char * ptrToTagAgreementDate() const { return _fixPtr + fieldAgreementDate.offset - 1 - FieldAgreementDate::tagWidth(); }
+   const char * getIfSetAgreementDate() const { return fieldAgreementDate.offset > 0 ? _fixPtr + fieldAgreementDate.offset : nullptr; }
    private: FieldAgreementDate fieldAgreementDate;
 
    public:
-   bool isSetAgreementCurrency() const { return fieldAgreementCurrency.offset >= 0; }
+   bool isSetAgreementCurrency() const { return fieldAgreementCurrency.offset > 0; }
    FieldAgreementCurrency::ValueType getAgreementCurrency() const { return fieldAgreementCurrency.getValue( _fixPtr ); }
-   std::string_view getAgreementCurrencyView() const { return fieldAgreementCurrency.offset >= 0 ? std::string_view{ _fixPtr + fieldAgreementCurrency.offset, getValueLength( _fixPtr + fieldAgreementCurrency.offset ) } : std::string_view{}; }
+   std::string_view getAgreementCurrencyView() const { return fieldAgreementCurrency.offset > 0 ? std::string_view{ _fixPtr + fieldAgreementCurrency.offset, getValueLength( _fixPtr + fieldAgreementCurrency.offset ) } : std::string_view{}; }
    const char * ptrToAgreementCurrency() const { return _fixPtr + fieldAgreementCurrency.offset; }
-   const char * getIfSetAgreementCurrency() const { return fieldAgreementCurrency.offset >= 0 ? _fixPtr + fieldAgreementCurrency.offset : nullptr; }
+   const char * ptrToTagAgreementCurrency() const { return _fixPtr + fieldAgreementCurrency.offset - 1 - FieldAgreementCurrency::tagWidth(); }
+   const char * getIfSetAgreementCurrency() const { return fieldAgreementCurrency.offset > 0 ? _fixPtr + fieldAgreementCurrency.offset : nullptr; }
    private: FieldAgreementCurrency fieldAgreementCurrency;
 
    public:
-   bool isSetTerminationType() const { return fieldTerminationType.offset >= 0; }
+   bool isSetTerminationType() const { return fieldTerminationType.offset > 0; }
    FieldTerminationType::ValueType getTerminationType() const { return fieldTerminationType.getValue( _fixPtr ); }
-   std::string_view getTerminationTypeView() const { return fieldTerminationType.offset >= 0 ? std::string_view{ _fixPtr + fieldTerminationType.offset, getValueLength( _fixPtr + fieldTerminationType.offset ) } : std::string_view{}; }
+   std::string_view getTerminationTypeView() const { return fieldTerminationType.offset > 0 ? std::string_view{ _fixPtr + fieldTerminationType.offset, getValueLength( _fixPtr + fieldTerminationType.offset ) } : std::string_view{}; }
    const char * ptrToTerminationType() const { return _fixPtr + fieldTerminationType.offset; }
-   const char * getIfSetTerminationType() const { return fieldTerminationType.offset >= 0 ? _fixPtr + fieldTerminationType.offset : nullptr; }
+   const char * ptrToTagTerminationType() const { return _fixPtr + fieldTerminationType.offset - 1 - FieldTerminationType::tagWidth(); }
+   const char * getIfSetTerminationType() const { return fieldTerminationType.offset > 0 ? _fixPtr + fieldTerminationType.offset : nullptr; }
    private: FieldTerminationType fieldTerminationType;
 
    public:
-   bool isSetStartDate() const { return fieldStartDate.offset >= 0; }
+   bool isSetStartDate() const { return fieldStartDate.offset > 0; }
    FieldStartDate::ValueType getStartDate() const { return fieldStartDate.getValue( _fixPtr ); }
-   std::string_view getStartDateView() const { return fieldStartDate.offset >= 0 ? std::string_view{ _fixPtr + fieldStartDate.offset, getValueLength( _fixPtr + fieldStartDate.offset ) } : std::string_view{}; }
+   std::string_view getStartDateView() const { return fieldStartDate.offset > 0 ? std::string_view{ _fixPtr + fieldStartDate.offset, getValueLength( _fixPtr + fieldStartDate.offset ) } : std::string_view{}; }
    const char * ptrToStartDate() const { return _fixPtr + fieldStartDate.offset; }
-   const char * getIfSetStartDate() const { return fieldStartDate.offset >= 0 ? _fixPtr + fieldStartDate.offset : nullptr; }
+   const char * ptrToTagStartDate() const { return _fixPtr + fieldStartDate.offset - 1 - FieldStartDate::tagWidth(); }
+   const char * getIfSetStartDate() const { return fieldStartDate.offset > 0 ? _fixPtr + fieldStartDate.offset : nullptr; }
    private: FieldStartDate fieldStartDate;
 
    public:
-   bool isSetEndDate() const { return fieldEndDate.offset >= 0; }
+   bool isSetEndDate() const { return fieldEndDate.offset > 0; }
    FieldEndDate::ValueType getEndDate() const { return fieldEndDate.getValue( _fixPtr ); }
-   std::string_view getEndDateView() const { return fieldEndDate.offset >= 0 ? std::string_view{ _fixPtr + fieldEndDate.offset, getValueLength( _fixPtr + fieldEndDate.offset ) } : std::string_view{}; }
+   std::string_view getEndDateView() const { return fieldEndDate.offset > 0 ? std::string_view{ _fixPtr + fieldEndDate.offset, getValueLength( _fixPtr + fieldEndDate.offset ) } : std::string_view{}; }
    const char * ptrToEndDate() const { return _fixPtr + fieldEndDate.offset; }
-   const char * getIfSetEndDate() const { return fieldEndDate.offset >= 0 ? _fixPtr + fieldEndDate.offset : nullptr; }
+   const char * ptrToTagEndDate() const { return _fixPtr + fieldEndDate.offset - 1 - FieldEndDate::tagWidth(); }
+   const char * getIfSetEndDate() const { return fieldEndDate.offset > 0 ? _fixPtr + fieldEndDate.offset : nullptr; }
    private: FieldEndDate fieldEndDate;
 
    public:
-   bool isSetDeliveryType() const { return fieldDeliveryType.offset >= 0; }
+   bool isSetDeliveryType() const { return fieldDeliveryType.offset > 0; }
    FieldDeliveryType::ValueType getDeliveryType() const { return fieldDeliveryType.getValue( _fixPtr ); }
-   std::string_view getDeliveryTypeView() const { return fieldDeliveryType.offset >= 0 ? std::string_view{ _fixPtr + fieldDeliveryType.offset, getValueLength( _fixPtr + fieldDeliveryType.offset ) } : std::string_view{}; }
+   std::string_view getDeliveryTypeView() const { return fieldDeliveryType.offset > 0 ? std::string_view{ _fixPtr + fieldDeliveryType.offset, getValueLength( _fixPtr + fieldDeliveryType.offset ) } : std::string_view{}; }
    const char * ptrToDeliveryType() const { return _fixPtr + fieldDeliveryType.offset; }
-   const char * getIfSetDeliveryType() const { return fieldDeliveryType.offset >= 0 ? _fixPtr + fieldDeliveryType.offset : nullptr; }
+   const char * ptrToTagDeliveryType() const { return _fixPtr + fieldDeliveryType.offset - 1 - FieldDeliveryType::tagWidth(); }
+   const char * getIfSetDeliveryType() const { return fieldDeliveryType.offset > 0 ? _fixPtr + fieldDeliveryType.offset : nullptr; }
    private: FieldDeliveryType fieldDeliveryType;
 
    public:
-   bool isSetMarginRatio() const { return fieldMarginRatio.offset >= 0; }
+   bool isSetMarginRatio() const { return fieldMarginRatio.offset > 0; }
    FieldMarginRatio::ValueType getMarginRatio() const { return fieldMarginRatio.getValue( _fixPtr ); }
-   std::string_view getMarginRatioView() const { return fieldMarginRatio.offset >= 0 ? std::string_view{ _fixPtr + fieldMarginRatio.offset, getValueLength( _fixPtr + fieldMarginRatio.offset ) } : std::string_view{}; }
+   std::string_view getMarginRatioView() const { return fieldMarginRatio.offset > 0 ? std::string_view{ _fixPtr + fieldMarginRatio.offset, getValueLength( _fixPtr + fieldMarginRatio.offset ) } : std::string_view{}; }
    const char * ptrToMarginRatio() const { return _fixPtr + fieldMarginRatio.offset; }
-   const char * getIfSetMarginRatio() const { return fieldMarginRatio.offset >= 0 ? _fixPtr + fieldMarginRatio.offset : nullptr; }
+   const char * ptrToTagMarginRatio() const { return _fixPtr + fieldMarginRatio.offset - 1 - FieldMarginRatio::tagWidth(); }
+   const char * getIfSetMarginRatio() const { return fieldMarginRatio.offset > 0 ? _fixPtr + fieldMarginRatio.offset : nullptr; }
    private: FieldMarginRatio fieldMarginRatio;
 
    public:
-   bool isSetNoUnderlyings() const { return fieldNoUnderlyings.offset >= 0; }
+   bool isSetNoUnderlyings() const { return fieldNoUnderlyings.offset > 0; }
    FieldNoUnderlyings::ValueType getNoUnderlyings() const { return fieldNoUnderlyings.getValue( _fixPtr ); }
-   std::string_view getNoUnderlyingsView() const { return fieldNoUnderlyings.offset >= 0 ? std::string_view{ _fixPtr + fieldNoUnderlyings.offset, getValueLength( _fixPtr + fieldNoUnderlyings.offset ) } : std::string_view{}; }
+   std::string_view getNoUnderlyingsView() const { return fieldNoUnderlyings.offset > 0 ? std::string_view{ _fixPtr + fieldNoUnderlyings.offset, getValueLength( _fixPtr + fieldNoUnderlyings.offset ) } : std::string_view{}; }
    const char * ptrToNoUnderlyings() const { return _fixPtr + fieldNoUnderlyings.offset; }
-   const char * getIfSetNoUnderlyings() const { return fieldNoUnderlyings.offset >= 0 ? _fixPtr + fieldNoUnderlyings.offset : nullptr; }
+   const char * ptrToTagNoUnderlyings() const { return _fixPtr + fieldNoUnderlyings.offset - 1 - FieldNoUnderlyings::tagWidth(); }
+   const char * getIfSetNoUnderlyings() const { return fieldNoUnderlyings.offset > 0 ? _fixPtr + fieldNoUnderlyings.offset : nullptr; }
    private: FieldNoUnderlyings fieldNoUnderlyings;
   
    public:
@@ -3522,11 +3941,12 @@ class GroupQuoteEntries : public MessageBase
    private: GroupUnderlyings::Array groupsUnderlyings{ 10 };
 
    public:
-   bool isSetNoLegs() const { return fieldNoLegs.offset >= 0; }
+   bool isSetNoLegs() const { return fieldNoLegs.offset > 0; }
    FieldNoLegs::ValueType getNoLegs() const { return fieldNoLegs.getValue( _fixPtr ); }
-   std::string_view getNoLegsView() const { return fieldNoLegs.offset >= 0 ? std::string_view{ _fixPtr + fieldNoLegs.offset, getValueLength( _fixPtr + fieldNoLegs.offset ) } : std::string_view{}; }
+   std::string_view getNoLegsView() const { return fieldNoLegs.offset > 0 ? std::string_view{ _fixPtr + fieldNoLegs.offset, getValueLength( _fixPtr + fieldNoLegs.offset ) } : std::string_view{}; }
    const char * ptrToNoLegs() const { return _fixPtr + fieldNoLegs.offset; }
-   const char * getIfSetNoLegs() const { return fieldNoLegs.offset >= 0 ? _fixPtr + fieldNoLegs.offset : nullptr; }
+   const char * ptrToTagNoLegs() const { return _fixPtr + fieldNoLegs.offset - 1 - FieldNoLegs::tagWidth(); }
+   const char * getIfSetNoLegs() const { return fieldNoLegs.offset > 0 ? _fixPtr + fieldNoLegs.offset : nullptr; }
    private: FieldNoLegs fieldNoLegs;
   
    public:
@@ -3548,56 +3968,64 @@ class GroupQuoteSets : public MessageBase
    static offset_t scan( Array & arr, const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    const char * getFieldValue( unsigned tag ) const;
+   const char * findBadField() const;
+   const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
-   bool isSetQuoteSetID() const { return fieldQuoteSetID.offset >= 0; }
+   bool isSetQuoteSetID() const { return fieldQuoteSetID.offset > 0; }
    FieldQuoteSetID::ValueType getQuoteSetID() const { return fieldQuoteSetID.getValue( _fixPtr ); }
-   std::string_view getQuoteSetIDView() const { return fieldQuoteSetID.offset >= 0 ? std::string_view{ _fixPtr + fieldQuoteSetID.offset, getValueLength( _fixPtr + fieldQuoteSetID.offset ) } : std::string_view{}; }
+   std::string_view getQuoteSetIDView() const { return fieldQuoteSetID.offset > 0 ? std::string_view{ _fixPtr + fieldQuoteSetID.offset, getValueLength( _fixPtr + fieldQuoteSetID.offset ) } : std::string_view{}; }
    const char * ptrToQuoteSetID() const { return _fixPtr + fieldQuoteSetID.offset; }
-   const char * getIfSetQuoteSetID() const { return fieldQuoteSetID.offset >= 0 ? _fixPtr + fieldQuoteSetID.offset : nullptr; }
+   const char * ptrToTagQuoteSetID() const { return _fixPtr + fieldQuoteSetID.offset - 1 - FieldQuoteSetID::tagWidth(); }
+   const char * getIfSetQuoteSetID() const { return fieldQuoteSetID.offset > 0 ? _fixPtr + fieldQuoteSetID.offset : nullptr; }
    private: FieldQuoteSetID fieldQuoteSetID;
 
    public:
-   bool isSetUnderlyingSymbol() const { return fieldUnderlyingSymbol.offset >= 0; }
+   bool isSetUnderlyingSymbol() const { return fieldUnderlyingSymbol.offset > 0; }
    FieldUnderlyingSymbol::ValueType getUnderlyingSymbol() const { return fieldUnderlyingSymbol.getValue( _fixPtr ); }
-   std::string_view getUnderlyingSymbolView() const { return fieldUnderlyingSymbol.offset >= 0 ? std::string_view{ _fixPtr + fieldUnderlyingSymbol.offset, getValueLength( _fixPtr + fieldUnderlyingSymbol.offset ) } : std::string_view{}; }
+   std::string_view getUnderlyingSymbolView() const { return fieldUnderlyingSymbol.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingSymbol.offset, getValueLength( _fixPtr + fieldUnderlyingSymbol.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingSymbol() const { return _fixPtr + fieldUnderlyingSymbol.offset; }
-   const char * getIfSetUnderlyingSymbol() const { return fieldUnderlyingSymbol.offset >= 0 ? _fixPtr + fieldUnderlyingSymbol.offset : nullptr; }
+   const char * ptrToTagUnderlyingSymbol() const { return _fixPtr + fieldUnderlyingSymbol.offset - 1 - FieldUnderlyingSymbol::tagWidth(); }
+   const char * getIfSetUnderlyingSymbol() const { return fieldUnderlyingSymbol.offset > 0 ? _fixPtr + fieldUnderlyingSymbol.offset : nullptr; }
    private: FieldUnderlyingSymbol fieldUnderlyingSymbol;
 
    public:
-   bool isSetUnderlyingSymbolSfx() const { return fieldUnderlyingSymbolSfx.offset >= 0; }
+   bool isSetUnderlyingSymbolSfx() const { return fieldUnderlyingSymbolSfx.offset > 0; }
    FieldUnderlyingSymbolSfx::ValueType getUnderlyingSymbolSfx() const { return fieldUnderlyingSymbolSfx.getValue( _fixPtr ); }
-   std::string_view getUnderlyingSymbolSfxView() const { return fieldUnderlyingSymbolSfx.offset >= 0 ? std::string_view{ _fixPtr + fieldUnderlyingSymbolSfx.offset, getValueLength( _fixPtr + fieldUnderlyingSymbolSfx.offset ) } : std::string_view{}; }
+   std::string_view getUnderlyingSymbolSfxView() const { return fieldUnderlyingSymbolSfx.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingSymbolSfx.offset, getValueLength( _fixPtr + fieldUnderlyingSymbolSfx.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingSymbolSfx() const { return _fixPtr + fieldUnderlyingSymbolSfx.offset; }
-   const char * getIfSetUnderlyingSymbolSfx() const { return fieldUnderlyingSymbolSfx.offset >= 0 ? _fixPtr + fieldUnderlyingSymbolSfx.offset : nullptr; }
+   const char * ptrToTagUnderlyingSymbolSfx() const { return _fixPtr + fieldUnderlyingSymbolSfx.offset - 1 - FieldUnderlyingSymbolSfx::tagWidth(); }
+   const char * getIfSetUnderlyingSymbolSfx() const { return fieldUnderlyingSymbolSfx.offset > 0 ? _fixPtr + fieldUnderlyingSymbolSfx.offset : nullptr; }
    private: FieldUnderlyingSymbolSfx fieldUnderlyingSymbolSfx;
 
    public:
-   bool isSetUnderlyingSecurityID() const { return fieldUnderlyingSecurityID.offset >= 0; }
+   bool isSetUnderlyingSecurityID() const { return fieldUnderlyingSecurityID.offset > 0; }
    FieldUnderlyingSecurityID::ValueType getUnderlyingSecurityID() const { return fieldUnderlyingSecurityID.getValue( _fixPtr ); }
-   std::string_view getUnderlyingSecurityIDView() const { return fieldUnderlyingSecurityID.offset >= 0 ? std::string_view{ _fixPtr + fieldUnderlyingSecurityID.offset, getValueLength( _fixPtr + fieldUnderlyingSecurityID.offset ) } : std::string_view{}; }
+   std::string_view getUnderlyingSecurityIDView() const { return fieldUnderlyingSecurityID.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingSecurityID.offset, getValueLength( _fixPtr + fieldUnderlyingSecurityID.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingSecurityID() const { return _fixPtr + fieldUnderlyingSecurityID.offset; }
-   const char * getIfSetUnderlyingSecurityID() const { return fieldUnderlyingSecurityID.offset >= 0 ? _fixPtr + fieldUnderlyingSecurityID.offset : nullptr; }
+   const char * ptrToTagUnderlyingSecurityID() const { return _fixPtr + fieldUnderlyingSecurityID.offset - 1 - FieldUnderlyingSecurityID::tagWidth(); }
+   const char * getIfSetUnderlyingSecurityID() const { return fieldUnderlyingSecurityID.offset > 0 ? _fixPtr + fieldUnderlyingSecurityID.offset : nullptr; }
    private: FieldUnderlyingSecurityID fieldUnderlyingSecurityID;
 
    public:
-   bool isSetUnderlyingSecurityIDSource() const { return fieldUnderlyingSecurityIDSource.offset >= 0; }
+   bool isSetUnderlyingSecurityIDSource() const { return fieldUnderlyingSecurityIDSource.offset > 0; }
    FieldUnderlyingSecurityIDSource::ValueType getUnderlyingSecurityIDSource() const { return fieldUnderlyingSecurityIDSource.getValue( _fixPtr ); }
-   std::string_view getUnderlyingSecurityIDSourceView() const { return fieldUnderlyingSecurityIDSource.offset >= 0 ? std::string_view{ _fixPtr + fieldUnderlyingSecurityIDSource.offset, getValueLength( _fixPtr + fieldUnderlyingSecurityIDSource.offset ) } : std::string_view{}; }
+   std::string_view getUnderlyingSecurityIDSourceView() const { return fieldUnderlyingSecurityIDSource.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingSecurityIDSource.offset, getValueLength( _fixPtr + fieldUnderlyingSecurityIDSource.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingSecurityIDSource() const { return _fixPtr + fieldUnderlyingSecurityIDSource.offset; }
-   const char * getIfSetUnderlyingSecurityIDSource() const { return fieldUnderlyingSecurityIDSource.offset >= 0 ? _fixPtr + fieldUnderlyingSecurityIDSource.offset : nullptr; }
+   const char * ptrToTagUnderlyingSecurityIDSource() const { return _fixPtr + fieldUnderlyingSecurityIDSource.offset - 1 - FieldUnderlyingSecurityIDSource::tagWidth(); }
+   const char * getIfSetUnderlyingSecurityIDSource() const { return fieldUnderlyingSecurityIDSource.offset > 0 ? _fixPtr + fieldUnderlyingSecurityIDSource.offset : nullptr; }
    private: FieldUnderlyingSecurityIDSource fieldUnderlyingSecurityIDSource;
 
    public:
-   bool isSetNoUnderlyingSecurityAltID() const { return fieldNoUnderlyingSecurityAltID.offset >= 0; }
+   bool isSetNoUnderlyingSecurityAltID() const { return fieldNoUnderlyingSecurityAltID.offset > 0; }
    FieldNoUnderlyingSecurityAltID::ValueType getNoUnderlyingSecurityAltID() const { return fieldNoUnderlyingSecurityAltID.getValue( _fixPtr ); }
-   std::string_view getNoUnderlyingSecurityAltIDView() const { return fieldNoUnderlyingSecurityAltID.offset >= 0 ? std::string_view{ _fixPtr + fieldNoUnderlyingSecurityAltID.offset, getValueLength( _fixPtr + fieldNoUnderlyingSecurityAltID.offset ) } : std::string_view{}; }
+   std::string_view getNoUnderlyingSecurityAltIDView() const { return fieldNoUnderlyingSecurityAltID.offset > 0 ? std::string_view{ _fixPtr + fieldNoUnderlyingSecurityAltID.offset, getValueLength( _fixPtr + fieldNoUnderlyingSecurityAltID.offset ) } : std::string_view{}; }
    const char * ptrToNoUnderlyingSecurityAltID() const { return _fixPtr + fieldNoUnderlyingSecurityAltID.offset; }
-   const char * getIfSetNoUnderlyingSecurityAltID() const { return fieldNoUnderlyingSecurityAltID.offset >= 0 ? _fixPtr + fieldNoUnderlyingSecurityAltID.offset : nullptr; }
+   const char * ptrToTagNoUnderlyingSecurityAltID() const { return _fixPtr + fieldNoUnderlyingSecurityAltID.offset - 1 - FieldNoUnderlyingSecurityAltID::tagWidth(); }
+   const char * getIfSetNoUnderlyingSecurityAltID() const { return fieldNoUnderlyingSecurityAltID.offset > 0 ? _fixPtr + fieldNoUnderlyingSecurityAltID.offset : nullptr; }
    private: FieldNoUnderlyingSecurityAltID fieldNoUnderlyingSecurityAltID;
   
    public:
@@ -3606,339 +4034,381 @@ class GroupQuoteSets : public MessageBase
    private: GroupUnderlyingSecurityAltID::Array groupsUnderlyingSecurityAltID{ 10 };
 
    public:
-   bool isSetUnderlyingProduct() const { return fieldUnderlyingProduct.offset >= 0; }
+   bool isSetUnderlyingProduct() const { return fieldUnderlyingProduct.offset > 0; }
    FieldUnderlyingProduct::ValueType getUnderlyingProduct() const { return fieldUnderlyingProduct.getValue( _fixPtr ); }
-   std::string_view getUnderlyingProductView() const { return fieldUnderlyingProduct.offset >= 0 ? std::string_view{ _fixPtr + fieldUnderlyingProduct.offset, getValueLength( _fixPtr + fieldUnderlyingProduct.offset ) } : std::string_view{}; }
+   std::string_view getUnderlyingProductView() const { return fieldUnderlyingProduct.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingProduct.offset, getValueLength( _fixPtr + fieldUnderlyingProduct.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingProduct() const { return _fixPtr + fieldUnderlyingProduct.offset; }
-   const char * getIfSetUnderlyingProduct() const { return fieldUnderlyingProduct.offset >= 0 ? _fixPtr + fieldUnderlyingProduct.offset : nullptr; }
+   const char * ptrToTagUnderlyingProduct() const { return _fixPtr + fieldUnderlyingProduct.offset - 1 - FieldUnderlyingProduct::tagWidth(); }
+   const char * getIfSetUnderlyingProduct() const { return fieldUnderlyingProduct.offset > 0 ? _fixPtr + fieldUnderlyingProduct.offset : nullptr; }
    private: FieldUnderlyingProduct fieldUnderlyingProduct;
 
    public:
-   bool isSetUnderlyingCFICode() const { return fieldUnderlyingCFICode.offset >= 0; }
+   bool isSetUnderlyingCFICode() const { return fieldUnderlyingCFICode.offset > 0; }
    FieldUnderlyingCFICode::ValueType getUnderlyingCFICode() const { return fieldUnderlyingCFICode.getValue( _fixPtr ); }
-   std::string_view getUnderlyingCFICodeView() const { return fieldUnderlyingCFICode.offset >= 0 ? std::string_view{ _fixPtr + fieldUnderlyingCFICode.offset, getValueLength( _fixPtr + fieldUnderlyingCFICode.offset ) } : std::string_view{}; }
+   std::string_view getUnderlyingCFICodeView() const { return fieldUnderlyingCFICode.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingCFICode.offset, getValueLength( _fixPtr + fieldUnderlyingCFICode.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingCFICode() const { return _fixPtr + fieldUnderlyingCFICode.offset; }
-   const char * getIfSetUnderlyingCFICode() const { return fieldUnderlyingCFICode.offset >= 0 ? _fixPtr + fieldUnderlyingCFICode.offset : nullptr; }
+   const char * ptrToTagUnderlyingCFICode() const { return _fixPtr + fieldUnderlyingCFICode.offset - 1 - FieldUnderlyingCFICode::tagWidth(); }
+   const char * getIfSetUnderlyingCFICode() const { return fieldUnderlyingCFICode.offset > 0 ? _fixPtr + fieldUnderlyingCFICode.offset : nullptr; }
    private: FieldUnderlyingCFICode fieldUnderlyingCFICode;
 
    public:
-   bool isSetUnderlyingSecurityType() const { return fieldUnderlyingSecurityType.offset >= 0; }
+   bool isSetUnderlyingSecurityType() const { return fieldUnderlyingSecurityType.offset > 0; }
    FieldUnderlyingSecurityType::ValueType getUnderlyingSecurityType() const { return fieldUnderlyingSecurityType.getValue( _fixPtr ); }
-   std::string_view getUnderlyingSecurityTypeView() const { return fieldUnderlyingSecurityType.offset >= 0 ? std::string_view{ _fixPtr + fieldUnderlyingSecurityType.offset, getValueLength( _fixPtr + fieldUnderlyingSecurityType.offset ) } : std::string_view{}; }
+   std::string_view getUnderlyingSecurityTypeView() const { return fieldUnderlyingSecurityType.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingSecurityType.offset, getValueLength( _fixPtr + fieldUnderlyingSecurityType.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingSecurityType() const { return _fixPtr + fieldUnderlyingSecurityType.offset; }
-   const char * getIfSetUnderlyingSecurityType() const { return fieldUnderlyingSecurityType.offset >= 0 ? _fixPtr + fieldUnderlyingSecurityType.offset : nullptr; }
+   const char * ptrToTagUnderlyingSecurityType() const { return _fixPtr + fieldUnderlyingSecurityType.offset - 1 - FieldUnderlyingSecurityType::tagWidth(); }
+   const char * getIfSetUnderlyingSecurityType() const { return fieldUnderlyingSecurityType.offset > 0 ? _fixPtr + fieldUnderlyingSecurityType.offset : nullptr; }
    private: FieldUnderlyingSecurityType fieldUnderlyingSecurityType;
 
    public:
-   bool isSetUnderlyingSecuritySubType() const { return fieldUnderlyingSecuritySubType.offset >= 0; }
+   bool isSetUnderlyingSecuritySubType() const { return fieldUnderlyingSecuritySubType.offset > 0; }
    FieldUnderlyingSecuritySubType::ValueType getUnderlyingSecuritySubType() const { return fieldUnderlyingSecuritySubType.getValue( _fixPtr ); }
-   std::string_view getUnderlyingSecuritySubTypeView() const { return fieldUnderlyingSecuritySubType.offset >= 0 ? std::string_view{ _fixPtr + fieldUnderlyingSecuritySubType.offset, getValueLength( _fixPtr + fieldUnderlyingSecuritySubType.offset ) } : std::string_view{}; }
+   std::string_view getUnderlyingSecuritySubTypeView() const { return fieldUnderlyingSecuritySubType.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingSecuritySubType.offset, getValueLength( _fixPtr + fieldUnderlyingSecuritySubType.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingSecuritySubType() const { return _fixPtr + fieldUnderlyingSecuritySubType.offset; }
-   const char * getIfSetUnderlyingSecuritySubType() const { return fieldUnderlyingSecuritySubType.offset >= 0 ? _fixPtr + fieldUnderlyingSecuritySubType.offset : nullptr; }
+   const char * ptrToTagUnderlyingSecuritySubType() const { return _fixPtr + fieldUnderlyingSecuritySubType.offset - 1 - FieldUnderlyingSecuritySubType::tagWidth(); }
+   const char * getIfSetUnderlyingSecuritySubType() const { return fieldUnderlyingSecuritySubType.offset > 0 ? _fixPtr + fieldUnderlyingSecuritySubType.offset : nullptr; }
    private: FieldUnderlyingSecuritySubType fieldUnderlyingSecuritySubType;
 
    public:
-   bool isSetUnderlyingMaturityMonthYear() const { return fieldUnderlyingMaturityMonthYear.offset >= 0; }
+   bool isSetUnderlyingMaturityMonthYear() const { return fieldUnderlyingMaturityMonthYear.offset > 0; }
    FieldUnderlyingMaturityMonthYear::ValueType getUnderlyingMaturityMonthYear() const { return fieldUnderlyingMaturityMonthYear.getValue( _fixPtr ); }
-   std::string_view getUnderlyingMaturityMonthYearView() const { return fieldUnderlyingMaturityMonthYear.offset >= 0 ? std::string_view{ _fixPtr + fieldUnderlyingMaturityMonthYear.offset, getValueLength( _fixPtr + fieldUnderlyingMaturityMonthYear.offset ) } : std::string_view{}; }
+   std::string_view getUnderlyingMaturityMonthYearView() const { return fieldUnderlyingMaturityMonthYear.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingMaturityMonthYear.offset, getValueLength( _fixPtr + fieldUnderlyingMaturityMonthYear.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingMaturityMonthYear() const { return _fixPtr + fieldUnderlyingMaturityMonthYear.offset; }
-   const char * getIfSetUnderlyingMaturityMonthYear() const { return fieldUnderlyingMaturityMonthYear.offset >= 0 ? _fixPtr + fieldUnderlyingMaturityMonthYear.offset : nullptr; }
+   const char * ptrToTagUnderlyingMaturityMonthYear() const { return _fixPtr + fieldUnderlyingMaturityMonthYear.offset - 1 - FieldUnderlyingMaturityMonthYear::tagWidth(); }
+   const char * getIfSetUnderlyingMaturityMonthYear() const { return fieldUnderlyingMaturityMonthYear.offset > 0 ? _fixPtr + fieldUnderlyingMaturityMonthYear.offset : nullptr; }
    private: FieldUnderlyingMaturityMonthYear fieldUnderlyingMaturityMonthYear;
 
    public:
-   bool isSetUnderlyingMaturityDate() const { return fieldUnderlyingMaturityDate.offset >= 0; }
+   bool isSetUnderlyingMaturityDate() const { return fieldUnderlyingMaturityDate.offset > 0; }
    FieldUnderlyingMaturityDate::ValueType getUnderlyingMaturityDate() const { return fieldUnderlyingMaturityDate.getValue( _fixPtr ); }
-   std::string_view getUnderlyingMaturityDateView() const { return fieldUnderlyingMaturityDate.offset >= 0 ? std::string_view{ _fixPtr + fieldUnderlyingMaturityDate.offset, getValueLength( _fixPtr + fieldUnderlyingMaturityDate.offset ) } : std::string_view{}; }
+   std::string_view getUnderlyingMaturityDateView() const { return fieldUnderlyingMaturityDate.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingMaturityDate.offset, getValueLength( _fixPtr + fieldUnderlyingMaturityDate.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingMaturityDate() const { return _fixPtr + fieldUnderlyingMaturityDate.offset; }
-   const char * getIfSetUnderlyingMaturityDate() const { return fieldUnderlyingMaturityDate.offset >= 0 ? _fixPtr + fieldUnderlyingMaturityDate.offset : nullptr; }
+   const char * ptrToTagUnderlyingMaturityDate() const { return _fixPtr + fieldUnderlyingMaturityDate.offset - 1 - FieldUnderlyingMaturityDate::tagWidth(); }
+   const char * getIfSetUnderlyingMaturityDate() const { return fieldUnderlyingMaturityDate.offset > 0 ? _fixPtr + fieldUnderlyingMaturityDate.offset : nullptr; }
    private: FieldUnderlyingMaturityDate fieldUnderlyingMaturityDate;
 
    public:
-   bool isSetUnderlyingPutOrCall() const { return fieldUnderlyingPutOrCall.offset >= 0; }
+   bool isSetUnderlyingPutOrCall() const { return fieldUnderlyingPutOrCall.offset > 0; }
    FieldUnderlyingPutOrCall::ValueType getUnderlyingPutOrCall() const { return fieldUnderlyingPutOrCall.getValue( _fixPtr ); }
-   std::string_view getUnderlyingPutOrCallView() const { return fieldUnderlyingPutOrCall.offset >= 0 ? std::string_view{ _fixPtr + fieldUnderlyingPutOrCall.offset, getValueLength( _fixPtr + fieldUnderlyingPutOrCall.offset ) } : std::string_view{}; }
+   std::string_view getUnderlyingPutOrCallView() const { return fieldUnderlyingPutOrCall.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingPutOrCall.offset, getValueLength( _fixPtr + fieldUnderlyingPutOrCall.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingPutOrCall() const { return _fixPtr + fieldUnderlyingPutOrCall.offset; }
-   const char * getIfSetUnderlyingPutOrCall() const { return fieldUnderlyingPutOrCall.offset >= 0 ? _fixPtr + fieldUnderlyingPutOrCall.offset : nullptr; }
+   const char * ptrToTagUnderlyingPutOrCall() const { return _fixPtr + fieldUnderlyingPutOrCall.offset - 1 - FieldUnderlyingPutOrCall::tagWidth(); }
+   const char * getIfSetUnderlyingPutOrCall() const { return fieldUnderlyingPutOrCall.offset > 0 ? _fixPtr + fieldUnderlyingPutOrCall.offset : nullptr; }
    private: FieldUnderlyingPutOrCall fieldUnderlyingPutOrCall;
 
    public:
-   bool isSetUnderlyingCouponPaymentDate() const { return fieldUnderlyingCouponPaymentDate.offset >= 0; }
+   bool isSetUnderlyingCouponPaymentDate() const { return fieldUnderlyingCouponPaymentDate.offset > 0; }
    FieldUnderlyingCouponPaymentDate::ValueType getUnderlyingCouponPaymentDate() const { return fieldUnderlyingCouponPaymentDate.getValue( _fixPtr ); }
-   std::string_view getUnderlyingCouponPaymentDateView() const { return fieldUnderlyingCouponPaymentDate.offset >= 0 ? std::string_view{ _fixPtr + fieldUnderlyingCouponPaymentDate.offset, getValueLength( _fixPtr + fieldUnderlyingCouponPaymentDate.offset ) } : std::string_view{}; }
+   std::string_view getUnderlyingCouponPaymentDateView() const { return fieldUnderlyingCouponPaymentDate.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingCouponPaymentDate.offset, getValueLength( _fixPtr + fieldUnderlyingCouponPaymentDate.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingCouponPaymentDate() const { return _fixPtr + fieldUnderlyingCouponPaymentDate.offset; }
-   const char * getIfSetUnderlyingCouponPaymentDate() const { return fieldUnderlyingCouponPaymentDate.offset >= 0 ? _fixPtr + fieldUnderlyingCouponPaymentDate.offset : nullptr; }
+   const char * ptrToTagUnderlyingCouponPaymentDate() const { return _fixPtr + fieldUnderlyingCouponPaymentDate.offset - 1 - FieldUnderlyingCouponPaymentDate::tagWidth(); }
+   const char * getIfSetUnderlyingCouponPaymentDate() const { return fieldUnderlyingCouponPaymentDate.offset > 0 ? _fixPtr + fieldUnderlyingCouponPaymentDate.offset : nullptr; }
    private: FieldUnderlyingCouponPaymentDate fieldUnderlyingCouponPaymentDate;
 
    public:
-   bool isSetUnderlyingIssueDate() const { return fieldUnderlyingIssueDate.offset >= 0; }
+   bool isSetUnderlyingIssueDate() const { return fieldUnderlyingIssueDate.offset > 0; }
    FieldUnderlyingIssueDate::ValueType getUnderlyingIssueDate() const { return fieldUnderlyingIssueDate.getValue( _fixPtr ); }
-   std::string_view getUnderlyingIssueDateView() const { return fieldUnderlyingIssueDate.offset >= 0 ? std::string_view{ _fixPtr + fieldUnderlyingIssueDate.offset, getValueLength( _fixPtr + fieldUnderlyingIssueDate.offset ) } : std::string_view{}; }
+   std::string_view getUnderlyingIssueDateView() const { return fieldUnderlyingIssueDate.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingIssueDate.offset, getValueLength( _fixPtr + fieldUnderlyingIssueDate.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingIssueDate() const { return _fixPtr + fieldUnderlyingIssueDate.offset; }
-   const char * getIfSetUnderlyingIssueDate() const { return fieldUnderlyingIssueDate.offset >= 0 ? _fixPtr + fieldUnderlyingIssueDate.offset : nullptr; }
+   const char * ptrToTagUnderlyingIssueDate() const { return _fixPtr + fieldUnderlyingIssueDate.offset - 1 - FieldUnderlyingIssueDate::tagWidth(); }
+   const char * getIfSetUnderlyingIssueDate() const { return fieldUnderlyingIssueDate.offset > 0 ? _fixPtr + fieldUnderlyingIssueDate.offset : nullptr; }
    private: FieldUnderlyingIssueDate fieldUnderlyingIssueDate;
 
    public:
-   bool isSetUnderlyingRepoCollateralSecurityType() const { return fieldUnderlyingRepoCollateralSecurityType.offset >= 0; }
+   bool isSetUnderlyingRepoCollateralSecurityType() const { return fieldUnderlyingRepoCollateralSecurityType.offset > 0; }
    FieldUnderlyingRepoCollateralSecurityType::ValueType getUnderlyingRepoCollateralSecurityType() const { return fieldUnderlyingRepoCollateralSecurityType.getValue( _fixPtr ); }
-   std::string_view getUnderlyingRepoCollateralSecurityTypeView() const { return fieldUnderlyingRepoCollateralSecurityType.offset >= 0 ? std::string_view{ _fixPtr + fieldUnderlyingRepoCollateralSecurityType.offset, getValueLength( _fixPtr + fieldUnderlyingRepoCollateralSecurityType.offset ) } : std::string_view{}; }
+   std::string_view getUnderlyingRepoCollateralSecurityTypeView() const { return fieldUnderlyingRepoCollateralSecurityType.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingRepoCollateralSecurityType.offset, getValueLength( _fixPtr + fieldUnderlyingRepoCollateralSecurityType.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingRepoCollateralSecurityType() const { return _fixPtr + fieldUnderlyingRepoCollateralSecurityType.offset; }
-   const char * getIfSetUnderlyingRepoCollateralSecurityType() const { return fieldUnderlyingRepoCollateralSecurityType.offset >= 0 ? _fixPtr + fieldUnderlyingRepoCollateralSecurityType.offset : nullptr; }
+   const char * ptrToTagUnderlyingRepoCollateralSecurityType() const { return _fixPtr + fieldUnderlyingRepoCollateralSecurityType.offset - 1 - FieldUnderlyingRepoCollateralSecurityType::tagWidth(); }
+   const char * getIfSetUnderlyingRepoCollateralSecurityType() const { return fieldUnderlyingRepoCollateralSecurityType.offset > 0 ? _fixPtr + fieldUnderlyingRepoCollateralSecurityType.offset : nullptr; }
    private: FieldUnderlyingRepoCollateralSecurityType fieldUnderlyingRepoCollateralSecurityType;
 
    public:
-   bool isSetUnderlyingRepurchaseTerm() const { return fieldUnderlyingRepurchaseTerm.offset >= 0; }
+   bool isSetUnderlyingRepurchaseTerm() const { return fieldUnderlyingRepurchaseTerm.offset > 0; }
    FieldUnderlyingRepurchaseTerm::ValueType getUnderlyingRepurchaseTerm() const { return fieldUnderlyingRepurchaseTerm.getValue( _fixPtr ); }
-   std::string_view getUnderlyingRepurchaseTermView() const { return fieldUnderlyingRepurchaseTerm.offset >= 0 ? std::string_view{ _fixPtr + fieldUnderlyingRepurchaseTerm.offset, getValueLength( _fixPtr + fieldUnderlyingRepurchaseTerm.offset ) } : std::string_view{}; }
+   std::string_view getUnderlyingRepurchaseTermView() const { return fieldUnderlyingRepurchaseTerm.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingRepurchaseTerm.offset, getValueLength( _fixPtr + fieldUnderlyingRepurchaseTerm.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingRepurchaseTerm() const { return _fixPtr + fieldUnderlyingRepurchaseTerm.offset; }
-   const char * getIfSetUnderlyingRepurchaseTerm() const { return fieldUnderlyingRepurchaseTerm.offset >= 0 ? _fixPtr + fieldUnderlyingRepurchaseTerm.offset : nullptr; }
+   const char * ptrToTagUnderlyingRepurchaseTerm() const { return _fixPtr + fieldUnderlyingRepurchaseTerm.offset - 1 - FieldUnderlyingRepurchaseTerm::tagWidth(); }
+   const char * getIfSetUnderlyingRepurchaseTerm() const { return fieldUnderlyingRepurchaseTerm.offset > 0 ? _fixPtr + fieldUnderlyingRepurchaseTerm.offset : nullptr; }
    private: FieldUnderlyingRepurchaseTerm fieldUnderlyingRepurchaseTerm;
 
    public:
-   bool isSetUnderlyingRepurchaseRate() const { return fieldUnderlyingRepurchaseRate.offset >= 0; }
+   bool isSetUnderlyingRepurchaseRate() const { return fieldUnderlyingRepurchaseRate.offset > 0; }
    FieldUnderlyingRepurchaseRate::ValueType getUnderlyingRepurchaseRate() const { return fieldUnderlyingRepurchaseRate.getValue( _fixPtr ); }
-   std::string_view getUnderlyingRepurchaseRateView() const { return fieldUnderlyingRepurchaseRate.offset >= 0 ? std::string_view{ _fixPtr + fieldUnderlyingRepurchaseRate.offset, getValueLength( _fixPtr + fieldUnderlyingRepurchaseRate.offset ) } : std::string_view{}; }
+   std::string_view getUnderlyingRepurchaseRateView() const { return fieldUnderlyingRepurchaseRate.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingRepurchaseRate.offset, getValueLength( _fixPtr + fieldUnderlyingRepurchaseRate.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingRepurchaseRate() const { return _fixPtr + fieldUnderlyingRepurchaseRate.offset; }
-   const char * getIfSetUnderlyingRepurchaseRate() const { return fieldUnderlyingRepurchaseRate.offset >= 0 ? _fixPtr + fieldUnderlyingRepurchaseRate.offset : nullptr; }
+   const char * ptrToTagUnderlyingRepurchaseRate() const { return _fixPtr + fieldUnderlyingRepurchaseRate.offset - 1 - FieldUnderlyingRepurchaseRate::tagWidth(); }
+   const char * getIfSetUnderlyingRepurchaseRate() const { return fieldUnderlyingRepurchaseRate.offset > 0 ? _fixPtr + fieldUnderlyingRepurchaseRate.offset : nullptr; }
    private: FieldUnderlyingRepurchaseRate fieldUnderlyingRepurchaseRate;
 
    public:
-   bool isSetUnderlyingFactor() const { return fieldUnderlyingFactor.offset >= 0; }
+   bool isSetUnderlyingFactor() const { return fieldUnderlyingFactor.offset > 0; }
    FieldUnderlyingFactor::ValueType getUnderlyingFactor() const { return fieldUnderlyingFactor.getValue( _fixPtr ); }
-   std::string_view getUnderlyingFactorView() const { return fieldUnderlyingFactor.offset >= 0 ? std::string_view{ _fixPtr + fieldUnderlyingFactor.offset, getValueLength( _fixPtr + fieldUnderlyingFactor.offset ) } : std::string_view{}; }
+   std::string_view getUnderlyingFactorView() const { return fieldUnderlyingFactor.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingFactor.offset, getValueLength( _fixPtr + fieldUnderlyingFactor.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingFactor() const { return _fixPtr + fieldUnderlyingFactor.offset; }
-   const char * getIfSetUnderlyingFactor() const { return fieldUnderlyingFactor.offset >= 0 ? _fixPtr + fieldUnderlyingFactor.offset : nullptr; }
+   const char * ptrToTagUnderlyingFactor() const { return _fixPtr + fieldUnderlyingFactor.offset - 1 - FieldUnderlyingFactor::tagWidth(); }
+   const char * getIfSetUnderlyingFactor() const { return fieldUnderlyingFactor.offset > 0 ? _fixPtr + fieldUnderlyingFactor.offset : nullptr; }
    private: FieldUnderlyingFactor fieldUnderlyingFactor;
 
    public:
-   bool isSetUnderlyingCreditRating() const { return fieldUnderlyingCreditRating.offset >= 0; }
+   bool isSetUnderlyingCreditRating() const { return fieldUnderlyingCreditRating.offset > 0; }
    FieldUnderlyingCreditRating::ValueType getUnderlyingCreditRating() const { return fieldUnderlyingCreditRating.getValue( _fixPtr ); }
-   std::string_view getUnderlyingCreditRatingView() const { return fieldUnderlyingCreditRating.offset >= 0 ? std::string_view{ _fixPtr + fieldUnderlyingCreditRating.offset, getValueLength( _fixPtr + fieldUnderlyingCreditRating.offset ) } : std::string_view{}; }
+   std::string_view getUnderlyingCreditRatingView() const { return fieldUnderlyingCreditRating.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingCreditRating.offset, getValueLength( _fixPtr + fieldUnderlyingCreditRating.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingCreditRating() const { return _fixPtr + fieldUnderlyingCreditRating.offset; }
-   const char * getIfSetUnderlyingCreditRating() const { return fieldUnderlyingCreditRating.offset >= 0 ? _fixPtr + fieldUnderlyingCreditRating.offset : nullptr; }
+   const char * ptrToTagUnderlyingCreditRating() const { return _fixPtr + fieldUnderlyingCreditRating.offset - 1 - FieldUnderlyingCreditRating::tagWidth(); }
+   const char * getIfSetUnderlyingCreditRating() const { return fieldUnderlyingCreditRating.offset > 0 ? _fixPtr + fieldUnderlyingCreditRating.offset : nullptr; }
    private: FieldUnderlyingCreditRating fieldUnderlyingCreditRating;
 
    public:
-   bool isSetUnderlyingInstrRegistry() const { return fieldUnderlyingInstrRegistry.offset >= 0; }
+   bool isSetUnderlyingInstrRegistry() const { return fieldUnderlyingInstrRegistry.offset > 0; }
    FieldUnderlyingInstrRegistry::ValueType getUnderlyingInstrRegistry() const { return fieldUnderlyingInstrRegistry.getValue( _fixPtr ); }
-   std::string_view getUnderlyingInstrRegistryView() const { return fieldUnderlyingInstrRegistry.offset >= 0 ? std::string_view{ _fixPtr + fieldUnderlyingInstrRegistry.offset, getValueLength( _fixPtr + fieldUnderlyingInstrRegistry.offset ) } : std::string_view{}; }
+   std::string_view getUnderlyingInstrRegistryView() const { return fieldUnderlyingInstrRegistry.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingInstrRegistry.offset, getValueLength( _fixPtr + fieldUnderlyingInstrRegistry.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingInstrRegistry() const { return _fixPtr + fieldUnderlyingInstrRegistry.offset; }
-   const char * getIfSetUnderlyingInstrRegistry() const { return fieldUnderlyingInstrRegistry.offset >= 0 ? _fixPtr + fieldUnderlyingInstrRegistry.offset : nullptr; }
+   const char * ptrToTagUnderlyingInstrRegistry() const { return _fixPtr + fieldUnderlyingInstrRegistry.offset - 1 - FieldUnderlyingInstrRegistry::tagWidth(); }
+   const char * getIfSetUnderlyingInstrRegistry() const { return fieldUnderlyingInstrRegistry.offset > 0 ? _fixPtr + fieldUnderlyingInstrRegistry.offset : nullptr; }
    private: FieldUnderlyingInstrRegistry fieldUnderlyingInstrRegistry;
 
    public:
-   bool isSetUnderlyingCountryOfIssue() const { return fieldUnderlyingCountryOfIssue.offset >= 0; }
+   bool isSetUnderlyingCountryOfIssue() const { return fieldUnderlyingCountryOfIssue.offset > 0; }
    FieldUnderlyingCountryOfIssue::ValueType getUnderlyingCountryOfIssue() const { return fieldUnderlyingCountryOfIssue.getValue( _fixPtr ); }
-   std::string_view getUnderlyingCountryOfIssueView() const { return fieldUnderlyingCountryOfIssue.offset >= 0 ? std::string_view{ _fixPtr + fieldUnderlyingCountryOfIssue.offset, getValueLength( _fixPtr + fieldUnderlyingCountryOfIssue.offset ) } : std::string_view{}; }
+   std::string_view getUnderlyingCountryOfIssueView() const { return fieldUnderlyingCountryOfIssue.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingCountryOfIssue.offset, getValueLength( _fixPtr + fieldUnderlyingCountryOfIssue.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingCountryOfIssue() const { return _fixPtr + fieldUnderlyingCountryOfIssue.offset; }
-   const char * getIfSetUnderlyingCountryOfIssue() const { return fieldUnderlyingCountryOfIssue.offset >= 0 ? _fixPtr + fieldUnderlyingCountryOfIssue.offset : nullptr; }
+   const char * ptrToTagUnderlyingCountryOfIssue() const { return _fixPtr + fieldUnderlyingCountryOfIssue.offset - 1 - FieldUnderlyingCountryOfIssue::tagWidth(); }
+   const char * getIfSetUnderlyingCountryOfIssue() const { return fieldUnderlyingCountryOfIssue.offset > 0 ? _fixPtr + fieldUnderlyingCountryOfIssue.offset : nullptr; }
    private: FieldUnderlyingCountryOfIssue fieldUnderlyingCountryOfIssue;
 
    public:
-   bool isSetUnderlyingStateOrProvinceOfIssue() const { return fieldUnderlyingStateOrProvinceOfIssue.offset >= 0; }
+   bool isSetUnderlyingStateOrProvinceOfIssue() const { return fieldUnderlyingStateOrProvinceOfIssue.offset > 0; }
    FieldUnderlyingStateOrProvinceOfIssue::ValueType getUnderlyingStateOrProvinceOfIssue() const { return fieldUnderlyingStateOrProvinceOfIssue.getValue( _fixPtr ); }
-   std::string_view getUnderlyingStateOrProvinceOfIssueView() const { return fieldUnderlyingStateOrProvinceOfIssue.offset >= 0 ? std::string_view{ _fixPtr + fieldUnderlyingStateOrProvinceOfIssue.offset, getValueLength( _fixPtr + fieldUnderlyingStateOrProvinceOfIssue.offset ) } : std::string_view{}; }
+   std::string_view getUnderlyingStateOrProvinceOfIssueView() const { return fieldUnderlyingStateOrProvinceOfIssue.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingStateOrProvinceOfIssue.offset, getValueLength( _fixPtr + fieldUnderlyingStateOrProvinceOfIssue.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingStateOrProvinceOfIssue() const { return _fixPtr + fieldUnderlyingStateOrProvinceOfIssue.offset; }
-   const char * getIfSetUnderlyingStateOrProvinceOfIssue() const { return fieldUnderlyingStateOrProvinceOfIssue.offset >= 0 ? _fixPtr + fieldUnderlyingStateOrProvinceOfIssue.offset : nullptr; }
+   const char * ptrToTagUnderlyingStateOrProvinceOfIssue() const { return _fixPtr + fieldUnderlyingStateOrProvinceOfIssue.offset - 1 - FieldUnderlyingStateOrProvinceOfIssue::tagWidth(); }
+   const char * getIfSetUnderlyingStateOrProvinceOfIssue() const { return fieldUnderlyingStateOrProvinceOfIssue.offset > 0 ? _fixPtr + fieldUnderlyingStateOrProvinceOfIssue.offset : nullptr; }
    private: FieldUnderlyingStateOrProvinceOfIssue fieldUnderlyingStateOrProvinceOfIssue;
 
    public:
-   bool isSetUnderlyingLocaleOfIssue() const { return fieldUnderlyingLocaleOfIssue.offset >= 0; }
+   bool isSetUnderlyingLocaleOfIssue() const { return fieldUnderlyingLocaleOfIssue.offset > 0; }
    FieldUnderlyingLocaleOfIssue::ValueType getUnderlyingLocaleOfIssue() const { return fieldUnderlyingLocaleOfIssue.getValue( _fixPtr ); }
-   std::string_view getUnderlyingLocaleOfIssueView() const { return fieldUnderlyingLocaleOfIssue.offset >= 0 ? std::string_view{ _fixPtr + fieldUnderlyingLocaleOfIssue.offset, getValueLength( _fixPtr + fieldUnderlyingLocaleOfIssue.offset ) } : std::string_view{}; }
+   std::string_view getUnderlyingLocaleOfIssueView() const { return fieldUnderlyingLocaleOfIssue.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingLocaleOfIssue.offset, getValueLength( _fixPtr + fieldUnderlyingLocaleOfIssue.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingLocaleOfIssue() const { return _fixPtr + fieldUnderlyingLocaleOfIssue.offset; }
-   const char * getIfSetUnderlyingLocaleOfIssue() const { return fieldUnderlyingLocaleOfIssue.offset >= 0 ? _fixPtr + fieldUnderlyingLocaleOfIssue.offset : nullptr; }
+   const char * ptrToTagUnderlyingLocaleOfIssue() const { return _fixPtr + fieldUnderlyingLocaleOfIssue.offset - 1 - FieldUnderlyingLocaleOfIssue::tagWidth(); }
+   const char * getIfSetUnderlyingLocaleOfIssue() const { return fieldUnderlyingLocaleOfIssue.offset > 0 ? _fixPtr + fieldUnderlyingLocaleOfIssue.offset : nullptr; }
    private: FieldUnderlyingLocaleOfIssue fieldUnderlyingLocaleOfIssue;
 
    public:
-   bool isSetUnderlyingRedemptionDate() const { return fieldUnderlyingRedemptionDate.offset >= 0; }
+   bool isSetUnderlyingRedemptionDate() const { return fieldUnderlyingRedemptionDate.offset > 0; }
    FieldUnderlyingRedemptionDate::ValueType getUnderlyingRedemptionDate() const { return fieldUnderlyingRedemptionDate.getValue( _fixPtr ); }
-   std::string_view getUnderlyingRedemptionDateView() const { return fieldUnderlyingRedemptionDate.offset >= 0 ? std::string_view{ _fixPtr + fieldUnderlyingRedemptionDate.offset, getValueLength( _fixPtr + fieldUnderlyingRedemptionDate.offset ) } : std::string_view{}; }
+   std::string_view getUnderlyingRedemptionDateView() const { return fieldUnderlyingRedemptionDate.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingRedemptionDate.offset, getValueLength( _fixPtr + fieldUnderlyingRedemptionDate.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingRedemptionDate() const { return _fixPtr + fieldUnderlyingRedemptionDate.offset; }
-   const char * getIfSetUnderlyingRedemptionDate() const { return fieldUnderlyingRedemptionDate.offset >= 0 ? _fixPtr + fieldUnderlyingRedemptionDate.offset : nullptr; }
+   const char * ptrToTagUnderlyingRedemptionDate() const { return _fixPtr + fieldUnderlyingRedemptionDate.offset - 1 - FieldUnderlyingRedemptionDate::tagWidth(); }
+   const char * getIfSetUnderlyingRedemptionDate() const { return fieldUnderlyingRedemptionDate.offset > 0 ? _fixPtr + fieldUnderlyingRedemptionDate.offset : nullptr; }
    private: FieldUnderlyingRedemptionDate fieldUnderlyingRedemptionDate;
 
    public:
-   bool isSetUnderlyingStrikePrice() const { return fieldUnderlyingStrikePrice.offset >= 0; }
+   bool isSetUnderlyingStrikePrice() const { return fieldUnderlyingStrikePrice.offset > 0; }
    FieldUnderlyingStrikePrice::ValueType getUnderlyingStrikePrice() const { return fieldUnderlyingStrikePrice.getValue( _fixPtr ); }
-   std::string_view getUnderlyingStrikePriceView() const { return fieldUnderlyingStrikePrice.offset >= 0 ? std::string_view{ _fixPtr + fieldUnderlyingStrikePrice.offset, getValueLength( _fixPtr + fieldUnderlyingStrikePrice.offset ) } : std::string_view{}; }
+   std::string_view getUnderlyingStrikePriceView() const { return fieldUnderlyingStrikePrice.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingStrikePrice.offset, getValueLength( _fixPtr + fieldUnderlyingStrikePrice.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingStrikePrice() const { return _fixPtr + fieldUnderlyingStrikePrice.offset; }
-   const char * getIfSetUnderlyingStrikePrice() const { return fieldUnderlyingStrikePrice.offset >= 0 ? _fixPtr + fieldUnderlyingStrikePrice.offset : nullptr; }
+   const char * ptrToTagUnderlyingStrikePrice() const { return _fixPtr + fieldUnderlyingStrikePrice.offset - 1 - FieldUnderlyingStrikePrice::tagWidth(); }
+   const char * getIfSetUnderlyingStrikePrice() const { return fieldUnderlyingStrikePrice.offset > 0 ? _fixPtr + fieldUnderlyingStrikePrice.offset : nullptr; }
    private: FieldUnderlyingStrikePrice fieldUnderlyingStrikePrice;
 
    public:
-   bool isSetUnderlyingStrikeCurrency() const { return fieldUnderlyingStrikeCurrency.offset >= 0; }
+   bool isSetUnderlyingStrikeCurrency() const { return fieldUnderlyingStrikeCurrency.offset > 0; }
    FieldUnderlyingStrikeCurrency::ValueType getUnderlyingStrikeCurrency() const { return fieldUnderlyingStrikeCurrency.getValue( _fixPtr ); }
-   std::string_view getUnderlyingStrikeCurrencyView() const { return fieldUnderlyingStrikeCurrency.offset >= 0 ? std::string_view{ _fixPtr + fieldUnderlyingStrikeCurrency.offset, getValueLength( _fixPtr + fieldUnderlyingStrikeCurrency.offset ) } : std::string_view{}; }
+   std::string_view getUnderlyingStrikeCurrencyView() const { return fieldUnderlyingStrikeCurrency.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingStrikeCurrency.offset, getValueLength( _fixPtr + fieldUnderlyingStrikeCurrency.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingStrikeCurrency() const { return _fixPtr + fieldUnderlyingStrikeCurrency.offset; }
-   const char * getIfSetUnderlyingStrikeCurrency() const { return fieldUnderlyingStrikeCurrency.offset >= 0 ? _fixPtr + fieldUnderlyingStrikeCurrency.offset : nullptr; }
+   const char * ptrToTagUnderlyingStrikeCurrency() const { return _fixPtr + fieldUnderlyingStrikeCurrency.offset - 1 - FieldUnderlyingStrikeCurrency::tagWidth(); }
+   const char * getIfSetUnderlyingStrikeCurrency() const { return fieldUnderlyingStrikeCurrency.offset > 0 ? _fixPtr + fieldUnderlyingStrikeCurrency.offset : nullptr; }
    private: FieldUnderlyingStrikeCurrency fieldUnderlyingStrikeCurrency;
 
    public:
-   bool isSetUnderlyingOptAttribute() const { return fieldUnderlyingOptAttribute.offset >= 0; }
+   bool isSetUnderlyingOptAttribute() const { return fieldUnderlyingOptAttribute.offset > 0; }
    FieldUnderlyingOptAttribute::ValueType getUnderlyingOptAttribute() const { return fieldUnderlyingOptAttribute.getValue( _fixPtr ); }
-   std::string_view getUnderlyingOptAttributeView() const { return fieldUnderlyingOptAttribute.offset >= 0 ? std::string_view{ _fixPtr + fieldUnderlyingOptAttribute.offset, getValueLength( _fixPtr + fieldUnderlyingOptAttribute.offset ) } : std::string_view{}; }
+   std::string_view getUnderlyingOptAttributeView() const { return fieldUnderlyingOptAttribute.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingOptAttribute.offset, getValueLength( _fixPtr + fieldUnderlyingOptAttribute.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingOptAttribute() const { return _fixPtr + fieldUnderlyingOptAttribute.offset; }
-   const char * getIfSetUnderlyingOptAttribute() const { return fieldUnderlyingOptAttribute.offset >= 0 ? _fixPtr + fieldUnderlyingOptAttribute.offset : nullptr; }
+   const char * ptrToTagUnderlyingOptAttribute() const { return _fixPtr + fieldUnderlyingOptAttribute.offset - 1 - FieldUnderlyingOptAttribute::tagWidth(); }
+   const char * getIfSetUnderlyingOptAttribute() const { return fieldUnderlyingOptAttribute.offset > 0 ? _fixPtr + fieldUnderlyingOptAttribute.offset : nullptr; }
    private: FieldUnderlyingOptAttribute fieldUnderlyingOptAttribute;
 
    public:
-   bool isSetUnderlyingContractMultiplier() const { return fieldUnderlyingContractMultiplier.offset >= 0; }
+   bool isSetUnderlyingContractMultiplier() const { return fieldUnderlyingContractMultiplier.offset > 0; }
    FieldUnderlyingContractMultiplier::ValueType getUnderlyingContractMultiplier() const { return fieldUnderlyingContractMultiplier.getValue( _fixPtr ); }
-   std::string_view getUnderlyingContractMultiplierView() const { return fieldUnderlyingContractMultiplier.offset >= 0 ? std::string_view{ _fixPtr + fieldUnderlyingContractMultiplier.offset, getValueLength( _fixPtr + fieldUnderlyingContractMultiplier.offset ) } : std::string_view{}; }
+   std::string_view getUnderlyingContractMultiplierView() const { return fieldUnderlyingContractMultiplier.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingContractMultiplier.offset, getValueLength( _fixPtr + fieldUnderlyingContractMultiplier.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingContractMultiplier() const { return _fixPtr + fieldUnderlyingContractMultiplier.offset; }
-   const char * getIfSetUnderlyingContractMultiplier() const { return fieldUnderlyingContractMultiplier.offset >= 0 ? _fixPtr + fieldUnderlyingContractMultiplier.offset : nullptr; }
+   const char * ptrToTagUnderlyingContractMultiplier() const { return _fixPtr + fieldUnderlyingContractMultiplier.offset - 1 - FieldUnderlyingContractMultiplier::tagWidth(); }
+   const char * getIfSetUnderlyingContractMultiplier() const { return fieldUnderlyingContractMultiplier.offset > 0 ? _fixPtr + fieldUnderlyingContractMultiplier.offset : nullptr; }
    private: FieldUnderlyingContractMultiplier fieldUnderlyingContractMultiplier;
 
    public:
-   bool isSetUnderlyingCouponRate() const { return fieldUnderlyingCouponRate.offset >= 0; }
+   bool isSetUnderlyingCouponRate() const { return fieldUnderlyingCouponRate.offset > 0; }
    FieldUnderlyingCouponRate::ValueType getUnderlyingCouponRate() const { return fieldUnderlyingCouponRate.getValue( _fixPtr ); }
-   std::string_view getUnderlyingCouponRateView() const { return fieldUnderlyingCouponRate.offset >= 0 ? std::string_view{ _fixPtr + fieldUnderlyingCouponRate.offset, getValueLength( _fixPtr + fieldUnderlyingCouponRate.offset ) } : std::string_view{}; }
+   std::string_view getUnderlyingCouponRateView() const { return fieldUnderlyingCouponRate.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingCouponRate.offset, getValueLength( _fixPtr + fieldUnderlyingCouponRate.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingCouponRate() const { return _fixPtr + fieldUnderlyingCouponRate.offset; }
-   const char * getIfSetUnderlyingCouponRate() const { return fieldUnderlyingCouponRate.offset >= 0 ? _fixPtr + fieldUnderlyingCouponRate.offset : nullptr; }
+   const char * ptrToTagUnderlyingCouponRate() const { return _fixPtr + fieldUnderlyingCouponRate.offset - 1 - FieldUnderlyingCouponRate::tagWidth(); }
+   const char * getIfSetUnderlyingCouponRate() const { return fieldUnderlyingCouponRate.offset > 0 ? _fixPtr + fieldUnderlyingCouponRate.offset : nullptr; }
    private: FieldUnderlyingCouponRate fieldUnderlyingCouponRate;
 
    public:
-   bool isSetUnderlyingSecurityExchange() const { return fieldUnderlyingSecurityExchange.offset >= 0; }
+   bool isSetUnderlyingSecurityExchange() const { return fieldUnderlyingSecurityExchange.offset > 0; }
    FieldUnderlyingSecurityExchange::ValueType getUnderlyingSecurityExchange() const { return fieldUnderlyingSecurityExchange.getValue( _fixPtr ); }
-   std::string_view getUnderlyingSecurityExchangeView() const { return fieldUnderlyingSecurityExchange.offset >= 0 ? std::string_view{ _fixPtr + fieldUnderlyingSecurityExchange.offset, getValueLength( _fixPtr + fieldUnderlyingSecurityExchange.offset ) } : std::string_view{}; }
+   std::string_view getUnderlyingSecurityExchangeView() const { return fieldUnderlyingSecurityExchange.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingSecurityExchange.offset, getValueLength( _fixPtr + fieldUnderlyingSecurityExchange.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingSecurityExchange() const { return _fixPtr + fieldUnderlyingSecurityExchange.offset; }
-   const char * getIfSetUnderlyingSecurityExchange() const { return fieldUnderlyingSecurityExchange.offset >= 0 ? _fixPtr + fieldUnderlyingSecurityExchange.offset : nullptr; }
+   const char * ptrToTagUnderlyingSecurityExchange() const { return _fixPtr + fieldUnderlyingSecurityExchange.offset - 1 - FieldUnderlyingSecurityExchange::tagWidth(); }
+   const char * getIfSetUnderlyingSecurityExchange() const { return fieldUnderlyingSecurityExchange.offset > 0 ? _fixPtr + fieldUnderlyingSecurityExchange.offset : nullptr; }
    private: FieldUnderlyingSecurityExchange fieldUnderlyingSecurityExchange;
 
    public:
-   bool isSetUnderlyingIssuer() const { return fieldUnderlyingIssuer.offset >= 0; }
+   bool isSetUnderlyingIssuer() const { return fieldUnderlyingIssuer.offset > 0; }
    FieldUnderlyingIssuer::ValueType getUnderlyingIssuer() const { return fieldUnderlyingIssuer.getValue( _fixPtr ); }
-   std::string_view getUnderlyingIssuerView() const { return fieldUnderlyingIssuer.offset >= 0 ? std::string_view{ _fixPtr + fieldUnderlyingIssuer.offset, getValueLength( _fixPtr + fieldUnderlyingIssuer.offset ) } : std::string_view{}; }
+   std::string_view getUnderlyingIssuerView() const { return fieldUnderlyingIssuer.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingIssuer.offset, getValueLength( _fixPtr + fieldUnderlyingIssuer.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingIssuer() const { return _fixPtr + fieldUnderlyingIssuer.offset; }
-   const char * getIfSetUnderlyingIssuer() const { return fieldUnderlyingIssuer.offset >= 0 ? _fixPtr + fieldUnderlyingIssuer.offset : nullptr; }
+   const char * ptrToTagUnderlyingIssuer() const { return _fixPtr + fieldUnderlyingIssuer.offset - 1 - FieldUnderlyingIssuer::tagWidth(); }
+   const char * getIfSetUnderlyingIssuer() const { return fieldUnderlyingIssuer.offset > 0 ? _fixPtr + fieldUnderlyingIssuer.offset : nullptr; }
    private: FieldUnderlyingIssuer fieldUnderlyingIssuer;
 
    public:
-   bool isSetEncodedUnderlyingIssuerLen() const { return fieldEncodedUnderlyingIssuerLen.offset >= 0; }
+   bool isSetEncodedUnderlyingIssuerLen() const { return fieldEncodedUnderlyingIssuerLen.offset > 0; }
    FieldEncodedUnderlyingIssuerLen::ValueType getEncodedUnderlyingIssuerLen() const { return fieldEncodedUnderlyingIssuerLen.getValue( _fixPtr ); }
-   std::string_view getEncodedUnderlyingIssuerLenView() const { return fieldEncodedUnderlyingIssuerLen.offset >= 0 ? std::string_view{ _fixPtr + fieldEncodedUnderlyingIssuerLen.offset, getValueLength( _fixPtr + fieldEncodedUnderlyingIssuerLen.offset ) } : std::string_view{}; }
+   std::string_view getEncodedUnderlyingIssuerLenView() const { return fieldEncodedUnderlyingIssuerLen.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedUnderlyingIssuerLen.offset, getValueLength( _fixPtr + fieldEncodedUnderlyingIssuerLen.offset ) } : std::string_view{}; }
    const char * ptrToEncodedUnderlyingIssuerLen() const { return _fixPtr + fieldEncodedUnderlyingIssuerLen.offset; }
-   const char * getIfSetEncodedUnderlyingIssuerLen() const { return fieldEncodedUnderlyingIssuerLen.offset >= 0 ? _fixPtr + fieldEncodedUnderlyingIssuerLen.offset : nullptr; }
+   const char * ptrToTagEncodedUnderlyingIssuerLen() const { return _fixPtr + fieldEncodedUnderlyingIssuerLen.offset - 1 - FieldEncodedUnderlyingIssuerLen::tagWidth(); }
+   const char * getIfSetEncodedUnderlyingIssuerLen() const { return fieldEncodedUnderlyingIssuerLen.offset > 0 ? _fixPtr + fieldEncodedUnderlyingIssuerLen.offset : nullptr; }
    private: FieldEncodedUnderlyingIssuerLen fieldEncodedUnderlyingIssuerLen;
 
    public:
-   bool isSetEncodedUnderlyingIssuer() const { return fieldEncodedUnderlyingIssuer.offset >= 0; }
+   bool isSetEncodedUnderlyingIssuer() const { return fieldEncodedUnderlyingIssuer.offset > 0; }
    FieldEncodedUnderlyingIssuer::ValueType getEncodedUnderlyingIssuer() const { return fieldEncodedUnderlyingIssuer.getValue( _fixPtr ); }
-   std::string_view getEncodedUnderlyingIssuerView() const { return fieldEncodedUnderlyingIssuer.offset >= 0 ? std::string_view{ _fixPtr + fieldEncodedUnderlyingIssuer.offset, getValueLength( _fixPtr + fieldEncodedUnderlyingIssuer.offset ) } : std::string_view{}; }
+   std::string_view getEncodedUnderlyingIssuerView() const { return fieldEncodedUnderlyingIssuer.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedUnderlyingIssuer.offset, getValueLength( _fixPtr + fieldEncodedUnderlyingIssuer.offset ) } : std::string_view{}; }
    const char * ptrToEncodedUnderlyingIssuer() const { return _fixPtr + fieldEncodedUnderlyingIssuer.offset; }
-   const char * getIfSetEncodedUnderlyingIssuer() const { return fieldEncodedUnderlyingIssuer.offset >= 0 ? _fixPtr + fieldEncodedUnderlyingIssuer.offset : nullptr; }
+   const char * ptrToTagEncodedUnderlyingIssuer() const { return _fixPtr + fieldEncodedUnderlyingIssuer.offset - 1 - FieldEncodedUnderlyingIssuer::tagWidth(); }
+   const char * getIfSetEncodedUnderlyingIssuer() const { return fieldEncodedUnderlyingIssuer.offset > 0 ? _fixPtr + fieldEncodedUnderlyingIssuer.offset : nullptr; }
    private: FieldEncodedUnderlyingIssuer fieldEncodedUnderlyingIssuer;
 
    public:
-   bool isSetUnderlyingSecurityDesc() const { return fieldUnderlyingSecurityDesc.offset >= 0; }
+   bool isSetUnderlyingSecurityDesc() const { return fieldUnderlyingSecurityDesc.offset > 0; }
    FieldUnderlyingSecurityDesc::ValueType getUnderlyingSecurityDesc() const { return fieldUnderlyingSecurityDesc.getValue( _fixPtr ); }
-   std::string_view getUnderlyingSecurityDescView() const { return fieldUnderlyingSecurityDesc.offset >= 0 ? std::string_view{ _fixPtr + fieldUnderlyingSecurityDesc.offset, getValueLength( _fixPtr + fieldUnderlyingSecurityDesc.offset ) } : std::string_view{}; }
+   std::string_view getUnderlyingSecurityDescView() const { return fieldUnderlyingSecurityDesc.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingSecurityDesc.offset, getValueLength( _fixPtr + fieldUnderlyingSecurityDesc.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingSecurityDesc() const { return _fixPtr + fieldUnderlyingSecurityDesc.offset; }
-   const char * getIfSetUnderlyingSecurityDesc() const { return fieldUnderlyingSecurityDesc.offset >= 0 ? _fixPtr + fieldUnderlyingSecurityDesc.offset : nullptr; }
+   const char * ptrToTagUnderlyingSecurityDesc() const { return _fixPtr + fieldUnderlyingSecurityDesc.offset - 1 - FieldUnderlyingSecurityDesc::tagWidth(); }
+   const char * getIfSetUnderlyingSecurityDesc() const { return fieldUnderlyingSecurityDesc.offset > 0 ? _fixPtr + fieldUnderlyingSecurityDesc.offset : nullptr; }
    private: FieldUnderlyingSecurityDesc fieldUnderlyingSecurityDesc;
 
    public:
-   bool isSetEncodedUnderlyingSecurityDescLen() const { return fieldEncodedUnderlyingSecurityDescLen.offset >= 0; }
+   bool isSetEncodedUnderlyingSecurityDescLen() const { return fieldEncodedUnderlyingSecurityDescLen.offset > 0; }
    FieldEncodedUnderlyingSecurityDescLen::ValueType getEncodedUnderlyingSecurityDescLen() const { return fieldEncodedUnderlyingSecurityDescLen.getValue( _fixPtr ); }
-   std::string_view getEncodedUnderlyingSecurityDescLenView() const { return fieldEncodedUnderlyingSecurityDescLen.offset >= 0 ? std::string_view{ _fixPtr + fieldEncodedUnderlyingSecurityDescLen.offset, getValueLength( _fixPtr + fieldEncodedUnderlyingSecurityDescLen.offset ) } : std::string_view{}; }
+   std::string_view getEncodedUnderlyingSecurityDescLenView() const { return fieldEncodedUnderlyingSecurityDescLen.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedUnderlyingSecurityDescLen.offset, getValueLength( _fixPtr + fieldEncodedUnderlyingSecurityDescLen.offset ) } : std::string_view{}; }
    const char * ptrToEncodedUnderlyingSecurityDescLen() const { return _fixPtr + fieldEncodedUnderlyingSecurityDescLen.offset; }
-   const char * getIfSetEncodedUnderlyingSecurityDescLen() const { return fieldEncodedUnderlyingSecurityDescLen.offset >= 0 ? _fixPtr + fieldEncodedUnderlyingSecurityDescLen.offset : nullptr; }
+   const char * ptrToTagEncodedUnderlyingSecurityDescLen() const { return _fixPtr + fieldEncodedUnderlyingSecurityDescLen.offset - 1 - FieldEncodedUnderlyingSecurityDescLen::tagWidth(); }
+   const char * getIfSetEncodedUnderlyingSecurityDescLen() const { return fieldEncodedUnderlyingSecurityDescLen.offset > 0 ? _fixPtr + fieldEncodedUnderlyingSecurityDescLen.offset : nullptr; }
    private: FieldEncodedUnderlyingSecurityDescLen fieldEncodedUnderlyingSecurityDescLen;
 
    public:
-   bool isSetEncodedUnderlyingSecurityDesc() const { return fieldEncodedUnderlyingSecurityDesc.offset >= 0; }
+   bool isSetEncodedUnderlyingSecurityDesc() const { return fieldEncodedUnderlyingSecurityDesc.offset > 0; }
    FieldEncodedUnderlyingSecurityDesc::ValueType getEncodedUnderlyingSecurityDesc() const { return fieldEncodedUnderlyingSecurityDesc.getValue( _fixPtr ); }
-   std::string_view getEncodedUnderlyingSecurityDescView() const { return fieldEncodedUnderlyingSecurityDesc.offset >= 0 ? std::string_view{ _fixPtr + fieldEncodedUnderlyingSecurityDesc.offset, getValueLength( _fixPtr + fieldEncodedUnderlyingSecurityDesc.offset ) } : std::string_view{}; }
+   std::string_view getEncodedUnderlyingSecurityDescView() const { return fieldEncodedUnderlyingSecurityDesc.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedUnderlyingSecurityDesc.offset, getValueLength( _fixPtr + fieldEncodedUnderlyingSecurityDesc.offset ) } : std::string_view{}; }
    const char * ptrToEncodedUnderlyingSecurityDesc() const { return _fixPtr + fieldEncodedUnderlyingSecurityDesc.offset; }
-   const char * getIfSetEncodedUnderlyingSecurityDesc() const { return fieldEncodedUnderlyingSecurityDesc.offset >= 0 ? _fixPtr + fieldEncodedUnderlyingSecurityDesc.offset : nullptr; }
+   const char * ptrToTagEncodedUnderlyingSecurityDesc() const { return _fixPtr + fieldEncodedUnderlyingSecurityDesc.offset - 1 - FieldEncodedUnderlyingSecurityDesc::tagWidth(); }
+   const char * getIfSetEncodedUnderlyingSecurityDesc() const { return fieldEncodedUnderlyingSecurityDesc.offset > 0 ? _fixPtr + fieldEncodedUnderlyingSecurityDesc.offset : nullptr; }
    private: FieldEncodedUnderlyingSecurityDesc fieldEncodedUnderlyingSecurityDesc;
 
    public:
-   bool isSetUnderlyingCPProgram() const { return fieldUnderlyingCPProgram.offset >= 0; }
+   bool isSetUnderlyingCPProgram() const { return fieldUnderlyingCPProgram.offset > 0; }
    FieldUnderlyingCPProgram::ValueType getUnderlyingCPProgram() const { return fieldUnderlyingCPProgram.getValue( _fixPtr ); }
-   std::string_view getUnderlyingCPProgramView() const { return fieldUnderlyingCPProgram.offset >= 0 ? std::string_view{ _fixPtr + fieldUnderlyingCPProgram.offset, getValueLength( _fixPtr + fieldUnderlyingCPProgram.offset ) } : std::string_view{}; }
+   std::string_view getUnderlyingCPProgramView() const { return fieldUnderlyingCPProgram.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingCPProgram.offset, getValueLength( _fixPtr + fieldUnderlyingCPProgram.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingCPProgram() const { return _fixPtr + fieldUnderlyingCPProgram.offset; }
-   const char * getIfSetUnderlyingCPProgram() const { return fieldUnderlyingCPProgram.offset >= 0 ? _fixPtr + fieldUnderlyingCPProgram.offset : nullptr; }
+   const char * ptrToTagUnderlyingCPProgram() const { return _fixPtr + fieldUnderlyingCPProgram.offset - 1 - FieldUnderlyingCPProgram::tagWidth(); }
+   const char * getIfSetUnderlyingCPProgram() const { return fieldUnderlyingCPProgram.offset > 0 ? _fixPtr + fieldUnderlyingCPProgram.offset : nullptr; }
    private: FieldUnderlyingCPProgram fieldUnderlyingCPProgram;
 
    public:
-   bool isSetUnderlyingCPRegType() const { return fieldUnderlyingCPRegType.offset >= 0; }
+   bool isSetUnderlyingCPRegType() const { return fieldUnderlyingCPRegType.offset > 0; }
    FieldUnderlyingCPRegType::ValueType getUnderlyingCPRegType() const { return fieldUnderlyingCPRegType.getValue( _fixPtr ); }
-   std::string_view getUnderlyingCPRegTypeView() const { return fieldUnderlyingCPRegType.offset >= 0 ? std::string_view{ _fixPtr + fieldUnderlyingCPRegType.offset, getValueLength( _fixPtr + fieldUnderlyingCPRegType.offset ) } : std::string_view{}; }
+   std::string_view getUnderlyingCPRegTypeView() const { return fieldUnderlyingCPRegType.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingCPRegType.offset, getValueLength( _fixPtr + fieldUnderlyingCPRegType.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingCPRegType() const { return _fixPtr + fieldUnderlyingCPRegType.offset; }
-   const char * getIfSetUnderlyingCPRegType() const { return fieldUnderlyingCPRegType.offset >= 0 ? _fixPtr + fieldUnderlyingCPRegType.offset : nullptr; }
+   const char * ptrToTagUnderlyingCPRegType() const { return _fixPtr + fieldUnderlyingCPRegType.offset - 1 - FieldUnderlyingCPRegType::tagWidth(); }
+   const char * getIfSetUnderlyingCPRegType() const { return fieldUnderlyingCPRegType.offset > 0 ? _fixPtr + fieldUnderlyingCPRegType.offset : nullptr; }
    private: FieldUnderlyingCPRegType fieldUnderlyingCPRegType;
 
    public:
-   bool isSetUnderlyingCurrency() const { return fieldUnderlyingCurrency.offset >= 0; }
+   bool isSetUnderlyingCurrency() const { return fieldUnderlyingCurrency.offset > 0; }
    FieldUnderlyingCurrency::ValueType getUnderlyingCurrency() const { return fieldUnderlyingCurrency.getValue( _fixPtr ); }
-   std::string_view getUnderlyingCurrencyView() const { return fieldUnderlyingCurrency.offset >= 0 ? std::string_view{ _fixPtr + fieldUnderlyingCurrency.offset, getValueLength( _fixPtr + fieldUnderlyingCurrency.offset ) } : std::string_view{}; }
+   std::string_view getUnderlyingCurrencyView() const { return fieldUnderlyingCurrency.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingCurrency.offset, getValueLength( _fixPtr + fieldUnderlyingCurrency.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingCurrency() const { return _fixPtr + fieldUnderlyingCurrency.offset; }
-   const char * getIfSetUnderlyingCurrency() const { return fieldUnderlyingCurrency.offset >= 0 ? _fixPtr + fieldUnderlyingCurrency.offset : nullptr; }
+   const char * ptrToTagUnderlyingCurrency() const { return _fixPtr + fieldUnderlyingCurrency.offset - 1 - FieldUnderlyingCurrency::tagWidth(); }
+   const char * getIfSetUnderlyingCurrency() const { return fieldUnderlyingCurrency.offset > 0 ? _fixPtr + fieldUnderlyingCurrency.offset : nullptr; }
    private: FieldUnderlyingCurrency fieldUnderlyingCurrency;
 
    public:
-   bool isSetUnderlyingQty() const { return fieldUnderlyingQty.offset >= 0; }
+   bool isSetUnderlyingQty() const { return fieldUnderlyingQty.offset > 0; }
    FieldUnderlyingQty::ValueType getUnderlyingQty() const { return fieldUnderlyingQty.getValue( _fixPtr ); }
-   std::string_view getUnderlyingQtyView() const { return fieldUnderlyingQty.offset >= 0 ? std::string_view{ _fixPtr + fieldUnderlyingQty.offset, getValueLength( _fixPtr + fieldUnderlyingQty.offset ) } : std::string_view{}; }
+   std::string_view getUnderlyingQtyView() const { return fieldUnderlyingQty.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingQty.offset, getValueLength( _fixPtr + fieldUnderlyingQty.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingQty() const { return _fixPtr + fieldUnderlyingQty.offset; }
-   const char * getIfSetUnderlyingQty() const { return fieldUnderlyingQty.offset >= 0 ? _fixPtr + fieldUnderlyingQty.offset : nullptr; }
+   const char * ptrToTagUnderlyingQty() const { return _fixPtr + fieldUnderlyingQty.offset - 1 - FieldUnderlyingQty::tagWidth(); }
+   const char * getIfSetUnderlyingQty() const { return fieldUnderlyingQty.offset > 0 ? _fixPtr + fieldUnderlyingQty.offset : nullptr; }
    private: FieldUnderlyingQty fieldUnderlyingQty;
 
    public:
-   bool isSetUnderlyingPx() const { return fieldUnderlyingPx.offset >= 0; }
+   bool isSetUnderlyingPx() const { return fieldUnderlyingPx.offset > 0; }
    FieldUnderlyingPx::ValueType getUnderlyingPx() const { return fieldUnderlyingPx.getValue( _fixPtr ); }
-   std::string_view getUnderlyingPxView() const { return fieldUnderlyingPx.offset >= 0 ? std::string_view{ _fixPtr + fieldUnderlyingPx.offset, getValueLength( _fixPtr + fieldUnderlyingPx.offset ) } : std::string_view{}; }
+   std::string_view getUnderlyingPxView() const { return fieldUnderlyingPx.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingPx.offset, getValueLength( _fixPtr + fieldUnderlyingPx.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingPx() const { return _fixPtr + fieldUnderlyingPx.offset; }
-   const char * getIfSetUnderlyingPx() const { return fieldUnderlyingPx.offset >= 0 ? _fixPtr + fieldUnderlyingPx.offset : nullptr; }
+   const char * ptrToTagUnderlyingPx() const { return _fixPtr + fieldUnderlyingPx.offset - 1 - FieldUnderlyingPx::tagWidth(); }
+   const char * getIfSetUnderlyingPx() const { return fieldUnderlyingPx.offset > 0 ? _fixPtr + fieldUnderlyingPx.offset : nullptr; }
    private: FieldUnderlyingPx fieldUnderlyingPx;
 
    public:
-   bool isSetUnderlyingDirtyPrice() const { return fieldUnderlyingDirtyPrice.offset >= 0; }
+   bool isSetUnderlyingDirtyPrice() const { return fieldUnderlyingDirtyPrice.offset > 0; }
    FieldUnderlyingDirtyPrice::ValueType getUnderlyingDirtyPrice() const { return fieldUnderlyingDirtyPrice.getValue( _fixPtr ); }
-   std::string_view getUnderlyingDirtyPriceView() const { return fieldUnderlyingDirtyPrice.offset >= 0 ? std::string_view{ _fixPtr + fieldUnderlyingDirtyPrice.offset, getValueLength( _fixPtr + fieldUnderlyingDirtyPrice.offset ) } : std::string_view{}; }
+   std::string_view getUnderlyingDirtyPriceView() const { return fieldUnderlyingDirtyPrice.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingDirtyPrice.offset, getValueLength( _fixPtr + fieldUnderlyingDirtyPrice.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingDirtyPrice() const { return _fixPtr + fieldUnderlyingDirtyPrice.offset; }
-   const char * getIfSetUnderlyingDirtyPrice() const { return fieldUnderlyingDirtyPrice.offset >= 0 ? _fixPtr + fieldUnderlyingDirtyPrice.offset : nullptr; }
+   const char * ptrToTagUnderlyingDirtyPrice() const { return _fixPtr + fieldUnderlyingDirtyPrice.offset - 1 - FieldUnderlyingDirtyPrice::tagWidth(); }
+   const char * getIfSetUnderlyingDirtyPrice() const { return fieldUnderlyingDirtyPrice.offset > 0 ? _fixPtr + fieldUnderlyingDirtyPrice.offset : nullptr; }
    private: FieldUnderlyingDirtyPrice fieldUnderlyingDirtyPrice;
 
    public:
-   bool isSetUnderlyingEndPrice() const { return fieldUnderlyingEndPrice.offset >= 0; }
+   bool isSetUnderlyingEndPrice() const { return fieldUnderlyingEndPrice.offset > 0; }
    FieldUnderlyingEndPrice::ValueType getUnderlyingEndPrice() const { return fieldUnderlyingEndPrice.getValue( _fixPtr ); }
-   std::string_view getUnderlyingEndPriceView() const { return fieldUnderlyingEndPrice.offset >= 0 ? std::string_view{ _fixPtr + fieldUnderlyingEndPrice.offset, getValueLength( _fixPtr + fieldUnderlyingEndPrice.offset ) } : std::string_view{}; }
+   std::string_view getUnderlyingEndPriceView() const { return fieldUnderlyingEndPrice.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingEndPrice.offset, getValueLength( _fixPtr + fieldUnderlyingEndPrice.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingEndPrice() const { return _fixPtr + fieldUnderlyingEndPrice.offset; }
-   const char * getIfSetUnderlyingEndPrice() const { return fieldUnderlyingEndPrice.offset >= 0 ? _fixPtr + fieldUnderlyingEndPrice.offset : nullptr; }
+   const char * ptrToTagUnderlyingEndPrice() const { return _fixPtr + fieldUnderlyingEndPrice.offset - 1 - FieldUnderlyingEndPrice::tagWidth(); }
+   const char * getIfSetUnderlyingEndPrice() const { return fieldUnderlyingEndPrice.offset > 0 ? _fixPtr + fieldUnderlyingEndPrice.offset : nullptr; }
    private: FieldUnderlyingEndPrice fieldUnderlyingEndPrice;
 
    public:
-   bool isSetUnderlyingStartValue() const { return fieldUnderlyingStartValue.offset >= 0; }
+   bool isSetUnderlyingStartValue() const { return fieldUnderlyingStartValue.offset > 0; }
    FieldUnderlyingStartValue::ValueType getUnderlyingStartValue() const { return fieldUnderlyingStartValue.getValue( _fixPtr ); }
-   std::string_view getUnderlyingStartValueView() const { return fieldUnderlyingStartValue.offset >= 0 ? std::string_view{ _fixPtr + fieldUnderlyingStartValue.offset, getValueLength( _fixPtr + fieldUnderlyingStartValue.offset ) } : std::string_view{}; }
+   std::string_view getUnderlyingStartValueView() const { return fieldUnderlyingStartValue.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingStartValue.offset, getValueLength( _fixPtr + fieldUnderlyingStartValue.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingStartValue() const { return _fixPtr + fieldUnderlyingStartValue.offset; }
-   const char * getIfSetUnderlyingStartValue() const { return fieldUnderlyingStartValue.offset >= 0 ? _fixPtr + fieldUnderlyingStartValue.offset : nullptr; }
+   const char * ptrToTagUnderlyingStartValue() const { return _fixPtr + fieldUnderlyingStartValue.offset - 1 - FieldUnderlyingStartValue::tagWidth(); }
+   const char * getIfSetUnderlyingStartValue() const { return fieldUnderlyingStartValue.offset > 0 ? _fixPtr + fieldUnderlyingStartValue.offset : nullptr; }
    private: FieldUnderlyingStartValue fieldUnderlyingStartValue;
 
    public:
-   bool isSetUnderlyingCurrentValue() const { return fieldUnderlyingCurrentValue.offset >= 0; }
+   bool isSetUnderlyingCurrentValue() const { return fieldUnderlyingCurrentValue.offset > 0; }
    FieldUnderlyingCurrentValue::ValueType getUnderlyingCurrentValue() const { return fieldUnderlyingCurrentValue.getValue( _fixPtr ); }
-   std::string_view getUnderlyingCurrentValueView() const { return fieldUnderlyingCurrentValue.offset >= 0 ? std::string_view{ _fixPtr + fieldUnderlyingCurrentValue.offset, getValueLength( _fixPtr + fieldUnderlyingCurrentValue.offset ) } : std::string_view{}; }
+   std::string_view getUnderlyingCurrentValueView() const { return fieldUnderlyingCurrentValue.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingCurrentValue.offset, getValueLength( _fixPtr + fieldUnderlyingCurrentValue.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingCurrentValue() const { return _fixPtr + fieldUnderlyingCurrentValue.offset; }
-   const char * getIfSetUnderlyingCurrentValue() const { return fieldUnderlyingCurrentValue.offset >= 0 ? _fixPtr + fieldUnderlyingCurrentValue.offset : nullptr; }
+   const char * ptrToTagUnderlyingCurrentValue() const { return _fixPtr + fieldUnderlyingCurrentValue.offset - 1 - FieldUnderlyingCurrentValue::tagWidth(); }
+   const char * getIfSetUnderlyingCurrentValue() const { return fieldUnderlyingCurrentValue.offset > 0 ? _fixPtr + fieldUnderlyingCurrentValue.offset : nullptr; }
    private: FieldUnderlyingCurrentValue fieldUnderlyingCurrentValue;
 
    public:
-   bool isSetUnderlyingEndValue() const { return fieldUnderlyingEndValue.offset >= 0; }
+   bool isSetUnderlyingEndValue() const { return fieldUnderlyingEndValue.offset > 0; }
    FieldUnderlyingEndValue::ValueType getUnderlyingEndValue() const { return fieldUnderlyingEndValue.getValue( _fixPtr ); }
-   std::string_view getUnderlyingEndValueView() const { return fieldUnderlyingEndValue.offset >= 0 ? std::string_view{ _fixPtr + fieldUnderlyingEndValue.offset, getValueLength( _fixPtr + fieldUnderlyingEndValue.offset ) } : std::string_view{}; }
+   std::string_view getUnderlyingEndValueView() const { return fieldUnderlyingEndValue.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingEndValue.offset, getValueLength( _fixPtr + fieldUnderlyingEndValue.offset ) } : std::string_view{}; }
    const char * ptrToUnderlyingEndValue() const { return _fixPtr + fieldUnderlyingEndValue.offset; }
-   const char * getIfSetUnderlyingEndValue() const { return fieldUnderlyingEndValue.offset >= 0 ? _fixPtr + fieldUnderlyingEndValue.offset : nullptr; }
+   const char * ptrToTagUnderlyingEndValue() const { return _fixPtr + fieldUnderlyingEndValue.offset - 1 - FieldUnderlyingEndValue::tagWidth(); }
+   const char * getIfSetUnderlyingEndValue() const { return fieldUnderlyingEndValue.offset > 0 ? _fixPtr + fieldUnderlyingEndValue.offset : nullptr; }
    private: FieldUnderlyingEndValue fieldUnderlyingEndValue;
 
    public:
-   bool isSetNoUnderlyingStips() const { return fieldNoUnderlyingStips.offset >= 0; }
+   bool isSetNoUnderlyingStips() const { return fieldNoUnderlyingStips.offset > 0; }
    FieldNoUnderlyingStips::ValueType getNoUnderlyingStips() const { return fieldNoUnderlyingStips.getValue( _fixPtr ); }
-   std::string_view getNoUnderlyingStipsView() const { return fieldNoUnderlyingStips.offset >= 0 ? std::string_view{ _fixPtr + fieldNoUnderlyingStips.offset, getValueLength( _fixPtr + fieldNoUnderlyingStips.offset ) } : std::string_view{}; }
+   std::string_view getNoUnderlyingStipsView() const { return fieldNoUnderlyingStips.offset > 0 ? std::string_view{ _fixPtr + fieldNoUnderlyingStips.offset, getValueLength( _fixPtr + fieldNoUnderlyingStips.offset ) } : std::string_view{}; }
    const char * ptrToNoUnderlyingStips() const { return _fixPtr + fieldNoUnderlyingStips.offset; }
-   const char * getIfSetNoUnderlyingStips() const { return fieldNoUnderlyingStips.offset >= 0 ? _fixPtr + fieldNoUnderlyingStips.offset : nullptr; }
+   const char * ptrToTagNoUnderlyingStips() const { return _fixPtr + fieldNoUnderlyingStips.offset - 1 - FieldNoUnderlyingStips::tagWidth(); }
+   const char * getIfSetNoUnderlyingStips() const { return fieldNoUnderlyingStips.offset > 0 ? _fixPtr + fieldNoUnderlyingStips.offset : nullptr; }
    private: FieldNoUnderlyingStips fieldNoUnderlyingStips;
   
    public:
@@ -3947,27 +4417,30 @@ class GroupQuoteSets : public MessageBase
    private: GroupUnderlyingStips::Array groupsUnderlyingStips{ 10 };
 
    public:
-   bool isSetTotNoQuoteEntries() const { return fieldTotNoQuoteEntries.offset >= 0; }
+   bool isSetTotNoQuoteEntries() const { return fieldTotNoQuoteEntries.offset > 0; }
    FieldTotNoQuoteEntries::ValueType getTotNoQuoteEntries() const { return fieldTotNoQuoteEntries.getValue( _fixPtr ); }
-   std::string_view getTotNoQuoteEntriesView() const { return fieldTotNoQuoteEntries.offset >= 0 ? std::string_view{ _fixPtr + fieldTotNoQuoteEntries.offset, getValueLength( _fixPtr + fieldTotNoQuoteEntries.offset ) } : std::string_view{}; }
+   std::string_view getTotNoQuoteEntriesView() const { return fieldTotNoQuoteEntries.offset > 0 ? std::string_view{ _fixPtr + fieldTotNoQuoteEntries.offset, getValueLength( _fixPtr + fieldTotNoQuoteEntries.offset ) } : std::string_view{}; }
    const char * ptrToTotNoQuoteEntries() const { return _fixPtr + fieldTotNoQuoteEntries.offset; }
-   const char * getIfSetTotNoQuoteEntries() const { return fieldTotNoQuoteEntries.offset >= 0 ? _fixPtr + fieldTotNoQuoteEntries.offset : nullptr; }
+   const char * ptrToTagTotNoQuoteEntries() const { return _fixPtr + fieldTotNoQuoteEntries.offset - 1 - FieldTotNoQuoteEntries::tagWidth(); }
+   const char * getIfSetTotNoQuoteEntries() const { return fieldTotNoQuoteEntries.offset > 0 ? _fixPtr + fieldTotNoQuoteEntries.offset : nullptr; }
    private: FieldTotNoQuoteEntries fieldTotNoQuoteEntries;
 
    public:
-   bool isSetLastFragment() const { return fieldLastFragment.offset >= 0; }
+   bool isSetLastFragment() const { return fieldLastFragment.offset > 0; }
    FieldLastFragment::ValueType getLastFragment() const { return fieldLastFragment.getValue( _fixPtr ); }
-   std::string_view getLastFragmentView() const { return fieldLastFragment.offset >= 0 ? std::string_view{ _fixPtr + fieldLastFragment.offset, getValueLength( _fixPtr + fieldLastFragment.offset ) } : std::string_view{}; }
+   std::string_view getLastFragmentView() const { return fieldLastFragment.offset > 0 ? std::string_view{ _fixPtr + fieldLastFragment.offset, getValueLength( _fixPtr + fieldLastFragment.offset ) } : std::string_view{}; }
    const char * ptrToLastFragment() const { return _fixPtr + fieldLastFragment.offset; }
-   const char * getIfSetLastFragment() const { return fieldLastFragment.offset >= 0 ? _fixPtr + fieldLastFragment.offset : nullptr; }
+   const char * ptrToTagLastFragment() const { return _fixPtr + fieldLastFragment.offset - 1 - FieldLastFragment::tagWidth(); }
+   const char * getIfSetLastFragment() const { return fieldLastFragment.offset > 0 ? _fixPtr + fieldLastFragment.offset : nullptr; }
    private: FieldLastFragment fieldLastFragment;
 
    public:
-   bool isSetNoQuoteEntries() const { return fieldNoQuoteEntries.offset >= 0; }
+   bool isSetNoQuoteEntries() const { return fieldNoQuoteEntries.offset > 0; }
    FieldNoQuoteEntries::ValueType getNoQuoteEntries() const { return fieldNoQuoteEntries.getValue( _fixPtr ); }
-   std::string_view getNoQuoteEntriesView() const { return fieldNoQuoteEntries.offset >= 0 ? std::string_view{ _fixPtr + fieldNoQuoteEntries.offset, getValueLength( _fixPtr + fieldNoQuoteEntries.offset ) } : std::string_view{}; }
+   std::string_view getNoQuoteEntriesView() const { return fieldNoQuoteEntries.offset > 0 ? std::string_view{ _fixPtr + fieldNoQuoteEntries.offset, getValueLength( _fixPtr + fieldNoQuoteEntries.offset ) } : std::string_view{}; }
    const char * ptrToNoQuoteEntries() const { return _fixPtr + fieldNoQuoteEntries.offset; }
-   const char * getIfSetNoQuoteEntries() const { return fieldNoQuoteEntries.offset >= 0 ? _fixPtr + fieldNoQuoteEntries.offset : nullptr; }
+   const char * ptrToTagNoQuoteEntries() const { return _fixPtr + fieldNoQuoteEntries.offset - 1 - FieldNoQuoteEntries::tagWidth(); }
+   const char * getIfSetNoQuoteEntries() const { return fieldNoQuoteEntries.offset > 0 ? _fixPtr + fieldNoQuoteEntries.offset : nullptr; }
    private: FieldNoQuoteEntries fieldNoQuoteEntries;
   
    public:
@@ -3989,40 +4462,46 @@ class GroupSecurityTypes : public MessageBase
    static offset_t scan( Array & arr, const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    const char * getFieldValue( unsigned tag ) const;
+   const char * findBadField() const;
+   const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
-   bool isSetSecurityType() const { return fieldSecurityType.offset >= 0; }
+   bool isSetSecurityType() const { return fieldSecurityType.offset > 0; }
    FieldSecurityType::ValueType getSecurityType() const { return fieldSecurityType.getValue( _fixPtr ); }
-   std::string_view getSecurityTypeView() const { return fieldSecurityType.offset >= 0 ? std::string_view{ _fixPtr + fieldSecurityType.offset, getValueLength( _fixPtr + fieldSecurityType.offset ) } : std::string_view{}; }
+   std::string_view getSecurityTypeView() const { return fieldSecurityType.offset > 0 ? std::string_view{ _fixPtr + fieldSecurityType.offset, getValueLength( _fixPtr + fieldSecurityType.offset ) } : std::string_view{}; }
    const char * ptrToSecurityType() const { return _fixPtr + fieldSecurityType.offset; }
-   const char * getIfSetSecurityType() const { return fieldSecurityType.offset >= 0 ? _fixPtr + fieldSecurityType.offset : nullptr; }
+   const char * ptrToTagSecurityType() const { return _fixPtr + fieldSecurityType.offset - 1 - FieldSecurityType::tagWidth(); }
+   const char * getIfSetSecurityType() const { return fieldSecurityType.offset > 0 ? _fixPtr + fieldSecurityType.offset : nullptr; }
    private: FieldSecurityType fieldSecurityType;
 
    public:
-   bool isSetSecuritySubType() const { return fieldSecuritySubType.offset >= 0; }
+   bool isSetSecuritySubType() const { return fieldSecuritySubType.offset > 0; }
    FieldSecuritySubType::ValueType getSecuritySubType() const { return fieldSecuritySubType.getValue( _fixPtr ); }
-   std::string_view getSecuritySubTypeView() const { return fieldSecuritySubType.offset >= 0 ? std::string_view{ _fixPtr + fieldSecuritySubType.offset, getValueLength( _fixPtr + fieldSecuritySubType.offset ) } : std::string_view{}; }
+   std::string_view getSecuritySubTypeView() const { return fieldSecuritySubType.offset > 0 ? std::string_view{ _fixPtr + fieldSecuritySubType.offset, getValueLength( _fixPtr + fieldSecuritySubType.offset ) } : std::string_view{}; }
    const char * ptrToSecuritySubType() const { return _fixPtr + fieldSecuritySubType.offset; }
-   const char * getIfSetSecuritySubType() const { return fieldSecuritySubType.offset >= 0 ? _fixPtr + fieldSecuritySubType.offset : nullptr; }
+   const char * ptrToTagSecuritySubType() const { return _fixPtr + fieldSecuritySubType.offset - 1 - FieldSecuritySubType::tagWidth(); }
+   const char * getIfSetSecuritySubType() const { return fieldSecuritySubType.offset > 0 ? _fixPtr + fieldSecuritySubType.offset : nullptr; }
    private: FieldSecuritySubType fieldSecuritySubType;
 
    public:
-   bool isSetProduct() const { return fieldProduct.offset >= 0; }
+   bool isSetProduct() const { return fieldProduct.offset > 0; }
    FieldProduct::ValueType getProduct() const { return fieldProduct.getValue( _fixPtr ); }
-   std::string_view getProductView() const { return fieldProduct.offset >= 0 ? std::string_view{ _fixPtr + fieldProduct.offset, getValueLength( _fixPtr + fieldProduct.offset ) } : std::string_view{}; }
+   std::string_view getProductView() const { return fieldProduct.offset > 0 ? std::string_view{ _fixPtr + fieldProduct.offset, getValueLength( _fixPtr + fieldProduct.offset ) } : std::string_view{}; }
    const char * ptrToProduct() const { return _fixPtr + fieldProduct.offset; }
-   const char * getIfSetProduct() const { return fieldProduct.offset >= 0 ? _fixPtr + fieldProduct.offset : nullptr; }
+   const char * ptrToTagProduct() const { return _fixPtr + fieldProduct.offset - 1 - FieldProduct::tagWidth(); }
+   const char * getIfSetProduct() const { return fieldProduct.offset > 0 ? _fixPtr + fieldProduct.offset : nullptr; }
    private: FieldProduct fieldProduct;
 
    public:
-   bool isSetCFICode() const { return fieldCFICode.offset >= 0; }
+   bool isSetCFICode() const { return fieldCFICode.offset > 0; }
    FieldCFICode::ValueType getCFICode() const { return fieldCFICode.getValue( _fixPtr ); }
-   std::string_view getCFICodeView() const { return fieldCFICode.offset >= 0 ? std::string_view{ _fixPtr + fieldCFICode.offset, getValueLength( _fixPtr + fieldCFICode.offset ) } : std::string_view{}; }
+   std::string_view getCFICodeView() const { return fieldCFICode.offset > 0 ? std::string_view{ _fixPtr + fieldCFICode.offset, getValueLength( _fixPtr + fieldCFICode.offset ) } : std::string_view{}; }
    const char * ptrToCFICode() const { return _fixPtr + fieldCFICode.offset; }
-   const char * getIfSetCFICode() const { return fieldCFICode.offset >= 0 ? _fixPtr + fieldCFICode.offset : nullptr; }
+   const char * ptrToTagCFICode() const { return _fixPtr + fieldCFICode.offset - 1 - FieldCFICode::tagWidth(); }
+   const char * getIfSetCFICode() const { return fieldCFICode.offset > 0 ? _fixPtr + fieldCFICode.offset : nullptr; }
    private: FieldCFICode fieldCFICode;
 
 };
@@ -4039,40 +4518,46 @@ class GroupNested3PartyIDs : public MessageBase
    static offset_t scan( Array & arr, const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    const char * getFieldValue( unsigned tag ) const;
+   const char * findBadField() const;
+   const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
-   bool isSetNested3PartyID() const { return fieldNested3PartyID.offset >= 0; }
+   bool isSetNested3PartyID() const { return fieldNested3PartyID.offset > 0; }
    FieldNested3PartyID::ValueType getNested3PartyID() const { return fieldNested3PartyID.getValue( _fixPtr ); }
-   std::string_view getNested3PartyIDView() const { return fieldNested3PartyID.offset >= 0 ? std::string_view{ _fixPtr + fieldNested3PartyID.offset, getValueLength( _fixPtr + fieldNested3PartyID.offset ) } : std::string_view{}; }
+   std::string_view getNested3PartyIDView() const { return fieldNested3PartyID.offset > 0 ? std::string_view{ _fixPtr + fieldNested3PartyID.offset, getValueLength( _fixPtr + fieldNested3PartyID.offset ) } : std::string_view{}; }
    const char * ptrToNested3PartyID() const { return _fixPtr + fieldNested3PartyID.offset; }
-   const char * getIfSetNested3PartyID() const { return fieldNested3PartyID.offset >= 0 ? _fixPtr + fieldNested3PartyID.offset : nullptr; }
+   const char * ptrToTagNested3PartyID() const { return _fixPtr + fieldNested3PartyID.offset - 1 - FieldNested3PartyID::tagWidth(); }
+   const char * getIfSetNested3PartyID() const { return fieldNested3PartyID.offset > 0 ? _fixPtr + fieldNested3PartyID.offset : nullptr; }
    private: FieldNested3PartyID fieldNested3PartyID;
 
    public:
-   bool isSetNested3PartyIDSource() const { return fieldNested3PartyIDSource.offset >= 0; }
+   bool isSetNested3PartyIDSource() const { return fieldNested3PartyIDSource.offset > 0; }
    FieldNested3PartyIDSource::ValueType getNested3PartyIDSource() const { return fieldNested3PartyIDSource.getValue( _fixPtr ); }
-   std::string_view getNested3PartyIDSourceView() const { return fieldNested3PartyIDSource.offset >= 0 ? std::string_view{ _fixPtr + fieldNested3PartyIDSource.offset, getValueLength( _fixPtr + fieldNested3PartyIDSource.offset ) } : std::string_view{}; }
+   std::string_view getNested3PartyIDSourceView() const { return fieldNested3PartyIDSource.offset > 0 ? std::string_view{ _fixPtr + fieldNested3PartyIDSource.offset, getValueLength( _fixPtr + fieldNested3PartyIDSource.offset ) } : std::string_view{}; }
    const char * ptrToNested3PartyIDSource() const { return _fixPtr + fieldNested3PartyIDSource.offset; }
-   const char * getIfSetNested3PartyIDSource() const { return fieldNested3PartyIDSource.offset >= 0 ? _fixPtr + fieldNested3PartyIDSource.offset : nullptr; }
+   const char * ptrToTagNested3PartyIDSource() const { return _fixPtr + fieldNested3PartyIDSource.offset - 1 - FieldNested3PartyIDSource::tagWidth(); }
+   const char * getIfSetNested3PartyIDSource() const { return fieldNested3PartyIDSource.offset > 0 ? _fixPtr + fieldNested3PartyIDSource.offset : nullptr; }
    private: FieldNested3PartyIDSource fieldNested3PartyIDSource;
 
    public:
-   bool isSetNested3PartyRole() const { return fieldNested3PartyRole.offset >= 0; }
+   bool isSetNested3PartyRole() const { return fieldNested3PartyRole.offset > 0; }
    FieldNested3PartyRole::ValueType getNested3PartyRole() const { return fieldNested3PartyRole.getValue( _fixPtr ); }
-   std::string_view getNested3PartyRoleView() const { return fieldNested3PartyRole.offset >= 0 ? std::string_view{ _fixPtr + fieldNested3PartyRole.offset, getValueLength( _fixPtr + fieldNested3PartyRole.offset ) } : std::string_view{}; }
+   std::string_view getNested3PartyRoleView() const { return fieldNested3PartyRole.offset > 0 ? std::string_view{ _fixPtr + fieldNested3PartyRole.offset, getValueLength( _fixPtr + fieldNested3PartyRole.offset ) } : std::string_view{}; }
    const char * ptrToNested3PartyRole() const { return _fixPtr + fieldNested3PartyRole.offset; }
-   const char * getIfSetNested3PartyRole() const { return fieldNested3PartyRole.offset >= 0 ? _fixPtr + fieldNested3PartyRole.offset : nullptr; }
+   const char * ptrToTagNested3PartyRole() const { return _fixPtr + fieldNested3PartyRole.offset - 1 - FieldNested3PartyRole::tagWidth(); }
+   const char * getIfSetNested3PartyRole() const { return fieldNested3PartyRole.offset > 0 ? _fixPtr + fieldNested3PartyRole.offset : nullptr; }
    private: FieldNested3PartyRole fieldNested3PartyRole;
 
    public:
-   bool isSetNoNested3PartySubIDs() const { return fieldNoNested3PartySubIDs.offset >= 0; }
+   bool isSetNoNested3PartySubIDs() const { return fieldNoNested3PartySubIDs.offset > 0; }
    FieldNoNested3PartySubIDs::ValueType getNoNested3PartySubIDs() const { return fieldNoNested3PartySubIDs.getValue( _fixPtr ); }
-   std::string_view getNoNested3PartySubIDsView() const { return fieldNoNested3PartySubIDs.offset >= 0 ? std::string_view{ _fixPtr + fieldNoNested3PartySubIDs.offset, getValueLength( _fixPtr + fieldNoNested3PartySubIDs.offset ) } : std::string_view{}; }
+   std::string_view getNoNested3PartySubIDsView() const { return fieldNoNested3PartySubIDs.offset > 0 ? std::string_view{ _fixPtr + fieldNoNested3PartySubIDs.offset, getValueLength( _fixPtr + fieldNoNested3PartySubIDs.offset ) } : std::string_view{}; }
    const char * ptrToNoNested3PartySubIDs() const { return _fixPtr + fieldNoNested3PartySubIDs.offset; }
-   const char * getIfSetNoNested3PartySubIDs() const { return fieldNoNested3PartySubIDs.offset >= 0 ? _fixPtr + fieldNoNested3PartySubIDs.offset : nullptr; }
+   const char * ptrToTagNoNested3PartySubIDs() const { return _fixPtr + fieldNoNested3PartySubIDs.offset - 1 - FieldNoNested3PartySubIDs::tagWidth(); }
+   const char * getIfSetNoNested3PartySubIDs() const { return fieldNoNested3PartySubIDs.offset > 0 ? _fixPtr + fieldNoNested3PartySubIDs.offset : nullptr; }
    private: FieldNoNested3PartySubIDs fieldNoNested3PartySubIDs;
   
    public:
@@ -4094,48 +4579,55 @@ class GroupPositions : public MessageBase
    static offset_t scan( Array & arr, const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    const char * getFieldValue( unsigned tag ) const;
+   const char * findBadField() const;
+   const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
-   bool isSetPosType() const { return fieldPosType.offset >= 0; }
+   bool isSetPosType() const { return fieldPosType.offset > 0; }
    FieldPosType::ValueType getPosType() const { return fieldPosType.getValue( _fixPtr ); }
-   std::string_view getPosTypeView() const { return fieldPosType.offset >= 0 ? std::string_view{ _fixPtr + fieldPosType.offset, getValueLength( _fixPtr + fieldPosType.offset ) } : std::string_view{}; }
+   std::string_view getPosTypeView() const { return fieldPosType.offset > 0 ? std::string_view{ _fixPtr + fieldPosType.offset, getValueLength( _fixPtr + fieldPosType.offset ) } : std::string_view{}; }
    const char * ptrToPosType() const { return _fixPtr + fieldPosType.offset; }
-   const char * getIfSetPosType() const { return fieldPosType.offset >= 0 ? _fixPtr + fieldPosType.offset : nullptr; }
+   const char * ptrToTagPosType() const { return _fixPtr + fieldPosType.offset - 1 - FieldPosType::tagWidth(); }
+   const char * getIfSetPosType() const { return fieldPosType.offset > 0 ? _fixPtr + fieldPosType.offset : nullptr; }
    private: FieldPosType fieldPosType;
 
    public:
-   bool isSetLongQty() const { return fieldLongQty.offset >= 0; }
+   bool isSetLongQty() const { return fieldLongQty.offset > 0; }
    FieldLongQty::ValueType getLongQty() const { return fieldLongQty.getValue( _fixPtr ); }
-   std::string_view getLongQtyView() const { return fieldLongQty.offset >= 0 ? std::string_view{ _fixPtr + fieldLongQty.offset, getValueLength( _fixPtr + fieldLongQty.offset ) } : std::string_view{}; }
+   std::string_view getLongQtyView() const { return fieldLongQty.offset > 0 ? std::string_view{ _fixPtr + fieldLongQty.offset, getValueLength( _fixPtr + fieldLongQty.offset ) } : std::string_view{}; }
    const char * ptrToLongQty() const { return _fixPtr + fieldLongQty.offset; }
-   const char * getIfSetLongQty() const { return fieldLongQty.offset >= 0 ? _fixPtr + fieldLongQty.offset : nullptr; }
+   const char * ptrToTagLongQty() const { return _fixPtr + fieldLongQty.offset - 1 - FieldLongQty::tagWidth(); }
+   const char * getIfSetLongQty() const { return fieldLongQty.offset > 0 ? _fixPtr + fieldLongQty.offset : nullptr; }
    private: FieldLongQty fieldLongQty;
 
    public:
-   bool isSetShortQty() const { return fieldShortQty.offset >= 0; }
+   bool isSetShortQty() const { return fieldShortQty.offset > 0; }
    FieldShortQty::ValueType getShortQty() const { return fieldShortQty.getValue( _fixPtr ); }
-   std::string_view getShortQtyView() const { return fieldShortQty.offset >= 0 ? std::string_view{ _fixPtr + fieldShortQty.offset, getValueLength( _fixPtr + fieldShortQty.offset ) } : std::string_view{}; }
+   std::string_view getShortQtyView() const { return fieldShortQty.offset > 0 ? std::string_view{ _fixPtr + fieldShortQty.offset, getValueLength( _fixPtr + fieldShortQty.offset ) } : std::string_view{}; }
    const char * ptrToShortQty() const { return _fixPtr + fieldShortQty.offset; }
-   const char * getIfSetShortQty() const { return fieldShortQty.offset >= 0 ? _fixPtr + fieldShortQty.offset : nullptr; }
+   const char * ptrToTagShortQty() const { return _fixPtr + fieldShortQty.offset - 1 - FieldShortQty::tagWidth(); }
+   const char * getIfSetShortQty() const { return fieldShortQty.offset > 0 ? _fixPtr + fieldShortQty.offset : nullptr; }
    private: FieldShortQty fieldShortQty;
 
    public:
-   bool isSetPosQtyStatus() const { return fieldPosQtyStatus.offset >= 0; }
+   bool isSetPosQtyStatus() const { return fieldPosQtyStatus.offset > 0; }
    FieldPosQtyStatus::ValueType getPosQtyStatus() const { return fieldPosQtyStatus.getValue( _fixPtr ); }
-   std::string_view getPosQtyStatusView() const { return fieldPosQtyStatus.offset >= 0 ? std::string_view{ _fixPtr + fieldPosQtyStatus.offset, getValueLength( _fixPtr + fieldPosQtyStatus.offset ) } : std::string_view{}; }
+   std::string_view getPosQtyStatusView() const { return fieldPosQtyStatus.offset > 0 ? std::string_view{ _fixPtr + fieldPosQtyStatus.offset, getValueLength( _fixPtr + fieldPosQtyStatus.offset ) } : std::string_view{}; }
    const char * ptrToPosQtyStatus() const { return _fixPtr + fieldPosQtyStatus.offset; }
-   const char * getIfSetPosQtyStatus() const { return fieldPosQtyStatus.offset >= 0 ? _fixPtr + fieldPosQtyStatus.offset : nullptr; }
+   const char * ptrToTagPosQtyStatus() const { return _fixPtr + fieldPosQtyStatus.offset - 1 - FieldPosQtyStatus::tagWidth(); }
+   const char * getIfSetPosQtyStatus() const { return fieldPosQtyStatus.offset > 0 ? _fixPtr + fieldPosQtyStatus.offset : nullptr; }
    private: FieldPosQtyStatus fieldPosQtyStatus;
 
    public:
-   bool isSetNoNestedPartyIDs() const { return fieldNoNestedPartyIDs.offset >= 0; }
+   bool isSetNoNestedPartyIDs() const { return fieldNoNestedPartyIDs.offset > 0; }
    FieldNoNestedPartyIDs::ValueType getNoNestedPartyIDs() const { return fieldNoNestedPartyIDs.getValue( _fixPtr ); }
-   std::string_view getNoNestedPartyIDsView() const { return fieldNoNestedPartyIDs.offset >= 0 ? std::string_view{ _fixPtr + fieldNoNestedPartyIDs.offset, getValueLength( _fixPtr + fieldNoNestedPartyIDs.offset ) } : std::string_view{}; }
+   std::string_view getNoNestedPartyIDsView() const { return fieldNoNestedPartyIDs.offset > 0 ? std::string_view{ _fixPtr + fieldNoNestedPartyIDs.offset, getValueLength( _fixPtr + fieldNoNestedPartyIDs.offset ) } : std::string_view{}; }
    const char * ptrToNoNestedPartyIDs() const { return _fixPtr + fieldNoNestedPartyIDs.offset; }
-   const char * getIfSetNoNestedPartyIDs() const { return fieldNoNestedPartyIDs.offset >= 0 ? _fixPtr + fieldNoNestedPartyIDs.offset : nullptr; }
+   const char * ptrToTagNoNestedPartyIDs() const { return _fixPtr + fieldNoNestedPartyIDs.offset - 1 - FieldNoNestedPartyIDs::tagWidth(); }
+   const char * getIfSetNoNestedPartyIDs() const { return fieldNoNestedPartyIDs.offset > 0 ? _fixPtr + fieldNoNestedPartyIDs.offset : nullptr; }
    private: FieldNoNestedPartyIDs fieldNoNestedPartyIDs;
   
    public:
@@ -4157,32 +4649,37 @@ class GroupAffectedOrders : public MessageBase
    static offset_t scan( Array & arr, const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    const char * getFieldValue( unsigned tag ) const;
+   const char * findBadField() const;
+   const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
-   bool isSetOrigClOrdID() const { return fieldOrigClOrdID.offset >= 0; }
+   bool isSetOrigClOrdID() const { return fieldOrigClOrdID.offset > 0; }
    FieldOrigClOrdID::ValueType getOrigClOrdID() const { return fieldOrigClOrdID.getValue( _fixPtr ); }
-   std::string_view getOrigClOrdIDView() const { return fieldOrigClOrdID.offset >= 0 ? std::string_view{ _fixPtr + fieldOrigClOrdID.offset, getValueLength( _fixPtr + fieldOrigClOrdID.offset ) } : std::string_view{}; }
+   std::string_view getOrigClOrdIDView() const { return fieldOrigClOrdID.offset > 0 ? std::string_view{ _fixPtr + fieldOrigClOrdID.offset, getValueLength( _fixPtr + fieldOrigClOrdID.offset ) } : std::string_view{}; }
    const char * ptrToOrigClOrdID() const { return _fixPtr + fieldOrigClOrdID.offset; }
-   const char * getIfSetOrigClOrdID() const { return fieldOrigClOrdID.offset >= 0 ? _fixPtr + fieldOrigClOrdID.offset : nullptr; }
+   const char * ptrToTagOrigClOrdID() const { return _fixPtr + fieldOrigClOrdID.offset - 1 - FieldOrigClOrdID::tagWidth(); }
+   const char * getIfSetOrigClOrdID() const { return fieldOrigClOrdID.offset > 0 ? _fixPtr + fieldOrigClOrdID.offset : nullptr; }
    private: FieldOrigClOrdID fieldOrigClOrdID;
 
    public:
-   bool isSetAffectedOrderID() const { return fieldAffectedOrderID.offset >= 0; }
+   bool isSetAffectedOrderID() const { return fieldAffectedOrderID.offset > 0; }
    FieldAffectedOrderID::ValueType getAffectedOrderID() const { return fieldAffectedOrderID.getValue( _fixPtr ); }
-   std::string_view getAffectedOrderIDView() const { return fieldAffectedOrderID.offset >= 0 ? std::string_view{ _fixPtr + fieldAffectedOrderID.offset, getValueLength( _fixPtr + fieldAffectedOrderID.offset ) } : std::string_view{}; }
+   std::string_view getAffectedOrderIDView() const { return fieldAffectedOrderID.offset > 0 ? std::string_view{ _fixPtr + fieldAffectedOrderID.offset, getValueLength( _fixPtr + fieldAffectedOrderID.offset ) } : std::string_view{}; }
    const char * ptrToAffectedOrderID() const { return _fixPtr + fieldAffectedOrderID.offset; }
-   const char * getIfSetAffectedOrderID() const { return fieldAffectedOrderID.offset >= 0 ? _fixPtr + fieldAffectedOrderID.offset : nullptr; }
+   const char * ptrToTagAffectedOrderID() const { return _fixPtr + fieldAffectedOrderID.offset - 1 - FieldAffectedOrderID::tagWidth(); }
+   const char * getIfSetAffectedOrderID() const { return fieldAffectedOrderID.offset > 0 ? _fixPtr + fieldAffectedOrderID.offset : nullptr; }
    private: FieldAffectedOrderID fieldAffectedOrderID;
 
    public:
-   bool isSetAffectedSecondaryOrderID() const { return fieldAffectedSecondaryOrderID.offset >= 0; }
+   bool isSetAffectedSecondaryOrderID() const { return fieldAffectedSecondaryOrderID.offset > 0; }
    FieldAffectedSecondaryOrderID::ValueType getAffectedSecondaryOrderID() const { return fieldAffectedSecondaryOrderID.getValue( _fixPtr ); }
-   std::string_view getAffectedSecondaryOrderIDView() const { return fieldAffectedSecondaryOrderID.offset >= 0 ? std::string_view{ _fixPtr + fieldAffectedSecondaryOrderID.offset, getValueLength( _fixPtr + fieldAffectedSecondaryOrderID.offset ) } : std::string_view{}; }
+   std::string_view getAffectedSecondaryOrderIDView() const { return fieldAffectedSecondaryOrderID.offset > 0 ? std::string_view{ _fixPtr + fieldAffectedSecondaryOrderID.offset, getValueLength( _fixPtr + fieldAffectedSecondaryOrderID.offset ) } : std::string_view{}; }
    const char * ptrToAffectedSecondaryOrderID() const { return _fixPtr + fieldAffectedSecondaryOrderID.offset; }
-   const char * getIfSetAffectedSecondaryOrderID() const { return fieldAffectedSecondaryOrderID.offset >= 0 ? _fixPtr + fieldAffectedSecondaryOrderID.offset : nullptr; }
+   const char * ptrToTagAffectedSecondaryOrderID() const { return _fixPtr + fieldAffectedSecondaryOrderID.offset - 1 - FieldAffectedSecondaryOrderID::tagWidth(); }
+   const char * getIfSetAffectedSecondaryOrderID() const { return fieldAffectedSecondaryOrderID.offset > 0 ? _fixPtr + fieldAffectedSecondaryOrderID.offset : nullptr; }
    private: FieldAffectedSecondaryOrderID fieldAffectedSecondaryOrderID;
 
 };
@@ -4199,56 +4696,64 @@ class GroupExecs : public MessageBase
    static offset_t scan( Array & arr, const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    const char * getFieldValue( unsigned tag ) const;
+   const char * findBadField() const;
+   const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
-   bool isSetLastQty() const { return fieldLastQty.offset >= 0; }
+   bool isSetLastQty() const { return fieldLastQty.offset > 0; }
    FieldLastQty::ValueType getLastQty() const { return fieldLastQty.getValue( _fixPtr ); }
-   std::string_view getLastQtyView() const { return fieldLastQty.offset >= 0 ? std::string_view{ _fixPtr + fieldLastQty.offset, getValueLength( _fixPtr + fieldLastQty.offset ) } : std::string_view{}; }
+   std::string_view getLastQtyView() const { return fieldLastQty.offset > 0 ? std::string_view{ _fixPtr + fieldLastQty.offset, getValueLength( _fixPtr + fieldLastQty.offset ) } : std::string_view{}; }
    const char * ptrToLastQty() const { return _fixPtr + fieldLastQty.offset; }
-   const char * getIfSetLastQty() const { return fieldLastQty.offset >= 0 ? _fixPtr + fieldLastQty.offset : nullptr; }
+   const char * ptrToTagLastQty() const { return _fixPtr + fieldLastQty.offset - 1 - FieldLastQty::tagWidth(); }
+   const char * getIfSetLastQty() const { return fieldLastQty.offset > 0 ? _fixPtr + fieldLastQty.offset : nullptr; }
    private: FieldLastQty fieldLastQty;
 
    public:
-   bool isSetExecID() const { return fieldExecID.offset >= 0; }
+   bool isSetExecID() const { return fieldExecID.offset > 0; }
    FieldExecID::ValueType getExecID() const { return fieldExecID.getValue( _fixPtr ); }
-   std::string_view getExecIDView() const { return fieldExecID.offset >= 0 ? std::string_view{ _fixPtr + fieldExecID.offset, getValueLength( _fixPtr + fieldExecID.offset ) } : std::string_view{}; }
+   std::string_view getExecIDView() const { return fieldExecID.offset > 0 ? std::string_view{ _fixPtr + fieldExecID.offset, getValueLength( _fixPtr + fieldExecID.offset ) } : std::string_view{}; }
    const char * ptrToExecID() const { return _fixPtr + fieldExecID.offset; }
-   const char * getIfSetExecID() const { return fieldExecID.offset >= 0 ? _fixPtr + fieldExecID.offset : nullptr; }
+   const char * ptrToTagExecID() const { return _fixPtr + fieldExecID.offset - 1 - FieldExecID::tagWidth(); }
+   const char * getIfSetExecID() const { return fieldExecID.offset > 0 ? _fixPtr + fieldExecID.offset : nullptr; }
    private: FieldExecID fieldExecID;
 
    public:
-   bool isSetSecondaryExecID() const { return fieldSecondaryExecID.offset >= 0; }
+   bool isSetSecondaryExecID() const { return fieldSecondaryExecID.offset > 0; }
    FieldSecondaryExecID::ValueType getSecondaryExecID() const { return fieldSecondaryExecID.getValue( _fixPtr ); }
-   std::string_view getSecondaryExecIDView() const { return fieldSecondaryExecID.offset >= 0 ? std::string_view{ _fixPtr + fieldSecondaryExecID.offset, getValueLength( _fixPtr + fieldSecondaryExecID.offset ) } : std::string_view{}; }
+   std::string_view getSecondaryExecIDView() const { return fieldSecondaryExecID.offset > 0 ? std::string_view{ _fixPtr + fieldSecondaryExecID.offset, getValueLength( _fixPtr + fieldSecondaryExecID.offset ) } : std::string_view{}; }
    const char * ptrToSecondaryExecID() const { return _fixPtr + fieldSecondaryExecID.offset; }
-   const char * getIfSetSecondaryExecID() const { return fieldSecondaryExecID.offset >= 0 ? _fixPtr + fieldSecondaryExecID.offset : nullptr; }
+   const char * ptrToTagSecondaryExecID() const { return _fixPtr + fieldSecondaryExecID.offset - 1 - FieldSecondaryExecID::tagWidth(); }
+   const char * getIfSetSecondaryExecID() const { return fieldSecondaryExecID.offset > 0 ? _fixPtr + fieldSecondaryExecID.offset : nullptr; }
    private: FieldSecondaryExecID fieldSecondaryExecID;
 
    public:
-   bool isSetLastPx() const { return fieldLastPx.offset >= 0; }
+   bool isSetLastPx() const { return fieldLastPx.offset > 0; }
    FieldLastPx::ValueType getLastPx() const { return fieldLastPx.getValue( _fixPtr ); }
-   std::string_view getLastPxView() const { return fieldLastPx.offset >= 0 ? std::string_view{ _fixPtr + fieldLastPx.offset, getValueLength( _fixPtr + fieldLastPx.offset ) } : std::string_view{}; }
+   std::string_view getLastPxView() const { return fieldLastPx.offset > 0 ? std::string_view{ _fixPtr + fieldLastPx.offset, getValueLength( _fixPtr + fieldLastPx.offset ) } : std::string_view{}; }
    const char * ptrToLastPx() const { return _fixPtr + fieldLastPx.offset; }
-   const char * getIfSetLastPx() const { return fieldLastPx.offset >= 0 ? _fixPtr + fieldLastPx.offset : nullptr; }
+   const char * ptrToTagLastPx() const { return _fixPtr + fieldLastPx.offset - 1 - FieldLastPx::tagWidth(); }
+   const char * getIfSetLastPx() const { return fieldLastPx.offset > 0 ? _fixPtr + fieldLastPx.offset : nullptr; }
    private: FieldLastPx fieldLastPx;
 
    public:
-   bool isSetLastParPx() const { return fieldLastParPx.offset >= 0; }
+   bool isSetLastParPx() const { return fieldLastParPx.offset > 0; }
    FieldLastParPx::ValueType getLastParPx() const { return fieldLastParPx.getValue( _fixPtr ); }
-   std::string_view getLastParPxView() const { return fieldLastParPx.offset >= 0 ? std::string_view{ _fixPtr + fieldLastParPx.offset, getValueLength( _fixPtr + fieldLastParPx.offset ) } : std::string_view{}; }
+   std::string_view getLastParPxView() const { return fieldLastParPx.offset > 0 ? std::string_view{ _fixPtr + fieldLastParPx.offset, getValueLength( _fixPtr + fieldLastParPx.offset ) } : std::string_view{}; }
    const char * ptrToLastParPx() const { return _fixPtr + fieldLastParPx.offset; }
-   const char * getIfSetLastParPx() const { return fieldLastParPx.offset >= 0 ? _fixPtr + fieldLastParPx.offset : nullptr; }
+   const char * ptrToTagLastParPx() const { return _fixPtr + fieldLastParPx.offset - 1 - FieldLastParPx::tagWidth(); }
+   const char * getIfSetLastParPx() const { return fieldLastParPx.offset > 0 ? _fixPtr + fieldLastParPx.offset : nullptr; }
    private: FieldLastParPx fieldLastParPx;
 
    public:
-   bool isSetLastCapacity() const { return fieldLastCapacity.offset >= 0; }
+   bool isSetLastCapacity() const { return fieldLastCapacity.offset > 0; }
    FieldLastCapacity::ValueType getLastCapacity() const { return fieldLastCapacity.getValue( _fixPtr ); }
-   std::string_view getLastCapacityView() const { return fieldLastCapacity.offset >= 0 ? std::string_view{ _fixPtr + fieldLastCapacity.offset, getValueLength( _fixPtr + fieldLastCapacity.offset ) } : std::string_view{}; }
+   std::string_view getLastCapacityView() const { return fieldLastCapacity.offset > 0 ? std::string_view{ _fixPtr + fieldLastCapacity.offset, getValueLength( _fixPtr + fieldLastCapacity.offset ) } : std::string_view{}; }
    const char * ptrToLastCapacity() const { return _fixPtr + fieldLastCapacity.offset; }
-   const char * getIfSetLastCapacity() const { return fieldLastCapacity.offset >= 0 ? _fixPtr + fieldLastCapacity.offset : nullptr; }
+   const char * ptrToTagLastCapacity() const { return _fixPtr + fieldLastCapacity.offset - 1 - FieldLastCapacity::tagWidth(); }
+   const char * getIfSetLastCapacity() const { return fieldLastCapacity.offset > 0 ? _fixPtr + fieldLastCapacity.offset : nullptr; }
    private: FieldLastCapacity fieldLastCapacity;
 
 };
@@ -4265,24 +4770,28 @@ class GroupMsgTypes : public MessageBase
    static offset_t scan( Array & arr, const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    const char * getFieldValue( unsigned tag ) const;
+   const char * findBadField() const;
+   const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
-   bool isSetRefMsgType() const { return fieldRefMsgType.offset >= 0; }
+   bool isSetRefMsgType() const { return fieldRefMsgType.offset > 0; }
    FieldRefMsgType::ValueType getRefMsgType() const { return fieldRefMsgType.getValue( _fixPtr ); }
-   std::string_view getRefMsgTypeView() const { return fieldRefMsgType.offset >= 0 ? std::string_view{ _fixPtr + fieldRefMsgType.offset, getValueLength( _fixPtr + fieldRefMsgType.offset ) } : std::string_view{}; }
+   std::string_view getRefMsgTypeView() const { return fieldRefMsgType.offset > 0 ? std::string_view{ _fixPtr + fieldRefMsgType.offset, getValueLength( _fixPtr + fieldRefMsgType.offset ) } : std::string_view{}; }
    const char * ptrToRefMsgType() const { return _fixPtr + fieldRefMsgType.offset; }
-   const char * getIfSetRefMsgType() const { return fieldRefMsgType.offset >= 0 ? _fixPtr + fieldRefMsgType.offset : nullptr; }
+   const char * ptrToTagRefMsgType() const { return _fixPtr + fieldRefMsgType.offset - 1 - FieldRefMsgType::tagWidth(); }
+   const char * getIfSetRefMsgType() const { return fieldRefMsgType.offset > 0 ? _fixPtr + fieldRefMsgType.offset : nullptr; }
    private: FieldRefMsgType fieldRefMsgType;
 
    public:
-   bool isSetMsgDirection() const { return fieldMsgDirection.offset >= 0; }
+   bool isSetMsgDirection() const { return fieldMsgDirection.offset > 0; }
    FieldMsgDirection::ValueType getMsgDirection() const { return fieldMsgDirection.getValue( _fixPtr ); }
-   std::string_view getMsgDirectionView() const { return fieldMsgDirection.offset >= 0 ? std::string_view{ _fixPtr + fieldMsgDirection.offset, getValueLength( _fixPtr + fieldMsgDirection.offset ) } : std::string_view{}; }
+   std::string_view getMsgDirectionView() const { return fieldMsgDirection.offset > 0 ? std::string_view{ _fixPtr + fieldMsgDirection.offset, getValueLength( _fixPtr + fieldMsgDirection.offset ) } : std::string_view{}; }
    const char * ptrToMsgDirection() const { return _fixPtr + fieldMsgDirection.offset; }
-   const char * getIfSetMsgDirection() const { return fieldMsgDirection.offset >= 0 ? _fixPtr + fieldMsgDirection.offset : nullptr; }
+   const char * ptrToTagMsgDirection() const { return _fixPtr + fieldMsgDirection.offset - 1 - FieldMsgDirection::tagWidth(); }
+   const char * getIfSetMsgDirection() const { return fieldMsgDirection.offset > 0 ? _fixPtr + fieldMsgDirection.offset : nullptr; }
    private: FieldMsgDirection fieldMsgDirection;
 
 };
@@ -4299,80 +4808,91 @@ class GroupBidComponents : public MessageBase
    static offset_t scan( Array & arr, const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    const char * getFieldValue( unsigned tag ) const;
+   const char * findBadField() const;
+   const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
-   bool isSetListID() const { return fieldListID.offset >= 0; }
+   bool isSetListID() const { return fieldListID.offset > 0; }
    FieldListID::ValueType getListID() const { return fieldListID.getValue( _fixPtr ); }
-   std::string_view getListIDView() const { return fieldListID.offset >= 0 ? std::string_view{ _fixPtr + fieldListID.offset, getValueLength( _fixPtr + fieldListID.offset ) } : std::string_view{}; }
+   std::string_view getListIDView() const { return fieldListID.offset > 0 ? std::string_view{ _fixPtr + fieldListID.offset, getValueLength( _fixPtr + fieldListID.offset ) } : std::string_view{}; }
    const char * ptrToListID() const { return _fixPtr + fieldListID.offset; }
-   const char * getIfSetListID() const { return fieldListID.offset >= 0 ? _fixPtr + fieldListID.offset : nullptr; }
+   const char * ptrToTagListID() const { return _fixPtr + fieldListID.offset - 1 - FieldListID::tagWidth(); }
+   const char * getIfSetListID() const { return fieldListID.offset > 0 ? _fixPtr + fieldListID.offset : nullptr; }
    private: FieldListID fieldListID;
 
    public:
-   bool isSetSide() const { return fieldSide.offset >= 0; }
+   bool isSetSide() const { return fieldSide.offset > 0; }
    FieldSide::ValueType getSide() const { return fieldSide.getValue( _fixPtr ); }
-   std::string_view getSideView() const { return fieldSide.offset >= 0 ? std::string_view{ _fixPtr + fieldSide.offset, getValueLength( _fixPtr + fieldSide.offset ) } : std::string_view{}; }
+   std::string_view getSideView() const { return fieldSide.offset > 0 ? std::string_view{ _fixPtr + fieldSide.offset, getValueLength( _fixPtr + fieldSide.offset ) } : std::string_view{}; }
    const char * ptrToSide() const { return _fixPtr + fieldSide.offset; }
-   const char * getIfSetSide() const { return fieldSide.offset >= 0 ? _fixPtr + fieldSide.offset : nullptr; }
+   const char * ptrToTagSide() const { return _fixPtr + fieldSide.offset - 1 - FieldSide::tagWidth(); }
+   const char * getIfSetSide() const { return fieldSide.offset > 0 ? _fixPtr + fieldSide.offset : nullptr; }
    private: FieldSide fieldSide;
 
    public:
-   bool isSetTradingSessionID() const { return fieldTradingSessionID.offset >= 0; }
+   bool isSetTradingSessionID() const { return fieldTradingSessionID.offset > 0; }
    FieldTradingSessionID::ValueType getTradingSessionID() const { return fieldTradingSessionID.getValue( _fixPtr ); }
-   std::string_view getTradingSessionIDView() const { return fieldTradingSessionID.offset >= 0 ? std::string_view{ _fixPtr + fieldTradingSessionID.offset, getValueLength( _fixPtr + fieldTradingSessionID.offset ) } : std::string_view{}; }
+   std::string_view getTradingSessionIDView() const { return fieldTradingSessionID.offset > 0 ? std::string_view{ _fixPtr + fieldTradingSessionID.offset, getValueLength( _fixPtr + fieldTradingSessionID.offset ) } : std::string_view{}; }
    const char * ptrToTradingSessionID() const { return _fixPtr + fieldTradingSessionID.offset; }
-   const char * getIfSetTradingSessionID() const { return fieldTradingSessionID.offset >= 0 ? _fixPtr + fieldTradingSessionID.offset : nullptr; }
+   const char * ptrToTagTradingSessionID() const { return _fixPtr + fieldTradingSessionID.offset - 1 - FieldTradingSessionID::tagWidth(); }
+   const char * getIfSetTradingSessionID() const { return fieldTradingSessionID.offset > 0 ? _fixPtr + fieldTradingSessionID.offset : nullptr; }
    private: FieldTradingSessionID fieldTradingSessionID;
 
    public:
-   bool isSetTradingSessionSubID() const { return fieldTradingSessionSubID.offset >= 0; }
+   bool isSetTradingSessionSubID() const { return fieldTradingSessionSubID.offset > 0; }
    FieldTradingSessionSubID::ValueType getTradingSessionSubID() const { return fieldTradingSessionSubID.getValue( _fixPtr ); }
-   std::string_view getTradingSessionSubIDView() const { return fieldTradingSessionSubID.offset >= 0 ? std::string_view{ _fixPtr + fieldTradingSessionSubID.offset, getValueLength( _fixPtr + fieldTradingSessionSubID.offset ) } : std::string_view{}; }
+   std::string_view getTradingSessionSubIDView() const { return fieldTradingSessionSubID.offset > 0 ? std::string_view{ _fixPtr + fieldTradingSessionSubID.offset, getValueLength( _fixPtr + fieldTradingSessionSubID.offset ) } : std::string_view{}; }
    const char * ptrToTradingSessionSubID() const { return _fixPtr + fieldTradingSessionSubID.offset; }
-   const char * getIfSetTradingSessionSubID() const { return fieldTradingSessionSubID.offset >= 0 ? _fixPtr + fieldTradingSessionSubID.offset : nullptr; }
+   const char * ptrToTagTradingSessionSubID() const { return _fixPtr + fieldTradingSessionSubID.offset - 1 - FieldTradingSessionSubID::tagWidth(); }
+   const char * getIfSetTradingSessionSubID() const { return fieldTradingSessionSubID.offset > 0 ? _fixPtr + fieldTradingSessionSubID.offset : nullptr; }
    private: FieldTradingSessionSubID fieldTradingSessionSubID;
 
    public:
-   bool isSetNetGrossInd() const { return fieldNetGrossInd.offset >= 0; }
+   bool isSetNetGrossInd() const { return fieldNetGrossInd.offset > 0; }
    FieldNetGrossInd::ValueType getNetGrossInd() const { return fieldNetGrossInd.getValue( _fixPtr ); }
-   std::string_view getNetGrossIndView() const { return fieldNetGrossInd.offset >= 0 ? std::string_view{ _fixPtr + fieldNetGrossInd.offset, getValueLength( _fixPtr + fieldNetGrossInd.offset ) } : std::string_view{}; }
+   std::string_view getNetGrossIndView() const { return fieldNetGrossInd.offset > 0 ? std::string_view{ _fixPtr + fieldNetGrossInd.offset, getValueLength( _fixPtr + fieldNetGrossInd.offset ) } : std::string_view{}; }
    const char * ptrToNetGrossInd() const { return _fixPtr + fieldNetGrossInd.offset; }
-   const char * getIfSetNetGrossInd() const { return fieldNetGrossInd.offset >= 0 ? _fixPtr + fieldNetGrossInd.offset : nullptr; }
+   const char * ptrToTagNetGrossInd() const { return _fixPtr + fieldNetGrossInd.offset - 1 - FieldNetGrossInd::tagWidth(); }
+   const char * getIfSetNetGrossInd() const { return fieldNetGrossInd.offset > 0 ? _fixPtr + fieldNetGrossInd.offset : nullptr; }
    private: FieldNetGrossInd fieldNetGrossInd;
 
    public:
-   bool isSetSettlType() const { return fieldSettlType.offset >= 0; }
+   bool isSetSettlType() const { return fieldSettlType.offset > 0; }
    FieldSettlType::ValueType getSettlType() const { return fieldSettlType.getValue( _fixPtr ); }
-   std::string_view getSettlTypeView() const { return fieldSettlType.offset >= 0 ? std::string_view{ _fixPtr + fieldSettlType.offset, getValueLength( _fixPtr + fieldSettlType.offset ) } : std::string_view{}; }
+   std::string_view getSettlTypeView() const { return fieldSettlType.offset > 0 ? std::string_view{ _fixPtr + fieldSettlType.offset, getValueLength( _fixPtr + fieldSettlType.offset ) } : std::string_view{}; }
    const char * ptrToSettlType() const { return _fixPtr + fieldSettlType.offset; }
-   const char * getIfSetSettlType() const { return fieldSettlType.offset >= 0 ? _fixPtr + fieldSettlType.offset : nullptr; }
+   const char * ptrToTagSettlType() const { return _fixPtr + fieldSettlType.offset - 1 - FieldSettlType::tagWidth(); }
+   const char * getIfSetSettlType() const { return fieldSettlType.offset > 0 ? _fixPtr + fieldSettlType.offset : nullptr; }
    private: FieldSettlType fieldSettlType;
 
    public:
-   bool isSetSettlDate() const { return fieldSettlDate.offset >= 0; }
+   bool isSetSettlDate() const { return fieldSettlDate.offset > 0; }
    FieldSettlDate::ValueType getSettlDate() const { return fieldSettlDate.getValue( _fixPtr ); }
-   std::string_view getSettlDateView() const { return fieldSettlDate.offset >= 0 ? std::string_view{ _fixPtr + fieldSettlDate.offset, getValueLength( _fixPtr + fieldSettlDate.offset ) } : std::string_view{}; }
+   std::string_view getSettlDateView() const { return fieldSettlDate.offset > 0 ? std::string_view{ _fixPtr + fieldSettlDate.offset, getValueLength( _fixPtr + fieldSettlDate.offset ) } : std::string_view{}; }
    const char * ptrToSettlDate() const { return _fixPtr + fieldSettlDate.offset; }
-   const char * getIfSetSettlDate() const { return fieldSettlDate.offset >= 0 ? _fixPtr + fieldSettlDate.offset : nullptr; }
+   const char * ptrToTagSettlDate() const { return _fixPtr + fieldSettlDate.offset - 1 - FieldSettlDate::tagWidth(); }
+   const char * getIfSetSettlDate() const { return fieldSettlDate.offset > 0 ? _fixPtr + fieldSettlDate.offset : nullptr; }
    private: FieldSettlDate fieldSettlDate;
 
    public:
-   bool isSetAccount() const { return fieldAccount.offset >= 0; }
+   bool isSetAccount() const { return fieldAccount.offset > 0; }
    FieldAccount::ValueType getAccount() const { return fieldAccount.getValue( _fixPtr ); }
-   std::string_view getAccountView() const { return fieldAccount.offset >= 0 ? std::string_view{ _fixPtr + fieldAccount.offset, getValueLength( _fixPtr + fieldAccount.offset ) } : std::string_view{}; }
+   std::string_view getAccountView() const { return fieldAccount.offset > 0 ? std::string_view{ _fixPtr + fieldAccount.offset, getValueLength( _fixPtr + fieldAccount.offset ) } : std::string_view{}; }
    const char * ptrToAccount() const { return _fixPtr + fieldAccount.offset; }
-   const char * getIfSetAccount() const { return fieldAccount.offset >= 0 ? _fixPtr + fieldAccount.offset : nullptr; }
+   const char * ptrToTagAccount() const { return _fixPtr + fieldAccount.offset - 1 - FieldAccount::tagWidth(); }
+   const char * getIfSetAccount() const { return fieldAccount.offset > 0 ? _fixPtr + fieldAccount.offset : nullptr; }
    private: FieldAccount fieldAccount;
 
    public:
-   bool isSetAcctIDSource() const { return fieldAcctIDSource.offset >= 0; }
+   bool isSetAcctIDSource() const { return fieldAcctIDSource.offset > 0; }
    FieldAcctIDSource::ValueType getAcctIDSource() const { return fieldAcctIDSource.getValue( _fixPtr ); }
-   std::string_view getAcctIDSourceView() const { return fieldAcctIDSource.offset >= 0 ? std::string_view{ _fixPtr + fieldAcctIDSource.offset, getValueLength( _fixPtr + fieldAcctIDSource.offset ) } : std::string_view{}; }
+   std::string_view getAcctIDSourceView() const { return fieldAcctIDSource.offset > 0 ? std::string_view{ _fixPtr + fieldAcctIDSource.offset, getValueLength( _fixPtr + fieldAcctIDSource.offset ) } : std::string_view{}; }
    const char * ptrToAcctIDSource() const { return _fixPtr + fieldAcctIDSource.offset; }
-   const char * getIfSetAcctIDSource() const { return fieldAcctIDSource.offset >= 0 ? _fixPtr + fieldAcctIDSource.offset : nullptr; }
+   const char * ptrToTagAcctIDSource() const { return _fixPtr + fieldAcctIDSource.offset - 1 - FieldAcctIDSource::tagWidth(); }
+   const char * getIfSetAcctIDSource() const { return fieldAcctIDSource.offset > 0 ? _fixPtr + fieldAcctIDSource.offset : nullptr; }
    private: FieldAcctIDSource fieldAcctIDSource;
 
 };
@@ -4389,40 +4909,46 @@ class GroupSettlInst : public MessageBase
    static offset_t scan( Array & arr, const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    const char * getFieldValue( unsigned tag ) const;
+   const char * findBadField() const;
+   const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
-   bool isSetSettlInstID() const { return fieldSettlInstID.offset >= 0; }
+   bool isSetSettlInstID() const { return fieldSettlInstID.offset > 0; }
    FieldSettlInstID::ValueType getSettlInstID() const { return fieldSettlInstID.getValue( _fixPtr ); }
-   std::string_view getSettlInstIDView() const { return fieldSettlInstID.offset >= 0 ? std::string_view{ _fixPtr + fieldSettlInstID.offset, getValueLength( _fixPtr + fieldSettlInstID.offset ) } : std::string_view{}; }
+   std::string_view getSettlInstIDView() const { return fieldSettlInstID.offset > 0 ? std::string_view{ _fixPtr + fieldSettlInstID.offset, getValueLength( _fixPtr + fieldSettlInstID.offset ) } : std::string_view{}; }
    const char * ptrToSettlInstID() const { return _fixPtr + fieldSettlInstID.offset; }
-   const char * getIfSetSettlInstID() const { return fieldSettlInstID.offset >= 0 ? _fixPtr + fieldSettlInstID.offset : nullptr; }
+   const char * ptrToTagSettlInstID() const { return _fixPtr + fieldSettlInstID.offset - 1 - FieldSettlInstID::tagWidth(); }
+   const char * getIfSetSettlInstID() const { return fieldSettlInstID.offset > 0 ? _fixPtr + fieldSettlInstID.offset : nullptr; }
    private: FieldSettlInstID fieldSettlInstID;
 
    public:
-   bool isSetSettlInstTransType() const { return fieldSettlInstTransType.offset >= 0; }
+   bool isSetSettlInstTransType() const { return fieldSettlInstTransType.offset > 0; }
    FieldSettlInstTransType::ValueType getSettlInstTransType() const { return fieldSettlInstTransType.getValue( _fixPtr ); }
-   std::string_view getSettlInstTransTypeView() const { return fieldSettlInstTransType.offset >= 0 ? std::string_view{ _fixPtr + fieldSettlInstTransType.offset, getValueLength( _fixPtr + fieldSettlInstTransType.offset ) } : std::string_view{}; }
+   std::string_view getSettlInstTransTypeView() const { return fieldSettlInstTransType.offset > 0 ? std::string_view{ _fixPtr + fieldSettlInstTransType.offset, getValueLength( _fixPtr + fieldSettlInstTransType.offset ) } : std::string_view{}; }
    const char * ptrToSettlInstTransType() const { return _fixPtr + fieldSettlInstTransType.offset; }
-   const char * getIfSetSettlInstTransType() const { return fieldSettlInstTransType.offset >= 0 ? _fixPtr + fieldSettlInstTransType.offset : nullptr; }
+   const char * ptrToTagSettlInstTransType() const { return _fixPtr + fieldSettlInstTransType.offset - 1 - FieldSettlInstTransType::tagWidth(); }
+   const char * getIfSetSettlInstTransType() const { return fieldSettlInstTransType.offset > 0 ? _fixPtr + fieldSettlInstTransType.offset : nullptr; }
    private: FieldSettlInstTransType fieldSettlInstTransType;
 
    public:
-   bool isSetSettlInstRefID() const { return fieldSettlInstRefID.offset >= 0; }
+   bool isSetSettlInstRefID() const { return fieldSettlInstRefID.offset > 0; }
    FieldSettlInstRefID::ValueType getSettlInstRefID() const { return fieldSettlInstRefID.getValue( _fixPtr ); }
-   std::string_view getSettlInstRefIDView() const { return fieldSettlInstRefID.offset >= 0 ? std::string_view{ _fixPtr + fieldSettlInstRefID.offset, getValueLength( _fixPtr + fieldSettlInstRefID.offset ) } : std::string_view{}; }
+   std::string_view getSettlInstRefIDView() const { return fieldSettlInstRefID.offset > 0 ? std::string_view{ _fixPtr + fieldSettlInstRefID.offset, getValueLength( _fixPtr + fieldSettlInstRefID.offset ) } : std::string_view{}; }
    const char * ptrToSettlInstRefID() const { return _fixPtr + fieldSettlInstRefID.offset; }
-   const char * getIfSetSettlInstRefID() const { return fieldSettlInstRefID.offset >= 0 ? _fixPtr + fieldSettlInstRefID.offset : nullptr; }
+   const char * ptrToTagSettlInstRefID() const { return _fixPtr + fieldSettlInstRefID.offset - 1 - FieldSettlInstRefID::tagWidth(); }
+   const char * getIfSetSettlInstRefID() const { return fieldSettlInstRefID.offset > 0 ? _fixPtr + fieldSettlInstRefID.offset : nullptr; }
    private: FieldSettlInstRefID fieldSettlInstRefID;
 
    public:
-   bool isSetNoPartyIDs() const { return fieldNoPartyIDs.offset >= 0; }
+   bool isSetNoPartyIDs() const { return fieldNoPartyIDs.offset > 0; }
    FieldNoPartyIDs::ValueType getNoPartyIDs() const { return fieldNoPartyIDs.getValue( _fixPtr ); }
-   std::string_view getNoPartyIDsView() const { return fieldNoPartyIDs.offset >= 0 ? std::string_view{ _fixPtr + fieldNoPartyIDs.offset, getValueLength( _fixPtr + fieldNoPartyIDs.offset ) } : std::string_view{}; }
+   std::string_view getNoPartyIDsView() const { return fieldNoPartyIDs.offset > 0 ? std::string_view{ _fixPtr + fieldNoPartyIDs.offset, getValueLength( _fixPtr + fieldNoPartyIDs.offset ) } : std::string_view{}; }
    const char * ptrToNoPartyIDs() const { return _fixPtr + fieldNoPartyIDs.offset; }
-   const char * getIfSetNoPartyIDs() const { return fieldNoPartyIDs.offset >= 0 ? _fixPtr + fieldNoPartyIDs.offset : nullptr; }
+   const char * ptrToTagNoPartyIDs() const { return _fixPtr + fieldNoPartyIDs.offset - 1 - FieldNoPartyIDs::tagWidth(); }
+   const char * getIfSetNoPartyIDs() const { return fieldNoPartyIDs.offset > 0 ? _fixPtr + fieldNoPartyIDs.offset : nullptr; }
    private: FieldNoPartyIDs fieldNoPartyIDs;
   
    public:
@@ -4431,99 +4957,111 @@ class GroupSettlInst : public MessageBase
    private: GroupPartyIDs::Array groupsPartyIDs{ 10 };
 
    public:
-   bool isSetSide() const { return fieldSide.offset >= 0; }
+   bool isSetSide() const { return fieldSide.offset > 0; }
    FieldSide::ValueType getSide() const { return fieldSide.getValue( _fixPtr ); }
-   std::string_view getSideView() const { return fieldSide.offset >= 0 ? std::string_view{ _fixPtr + fieldSide.offset, getValueLength( _fixPtr + fieldSide.offset ) } : std::string_view{}; }
+   std::string_view getSideView() const { return fieldSide.offset > 0 ? std::string_view{ _fixPtr + fieldSide.offset, getValueLength( _fixPtr + fieldSide.offset ) } : std::string_view{}; }
    const char * ptrToSide() const { return _fixPtr + fieldSide.offset; }
-   const char * getIfSetSide() const { return fieldSide.offset >= 0 ? _fixPtr + fieldSide.offset : nullptr; }
+   const char * ptrToTagSide() const { return _fixPtr + fieldSide.offset - 1 - FieldSide::tagWidth(); }
+   const char * getIfSetSide() const { return fieldSide.offset > 0 ? _fixPtr + fieldSide.offset : nullptr; }
    private: FieldSide fieldSide;
 
    public:
-   bool isSetProduct() const { return fieldProduct.offset >= 0; }
+   bool isSetProduct() const { return fieldProduct.offset > 0; }
    FieldProduct::ValueType getProduct() const { return fieldProduct.getValue( _fixPtr ); }
-   std::string_view getProductView() const { return fieldProduct.offset >= 0 ? std::string_view{ _fixPtr + fieldProduct.offset, getValueLength( _fixPtr + fieldProduct.offset ) } : std::string_view{}; }
+   std::string_view getProductView() const { return fieldProduct.offset > 0 ? std::string_view{ _fixPtr + fieldProduct.offset, getValueLength( _fixPtr + fieldProduct.offset ) } : std::string_view{}; }
    const char * ptrToProduct() const { return _fixPtr + fieldProduct.offset; }
-   const char * getIfSetProduct() const { return fieldProduct.offset >= 0 ? _fixPtr + fieldProduct.offset : nullptr; }
+   const char * ptrToTagProduct() const { return _fixPtr + fieldProduct.offset - 1 - FieldProduct::tagWidth(); }
+   const char * getIfSetProduct() const { return fieldProduct.offset > 0 ? _fixPtr + fieldProduct.offset : nullptr; }
    private: FieldProduct fieldProduct;
 
    public:
-   bool isSetSecurityType() const { return fieldSecurityType.offset >= 0; }
+   bool isSetSecurityType() const { return fieldSecurityType.offset > 0; }
    FieldSecurityType::ValueType getSecurityType() const { return fieldSecurityType.getValue( _fixPtr ); }
-   std::string_view getSecurityTypeView() const { return fieldSecurityType.offset >= 0 ? std::string_view{ _fixPtr + fieldSecurityType.offset, getValueLength( _fixPtr + fieldSecurityType.offset ) } : std::string_view{}; }
+   std::string_view getSecurityTypeView() const { return fieldSecurityType.offset > 0 ? std::string_view{ _fixPtr + fieldSecurityType.offset, getValueLength( _fixPtr + fieldSecurityType.offset ) } : std::string_view{}; }
    const char * ptrToSecurityType() const { return _fixPtr + fieldSecurityType.offset; }
-   const char * getIfSetSecurityType() const { return fieldSecurityType.offset >= 0 ? _fixPtr + fieldSecurityType.offset : nullptr; }
+   const char * ptrToTagSecurityType() const { return _fixPtr + fieldSecurityType.offset - 1 - FieldSecurityType::tagWidth(); }
+   const char * getIfSetSecurityType() const { return fieldSecurityType.offset > 0 ? _fixPtr + fieldSecurityType.offset : nullptr; }
    private: FieldSecurityType fieldSecurityType;
 
    public:
-   bool isSetCFICode() const { return fieldCFICode.offset >= 0; }
+   bool isSetCFICode() const { return fieldCFICode.offset > 0; }
    FieldCFICode::ValueType getCFICode() const { return fieldCFICode.getValue( _fixPtr ); }
-   std::string_view getCFICodeView() const { return fieldCFICode.offset >= 0 ? std::string_view{ _fixPtr + fieldCFICode.offset, getValueLength( _fixPtr + fieldCFICode.offset ) } : std::string_view{}; }
+   std::string_view getCFICodeView() const { return fieldCFICode.offset > 0 ? std::string_view{ _fixPtr + fieldCFICode.offset, getValueLength( _fixPtr + fieldCFICode.offset ) } : std::string_view{}; }
    const char * ptrToCFICode() const { return _fixPtr + fieldCFICode.offset; }
-   const char * getIfSetCFICode() const { return fieldCFICode.offset >= 0 ? _fixPtr + fieldCFICode.offset : nullptr; }
+   const char * ptrToTagCFICode() const { return _fixPtr + fieldCFICode.offset - 1 - FieldCFICode::tagWidth(); }
+   const char * getIfSetCFICode() const { return fieldCFICode.offset > 0 ? _fixPtr + fieldCFICode.offset : nullptr; }
    private: FieldCFICode fieldCFICode;
 
    public:
-   bool isSetEffectiveTime() const { return fieldEffectiveTime.offset >= 0; }
+   bool isSetEffectiveTime() const { return fieldEffectiveTime.offset > 0; }
    FieldEffectiveTime::ValueType getEffectiveTime() const { return fieldEffectiveTime.getValue( _fixPtr ); }
-   std::string_view getEffectiveTimeView() const { return fieldEffectiveTime.offset >= 0 ? std::string_view{ _fixPtr + fieldEffectiveTime.offset, getValueLength( _fixPtr + fieldEffectiveTime.offset ) } : std::string_view{}; }
+   std::string_view getEffectiveTimeView() const { return fieldEffectiveTime.offset > 0 ? std::string_view{ _fixPtr + fieldEffectiveTime.offset, getValueLength( _fixPtr + fieldEffectiveTime.offset ) } : std::string_view{}; }
    const char * ptrToEffectiveTime() const { return _fixPtr + fieldEffectiveTime.offset; }
-   const char * getIfSetEffectiveTime() const { return fieldEffectiveTime.offset >= 0 ? _fixPtr + fieldEffectiveTime.offset : nullptr; }
+   const char * ptrToTagEffectiveTime() const { return _fixPtr + fieldEffectiveTime.offset - 1 - FieldEffectiveTime::tagWidth(); }
+   const char * getIfSetEffectiveTime() const { return fieldEffectiveTime.offset > 0 ? _fixPtr + fieldEffectiveTime.offset : nullptr; }
    private: FieldEffectiveTime fieldEffectiveTime;
 
    public:
-   bool isSetExpireTime() const { return fieldExpireTime.offset >= 0; }
+   bool isSetExpireTime() const { return fieldExpireTime.offset > 0; }
    FieldExpireTime::ValueType getExpireTime() const { return fieldExpireTime.getValue( _fixPtr ); }
-   std::string_view getExpireTimeView() const { return fieldExpireTime.offset >= 0 ? std::string_view{ _fixPtr + fieldExpireTime.offset, getValueLength( _fixPtr + fieldExpireTime.offset ) } : std::string_view{}; }
+   std::string_view getExpireTimeView() const { return fieldExpireTime.offset > 0 ? std::string_view{ _fixPtr + fieldExpireTime.offset, getValueLength( _fixPtr + fieldExpireTime.offset ) } : std::string_view{}; }
    const char * ptrToExpireTime() const { return _fixPtr + fieldExpireTime.offset; }
-   const char * getIfSetExpireTime() const { return fieldExpireTime.offset >= 0 ? _fixPtr + fieldExpireTime.offset : nullptr; }
+   const char * ptrToTagExpireTime() const { return _fixPtr + fieldExpireTime.offset - 1 - FieldExpireTime::tagWidth(); }
+   const char * getIfSetExpireTime() const { return fieldExpireTime.offset > 0 ? _fixPtr + fieldExpireTime.offset : nullptr; }
    private: FieldExpireTime fieldExpireTime;
 
    public:
-   bool isSetLastUpdateTime() const { return fieldLastUpdateTime.offset >= 0; }
+   bool isSetLastUpdateTime() const { return fieldLastUpdateTime.offset > 0; }
    FieldLastUpdateTime::ValueType getLastUpdateTime() const { return fieldLastUpdateTime.getValue( _fixPtr ); }
-   std::string_view getLastUpdateTimeView() const { return fieldLastUpdateTime.offset >= 0 ? std::string_view{ _fixPtr + fieldLastUpdateTime.offset, getValueLength( _fixPtr + fieldLastUpdateTime.offset ) } : std::string_view{}; }
+   std::string_view getLastUpdateTimeView() const { return fieldLastUpdateTime.offset > 0 ? std::string_view{ _fixPtr + fieldLastUpdateTime.offset, getValueLength( _fixPtr + fieldLastUpdateTime.offset ) } : std::string_view{}; }
    const char * ptrToLastUpdateTime() const { return _fixPtr + fieldLastUpdateTime.offset; }
-   const char * getIfSetLastUpdateTime() const { return fieldLastUpdateTime.offset >= 0 ? _fixPtr + fieldLastUpdateTime.offset : nullptr; }
+   const char * ptrToTagLastUpdateTime() const { return _fixPtr + fieldLastUpdateTime.offset - 1 - FieldLastUpdateTime::tagWidth(); }
+   const char * getIfSetLastUpdateTime() const { return fieldLastUpdateTime.offset > 0 ? _fixPtr + fieldLastUpdateTime.offset : nullptr; }
    private: FieldLastUpdateTime fieldLastUpdateTime;
 
    public:
-   bool isSetSettlDeliveryType() const { return fieldSettlDeliveryType.offset >= 0; }
+   bool isSetSettlDeliveryType() const { return fieldSettlDeliveryType.offset > 0; }
    FieldSettlDeliveryType::ValueType getSettlDeliveryType() const { return fieldSettlDeliveryType.getValue( _fixPtr ); }
-   std::string_view getSettlDeliveryTypeView() const { return fieldSettlDeliveryType.offset >= 0 ? std::string_view{ _fixPtr + fieldSettlDeliveryType.offset, getValueLength( _fixPtr + fieldSettlDeliveryType.offset ) } : std::string_view{}; }
+   std::string_view getSettlDeliveryTypeView() const { return fieldSettlDeliveryType.offset > 0 ? std::string_view{ _fixPtr + fieldSettlDeliveryType.offset, getValueLength( _fixPtr + fieldSettlDeliveryType.offset ) } : std::string_view{}; }
    const char * ptrToSettlDeliveryType() const { return _fixPtr + fieldSettlDeliveryType.offset; }
-   const char * getIfSetSettlDeliveryType() const { return fieldSettlDeliveryType.offset >= 0 ? _fixPtr + fieldSettlDeliveryType.offset : nullptr; }
+   const char * ptrToTagSettlDeliveryType() const { return _fixPtr + fieldSettlDeliveryType.offset - 1 - FieldSettlDeliveryType::tagWidth(); }
+   const char * getIfSetSettlDeliveryType() const { return fieldSettlDeliveryType.offset > 0 ? _fixPtr + fieldSettlDeliveryType.offset : nullptr; }
    private: FieldSettlDeliveryType fieldSettlDeliveryType;
 
    public:
-   bool isSetStandInstDbType() const { return fieldStandInstDbType.offset >= 0; }
+   bool isSetStandInstDbType() const { return fieldStandInstDbType.offset > 0; }
    FieldStandInstDbType::ValueType getStandInstDbType() const { return fieldStandInstDbType.getValue( _fixPtr ); }
-   std::string_view getStandInstDbTypeView() const { return fieldStandInstDbType.offset >= 0 ? std::string_view{ _fixPtr + fieldStandInstDbType.offset, getValueLength( _fixPtr + fieldStandInstDbType.offset ) } : std::string_view{}; }
+   std::string_view getStandInstDbTypeView() const { return fieldStandInstDbType.offset > 0 ? std::string_view{ _fixPtr + fieldStandInstDbType.offset, getValueLength( _fixPtr + fieldStandInstDbType.offset ) } : std::string_view{}; }
    const char * ptrToStandInstDbType() const { return _fixPtr + fieldStandInstDbType.offset; }
-   const char * getIfSetStandInstDbType() const { return fieldStandInstDbType.offset >= 0 ? _fixPtr + fieldStandInstDbType.offset : nullptr; }
+   const char * ptrToTagStandInstDbType() const { return _fixPtr + fieldStandInstDbType.offset - 1 - FieldStandInstDbType::tagWidth(); }
+   const char * getIfSetStandInstDbType() const { return fieldStandInstDbType.offset > 0 ? _fixPtr + fieldStandInstDbType.offset : nullptr; }
    private: FieldStandInstDbType fieldStandInstDbType;
 
    public:
-   bool isSetStandInstDbName() const { return fieldStandInstDbName.offset >= 0; }
+   bool isSetStandInstDbName() const { return fieldStandInstDbName.offset > 0; }
    FieldStandInstDbName::ValueType getStandInstDbName() const { return fieldStandInstDbName.getValue( _fixPtr ); }
-   std::string_view getStandInstDbNameView() const { return fieldStandInstDbName.offset >= 0 ? std::string_view{ _fixPtr + fieldStandInstDbName.offset, getValueLength( _fixPtr + fieldStandInstDbName.offset ) } : std::string_view{}; }
+   std::string_view getStandInstDbNameView() const { return fieldStandInstDbName.offset > 0 ? std::string_view{ _fixPtr + fieldStandInstDbName.offset, getValueLength( _fixPtr + fieldStandInstDbName.offset ) } : std::string_view{}; }
    const char * ptrToStandInstDbName() const { return _fixPtr + fieldStandInstDbName.offset; }
-   const char * getIfSetStandInstDbName() const { return fieldStandInstDbName.offset >= 0 ? _fixPtr + fieldStandInstDbName.offset : nullptr; }
+   const char * ptrToTagStandInstDbName() const { return _fixPtr + fieldStandInstDbName.offset - 1 - FieldStandInstDbName::tagWidth(); }
+   const char * getIfSetStandInstDbName() const { return fieldStandInstDbName.offset > 0 ? _fixPtr + fieldStandInstDbName.offset : nullptr; }
    private: FieldStandInstDbName fieldStandInstDbName;
 
    public:
-   bool isSetStandInstDbID() const { return fieldStandInstDbID.offset >= 0; }
+   bool isSetStandInstDbID() const { return fieldStandInstDbID.offset > 0; }
    FieldStandInstDbID::ValueType getStandInstDbID() const { return fieldStandInstDbID.getValue( _fixPtr ); }
-   std::string_view getStandInstDbIDView() const { return fieldStandInstDbID.offset >= 0 ? std::string_view{ _fixPtr + fieldStandInstDbID.offset, getValueLength( _fixPtr + fieldStandInstDbID.offset ) } : std::string_view{}; }
+   std::string_view getStandInstDbIDView() const { return fieldStandInstDbID.offset > 0 ? std::string_view{ _fixPtr + fieldStandInstDbID.offset, getValueLength( _fixPtr + fieldStandInstDbID.offset ) } : std::string_view{}; }
    const char * ptrToStandInstDbID() const { return _fixPtr + fieldStandInstDbID.offset; }
-   const char * getIfSetStandInstDbID() const { return fieldStandInstDbID.offset >= 0 ? _fixPtr + fieldStandInstDbID.offset : nullptr; }
+   const char * ptrToTagStandInstDbID() const { return _fixPtr + fieldStandInstDbID.offset - 1 - FieldStandInstDbID::tagWidth(); }
+   const char * getIfSetStandInstDbID() const { return fieldStandInstDbID.offset > 0 ? _fixPtr + fieldStandInstDbID.offset : nullptr; }
    private: FieldStandInstDbID fieldStandInstDbID;
 
    public:
-   bool isSetNoDlvyInst() const { return fieldNoDlvyInst.offset >= 0; }
+   bool isSetNoDlvyInst() const { return fieldNoDlvyInst.offset > 0; }
    FieldNoDlvyInst::ValueType getNoDlvyInst() const { return fieldNoDlvyInst.getValue( _fixPtr ); }
-   std::string_view getNoDlvyInstView() const { return fieldNoDlvyInst.offset >= 0 ? std::string_view{ _fixPtr + fieldNoDlvyInst.offset, getValueLength( _fixPtr + fieldNoDlvyInst.offset ) } : std::string_view{}; }
+   std::string_view getNoDlvyInstView() const { return fieldNoDlvyInst.offset > 0 ? std::string_view{ _fixPtr + fieldNoDlvyInst.offset, getValueLength( _fixPtr + fieldNoDlvyInst.offset ) } : std::string_view{}; }
    const char * ptrToNoDlvyInst() const { return _fixPtr + fieldNoDlvyInst.offset; }
-   const char * getIfSetNoDlvyInst() const { return fieldNoDlvyInst.offset >= 0 ? _fixPtr + fieldNoDlvyInst.offset : nullptr; }
+   const char * ptrToTagNoDlvyInst() const { return _fixPtr + fieldNoDlvyInst.offset - 1 - FieldNoDlvyInst::tagWidth(); }
+   const char * getIfSetNoDlvyInst() const { return fieldNoDlvyInst.offset > 0 ? _fixPtr + fieldNoDlvyInst.offset : nullptr; }
    private: FieldNoDlvyInst fieldNoDlvyInst;
   
    public:
@@ -4532,75 +5070,84 @@ class GroupSettlInst : public MessageBase
    private: GroupDlvyInst::Array groupsDlvyInst{ 10 };
 
    public:
-   bool isSetPaymentMethod() const { return fieldPaymentMethod.offset >= 0; }
+   bool isSetPaymentMethod() const { return fieldPaymentMethod.offset > 0; }
    FieldPaymentMethod::ValueType getPaymentMethod() const { return fieldPaymentMethod.getValue( _fixPtr ); }
-   std::string_view getPaymentMethodView() const { return fieldPaymentMethod.offset >= 0 ? std::string_view{ _fixPtr + fieldPaymentMethod.offset, getValueLength( _fixPtr + fieldPaymentMethod.offset ) } : std::string_view{}; }
+   std::string_view getPaymentMethodView() const { return fieldPaymentMethod.offset > 0 ? std::string_view{ _fixPtr + fieldPaymentMethod.offset, getValueLength( _fixPtr + fieldPaymentMethod.offset ) } : std::string_view{}; }
    const char * ptrToPaymentMethod() const { return _fixPtr + fieldPaymentMethod.offset; }
-   const char * getIfSetPaymentMethod() const { return fieldPaymentMethod.offset >= 0 ? _fixPtr + fieldPaymentMethod.offset : nullptr; }
+   const char * ptrToTagPaymentMethod() const { return _fixPtr + fieldPaymentMethod.offset - 1 - FieldPaymentMethod::tagWidth(); }
+   const char * getIfSetPaymentMethod() const { return fieldPaymentMethod.offset > 0 ? _fixPtr + fieldPaymentMethod.offset : nullptr; }
    private: FieldPaymentMethod fieldPaymentMethod;
 
    public:
-   bool isSetPaymentRef() const { return fieldPaymentRef.offset >= 0; }
+   bool isSetPaymentRef() const { return fieldPaymentRef.offset > 0; }
    FieldPaymentRef::ValueType getPaymentRef() const { return fieldPaymentRef.getValue( _fixPtr ); }
-   std::string_view getPaymentRefView() const { return fieldPaymentRef.offset >= 0 ? std::string_view{ _fixPtr + fieldPaymentRef.offset, getValueLength( _fixPtr + fieldPaymentRef.offset ) } : std::string_view{}; }
+   std::string_view getPaymentRefView() const { return fieldPaymentRef.offset > 0 ? std::string_view{ _fixPtr + fieldPaymentRef.offset, getValueLength( _fixPtr + fieldPaymentRef.offset ) } : std::string_view{}; }
    const char * ptrToPaymentRef() const { return _fixPtr + fieldPaymentRef.offset; }
-   const char * getIfSetPaymentRef() const { return fieldPaymentRef.offset >= 0 ? _fixPtr + fieldPaymentRef.offset : nullptr; }
+   const char * ptrToTagPaymentRef() const { return _fixPtr + fieldPaymentRef.offset - 1 - FieldPaymentRef::tagWidth(); }
+   const char * getIfSetPaymentRef() const { return fieldPaymentRef.offset > 0 ? _fixPtr + fieldPaymentRef.offset : nullptr; }
    private: FieldPaymentRef fieldPaymentRef;
 
    public:
-   bool isSetCardHolderName() const { return fieldCardHolderName.offset >= 0; }
+   bool isSetCardHolderName() const { return fieldCardHolderName.offset > 0; }
    FieldCardHolderName::ValueType getCardHolderName() const { return fieldCardHolderName.getValue( _fixPtr ); }
-   std::string_view getCardHolderNameView() const { return fieldCardHolderName.offset >= 0 ? std::string_view{ _fixPtr + fieldCardHolderName.offset, getValueLength( _fixPtr + fieldCardHolderName.offset ) } : std::string_view{}; }
+   std::string_view getCardHolderNameView() const { return fieldCardHolderName.offset > 0 ? std::string_view{ _fixPtr + fieldCardHolderName.offset, getValueLength( _fixPtr + fieldCardHolderName.offset ) } : std::string_view{}; }
    const char * ptrToCardHolderName() const { return _fixPtr + fieldCardHolderName.offset; }
-   const char * getIfSetCardHolderName() const { return fieldCardHolderName.offset >= 0 ? _fixPtr + fieldCardHolderName.offset : nullptr; }
+   const char * ptrToTagCardHolderName() const { return _fixPtr + fieldCardHolderName.offset - 1 - FieldCardHolderName::tagWidth(); }
+   const char * getIfSetCardHolderName() const { return fieldCardHolderName.offset > 0 ? _fixPtr + fieldCardHolderName.offset : nullptr; }
    private: FieldCardHolderName fieldCardHolderName;
 
    public:
-   bool isSetCardNumber() const { return fieldCardNumber.offset >= 0; }
+   bool isSetCardNumber() const { return fieldCardNumber.offset > 0; }
    FieldCardNumber::ValueType getCardNumber() const { return fieldCardNumber.getValue( _fixPtr ); }
-   std::string_view getCardNumberView() const { return fieldCardNumber.offset >= 0 ? std::string_view{ _fixPtr + fieldCardNumber.offset, getValueLength( _fixPtr + fieldCardNumber.offset ) } : std::string_view{}; }
+   std::string_view getCardNumberView() const { return fieldCardNumber.offset > 0 ? std::string_view{ _fixPtr + fieldCardNumber.offset, getValueLength( _fixPtr + fieldCardNumber.offset ) } : std::string_view{}; }
    const char * ptrToCardNumber() const { return _fixPtr + fieldCardNumber.offset; }
-   const char * getIfSetCardNumber() const { return fieldCardNumber.offset >= 0 ? _fixPtr + fieldCardNumber.offset : nullptr; }
+   const char * ptrToTagCardNumber() const { return _fixPtr + fieldCardNumber.offset - 1 - FieldCardNumber::tagWidth(); }
+   const char * getIfSetCardNumber() const { return fieldCardNumber.offset > 0 ? _fixPtr + fieldCardNumber.offset : nullptr; }
    private: FieldCardNumber fieldCardNumber;
 
    public:
-   bool isSetCardStartDate() const { return fieldCardStartDate.offset >= 0; }
+   bool isSetCardStartDate() const { return fieldCardStartDate.offset > 0; }
    FieldCardStartDate::ValueType getCardStartDate() const { return fieldCardStartDate.getValue( _fixPtr ); }
-   std::string_view getCardStartDateView() const { return fieldCardStartDate.offset >= 0 ? std::string_view{ _fixPtr + fieldCardStartDate.offset, getValueLength( _fixPtr + fieldCardStartDate.offset ) } : std::string_view{}; }
+   std::string_view getCardStartDateView() const { return fieldCardStartDate.offset > 0 ? std::string_view{ _fixPtr + fieldCardStartDate.offset, getValueLength( _fixPtr + fieldCardStartDate.offset ) } : std::string_view{}; }
    const char * ptrToCardStartDate() const { return _fixPtr + fieldCardStartDate.offset; }
-   const char * getIfSetCardStartDate() const { return fieldCardStartDate.offset >= 0 ? _fixPtr + fieldCardStartDate.offset : nullptr; }
+   const char * ptrToTagCardStartDate() const { return _fixPtr + fieldCardStartDate.offset - 1 - FieldCardStartDate::tagWidth(); }
+   const char * getIfSetCardStartDate() const { return fieldCardStartDate.offset > 0 ? _fixPtr + fieldCardStartDate.offset : nullptr; }
    private: FieldCardStartDate fieldCardStartDate;
 
    public:
-   bool isSetCardExpDate() const { return fieldCardExpDate.offset >= 0; }
+   bool isSetCardExpDate() const { return fieldCardExpDate.offset > 0; }
    FieldCardExpDate::ValueType getCardExpDate() const { return fieldCardExpDate.getValue( _fixPtr ); }
-   std::string_view getCardExpDateView() const { return fieldCardExpDate.offset >= 0 ? std::string_view{ _fixPtr + fieldCardExpDate.offset, getValueLength( _fixPtr + fieldCardExpDate.offset ) } : std::string_view{}; }
+   std::string_view getCardExpDateView() const { return fieldCardExpDate.offset > 0 ? std::string_view{ _fixPtr + fieldCardExpDate.offset, getValueLength( _fixPtr + fieldCardExpDate.offset ) } : std::string_view{}; }
    const char * ptrToCardExpDate() const { return _fixPtr + fieldCardExpDate.offset; }
-   const char * getIfSetCardExpDate() const { return fieldCardExpDate.offset >= 0 ? _fixPtr + fieldCardExpDate.offset : nullptr; }
+   const char * ptrToTagCardExpDate() const { return _fixPtr + fieldCardExpDate.offset - 1 - FieldCardExpDate::tagWidth(); }
+   const char * getIfSetCardExpDate() const { return fieldCardExpDate.offset > 0 ? _fixPtr + fieldCardExpDate.offset : nullptr; }
    private: FieldCardExpDate fieldCardExpDate;
 
    public:
-   bool isSetCardIssNum() const { return fieldCardIssNum.offset >= 0; }
+   bool isSetCardIssNum() const { return fieldCardIssNum.offset > 0; }
    FieldCardIssNum::ValueType getCardIssNum() const { return fieldCardIssNum.getValue( _fixPtr ); }
-   std::string_view getCardIssNumView() const { return fieldCardIssNum.offset >= 0 ? std::string_view{ _fixPtr + fieldCardIssNum.offset, getValueLength( _fixPtr + fieldCardIssNum.offset ) } : std::string_view{}; }
+   std::string_view getCardIssNumView() const { return fieldCardIssNum.offset > 0 ? std::string_view{ _fixPtr + fieldCardIssNum.offset, getValueLength( _fixPtr + fieldCardIssNum.offset ) } : std::string_view{}; }
    const char * ptrToCardIssNum() const { return _fixPtr + fieldCardIssNum.offset; }
-   const char * getIfSetCardIssNum() const { return fieldCardIssNum.offset >= 0 ? _fixPtr + fieldCardIssNum.offset : nullptr; }
+   const char * ptrToTagCardIssNum() const { return _fixPtr + fieldCardIssNum.offset - 1 - FieldCardIssNum::tagWidth(); }
+   const char * getIfSetCardIssNum() const { return fieldCardIssNum.offset > 0 ? _fixPtr + fieldCardIssNum.offset : nullptr; }
    private: FieldCardIssNum fieldCardIssNum;
 
    public:
-   bool isSetPaymentDate() const { return fieldPaymentDate.offset >= 0; }
+   bool isSetPaymentDate() const { return fieldPaymentDate.offset > 0; }
    FieldPaymentDate::ValueType getPaymentDate() const { return fieldPaymentDate.getValue( _fixPtr ); }
-   std::string_view getPaymentDateView() const { return fieldPaymentDate.offset >= 0 ? std::string_view{ _fixPtr + fieldPaymentDate.offset, getValueLength( _fixPtr + fieldPaymentDate.offset ) } : std::string_view{}; }
+   std::string_view getPaymentDateView() const { return fieldPaymentDate.offset > 0 ? std::string_view{ _fixPtr + fieldPaymentDate.offset, getValueLength( _fixPtr + fieldPaymentDate.offset ) } : std::string_view{}; }
    const char * ptrToPaymentDate() const { return _fixPtr + fieldPaymentDate.offset; }
-   const char * getIfSetPaymentDate() const { return fieldPaymentDate.offset >= 0 ? _fixPtr + fieldPaymentDate.offset : nullptr; }
+   const char * ptrToTagPaymentDate() const { return _fixPtr + fieldPaymentDate.offset - 1 - FieldPaymentDate::tagWidth(); }
+   const char * getIfSetPaymentDate() const { return fieldPaymentDate.offset > 0 ? _fixPtr + fieldPaymentDate.offset : nullptr; }
    private: FieldPaymentDate fieldPaymentDate;
 
    public:
-   bool isSetPaymentRemitterID() const { return fieldPaymentRemitterID.offset >= 0; }
+   bool isSetPaymentRemitterID() const { return fieldPaymentRemitterID.offset > 0; }
    FieldPaymentRemitterID::ValueType getPaymentRemitterID() const { return fieldPaymentRemitterID.getValue( _fixPtr ); }
-   std::string_view getPaymentRemitterIDView() const { return fieldPaymentRemitterID.offset >= 0 ? std::string_view{ _fixPtr + fieldPaymentRemitterID.offset, getValueLength( _fixPtr + fieldPaymentRemitterID.offset ) } : std::string_view{}; }
+   std::string_view getPaymentRemitterIDView() const { return fieldPaymentRemitterID.offset > 0 ? std::string_view{ _fixPtr + fieldPaymentRemitterID.offset, getValueLength( _fixPtr + fieldPaymentRemitterID.offset ) } : std::string_view{}; }
    const char * ptrToPaymentRemitterID() const { return _fixPtr + fieldPaymentRemitterID.offset; }
-   const char * getIfSetPaymentRemitterID() const { return fieldPaymentRemitterID.offset >= 0 ? _fixPtr + fieldPaymentRemitterID.offset : nullptr; }
+   const char * ptrToTagPaymentRemitterID() const { return _fixPtr + fieldPaymentRemitterID.offset - 1 - FieldPaymentRemitterID::tagWidth(); }
+   const char * getIfSetPaymentRemitterID() const { return fieldPaymentRemitterID.offset > 0 ? _fixPtr + fieldPaymentRemitterID.offset : nullptr; }
    private: FieldPaymentRemitterID fieldPaymentRemitterID;
 
 };
@@ -4617,24 +5164,28 @@ class GroupInstrAttrib : public MessageBase
    static offset_t scan( Array & arr, const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    const char * getFieldValue( unsigned tag ) const;
+   const char * findBadField() const;
+   const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
-   bool isSetInstrAttribType() const { return fieldInstrAttribType.offset >= 0; }
+   bool isSetInstrAttribType() const { return fieldInstrAttribType.offset > 0; }
    FieldInstrAttribType::ValueType getInstrAttribType() const { return fieldInstrAttribType.getValue( _fixPtr ); }
-   std::string_view getInstrAttribTypeView() const { return fieldInstrAttribType.offset >= 0 ? std::string_view{ _fixPtr + fieldInstrAttribType.offset, getValueLength( _fixPtr + fieldInstrAttribType.offset ) } : std::string_view{}; }
+   std::string_view getInstrAttribTypeView() const { return fieldInstrAttribType.offset > 0 ? std::string_view{ _fixPtr + fieldInstrAttribType.offset, getValueLength( _fixPtr + fieldInstrAttribType.offset ) } : std::string_view{}; }
    const char * ptrToInstrAttribType() const { return _fixPtr + fieldInstrAttribType.offset; }
-   const char * getIfSetInstrAttribType() const { return fieldInstrAttribType.offset >= 0 ? _fixPtr + fieldInstrAttribType.offset : nullptr; }
+   const char * ptrToTagInstrAttribType() const { return _fixPtr + fieldInstrAttribType.offset - 1 - FieldInstrAttribType::tagWidth(); }
+   const char * getIfSetInstrAttribType() const { return fieldInstrAttribType.offset > 0 ? _fixPtr + fieldInstrAttribType.offset : nullptr; }
    private: FieldInstrAttribType fieldInstrAttribType;
 
    public:
-   bool isSetInstrAttribValue() const { return fieldInstrAttribValue.offset >= 0; }
+   bool isSetInstrAttribValue() const { return fieldInstrAttribValue.offset > 0; }
    FieldInstrAttribValue::ValueType getInstrAttribValue() const { return fieldInstrAttribValue.getValue( _fixPtr ); }
-   std::string_view getInstrAttribValueView() const { return fieldInstrAttribValue.offset >= 0 ? std::string_view{ _fixPtr + fieldInstrAttribValue.offset, getValueLength( _fixPtr + fieldInstrAttribValue.offset ) } : std::string_view{}; }
+   std::string_view getInstrAttribValueView() const { return fieldInstrAttribValue.offset > 0 ? std::string_view{ _fixPtr + fieldInstrAttribValue.offset, getValueLength( _fixPtr + fieldInstrAttribValue.offset ) } : std::string_view{}; }
    const char * ptrToInstrAttribValue() const { return _fixPtr + fieldInstrAttribValue.offset; }
-   const char * getIfSetInstrAttribValue() const { return fieldInstrAttribValue.offset >= 0 ? _fixPtr + fieldInstrAttribValue.offset : nullptr; }
+   const char * ptrToTagInstrAttribValue() const { return _fixPtr + fieldInstrAttribValue.offset - 1 - FieldInstrAttribValue::tagWidth(); }
+   const char * getIfSetInstrAttribValue() const { return fieldInstrAttribValue.offset > 0 ? _fixPtr + fieldInstrAttribValue.offset : nullptr; }
    private: FieldInstrAttribValue fieldInstrAttribValue;
 
 };
@@ -4651,40 +5202,46 @@ class GroupMiscFees : public MessageBase
    static offset_t scan( Array & arr, const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    const char * getFieldValue( unsigned tag ) const;
+   const char * findBadField() const;
+   const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
-   bool isSetMiscFeeAmt() const { return fieldMiscFeeAmt.offset >= 0; }
+   bool isSetMiscFeeAmt() const { return fieldMiscFeeAmt.offset > 0; }
    FieldMiscFeeAmt::ValueType getMiscFeeAmt() const { return fieldMiscFeeAmt.getValue( _fixPtr ); }
-   std::string_view getMiscFeeAmtView() const { return fieldMiscFeeAmt.offset >= 0 ? std::string_view{ _fixPtr + fieldMiscFeeAmt.offset, getValueLength( _fixPtr + fieldMiscFeeAmt.offset ) } : std::string_view{}; }
+   std::string_view getMiscFeeAmtView() const { return fieldMiscFeeAmt.offset > 0 ? std::string_view{ _fixPtr + fieldMiscFeeAmt.offset, getValueLength( _fixPtr + fieldMiscFeeAmt.offset ) } : std::string_view{}; }
    const char * ptrToMiscFeeAmt() const { return _fixPtr + fieldMiscFeeAmt.offset; }
-   const char * getIfSetMiscFeeAmt() const { return fieldMiscFeeAmt.offset >= 0 ? _fixPtr + fieldMiscFeeAmt.offset : nullptr; }
+   const char * ptrToTagMiscFeeAmt() const { return _fixPtr + fieldMiscFeeAmt.offset - 1 - FieldMiscFeeAmt::tagWidth(); }
+   const char * getIfSetMiscFeeAmt() const { return fieldMiscFeeAmt.offset > 0 ? _fixPtr + fieldMiscFeeAmt.offset : nullptr; }
    private: FieldMiscFeeAmt fieldMiscFeeAmt;
 
    public:
-   bool isSetMiscFeeCurr() const { return fieldMiscFeeCurr.offset >= 0; }
+   bool isSetMiscFeeCurr() const { return fieldMiscFeeCurr.offset > 0; }
    FieldMiscFeeCurr::ValueType getMiscFeeCurr() const { return fieldMiscFeeCurr.getValue( _fixPtr ); }
-   std::string_view getMiscFeeCurrView() const { return fieldMiscFeeCurr.offset >= 0 ? std::string_view{ _fixPtr + fieldMiscFeeCurr.offset, getValueLength( _fixPtr + fieldMiscFeeCurr.offset ) } : std::string_view{}; }
+   std::string_view getMiscFeeCurrView() const { return fieldMiscFeeCurr.offset > 0 ? std::string_view{ _fixPtr + fieldMiscFeeCurr.offset, getValueLength( _fixPtr + fieldMiscFeeCurr.offset ) } : std::string_view{}; }
    const char * ptrToMiscFeeCurr() const { return _fixPtr + fieldMiscFeeCurr.offset; }
-   const char * getIfSetMiscFeeCurr() const { return fieldMiscFeeCurr.offset >= 0 ? _fixPtr + fieldMiscFeeCurr.offset : nullptr; }
+   const char * ptrToTagMiscFeeCurr() const { return _fixPtr + fieldMiscFeeCurr.offset - 1 - FieldMiscFeeCurr::tagWidth(); }
+   const char * getIfSetMiscFeeCurr() const { return fieldMiscFeeCurr.offset > 0 ? _fixPtr + fieldMiscFeeCurr.offset : nullptr; }
    private: FieldMiscFeeCurr fieldMiscFeeCurr;
 
    public:
-   bool isSetMiscFeeType() const { return fieldMiscFeeType.offset >= 0; }
+   bool isSetMiscFeeType() const { return fieldMiscFeeType.offset > 0; }
    FieldMiscFeeType::ValueType getMiscFeeType() const { return fieldMiscFeeType.getValue( _fixPtr ); }
-   std::string_view getMiscFeeTypeView() const { return fieldMiscFeeType.offset >= 0 ? std::string_view{ _fixPtr + fieldMiscFeeType.offset, getValueLength( _fixPtr + fieldMiscFeeType.offset ) } : std::string_view{}; }
+   std::string_view getMiscFeeTypeView() const { return fieldMiscFeeType.offset > 0 ? std::string_view{ _fixPtr + fieldMiscFeeType.offset, getValueLength( _fixPtr + fieldMiscFeeType.offset ) } : std::string_view{}; }
    const char * ptrToMiscFeeType() const { return _fixPtr + fieldMiscFeeType.offset; }
-   const char * getIfSetMiscFeeType() const { return fieldMiscFeeType.offset >= 0 ? _fixPtr + fieldMiscFeeType.offset : nullptr; }
+   const char * ptrToTagMiscFeeType() const { return _fixPtr + fieldMiscFeeType.offset - 1 - FieldMiscFeeType::tagWidth(); }
+   const char * getIfSetMiscFeeType() const { return fieldMiscFeeType.offset > 0 ? _fixPtr + fieldMiscFeeType.offset : nullptr; }
    private: FieldMiscFeeType fieldMiscFeeType;
 
    public:
-   bool isSetMiscFeeBasis() const { return fieldMiscFeeBasis.offset >= 0; }
+   bool isSetMiscFeeBasis() const { return fieldMiscFeeBasis.offset > 0; }
    FieldMiscFeeBasis::ValueType getMiscFeeBasis() const { return fieldMiscFeeBasis.getValue( _fixPtr ); }
-   std::string_view getMiscFeeBasisView() const { return fieldMiscFeeBasis.offset >= 0 ? std::string_view{ _fixPtr + fieldMiscFeeBasis.offset, getValueLength( _fixPtr + fieldMiscFeeBasis.offset ) } : std::string_view{}; }
+   std::string_view getMiscFeeBasisView() const { return fieldMiscFeeBasis.offset > 0 ? std::string_view{ _fixPtr + fieldMiscFeeBasis.offset, getValueLength( _fixPtr + fieldMiscFeeBasis.offset ) } : std::string_view{}; }
    const char * ptrToMiscFeeBasis() const { return _fixPtr + fieldMiscFeeBasis.offset; }
-   const char * getIfSetMiscFeeBasis() const { return fieldMiscFeeBasis.offset >= 0 ? _fixPtr + fieldMiscFeeBasis.offset : nullptr; }
+   const char * ptrToTagMiscFeeBasis() const { return _fixPtr + fieldMiscFeeBasis.offset - 1 - FieldMiscFeeBasis::tagWidth(); }
+   const char * getIfSetMiscFeeBasis() const { return fieldMiscFeeBasis.offset > 0 ? _fixPtr + fieldMiscFeeBasis.offset : nullptr; }
    private: FieldMiscFeeBasis fieldMiscFeeBasis;
 
 };
@@ -4701,16 +5258,19 @@ class GroupQuoteQualifiers : public MessageBase
    static offset_t scan( Array & arr, const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    const char * getFieldValue( unsigned tag ) const;
+   const char * findBadField() const;
+   const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
-   bool isSetQuoteQualifier() const { return fieldQuoteQualifier.offset >= 0; }
+   bool isSetQuoteQualifier() const { return fieldQuoteQualifier.offset > 0; }
    FieldQuoteQualifier::ValueType getQuoteQualifier() const { return fieldQuoteQualifier.getValue( _fixPtr ); }
-   std::string_view getQuoteQualifierView() const { return fieldQuoteQualifier.offset >= 0 ? std::string_view{ _fixPtr + fieldQuoteQualifier.offset, getValueLength( _fixPtr + fieldQuoteQualifier.offset ) } : std::string_view{}; }
+   std::string_view getQuoteQualifierView() const { return fieldQuoteQualifier.offset > 0 ? std::string_view{ _fixPtr + fieldQuoteQualifier.offset, getValueLength( _fixPtr + fieldQuoteQualifier.offset ) } : std::string_view{}; }
    const char * ptrToQuoteQualifier() const { return _fixPtr + fieldQuoteQualifier.offset; }
-   const char * getIfSetQuoteQualifier() const { return fieldQuoteQualifier.offset >= 0 ? _fixPtr + fieldQuoteQualifier.offset : nullptr; }
+   const char * ptrToTagQuoteQualifier() const { return _fixPtr + fieldQuoteQualifier.offset - 1 - FieldQuoteQualifier::tagWidth(); }
+   const char * getIfSetQuoteQualifier() const { return fieldQuoteQualifier.offset > 0 ? _fixPtr + fieldQuoteQualifier.offset : nullptr; }
    private: FieldQuoteQualifier fieldQuoteQualifier;
 
 };
@@ -4727,72 +5287,82 @@ class GroupDistribInsts : public MessageBase
    static offset_t scan( Array & arr, const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    const char * getFieldValue( unsigned tag ) const;
+   const char * findBadField() const;
+   const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
-   bool isSetDistribPaymentMethod() const { return fieldDistribPaymentMethod.offset >= 0; }
+   bool isSetDistribPaymentMethod() const { return fieldDistribPaymentMethod.offset > 0; }
    FieldDistribPaymentMethod::ValueType getDistribPaymentMethod() const { return fieldDistribPaymentMethod.getValue( _fixPtr ); }
-   std::string_view getDistribPaymentMethodView() const { return fieldDistribPaymentMethod.offset >= 0 ? std::string_view{ _fixPtr + fieldDistribPaymentMethod.offset, getValueLength( _fixPtr + fieldDistribPaymentMethod.offset ) } : std::string_view{}; }
+   std::string_view getDistribPaymentMethodView() const { return fieldDistribPaymentMethod.offset > 0 ? std::string_view{ _fixPtr + fieldDistribPaymentMethod.offset, getValueLength( _fixPtr + fieldDistribPaymentMethod.offset ) } : std::string_view{}; }
    const char * ptrToDistribPaymentMethod() const { return _fixPtr + fieldDistribPaymentMethod.offset; }
-   const char * getIfSetDistribPaymentMethod() const { return fieldDistribPaymentMethod.offset >= 0 ? _fixPtr + fieldDistribPaymentMethod.offset : nullptr; }
+   const char * ptrToTagDistribPaymentMethod() const { return _fixPtr + fieldDistribPaymentMethod.offset - 1 - FieldDistribPaymentMethod::tagWidth(); }
+   const char * getIfSetDistribPaymentMethod() const { return fieldDistribPaymentMethod.offset > 0 ? _fixPtr + fieldDistribPaymentMethod.offset : nullptr; }
    private: FieldDistribPaymentMethod fieldDistribPaymentMethod;
 
    public:
-   bool isSetDistribPercentage() const { return fieldDistribPercentage.offset >= 0; }
+   bool isSetDistribPercentage() const { return fieldDistribPercentage.offset > 0; }
    FieldDistribPercentage::ValueType getDistribPercentage() const { return fieldDistribPercentage.getValue( _fixPtr ); }
-   std::string_view getDistribPercentageView() const { return fieldDistribPercentage.offset >= 0 ? std::string_view{ _fixPtr + fieldDistribPercentage.offset, getValueLength( _fixPtr + fieldDistribPercentage.offset ) } : std::string_view{}; }
+   std::string_view getDistribPercentageView() const { return fieldDistribPercentage.offset > 0 ? std::string_view{ _fixPtr + fieldDistribPercentage.offset, getValueLength( _fixPtr + fieldDistribPercentage.offset ) } : std::string_view{}; }
    const char * ptrToDistribPercentage() const { return _fixPtr + fieldDistribPercentage.offset; }
-   const char * getIfSetDistribPercentage() const { return fieldDistribPercentage.offset >= 0 ? _fixPtr + fieldDistribPercentage.offset : nullptr; }
+   const char * ptrToTagDistribPercentage() const { return _fixPtr + fieldDistribPercentage.offset - 1 - FieldDistribPercentage::tagWidth(); }
+   const char * getIfSetDistribPercentage() const { return fieldDistribPercentage.offset > 0 ? _fixPtr + fieldDistribPercentage.offset : nullptr; }
    private: FieldDistribPercentage fieldDistribPercentage;
 
    public:
-   bool isSetCashDistribCurr() const { return fieldCashDistribCurr.offset >= 0; }
+   bool isSetCashDistribCurr() const { return fieldCashDistribCurr.offset > 0; }
    FieldCashDistribCurr::ValueType getCashDistribCurr() const { return fieldCashDistribCurr.getValue( _fixPtr ); }
-   std::string_view getCashDistribCurrView() const { return fieldCashDistribCurr.offset >= 0 ? std::string_view{ _fixPtr + fieldCashDistribCurr.offset, getValueLength( _fixPtr + fieldCashDistribCurr.offset ) } : std::string_view{}; }
+   std::string_view getCashDistribCurrView() const { return fieldCashDistribCurr.offset > 0 ? std::string_view{ _fixPtr + fieldCashDistribCurr.offset, getValueLength( _fixPtr + fieldCashDistribCurr.offset ) } : std::string_view{}; }
    const char * ptrToCashDistribCurr() const { return _fixPtr + fieldCashDistribCurr.offset; }
-   const char * getIfSetCashDistribCurr() const { return fieldCashDistribCurr.offset >= 0 ? _fixPtr + fieldCashDistribCurr.offset : nullptr; }
+   const char * ptrToTagCashDistribCurr() const { return _fixPtr + fieldCashDistribCurr.offset - 1 - FieldCashDistribCurr::tagWidth(); }
+   const char * getIfSetCashDistribCurr() const { return fieldCashDistribCurr.offset > 0 ? _fixPtr + fieldCashDistribCurr.offset : nullptr; }
    private: FieldCashDistribCurr fieldCashDistribCurr;
 
    public:
-   bool isSetCashDistribAgentName() const { return fieldCashDistribAgentName.offset >= 0; }
+   bool isSetCashDistribAgentName() const { return fieldCashDistribAgentName.offset > 0; }
    FieldCashDistribAgentName::ValueType getCashDistribAgentName() const { return fieldCashDistribAgentName.getValue( _fixPtr ); }
-   std::string_view getCashDistribAgentNameView() const { return fieldCashDistribAgentName.offset >= 0 ? std::string_view{ _fixPtr + fieldCashDistribAgentName.offset, getValueLength( _fixPtr + fieldCashDistribAgentName.offset ) } : std::string_view{}; }
+   std::string_view getCashDistribAgentNameView() const { return fieldCashDistribAgentName.offset > 0 ? std::string_view{ _fixPtr + fieldCashDistribAgentName.offset, getValueLength( _fixPtr + fieldCashDistribAgentName.offset ) } : std::string_view{}; }
    const char * ptrToCashDistribAgentName() const { return _fixPtr + fieldCashDistribAgentName.offset; }
-   const char * getIfSetCashDistribAgentName() const { return fieldCashDistribAgentName.offset >= 0 ? _fixPtr + fieldCashDistribAgentName.offset : nullptr; }
+   const char * ptrToTagCashDistribAgentName() const { return _fixPtr + fieldCashDistribAgentName.offset - 1 - FieldCashDistribAgentName::tagWidth(); }
+   const char * getIfSetCashDistribAgentName() const { return fieldCashDistribAgentName.offset > 0 ? _fixPtr + fieldCashDistribAgentName.offset : nullptr; }
    private: FieldCashDistribAgentName fieldCashDistribAgentName;
 
    public:
-   bool isSetCashDistribAgentCode() const { return fieldCashDistribAgentCode.offset >= 0; }
+   bool isSetCashDistribAgentCode() const { return fieldCashDistribAgentCode.offset > 0; }
    FieldCashDistribAgentCode::ValueType getCashDistribAgentCode() const { return fieldCashDistribAgentCode.getValue( _fixPtr ); }
-   std::string_view getCashDistribAgentCodeView() const { return fieldCashDistribAgentCode.offset >= 0 ? std::string_view{ _fixPtr + fieldCashDistribAgentCode.offset, getValueLength( _fixPtr + fieldCashDistribAgentCode.offset ) } : std::string_view{}; }
+   std::string_view getCashDistribAgentCodeView() const { return fieldCashDistribAgentCode.offset > 0 ? std::string_view{ _fixPtr + fieldCashDistribAgentCode.offset, getValueLength( _fixPtr + fieldCashDistribAgentCode.offset ) } : std::string_view{}; }
    const char * ptrToCashDistribAgentCode() const { return _fixPtr + fieldCashDistribAgentCode.offset; }
-   const char * getIfSetCashDistribAgentCode() const { return fieldCashDistribAgentCode.offset >= 0 ? _fixPtr + fieldCashDistribAgentCode.offset : nullptr; }
+   const char * ptrToTagCashDistribAgentCode() const { return _fixPtr + fieldCashDistribAgentCode.offset - 1 - FieldCashDistribAgentCode::tagWidth(); }
+   const char * getIfSetCashDistribAgentCode() const { return fieldCashDistribAgentCode.offset > 0 ? _fixPtr + fieldCashDistribAgentCode.offset : nullptr; }
    private: FieldCashDistribAgentCode fieldCashDistribAgentCode;
 
    public:
-   bool isSetCashDistribAgentAcctNumber() const { return fieldCashDistribAgentAcctNumber.offset >= 0; }
+   bool isSetCashDistribAgentAcctNumber() const { return fieldCashDistribAgentAcctNumber.offset > 0; }
    FieldCashDistribAgentAcctNumber::ValueType getCashDistribAgentAcctNumber() const { return fieldCashDistribAgentAcctNumber.getValue( _fixPtr ); }
-   std::string_view getCashDistribAgentAcctNumberView() const { return fieldCashDistribAgentAcctNumber.offset >= 0 ? std::string_view{ _fixPtr + fieldCashDistribAgentAcctNumber.offset, getValueLength( _fixPtr + fieldCashDistribAgentAcctNumber.offset ) } : std::string_view{}; }
+   std::string_view getCashDistribAgentAcctNumberView() const { return fieldCashDistribAgentAcctNumber.offset > 0 ? std::string_view{ _fixPtr + fieldCashDistribAgentAcctNumber.offset, getValueLength( _fixPtr + fieldCashDistribAgentAcctNumber.offset ) } : std::string_view{}; }
    const char * ptrToCashDistribAgentAcctNumber() const { return _fixPtr + fieldCashDistribAgentAcctNumber.offset; }
-   const char * getIfSetCashDistribAgentAcctNumber() const { return fieldCashDistribAgentAcctNumber.offset >= 0 ? _fixPtr + fieldCashDistribAgentAcctNumber.offset : nullptr; }
+   const char * ptrToTagCashDistribAgentAcctNumber() const { return _fixPtr + fieldCashDistribAgentAcctNumber.offset - 1 - FieldCashDistribAgentAcctNumber::tagWidth(); }
+   const char * getIfSetCashDistribAgentAcctNumber() const { return fieldCashDistribAgentAcctNumber.offset > 0 ? _fixPtr + fieldCashDistribAgentAcctNumber.offset : nullptr; }
    private: FieldCashDistribAgentAcctNumber fieldCashDistribAgentAcctNumber;
 
    public:
-   bool isSetCashDistribPayRef() const { return fieldCashDistribPayRef.offset >= 0; }
+   bool isSetCashDistribPayRef() const { return fieldCashDistribPayRef.offset > 0; }
    FieldCashDistribPayRef::ValueType getCashDistribPayRef() const { return fieldCashDistribPayRef.getValue( _fixPtr ); }
-   std::string_view getCashDistribPayRefView() const { return fieldCashDistribPayRef.offset >= 0 ? std::string_view{ _fixPtr + fieldCashDistribPayRef.offset, getValueLength( _fixPtr + fieldCashDistribPayRef.offset ) } : std::string_view{}; }
+   std::string_view getCashDistribPayRefView() const { return fieldCashDistribPayRef.offset > 0 ? std::string_view{ _fixPtr + fieldCashDistribPayRef.offset, getValueLength( _fixPtr + fieldCashDistribPayRef.offset ) } : std::string_view{}; }
    const char * ptrToCashDistribPayRef() const { return _fixPtr + fieldCashDistribPayRef.offset; }
-   const char * getIfSetCashDistribPayRef() const { return fieldCashDistribPayRef.offset >= 0 ? _fixPtr + fieldCashDistribPayRef.offset : nullptr; }
+   const char * ptrToTagCashDistribPayRef() const { return _fixPtr + fieldCashDistribPayRef.offset - 1 - FieldCashDistribPayRef::tagWidth(); }
+   const char * getIfSetCashDistribPayRef() const { return fieldCashDistribPayRef.offset > 0 ? _fixPtr + fieldCashDistribPayRef.offset : nullptr; }
    private: FieldCashDistribPayRef fieldCashDistribPayRef;
 
    public:
-   bool isSetCashDistribAgentAcctName() const { return fieldCashDistribAgentAcctName.offset >= 0; }
+   bool isSetCashDistribAgentAcctName() const { return fieldCashDistribAgentAcctName.offset > 0; }
    FieldCashDistribAgentAcctName::ValueType getCashDistribAgentAcctName() const { return fieldCashDistribAgentAcctName.getValue( _fixPtr ); }
-   std::string_view getCashDistribAgentAcctNameView() const { return fieldCashDistribAgentAcctName.offset >= 0 ? std::string_view{ _fixPtr + fieldCashDistribAgentAcctName.offset, getValueLength( _fixPtr + fieldCashDistribAgentAcctName.offset ) } : std::string_view{}; }
+   std::string_view getCashDistribAgentAcctNameView() const { return fieldCashDistribAgentAcctName.offset > 0 ? std::string_view{ _fixPtr + fieldCashDistribAgentAcctName.offset, getValueLength( _fixPtr + fieldCashDistribAgentAcctName.offset ) } : std::string_view{}; }
    const char * ptrToCashDistribAgentAcctName() const { return _fixPtr + fieldCashDistribAgentAcctName.offset; }
-   const char * getIfSetCashDistribAgentAcctName() const { return fieldCashDistribAgentAcctName.offset >= 0 ? _fixPtr + fieldCashDistribAgentAcctName.offset : nullptr; }
+   const char * ptrToTagCashDistribAgentAcctName() const { return _fixPtr + fieldCashDistribAgentAcctName.offset - 1 - FieldCashDistribAgentAcctName::tagWidth(); }
+   const char * getIfSetCashDistribAgentAcctName() const { return fieldCashDistribAgentAcctName.offset > 0 ? _fixPtr + fieldCashDistribAgentAcctName.offset : nullptr; }
    private: FieldCashDistribAgentAcctName fieldCashDistribAgentAcctName;
 
 };
@@ -4809,32 +5379,37 @@ class GroupTrdRegTimestamps : public MessageBase
    static offset_t scan( Array & arr, const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    const char * getFieldValue( unsigned tag ) const;
+   const char * findBadField() const;
+   const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
-   bool isSetTrdRegTimestamp() const { return fieldTrdRegTimestamp.offset >= 0; }
+   bool isSetTrdRegTimestamp() const { return fieldTrdRegTimestamp.offset > 0; }
    FieldTrdRegTimestamp::ValueType getTrdRegTimestamp() const { return fieldTrdRegTimestamp.getValue( _fixPtr ); }
-   std::string_view getTrdRegTimestampView() const { return fieldTrdRegTimestamp.offset >= 0 ? std::string_view{ _fixPtr + fieldTrdRegTimestamp.offset, getValueLength( _fixPtr + fieldTrdRegTimestamp.offset ) } : std::string_view{}; }
+   std::string_view getTrdRegTimestampView() const { return fieldTrdRegTimestamp.offset > 0 ? std::string_view{ _fixPtr + fieldTrdRegTimestamp.offset, getValueLength( _fixPtr + fieldTrdRegTimestamp.offset ) } : std::string_view{}; }
    const char * ptrToTrdRegTimestamp() const { return _fixPtr + fieldTrdRegTimestamp.offset; }
-   const char * getIfSetTrdRegTimestamp() const { return fieldTrdRegTimestamp.offset >= 0 ? _fixPtr + fieldTrdRegTimestamp.offset : nullptr; }
+   const char * ptrToTagTrdRegTimestamp() const { return _fixPtr + fieldTrdRegTimestamp.offset - 1 - FieldTrdRegTimestamp::tagWidth(); }
+   const char * getIfSetTrdRegTimestamp() const { return fieldTrdRegTimestamp.offset > 0 ? _fixPtr + fieldTrdRegTimestamp.offset : nullptr; }
    private: FieldTrdRegTimestamp fieldTrdRegTimestamp;
 
    public:
-   bool isSetTrdRegTimestampType() const { return fieldTrdRegTimestampType.offset >= 0; }
+   bool isSetTrdRegTimestampType() const { return fieldTrdRegTimestampType.offset > 0; }
    FieldTrdRegTimestampType::ValueType getTrdRegTimestampType() const { return fieldTrdRegTimestampType.getValue( _fixPtr ); }
-   std::string_view getTrdRegTimestampTypeView() const { return fieldTrdRegTimestampType.offset >= 0 ? std::string_view{ _fixPtr + fieldTrdRegTimestampType.offset, getValueLength( _fixPtr + fieldTrdRegTimestampType.offset ) } : std::string_view{}; }
+   std::string_view getTrdRegTimestampTypeView() const { return fieldTrdRegTimestampType.offset > 0 ? std::string_view{ _fixPtr + fieldTrdRegTimestampType.offset, getValueLength( _fixPtr + fieldTrdRegTimestampType.offset ) } : std::string_view{}; }
    const char * ptrToTrdRegTimestampType() const { return _fixPtr + fieldTrdRegTimestampType.offset; }
-   const char * getIfSetTrdRegTimestampType() const { return fieldTrdRegTimestampType.offset >= 0 ? _fixPtr + fieldTrdRegTimestampType.offset : nullptr; }
+   const char * ptrToTagTrdRegTimestampType() const { return _fixPtr + fieldTrdRegTimestampType.offset - 1 - FieldTrdRegTimestampType::tagWidth(); }
+   const char * getIfSetTrdRegTimestampType() const { return fieldTrdRegTimestampType.offset > 0 ? _fixPtr + fieldTrdRegTimestampType.offset : nullptr; }
    private: FieldTrdRegTimestampType fieldTrdRegTimestampType;
 
    public:
-   bool isSetTrdRegTimestampOrigin() const { return fieldTrdRegTimestampOrigin.offset >= 0; }
+   bool isSetTrdRegTimestampOrigin() const { return fieldTrdRegTimestampOrigin.offset > 0; }
    FieldTrdRegTimestampOrigin::ValueType getTrdRegTimestampOrigin() const { return fieldTrdRegTimestampOrigin.getValue( _fixPtr ); }
-   std::string_view getTrdRegTimestampOriginView() const { return fieldTrdRegTimestampOrigin.offset >= 0 ? std::string_view{ _fixPtr + fieldTrdRegTimestampOrigin.offset, getValueLength( _fixPtr + fieldTrdRegTimestampOrigin.offset ) } : std::string_view{}; }
+   std::string_view getTrdRegTimestampOriginView() const { return fieldTrdRegTimestampOrigin.offset > 0 ? std::string_view{ _fixPtr + fieldTrdRegTimestampOrigin.offset, getValueLength( _fixPtr + fieldTrdRegTimestampOrigin.offset ) } : std::string_view{}; }
    const char * ptrToTrdRegTimestampOrigin() const { return _fixPtr + fieldTrdRegTimestampOrigin.offset; }
-   const char * getIfSetTrdRegTimestampOrigin() const { return fieldTrdRegTimestampOrigin.offset >= 0 ? _fixPtr + fieldTrdRegTimestampOrigin.offset : nullptr; }
+   const char * ptrToTagTrdRegTimestampOrigin() const { return _fixPtr + fieldTrdRegTimestampOrigin.offset - 1 - FieldTrdRegTimestampOrigin::tagWidth(); }
+   const char * getIfSetTrdRegTimestampOrigin() const { return fieldTrdRegTimestampOrigin.offset > 0 ? _fixPtr + fieldTrdRegTimestampOrigin.offset : nullptr; }
    private: FieldTrdRegTimestampOrigin fieldTrdRegTimestampOrigin;
 
 };
@@ -4851,16 +5426,19 @@ class GroupAltMDSource : public MessageBase
    static offset_t scan( Array & arr, const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    const char * getFieldValue( unsigned tag ) const;
+   const char * findBadField() const;
+   const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
-   bool isSetAltMDSourceID() const { return fieldAltMDSourceID.offset >= 0; }
+   bool isSetAltMDSourceID() const { return fieldAltMDSourceID.offset > 0; }
    FieldAltMDSourceID::ValueType getAltMDSourceID() const { return fieldAltMDSourceID.getValue( _fixPtr ); }
-   std::string_view getAltMDSourceIDView() const { return fieldAltMDSourceID.offset >= 0 ? std::string_view{ _fixPtr + fieldAltMDSourceID.offset, getValueLength( _fixPtr + fieldAltMDSourceID.offset ) } : std::string_view{}; }
+   std::string_view getAltMDSourceIDView() const { return fieldAltMDSourceID.offset > 0 ? std::string_view{ _fixPtr + fieldAltMDSourceID.offset, getValueLength( _fixPtr + fieldAltMDSourceID.offset ) } : std::string_view{}; }
    const char * ptrToAltMDSourceID() const { return _fixPtr + fieldAltMDSourceID.offset; }
-   const char * getIfSetAltMDSourceID() const { return fieldAltMDSourceID.offset >= 0 ? _fixPtr + fieldAltMDSourceID.offset : nullptr; }
+   const char * ptrToTagAltMDSourceID() const { return _fixPtr + fieldAltMDSourceID.offset - 1 - FieldAltMDSourceID::tagWidth(); }
+   const char * getIfSetAltMDSourceID() const { return fieldAltMDSourceID.offset > 0 ? _fixPtr + fieldAltMDSourceID.offset : nullptr; }
    private: FieldAltMDSourceID fieldAltMDSourceID;
 
 };
@@ -4877,64 +5455,73 @@ class GroupSides : public MessageBase
    static offset_t scan( Array & arr, const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    const char * getFieldValue( unsigned tag ) const;
+   const char * findBadField() const;
+   const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
-   bool isSetSide() const { return fieldSide.offset >= 0; }
+   bool isSetSide() const { return fieldSide.offset > 0; }
    FieldSide::ValueType getSide() const { return fieldSide.getValue( _fixPtr ); }
-   std::string_view getSideView() const { return fieldSide.offset >= 0 ? std::string_view{ _fixPtr + fieldSide.offset, getValueLength( _fixPtr + fieldSide.offset ) } : std::string_view{}; }
+   std::string_view getSideView() const { return fieldSide.offset > 0 ? std::string_view{ _fixPtr + fieldSide.offset, getValueLength( _fixPtr + fieldSide.offset ) } : std::string_view{}; }
    const char * ptrToSide() const { return _fixPtr + fieldSide.offset; }
-   const char * getIfSetSide() const { return fieldSide.offset >= 0 ? _fixPtr + fieldSide.offset : nullptr; }
+   const char * ptrToTagSide() const { return _fixPtr + fieldSide.offset - 1 - FieldSide::tagWidth(); }
+   const char * getIfSetSide() const { return fieldSide.offset > 0 ? _fixPtr + fieldSide.offset : nullptr; }
    private: FieldSide fieldSide;
 
    public:
-   bool isSetOrigClOrdID() const { return fieldOrigClOrdID.offset >= 0; }
+   bool isSetOrigClOrdID() const { return fieldOrigClOrdID.offset > 0; }
    FieldOrigClOrdID::ValueType getOrigClOrdID() const { return fieldOrigClOrdID.getValue( _fixPtr ); }
-   std::string_view getOrigClOrdIDView() const { return fieldOrigClOrdID.offset >= 0 ? std::string_view{ _fixPtr + fieldOrigClOrdID.offset, getValueLength( _fixPtr + fieldOrigClOrdID.offset ) } : std::string_view{}; }
+   std::string_view getOrigClOrdIDView() const { return fieldOrigClOrdID.offset > 0 ? std::string_view{ _fixPtr + fieldOrigClOrdID.offset, getValueLength( _fixPtr + fieldOrigClOrdID.offset ) } : std::string_view{}; }
    const char * ptrToOrigClOrdID() const { return _fixPtr + fieldOrigClOrdID.offset; }
-   const char * getIfSetOrigClOrdID() const { return fieldOrigClOrdID.offset >= 0 ? _fixPtr + fieldOrigClOrdID.offset : nullptr; }
+   const char * ptrToTagOrigClOrdID() const { return _fixPtr + fieldOrigClOrdID.offset - 1 - FieldOrigClOrdID::tagWidth(); }
+   const char * getIfSetOrigClOrdID() const { return fieldOrigClOrdID.offset > 0 ? _fixPtr + fieldOrigClOrdID.offset : nullptr; }
    private: FieldOrigClOrdID fieldOrigClOrdID;
 
    public:
-   bool isSetClOrdID() const { return fieldClOrdID.offset >= 0; }
+   bool isSetClOrdID() const { return fieldClOrdID.offset > 0; }
    FieldClOrdID::ValueType getClOrdID() const { return fieldClOrdID.getValue( _fixPtr ); }
-   std::string_view getClOrdIDView() const { return fieldClOrdID.offset >= 0 ? std::string_view{ _fixPtr + fieldClOrdID.offset, getValueLength( _fixPtr + fieldClOrdID.offset ) } : std::string_view{}; }
+   std::string_view getClOrdIDView() const { return fieldClOrdID.offset > 0 ? std::string_view{ _fixPtr + fieldClOrdID.offset, getValueLength( _fixPtr + fieldClOrdID.offset ) } : std::string_view{}; }
    const char * ptrToClOrdID() const { return _fixPtr + fieldClOrdID.offset; }
-   const char * getIfSetClOrdID() const { return fieldClOrdID.offset >= 0 ? _fixPtr + fieldClOrdID.offset : nullptr; }
+   const char * ptrToTagClOrdID() const { return _fixPtr + fieldClOrdID.offset - 1 - FieldClOrdID::tagWidth(); }
+   const char * getIfSetClOrdID() const { return fieldClOrdID.offset > 0 ? _fixPtr + fieldClOrdID.offset : nullptr; }
    private: FieldClOrdID fieldClOrdID;
 
    public:
-   bool isSetSecondaryClOrdID() const { return fieldSecondaryClOrdID.offset >= 0; }
+   bool isSetSecondaryClOrdID() const { return fieldSecondaryClOrdID.offset > 0; }
    FieldSecondaryClOrdID::ValueType getSecondaryClOrdID() const { return fieldSecondaryClOrdID.getValue( _fixPtr ); }
-   std::string_view getSecondaryClOrdIDView() const { return fieldSecondaryClOrdID.offset >= 0 ? std::string_view{ _fixPtr + fieldSecondaryClOrdID.offset, getValueLength( _fixPtr + fieldSecondaryClOrdID.offset ) } : std::string_view{}; }
+   std::string_view getSecondaryClOrdIDView() const { return fieldSecondaryClOrdID.offset > 0 ? std::string_view{ _fixPtr + fieldSecondaryClOrdID.offset, getValueLength( _fixPtr + fieldSecondaryClOrdID.offset ) } : std::string_view{}; }
    const char * ptrToSecondaryClOrdID() const { return _fixPtr + fieldSecondaryClOrdID.offset; }
-   const char * getIfSetSecondaryClOrdID() const { return fieldSecondaryClOrdID.offset >= 0 ? _fixPtr + fieldSecondaryClOrdID.offset : nullptr; }
+   const char * ptrToTagSecondaryClOrdID() const { return _fixPtr + fieldSecondaryClOrdID.offset - 1 - FieldSecondaryClOrdID::tagWidth(); }
+   const char * getIfSetSecondaryClOrdID() const { return fieldSecondaryClOrdID.offset > 0 ? _fixPtr + fieldSecondaryClOrdID.offset : nullptr; }
    private: FieldSecondaryClOrdID fieldSecondaryClOrdID;
 
    public:
-   bool isSetClOrdLinkID() const { return fieldClOrdLinkID.offset >= 0; }
+   bool isSetClOrdLinkID() const { return fieldClOrdLinkID.offset > 0; }
    FieldClOrdLinkID::ValueType getClOrdLinkID() const { return fieldClOrdLinkID.getValue( _fixPtr ); }
-   std::string_view getClOrdLinkIDView() const { return fieldClOrdLinkID.offset >= 0 ? std::string_view{ _fixPtr + fieldClOrdLinkID.offset, getValueLength( _fixPtr + fieldClOrdLinkID.offset ) } : std::string_view{}; }
+   std::string_view getClOrdLinkIDView() const { return fieldClOrdLinkID.offset > 0 ? std::string_view{ _fixPtr + fieldClOrdLinkID.offset, getValueLength( _fixPtr + fieldClOrdLinkID.offset ) } : std::string_view{}; }
    const char * ptrToClOrdLinkID() const { return _fixPtr + fieldClOrdLinkID.offset; }
-   const char * getIfSetClOrdLinkID() const { return fieldClOrdLinkID.offset >= 0 ? _fixPtr + fieldClOrdLinkID.offset : nullptr; }
+   const char * ptrToTagClOrdLinkID() const { return _fixPtr + fieldClOrdLinkID.offset - 1 - FieldClOrdLinkID::tagWidth(); }
+   const char * getIfSetClOrdLinkID() const { return fieldClOrdLinkID.offset > 0 ? _fixPtr + fieldClOrdLinkID.offset : nullptr; }
    private: FieldClOrdLinkID fieldClOrdLinkID;
 
    public:
-   bool isSetOrigOrdModTime() const { return fieldOrigOrdModTime.offset >= 0; }
+   bool isSetOrigOrdModTime() const { return fieldOrigOrdModTime.offset > 0; }
    FieldOrigOrdModTime::ValueType getOrigOrdModTime() const { return fieldOrigOrdModTime.getValue( _fixPtr ); }
-   std::string_view getOrigOrdModTimeView() const { return fieldOrigOrdModTime.offset >= 0 ? std::string_view{ _fixPtr + fieldOrigOrdModTime.offset, getValueLength( _fixPtr + fieldOrigOrdModTime.offset ) } : std::string_view{}; }
+   std::string_view getOrigOrdModTimeView() const { return fieldOrigOrdModTime.offset > 0 ? std::string_view{ _fixPtr + fieldOrigOrdModTime.offset, getValueLength( _fixPtr + fieldOrigOrdModTime.offset ) } : std::string_view{}; }
    const char * ptrToOrigOrdModTime() const { return _fixPtr + fieldOrigOrdModTime.offset; }
-   const char * getIfSetOrigOrdModTime() const { return fieldOrigOrdModTime.offset >= 0 ? _fixPtr + fieldOrigOrdModTime.offset : nullptr; }
+   const char * ptrToTagOrigOrdModTime() const { return _fixPtr + fieldOrigOrdModTime.offset - 1 - FieldOrigOrdModTime::tagWidth(); }
+   const char * getIfSetOrigOrdModTime() const { return fieldOrigOrdModTime.offset > 0 ? _fixPtr + fieldOrigOrdModTime.offset : nullptr; }
    private: FieldOrigOrdModTime fieldOrigOrdModTime;
 
    public:
-   bool isSetNoPartyIDs() const { return fieldNoPartyIDs.offset >= 0; }
+   bool isSetNoPartyIDs() const { return fieldNoPartyIDs.offset > 0; }
    FieldNoPartyIDs::ValueType getNoPartyIDs() const { return fieldNoPartyIDs.getValue( _fixPtr ); }
-   std::string_view getNoPartyIDsView() const { return fieldNoPartyIDs.offset >= 0 ? std::string_view{ _fixPtr + fieldNoPartyIDs.offset, getValueLength( _fixPtr + fieldNoPartyIDs.offset ) } : std::string_view{}; }
+   std::string_view getNoPartyIDsView() const { return fieldNoPartyIDs.offset > 0 ? std::string_view{ _fixPtr + fieldNoPartyIDs.offset, getValueLength( _fixPtr + fieldNoPartyIDs.offset ) } : std::string_view{}; }
    const char * ptrToNoPartyIDs() const { return _fixPtr + fieldNoPartyIDs.offset; }
-   const char * getIfSetNoPartyIDs() const { return fieldNoPartyIDs.offset >= 0 ? _fixPtr + fieldNoPartyIDs.offset : nullptr; }
+   const char * ptrToTagNoPartyIDs() const { return _fixPtr + fieldNoPartyIDs.offset - 1 - FieldNoPartyIDs::tagWidth(); }
+   const char * getIfSetNoPartyIDs() const { return fieldNoPartyIDs.offset > 0 ? _fixPtr + fieldNoPartyIDs.offset : nullptr; }
    private: FieldNoPartyIDs fieldNoPartyIDs;
   
    public:
@@ -4943,91 +5530,102 @@ class GroupSides : public MessageBase
    private: GroupPartyIDs::Array groupsPartyIDs{ 10 };
 
    public:
-   bool isSetTradeOriginationDate() const { return fieldTradeOriginationDate.offset >= 0; }
+   bool isSetTradeOriginationDate() const { return fieldTradeOriginationDate.offset > 0; }
    FieldTradeOriginationDate::ValueType getTradeOriginationDate() const { return fieldTradeOriginationDate.getValue( _fixPtr ); }
-   std::string_view getTradeOriginationDateView() const { return fieldTradeOriginationDate.offset >= 0 ? std::string_view{ _fixPtr + fieldTradeOriginationDate.offset, getValueLength( _fixPtr + fieldTradeOriginationDate.offset ) } : std::string_view{}; }
+   std::string_view getTradeOriginationDateView() const { return fieldTradeOriginationDate.offset > 0 ? std::string_view{ _fixPtr + fieldTradeOriginationDate.offset, getValueLength( _fixPtr + fieldTradeOriginationDate.offset ) } : std::string_view{}; }
    const char * ptrToTradeOriginationDate() const { return _fixPtr + fieldTradeOriginationDate.offset; }
-   const char * getIfSetTradeOriginationDate() const { return fieldTradeOriginationDate.offset >= 0 ? _fixPtr + fieldTradeOriginationDate.offset : nullptr; }
+   const char * ptrToTagTradeOriginationDate() const { return _fixPtr + fieldTradeOriginationDate.offset - 1 - FieldTradeOriginationDate::tagWidth(); }
+   const char * getIfSetTradeOriginationDate() const { return fieldTradeOriginationDate.offset > 0 ? _fixPtr + fieldTradeOriginationDate.offset : nullptr; }
    private: FieldTradeOriginationDate fieldTradeOriginationDate;
 
    public:
-   bool isSetTradeDate() const { return fieldTradeDate.offset >= 0; }
+   bool isSetTradeDate() const { return fieldTradeDate.offset > 0; }
    FieldTradeDate::ValueType getTradeDate() const { return fieldTradeDate.getValue( _fixPtr ); }
-   std::string_view getTradeDateView() const { return fieldTradeDate.offset >= 0 ? std::string_view{ _fixPtr + fieldTradeDate.offset, getValueLength( _fixPtr + fieldTradeDate.offset ) } : std::string_view{}; }
+   std::string_view getTradeDateView() const { return fieldTradeDate.offset > 0 ? std::string_view{ _fixPtr + fieldTradeDate.offset, getValueLength( _fixPtr + fieldTradeDate.offset ) } : std::string_view{}; }
    const char * ptrToTradeDate() const { return _fixPtr + fieldTradeDate.offset; }
-   const char * getIfSetTradeDate() const { return fieldTradeDate.offset >= 0 ? _fixPtr + fieldTradeDate.offset : nullptr; }
+   const char * ptrToTagTradeDate() const { return _fixPtr + fieldTradeDate.offset - 1 - FieldTradeDate::tagWidth(); }
+   const char * getIfSetTradeDate() const { return fieldTradeDate.offset > 0 ? _fixPtr + fieldTradeDate.offset : nullptr; }
    private: FieldTradeDate fieldTradeDate;
 
    public:
-   bool isSetOrderQty() const { return fieldOrderQty.offset >= 0; }
+   bool isSetOrderQty() const { return fieldOrderQty.offset > 0; }
    FieldOrderQty::ValueType getOrderQty() const { return fieldOrderQty.getValue( _fixPtr ); }
-   std::string_view getOrderQtyView() const { return fieldOrderQty.offset >= 0 ? std::string_view{ _fixPtr + fieldOrderQty.offset, getValueLength( _fixPtr + fieldOrderQty.offset ) } : std::string_view{}; }
+   std::string_view getOrderQtyView() const { return fieldOrderQty.offset > 0 ? std::string_view{ _fixPtr + fieldOrderQty.offset, getValueLength( _fixPtr + fieldOrderQty.offset ) } : std::string_view{}; }
    const char * ptrToOrderQty() const { return _fixPtr + fieldOrderQty.offset; }
-   const char * getIfSetOrderQty() const { return fieldOrderQty.offset >= 0 ? _fixPtr + fieldOrderQty.offset : nullptr; }
+   const char * ptrToTagOrderQty() const { return _fixPtr + fieldOrderQty.offset - 1 - FieldOrderQty::tagWidth(); }
+   const char * getIfSetOrderQty() const { return fieldOrderQty.offset > 0 ? _fixPtr + fieldOrderQty.offset : nullptr; }
    private: FieldOrderQty fieldOrderQty;
 
    public:
-   bool isSetCashOrderQty() const { return fieldCashOrderQty.offset >= 0; }
+   bool isSetCashOrderQty() const { return fieldCashOrderQty.offset > 0; }
    FieldCashOrderQty::ValueType getCashOrderQty() const { return fieldCashOrderQty.getValue( _fixPtr ); }
-   std::string_view getCashOrderQtyView() const { return fieldCashOrderQty.offset >= 0 ? std::string_view{ _fixPtr + fieldCashOrderQty.offset, getValueLength( _fixPtr + fieldCashOrderQty.offset ) } : std::string_view{}; }
+   std::string_view getCashOrderQtyView() const { return fieldCashOrderQty.offset > 0 ? std::string_view{ _fixPtr + fieldCashOrderQty.offset, getValueLength( _fixPtr + fieldCashOrderQty.offset ) } : std::string_view{}; }
    const char * ptrToCashOrderQty() const { return _fixPtr + fieldCashOrderQty.offset; }
-   const char * getIfSetCashOrderQty() const { return fieldCashOrderQty.offset >= 0 ? _fixPtr + fieldCashOrderQty.offset : nullptr; }
+   const char * ptrToTagCashOrderQty() const { return _fixPtr + fieldCashOrderQty.offset - 1 - FieldCashOrderQty::tagWidth(); }
+   const char * getIfSetCashOrderQty() const { return fieldCashOrderQty.offset > 0 ? _fixPtr + fieldCashOrderQty.offset : nullptr; }
    private: FieldCashOrderQty fieldCashOrderQty;
 
    public:
-   bool isSetOrderPercent() const { return fieldOrderPercent.offset >= 0; }
+   bool isSetOrderPercent() const { return fieldOrderPercent.offset > 0; }
    FieldOrderPercent::ValueType getOrderPercent() const { return fieldOrderPercent.getValue( _fixPtr ); }
-   std::string_view getOrderPercentView() const { return fieldOrderPercent.offset >= 0 ? std::string_view{ _fixPtr + fieldOrderPercent.offset, getValueLength( _fixPtr + fieldOrderPercent.offset ) } : std::string_view{}; }
+   std::string_view getOrderPercentView() const { return fieldOrderPercent.offset > 0 ? std::string_view{ _fixPtr + fieldOrderPercent.offset, getValueLength( _fixPtr + fieldOrderPercent.offset ) } : std::string_view{}; }
    const char * ptrToOrderPercent() const { return _fixPtr + fieldOrderPercent.offset; }
-   const char * getIfSetOrderPercent() const { return fieldOrderPercent.offset >= 0 ? _fixPtr + fieldOrderPercent.offset : nullptr; }
+   const char * ptrToTagOrderPercent() const { return _fixPtr + fieldOrderPercent.offset - 1 - FieldOrderPercent::tagWidth(); }
+   const char * getIfSetOrderPercent() const { return fieldOrderPercent.offset > 0 ? _fixPtr + fieldOrderPercent.offset : nullptr; }
    private: FieldOrderPercent fieldOrderPercent;
 
    public:
-   bool isSetRoundingDirection() const { return fieldRoundingDirection.offset >= 0; }
+   bool isSetRoundingDirection() const { return fieldRoundingDirection.offset > 0; }
    FieldRoundingDirection::ValueType getRoundingDirection() const { return fieldRoundingDirection.getValue( _fixPtr ); }
-   std::string_view getRoundingDirectionView() const { return fieldRoundingDirection.offset >= 0 ? std::string_view{ _fixPtr + fieldRoundingDirection.offset, getValueLength( _fixPtr + fieldRoundingDirection.offset ) } : std::string_view{}; }
+   std::string_view getRoundingDirectionView() const { return fieldRoundingDirection.offset > 0 ? std::string_view{ _fixPtr + fieldRoundingDirection.offset, getValueLength( _fixPtr + fieldRoundingDirection.offset ) } : std::string_view{}; }
    const char * ptrToRoundingDirection() const { return _fixPtr + fieldRoundingDirection.offset; }
-   const char * getIfSetRoundingDirection() const { return fieldRoundingDirection.offset >= 0 ? _fixPtr + fieldRoundingDirection.offset : nullptr; }
+   const char * ptrToTagRoundingDirection() const { return _fixPtr + fieldRoundingDirection.offset - 1 - FieldRoundingDirection::tagWidth(); }
+   const char * getIfSetRoundingDirection() const { return fieldRoundingDirection.offset > 0 ? _fixPtr + fieldRoundingDirection.offset : nullptr; }
    private: FieldRoundingDirection fieldRoundingDirection;
 
    public:
-   bool isSetRoundingModulus() const { return fieldRoundingModulus.offset >= 0; }
+   bool isSetRoundingModulus() const { return fieldRoundingModulus.offset > 0; }
    FieldRoundingModulus::ValueType getRoundingModulus() const { return fieldRoundingModulus.getValue( _fixPtr ); }
-   std::string_view getRoundingModulusView() const { return fieldRoundingModulus.offset >= 0 ? std::string_view{ _fixPtr + fieldRoundingModulus.offset, getValueLength( _fixPtr + fieldRoundingModulus.offset ) } : std::string_view{}; }
+   std::string_view getRoundingModulusView() const { return fieldRoundingModulus.offset > 0 ? std::string_view{ _fixPtr + fieldRoundingModulus.offset, getValueLength( _fixPtr + fieldRoundingModulus.offset ) } : std::string_view{}; }
    const char * ptrToRoundingModulus() const { return _fixPtr + fieldRoundingModulus.offset; }
-   const char * getIfSetRoundingModulus() const { return fieldRoundingModulus.offset >= 0 ? _fixPtr + fieldRoundingModulus.offset : nullptr; }
+   const char * ptrToTagRoundingModulus() const { return _fixPtr + fieldRoundingModulus.offset - 1 - FieldRoundingModulus::tagWidth(); }
+   const char * getIfSetRoundingModulus() const { return fieldRoundingModulus.offset > 0 ? _fixPtr + fieldRoundingModulus.offset : nullptr; }
    private: FieldRoundingModulus fieldRoundingModulus;
 
    public:
-   bool isSetComplianceID() const { return fieldComplianceID.offset >= 0; }
+   bool isSetComplianceID() const { return fieldComplianceID.offset > 0; }
    FieldComplianceID::ValueType getComplianceID() const { return fieldComplianceID.getValue( _fixPtr ); }
-   std::string_view getComplianceIDView() const { return fieldComplianceID.offset >= 0 ? std::string_view{ _fixPtr + fieldComplianceID.offset, getValueLength( _fixPtr + fieldComplianceID.offset ) } : std::string_view{}; }
+   std::string_view getComplianceIDView() const { return fieldComplianceID.offset > 0 ? std::string_view{ _fixPtr + fieldComplianceID.offset, getValueLength( _fixPtr + fieldComplianceID.offset ) } : std::string_view{}; }
    const char * ptrToComplianceID() const { return _fixPtr + fieldComplianceID.offset; }
-   const char * getIfSetComplianceID() const { return fieldComplianceID.offset >= 0 ? _fixPtr + fieldComplianceID.offset : nullptr; }
+   const char * ptrToTagComplianceID() const { return _fixPtr + fieldComplianceID.offset - 1 - FieldComplianceID::tagWidth(); }
+   const char * getIfSetComplianceID() const { return fieldComplianceID.offset > 0 ? _fixPtr + fieldComplianceID.offset : nullptr; }
    private: FieldComplianceID fieldComplianceID;
 
    public:
-   bool isSetText() const { return fieldText.offset >= 0; }
+   bool isSetText() const { return fieldText.offset > 0; }
    FieldText::ValueType getText() const { return fieldText.getValue( _fixPtr ); }
-   std::string_view getTextView() const { return fieldText.offset >= 0 ? std::string_view{ _fixPtr + fieldText.offset, getValueLength( _fixPtr + fieldText.offset ) } : std::string_view{}; }
+   std::string_view getTextView() const { return fieldText.offset > 0 ? std::string_view{ _fixPtr + fieldText.offset, getValueLength( _fixPtr + fieldText.offset ) } : std::string_view{}; }
    const char * ptrToText() const { return _fixPtr + fieldText.offset; }
-   const char * getIfSetText() const { return fieldText.offset >= 0 ? _fixPtr + fieldText.offset : nullptr; }
+   const char * ptrToTagText() const { return _fixPtr + fieldText.offset - 1 - FieldText::tagWidth(); }
+   const char * getIfSetText() const { return fieldText.offset > 0 ? _fixPtr + fieldText.offset : nullptr; }
    private: FieldText fieldText;
 
    public:
-   bool isSetEncodedTextLen() const { return fieldEncodedTextLen.offset >= 0; }
+   bool isSetEncodedTextLen() const { return fieldEncodedTextLen.offset > 0; }
    FieldEncodedTextLen::ValueType getEncodedTextLen() const { return fieldEncodedTextLen.getValue( _fixPtr ); }
-   std::string_view getEncodedTextLenView() const { return fieldEncodedTextLen.offset >= 0 ? std::string_view{ _fixPtr + fieldEncodedTextLen.offset, getValueLength( _fixPtr + fieldEncodedTextLen.offset ) } : std::string_view{}; }
+   std::string_view getEncodedTextLenView() const { return fieldEncodedTextLen.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedTextLen.offset, getValueLength( _fixPtr + fieldEncodedTextLen.offset ) } : std::string_view{}; }
    const char * ptrToEncodedTextLen() const { return _fixPtr + fieldEncodedTextLen.offset; }
-   const char * getIfSetEncodedTextLen() const { return fieldEncodedTextLen.offset >= 0 ? _fixPtr + fieldEncodedTextLen.offset : nullptr; }
+   const char * ptrToTagEncodedTextLen() const { return _fixPtr + fieldEncodedTextLen.offset - 1 - FieldEncodedTextLen::tagWidth(); }
+   const char * getIfSetEncodedTextLen() const { return fieldEncodedTextLen.offset > 0 ? _fixPtr + fieldEncodedTextLen.offset : nullptr; }
    private: FieldEncodedTextLen fieldEncodedTextLen;
 
    public:
-   bool isSetEncodedText() const { return fieldEncodedText.offset >= 0; }
+   bool isSetEncodedText() const { return fieldEncodedText.offset > 0; }
    FieldEncodedText::ValueType getEncodedText() const { return fieldEncodedText.getValue( _fixPtr ); }
-   std::string_view getEncodedTextView() const { return fieldEncodedText.offset >= 0 ? std::string_view{ _fixPtr + fieldEncodedText.offset, getValueLength( _fixPtr + fieldEncodedText.offset ) } : std::string_view{}; }
+   std::string_view getEncodedTextView() const { return fieldEncodedText.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedText.offset, getValueLength( _fixPtr + fieldEncodedText.offset ) } : std::string_view{}; }
    const char * ptrToEncodedText() const { return _fixPtr + fieldEncodedText.offset; }
-   const char * getIfSetEncodedText() const { return fieldEncodedText.offset >= 0 ? _fixPtr + fieldEncodedText.offset : nullptr; }
+   const char * ptrToTagEncodedText() const { return _fixPtr + fieldEncodedText.offset - 1 - FieldEncodedText::tagWidth(); }
+   const char * getIfSetEncodedText() const { return fieldEncodedText.offset > 0 ? _fixPtr + fieldEncodedText.offset : nullptr; }
    private: FieldEncodedText fieldEncodedText;
 
 };
@@ -5044,24 +5642,28 @@ class GroupRoutingIDs : public MessageBase
    static offset_t scan( Array & arr, const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    const char * getFieldValue( unsigned tag ) const;
+   const char * findBadField() const;
+   const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
-   bool isSetRoutingType() const { return fieldRoutingType.offset >= 0; }
+   bool isSetRoutingType() const { return fieldRoutingType.offset > 0; }
    FieldRoutingType::ValueType getRoutingType() const { return fieldRoutingType.getValue( _fixPtr ); }
-   std::string_view getRoutingTypeView() const { return fieldRoutingType.offset >= 0 ? std::string_view{ _fixPtr + fieldRoutingType.offset, getValueLength( _fixPtr + fieldRoutingType.offset ) } : std::string_view{}; }
+   std::string_view getRoutingTypeView() const { return fieldRoutingType.offset > 0 ? std::string_view{ _fixPtr + fieldRoutingType.offset, getValueLength( _fixPtr + fieldRoutingType.offset ) } : std::string_view{}; }
    const char * ptrToRoutingType() const { return _fixPtr + fieldRoutingType.offset; }
-   const char * getIfSetRoutingType() const { return fieldRoutingType.offset >= 0 ? _fixPtr + fieldRoutingType.offset : nullptr; }
+   const char * ptrToTagRoutingType() const { return _fixPtr + fieldRoutingType.offset - 1 - FieldRoutingType::tagWidth(); }
+   const char * getIfSetRoutingType() const { return fieldRoutingType.offset > 0 ? _fixPtr + fieldRoutingType.offset : nullptr; }
    private: FieldRoutingType fieldRoutingType;
 
    public:
-   bool isSetRoutingID() const { return fieldRoutingID.offset >= 0; }
+   bool isSetRoutingID() const { return fieldRoutingID.offset > 0; }
    FieldRoutingID::ValueType getRoutingID() const { return fieldRoutingID.getValue( _fixPtr ); }
-   std::string_view getRoutingIDView() const { return fieldRoutingID.offset >= 0 ? std::string_view{ _fixPtr + fieldRoutingID.offset, getValueLength( _fixPtr + fieldRoutingID.offset ) } : std::string_view{}; }
+   std::string_view getRoutingIDView() const { return fieldRoutingID.offset > 0 ? std::string_view{ _fixPtr + fieldRoutingID.offset, getValueLength( _fixPtr + fieldRoutingID.offset ) } : std::string_view{}; }
    const char * ptrToRoutingID() const { return _fixPtr + fieldRoutingID.offset; }
-   const char * getIfSetRoutingID() const { return fieldRoutingID.offset >= 0 ? _fixPtr + fieldRoutingID.offset : nullptr; }
+   const char * ptrToTagRoutingID() const { return _fixPtr + fieldRoutingID.offset - 1 - FieldRoutingID::tagWidth(); }
+   const char * getIfSetRoutingID() const { return fieldRoutingID.offset > 0 ? _fixPtr + fieldRoutingID.offset : nullptr; }
    private: FieldRoutingID fieldRoutingID;
 
 };
@@ -5078,24 +5680,28 @@ class GroupPosAmt : public MessageBase
    static offset_t scan( Array & arr, const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    const char * getFieldValue( unsigned tag ) const;
+   const char * findBadField() const;
+   const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
-   bool isSetPosAmtType() const { return fieldPosAmtType.offset >= 0; }
+   bool isSetPosAmtType() const { return fieldPosAmtType.offset > 0; }
    FieldPosAmtType::ValueType getPosAmtType() const { return fieldPosAmtType.getValue( _fixPtr ); }
-   std::string_view getPosAmtTypeView() const { return fieldPosAmtType.offset >= 0 ? std::string_view{ _fixPtr + fieldPosAmtType.offset, getValueLength( _fixPtr + fieldPosAmtType.offset ) } : std::string_view{}; }
+   std::string_view getPosAmtTypeView() const { return fieldPosAmtType.offset > 0 ? std::string_view{ _fixPtr + fieldPosAmtType.offset, getValueLength( _fixPtr + fieldPosAmtType.offset ) } : std::string_view{}; }
    const char * ptrToPosAmtType() const { return _fixPtr + fieldPosAmtType.offset; }
-   const char * getIfSetPosAmtType() const { return fieldPosAmtType.offset >= 0 ? _fixPtr + fieldPosAmtType.offset : nullptr; }
+   const char * ptrToTagPosAmtType() const { return _fixPtr + fieldPosAmtType.offset - 1 - FieldPosAmtType::tagWidth(); }
+   const char * getIfSetPosAmtType() const { return fieldPosAmtType.offset > 0 ? _fixPtr + fieldPosAmtType.offset : nullptr; }
    private: FieldPosAmtType fieldPosAmtType;
 
    public:
-   bool isSetPosAmt() const { return fieldPosAmt.offset >= 0; }
+   bool isSetPosAmt() const { return fieldPosAmt.offset > 0; }
    FieldPosAmt::ValueType getPosAmt() const { return fieldPosAmt.getValue( _fixPtr ); }
-   std::string_view getPosAmtView() const { return fieldPosAmt.offset >= 0 ? std::string_view{ _fixPtr + fieldPosAmt.offset, getValueLength( _fixPtr + fieldPosAmt.offset ) } : std::string_view{}; }
+   std::string_view getPosAmtView() const { return fieldPosAmt.offset > 0 ? std::string_view{ _fixPtr + fieldPosAmt.offset, getValueLength( _fixPtr + fieldPosAmt.offset ) } : std::string_view{}; }
    const char * ptrToPosAmt() const { return _fixPtr + fieldPosAmt.offset; }
-   const char * getIfSetPosAmt() const { return fieldPosAmt.offset >= 0 ? _fixPtr + fieldPosAmt.offset : nullptr; }
+   const char * ptrToTagPosAmt() const { return _fixPtr + fieldPosAmt.offset - 1 - FieldPosAmt::tagWidth(); }
+   const char * getIfSetPosAmt() const { return fieldPosAmt.offset > 0 ? _fixPtr + fieldPosAmt.offset : nullptr; }
    private: FieldPosAmt fieldPosAmt;
 
 };
@@ -5112,32 +5718,37 @@ class GroupLinesOfText : public MessageBase
    static offset_t scan( Array & arr, const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    const char * getFieldValue( unsigned tag ) const;
+   const char * findBadField() const;
+   const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
-   bool isSetText() const { return fieldText.offset >= 0; }
+   bool isSetText() const { return fieldText.offset > 0; }
    FieldText::ValueType getText() const { return fieldText.getValue( _fixPtr ); }
-   std::string_view getTextView() const { return fieldText.offset >= 0 ? std::string_view{ _fixPtr + fieldText.offset, getValueLength( _fixPtr + fieldText.offset ) } : std::string_view{}; }
+   std::string_view getTextView() const { return fieldText.offset > 0 ? std::string_view{ _fixPtr + fieldText.offset, getValueLength( _fixPtr + fieldText.offset ) } : std::string_view{}; }
    const char * ptrToText() const { return _fixPtr + fieldText.offset; }
-   const char * getIfSetText() const { return fieldText.offset >= 0 ? _fixPtr + fieldText.offset : nullptr; }
+   const char * ptrToTagText() const { return _fixPtr + fieldText.offset - 1 - FieldText::tagWidth(); }
+   const char * getIfSetText() const { return fieldText.offset > 0 ? _fixPtr + fieldText.offset : nullptr; }
    private: FieldText fieldText;
 
    public:
-   bool isSetEncodedTextLen() const { return fieldEncodedTextLen.offset >= 0; }
+   bool isSetEncodedTextLen() const { return fieldEncodedTextLen.offset > 0; }
    FieldEncodedTextLen::ValueType getEncodedTextLen() const { return fieldEncodedTextLen.getValue( _fixPtr ); }
-   std::string_view getEncodedTextLenView() const { return fieldEncodedTextLen.offset >= 0 ? std::string_view{ _fixPtr + fieldEncodedTextLen.offset, getValueLength( _fixPtr + fieldEncodedTextLen.offset ) } : std::string_view{}; }
+   std::string_view getEncodedTextLenView() const { return fieldEncodedTextLen.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedTextLen.offset, getValueLength( _fixPtr + fieldEncodedTextLen.offset ) } : std::string_view{}; }
    const char * ptrToEncodedTextLen() const { return _fixPtr + fieldEncodedTextLen.offset; }
-   const char * getIfSetEncodedTextLen() const { return fieldEncodedTextLen.offset >= 0 ? _fixPtr + fieldEncodedTextLen.offset : nullptr; }
+   const char * ptrToTagEncodedTextLen() const { return _fixPtr + fieldEncodedTextLen.offset - 1 - FieldEncodedTextLen::tagWidth(); }
+   const char * getIfSetEncodedTextLen() const { return fieldEncodedTextLen.offset > 0 ? _fixPtr + fieldEncodedTextLen.offset : nullptr; }
    private: FieldEncodedTextLen fieldEncodedTextLen;
 
    public:
-   bool isSetEncodedText() const { return fieldEncodedText.offset >= 0; }
+   bool isSetEncodedText() const { return fieldEncodedText.offset > 0; }
    FieldEncodedText::ValueType getEncodedText() const { return fieldEncodedText.getValue( _fixPtr ); }
-   std::string_view getEncodedTextView() const { return fieldEncodedText.offset >= 0 ? std::string_view{ _fixPtr + fieldEncodedText.offset, getValueLength( _fixPtr + fieldEncodedText.offset ) } : std::string_view{}; }
+   std::string_view getEncodedTextView() const { return fieldEncodedText.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedText.offset, getValueLength( _fixPtr + fieldEncodedText.offset ) } : std::string_view{}; }
    const char * ptrToEncodedText() const { return _fixPtr + fieldEncodedText.offset; }
-   const char * getIfSetEncodedText() const { return fieldEncodedText.offset >= 0 ? _fixPtr + fieldEncodedText.offset : nullptr; }
+   const char * ptrToTagEncodedText() const { return _fixPtr + fieldEncodedText.offset - 1 - FieldEncodedText::tagWidth(); }
+   const char * getIfSetEncodedText() const { return fieldEncodedText.offset > 0 ? _fixPtr + fieldEncodedText.offset : nullptr; }
    private: FieldEncodedText fieldEncodedText;
 
 };
@@ -5154,16 +5765,19 @@ class GroupIOIQualifiers : public MessageBase
    static offset_t scan( Array & arr, const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    const char * getFieldValue( unsigned tag ) const;
+   const char * findBadField() const;
+   const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
-   bool isSetIOIQualifier() const { return fieldIOIQualifier.offset >= 0; }
+   bool isSetIOIQualifier() const { return fieldIOIQualifier.offset > 0; }
    FieldIOIQualifier::ValueType getIOIQualifier() const { return fieldIOIQualifier.getValue( _fixPtr ); }
-   std::string_view getIOIQualifierView() const { return fieldIOIQualifier.offset >= 0 ? std::string_view{ _fixPtr + fieldIOIQualifier.offset, getValueLength( _fixPtr + fieldIOIQualifier.offset ) } : std::string_view{}; }
+   std::string_view getIOIQualifierView() const { return fieldIOIQualifier.offset > 0 ? std::string_view{ _fixPtr + fieldIOIQualifier.offset, getValueLength( _fixPtr + fieldIOIQualifier.offset ) } : std::string_view{}; }
    const char * ptrToIOIQualifier() const { return _fixPtr + fieldIOIQualifier.offset; }
-   const char * getIfSetIOIQualifier() const { return fieldIOIQualifier.offset >= 0 ? _fixPtr + fieldIOIQualifier.offset : nullptr; }
+   const char * ptrToTagIOIQualifier() const { return _fixPtr + fieldIOIQualifier.offset - 1 - FieldIOIQualifier::tagWidth(); }
+   const char * getIfSetIOIQualifier() const { return fieldIOIQualifier.offset > 0 ? _fixPtr + fieldIOIQualifier.offset : nullptr; }
    private: FieldIOIQualifier fieldIOIQualifier;
 
 };
@@ -5180,24 +5794,28 @@ class GroupDates : public MessageBase
    static offset_t scan( Array & arr, const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    const char * getFieldValue( unsigned tag ) const;
+   const char * findBadField() const;
+   const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
-   bool isSetTradeDate() const { return fieldTradeDate.offset >= 0; }
+   bool isSetTradeDate() const { return fieldTradeDate.offset > 0; }
    FieldTradeDate::ValueType getTradeDate() const { return fieldTradeDate.getValue( _fixPtr ); }
-   std::string_view getTradeDateView() const { return fieldTradeDate.offset >= 0 ? std::string_view{ _fixPtr + fieldTradeDate.offset, getValueLength( _fixPtr + fieldTradeDate.offset ) } : std::string_view{}; }
+   std::string_view getTradeDateView() const { return fieldTradeDate.offset > 0 ? std::string_view{ _fixPtr + fieldTradeDate.offset, getValueLength( _fixPtr + fieldTradeDate.offset ) } : std::string_view{}; }
    const char * ptrToTradeDate() const { return _fixPtr + fieldTradeDate.offset; }
-   const char * getIfSetTradeDate() const { return fieldTradeDate.offset >= 0 ? _fixPtr + fieldTradeDate.offset : nullptr; }
+   const char * ptrToTagTradeDate() const { return _fixPtr + fieldTradeDate.offset - 1 - FieldTradeDate::tagWidth(); }
+   const char * getIfSetTradeDate() const { return fieldTradeDate.offset > 0 ? _fixPtr + fieldTradeDate.offset : nullptr; }
    private: FieldTradeDate fieldTradeDate;
 
    public:
-   bool isSetTransactTime() const { return fieldTransactTime.offset >= 0; }
+   bool isSetTransactTime() const { return fieldTransactTime.offset > 0; }
    FieldTransactTime::ValueType getTransactTime() const { return fieldTransactTime.getValue( _fixPtr ); }
-   std::string_view getTransactTimeView() const { return fieldTransactTime.offset >= 0 ? std::string_view{ _fixPtr + fieldTransactTime.offset, getValueLength( _fixPtr + fieldTransactTime.offset ) } : std::string_view{}; }
+   std::string_view getTransactTimeView() const { return fieldTransactTime.offset > 0 ? std::string_view{ _fixPtr + fieldTransactTime.offset, getValueLength( _fixPtr + fieldTransactTime.offset ) } : std::string_view{}; }
    const char * ptrToTransactTime() const { return _fixPtr + fieldTransactTime.offset; }
-   const char * getIfSetTransactTime() const { return fieldTransactTime.offset >= 0 ? _fixPtr + fieldTransactTime.offset : nullptr; }
+   const char * ptrToTagTransactTime() const { return _fixPtr + fieldTransactTime.offset - 1 - FieldTransactTime::tagWidth(); }
+   const char * getIfSetTransactTime() const { return fieldTransactTime.offset > 0 ? _fixPtr + fieldTransactTime.offset : nullptr; }
    private: FieldTransactTime fieldTransactTime;
 
 };
@@ -5214,16 +5832,19 @@ class GroupMDEntryTypes : public MessageBase
    static offset_t scan( Array & arr, const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    const char * getFieldValue( unsigned tag ) const;
+   const char * findBadField() const;
+   const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
-   bool isSetMDEntryType() const { return fieldMDEntryType.offset >= 0; }
+   bool isSetMDEntryType() const { return fieldMDEntryType.offset > 0; }
    FieldMDEntryType::ValueType getMDEntryType() const { return fieldMDEntryType.getValue( _fixPtr ); }
-   std::string_view getMDEntryTypeView() const { return fieldMDEntryType.offset >= 0 ? std::string_view{ _fixPtr + fieldMDEntryType.offset, getValueLength( _fixPtr + fieldMDEntryType.offset ) } : std::string_view{}; }
+   std::string_view getMDEntryTypeView() const { return fieldMDEntryType.offset > 0 ? std::string_view{ _fixPtr + fieldMDEntryType.offset, getValueLength( _fixPtr + fieldMDEntryType.offset ) } : std::string_view{}; }
    const char * ptrToMDEntryType() const { return _fixPtr + fieldMDEntryType.offset; }
-   const char * getIfSetMDEntryType() const { return fieldMDEntryType.offset >= 0 ? _fixPtr + fieldMDEntryType.offset : nullptr; }
+   const char * ptrToTagMDEntryType() const { return _fixPtr + fieldMDEntryType.offset - 1 - FieldMDEntryType::tagWidth(); }
+   const char * getIfSetMDEntryType() const { return fieldMDEntryType.offset > 0 ? _fixPtr + fieldMDEntryType.offset : nullptr; }
    private: FieldMDEntryType fieldMDEntryType;
 
 };
@@ -5240,48 +5861,55 @@ class GroupRelatedSym : public MessageBase
    static offset_t scan( Array & arr, const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    const char * getFieldValue( unsigned tag ) const;
+   const char * findBadField() const;
+   const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
-   bool isSetSymbol() const { return fieldSymbol.offset >= 0; }
+   bool isSetSymbol() const { return fieldSymbol.offset > 0; }
    FieldSymbol::ValueType getSymbol() const { return fieldSymbol.getValue( _fixPtr ); }
-   std::string_view getSymbolView() const { return fieldSymbol.offset >= 0 ? std::string_view{ _fixPtr + fieldSymbol.offset, getValueLength( _fixPtr + fieldSymbol.offset ) } : std::string_view{}; }
+   std::string_view getSymbolView() const { return fieldSymbol.offset > 0 ? std::string_view{ _fixPtr + fieldSymbol.offset, getValueLength( _fixPtr + fieldSymbol.offset ) } : std::string_view{}; }
    const char * ptrToSymbol() const { return _fixPtr + fieldSymbol.offset; }
-   const char * getIfSetSymbol() const { return fieldSymbol.offset >= 0 ? _fixPtr + fieldSymbol.offset : nullptr; }
+   const char * ptrToTagSymbol() const { return _fixPtr + fieldSymbol.offset - 1 - FieldSymbol::tagWidth(); }
+   const char * getIfSetSymbol() const { return fieldSymbol.offset > 0 ? _fixPtr + fieldSymbol.offset : nullptr; }
    private: FieldSymbol fieldSymbol;
 
    public:
-   bool isSetSymbolSfx() const { return fieldSymbolSfx.offset >= 0; }
+   bool isSetSymbolSfx() const { return fieldSymbolSfx.offset > 0; }
    FieldSymbolSfx::ValueType getSymbolSfx() const { return fieldSymbolSfx.getValue( _fixPtr ); }
-   std::string_view getSymbolSfxView() const { return fieldSymbolSfx.offset >= 0 ? std::string_view{ _fixPtr + fieldSymbolSfx.offset, getValueLength( _fixPtr + fieldSymbolSfx.offset ) } : std::string_view{}; }
+   std::string_view getSymbolSfxView() const { return fieldSymbolSfx.offset > 0 ? std::string_view{ _fixPtr + fieldSymbolSfx.offset, getValueLength( _fixPtr + fieldSymbolSfx.offset ) } : std::string_view{}; }
    const char * ptrToSymbolSfx() const { return _fixPtr + fieldSymbolSfx.offset; }
-   const char * getIfSetSymbolSfx() const { return fieldSymbolSfx.offset >= 0 ? _fixPtr + fieldSymbolSfx.offset : nullptr; }
+   const char * ptrToTagSymbolSfx() const { return _fixPtr + fieldSymbolSfx.offset - 1 - FieldSymbolSfx::tagWidth(); }
+   const char * getIfSetSymbolSfx() const { return fieldSymbolSfx.offset > 0 ? _fixPtr + fieldSymbolSfx.offset : nullptr; }
    private: FieldSymbolSfx fieldSymbolSfx;
 
    public:
-   bool isSetSecurityID() const { return fieldSecurityID.offset >= 0; }
+   bool isSetSecurityID() const { return fieldSecurityID.offset > 0; }
    FieldSecurityID::ValueType getSecurityID() const { return fieldSecurityID.getValue( _fixPtr ); }
-   std::string_view getSecurityIDView() const { return fieldSecurityID.offset >= 0 ? std::string_view{ _fixPtr + fieldSecurityID.offset, getValueLength( _fixPtr + fieldSecurityID.offset ) } : std::string_view{}; }
+   std::string_view getSecurityIDView() const { return fieldSecurityID.offset > 0 ? std::string_view{ _fixPtr + fieldSecurityID.offset, getValueLength( _fixPtr + fieldSecurityID.offset ) } : std::string_view{}; }
    const char * ptrToSecurityID() const { return _fixPtr + fieldSecurityID.offset; }
-   const char * getIfSetSecurityID() const { return fieldSecurityID.offset >= 0 ? _fixPtr + fieldSecurityID.offset : nullptr; }
+   const char * ptrToTagSecurityID() const { return _fixPtr + fieldSecurityID.offset - 1 - FieldSecurityID::tagWidth(); }
+   const char * getIfSetSecurityID() const { return fieldSecurityID.offset > 0 ? _fixPtr + fieldSecurityID.offset : nullptr; }
    private: FieldSecurityID fieldSecurityID;
 
    public:
-   bool isSetSecurityIDSource() const { return fieldSecurityIDSource.offset >= 0; }
+   bool isSetSecurityIDSource() const { return fieldSecurityIDSource.offset > 0; }
    FieldSecurityIDSource::ValueType getSecurityIDSource() const { return fieldSecurityIDSource.getValue( _fixPtr ); }
-   std::string_view getSecurityIDSourceView() const { return fieldSecurityIDSource.offset >= 0 ? std::string_view{ _fixPtr + fieldSecurityIDSource.offset, getValueLength( _fixPtr + fieldSecurityIDSource.offset ) } : std::string_view{}; }
+   std::string_view getSecurityIDSourceView() const { return fieldSecurityIDSource.offset > 0 ? std::string_view{ _fixPtr + fieldSecurityIDSource.offset, getValueLength( _fixPtr + fieldSecurityIDSource.offset ) } : std::string_view{}; }
    const char * ptrToSecurityIDSource() const { return _fixPtr + fieldSecurityIDSource.offset; }
-   const char * getIfSetSecurityIDSource() const { return fieldSecurityIDSource.offset >= 0 ? _fixPtr + fieldSecurityIDSource.offset : nullptr; }
+   const char * ptrToTagSecurityIDSource() const { return _fixPtr + fieldSecurityIDSource.offset - 1 - FieldSecurityIDSource::tagWidth(); }
+   const char * getIfSetSecurityIDSource() const { return fieldSecurityIDSource.offset > 0 ? _fixPtr + fieldSecurityIDSource.offset : nullptr; }
    private: FieldSecurityIDSource fieldSecurityIDSource;
 
    public:
-   bool isSetNoSecurityAltID() const { return fieldNoSecurityAltID.offset >= 0; }
+   bool isSetNoSecurityAltID() const { return fieldNoSecurityAltID.offset > 0; }
    FieldNoSecurityAltID::ValueType getNoSecurityAltID() const { return fieldNoSecurityAltID.getValue( _fixPtr ); }
-   std::string_view getNoSecurityAltIDView() const { return fieldNoSecurityAltID.offset >= 0 ? std::string_view{ _fixPtr + fieldNoSecurityAltID.offset, getValueLength( _fixPtr + fieldNoSecurityAltID.offset ) } : std::string_view{}; }
+   std::string_view getNoSecurityAltIDView() const { return fieldNoSecurityAltID.offset > 0 ? std::string_view{ _fixPtr + fieldNoSecurityAltID.offset, getValueLength( _fixPtr + fieldNoSecurityAltID.offset ) } : std::string_view{}; }
    const char * ptrToNoSecurityAltID() const { return _fixPtr + fieldNoSecurityAltID.offset; }
-   const char * getIfSetNoSecurityAltID() const { return fieldNoSecurityAltID.offset >= 0 ? _fixPtr + fieldNoSecurityAltID.offset : nullptr; }
+   const char * ptrToTagNoSecurityAltID() const { return _fixPtr + fieldNoSecurityAltID.offset - 1 - FieldNoSecurityAltID::tagWidth(); }
+   const char * getIfSetNoSecurityAltID() const { return fieldNoSecurityAltID.offset > 0 ? _fixPtr + fieldNoSecurityAltID.offset : nullptr; }
    private: FieldNoSecurityAltID fieldNoSecurityAltID;
   
    public:
@@ -5290,291 +5918,327 @@ class GroupRelatedSym : public MessageBase
    private: GroupSecurityAltID::Array groupsSecurityAltID{ 10 };
 
    public:
-   bool isSetProduct() const { return fieldProduct.offset >= 0; }
+   bool isSetProduct() const { return fieldProduct.offset > 0; }
    FieldProduct::ValueType getProduct() const { return fieldProduct.getValue( _fixPtr ); }
-   std::string_view getProductView() const { return fieldProduct.offset >= 0 ? std::string_view{ _fixPtr + fieldProduct.offset, getValueLength( _fixPtr + fieldProduct.offset ) } : std::string_view{}; }
+   std::string_view getProductView() const { return fieldProduct.offset > 0 ? std::string_view{ _fixPtr + fieldProduct.offset, getValueLength( _fixPtr + fieldProduct.offset ) } : std::string_view{}; }
    const char * ptrToProduct() const { return _fixPtr + fieldProduct.offset; }
-   const char * getIfSetProduct() const { return fieldProduct.offset >= 0 ? _fixPtr + fieldProduct.offset : nullptr; }
+   const char * ptrToTagProduct() const { return _fixPtr + fieldProduct.offset - 1 - FieldProduct::tagWidth(); }
+   const char * getIfSetProduct() const { return fieldProduct.offset > 0 ? _fixPtr + fieldProduct.offset : nullptr; }
    private: FieldProduct fieldProduct;
 
    public:
-   bool isSetCFICode() const { return fieldCFICode.offset >= 0; }
+   bool isSetCFICode() const { return fieldCFICode.offset > 0; }
    FieldCFICode::ValueType getCFICode() const { return fieldCFICode.getValue( _fixPtr ); }
-   std::string_view getCFICodeView() const { return fieldCFICode.offset >= 0 ? std::string_view{ _fixPtr + fieldCFICode.offset, getValueLength( _fixPtr + fieldCFICode.offset ) } : std::string_view{}; }
+   std::string_view getCFICodeView() const { return fieldCFICode.offset > 0 ? std::string_view{ _fixPtr + fieldCFICode.offset, getValueLength( _fixPtr + fieldCFICode.offset ) } : std::string_view{}; }
    const char * ptrToCFICode() const { return _fixPtr + fieldCFICode.offset; }
-   const char * getIfSetCFICode() const { return fieldCFICode.offset >= 0 ? _fixPtr + fieldCFICode.offset : nullptr; }
+   const char * ptrToTagCFICode() const { return _fixPtr + fieldCFICode.offset - 1 - FieldCFICode::tagWidth(); }
+   const char * getIfSetCFICode() const { return fieldCFICode.offset > 0 ? _fixPtr + fieldCFICode.offset : nullptr; }
    private: FieldCFICode fieldCFICode;
 
    public:
-   bool isSetSecurityType() const { return fieldSecurityType.offset >= 0; }
+   bool isSetSecurityType() const { return fieldSecurityType.offset > 0; }
    FieldSecurityType::ValueType getSecurityType() const { return fieldSecurityType.getValue( _fixPtr ); }
-   std::string_view getSecurityTypeView() const { return fieldSecurityType.offset >= 0 ? std::string_view{ _fixPtr + fieldSecurityType.offset, getValueLength( _fixPtr + fieldSecurityType.offset ) } : std::string_view{}; }
+   std::string_view getSecurityTypeView() const { return fieldSecurityType.offset > 0 ? std::string_view{ _fixPtr + fieldSecurityType.offset, getValueLength( _fixPtr + fieldSecurityType.offset ) } : std::string_view{}; }
    const char * ptrToSecurityType() const { return _fixPtr + fieldSecurityType.offset; }
-   const char * getIfSetSecurityType() const { return fieldSecurityType.offset >= 0 ? _fixPtr + fieldSecurityType.offset : nullptr; }
+   const char * ptrToTagSecurityType() const { return _fixPtr + fieldSecurityType.offset - 1 - FieldSecurityType::tagWidth(); }
+   const char * getIfSetSecurityType() const { return fieldSecurityType.offset > 0 ? _fixPtr + fieldSecurityType.offset : nullptr; }
    private: FieldSecurityType fieldSecurityType;
 
    public:
-   bool isSetSecuritySubType() const { return fieldSecuritySubType.offset >= 0; }
+   bool isSetSecuritySubType() const { return fieldSecuritySubType.offset > 0; }
    FieldSecuritySubType::ValueType getSecuritySubType() const { return fieldSecuritySubType.getValue( _fixPtr ); }
-   std::string_view getSecuritySubTypeView() const { return fieldSecuritySubType.offset >= 0 ? std::string_view{ _fixPtr + fieldSecuritySubType.offset, getValueLength( _fixPtr + fieldSecuritySubType.offset ) } : std::string_view{}; }
+   std::string_view getSecuritySubTypeView() const { return fieldSecuritySubType.offset > 0 ? std::string_view{ _fixPtr + fieldSecuritySubType.offset, getValueLength( _fixPtr + fieldSecuritySubType.offset ) } : std::string_view{}; }
    const char * ptrToSecuritySubType() const { return _fixPtr + fieldSecuritySubType.offset; }
-   const char * getIfSetSecuritySubType() const { return fieldSecuritySubType.offset >= 0 ? _fixPtr + fieldSecuritySubType.offset : nullptr; }
+   const char * ptrToTagSecuritySubType() const { return _fixPtr + fieldSecuritySubType.offset - 1 - FieldSecuritySubType::tagWidth(); }
+   const char * getIfSetSecuritySubType() const { return fieldSecuritySubType.offset > 0 ? _fixPtr + fieldSecuritySubType.offset : nullptr; }
    private: FieldSecuritySubType fieldSecuritySubType;
 
    public:
-   bool isSetMaturityMonthYear() const { return fieldMaturityMonthYear.offset >= 0; }
+   bool isSetMaturityMonthYear() const { return fieldMaturityMonthYear.offset > 0; }
    FieldMaturityMonthYear::ValueType getMaturityMonthYear() const { return fieldMaturityMonthYear.getValue( _fixPtr ); }
-   std::string_view getMaturityMonthYearView() const { return fieldMaturityMonthYear.offset >= 0 ? std::string_view{ _fixPtr + fieldMaturityMonthYear.offset, getValueLength( _fixPtr + fieldMaturityMonthYear.offset ) } : std::string_view{}; }
+   std::string_view getMaturityMonthYearView() const { return fieldMaturityMonthYear.offset > 0 ? std::string_view{ _fixPtr + fieldMaturityMonthYear.offset, getValueLength( _fixPtr + fieldMaturityMonthYear.offset ) } : std::string_view{}; }
    const char * ptrToMaturityMonthYear() const { return _fixPtr + fieldMaturityMonthYear.offset; }
-   const char * getIfSetMaturityMonthYear() const { return fieldMaturityMonthYear.offset >= 0 ? _fixPtr + fieldMaturityMonthYear.offset : nullptr; }
+   const char * ptrToTagMaturityMonthYear() const { return _fixPtr + fieldMaturityMonthYear.offset - 1 - FieldMaturityMonthYear::tagWidth(); }
+   const char * getIfSetMaturityMonthYear() const { return fieldMaturityMonthYear.offset > 0 ? _fixPtr + fieldMaturityMonthYear.offset : nullptr; }
    private: FieldMaturityMonthYear fieldMaturityMonthYear;
 
    public:
-   bool isSetMaturityDate() const { return fieldMaturityDate.offset >= 0; }
+   bool isSetMaturityDate() const { return fieldMaturityDate.offset > 0; }
    FieldMaturityDate::ValueType getMaturityDate() const { return fieldMaturityDate.getValue( _fixPtr ); }
-   std::string_view getMaturityDateView() const { return fieldMaturityDate.offset >= 0 ? std::string_view{ _fixPtr + fieldMaturityDate.offset, getValueLength( _fixPtr + fieldMaturityDate.offset ) } : std::string_view{}; }
+   std::string_view getMaturityDateView() const { return fieldMaturityDate.offset > 0 ? std::string_view{ _fixPtr + fieldMaturityDate.offset, getValueLength( _fixPtr + fieldMaturityDate.offset ) } : std::string_view{}; }
    const char * ptrToMaturityDate() const { return _fixPtr + fieldMaturityDate.offset; }
-   const char * getIfSetMaturityDate() const { return fieldMaturityDate.offset >= 0 ? _fixPtr + fieldMaturityDate.offset : nullptr; }
+   const char * ptrToTagMaturityDate() const { return _fixPtr + fieldMaturityDate.offset - 1 - FieldMaturityDate::tagWidth(); }
+   const char * getIfSetMaturityDate() const { return fieldMaturityDate.offset > 0 ? _fixPtr + fieldMaturityDate.offset : nullptr; }
    private: FieldMaturityDate fieldMaturityDate;
 
    public:
-   bool isSetPutOrCall() const { return fieldPutOrCall.offset >= 0; }
+   bool isSetPutOrCall() const { return fieldPutOrCall.offset > 0; }
    FieldPutOrCall::ValueType getPutOrCall() const { return fieldPutOrCall.getValue( _fixPtr ); }
-   std::string_view getPutOrCallView() const { return fieldPutOrCall.offset >= 0 ? std::string_view{ _fixPtr + fieldPutOrCall.offset, getValueLength( _fixPtr + fieldPutOrCall.offset ) } : std::string_view{}; }
+   std::string_view getPutOrCallView() const { return fieldPutOrCall.offset > 0 ? std::string_view{ _fixPtr + fieldPutOrCall.offset, getValueLength( _fixPtr + fieldPutOrCall.offset ) } : std::string_view{}; }
    const char * ptrToPutOrCall() const { return _fixPtr + fieldPutOrCall.offset; }
-   const char * getIfSetPutOrCall() const { return fieldPutOrCall.offset >= 0 ? _fixPtr + fieldPutOrCall.offset : nullptr; }
+   const char * ptrToTagPutOrCall() const { return _fixPtr + fieldPutOrCall.offset - 1 - FieldPutOrCall::tagWidth(); }
+   const char * getIfSetPutOrCall() const { return fieldPutOrCall.offset > 0 ? _fixPtr + fieldPutOrCall.offset : nullptr; }
    private: FieldPutOrCall fieldPutOrCall;
 
    public:
-   bool isSetCouponPaymentDate() const { return fieldCouponPaymentDate.offset >= 0; }
+   bool isSetCouponPaymentDate() const { return fieldCouponPaymentDate.offset > 0; }
    FieldCouponPaymentDate::ValueType getCouponPaymentDate() const { return fieldCouponPaymentDate.getValue( _fixPtr ); }
-   std::string_view getCouponPaymentDateView() const { return fieldCouponPaymentDate.offset >= 0 ? std::string_view{ _fixPtr + fieldCouponPaymentDate.offset, getValueLength( _fixPtr + fieldCouponPaymentDate.offset ) } : std::string_view{}; }
+   std::string_view getCouponPaymentDateView() const { return fieldCouponPaymentDate.offset > 0 ? std::string_view{ _fixPtr + fieldCouponPaymentDate.offset, getValueLength( _fixPtr + fieldCouponPaymentDate.offset ) } : std::string_view{}; }
    const char * ptrToCouponPaymentDate() const { return _fixPtr + fieldCouponPaymentDate.offset; }
-   const char * getIfSetCouponPaymentDate() const { return fieldCouponPaymentDate.offset >= 0 ? _fixPtr + fieldCouponPaymentDate.offset : nullptr; }
+   const char * ptrToTagCouponPaymentDate() const { return _fixPtr + fieldCouponPaymentDate.offset - 1 - FieldCouponPaymentDate::tagWidth(); }
+   const char * getIfSetCouponPaymentDate() const { return fieldCouponPaymentDate.offset > 0 ? _fixPtr + fieldCouponPaymentDate.offset : nullptr; }
    private: FieldCouponPaymentDate fieldCouponPaymentDate;
 
    public:
-   bool isSetIssueDate() const { return fieldIssueDate.offset >= 0; }
+   bool isSetIssueDate() const { return fieldIssueDate.offset > 0; }
    FieldIssueDate::ValueType getIssueDate() const { return fieldIssueDate.getValue( _fixPtr ); }
-   std::string_view getIssueDateView() const { return fieldIssueDate.offset >= 0 ? std::string_view{ _fixPtr + fieldIssueDate.offset, getValueLength( _fixPtr + fieldIssueDate.offset ) } : std::string_view{}; }
+   std::string_view getIssueDateView() const { return fieldIssueDate.offset > 0 ? std::string_view{ _fixPtr + fieldIssueDate.offset, getValueLength( _fixPtr + fieldIssueDate.offset ) } : std::string_view{}; }
    const char * ptrToIssueDate() const { return _fixPtr + fieldIssueDate.offset; }
-   const char * getIfSetIssueDate() const { return fieldIssueDate.offset >= 0 ? _fixPtr + fieldIssueDate.offset : nullptr; }
+   const char * ptrToTagIssueDate() const { return _fixPtr + fieldIssueDate.offset - 1 - FieldIssueDate::tagWidth(); }
+   const char * getIfSetIssueDate() const { return fieldIssueDate.offset > 0 ? _fixPtr + fieldIssueDate.offset : nullptr; }
    private: FieldIssueDate fieldIssueDate;
 
    public:
-   bool isSetRepoCollateralSecurityType() const { return fieldRepoCollateralSecurityType.offset >= 0; }
+   bool isSetRepoCollateralSecurityType() const { return fieldRepoCollateralSecurityType.offset > 0; }
    FieldRepoCollateralSecurityType::ValueType getRepoCollateralSecurityType() const { return fieldRepoCollateralSecurityType.getValue( _fixPtr ); }
-   std::string_view getRepoCollateralSecurityTypeView() const { return fieldRepoCollateralSecurityType.offset >= 0 ? std::string_view{ _fixPtr + fieldRepoCollateralSecurityType.offset, getValueLength( _fixPtr + fieldRepoCollateralSecurityType.offset ) } : std::string_view{}; }
+   std::string_view getRepoCollateralSecurityTypeView() const { return fieldRepoCollateralSecurityType.offset > 0 ? std::string_view{ _fixPtr + fieldRepoCollateralSecurityType.offset, getValueLength( _fixPtr + fieldRepoCollateralSecurityType.offset ) } : std::string_view{}; }
    const char * ptrToRepoCollateralSecurityType() const { return _fixPtr + fieldRepoCollateralSecurityType.offset; }
-   const char * getIfSetRepoCollateralSecurityType() const { return fieldRepoCollateralSecurityType.offset >= 0 ? _fixPtr + fieldRepoCollateralSecurityType.offset : nullptr; }
+   const char * ptrToTagRepoCollateralSecurityType() const { return _fixPtr + fieldRepoCollateralSecurityType.offset - 1 - FieldRepoCollateralSecurityType::tagWidth(); }
+   const char * getIfSetRepoCollateralSecurityType() const { return fieldRepoCollateralSecurityType.offset > 0 ? _fixPtr + fieldRepoCollateralSecurityType.offset : nullptr; }
    private: FieldRepoCollateralSecurityType fieldRepoCollateralSecurityType;
 
    public:
-   bool isSetRepurchaseTerm() const { return fieldRepurchaseTerm.offset >= 0; }
+   bool isSetRepurchaseTerm() const { return fieldRepurchaseTerm.offset > 0; }
    FieldRepurchaseTerm::ValueType getRepurchaseTerm() const { return fieldRepurchaseTerm.getValue( _fixPtr ); }
-   std::string_view getRepurchaseTermView() const { return fieldRepurchaseTerm.offset >= 0 ? std::string_view{ _fixPtr + fieldRepurchaseTerm.offset, getValueLength( _fixPtr + fieldRepurchaseTerm.offset ) } : std::string_view{}; }
+   std::string_view getRepurchaseTermView() const { return fieldRepurchaseTerm.offset > 0 ? std::string_view{ _fixPtr + fieldRepurchaseTerm.offset, getValueLength( _fixPtr + fieldRepurchaseTerm.offset ) } : std::string_view{}; }
    const char * ptrToRepurchaseTerm() const { return _fixPtr + fieldRepurchaseTerm.offset; }
-   const char * getIfSetRepurchaseTerm() const { return fieldRepurchaseTerm.offset >= 0 ? _fixPtr + fieldRepurchaseTerm.offset : nullptr; }
+   const char * ptrToTagRepurchaseTerm() const { return _fixPtr + fieldRepurchaseTerm.offset - 1 - FieldRepurchaseTerm::tagWidth(); }
+   const char * getIfSetRepurchaseTerm() const { return fieldRepurchaseTerm.offset > 0 ? _fixPtr + fieldRepurchaseTerm.offset : nullptr; }
    private: FieldRepurchaseTerm fieldRepurchaseTerm;
 
    public:
-   bool isSetRepurchaseRate() const { return fieldRepurchaseRate.offset >= 0; }
+   bool isSetRepurchaseRate() const { return fieldRepurchaseRate.offset > 0; }
    FieldRepurchaseRate::ValueType getRepurchaseRate() const { return fieldRepurchaseRate.getValue( _fixPtr ); }
-   std::string_view getRepurchaseRateView() const { return fieldRepurchaseRate.offset >= 0 ? std::string_view{ _fixPtr + fieldRepurchaseRate.offset, getValueLength( _fixPtr + fieldRepurchaseRate.offset ) } : std::string_view{}; }
+   std::string_view getRepurchaseRateView() const { return fieldRepurchaseRate.offset > 0 ? std::string_view{ _fixPtr + fieldRepurchaseRate.offset, getValueLength( _fixPtr + fieldRepurchaseRate.offset ) } : std::string_view{}; }
    const char * ptrToRepurchaseRate() const { return _fixPtr + fieldRepurchaseRate.offset; }
-   const char * getIfSetRepurchaseRate() const { return fieldRepurchaseRate.offset >= 0 ? _fixPtr + fieldRepurchaseRate.offset : nullptr; }
+   const char * ptrToTagRepurchaseRate() const { return _fixPtr + fieldRepurchaseRate.offset - 1 - FieldRepurchaseRate::tagWidth(); }
+   const char * getIfSetRepurchaseRate() const { return fieldRepurchaseRate.offset > 0 ? _fixPtr + fieldRepurchaseRate.offset : nullptr; }
    private: FieldRepurchaseRate fieldRepurchaseRate;
 
    public:
-   bool isSetFactor() const { return fieldFactor.offset >= 0; }
+   bool isSetFactor() const { return fieldFactor.offset > 0; }
    FieldFactor::ValueType getFactor() const { return fieldFactor.getValue( _fixPtr ); }
-   std::string_view getFactorView() const { return fieldFactor.offset >= 0 ? std::string_view{ _fixPtr + fieldFactor.offset, getValueLength( _fixPtr + fieldFactor.offset ) } : std::string_view{}; }
+   std::string_view getFactorView() const { return fieldFactor.offset > 0 ? std::string_view{ _fixPtr + fieldFactor.offset, getValueLength( _fixPtr + fieldFactor.offset ) } : std::string_view{}; }
    const char * ptrToFactor() const { return _fixPtr + fieldFactor.offset; }
-   const char * getIfSetFactor() const { return fieldFactor.offset >= 0 ? _fixPtr + fieldFactor.offset : nullptr; }
+   const char * ptrToTagFactor() const { return _fixPtr + fieldFactor.offset - 1 - FieldFactor::tagWidth(); }
+   const char * getIfSetFactor() const { return fieldFactor.offset > 0 ? _fixPtr + fieldFactor.offset : nullptr; }
    private: FieldFactor fieldFactor;
 
    public:
-   bool isSetCreditRating() const { return fieldCreditRating.offset >= 0; }
+   bool isSetCreditRating() const { return fieldCreditRating.offset > 0; }
    FieldCreditRating::ValueType getCreditRating() const { return fieldCreditRating.getValue( _fixPtr ); }
-   std::string_view getCreditRatingView() const { return fieldCreditRating.offset >= 0 ? std::string_view{ _fixPtr + fieldCreditRating.offset, getValueLength( _fixPtr + fieldCreditRating.offset ) } : std::string_view{}; }
+   std::string_view getCreditRatingView() const { return fieldCreditRating.offset > 0 ? std::string_view{ _fixPtr + fieldCreditRating.offset, getValueLength( _fixPtr + fieldCreditRating.offset ) } : std::string_view{}; }
    const char * ptrToCreditRating() const { return _fixPtr + fieldCreditRating.offset; }
-   const char * getIfSetCreditRating() const { return fieldCreditRating.offset >= 0 ? _fixPtr + fieldCreditRating.offset : nullptr; }
+   const char * ptrToTagCreditRating() const { return _fixPtr + fieldCreditRating.offset - 1 - FieldCreditRating::tagWidth(); }
+   const char * getIfSetCreditRating() const { return fieldCreditRating.offset > 0 ? _fixPtr + fieldCreditRating.offset : nullptr; }
    private: FieldCreditRating fieldCreditRating;
 
    public:
-   bool isSetInstrRegistry() const { return fieldInstrRegistry.offset >= 0; }
+   bool isSetInstrRegistry() const { return fieldInstrRegistry.offset > 0; }
    FieldInstrRegistry::ValueType getInstrRegistry() const { return fieldInstrRegistry.getValue( _fixPtr ); }
-   std::string_view getInstrRegistryView() const { return fieldInstrRegistry.offset >= 0 ? std::string_view{ _fixPtr + fieldInstrRegistry.offset, getValueLength( _fixPtr + fieldInstrRegistry.offset ) } : std::string_view{}; }
+   std::string_view getInstrRegistryView() const { return fieldInstrRegistry.offset > 0 ? std::string_view{ _fixPtr + fieldInstrRegistry.offset, getValueLength( _fixPtr + fieldInstrRegistry.offset ) } : std::string_view{}; }
    const char * ptrToInstrRegistry() const { return _fixPtr + fieldInstrRegistry.offset; }
-   const char * getIfSetInstrRegistry() const { return fieldInstrRegistry.offset >= 0 ? _fixPtr + fieldInstrRegistry.offset : nullptr; }
+   const char * ptrToTagInstrRegistry() const { return _fixPtr + fieldInstrRegistry.offset - 1 - FieldInstrRegistry::tagWidth(); }
+   const char * getIfSetInstrRegistry() const { return fieldInstrRegistry.offset > 0 ? _fixPtr + fieldInstrRegistry.offset : nullptr; }
    private: FieldInstrRegistry fieldInstrRegistry;
 
    public:
-   bool isSetCountryOfIssue() const { return fieldCountryOfIssue.offset >= 0; }
+   bool isSetCountryOfIssue() const { return fieldCountryOfIssue.offset > 0; }
    FieldCountryOfIssue::ValueType getCountryOfIssue() const { return fieldCountryOfIssue.getValue( _fixPtr ); }
-   std::string_view getCountryOfIssueView() const { return fieldCountryOfIssue.offset >= 0 ? std::string_view{ _fixPtr + fieldCountryOfIssue.offset, getValueLength( _fixPtr + fieldCountryOfIssue.offset ) } : std::string_view{}; }
+   std::string_view getCountryOfIssueView() const { return fieldCountryOfIssue.offset > 0 ? std::string_view{ _fixPtr + fieldCountryOfIssue.offset, getValueLength( _fixPtr + fieldCountryOfIssue.offset ) } : std::string_view{}; }
    const char * ptrToCountryOfIssue() const { return _fixPtr + fieldCountryOfIssue.offset; }
-   const char * getIfSetCountryOfIssue() const { return fieldCountryOfIssue.offset >= 0 ? _fixPtr + fieldCountryOfIssue.offset : nullptr; }
+   const char * ptrToTagCountryOfIssue() const { return _fixPtr + fieldCountryOfIssue.offset - 1 - FieldCountryOfIssue::tagWidth(); }
+   const char * getIfSetCountryOfIssue() const { return fieldCountryOfIssue.offset > 0 ? _fixPtr + fieldCountryOfIssue.offset : nullptr; }
    private: FieldCountryOfIssue fieldCountryOfIssue;
 
    public:
-   bool isSetStateOrProvinceOfIssue() const { return fieldStateOrProvinceOfIssue.offset >= 0; }
+   bool isSetStateOrProvinceOfIssue() const { return fieldStateOrProvinceOfIssue.offset > 0; }
    FieldStateOrProvinceOfIssue::ValueType getStateOrProvinceOfIssue() const { return fieldStateOrProvinceOfIssue.getValue( _fixPtr ); }
-   std::string_view getStateOrProvinceOfIssueView() const { return fieldStateOrProvinceOfIssue.offset >= 0 ? std::string_view{ _fixPtr + fieldStateOrProvinceOfIssue.offset, getValueLength( _fixPtr + fieldStateOrProvinceOfIssue.offset ) } : std::string_view{}; }
+   std::string_view getStateOrProvinceOfIssueView() const { return fieldStateOrProvinceOfIssue.offset > 0 ? std::string_view{ _fixPtr + fieldStateOrProvinceOfIssue.offset, getValueLength( _fixPtr + fieldStateOrProvinceOfIssue.offset ) } : std::string_view{}; }
    const char * ptrToStateOrProvinceOfIssue() const { return _fixPtr + fieldStateOrProvinceOfIssue.offset; }
-   const char * getIfSetStateOrProvinceOfIssue() const { return fieldStateOrProvinceOfIssue.offset >= 0 ? _fixPtr + fieldStateOrProvinceOfIssue.offset : nullptr; }
+   const char * ptrToTagStateOrProvinceOfIssue() const { return _fixPtr + fieldStateOrProvinceOfIssue.offset - 1 - FieldStateOrProvinceOfIssue::tagWidth(); }
+   const char * getIfSetStateOrProvinceOfIssue() const { return fieldStateOrProvinceOfIssue.offset > 0 ? _fixPtr + fieldStateOrProvinceOfIssue.offset : nullptr; }
    private: FieldStateOrProvinceOfIssue fieldStateOrProvinceOfIssue;
 
    public:
-   bool isSetLocaleOfIssue() const { return fieldLocaleOfIssue.offset >= 0; }
+   bool isSetLocaleOfIssue() const { return fieldLocaleOfIssue.offset > 0; }
    FieldLocaleOfIssue::ValueType getLocaleOfIssue() const { return fieldLocaleOfIssue.getValue( _fixPtr ); }
-   std::string_view getLocaleOfIssueView() const { return fieldLocaleOfIssue.offset >= 0 ? std::string_view{ _fixPtr + fieldLocaleOfIssue.offset, getValueLength( _fixPtr + fieldLocaleOfIssue.offset ) } : std::string_view{}; }
+   std::string_view getLocaleOfIssueView() const { return fieldLocaleOfIssue.offset > 0 ? std::string_view{ _fixPtr + fieldLocaleOfIssue.offset, getValueLength( _fixPtr + fieldLocaleOfIssue.offset ) } : std::string_view{}; }
    const char * ptrToLocaleOfIssue() const { return _fixPtr + fieldLocaleOfIssue.offset; }
-   const char * getIfSetLocaleOfIssue() const { return fieldLocaleOfIssue.offset >= 0 ? _fixPtr + fieldLocaleOfIssue.offset : nullptr; }
+   const char * ptrToTagLocaleOfIssue() const { return _fixPtr + fieldLocaleOfIssue.offset - 1 - FieldLocaleOfIssue::tagWidth(); }
+   const char * getIfSetLocaleOfIssue() const { return fieldLocaleOfIssue.offset > 0 ? _fixPtr + fieldLocaleOfIssue.offset : nullptr; }
    private: FieldLocaleOfIssue fieldLocaleOfIssue;
 
    public:
-   bool isSetRedemptionDate() const { return fieldRedemptionDate.offset >= 0; }
+   bool isSetRedemptionDate() const { return fieldRedemptionDate.offset > 0; }
    FieldRedemptionDate::ValueType getRedemptionDate() const { return fieldRedemptionDate.getValue( _fixPtr ); }
-   std::string_view getRedemptionDateView() const { return fieldRedemptionDate.offset >= 0 ? std::string_view{ _fixPtr + fieldRedemptionDate.offset, getValueLength( _fixPtr + fieldRedemptionDate.offset ) } : std::string_view{}; }
+   std::string_view getRedemptionDateView() const { return fieldRedemptionDate.offset > 0 ? std::string_view{ _fixPtr + fieldRedemptionDate.offset, getValueLength( _fixPtr + fieldRedemptionDate.offset ) } : std::string_view{}; }
    const char * ptrToRedemptionDate() const { return _fixPtr + fieldRedemptionDate.offset; }
-   const char * getIfSetRedemptionDate() const { return fieldRedemptionDate.offset >= 0 ? _fixPtr + fieldRedemptionDate.offset : nullptr; }
+   const char * ptrToTagRedemptionDate() const { return _fixPtr + fieldRedemptionDate.offset - 1 - FieldRedemptionDate::tagWidth(); }
+   const char * getIfSetRedemptionDate() const { return fieldRedemptionDate.offset > 0 ? _fixPtr + fieldRedemptionDate.offset : nullptr; }
    private: FieldRedemptionDate fieldRedemptionDate;
 
    public:
-   bool isSetStrikePrice() const { return fieldStrikePrice.offset >= 0; }
+   bool isSetStrikePrice() const { return fieldStrikePrice.offset > 0; }
    FieldStrikePrice::ValueType getStrikePrice() const { return fieldStrikePrice.getValue( _fixPtr ); }
-   std::string_view getStrikePriceView() const { return fieldStrikePrice.offset >= 0 ? std::string_view{ _fixPtr + fieldStrikePrice.offset, getValueLength( _fixPtr + fieldStrikePrice.offset ) } : std::string_view{}; }
+   std::string_view getStrikePriceView() const { return fieldStrikePrice.offset > 0 ? std::string_view{ _fixPtr + fieldStrikePrice.offset, getValueLength( _fixPtr + fieldStrikePrice.offset ) } : std::string_view{}; }
    const char * ptrToStrikePrice() const { return _fixPtr + fieldStrikePrice.offset; }
-   const char * getIfSetStrikePrice() const { return fieldStrikePrice.offset >= 0 ? _fixPtr + fieldStrikePrice.offset : nullptr; }
+   const char * ptrToTagStrikePrice() const { return _fixPtr + fieldStrikePrice.offset - 1 - FieldStrikePrice::tagWidth(); }
+   const char * getIfSetStrikePrice() const { return fieldStrikePrice.offset > 0 ? _fixPtr + fieldStrikePrice.offset : nullptr; }
    private: FieldStrikePrice fieldStrikePrice;
 
    public:
-   bool isSetStrikeCurrency() const { return fieldStrikeCurrency.offset >= 0; }
+   bool isSetStrikeCurrency() const { return fieldStrikeCurrency.offset > 0; }
    FieldStrikeCurrency::ValueType getStrikeCurrency() const { return fieldStrikeCurrency.getValue( _fixPtr ); }
-   std::string_view getStrikeCurrencyView() const { return fieldStrikeCurrency.offset >= 0 ? std::string_view{ _fixPtr + fieldStrikeCurrency.offset, getValueLength( _fixPtr + fieldStrikeCurrency.offset ) } : std::string_view{}; }
+   std::string_view getStrikeCurrencyView() const { return fieldStrikeCurrency.offset > 0 ? std::string_view{ _fixPtr + fieldStrikeCurrency.offset, getValueLength( _fixPtr + fieldStrikeCurrency.offset ) } : std::string_view{}; }
    const char * ptrToStrikeCurrency() const { return _fixPtr + fieldStrikeCurrency.offset; }
-   const char * getIfSetStrikeCurrency() const { return fieldStrikeCurrency.offset >= 0 ? _fixPtr + fieldStrikeCurrency.offset : nullptr; }
+   const char * ptrToTagStrikeCurrency() const { return _fixPtr + fieldStrikeCurrency.offset - 1 - FieldStrikeCurrency::tagWidth(); }
+   const char * getIfSetStrikeCurrency() const { return fieldStrikeCurrency.offset > 0 ? _fixPtr + fieldStrikeCurrency.offset : nullptr; }
    private: FieldStrikeCurrency fieldStrikeCurrency;
 
    public:
-   bool isSetOptAttribute() const { return fieldOptAttribute.offset >= 0; }
+   bool isSetOptAttribute() const { return fieldOptAttribute.offset > 0; }
    FieldOptAttribute::ValueType getOptAttribute() const { return fieldOptAttribute.getValue( _fixPtr ); }
-   std::string_view getOptAttributeView() const { return fieldOptAttribute.offset >= 0 ? std::string_view{ _fixPtr + fieldOptAttribute.offset, getValueLength( _fixPtr + fieldOptAttribute.offset ) } : std::string_view{}; }
+   std::string_view getOptAttributeView() const { return fieldOptAttribute.offset > 0 ? std::string_view{ _fixPtr + fieldOptAttribute.offset, getValueLength( _fixPtr + fieldOptAttribute.offset ) } : std::string_view{}; }
    const char * ptrToOptAttribute() const { return _fixPtr + fieldOptAttribute.offset; }
-   const char * getIfSetOptAttribute() const { return fieldOptAttribute.offset >= 0 ? _fixPtr + fieldOptAttribute.offset : nullptr; }
+   const char * ptrToTagOptAttribute() const { return _fixPtr + fieldOptAttribute.offset - 1 - FieldOptAttribute::tagWidth(); }
+   const char * getIfSetOptAttribute() const { return fieldOptAttribute.offset > 0 ? _fixPtr + fieldOptAttribute.offset : nullptr; }
    private: FieldOptAttribute fieldOptAttribute;
 
    public:
-   bool isSetContractMultiplier() const { return fieldContractMultiplier.offset >= 0; }
+   bool isSetContractMultiplier() const { return fieldContractMultiplier.offset > 0; }
    FieldContractMultiplier::ValueType getContractMultiplier() const { return fieldContractMultiplier.getValue( _fixPtr ); }
-   std::string_view getContractMultiplierView() const { return fieldContractMultiplier.offset >= 0 ? std::string_view{ _fixPtr + fieldContractMultiplier.offset, getValueLength( _fixPtr + fieldContractMultiplier.offset ) } : std::string_view{}; }
+   std::string_view getContractMultiplierView() const { return fieldContractMultiplier.offset > 0 ? std::string_view{ _fixPtr + fieldContractMultiplier.offset, getValueLength( _fixPtr + fieldContractMultiplier.offset ) } : std::string_view{}; }
    const char * ptrToContractMultiplier() const { return _fixPtr + fieldContractMultiplier.offset; }
-   const char * getIfSetContractMultiplier() const { return fieldContractMultiplier.offset >= 0 ? _fixPtr + fieldContractMultiplier.offset : nullptr; }
+   const char * ptrToTagContractMultiplier() const { return _fixPtr + fieldContractMultiplier.offset - 1 - FieldContractMultiplier::tagWidth(); }
+   const char * getIfSetContractMultiplier() const { return fieldContractMultiplier.offset > 0 ? _fixPtr + fieldContractMultiplier.offset : nullptr; }
    private: FieldContractMultiplier fieldContractMultiplier;
 
    public:
-   bool isSetCouponRate() const { return fieldCouponRate.offset >= 0; }
+   bool isSetCouponRate() const { return fieldCouponRate.offset > 0; }
    FieldCouponRate::ValueType getCouponRate() const { return fieldCouponRate.getValue( _fixPtr ); }
-   std::string_view getCouponRateView() const { return fieldCouponRate.offset >= 0 ? std::string_view{ _fixPtr + fieldCouponRate.offset, getValueLength( _fixPtr + fieldCouponRate.offset ) } : std::string_view{}; }
+   std::string_view getCouponRateView() const { return fieldCouponRate.offset > 0 ? std::string_view{ _fixPtr + fieldCouponRate.offset, getValueLength( _fixPtr + fieldCouponRate.offset ) } : std::string_view{}; }
    const char * ptrToCouponRate() const { return _fixPtr + fieldCouponRate.offset; }
-   const char * getIfSetCouponRate() const { return fieldCouponRate.offset >= 0 ? _fixPtr + fieldCouponRate.offset : nullptr; }
+   const char * ptrToTagCouponRate() const { return _fixPtr + fieldCouponRate.offset - 1 - FieldCouponRate::tagWidth(); }
+   const char * getIfSetCouponRate() const { return fieldCouponRate.offset > 0 ? _fixPtr + fieldCouponRate.offset : nullptr; }
    private: FieldCouponRate fieldCouponRate;
 
    public:
-   bool isSetSecurityExchange() const { return fieldSecurityExchange.offset >= 0; }
+   bool isSetSecurityExchange() const { return fieldSecurityExchange.offset > 0; }
    FieldSecurityExchange::ValueType getSecurityExchange() const { return fieldSecurityExchange.getValue( _fixPtr ); }
-   std::string_view getSecurityExchangeView() const { return fieldSecurityExchange.offset >= 0 ? std::string_view{ _fixPtr + fieldSecurityExchange.offset, getValueLength( _fixPtr + fieldSecurityExchange.offset ) } : std::string_view{}; }
+   std::string_view getSecurityExchangeView() const { return fieldSecurityExchange.offset > 0 ? std::string_view{ _fixPtr + fieldSecurityExchange.offset, getValueLength( _fixPtr + fieldSecurityExchange.offset ) } : std::string_view{}; }
    const char * ptrToSecurityExchange() const { return _fixPtr + fieldSecurityExchange.offset; }
-   const char * getIfSetSecurityExchange() const { return fieldSecurityExchange.offset >= 0 ? _fixPtr + fieldSecurityExchange.offset : nullptr; }
+   const char * ptrToTagSecurityExchange() const { return _fixPtr + fieldSecurityExchange.offset - 1 - FieldSecurityExchange::tagWidth(); }
+   const char * getIfSetSecurityExchange() const { return fieldSecurityExchange.offset > 0 ? _fixPtr + fieldSecurityExchange.offset : nullptr; }
    private: FieldSecurityExchange fieldSecurityExchange;
 
    public:
-   bool isSetIssuer() const { return fieldIssuer.offset >= 0; }
+   bool isSetIssuer() const { return fieldIssuer.offset > 0; }
    FieldIssuer::ValueType getIssuer() const { return fieldIssuer.getValue( _fixPtr ); }
-   std::string_view getIssuerView() const { return fieldIssuer.offset >= 0 ? std::string_view{ _fixPtr + fieldIssuer.offset, getValueLength( _fixPtr + fieldIssuer.offset ) } : std::string_view{}; }
+   std::string_view getIssuerView() const { return fieldIssuer.offset > 0 ? std::string_view{ _fixPtr + fieldIssuer.offset, getValueLength( _fixPtr + fieldIssuer.offset ) } : std::string_view{}; }
    const char * ptrToIssuer() const { return _fixPtr + fieldIssuer.offset; }
-   const char * getIfSetIssuer() const { return fieldIssuer.offset >= 0 ? _fixPtr + fieldIssuer.offset : nullptr; }
+   const char * ptrToTagIssuer() const { return _fixPtr + fieldIssuer.offset - 1 - FieldIssuer::tagWidth(); }
+   const char * getIfSetIssuer() const { return fieldIssuer.offset > 0 ? _fixPtr + fieldIssuer.offset : nullptr; }
    private: FieldIssuer fieldIssuer;
 
    public:
-   bool isSetEncodedIssuerLen() const { return fieldEncodedIssuerLen.offset >= 0; }
+   bool isSetEncodedIssuerLen() const { return fieldEncodedIssuerLen.offset > 0; }
    FieldEncodedIssuerLen::ValueType getEncodedIssuerLen() const { return fieldEncodedIssuerLen.getValue( _fixPtr ); }
-   std::string_view getEncodedIssuerLenView() const { return fieldEncodedIssuerLen.offset >= 0 ? std::string_view{ _fixPtr + fieldEncodedIssuerLen.offset, getValueLength( _fixPtr + fieldEncodedIssuerLen.offset ) } : std::string_view{}; }
+   std::string_view getEncodedIssuerLenView() const { return fieldEncodedIssuerLen.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedIssuerLen.offset, getValueLength( _fixPtr + fieldEncodedIssuerLen.offset ) } : std::string_view{}; }
    const char * ptrToEncodedIssuerLen() const { return _fixPtr + fieldEncodedIssuerLen.offset; }
-   const char * getIfSetEncodedIssuerLen() const { return fieldEncodedIssuerLen.offset >= 0 ? _fixPtr + fieldEncodedIssuerLen.offset : nullptr; }
+   const char * ptrToTagEncodedIssuerLen() const { return _fixPtr + fieldEncodedIssuerLen.offset - 1 - FieldEncodedIssuerLen::tagWidth(); }
+   const char * getIfSetEncodedIssuerLen() const { return fieldEncodedIssuerLen.offset > 0 ? _fixPtr + fieldEncodedIssuerLen.offset : nullptr; }
    private: FieldEncodedIssuerLen fieldEncodedIssuerLen;
 
    public:
-   bool isSetEncodedIssuer() const { return fieldEncodedIssuer.offset >= 0; }
+   bool isSetEncodedIssuer() const { return fieldEncodedIssuer.offset > 0; }
    FieldEncodedIssuer::ValueType getEncodedIssuer() const { return fieldEncodedIssuer.getValue( _fixPtr ); }
-   std::string_view getEncodedIssuerView() const { return fieldEncodedIssuer.offset >= 0 ? std::string_view{ _fixPtr + fieldEncodedIssuer.offset, getValueLength( _fixPtr + fieldEncodedIssuer.offset ) } : std::string_view{}; }
+   std::string_view getEncodedIssuerView() const { return fieldEncodedIssuer.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedIssuer.offset, getValueLength( _fixPtr + fieldEncodedIssuer.offset ) } : std::string_view{}; }
    const char * ptrToEncodedIssuer() const { return _fixPtr + fieldEncodedIssuer.offset; }
-   const char * getIfSetEncodedIssuer() const { return fieldEncodedIssuer.offset >= 0 ? _fixPtr + fieldEncodedIssuer.offset : nullptr; }
+   const char * ptrToTagEncodedIssuer() const { return _fixPtr + fieldEncodedIssuer.offset - 1 - FieldEncodedIssuer::tagWidth(); }
+   const char * getIfSetEncodedIssuer() const { return fieldEncodedIssuer.offset > 0 ? _fixPtr + fieldEncodedIssuer.offset : nullptr; }
    private: FieldEncodedIssuer fieldEncodedIssuer;
 
    public:
-   bool isSetSecurityDesc() const { return fieldSecurityDesc.offset >= 0; }
+   bool isSetSecurityDesc() const { return fieldSecurityDesc.offset > 0; }
    FieldSecurityDesc::ValueType getSecurityDesc() const { return fieldSecurityDesc.getValue( _fixPtr ); }
-   std::string_view getSecurityDescView() const { return fieldSecurityDesc.offset >= 0 ? std::string_view{ _fixPtr + fieldSecurityDesc.offset, getValueLength( _fixPtr + fieldSecurityDesc.offset ) } : std::string_view{}; }
+   std::string_view getSecurityDescView() const { return fieldSecurityDesc.offset > 0 ? std::string_view{ _fixPtr + fieldSecurityDesc.offset, getValueLength( _fixPtr + fieldSecurityDesc.offset ) } : std::string_view{}; }
    const char * ptrToSecurityDesc() const { return _fixPtr + fieldSecurityDesc.offset; }
-   const char * getIfSetSecurityDesc() const { return fieldSecurityDesc.offset >= 0 ? _fixPtr + fieldSecurityDesc.offset : nullptr; }
+   const char * ptrToTagSecurityDesc() const { return _fixPtr + fieldSecurityDesc.offset - 1 - FieldSecurityDesc::tagWidth(); }
+   const char * getIfSetSecurityDesc() const { return fieldSecurityDesc.offset > 0 ? _fixPtr + fieldSecurityDesc.offset : nullptr; }
    private: FieldSecurityDesc fieldSecurityDesc;
 
    public:
-   bool isSetEncodedSecurityDescLen() const { return fieldEncodedSecurityDescLen.offset >= 0; }
+   bool isSetEncodedSecurityDescLen() const { return fieldEncodedSecurityDescLen.offset > 0; }
    FieldEncodedSecurityDescLen::ValueType getEncodedSecurityDescLen() const { return fieldEncodedSecurityDescLen.getValue( _fixPtr ); }
-   std::string_view getEncodedSecurityDescLenView() const { return fieldEncodedSecurityDescLen.offset >= 0 ? std::string_view{ _fixPtr + fieldEncodedSecurityDescLen.offset, getValueLength( _fixPtr + fieldEncodedSecurityDescLen.offset ) } : std::string_view{}; }
+   std::string_view getEncodedSecurityDescLenView() const { return fieldEncodedSecurityDescLen.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedSecurityDescLen.offset, getValueLength( _fixPtr + fieldEncodedSecurityDescLen.offset ) } : std::string_view{}; }
    const char * ptrToEncodedSecurityDescLen() const { return _fixPtr + fieldEncodedSecurityDescLen.offset; }
-   const char * getIfSetEncodedSecurityDescLen() const { return fieldEncodedSecurityDescLen.offset >= 0 ? _fixPtr + fieldEncodedSecurityDescLen.offset : nullptr; }
+   const char * ptrToTagEncodedSecurityDescLen() const { return _fixPtr + fieldEncodedSecurityDescLen.offset - 1 - FieldEncodedSecurityDescLen::tagWidth(); }
+   const char * getIfSetEncodedSecurityDescLen() const { return fieldEncodedSecurityDescLen.offset > 0 ? _fixPtr + fieldEncodedSecurityDescLen.offset : nullptr; }
    private: FieldEncodedSecurityDescLen fieldEncodedSecurityDescLen;
 
    public:
-   bool isSetEncodedSecurityDesc() const { return fieldEncodedSecurityDesc.offset >= 0; }
+   bool isSetEncodedSecurityDesc() const { return fieldEncodedSecurityDesc.offset > 0; }
    FieldEncodedSecurityDesc::ValueType getEncodedSecurityDesc() const { return fieldEncodedSecurityDesc.getValue( _fixPtr ); }
-   std::string_view getEncodedSecurityDescView() const { return fieldEncodedSecurityDesc.offset >= 0 ? std::string_view{ _fixPtr + fieldEncodedSecurityDesc.offset, getValueLength( _fixPtr + fieldEncodedSecurityDesc.offset ) } : std::string_view{}; }
+   std::string_view getEncodedSecurityDescView() const { return fieldEncodedSecurityDesc.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedSecurityDesc.offset, getValueLength( _fixPtr + fieldEncodedSecurityDesc.offset ) } : std::string_view{}; }
    const char * ptrToEncodedSecurityDesc() const { return _fixPtr + fieldEncodedSecurityDesc.offset; }
-   const char * getIfSetEncodedSecurityDesc() const { return fieldEncodedSecurityDesc.offset >= 0 ? _fixPtr + fieldEncodedSecurityDesc.offset : nullptr; }
+   const char * ptrToTagEncodedSecurityDesc() const { return _fixPtr + fieldEncodedSecurityDesc.offset - 1 - FieldEncodedSecurityDesc::tagWidth(); }
+   const char * getIfSetEncodedSecurityDesc() const { return fieldEncodedSecurityDesc.offset > 0 ? _fixPtr + fieldEncodedSecurityDesc.offset : nullptr; }
    private: FieldEncodedSecurityDesc fieldEncodedSecurityDesc;
 
    public:
-   bool isSetPool() const { return fieldPool.offset >= 0; }
+   bool isSetPool() const { return fieldPool.offset > 0; }
    FieldPool::ValueType getPool() const { return fieldPool.getValue( _fixPtr ); }
-   std::string_view getPoolView() const { return fieldPool.offset >= 0 ? std::string_view{ _fixPtr + fieldPool.offset, getValueLength( _fixPtr + fieldPool.offset ) } : std::string_view{}; }
+   std::string_view getPoolView() const { return fieldPool.offset > 0 ? std::string_view{ _fixPtr + fieldPool.offset, getValueLength( _fixPtr + fieldPool.offset ) } : std::string_view{}; }
    const char * ptrToPool() const { return _fixPtr + fieldPool.offset; }
-   const char * getIfSetPool() const { return fieldPool.offset >= 0 ? _fixPtr + fieldPool.offset : nullptr; }
+   const char * ptrToTagPool() const { return _fixPtr + fieldPool.offset - 1 - FieldPool::tagWidth(); }
+   const char * getIfSetPool() const { return fieldPool.offset > 0 ? _fixPtr + fieldPool.offset : nullptr; }
    private: FieldPool fieldPool;
 
    public:
-   bool isSetContractSettlMonth() const { return fieldContractSettlMonth.offset >= 0; }
+   bool isSetContractSettlMonth() const { return fieldContractSettlMonth.offset > 0; }
    FieldContractSettlMonth::ValueType getContractSettlMonth() const { return fieldContractSettlMonth.getValue( _fixPtr ); }
-   std::string_view getContractSettlMonthView() const { return fieldContractSettlMonth.offset >= 0 ? std::string_view{ _fixPtr + fieldContractSettlMonth.offset, getValueLength( _fixPtr + fieldContractSettlMonth.offset ) } : std::string_view{}; }
+   std::string_view getContractSettlMonthView() const { return fieldContractSettlMonth.offset > 0 ? std::string_view{ _fixPtr + fieldContractSettlMonth.offset, getValueLength( _fixPtr + fieldContractSettlMonth.offset ) } : std::string_view{}; }
    const char * ptrToContractSettlMonth() const { return _fixPtr + fieldContractSettlMonth.offset; }
-   const char * getIfSetContractSettlMonth() const { return fieldContractSettlMonth.offset >= 0 ? _fixPtr + fieldContractSettlMonth.offset : nullptr; }
+   const char * ptrToTagContractSettlMonth() const { return _fixPtr + fieldContractSettlMonth.offset - 1 - FieldContractSettlMonth::tagWidth(); }
+   const char * getIfSetContractSettlMonth() const { return fieldContractSettlMonth.offset > 0 ? _fixPtr + fieldContractSettlMonth.offset : nullptr; }
    private: FieldContractSettlMonth fieldContractSettlMonth;
 
    public:
-   bool isSetCPProgram() const { return fieldCPProgram.offset >= 0; }
+   bool isSetCPProgram() const { return fieldCPProgram.offset > 0; }
    FieldCPProgram::ValueType getCPProgram() const { return fieldCPProgram.getValue( _fixPtr ); }
-   std::string_view getCPProgramView() const { return fieldCPProgram.offset >= 0 ? std::string_view{ _fixPtr + fieldCPProgram.offset, getValueLength( _fixPtr + fieldCPProgram.offset ) } : std::string_view{}; }
+   std::string_view getCPProgramView() const { return fieldCPProgram.offset > 0 ? std::string_view{ _fixPtr + fieldCPProgram.offset, getValueLength( _fixPtr + fieldCPProgram.offset ) } : std::string_view{}; }
    const char * ptrToCPProgram() const { return _fixPtr + fieldCPProgram.offset; }
-   const char * getIfSetCPProgram() const { return fieldCPProgram.offset >= 0 ? _fixPtr + fieldCPProgram.offset : nullptr; }
+   const char * ptrToTagCPProgram() const { return _fixPtr + fieldCPProgram.offset - 1 - FieldCPProgram::tagWidth(); }
+   const char * getIfSetCPProgram() const { return fieldCPProgram.offset > 0 ? _fixPtr + fieldCPProgram.offset : nullptr; }
    private: FieldCPProgram fieldCPProgram;
 
    public:
-   bool isSetCPRegType() const { return fieldCPRegType.offset >= 0; }
+   bool isSetCPRegType() const { return fieldCPRegType.offset > 0; }
    FieldCPRegType::ValueType getCPRegType() const { return fieldCPRegType.getValue( _fixPtr ); }
-   std::string_view getCPRegTypeView() const { return fieldCPRegType.offset >= 0 ? std::string_view{ _fixPtr + fieldCPRegType.offset, getValueLength( _fixPtr + fieldCPRegType.offset ) } : std::string_view{}; }
+   std::string_view getCPRegTypeView() const { return fieldCPRegType.offset > 0 ? std::string_view{ _fixPtr + fieldCPRegType.offset, getValueLength( _fixPtr + fieldCPRegType.offset ) } : std::string_view{}; }
    const char * ptrToCPRegType() const { return _fixPtr + fieldCPRegType.offset; }
-   const char * getIfSetCPRegType() const { return fieldCPRegType.offset >= 0 ? _fixPtr + fieldCPRegType.offset : nullptr; }
+   const char * ptrToTagCPRegType() const { return _fixPtr + fieldCPRegType.offset - 1 - FieldCPRegType::tagWidth(); }
+   const char * getIfSetCPRegType() const { return fieldCPRegType.offset > 0 ? _fixPtr + fieldCPRegType.offset : nullptr; }
    private: FieldCPRegType fieldCPRegType;
 
    public:
-   bool isSetNoEvents() const { return fieldNoEvents.offset >= 0; }
+   bool isSetNoEvents() const { return fieldNoEvents.offset > 0; }
    FieldNoEvents::ValueType getNoEvents() const { return fieldNoEvents.getValue( _fixPtr ); }
-   std::string_view getNoEventsView() const { return fieldNoEvents.offset >= 0 ? std::string_view{ _fixPtr + fieldNoEvents.offset, getValueLength( _fixPtr + fieldNoEvents.offset ) } : std::string_view{}; }
+   std::string_view getNoEventsView() const { return fieldNoEvents.offset > 0 ? std::string_view{ _fixPtr + fieldNoEvents.offset, getValueLength( _fixPtr + fieldNoEvents.offset ) } : std::string_view{}; }
    const char * ptrToNoEvents() const { return _fixPtr + fieldNoEvents.offset; }
-   const char * getIfSetNoEvents() const { return fieldNoEvents.offset >= 0 ? _fixPtr + fieldNoEvents.offset : nullptr; }
+   const char * ptrToTagNoEvents() const { return _fixPtr + fieldNoEvents.offset - 1 - FieldNoEvents::tagWidth(); }
+   const char * getIfSetNoEvents() const { return fieldNoEvents.offset > 0 ? _fixPtr + fieldNoEvents.offset : nullptr; }
    private: FieldNoEvents fieldNoEvents;
   
    public:
@@ -5583,19 +6247,21 @@ class GroupRelatedSym : public MessageBase
    private: GroupEvents::Array groupsEvents{ 10 };
 
    public:
-   bool isSetDatedDate() const { return fieldDatedDate.offset >= 0; }
+   bool isSetDatedDate() const { return fieldDatedDate.offset > 0; }
    FieldDatedDate::ValueType getDatedDate() const { return fieldDatedDate.getValue( _fixPtr ); }
-   std::string_view getDatedDateView() const { return fieldDatedDate.offset >= 0 ? std::string_view{ _fixPtr + fieldDatedDate.offset, getValueLength( _fixPtr + fieldDatedDate.offset ) } : std::string_view{}; }
+   std::string_view getDatedDateView() const { return fieldDatedDate.offset > 0 ? std::string_view{ _fixPtr + fieldDatedDate.offset, getValueLength( _fixPtr + fieldDatedDate.offset ) } : std::string_view{}; }
    const char * ptrToDatedDate() const { return _fixPtr + fieldDatedDate.offset; }
-   const char * getIfSetDatedDate() const { return fieldDatedDate.offset >= 0 ? _fixPtr + fieldDatedDate.offset : nullptr; }
+   const char * ptrToTagDatedDate() const { return _fixPtr + fieldDatedDate.offset - 1 - FieldDatedDate::tagWidth(); }
+   const char * getIfSetDatedDate() const { return fieldDatedDate.offset > 0 ? _fixPtr + fieldDatedDate.offset : nullptr; }
    private: FieldDatedDate fieldDatedDate;
 
    public:
-   bool isSetInterestAccrualDate() const { return fieldInterestAccrualDate.offset >= 0; }
+   bool isSetInterestAccrualDate() const { return fieldInterestAccrualDate.offset > 0; }
    FieldInterestAccrualDate::ValueType getInterestAccrualDate() const { return fieldInterestAccrualDate.getValue( _fixPtr ); }
-   std::string_view getInterestAccrualDateView() const { return fieldInterestAccrualDate.offset >= 0 ? std::string_view{ _fixPtr + fieldInterestAccrualDate.offset, getValueLength( _fixPtr + fieldInterestAccrualDate.offset ) } : std::string_view{}; }
+   std::string_view getInterestAccrualDateView() const { return fieldInterestAccrualDate.offset > 0 ? std::string_view{ _fixPtr + fieldInterestAccrualDate.offset, getValueLength( _fixPtr + fieldInterestAccrualDate.offset ) } : std::string_view{}; }
    const char * ptrToInterestAccrualDate() const { return _fixPtr + fieldInterestAccrualDate.offset; }
-   const char * getIfSetInterestAccrualDate() const { return fieldInterestAccrualDate.offset >= 0 ? _fixPtr + fieldInterestAccrualDate.offset : nullptr; }
+   const char * ptrToTagInterestAccrualDate() const { return _fixPtr + fieldInterestAccrualDate.offset - 1 - FieldInterestAccrualDate::tagWidth(); }
+   const char * getIfSetInterestAccrualDate() const { return fieldInterestAccrualDate.offset > 0 ? _fixPtr + fieldInterestAccrualDate.offset : nullptr; }
    private: FieldInterestAccrualDate fieldInterestAccrualDate;
 
 };
@@ -5612,48 +6278,55 @@ class GroupContraBrokers : public MessageBase
    static offset_t scan( Array & arr, const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    const char * getFieldValue( unsigned tag ) const;
+   const char * findBadField() const;
+   const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
-   bool isSetContraBroker() const { return fieldContraBroker.offset >= 0; }
+   bool isSetContraBroker() const { return fieldContraBroker.offset > 0; }
    FieldContraBroker::ValueType getContraBroker() const { return fieldContraBroker.getValue( _fixPtr ); }
-   std::string_view getContraBrokerView() const { return fieldContraBroker.offset >= 0 ? std::string_view{ _fixPtr + fieldContraBroker.offset, getValueLength( _fixPtr + fieldContraBroker.offset ) } : std::string_view{}; }
+   std::string_view getContraBrokerView() const { return fieldContraBroker.offset > 0 ? std::string_view{ _fixPtr + fieldContraBroker.offset, getValueLength( _fixPtr + fieldContraBroker.offset ) } : std::string_view{}; }
    const char * ptrToContraBroker() const { return _fixPtr + fieldContraBroker.offset; }
-   const char * getIfSetContraBroker() const { return fieldContraBroker.offset >= 0 ? _fixPtr + fieldContraBroker.offset : nullptr; }
+   const char * ptrToTagContraBroker() const { return _fixPtr + fieldContraBroker.offset - 1 - FieldContraBroker::tagWidth(); }
+   const char * getIfSetContraBroker() const { return fieldContraBroker.offset > 0 ? _fixPtr + fieldContraBroker.offset : nullptr; }
    private: FieldContraBroker fieldContraBroker;
 
    public:
-   bool isSetContraTrader() const { return fieldContraTrader.offset >= 0; }
+   bool isSetContraTrader() const { return fieldContraTrader.offset > 0; }
    FieldContraTrader::ValueType getContraTrader() const { return fieldContraTrader.getValue( _fixPtr ); }
-   std::string_view getContraTraderView() const { return fieldContraTrader.offset >= 0 ? std::string_view{ _fixPtr + fieldContraTrader.offset, getValueLength( _fixPtr + fieldContraTrader.offset ) } : std::string_view{}; }
+   std::string_view getContraTraderView() const { return fieldContraTrader.offset > 0 ? std::string_view{ _fixPtr + fieldContraTrader.offset, getValueLength( _fixPtr + fieldContraTrader.offset ) } : std::string_view{}; }
    const char * ptrToContraTrader() const { return _fixPtr + fieldContraTrader.offset; }
-   const char * getIfSetContraTrader() const { return fieldContraTrader.offset >= 0 ? _fixPtr + fieldContraTrader.offset : nullptr; }
+   const char * ptrToTagContraTrader() const { return _fixPtr + fieldContraTrader.offset - 1 - FieldContraTrader::tagWidth(); }
+   const char * getIfSetContraTrader() const { return fieldContraTrader.offset > 0 ? _fixPtr + fieldContraTrader.offset : nullptr; }
    private: FieldContraTrader fieldContraTrader;
 
    public:
-   bool isSetContraTradeQty() const { return fieldContraTradeQty.offset >= 0; }
+   bool isSetContraTradeQty() const { return fieldContraTradeQty.offset > 0; }
    FieldContraTradeQty::ValueType getContraTradeQty() const { return fieldContraTradeQty.getValue( _fixPtr ); }
-   std::string_view getContraTradeQtyView() const { return fieldContraTradeQty.offset >= 0 ? std::string_view{ _fixPtr + fieldContraTradeQty.offset, getValueLength( _fixPtr + fieldContraTradeQty.offset ) } : std::string_view{}; }
+   std::string_view getContraTradeQtyView() const { return fieldContraTradeQty.offset > 0 ? std::string_view{ _fixPtr + fieldContraTradeQty.offset, getValueLength( _fixPtr + fieldContraTradeQty.offset ) } : std::string_view{}; }
    const char * ptrToContraTradeQty() const { return _fixPtr + fieldContraTradeQty.offset; }
-   const char * getIfSetContraTradeQty() const { return fieldContraTradeQty.offset >= 0 ? _fixPtr + fieldContraTradeQty.offset : nullptr; }
+   const char * ptrToTagContraTradeQty() const { return _fixPtr + fieldContraTradeQty.offset - 1 - FieldContraTradeQty::tagWidth(); }
+   const char * getIfSetContraTradeQty() const { return fieldContraTradeQty.offset > 0 ? _fixPtr + fieldContraTradeQty.offset : nullptr; }
    private: FieldContraTradeQty fieldContraTradeQty;
 
    public:
-   bool isSetContraTradeTime() const { return fieldContraTradeTime.offset >= 0; }
+   bool isSetContraTradeTime() const { return fieldContraTradeTime.offset > 0; }
    FieldContraTradeTime::ValueType getContraTradeTime() const { return fieldContraTradeTime.getValue( _fixPtr ); }
-   std::string_view getContraTradeTimeView() const { return fieldContraTradeTime.offset >= 0 ? std::string_view{ _fixPtr + fieldContraTradeTime.offset, getValueLength( _fixPtr + fieldContraTradeTime.offset ) } : std::string_view{}; }
+   std::string_view getContraTradeTimeView() const { return fieldContraTradeTime.offset > 0 ? std::string_view{ _fixPtr + fieldContraTradeTime.offset, getValueLength( _fixPtr + fieldContraTradeTime.offset ) } : std::string_view{}; }
    const char * ptrToContraTradeTime() const { return _fixPtr + fieldContraTradeTime.offset; }
-   const char * getIfSetContraTradeTime() const { return fieldContraTradeTime.offset >= 0 ? _fixPtr + fieldContraTradeTime.offset : nullptr; }
+   const char * ptrToTagContraTradeTime() const { return _fixPtr + fieldContraTradeTime.offset - 1 - FieldContraTradeTime::tagWidth(); }
+   const char * getIfSetContraTradeTime() const { return fieldContraTradeTime.offset > 0 ? _fixPtr + fieldContraTradeTime.offset : nullptr; }
    private: FieldContraTradeTime fieldContraTradeTime;
 
    public:
-   bool isSetContraLegRefID() const { return fieldContraLegRefID.offset >= 0; }
+   bool isSetContraLegRefID() const { return fieldContraLegRefID.offset > 0; }
    FieldContraLegRefID::ValueType getContraLegRefID() const { return fieldContraLegRefID.getValue( _fixPtr ); }
-   std::string_view getContraLegRefIDView() const { return fieldContraLegRefID.offset >= 0 ? std::string_view{ _fixPtr + fieldContraLegRefID.offset, getValueLength( _fixPtr + fieldContraLegRefID.offset ) } : std::string_view{}; }
+   std::string_view getContraLegRefIDView() const { return fieldContraLegRefID.offset > 0 ? std::string_view{ _fixPtr + fieldContraLegRefID.offset, getValueLength( _fixPtr + fieldContraLegRefID.offset ) } : std::string_view{}; }
    const char * ptrToContraLegRefID() const { return _fixPtr + fieldContraLegRefID.offset; }
-   const char * getIfSetContraLegRefID() const { return fieldContraLegRefID.offset >= 0 ? _fixPtr + fieldContraLegRefID.offset : nullptr; }
+   const char * ptrToTagContraLegRefID() const { return _fixPtr + fieldContraLegRefID.offset - 1 - FieldContraLegRefID::tagWidth(); }
+   const char * getIfSetContraLegRefID() const { return fieldContraLegRefID.offset > 0 ? _fixPtr + fieldContraLegRefID.offset : nullptr; }
    private: FieldContraLegRefID fieldContraLegRefID;
 
 };
@@ -5670,24 +6343,28 @@ class GroupTrades : public MessageBase
    static offset_t scan( Array & arr, const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    const char * getFieldValue( unsigned tag ) const;
+   const char * findBadField() const;
+   const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
-   bool isSetTradeReportID() const { return fieldTradeReportID.offset >= 0; }
+   bool isSetTradeReportID() const { return fieldTradeReportID.offset > 0; }
    FieldTradeReportID::ValueType getTradeReportID() const { return fieldTradeReportID.getValue( _fixPtr ); }
-   std::string_view getTradeReportIDView() const { return fieldTradeReportID.offset >= 0 ? std::string_view{ _fixPtr + fieldTradeReportID.offset, getValueLength( _fixPtr + fieldTradeReportID.offset ) } : std::string_view{}; }
+   std::string_view getTradeReportIDView() const { return fieldTradeReportID.offset > 0 ? std::string_view{ _fixPtr + fieldTradeReportID.offset, getValueLength( _fixPtr + fieldTradeReportID.offset ) } : std::string_view{}; }
    const char * ptrToTradeReportID() const { return _fixPtr + fieldTradeReportID.offset; }
-   const char * getIfSetTradeReportID() const { return fieldTradeReportID.offset >= 0 ? _fixPtr + fieldTradeReportID.offset : nullptr; }
+   const char * ptrToTagTradeReportID() const { return _fixPtr + fieldTradeReportID.offset - 1 - FieldTradeReportID::tagWidth(); }
+   const char * getIfSetTradeReportID() const { return fieldTradeReportID.offset > 0 ? _fixPtr + fieldTradeReportID.offset : nullptr; }
    private: FieldTradeReportID fieldTradeReportID;
 
    public:
-   bool isSetSecondaryTradeReportID() const { return fieldSecondaryTradeReportID.offset >= 0; }
+   bool isSetSecondaryTradeReportID() const { return fieldSecondaryTradeReportID.offset > 0; }
    FieldSecondaryTradeReportID::ValueType getSecondaryTradeReportID() const { return fieldSecondaryTradeReportID.getValue( _fixPtr ); }
-   std::string_view getSecondaryTradeReportIDView() const { return fieldSecondaryTradeReportID.offset >= 0 ? std::string_view{ _fixPtr + fieldSecondaryTradeReportID.offset, getValueLength( _fixPtr + fieldSecondaryTradeReportID.offset ) } : std::string_view{}; }
+   std::string_view getSecondaryTradeReportIDView() const { return fieldSecondaryTradeReportID.offset > 0 ? std::string_view{ _fixPtr + fieldSecondaryTradeReportID.offset, getValueLength( _fixPtr + fieldSecondaryTradeReportID.offset ) } : std::string_view{}; }
    const char * ptrToSecondaryTradeReportID() const { return _fixPtr + fieldSecondaryTradeReportID.offset; }
-   const char * getIfSetSecondaryTradeReportID() const { return fieldSecondaryTradeReportID.offset >= 0 ? _fixPtr + fieldSecondaryTradeReportID.offset : nullptr; }
+   const char * ptrToTagSecondaryTradeReportID() const { return _fixPtr + fieldSecondaryTradeReportID.offset - 1 - FieldSecondaryTradeReportID::tagWidth(); }
+   const char * getIfSetSecondaryTradeReportID() const { return fieldSecondaryTradeReportID.offset > 0 ? _fixPtr + fieldSecondaryTradeReportID.offset : nullptr; }
    private: FieldSecondaryTradeReportID fieldSecondaryTradeReportID;
 
 };
@@ -5704,48 +6381,55 @@ class GroupStrikes : public MessageBase
    static offset_t scan( Array & arr, const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    const char * getFieldValue( unsigned tag ) const;
+   const char * findBadField() const;
+   const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
-   bool isSetSymbol() const { return fieldSymbol.offset >= 0; }
+   bool isSetSymbol() const { return fieldSymbol.offset > 0; }
    FieldSymbol::ValueType getSymbol() const { return fieldSymbol.getValue( _fixPtr ); }
-   std::string_view getSymbolView() const { return fieldSymbol.offset >= 0 ? std::string_view{ _fixPtr + fieldSymbol.offset, getValueLength( _fixPtr + fieldSymbol.offset ) } : std::string_view{}; }
+   std::string_view getSymbolView() const { return fieldSymbol.offset > 0 ? std::string_view{ _fixPtr + fieldSymbol.offset, getValueLength( _fixPtr + fieldSymbol.offset ) } : std::string_view{}; }
    const char * ptrToSymbol() const { return _fixPtr + fieldSymbol.offset; }
-   const char * getIfSetSymbol() const { return fieldSymbol.offset >= 0 ? _fixPtr + fieldSymbol.offset : nullptr; }
+   const char * ptrToTagSymbol() const { return _fixPtr + fieldSymbol.offset - 1 - FieldSymbol::tagWidth(); }
+   const char * getIfSetSymbol() const { return fieldSymbol.offset > 0 ? _fixPtr + fieldSymbol.offset : nullptr; }
    private: FieldSymbol fieldSymbol;
 
    public:
-   bool isSetSymbolSfx() const { return fieldSymbolSfx.offset >= 0; }
+   bool isSetSymbolSfx() const { return fieldSymbolSfx.offset > 0; }
    FieldSymbolSfx::ValueType getSymbolSfx() const { return fieldSymbolSfx.getValue( _fixPtr ); }
-   std::string_view getSymbolSfxView() const { return fieldSymbolSfx.offset >= 0 ? std::string_view{ _fixPtr + fieldSymbolSfx.offset, getValueLength( _fixPtr + fieldSymbolSfx.offset ) } : std::string_view{}; }
+   std::string_view getSymbolSfxView() const { return fieldSymbolSfx.offset > 0 ? std::string_view{ _fixPtr + fieldSymbolSfx.offset, getValueLength( _fixPtr + fieldSymbolSfx.offset ) } : std::string_view{}; }
    const char * ptrToSymbolSfx() const { return _fixPtr + fieldSymbolSfx.offset; }
-   const char * getIfSetSymbolSfx() const { return fieldSymbolSfx.offset >= 0 ? _fixPtr + fieldSymbolSfx.offset : nullptr; }
+   const char * ptrToTagSymbolSfx() const { return _fixPtr + fieldSymbolSfx.offset - 1 - FieldSymbolSfx::tagWidth(); }
+   const char * getIfSetSymbolSfx() const { return fieldSymbolSfx.offset > 0 ? _fixPtr + fieldSymbolSfx.offset : nullptr; }
    private: FieldSymbolSfx fieldSymbolSfx;
 
    public:
-   bool isSetSecurityID() const { return fieldSecurityID.offset >= 0; }
+   bool isSetSecurityID() const { return fieldSecurityID.offset > 0; }
    FieldSecurityID::ValueType getSecurityID() const { return fieldSecurityID.getValue( _fixPtr ); }
-   std::string_view getSecurityIDView() const { return fieldSecurityID.offset >= 0 ? std::string_view{ _fixPtr + fieldSecurityID.offset, getValueLength( _fixPtr + fieldSecurityID.offset ) } : std::string_view{}; }
+   std::string_view getSecurityIDView() const { return fieldSecurityID.offset > 0 ? std::string_view{ _fixPtr + fieldSecurityID.offset, getValueLength( _fixPtr + fieldSecurityID.offset ) } : std::string_view{}; }
    const char * ptrToSecurityID() const { return _fixPtr + fieldSecurityID.offset; }
-   const char * getIfSetSecurityID() const { return fieldSecurityID.offset >= 0 ? _fixPtr + fieldSecurityID.offset : nullptr; }
+   const char * ptrToTagSecurityID() const { return _fixPtr + fieldSecurityID.offset - 1 - FieldSecurityID::tagWidth(); }
+   const char * getIfSetSecurityID() const { return fieldSecurityID.offset > 0 ? _fixPtr + fieldSecurityID.offset : nullptr; }
    private: FieldSecurityID fieldSecurityID;
 
    public:
-   bool isSetSecurityIDSource() const { return fieldSecurityIDSource.offset >= 0; }
+   bool isSetSecurityIDSource() const { return fieldSecurityIDSource.offset > 0; }
    FieldSecurityIDSource::ValueType getSecurityIDSource() const { return fieldSecurityIDSource.getValue( _fixPtr ); }
-   std::string_view getSecurityIDSourceView() const { return fieldSecurityIDSource.offset >= 0 ? std::string_view{ _fixPtr + fieldSecurityIDSource.offset, getValueLength( _fixPtr + fieldSecurityIDSource.offset ) } : std::string_view{}; }
+   std::string_view getSecurityIDSourceView() const { return fieldSecurityIDSource.offset > 0 ? std::string_view{ _fixPtr + fieldSecurityIDSource.offset, getValueLength( _fixPtr + fieldSecurityIDSource.offset ) } : std::string_view{}; }
    const char * ptrToSecurityIDSource() const { return _fixPtr + fieldSecurityIDSource.offset; }
-   const char * getIfSetSecurityIDSource() const { return fieldSecurityIDSource.offset >= 0 ? _fixPtr + fieldSecurityIDSource.offset : nullptr; }
+   const char * ptrToTagSecurityIDSource() const { return _fixPtr + fieldSecurityIDSource.offset - 1 - FieldSecurityIDSource::tagWidth(); }
+   const char * getIfSetSecurityIDSource() const { return fieldSecurityIDSource.offset > 0 ? _fixPtr + fieldSecurityIDSource.offset : nullptr; }
    private: FieldSecurityIDSource fieldSecurityIDSource;
 
    public:
-   bool isSetNoSecurityAltID() const { return fieldNoSecurityAltID.offset >= 0; }
+   bool isSetNoSecurityAltID() const { return fieldNoSecurityAltID.offset > 0; }
    FieldNoSecurityAltID::ValueType getNoSecurityAltID() const { return fieldNoSecurityAltID.getValue( _fixPtr ); }
-   std::string_view getNoSecurityAltIDView() const { return fieldNoSecurityAltID.offset >= 0 ? std::string_view{ _fixPtr + fieldNoSecurityAltID.offset, getValueLength( _fixPtr + fieldNoSecurityAltID.offset ) } : std::string_view{}; }
+   std::string_view getNoSecurityAltIDView() const { return fieldNoSecurityAltID.offset > 0 ? std::string_view{ _fixPtr + fieldNoSecurityAltID.offset, getValueLength( _fixPtr + fieldNoSecurityAltID.offset ) } : std::string_view{}; }
    const char * ptrToNoSecurityAltID() const { return _fixPtr + fieldNoSecurityAltID.offset; }
-   const char * getIfSetNoSecurityAltID() const { return fieldNoSecurityAltID.offset >= 0 ? _fixPtr + fieldNoSecurityAltID.offset : nullptr; }
+   const char * ptrToTagNoSecurityAltID() const { return _fixPtr + fieldNoSecurityAltID.offset - 1 - FieldNoSecurityAltID::tagWidth(); }
+   const char * getIfSetNoSecurityAltID() const { return fieldNoSecurityAltID.offset > 0 ? _fixPtr + fieldNoSecurityAltID.offset : nullptr; }
    private: FieldNoSecurityAltID fieldNoSecurityAltID;
   
    public:
@@ -5754,291 +6438,327 @@ class GroupStrikes : public MessageBase
    private: GroupSecurityAltID::Array groupsSecurityAltID{ 10 };
 
    public:
-   bool isSetProduct() const { return fieldProduct.offset >= 0; }
+   bool isSetProduct() const { return fieldProduct.offset > 0; }
    FieldProduct::ValueType getProduct() const { return fieldProduct.getValue( _fixPtr ); }
-   std::string_view getProductView() const { return fieldProduct.offset >= 0 ? std::string_view{ _fixPtr + fieldProduct.offset, getValueLength( _fixPtr + fieldProduct.offset ) } : std::string_view{}; }
+   std::string_view getProductView() const { return fieldProduct.offset > 0 ? std::string_view{ _fixPtr + fieldProduct.offset, getValueLength( _fixPtr + fieldProduct.offset ) } : std::string_view{}; }
    const char * ptrToProduct() const { return _fixPtr + fieldProduct.offset; }
-   const char * getIfSetProduct() const { return fieldProduct.offset >= 0 ? _fixPtr + fieldProduct.offset : nullptr; }
+   const char * ptrToTagProduct() const { return _fixPtr + fieldProduct.offset - 1 - FieldProduct::tagWidth(); }
+   const char * getIfSetProduct() const { return fieldProduct.offset > 0 ? _fixPtr + fieldProduct.offset : nullptr; }
    private: FieldProduct fieldProduct;
 
    public:
-   bool isSetCFICode() const { return fieldCFICode.offset >= 0; }
+   bool isSetCFICode() const { return fieldCFICode.offset > 0; }
    FieldCFICode::ValueType getCFICode() const { return fieldCFICode.getValue( _fixPtr ); }
-   std::string_view getCFICodeView() const { return fieldCFICode.offset >= 0 ? std::string_view{ _fixPtr + fieldCFICode.offset, getValueLength( _fixPtr + fieldCFICode.offset ) } : std::string_view{}; }
+   std::string_view getCFICodeView() const { return fieldCFICode.offset > 0 ? std::string_view{ _fixPtr + fieldCFICode.offset, getValueLength( _fixPtr + fieldCFICode.offset ) } : std::string_view{}; }
    const char * ptrToCFICode() const { return _fixPtr + fieldCFICode.offset; }
-   const char * getIfSetCFICode() const { return fieldCFICode.offset >= 0 ? _fixPtr + fieldCFICode.offset : nullptr; }
+   const char * ptrToTagCFICode() const { return _fixPtr + fieldCFICode.offset - 1 - FieldCFICode::tagWidth(); }
+   const char * getIfSetCFICode() const { return fieldCFICode.offset > 0 ? _fixPtr + fieldCFICode.offset : nullptr; }
    private: FieldCFICode fieldCFICode;
 
    public:
-   bool isSetSecurityType() const { return fieldSecurityType.offset >= 0; }
+   bool isSetSecurityType() const { return fieldSecurityType.offset > 0; }
    FieldSecurityType::ValueType getSecurityType() const { return fieldSecurityType.getValue( _fixPtr ); }
-   std::string_view getSecurityTypeView() const { return fieldSecurityType.offset >= 0 ? std::string_view{ _fixPtr + fieldSecurityType.offset, getValueLength( _fixPtr + fieldSecurityType.offset ) } : std::string_view{}; }
+   std::string_view getSecurityTypeView() const { return fieldSecurityType.offset > 0 ? std::string_view{ _fixPtr + fieldSecurityType.offset, getValueLength( _fixPtr + fieldSecurityType.offset ) } : std::string_view{}; }
    const char * ptrToSecurityType() const { return _fixPtr + fieldSecurityType.offset; }
-   const char * getIfSetSecurityType() const { return fieldSecurityType.offset >= 0 ? _fixPtr + fieldSecurityType.offset : nullptr; }
+   const char * ptrToTagSecurityType() const { return _fixPtr + fieldSecurityType.offset - 1 - FieldSecurityType::tagWidth(); }
+   const char * getIfSetSecurityType() const { return fieldSecurityType.offset > 0 ? _fixPtr + fieldSecurityType.offset : nullptr; }
    private: FieldSecurityType fieldSecurityType;
 
    public:
-   bool isSetSecuritySubType() const { return fieldSecuritySubType.offset >= 0; }
+   bool isSetSecuritySubType() const { return fieldSecuritySubType.offset > 0; }
    FieldSecuritySubType::ValueType getSecuritySubType() const { return fieldSecuritySubType.getValue( _fixPtr ); }
-   std::string_view getSecuritySubTypeView() const { return fieldSecuritySubType.offset >= 0 ? std::string_view{ _fixPtr + fieldSecuritySubType.offset, getValueLength( _fixPtr + fieldSecuritySubType.offset ) } : std::string_view{}; }
+   std::string_view getSecuritySubTypeView() const { return fieldSecuritySubType.offset > 0 ? std::string_view{ _fixPtr + fieldSecuritySubType.offset, getValueLength( _fixPtr + fieldSecuritySubType.offset ) } : std::string_view{}; }
    const char * ptrToSecuritySubType() const { return _fixPtr + fieldSecuritySubType.offset; }
-   const char * getIfSetSecuritySubType() const { return fieldSecuritySubType.offset >= 0 ? _fixPtr + fieldSecuritySubType.offset : nullptr; }
+   const char * ptrToTagSecuritySubType() const { return _fixPtr + fieldSecuritySubType.offset - 1 - FieldSecuritySubType::tagWidth(); }
+   const char * getIfSetSecuritySubType() const { return fieldSecuritySubType.offset > 0 ? _fixPtr + fieldSecuritySubType.offset : nullptr; }
    private: FieldSecuritySubType fieldSecuritySubType;
 
    public:
-   bool isSetMaturityMonthYear() const { return fieldMaturityMonthYear.offset >= 0; }
+   bool isSetMaturityMonthYear() const { return fieldMaturityMonthYear.offset > 0; }
    FieldMaturityMonthYear::ValueType getMaturityMonthYear() const { return fieldMaturityMonthYear.getValue( _fixPtr ); }
-   std::string_view getMaturityMonthYearView() const { return fieldMaturityMonthYear.offset >= 0 ? std::string_view{ _fixPtr + fieldMaturityMonthYear.offset, getValueLength( _fixPtr + fieldMaturityMonthYear.offset ) } : std::string_view{}; }
+   std::string_view getMaturityMonthYearView() const { return fieldMaturityMonthYear.offset > 0 ? std::string_view{ _fixPtr + fieldMaturityMonthYear.offset, getValueLength( _fixPtr + fieldMaturityMonthYear.offset ) } : std::string_view{}; }
    const char * ptrToMaturityMonthYear() const { return _fixPtr + fieldMaturityMonthYear.offset; }
-   const char * getIfSetMaturityMonthYear() const { return fieldMaturityMonthYear.offset >= 0 ? _fixPtr + fieldMaturityMonthYear.offset : nullptr; }
+   const char * ptrToTagMaturityMonthYear() const { return _fixPtr + fieldMaturityMonthYear.offset - 1 - FieldMaturityMonthYear::tagWidth(); }
+   const char * getIfSetMaturityMonthYear() const { return fieldMaturityMonthYear.offset > 0 ? _fixPtr + fieldMaturityMonthYear.offset : nullptr; }
    private: FieldMaturityMonthYear fieldMaturityMonthYear;
 
    public:
-   bool isSetMaturityDate() const { return fieldMaturityDate.offset >= 0; }
+   bool isSetMaturityDate() const { return fieldMaturityDate.offset > 0; }
    FieldMaturityDate::ValueType getMaturityDate() const { return fieldMaturityDate.getValue( _fixPtr ); }
-   std::string_view getMaturityDateView() const { return fieldMaturityDate.offset >= 0 ? std::string_view{ _fixPtr + fieldMaturityDate.offset, getValueLength( _fixPtr + fieldMaturityDate.offset ) } : std::string_view{}; }
+   std::string_view getMaturityDateView() const { return fieldMaturityDate.offset > 0 ? std::string_view{ _fixPtr + fieldMaturityDate.offset, getValueLength( _fixPtr + fieldMaturityDate.offset ) } : std::string_view{}; }
    const char * ptrToMaturityDate() const { return _fixPtr + fieldMaturityDate.offset; }
-   const char * getIfSetMaturityDate() const { return fieldMaturityDate.offset >= 0 ? _fixPtr + fieldMaturityDate.offset : nullptr; }
+   const char * ptrToTagMaturityDate() const { return _fixPtr + fieldMaturityDate.offset - 1 - FieldMaturityDate::tagWidth(); }
+   const char * getIfSetMaturityDate() const { return fieldMaturityDate.offset > 0 ? _fixPtr + fieldMaturityDate.offset : nullptr; }
    private: FieldMaturityDate fieldMaturityDate;
 
    public:
-   bool isSetPutOrCall() const { return fieldPutOrCall.offset >= 0; }
+   bool isSetPutOrCall() const { return fieldPutOrCall.offset > 0; }
    FieldPutOrCall::ValueType getPutOrCall() const { return fieldPutOrCall.getValue( _fixPtr ); }
-   std::string_view getPutOrCallView() const { return fieldPutOrCall.offset >= 0 ? std::string_view{ _fixPtr + fieldPutOrCall.offset, getValueLength( _fixPtr + fieldPutOrCall.offset ) } : std::string_view{}; }
+   std::string_view getPutOrCallView() const { return fieldPutOrCall.offset > 0 ? std::string_view{ _fixPtr + fieldPutOrCall.offset, getValueLength( _fixPtr + fieldPutOrCall.offset ) } : std::string_view{}; }
    const char * ptrToPutOrCall() const { return _fixPtr + fieldPutOrCall.offset; }
-   const char * getIfSetPutOrCall() const { return fieldPutOrCall.offset >= 0 ? _fixPtr + fieldPutOrCall.offset : nullptr; }
+   const char * ptrToTagPutOrCall() const { return _fixPtr + fieldPutOrCall.offset - 1 - FieldPutOrCall::tagWidth(); }
+   const char * getIfSetPutOrCall() const { return fieldPutOrCall.offset > 0 ? _fixPtr + fieldPutOrCall.offset : nullptr; }
    private: FieldPutOrCall fieldPutOrCall;
 
    public:
-   bool isSetCouponPaymentDate() const { return fieldCouponPaymentDate.offset >= 0; }
+   bool isSetCouponPaymentDate() const { return fieldCouponPaymentDate.offset > 0; }
    FieldCouponPaymentDate::ValueType getCouponPaymentDate() const { return fieldCouponPaymentDate.getValue( _fixPtr ); }
-   std::string_view getCouponPaymentDateView() const { return fieldCouponPaymentDate.offset >= 0 ? std::string_view{ _fixPtr + fieldCouponPaymentDate.offset, getValueLength( _fixPtr + fieldCouponPaymentDate.offset ) } : std::string_view{}; }
+   std::string_view getCouponPaymentDateView() const { return fieldCouponPaymentDate.offset > 0 ? std::string_view{ _fixPtr + fieldCouponPaymentDate.offset, getValueLength( _fixPtr + fieldCouponPaymentDate.offset ) } : std::string_view{}; }
    const char * ptrToCouponPaymentDate() const { return _fixPtr + fieldCouponPaymentDate.offset; }
-   const char * getIfSetCouponPaymentDate() const { return fieldCouponPaymentDate.offset >= 0 ? _fixPtr + fieldCouponPaymentDate.offset : nullptr; }
+   const char * ptrToTagCouponPaymentDate() const { return _fixPtr + fieldCouponPaymentDate.offset - 1 - FieldCouponPaymentDate::tagWidth(); }
+   const char * getIfSetCouponPaymentDate() const { return fieldCouponPaymentDate.offset > 0 ? _fixPtr + fieldCouponPaymentDate.offset : nullptr; }
    private: FieldCouponPaymentDate fieldCouponPaymentDate;
 
    public:
-   bool isSetIssueDate() const { return fieldIssueDate.offset >= 0; }
+   bool isSetIssueDate() const { return fieldIssueDate.offset > 0; }
    FieldIssueDate::ValueType getIssueDate() const { return fieldIssueDate.getValue( _fixPtr ); }
-   std::string_view getIssueDateView() const { return fieldIssueDate.offset >= 0 ? std::string_view{ _fixPtr + fieldIssueDate.offset, getValueLength( _fixPtr + fieldIssueDate.offset ) } : std::string_view{}; }
+   std::string_view getIssueDateView() const { return fieldIssueDate.offset > 0 ? std::string_view{ _fixPtr + fieldIssueDate.offset, getValueLength( _fixPtr + fieldIssueDate.offset ) } : std::string_view{}; }
    const char * ptrToIssueDate() const { return _fixPtr + fieldIssueDate.offset; }
-   const char * getIfSetIssueDate() const { return fieldIssueDate.offset >= 0 ? _fixPtr + fieldIssueDate.offset : nullptr; }
+   const char * ptrToTagIssueDate() const { return _fixPtr + fieldIssueDate.offset - 1 - FieldIssueDate::tagWidth(); }
+   const char * getIfSetIssueDate() const { return fieldIssueDate.offset > 0 ? _fixPtr + fieldIssueDate.offset : nullptr; }
    private: FieldIssueDate fieldIssueDate;
 
    public:
-   bool isSetRepoCollateralSecurityType() const { return fieldRepoCollateralSecurityType.offset >= 0; }
+   bool isSetRepoCollateralSecurityType() const { return fieldRepoCollateralSecurityType.offset > 0; }
    FieldRepoCollateralSecurityType::ValueType getRepoCollateralSecurityType() const { return fieldRepoCollateralSecurityType.getValue( _fixPtr ); }
-   std::string_view getRepoCollateralSecurityTypeView() const { return fieldRepoCollateralSecurityType.offset >= 0 ? std::string_view{ _fixPtr + fieldRepoCollateralSecurityType.offset, getValueLength( _fixPtr + fieldRepoCollateralSecurityType.offset ) } : std::string_view{}; }
+   std::string_view getRepoCollateralSecurityTypeView() const { return fieldRepoCollateralSecurityType.offset > 0 ? std::string_view{ _fixPtr + fieldRepoCollateralSecurityType.offset, getValueLength( _fixPtr + fieldRepoCollateralSecurityType.offset ) } : std::string_view{}; }
    const char * ptrToRepoCollateralSecurityType() const { return _fixPtr + fieldRepoCollateralSecurityType.offset; }
-   const char * getIfSetRepoCollateralSecurityType() const { return fieldRepoCollateralSecurityType.offset >= 0 ? _fixPtr + fieldRepoCollateralSecurityType.offset : nullptr; }
+   const char * ptrToTagRepoCollateralSecurityType() const { return _fixPtr + fieldRepoCollateralSecurityType.offset - 1 - FieldRepoCollateralSecurityType::tagWidth(); }
+   const char * getIfSetRepoCollateralSecurityType() const { return fieldRepoCollateralSecurityType.offset > 0 ? _fixPtr + fieldRepoCollateralSecurityType.offset : nullptr; }
    private: FieldRepoCollateralSecurityType fieldRepoCollateralSecurityType;
 
    public:
-   bool isSetRepurchaseTerm() const { return fieldRepurchaseTerm.offset >= 0; }
+   bool isSetRepurchaseTerm() const { return fieldRepurchaseTerm.offset > 0; }
    FieldRepurchaseTerm::ValueType getRepurchaseTerm() const { return fieldRepurchaseTerm.getValue( _fixPtr ); }
-   std::string_view getRepurchaseTermView() const { return fieldRepurchaseTerm.offset >= 0 ? std::string_view{ _fixPtr + fieldRepurchaseTerm.offset, getValueLength( _fixPtr + fieldRepurchaseTerm.offset ) } : std::string_view{}; }
+   std::string_view getRepurchaseTermView() const { return fieldRepurchaseTerm.offset > 0 ? std::string_view{ _fixPtr + fieldRepurchaseTerm.offset, getValueLength( _fixPtr + fieldRepurchaseTerm.offset ) } : std::string_view{}; }
    const char * ptrToRepurchaseTerm() const { return _fixPtr + fieldRepurchaseTerm.offset; }
-   const char * getIfSetRepurchaseTerm() const { return fieldRepurchaseTerm.offset >= 0 ? _fixPtr + fieldRepurchaseTerm.offset : nullptr; }
+   const char * ptrToTagRepurchaseTerm() const { return _fixPtr + fieldRepurchaseTerm.offset - 1 - FieldRepurchaseTerm::tagWidth(); }
+   const char * getIfSetRepurchaseTerm() const { return fieldRepurchaseTerm.offset > 0 ? _fixPtr + fieldRepurchaseTerm.offset : nullptr; }
    private: FieldRepurchaseTerm fieldRepurchaseTerm;
 
    public:
-   bool isSetRepurchaseRate() const { return fieldRepurchaseRate.offset >= 0; }
+   bool isSetRepurchaseRate() const { return fieldRepurchaseRate.offset > 0; }
    FieldRepurchaseRate::ValueType getRepurchaseRate() const { return fieldRepurchaseRate.getValue( _fixPtr ); }
-   std::string_view getRepurchaseRateView() const { return fieldRepurchaseRate.offset >= 0 ? std::string_view{ _fixPtr + fieldRepurchaseRate.offset, getValueLength( _fixPtr + fieldRepurchaseRate.offset ) } : std::string_view{}; }
+   std::string_view getRepurchaseRateView() const { return fieldRepurchaseRate.offset > 0 ? std::string_view{ _fixPtr + fieldRepurchaseRate.offset, getValueLength( _fixPtr + fieldRepurchaseRate.offset ) } : std::string_view{}; }
    const char * ptrToRepurchaseRate() const { return _fixPtr + fieldRepurchaseRate.offset; }
-   const char * getIfSetRepurchaseRate() const { return fieldRepurchaseRate.offset >= 0 ? _fixPtr + fieldRepurchaseRate.offset : nullptr; }
+   const char * ptrToTagRepurchaseRate() const { return _fixPtr + fieldRepurchaseRate.offset - 1 - FieldRepurchaseRate::tagWidth(); }
+   const char * getIfSetRepurchaseRate() const { return fieldRepurchaseRate.offset > 0 ? _fixPtr + fieldRepurchaseRate.offset : nullptr; }
    private: FieldRepurchaseRate fieldRepurchaseRate;
 
    public:
-   bool isSetFactor() const { return fieldFactor.offset >= 0; }
+   bool isSetFactor() const { return fieldFactor.offset > 0; }
    FieldFactor::ValueType getFactor() const { return fieldFactor.getValue( _fixPtr ); }
-   std::string_view getFactorView() const { return fieldFactor.offset >= 0 ? std::string_view{ _fixPtr + fieldFactor.offset, getValueLength( _fixPtr + fieldFactor.offset ) } : std::string_view{}; }
+   std::string_view getFactorView() const { return fieldFactor.offset > 0 ? std::string_view{ _fixPtr + fieldFactor.offset, getValueLength( _fixPtr + fieldFactor.offset ) } : std::string_view{}; }
    const char * ptrToFactor() const { return _fixPtr + fieldFactor.offset; }
-   const char * getIfSetFactor() const { return fieldFactor.offset >= 0 ? _fixPtr + fieldFactor.offset : nullptr; }
+   const char * ptrToTagFactor() const { return _fixPtr + fieldFactor.offset - 1 - FieldFactor::tagWidth(); }
+   const char * getIfSetFactor() const { return fieldFactor.offset > 0 ? _fixPtr + fieldFactor.offset : nullptr; }
    private: FieldFactor fieldFactor;
 
    public:
-   bool isSetCreditRating() const { return fieldCreditRating.offset >= 0; }
+   bool isSetCreditRating() const { return fieldCreditRating.offset > 0; }
    FieldCreditRating::ValueType getCreditRating() const { return fieldCreditRating.getValue( _fixPtr ); }
-   std::string_view getCreditRatingView() const { return fieldCreditRating.offset >= 0 ? std::string_view{ _fixPtr + fieldCreditRating.offset, getValueLength( _fixPtr + fieldCreditRating.offset ) } : std::string_view{}; }
+   std::string_view getCreditRatingView() const { return fieldCreditRating.offset > 0 ? std::string_view{ _fixPtr + fieldCreditRating.offset, getValueLength( _fixPtr + fieldCreditRating.offset ) } : std::string_view{}; }
    const char * ptrToCreditRating() const { return _fixPtr + fieldCreditRating.offset; }
-   const char * getIfSetCreditRating() const { return fieldCreditRating.offset >= 0 ? _fixPtr + fieldCreditRating.offset : nullptr; }
+   const char * ptrToTagCreditRating() const { return _fixPtr + fieldCreditRating.offset - 1 - FieldCreditRating::tagWidth(); }
+   const char * getIfSetCreditRating() const { return fieldCreditRating.offset > 0 ? _fixPtr + fieldCreditRating.offset : nullptr; }
    private: FieldCreditRating fieldCreditRating;
 
    public:
-   bool isSetInstrRegistry() const { return fieldInstrRegistry.offset >= 0; }
+   bool isSetInstrRegistry() const { return fieldInstrRegistry.offset > 0; }
    FieldInstrRegistry::ValueType getInstrRegistry() const { return fieldInstrRegistry.getValue( _fixPtr ); }
-   std::string_view getInstrRegistryView() const { return fieldInstrRegistry.offset >= 0 ? std::string_view{ _fixPtr + fieldInstrRegistry.offset, getValueLength( _fixPtr + fieldInstrRegistry.offset ) } : std::string_view{}; }
+   std::string_view getInstrRegistryView() const { return fieldInstrRegistry.offset > 0 ? std::string_view{ _fixPtr + fieldInstrRegistry.offset, getValueLength( _fixPtr + fieldInstrRegistry.offset ) } : std::string_view{}; }
    const char * ptrToInstrRegistry() const { return _fixPtr + fieldInstrRegistry.offset; }
-   const char * getIfSetInstrRegistry() const { return fieldInstrRegistry.offset >= 0 ? _fixPtr + fieldInstrRegistry.offset : nullptr; }
+   const char * ptrToTagInstrRegistry() const { return _fixPtr + fieldInstrRegistry.offset - 1 - FieldInstrRegistry::tagWidth(); }
+   const char * getIfSetInstrRegistry() const { return fieldInstrRegistry.offset > 0 ? _fixPtr + fieldInstrRegistry.offset : nullptr; }
    private: FieldInstrRegistry fieldInstrRegistry;
 
    public:
-   bool isSetCountryOfIssue() const { return fieldCountryOfIssue.offset >= 0; }
+   bool isSetCountryOfIssue() const { return fieldCountryOfIssue.offset > 0; }
    FieldCountryOfIssue::ValueType getCountryOfIssue() const { return fieldCountryOfIssue.getValue( _fixPtr ); }
-   std::string_view getCountryOfIssueView() const { return fieldCountryOfIssue.offset >= 0 ? std::string_view{ _fixPtr + fieldCountryOfIssue.offset, getValueLength( _fixPtr + fieldCountryOfIssue.offset ) } : std::string_view{}; }
+   std::string_view getCountryOfIssueView() const { return fieldCountryOfIssue.offset > 0 ? std::string_view{ _fixPtr + fieldCountryOfIssue.offset, getValueLength( _fixPtr + fieldCountryOfIssue.offset ) } : std::string_view{}; }
    const char * ptrToCountryOfIssue() const { return _fixPtr + fieldCountryOfIssue.offset; }
-   const char * getIfSetCountryOfIssue() const { return fieldCountryOfIssue.offset >= 0 ? _fixPtr + fieldCountryOfIssue.offset : nullptr; }
+   const char * ptrToTagCountryOfIssue() const { return _fixPtr + fieldCountryOfIssue.offset - 1 - FieldCountryOfIssue::tagWidth(); }
+   const char * getIfSetCountryOfIssue() const { return fieldCountryOfIssue.offset > 0 ? _fixPtr + fieldCountryOfIssue.offset : nullptr; }
    private: FieldCountryOfIssue fieldCountryOfIssue;
 
    public:
-   bool isSetStateOrProvinceOfIssue() const { return fieldStateOrProvinceOfIssue.offset >= 0; }
+   bool isSetStateOrProvinceOfIssue() const { return fieldStateOrProvinceOfIssue.offset > 0; }
    FieldStateOrProvinceOfIssue::ValueType getStateOrProvinceOfIssue() const { return fieldStateOrProvinceOfIssue.getValue( _fixPtr ); }
-   std::string_view getStateOrProvinceOfIssueView() const { return fieldStateOrProvinceOfIssue.offset >= 0 ? std::string_view{ _fixPtr + fieldStateOrProvinceOfIssue.offset, getValueLength( _fixPtr + fieldStateOrProvinceOfIssue.offset ) } : std::string_view{}; }
+   std::string_view getStateOrProvinceOfIssueView() const { return fieldStateOrProvinceOfIssue.offset > 0 ? std::string_view{ _fixPtr + fieldStateOrProvinceOfIssue.offset, getValueLength( _fixPtr + fieldStateOrProvinceOfIssue.offset ) } : std::string_view{}; }
    const char * ptrToStateOrProvinceOfIssue() const { return _fixPtr + fieldStateOrProvinceOfIssue.offset; }
-   const char * getIfSetStateOrProvinceOfIssue() const { return fieldStateOrProvinceOfIssue.offset >= 0 ? _fixPtr + fieldStateOrProvinceOfIssue.offset : nullptr; }
+   const char * ptrToTagStateOrProvinceOfIssue() const { return _fixPtr + fieldStateOrProvinceOfIssue.offset - 1 - FieldStateOrProvinceOfIssue::tagWidth(); }
+   const char * getIfSetStateOrProvinceOfIssue() const { return fieldStateOrProvinceOfIssue.offset > 0 ? _fixPtr + fieldStateOrProvinceOfIssue.offset : nullptr; }
    private: FieldStateOrProvinceOfIssue fieldStateOrProvinceOfIssue;
 
    public:
-   bool isSetLocaleOfIssue() const { return fieldLocaleOfIssue.offset >= 0; }
+   bool isSetLocaleOfIssue() const { return fieldLocaleOfIssue.offset > 0; }
    FieldLocaleOfIssue::ValueType getLocaleOfIssue() const { return fieldLocaleOfIssue.getValue( _fixPtr ); }
-   std::string_view getLocaleOfIssueView() const { return fieldLocaleOfIssue.offset >= 0 ? std::string_view{ _fixPtr + fieldLocaleOfIssue.offset, getValueLength( _fixPtr + fieldLocaleOfIssue.offset ) } : std::string_view{}; }
+   std::string_view getLocaleOfIssueView() const { return fieldLocaleOfIssue.offset > 0 ? std::string_view{ _fixPtr + fieldLocaleOfIssue.offset, getValueLength( _fixPtr + fieldLocaleOfIssue.offset ) } : std::string_view{}; }
    const char * ptrToLocaleOfIssue() const { return _fixPtr + fieldLocaleOfIssue.offset; }
-   const char * getIfSetLocaleOfIssue() const { return fieldLocaleOfIssue.offset >= 0 ? _fixPtr + fieldLocaleOfIssue.offset : nullptr; }
+   const char * ptrToTagLocaleOfIssue() const { return _fixPtr + fieldLocaleOfIssue.offset - 1 - FieldLocaleOfIssue::tagWidth(); }
+   const char * getIfSetLocaleOfIssue() const { return fieldLocaleOfIssue.offset > 0 ? _fixPtr + fieldLocaleOfIssue.offset : nullptr; }
    private: FieldLocaleOfIssue fieldLocaleOfIssue;
 
    public:
-   bool isSetRedemptionDate() const { return fieldRedemptionDate.offset >= 0; }
+   bool isSetRedemptionDate() const { return fieldRedemptionDate.offset > 0; }
    FieldRedemptionDate::ValueType getRedemptionDate() const { return fieldRedemptionDate.getValue( _fixPtr ); }
-   std::string_view getRedemptionDateView() const { return fieldRedemptionDate.offset >= 0 ? std::string_view{ _fixPtr + fieldRedemptionDate.offset, getValueLength( _fixPtr + fieldRedemptionDate.offset ) } : std::string_view{}; }
+   std::string_view getRedemptionDateView() const { return fieldRedemptionDate.offset > 0 ? std::string_view{ _fixPtr + fieldRedemptionDate.offset, getValueLength( _fixPtr + fieldRedemptionDate.offset ) } : std::string_view{}; }
    const char * ptrToRedemptionDate() const { return _fixPtr + fieldRedemptionDate.offset; }
-   const char * getIfSetRedemptionDate() const { return fieldRedemptionDate.offset >= 0 ? _fixPtr + fieldRedemptionDate.offset : nullptr; }
+   const char * ptrToTagRedemptionDate() const { return _fixPtr + fieldRedemptionDate.offset - 1 - FieldRedemptionDate::tagWidth(); }
+   const char * getIfSetRedemptionDate() const { return fieldRedemptionDate.offset > 0 ? _fixPtr + fieldRedemptionDate.offset : nullptr; }
    private: FieldRedemptionDate fieldRedemptionDate;
 
    public:
-   bool isSetStrikePrice() const { return fieldStrikePrice.offset >= 0; }
+   bool isSetStrikePrice() const { return fieldStrikePrice.offset > 0; }
    FieldStrikePrice::ValueType getStrikePrice() const { return fieldStrikePrice.getValue( _fixPtr ); }
-   std::string_view getStrikePriceView() const { return fieldStrikePrice.offset >= 0 ? std::string_view{ _fixPtr + fieldStrikePrice.offset, getValueLength( _fixPtr + fieldStrikePrice.offset ) } : std::string_view{}; }
+   std::string_view getStrikePriceView() const { return fieldStrikePrice.offset > 0 ? std::string_view{ _fixPtr + fieldStrikePrice.offset, getValueLength( _fixPtr + fieldStrikePrice.offset ) } : std::string_view{}; }
    const char * ptrToStrikePrice() const { return _fixPtr + fieldStrikePrice.offset; }
-   const char * getIfSetStrikePrice() const { return fieldStrikePrice.offset >= 0 ? _fixPtr + fieldStrikePrice.offset : nullptr; }
+   const char * ptrToTagStrikePrice() const { return _fixPtr + fieldStrikePrice.offset - 1 - FieldStrikePrice::tagWidth(); }
+   const char * getIfSetStrikePrice() const { return fieldStrikePrice.offset > 0 ? _fixPtr + fieldStrikePrice.offset : nullptr; }
    private: FieldStrikePrice fieldStrikePrice;
 
    public:
-   bool isSetStrikeCurrency() const { return fieldStrikeCurrency.offset >= 0; }
+   bool isSetStrikeCurrency() const { return fieldStrikeCurrency.offset > 0; }
    FieldStrikeCurrency::ValueType getStrikeCurrency() const { return fieldStrikeCurrency.getValue( _fixPtr ); }
-   std::string_view getStrikeCurrencyView() const { return fieldStrikeCurrency.offset >= 0 ? std::string_view{ _fixPtr + fieldStrikeCurrency.offset, getValueLength( _fixPtr + fieldStrikeCurrency.offset ) } : std::string_view{}; }
+   std::string_view getStrikeCurrencyView() const { return fieldStrikeCurrency.offset > 0 ? std::string_view{ _fixPtr + fieldStrikeCurrency.offset, getValueLength( _fixPtr + fieldStrikeCurrency.offset ) } : std::string_view{}; }
    const char * ptrToStrikeCurrency() const { return _fixPtr + fieldStrikeCurrency.offset; }
-   const char * getIfSetStrikeCurrency() const { return fieldStrikeCurrency.offset >= 0 ? _fixPtr + fieldStrikeCurrency.offset : nullptr; }
+   const char * ptrToTagStrikeCurrency() const { return _fixPtr + fieldStrikeCurrency.offset - 1 - FieldStrikeCurrency::tagWidth(); }
+   const char * getIfSetStrikeCurrency() const { return fieldStrikeCurrency.offset > 0 ? _fixPtr + fieldStrikeCurrency.offset : nullptr; }
    private: FieldStrikeCurrency fieldStrikeCurrency;
 
    public:
-   bool isSetOptAttribute() const { return fieldOptAttribute.offset >= 0; }
+   bool isSetOptAttribute() const { return fieldOptAttribute.offset > 0; }
    FieldOptAttribute::ValueType getOptAttribute() const { return fieldOptAttribute.getValue( _fixPtr ); }
-   std::string_view getOptAttributeView() const { return fieldOptAttribute.offset >= 0 ? std::string_view{ _fixPtr + fieldOptAttribute.offset, getValueLength( _fixPtr + fieldOptAttribute.offset ) } : std::string_view{}; }
+   std::string_view getOptAttributeView() const { return fieldOptAttribute.offset > 0 ? std::string_view{ _fixPtr + fieldOptAttribute.offset, getValueLength( _fixPtr + fieldOptAttribute.offset ) } : std::string_view{}; }
    const char * ptrToOptAttribute() const { return _fixPtr + fieldOptAttribute.offset; }
-   const char * getIfSetOptAttribute() const { return fieldOptAttribute.offset >= 0 ? _fixPtr + fieldOptAttribute.offset : nullptr; }
+   const char * ptrToTagOptAttribute() const { return _fixPtr + fieldOptAttribute.offset - 1 - FieldOptAttribute::tagWidth(); }
+   const char * getIfSetOptAttribute() const { return fieldOptAttribute.offset > 0 ? _fixPtr + fieldOptAttribute.offset : nullptr; }
    private: FieldOptAttribute fieldOptAttribute;
 
    public:
-   bool isSetContractMultiplier() const { return fieldContractMultiplier.offset >= 0; }
+   bool isSetContractMultiplier() const { return fieldContractMultiplier.offset > 0; }
    FieldContractMultiplier::ValueType getContractMultiplier() const { return fieldContractMultiplier.getValue( _fixPtr ); }
-   std::string_view getContractMultiplierView() const { return fieldContractMultiplier.offset >= 0 ? std::string_view{ _fixPtr + fieldContractMultiplier.offset, getValueLength( _fixPtr + fieldContractMultiplier.offset ) } : std::string_view{}; }
+   std::string_view getContractMultiplierView() const { return fieldContractMultiplier.offset > 0 ? std::string_view{ _fixPtr + fieldContractMultiplier.offset, getValueLength( _fixPtr + fieldContractMultiplier.offset ) } : std::string_view{}; }
    const char * ptrToContractMultiplier() const { return _fixPtr + fieldContractMultiplier.offset; }
-   const char * getIfSetContractMultiplier() const { return fieldContractMultiplier.offset >= 0 ? _fixPtr + fieldContractMultiplier.offset : nullptr; }
+   const char * ptrToTagContractMultiplier() const { return _fixPtr + fieldContractMultiplier.offset - 1 - FieldContractMultiplier::tagWidth(); }
+   const char * getIfSetContractMultiplier() const { return fieldContractMultiplier.offset > 0 ? _fixPtr + fieldContractMultiplier.offset : nullptr; }
    private: FieldContractMultiplier fieldContractMultiplier;
 
    public:
-   bool isSetCouponRate() const { return fieldCouponRate.offset >= 0; }
+   bool isSetCouponRate() const { return fieldCouponRate.offset > 0; }
    FieldCouponRate::ValueType getCouponRate() const { return fieldCouponRate.getValue( _fixPtr ); }
-   std::string_view getCouponRateView() const { return fieldCouponRate.offset >= 0 ? std::string_view{ _fixPtr + fieldCouponRate.offset, getValueLength( _fixPtr + fieldCouponRate.offset ) } : std::string_view{}; }
+   std::string_view getCouponRateView() const { return fieldCouponRate.offset > 0 ? std::string_view{ _fixPtr + fieldCouponRate.offset, getValueLength( _fixPtr + fieldCouponRate.offset ) } : std::string_view{}; }
    const char * ptrToCouponRate() const { return _fixPtr + fieldCouponRate.offset; }
-   const char * getIfSetCouponRate() const { return fieldCouponRate.offset >= 0 ? _fixPtr + fieldCouponRate.offset : nullptr; }
+   const char * ptrToTagCouponRate() const { return _fixPtr + fieldCouponRate.offset - 1 - FieldCouponRate::tagWidth(); }
+   const char * getIfSetCouponRate() const { return fieldCouponRate.offset > 0 ? _fixPtr + fieldCouponRate.offset : nullptr; }
    private: FieldCouponRate fieldCouponRate;
 
    public:
-   bool isSetSecurityExchange() const { return fieldSecurityExchange.offset >= 0; }
+   bool isSetSecurityExchange() const { return fieldSecurityExchange.offset > 0; }
    FieldSecurityExchange::ValueType getSecurityExchange() const { return fieldSecurityExchange.getValue( _fixPtr ); }
-   std::string_view getSecurityExchangeView() const { return fieldSecurityExchange.offset >= 0 ? std::string_view{ _fixPtr + fieldSecurityExchange.offset, getValueLength( _fixPtr + fieldSecurityExchange.offset ) } : std::string_view{}; }
+   std::string_view getSecurityExchangeView() const { return fieldSecurityExchange.offset > 0 ? std::string_view{ _fixPtr + fieldSecurityExchange.offset, getValueLength( _fixPtr + fieldSecurityExchange.offset ) } : std::string_view{}; }
    const char * ptrToSecurityExchange() const { return _fixPtr + fieldSecurityExchange.offset; }
-   const char * getIfSetSecurityExchange() const { return fieldSecurityExchange.offset >= 0 ? _fixPtr + fieldSecurityExchange.offset : nullptr; }
+   const char * ptrToTagSecurityExchange() const { return _fixPtr + fieldSecurityExchange.offset - 1 - FieldSecurityExchange::tagWidth(); }
+   const char * getIfSetSecurityExchange() const { return fieldSecurityExchange.offset > 0 ? _fixPtr + fieldSecurityExchange.offset : nullptr; }
    private: FieldSecurityExchange fieldSecurityExchange;
 
    public:
-   bool isSetIssuer() const { return fieldIssuer.offset >= 0; }
+   bool isSetIssuer() const { return fieldIssuer.offset > 0; }
    FieldIssuer::ValueType getIssuer() const { return fieldIssuer.getValue( _fixPtr ); }
-   std::string_view getIssuerView() const { return fieldIssuer.offset >= 0 ? std::string_view{ _fixPtr + fieldIssuer.offset, getValueLength( _fixPtr + fieldIssuer.offset ) } : std::string_view{}; }
+   std::string_view getIssuerView() const { return fieldIssuer.offset > 0 ? std::string_view{ _fixPtr + fieldIssuer.offset, getValueLength( _fixPtr + fieldIssuer.offset ) } : std::string_view{}; }
    const char * ptrToIssuer() const { return _fixPtr + fieldIssuer.offset; }
-   const char * getIfSetIssuer() const { return fieldIssuer.offset >= 0 ? _fixPtr + fieldIssuer.offset : nullptr; }
+   const char * ptrToTagIssuer() const { return _fixPtr + fieldIssuer.offset - 1 - FieldIssuer::tagWidth(); }
+   const char * getIfSetIssuer() const { return fieldIssuer.offset > 0 ? _fixPtr + fieldIssuer.offset : nullptr; }
    private: FieldIssuer fieldIssuer;
 
    public:
-   bool isSetEncodedIssuerLen() const { return fieldEncodedIssuerLen.offset >= 0; }
+   bool isSetEncodedIssuerLen() const { return fieldEncodedIssuerLen.offset > 0; }
    FieldEncodedIssuerLen::ValueType getEncodedIssuerLen() const { return fieldEncodedIssuerLen.getValue( _fixPtr ); }
-   std::string_view getEncodedIssuerLenView() const { return fieldEncodedIssuerLen.offset >= 0 ? std::string_view{ _fixPtr + fieldEncodedIssuerLen.offset, getValueLength( _fixPtr + fieldEncodedIssuerLen.offset ) } : std::string_view{}; }
+   std::string_view getEncodedIssuerLenView() const { return fieldEncodedIssuerLen.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedIssuerLen.offset, getValueLength( _fixPtr + fieldEncodedIssuerLen.offset ) } : std::string_view{}; }
    const char * ptrToEncodedIssuerLen() const { return _fixPtr + fieldEncodedIssuerLen.offset; }
-   const char * getIfSetEncodedIssuerLen() const { return fieldEncodedIssuerLen.offset >= 0 ? _fixPtr + fieldEncodedIssuerLen.offset : nullptr; }
+   const char * ptrToTagEncodedIssuerLen() const { return _fixPtr + fieldEncodedIssuerLen.offset - 1 - FieldEncodedIssuerLen::tagWidth(); }
+   const char * getIfSetEncodedIssuerLen() const { return fieldEncodedIssuerLen.offset > 0 ? _fixPtr + fieldEncodedIssuerLen.offset : nullptr; }
    private: FieldEncodedIssuerLen fieldEncodedIssuerLen;
 
    public:
-   bool isSetEncodedIssuer() const { return fieldEncodedIssuer.offset >= 0; }
+   bool isSetEncodedIssuer() const { return fieldEncodedIssuer.offset > 0; }
    FieldEncodedIssuer::ValueType getEncodedIssuer() const { return fieldEncodedIssuer.getValue( _fixPtr ); }
-   std::string_view getEncodedIssuerView() const { return fieldEncodedIssuer.offset >= 0 ? std::string_view{ _fixPtr + fieldEncodedIssuer.offset, getValueLength( _fixPtr + fieldEncodedIssuer.offset ) } : std::string_view{}; }
+   std::string_view getEncodedIssuerView() const { return fieldEncodedIssuer.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedIssuer.offset, getValueLength( _fixPtr + fieldEncodedIssuer.offset ) } : std::string_view{}; }
    const char * ptrToEncodedIssuer() const { return _fixPtr + fieldEncodedIssuer.offset; }
-   const char * getIfSetEncodedIssuer() const { return fieldEncodedIssuer.offset >= 0 ? _fixPtr + fieldEncodedIssuer.offset : nullptr; }
+   const char * ptrToTagEncodedIssuer() const { return _fixPtr + fieldEncodedIssuer.offset - 1 - FieldEncodedIssuer::tagWidth(); }
+   const char * getIfSetEncodedIssuer() const { return fieldEncodedIssuer.offset > 0 ? _fixPtr + fieldEncodedIssuer.offset : nullptr; }
    private: FieldEncodedIssuer fieldEncodedIssuer;
 
    public:
-   bool isSetSecurityDesc() const { return fieldSecurityDesc.offset >= 0; }
+   bool isSetSecurityDesc() const { return fieldSecurityDesc.offset > 0; }
    FieldSecurityDesc::ValueType getSecurityDesc() const { return fieldSecurityDesc.getValue( _fixPtr ); }
-   std::string_view getSecurityDescView() const { return fieldSecurityDesc.offset >= 0 ? std::string_view{ _fixPtr + fieldSecurityDesc.offset, getValueLength( _fixPtr + fieldSecurityDesc.offset ) } : std::string_view{}; }
+   std::string_view getSecurityDescView() const { return fieldSecurityDesc.offset > 0 ? std::string_view{ _fixPtr + fieldSecurityDesc.offset, getValueLength( _fixPtr + fieldSecurityDesc.offset ) } : std::string_view{}; }
    const char * ptrToSecurityDesc() const { return _fixPtr + fieldSecurityDesc.offset; }
-   const char * getIfSetSecurityDesc() const { return fieldSecurityDesc.offset >= 0 ? _fixPtr + fieldSecurityDesc.offset : nullptr; }
+   const char * ptrToTagSecurityDesc() const { return _fixPtr + fieldSecurityDesc.offset - 1 - FieldSecurityDesc::tagWidth(); }
+   const char * getIfSetSecurityDesc() const { return fieldSecurityDesc.offset > 0 ? _fixPtr + fieldSecurityDesc.offset : nullptr; }
    private: FieldSecurityDesc fieldSecurityDesc;
 
    public:
-   bool isSetEncodedSecurityDescLen() const { return fieldEncodedSecurityDescLen.offset >= 0; }
+   bool isSetEncodedSecurityDescLen() const { return fieldEncodedSecurityDescLen.offset > 0; }
    FieldEncodedSecurityDescLen::ValueType getEncodedSecurityDescLen() const { return fieldEncodedSecurityDescLen.getValue( _fixPtr ); }
-   std::string_view getEncodedSecurityDescLenView() const { return fieldEncodedSecurityDescLen.offset >= 0 ? std::string_view{ _fixPtr + fieldEncodedSecurityDescLen.offset, getValueLength( _fixPtr + fieldEncodedSecurityDescLen.offset ) } : std::string_view{}; }
+   std::string_view getEncodedSecurityDescLenView() const { return fieldEncodedSecurityDescLen.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedSecurityDescLen.offset, getValueLength( _fixPtr + fieldEncodedSecurityDescLen.offset ) } : std::string_view{}; }
    const char * ptrToEncodedSecurityDescLen() const { return _fixPtr + fieldEncodedSecurityDescLen.offset; }
-   const char * getIfSetEncodedSecurityDescLen() const { return fieldEncodedSecurityDescLen.offset >= 0 ? _fixPtr + fieldEncodedSecurityDescLen.offset : nullptr; }
+   const char * ptrToTagEncodedSecurityDescLen() const { return _fixPtr + fieldEncodedSecurityDescLen.offset - 1 - FieldEncodedSecurityDescLen::tagWidth(); }
+   const char * getIfSetEncodedSecurityDescLen() const { return fieldEncodedSecurityDescLen.offset > 0 ? _fixPtr + fieldEncodedSecurityDescLen.offset : nullptr; }
    private: FieldEncodedSecurityDescLen fieldEncodedSecurityDescLen;
 
    public:
-   bool isSetEncodedSecurityDesc() const { return fieldEncodedSecurityDesc.offset >= 0; }
+   bool isSetEncodedSecurityDesc() const { return fieldEncodedSecurityDesc.offset > 0; }
    FieldEncodedSecurityDesc::ValueType getEncodedSecurityDesc() const { return fieldEncodedSecurityDesc.getValue( _fixPtr ); }
-   std::string_view getEncodedSecurityDescView() const { return fieldEncodedSecurityDesc.offset >= 0 ? std::string_view{ _fixPtr + fieldEncodedSecurityDesc.offset, getValueLength( _fixPtr + fieldEncodedSecurityDesc.offset ) } : std::string_view{}; }
+   std::string_view getEncodedSecurityDescView() const { return fieldEncodedSecurityDesc.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedSecurityDesc.offset, getValueLength( _fixPtr + fieldEncodedSecurityDesc.offset ) } : std::string_view{}; }
    const char * ptrToEncodedSecurityDesc() const { return _fixPtr + fieldEncodedSecurityDesc.offset; }
-   const char * getIfSetEncodedSecurityDesc() const { return fieldEncodedSecurityDesc.offset >= 0 ? _fixPtr + fieldEncodedSecurityDesc.offset : nullptr; }
+   const char * ptrToTagEncodedSecurityDesc() const { return _fixPtr + fieldEncodedSecurityDesc.offset - 1 - FieldEncodedSecurityDesc::tagWidth(); }
+   const char * getIfSetEncodedSecurityDesc() const { return fieldEncodedSecurityDesc.offset > 0 ? _fixPtr + fieldEncodedSecurityDesc.offset : nullptr; }
    private: FieldEncodedSecurityDesc fieldEncodedSecurityDesc;
 
    public:
-   bool isSetPool() const { return fieldPool.offset >= 0; }
+   bool isSetPool() const { return fieldPool.offset > 0; }
    FieldPool::ValueType getPool() const { return fieldPool.getValue( _fixPtr ); }
-   std::string_view getPoolView() const { return fieldPool.offset >= 0 ? std::string_view{ _fixPtr + fieldPool.offset, getValueLength( _fixPtr + fieldPool.offset ) } : std::string_view{}; }
+   std::string_view getPoolView() const { return fieldPool.offset > 0 ? std::string_view{ _fixPtr + fieldPool.offset, getValueLength( _fixPtr + fieldPool.offset ) } : std::string_view{}; }
    const char * ptrToPool() const { return _fixPtr + fieldPool.offset; }
-   const char * getIfSetPool() const { return fieldPool.offset >= 0 ? _fixPtr + fieldPool.offset : nullptr; }
+   const char * ptrToTagPool() const { return _fixPtr + fieldPool.offset - 1 - FieldPool::tagWidth(); }
+   const char * getIfSetPool() const { return fieldPool.offset > 0 ? _fixPtr + fieldPool.offset : nullptr; }
    private: FieldPool fieldPool;
 
    public:
-   bool isSetContractSettlMonth() const { return fieldContractSettlMonth.offset >= 0; }
+   bool isSetContractSettlMonth() const { return fieldContractSettlMonth.offset > 0; }
    FieldContractSettlMonth::ValueType getContractSettlMonth() const { return fieldContractSettlMonth.getValue( _fixPtr ); }
-   std::string_view getContractSettlMonthView() const { return fieldContractSettlMonth.offset >= 0 ? std::string_view{ _fixPtr + fieldContractSettlMonth.offset, getValueLength( _fixPtr + fieldContractSettlMonth.offset ) } : std::string_view{}; }
+   std::string_view getContractSettlMonthView() const { return fieldContractSettlMonth.offset > 0 ? std::string_view{ _fixPtr + fieldContractSettlMonth.offset, getValueLength( _fixPtr + fieldContractSettlMonth.offset ) } : std::string_view{}; }
    const char * ptrToContractSettlMonth() const { return _fixPtr + fieldContractSettlMonth.offset; }
-   const char * getIfSetContractSettlMonth() const { return fieldContractSettlMonth.offset >= 0 ? _fixPtr + fieldContractSettlMonth.offset : nullptr; }
+   const char * ptrToTagContractSettlMonth() const { return _fixPtr + fieldContractSettlMonth.offset - 1 - FieldContractSettlMonth::tagWidth(); }
+   const char * getIfSetContractSettlMonth() const { return fieldContractSettlMonth.offset > 0 ? _fixPtr + fieldContractSettlMonth.offset : nullptr; }
    private: FieldContractSettlMonth fieldContractSettlMonth;
 
    public:
-   bool isSetCPProgram() const { return fieldCPProgram.offset >= 0; }
+   bool isSetCPProgram() const { return fieldCPProgram.offset > 0; }
    FieldCPProgram::ValueType getCPProgram() const { return fieldCPProgram.getValue( _fixPtr ); }
-   std::string_view getCPProgramView() const { return fieldCPProgram.offset >= 0 ? std::string_view{ _fixPtr + fieldCPProgram.offset, getValueLength( _fixPtr + fieldCPProgram.offset ) } : std::string_view{}; }
+   std::string_view getCPProgramView() const { return fieldCPProgram.offset > 0 ? std::string_view{ _fixPtr + fieldCPProgram.offset, getValueLength( _fixPtr + fieldCPProgram.offset ) } : std::string_view{}; }
    const char * ptrToCPProgram() const { return _fixPtr + fieldCPProgram.offset; }
-   const char * getIfSetCPProgram() const { return fieldCPProgram.offset >= 0 ? _fixPtr + fieldCPProgram.offset : nullptr; }
+   const char * ptrToTagCPProgram() const { return _fixPtr + fieldCPProgram.offset - 1 - FieldCPProgram::tagWidth(); }
+   const char * getIfSetCPProgram() const { return fieldCPProgram.offset > 0 ? _fixPtr + fieldCPProgram.offset : nullptr; }
    private: FieldCPProgram fieldCPProgram;
 
    public:
-   bool isSetCPRegType() const { return fieldCPRegType.offset >= 0; }
+   bool isSetCPRegType() const { return fieldCPRegType.offset > 0; }
    FieldCPRegType::ValueType getCPRegType() const { return fieldCPRegType.getValue( _fixPtr ); }
-   std::string_view getCPRegTypeView() const { return fieldCPRegType.offset >= 0 ? std::string_view{ _fixPtr + fieldCPRegType.offset, getValueLength( _fixPtr + fieldCPRegType.offset ) } : std::string_view{}; }
+   std::string_view getCPRegTypeView() const { return fieldCPRegType.offset > 0 ? std::string_view{ _fixPtr + fieldCPRegType.offset, getValueLength( _fixPtr + fieldCPRegType.offset ) } : std::string_view{}; }
    const char * ptrToCPRegType() const { return _fixPtr + fieldCPRegType.offset; }
-   const char * getIfSetCPRegType() const { return fieldCPRegType.offset >= 0 ? _fixPtr + fieldCPRegType.offset : nullptr; }
+   const char * ptrToTagCPRegType() const { return _fixPtr + fieldCPRegType.offset - 1 - FieldCPRegType::tagWidth(); }
+   const char * getIfSetCPRegType() const { return fieldCPRegType.offset > 0 ? _fixPtr + fieldCPRegType.offset : nullptr; }
    private: FieldCPRegType fieldCPRegType;
 
    public:
-   bool isSetNoEvents() const { return fieldNoEvents.offset >= 0; }
+   bool isSetNoEvents() const { return fieldNoEvents.offset > 0; }
    FieldNoEvents::ValueType getNoEvents() const { return fieldNoEvents.getValue( _fixPtr ); }
-   std::string_view getNoEventsView() const { return fieldNoEvents.offset >= 0 ? std::string_view{ _fixPtr + fieldNoEvents.offset, getValueLength( _fixPtr + fieldNoEvents.offset ) } : std::string_view{}; }
+   std::string_view getNoEventsView() const { return fieldNoEvents.offset > 0 ? std::string_view{ _fixPtr + fieldNoEvents.offset, getValueLength( _fixPtr + fieldNoEvents.offset ) } : std::string_view{}; }
    const char * ptrToNoEvents() const { return _fixPtr + fieldNoEvents.offset; }
-   const char * getIfSetNoEvents() const { return fieldNoEvents.offset >= 0 ? _fixPtr + fieldNoEvents.offset : nullptr; }
+   const char * ptrToTagNoEvents() const { return _fixPtr + fieldNoEvents.offset - 1 - FieldNoEvents::tagWidth(); }
+   const char * getIfSetNoEvents() const { return fieldNoEvents.offset > 0 ? _fixPtr + fieldNoEvents.offset : nullptr; }
    private: FieldNoEvents fieldNoEvents;
   
    public:
@@ -6047,19 +6767,21 @@ class GroupStrikes : public MessageBase
    private: GroupEvents::Array groupsEvents{ 10 };
 
    public:
-   bool isSetDatedDate() const { return fieldDatedDate.offset >= 0; }
+   bool isSetDatedDate() const { return fieldDatedDate.offset > 0; }
    FieldDatedDate::ValueType getDatedDate() const { return fieldDatedDate.getValue( _fixPtr ); }
-   std::string_view getDatedDateView() const { return fieldDatedDate.offset >= 0 ? std::string_view{ _fixPtr + fieldDatedDate.offset, getValueLength( _fixPtr + fieldDatedDate.offset ) } : std::string_view{}; }
+   std::string_view getDatedDateView() const { return fieldDatedDate.offset > 0 ? std::string_view{ _fixPtr + fieldDatedDate.offset, getValueLength( _fixPtr + fieldDatedDate.offset ) } : std::string_view{}; }
    const char * ptrToDatedDate() const { return _fixPtr + fieldDatedDate.offset; }
-   const char * getIfSetDatedDate() const { return fieldDatedDate.offset >= 0 ? _fixPtr + fieldDatedDate.offset : nullptr; }
+   const char * ptrToTagDatedDate() const { return _fixPtr + fieldDatedDate.offset - 1 - FieldDatedDate::tagWidth(); }
+   const char * getIfSetDatedDate() const { return fieldDatedDate.offset > 0 ? _fixPtr + fieldDatedDate.offset : nullptr; }
    private: FieldDatedDate fieldDatedDate;
 
    public:
-   bool isSetInterestAccrualDate() const { return fieldInterestAccrualDate.offset >= 0; }
+   bool isSetInterestAccrualDate() const { return fieldInterestAccrualDate.offset > 0; }
    FieldInterestAccrualDate::ValueType getInterestAccrualDate() const { return fieldInterestAccrualDate.getValue( _fixPtr ); }
-   std::string_view getInterestAccrualDateView() const { return fieldInterestAccrualDate.offset >= 0 ? std::string_view{ _fixPtr + fieldInterestAccrualDate.offset, getValueLength( _fixPtr + fieldInterestAccrualDate.offset ) } : std::string_view{}; }
+   std::string_view getInterestAccrualDateView() const { return fieldInterestAccrualDate.offset > 0 ? std::string_view{ _fixPtr + fieldInterestAccrualDate.offset, getValueLength( _fixPtr + fieldInterestAccrualDate.offset ) } : std::string_view{}; }
    const char * ptrToInterestAccrualDate() const { return _fixPtr + fieldInterestAccrualDate.offset; }
-   const char * getIfSetInterestAccrualDate() const { return fieldInterestAccrualDate.offset >= 0 ? _fixPtr + fieldInterestAccrualDate.offset : nullptr; }
+   const char * ptrToTagInterestAccrualDate() const { return _fixPtr + fieldInterestAccrualDate.offset - 1 - FieldInterestAccrualDate::tagWidth(); }
+   const char * getIfSetInterestAccrualDate() const { return fieldInterestAccrualDate.offset > 0 ? _fixPtr + fieldInterestAccrualDate.offset : nullptr; }
    private: FieldInterestAccrualDate fieldInterestAccrualDate;
 
 };
@@ -6076,96 +6798,109 @@ class GroupBidDescriptors : public MessageBase
    static offset_t scan( Array & arr, const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    const char * getFieldValue( unsigned tag ) const;
+   const char * findBadField() const;
+   const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
-   bool isSetBidDescriptorType() const { return fieldBidDescriptorType.offset >= 0; }
+   bool isSetBidDescriptorType() const { return fieldBidDescriptorType.offset > 0; }
    FieldBidDescriptorType::ValueType getBidDescriptorType() const { return fieldBidDescriptorType.getValue( _fixPtr ); }
-   std::string_view getBidDescriptorTypeView() const { return fieldBidDescriptorType.offset >= 0 ? std::string_view{ _fixPtr + fieldBidDescriptorType.offset, getValueLength( _fixPtr + fieldBidDescriptorType.offset ) } : std::string_view{}; }
+   std::string_view getBidDescriptorTypeView() const { return fieldBidDescriptorType.offset > 0 ? std::string_view{ _fixPtr + fieldBidDescriptorType.offset, getValueLength( _fixPtr + fieldBidDescriptorType.offset ) } : std::string_view{}; }
    const char * ptrToBidDescriptorType() const { return _fixPtr + fieldBidDescriptorType.offset; }
-   const char * getIfSetBidDescriptorType() const { return fieldBidDescriptorType.offset >= 0 ? _fixPtr + fieldBidDescriptorType.offset : nullptr; }
+   const char * ptrToTagBidDescriptorType() const { return _fixPtr + fieldBidDescriptorType.offset - 1 - FieldBidDescriptorType::tagWidth(); }
+   const char * getIfSetBidDescriptorType() const { return fieldBidDescriptorType.offset > 0 ? _fixPtr + fieldBidDescriptorType.offset : nullptr; }
    private: FieldBidDescriptorType fieldBidDescriptorType;
 
    public:
-   bool isSetBidDescriptor() const { return fieldBidDescriptor.offset >= 0; }
+   bool isSetBidDescriptor() const { return fieldBidDescriptor.offset > 0; }
    FieldBidDescriptor::ValueType getBidDescriptor() const { return fieldBidDescriptor.getValue( _fixPtr ); }
-   std::string_view getBidDescriptorView() const { return fieldBidDescriptor.offset >= 0 ? std::string_view{ _fixPtr + fieldBidDescriptor.offset, getValueLength( _fixPtr + fieldBidDescriptor.offset ) } : std::string_view{}; }
+   std::string_view getBidDescriptorView() const { return fieldBidDescriptor.offset > 0 ? std::string_view{ _fixPtr + fieldBidDescriptor.offset, getValueLength( _fixPtr + fieldBidDescriptor.offset ) } : std::string_view{}; }
    const char * ptrToBidDescriptor() const { return _fixPtr + fieldBidDescriptor.offset; }
-   const char * getIfSetBidDescriptor() const { return fieldBidDescriptor.offset >= 0 ? _fixPtr + fieldBidDescriptor.offset : nullptr; }
+   const char * ptrToTagBidDescriptor() const { return _fixPtr + fieldBidDescriptor.offset - 1 - FieldBidDescriptor::tagWidth(); }
+   const char * getIfSetBidDescriptor() const { return fieldBidDescriptor.offset > 0 ? _fixPtr + fieldBidDescriptor.offset : nullptr; }
    private: FieldBidDescriptor fieldBidDescriptor;
 
    public:
-   bool isSetSideValueInd() const { return fieldSideValueInd.offset >= 0; }
+   bool isSetSideValueInd() const { return fieldSideValueInd.offset > 0; }
    FieldSideValueInd::ValueType getSideValueInd() const { return fieldSideValueInd.getValue( _fixPtr ); }
-   std::string_view getSideValueIndView() const { return fieldSideValueInd.offset >= 0 ? std::string_view{ _fixPtr + fieldSideValueInd.offset, getValueLength( _fixPtr + fieldSideValueInd.offset ) } : std::string_view{}; }
+   std::string_view getSideValueIndView() const { return fieldSideValueInd.offset > 0 ? std::string_view{ _fixPtr + fieldSideValueInd.offset, getValueLength( _fixPtr + fieldSideValueInd.offset ) } : std::string_view{}; }
    const char * ptrToSideValueInd() const { return _fixPtr + fieldSideValueInd.offset; }
-   const char * getIfSetSideValueInd() const { return fieldSideValueInd.offset >= 0 ? _fixPtr + fieldSideValueInd.offset : nullptr; }
+   const char * ptrToTagSideValueInd() const { return _fixPtr + fieldSideValueInd.offset - 1 - FieldSideValueInd::tagWidth(); }
+   const char * getIfSetSideValueInd() const { return fieldSideValueInd.offset > 0 ? _fixPtr + fieldSideValueInd.offset : nullptr; }
    private: FieldSideValueInd fieldSideValueInd;
 
    public:
-   bool isSetLiquidityValue() const { return fieldLiquidityValue.offset >= 0; }
+   bool isSetLiquidityValue() const { return fieldLiquidityValue.offset > 0; }
    FieldLiquidityValue::ValueType getLiquidityValue() const { return fieldLiquidityValue.getValue( _fixPtr ); }
-   std::string_view getLiquidityValueView() const { return fieldLiquidityValue.offset >= 0 ? std::string_view{ _fixPtr + fieldLiquidityValue.offset, getValueLength( _fixPtr + fieldLiquidityValue.offset ) } : std::string_view{}; }
+   std::string_view getLiquidityValueView() const { return fieldLiquidityValue.offset > 0 ? std::string_view{ _fixPtr + fieldLiquidityValue.offset, getValueLength( _fixPtr + fieldLiquidityValue.offset ) } : std::string_view{}; }
    const char * ptrToLiquidityValue() const { return _fixPtr + fieldLiquidityValue.offset; }
-   const char * getIfSetLiquidityValue() const { return fieldLiquidityValue.offset >= 0 ? _fixPtr + fieldLiquidityValue.offset : nullptr; }
+   const char * ptrToTagLiquidityValue() const { return _fixPtr + fieldLiquidityValue.offset - 1 - FieldLiquidityValue::tagWidth(); }
+   const char * getIfSetLiquidityValue() const { return fieldLiquidityValue.offset > 0 ? _fixPtr + fieldLiquidityValue.offset : nullptr; }
    private: FieldLiquidityValue fieldLiquidityValue;
 
    public:
-   bool isSetLiquidityNumSecurities() const { return fieldLiquidityNumSecurities.offset >= 0; }
+   bool isSetLiquidityNumSecurities() const { return fieldLiquidityNumSecurities.offset > 0; }
    FieldLiquidityNumSecurities::ValueType getLiquidityNumSecurities() const { return fieldLiquidityNumSecurities.getValue( _fixPtr ); }
-   std::string_view getLiquidityNumSecuritiesView() const { return fieldLiquidityNumSecurities.offset >= 0 ? std::string_view{ _fixPtr + fieldLiquidityNumSecurities.offset, getValueLength( _fixPtr + fieldLiquidityNumSecurities.offset ) } : std::string_view{}; }
+   std::string_view getLiquidityNumSecuritiesView() const { return fieldLiquidityNumSecurities.offset > 0 ? std::string_view{ _fixPtr + fieldLiquidityNumSecurities.offset, getValueLength( _fixPtr + fieldLiquidityNumSecurities.offset ) } : std::string_view{}; }
    const char * ptrToLiquidityNumSecurities() const { return _fixPtr + fieldLiquidityNumSecurities.offset; }
-   const char * getIfSetLiquidityNumSecurities() const { return fieldLiquidityNumSecurities.offset >= 0 ? _fixPtr + fieldLiquidityNumSecurities.offset : nullptr; }
+   const char * ptrToTagLiquidityNumSecurities() const { return _fixPtr + fieldLiquidityNumSecurities.offset - 1 - FieldLiquidityNumSecurities::tagWidth(); }
+   const char * getIfSetLiquidityNumSecurities() const { return fieldLiquidityNumSecurities.offset > 0 ? _fixPtr + fieldLiquidityNumSecurities.offset : nullptr; }
    private: FieldLiquidityNumSecurities fieldLiquidityNumSecurities;
 
    public:
-   bool isSetLiquidityPctLow() const { return fieldLiquidityPctLow.offset >= 0; }
+   bool isSetLiquidityPctLow() const { return fieldLiquidityPctLow.offset > 0; }
    FieldLiquidityPctLow::ValueType getLiquidityPctLow() const { return fieldLiquidityPctLow.getValue( _fixPtr ); }
-   std::string_view getLiquidityPctLowView() const { return fieldLiquidityPctLow.offset >= 0 ? std::string_view{ _fixPtr + fieldLiquidityPctLow.offset, getValueLength( _fixPtr + fieldLiquidityPctLow.offset ) } : std::string_view{}; }
+   std::string_view getLiquidityPctLowView() const { return fieldLiquidityPctLow.offset > 0 ? std::string_view{ _fixPtr + fieldLiquidityPctLow.offset, getValueLength( _fixPtr + fieldLiquidityPctLow.offset ) } : std::string_view{}; }
    const char * ptrToLiquidityPctLow() const { return _fixPtr + fieldLiquidityPctLow.offset; }
-   const char * getIfSetLiquidityPctLow() const { return fieldLiquidityPctLow.offset >= 0 ? _fixPtr + fieldLiquidityPctLow.offset : nullptr; }
+   const char * ptrToTagLiquidityPctLow() const { return _fixPtr + fieldLiquidityPctLow.offset - 1 - FieldLiquidityPctLow::tagWidth(); }
+   const char * getIfSetLiquidityPctLow() const { return fieldLiquidityPctLow.offset > 0 ? _fixPtr + fieldLiquidityPctLow.offset : nullptr; }
    private: FieldLiquidityPctLow fieldLiquidityPctLow;
 
    public:
-   bool isSetLiquidityPctHigh() const { return fieldLiquidityPctHigh.offset >= 0; }
+   bool isSetLiquidityPctHigh() const { return fieldLiquidityPctHigh.offset > 0; }
    FieldLiquidityPctHigh::ValueType getLiquidityPctHigh() const { return fieldLiquidityPctHigh.getValue( _fixPtr ); }
-   std::string_view getLiquidityPctHighView() const { return fieldLiquidityPctHigh.offset >= 0 ? std::string_view{ _fixPtr + fieldLiquidityPctHigh.offset, getValueLength( _fixPtr + fieldLiquidityPctHigh.offset ) } : std::string_view{}; }
+   std::string_view getLiquidityPctHighView() const { return fieldLiquidityPctHigh.offset > 0 ? std::string_view{ _fixPtr + fieldLiquidityPctHigh.offset, getValueLength( _fixPtr + fieldLiquidityPctHigh.offset ) } : std::string_view{}; }
    const char * ptrToLiquidityPctHigh() const { return _fixPtr + fieldLiquidityPctHigh.offset; }
-   const char * getIfSetLiquidityPctHigh() const { return fieldLiquidityPctHigh.offset >= 0 ? _fixPtr + fieldLiquidityPctHigh.offset : nullptr; }
+   const char * ptrToTagLiquidityPctHigh() const { return _fixPtr + fieldLiquidityPctHigh.offset - 1 - FieldLiquidityPctHigh::tagWidth(); }
+   const char * getIfSetLiquidityPctHigh() const { return fieldLiquidityPctHigh.offset > 0 ? _fixPtr + fieldLiquidityPctHigh.offset : nullptr; }
    private: FieldLiquidityPctHigh fieldLiquidityPctHigh;
 
    public:
-   bool isSetEFPTrackingError() const { return fieldEFPTrackingError.offset >= 0; }
+   bool isSetEFPTrackingError() const { return fieldEFPTrackingError.offset > 0; }
    FieldEFPTrackingError::ValueType getEFPTrackingError() const { return fieldEFPTrackingError.getValue( _fixPtr ); }
-   std::string_view getEFPTrackingErrorView() const { return fieldEFPTrackingError.offset >= 0 ? std::string_view{ _fixPtr + fieldEFPTrackingError.offset, getValueLength( _fixPtr + fieldEFPTrackingError.offset ) } : std::string_view{}; }
+   std::string_view getEFPTrackingErrorView() const { return fieldEFPTrackingError.offset > 0 ? std::string_view{ _fixPtr + fieldEFPTrackingError.offset, getValueLength( _fixPtr + fieldEFPTrackingError.offset ) } : std::string_view{}; }
    const char * ptrToEFPTrackingError() const { return _fixPtr + fieldEFPTrackingError.offset; }
-   const char * getIfSetEFPTrackingError() const { return fieldEFPTrackingError.offset >= 0 ? _fixPtr + fieldEFPTrackingError.offset : nullptr; }
+   const char * ptrToTagEFPTrackingError() const { return _fixPtr + fieldEFPTrackingError.offset - 1 - FieldEFPTrackingError::tagWidth(); }
+   const char * getIfSetEFPTrackingError() const { return fieldEFPTrackingError.offset > 0 ? _fixPtr + fieldEFPTrackingError.offset : nullptr; }
    private: FieldEFPTrackingError fieldEFPTrackingError;
 
    public:
-   bool isSetFairValue() const { return fieldFairValue.offset >= 0; }
+   bool isSetFairValue() const { return fieldFairValue.offset > 0; }
    FieldFairValue::ValueType getFairValue() const { return fieldFairValue.getValue( _fixPtr ); }
-   std::string_view getFairValueView() const { return fieldFairValue.offset >= 0 ? std::string_view{ _fixPtr + fieldFairValue.offset, getValueLength( _fixPtr + fieldFairValue.offset ) } : std::string_view{}; }
+   std::string_view getFairValueView() const { return fieldFairValue.offset > 0 ? std::string_view{ _fixPtr + fieldFairValue.offset, getValueLength( _fixPtr + fieldFairValue.offset ) } : std::string_view{}; }
    const char * ptrToFairValue() const { return _fixPtr + fieldFairValue.offset; }
-   const char * getIfSetFairValue() const { return fieldFairValue.offset >= 0 ? _fixPtr + fieldFairValue.offset : nullptr; }
+   const char * ptrToTagFairValue() const { return _fixPtr + fieldFairValue.offset - 1 - FieldFairValue::tagWidth(); }
+   const char * getIfSetFairValue() const { return fieldFairValue.offset > 0 ? _fixPtr + fieldFairValue.offset : nullptr; }
    private: FieldFairValue fieldFairValue;
 
    public:
-   bool isSetOutsideIndexPct() const { return fieldOutsideIndexPct.offset >= 0; }
+   bool isSetOutsideIndexPct() const { return fieldOutsideIndexPct.offset > 0; }
    FieldOutsideIndexPct::ValueType getOutsideIndexPct() const { return fieldOutsideIndexPct.getValue( _fixPtr ); }
-   std::string_view getOutsideIndexPctView() const { return fieldOutsideIndexPct.offset >= 0 ? std::string_view{ _fixPtr + fieldOutsideIndexPct.offset, getValueLength( _fixPtr + fieldOutsideIndexPct.offset ) } : std::string_view{}; }
+   std::string_view getOutsideIndexPctView() const { return fieldOutsideIndexPct.offset > 0 ? std::string_view{ _fixPtr + fieldOutsideIndexPct.offset, getValueLength( _fixPtr + fieldOutsideIndexPct.offset ) } : std::string_view{}; }
    const char * ptrToOutsideIndexPct() const { return _fixPtr + fieldOutsideIndexPct.offset; }
-   const char * getIfSetOutsideIndexPct() const { return fieldOutsideIndexPct.offset >= 0 ? _fixPtr + fieldOutsideIndexPct.offset : nullptr; }
+   const char * ptrToTagOutsideIndexPct() const { return _fixPtr + fieldOutsideIndexPct.offset - 1 - FieldOutsideIndexPct::tagWidth(); }
+   const char * getIfSetOutsideIndexPct() const { return fieldOutsideIndexPct.offset > 0 ? _fixPtr + fieldOutsideIndexPct.offset : nullptr; }
    private: FieldOutsideIndexPct fieldOutsideIndexPct;
 
    public:
-   bool isSetValueOfFutures() const { return fieldValueOfFutures.offset >= 0; }
+   bool isSetValueOfFutures() const { return fieldValueOfFutures.offset > 0; }
    FieldValueOfFutures::ValueType getValueOfFutures() const { return fieldValueOfFutures.getValue( _fixPtr ); }
-   std::string_view getValueOfFuturesView() const { return fieldValueOfFutures.offset >= 0 ? std::string_view{ _fixPtr + fieldValueOfFutures.offset, getValueLength( _fixPtr + fieldValueOfFutures.offset ) } : std::string_view{}; }
+   std::string_view getValueOfFuturesView() const { return fieldValueOfFutures.offset > 0 ? std::string_view{ _fixPtr + fieldValueOfFutures.offset, getValueLength( _fixPtr + fieldValueOfFutures.offset ) } : std::string_view{}; }
    const char * ptrToValueOfFutures() const { return _fixPtr + fieldValueOfFutures.offset; }
-   const char * getIfSetValueOfFutures() const { return fieldValueOfFutures.offset >= 0 ? _fixPtr + fieldValueOfFutures.offset : nullptr; }
+   const char * ptrToTagValueOfFutures() const { return _fixPtr + fieldValueOfFutures.offset - 1 - FieldValueOfFutures::tagWidth(); }
+   const char * getIfSetValueOfFutures() const { return fieldValueOfFutures.offset > 0 ? _fixPtr + fieldValueOfFutures.offset : nullptr; }
    private: FieldValueOfFutures fieldValueOfFutures;
 
 };
@@ -6182,40 +6917,46 @@ class GroupCompIDs : public MessageBase
    static offset_t scan( Array & arr, const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    const char * getFieldValue( unsigned tag ) const;
+   const char * findBadField() const;
+   const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
-   bool isSetRefCompID() const { return fieldRefCompID.offset >= 0; }
+   bool isSetRefCompID() const { return fieldRefCompID.offset > 0; }
    FieldRefCompID::ValueType getRefCompID() const { return fieldRefCompID.getValue( _fixPtr ); }
-   std::string_view getRefCompIDView() const { return fieldRefCompID.offset >= 0 ? std::string_view{ _fixPtr + fieldRefCompID.offset, getValueLength( _fixPtr + fieldRefCompID.offset ) } : std::string_view{}; }
+   std::string_view getRefCompIDView() const { return fieldRefCompID.offset > 0 ? std::string_view{ _fixPtr + fieldRefCompID.offset, getValueLength( _fixPtr + fieldRefCompID.offset ) } : std::string_view{}; }
    const char * ptrToRefCompID() const { return _fixPtr + fieldRefCompID.offset; }
-   const char * getIfSetRefCompID() const { return fieldRefCompID.offset >= 0 ? _fixPtr + fieldRefCompID.offset : nullptr; }
+   const char * ptrToTagRefCompID() const { return _fixPtr + fieldRefCompID.offset - 1 - FieldRefCompID::tagWidth(); }
+   const char * getIfSetRefCompID() const { return fieldRefCompID.offset > 0 ? _fixPtr + fieldRefCompID.offset : nullptr; }
    private: FieldRefCompID fieldRefCompID;
 
    public:
-   bool isSetRefSubID() const { return fieldRefSubID.offset >= 0; }
+   bool isSetRefSubID() const { return fieldRefSubID.offset > 0; }
    FieldRefSubID::ValueType getRefSubID() const { return fieldRefSubID.getValue( _fixPtr ); }
-   std::string_view getRefSubIDView() const { return fieldRefSubID.offset >= 0 ? std::string_view{ _fixPtr + fieldRefSubID.offset, getValueLength( _fixPtr + fieldRefSubID.offset ) } : std::string_view{}; }
+   std::string_view getRefSubIDView() const { return fieldRefSubID.offset > 0 ? std::string_view{ _fixPtr + fieldRefSubID.offset, getValueLength( _fixPtr + fieldRefSubID.offset ) } : std::string_view{}; }
    const char * ptrToRefSubID() const { return _fixPtr + fieldRefSubID.offset; }
-   const char * getIfSetRefSubID() const { return fieldRefSubID.offset >= 0 ? _fixPtr + fieldRefSubID.offset : nullptr; }
+   const char * ptrToTagRefSubID() const { return _fixPtr + fieldRefSubID.offset - 1 - FieldRefSubID::tagWidth(); }
+   const char * getIfSetRefSubID() const { return fieldRefSubID.offset > 0 ? _fixPtr + fieldRefSubID.offset : nullptr; }
    private: FieldRefSubID fieldRefSubID;
 
    public:
-   bool isSetLocationID() const { return fieldLocationID.offset >= 0; }
+   bool isSetLocationID() const { return fieldLocationID.offset > 0; }
    FieldLocationID::ValueType getLocationID() const { return fieldLocationID.getValue( _fixPtr ); }
-   std::string_view getLocationIDView() const { return fieldLocationID.offset >= 0 ? std::string_view{ _fixPtr + fieldLocationID.offset, getValueLength( _fixPtr + fieldLocationID.offset ) } : std::string_view{}; }
+   std::string_view getLocationIDView() const { return fieldLocationID.offset > 0 ? std::string_view{ _fixPtr + fieldLocationID.offset, getValueLength( _fixPtr + fieldLocationID.offset ) } : std::string_view{}; }
    const char * ptrToLocationID() const { return _fixPtr + fieldLocationID.offset; }
-   const char * getIfSetLocationID() const { return fieldLocationID.offset >= 0 ? _fixPtr + fieldLocationID.offset : nullptr; }
+   const char * ptrToTagLocationID() const { return _fixPtr + fieldLocationID.offset - 1 - FieldLocationID::tagWidth(); }
+   const char * getIfSetLocationID() const { return fieldLocationID.offset > 0 ? _fixPtr + fieldLocationID.offset : nullptr; }
    private: FieldLocationID fieldLocationID;
 
    public:
-   bool isSetDeskID() const { return fieldDeskID.offset >= 0; }
+   bool isSetDeskID() const { return fieldDeskID.offset > 0; }
    FieldDeskID::ValueType getDeskID() const { return fieldDeskID.getValue( _fixPtr ); }
-   std::string_view getDeskIDView() const { return fieldDeskID.offset >= 0 ? std::string_view{ _fixPtr + fieldDeskID.offset, getValueLength( _fixPtr + fieldDeskID.offset ) } : std::string_view{}; }
+   std::string_view getDeskIDView() const { return fieldDeskID.offset > 0 ? std::string_view{ _fixPtr + fieldDeskID.offset, getValueLength( _fixPtr + fieldDeskID.offset ) } : std::string_view{}; }
    const char * ptrToDeskID() const { return _fixPtr + fieldDeskID.offset; }
-   const char * getIfSetDeskID() const { return fieldDeskID.offset >= 0 ? _fixPtr + fieldDeskID.offset : nullptr; }
+   const char * ptrToTagDeskID() const { return _fixPtr + fieldDeskID.offset - 1 - FieldDeskID::tagWidth(); }
+   const char * getIfSetDeskID() const { return fieldDeskID.offset > 0 ? _fixPtr + fieldDeskID.offset : nullptr; }
    private: FieldDeskID fieldDeskID;
 
 };
@@ -6232,32 +6973,37 @@ class GroupLegAllocs : public MessageBase
    static offset_t scan( Array & arr, const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    const char * getFieldValue( unsigned tag ) const;
+   const char * findBadField() const;
+   const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
-   bool isSetLegAllocAccount() const { return fieldLegAllocAccount.offset >= 0; }
+   bool isSetLegAllocAccount() const { return fieldLegAllocAccount.offset > 0; }
    FieldLegAllocAccount::ValueType getLegAllocAccount() const { return fieldLegAllocAccount.getValue( _fixPtr ); }
-   std::string_view getLegAllocAccountView() const { return fieldLegAllocAccount.offset >= 0 ? std::string_view{ _fixPtr + fieldLegAllocAccount.offset, getValueLength( _fixPtr + fieldLegAllocAccount.offset ) } : std::string_view{}; }
+   std::string_view getLegAllocAccountView() const { return fieldLegAllocAccount.offset > 0 ? std::string_view{ _fixPtr + fieldLegAllocAccount.offset, getValueLength( _fixPtr + fieldLegAllocAccount.offset ) } : std::string_view{}; }
    const char * ptrToLegAllocAccount() const { return _fixPtr + fieldLegAllocAccount.offset; }
-   const char * getIfSetLegAllocAccount() const { return fieldLegAllocAccount.offset >= 0 ? _fixPtr + fieldLegAllocAccount.offset : nullptr; }
+   const char * ptrToTagLegAllocAccount() const { return _fixPtr + fieldLegAllocAccount.offset - 1 - FieldLegAllocAccount::tagWidth(); }
+   const char * getIfSetLegAllocAccount() const { return fieldLegAllocAccount.offset > 0 ? _fixPtr + fieldLegAllocAccount.offset : nullptr; }
    private: FieldLegAllocAccount fieldLegAllocAccount;
 
    public:
-   bool isSetLegIndividualAllocID() const { return fieldLegIndividualAllocID.offset >= 0; }
+   bool isSetLegIndividualAllocID() const { return fieldLegIndividualAllocID.offset > 0; }
    FieldLegIndividualAllocID::ValueType getLegIndividualAllocID() const { return fieldLegIndividualAllocID.getValue( _fixPtr ); }
-   std::string_view getLegIndividualAllocIDView() const { return fieldLegIndividualAllocID.offset >= 0 ? std::string_view{ _fixPtr + fieldLegIndividualAllocID.offset, getValueLength( _fixPtr + fieldLegIndividualAllocID.offset ) } : std::string_view{}; }
+   std::string_view getLegIndividualAllocIDView() const { return fieldLegIndividualAllocID.offset > 0 ? std::string_view{ _fixPtr + fieldLegIndividualAllocID.offset, getValueLength( _fixPtr + fieldLegIndividualAllocID.offset ) } : std::string_view{}; }
    const char * ptrToLegIndividualAllocID() const { return _fixPtr + fieldLegIndividualAllocID.offset; }
-   const char * getIfSetLegIndividualAllocID() const { return fieldLegIndividualAllocID.offset >= 0 ? _fixPtr + fieldLegIndividualAllocID.offset : nullptr; }
+   const char * ptrToTagLegIndividualAllocID() const { return _fixPtr + fieldLegIndividualAllocID.offset - 1 - FieldLegIndividualAllocID::tagWidth(); }
+   const char * getIfSetLegIndividualAllocID() const { return fieldLegIndividualAllocID.offset > 0 ? _fixPtr + fieldLegIndividualAllocID.offset : nullptr; }
    private: FieldLegIndividualAllocID fieldLegIndividualAllocID;
 
    public:
-   bool isSetNoNested2PartyIDs() const { return fieldNoNested2PartyIDs.offset >= 0; }
+   bool isSetNoNested2PartyIDs() const { return fieldNoNested2PartyIDs.offset > 0; }
    FieldNoNested2PartyIDs::ValueType getNoNested2PartyIDs() const { return fieldNoNested2PartyIDs.getValue( _fixPtr ); }
-   std::string_view getNoNested2PartyIDsView() const { return fieldNoNested2PartyIDs.offset >= 0 ? std::string_view{ _fixPtr + fieldNoNested2PartyIDs.offset, getValueLength( _fixPtr + fieldNoNested2PartyIDs.offset ) } : std::string_view{}; }
+   std::string_view getNoNested2PartyIDsView() const { return fieldNoNested2PartyIDs.offset > 0 ? std::string_view{ _fixPtr + fieldNoNested2PartyIDs.offset, getValueLength( _fixPtr + fieldNoNested2PartyIDs.offset ) } : std::string_view{}; }
    const char * ptrToNoNested2PartyIDs() const { return _fixPtr + fieldNoNested2PartyIDs.offset; }
-   const char * getIfSetNoNested2PartyIDs() const { return fieldNoNested2PartyIDs.offset >= 0 ? _fixPtr + fieldNoNested2PartyIDs.offset : nullptr; }
+   const char * ptrToTagNoNested2PartyIDs() const { return _fixPtr + fieldNoNested2PartyIDs.offset - 1 - FieldNoNested2PartyIDs::tagWidth(); }
+   const char * getIfSetNoNested2PartyIDs() const { return fieldNoNested2PartyIDs.offset > 0 ? _fixPtr + fieldNoNested2PartyIDs.offset : nullptr; }
    private: FieldNoNested2PartyIDs fieldNoNested2PartyIDs;
   
    public:
@@ -6266,27 +7012,30 @@ class GroupLegAllocs : public MessageBase
    private: GroupNested2PartyIDs::Array groupsNested2PartyIDs{ 10 };
 
    public:
-   bool isSetLegAllocQty() const { return fieldLegAllocQty.offset >= 0; }
+   bool isSetLegAllocQty() const { return fieldLegAllocQty.offset > 0; }
    FieldLegAllocQty::ValueType getLegAllocQty() const { return fieldLegAllocQty.getValue( _fixPtr ); }
-   std::string_view getLegAllocQtyView() const { return fieldLegAllocQty.offset >= 0 ? std::string_view{ _fixPtr + fieldLegAllocQty.offset, getValueLength( _fixPtr + fieldLegAllocQty.offset ) } : std::string_view{}; }
+   std::string_view getLegAllocQtyView() const { return fieldLegAllocQty.offset > 0 ? std::string_view{ _fixPtr + fieldLegAllocQty.offset, getValueLength( _fixPtr + fieldLegAllocQty.offset ) } : std::string_view{}; }
    const char * ptrToLegAllocQty() const { return _fixPtr + fieldLegAllocQty.offset; }
-   const char * getIfSetLegAllocQty() const { return fieldLegAllocQty.offset >= 0 ? _fixPtr + fieldLegAllocQty.offset : nullptr; }
+   const char * ptrToTagLegAllocQty() const { return _fixPtr + fieldLegAllocQty.offset - 1 - FieldLegAllocQty::tagWidth(); }
+   const char * getIfSetLegAllocQty() const { return fieldLegAllocQty.offset > 0 ? _fixPtr + fieldLegAllocQty.offset : nullptr; }
    private: FieldLegAllocQty fieldLegAllocQty;
 
    public:
-   bool isSetLegAllocAcctIDSource() const { return fieldLegAllocAcctIDSource.offset >= 0; }
+   bool isSetLegAllocAcctIDSource() const { return fieldLegAllocAcctIDSource.offset > 0; }
    FieldLegAllocAcctIDSource::ValueType getLegAllocAcctIDSource() const { return fieldLegAllocAcctIDSource.getValue( _fixPtr ); }
-   std::string_view getLegAllocAcctIDSourceView() const { return fieldLegAllocAcctIDSource.offset >= 0 ? std::string_view{ _fixPtr + fieldLegAllocAcctIDSource.offset, getValueLength( _fixPtr + fieldLegAllocAcctIDSource.offset ) } : std::string_view{}; }
+   std::string_view getLegAllocAcctIDSourceView() const { return fieldLegAllocAcctIDSource.offset > 0 ? std::string_view{ _fixPtr + fieldLegAllocAcctIDSource.offset, getValueLength( _fixPtr + fieldLegAllocAcctIDSource.offset ) } : std::string_view{}; }
    const char * ptrToLegAllocAcctIDSource() const { return _fixPtr + fieldLegAllocAcctIDSource.offset; }
-   const char * getIfSetLegAllocAcctIDSource() const { return fieldLegAllocAcctIDSource.offset >= 0 ? _fixPtr + fieldLegAllocAcctIDSource.offset : nullptr; }
+   const char * ptrToTagLegAllocAcctIDSource() const { return _fixPtr + fieldLegAllocAcctIDSource.offset - 1 - FieldLegAllocAcctIDSource::tagWidth(); }
+   const char * getIfSetLegAllocAcctIDSource() const { return fieldLegAllocAcctIDSource.offset > 0 ? _fixPtr + fieldLegAllocAcctIDSource.offset : nullptr; }
    private: FieldLegAllocAcctIDSource fieldLegAllocAcctIDSource;
 
    public:
-   bool isSetLegSettlCurrency() const { return fieldLegSettlCurrency.offset >= 0; }
+   bool isSetLegSettlCurrency() const { return fieldLegSettlCurrency.offset > 0; }
    FieldLegSettlCurrency::ValueType getLegSettlCurrency() const { return fieldLegSettlCurrency.getValue( _fixPtr ); }
-   std::string_view getLegSettlCurrencyView() const { return fieldLegSettlCurrency.offset >= 0 ? std::string_view{ _fixPtr + fieldLegSettlCurrency.offset, getValueLength( _fixPtr + fieldLegSettlCurrency.offset ) } : std::string_view{}; }
+   std::string_view getLegSettlCurrencyView() const { return fieldLegSettlCurrency.offset > 0 ? std::string_view{ _fixPtr + fieldLegSettlCurrency.offset, getValueLength( _fixPtr + fieldLegSettlCurrency.offset ) } : std::string_view{}; }
    const char * ptrToLegSettlCurrency() const { return _fixPtr + fieldLegSettlCurrency.offset; }
-   const char * getIfSetLegSettlCurrency() const { return fieldLegSettlCurrency.offset >= 0 ? _fixPtr + fieldLegSettlCurrency.offset : nullptr; }
+   const char * ptrToTagLegSettlCurrency() const { return _fixPtr + fieldLegSettlCurrency.offset - 1 - FieldLegSettlCurrency::tagWidth(); }
+   const char * getIfSetLegSettlCurrency() const { return fieldLegSettlCurrency.offset > 0 ? _fixPtr + fieldLegSettlCurrency.offset : nullptr; }
    private: FieldLegSettlCurrency fieldLegSettlCurrency;
 
 };
@@ -6303,48 +7052,55 @@ class GroupRegistDtls : public MessageBase
    static offset_t scan( Array & arr, const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    const char * getFieldValue( unsigned tag ) const;
+   const char * findBadField() const;
+   const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
-   bool isSetRegistDtls() const { return fieldRegistDtls.offset >= 0; }
+   bool isSetRegistDtls() const { return fieldRegistDtls.offset > 0; }
    FieldRegistDtls::ValueType getRegistDtls() const { return fieldRegistDtls.getValue( _fixPtr ); }
-   std::string_view getRegistDtlsView() const { return fieldRegistDtls.offset >= 0 ? std::string_view{ _fixPtr + fieldRegistDtls.offset, getValueLength( _fixPtr + fieldRegistDtls.offset ) } : std::string_view{}; }
+   std::string_view getRegistDtlsView() const { return fieldRegistDtls.offset > 0 ? std::string_view{ _fixPtr + fieldRegistDtls.offset, getValueLength( _fixPtr + fieldRegistDtls.offset ) } : std::string_view{}; }
    const char * ptrToRegistDtls() const { return _fixPtr + fieldRegistDtls.offset; }
-   const char * getIfSetRegistDtls() const { return fieldRegistDtls.offset >= 0 ? _fixPtr + fieldRegistDtls.offset : nullptr; }
+   const char * ptrToTagRegistDtls() const { return _fixPtr + fieldRegistDtls.offset - 1 - FieldRegistDtls::tagWidth(); }
+   const char * getIfSetRegistDtls() const { return fieldRegistDtls.offset > 0 ? _fixPtr + fieldRegistDtls.offset : nullptr; }
    private: FieldRegistDtls fieldRegistDtls;
 
    public:
-   bool isSetRegistEmail() const { return fieldRegistEmail.offset >= 0; }
+   bool isSetRegistEmail() const { return fieldRegistEmail.offset > 0; }
    FieldRegistEmail::ValueType getRegistEmail() const { return fieldRegistEmail.getValue( _fixPtr ); }
-   std::string_view getRegistEmailView() const { return fieldRegistEmail.offset >= 0 ? std::string_view{ _fixPtr + fieldRegistEmail.offset, getValueLength( _fixPtr + fieldRegistEmail.offset ) } : std::string_view{}; }
+   std::string_view getRegistEmailView() const { return fieldRegistEmail.offset > 0 ? std::string_view{ _fixPtr + fieldRegistEmail.offset, getValueLength( _fixPtr + fieldRegistEmail.offset ) } : std::string_view{}; }
    const char * ptrToRegistEmail() const { return _fixPtr + fieldRegistEmail.offset; }
-   const char * getIfSetRegistEmail() const { return fieldRegistEmail.offset >= 0 ? _fixPtr + fieldRegistEmail.offset : nullptr; }
+   const char * ptrToTagRegistEmail() const { return _fixPtr + fieldRegistEmail.offset - 1 - FieldRegistEmail::tagWidth(); }
+   const char * getIfSetRegistEmail() const { return fieldRegistEmail.offset > 0 ? _fixPtr + fieldRegistEmail.offset : nullptr; }
    private: FieldRegistEmail fieldRegistEmail;
 
    public:
-   bool isSetMailingDtls() const { return fieldMailingDtls.offset >= 0; }
+   bool isSetMailingDtls() const { return fieldMailingDtls.offset > 0; }
    FieldMailingDtls::ValueType getMailingDtls() const { return fieldMailingDtls.getValue( _fixPtr ); }
-   std::string_view getMailingDtlsView() const { return fieldMailingDtls.offset >= 0 ? std::string_view{ _fixPtr + fieldMailingDtls.offset, getValueLength( _fixPtr + fieldMailingDtls.offset ) } : std::string_view{}; }
+   std::string_view getMailingDtlsView() const { return fieldMailingDtls.offset > 0 ? std::string_view{ _fixPtr + fieldMailingDtls.offset, getValueLength( _fixPtr + fieldMailingDtls.offset ) } : std::string_view{}; }
    const char * ptrToMailingDtls() const { return _fixPtr + fieldMailingDtls.offset; }
-   const char * getIfSetMailingDtls() const { return fieldMailingDtls.offset >= 0 ? _fixPtr + fieldMailingDtls.offset : nullptr; }
+   const char * ptrToTagMailingDtls() const { return _fixPtr + fieldMailingDtls.offset - 1 - FieldMailingDtls::tagWidth(); }
+   const char * getIfSetMailingDtls() const { return fieldMailingDtls.offset > 0 ? _fixPtr + fieldMailingDtls.offset : nullptr; }
    private: FieldMailingDtls fieldMailingDtls;
 
    public:
-   bool isSetMailingInst() const { return fieldMailingInst.offset >= 0; }
+   bool isSetMailingInst() const { return fieldMailingInst.offset > 0; }
    FieldMailingInst::ValueType getMailingInst() const { return fieldMailingInst.getValue( _fixPtr ); }
-   std::string_view getMailingInstView() const { return fieldMailingInst.offset >= 0 ? std::string_view{ _fixPtr + fieldMailingInst.offset, getValueLength( _fixPtr + fieldMailingInst.offset ) } : std::string_view{}; }
+   std::string_view getMailingInstView() const { return fieldMailingInst.offset > 0 ? std::string_view{ _fixPtr + fieldMailingInst.offset, getValueLength( _fixPtr + fieldMailingInst.offset ) } : std::string_view{}; }
    const char * ptrToMailingInst() const { return _fixPtr + fieldMailingInst.offset; }
-   const char * getIfSetMailingInst() const { return fieldMailingInst.offset >= 0 ? _fixPtr + fieldMailingInst.offset : nullptr; }
+   const char * ptrToTagMailingInst() const { return _fixPtr + fieldMailingInst.offset - 1 - FieldMailingInst::tagWidth(); }
+   const char * getIfSetMailingInst() const { return fieldMailingInst.offset > 0 ? _fixPtr + fieldMailingInst.offset : nullptr; }
    private: FieldMailingInst fieldMailingInst;
 
    public:
-   bool isSetNoNestedPartyIDs() const { return fieldNoNestedPartyIDs.offset >= 0; }
+   bool isSetNoNestedPartyIDs() const { return fieldNoNestedPartyIDs.offset > 0; }
    FieldNoNestedPartyIDs::ValueType getNoNestedPartyIDs() const { return fieldNoNestedPartyIDs.getValue( _fixPtr ); }
-   std::string_view getNoNestedPartyIDsView() const { return fieldNoNestedPartyIDs.offset >= 0 ? std::string_view{ _fixPtr + fieldNoNestedPartyIDs.offset, getValueLength( _fixPtr + fieldNoNestedPartyIDs.offset ) } : std::string_view{}; }
+   std::string_view getNoNestedPartyIDsView() const { return fieldNoNestedPartyIDs.offset > 0 ? std::string_view{ _fixPtr + fieldNoNestedPartyIDs.offset, getValueLength( _fixPtr + fieldNoNestedPartyIDs.offset ) } : std::string_view{}; }
    const char * ptrToNoNestedPartyIDs() const { return _fixPtr + fieldNoNestedPartyIDs.offset; }
-   const char * getIfSetNoNestedPartyIDs() const { return fieldNoNestedPartyIDs.offset >= 0 ? _fixPtr + fieldNoNestedPartyIDs.offset : nullptr; }
+   const char * ptrToTagNoNestedPartyIDs() const { return _fixPtr + fieldNoNestedPartyIDs.offset - 1 - FieldNoNestedPartyIDs::tagWidth(); }
+   const char * getIfSetNoNestedPartyIDs() const { return fieldNoNestedPartyIDs.offset > 0 ? _fixPtr + fieldNoNestedPartyIDs.offset : nullptr; }
    private: FieldNoNestedPartyIDs fieldNoNestedPartyIDs;
   
    public:
@@ -6353,27 +7109,30 @@ class GroupRegistDtls : public MessageBase
    private: GroupNestedPartyIDs::Array groupsNestedPartyIDs{ 10 };
 
    public:
-   bool isSetOwnerType() const { return fieldOwnerType.offset >= 0; }
+   bool isSetOwnerType() const { return fieldOwnerType.offset > 0; }
    FieldOwnerType::ValueType getOwnerType() const { return fieldOwnerType.getValue( _fixPtr ); }
-   std::string_view getOwnerTypeView() const { return fieldOwnerType.offset >= 0 ? std::string_view{ _fixPtr + fieldOwnerType.offset, getValueLength( _fixPtr + fieldOwnerType.offset ) } : std::string_view{}; }
+   std::string_view getOwnerTypeView() const { return fieldOwnerType.offset > 0 ? std::string_view{ _fixPtr + fieldOwnerType.offset, getValueLength( _fixPtr + fieldOwnerType.offset ) } : std::string_view{}; }
    const char * ptrToOwnerType() const { return _fixPtr + fieldOwnerType.offset; }
-   const char * getIfSetOwnerType() const { return fieldOwnerType.offset >= 0 ? _fixPtr + fieldOwnerType.offset : nullptr; }
+   const char * ptrToTagOwnerType() const { return _fixPtr + fieldOwnerType.offset - 1 - FieldOwnerType::tagWidth(); }
+   const char * getIfSetOwnerType() const { return fieldOwnerType.offset > 0 ? _fixPtr + fieldOwnerType.offset : nullptr; }
    private: FieldOwnerType fieldOwnerType;
 
    public:
-   bool isSetDateOfBirth() const { return fieldDateOfBirth.offset >= 0; }
+   bool isSetDateOfBirth() const { return fieldDateOfBirth.offset > 0; }
    FieldDateOfBirth::ValueType getDateOfBirth() const { return fieldDateOfBirth.getValue( _fixPtr ); }
-   std::string_view getDateOfBirthView() const { return fieldDateOfBirth.offset >= 0 ? std::string_view{ _fixPtr + fieldDateOfBirth.offset, getValueLength( _fixPtr + fieldDateOfBirth.offset ) } : std::string_view{}; }
+   std::string_view getDateOfBirthView() const { return fieldDateOfBirth.offset > 0 ? std::string_view{ _fixPtr + fieldDateOfBirth.offset, getValueLength( _fixPtr + fieldDateOfBirth.offset ) } : std::string_view{}; }
    const char * ptrToDateOfBirth() const { return _fixPtr + fieldDateOfBirth.offset; }
-   const char * getIfSetDateOfBirth() const { return fieldDateOfBirth.offset >= 0 ? _fixPtr + fieldDateOfBirth.offset : nullptr; }
+   const char * ptrToTagDateOfBirth() const { return _fixPtr + fieldDateOfBirth.offset - 1 - FieldDateOfBirth::tagWidth(); }
+   const char * getIfSetDateOfBirth() const { return fieldDateOfBirth.offset > 0 ? _fixPtr + fieldDateOfBirth.offset : nullptr; }
    private: FieldDateOfBirth fieldDateOfBirth;
 
    public:
-   bool isSetInvestorCountryOfResidence() const { return fieldInvestorCountryOfResidence.offset >= 0; }
+   bool isSetInvestorCountryOfResidence() const { return fieldInvestorCountryOfResidence.offset > 0; }
    FieldInvestorCountryOfResidence::ValueType getInvestorCountryOfResidence() const { return fieldInvestorCountryOfResidence.getValue( _fixPtr ); }
-   std::string_view getInvestorCountryOfResidenceView() const { return fieldInvestorCountryOfResidence.offset >= 0 ? std::string_view{ _fixPtr + fieldInvestorCountryOfResidence.offset, getValueLength( _fixPtr + fieldInvestorCountryOfResidence.offset ) } : std::string_view{}; }
+   std::string_view getInvestorCountryOfResidenceView() const { return fieldInvestorCountryOfResidence.offset > 0 ? std::string_view{ _fixPtr + fieldInvestorCountryOfResidence.offset, getValueLength( _fixPtr + fieldInvestorCountryOfResidence.offset ) } : std::string_view{}; }
    const char * ptrToInvestorCountryOfResidence() const { return _fixPtr + fieldInvestorCountryOfResidence.offset; }
-   const char * getIfSetInvestorCountryOfResidence() const { return fieldInvestorCountryOfResidence.offset >= 0 ? _fixPtr + fieldInvestorCountryOfResidence.offset : nullptr; }
+   const char * ptrToTagInvestorCountryOfResidence() const { return _fixPtr + fieldInvestorCountryOfResidence.offset - 1 - FieldInvestorCountryOfResidence::tagWidth(); }
+   const char * getIfSetInvestorCountryOfResidence() const { return fieldInvestorCountryOfResidence.offset > 0 ? _fixPtr + fieldInvestorCountryOfResidence.offset : nullptr; }
    private: FieldInvestorCountryOfResidence fieldInvestorCountryOfResidence;
 
 };
@@ -6390,32 +7149,37 @@ class GroupContAmts : public MessageBase
    static offset_t scan( Array & arr, const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    const char * getFieldValue( unsigned tag ) const;
+   const char * findBadField() const;
+   const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
-   bool isSetContAmtType() const { return fieldContAmtType.offset >= 0; }
+   bool isSetContAmtType() const { return fieldContAmtType.offset > 0; }
    FieldContAmtType::ValueType getContAmtType() const { return fieldContAmtType.getValue( _fixPtr ); }
-   std::string_view getContAmtTypeView() const { return fieldContAmtType.offset >= 0 ? std::string_view{ _fixPtr + fieldContAmtType.offset, getValueLength( _fixPtr + fieldContAmtType.offset ) } : std::string_view{}; }
+   std::string_view getContAmtTypeView() const { return fieldContAmtType.offset > 0 ? std::string_view{ _fixPtr + fieldContAmtType.offset, getValueLength( _fixPtr + fieldContAmtType.offset ) } : std::string_view{}; }
    const char * ptrToContAmtType() const { return _fixPtr + fieldContAmtType.offset; }
-   const char * getIfSetContAmtType() const { return fieldContAmtType.offset >= 0 ? _fixPtr + fieldContAmtType.offset : nullptr; }
+   const char * ptrToTagContAmtType() const { return _fixPtr + fieldContAmtType.offset - 1 - FieldContAmtType::tagWidth(); }
+   const char * getIfSetContAmtType() const { return fieldContAmtType.offset > 0 ? _fixPtr + fieldContAmtType.offset : nullptr; }
    private: FieldContAmtType fieldContAmtType;
 
    public:
-   bool isSetContAmtValue() const { return fieldContAmtValue.offset >= 0; }
+   bool isSetContAmtValue() const { return fieldContAmtValue.offset > 0; }
    FieldContAmtValue::ValueType getContAmtValue() const { return fieldContAmtValue.getValue( _fixPtr ); }
-   std::string_view getContAmtValueView() const { return fieldContAmtValue.offset >= 0 ? std::string_view{ _fixPtr + fieldContAmtValue.offset, getValueLength( _fixPtr + fieldContAmtValue.offset ) } : std::string_view{}; }
+   std::string_view getContAmtValueView() const { return fieldContAmtValue.offset > 0 ? std::string_view{ _fixPtr + fieldContAmtValue.offset, getValueLength( _fixPtr + fieldContAmtValue.offset ) } : std::string_view{}; }
    const char * ptrToContAmtValue() const { return _fixPtr + fieldContAmtValue.offset; }
-   const char * getIfSetContAmtValue() const { return fieldContAmtValue.offset >= 0 ? _fixPtr + fieldContAmtValue.offset : nullptr; }
+   const char * ptrToTagContAmtValue() const { return _fixPtr + fieldContAmtValue.offset - 1 - FieldContAmtValue::tagWidth(); }
+   const char * getIfSetContAmtValue() const { return fieldContAmtValue.offset > 0 ? _fixPtr + fieldContAmtValue.offset : nullptr; }
    private: FieldContAmtValue fieldContAmtValue;
 
    public:
-   bool isSetContAmtCurr() const { return fieldContAmtCurr.offset >= 0; }
+   bool isSetContAmtCurr() const { return fieldContAmtCurr.offset > 0; }
    FieldContAmtCurr::ValueType getContAmtCurr() const { return fieldContAmtCurr.getValue( _fixPtr ); }
-   std::string_view getContAmtCurrView() const { return fieldContAmtCurr.offset >= 0 ? std::string_view{ _fixPtr + fieldContAmtCurr.offset, getValueLength( _fixPtr + fieldContAmtCurr.offset ) } : std::string_view{}; }
+   std::string_view getContAmtCurrView() const { return fieldContAmtCurr.offset > 0 ? std::string_view{ _fixPtr + fieldContAmtCurr.offset, getValueLength( _fixPtr + fieldContAmtCurr.offset ) } : std::string_view{}; }
    const char * ptrToContAmtCurr() const { return _fixPtr + fieldContAmtCurr.offset; }
-   const char * getIfSetContAmtCurr() const { return fieldContAmtCurr.offset >= 0 ? _fixPtr + fieldContAmtCurr.offset : nullptr; }
+   const char * ptrToTagContAmtCurr() const { return _fixPtr + fieldContAmtCurr.offset - 1 - FieldContAmtCurr::tagWidth(); }
+   const char * getIfSetContAmtCurr() const { return fieldContAmtCurr.offset > 0 ? _fixPtr + fieldContAmtCurr.offset : nullptr; }
    private: FieldContAmtCurr fieldContAmtCurr;
 
 };
@@ -6432,272 +7196,307 @@ class GroupMDEntries : public MessageBase
    static offset_t scan( Array & arr, const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    const char * getFieldValue( unsigned tag ) const;
+   const char * findBadField() const;
+   const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
-   bool isSetMDEntryType() const { return fieldMDEntryType.offset >= 0; }
+   bool isSetMDEntryType() const { return fieldMDEntryType.offset > 0; }
    FieldMDEntryType::ValueType getMDEntryType() const { return fieldMDEntryType.getValue( _fixPtr ); }
-   std::string_view getMDEntryTypeView() const { return fieldMDEntryType.offset >= 0 ? std::string_view{ _fixPtr + fieldMDEntryType.offset, getValueLength( _fixPtr + fieldMDEntryType.offset ) } : std::string_view{}; }
+   std::string_view getMDEntryTypeView() const { return fieldMDEntryType.offset > 0 ? std::string_view{ _fixPtr + fieldMDEntryType.offset, getValueLength( _fixPtr + fieldMDEntryType.offset ) } : std::string_view{}; }
    const char * ptrToMDEntryType() const { return _fixPtr + fieldMDEntryType.offset; }
-   const char * getIfSetMDEntryType() const { return fieldMDEntryType.offset >= 0 ? _fixPtr + fieldMDEntryType.offset : nullptr; }
+   const char * ptrToTagMDEntryType() const { return _fixPtr + fieldMDEntryType.offset - 1 - FieldMDEntryType::tagWidth(); }
+   const char * getIfSetMDEntryType() const { return fieldMDEntryType.offset > 0 ? _fixPtr + fieldMDEntryType.offset : nullptr; }
    private: FieldMDEntryType fieldMDEntryType;
 
    public:
-   bool isSetMDEntryPx() const { return fieldMDEntryPx.offset >= 0; }
+   bool isSetMDEntryPx() const { return fieldMDEntryPx.offset > 0; }
    FieldMDEntryPx::ValueType getMDEntryPx() const { return fieldMDEntryPx.getValue( _fixPtr ); }
-   std::string_view getMDEntryPxView() const { return fieldMDEntryPx.offset >= 0 ? std::string_view{ _fixPtr + fieldMDEntryPx.offset, getValueLength( _fixPtr + fieldMDEntryPx.offset ) } : std::string_view{}; }
+   std::string_view getMDEntryPxView() const { return fieldMDEntryPx.offset > 0 ? std::string_view{ _fixPtr + fieldMDEntryPx.offset, getValueLength( _fixPtr + fieldMDEntryPx.offset ) } : std::string_view{}; }
    const char * ptrToMDEntryPx() const { return _fixPtr + fieldMDEntryPx.offset; }
-   const char * getIfSetMDEntryPx() const { return fieldMDEntryPx.offset >= 0 ? _fixPtr + fieldMDEntryPx.offset : nullptr; }
+   const char * ptrToTagMDEntryPx() const { return _fixPtr + fieldMDEntryPx.offset - 1 - FieldMDEntryPx::tagWidth(); }
+   const char * getIfSetMDEntryPx() const { return fieldMDEntryPx.offset > 0 ? _fixPtr + fieldMDEntryPx.offset : nullptr; }
    private: FieldMDEntryPx fieldMDEntryPx;
 
    public:
-   bool isSetCurrency() const { return fieldCurrency.offset >= 0; }
+   bool isSetCurrency() const { return fieldCurrency.offset > 0; }
    FieldCurrency::ValueType getCurrency() const { return fieldCurrency.getValue( _fixPtr ); }
-   std::string_view getCurrencyView() const { return fieldCurrency.offset >= 0 ? std::string_view{ _fixPtr + fieldCurrency.offset, getValueLength( _fixPtr + fieldCurrency.offset ) } : std::string_view{}; }
+   std::string_view getCurrencyView() const { return fieldCurrency.offset > 0 ? std::string_view{ _fixPtr + fieldCurrency.offset, getValueLength( _fixPtr + fieldCurrency.offset ) } : std::string_view{}; }
    const char * ptrToCurrency() const { return _fixPtr + fieldCurrency.offset; }
-   const char * getIfSetCurrency() const { return fieldCurrency.offset >= 0 ? _fixPtr + fieldCurrency.offset : nullptr; }
+   const char * ptrToTagCurrency() const { return _fixPtr + fieldCurrency.offset - 1 - FieldCurrency::tagWidth(); }
+   const char * getIfSetCurrency() const { return fieldCurrency.offset > 0 ? _fixPtr + fieldCurrency.offset : nullptr; }
    private: FieldCurrency fieldCurrency;
 
    public:
-   bool isSetMDEntrySize() const { return fieldMDEntrySize.offset >= 0; }
+   bool isSetMDEntrySize() const { return fieldMDEntrySize.offset > 0; }
    FieldMDEntrySize::ValueType getMDEntrySize() const { return fieldMDEntrySize.getValue( _fixPtr ); }
-   std::string_view getMDEntrySizeView() const { return fieldMDEntrySize.offset >= 0 ? std::string_view{ _fixPtr + fieldMDEntrySize.offset, getValueLength( _fixPtr + fieldMDEntrySize.offset ) } : std::string_view{}; }
+   std::string_view getMDEntrySizeView() const { return fieldMDEntrySize.offset > 0 ? std::string_view{ _fixPtr + fieldMDEntrySize.offset, getValueLength( _fixPtr + fieldMDEntrySize.offset ) } : std::string_view{}; }
    const char * ptrToMDEntrySize() const { return _fixPtr + fieldMDEntrySize.offset; }
-   const char * getIfSetMDEntrySize() const { return fieldMDEntrySize.offset >= 0 ? _fixPtr + fieldMDEntrySize.offset : nullptr; }
+   const char * ptrToTagMDEntrySize() const { return _fixPtr + fieldMDEntrySize.offset - 1 - FieldMDEntrySize::tagWidth(); }
+   const char * getIfSetMDEntrySize() const { return fieldMDEntrySize.offset > 0 ? _fixPtr + fieldMDEntrySize.offset : nullptr; }
    private: FieldMDEntrySize fieldMDEntrySize;
 
    public:
-   bool isSetMDEntryDate() const { return fieldMDEntryDate.offset >= 0; }
+   bool isSetMDEntryDate() const { return fieldMDEntryDate.offset > 0; }
    FieldMDEntryDate::ValueType getMDEntryDate() const { return fieldMDEntryDate.getValue( _fixPtr ); }
-   std::string_view getMDEntryDateView() const { return fieldMDEntryDate.offset >= 0 ? std::string_view{ _fixPtr + fieldMDEntryDate.offset, getValueLength( _fixPtr + fieldMDEntryDate.offset ) } : std::string_view{}; }
+   std::string_view getMDEntryDateView() const { return fieldMDEntryDate.offset > 0 ? std::string_view{ _fixPtr + fieldMDEntryDate.offset, getValueLength( _fixPtr + fieldMDEntryDate.offset ) } : std::string_view{}; }
    const char * ptrToMDEntryDate() const { return _fixPtr + fieldMDEntryDate.offset; }
-   const char * getIfSetMDEntryDate() const { return fieldMDEntryDate.offset >= 0 ? _fixPtr + fieldMDEntryDate.offset : nullptr; }
+   const char * ptrToTagMDEntryDate() const { return _fixPtr + fieldMDEntryDate.offset - 1 - FieldMDEntryDate::tagWidth(); }
+   const char * getIfSetMDEntryDate() const { return fieldMDEntryDate.offset > 0 ? _fixPtr + fieldMDEntryDate.offset : nullptr; }
    private: FieldMDEntryDate fieldMDEntryDate;
 
    public:
-   bool isSetMDEntryTime() const { return fieldMDEntryTime.offset >= 0; }
+   bool isSetMDEntryTime() const { return fieldMDEntryTime.offset > 0; }
    FieldMDEntryTime::ValueType getMDEntryTime() const { return fieldMDEntryTime.getValue( _fixPtr ); }
-   std::string_view getMDEntryTimeView() const { return fieldMDEntryTime.offset >= 0 ? std::string_view{ _fixPtr + fieldMDEntryTime.offset, getValueLength( _fixPtr + fieldMDEntryTime.offset ) } : std::string_view{}; }
+   std::string_view getMDEntryTimeView() const { return fieldMDEntryTime.offset > 0 ? std::string_view{ _fixPtr + fieldMDEntryTime.offset, getValueLength( _fixPtr + fieldMDEntryTime.offset ) } : std::string_view{}; }
    const char * ptrToMDEntryTime() const { return _fixPtr + fieldMDEntryTime.offset; }
-   const char * getIfSetMDEntryTime() const { return fieldMDEntryTime.offset >= 0 ? _fixPtr + fieldMDEntryTime.offset : nullptr; }
+   const char * ptrToTagMDEntryTime() const { return _fixPtr + fieldMDEntryTime.offset - 1 - FieldMDEntryTime::tagWidth(); }
+   const char * getIfSetMDEntryTime() const { return fieldMDEntryTime.offset > 0 ? _fixPtr + fieldMDEntryTime.offset : nullptr; }
    private: FieldMDEntryTime fieldMDEntryTime;
 
    public:
-   bool isSetTickDirection() const { return fieldTickDirection.offset >= 0; }
+   bool isSetTickDirection() const { return fieldTickDirection.offset > 0; }
    FieldTickDirection::ValueType getTickDirection() const { return fieldTickDirection.getValue( _fixPtr ); }
-   std::string_view getTickDirectionView() const { return fieldTickDirection.offset >= 0 ? std::string_view{ _fixPtr + fieldTickDirection.offset, getValueLength( _fixPtr + fieldTickDirection.offset ) } : std::string_view{}; }
+   std::string_view getTickDirectionView() const { return fieldTickDirection.offset > 0 ? std::string_view{ _fixPtr + fieldTickDirection.offset, getValueLength( _fixPtr + fieldTickDirection.offset ) } : std::string_view{}; }
    const char * ptrToTickDirection() const { return _fixPtr + fieldTickDirection.offset; }
-   const char * getIfSetTickDirection() const { return fieldTickDirection.offset >= 0 ? _fixPtr + fieldTickDirection.offset : nullptr; }
+   const char * ptrToTagTickDirection() const { return _fixPtr + fieldTickDirection.offset - 1 - FieldTickDirection::tagWidth(); }
+   const char * getIfSetTickDirection() const { return fieldTickDirection.offset > 0 ? _fixPtr + fieldTickDirection.offset : nullptr; }
    private: FieldTickDirection fieldTickDirection;
 
    public:
-   bool isSetMDMkt() const { return fieldMDMkt.offset >= 0; }
+   bool isSetMDMkt() const { return fieldMDMkt.offset > 0; }
    FieldMDMkt::ValueType getMDMkt() const { return fieldMDMkt.getValue( _fixPtr ); }
-   std::string_view getMDMktView() const { return fieldMDMkt.offset >= 0 ? std::string_view{ _fixPtr + fieldMDMkt.offset, getValueLength( _fixPtr + fieldMDMkt.offset ) } : std::string_view{}; }
+   std::string_view getMDMktView() const { return fieldMDMkt.offset > 0 ? std::string_view{ _fixPtr + fieldMDMkt.offset, getValueLength( _fixPtr + fieldMDMkt.offset ) } : std::string_view{}; }
    const char * ptrToMDMkt() const { return _fixPtr + fieldMDMkt.offset; }
-   const char * getIfSetMDMkt() const { return fieldMDMkt.offset >= 0 ? _fixPtr + fieldMDMkt.offset : nullptr; }
+   const char * ptrToTagMDMkt() const { return _fixPtr + fieldMDMkt.offset - 1 - FieldMDMkt::tagWidth(); }
+   const char * getIfSetMDMkt() const { return fieldMDMkt.offset > 0 ? _fixPtr + fieldMDMkt.offset : nullptr; }
    private: FieldMDMkt fieldMDMkt;
 
    public:
-   bool isSetTradingSessionID() const { return fieldTradingSessionID.offset >= 0; }
+   bool isSetTradingSessionID() const { return fieldTradingSessionID.offset > 0; }
    FieldTradingSessionID::ValueType getTradingSessionID() const { return fieldTradingSessionID.getValue( _fixPtr ); }
-   std::string_view getTradingSessionIDView() const { return fieldTradingSessionID.offset >= 0 ? std::string_view{ _fixPtr + fieldTradingSessionID.offset, getValueLength( _fixPtr + fieldTradingSessionID.offset ) } : std::string_view{}; }
+   std::string_view getTradingSessionIDView() const { return fieldTradingSessionID.offset > 0 ? std::string_view{ _fixPtr + fieldTradingSessionID.offset, getValueLength( _fixPtr + fieldTradingSessionID.offset ) } : std::string_view{}; }
    const char * ptrToTradingSessionID() const { return _fixPtr + fieldTradingSessionID.offset; }
-   const char * getIfSetTradingSessionID() const { return fieldTradingSessionID.offset >= 0 ? _fixPtr + fieldTradingSessionID.offset : nullptr; }
+   const char * ptrToTagTradingSessionID() const { return _fixPtr + fieldTradingSessionID.offset - 1 - FieldTradingSessionID::tagWidth(); }
+   const char * getIfSetTradingSessionID() const { return fieldTradingSessionID.offset > 0 ? _fixPtr + fieldTradingSessionID.offset : nullptr; }
    private: FieldTradingSessionID fieldTradingSessionID;
 
    public:
-   bool isSetTradingSessionSubID() const { return fieldTradingSessionSubID.offset >= 0; }
+   bool isSetTradingSessionSubID() const { return fieldTradingSessionSubID.offset > 0; }
    FieldTradingSessionSubID::ValueType getTradingSessionSubID() const { return fieldTradingSessionSubID.getValue( _fixPtr ); }
-   std::string_view getTradingSessionSubIDView() const { return fieldTradingSessionSubID.offset >= 0 ? std::string_view{ _fixPtr + fieldTradingSessionSubID.offset, getValueLength( _fixPtr + fieldTradingSessionSubID.offset ) } : std::string_view{}; }
+   std::string_view getTradingSessionSubIDView() const { return fieldTradingSessionSubID.offset > 0 ? std::string_view{ _fixPtr + fieldTradingSessionSubID.offset, getValueLength( _fixPtr + fieldTradingSessionSubID.offset ) } : std::string_view{}; }
    const char * ptrToTradingSessionSubID() const { return _fixPtr + fieldTradingSessionSubID.offset; }
-   const char * getIfSetTradingSessionSubID() const { return fieldTradingSessionSubID.offset >= 0 ? _fixPtr + fieldTradingSessionSubID.offset : nullptr; }
+   const char * ptrToTagTradingSessionSubID() const { return _fixPtr + fieldTradingSessionSubID.offset - 1 - FieldTradingSessionSubID::tagWidth(); }
+   const char * getIfSetTradingSessionSubID() const { return fieldTradingSessionSubID.offset > 0 ? _fixPtr + fieldTradingSessionSubID.offset : nullptr; }
    private: FieldTradingSessionSubID fieldTradingSessionSubID;
 
    public:
-   bool isSetQuoteCondition() const { return fieldQuoteCondition.offset >= 0; }
+   bool isSetQuoteCondition() const { return fieldQuoteCondition.offset > 0; }
    FieldQuoteCondition::ValueType getQuoteCondition() const { return fieldQuoteCondition.getValue( _fixPtr ); }
-   std::string_view getQuoteConditionView() const { return fieldQuoteCondition.offset >= 0 ? std::string_view{ _fixPtr + fieldQuoteCondition.offset, getValueLength( _fixPtr + fieldQuoteCondition.offset ) } : std::string_view{}; }
+   std::string_view getQuoteConditionView() const { return fieldQuoteCondition.offset > 0 ? std::string_view{ _fixPtr + fieldQuoteCondition.offset, getValueLength( _fixPtr + fieldQuoteCondition.offset ) } : std::string_view{}; }
    const char * ptrToQuoteCondition() const { return _fixPtr + fieldQuoteCondition.offset; }
-   const char * getIfSetQuoteCondition() const { return fieldQuoteCondition.offset >= 0 ? _fixPtr + fieldQuoteCondition.offset : nullptr; }
+   const char * ptrToTagQuoteCondition() const { return _fixPtr + fieldQuoteCondition.offset - 1 - FieldQuoteCondition::tagWidth(); }
+   const char * getIfSetQuoteCondition() const { return fieldQuoteCondition.offset > 0 ? _fixPtr + fieldQuoteCondition.offset : nullptr; }
    private: FieldQuoteCondition fieldQuoteCondition;
 
    public:
-   bool isSetTradeCondition() const { return fieldTradeCondition.offset >= 0; }
+   bool isSetTradeCondition() const { return fieldTradeCondition.offset > 0; }
    FieldTradeCondition::ValueType getTradeCondition() const { return fieldTradeCondition.getValue( _fixPtr ); }
-   std::string_view getTradeConditionView() const { return fieldTradeCondition.offset >= 0 ? std::string_view{ _fixPtr + fieldTradeCondition.offset, getValueLength( _fixPtr + fieldTradeCondition.offset ) } : std::string_view{}; }
+   std::string_view getTradeConditionView() const { return fieldTradeCondition.offset > 0 ? std::string_view{ _fixPtr + fieldTradeCondition.offset, getValueLength( _fixPtr + fieldTradeCondition.offset ) } : std::string_view{}; }
    const char * ptrToTradeCondition() const { return _fixPtr + fieldTradeCondition.offset; }
-   const char * getIfSetTradeCondition() const { return fieldTradeCondition.offset >= 0 ? _fixPtr + fieldTradeCondition.offset : nullptr; }
+   const char * ptrToTagTradeCondition() const { return _fixPtr + fieldTradeCondition.offset - 1 - FieldTradeCondition::tagWidth(); }
+   const char * getIfSetTradeCondition() const { return fieldTradeCondition.offset > 0 ? _fixPtr + fieldTradeCondition.offset : nullptr; }
    private: FieldTradeCondition fieldTradeCondition;
 
    public:
-   bool isSetMDEntryOriginator() const { return fieldMDEntryOriginator.offset >= 0; }
+   bool isSetMDEntryOriginator() const { return fieldMDEntryOriginator.offset > 0; }
    FieldMDEntryOriginator::ValueType getMDEntryOriginator() const { return fieldMDEntryOriginator.getValue( _fixPtr ); }
-   std::string_view getMDEntryOriginatorView() const { return fieldMDEntryOriginator.offset >= 0 ? std::string_view{ _fixPtr + fieldMDEntryOriginator.offset, getValueLength( _fixPtr + fieldMDEntryOriginator.offset ) } : std::string_view{}; }
+   std::string_view getMDEntryOriginatorView() const { return fieldMDEntryOriginator.offset > 0 ? std::string_view{ _fixPtr + fieldMDEntryOriginator.offset, getValueLength( _fixPtr + fieldMDEntryOriginator.offset ) } : std::string_view{}; }
    const char * ptrToMDEntryOriginator() const { return _fixPtr + fieldMDEntryOriginator.offset; }
-   const char * getIfSetMDEntryOriginator() const { return fieldMDEntryOriginator.offset >= 0 ? _fixPtr + fieldMDEntryOriginator.offset : nullptr; }
+   const char * ptrToTagMDEntryOriginator() const { return _fixPtr + fieldMDEntryOriginator.offset - 1 - FieldMDEntryOriginator::tagWidth(); }
+   const char * getIfSetMDEntryOriginator() const { return fieldMDEntryOriginator.offset > 0 ? _fixPtr + fieldMDEntryOriginator.offset : nullptr; }
    private: FieldMDEntryOriginator fieldMDEntryOriginator;
 
    public:
-   bool isSetLocationID() const { return fieldLocationID.offset >= 0; }
+   bool isSetLocationID() const { return fieldLocationID.offset > 0; }
    FieldLocationID::ValueType getLocationID() const { return fieldLocationID.getValue( _fixPtr ); }
-   std::string_view getLocationIDView() const { return fieldLocationID.offset >= 0 ? std::string_view{ _fixPtr + fieldLocationID.offset, getValueLength( _fixPtr + fieldLocationID.offset ) } : std::string_view{}; }
+   std::string_view getLocationIDView() const { return fieldLocationID.offset > 0 ? std::string_view{ _fixPtr + fieldLocationID.offset, getValueLength( _fixPtr + fieldLocationID.offset ) } : std::string_view{}; }
    const char * ptrToLocationID() const { return _fixPtr + fieldLocationID.offset; }
-   const char * getIfSetLocationID() const { return fieldLocationID.offset >= 0 ? _fixPtr + fieldLocationID.offset : nullptr; }
+   const char * ptrToTagLocationID() const { return _fixPtr + fieldLocationID.offset - 1 - FieldLocationID::tagWidth(); }
+   const char * getIfSetLocationID() const { return fieldLocationID.offset > 0 ? _fixPtr + fieldLocationID.offset : nullptr; }
    private: FieldLocationID fieldLocationID;
 
    public:
-   bool isSetDeskID() const { return fieldDeskID.offset >= 0; }
+   bool isSetDeskID() const { return fieldDeskID.offset > 0; }
    FieldDeskID::ValueType getDeskID() const { return fieldDeskID.getValue( _fixPtr ); }
-   std::string_view getDeskIDView() const { return fieldDeskID.offset >= 0 ? std::string_view{ _fixPtr + fieldDeskID.offset, getValueLength( _fixPtr + fieldDeskID.offset ) } : std::string_view{}; }
+   std::string_view getDeskIDView() const { return fieldDeskID.offset > 0 ? std::string_view{ _fixPtr + fieldDeskID.offset, getValueLength( _fixPtr + fieldDeskID.offset ) } : std::string_view{}; }
    const char * ptrToDeskID() const { return _fixPtr + fieldDeskID.offset; }
-   const char * getIfSetDeskID() const { return fieldDeskID.offset >= 0 ? _fixPtr + fieldDeskID.offset : nullptr; }
+   const char * ptrToTagDeskID() const { return _fixPtr + fieldDeskID.offset - 1 - FieldDeskID::tagWidth(); }
+   const char * getIfSetDeskID() const { return fieldDeskID.offset > 0 ? _fixPtr + fieldDeskID.offset : nullptr; }
    private: FieldDeskID fieldDeskID;
 
    public:
-   bool isSetOpenCloseSettlFlag() const { return fieldOpenCloseSettlFlag.offset >= 0; }
+   bool isSetOpenCloseSettlFlag() const { return fieldOpenCloseSettlFlag.offset > 0; }
    FieldOpenCloseSettlFlag::ValueType getOpenCloseSettlFlag() const { return fieldOpenCloseSettlFlag.getValue( _fixPtr ); }
-   std::string_view getOpenCloseSettlFlagView() const { return fieldOpenCloseSettlFlag.offset >= 0 ? std::string_view{ _fixPtr + fieldOpenCloseSettlFlag.offset, getValueLength( _fixPtr + fieldOpenCloseSettlFlag.offset ) } : std::string_view{}; }
+   std::string_view getOpenCloseSettlFlagView() const { return fieldOpenCloseSettlFlag.offset > 0 ? std::string_view{ _fixPtr + fieldOpenCloseSettlFlag.offset, getValueLength( _fixPtr + fieldOpenCloseSettlFlag.offset ) } : std::string_view{}; }
    const char * ptrToOpenCloseSettlFlag() const { return _fixPtr + fieldOpenCloseSettlFlag.offset; }
-   const char * getIfSetOpenCloseSettlFlag() const { return fieldOpenCloseSettlFlag.offset >= 0 ? _fixPtr + fieldOpenCloseSettlFlag.offset : nullptr; }
+   const char * ptrToTagOpenCloseSettlFlag() const { return _fixPtr + fieldOpenCloseSettlFlag.offset - 1 - FieldOpenCloseSettlFlag::tagWidth(); }
+   const char * getIfSetOpenCloseSettlFlag() const { return fieldOpenCloseSettlFlag.offset > 0 ? _fixPtr + fieldOpenCloseSettlFlag.offset : nullptr; }
    private: FieldOpenCloseSettlFlag fieldOpenCloseSettlFlag;
 
    public:
-   bool isSetTimeInForce() const { return fieldTimeInForce.offset >= 0; }
+   bool isSetTimeInForce() const { return fieldTimeInForce.offset > 0; }
    FieldTimeInForce::ValueType getTimeInForce() const { return fieldTimeInForce.getValue( _fixPtr ); }
-   std::string_view getTimeInForceView() const { return fieldTimeInForce.offset >= 0 ? std::string_view{ _fixPtr + fieldTimeInForce.offset, getValueLength( _fixPtr + fieldTimeInForce.offset ) } : std::string_view{}; }
+   std::string_view getTimeInForceView() const { return fieldTimeInForce.offset > 0 ? std::string_view{ _fixPtr + fieldTimeInForce.offset, getValueLength( _fixPtr + fieldTimeInForce.offset ) } : std::string_view{}; }
    const char * ptrToTimeInForce() const { return _fixPtr + fieldTimeInForce.offset; }
-   const char * getIfSetTimeInForce() const { return fieldTimeInForce.offset >= 0 ? _fixPtr + fieldTimeInForce.offset : nullptr; }
+   const char * ptrToTagTimeInForce() const { return _fixPtr + fieldTimeInForce.offset - 1 - FieldTimeInForce::tagWidth(); }
+   const char * getIfSetTimeInForce() const { return fieldTimeInForce.offset > 0 ? _fixPtr + fieldTimeInForce.offset : nullptr; }
    private: FieldTimeInForce fieldTimeInForce;
 
    public:
-   bool isSetExpireDate() const { return fieldExpireDate.offset >= 0; }
+   bool isSetExpireDate() const { return fieldExpireDate.offset > 0; }
    FieldExpireDate::ValueType getExpireDate() const { return fieldExpireDate.getValue( _fixPtr ); }
-   std::string_view getExpireDateView() const { return fieldExpireDate.offset >= 0 ? std::string_view{ _fixPtr + fieldExpireDate.offset, getValueLength( _fixPtr + fieldExpireDate.offset ) } : std::string_view{}; }
+   std::string_view getExpireDateView() const { return fieldExpireDate.offset > 0 ? std::string_view{ _fixPtr + fieldExpireDate.offset, getValueLength( _fixPtr + fieldExpireDate.offset ) } : std::string_view{}; }
    const char * ptrToExpireDate() const { return _fixPtr + fieldExpireDate.offset; }
-   const char * getIfSetExpireDate() const { return fieldExpireDate.offset >= 0 ? _fixPtr + fieldExpireDate.offset : nullptr; }
+   const char * ptrToTagExpireDate() const { return _fixPtr + fieldExpireDate.offset - 1 - FieldExpireDate::tagWidth(); }
+   const char * getIfSetExpireDate() const { return fieldExpireDate.offset > 0 ? _fixPtr + fieldExpireDate.offset : nullptr; }
    private: FieldExpireDate fieldExpireDate;
 
    public:
-   bool isSetExpireTime() const { return fieldExpireTime.offset >= 0; }
+   bool isSetExpireTime() const { return fieldExpireTime.offset > 0; }
    FieldExpireTime::ValueType getExpireTime() const { return fieldExpireTime.getValue( _fixPtr ); }
-   std::string_view getExpireTimeView() const { return fieldExpireTime.offset >= 0 ? std::string_view{ _fixPtr + fieldExpireTime.offset, getValueLength( _fixPtr + fieldExpireTime.offset ) } : std::string_view{}; }
+   std::string_view getExpireTimeView() const { return fieldExpireTime.offset > 0 ? std::string_view{ _fixPtr + fieldExpireTime.offset, getValueLength( _fixPtr + fieldExpireTime.offset ) } : std::string_view{}; }
    const char * ptrToExpireTime() const { return _fixPtr + fieldExpireTime.offset; }
-   const char * getIfSetExpireTime() const { return fieldExpireTime.offset >= 0 ? _fixPtr + fieldExpireTime.offset : nullptr; }
+   const char * ptrToTagExpireTime() const { return _fixPtr + fieldExpireTime.offset - 1 - FieldExpireTime::tagWidth(); }
+   const char * getIfSetExpireTime() const { return fieldExpireTime.offset > 0 ? _fixPtr + fieldExpireTime.offset : nullptr; }
    private: FieldExpireTime fieldExpireTime;
 
    public:
-   bool isSetMinQty() const { return fieldMinQty.offset >= 0; }
+   bool isSetMinQty() const { return fieldMinQty.offset > 0; }
    FieldMinQty::ValueType getMinQty() const { return fieldMinQty.getValue( _fixPtr ); }
-   std::string_view getMinQtyView() const { return fieldMinQty.offset >= 0 ? std::string_view{ _fixPtr + fieldMinQty.offset, getValueLength( _fixPtr + fieldMinQty.offset ) } : std::string_view{}; }
+   std::string_view getMinQtyView() const { return fieldMinQty.offset > 0 ? std::string_view{ _fixPtr + fieldMinQty.offset, getValueLength( _fixPtr + fieldMinQty.offset ) } : std::string_view{}; }
    const char * ptrToMinQty() const { return _fixPtr + fieldMinQty.offset; }
-   const char * getIfSetMinQty() const { return fieldMinQty.offset >= 0 ? _fixPtr + fieldMinQty.offset : nullptr; }
+   const char * ptrToTagMinQty() const { return _fixPtr + fieldMinQty.offset - 1 - FieldMinQty::tagWidth(); }
+   const char * getIfSetMinQty() const { return fieldMinQty.offset > 0 ? _fixPtr + fieldMinQty.offset : nullptr; }
    private: FieldMinQty fieldMinQty;
 
    public:
-   bool isSetExecInst() const { return fieldExecInst.offset >= 0; }
+   bool isSetExecInst() const { return fieldExecInst.offset > 0; }
    FieldExecInst::ValueType getExecInst() const { return fieldExecInst.getValue( _fixPtr ); }
-   std::string_view getExecInstView() const { return fieldExecInst.offset >= 0 ? std::string_view{ _fixPtr + fieldExecInst.offset, getValueLength( _fixPtr + fieldExecInst.offset ) } : std::string_view{}; }
+   std::string_view getExecInstView() const { return fieldExecInst.offset > 0 ? std::string_view{ _fixPtr + fieldExecInst.offset, getValueLength( _fixPtr + fieldExecInst.offset ) } : std::string_view{}; }
    const char * ptrToExecInst() const { return _fixPtr + fieldExecInst.offset; }
-   const char * getIfSetExecInst() const { return fieldExecInst.offset >= 0 ? _fixPtr + fieldExecInst.offset : nullptr; }
+   const char * ptrToTagExecInst() const { return _fixPtr + fieldExecInst.offset - 1 - FieldExecInst::tagWidth(); }
+   const char * getIfSetExecInst() const { return fieldExecInst.offset > 0 ? _fixPtr + fieldExecInst.offset : nullptr; }
    private: FieldExecInst fieldExecInst;
 
    public:
-   bool isSetSellerDays() const { return fieldSellerDays.offset >= 0; }
+   bool isSetSellerDays() const { return fieldSellerDays.offset > 0; }
    FieldSellerDays::ValueType getSellerDays() const { return fieldSellerDays.getValue( _fixPtr ); }
-   std::string_view getSellerDaysView() const { return fieldSellerDays.offset >= 0 ? std::string_view{ _fixPtr + fieldSellerDays.offset, getValueLength( _fixPtr + fieldSellerDays.offset ) } : std::string_view{}; }
+   std::string_view getSellerDaysView() const { return fieldSellerDays.offset > 0 ? std::string_view{ _fixPtr + fieldSellerDays.offset, getValueLength( _fixPtr + fieldSellerDays.offset ) } : std::string_view{}; }
    const char * ptrToSellerDays() const { return _fixPtr + fieldSellerDays.offset; }
-   const char * getIfSetSellerDays() const { return fieldSellerDays.offset >= 0 ? _fixPtr + fieldSellerDays.offset : nullptr; }
+   const char * ptrToTagSellerDays() const { return _fixPtr + fieldSellerDays.offset - 1 - FieldSellerDays::tagWidth(); }
+   const char * getIfSetSellerDays() const { return fieldSellerDays.offset > 0 ? _fixPtr + fieldSellerDays.offset : nullptr; }
    private: FieldSellerDays fieldSellerDays;
 
    public:
-   bool isSetOrderID() const { return fieldOrderID.offset >= 0; }
+   bool isSetOrderID() const { return fieldOrderID.offset > 0; }
    FieldOrderID::ValueType getOrderID() const { return fieldOrderID.getValue( _fixPtr ); }
-   std::string_view getOrderIDView() const { return fieldOrderID.offset >= 0 ? std::string_view{ _fixPtr + fieldOrderID.offset, getValueLength( _fixPtr + fieldOrderID.offset ) } : std::string_view{}; }
+   std::string_view getOrderIDView() const { return fieldOrderID.offset > 0 ? std::string_view{ _fixPtr + fieldOrderID.offset, getValueLength( _fixPtr + fieldOrderID.offset ) } : std::string_view{}; }
    const char * ptrToOrderID() const { return _fixPtr + fieldOrderID.offset; }
-   const char * getIfSetOrderID() const { return fieldOrderID.offset >= 0 ? _fixPtr + fieldOrderID.offset : nullptr; }
+   const char * ptrToTagOrderID() const { return _fixPtr + fieldOrderID.offset - 1 - FieldOrderID::tagWidth(); }
+   const char * getIfSetOrderID() const { return fieldOrderID.offset > 0 ? _fixPtr + fieldOrderID.offset : nullptr; }
    private: FieldOrderID fieldOrderID;
 
    public:
-   bool isSetQuoteEntryID() const { return fieldQuoteEntryID.offset >= 0; }
+   bool isSetQuoteEntryID() const { return fieldQuoteEntryID.offset > 0; }
    FieldQuoteEntryID::ValueType getQuoteEntryID() const { return fieldQuoteEntryID.getValue( _fixPtr ); }
-   std::string_view getQuoteEntryIDView() const { return fieldQuoteEntryID.offset >= 0 ? std::string_view{ _fixPtr + fieldQuoteEntryID.offset, getValueLength( _fixPtr + fieldQuoteEntryID.offset ) } : std::string_view{}; }
+   std::string_view getQuoteEntryIDView() const { return fieldQuoteEntryID.offset > 0 ? std::string_view{ _fixPtr + fieldQuoteEntryID.offset, getValueLength( _fixPtr + fieldQuoteEntryID.offset ) } : std::string_view{}; }
    const char * ptrToQuoteEntryID() const { return _fixPtr + fieldQuoteEntryID.offset; }
-   const char * getIfSetQuoteEntryID() const { return fieldQuoteEntryID.offset >= 0 ? _fixPtr + fieldQuoteEntryID.offset : nullptr; }
+   const char * ptrToTagQuoteEntryID() const { return _fixPtr + fieldQuoteEntryID.offset - 1 - FieldQuoteEntryID::tagWidth(); }
+   const char * getIfSetQuoteEntryID() const { return fieldQuoteEntryID.offset > 0 ? _fixPtr + fieldQuoteEntryID.offset : nullptr; }
    private: FieldQuoteEntryID fieldQuoteEntryID;
 
    public:
-   bool isSetMDEntryBuyer() const { return fieldMDEntryBuyer.offset >= 0; }
+   bool isSetMDEntryBuyer() const { return fieldMDEntryBuyer.offset > 0; }
    FieldMDEntryBuyer::ValueType getMDEntryBuyer() const { return fieldMDEntryBuyer.getValue( _fixPtr ); }
-   std::string_view getMDEntryBuyerView() const { return fieldMDEntryBuyer.offset >= 0 ? std::string_view{ _fixPtr + fieldMDEntryBuyer.offset, getValueLength( _fixPtr + fieldMDEntryBuyer.offset ) } : std::string_view{}; }
+   std::string_view getMDEntryBuyerView() const { return fieldMDEntryBuyer.offset > 0 ? std::string_view{ _fixPtr + fieldMDEntryBuyer.offset, getValueLength( _fixPtr + fieldMDEntryBuyer.offset ) } : std::string_view{}; }
    const char * ptrToMDEntryBuyer() const { return _fixPtr + fieldMDEntryBuyer.offset; }
-   const char * getIfSetMDEntryBuyer() const { return fieldMDEntryBuyer.offset >= 0 ? _fixPtr + fieldMDEntryBuyer.offset : nullptr; }
+   const char * ptrToTagMDEntryBuyer() const { return _fixPtr + fieldMDEntryBuyer.offset - 1 - FieldMDEntryBuyer::tagWidth(); }
+   const char * getIfSetMDEntryBuyer() const { return fieldMDEntryBuyer.offset > 0 ? _fixPtr + fieldMDEntryBuyer.offset : nullptr; }
    private: FieldMDEntryBuyer fieldMDEntryBuyer;
 
    public:
-   bool isSetMDEntrySeller() const { return fieldMDEntrySeller.offset >= 0; }
+   bool isSetMDEntrySeller() const { return fieldMDEntrySeller.offset > 0; }
    FieldMDEntrySeller::ValueType getMDEntrySeller() const { return fieldMDEntrySeller.getValue( _fixPtr ); }
-   std::string_view getMDEntrySellerView() const { return fieldMDEntrySeller.offset >= 0 ? std::string_view{ _fixPtr + fieldMDEntrySeller.offset, getValueLength( _fixPtr + fieldMDEntrySeller.offset ) } : std::string_view{}; }
+   std::string_view getMDEntrySellerView() const { return fieldMDEntrySeller.offset > 0 ? std::string_view{ _fixPtr + fieldMDEntrySeller.offset, getValueLength( _fixPtr + fieldMDEntrySeller.offset ) } : std::string_view{}; }
    const char * ptrToMDEntrySeller() const { return _fixPtr + fieldMDEntrySeller.offset; }
-   const char * getIfSetMDEntrySeller() const { return fieldMDEntrySeller.offset >= 0 ? _fixPtr + fieldMDEntrySeller.offset : nullptr; }
+   const char * ptrToTagMDEntrySeller() const { return _fixPtr + fieldMDEntrySeller.offset - 1 - FieldMDEntrySeller::tagWidth(); }
+   const char * getIfSetMDEntrySeller() const { return fieldMDEntrySeller.offset > 0 ? _fixPtr + fieldMDEntrySeller.offset : nullptr; }
    private: FieldMDEntrySeller fieldMDEntrySeller;
 
    public:
-   bool isSetNumberOfOrders() const { return fieldNumberOfOrders.offset >= 0; }
+   bool isSetNumberOfOrders() const { return fieldNumberOfOrders.offset > 0; }
    FieldNumberOfOrders::ValueType getNumberOfOrders() const { return fieldNumberOfOrders.getValue( _fixPtr ); }
-   std::string_view getNumberOfOrdersView() const { return fieldNumberOfOrders.offset >= 0 ? std::string_view{ _fixPtr + fieldNumberOfOrders.offset, getValueLength( _fixPtr + fieldNumberOfOrders.offset ) } : std::string_view{}; }
+   std::string_view getNumberOfOrdersView() const { return fieldNumberOfOrders.offset > 0 ? std::string_view{ _fixPtr + fieldNumberOfOrders.offset, getValueLength( _fixPtr + fieldNumberOfOrders.offset ) } : std::string_view{}; }
    const char * ptrToNumberOfOrders() const { return _fixPtr + fieldNumberOfOrders.offset; }
-   const char * getIfSetNumberOfOrders() const { return fieldNumberOfOrders.offset >= 0 ? _fixPtr + fieldNumberOfOrders.offset : nullptr; }
+   const char * ptrToTagNumberOfOrders() const { return _fixPtr + fieldNumberOfOrders.offset - 1 - FieldNumberOfOrders::tagWidth(); }
+   const char * getIfSetNumberOfOrders() const { return fieldNumberOfOrders.offset > 0 ? _fixPtr + fieldNumberOfOrders.offset : nullptr; }
    private: FieldNumberOfOrders fieldNumberOfOrders;
 
    public:
-   bool isSetMDEntryPositionNo() const { return fieldMDEntryPositionNo.offset >= 0; }
+   bool isSetMDEntryPositionNo() const { return fieldMDEntryPositionNo.offset > 0; }
    FieldMDEntryPositionNo::ValueType getMDEntryPositionNo() const { return fieldMDEntryPositionNo.getValue( _fixPtr ); }
-   std::string_view getMDEntryPositionNoView() const { return fieldMDEntryPositionNo.offset >= 0 ? std::string_view{ _fixPtr + fieldMDEntryPositionNo.offset, getValueLength( _fixPtr + fieldMDEntryPositionNo.offset ) } : std::string_view{}; }
+   std::string_view getMDEntryPositionNoView() const { return fieldMDEntryPositionNo.offset > 0 ? std::string_view{ _fixPtr + fieldMDEntryPositionNo.offset, getValueLength( _fixPtr + fieldMDEntryPositionNo.offset ) } : std::string_view{}; }
    const char * ptrToMDEntryPositionNo() const { return _fixPtr + fieldMDEntryPositionNo.offset; }
-   const char * getIfSetMDEntryPositionNo() const { return fieldMDEntryPositionNo.offset >= 0 ? _fixPtr + fieldMDEntryPositionNo.offset : nullptr; }
+   const char * ptrToTagMDEntryPositionNo() const { return _fixPtr + fieldMDEntryPositionNo.offset - 1 - FieldMDEntryPositionNo::tagWidth(); }
+   const char * getIfSetMDEntryPositionNo() const { return fieldMDEntryPositionNo.offset > 0 ? _fixPtr + fieldMDEntryPositionNo.offset : nullptr; }
    private: FieldMDEntryPositionNo fieldMDEntryPositionNo;
 
    public:
-   bool isSetScope() const { return fieldScope.offset >= 0; }
+   bool isSetScope() const { return fieldScope.offset > 0; }
    FieldScope::ValueType getScope() const { return fieldScope.getValue( _fixPtr ); }
-   std::string_view getScopeView() const { return fieldScope.offset >= 0 ? std::string_view{ _fixPtr + fieldScope.offset, getValueLength( _fixPtr + fieldScope.offset ) } : std::string_view{}; }
+   std::string_view getScopeView() const { return fieldScope.offset > 0 ? std::string_view{ _fixPtr + fieldScope.offset, getValueLength( _fixPtr + fieldScope.offset ) } : std::string_view{}; }
    const char * ptrToScope() const { return _fixPtr + fieldScope.offset; }
-   const char * getIfSetScope() const { return fieldScope.offset >= 0 ? _fixPtr + fieldScope.offset : nullptr; }
+   const char * ptrToTagScope() const { return _fixPtr + fieldScope.offset - 1 - FieldScope::tagWidth(); }
+   const char * getIfSetScope() const { return fieldScope.offset > 0 ? _fixPtr + fieldScope.offset : nullptr; }
    private: FieldScope fieldScope;
 
    public:
-   bool isSetPriceDelta() const { return fieldPriceDelta.offset >= 0; }
+   bool isSetPriceDelta() const { return fieldPriceDelta.offset > 0; }
    FieldPriceDelta::ValueType getPriceDelta() const { return fieldPriceDelta.getValue( _fixPtr ); }
-   std::string_view getPriceDeltaView() const { return fieldPriceDelta.offset >= 0 ? std::string_view{ _fixPtr + fieldPriceDelta.offset, getValueLength( _fixPtr + fieldPriceDelta.offset ) } : std::string_view{}; }
+   std::string_view getPriceDeltaView() const { return fieldPriceDelta.offset > 0 ? std::string_view{ _fixPtr + fieldPriceDelta.offset, getValueLength( _fixPtr + fieldPriceDelta.offset ) } : std::string_view{}; }
    const char * ptrToPriceDelta() const { return _fixPtr + fieldPriceDelta.offset; }
-   const char * getIfSetPriceDelta() const { return fieldPriceDelta.offset >= 0 ? _fixPtr + fieldPriceDelta.offset : nullptr; }
+   const char * ptrToTagPriceDelta() const { return _fixPtr + fieldPriceDelta.offset - 1 - FieldPriceDelta::tagWidth(); }
+   const char * getIfSetPriceDelta() const { return fieldPriceDelta.offset > 0 ? _fixPtr + fieldPriceDelta.offset : nullptr; }
    private: FieldPriceDelta fieldPriceDelta;
 
    public:
-   bool isSetText() const { return fieldText.offset >= 0; }
+   bool isSetText() const { return fieldText.offset > 0; }
    FieldText::ValueType getText() const { return fieldText.getValue( _fixPtr ); }
-   std::string_view getTextView() const { return fieldText.offset >= 0 ? std::string_view{ _fixPtr + fieldText.offset, getValueLength( _fixPtr + fieldText.offset ) } : std::string_view{}; }
+   std::string_view getTextView() const { return fieldText.offset > 0 ? std::string_view{ _fixPtr + fieldText.offset, getValueLength( _fixPtr + fieldText.offset ) } : std::string_view{}; }
    const char * ptrToText() const { return _fixPtr + fieldText.offset; }
-   const char * getIfSetText() const { return fieldText.offset >= 0 ? _fixPtr + fieldText.offset : nullptr; }
+   const char * ptrToTagText() const { return _fixPtr + fieldText.offset - 1 - FieldText::tagWidth(); }
+   const char * getIfSetText() const { return fieldText.offset > 0 ? _fixPtr + fieldText.offset : nullptr; }
    private: FieldText fieldText;
 
    public:
-   bool isSetEncodedTextLen() const { return fieldEncodedTextLen.offset >= 0; }
+   bool isSetEncodedTextLen() const { return fieldEncodedTextLen.offset > 0; }
    FieldEncodedTextLen::ValueType getEncodedTextLen() const { return fieldEncodedTextLen.getValue( _fixPtr ); }
-   std::string_view getEncodedTextLenView() const { return fieldEncodedTextLen.offset >= 0 ? std::string_view{ _fixPtr + fieldEncodedTextLen.offset, getValueLength( _fixPtr + fieldEncodedTextLen.offset ) } : std::string_view{}; }
+   std::string_view getEncodedTextLenView() const { return fieldEncodedTextLen.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedTextLen.offset, getValueLength( _fixPtr + fieldEncodedTextLen.offset ) } : std::string_view{}; }
    const char * ptrToEncodedTextLen() const { return _fixPtr + fieldEncodedTextLen.offset; }
-   const char * getIfSetEncodedTextLen() const { return fieldEncodedTextLen.offset >= 0 ? _fixPtr + fieldEncodedTextLen.offset : nullptr; }
+   const char * ptrToTagEncodedTextLen() const { return _fixPtr + fieldEncodedTextLen.offset - 1 - FieldEncodedTextLen::tagWidth(); }
+   const char * getIfSetEncodedTextLen() const { return fieldEncodedTextLen.offset > 0 ? _fixPtr + fieldEncodedTextLen.offset : nullptr; }
    private: FieldEncodedTextLen fieldEncodedTextLen;
 
    public:
-   bool isSetEncodedText() const { return fieldEncodedText.offset >= 0; }
+   bool isSetEncodedText() const { return fieldEncodedText.offset > 0; }
    FieldEncodedText::ValueType getEncodedText() const { return fieldEncodedText.getValue( _fixPtr ); }
-   std::string_view getEncodedTextView() const { return fieldEncodedText.offset >= 0 ? std::string_view{ _fixPtr + fieldEncodedText.offset, getValueLength( _fixPtr + fieldEncodedText.offset ) } : std::string_view{}; }
+   std::string_view getEncodedTextView() const { return fieldEncodedText.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedText.offset, getValueLength( _fixPtr + fieldEncodedText.offset ) } : std::string_view{}; }
    const char * ptrToEncodedText() const { return _fixPtr + fieldEncodedText.offset; }
-   const char * getIfSetEncodedText() const { return fieldEncodedText.offset >= 0 ? _fixPtr + fieldEncodedText.offset : nullptr; }
+   const char * ptrToTagEncodedText() const { return _fixPtr + fieldEncodedText.offset - 1 - FieldEncodedText::tagWidth(); }
+   const char * getIfSetEncodedText() const { return fieldEncodedText.offset > 0 ? _fixPtr + fieldEncodedText.offset : nullptr; }
    private: FieldEncodedText fieldEncodedText;
 
 };

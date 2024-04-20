@@ -480,11 +480,14 @@ FieldDepth GroupLegs::getFieldDepth( raw_tag_t tag ){
    }
    return ret;
 }
+
+
+// ---------------------------------- getFieldValue ---------------------------------
 const char * GroupLegStipulations::getFieldValue( unsigned tag ) const {
    if( _fixPtr == nullptr ) return nullptr;
    switch( tag ){
-     case FieldLegStipulationType::TAG : return fieldLegStipulationType.offset >= 0 ? _fixPtr + fieldLegStipulationType.offset : nullptr;
-     case FieldLegStipulationValue::TAG : return fieldLegStipulationValue.offset >= 0 ? _fixPtr + fieldLegStipulationValue.offset : nullptr;
+     case FieldLegStipulationType::TAG : return fieldLegStipulationType.offset > 0 ? _fixPtr + fieldLegStipulationType.offset : nullptr;
+     case FieldLegStipulationValue::TAG : return fieldLegStipulationValue.offset > 0 ? _fixPtr + fieldLegStipulationValue.offset : nullptr;
 
      default : return nullptr; 
    }
@@ -494,8 +497,8 @@ const char * GroupLegStipulations::getFieldValue( unsigned tag ) const {
 const char * GroupNestedPartySubIDs::getFieldValue( unsigned tag ) const {
    if( _fixPtr == nullptr ) return nullptr;
    switch( tag ){
-     case FieldNestedPartySubID::TAG : return fieldNestedPartySubID.offset >= 0 ? _fixPtr + fieldNestedPartySubID.offset : nullptr;
-     case FieldNestedPartySubIDType::TAG : return fieldNestedPartySubIDType.offset >= 0 ? _fixPtr + fieldNestedPartySubIDType.offset : nullptr;
+     case FieldNestedPartySubID::TAG : return fieldNestedPartySubID.offset > 0 ? _fixPtr + fieldNestedPartySubID.offset : nullptr;
+     case FieldNestedPartySubIDType::TAG : return fieldNestedPartySubIDType.offset > 0 ? _fixPtr + fieldNestedPartySubIDType.offset : nullptr;
 
      default : return nullptr; 
    }
@@ -505,10 +508,10 @@ const char * GroupNestedPartySubIDs::getFieldValue( unsigned tag ) const {
 const char * GroupNestedPartyIDs::getFieldValue( unsigned tag ) const {
    if( _fixPtr == nullptr ) return nullptr;
    switch( tag ){
-     case FieldNestedPartyID::TAG : return fieldNestedPartyID.offset >= 0 ? _fixPtr + fieldNestedPartyID.offset : nullptr;
-     case FieldNestedPartyIDSource::TAG : return fieldNestedPartyIDSource.offset >= 0 ? _fixPtr + fieldNestedPartyIDSource.offset : nullptr;
-     case FieldNestedPartyRole::TAG : return fieldNestedPartyRole.offset >= 0 ? _fixPtr + fieldNestedPartyRole.offset : nullptr;
-     case FieldNoNestedPartySubIDs::TAG : return fieldNoNestedPartySubIDs.offset >= 0 ? _fixPtr + fieldNoNestedPartySubIDs.offset : nullptr;
+     case FieldNestedPartyID::TAG : return fieldNestedPartyID.offset > 0 ? _fixPtr + fieldNestedPartyID.offset : nullptr;
+     case FieldNestedPartyIDSource::TAG : return fieldNestedPartyIDSource.offset > 0 ? _fixPtr + fieldNestedPartyIDSource.offset : nullptr;
+     case FieldNestedPartyRole::TAG : return fieldNestedPartyRole.offset > 0 ? _fixPtr + fieldNestedPartyRole.offset : nullptr;
+     case FieldNoNestedPartySubIDs::TAG : return fieldNoNestedPartySubIDs.offset > 0 ? _fixPtr + fieldNoNestedPartySubIDs.offset : nullptr;
 
      default : return nullptr; 
    }
@@ -518,15 +521,15 @@ const char * GroupNestedPartyIDs::getFieldValue( unsigned tag ) const {
 const char * GroupLegs::getFieldValue( unsigned tag ) const {
    if( _fixPtr == nullptr ) return nullptr;
    switch( tag ){
-     case FieldLegSymbol::TAG : return fieldLegSymbol.offset >= 0 ? _fixPtr + fieldLegSymbol.offset : nullptr;
-     case FieldLegSide::TAG : return fieldLegSide.offset >= 0 ? _fixPtr + fieldLegSide.offset : nullptr;
-     case FieldLegQty::TAG : return fieldLegQty.offset >= 0 ? _fixPtr + fieldLegQty.offset : nullptr;
-     case FieldNoLegStipulations::TAG : return fieldNoLegStipulations.offset >= 0 ? _fixPtr + fieldNoLegStipulations.offset : nullptr;
-     case FieldLegPositionEffect::TAG : return fieldLegPositionEffect.offset >= 0 ? _fixPtr + fieldLegPositionEffect.offset : nullptr;
-     case FieldNoNestedPartyIDs::TAG : return fieldNoNestedPartyIDs.offset >= 0 ? _fixPtr + fieldNoNestedPartyIDs.offset : nullptr;
-     case FieldLegRefID::TAG : return fieldLegRefID.offset >= 0 ? _fixPtr + fieldLegRefID.offset : nullptr;
-     case FieldLegPrice::TAG : return fieldLegPrice.offset >= 0 ? _fixPtr + fieldLegPrice.offset : nullptr;
-     case FieldLegLastPx::TAG : return fieldLegLastPx.offset >= 0 ? _fixPtr + fieldLegLastPx.offset : nullptr;
+     case FieldLegSymbol::TAG : return fieldLegSymbol.offset > 0 ? _fixPtr + fieldLegSymbol.offset : nullptr;
+     case FieldLegSide::TAG : return fieldLegSide.offset > 0 ? _fixPtr + fieldLegSide.offset : nullptr;
+     case FieldLegQty::TAG : return fieldLegQty.offset > 0 ? _fixPtr + fieldLegQty.offset : nullptr;
+     case FieldNoLegStipulations::TAG : return fieldNoLegStipulations.offset > 0 ? _fixPtr + fieldNoLegStipulations.offset : nullptr;
+     case FieldLegPositionEffect::TAG : return fieldLegPositionEffect.offset > 0 ? _fixPtr + fieldLegPositionEffect.offset : nullptr;
+     case FieldNoNestedPartyIDs::TAG : return fieldNoNestedPartyIDs.offset > 0 ? _fixPtr + fieldNoNestedPartyIDs.offset : nullptr;
+     case FieldLegRefID::TAG : return fieldLegRefID.offset > 0 ? _fixPtr + fieldLegRefID.offset : nullptr;
+     case FieldLegPrice::TAG : return fieldLegPrice.offset > 0 ? _fixPtr + fieldLegPrice.offset : nullptr;
+     case FieldLegLastPx::TAG : return fieldLegLastPx.offset > 0 ? _fixPtr + fieldLegLastPx.offset : nullptr;
 
      default : return nullptr; 
    }
@@ -534,6 +537,151 @@ const char * GroupLegs::getFieldValue( unsigned tag ) const {
 }
 
 
+// ---------------------------------- findBadGroup ---------------------------------
+const char * GroupLegStipulations::findBadGroup( unsigned & noExpected, unsigned & noReceived ) const {
+   if( _fixPtr == nullptr ) return nullptr;
+   return nullptr;
+}
+
+const char * GroupNestedPartySubIDs::findBadGroup( unsigned & noExpected, unsigned & noReceived ) const {
+   if( _fixPtr == nullptr ) return nullptr;
+   return nullptr;
+}
+
+const char * GroupNestedPartyIDs::findBadGroup( unsigned & noExpected, unsigned & noReceived ) const {
+   if( _fixPtr == nullptr ) return nullptr;
+   if( fieldNoNestedPartySubIDs.offset > 0 ){
+     unsigned expected = fromString<unsigned>( _fixPtr + fieldNoNestedPartySubIDs.offset );
+     unsigned received = 0;
+     for( auto & g : groupsNestedPartySubIDs ){
+       if( g.getMessageBuffer() == nullptr ) break;
+       const char * badSubgroup = g.findBadGroup( noExpected, noReceived );
+       if( badSubgroup ) return badSubgroup;
+       ++received;
+     }
+     if( expected != received ) { noExpected = expected; noReceived = received; return _fixPtr + fieldNoNestedPartySubIDs.offset - 1 - FieldNoNestedPartySubIDs::tagWidth(); }
+   }
+   return nullptr;
+}
+
+const char * GroupLegs::findBadGroup( unsigned & noExpected, unsigned & noReceived ) const {
+   if( _fixPtr == nullptr ) return nullptr;
+   if( fieldNoLegStipulations.offset > 0 ){
+     unsigned expected = fromString<unsigned>( _fixPtr + fieldNoLegStipulations.offset );
+     unsigned received = 0;
+     for( auto & g : groupsLegStipulations ){
+       if( g.getMessageBuffer() == nullptr ) break;
+       const char * badSubgroup = g.findBadGroup( noExpected, noReceived );
+       if( badSubgroup ) return badSubgroup;
+       ++received;
+     }
+     if( expected != received ) { noExpected = expected; noReceived = received; return _fixPtr + fieldNoLegStipulations.offset - 1 - FieldNoLegStipulations::tagWidth(); }
+   }
+   if( fieldNoNestedPartyIDs.offset > 0 ){
+     unsigned expected = fromString<unsigned>( _fixPtr + fieldNoNestedPartyIDs.offset );
+     unsigned received = 0;
+     for( auto & g : groupsNestedPartyIDs ){
+       if( g.getMessageBuffer() == nullptr ) break;
+       const char * badSubgroup = g.findBadGroup( noExpected, noReceived );
+       if( badSubgroup ) return badSubgroup;
+       ++received;
+     }
+     if( expected != received ) { noExpected = expected; noReceived = received; return _fixPtr + fieldNoNestedPartyIDs.offset - 1 - FieldNoNestedPartyIDs::tagWidth(); }
+   }
+   return nullptr;
+}
+
+
+// ---------------------------------- findBadField ---------------------------------
+const char * GroupLegStipulations::findBadField() const {
+   if( _fixPtr == nullptr ) return nullptr;
+   if( fieldLegStipulationValue.offset > 0 ){
+       const char * tagPtr = _fixPtr + fieldLegStipulationValue.offset - 1 - FieldLegStipulationValue::tagWidth();
+       if( not isGoodTag( tagPtr ) or _fixPtr[fieldLegStipulationValue.offset] == 1 ) return tagPtr;
+   }
+   return nullptr;
+}
+
+const char * GroupNestedPartySubIDs::findBadField() const {
+   if( _fixPtr == nullptr ) return nullptr;
+   if( fieldNestedPartySubIDType.offset > 0 ){
+       const char * tagPtr = _fixPtr + fieldNestedPartySubIDType.offset - 1 - FieldNestedPartySubIDType::tagWidth();
+       if( not isGoodTag( tagPtr ) or _fixPtr[fieldNestedPartySubIDType.offset] == 1 ) return tagPtr;
+   }
+   return nullptr;
+}
+
+const char * GroupNestedPartyIDs::findBadField() const {
+   if( _fixPtr == nullptr ) return nullptr;
+   if( fieldNestedPartyIDSource.offset > 0 ){
+       const char * tagPtr = _fixPtr + fieldNestedPartyIDSource.offset - 1 - FieldNestedPartyIDSource::tagWidth();
+       if( not isGoodTag( tagPtr ) or _fixPtr[fieldNestedPartyIDSource.offset] == 1 ) return tagPtr;
+   }
+   if( fieldNestedPartyRole.offset > 0 ){
+       const char * tagPtr = _fixPtr + fieldNestedPartyRole.offset - 1 - FieldNestedPartyRole::tagWidth();
+       if( not isGoodTag( tagPtr ) or _fixPtr[fieldNestedPartyRole.offset] == 1 ) return tagPtr;
+   }
+   if( fieldNoNestedPartySubIDs.offset > 0 ){
+     const char * tagPtr = _fixPtr + fieldNoNestedPartySubIDs.offset - 1 - FieldNoNestedPartySubIDs::tagWidth();
+     if( not isGoodTag( tagPtr ) or _fixPtr[fieldNoNestedPartySubIDs.offset] == 1 ) return tagPtr;
+     for( auto & g : groupsNestedPartySubIDs ){
+       if( g.getMessageBuffer() == nullptr ) break;
+       tagPtr = g.findBadField();
+       if( tagPtr ) return tagPtr;
+     }
+   }
+   return nullptr;
+}
+
+const char * GroupLegs::findBadField() const {
+   if( _fixPtr == nullptr ) return nullptr;
+   if( fieldLegSide.offset > 0 ){
+       const char * tagPtr = _fixPtr + fieldLegSide.offset - 1 - FieldLegSide::tagWidth();
+       if( not isGoodTag( tagPtr ) or _fixPtr[fieldLegSide.offset] == 1 ) return tagPtr;
+   }
+   if( fieldLegQty.offset > 0 ){
+       const char * tagPtr = _fixPtr + fieldLegQty.offset - 1 - FieldLegQty::tagWidth();
+       if( not isGoodTag( tagPtr ) or _fixPtr[fieldLegQty.offset] == 1 ) return tagPtr;
+   }
+   if( fieldNoLegStipulations.offset > 0 ){
+     const char * tagPtr = _fixPtr + fieldNoLegStipulations.offset - 1 - FieldNoLegStipulations::tagWidth();
+     if( not isGoodTag( tagPtr ) or _fixPtr[fieldNoLegStipulations.offset] == 1 ) return tagPtr;
+     for( auto & g : groupsLegStipulations ){
+       if( g.getMessageBuffer() == nullptr ) break;
+       tagPtr = g.findBadField();
+       if( tagPtr ) return tagPtr;
+     }
+   }
+   if( fieldLegPositionEffect.offset > 0 ){
+       const char * tagPtr = _fixPtr + fieldLegPositionEffect.offset - 1 - FieldLegPositionEffect::tagWidth();
+       if( not isGoodTag( tagPtr ) or _fixPtr[fieldLegPositionEffect.offset] == 1 ) return tagPtr;
+   }
+   if( fieldNoNestedPartyIDs.offset > 0 ){
+     const char * tagPtr = _fixPtr + fieldNoNestedPartyIDs.offset - 1 - FieldNoNestedPartyIDs::tagWidth();
+     if( not isGoodTag( tagPtr ) or _fixPtr[fieldNoNestedPartyIDs.offset] == 1 ) return tagPtr;
+     for( auto & g : groupsNestedPartyIDs ){
+       if( g.getMessageBuffer() == nullptr ) break;
+       tagPtr = g.findBadField();
+       if( tagPtr ) return tagPtr;
+     }
+   }
+   if( fieldLegRefID.offset > 0 ){
+       const char * tagPtr = _fixPtr + fieldLegRefID.offset - 1 - FieldLegRefID::tagWidth();
+       if( not isGoodTag( tagPtr ) or _fixPtr[fieldLegRefID.offset] == 1 ) return tagPtr;
+   }
+   if( fieldLegPrice.offset > 0 ){
+       const char * tagPtr = _fixPtr + fieldLegPrice.offset - 1 - FieldLegPrice::tagWidth();
+       if( not isGoodTag( tagPtr ) or _fixPtr[fieldLegPrice.offset] == 1 ) return tagPtr;
+   }
+   if( fieldLegLastPx.offset > 0 ){
+       const char * tagPtr = _fixPtr + fieldLegLastPx.offset - 1 - FieldLegLastPx::tagWidth();
+       if( not isGoodTag( tagPtr ) or _fixPtr[fieldLegLastPx.offset] == 1 ) return tagPtr;
+   }
+   return nullptr;
+}
+
+
+// ---------------------------------- getKnownFields ---------------------------------
 namespace {
 const std::vector<unsigned> LegStipulations_knownFields = { FieldLegStipulationType::TAG
 , FieldLegStipulationValue::TAG
