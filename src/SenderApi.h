@@ -132,6 +132,20 @@ inline char * reverseUIntToString( char * ptr, unsigned value, unsigned & chksum
     return ptr;
 }
 
+// Formats value from right to left, zero pads it if necesary, and computes check sum of the inserted string.
+// @return next left most position.
+inline char * reversePaddedUIntToString( char * ptr, unsigned value, unsigned width, unsigned & chksum )
+{
+    char * oldptr = ptr;
+    ptr = reverseUIntToString( ptr, value, chksum );
+    for( unsigned insertedWidth = (unsigned)( oldptr - ptr ); insertedWidth < width; ++insertedWidth )
+    {
+        *(--ptr) = '0';
+        chksum += (unsigned)'0';
+    }
+    return ptr;
+}
+
 struct TimestampKeeper;
 using ClockType = std::chrono::system_clock;
 using TimePoint = std::chrono::time_point<ClockType>;
@@ -545,7 +559,9 @@ struct ReusableMessageBuilder: FixBufferStream
     , buffer             ( maxBodyLength + 1, (char)0 )
     , start              ( nullptr )
     , lastSeqnumWidth    ( 0 )
+    , minSeqnumWidth     ( 1 )
     , lastBodyLengthWidth( 0 )
+    , minBodyLengthWidth ( 2 )
     , bufferGrowChunk    ( 1024 )
     , header             ( headerTemplateCapacity, messageType )
     {
@@ -559,12 +575,12 @@ struct ReusableMessageBuilder: FixBufferStream
     const char * setSeqnumAndUpdateHeaderAndChecksum( unsigned seqnum )
     {
         unsigned chksum = header.chksum;
-        char * ptr = reverseUIntToString( begin, seqnum, chksum );
+        char * ptr = reversePaddedUIntToString( begin, seqnum, minSeqnumWidth, chksum );
         unsigned seqnumWidth = begin - ptr;
         unsigned bodyLength = header.countableLength + seqnumWidth + ( end - begin );
 
         char * msgTypePtr = begin - header.countableLength - seqnumWidth;
-        ptr = reverseUIntToString( msgTypePtr, bodyLength, chksum );
+        ptr = reversePaddedUIntToString( msgTypePtr, bodyLength, minBodyLengthWidth, chksum );
         unsigned bodyLengthWidth = msgTypePtr - ptr;
 
         start = begin - seqnumWidth - header.countableLength - bodyLengthWidth - BODY_LENGTH_OFFSET;
@@ -649,7 +665,9 @@ struct ReusableMessageBuilder: FixBufferStream
     std::vector<char>             buffer;
     char                        * start;
     unsigned                      lastSeqnumWidth;
+    unsigned                      minSeqnumWidth;
     unsigned                      lastBodyLengthWidth;
+    unsigned                      minBodyLengthWidth;
     unsigned                      bufferGrowChunk;
     HeaderTemplate                header;
     TimestampKeeper               sendingTime;

@@ -51,6 +51,8 @@ int main( int args, const char ** argv )
 
     parseBack( __LINE__ );
 
+    for( int foo = 0; foo < 2; ++foo )
+    {
     execReport.rewind( sendingTimeLength );
     execReport.sendingTime.update();
     execReport.append<ClOrdID>("OID4567");
@@ -84,7 +86,7 @@ int main( int args, const char ** argv )
     execReport.setSeqnumAndUpdateHeaderAndChecksum(123456);
     std::cout << fixstr( execReport.start, ttyRgbStyle ) << std::endl;
     parseBack( __LINE__ );
-    
+
     execReport.rewind( sendingTimeLength );
     execReport.sendingTime.update( std::chrono::system_clock::now() + 10 * 24h );
     execReport.append<ClOrdID>("OID36194130303320710274");
@@ -108,6 +110,10 @@ int main( int args, const char ** argv )
     execReport.setSeqnumAndUpdateHeaderAndChecksum(1);
     std::cout << fixstr( execReport.start, ttyRgbStyle ) << std::endl;
     parseBack( __LINE__ );
+
+    execReport.minBodyLengthWidth = 6;
+    execReport.minSeqnumWidth = 8;
+    }
 
     // second fractions
     const std::chrono::time_point<std::chrono::system_clock> now = std::chrono::system_clock::now();

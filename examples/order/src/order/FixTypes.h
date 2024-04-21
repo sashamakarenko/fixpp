@@ -621,25 +621,25 @@ inline bool isGoodTag( const char * ptr )
     }
     else if( ptr[2] == '=' )
     {
-        return std::isdigit( ptr[0] ) and 
+        return std::isdigit( ptr[0] ) and
                std::isdigit( ptr[1] );
     }
     else if( ptr[3] == '=' )
     {
-        return std::isdigit( ptr[0] ) and 
+        return std::isdigit( ptr[0] ) and
                std::isdigit( ptr[1] ) and
                std::isdigit( ptr[2] );
     }
     else if( ptr[4] == '=' )
     {
-        return std::isdigit( ptr[0] ) and 
+        return std::isdigit( ptr[0] ) and
                std::isdigit( ptr[1] ) and
                std::isdigit( ptr[2] ) and
                std::isdigit( ptr[3] );
     }
     else if( ptr[5] == '=' )
     {
-        return std::isdigit( ptr[0] ) and 
+        return std::isdigit( ptr[0] ) and
                std::isdigit( ptr[1] ) and
                std::isdigit( ptr[2] ) and
                std::isdigit( ptr[3] ) and
