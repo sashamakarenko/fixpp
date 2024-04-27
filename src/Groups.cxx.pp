@@ -279,6 +279,39 @@ const char * Group##NAME::findBadField() const {\
 #undef FIX_MSG_GROUP_END
 #undef FIX_MSG_GROUP
 
+<com> ---------------------------------- findBadEnum ---------------------------------
+
+#define FIX_MSG_GROUP_BEGIN(NAME,TYPE) \
+const char * Group##NAME::findBadEnum() const {\
+<n1>  if( _fixPtr == nullptr ) return nullptr;
+
+#define FIX_MSG_FIELD(NAME) <remove-me>
+
+#define FIX_MSG_ENUM_FIELD(NAME) \
+<t1>  if( field##NAME.offset > 0 and NAME##Enums::findEnum( toRawEnum( _fixPtr + field##NAME.offset ) ) == nullptr ){\
+<n3>      return _fixPtr + field##NAME.offset - 1 - Field##NAME::tagWidth();\
+<n1>  }
+
+#define FIX_MSG_GROUP(NAME) \
+<t1>  if( fieldNo##NAME.offset > 0 ){\
+<n2>    for( auto & g : groups##NAME ){\
+<n3>      if( g.getMessageBuffer() == nullptr ) break;\
+<n3>      const char * tagPtr = g.findBadEnum();\
+<n3>      if( tagPtr ) return tagPtr;\
+<n2>    }\
+<n1> }
+
+#define FIX_MSG_GROUP_END \
+<t1>  return nullptr;\
+<nl>}
+
+#include <GroupEnums.tmp>
+
+#undef FIX_MSG_FIELD
+#undef FIX_MSG_GROUP_BEGIN
+#undef FIX_MSG_GROUP_END
+#undef FIX_MSG_GROUP
+
 <com> ---------------------------------- getKnownFields ---------------------------------
 
 #define FIX_MSG_GROUP_BEGIN( NAME, FIRST_FIELD ) \

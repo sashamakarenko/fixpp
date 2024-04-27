@@ -997,6 +997,67 @@ const char * MessageExecutionReport::findBadGroup( unsigned & noExpected, unsign
 }
 
 
+// ---------------------------------- findBadEnum ---------------------------------
+
+const char * MessageHeader::findBadEnum() const {
+   if( _fixPtr == nullptr ) return nullptr;
+   if( fieldMsgType.offset > 0 and MsgTypeEnums::findEnum( toRawEnum( _fixPtr + fieldMsgType.offset ) ) == nullptr ){
+       return _fixPtr + fieldMsgType.offset - 1 - FieldMsgType::tagWidth();
+   }
+   return nullptr;
+}
+
+const char * MessageNewOrderSingle::findBadEnum() const {
+   if( _fixPtr == nullptr ) return nullptr;
+   if( fieldSide.offset > 0 and SideEnums::findEnum( toRawEnum( _fixPtr + fieldSide.offset ) ) == nullptr ){
+       return _fixPtr + fieldSide.offset - 1 - FieldSide::tagWidth();
+   }
+   if( fieldQtyType.offset > 0 and QtyTypeEnums::findEnum( toRawEnum( _fixPtr + fieldQtyType.offset ) ) == nullptr ){
+       return _fixPtr + fieldQtyType.offset - 1 - FieldQtyType::tagWidth();
+   }
+   if( fieldOrdType.offset > 0 and OrdTypeEnums::findEnum( toRawEnum( _fixPtr + fieldOrdType.offset ) ) == nullptr ){
+       return _fixPtr + fieldOrdType.offset - 1 - FieldOrdType::tagWidth();
+   }
+   return nullptr;
+}
+
+const char * MessageExecutionReport::findBadEnum() const {
+   if( _fixPtr == nullptr ) return nullptr;
+   if( fieldOrdStatus.offset > 0 and OrdStatusEnums::findEnum( toRawEnum( _fixPtr + fieldOrdStatus.offset ) ) == nullptr ){
+       return _fixPtr + fieldOrdStatus.offset - 1 - FieldOrdStatus::tagWidth();
+   }
+   if( fieldSecurityType.offset > 0 and SecurityTypeEnums::findEnum( toRawEnum( _fixPtr + fieldSecurityType.offset ) ) == nullptr ){
+       return _fixPtr + fieldSecurityType.offset - 1 - FieldSecurityType::tagWidth();
+   }
+   if( fieldProduct.offset > 0 and ProductEnums::findEnum( toRawEnum( _fixPtr + fieldProduct.offset ) ) == nullptr ){
+       return _fixPtr + fieldProduct.offset - 1 - FieldProduct::tagWidth();
+   }
+   if( fieldSide.offset > 0 and SideEnums::findEnum( toRawEnum( _fixPtr + fieldSide.offset ) ) == nullptr ){
+       return _fixPtr + fieldSide.offset - 1 - FieldSide::tagWidth();
+   }
+   if( fieldQtyType.offset > 0 and QtyTypeEnums::findEnum( toRawEnum( _fixPtr + fieldQtyType.offset ) ) == nullptr ){
+       return _fixPtr + fieldQtyType.offset - 1 - FieldQtyType::tagWidth();
+   }
+   if( fieldOrdType.offset > 0 and OrdTypeEnums::findEnum( toRawEnum( _fixPtr + fieldOrdType.offset ) ) == nullptr ){
+       return _fixPtr + fieldOrdType.offset - 1 - FieldOrdType::tagWidth();
+   }
+   if( fieldPriceType.offset > 0 and PriceTypeEnums::findEnum( toRawEnum( _fixPtr + fieldPriceType.offset ) ) == nullptr ){
+       return _fixPtr + fieldPriceType.offset - 1 - FieldPriceType::tagWidth();
+   }
+   if( fieldTimeInForce.offset > 0 and TimeInForceEnums::findEnum( toRawEnum( _fixPtr + fieldTimeInForce.offset ) ) == nullptr ){
+       return _fixPtr + fieldTimeInForce.offset - 1 - FieldTimeInForce::tagWidth();
+   }
+   if( fieldNoLegs.offset > 0 ){
+     for( auto & g : groupsLegs ){
+       if( g.getMessageBuffer() == nullptr ) break;
+       const char * tagPtr = g.findBadEnum();
+       if( tagPtr ) return tagPtr;
+     }
+   }
+   return nullptr;
+}
+
+
 // ---------------------------------- getKnownFields ---------------------------------
 namespace {
 
@@ -1163,7 +1224,7 @@ const char * ParserDispatcher::parseAndDipatch( const char * buf, unsigned len, 
 
     unsigned bodyLength = _msgHeader.getBodyLength();
     const char * endOfMessage = _msgHeader.ptrToMsgType() + bodyLength + 4; // 7 for checkSum - 3 for msg type tag
-    if( endOfMessage - buf > len )
+    if( endOfMessage - buf > (std::ptrdiff_t)len )
     {
         return nullptr;
     }

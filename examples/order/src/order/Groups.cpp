@@ -681,6 +681,49 @@ const char * GroupLegs::findBadField() const {
 }
 
 
+// ---------------------------------- findBadEnum ---------------------------------
+const char * GroupLegStipulations::findBadEnum() const {
+   if( _fixPtr == nullptr ) return nullptr;
+   return nullptr;
+}
+
+const char * GroupNestedPartySubIDs::findBadEnum() const {
+   if( _fixPtr == nullptr ) return nullptr;
+   return nullptr;
+}
+
+const char * GroupNestedPartyIDs::findBadEnum() const {
+   if( _fixPtr == nullptr ) return nullptr;
+   if( fieldNoNestedPartySubIDs.offset > 0 ){
+     for( auto & g : groupsNestedPartySubIDs ){
+       if( g.getMessageBuffer() == nullptr ) break;
+       const char * tagPtr = g.findBadEnum();
+       if( tagPtr ) return tagPtr;
+     }
+   }
+   return nullptr;
+}
+
+const char * GroupLegs::findBadEnum() const {
+   if( _fixPtr == nullptr ) return nullptr;
+   if( fieldNoLegStipulations.offset > 0 ){
+     for( auto & g : groupsLegStipulations ){
+       if( g.getMessageBuffer() == nullptr ) break;
+       const char * tagPtr = g.findBadEnum();
+       if( tagPtr ) return tagPtr;
+     }
+   }
+   if( fieldNoNestedPartyIDs.offset > 0 ){
+     for( auto & g : groupsNestedPartyIDs ){
+       if( g.getMessageBuffer() == nullptr ) break;
+       const char * tagPtr = g.findBadEnum();
+       if( tagPtr ) return tagPtr;
+     }
+   }
+   return nullptr;
+}
+
+
 // ---------------------------------- getKnownFields ---------------------------------
 namespace {
 const std::vector<unsigned> LegStipulations_knownFields = { FieldLegStipulationType::TAG

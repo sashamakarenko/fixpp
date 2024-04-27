@@ -165,6 +165,11 @@ int main( int args, const char ** argv )
     CHECK_EQ( bad group md full refresh expected, noExpected, 10 )
     CHECK_EQ( bad group md full refresh received, noReceived, 6 )
 
+    parse( FIX_BUFFER_BAD_SIDE_EXAMPLE_EXEC_REPORT, er );
+    badFieldPtr = er.findBadEnum();
+    CHECK( bad enum in exec report, badFieldPtr != nullptr, == true )
+    CHECK_EQ( bad enum field report tag, parseTag( badFieldPtr ), field::Side::TAG )
+
     fix = FIX_BUFFER_BAD_SENDER_COMP_ID_XX_EXAMPLE_LOGON;
     header.reset();
     pos = header.scan( fix, strlen( fix ) );

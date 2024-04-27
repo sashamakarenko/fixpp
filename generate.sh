@@ -65,7 +65,7 @@ if [[ -z ${DSTDIR} || -z ${DEFDIR} || -z ${DSTINCDIR} || -z ${DSTNAMESPACE} ]]; 
 fi
 
 # check files existance
-for f in $DEFDIR/Fields.def $DEFDIR/Messages.def $DEFDIR/Groups.def; do
+for f in ${DEFDIR}/Fields.def ${DEFDIR}/Messages.def ${DEFDIR}/Groups.def; do
     if [[ ! -f $f ]]; then
         echo "File not found $f" >&2
         exit 1
@@ -73,24 +73,24 @@ for f in $DEFDIR/Fields.def $DEFDIR/Messages.def $DEFDIR/Groups.def; do
 done
 
 # collect fields
-used_fields=" $( sed -n -e 's/.*FIX_MSG_FIELD.*( *\(.*\) *).*/\1/gp' -e 's/FIX_MSG_GROUP_BEGIN.*( *\(.*\) *, *\(.*\) *).*/No\1\n\2/gp' $DEFDIR/Messages.def $DEFDIR/Groups.def | sort -u | tr \\n ' ' | sed 's/  / /g' ) "
-decl_fields=" $( sed -n -e 's/FIX_FIELD_DECL.*( *\(.*\) *,.*,.*).*/\1/gp' $DEFDIR/Fields.def | sort -u | tr \\n ' ' | sed 's/  / /g' ) "
+used_fields=" $( sed -n -e 's/.*FIX_MSG_FIELD.*( *\(.*\) *).*/\1/gp' -e 's/FIX_MSG_GROUP_BEGIN.*( *\(.*\) *, *\(.*\) *).*/No\1\n\2/gp' ${DEFDIR}/Messages.def ${DEFDIR}/Groups.def | sort -u | tr \\n ' ' | sed 's/  / /g' ) "
+decl_fields=" $( sed -n -e 's/FIX_FIELD_DECL.*( *\(.*\) *,.*,.*).*/\1/gp' ${DEFDIR}/Fields.def | sort -u | tr \\n ' ' | sed 's/  / /g' ) "
 
 if $clean_fields; then
-    fields_bkp_file=$DEFDIR/Fields.def.$(date +%s)
-    cp -f $DEFDIR/Fields.def $fields_bkp_file
+    fields_bkp_file=${DEFDIR}/Fields.def.$(date +%s)
+    cp -f ${DEFDIR}/Fields.def $fields_bkp_file
 fi
 
 # find unused fields
 unsed_fields_found=false
 for f in $decl_fields; do
     if [[ CheckSum != $f ]] && ! grep -q " $f " <<<"$used_fields"; then
-        echo -n "  not used field to be removed from $DEFDIR/Fields.def: $f"
+        echo -n "  not used field to be removed from ${DEFDIR}/Fields.def: $f"
         unsed_fields_found=true
         if $clean_fields; then
             echo " (removing it)"
-            sed -e "/FIX_FIELD_DECL.*( * $f *,.*,.*).*/d" -i $DEFDIR/Fields.def
-            sed -e "/FIX_ENUM_BEGIN.*( * $f *)/,/FIX_ENUM_END/d" -i $DEFDIR/Fields.def
+            sed -e "/FIX_FIELD_DECL.*( * $f *,.*,.*).*/d" -i ${DEFDIR}/Fields.def
+            sed -e "/FIX_ENUM_BEGIN.*( * $f *)/,/FIX_ENUM_END/d" -i ${DEFDIR}/Fields.def
         else
             echo
         fi
@@ -112,7 +112,7 @@ fi
 found_mising_fields=false
 for f in $used_fields; do
     if ! grep -q " $f " <<<"$decl_fields"; then
-        echo "  missing field declaration in $DEFDIR/Fields.def: $f"
+        echo "  missing field declaration in ${DEFDIR}/Fields.def: $f"
         found_mising_fields=true
     fi
 done
@@ -125,6 +125,21 @@ if $found_mising_fields; then
 fi
 
 mkdir -p ${DSTDIR}
+
+# Extract enums
+dst=${DEFDIR}/MessageEnums.tmp
+echo "  generating $dst"
+cp -f ${DEFDIR}/Messages.def $dst
+for e in $( sed -n -e "s/FIX_ENUM_BEGIN.*( *\(.*\) *)/\1/gp" ${DEFDIR}/Fields.def ); do
+    sed "s/FIX_MSG_FIELD *( *$e *)/FIX_MSG_ENUM_FIELD( $e )/g" -i $dst
+done
+
+dst=${DEFDIR}/GroupEnums.tmp
+echo "  generating $dst"
+cp -f ${DEFDIR}/Groups.def $dst
+for e in $( sed -n -e "s/FIX_ENUM_BEGIN.*( *\(.*\) *)/\1/gp" ${DEFDIR}/Fields.def ); do
+    sed "s/FIX_MSG_FIELD *( *$e *)/FIX_MSG_ENUM_FIELD( $e )/g" -i $dst
+done
 
 # Preprocess .pp files
 for pp in $mydir/src/*.pp; do
@@ -147,6 +162,8 @@ for pp in $mydir/src/*.pp; do
     sed '/^$/N;/\n$/N;//D' -i $dst
 done
 rm -f ${DSTDIR}/Common.hxx
+rm -f ${DEFDIR}/MessageEnums.tmp
+rm -f ${DEFDIR}/GroupEnums.tmp
 
 # Copy C++ files
 DSTHEADERGUARD=${DSTNAMESPACE/::/_}

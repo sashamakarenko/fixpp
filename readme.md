@@ -13,6 +13,7 @@ Mindset:
 Receiving ([read more](#input)):
 
 * Lightweight and low latency FIX parsing with reusable memory and objects.
+* Optional message sanity checks are available.
 * Flexible formatting with available predefined TTY color styles.
 * Pretty printing with GDB and VSCode.
 
@@ -20,6 +21,7 @@ Sending ([read more](#sending-api)):
 
 * Low latency FIX message building with reusable memory and objects.
 * For a given message type, only fields changing between two sends are to be updated.
+* BodyLength and MsgSeqNum fields can be zero padded to reduce memory copies.
 
 You have to know:
 

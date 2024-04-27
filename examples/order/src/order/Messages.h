@@ -35,6 +35,7 @@ class MessageHeader: public MessageBase
    const char * getFieldValue( tag_t tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
+   const char * findBadEnum() const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<tag_t> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
@@ -130,6 +131,7 @@ class MessageNewOrderSingle: public MessageBase
    const char * getFieldValue( tag_t tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
+   const char * findBadEnum() const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<tag_t> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
@@ -260,6 +262,7 @@ class MessageExecutionReport: public MessageBase
    const char * getFieldValue( tag_t tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
+   const char * findBadEnum() const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<tag_t> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
