@@ -30,6 +30,7 @@ class MessageHeader: public MessageBase
    static const char * getMessageName();
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
+   offset_t scanSafely( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
    const char * getFieldValue( tag_t tag ) const;
@@ -126,6 +127,7 @@ class MessageNewOrderSingle: public MessageBase
    static const char * getMessageName();
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
+   offset_t scanSafely( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
    const char * getFieldValue( tag_t tag ) const;
@@ -257,6 +259,7 @@ class MessageExecutionReport: public MessageBase
    static const char * getMessageName();
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
+   offset_t scanSafely( const char * fix, unsigned len );
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
    const char * getFieldValue( tag_t tag ) const;

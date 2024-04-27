@@ -648,6 +648,27 @@ inline bool isGoodTag( const char * ptr )
     return false;
 }
 
+// |268=4|
+//      |
+//      ptr
+inline int parseGroupNoValue( const char * ptr )
+{
+    if( not std::isdigit( *ptr ) )
+    {
+        return -1;
+    }
+    int ret = 0;
+    while( std::isdigit( *ptr ) )
+    {
+        ret = ret * 10 + int(*ptr-'0');
+    }
+    if( *ptr != 1 )
+    {
+        return -2;
+    }
+    return ret;
+}
+
 template<typename V>
 inline std::string toString( const V & value )
 {

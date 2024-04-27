@@ -27,6 +27,7 @@ class GroupLegStipulations : public MessageBase
    void reset();
    static const char * getMessageName();
    static offset_t scan( Array & arr, const char * fix, unsigned len );
+   static offset_t scanSafely( Array & arr, const char * fix, unsigned len, unsigned & groupCount );
    static offset_t skip( const char * fix, unsigned len );
    const char * getFieldValue( unsigned tag ) const;
    const char * findBadField() const;
@@ -66,6 +67,7 @@ class GroupNestedPartySubIDs : public MessageBase
    void reset();
    static const char * getMessageName();
    static offset_t scan( Array & arr, const char * fix, unsigned len );
+   static offset_t scanSafely( Array & arr, const char * fix, unsigned len, unsigned & groupCount );
    static offset_t skip( const char * fix, unsigned len );
    const char * getFieldValue( unsigned tag ) const;
    const char * findBadField() const;
@@ -105,6 +107,7 @@ class GroupNestedPartyIDs : public MessageBase
    void reset();
    static const char * getMessageName();
    static offset_t scan( Array & arr, const char * fix, unsigned len );
+   static offset_t scanSafely( Array & arr, const char * fix, unsigned len, unsigned & groupCount );
    static offset_t skip( const char * fix, unsigned len );
    const char * getFieldValue( unsigned tag ) const;
    const char * findBadField() const;
@@ -167,6 +170,7 @@ class GroupLegs : public MessageBase
    void reset();
    static const char * getMessageName();
    static offset_t scan( Array & arr, const char * fix, unsigned len );
+   static offset_t scanSafely( Array & arr, const char * fix, unsigned len, unsigned & groupCount );
    static offset_t skip( const char * fix, unsigned len );
    const char * getFieldValue( unsigned tag ) const;
    const char * findBadField() const;

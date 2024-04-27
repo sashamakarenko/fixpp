@@ -213,6 +213,249 @@ offset_t GroupLegs::scan( Array & arr, const char * fix, unsigned len ){
 }
 
 
+// -------------------------------------- scanSafely ----------------------------------------
+offset_t GroupLegStipulations::scanSafely( Array & arr, const char * fix, unsigned len, unsigned & groupCount ){
+ GroupLegStipulations * group = nullptr; 
+ offset_t prev = 0, pos = 0, gpos = 0;
+ const char * groupBuf = fix; 
+ groupCount = 0; 
+bool keepScanning = true;
+while( pos < (int)len and keepScanning ) {
+   bool isGroupStart = false;
+   prev = pos;
+   if( not isGoodTag( fix+pos ) ) break;
+   raw_tag_t tag = loadRawTag( fix+pos, pos );
+   if( fix[pos] == 1 ) break;
+   gpos = pos - (groupBuf - fix);
+   switch( tag ){
+   case FieldLegStipulationType::RAW_TAG :
+     FIXPP_PRINT_FIELD(LegStipulationType)
+     if( group ) group->_fixLength = gpos;
+     group = groupCount < arr.size() ? & arr[ groupCount ] : & arr.emplace_back();
+     group->fieldLegStipulationType.offset = pos - prev;
+     groupBuf = fix+prev;
+     group->_fixPtr = groupBuf;
+     ++groupCount;
+     break;
+
+   case FieldLegStipulationValue::RAW_TAG :
+     FIXPP_PRINT_FIELD(LegStipulationValue)
+     if( group->fieldLegStipulationValue.offset < 0 ) group->fieldLegStipulationValue.offset = pos;
+     else keepScanning = false;
+     break;
+
+   default: FIXPP_PRINT_UNKNOWN_FIELD
+     if( group ) group->_fixLength = gpos;
+     return prev;
+   }
+   if( ! isGroupStart ) gotoNextField( fix, pos );
+ }
+ if( group ) group->_fixLength = gpos;
+ return pos;
+}
+
+offset_t GroupNestedPartySubIDs::scanSafely( Array & arr, const char * fix, unsigned len, unsigned & groupCount ){
+ GroupNestedPartySubIDs * group = nullptr; 
+ offset_t prev = 0, pos = 0, gpos = 0;
+ const char * groupBuf = fix; 
+ groupCount = 0; 
+bool keepScanning = true;
+while( pos < (int)len and keepScanning ) {
+   bool isGroupStart = false;
+   prev = pos;
+   if( not isGoodTag( fix+pos ) ) break;
+   raw_tag_t tag = loadRawTag( fix+pos, pos );
+   if( fix[pos] == 1 ) break;
+   gpos = pos - (groupBuf - fix);
+   switch( tag ){
+   case FieldNestedPartySubID::RAW_TAG :
+     FIXPP_PRINT_FIELD(NestedPartySubID)
+     if( group ) group->_fixLength = gpos;
+     group = groupCount < arr.size() ? & arr[ groupCount ] : & arr.emplace_back();
+     group->fieldNestedPartySubID.offset = pos - prev;
+     groupBuf = fix+prev;
+     group->_fixPtr = groupBuf;
+     ++groupCount;
+     break;
+
+   case FieldNestedPartySubIDType::RAW_TAG :
+     FIXPP_PRINT_FIELD(NestedPartySubIDType)
+     if( group->fieldNestedPartySubIDType.offset < 0 ) group->fieldNestedPartySubIDType.offset = pos;
+     else keepScanning = false;
+     break;
+
+   default: FIXPP_PRINT_UNKNOWN_FIELD
+     if( group ) group->_fixLength = gpos;
+     return prev;
+   }
+   if( ! isGroupStart ) gotoNextField( fix, pos );
+ }
+ if( group ) group->_fixLength = gpos;
+ return pos;
+}
+
+offset_t GroupNestedPartyIDs::scanSafely( Array & arr, const char * fix, unsigned len, unsigned & groupCount ){
+ GroupNestedPartyIDs * group = nullptr; 
+ offset_t prev = 0, pos = 0, gpos = 0;
+ const char * groupBuf = fix; 
+ groupCount = 0; 
+bool keepScanning = true;
+while( pos < (int)len and keepScanning ) {
+   bool isGroupStart = false;
+   prev = pos;
+   if( not isGoodTag( fix+pos ) ) break;
+   raw_tag_t tag = loadRawTag( fix+pos, pos );
+   if( fix[pos] == 1 ) break;
+   gpos = pos - (groupBuf - fix);
+   switch( tag ){
+   case FieldNestedPartyID::RAW_TAG :
+     FIXPP_PRINT_FIELD(NestedPartyID)
+     if( group ) group->_fixLength = gpos;
+     group = groupCount < arr.size() ? & arr[ groupCount ] : & arr.emplace_back();
+     group->fieldNestedPartyID.offset = pos - prev;
+     groupBuf = fix+prev;
+     group->_fixPtr = groupBuf;
+     ++groupCount;
+     break;
+
+   case FieldNestedPartyIDSource::RAW_TAG :
+     FIXPP_PRINT_FIELD(NestedPartyIDSource)
+     if( group->fieldNestedPartyIDSource.offset < 0 ) group->fieldNestedPartyIDSource.offset = pos;
+     else keepScanning = false;
+     break;
+
+   case FieldNestedPartyRole::RAW_TAG :
+     FIXPP_PRINT_FIELD(NestedPartyRole)
+     if( group->fieldNestedPartyRole.offset < 0 ) group->fieldNestedPartyRole.offset = pos;
+     else keepScanning = false;
+     break;
+
+   case FieldNoNestedPartySubIDs::RAW_TAG :
+     FIXPP_PRINT_FIELD(NoNestedPartySubIDs) 
+     if( group->fieldNoNestedPartySubIDs.offset < 0 ){
+       group->fieldNoNestedPartySubIDs.offset = pos;
+       isGroupStart = true;
+       {
+       int groupExpected = parseGroupNoValue( fix + pos );
+       unsigned groupFound = 0;
+       gotoNextField( fix, pos );
+       pos += GroupNestedPartySubIDs::scanSafely( group->groupsNestedPartySubIDs, fix+pos, len - pos, groupFound );
+       if( (int)groupFound != groupExpected ) keepScanning = false;
+       }
+     } else keepScanning = false;
+     break;
+
+   default: FIXPP_PRINT_UNKNOWN_FIELD
+     if( group ) group->_fixLength = gpos;
+     return prev;
+   }
+   if( ! isGroupStart ) gotoNextField( fix, pos );
+ }
+ if( group ) group->_fixLength = gpos;
+ return pos;
+}
+
+offset_t GroupLegs::scanSafely( Array & arr, const char * fix, unsigned len, unsigned & groupCount ){
+ GroupLegs * group = nullptr; 
+ offset_t prev = 0, pos = 0, gpos = 0;
+ const char * groupBuf = fix; 
+ groupCount = 0; 
+bool keepScanning = true;
+while( pos < (int)len and keepScanning ) {
+   bool isGroupStart = false;
+   prev = pos;
+   if( not isGoodTag( fix+pos ) ) break;
+   raw_tag_t tag = loadRawTag( fix+pos, pos );
+   if( fix[pos] == 1 ) break;
+   gpos = pos - (groupBuf - fix);
+   switch( tag ){
+   case FieldLegSymbol::RAW_TAG :
+     FIXPP_PRINT_FIELD(LegSymbol)
+     if( group ) group->_fixLength = gpos;
+     group = groupCount < arr.size() ? & arr[ groupCount ] : & arr.emplace_back();
+     group->fieldLegSymbol.offset = pos - prev;
+     groupBuf = fix+prev;
+     group->_fixPtr = groupBuf;
+     ++groupCount;
+     break;
+
+   case FieldLegSide::RAW_TAG :
+     FIXPP_PRINT_FIELD(LegSide)
+     if( group->fieldLegSide.offset < 0 ) group->fieldLegSide.offset = pos;
+     else keepScanning = false;
+     break;
+
+   case FieldLegQty::RAW_TAG :
+     FIXPP_PRINT_FIELD(LegQty)
+     if( group->fieldLegQty.offset < 0 ) group->fieldLegQty.offset = pos;
+     else keepScanning = false;
+     break;
+
+   case FieldNoLegStipulations::RAW_TAG :
+     FIXPP_PRINT_FIELD(NoLegStipulations) 
+     if( group->fieldNoLegStipulations.offset < 0 ){
+       group->fieldNoLegStipulations.offset = pos;
+       isGroupStart = true;
+       {
+       int groupExpected = parseGroupNoValue( fix + pos );
+       unsigned groupFound = 0;
+       gotoNextField( fix, pos );
+       pos += GroupLegStipulations::scanSafely( group->groupsLegStipulations, fix+pos, len - pos, groupFound );
+       if( (int)groupFound != groupExpected ) keepScanning = false;
+       }
+     } else keepScanning = false;
+     break;
+
+   case FieldLegPositionEffect::RAW_TAG :
+     FIXPP_PRINT_FIELD(LegPositionEffect)
+     if( group->fieldLegPositionEffect.offset < 0 ) group->fieldLegPositionEffect.offset = pos;
+     else keepScanning = false;
+     break;
+
+   case FieldNoNestedPartyIDs::RAW_TAG :
+     FIXPP_PRINT_FIELD(NoNestedPartyIDs) 
+     if( group->fieldNoNestedPartyIDs.offset < 0 ){
+       group->fieldNoNestedPartyIDs.offset = pos;
+       isGroupStart = true;
+       {
+       int groupExpected = parseGroupNoValue( fix + pos );
+       unsigned groupFound = 0;
+       gotoNextField( fix, pos );
+       pos += GroupNestedPartyIDs::scanSafely( group->groupsNestedPartyIDs, fix+pos, len - pos, groupFound );
+       if( (int)groupFound != groupExpected ) keepScanning = false;
+       }
+     } else keepScanning = false;
+     break;
+
+   case FieldLegRefID::RAW_TAG :
+     FIXPP_PRINT_FIELD(LegRefID)
+     if( group->fieldLegRefID.offset < 0 ) group->fieldLegRefID.offset = pos;
+     else keepScanning = false;
+     break;
+
+   case FieldLegPrice::RAW_TAG :
+     FIXPP_PRINT_FIELD(LegPrice)
+     if( group->fieldLegPrice.offset < 0 ) group->fieldLegPrice.offset = pos;
+     else keepScanning = false;
+     break;
+
+   case FieldLegLastPx::RAW_TAG :
+     FIXPP_PRINT_FIELD(LegLastPx)
+     if( group->fieldLegLastPx.offset < 0 ) group->fieldLegLastPx.offset = pos;
+     else keepScanning = false;
+     break;
+
+   default: FIXPP_PRINT_UNKNOWN_FIELD
+     if( group ) group->_fixLength = gpos;
+     return prev;
+   }
+   if( ! isGroupStart ) gotoNextField( fix, pos );
+ }
+ if( group ) group->_fixLength = gpos;
+ return pos;
+}
+
+
 // -------------------------------------- skip ----------------------------------------
 offset_t GroupLegStipulations::skip( const char * fix, unsigned len ){
  offset_t prev = 0, pos = 0; 

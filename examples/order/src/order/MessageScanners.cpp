@@ -15,8 +15,8 @@ namespace order
 // -------------------------------------- scan ----------------------------------------
 
 offset_t MessageHeader::scan( const char * fix, unsigned len ){
-_fixPtr = fix; 
-offset_t prev = 0, pos = 0; 
+_fixPtr = fix;
+offset_t prev = 0, pos = 0;
 while( pos < (int)len ) {
    bool isGroupStart = false;
    prev = pos;
@@ -63,7 +63,7 @@ while( pos < (int)len ) {
      fieldCheckSum.offset = pos;
      gotoNextField( fix, pos );
      _fixLength = pos;
-     return pos; 
+     return pos;
 
    default: FIXPP_PRINT_UNKNOWN_FIELD
      _fixLength = prev;
@@ -76,8 +76,8 @@ while( pos < (int)len ) {
 }
 
 offset_t MessageNewOrderSingle::scan( const char * fix, unsigned len ){
-_fixPtr = fix; 
-offset_t prev = 0, pos = 0; 
+_fixPtr = fix;
+offset_t prev = 0, pos = 0;
 while( pos < (int)len ) {
    bool isGroupStart = false;
    prev = pos;
@@ -144,7 +144,7 @@ while( pos < (int)len ) {
      fieldCheckSum.offset = pos;
      gotoNextField( fix, pos );
      _fixLength = pos;
-     return pos; 
+     return pos;
 
    default: FIXPP_PRINT_UNKNOWN_FIELD
      _fixLength = prev;
@@ -157,8 +157,8 @@ while( pos < (int)len ) {
 }
 
 offset_t MessageExecutionReport::scan( const char * fix, unsigned len ){
-_fixPtr = fix; 
-offset_t prev = 0, pos = 0; 
+_fixPtr = fix;
+offset_t prev = 0, pos = 0;
 while( pos < (int)len ) {
    bool isGroupStart = false;
    prev = pos;
@@ -318,7 +318,388 @@ while( pos < (int)len ) {
      fieldCheckSum.offset = pos;
      gotoNextField( fix, pos );
      _fixLength = pos;
-     return pos; 
+     return pos;
+
+   default: FIXPP_PRINT_UNKNOWN_FIELD
+     _fixLength = prev;
+     return prev;
+   }
+   if( ! isGroupStart ) gotoNextField( fix, pos );
+ }
+ _fixLength = pos;
+ return pos;
+}
+
+
+// -------------------------------------- scanSafely ----------------------------------------
+
+offset_t MessageHeader::scanSafely( const char * fix, unsigned len ){
+_fixPtr = fix;
+offset_t prev = 0, pos = 0;
+bool keepScanning = true;
+while( pos < (int)len and keepScanning ) {
+   bool isGroupStart = false;
+   prev = pos;
+   if( not isGoodTag( fix+pos ) ) break;
+   raw_tag_t tag = loadRawTag( fix+pos, pos );
+   if( fix[pos] == 1 ) break;
+   switch( tag ){
+
+   case FieldBeginString::RAW_TAG :
+     FIXPP_PRINT_FIELD(BeginString) 
+     if( fieldBeginString.offset < 0 ) fieldBeginString.offset = pos;
+     else keepScanning = false;
+     break;
+
+   case FieldBodyLength::RAW_TAG :
+     FIXPP_PRINT_FIELD(BodyLength) 
+     if( fieldBodyLength.offset < 0 ) fieldBodyLength.offset = pos;
+     else keepScanning = false;
+     break;
+
+   case FieldMsgType::RAW_TAG :
+     FIXPP_PRINT_FIELD(MsgType) 
+     if( fieldMsgType.offset < 0 ) fieldMsgType.offset = pos;
+     else keepScanning = false;
+     break;
+
+   case FieldSenderCompID::RAW_TAG :
+     FIXPP_PRINT_FIELD(SenderCompID) 
+     if( fieldSenderCompID.offset < 0 ) fieldSenderCompID.offset = pos;
+     else keepScanning = false;
+     break;
+
+   case FieldTargetCompID::RAW_TAG :
+     FIXPP_PRINT_FIELD(TargetCompID) 
+     if( fieldTargetCompID.offset < 0 ) fieldTargetCompID.offset = pos;
+     else keepScanning = false;
+     break;
+
+   case FieldMsgSeqNum::RAW_TAG :
+     FIXPP_PRINT_FIELD(MsgSeqNum) 
+     if( fieldMsgSeqNum.offset < 0 ) fieldMsgSeqNum.offset = pos;
+     else keepScanning = false;
+     break;
+
+   case FieldSendingTime::RAW_TAG :
+     FIXPP_PRINT_FIELD(SendingTime) 
+     if( fieldSendingTime.offset < 0 ) fieldSendingTime.offset = pos;
+     else keepScanning = false;
+     break;
+
+   case FieldCheckSum::RAW_TAG :
+     FIXPP_PRINT_FIELD(CheckSum) 
+     fieldCheckSum.offset = pos;
+     gotoNextField( fix, pos );
+     _fixLength = pos;
+     return pos;
+
+   default: FIXPP_PRINT_UNKNOWN_FIELD
+     _fixLength = prev;
+     return prev;
+   }
+   if( ! isGroupStart ) gotoNextField( fix, pos );
+ }
+ _fixLength = pos;
+ return pos;
+}
+
+offset_t MessageNewOrderSingle::scanSafely( const char * fix, unsigned len ){
+_fixPtr = fix;
+offset_t prev = 0, pos = 0;
+bool keepScanning = true;
+while( pos < (int)len and keepScanning ) {
+   bool isGroupStart = false;
+   prev = pos;
+   if( not isGoodTag( fix+pos ) ) break;
+   raw_tag_t tag = loadRawTag( fix+pos, pos );
+   if( fix[pos] == 1 ) break;
+   switch( tag ){
+
+   case FieldClOrdID::RAW_TAG :
+     FIXPP_PRINT_FIELD(ClOrdID) 
+     if( fieldClOrdID.offset < 0 ) fieldClOrdID.offset = pos;
+     else keepScanning = false;
+     break;
+
+   case FieldAccount::RAW_TAG :
+     FIXPP_PRINT_FIELD(Account) 
+     if( fieldAccount.offset < 0 ) fieldAccount.offset = pos;
+     else keepScanning = false;
+     break;
+
+   case FieldSymbol::RAW_TAG :
+     FIXPP_PRINT_FIELD(Symbol) 
+     if( fieldSymbol.offset < 0 ) fieldSymbol.offset = pos;
+     else keepScanning = false;
+     break;
+
+   case FieldSecurityID::RAW_TAG :
+     FIXPP_PRINT_FIELD(SecurityID) 
+     if( fieldSecurityID.offset < 0 ) fieldSecurityID.offset = pos;
+     else keepScanning = false;
+     break;
+
+   case FieldSide::RAW_TAG :
+     FIXPP_PRINT_FIELD(Side) 
+     if( fieldSide.offset < 0 ) fieldSide.offset = pos;
+     else keepScanning = false;
+     break;
+
+   case FieldQtyType::RAW_TAG :
+     FIXPP_PRINT_FIELD(QtyType) 
+     if( fieldQtyType.offset < 0 ) fieldQtyType.offset = pos;
+     else keepScanning = false;
+     break;
+
+   case FieldOrderQty::RAW_TAG :
+     FIXPP_PRINT_FIELD(OrderQty) 
+     if( fieldOrderQty.offset < 0 ) fieldOrderQty.offset = pos;
+     else keepScanning = false;
+     break;
+
+   case FieldOrdType::RAW_TAG :
+     FIXPP_PRINT_FIELD(OrdType) 
+     if( fieldOrdType.offset < 0 ) fieldOrdType.offset = pos;
+     else keepScanning = false;
+     break;
+
+   case FieldPrice::RAW_TAG :
+     FIXPP_PRINT_FIELD(Price) 
+     if( fieldPrice.offset < 0 ) fieldPrice.offset = pos;
+     else keepScanning = false;
+     break;
+
+   case FieldStopPx::RAW_TAG :
+     FIXPP_PRINT_FIELD(StopPx) 
+     if( fieldStopPx.offset < 0 ) fieldStopPx.offset = pos;
+     else keepScanning = false;
+     break;
+
+   case FieldTransactTime::RAW_TAG :
+     FIXPP_PRINT_FIELD(TransactTime) 
+     if( fieldTransactTime.offset < 0 ) fieldTransactTime.offset = pos;
+     else keepScanning = false;
+     break;
+
+   case FieldCheckSum::RAW_TAG :
+     FIXPP_PRINT_FIELD(CheckSum) 
+     fieldCheckSum.offset = pos;
+     gotoNextField( fix, pos );
+     _fixLength = pos;
+     return pos;
+
+   default: FIXPP_PRINT_UNKNOWN_FIELD
+     _fixLength = prev;
+     return prev;
+   }
+   if( ! isGroupStart ) gotoNextField( fix, pos );
+ }
+ _fixLength = pos;
+ return pos;
+}
+
+offset_t MessageExecutionReport::scanSafely( const char * fix, unsigned len ){
+_fixPtr = fix;
+offset_t prev = 0, pos = 0;
+bool keepScanning = true;
+while( pos < (int)len and keepScanning ) {
+   bool isGroupStart = false;
+   prev = pos;
+   if( not isGoodTag( fix+pos ) ) break;
+   raw_tag_t tag = loadRawTag( fix+pos, pos );
+   if( fix[pos] == 1 ) break;
+   switch( tag ){
+
+   case FieldOrderID::RAW_TAG :
+     FIXPP_PRINT_FIELD(OrderID) 
+     if( fieldOrderID.offset < 0 ) fieldOrderID.offset = pos;
+     else keepScanning = false;
+     break;
+
+   case FieldClOrdID::RAW_TAG :
+     FIXPP_PRINT_FIELD(ClOrdID) 
+     if( fieldClOrdID.offset < 0 ) fieldClOrdID.offset = pos;
+     else keepScanning = false;
+     break;
+
+   case FieldOrigClOrdID::RAW_TAG :
+     FIXPP_PRINT_FIELD(OrigClOrdID) 
+     if( fieldOrigClOrdID.offset < 0 ) fieldOrigClOrdID.offset = pos;
+     else keepScanning = false;
+     break;
+
+   case FieldExecID::RAW_TAG :
+     FIXPP_PRINT_FIELD(ExecID) 
+     if( fieldExecID.offset < 0 ) fieldExecID.offset = pos;
+     else keepScanning = false;
+     break;
+
+   case FieldExecType::RAW_TAG :
+     FIXPP_PRINT_FIELD(ExecType) 
+     if( fieldExecType.offset < 0 ) fieldExecType.offset = pos;
+     else keepScanning = false;
+     break;
+
+   case FieldOrdStatus::RAW_TAG :
+     FIXPP_PRINT_FIELD(OrdStatus) 
+     if( fieldOrdStatus.offset < 0 ) fieldOrdStatus.offset = pos;
+     else keepScanning = false;
+     break;
+
+   case FieldOrdRejReason::RAW_TAG :
+     FIXPP_PRINT_FIELD(OrdRejReason) 
+     if( fieldOrdRejReason.offset < 0 ) fieldOrdRejReason.offset = pos;
+     else keepScanning = false;
+     break;
+
+   case FieldAccount::RAW_TAG :
+     FIXPP_PRINT_FIELD(Account) 
+     if( fieldAccount.offset < 0 ) fieldAccount.offset = pos;
+     else keepScanning = false;
+     break;
+
+   case FieldSymbol::RAW_TAG :
+     FIXPP_PRINT_FIELD(Symbol) 
+     if( fieldSymbol.offset < 0 ) fieldSymbol.offset = pos;
+     else keepScanning = false;
+     break;
+
+   case FieldSecurityID::RAW_TAG :
+     FIXPP_PRINT_FIELD(SecurityID) 
+     if( fieldSecurityID.offset < 0 ) fieldSecurityID.offset = pos;
+     else keepScanning = false;
+     break;
+
+   case FieldSecurityType::RAW_TAG :
+     FIXPP_PRINT_FIELD(SecurityType) 
+     if( fieldSecurityType.offset < 0 ) fieldSecurityType.offset = pos;
+     else keepScanning = false;
+     break;
+
+   case FieldText::RAW_TAG :
+     FIXPP_PRINT_FIELD(Text) 
+     if( fieldText.offset < 0 ) fieldText.offset = pos;
+     else keepScanning = false;
+     break;
+
+   case FieldProduct::RAW_TAG :
+     FIXPP_PRINT_FIELD(Product) 
+     if( fieldProduct.offset < 0 ) fieldProduct.offset = pos;
+     else keepScanning = false;
+     break;
+
+   case FieldSide::RAW_TAG :
+     FIXPP_PRINT_FIELD(Side) 
+     if( fieldSide.offset < 0 ) fieldSide.offset = pos;
+     else keepScanning = false;
+     break;
+
+   case FieldQtyType::RAW_TAG :
+     FIXPP_PRINT_FIELD(QtyType) 
+     if( fieldQtyType.offset < 0 ) fieldQtyType.offset = pos;
+     else keepScanning = false;
+     break;
+
+   case FieldOrderQty::RAW_TAG :
+     FIXPP_PRINT_FIELD(OrderQty) 
+     if( fieldOrderQty.offset < 0 ) fieldOrderQty.offset = pos;
+     else keepScanning = false;
+     break;
+
+   case FieldOrdType::RAW_TAG :
+     FIXPP_PRINT_FIELD(OrdType) 
+     if( fieldOrdType.offset < 0 ) fieldOrdType.offset = pos;
+     else keepScanning = false;
+     break;
+
+   case FieldPriceType::RAW_TAG :
+     FIXPP_PRINT_FIELD(PriceType) 
+     if( fieldPriceType.offset < 0 ) fieldPriceType.offset = pos;
+     else keepScanning = false;
+     break;
+
+   case FieldPrice::RAW_TAG :
+     FIXPP_PRINT_FIELD(Price) 
+     if( fieldPrice.offset < 0 ) fieldPrice.offset = pos;
+     else keepScanning = false;
+     break;
+
+   case FieldStopPx::RAW_TAG :
+     FIXPP_PRINT_FIELD(StopPx) 
+     if( fieldStopPx.offset < 0 ) fieldStopPx.offset = pos;
+     else keepScanning = false;
+     break;
+
+   case FieldCurrency::RAW_TAG :
+     FIXPP_PRINT_FIELD(Currency) 
+     if( fieldCurrency.offset < 0 ) fieldCurrency.offset = pos;
+     else keepScanning = false;
+     break;
+
+   case FieldTimeInForce::RAW_TAG :
+     FIXPP_PRINT_FIELD(TimeInForce) 
+     if( fieldTimeInForce.offset < 0 ) fieldTimeInForce.offset = pos;
+     else keepScanning = false;
+     break;
+
+   case FieldExecInst::RAW_TAG :
+     FIXPP_PRINT_FIELD(ExecInst) 
+     if( fieldExecInst.offset < 0 ) fieldExecInst.offset = pos;
+     else keepScanning = false;
+     break;
+
+   case FieldLastQty::RAW_TAG :
+     FIXPP_PRINT_FIELD(LastQty) 
+     if( fieldLastQty.offset < 0 ) fieldLastQty.offset = pos;
+     else keepScanning = false;
+     break;
+
+   case FieldLastPx::RAW_TAG :
+     FIXPP_PRINT_FIELD(LastPx) 
+     if( fieldLastPx.offset < 0 ) fieldLastPx.offset = pos;
+     else keepScanning = false;
+     break;
+
+   case FieldLeavesQty::RAW_TAG :
+     FIXPP_PRINT_FIELD(LeavesQty) 
+     if( fieldLeavesQty.offset < 0 ) fieldLeavesQty.offset = pos;
+     else keepScanning = false;
+     break;
+
+   case FieldAvgPx::RAW_TAG :
+     FIXPP_PRINT_FIELD(AvgPx) 
+     if( fieldAvgPx.offset < 0 ) fieldAvgPx.offset = pos;
+     else keepScanning = false;
+     break;
+
+   case FieldCumQty::RAW_TAG :
+     FIXPP_PRINT_FIELD(CumQty) 
+     if( fieldCumQty.offset < 0 ) fieldCumQty.offset = pos;
+     else keepScanning = false;
+     break;
+
+   case FieldNoLegs::RAW_TAG :
+     FIXPP_PRINT_FIELD(NoLegs) 
+     if( fieldNoLegs.offset < 0 ){
+       fieldNoLegs.offset = pos;
+       isGroupStart = true;
+       {
+       int groupExpected = parseGroupNoValue( fix + pos );
+       unsigned groupFound = 0;
+       gotoNextField( fix, pos );
+       pos += GroupLegs::scanSafely( groupsLegs, fix+pos, len - pos, groupFound );
+       if( (int)groupFound != groupExpected ) keepScanning = false;
+       }
+     } else keepScanning = false;
+     break;
+
+   case FieldCheckSum::RAW_TAG :
+     FIXPP_PRINT_FIELD(CheckSum) 
+     fieldCheckSum.offset = pos;
+     gotoNextField( fix, pos );
+     _fixLength = pos;
+     return pos;
 
    default: FIXPP_PRINT_UNKNOWN_FIELD
      _fixLength = prev;
@@ -335,7 +716,7 @@ while( pos < (int)len ) {
 
 offset_t MessageHeader::skip( const char * fix, unsigned len ) const
 {
-offset_t prev = 0, pos = 0; 
+offset_t prev = 0, pos = 0;
 gotoNextField( fix, pos );
 while( pos < (int)len ) {
    bool isGroupStart = false;
@@ -378,7 +759,7 @@ while( pos < (int)len ) {
 
 offset_t MessageNewOrderSingle::skip( const char * fix, unsigned len ) const
 {
-offset_t prev = 0, pos = 0; 
+offset_t prev = 0, pos = 0;
 gotoNextField( fix, pos );
 while( pos < (int)len ) {
    bool isGroupStart = false;
@@ -433,7 +814,7 @@ while( pos < (int)len ) {
 
 offset_t MessageExecutionReport::skip( const char * fix, unsigned len ) const
 {
-offset_t prev = 0, pos = 0; 
+offset_t prev = 0, pos = 0;
 gotoNextField( fix, pos );
 while( pos < (int)len ) {
    bool isGroupStart = false;
