@@ -1,4 +1,3 @@
-
 __COPYRIGHT__
 
 #include <DSTINCDIR/Groups.h>

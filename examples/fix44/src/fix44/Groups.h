@@ -31,6 +31,7 @@ class GroupLegStipulations : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
+   const char * findBadEnum() const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
@@ -69,6 +70,7 @@ class GroupEvents : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
+   const char * findBadEnum() const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
@@ -125,6 +127,7 @@ class GroupLegSecurityAltID : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
+   const char * findBadEnum() const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
@@ -163,6 +166,7 @@ class GroupCapacities : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
+   const char * findBadEnum() const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
@@ -210,6 +214,7 @@ class GroupNested3PartySubIDs : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
+   const char * findBadEnum() const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
@@ -248,6 +253,7 @@ class GroupPartySubIDs : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
+   const char * findBadEnum() const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
@@ -286,6 +292,7 @@ class GroupNested2PartySubIDs : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
+   const char * findBadEnum() const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
@@ -324,6 +331,7 @@ class GroupNested2PartyIDs : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
+   const char * findBadEnum() const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
@@ -385,6 +393,7 @@ class GroupHops : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
+   const char * findBadEnum() const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
@@ -432,6 +441,7 @@ class GroupCollInquiryQualifier : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
+   const char * findBadEnum() const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
@@ -461,6 +471,7 @@ class GroupPartyIDs : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
+   const char * findBadEnum() const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
@@ -522,6 +533,7 @@ class GroupAllocs : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
+   const char * findBadEnum() const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
@@ -614,6 +626,7 @@ class GroupTradingSessions : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
+   const char * findBadEnum() const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
@@ -652,6 +665,7 @@ class GroupSecurityAltID : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
+   const char * findBadEnum() const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
@@ -690,6 +704,7 @@ class GroupUnderlyingSecurityAltID : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
+   const char * findBadEnum() const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
@@ -728,6 +743,7 @@ class GroupUnderlyingStips : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
+   const char * findBadEnum() const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
@@ -766,6 +782,7 @@ class GroupUnderlyings : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
+   const char * findBadEnum() const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
@@ -1237,6 +1254,7 @@ class GroupStipulations : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
+   const char * findBadEnum() const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
@@ -1275,6 +1293,7 @@ class GroupOrders : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
+   const char * findBadEnum() const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
@@ -2653,6 +2672,7 @@ class GroupSettlPartySubIDs : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
+   const char * findBadEnum() const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
@@ -2691,6 +2711,7 @@ class GroupSettlPartyIDs : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
+   const char * findBadEnum() const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
@@ -2752,6 +2773,7 @@ class GroupDlvyInst : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
+   const char * findBadEnum() const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
@@ -2804,6 +2826,7 @@ class GroupClearingInstructions : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
+   const char * findBadEnum() const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
@@ -2833,6 +2856,7 @@ class GroupNestedPartySubIDs : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
+   const char * findBadEnum() const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
@@ -2871,6 +2895,7 @@ class GroupNestedPartyIDs : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
+   const char * findBadEnum() const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
@@ -2932,6 +2957,7 @@ class GroupLegs : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
+   const char * findBadEnum() const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
@@ -3444,6 +3470,7 @@ class GroupQuoteEntries : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
+   const char * findBadEnum() const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
@@ -3970,6 +3997,7 @@ class GroupQuoteSets : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
+   const char * findBadEnum() const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
@@ -4464,6 +4492,7 @@ class GroupSecurityTypes : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
+   const char * findBadEnum() const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
@@ -4520,6 +4549,7 @@ class GroupNested3PartyIDs : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
+   const char * findBadEnum() const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
@@ -4581,6 +4611,7 @@ class GroupPositions : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
+   const char * findBadEnum() const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
@@ -4651,6 +4682,7 @@ class GroupAffectedOrders : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
+   const char * findBadEnum() const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
@@ -4698,6 +4730,7 @@ class GroupExecs : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
+   const char * findBadEnum() const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
@@ -4772,6 +4805,7 @@ class GroupMsgTypes : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
+   const char * findBadEnum() const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
@@ -4810,6 +4844,7 @@ class GroupBidComponents : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
+   const char * findBadEnum() const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
@@ -4911,6 +4946,7 @@ class GroupSettlInst : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
+   const char * findBadEnum() const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
@@ -5166,6 +5202,7 @@ class GroupInstrAttrib : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
+   const char * findBadEnum() const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
@@ -5204,6 +5241,7 @@ class GroupMiscFees : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
+   const char * findBadEnum() const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
@@ -5260,6 +5298,7 @@ class GroupQuoteQualifiers : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
+   const char * findBadEnum() const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
@@ -5289,6 +5328,7 @@ class GroupDistribInsts : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
+   const char * findBadEnum() const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
@@ -5381,6 +5421,7 @@ class GroupTrdRegTimestamps : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
+   const char * findBadEnum() const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
@@ -5428,6 +5469,7 @@ class GroupAltMDSource : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
+   const char * findBadEnum() const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
@@ -5457,6 +5499,7 @@ class GroupSides : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
+   const char * findBadEnum() const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
@@ -5644,6 +5687,7 @@ class GroupRoutingIDs : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
+   const char * findBadEnum() const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
@@ -5682,6 +5726,7 @@ class GroupPosAmt : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
+   const char * findBadEnum() const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
@@ -5720,6 +5765,7 @@ class GroupLinesOfText : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
+   const char * findBadEnum() const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
@@ -5767,6 +5813,7 @@ class GroupIOIQualifiers : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
+   const char * findBadEnum() const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
@@ -5796,6 +5843,7 @@ class GroupDates : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
+   const char * findBadEnum() const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
@@ -5834,6 +5882,7 @@ class GroupMDEntryTypes : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
+   const char * findBadEnum() const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
@@ -5863,6 +5912,7 @@ class GroupRelatedSym : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
+   const char * findBadEnum() const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
@@ -6280,6 +6330,7 @@ class GroupContraBrokers : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
+   const char * findBadEnum() const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
@@ -6345,6 +6396,7 @@ class GroupTrades : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
+   const char * findBadEnum() const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
@@ -6383,6 +6435,7 @@ class GroupStrikes : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
+   const char * findBadEnum() const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
@@ -6800,6 +6853,7 @@ class GroupBidDescriptors : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
+   const char * findBadEnum() const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
@@ -6919,6 +6973,7 @@ class GroupCompIDs : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
+   const char * findBadEnum() const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
@@ -6975,6 +7030,7 @@ class GroupLegAllocs : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
+   const char * findBadEnum() const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
@@ -7054,6 +7110,7 @@ class GroupRegistDtls : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
+   const char * findBadEnum() const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
@@ -7151,6 +7208,7 @@ class GroupContAmts : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
+   const char * findBadEnum() const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
@@ -7198,6 +7256,7 @@ class GroupMDEntries : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
+   const char * findBadEnum() const;
    static FieldDepth getFieldDepth( raw_tag_t tag );
    static const std::vector<unsigned> & getKnownFields();
    private: static GetDepthMethod groupGetDepthMethods[];
