@@ -596,6 +596,7 @@ void GroupNestedPartyIDs::reset(){
      _fixLength = 0;
      fieldNestedPartyIDSource.offset = -1;
      fieldNestedPartyRole.offset = -1;
+     fieldNoNestedPartySubIDs.offset = -1;
      for( auto g = groupsNestedPartySubIDs.begin(); g != groupsNestedPartySubIDs.end() and g->getMessageBuffer(); ++g ) g->reset();
 }
 
@@ -604,8 +605,10 @@ void GroupLegs::reset(){
      _fixLength = 0;
      fieldLegSide.offset = -1;
      fieldLegQty.offset = -1;
+     fieldNoLegStipulations.offset = -1;
      for( auto g = groupsLegStipulations.begin(); g != groupsLegStipulations.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldLegPositionEffect.offset = -1;
+     fieldNoNestedPartyIDs.offset = -1;
      for( auto g = groupsNestedPartyIDs.begin(); g != groupsNestedPartyIDs.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldLegRefID.offset = -1;
      fieldLegPrice.offset = -1;

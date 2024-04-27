@@ -14,7 +14,7 @@ using namespace tiny::message;
 int main( int args, const char ** argv )
 {
     Header header;
-    offset_t pos;
+    offset_t pos, safepos;
     const char * fix;
     auto parse = [&]<typename MSG>( const char * buffer, MSG & msg )
     {
@@ -24,7 +24,16 @@ int main( int args, const char ** argv )
         msg.reset();
         pos = msg.scan( fix + pos, strlen( fix ) - pos );
     };
-    
+
+    auto parseSafely = [&]<typename MSG>( const char * buffer, MSG & msg )
+    {
+        fix = buffer;
+        header.reset();
+        safepos = header.scanSafely( fix, strlen( fix ) );
+        msg.reset();
+        safepos = msg.scanSafely( fix + safepos, strlen( fix ) - safepos );
+    };
+
     std::string checkPrettyPrinting( "text to show in debugger" );
     std::cout << "\n\n -- ExecutionReport --" << std::endl;
     ExecutionReport er;
@@ -49,6 +58,11 @@ int main( int args, const char ** argv )
     CHECK_EQ( large exec report fix length, header.getMessageLength() + ler.getMessageLength(), strlen( fix ) )
     CHECK_EQ( large exec report body length, header.getBodyLength(), ler.ptrToTagCheckSum() - header.ptrToTagMsgType() )
     CHECK_EQ( large exec report check sum, ler.getCheckSum(), (int)computeChecksum( fix, ler.ptrToTagCheckSum() ) )
+    parseSafely( FIX_BUFFER_LARGE_EXEC_REPORT, ler );
+    CHECK_EQ( safely large exec report order status, ler.getOrdStatus(), OrdStatusEnums::PENDING_NEW )
+    CHECK_EQ( safely large exec report fix length, header.getMessageLength() + ler.getMessageLength(), strlen( fix ) )
+    CHECK_EQ( safely large exec report body length, header.getBodyLength(), ler.ptrToTagCheckSum() - header.ptrToTagMsgType() )
+    CHECK_EQ( safely large exec report check sum, ler.getCheckSum(), (int)computeChecksum( fix, ler.ptrToTagCheckSum() ) )
 
     std::cout << "- Price as double: " << ler.getPrice() << std::endl;
 
@@ -164,6 +178,7 @@ int main( int args, const char ** argv )
     CHECK_EQ( bad group md full refresh tag, parseTag( badGroupPtr ), field::NoMDEntries::TAG )
     CHECK_EQ( bad group md full refresh expected, noExpected, 10 )
     CHECK_EQ( bad group md full refresh received, noReceived, 6 )
+    parseSafely( FIX_BUFFER_BAD_GROUP_MD_FULL_REFRESH, mdsfr );
 
     parse( FIX_BUFFER_BAD_SIDE_EXAMPLE_EXEC_REPORT, er );
     badFieldPtr = er.findBadEnum();

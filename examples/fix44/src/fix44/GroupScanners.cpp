@@ -14204,6 +14204,7 @@ void GroupNested2PartyIDs::reset(){
      _fixLength = 0;
      fieldNested2PartyIDSource.offset = -1;
      fieldNested2PartyRole.offset = -1;
+     fieldNoNested2PartySubIDs.offset = -1;
      for( auto g = groupsNested2PartySubIDs.begin(); g != groupsNested2PartySubIDs.end() and g->getMessageBuffer(); ++g ) g->reset();
 }
 
@@ -14224,6 +14225,7 @@ void GroupPartyIDs::reset(){
      _fixLength = 0;
      fieldPartyIDSource.offset = -1;
      fieldPartyRole.offset = -1;
+     fieldNoPartySubIDs.offset = -1;
      for( auto g = groupsPartySubIDs.begin(); g != groupsPartySubIDs.end() and g->getMessageBuffer(); ++g ) g->reset();
 }
 
@@ -14269,6 +14271,7 @@ void GroupUnderlyings::reset(){
      fieldUnderlyingSymbolSfx.offset = -1;
      fieldUnderlyingSecurityID.offset = -1;
      fieldUnderlyingSecurityIDSource.offset = -1;
+     fieldNoUnderlyingSecurityAltID.offset = -1;
      for( auto g = groupsUnderlyingSecurityAltID.begin(); g != groupsUnderlyingSecurityAltID.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldUnderlyingProduct.offset = -1;
      fieldUnderlyingCFICode.offset = -1;
@@ -14311,6 +14314,7 @@ void GroupUnderlyings::reset(){
      fieldUnderlyingStartValue.offset = -1;
      fieldUnderlyingCurrentValue.offset = -1;
      fieldUnderlyingEndValue.offset = -1;
+     fieldNoUnderlyingStips.offset = -1;
      for( auto g = groupsUnderlyingStips.begin(); g != groupsUnderlyingStips.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldUnderlyingSettlPrice.offset = -1;
      fieldUnderlyingSettlPriceType.offset = -1;
@@ -14329,6 +14333,7 @@ void GroupOrders::reset(){
      fieldListSeqNo.offset = -1;
      fieldClOrdLinkID.offset = -1;
      fieldSettlInstMode.offset = -1;
+     fieldNoPartyIDs.offset = -1;
      for( auto g = groupsPartyIDs.begin(); g != groupsPartyIDs.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldTradeOriginationDate.offset = -1;
      fieldTradeDate.offset = -1;
@@ -14339,6 +14344,7 @@ void GroupOrders::reset(){
      fieldBookingUnit.offset = -1;
      fieldAllocID.offset = -1;
      fieldPreallocMethod.offset = -1;
+     fieldNoAllocs.offset = -1;
      for( auto g = groupsAllocs.begin(); g != groupsAllocs.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldSettlType.offset = -1;
      fieldSettlDate.offset = -1;
@@ -14349,12 +14355,14 @@ void GroupOrders::reset(){
      fieldMinQty.offset = -1;
      fieldMaxFloor.offset = -1;
      fieldExDestination.offset = -1;
+     fieldNoTradingSessions.offset = -1;
      for( auto g = groupsTradingSessions.begin(); g != groupsTradingSessions.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldProcessCode.offset = -1;
      fieldSymbol.offset = -1;
      fieldSymbolSfx.offset = -1;
      fieldSecurityID.offset = -1;
      fieldSecurityIDSource.offset = -1;
+     fieldNoSecurityAltID.offset = -1;
      for( auto g = groupsSecurityAltID.begin(); g != groupsSecurityAltID.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldProduct.offset = -1;
      fieldCFICode.offset = -1;
@@ -14391,15 +14399,18 @@ void GroupOrders::reset(){
      fieldContractSettlMonth.offset = -1;
      fieldCPProgram.offset = -1;
      fieldCPRegType.offset = -1;
+     fieldNoEvents.offset = -1;
      for( auto g = groupsEvents.begin(); g != groupsEvents.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldDatedDate.offset = -1;
      fieldInterestAccrualDate.offset = -1;
+     fieldNoUnderlyings.offset = -1;
      for( auto g = groupsUnderlyings.begin(); g != groupsUnderlyings.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldPrevClosePx.offset = -1;
      fieldSide.offset = -1;
      fieldSideValueInd.offset = -1;
      fieldLocateReqd.offset = -1;
      fieldTransactTime.offset = -1;
+     fieldNoStipulations.offset = -1;
      for( auto g = groupsStipulations.begin(); g != groupsStipulations.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldQtyType.offset = -1;
      fieldOrderQty.offset = -1;
@@ -14484,6 +14495,7 @@ void GroupSettlPartyIDs::reset(){
      _fixLength = 0;
      fieldSettlPartyIDSource.offset = -1;
      fieldSettlPartyRole.offset = -1;
+     fieldNoSettlPartySubIDs.offset = -1;
      for( auto g = groupsSettlPartySubIDs.begin(); g != groupsSettlPartySubIDs.end() and g->getMessageBuffer(); ++g ) g->reset();
 }
 
@@ -14491,6 +14503,7 @@ void GroupDlvyInst::reset(){
      _fixPtr = nullptr;
      _fixLength = 0;
      fieldDlvyInstType.offset = -1;
+     fieldNoSettlPartyIDs.offset = -1;
      for( auto g = groupsSettlPartyIDs.begin(); g != groupsSettlPartyIDs.end() and g->getMessageBuffer(); ++g ) g->reset();
 }
 
@@ -14510,6 +14523,7 @@ void GroupNestedPartyIDs::reset(){
      _fixLength = 0;
      fieldNestedPartyIDSource.offset = -1;
      fieldNestedPartyRole.offset = -1;
+     fieldNoNestedPartySubIDs.offset = -1;
      for( auto g = groupsNestedPartySubIDs.begin(); g != groupsNestedPartySubIDs.end() and g->getMessageBuffer(); ++g ) g->reset();
 }
 
@@ -14519,6 +14533,7 @@ void GroupLegs::reset(){
      fieldLegSymbolSfx.offset = -1;
      fieldLegSecurityID.offset = -1;
      fieldLegSecurityIDSource.offset = -1;
+     fieldNoLegSecurityAltID.offset = -1;
      for( auto g = groupsLegSecurityAltID.begin(); g != groupsLegSecurityAltID.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldLegProduct.offset = -1;
      fieldLegCFICode.offset = -1;
@@ -14559,9 +14574,11 @@ void GroupLegs::reset(){
      fieldLegInterestAccrualDate.offset = -1;
      fieldLegQty.offset = -1;
      fieldLegSwapType.offset = -1;
+     fieldNoLegStipulations.offset = -1;
      for( auto g = groupsLegStipulations.begin(); g != groupsLegStipulations.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldLegPositionEffect.offset = -1;
      fieldLegCoveredOrUncovered.offset = -1;
+     fieldNoNestedPartyIDs.offset = -1;
      for( auto g = groupsNestedPartyIDs.begin(); g != groupsNestedPartyIDs.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldLegRefID.offset = -1;
      fieldLegPrice.offset = -1;
@@ -14576,6 +14593,7 @@ void GroupQuoteEntries::reset(){
      fieldSymbolSfx.offset = -1;
      fieldSecurityID.offset = -1;
      fieldSecurityIDSource.offset = -1;
+     fieldNoSecurityAltID.offset = -1;
      for( auto g = groupsSecurityAltID.begin(); g != groupsSecurityAltID.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldProduct.offset = -1;
      fieldCFICode.offset = -1;
@@ -14612,6 +14630,7 @@ void GroupQuoteEntries::reset(){
      fieldContractSettlMonth.offset = -1;
      fieldCPProgram.offset = -1;
      fieldCPRegType.offset = -1;
+     fieldNoEvents.offset = -1;
      for( auto g = groupsEvents.begin(); g != groupsEvents.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldDatedDate.offset = -1;
      fieldInterestAccrualDate.offset = -1;
@@ -14624,7 +14643,9 @@ void GroupQuoteEntries::reset(){
      fieldEndDate.offset = -1;
      fieldDeliveryType.offset = -1;
      fieldMarginRatio.offset = -1;
+     fieldNoUnderlyings.offset = -1;
      for( auto g = groupsUnderlyings.begin(); g != groupsUnderlyings.end() and g->getMessageBuffer(); ++g ) g->reset();
+     fieldNoLegs.offset = -1;
      for( auto g = groupsLegs.begin(); g != groupsLegs.end() and g->getMessageBuffer(); ++g ) g->reset();
 }
 
@@ -14635,6 +14656,7 @@ void GroupQuoteSets::reset(){
      fieldUnderlyingSymbolSfx.offset = -1;
      fieldUnderlyingSecurityID.offset = -1;
      fieldUnderlyingSecurityIDSource.offset = -1;
+     fieldNoUnderlyingSecurityAltID.offset = -1;
      for( auto g = groupsUnderlyingSecurityAltID.begin(); g != groupsUnderlyingSecurityAltID.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldUnderlyingProduct.offset = -1;
      fieldUnderlyingCFICode.offset = -1;
@@ -14677,9 +14699,11 @@ void GroupQuoteSets::reset(){
      fieldUnderlyingStartValue.offset = -1;
      fieldUnderlyingCurrentValue.offset = -1;
      fieldUnderlyingEndValue.offset = -1;
+     fieldNoUnderlyingStips.offset = -1;
      for( auto g = groupsUnderlyingStips.begin(); g != groupsUnderlyingStips.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldTotNoQuoteEntries.offset = -1;
      fieldLastFragment.offset = -1;
+     fieldNoQuoteEntries.offset = -1;
      for( auto g = groupsQuoteEntries.begin(); g != groupsQuoteEntries.end() and g->getMessageBuffer(); ++g ) g->reset();
 }
 
@@ -14696,6 +14720,7 @@ void GroupNested3PartyIDs::reset(){
      _fixLength = 0;
      fieldNested3PartyIDSource.offset = -1;
      fieldNested3PartyRole.offset = -1;
+     fieldNoNested3PartySubIDs.offset = -1;
      for( auto g = groupsNested3PartySubIDs.begin(); g != groupsNested3PartySubIDs.end() and g->getMessageBuffer(); ++g ) g->reset();
 }
 
@@ -14705,6 +14730,7 @@ void GroupPositions::reset(){
      fieldLongQty.offset = -1;
      fieldShortQty.offset = -1;
      fieldPosQtyStatus.offset = -1;
+     fieldNoNestedPartyIDs.offset = -1;
      for( auto g = groupsNestedPartyIDs.begin(); g != groupsNestedPartyIDs.end() and g->getMessageBuffer(); ++g ) g->reset();
 }
 
@@ -14749,6 +14775,7 @@ void GroupSettlInst::reset(){
      _fixLength = 0;
      fieldSettlInstTransType.offset = -1;
      fieldSettlInstRefID.offset = -1;
+     fieldNoPartyIDs.offset = -1;
      for( auto g = groupsPartyIDs.begin(); g != groupsPartyIDs.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldSide.offset = -1;
      fieldProduct.offset = -1;
@@ -14761,6 +14788,7 @@ void GroupSettlInst::reset(){
      fieldStandInstDbType.offset = -1;
      fieldStandInstDbName.offset = -1;
      fieldStandInstDbID.offset = -1;
+     fieldNoDlvyInst.offset = -1;
      for( auto g = groupsDlvyInst.begin(); g != groupsDlvyInst.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldPaymentMethod.offset = -1;
      fieldPaymentRef.offset = -1;
@@ -14824,6 +14852,7 @@ void GroupSides::reset(){
      fieldSecondaryClOrdID.offset = -1;
      fieldClOrdLinkID.offset = -1;
      fieldOrigOrdModTime.offset = -1;
+     fieldNoPartyIDs.offset = -1;
      for( auto g = groupsPartyIDs.begin(); g != groupsPartyIDs.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldTradeOriginationDate.offset = -1;
      fieldTradeDate.offset = -1;
@@ -14879,6 +14908,7 @@ void GroupRelatedSym::reset(){
      fieldSymbolSfx.offset = -1;
      fieldSecurityID.offset = -1;
      fieldSecurityIDSource.offset = -1;
+     fieldNoSecurityAltID.offset = -1;
      for( auto g = groupsSecurityAltID.begin(); g != groupsSecurityAltID.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldProduct.offset = -1;
      fieldCFICode.offset = -1;
@@ -14915,6 +14945,7 @@ void GroupRelatedSym::reset(){
      fieldContractSettlMonth.offset = -1;
      fieldCPProgram.offset = -1;
      fieldCPRegType.offset = -1;
+     fieldNoEvents.offset = -1;
      for( auto g = groupsEvents.begin(); g != groupsEvents.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldDatedDate.offset = -1;
      fieldInterestAccrualDate.offset = -1;
@@ -14941,6 +14972,7 @@ void GroupStrikes::reset(){
      fieldSymbolSfx.offset = -1;
      fieldSecurityID.offset = -1;
      fieldSecurityIDSource.offset = -1;
+     fieldNoSecurityAltID.offset = -1;
      for( auto g = groupsSecurityAltID.begin(); g != groupsSecurityAltID.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldProduct.offset = -1;
      fieldCFICode.offset = -1;
@@ -14977,6 +15009,7 @@ void GroupStrikes::reset(){
      fieldContractSettlMonth.offset = -1;
      fieldCPProgram.offset = -1;
      fieldCPRegType.offset = -1;
+     fieldNoEvents.offset = -1;
      for( auto g = groupsEvents.begin(); g != groupsEvents.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldDatedDate.offset = -1;
      fieldInterestAccrualDate.offset = -1;
@@ -15009,6 +15042,7 @@ void GroupLegAllocs::reset(){
      _fixPtr = nullptr;
      _fixLength = 0;
      fieldLegIndividualAllocID.offset = -1;
+     fieldNoNested2PartyIDs.offset = -1;
      for( auto g = groupsNested2PartyIDs.begin(); g != groupsNested2PartyIDs.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldLegAllocQty.offset = -1;
      fieldLegAllocAcctIDSource.offset = -1;
@@ -15021,6 +15055,7 @@ void GroupRegistDtls::reset(){
      fieldRegistEmail.offset = -1;
      fieldMailingDtls.offset = -1;
      fieldMailingInst.offset = -1;
+     fieldNoNestedPartyIDs.offset = -1;
      for( auto g = groupsNestedPartyIDs.begin(); g != groupsNestedPartyIDs.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldOwnerType.offset = -1;
      fieldDateOfBirth.offset = -1;

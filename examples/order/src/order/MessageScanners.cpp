@@ -988,6 +988,7 @@ void MessageExecutionReport::reset(){
      fieldLeavesQty.offset = -1;
      fieldAvgPx.offset = -1;
      fieldCumQty.offset = -1;
+     fieldNoLegs.offset = -1;
      for( auto g = groupsLegs.begin(); g != groupsLegs.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldCheckSum.offset = -1;
 }

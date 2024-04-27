@@ -76,6 +76,21 @@ int main( int args, const char ** argv )
     m.showAverageValues( std::cout );
     m.rewind();
 
+    std::cout << "\n - - - - - - - - - -  ExecutionReport: Reset and scanSafely   - - - - - - - - - -\n";
+    for( int j = 0; j < 10; ++j )
+    {
+        m.startCapture();
+        header.reset();
+        er.reset();
+        offset_t pos = header.scanSafely( buffer, len );
+        pos = er.scanSafely( buffer + pos, len - pos );
+        m.stopCapture();
+    }
+    m.prepareResults();
+    m.printCaptures();
+    m.showAverageValues( std::cout );
+    m.rewind();
+
     std::cout << "\n - - - - - - - - - -  ExecutionReport: Pure scan   - - - - - - - - - -\n";
     for( int j = 0; j < 10; ++j )
     {

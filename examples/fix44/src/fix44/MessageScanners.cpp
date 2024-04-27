@@ -80125,6 +80125,7 @@ void MessageHeader::reset(){
      fieldXmlData.offset = -1;
      fieldMessageEncoding.offset = -1;
      fieldLastMsgSeqNumProcessed.offset = -1;
+     fieldNoHops.offset = -1;
      for( auto g = groupsHops.begin(); g != groupsHops.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldCheckSum.offset = -1;
 }
@@ -80191,6 +80192,7 @@ void MessageIOI::reset(){
      fieldSymbolSfx.offset = -1;
      fieldSecurityID.offset = -1;
      fieldSecurityIDSource.offset = -1;
+     fieldNoSecurityAltID.offset = -1;
      for( auto g = groupsSecurityAltID.begin(); g != groupsSecurityAltID.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldProduct.offset = -1;
      fieldCFICode.offset = -1;
@@ -80227,6 +80229,7 @@ void MessageIOI::reset(){
      fieldContractSettlMonth.offset = -1;
      fieldCPProgram.offset = -1;
      fieldCPRegType.offset = -1;
+     fieldNoEvents.offset = -1;
      for( auto g = groupsEvents.begin(); g != groupsEvents.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldDatedDate.offset = -1;
      fieldInterestAccrualDate.offset = -1;
@@ -80239,6 +80242,7 @@ void MessageIOI::reset(){
      fieldEndDate.offset = -1;
      fieldDeliveryType.offset = -1;
      fieldMarginRatio.offset = -1;
+     fieldNoUnderlyings.offset = -1;
      for( auto g = groupsUnderlyings.begin(); g != groupsUnderlyings.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldSide.offset = -1;
      fieldQtyType.offset = -1;
@@ -80249,19 +80253,23 @@ void MessageIOI::reset(){
      fieldRoundingModulus.offset = -1;
      fieldIOIQty.offset = -1;
      fieldCurrency.offset = -1;
+     fieldNoStipulations.offset = -1;
      for( auto g = groupsStipulations.begin(); g != groupsStipulations.end() and g->getMessageBuffer(); ++g ) g->reset();
+     fieldNoLegs.offset = -1;
      for( auto g = groupsLegs.begin(); g != groupsLegs.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldPriceType.offset = -1;
      fieldPrice.offset = -1;
      fieldValidUntilTime.offset = -1;
      fieldIOIQltyInd.offset = -1;
      fieldIOINaturalFlag.offset = -1;
+     fieldNoIOIQualifiers.offset = -1;
      for( auto g = groupsIOIQualifiers.begin(); g != groupsIOIQualifiers.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldText.offset = -1;
      fieldEncodedTextLen.offset = -1;
      fieldEncodedText.offset = -1;
      fieldTransactTime.offset = -1;
      fieldURLLink.offset = -1;
+     fieldNoRoutingIDs.offset = -1;
      for( auto g = groupsRoutingIDs.begin(); g != groupsRoutingIDs.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldSpread.offset = -1;
      fieldBenchmarkCurveCurrency.offset = -1;
@@ -80290,6 +80298,7 @@ void MessageAdvertisement::reset(){
      fieldSymbolSfx.offset = -1;
      fieldSecurityID.offset = -1;
      fieldSecurityIDSource.offset = -1;
+     fieldNoSecurityAltID.offset = -1;
      for( auto g = groupsSecurityAltID.begin(); g != groupsSecurityAltID.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldProduct.offset = -1;
      fieldCFICode.offset = -1;
@@ -80326,10 +80335,13 @@ void MessageAdvertisement::reset(){
      fieldContractSettlMonth.offset = -1;
      fieldCPProgram.offset = -1;
      fieldCPRegType.offset = -1;
+     fieldNoEvents.offset = -1;
      for( auto g = groupsEvents.begin(); g != groupsEvents.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldDatedDate.offset = -1;
      fieldInterestAccrualDate.offset = -1;
+     fieldNoLegs.offset = -1;
      for( auto g = groupsLegs.begin(); g != groupsLegs.end() and g->getMessageBuffer(); ++g ) g->reset();
+     fieldNoUnderlyings.offset = -1;
      for( auto g = groupsUnderlyings.begin(); g != groupsUnderlyings.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldAdvSide.offset = -1;
      fieldQuantity.offset = -1;
@@ -80363,8 +80375,10 @@ void MessageExecutionReport::reset(){
      fieldMassStatusReqID.offset = -1;
      fieldTotNumReports.offset = -1;
      fieldLastRptRequested.offset = -1;
+     fieldNoPartyIDs.offset = -1;
      for( auto g = groupsPartyIDs.begin(); g != groupsPartyIDs.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldTradeOriginationDate.offset = -1;
+     fieldNoContraBrokers.offset = -1;
      for( auto g = groupsContraBrokers.begin(); g != groupsContraBrokers.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldListID.offset = -1;
      fieldCrossID.offset = -1;
@@ -80391,6 +80405,7 @@ void MessageExecutionReport::reset(){
      fieldSymbolSfx.offset = -1;
      fieldSecurityID.offset = -1;
      fieldSecurityIDSource.offset = -1;
+     fieldNoSecurityAltID.offset = -1;
      for( auto g = groupsSecurityAltID.begin(); g != groupsSecurityAltID.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldProduct.offset = -1;
      fieldCFICode.offset = -1;
@@ -80427,6 +80442,7 @@ void MessageExecutionReport::reset(){
      fieldContractSettlMonth.offset = -1;
      fieldCPProgram.offset = -1;
      fieldCPRegType.offset = -1;
+     fieldNoEvents.offset = -1;
      for( auto g = groupsEvents.begin(); g != groupsEvents.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldDatedDate.offset = -1;
      fieldInterestAccrualDate.offset = -1;
@@ -80439,8 +80455,10 @@ void MessageExecutionReport::reset(){
      fieldEndDate.offset = -1;
      fieldDeliveryType.offset = -1;
      fieldMarginRatio.offset = -1;
+     fieldNoUnderlyings.offset = -1;
      for( auto g = groupsUnderlyings.begin(); g != groupsUnderlyings.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldSide.offset = -1;
+     fieldNoStipulations.offset = -1;
      for( auto g = groupsStipulations.begin(); g != groupsStipulations.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldQtyType.offset = -1;
      fieldOrderQty.offset = -1;
@@ -80565,9 +80583,12 @@ void MessageExecutionReport::reset(){
      fieldPriorityIndicator.offset = -1;
      fieldPriceImprovement.offset = -1;
      fieldLastLiquidityInd.offset = -1;
+     fieldNoContAmts.offset = -1;
      for( auto g = groupsContAmts.begin(); g != groupsContAmts.end() and g->getMessageBuffer(); ++g ) g->reset();
+     fieldNoLegs.offset = -1;
      for( auto g = groupsLegs.begin(); g != groupsLegs.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldCopyMsgIndicator.offset = -1;
+     fieldNoMiscFees.offset = -1;
      for( auto g = groupsMiscFees.begin(); g != groupsMiscFees.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldCheckSum.offset = -1;
 }
@@ -80609,6 +80630,7 @@ void MessageLogon::reset(){
      fieldResetSeqNumFlag.offset = -1;
      fieldNextExpectedMsgSeqNum.offset = -1;
      fieldMaxMessageSize.offset = -1;
+     fieldNoMsgTypes.offset = -1;
      for( auto g = groupsMsgTypes.begin(); g != groupsMsgTypes.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldTestMessageIndicator.offset = -1;
      fieldUsername.offset = -1;
@@ -80624,10 +80646,15 @@ void MessageNews::reset(){
      fieldHeadline.offset = -1;
      fieldEncodedHeadlineLen.offset = -1;
      fieldEncodedHeadline.offset = -1;
+     fieldNoRoutingIDs.offset = -1;
      for( auto g = groupsRoutingIDs.begin(); g != groupsRoutingIDs.end() and g->getMessageBuffer(); ++g ) g->reset();
+     fieldNoRelatedSym.offset = -1;
      for( auto g = groupsRelatedSym.begin(); g != groupsRelatedSym.end() and g->getMessageBuffer(); ++g ) g->reset();
+     fieldNoLegs.offset = -1;
      for( auto g = groupsLegs.begin(); g != groupsLegs.end() and g->getMessageBuffer(); ++g ) g->reset();
+     fieldNoUnderlyings.offset = -1;
      for( auto g = groupsUnderlyings.begin(); g != groupsUnderlyings.end() and g->getMessageBuffer(); ++g ) g->reset();
+     fieldNoLinesOfText.offset = -1;
      for( auto g = groupsLinesOfText.begin(); g != groupsLinesOfText.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldURLLink.offset = -1;
      fieldRawDataLength.offset = -1;
@@ -80644,12 +80671,17 @@ void MessageEmail::reset(){
      fieldSubject.offset = -1;
      fieldEncodedSubjectLen.offset = -1;
      fieldEncodedSubject.offset = -1;
+     fieldNoRoutingIDs.offset = -1;
      for( auto g = groupsRoutingIDs.begin(); g != groupsRoutingIDs.end() and g->getMessageBuffer(); ++g ) g->reset();
+     fieldNoRelatedSym.offset = -1;
      for( auto g = groupsRelatedSym.begin(); g != groupsRelatedSym.end() and g->getMessageBuffer(); ++g ) g->reset();
+     fieldNoUnderlyings.offset = -1;
      for( auto g = groupsUnderlyings.begin(); g != groupsUnderlyings.end() and g->getMessageBuffer(); ++g ) g->reset();
+     fieldNoLegs.offset = -1;
      for( auto g = groupsLegs.begin(); g != groupsLegs.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldOrderID.offset = -1;
      fieldClOrdID.offset = -1;
+     fieldNoLinesOfText.offset = -1;
      for( auto g = groupsLinesOfText.begin(); g != groupsLinesOfText.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldRawDataLength.offset = -1;
      fieldRawData.offset = -1;
@@ -80662,6 +80694,7 @@ void MessageNewOrderSingle::reset(){
      fieldClOrdID.offset = -1;
      fieldSecondaryClOrdID.offset = -1;
      fieldClOrdLinkID.offset = -1;
+     fieldNoPartyIDs.offset = -1;
      for( auto g = groupsPartyIDs.begin(); g != groupsPartyIDs.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldTradeOriginationDate.offset = -1;
      fieldTradeDate.offset = -1;
@@ -80672,6 +80705,7 @@ void MessageNewOrderSingle::reset(){
      fieldBookingUnit.offset = -1;
      fieldPreallocMethod.offset = -1;
      fieldAllocID.offset = -1;
+     fieldNoAllocs.offset = -1;
      for( auto g = groupsAllocs.begin(); g != groupsAllocs.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldSettlType.offset = -1;
      fieldSettlDate.offset = -1;
@@ -80682,12 +80716,14 @@ void MessageNewOrderSingle::reset(){
      fieldMinQty.offset = -1;
      fieldMaxFloor.offset = -1;
      fieldExDestination.offset = -1;
+     fieldNoTradingSessions.offset = -1;
      for( auto g = groupsTradingSessions.begin(); g != groupsTradingSessions.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldProcessCode.offset = -1;
      fieldSymbol.offset = -1;
      fieldSymbolSfx.offset = -1;
      fieldSecurityID.offset = -1;
      fieldSecurityIDSource.offset = -1;
+     fieldNoSecurityAltID.offset = -1;
      for( auto g = groupsSecurityAltID.begin(); g != groupsSecurityAltID.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldProduct.offset = -1;
      fieldCFICode.offset = -1;
@@ -80724,6 +80760,7 @@ void MessageNewOrderSingle::reset(){
      fieldContractSettlMonth.offset = -1;
      fieldCPProgram.offset = -1;
      fieldCPRegType.offset = -1;
+     fieldNoEvents.offset = -1;
      for( auto g = groupsEvents.begin(); g != groupsEvents.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldDatedDate.offset = -1;
      fieldInterestAccrualDate.offset = -1;
@@ -80736,11 +80773,13 @@ void MessageNewOrderSingle::reset(){
      fieldEndDate.offset = -1;
      fieldDeliveryType.offset = -1;
      fieldMarginRatio.offset = -1;
+     fieldNoUnderlyings.offset = -1;
      for( auto g = groupsUnderlyings.begin(); g != groupsUnderlyings.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldPrevClosePx.offset = -1;
      fieldSide.offset = -1;
      fieldLocateReqd.offset = -1;
      fieldTransactTime.offset = -1;
+     fieldNoStipulations.offset = -1;
      for( auto g = groupsStipulations.begin(); g != groupsStipulations.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldQtyType.offset = -1;
      fieldOrderQty.offset = -1;
@@ -80839,6 +80878,7 @@ void MessageNewOrderList::reset(){
      fieldAllowableOneSidednessCurr.offset = -1;
      fieldTotNoOrders.offset = -1;
      fieldLastFragment.offset = -1;
+     fieldNoOrders.offset = -1;
      for( auto g = groupsOrders.begin(); g != groupsOrders.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldCheckSum.offset = -1;
 }
@@ -80856,11 +80896,13 @@ void MessageOrderCancelRequest::reset(){
      fieldAccount.offset = -1;
      fieldAcctIDSource.offset = -1;
      fieldAccountType.offset = -1;
+     fieldNoPartyIDs.offset = -1;
      for( auto g = groupsPartyIDs.begin(); g != groupsPartyIDs.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldSymbol.offset = -1;
      fieldSymbolSfx.offset = -1;
      fieldSecurityID.offset = -1;
      fieldSecurityIDSource.offset = -1;
+     fieldNoSecurityAltID.offset = -1;
      for( auto g = groupsSecurityAltID.begin(); g != groupsSecurityAltID.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldProduct.offset = -1;
      fieldCFICode.offset = -1;
@@ -80897,6 +80939,7 @@ void MessageOrderCancelRequest::reset(){
      fieldContractSettlMonth.offset = -1;
      fieldCPProgram.offset = -1;
      fieldCPRegType.offset = -1;
+     fieldNoEvents.offset = -1;
      for( auto g = groupsEvents.begin(); g != groupsEvents.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldDatedDate.offset = -1;
      fieldInterestAccrualDate.offset = -1;
@@ -80909,6 +80952,7 @@ void MessageOrderCancelRequest::reset(){
      fieldEndDate.offset = -1;
      fieldDeliveryType.offset = -1;
      fieldMarginRatio.offset = -1;
+     fieldNoUnderlyings.offset = -1;
      for( auto g = groupsUnderlyings.begin(); g != groupsUnderlyings.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldSide.offset = -1;
      fieldTransactTime.offset = -1;
@@ -80928,6 +80972,7 @@ void MessageOrderCancelReplaceRequest::reset(){
      _fixPtr = nullptr;
      _fixLength = 0;
      fieldOrderID.offset = -1;
+     fieldNoPartyIDs.offset = -1;
      for( auto g = groupsPartyIDs.begin(); g != groupsPartyIDs.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldTradeOriginationDate.offset = -1;
      fieldTradeDate.offset = -1;
@@ -80944,6 +80989,7 @@ void MessageOrderCancelReplaceRequest::reset(){
      fieldBookingUnit.offset = -1;
      fieldPreallocMethod.offset = -1;
      fieldAllocID.offset = -1;
+     fieldNoAllocs.offset = -1;
      for( auto g = groupsAllocs.begin(); g != groupsAllocs.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldSettlType.offset = -1;
      fieldSettlDate.offset = -1;
@@ -80954,11 +81000,13 @@ void MessageOrderCancelReplaceRequest::reset(){
      fieldMinQty.offset = -1;
      fieldMaxFloor.offset = -1;
      fieldExDestination.offset = -1;
+     fieldNoTradingSessions.offset = -1;
      for( auto g = groupsTradingSessions.begin(); g != groupsTradingSessions.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldSymbol.offset = -1;
      fieldSymbolSfx.offset = -1;
      fieldSecurityID.offset = -1;
      fieldSecurityIDSource.offset = -1;
+     fieldNoSecurityAltID.offset = -1;
      for( auto g = groupsSecurityAltID.begin(); g != groupsSecurityAltID.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldProduct.offset = -1;
      fieldCFICode.offset = -1;
@@ -80995,6 +81043,7 @@ void MessageOrderCancelReplaceRequest::reset(){
      fieldContractSettlMonth.offset = -1;
      fieldCPProgram.offset = -1;
      fieldCPRegType.offset = -1;
+     fieldNoEvents.offset = -1;
      for( auto g = groupsEvents.begin(); g != groupsEvents.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldDatedDate.offset = -1;
      fieldInterestAccrualDate.offset = -1;
@@ -81007,6 +81056,7 @@ void MessageOrderCancelReplaceRequest::reset(){
      fieldEndDate.offset = -1;
      fieldDeliveryType.offset = -1;
      fieldMarginRatio.offset = -1;
+     fieldNoUnderlyings.offset = -1;
      for( auto g = groupsUnderlyings.begin(); g != groupsUnderlyings.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldSide.offset = -1;
      fieldTransactTime.offset = -1;
@@ -81092,6 +81142,7 @@ void MessageOrderStatusRequest::reset(){
      fieldClOrdID.offset = -1;
      fieldSecondaryClOrdID.offset = -1;
      fieldClOrdLinkID.offset = -1;
+     fieldNoPartyIDs.offset = -1;
      for( auto g = groupsPartyIDs.begin(); g != groupsPartyIDs.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldOrdStatusReqID.offset = -1;
      fieldAccount.offset = -1;
@@ -81100,6 +81151,7 @@ void MessageOrderStatusRequest::reset(){
      fieldSymbolSfx.offset = -1;
      fieldSecurityID.offset = -1;
      fieldSecurityIDSource.offset = -1;
+     fieldNoSecurityAltID.offset = -1;
      for( auto g = groupsSecurityAltID.begin(); g != groupsSecurityAltID.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldProduct.offset = -1;
      fieldCFICode.offset = -1;
@@ -81136,6 +81188,7 @@ void MessageOrderStatusRequest::reset(){
      fieldContractSettlMonth.offset = -1;
      fieldCPProgram.offset = -1;
      fieldCPRegType.offset = -1;
+     fieldNoEvents.offset = -1;
      for( auto g = groupsEvents.begin(); g != groupsEvents.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldDatedDate.offset = -1;
      fieldInterestAccrualDate.offset = -1;
@@ -81148,6 +81201,7 @@ void MessageOrderStatusRequest::reset(){
      fieldEndDate.offset = -1;
      fieldDeliveryType.offset = -1;
      fieldMarginRatio.offset = -1;
+     fieldNoUnderlyings.offset = -1;
      for( auto g = groupsUnderlyings.begin(); g != groupsUnderlyings.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldSide.offset = -1;
      fieldCheckSum.offset = -1;
@@ -81167,7 +81221,9 @@ void MessageAllocationInstruction::reset(){
      fieldAllocLinkType.offset = -1;
      fieldBookingRefID.offset = -1;
      fieldAllocNoOrdersType.offset = -1;
+     fieldNoOrders.offset = -1;
      for( auto g = groupsOrders.begin(); g != groupsOrders.end() and g->getMessageBuffer(); ++g ) g->reset();
+     fieldNoExecs.offset = -1;
      for( auto g = groupsExecs.begin(); g != groupsExecs.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldPreviouslyReported.offset = -1;
      fieldReversalIndicator.offset = -1;
@@ -81177,6 +81233,7 @@ void MessageAllocationInstruction::reset(){
      fieldSymbolSfx.offset = -1;
      fieldSecurityID.offset = -1;
      fieldSecurityIDSource.offset = -1;
+     fieldNoSecurityAltID.offset = -1;
      for( auto g = groupsSecurityAltID.begin(); g != groupsSecurityAltID.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldProduct.offset = -1;
      fieldCFICode.offset = -1;
@@ -81213,11 +81270,13 @@ void MessageAllocationInstruction::reset(){
      fieldContractSettlMonth.offset = -1;
      fieldCPProgram.offset = -1;
      fieldCPRegType.offset = -1;
+     fieldNoEvents.offset = -1;
      for( auto g = groupsEvents.begin(); g != groupsEvents.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldDatedDate.offset = -1;
      fieldInterestAccrualDate.offset = -1;
      fieldDeliveryForm.offset = -1;
      fieldPctAtRisk.offset = -1;
+     fieldNoInstrAttrib.offset = -1;
      for( auto g = groupsInstrAttrib.begin(); g != groupsInstrAttrib.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldAgreementDesc.offset = -1;
      fieldAgreementID.offset = -1;
@@ -81228,7 +81287,9 @@ void MessageAllocationInstruction::reset(){
      fieldEndDate.offset = -1;
      fieldDeliveryType.offset = -1;
      fieldMarginRatio.offset = -1;
+     fieldNoUnderlyings.offset = -1;
      for( auto g = groupsUnderlyings.begin(); g != groupsUnderlyings.end() and g->getMessageBuffer(); ++g ) g->reset();
+     fieldNoLegs.offset = -1;
      for( auto g = groupsLegs.begin(); g != groupsLegs.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldQuantity.offset = -1;
      fieldQtyType.offset = -1;
@@ -81249,6 +81310,7 @@ void MessageAllocationInstruction::reset(){
      fieldBenchmarkSecurityIDSource.offset = -1;
      fieldCurrency.offset = -1;
      fieldAvgPxPrecision.offset = -1;
+     fieldNoPartyIDs.offset = -1;
      for( auto g = groupsPartyIDs.begin(); g != groupsPartyIDs.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldTradeDate.offset = -1;
      fieldTransactTime.offset = -1;
@@ -81273,6 +81335,7 @@ void MessageAllocationInstruction::reset(){
      fieldStartCash.offset = -1;
      fieldEndCash.offset = -1;
      fieldLegalConfirm.offset = -1;
+     fieldNoStipulations.offset = -1;
      for( auto g = groupsStipulations.begin(); g != groupsStipulations.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldYieldType.offset = -1;
      fieldYield.offset = -1;
@@ -81282,6 +81345,7 @@ void MessageAllocationInstruction::reset(){
      fieldYieldRedemptionPriceType.offset = -1;
      fieldTotNoAllocs.offset = -1;
      fieldLastFragment.offset = -1;
+     fieldNoAllocs.offset = -1;
      for( auto g = groupsAllocs.begin(); g != groupsAllocs.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldCheckSum.offset = -1;
 }
@@ -81336,6 +81400,7 @@ void MessageListStatus::reset(){
      fieldTransactTime.offset = -1;
      fieldTotNoOrders.offset = -1;
      fieldLastFragment.offset = -1;
+     fieldNoOrders.offset = -1;
      for( auto g = groupsOrders.begin(); g != groupsOrders.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldCheckSum.offset = -1;
 }
@@ -81344,6 +81409,7 @@ void MessageAllocationInstructionAck::reset(){
      _fixPtr = nullptr;
      _fixLength = 0;
      fieldAllocID.offset = -1;
+     fieldNoPartyIDs.offset = -1;
      for( auto g = groupsPartyIDs.begin(); g != groupsPartyIDs.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldSecondaryAllocID.offset = -1;
      fieldTradeDate.offset = -1;
@@ -81358,6 +81424,7 @@ void MessageAllocationInstructionAck::reset(){
      fieldText.offset = -1;
      fieldEncodedTextLen.offset = -1;
      fieldEncodedText.offset = -1;
+     fieldNoAllocs.offset = -1;
      for( auto g = groupsAllocs.begin(); g != groupsAllocs.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldCheckSum.offset = -1;
 }
@@ -81373,6 +81440,7 @@ void MessageDontKnowTrade::reset(){
      fieldSymbolSfx.offset = -1;
      fieldSecurityID.offset = -1;
      fieldSecurityIDSource.offset = -1;
+     fieldNoSecurityAltID.offset = -1;
      for( auto g = groupsSecurityAltID.begin(); g != groupsSecurityAltID.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldProduct.offset = -1;
      fieldCFICode.offset = -1;
@@ -81409,10 +81477,13 @@ void MessageDontKnowTrade::reset(){
      fieldContractSettlMonth.offset = -1;
      fieldCPProgram.offset = -1;
      fieldCPRegType.offset = -1;
+     fieldNoEvents.offset = -1;
      for( auto g = groupsEvents.begin(); g != groupsEvents.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldDatedDate.offset = -1;
      fieldInterestAccrualDate.offset = -1;
+     fieldNoUnderlyings.offset = -1;
      for( auto g = groupsUnderlyings.begin(); g != groupsUnderlyings.end() and g->getMessageBuffer(); ++g ) g->reset();
+     fieldNoLegs.offset = -1;
      for( auto g = groupsLegs.begin(); g != groupsLegs.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldSide.offset = -1;
      fieldOrderQty.offset = -1;
@@ -81435,6 +81506,7 @@ void MessageQuoteRequest::reset(){
      fieldRFQReqID.offset = -1;
      fieldClOrdID.offset = -1;
      fieldOrderCapacity.offset = -1;
+     fieldNoRelatedSym.offset = -1;
      for( auto g = groupsRelatedSym.begin(); g != groupsRelatedSym.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldText.offset = -1;
      fieldEncodedTextLen.offset = -1;
@@ -81449,8 +81521,10 @@ void MessageQuote::reset(){
      fieldQuoteID.offset = -1;
      fieldQuoteRespID.offset = -1;
      fieldQuoteType.offset = -1;
+     fieldNoQuoteQualifiers.offset = -1;
      for( auto g = groupsQuoteQualifiers.begin(); g != groupsQuoteQualifiers.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldQuoteResponseLevel.offset = -1;
+     fieldNoPartyIDs.offset = -1;
      for( auto g = groupsPartyIDs.begin(); g != groupsPartyIDs.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldTradingSessionID.offset = -1;
      fieldTradingSessionSubID.offset = -1;
@@ -81458,6 +81532,7 @@ void MessageQuote::reset(){
      fieldSymbolSfx.offset = -1;
      fieldSecurityID.offset = -1;
      fieldSecurityIDSource.offset = -1;
+     fieldNoSecurityAltID.offset = -1;
      for( auto g = groupsSecurityAltID.begin(); g != groupsSecurityAltID.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldProduct.offset = -1;
      fieldCFICode.offset = -1;
@@ -81494,6 +81569,7 @@ void MessageQuote::reset(){
      fieldContractSettlMonth.offset = -1;
      fieldCPProgram.offset = -1;
      fieldCPRegType.offset = -1;
+     fieldNoEvents.offset = -1;
      for( auto g = groupsEvents.begin(); g != groupsEvents.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldDatedDate.offset = -1;
      fieldInterestAccrualDate.offset = -1;
@@ -81506,6 +81582,7 @@ void MessageQuote::reset(){
      fieldEndDate.offset = -1;
      fieldDeliveryType.offset = -1;
      fieldMarginRatio.offset = -1;
+     fieldNoUnderlyings.offset = -1;
      for( auto g = groupsUnderlyings.begin(); g != groupsUnderlyings.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldSide.offset = -1;
      fieldOrderQty.offset = -1;
@@ -81518,10 +81595,12 @@ void MessageQuote::reset(){
      fieldSettlDate2.offset = -1;
      fieldOrderQty2.offset = -1;
      fieldCurrency.offset = -1;
+     fieldNoStipulations.offset = -1;
      for( auto g = groupsStipulations.begin(); g != groupsStipulations.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldAccount.offset = -1;
      fieldAcctIDSource.offset = -1;
      fieldAccountType.offset = -1;
+     fieldNoLegs.offset = -1;
      for( auto g = groupsLegs.begin(); g != groupsLegs.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldBidPx.offset = -1;
      fieldOfferPx.offset = -1;
@@ -81585,6 +81664,7 @@ void MessageSettlementInstructions::reset(){
      fieldEncodedText.offset = -1;
      fieldClOrdID.offset = -1;
      fieldTransactTime.offset = -1;
+     fieldNoSettlInst.offset = -1;
      for( auto g = groupsSettlInst.begin(); g != groupsSettlInst.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldCheckSum.offset = -1;
 }
@@ -81600,8 +81680,11 @@ void MessageMarketDataRequest::reset(){
      fieldOpenCloseSettlFlag.offset = -1;
      fieldScope.offset = -1;
      fieldMDImplicitDelete.offset = -1;
+     fieldNoMDEntryTypes.offset = -1;
      for( auto g = groupsMDEntryTypes.begin(); g != groupsMDEntryTypes.end() and g->getMessageBuffer(); ++g ) g->reset();
+     fieldNoRelatedSym.offset = -1;
      for( auto g = groupsRelatedSym.begin(); g != groupsRelatedSym.end() and g->getMessageBuffer(); ++g ) g->reset();
+     fieldNoTradingSessions.offset = -1;
      for( auto g = groupsTradingSessions.begin(); g != groupsTradingSessions.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldApplQueueAction.offset = -1;
      fieldApplQueueMax.offset = -1;
@@ -81616,6 +81699,7 @@ void MessageMarketDataSnapshotFullRefresh::reset(){
      fieldSymbolSfx.offset = -1;
      fieldSecurityID.offset = -1;
      fieldSecurityIDSource.offset = -1;
+     fieldNoSecurityAltID.offset = -1;
      for( auto g = groupsSecurityAltID.begin(); g != groupsSecurityAltID.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldProduct.offset = -1;
      fieldCFICode.offset = -1;
@@ -81652,14 +81736,18 @@ void MessageMarketDataSnapshotFullRefresh::reset(){
      fieldContractSettlMonth.offset = -1;
      fieldCPProgram.offset = -1;
      fieldCPRegType.offset = -1;
+     fieldNoEvents.offset = -1;
      for( auto g = groupsEvents.begin(); g != groupsEvents.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldDatedDate.offset = -1;
      fieldInterestAccrualDate.offset = -1;
+     fieldNoUnderlyings.offset = -1;
      for( auto g = groupsUnderlyings.begin(); g != groupsUnderlyings.end() and g->getMessageBuffer(); ++g ) g->reset();
+     fieldNoLegs.offset = -1;
      for( auto g = groupsLegs.begin(); g != groupsLegs.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldFinancialStatus.offset = -1;
      fieldCorporateAction.offset = -1;
      fieldNetChgPrevDay.offset = -1;
+     fieldNoMDEntries.offset = -1;
      for( auto g = groupsMDEntries.begin(); g != groupsMDEntries.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldApplQueueDepth.offset = -1;
      fieldApplQueueResolution.offset = -1;
@@ -81670,6 +81758,7 @@ void MessageMarketDataIncrementalRefresh::reset(){
      _fixPtr = nullptr;
      _fixLength = 0;
      fieldMDReqID.offset = -1;
+     fieldNoMDEntries.offset = -1;
      for( auto g = groupsMDEntries.begin(); g != groupsMDEntries.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldApplQueueDepth.offset = -1;
      fieldApplQueueResolution.offset = -1;
@@ -81681,6 +81770,7 @@ void MessageMarketDataRequestReject::reset(){
      _fixLength = 0;
      fieldMDReqID.offset = -1;
      fieldMDReqRejReason.offset = -1;
+     fieldNoAltMDSource.offset = -1;
      for( auto g = groupsAltMDSource.begin(); g != groupsAltMDSource.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldText.offset = -1;
      fieldEncodedTextLen.offset = -1;
@@ -81695,12 +81785,14 @@ void MessageQuoteCancel::reset(){
      fieldQuoteID.offset = -1;
      fieldQuoteCancelType.offset = -1;
      fieldQuoteResponseLevel.offset = -1;
+     fieldNoPartyIDs.offset = -1;
      for( auto g = groupsPartyIDs.begin(); g != groupsPartyIDs.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldAccount.offset = -1;
      fieldAcctIDSource.offset = -1;
      fieldAccountType.offset = -1;
      fieldTradingSessionID.offset = -1;
      fieldTradingSessionSubID.offset = -1;
+     fieldNoQuoteEntries.offset = -1;
      for( auto g = groupsQuoteEntries.begin(); g != groupsQuoteEntries.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldCheckSum.offset = -1;
 }
@@ -81714,6 +81806,7 @@ void MessageQuoteStatusRequest::reset(){
      fieldSymbolSfx.offset = -1;
      fieldSecurityID.offset = -1;
      fieldSecurityIDSource.offset = -1;
+     fieldNoSecurityAltID.offset = -1;
      for( auto g = groupsSecurityAltID.begin(); g != groupsSecurityAltID.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldProduct.offset = -1;
      fieldCFICode.offset = -1;
@@ -81750,6 +81843,7 @@ void MessageQuoteStatusRequest::reset(){
      fieldContractSettlMonth.offset = -1;
      fieldCPProgram.offset = -1;
      fieldCPRegType.offset = -1;
+     fieldNoEvents.offset = -1;
      for( auto g = groupsEvents.begin(); g != groupsEvents.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldDatedDate.offset = -1;
      fieldInterestAccrualDate.offset = -1;
@@ -81762,8 +81856,11 @@ void MessageQuoteStatusRequest::reset(){
      fieldEndDate.offset = -1;
      fieldDeliveryType.offset = -1;
      fieldMarginRatio.offset = -1;
+     fieldNoUnderlyings.offset = -1;
      for( auto g = groupsUnderlyings.begin(); g != groupsUnderlyings.end() and g->getMessageBuffer(); ++g ) g->reset();
+     fieldNoLegs.offset = -1;
      for( auto g = groupsLegs.begin(); g != groupsLegs.end() and g->getMessageBuffer(); ++g ) g->reset();
+     fieldNoPartyIDs.offset = -1;
      for( auto g = groupsPartyIDs.begin(); g != groupsPartyIDs.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldAccount.offset = -1;
      fieldAcctIDSource.offset = -1;
@@ -81783,6 +81880,7 @@ void MessageMassQuoteAcknowledgement::reset(){
      fieldQuoteRejectReason.offset = -1;
      fieldQuoteResponseLevel.offset = -1;
      fieldQuoteType.offset = -1;
+     fieldNoPartyIDs.offset = -1;
      for( auto g = groupsPartyIDs.begin(); g != groupsPartyIDs.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldAccount.offset = -1;
      fieldAcctIDSource.offset = -1;
@@ -81790,6 +81888,7 @@ void MessageMassQuoteAcknowledgement::reset(){
      fieldText.offset = -1;
      fieldEncodedTextLen.offset = -1;
      fieldEncodedText.offset = -1;
+     fieldNoQuoteSets.offset = -1;
      for( auto g = groupsQuoteSets.begin(); g != groupsQuoteSets.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldCheckSum.offset = -1;
 }
@@ -81803,6 +81902,7 @@ void MessageSecurityDefinitionRequest::reset(){
      fieldSymbolSfx.offset = -1;
      fieldSecurityID.offset = -1;
      fieldSecurityIDSource.offset = -1;
+     fieldNoSecurityAltID.offset = -1;
      for( auto g = groupsSecurityAltID.begin(); g != groupsSecurityAltID.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldProduct.offset = -1;
      fieldCFICode.offset = -1;
@@ -81839,12 +81939,15 @@ void MessageSecurityDefinitionRequest::reset(){
      fieldContractSettlMonth.offset = -1;
      fieldCPProgram.offset = -1;
      fieldCPRegType.offset = -1;
+     fieldNoEvents.offset = -1;
      for( auto g = groupsEvents.begin(); g != groupsEvents.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldDatedDate.offset = -1;
      fieldInterestAccrualDate.offset = -1;
      fieldDeliveryForm.offset = -1;
      fieldPctAtRisk.offset = -1;
+     fieldNoInstrAttrib.offset = -1;
      for( auto g = groupsInstrAttrib.begin(); g != groupsInstrAttrib.end() and g->getMessageBuffer(); ++g ) g->reset();
+     fieldNoUnderlyings.offset = -1;
      for( auto g = groupsUnderlyings.begin(); g != groupsUnderlyings.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldCurrency.offset = -1;
      fieldText.offset = -1;
@@ -81852,6 +81955,7 @@ void MessageSecurityDefinitionRequest::reset(){
      fieldEncodedText.offset = -1;
      fieldTradingSessionID.offset = -1;
      fieldTradingSessionSubID.offset = -1;
+     fieldNoLegs.offset = -1;
      for( auto g = groupsLegs.begin(); g != groupsLegs.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldExpirationCycle.offset = -1;
      fieldSubscriptionRequestType.offset = -1;
@@ -81868,6 +81972,7 @@ void MessageSecurityDefinition::reset(){
      fieldSymbolSfx.offset = -1;
      fieldSecurityID.offset = -1;
      fieldSecurityIDSource.offset = -1;
+     fieldNoSecurityAltID.offset = -1;
      for( auto g = groupsSecurityAltID.begin(); g != groupsSecurityAltID.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldProduct.offset = -1;
      fieldCFICode.offset = -1;
@@ -81904,12 +82009,15 @@ void MessageSecurityDefinition::reset(){
      fieldContractSettlMonth.offset = -1;
      fieldCPProgram.offset = -1;
      fieldCPRegType.offset = -1;
+     fieldNoEvents.offset = -1;
      for( auto g = groupsEvents.begin(); g != groupsEvents.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldDatedDate.offset = -1;
      fieldInterestAccrualDate.offset = -1;
      fieldDeliveryForm.offset = -1;
      fieldPctAtRisk.offset = -1;
+     fieldNoInstrAttrib.offset = -1;
      for( auto g = groupsInstrAttrib.begin(); g != groupsInstrAttrib.end() and g->getMessageBuffer(); ++g ) g->reset();
+     fieldNoUnderlyings.offset = -1;
      for( auto g = groupsUnderlyings.begin(); g != groupsUnderlyings.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldCurrency.offset = -1;
      fieldTradingSessionID.offset = -1;
@@ -81917,6 +82025,7 @@ void MessageSecurityDefinition::reset(){
      fieldText.offset = -1;
      fieldEncodedTextLen.offset = -1;
      fieldEncodedText.offset = -1;
+     fieldNoLegs.offset = -1;
      for( auto g = groupsLegs.begin(); g != groupsLegs.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldExpirationCycle.offset = -1;
      fieldRoundLot.offset = -1;
@@ -81932,6 +82041,7 @@ void MessageSecurityStatusRequest::reset(){
      fieldSymbolSfx.offset = -1;
      fieldSecurityID.offset = -1;
      fieldSecurityIDSource.offset = -1;
+     fieldNoSecurityAltID.offset = -1;
      for( auto g = groupsSecurityAltID.begin(); g != groupsSecurityAltID.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldProduct.offset = -1;
      fieldCFICode.offset = -1;
@@ -81968,13 +82078,17 @@ void MessageSecurityStatusRequest::reset(){
      fieldContractSettlMonth.offset = -1;
      fieldCPProgram.offset = -1;
      fieldCPRegType.offset = -1;
+     fieldNoEvents.offset = -1;
      for( auto g = groupsEvents.begin(); g != groupsEvents.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldDatedDate.offset = -1;
      fieldInterestAccrualDate.offset = -1;
      fieldDeliveryForm.offset = -1;
      fieldPctAtRisk.offset = -1;
+     fieldNoInstrAttrib.offset = -1;
      for( auto g = groupsInstrAttrib.begin(); g != groupsInstrAttrib.end() and g->getMessageBuffer(); ++g ) g->reset();
+     fieldNoUnderlyings.offset = -1;
      for( auto g = groupsUnderlyings.begin(); g != groupsUnderlyings.end() and g->getMessageBuffer(); ++g ) g->reset();
+     fieldNoLegs.offset = -1;
      for( auto g = groupsLegs.begin(); g != groupsLegs.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldCurrency.offset = -1;
      fieldSubscriptionRequestType.offset = -1;
@@ -81991,6 +82105,7 @@ void MessageSecurityStatus::reset(){
      fieldSymbolSfx.offset = -1;
      fieldSecurityID.offset = -1;
      fieldSecurityIDSource.offset = -1;
+     fieldNoSecurityAltID.offset = -1;
      for( auto g = groupsSecurityAltID.begin(); g != groupsSecurityAltID.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldProduct.offset = -1;
      fieldCFICode.offset = -1;
@@ -82027,13 +82142,17 @@ void MessageSecurityStatus::reset(){
      fieldContractSettlMonth.offset = -1;
      fieldCPProgram.offset = -1;
      fieldCPRegType.offset = -1;
+     fieldNoEvents.offset = -1;
      for( auto g = groupsEvents.begin(); g != groupsEvents.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldDatedDate.offset = -1;
      fieldInterestAccrualDate.offset = -1;
      fieldDeliveryForm.offset = -1;
      fieldPctAtRisk.offset = -1;
+     fieldNoInstrAttrib.offset = -1;
      for( auto g = groupsInstrAttrib.begin(); g != groupsInstrAttrib.end() and g->getMessageBuffer(); ++g ) g->reset();
+     fieldNoUnderlyings.offset = -1;
      for( auto g = groupsUnderlyings.begin(); g != groupsUnderlyings.end() and g->getMessageBuffer(); ++g ) g->reset();
+     fieldNoLegs.offset = -1;
      for( auto g = groupsLegs.begin(); g != groupsLegs.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldCurrency.offset = -1;
      fieldTradingSessionID.offset = -1;
@@ -82100,12 +82219,14 @@ void MessageMassQuote::reset(){
      fieldQuoteID.offset = -1;
      fieldQuoteType.offset = -1;
      fieldQuoteResponseLevel.offset = -1;
+     fieldNoPartyIDs.offset = -1;
      for( auto g = groupsPartyIDs.begin(); g != groupsPartyIDs.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldAccount.offset = -1;
      fieldAcctIDSource.offset = -1;
      fieldAccountType.offset = -1;
      fieldDefBidSize.offset = -1;
      fieldDefOfferSize.offset = -1;
+     fieldNoQuoteSets.offset = -1;
      for( auto g = groupsQuoteSets.begin(); g != groupsQuoteSets.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldCheckSum.offset = -1;
 }
@@ -82136,7 +82257,9 @@ void MessageBidRequest::reset(){
      fieldCurrency.offset = -1;
      fieldSideValue1.offset = -1;
      fieldSideValue2.offset = -1;
+     fieldNoBidDescriptors.offset = -1;
      for( auto g = groupsBidDescriptors.begin(); g != groupsBidDescriptors.end() and g->getMessageBuffer(); ++g ) g->reset();
+     fieldNoBidComponents.offset = -1;
      for( auto g = groupsBidComponents.begin(); g != groupsBidComponents.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldLiquidityIndType.offset = -1;
      fieldWtAverageLiquidity.offset = -1;
@@ -82163,6 +82286,7 @@ void MessageBidResponse::reset(){
      _fixLength = 0;
      fieldBidID.offset = -1;
      fieldClientBidID.offset = -1;
+     fieldNoBidComponents.offset = -1;
      for( auto g = groupsBidComponents.begin(); g != groupsBidComponents.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldCheckSum.offset = -1;
 }
@@ -82173,7 +82297,9 @@ void MessageListStrikePrice::reset(){
      fieldListID.offset = -1;
      fieldTotNoStrikes.offset = -1;
      fieldLastFragment.offset = -1;
+     fieldNoStrikes.offset = -1;
      for( auto g = groupsStrikes.begin(); g != groupsStrikes.end() and g->getMessageBuffer(); ++g ) g->reset();
+     fieldNoUnderlyings.offset = -1;
      for( auto g = groupsUnderlyings.begin(); g != groupsUnderlyings.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldCheckSum.offset = -1;
 }
@@ -82191,13 +82317,16 @@ void MessageRegistrationInstructions::reset(){
      fieldRegistTransType.offset = -1;
      fieldRegistRefID.offset = -1;
      fieldClOrdID.offset = -1;
+     fieldNoPartyIDs.offset = -1;
      for( auto g = groupsPartyIDs.begin(); g != groupsPartyIDs.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldAccount.offset = -1;
      fieldAcctIDSource.offset = -1;
      fieldRegistAcctType.offset = -1;
      fieldTaxAdvantageType.offset = -1;
      fieldOwnershipType.offset = -1;
+     fieldNoRegistDtls.offset = -1;
      for( auto g = groupsRegistDtls.begin(); g != groupsRegistDtls.end() and g->getMessageBuffer(); ++g ) g->reset();
+     fieldNoDistribInsts.offset = -1;
      for( auto g = groupsDistribInsts.begin(); g != groupsDistribInsts.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldCheckSum.offset = -1;
 }
@@ -82209,6 +82338,7 @@ void MessageRegistrationInstructionsResponse::reset(){
      fieldRegistTransType.offset = -1;
      fieldRegistRefID.offset = -1;
      fieldClOrdID.offset = -1;
+     fieldNoPartyIDs.offset = -1;
      for( auto g = groupsPartyIDs.begin(); g != groupsPartyIDs.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldAccount.offset = -1;
      fieldAcctIDSource.offset = -1;
@@ -82230,6 +82360,7 @@ void MessageOrderMassCancelRequest::reset(){
      fieldSymbolSfx.offset = -1;
      fieldSecurityID.offset = -1;
      fieldSecurityIDSource.offset = -1;
+     fieldNoSecurityAltID.offset = -1;
      for( auto g = groupsSecurityAltID.begin(); g != groupsSecurityAltID.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldProduct.offset = -1;
      fieldCFICode.offset = -1;
@@ -82266,6 +82397,7 @@ void MessageOrderMassCancelRequest::reset(){
      fieldContractSettlMonth.offset = -1;
      fieldCPProgram.offset = -1;
      fieldCPRegType.offset = -1;
+     fieldNoEvents.offset = -1;
      for( auto g = groupsEvents.begin(); g != groupsEvents.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldDatedDate.offset = -1;
      fieldInterestAccrualDate.offset = -1;
@@ -82273,6 +82405,7 @@ void MessageOrderMassCancelRequest::reset(){
      fieldUnderlyingSymbolSfx.offset = -1;
      fieldUnderlyingSecurityID.offset = -1;
      fieldUnderlyingSecurityIDSource.offset = -1;
+     fieldNoUnderlyingSecurityAltID.offset = -1;
      for( auto g = groupsUnderlyingSecurityAltID.begin(); g != groupsUnderlyingSecurityAltID.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldUnderlyingProduct.offset = -1;
      fieldUnderlyingCFICode.offset = -1;
@@ -82315,6 +82448,7 @@ void MessageOrderMassCancelRequest::reset(){
      fieldUnderlyingStartValue.offset = -1;
      fieldUnderlyingCurrentValue.offset = -1;
      fieldUnderlyingEndValue.offset = -1;
+     fieldNoUnderlyingStips.offset = -1;
      for( auto g = groupsUnderlyingStips.begin(); g != groupsUnderlyingStips.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldSide.offset = -1;
      fieldTransactTime.offset = -1;
@@ -82335,6 +82469,7 @@ void MessageOrderMassCancelReport::reset(){
      fieldMassCancelResponse.offset = -1;
      fieldMassCancelRejectReason.offset = -1;
      fieldTotalAffectedOrders.offset = -1;
+     fieldNoAffectedOrders.offset = -1;
      for( auto g = groupsAffectedOrders.begin(); g != groupsAffectedOrders.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldTradingSessionID.offset = -1;
      fieldTradingSessionSubID.offset = -1;
@@ -82342,6 +82477,7 @@ void MessageOrderMassCancelReport::reset(){
      fieldSymbolSfx.offset = -1;
      fieldSecurityID.offset = -1;
      fieldSecurityIDSource.offset = -1;
+     fieldNoSecurityAltID.offset = -1;
      for( auto g = groupsSecurityAltID.begin(); g != groupsSecurityAltID.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldProduct.offset = -1;
      fieldCFICode.offset = -1;
@@ -82378,6 +82514,7 @@ void MessageOrderMassCancelReport::reset(){
      fieldContractSettlMonth.offset = -1;
      fieldCPProgram.offset = -1;
      fieldCPRegType.offset = -1;
+     fieldNoEvents.offset = -1;
      for( auto g = groupsEvents.begin(); g != groupsEvents.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldDatedDate.offset = -1;
      fieldInterestAccrualDate.offset = -1;
@@ -82385,6 +82522,7 @@ void MessageOrderMassCancelReport::reset(){
      fieldUnderlyingSymbolSfx.offset = -1;
      fieldUnderlyingSecurityID.offset = -1;
      fieldUnderlyingSecurityIDSource.offset = -1;
+     fieldNoUnderlyingSecurityAltID.offset = -1;
      for( auto g = groupsUnderlyingSecurityAltID.begin(); g != groupsUnderlyingSecurityAltID.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldUnderlyingProduct.offset = -1;
      fieldUnderlyingCFICode.offset = -1;
@@ -82427,6 +82565,7 @@ void MessageOrderMassCancelReport::reset(){
      fieldUnderlyingStartValue.offset = -1;
      fieldUnderlyingCurrentValue.offset = -1;
      fieldUnderlyingEndValue.offset = -1;
+     fieldNoUnderlyingStips.offset = -1;
      for( auto g = groupsUnderlyingStips.begin(); g != groupsUnderlyingStips.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldSide.offset = -1;
      fieldTransactTime.offset = -1;
@@ -82442,11 +82581,13 @@ void MessageNewOrderCross::reset(){
      fieldCrossID.offset = -1;
      fieldCrossType.offset = -1;
      fieldCrossPrioritization.offset = -1;
+     fieldNoSides.offset = -1;
      for( auto g = groupsSides.begin(); g != groupsSides.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldSymbol.offset = -1;
      fieldSymbolSfx.offset = -1;
      fieldSecurityID.offset = -1;
      fieldSecurityIDSource.offset = -1;
+     fieldNoSecurityAltID.offset = -1;
      for( auto g = groupsSecurityAltID.begin(); g != groupsSecurityAltID.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldProduct.offset = -1;
      fieldCFICode.offset = -1;
@@ -82483,10 +82624,13 @@ void MessageNewOrderCross::reset(){
      fieldContractSettlMonth.offset = -1;
      fieldCPProgram.offset = -1;
      fieldCPRegType.offset = -1;
+     fieldNoEvents.offset = -1;
      for( auto g = groupsEvents.begin(); g != groupsEvents.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldDatedDate.offset = -1;
      fieldInterestAccrualDate.offset = -1;
+     fieldNoUnderlyings.offset = -1;
      for( auto g = groupsUnderlyings.begin(); g != groupsUnderlyings.end() and g->getMessageBuffer(); ++g ) g->reset();
+     fieldNoLegs.offset = -1;
      for( auto g = groupsLegs.begin(); g != groupsLegs.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldSettlType.offset = -1;
      fieldSettlDate.offset = -1;
@@ -82495,11 +82639,13 @@ void MessageNewOrderCross::reset(){
      fieldMinQty.offset = -1;
      fieldMaxFloor.offset = -1;
      fieldExDestination.offset = -1;
+     fieldNoTradingSessions.offset = -1;
      for( auto g = groupsTradingSessions.begin(); g != groupsTradingSessions.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldProcessCode.offset = -1;
      fieldPrevClosePx.offset = -1;
      fieldLocateReqd.offset = -1;
      fieldTransactTime.offset = -1;
+     fieldNoStipulations.offset = -1;
      for( auto g = groupsStipulations.begin(); g != groupsStipulations.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldOrdType.offset = -1;
      fieldPriceType.offset = -1;
@@ -82560,11 +82706,13 @@ void MessageCrossOrderCancelReplaceRequest::reset(){
      fieldOrigCrossID.offset = -1;
      fieldCrossType.offset = -1;
      fieldCrossPrioritization.offset = -1;
+     fieldNoSides.offset = -1;
      for( auto g = groupsSides.begin(); g != groupsSides.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldSymbol.offset = -1;
      fieldSymbolSfx.offset = -1;
      fieldSecurityID.offset = -1;
      fieldSecurityIDSource.offset = -1;
+     fieldNoSecurityAltID.offset = -1;
      for( auto g = groupsSecurityAltID.begin(); g != groupsSecurityAltID.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldProduct.offset = -1;
      fieldCFICode.offset = -1;
@@ -82601,10 +82749,13 @@ void MessageCrossOrderCancelReplaceRequest::reset(){
      fieldContractSettlMonth.offset = -1;
      fieldCPProgram.offset = -1;
      fieldCPRegType.offset = -1;
+     fieldNoEvents.offset = -1;
      for( auto g = groupsEvents.begin(); g != groupsEvents.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldDatedDate.offset = -1;
      fieldInterestAccrualDate.offset = -1;
+     fieldNoUnderlyings.offset = -1;
      for( auto g = groupsUnderlyings.begin(); g != groupsUnderlyings.end() and g->getMessageBuffer(); ++g ) g->reset();
+     fieldNoLegs.offset = -1;
      for( auto g = groupsLegs.begin(); g != groupsLegs.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldSettlType.offset = -1;
      fieldSettlDate.offset = -1;
@@ -82613,11 +82764,13 @@ void MessageCrossOrderCancelReplaceRequest::reset(){
      fieldMinQty.offset = -1;
      fieldMaxFloor.offset = -1;
      fieldExDestination.offset = -1;
+     fieldNoTradingSessions.offset = -1;
      for( auto g = groupsTradingSessions.begin(); g != groupsTradingSessions.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldProcessCode.offset = -1;
      fieldPrevClosePx.offset = -1;
      fieldLocateReqd.offset = -1;
      fieldTransactTime.offset = -1;
+     fieldNoStipulations.offset = -1;
      for( auto g = groupsStipulations.begin(); g != groupsStipulations.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldOrdType.offset = -1;
      fieldPriceType.offset = -1;
@@ -82678,11 +82831,13 @@ void MessageCrossOrderCancelRequest::reset(){
      fieldOrigCrossID.offset = -1;
      fieldCrossType.offset = -1;
      fieldCrossPrioritization.offset = -1;
+     fieldNoSides.offset = -1;
      for( auto g = groupsSides.begin(); g != groupsSides.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldSymbol.offset = -1;
      fieldSymbolSfx.offset = -1;
      fieldSecurityID.offset = -1;
      fieldSecurityIDSource.offset = -1;
+     fieldNoSecurityAltID.offset = -1;
      for( auto g = groupsSecurityAltID.begin(); g != groupsSecurityAltID.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldProduct.offset = -1;
      fieldCFICode.offset = -1;
@@ -82719,10 +82874,13 @@ void MessageCrossOrderCancelRequest::reset(){
      fieldContractSettlMonth.offset = -1;
      fieldCPProgram.offset = -1;
      fieldCPRegType.offset = -1;
+     fieldNoEvents.offset = -1;
      for( auto g = groupsEvents.begin(); g != groupsEvents.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldDatedDate.offset = -1;
      fieldInterestAccrualDate.offset = -1;
+     fieldNoUnderlyings.offset = -1;
      for( auto g = groupsUnderlyings.begin(); g != groupsUnderlyings.end() and g->getMessageBuffer(); ++g ) g->reset();
+     fieldNoLegs.offset = -1;
      for( auto g = groupsLegs.begin(); g != groupsLegs.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldTransactTime.offset = -1;
      fieldCheckSum.offset = -1;
@@ -82751,6 +82909,7 @@ void MessageSecurityTypes::reset(){
      fieldSecurityResponseType.offset = -1;
      fieldTotNoSecurityTypes.offset = -1;
      fieldLastFragment.offset = -1;
+     fieldNoSecurityTypes.offset = -1;
      for( auto g = groupsSecurityTypes.begin(); g != groupsSecurityTypes.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldText.offset = -1;
      fieldEncodedTextLen.offset = -1;
@@ -82770,6 +82929,7 @@ void MessageSecurityListRequest::reset(){
      fieldSymbolSfx.offset = -1;
      fieldSecurityID.offset = -1;
      fieldSecurityIDSource.offset = -1;
+     fieldNoSecurityAltID.offset = -1;
      for( auto g = groupsSecurityAltID.begin(); g != groupsSecurityAltID.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldProduct.offset = -1;
      fieldCFICode.offset = -1;
@@ -82806,11 +82966,13 @@ void MessageSecurityListRequest::reset(){
      fieldContractSettlMonth.offset = -1;
      fieldCPProgram.offset = -1;
      fieldCPRegType.offset = -1;
+     fieldNoEvents.offset = -1;
      for( auto g = groupsEvents.begin(); g != groupsEvents.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldDatedDate.offset = -1;
      fieldInterestAccrualDate.offset = -1;
      fieldDeliveryForm.offset = -1;
      fieldPctAtRisk.offset = -1;
+     fieldNoInstrAttrib.offset = -1;
      for( auto g = groupsInstrAttrib.begin(); g != groupsInstrAttrib.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldAgreementDesc.offset = -1;
      fieldAgreementID.offset = -1;
@@ -82821,7 +82983,9 @@ void MessageSecurityListRequest::reset(){
      fieldEndDate.offset = -1;
      fieldDeliveryType.offset = -1;
      fieldMarginRatio.offset = -1;
+     fieldNoUnderlyings.offset = -1;
      for( auto g = groupsUnderlyings.begin(); g != groupsUnderlyings.end() and g->getMessageBuffer(); ++g ) g->reset();
+     fieldNoLegs.offset = -1;
      for( auto g = groupsLegs.begin(); g != groupsLegs.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldCurrency.offset = -1;
      fieldText.offset = -1;
@@ -82841,6 +83005,7 @@ void MessageSecurityList::reset(){
      fieldSecurityRequestResult.offset = -1;
      fieldTotNoRelatedSym.offset = -1;
      fieldLastFragment.offset = -1;
+     fieldNoRelatedSym.offset = -1;
      for( auto g = groupsRelatedSym.begin(); g != groupsRelatedSym.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldCheckSum.offset = -1;
 }
@@ -82854,6 +83019,7 @@ void MessageDerivativeSecurityListRequest::reset(){
      fieldUnderlyingSymbolSfx.offset = -1;
      fieldUnderlyingSecurityID.offset = -1;
      fieldUnderlyingSecurityIDSource.offset = -1;
+     fieldNoUnderlyingSecurityAltID.offset = -1;
      for( auto g = groupsUnderlyingSecurityAltID.begin(); g != groupsUnderlyingSecurityAltID.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldUnderlyingProduct.offset = -1;
      fieldUnderlyingCFICode.offset = -1;
@@ -82896,6 +83062,7 @@ void MessageDerivativeSecurityListRequest::reset(){
      fieldUnderlyingStartValue.offset = -1;
      fieldUnderlyingCurrentValue.offset = -1;
      fieldUnderlyingEndValue.offset = -1;
+     fieldNoUnderlyingStips.offset = -1;
      for( auto g = groupsUnderlyingStips.begin(); g != groupsUnderlyingStips.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldSecuritySubType.offset = -1;
      fieldCurrency.offset = -1;
@@ -82918,6 +83085,7 @@ void MessageDerivativeSecurityList::reset(){
      fieldUnderlyingSymbolSfx.offset = -1;
      fieldUnderlyingSecurityID.offset = -1;
      fieldUnderlyingSecurityIDSource.offset = -1;
+     fieldNoUnderlyingSecurityAltID.offset = -1;
      for( auto g = groupsUnderlyingSecurityAltID.begin(); g != groupsUnderlyingSecurityAltID.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldUnderlyingProduct.offset = -1;
      fieldUnderlyingCFICode.offset = -1;
@@ -82960,9 +83128,11 @@ void MessageDerivativeSecurityList::reset(){
      fieldUnderlyingStartValue.offset = -1;
      fieldUnderlyingCurrentValue.offset = -1;
      fieldUnderlyingEndValue.offset = -1;
+     fieldNoUnderlyingStips.offset = -1;
      for( auto g = groupsUnderlyingStips.begin(); g != groupsUnderlyingStips.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldTotNoRelatedSym.offset = -1;
      fieldLastFragment.offset = -1;
+     fieldNoRelatedSym.offset = -1;
      for( auto g = groupsRelatedSym.begin(); g != groupsRelatedSym.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldCheckSum.offset = -1;
 }
@@ -82973,6 +83143,7 @@ void MessageNewOrderMultileg::reset(){
      fieldClOrdID.offset = -1;
      fieldSecondaryClOrdID.offset = -1;
      fieldClOrdLinkID.offset = -1;
+     fieldNoPartyIDs.offset = -1;
      for( auto g = groupsPartyIDs.begin(); g != groupsPartyIDs.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldTradeOriginationDate.offset = -1;
      fieldTradeDate.offset = -1;
@@ -82983,6 +83154,7 @@ void MessageNewOrderMultileg::reset(){
      fieldBookingUnit.offset = -1;
      fieldPreallocMethod.offset = -1;
      fieldAllocID.offset = -1;
+     fieldNoAllocs.offset = -1;
      for( auto g = groupsAllocs.begin(); g != groupsAllocs.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldSettlType.offset = -1;
      fieldSettlDate.offset = -1;
@@ -82993,6 +83165,7 @@ void MessageNewOrderMultileg::reset(){
      fieldMinQty.offset = -1;
      fieldMaxFloor.offset = -1;
      fieldExDestination.offset = -1;
+     fieldNoTradingSessions.offset = -1;
      for( auto g = groupsTradingSessions.begin(); g != groupsTradingSessions.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldProcessCode.offset = -1;
      fieldSide.offset = -1;
@@ -83000,6 +83173,7 @@ void MessageNewOrderMultileg::reset(){
      fieldSymbolSfx.offset = -1;
      fieldSecurityID.offset = -1;
      fieldSecurityIDSource.offset = -1;
+     fieldNoSecurityAltID.offset = -1;
      for( auto g = groupsSecurityAltID.begin(); g != groupsSecurityAltID.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldProduct.offset = -1;
      fieldCFICode.offset = -1;
@@ -83036,11 +83210,14 @@ void MessageNewOrderMultileg::reset(){
      fieldContractSettlMonth.offset = -1;
      fieldCPProgram.offset = -1;
      fieldCPRegType.offset = -1;
+     fieldNoEvents.offset = -1;
      for( auto g = groupsEvents.begin(); g != groupsEvents.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldDatedDate.offset = -1;
      fieldInterestAccrualDate.offset = -1;
+     fieldNoUnderlyings.offset = -1;
      for( auto g = groupsUnderlyings.begin(); g != groupsUnderlyings.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldPrevClosePx.offset = -1;
+     fieldNoLegs.offset = -1;
      for( auto g = groupsLegs.begin(); g != groupsLegs.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldLocateReqd.offset = -1;
      fieldTransactTime.offset = -1;
@@ -83113,6 +83290,7 @@ void MessageMultilegOrderCancelReplace::reset(){
      fieldSecondaryClOrdID.offset = -1;
      fieldClOrdLinkID.offset = -1;
      fieldOrigOrdModTime.offset = -1;
+     fieldNoPartyIDs.offset = -1;
      for( auto g = groupsPartyIDs.begin(); g != groupsPartyIDs.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldTradeOriginationDate.offset = -1;
      fieldTradeDate.offset = -1;
@@ -83123,6 +83301,7 @@ void MessageMultilegOrderCancelReplace::reset(){
      fieldBookingUnit.offset = -1;
      fieldPreallocMethod.offset = -1;
      fieldAllocID.offset = -1;
+     fieldNoAllocs.offset = -1;
      for( auto g = groupsAllocs.begin(); g != groupsAllocs.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldSettlType.offset = -1;
      fieldSettlDate.offset = -1;
@@ -83133,6 +83312,7 @@ void MessageMultilegOrderCancelReplace::reset(){
      fieldMinQty.offset = -1;
      fieldMaxFloor.offset = -1;
      fieldExDestination.offset = -1;
+     fieldNoTradingSessions.offset = -1;
      for( auto g = groupsTradingSessions.begin(); g != groupsTradingSessions.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldProcessCode.offset = -1;
      fieldSide.offset = -1;
@@ -83140,6 +83320,7 @@ void MessageMultilegOrderCancelReplace::reset(){
      fieldSymbolSfx.offset = -1;
      fieldSecurityID.offset = -1;
      fieldSecurityIDSource.offset = -1;
+     fieldNoSecurityAltID.offset = -1;
      for( auto g = groupsSecurityAltID.begin(); g != groupsSecurityAltID.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldProduct.offset = -1;
      fieldCFICode.offset = -1;
@@ -83176,11 +83357,14 @@ void MessageMultilegOrderCancelReplace::reset(){
      fieldContractSettlMonth.offset = -1;
      fieldCPProgram.offset = -1;
      fieldCPRegType.offset = -1;
+     fieldNoEvents.offset = -1;
      for( auto g = groupsEvents.begin(); g != groupsEvents.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldDatedDate.offset = -1;
      fieldInterestAccrualDate.offset = -1;
+     fieldNoUnderlyings.offset = -1;
      for( auto g = groupsUnderlyings.begin(); g != groupsUnderlyings.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldPrevClosePx.offset = -1;
+     fieldNoLegs.offset = -1;
      for( auto g = groupsLegs.begin(); g != groupsLegs.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldLocateReqd.offset = -1;
      fieldTransactTime.offset = -1;
@@ -83263,11 +83447,13 @@ void MessageTradeCaptureReportRequest::reset(){
      fieldSecondaryTrdType.offset = -1;
      fieldTradeLinkID.offset = -1;
      fieldTrdMatchID.offset = -1;
+     fieldNoPartyIDs.offset = -1;
      for( auto g = groupsPartyIDs.begin(); g != groupsPartyIDs.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldSymbol.offset = -1;
      fieldSymbolSfx.offset = -1;
      fieldSecurityID.offset = -1;
      fieldSecurityIDSource.offset = -1;
+     fieldNoSecurityAltID.offset = -1;
      for( auto g = groupsSecurityAltID.begin(); g != groupsSecurityAltID.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldProduct.offset = -1;
      fieldCFICode.offset = -1;
@@ -83304,11 +83490,13 @@ void MessageTradeCaptureReportRequest::reset(){
      fieldContractSettlMonth.offset = -1;
      fieldCPProgram.offset = -1;
      fieldCPRegType.offset = -1;
+     fieldNoEvents.offset = -1;
      for( auto g = groupsEvents.begin(); g != groupsEvents.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldDatedDate.offset = -1;
      fieldInterestAccrualDate.offset = -1;
      fieldDeliveryForm.offset = -1;
      fieldPctAtRisk.offset = -1;
+     fieldNoInstrAttrib.offset = -1;
      for( auto g = groupsInstrAttrib.begin(); g != groupsInstrAttrib.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldAgreementDesc.offset = -1;
      fieldAgreementID.offset = -1;
@@ -83319,8 +83507,11 @@ void MessageTradeCaptureReportRequest::reset(){
      fieldEndDate.offset = -1;
      fieldDeliveryType.offset = -1;
      fieldMarginRatio.offset = -1;
+     fieldNoUnderlyings.offset = -1;
      for( auto g = groupsUnderlyings.begin(); g != groupsUnderlyings.end() and g->getMessageBuffer(); ++g ) g->reset();
+     fieldNoLegs.offset = -1;
      for( auto g = groupsLegs.begin(); g != groupsLegs.end() and g->getMessageBuffer(); ++g ) g->reset();
+     fieldNoDates.offset = -1;
      for( auto g = groupsDates.begin(); g != groupsDates.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldClearingBusinessDate.offset = -1;
      fieldTradingSessionID.offset = -1;
@@ -83369,6 +83560,7 @@ void MessageTradeCaptureReport::reset(){
      fieldSymbolSfx.offset = -1;
      fieldSecurityID.offset = -1;
      fieldSecurityIDSource.offset = -1;
+     fieldNoSecurityAltID.offset = -1;
      for( auto g = groupsSecurityAltID.begin(); g != groupsSecurityAltID.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldProduct.offset = -1;
      fieldCFICode.offset = -1;
@@ -83405,6 +83597,7 @@ void MessageTradeCaptureReport::reset(){
      fieldContractSettlMonth.offset = -1;
      fieldCPProgram.offset = -1;
      fieldCPRegType.offset = -1;
+     fieldNoEvents.offset = -1;
      for( auto g = groupsEvents.begin(); g != groupsEvents.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldDatedDate.offset = -1;
      fieldInterestAccrualDate.offset = -1;
@@ -83429,6 +83622,7 @@ void MessageTradeCaptureReport::reset(){
      fieldYieldRedemptionDate.offset = -1;
      fieldYieldRedemptionPrice.offset = -1;
      fieldYieldRedemptionPriceType.offset = -1;
+     fieldNoUnderlyings.offset = -1;
      for( auto g = groupsUnderlyings.begin(); g != groupsUnderlyings.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldUnderlyingTradingSessionID.offset = -1;
      fieldUnderlyingTradingSessionSubID.offset = -1;
@@ -83450,16 +83644,20 @@ void MessageTradeCaptureReport::reset(){
      fieldBenchmarkSecurityID.offset = -1;
      fieldBenchmarkSecurityIDSource.offset = -1;
      fieldAvgPxIndicator.offset = -1;
+     fieldNoPosAmt.offset = -1;
      for( auto g = groupsPosAmt.begin(); g != groupsPosAmt.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldMultiLegReportingType.offset = -1;
      fieldTradeLegRefID.offset = -1;
+     fieldNoLegs.offset = -1;
      for( auto g = groupsLegs.begin(); g != groupsLegs.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldTransactTime.offset = -1;
+     fieldNoTrdRegTimestamps.offset = -1;
      for( auto g = groupsTrdRegTimestamps.begin(); g != groupsTrdRegTimestamps.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldSettlType.offset = -1;
      fieldSettlDate.offset = -1;
      fieldMatchStatus.offset = -1;
      fieldMatchType.offset = -1;
+     fieldNoSides.offset = -1;
      for( auto g = groupsSides.begin(); g != groupsSides.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldCopyMsgIndicator.offset = -1;
      fieldPublishTrdIndicator.offset = -1;
@@ -83472,6 +83670,7 @@ void MessageOrderMassStatusRequest::reset(){
      _fixLength = 0;
      fieldMassStatusReqID.offset = -1;
      fieldMassStatusReqType.offset = -1;
+     fieldNoPartyIDs.offset = -1;
      for( auto g = groupsPartyIDs.begin(); g != groupsPartyIDs.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldAccount.offset = -1;
      fieldAcctIDSource.offset = -1;
@@ -83481,6 +83680,7 @@ void MessageOrderMassStatusRequest::reset(){
      fieldSymbolSfx.offset = -1;
      fieldSecurityID.offset = -1;
      fieldSecurityIDSource.offset = -1;
+     fieldNoSecurityAltID.offset = -1;
      for( auto g = groupsSecurityAltID.begin(); g != groupsSecurityAltID.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldProduct.offset = -1;
      fieldCFICode.offset = -1;
@@ -83517,6 +83717,7 @@ void MessageOrderMassStatusRequest::reset(){
      fieldContractSettlMonth.offset = -1;
      fieldCPProgram.offset = -1;
      fieldCPRegType.offset = -1;
+     fieldNoEvents.offset = -1;
      for( auto g = groupsEvents.begin(); g != groupsEvents.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldDatedDate.offset = -1;
      fieldInterestAccrualDate.offset = -1;
@@ -83524,6 +83725,7 @@ void MessageOrderMassStatusRequest::reset(){
      fieldUnderlyingSymbolSfx.offset = -1;
      fieldUnderlyingSecurityID.offset = -1;
      fieldUnderlyingSecurityIDSource.offset = -1;
+     fieldNoUnderlyingSecurityAltID.offset = -1;
      for( auto g = groupsUnderlyingSecurityAltID.begin(); g != groupsUnderlyingSecurityAltID.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldUnderlyingProduct.offset = -1;
      fieldUnderlyingCFICode.offset = -1;
@@ -83566,6 +83768,7 @@ void MessageOrderMassStatusRequest::reset(){
      fieldUnderlyingStartValue.offset = -1;
      fieldUnderlyingCurrentValue.offset = -1;
      fieldUnderlyingEndValue.offset = -1;
+     fieldNoUnderlyingStips.offset = -1;
      for( auto g = groupsUnderlyingStips.begin(); g != groupsUnderlyingStips.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldSide.offset = -1;
      fieldCheckSum.offset = -1;
@@ -83577,6 +83780,7 @@ void MessageQuoteRequestReject::reset(){
      fieldQuoteReqID.offset = -1;
      fieldRFQReqID.offset = -1;
      fieldQuoteRequestRejectReason.offset = -1;
+     fieldNoRelatedSym.offset = -1;
      for( auto g = groupsRelatedSym.begin(); g != groupsRelatedSym.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldText.offset = -1;
      fieldEncodedTextLen.offset = -1;
@@ -83588,6 +83792,7 @@ void MessageRFQRequest::reset(){
      _fixPtr = nullptr;
      _fixLength = 0;
      fieldRFQReqID.offset = -1;
+     fieldNoRelatedSym.offset = -1;
      for( auto g = groupsRelatedSym.begin(); g != groupsRelatedSym.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldSubscriptionRequestType.offset = -1;
      fieldCheckSum.offset = -1;
@@ -83601,6 +83806,7 @@ void MessageQuoteStatusReport::reset(){
      fieldQuoteID.offset = -1;
      fieldQuoteRespID.offset = -1;
      fieldQuoteType.offset = -1;
+     fieldNoPartyIDs.offset = -1;
      for( auto g = groupsPartyIDs.begin(); g != groupsPartyIDs.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldTradingSessionID.offset = -1;
      fieldTradingSessionSubID.offset = -1;
@@ -83608,6 +83814,7 @@ void MessageQuoteStatusReport::reset(){
      fieldSymbolSfx.offset = -1;
      fieldSecurityID.offset = -1;
      fieldSecurityIDSource.offset = -1;
+     fieldNoSecurityAltID.offset = -1;
      for( auto g = groupsSecurityAltID.begin(); g != groupsSecurityAltID.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldProduct.offset = -1;
      fieldCFICode.offset = -1;
@@ -83644,6 +83851,7 @@ void MessageQuoteStatusReport::reset(){
      fieldContractSettlMonth.offset = -1;
      fieldCPProgram.offset = -1;
      fieldCPRegType.offset = -1;
+     fieldNoEvents.offset = -1;
      for( auto g = groupsEvents.begin(); g != groupsEvents.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldDatedDate.offset = -1;
      fieldInterestAccrualDate.offset = -1;
@@ -83656,6 +83864,7 @@ void MessageQuoteStatusReport::reset(){
      fieldEndDate.offset = -1;
      fieldDeliveryType.offset = -1;
      fieldMarginRatio.offset = -1;
+     fieldNoUnderlyings.offset = -1;
      for( auto g = groupsUnderlyings.begin(); g != groupsUnderlyings.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldSide.offset = -1;
      fieldOrderQty.offset = -1;
@@ -83668,11 +83877,14 @@ void MessageQuoteStatusReport::reset(){
      fieldSettlDate2.offset = -1;
      fieldOrderQty2.offset = -1;
      fieldCurrency.offset = -1;
+     fieldNoStipulations.offset = -1;
      for( auto g = groupsStipulations.begin(); g != groupsStipulations.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldAccount.offset = -1;
      fieldAcctIDSource.offset = -1;
      fieldAccountType.offset = -1;
+     fieldNoLegs.offset = -1;
      for( auto g = groupsLegs.begin(); g != groupsLegs.end() and g->getMessageBuffer(); ++g ) g->reset();
+     fieldNoQuoteQualifiers.offset = -1;
      for( auto g = groupsQuoteQualifiers.begin(); g != groupsQuoteQualifiers.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldExpireTime.offset = -1;
      fieldPrice.offset = -1;
@@ -83736,7 +83948,9 @@ void MessageQuoteResponse::reset(){
      fieldOrderCapacity.offset = -1;
      fieldIOIID.offset = -1;
      fieldQuoteType.offset = -1;
+     fieldNoQuoteQualifiers.offset = -1;
      for( auto g = groupsQuoteQualifiers.begin(); g != groupsQuoteQualifiers.end() and g->getMessageBuffer(); ++g ) g->reset();
+     fieldNoPartyIDs.offset = -1;
      for( auto g = groupsPartyIDs.begin(); g != groupsPartyIDs.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldTradingSessionID.offset = -1;
      fieldTradingSessionSubID.offset = -1;
@@ -83744,6 +83958,7 @@ void MessageQuoteResponse::reset(){
      fieldSymbolSfx.offset = -1;
      fieldSecurityID.offset = -1;
      fieldSecurityIDSource.offset = -1;
+     fieldNoSecurityAltID.offset = -1;
      for( auto g = groupsSecurityAltID.begin(); g != groupsSecurityAltID.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldProduct.offset = -1;
      fieldCFICode.offset = -1;
@@ -83780,6 +83995,7 @@ void MessageQuoteResponse::reset(){
      fieldContractSettlMonth.offset = -1;
      fieldCPProgram.offset = -1;
      fieldCPRegType.offset = -1;
+     fieldNoEvents.offset = -1;
      for( auto g = groupsEvents.begin(); g != groupsEvents.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldDatedDate.offset = -1;
      fieldInterestAccrualDate.offset = -1;
@@ -83792,6 +84008,7 @@ void MessageQuoteResponse::reset(){
      fieldEndDate.offset = -1;
      fieldDeliveryType.offset = -1;
      fieldMarginRatio.offset = -1;
+     fieldNoUnderlyings.offset = -1;
      for( auto g = groupsUnderlyings.begin(); g != groupsUnderlyings.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldSide.offset = -1;
      fieldOrderQty.offset = -1;
@@ -83804,10 +84021,12 @@ void MessageQuoteResponse::reset(){
      fieldSettlDate2.offset = -1;
      fieldOrderQty2.offset = -1;
      fieldCurrency.offset = -1;
+     fieldNoStipulations.offset = -1;
      for( auto g = groupsStipulations.begin(); g != groupsStipulations.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldAccount.offset = -1;
      fieldAcctIDSource.offset = -1;
      fieldAccountType.offset = -1;
+     fieldNoLegs.offset = -1;
      for( auto g = groupsLegs.begin(); g != groupsLegs.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldBidPx.offset = -1;
      fieldOfferPx.offset = -1;
@@ -83870,18 +84089,22 @@ void MessageConfirmation::reset(){
      fieldCopyMsgIndicator.offset = -1;
      fieldLegalConfirm.offset = -1;
      fieldConfirmStatus.offset = -1;
+     fieldNoPartyIDs.offset = -1;
      for( auto g = groupsPartyIDs.begin(); g != groupsPartyIDs.end() and g->getMessageBuffer(); ++g ) g->reset();
+     fieldNoOrders.offset = -1;
      for( auto g = groupsOrders.begin(); g != groupsOrders.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldAllocID.offset = -1;
      fieldSecondaryAllocID.offset = -1;
      fieldIndividualAllocID.offset = -1;
      fieldTransactTime.offset = -1;
      fieldTradeDate.offset = -1;
+     fieldNoTrdRegTimestamps.offset = -1;
      for( auto g = groupsTrdRegTimestamps.begin(); g != groupsTrdRegTimestamps.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldSymbol.offset = -1;
      fieldSymbolSfx.offset = -1;
      fieldSecurityID.offset = -1;
      fieldSecurityIDSource.offset = -1;
+     fieldNoSecurityAltID.offset = -1;
      for( auto g = groupsSecurityAltID.begin(); g != groupsSecurityAltID.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldProduct.offset = -1;
      fieldCFICode.offset = -1;
@@ -83918,11 +84141,13 @@ void MessageConfirmation::reset(){
      fieldContractSettlMonth.offset = -1;
      fieldCPProgram.offset = -1;
      fieldCPRegType.offset = -1;
+     fieldNoEvents.offset = -1;
      for( auto g = groupsEvents.begin(); g != groupsEvents.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldDatedDate.offset = -1;
      fieldInterestAccrualDate.offset = -1;
      fieldDeliveryForm.offset = -1;
      fieldPctAtRisk.offset = -1;
+     fieldNoInstrAttrib.offset = -1;
      for( auto g = groupsInstrAttrib.begin(); g != groupsInstrAttrib.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldAgreementDesc.offset = -1;
      fieldAgreementID.offset = -1;
@@ -83933,7 +84158,9 @@ void MessageConfirmation::reset(){
      fieldEndDate.offset = -1;
      fieldDeliveryType.offset = -1;
      fieldMarginRatio.offset = -1;
+     fieldNoUnderlyings.offset = -1;
      for( auto g = groupsUnderlyings.begin(); g != groupsUnderlyings.end() and g->getMessageBuffer(); ++g ) g->reset();
+     fieldNoLegs.offset = -1;
      for( auto g = groupsLegs.begin(); g != groupsLegs.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldYieldType.offset = -1;
      fieldYield.offset = -1;
@@ -83946,6 +84173,7 @@ void MessageConfirmation::reset(){
      fieldSide.offset = -1;
      fieldCurrency.offset = -1;
      fieldLastMkt.offset = -1;
+     fieldNoCapacities.offset = -1;
      for( auto g = groupsCapacities.begin(); g != groupsCapacities.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldAllocAccount.offset = -1;
      fieldAllocAcctIDSource.offset = -1;
@@ -83990,13 +84218,16 @@ void MessageConfirmation::reset(){
      fieldStandInstDbType.offset = -1;
      fieldStandInstDbName.offset = -1;
      fieldStandInstDbID.offset = -1;
+     fieldNoDlvyInst.offset = -1;
      for( auto g = groupsDlvyInst.begin(); g != groupsDlvyInst.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldCommission.offset = -1;
      fieldCommType.offset = -1;
      fieldCommCurrency.offset = -1;
      fieldFundRenewWaiv.offset = -1;
      fieldSharedCommission.offset = -1;
+     fieldNoStipulations.offset = -1;
      for( auto g = groupsStipulations.begin(); g != groupsStipulations.end() and g->getMessageBuffer(); ++g ) g->reset();
+     fieldNoMiscFees.offset = -1;
      for( auto g = groupsMiscFees.begin(); g != groupsMiscFees.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldCheckSum.offset = -1;
 }
@@ -84012,6 +84243,7 @@ void MessagePositionMaintenanceRequest::reset(){
      fieldClearingBusinessDate.offset = -1;
      fieldSettlSessID.offset = -1;
      fieldSettlSessSubID.offset = -1;
+     fieldNoPartyIDs.offset = -1;
      for( auto g = groupsPartyIDs.begin(); g != groupsPartyIDs.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldAccount.offset = -1;
      fieldAcctIDSource.offset = -1;
@@ -84020,6 +84252,7 @@ void MessagePositionMaintenanceRequest::reset(){
      fieldSymbolSfx.offset = -1;
      fieldSecurityID.offset = -1;
      fieldSecurityIDSource.offset = -1;
+     fieldNoSecurityAltID.offset = -1;
      for( auto g = groupsSecurityAltID.begin(); g != groupsSecurityAltID.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldProduct.offset = -1;
      fieldCFICode.offset = -1;
@@ -84056,14 +84289,19 @@ void MessagePositionMaintenanceRequest::reset(){
      fieldContractSettlMonth.offset = -1;
      fieldCPProgram.offset = -1;
      fieldCPRegType.offset = -1;
+     fieldNoEvents.offset = -1;
      for( auto g = groupsEvents.begin(); g != groupsEvents.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldDatedDate.offset = -1;
      fieldInterestAccrualDate.offset = -1;
      fieldCurrency.offset = -1;
+     fieldNoLegs.offset = -1;
      for( auto g = groupsLegs.begin(); g != groupsLegs.end() and g->getMessageBuffer(); ++g ) g->reset();
+     fieldNoUnderlyings.offset = -1;
      for( auto g = groupsUnderlyings.begin(); g != groupsUnderlyings.end() and g->getMessageBuffer(); ++g ) g->reset();
+     fieldNoTradingSessions.offset = -1;
      for( auto g = groupsTradingSessions.begin(); g != groupsTradingSessions.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldTransactTime.offset = -1;
+     fieldNoPositions.offset = -1;
      for( auto g = groupsPositions.begin(); g != groupsPositions.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldAdjustmentType.offset = -1;
      fieldContraryInstructionIndicator.offset = -1;
@@ -84088,6 +84326,7 @@ void MessagePositionMaintenanceReport::reset(){
      fieldClearingBusinessDate.offset = -1;
      fieldSettlSessID.offset = -1;
      fieldSettlSessSubID.offset = -1;
+     fieldNoPartyIDs.offset = -1;
      for( auto g = groupsPartyIDs.begin(); g != groupsPartyIDs.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldAccount.offset = -1;
      fieldAcctIDSource.offset = -1;
@@ -84096,6 +84335,7 @@ void MessagePositionMaintenanceReport::reset(){
      fieldSymbolSfx.offset = -1;
      fieldSecurityID.offset = -1;
      fieldSecurityIDSource.offset = -1;
+     fieldNoSecurityAltID.offset = -1;
      for( auto g = groupsSecurityAltID.begin(); g != groupsSecurityAltID.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldProduct.offset = -1;
      fieldCFICode.offset = -1;
@@ -84132,15 +84372,21 @@ void MessagePositionMaintenanceReport::reset(){
      fieldContractSettlMonth.offset = -1;
      fieldCPProgram.offset = -1;
      fieldCPRegType.offset = -1;
+     fieldNoEvents.offset = -1;
      for( auto g = groupsEvents.begin(); g != groupsEvents.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldDatedDate.offset = -1;
      fieldInterestAccrualDate.offset = -1;
      fieldCurrency.offset = -1;
+     fieldNoLegs.offset = -1;
      for( auto g = groupsLegs.begin(); g != groupsLegs.end() and g->getMessageBuffer(); ++g ) g->reset();
+     fieldNoUnderlyings.offset = -1;
      for( auto g = groupsUnderlyings.begin(); g != groupsUnderlyings.end() and g->getMessageBuffer(); ++g ) g->reset();
+     fieldNoTradingSessions.offset = -1;
      for( auto g = groupsTradingSessions.begin(); g != groupsTradingSessions.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldTransactTime.offset = -1;
+     fieldNoPositions.offset = -1;
      for( auto g = groupsPositions.begin(); g != groupsPositions.end() and g->getMessageBuffer(); ++g ) g->reset();
+     fieldNoPosAmt.offset = -1;
      for( auto g = groupsPosAmt.begin(); g != groupsPosAmt.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldAdjustmentType.offset = -1;
      fieldThresholdAmount.offset = -1;
@@ -84157,6 +84403,7 @@ void MessageRequestForPositions::reset(){
      fieldPosReqType.offset = -1;
      fieldMatchStatus.offset = -1;
      fieldSubscriptionRequestType.offset = -1;
+     fieldNoPartyIDs.offset = -1;
      for( auto g = groupsPartyIDs.begin(); g != groupsPartyIDs.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldAccount.offset = -1;
      fieldAcctIDSource.offset = -1;
@@ -84165,6 +84412,7 @@ void MessageRequestForPositions::reset(){
      fieldSymbolSfx.offset = -1;
      fieldSecurityID.offset = -1;
      fieldSecurityIDSource.offset = -1;
+     fieldNoSecurityAltID.offset = -1;
      for( auto g = groupsSecurityAltID.begin(); g != groupsSecurityAltID.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldProduct.offset = -1;
      fieldCFICode.offset = -1;
@@ -84201,15 +84449,19 @@ void MessageRequestForPositions::reset(){
      fieldContractSettlMonth.offset = -1;
      fieldCPProgram.offset = -1;
      fieldCPRegType.offset = -1;
+     fieldNoEvents.offset = -1;
      for( auto g = groupsEvents.begin(); g != groupsEvents.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldDatedDate.offset = -1;
      fieldInterestAccrualDate.offset = -1;
      fieldCurrency.offset = -1;
+     fieldNoLegs.offset = -1;
      for( auto g = groupsLegs.begin(); g != groupsLegs.end() and g->getMessageBuffer(); ++g ) g->reset();
+     fieldNoUnderlyings.offset = -1;
      for( auto g = groupsUnderlyings.begin(); g != groupsUnderlyings.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldClearingBusinessDate.offset = -1;
      fieldSettlSessID.offset = -1;
      fieldSettlSessSubID.offset = -1;
+     fieldNoTradingSessions.offset = -1;
      for( auto g = groupsTradingSessions.begin(); g != groupsTradingSessions.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldTransactTime.offset = -1;
      fieldResponseTransportType.offset = -1;
@@ -84229,6 +84481,7 @@ void MessageRequestForPositionsAck::reset(){
      fieldUnsolicitedIndicator.offset = -1;
      fieldPosReqResult.offset = -1;
      fieldPosReqStatus.offset = -1;
+     fieldNoPartyIDs.offset = -1;
      for( auto g = groupsPartyIDs.begin(); g != groupsPartyIDs.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldAccount.offset = -1;
      fieldAcctIDSource.offset = -1;
@@ -84237,6 +84490,7 @@ void MessageRequestForPositionsAck::reset(){
      fieldSymbolSfx.offset = -1;
      fieldSecurityID.offset = -1;
      fieldSecurityIDSource.offset = -1;
+     fieldNoSecurityAltID.offset = -1;
      for( auto g = groupsSecurityAltID.begin(); g != groupsSecurityAltID.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldProduct.offset = -1;
      fieldCFICode.offset = -1;
@@ -84273,11 +84527,14 @@ void MessageRequestForPositionsAck::reset(){
      fieldContractSettlMonth.offset = -1;
      fieldCPProgram.offset = -1;
      fieldCPRegType.offset = -1;
+     fieldNoEvents.offset = -1;
      for( auto g = groupsEvents.begin(); g != groupsEvents.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldDatedDate.offset = -1;
      fieldInterestAccrualDate.offset = -1;
      fieldCurrency.offset = -1;
+     fieldNoLegs.offset = -1;
      for( auto g = groupsLegs.begin(); g != groupsLegs.end() and g->getMessageBuffer(); ++g ) g->reset();
+     fieldNoUnderlyings.offset = -1;
      for( auto g = groupsUnderlyings.begin(); g != groupsUnderlyings.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldResponseTransportType.offset = -1;
      fieldResponseDestination.offset = -1;
@@ -84300,6 +84557,7 @@ void MessagePositionReport::reset(){
      fieldClearingBusinessDate.offset = -1;
      fieldSettlSessID.offset = -1;
      fieldSettlSessSubID.offset = -1;
+     fieldNoPartyIDs.offset = -1;
      for( auto g = groupsPartyIDs.begin(); g != groupsPartyIDs.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldAccount.offset = -1;
      fieldAcctIDSource.offset = -1;
@@ -84308,6 +84566,7 @@ void MessagePositionReport::reset(){
      fieldSymbolSfx.offset = -1;
      fieldSecurityID.offset = -1;
      fieldSecurityIDSource.offset = -1;
+     fieldNoSecurityAltID.offset = -1;
      for( auto g = groupsSecurityAltID.begin(); g != groupsSecurityAltID.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldProduct.offset = -1;
      fieldCFICode.offset = -1;
@@ -84344,6 +84603,7 @@ void MessagePositionReport::reset(){
      fieldContractSettlMonth.offset = -1;
      fieldCPProgram.offset = -1;
      fieldCPRegType.offset = -1;
+     fieldNoEvents.offset = -1;
      for( auto g = groupsEvents.begin(); g != groupsEvents.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldDatedDate.offset = -1;
      fieldInterestAccrualDate.offset = -1;
@@ -84351,9 +84611,13 @@ void MessagePositionReport::reset(){
      fieldSettlPrice.offset = -1;
      fieldSettlPriceType.offset = -1;
      fieldPriorSettlPrice.offset = -1;
+     fieldNoLegs.offset = -1;
      for( auto g = groupsLegs.begin(); g != groupsLegs.end() and g->getMessageBuffer(); ++g ) g->reset();
+     fieldNoUnderlyings.offset = -1;
      for( auto g = groupsUnderlyings.begin(); g != groupsUnderlyings.end() and g->getMessageBuffer(); ++g ) g->reset();
+     fieldNoPositions.offset = -1;
      for( auto g = groupsPositions.begin(); g != groupsPositions.end() and g->getMessageBuffer(); ++g ) g->reset();
+     fieldNoPosAmt.offset = -1;
      for( auto g = groupsPosAmt.begin(); g != groupsPosAmt.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldRegistStatus.offset = -1;
      fieldDeliveryDate.offset = -1;
@@ -84376,6 +84640,7 @@ void MessageTradeCaptureReportRequestAck::reset(){
      fieldSymbolSfx.offset = -1;
      fieldSecurityID.offset = -1;
      fieldSecurityIDSource.offset = -1;
+     fieldNoSecurityAltID.offset = -1;
      for( auto g = groupsSecurityAltID.begin(); g != groupsSecurityAltID.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldProduct.offset = -1;
      fieldCFICode.offset = -1;
@@ -84412,10 +84677,13 @@ void MessageTradeCaptureReportRequestAck::reset(){
      fieldContractSettlMonth.offset = -1;
      fieldCPProgram.offset = -1;
      fieldCPRegType.offset = -1;
+     fieldNoEvents.offset = -1;
      for( auto g = groupsEvents.begin(); g != groupsEvents.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldDatedDate.offset = -1;
      fieldInterestAccrualDate.offset = -1;
+     fieldNoUnderlyings.offset = -1;
      for( auto g = groupsUnderlyings.begin(); g != groupsUnderlyings.end() and g->getMessageBuffer(); ++g ) g->reset();
+     fieldNoLegs.offset = -1;
      for( auto g = groupsLegs.begin(); g != groupsLegs.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldMultiLegReportingType.offset = -1;
      fieldResponseTransportType.offset = -1;
@@ -84451,6 +84719,7 @@ void MessageTradeCaptureReportAck::reset(){
      fieldSymbolSfx.offset = -1;
      fieldSecurityID.offset = -1;
      fieldSecurityIDSource.offset = -1;
+     fieldNoSecurityAltID.offset = -1;
      for( auto g = groupsSecurityAltID.begin(); g != groupsSecurityAltID.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldProduct.offset = -1;
      fieldCFICode.offset = -1;
@@ -84487,16 +84756,19 @@ void MessageTradeCaptureReportAck::reset(){
      fieldContractSettlMonth.offset = -1;
      fieldCPProgram.offset = -1;
      fieldCPRegType.offset = -1;
+     fieldNoEvents.offset = -1;
      for( auto g = groupsEvents.begin(); g != groupsEvents.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldDatedDate.offset = -1;
      fieldInterestAccrualDate.offset = -1;
      fieldTransactTime.offset = -1;
+     fieldNoTrdRegTimestamps.offset = -1;
      for( auto g = groupsTrdRegTimestamps.begin(); g != groupsTrdRegTimestamps.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldResponseTransportType.offset = -1;
      fieldResponseDestination.offset = -1;
      fieldText.offset = -1;
      fieldEncodedTextLen.offset = -1;
      fieldEncodedText.offset = -1;
+     fieldNoLegs.offset = -1;
      for( auto g = groupsLegs.begin(); g != groupsLegs.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldClearingFeeIndicator.offset = -1;
      fieldOrderCapacity.offset = -1;
@@ -84507,6 +84779,7 @@ void MessageTradeCaptureReportAck::reset(){
      fieldAccountType.offset = -1;
      fieldPositionEffect.offset = -1;
      fieldPreallocMethod.offset = -1;
+     fieldNoAllocs.offset = -1;
      for( auto g = groupsAllocs.begin(); g != groupsAllocs.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldCheckSum.offset = -1;
 }
@@ -84529,7 +84802,9 @@ void MessageAllocationReport::reset(){
      fieldAllocLinkType.offset = -1;
      fieldBookingRefID.offset = -1;
      fieldAllocNoOrdersType.offset = -1;
+     fieldNoOrders.offset = -1;
      for( auto g = groupsOrders.begin(); g != groupsOrders.end() and g->getMessageBuffer(); ++g ) g->reset();
+     fieldNoExecs.offset = -1;
      for( auto g = groupsExecs.begin(); g != groupsExecs.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldPreviouslyReported.offset = -1;
      fieldReversalIndicator.offset = -1;
@@ -84539,6 +84814,7 @@ void MessageAllocationReport::reset(){
      fieldSymbolSfx.offset = -1;
      fieldSecurityID.offset = -1;
      fieldSecurityIDSource.offset = -1;
+     fieldNoSecurityAltID.offset = -1;
      for( auto g = groupsSecurityAltID.begin(); g != groupsSecurityAltID.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldProduct.offset = -1;
      fieldCFICode.offset = -1;
@@ -84575,11 +84851,13 @@ void MessageAllocationReport::reset(){
      fieldContractSettlMonth.offset = -1;
      fieldCPProgram.offset = -1;
      fieldCPRegType.offset = -1;
+     fieldNoEvents.offset = -1;
      for( auto g = groupsEvents.begin(); g != groupsEvents.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldDatedDate.offset = -1;
      fieldInterestAccrualDate.offset = -1;
      fieldDeliveryForm.offset = -1;
      fieldPctAtRisk.offset = -1;
+     fieldNoInstrAttrib.offset = -1;
      for( auto g = groupsInstrAttrib.begin(); g != groupsInstrAttrib.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldAgreementDesc.offset = -1;
      fieldAgreementID.offset = -1;
@@ -84590,7 +84868,9 @@ void MessageAllocationReport::reset(){
      fieldEndDate.offset = -1;
      fieldDeliveryType.offset = -1;
      fieldMarginRatio.offset = -1;
+     fieldNoUnderlyings.offset = -1;
      for( auto g = groupsUnderlyings.begin(); g != groupsUnderlyings.end() and g->getMessageBuffer(); ++g ) g->reset();
+     fieldNoLegs.offset = -1;
      for( auto g = groupsLegs.begin(); g != groupsLegs.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldQuantity.offset = -1;
      fieldQtyType.offset = -1;
@@ -84611,6 +84891,7 @@ void MessageAllocationReport::reset(){
      fieldBenchmarkSecurityIDSource.offset = -1;
      fieldCurrency.offset = -1;
      fieldAvgPxPrecision.offset = -1;
+     fieldNoPartyIDs.offset = -1;
      for( auto g = groupsPartyIDs.begin(); g != groupsPartyIDs.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldTradeDate.offset = -1;
      fieldTransactTime.offset = -1;
@@ -84635,6 +84916,7 @@ void MessageAllocationReport::reset(){
      fieldStartCash.offset = -1;
      fieldEndCash.offset = -1;
      fieldLegalConfirm.offset = -1;
+     fieldNoStipulations.offset = -1;
      for( auto g = groupsStipulations.begin(); g != groupsStipulations.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldYieldType.offset = -1;
      fieldYield.offset = -1;
@@ -84644,6 +84926,7 @@ void MessageAllocationReport::reset(){
      fieldYieldRedemptionPriceType.offset = -1;
      fieldTotNoAllocs.offset = -1;
      fieldLastFragment.offset = -1;
+     fieldNoAllocs.offset = -1;
      for( auto g = groupsAllocs.begin(); g != groupsAllocs.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldCheckSum.offset = -1;
 }
@@ -84653,6 +84936,7 @@ void MessageAllocationReportAck::reset(){
      _fixLength = 0;
      fieldAllocReportID.offset = -1;
      fieldAllocID.offset = -1;
+     fieldNoPartyIDs.offset = -1;
      for( auto g = groupsPartyIDs.begin(); g != groupsPartyIDs.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldSecondaryAllocID.offset = -1;
      fieldTradeDate.offset = -1;
@@ -84667,6 +84951,7 @@ void MessageAllocationReportAck::reset(){
      fieldText.offset = -1;
      fieldEncodedTextLen.offset = -1;
      fieldEncodedText.offset = -1;
+     fieldNoAllocs.offset = -1;
      for( auto g = groupsAllocs.begin(); g != groupsAllocs.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldCheckSum.offset = -1;
 }
@@ -84691,6 +84976,7 @@ void MessageSettlementInstructionRequest::reset(){
      _fixLength = 0;
      fieldSettlInstReqID.offset = -1;
      fieldTransactTime.offset = -1;
+     fieldNoPartyIDs.offset = -1;
      for( auto g = groupsPartyIDs.begin(); g != groupsPartyIDs.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldAllocAccount.offset = -1;
      fieldAllocAcctIDSource.offset = -1;
@@ -84713,6 +84999,7 @@ void MessageAssignmentReport::reset(){
      fieldAsgnRptID.offset = -1;
      fieldTotNumAssignmentReports.offset = -1;
      fieldLastRptRequested.offset = -1;
+     fieldNoPartyIDs.offset = -1;
      for( auto g = groupsPartyIDs.begin(); g != groupsPartyIDs.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldAccount.offset = -1;
      fieldAccountType.offset = -1;
@@ -84720,6 +85007,7 @@ void MessageAssignmentReport::reset(){
      fieldSymbolSfx.offset = -1;
      fieldSecurityID.offset = -1;
      fieldSecurityIDSource.offset = -1;
+     fieldNoSecurityAltID.offset = -1;
      for( auto g = groupsSecurityAltID.begin(); g != groupsSecurityAltID.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldProduct.offset = -1;
      fieldCFICode.offset = -1;
@@ -84756,13 +85044,18 @@ void MessageAssignmentReport::reset(){
      fieldContractSettlMonth.offset = -1;
      fieldCPProgram.offset = -1;
      fieldCPRegType.offset = -1;
+     fieldNoEvents.offset = -1;
      for( auto g = groupsEvents.begin(); g != groupsEvents.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldDatedDate.offset = -1;
      fieldInterestAccrualDate.offset = -1;
      fieldCurrency.offset = -1;
+     fieldNoLegs.offset = -1;
      for( auto g = groupsLegs.begin(); g != groupsLegs.end() and g->getMessageBuffer(); ++g ) g->reset();
+     fieldNoUnderlyings.offset = -1;
      for( auto g = groupsUnderlyings.begin(); g != groupsUnderlyings.end() and g->getMessageBuffer(); ++g ) g->reset();
+     fieldNoPositions.offset = -1;
      for( auto g = groupsPositions.begin(); g != groupsPositions.end() and g->getMessageBuffer(); ++g ) g->reset();
+     fieldNoPosAmt.offset = -1;
      for( auto g = groupsPosAmt.begin(); g != groupsPosAmt.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldThresholdAmount.offset = -1;
      fieldSettlPrice.offset = -1;
@@ -84789,6 +85082,7 @@ void MessageCollateralRequest::reset(){
      fieldCollAsgnReason.offset = -1;
      fieldTransactTime.offset = -1;
      fieldExpireTime.offset = -1;
+     fieldNoPartyIDs.offset = -1;
      for( auto g = groupsPartyIDs.begin(); g != groupsPartyIDs.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldAccount.offset = -1;
      fieldAccountType.offset = -1;
@@ -84796,12 +85090,15 @@ void MessageCollateralRequest::reset(){
      fieldOrderID.offset = -1;
      fieldSecondaryOrderID.offset = -1;
      fieldSecondaryClOrdID.offset = -1;
+     fieldNoExecs.offset = -1;
      for( auto g = groupsExecs.begin(); g != groupsExecs.end() and g->getMessageBuffer(); ++g ) g->reset();
+     fieldNoTrades.offset = -1;
      for( auto g = groupsTrades.begin(); g != groupsTrades.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldSymbol.offset = -1;
      fieldSymbolSfx.offset = -1;
      fieldSecurityID.offset = -1;
      fieldSecurityIDSource.offset = -1;
+     fieldNoSecurityAltID.offset = -1;
      for( auto g = groupsSecurityAltID.begin(); g != groupsSecurityAltID.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldProduct.offset = -1;
      fieldCFICode.offset = -1;
@@ -84838,6 +85135,7 @@ void MessageCollateralRequest::reset(){
      fieldContractSettlMonth.offset = -1;
      fieldCPProgram.offset = -1;
      fieldCPRegType.offset = -1;
+     fieldNoEvents.offset = -1;
      for( auto g = groupsEvents.begin(); g != groupsEvents.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldDatedDate.offset = -1;
      fieldInterestAccrualDate.offset = -1;
@@ -84854,13 +85152,17 @@ void MessageCollateralRequest::reset(){
      fieldQuantity.offset = -1;
      fieldQtyType.offset = -1;
      fieldCurrency.offset = -1;
+     fieldNoLegs.offset = -1;
      for( auto g = groupsLegs.begin(); g != groupsLegs.end() and g->getMessageBuffer(); ++g ) g->reset();
+     fieldNoUnderlyings.offset = -1;
      for( auto g = groupsUnderlyings.begin(); g != groupsUnderlyings.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldMarginExcess.offset = -1;
      fieldTotalNetValue.offset = -1;
      fieldCashOutstanding.offset = -1;
+     fieldNoTrdRegTimestamps.offset = -1;
      for( auto g = groupsTrdRegTimestamps.begin(); g != groupsTrdRegTimestamps.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldSide.offset = -1;
+     fieldNoMiscFees.offset = -1;
      for( auto g = groupsMiscFees.begin(); g != groupsMiscFees.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldPrice.offset = -1;
      fieldPriceType.offset = -1;
@@ -84876,6 +85178,7 @@ void MessageCollateralRequest::reset(){
      fieldBenchmarkPriceType.offset = -1;
      fieldBenchmarkSecurityID.offset = -1;
      fieldBenchmarkSecurityIDSource.offset = -1;
+     fieldNoStipulations.offset = -1;
      for( auto g = groupsStipulations.begin(); g != groupsStipulations.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldTradingSessionID.offset = -1;
      fieldTradingSessionSubID.offset = -1;
@@ -84898,6 +85201,7 @@ void MessageCollateralAssignment::reset(){
      fieldCollAsgnRefID.offset = -1;
      fieldTransactTime.offset = -1;
      fieldExpireTime.offset = -1;
+     fieldNoPartyIDs.offset = -1;
      for( auto g = groupsPartyIDs.begin(); g != groupsPartyIDs.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldAccount.offset = -1;
      fieldAccountType.offset = -1;
@@ -84905,12 +85209,15 @@ void MessageCollateralAssignment::reset(){
      fieldOrderID.offset = -1;
      fieldSecondaryOrderID.offset = -1;
      fieldSecondaryClOrdID.offset = -1;
+     fieldNoExecs.offset = -1;
      for( auto g = groupsExecs.begin(); g != groupsExecs.end() and g->getMessageBuffer(); ++g ) g->reset();
+     fieldNoTrades.offset = -1;
      for( auto g = groupsTrades.begin(); g != groupsTrades.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldSymbol.offset = -1;
      fieldSymbolSfx.offset = -1;
      fieldSecurityID.offset = -1;
      fieldSecurityIDSource.offset = -1;
+     fieldNoSecurityAltID.offset = -1;
      for( auto g = groupsSecurityAltID.begin(); g != groupsSecurityAltID.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldProduct.offset = -1;
      fieldCFICode.offset = -1;
@@ -84947,6 +85254,7 @@ void MessageCollateralAssignment::reset(){
      fieldContractSettlMonth.offset = -1;
      fieldCPProgram.offset = -1;
      fieldCPRegType.offset = -1;
+     fieldNoEvents.offset = -1;
      for( auto g = groupsEvents.begin(); g != groupsEvents.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldDatedDate.offset = -1;
      fieldInterestAccrualDate.offset = -1;
@@ -84963,13 +85271,17 @@ void MessageCollateralAssignment::reset(){
      fieldQuantity.offset = -1;
      fieldQtyType.offset = -1;
      fieldCurrency.offset = -1;
+     fieldNoLegs.offset = -1;
      for( auto g = groupsLegs.begin(); g != groupsLegs.end() and g->getMessageBuffer(); ++g ) g->reset();
+     fieldNoUnderlyings.offset = -1;
      for( auto g = groupsUnderlyings.begin(); g != groupsUnderlyings.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldMarginExcess.offset = -1;
      fieldTotalNetValue.offset = -1;
      fieldCashOutstanding.offset = -1;
+     fieldNoTrdRegTimestamps.offset = -1;
      for( auto g = groupsTrdRegTimestamps.begin(); g != groupsTrdRegTimestamps.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldSide.offset = -1;
+     fieldNoMiscFees.offset = -1;
      for( auto g = groupsMiscFees.begin(); g != groupsMiscFees.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldPrice.offset = -1;
      fieldPriceType.offset = -1;
@@ -84985,11 +85297,13 @@ void MessageCollateralAssignment::reset(){
      fieldBenchmarkPriceType.offset = -1;
      fieldBenchmarkSecurityID.offset = -1;
      fieldBenchmarkSecurityIDSource.offset = -1;
+     fieldNoStipulations.offset = -1;
      for( auto g = groupsStipulations.begin(); g != groupsStipulations.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldSettlDeliveryType.offset = -1;
      fieldStandInstDbType.offset = -1;
      fieldStandInstDbName.offset = -1;
      fieldStandInstDbID.offset = -1;
+     fieldNoDlvyInst.offset = -1;
      for( auto g = groupsDlvyInst.begin(); g != groupsDlvyInst.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldTradingSessionID.offset = -1;
      fieldTradingSessionSubID.offset = -1;
@@ -85013,6 +85327,7 @@ void MessageCollateralResponse::reset(){
      fieldCollAsgnRespType.offset = -1;
      fieldCollAsgnRejectReason.offset = -1;
      fieldTransactTime.offset = -1;
+     fieldNoPartyIDs.offset = -1;
      for( auto g = groupsPartyIDs.begin(); g != groupsPartyIDs.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldAccount.offset = -1;
      fieldAccountType.offset = -1;
@@ -85020,12 +85335,15 @@ void MessageCollateralResponse::reset(){
      fieldOrderID.offset = -1;
      fieldSecondaryOrderID.offset = -1;
      fieldSecondaryClOrdID.offset = -1;
+     fieldNoExecs.offset = -1;
      for( auto g = groupsExecs.begin(); g != groupsExecs.end() and g->getMessageBuffer(); ++g ) g->reset();
+     fieldNoTrades.offset = -1;
      for( auto g = groupsTrades.begin(); g != groupsTrades.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldSymbol.offset = -1;
      fieldSymbolSfx.offset = -1;
      fieldSecurityID.offset = -1;
      fieldSecurityIDSource.offset = -1;
+     fieldNoSecurityAltID.offset = -1;
      for( auto g = groupsSecurityAltID.begin(); g != groupsSecurityAltID.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldProduct.offset = -1;
      fieldCFICode.offset = -1;
@@ -85062,6 +85380,7 @@ void MessageCollateralResponse::reset(){
      fieldContractSettlMonth.offset = -1;
      fieldCPProgram.offset = -1;
      fieldCPRegType.offset = -1;
+     fieldNoEvents.offset = -1;
      for( auto g = groupsEvents.begin(); g != groupsEvents.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldDatedDate.offset = -1;
      fieldInterestAccrualDate.offset = -1;
@@ -85078,13 +85397,17 @@ void MessageCollateralResponse::reset(){
      fieldQuantity.offset = -1;
      fieldQtyType.offset = -1;
      fieldCurrency.offset = -1;
+     fieldNoLegs.offset = -1;
      for( auto g = groupsLegs.begin(); g != groupsLegs.end() and g->getMessageBuffer(); ++g ) g->reset();
+     fieldNoUnderlyings.offset = -1;
      for( auto g = groupsUnderlyings.begin(); g != groupsUnderlyings.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldMarginExcess.offset = -1;
      fieldTotalNetValue.offset = -1;
      fieldCashOutstanding.offset = -1;
+     fieldNoTrdRegTimestamps.offset = -1;
      for( auto g = groupsTrdRegTimestamps.begin(); g != groupsTrdRegTimestamps.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldSide.offset = -1;
+     fieldNoMiscFees.offset = -1;
      for( auto g = groupsMiscFees.begin(); g != groupsMiscFees.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldPrice.offset = -1;
      fieldPriceType.offset = -1;
@@ -85100,6 +85423,7 @@ void MessageCollateralResponse::reset(){
      fieldBenchmarkPriceType.offset = -1;
      fieldBenchmarkSecurityID.offset = -1;
      fieldBenchmarkSecurityIDSource.offset = -1;
+     fieldNoStipulations.offset = -1;
      for( auto g = groupsStipulations.begin(); g != groupsStipulations.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldText.offset = -1;
      fieldEncodedTextLen.offset = -1;
@@ -85115,6 +85439,7 @@ void MessageCollateralReport::reset(){
      fieldCollStatus.offset = -1;
      fieldTotNumReports.offset = -1;
      fieldLastRptRequested.offset = -1;
+     fieldNoPartyIDs.offset = -1;
      for( auto g = groupsPartyIDs.begin(); g != groupsPartyIDs.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldAccount.offset = -1;
      fieldAccountType.offset = -1;
@@ -85122,12 +85447,15 @@ void MessageCollateralReport::reset(){
      fieldOrderID.offset = -1;
      fieldSecondaryOrderID.offset = -1;
      fieldSecondaryClOrdID.offset = -1;
+     fieldNoExecs.offset = -1;
      for( auto g = groupsExecs.begin(); g != groupsExecs.end() and g->getMessageBuffer(); ++g ) g->reset();
+     fieldNoTrades.offset = -1;
      for( auto g = groupsTrades.begin(); g != groupsTrades.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldSymbol.offset = -1;
      fieldSymbolSfx.offset = -1;
      fieldSecurityID.offset = -1;
      fieldSecurityIDSource.offset = -1;
+     fieldNoSecurityAltID.offset = -1;
      for( auto g = groupsSecurityAltID.begin(); g != groupsSecurityAltID.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldProduct.offset = -1;
      fieldCFICode.offset = -1;
@@ -85164,6 +85492,7 @@ void MessageCollateralReport::reset(){
      fieldContractSettlMonth.offset = -1;
      fieldCPProgram.offset = -1;
      fieldCPRegType.offset = -1;
+     fieldNoEvents.offset = -1;
      for( auto g = groupsEvents.begin(); g != groupsEvents.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldDatedDate.offset = -1;
      fieldInterestAccrualDate.offset = -1;
@@ -85180,13 +85509,17 @@ void MessageCollateralReport::reset(){
      fieldQuantity.offset = -1;
      fieldQtyType.offset = -1;
      fieldCurrency.offset = -1;
+     fieldNoLegs.offset = -1;
      for( auto g = groupsLegs.begin(); g != groupsLegs.end() and g->getMessageBuffer(); ++g ) g->reset();
+     fieldNoUnderlyings.offset = -1;
      for( auto g = groupsUnderlyings.begin(); g != groupsUnderlyings.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldMarginExcess.offset = -1;
      fieldTotalNetValue.offset = -1;
      fieldCashOutstanding.offset = -1;
+     fieldNoTrdRegTimestamps.offset = -1;
      for( auto g = groupsTrdRegTimestamps.begin(); g != groupsTrdRegTimestamps.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldSide.offset = -1;
+     fieldNoMiscFees.offset = -1;
      for( auto g = groupsMiscFees.begin(); g != groupsMiscFees.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldPrice.offset = -1;
      fieldPriceType.offset = -1;
@@ -85202,11 +85535,13 @@ void MessageCollateralReport::reset(){
      fieldBenchmarkPriceType.offset = -1;
      fieldBenchmarkSecurityID.offset = -1;
      fieldBenchmarkSecurityIDSource.offset = -1;
+     fieldNoStipulations.offset = -1;
      for( auto g = groupsStipulations.begin(); g != groupsStipulations.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldSettlDeliveryType.offset = -1;
      fieldStandInstDbType.offset = -1;
      fieldStandInstDbName.offset = -1;
      fieldStandInstDbID.offset = -1;
+     fieldNoDlvyInst.offset = -1;
      for( auto g = groupsDlvyInst.begin(); g != groupsDlvyInst.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldTradingSessionID.offset = -1;
      fieldTradingSessionSubID.offset = -1;
@@ -85223,10 +85558,12 @@ void MessageCollateralInquiry::reset(){
      _fixPtr = nullptr;
      _fixLength = 0;
      fieldCollInquiryID.offset = -1;
+     fieldNoCollInquiryQualifier.offset = -1;
      for( auto g = groupsCollInquiryQualifier.begin(); g != groupsCollInquiryQualifier.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldSubscriptionRequestType.offset = -1;
      fieldResponseTransportType.offset = -1;
      fieldResponseDestination.offset = -1;
+     fieldNoPartyIDs.offset = -1;
      for( auto g = groupsPartyIDs.begin(); g != groupsPartyIDs.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldAccount.offset = -1;
      fieldAccountType.offset = -1;
@@ -85234,12 +85571,15 @@ void MessageCollateralInquiry::reset(){
      fieldOrderID.offset = -1;
      fieldSecondaryOrderID.offset = -1;
      fieldSecondaryClOrdID.offset = -1;
+     fieldNoExecs.offset = -1;
      for( auto g = groupsExecs.begin(); g != groupsExecs.end() and g->getMessageBuffer(); ++g ) g->reset();
+     fieldNoTrades.offset = -1;
      for( auto g = groupsTrades.begin(); g != groupsTrades.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldSymbol.offset = -1;
      fieldSymbolSfx.offset = -1;
      fieldSecurityID.offset = -1;
      fieldSecurityIDSource.offset = -1;
+     fieldNoSecurityAltID.offset = -1;
      for( auto g = groupsSecurityAltID.begin(); g != groupsSecurityAltID.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldProduct.offset = -1;
      fieldCFICode.offset = -1;
@@ -85276,6 +85616,7 @@ void MessageCollateralInquiry::reset(){
      fieldContractSettlMonth.offset = -1;
      fieldCPProgram.offset = -1;
      fieldCPRegType.offset = -1;
+     fieldNoEvents.offset = -1;
      for( auto g = groupsEvents.begin(); g != groupsEvents.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldDatedDate.offset = -1;
      fieldInterestAccrualDate.offset = -1;
@@ -85292,11 +85633,14 @@ void MessageCollateralInquiry::reset(){
      fieldQuantity.offset = -1;
      fieldQtyType.offset = -1;
      fieldCurrency.offset = -1;
+     fieldNoLegs.offset = -1;
      for( auto g = groupsLegs.begin(); g != groupsLegs.end() and g->getMessageBuffer(); ++g ) g->reset();
+     fieldNoUnderlyings.offset = -1;
      for( auto g = groupsUnderlyings.begin(); g != groupsUnderlyings.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldMarginExcess.offset = -1;
      fieldTotalNetValue.offset = -1;
      fieldCashOutstanding.offset = -1;
+     fieldNoTrdRegTimestamps.offset = -1;
      for( auto g = groupsTrdRegTimestamps.begin(); g != groupsTrdRegTimestamps.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldSide.offset = -1;
      fieldPrice.offset = -1;
@@ -85313,11 +85657,13 @@ void MessageCollateralInquiry::reset(){
      fieldBenchmarkPriceType.offset = -1;
      fieldBenchmarkSecurityID.offset = -1;
      fieldBenchmarkSecurityIDSource.offset = -1;
+     fieldNoStipulations.offset = -1;
      for( auto g = groupsStipulations.begin(); g != groupsStipulations.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldSettlDeliveryType.offset = -1;
      fieldStandInstDbType.offset = -1;
      fieldStandInstDbName.offset = -1;
      fieldStandInstDbID.offset = -1;
+     fieldNoDlvyInst.offset = -1;
      for( auto g = groupsDlvyInst.begin(); g != groupsDlvyInst.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldTradingSessionID.offset = -1;
      fieldTradingSessionSubID.offset = -1;
@@ -85335,6 +85681,7 @@ void MessageNetworkCounterpartySystemStatusRequest::reset(){
      _fixLength = 0;
      fieldNetworkRequestType.offset = -1;
      fieldNetworkRequestID.offset = -1;
+     fieldNoCompIDs.offset = -1;
      for( auto g = groupsCompIDs.begin(); g != groupsCompIDs.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldCheckSum.offset = -1;
 }
@@ -85346,6 +85693,7 @@ void MessageNetworkCounterpartySystemStatusResponse::reset(){
      fieldNetworkRequestID.offset = -1;
      fieldNetworkResponseID.offset = -1;
      fieldLastNetworkResponseID.offset = -1;
+     fieldNoCompIDs.offset = -1;
      for( auto g = groupsCompIDs.begin(); g != groupsCompIDs.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldCheckSum.offset = -1;
 }
@@ -85379,8 +85727,10 @@ void MessageCollateralInquiryAck::reset(){
      fieldCollInquiryID.offset = -1;
      fieldCollInquiryStatus.offset = -1;
      fieldCollInquiryResult.offset = -1;
+     fieldNoCollInquiryQualifier.offset = -1;
      for( auto g = groupsCollInquiryQualifier.begin(); g != groupsCollInquiryQualifier.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldTotNumReports.offset = -1;
+     fieldNoPartyIDs.offset = -1;
      for( auto g = groupsPartyIDs.begin(); g != groupsPartyIDs.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldAccount.offset = -1;
      fieldAccountType.offset = -1;
@@ -85388,12 +85738,15 @@ void MessageCollateralInquiryAck::reset(){
      fieldOrderID.offset = -1;
      fieldSecondaryOrderID.offset = -1;
      fieldSecondaryClOrdID.offset = -1;
+     fieldNoExecs.offset = -1;
      for( auto g = groupsExecs.begin(); g != groupsExecs.end() and g->getMessageBuffer(); ++g ) g->reset();
+     fieldNoTrades.offset = -1;
      for( auto g = groupsTrades.begin(); g != groupsTrades.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldSymbol.offset = -1;
      fieldSymbolSfx.offset = -1;
      fieldSecurityID.offset = -1;
      fieldSecurityIDSource.offset = -1;
+     fieldNoSecurityAltID.offset = -1;
      for( auto g = groupsSecurityAltID.begin(); g != groupsSecurityAltID.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldProduct.offset = -1;
      fieldCFICode.offset = -1;
@@ -85430,6 +85783,7 @@ void MessageCollateralInquiryAck::reset(){
      fieldContractSettlMonth.offset = -1;
      fieldCPProgram.offset = -1;
      fieldCPRegType.offset = -1;
+     fieldNoEvents.offset = -1;
      for( auto g = groupsEvents.begin(); g != groupsEvents.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldDatedDate.offset = -1;
      fieldInterestAccrualDate.offset = -1;
@@ -85446,7 +85800,9 @@ void MessageCollateralInquiryAck::reset(){
      fieldQuantity.offset = -1;
      fieldQtyType.offset = -1;
      fieldCurrency.offset = -1;
+     fieldNoLegs.offset = -1;
      for( auto g = groupsLegs.begin(); g != groupsLegs.end() and g->getMessageBuffer(); ++g ) g->reset();
+     fieldNoUnderlyings.offset = -1;
      for( auto g = groupsUnderlyings.begin(); g != groupsUnderlyings.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldTradingSessionID.offset = -1;
      fieldTradingSessionSubID.offset = -1;
@@ -85466,6 +85822,7 @@ void MessageConfirmationRequest::reset(){
      _fixLength = 0;
      fieldConfirmReqID.offset = -1;
      fieldConfirmType.offset = -1;
+     fieldNoOrders.offset = -1;
      for( auto g = groupsOrders.begin(); g != groupsOrders.end() and g->getMessageBuffer(); ++g ) g->reset();
      fieldAllocID.offset = -1;
      fieldSecondaryAllocID.offset = -1;
