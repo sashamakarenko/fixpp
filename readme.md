@@ -33,14 +33,16 @@ You have to know:
 
 Tags and enums are not converted. For instance the sequence like `"|49="` will be inserted as a single integer assignment with value `0x3d'39'34'01`. On reception, the string `"49"` will not be translated to decimal value 49 but rather reinterpreted as `0x39'34`.
 
-> Results obtained in a tight loop on i9-9900K @ 5GHz
+> Results obtained in a tight loop on an i7-1360P @ 5GHz
 
-| action | message type | length | time, ns | CPU cycles | HW instructions |
-|--------|--------------|--------|----------|------------|-----------------|
-| decode | ExecReport   |    170 |       75 |        375 |             911 |
-| decode | MarketDataSnapshotFullRefresh*  |    330 |       122 |        608 |             1647 |
-| encode | NewOrderSingle |    170 |       68 |        338 |             909 |
-| update | NewOrderSingle |    170 |       61 |        303 |             821 |
+|         action |                    message type | length | time, ns | CPU cycles | HW instructions |
+|----------------|---------------------------------|--------|----------|------------|-----------------|
+| trusted decode | ExecReport                      |    170 |       74 |        370 |             912 |
+| safe decode    | ExecReport                      |    170 |      104 |        518 |            1694 |
+| trusted decode | MarketDataSnapshotFullRefresh*  |    330 |      116 |        580 |            1797 |
+| safe decode    | MarketDataSnapshotFullRefresh*  |    330 |      122 |        610 |            2708 |
+| encode         | NewOrderSingle                  |    170 |       55 |        273 |             897 |
+| update         | NewOrderSingle                  |    170 |       25 |        112 |             376 |
 
 \* 6 repeating groups
 

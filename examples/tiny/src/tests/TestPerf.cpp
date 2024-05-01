@@ -141,6 +141,21 @@ int main( int args, const char ** argv )
     m.showAverageValues( std::cout );
     m.rewind();
 
+    std::cout << "\n - - - - - - - - - -  MarketDataSnapshotFullRefresh: Pure scanSafe   - - - - - - - - - -\n";
+    for( int j = 0; j < 10; ++j )
+    {
+        m.startCapture();
+        offset_t pos = header.scanSafely( buffer, len );
+        pos = mdsfr.scanSafely( buffer + pos, len - pos );
+        m.stopCapture();
+        header.reset();
+        mdsfr.reset();
+    }
+    m.prepareResults();
+    m.printCaptures();
+    m.showAverageValues( std::cout );
+    m.rewind();
+
     MessageSecurityDefinition secdef;
     buffer = EXAMPLE_SECURITY_DEFINITION;
     len = std::strlen( buffer );
