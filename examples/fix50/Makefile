@@ -3,8 +3,6 @@ PRJ_BRANCH  := 1.0
 PRJ_VERSION := $(PRJ_BRANCH).0
 PRJ_TYPE    := lib
 
-TARGET_EXTRA_DEPENDENCY = src/$(PRJ_NAME)/FixApi.h
-
 -include ../../../makefile/Makefile
 
 ../../../makefile/Makefile:

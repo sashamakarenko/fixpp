@@ -6,6 +6,7 @@
 offset_t Group##NAME::scan( Array & arr, const char * fix, unsigned len ){\
 <nl> Group##NAME * group = nullptr; \
 <nl> offset_t prev = 0, pos = 0, gpos = 0;\
+<nl> if( loadRawTag( fix, gpos ) != Field##FIRST_FIELD::RAW_TAG ) return 0;\
 <nl> const char * groupBuf = fix; \
 <nl> unsigned groupCount = 0; \
 <nl> while( pos < (int)len ) { \
@@ -60,18 +61,18 @@ offset_t Group##NAME::scan( Array & arr, const char * fix, unsigned len ){\
 <com> -------------------------------------- scanSafely ----------------------------------------
 
 #define FIX_MSG_GROUP_BEGIN( NAME, FIRST_FIELD )\
-offset_t Group##NAME::scanSafely( Array & arr, const char * fix, unsigned len, unsigned & groupCount ){\
+offset_t Group##NAME::scanSafely( Array & arr, const char * fix, unsigned len, unsigned & groupCount, const char * & badFieldPtr ){\
 <nl> Group##NAME * group = nullptr; \
 <nl> offset_t prev = 0, pos = 0, gpos = 0;\
-<nl> const char * groupBuf = fix; \
 <nl> groupCount = 0; \
-<nl>bool keepScanning = true;\
-<nl>while( pos < (int)len and keepScanning ) {\
+<nl> if( loadRawTag( fix, gpos ) != Field##FIRST_FIELD::RAW_TAG ) return 0;\
+<nl> const char * groupBuf = fix; \
+<nl>while( pos < (int)len ) {\
 <n1>  bool isGroupStart = false;\
 <n1>  prev = pos;\
-<n1>  if( not isGoodTag( fix+pos ) ) break;\
+<n1>  if( not isGoodTag( fix+pos ) ) {badFieldPtr = fix + pos; break; }\
 <n1>  raw_tag_t tag = loadRawTag( fix+pos, pos );\
-<n1>  if( fix[pos] == 1 ) break;\
+<n1>  if( fix[pos] == 1 ) { if( group ) group->_fixLength = prev; badFieldPtr = fix + prev; return pos; }\
 <n1>  gpos = pos - (groupBuf - fix);\
 <n1>  switch( tag ){\
 <n1>  case Field##FIRST_FIELD::RAW_TAG :\
@@ -87,24 +88,36 @@ offset_t Group##NAME::scanSafely( Array & arr, const char * fix, unsigned len, u
 #define FIX_MSG_FIELD(NAME) \
 <n1>  case Field##NAME::RAW_TAG :\
 <n2>    FIXPP_PRINT_FIELD(NAME)\
-<n2>    if( group->field##NAME.offset < 0 ) group->field##NAME.offset = pos;\
-<n2>    else keepScanning = false;\
+<n2>    if( group->field##NAME.offset < 0 ) group->field##NAME.offset = gpos;\
+<n2>    else { group->_fixLength = prev; badFieldPtr = fix + prev; return pos; }\
+<n2>    break;\
+
+#define FIX_MSG_ENUM_FIELD(NAME) \
+<n1>  case Field##NAME::RAW_TAG :\
+<n2>    FIXPP_PRINT_FIELD(NAME) \
+<n2>    if( group->field##NAME.offset < 0 ) {\
+<n3>      group->field##NAME.offset = gpos;\
+<n3>      if( NAME##Enums::findEnum( toRawEnum( group->_fixPtr + gpos ) ) == nullptr )\
+<n3>       { group->_fixLength = prev;  badFieldPtr = fix + prev; return pos; }\
+<n2>    }\
+<n2>    else { group->_fixLength = prev; return pos; }\
 <n2>    break;\
 
 #define FIX_MSG_GROUP(NAME) \
 <n1>  case FieldNo##NAME::RAW_TAG :\
 <n2>    FIXPP_PRINT_FIELD(No##NAME) \
 <n2>    if( group->fieldNo##NAME.offset < 0 ){\
-<n3>    group->fieldNo##NAME.offset = pos;\
+<n3>    group->fieldNo##NAME.offset = gpos;\
 <n3>    isGroupStart = true;\
 <n3>    {\
 <n3>    int groupExpected = parseGroupNoValue( fix + pos );\
 <n3>    unsigned groupFound = 0;\
 <n3>    gotoNextField( fix, pos );\
-<n3>    pos += Group##NAME::scanSafely( group->groups##NAME, fix+pos, len - pos, groupFound );\
-<n3>    if( (int)groupFound != groupExpected ) keepScanning = false;\
+<n3>    pos += Group##NAME::scanSafely( group->groups##NAME, fix+pos, len - pos, groupFound, badFieldPtr );\
+<n3>    if( badFieldPtr != nullptr ) { group->_fixLength = badFieldPtr - fix; return pos; }\
+<n3>    if( (int)groupFound != groupExpected ) { group->_fixLength = prev; badFieldPtr = fix + prev; return pos; }\
 <n3>    }\
-<n2>    } else keepScanning = false;\
+<n2>    } else { group->_fixLength = prev;  badFieldPtr = fix + prev; return pos; }\
 <n2>    break;\
 
 #define FIX_MSG_GROUP_END \
@@ -118,7 +131,7 @@ offset_t Group##NAME::scanSafely( Array & arr, const char * fix, unsigned len, u
 <nl>  return pos;\
 <nl>}\
 
-#include <Groups.def>
+#include <GroupEnums.tmp>
 
 #undef FIX_MSG_GROUP_BEGIN
 #undef FIX_MSG_FIELD

@@ -58,20 +58,30 @@ offset_t Message##NAME::scan( const char * fix, unsigned len ){\
 offset_t Message##NAME::scanSafely( const char * fix, unsigned len ){\
 <nl>_fixPtr = fix;\
 <nl>offset_t prev = 0, pos = 0;\
-<nl>bool keepScanning = true;\
-<nl>while( pos < (int)len and keepScanning ) {\
+<nl>while( pos < (int)len ) {\
 <n1>  bool isGroupStart = false;\
 <n1>  prev = pos;\
 <n1>  if( not isGoodTag( fix+pos ) ) break;\
 <n1>  raw_tag_t tag = loadRawTag( fix+pos, pos );\
-<n1>  if( fix[pos] == 1 ) break;\
+<n1>  if( fix[pos] == 1 ) { _fixLength = prev; return pos; }\
 <n1>  switch( tag ){\
 
 #define FIX_MSG_FIELD(NAME) \
 <n1>  case Field##NAME::RAW_TAG :\
 <n2>    FIXPP_PRINT_FIELD(NAME) \
 <n2>    if( field##NAME.offset < 0 ) field##NAME.offset = pos;\
-<n2>    else keepScanning = false;\
+<n2>    else { _fixLength = prev; return pos; }\
+<n2>    break;\
+
+#define FIX_MSG_ENUM_FIELD(NAME) \
+<n1>  case Field##NAME::RAW_TAG :\
+<n2>    FIXPP_PRINT_FIELD(NAME) \
+<n2>    if( field##NAME.offset < 0 ) {\
+<n3>      field##NAME.offset = pos;\
+<n3>      if( NAME##Enums::findEnum( toRawEnum( _fixPtr + pos ) ) == nullptr )\
+<n3>       { _fixLength = prev; return pos; }\
+<n2>    }\
+<n2>    else { _fixLength = prev; return pos; }\
 <n2>    break;\
 
 #define FIX_MSG_GROUP(NAME) \
@@ -84,10 +94,12 @@ offset_t Message##NAME::scanSafely( const char * fix, unsigned len ){\
 <n3>    int groupExpected = parseGroupNoValue( fix + pos );\
 <n3>    unsigned groupFound = 0;\
 <n3>    gotoNextField( fix, pos );\
-<n3>    pos += Group##NAME::scanSafely( groups##NAME, fix+pos, len - pos, groupFound );\
-<n3>    if( (int)groupFound != groupExpected ) keepScanning = false;\
+<n3>    const char * badFieldPtr = nullptr;\
+<n3>    pos += Group##NAME::scanSafely( groups##NAME, fix+pos, len - pos, groupFound, badFieldPtr );\
+<n3>    if( badFieldPtr != nullptr ) { _fixLength = badFieldPtr - fix; return pos; }\
+<n3>    if( (int)groupFound != groupExpected ) { _fixLength = prev; badFieldPtr = fix + prev; return pos; }\
 <n3>    }\
-<n2>    } else keepScanning = false;\
+<n2>    } else { _fixLength = prev; return pos; }\
 <n2>    break;\
 
 #define FIX_MSG_END \
@@ -108,7 +120,7 @@ offset_t Message##NAME::scanSafely( const char * fix, unsigned len ){\
 <nl>  return pos;\
 <nl>}\
 
-#include <Messages.def>
+#include <MessageEnums.tmp>
 
 #undef FIX_MSG_FIELD
 #undef FIX_MSG_BEGIN

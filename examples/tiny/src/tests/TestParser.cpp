@@ -58,11 +58,18 @@ int main( int args, const char ** argv )
     CHECK_EQ( large exec report fix length, header.getMessageLength() + ler.getMessageLength(), strlen( fix ) )
     CHECK_EQ( large exec report body length, header.getBodyLength(), ler.ptrToTagCheckSum() - header.ptrToTagMsgType() )
     CHECK_EQ( large exec report check sum, ler.getCheckSum(), (int)computeChecksum( fix, ler.ptrToTagCheckSum() ) )
+    CHECK_EQ( large exec report no legs, ler.getNoLegs(), 2 )
+    CHECK_EQ( large exec report leg 2 symbol, ler.getGroupLegs(1).getLegSymbolView(), "SYM2" )
+    CHECK_EQ( large exec report leg 1 symbol, ler.getGroupLegs(0).getGroupNestedPartyIDs(1).getNestedPartyIDView(), "PARTY2" )
+
     parseSafely( FIX_BUFFER_LARGE_EXEC_REPORT, ler );
     CHECK_EQ( safely large exec report order status, ler.getOrdStatus(), OrdStatusEnums::PENDING_NEW )
     CHECK_EQ( safely large exec report fix length, header.getMessageLength() + ler.getMessageLength(), strlen( fix ) )
     CHECK_EQ( safely large exec report body length, header.getBodyLength(), ler.ptrToTagCheckSum() - header.ptrToTagMsgType() )
     CHECK_EQ( safely large exec report check sum, ler.getCheckSum(), (int)computeChecksum( fix, ler.ptrToTagCheckSum() ) )
+    CHECK_EQ( safely large exec report no legs, ler.getNoLegs(), 2 )
+    CHECK_EQ( safely large exec report leg 2 symbol, ler.getGroupLegs(1).getLegSymbolView(), "SYM2" )
+    CHECK_EQ( safely large exec report leg 1 symbol, ler.getGroupLegs(0).getGroupNestedPartyIDs(1).getNestedPartyIDView(), "PARTY2" )
 
     std::cout << "- Price as double: " << ler.getPrice() << std::endl;
 
@@ -124,6 +131,14 @@ int main( int args, const char ** argv )
     CHECK_EQ( enum Side == BUY, er.getSide(), SideEnums::BUY )
     CHECK_EQ( enum BUY == Side, SideEnums::BUY, er.getSide() )
 
+    parse( FIX_BUFFER_ZERO_GROUP_MD_FULL_REFRESH, mdsfr );
+    CHECK_EQ( mdfr zero group md entries, mdsfr.getNoMDEntries(), 0 )
+    CHECK_EQ( mdfr zero group eom, mdsfr.getMessageLength() + header.getMessageLength(), strlen( fix ) )
+
+    parseSafely( FIX_BUFFER_ZERO_GROUP_MD_FULL_REFRESH, mdsfr );
+    CHECK_EQ( safely mdfr zero group md entries, mdsfr.getNoMDEntries(), 0 )
+    CHECK_EQ( safely mdfr zero group eom, mdsfr.getMessageLength() + header.getMessageLength(), strlen( fix ) )
+
     std::cout << "\n\n -- Raw iterating --" << std::endl;
     pos = 0;
     fix = FIX_BUFFER_LARGE_EXEC_REPORT;
@@ -153,7 +168,6 @@ int main( int args, const char ** argv )
 
     std::cout << fixstr( fix  , ttyRgbStyle ) << std::endl;
 
-    std::cout << "\n\n -- Logon --" << std::endl;
     Logon logon;
     parse( FIX_BUFFER_LOGON, logon );
     CHECK_EQ( logon msg type, header.getMsgType(), MsgTypeEnums::LOGON )
@@ -172,6 +186,16 @@ int main( int args, const char ** argv )
     CHECK_EQ( bad group exec report expected, noExpected, 1 )
     CHECK_EQ( bad group exec report received, noReceived, 2 )
 
+    parseSafely( FIX_BUFFER_BAD_GROUP_LARGE_EXEC_REPORT, er );
+    CHECK_EQ( safely bad group exec report tag, parseTag( er.getMessageEnd() ), field::NoNestedPartyIDs::TAG )
+    
+    parseSafely( FIX_BUFFER_BAD_DEEP_EMPTY_FIELD_EXAMPLE_LARGE_EXEC_REPORT, er );
+    CHECK_EQ( safely bad deep empty field in exec report tag, er.getMessageEnd(), strstr( fix, "689=\1" ) )
+
+    parse( FIX_BUFFER_BAD_FIRST_IN_GROUP_EXAMPLE_LARGE_EXEC_REPORT, er );
+    parseSafely( FIX_BUFFER_BAD_FIRST_IN_GROUP_EXAMPLE_LARGE_EXEC_REPORT, er );
+    CHECK_EQ( safely bad first in group exec report, parseTag( er.getMessageEnd() ), field::NoLegs::TAG )
+
     parse( FIX_BUFFER_BAD_GROUP_MD_FULL_REFRESH, mdsfr );
     badGroupPtr = mdsfr.findBadGroup( noExpected, noReceived );
     CHECK( bad group md full refresh, badGroupPtr != nullptr, == true )
@@ -179,6 +203,7 @@ int main( int args, const char ** argv )
     CHECK_EQ( bad group md full refresh expected, noExpected, 10 )
     CHECK_EQ( bad group md full refresh received, noReceived, 6 )
     parseSafely( FIX_BUFFER_BAD_GROUP_MD_FULL_REFRESH, mdsfr );
+    CHECK_EQ( safely bad group md full refresh tag, parseTag( mdsfr.getMessageEnd() ), field::NoMDEntries::TAG )
 
     parse( FIX_BUFFER_BAD_SIDE_EXAMPLE_EXEC_REPORT, er );
     badFieldPtr = er.findBadEnum();
@@ -188,7 +213,10 @@ int main( int args, const char ** argv )
     fix = FIX_BUFFER_BAD_SENDER_COMP_ID_XX_EXAMPLE_LOGON;
     header.reset();
     pos = header.scan( fix, strlen( fix ) );
-    CHECK( bad tag XX in sender comp id, header.getMessageLength(), < 40 )
+    CHECK_EQ( bad tag XX in sender comp id, header.getMessageEnd(), strstr( fix, "XX=" )  )
+    header.reset();
+    pos = header.scanSafely( fix, strlen( fix ) );
+    CHECK_EQ( safely bad tag XX in sender comp id, header.getMessageEnd(), strstr( fix, "XX=" ) )
 
     fix = FIX_BUFFER_BAD_SENDER_COMP_ID_EMPTY_EXAMPLE_LOGON;
     header.reset();
@@ -196,15 +224,26 @@ int main( int args, const char ** argv )
     badFieldPtr = header.findBadField();
     CHECK( empty sender comp id, badFieldPtr != nullptr, == true )
     CHECK_EQ( empty sender comp id tag, parseTag( badFieldPtr ), field::SenderCompID::TAG )
+    header.reset();
+    pos = header.scanSafely( fix, strlen( fix ) );
+    CHECK_EQ( safely empty sender comp id tag, parseTag( header.getMessageEnd() ), field::SenderCompID::TAG )
 
     parse( FIX_BUFFER_BAD_BODY_LENGTH_EXAMPLE_LOGON, logon );
-    CHECK( logon message length, strlen( FIX_BUFFER_BAD_BODY_LENGTH_EXAMPLE_LOGON ), == header.getMessageLength() + logon.getMessageLength() )
+    CHECK( logon message length, strlen( fix ), == header.getMessageLength() + logon.getMessageLength() )
     CHECK( bad body length in logon, header.getMessageLength() + logon.getMessageLength(), < header.getBodyLength() )
+
+    fix = FIX_BUFFER_BAD_SEQNO_TWICE_EXAMPLE_LOGON;
+    header.reset();
+    pos = header.scanSafely( fix, strlen( fix ) );
+    CHECK_EQ( safely logon seqno twice, parseTag( header.getMessageEnd() ), field::MsgSeqNum::TAG )
 
     fix = "8=FIX.4.4" I I "9=1000" I "35=A" I;
     header.reset();
     pos = header.scan( fix, 100 );
     CHECK_EQ( mal formatted | |, header.getMessageLength(), 10 )
+    header.reset();
+    pos = header.scanSafely( fix, 100 );
+    CHECK_EQ( safely mal formatted | |, header.getMessageLength(), 10 )
 
     fix = "8=FIX.4.4" "9=1000" I "35=A" I;
     header.reset();

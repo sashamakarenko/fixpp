@@ -659,6 +659,7 @@ inline int parseGroupNoValue( const char * ptr )
     while( std::isdigit( *ptr ) )
     {
         ret = ret * 10 + int(*ptr-'0');
+        ++ptr;
     }
     if( *ptr != 1 )
     {

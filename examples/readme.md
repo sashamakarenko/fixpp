@@ -1,7 +1,7 @@
-- `fix44` all committed complete lib with all FIX4.4 messages
-- `fix50` project with FIX5.0SP2 messages
-- `fixdump` tool to decode FIX messages
-- `odd` lib with unit tests with irregular messages
-- `tiny` venue specific example with unit tests
-- `order` all committed primitive project only with NewOrderSingle and ExecutionReport
-- `spec` input files for different FIX standards
+- [tiny](tiny) venue specific example with plenty of unit tests
+- [order](order) all committed primitive project only with NewOrderSingle and ExecutionReport
+- [fix44](fix44) all committed complete lib with all FIX4.4 messages
+- [fix50](fix50) project with FIX5.0SP2 messages
+- [fixdump](fixdump) command line tool to decode FIX42 and FIX44 messages
+- [odd](odd) lib with unit tests for irregular messages
+- [spec](spec) input `.def` files for different FIX standards

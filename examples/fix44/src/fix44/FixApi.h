@@ -221,6 +221,11 @@ class MessageBase
             return _fixLength;
         }
 
+        const char * getMessageEnd() const
+        {
+            return _fixPtr + _fixLength;
+        }
+
     protected:
 
         MessageBase()  = default;

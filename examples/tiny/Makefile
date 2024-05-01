@@ -3,7 +3,10 @@ PRJ_BRANCH  := 1.0
 PRJ_VERSION := $(PRJ_BRANCH).0
 PRJ_TYPE    := lib
 
-PE_PRJ_DIR := ../../../pe
+DEV_ROOT   := ../../..
+FIXPP_DIR  := ../..
+
+PE_PRJ_DIR := $(DEV_ROOT)/pe
 ifneq ($(wildcard $(PE_PRJ_DIR)),)
     TestPerf_EXTRA_CPP_FLAGS           := -I$(PE_PRJ_DIR)/src
     TestPerf_EXTRA_LD_PATH             := $(PE_PRJ_DIR)/build/lib/release
@@ -30,11 +33,11 @@ endif
 TEST_DEFINES = -DEXIT_ON_ERROR
 CPP_EXTRA_FLAGS = -Wall -Wextra -Wno-unused-parameter -Werror -fmax-errors=1 #-Wpedantic
 
--include ../../../makefile/Makefile
+-include $(DEV_ROOT)/makefile/Makefile
 
-../../../makefile/Makefile:
+$(DEV_ROOT)/makefile/Makefile:
 	@echo "cloning makefile..."
-	@cd ../../..; git clone https://github.com/sashamakarenko/makefile.git makefile
+	@cd $(DEV_ROOT); git clone https://github.com/sashamakarenko/makefile.git makefile
 
 ifneq ($(MAKECMDGOALS),clean)
 -include build/fixgenerated.mk
@@ -45,8 +48,8 @@ build/fixgenerated.mk: src/$(PRJ_NAME)/FixApi.h
 
 OUTBOUND_MESAGES=LOGON NEW_ORDER_SINGLE
 
-src/$(PRJ_NAME)/FixApi.h: $(wildcard src/spec/*.def) $(wildcard ../../src/*.h) $(wildcard ../../src/*.cpp) $(wildcard ../../src/*.pp) ../../src/printers.py ../../generate.sh
-	$(V)../../generate.sh --clean-fields -d $$PWD/src/$(PRJ_NAME) -s $$PWD/src/spec -i $(PRJ_NAME) -n $(PRJ_NAME) -p $$PWD/src/gdb
+src/$(PRJ_NAME)/FixApi.h: $(wildcard src/spec/*.def) $(wildcard $(FIXPP_DIR)/src/*.*) $(FIXPP_DIR)/generate.sh
+	$(V)$(FIXPP_DIR)/generate.sh --clean-fields -d $$PWD/src/$(PRJ_NAME) -s $$PWD/src/spec -i $(PRJ_NAME) -n $(PRJ_NAME) -p $$PWD/src/gdb
 	$(V)for mt in _ $(OUTBOUND_MESAGES); do sed "/case-begin-$$mt/,/case-end-$$mt/d" -i src/$(PRJ_NAME)/Messages.cpp; done
 
 endif

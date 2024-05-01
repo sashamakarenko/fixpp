@@ -26,7 +26,8 @@ Sending ([read more](#sending-api)):
 You have to know:
 
 * `fixpp` is not a FIX engine (yet)
-* it runs in an optimistic mode and relies on the venue FIX conformance (this saves quite a few CPU cycles...)
+* it performs better in an optimistic mode and relies on the venue FIX conformance (this saves quite a few CPU cycles...)
+* a bit slower but safer parsing is available as well (it detects bad fields, groups and enums during message scan)
 
 ## Performance
 

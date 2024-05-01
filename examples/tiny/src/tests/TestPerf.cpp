@@ -76,12 +76,12 @@ int main( int args, const char ** argv )
     m.showAverageValues( std::cout );
     m.rewind();
 
-    std::cout << "\n - - - - - - - - - -  ExecutionReport: Reset and scanSafely   - - - - - - - - - -\n";
+    std::cout << "\n - - - - - - - - - -  ExecutionReport: Pure scanSafely   - - - - - - - - - -\n";
     for( int j = 0; j < 10; ++j )
     {
-        m.startCapture();
         header.reset();
         er.reset();
+        m.startCapture();
         offset_t pos = header.scanSafely( buffer, len );
         pos = er.scanSafely( buffer + pos, len - pos );
         m.stopCapture();
@@ -94,12 +94,12 @@ int main( int args, const char ** argv )
     std::cout << "\n - - - - - - - - - -  ExecutionReport: Pure scan   - - - - - - - - - -\n";
     for( int j = 0; j < 10; ++j )
     {
+        header.reset();
+        er.reset();
         m.startCapture();
         offset_t pos = header.scan( buffer, len );
         pos = er.scan( buffer + pos, len - pos );
         m.stopCapture();
-        header.reset();
-        er.reset();
     }
     m.prepareResults();
     m.printCaptures();

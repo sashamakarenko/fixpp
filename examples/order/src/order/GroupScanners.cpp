@@ -17,6 +17,7 @@ namespace order
 offset_t GroupLegStipulations::scan( Array & arr, const char * fix, unsigned len ){
  GroupLegStipulations * group = nullptr; 
  offset_t prev = 0, pos = 0, gpos = 0;
+ if( loadRawTag( fix, gpos ) != FieldLegStipulationType::RAW_TAG ) return 0;
  const char * groupBuf = fix; 
  unsigned groupCount = 0; 
  while( pos < (int)len ) { 
@@ -53,6 +54,7 @@ offset_t GroupLegStipulations::scan( Array & arr, const char * fix, unsigned len
 offset_t GroupNestedPartySubIDs::scan( Array & arr, const char * fix, unsigned len ){
  GroupNestedPartySubIDs * group = nullptr; 
  offset_t prev = 0, pos = 0, gpos = 0;
+ if( loadRawTag( fix, gpos ) != FieldNestedPartySubID::RAW_TAG ) return 0;
  const char * groupBuf = fix; 
  unsigned groupCount = 0; 
  while( pos < (int)len ) { 
@@ -89,6 +91,7 @@ offset_t GroupNestedPartySubIDs::scan( Array & arr, const char * fix, unsigned l
 offset_t GroupNestedPartyIDs::scan( Array & arr, const char * fix, unsigned len ){
  GroupNestedPartyIDs * group = nullptr; 
  offset_t prev = 0, pos = 0, gpos = 0;
+ if( loadRawTag( fix, gpos ) != FieldNestedPartyID::RAW_TAG ) return 0;
  const char * groupBuf = fix; 
  unsigned groupCount = 0; 
  while( pos < (int)len ) { 
@@ -138,6 +141,7 @@ offset_t GroupNestedPartyIDs::scan( Array & arr, const char * fix, unsigned len 
 offset_t GroupLegs::scan( Array & arr, const char * fix, unsigned len ){
  GroupLegs * group = nullptr; 
  offset_t prev = 0, pos = 0, gpos = 0;
+ if( loadRawTag( fix, gpos ) != FieldLegSymbol::RAW_TAG ) return 0;
  const char * groupBuf = fix; 
  unsigned groupCount = 0; 
  while( pos < (int)len ) { 
@@ -214,18 +218,18 @@ offset_t GroupLegs::scan( Array & arr, const char * fix, unsigned len ){
 
 
 // -------------------------------------- scanSafely ----------------------------------------
-offset_t GroupLegStipulations::scanSafely( Array & arr, const char * fix, unsigned len, unsigned & groupCount ){
+offset_t GroupLegStipulations::scanSafely( Array & arr, const char * fix, unsigned len, unsigned & groupCount, const char * & badFieldPtr ){
  GroupLegStipulations * group = nullptr; 
  offset_t prev = 0, pos = 0, gpos = 0;
- const char * groupBuf = fix; 
  groupCount = 0; 
-bool keepScanning = true;
-while( pos < (int)len and keepScanning ) {
+ if( loadRawTag( fix, gpos ) != FieldLegStipulationType::RAW_TAG ) return 0;
+ const char * groupBuf = fix; 
+while( pos < (int)len ) {
    bool isGroupStart = false;
    prev = pos;
-   if( not isGoodTag( fix+pos ) ) break;
+   if( not isGoodTag( fix+pos ) ) {badFieldPtr = fix + pos; break; }
    raw_tag_t tag = loadRawTag( fix+pos, pos );
-   if( fix[pos] == 1 ) break;
+   if( fix[pos] == 1 ) { if( group ) group->_fixLength = prev; badFieldPtr = fix + prev; return pos; }
    gpos = pos - (groupBuf - fix);
    switch( tag ){
    case FieldLegStipulationType::RAW_TAG :
@@ -240,8 +244,8 @@ while( pos < (int)len and keepScanning ) {
 
    case FieldLegStipulationValue::RAW_TAG :
      FIXPP_PRINT_FIELD(LegStipulationValue)
-     if( group->fieldLegStipulationValue.offset < 0 ) group->fieldLegStipulationValue.offset = pos;
-     else keepScanning = false;
+     if( group->fieldLegStipulationValue.offset < 0 ) group->fieldLegStipulationValue.offset = gpos;
+     else { group->_fixLength = prev; badFieldPtr = fix + prev; return pos; }
      break;
 
    default: FIXPP_PRINT_UNKNOWN_FIELD
@@ -254,18 +258,18 @@ while( pos < (int)len and keepScanning ) {
  return pos;
 }
 
-offset_t GroupNestedPartySubIDs::scanSafely( Array & arr, const char * fix, unsigned len, unsigned & groupCount ){
+offset_t GroupNestedPartySubIDs::scanSafely( Array & arr, const char * fix, unsigned len, unsigned & groupCount, const char * & badFieldPtr ){
  GroupNestedPartySubIDs * group = nullptr; 
  offset_t prev = 0, pos = 0, gpos = 0;
- const char * groupBuf = fix; 
  groupCount = 0; 
-bool keepScanning = true;
-while( pos < (int)len and keepScanning ) {
+ if( loadRawTag( fix, gpos ) != FieldNestedPartySubID::RAW_TAG ) return 0;
+ const char * groupBuf = fix; 
+while( pos < (int)len ) {
    bool isGroupStart = false;
    prev = pos;
-   if( not isGoodTag( fix+pos ) ) break;
+   if( not isGoodTag( fix+pos ) ) {badFieldPtr = fix + pos; break; }
    raw_tag_t tag = loadRawTag( fix+pos, pos );
-   if( fix[pos] == 1 ) break;
+   if( fix[pos] == 1 ) { if( group ) group->_fixLength = prev; badFieldPtr = fix + prev; return pos; }
    gpos = pos - (groupBuf - fix);
    switch( tag ){
    case FieldNestedPartySubID::RAW_TAG :
@@ -280,8 +284,8 @@ while( pos < (int)len and keepScanning ) {
 
    case FieldNestedPartySubIDType::RAW_TAG :
      FIXPP_PRINT_FIELD(NestedPartySubIDType)
-     if( group->fieldNestedPartySubIDType.offset < 0 ) group->fieldNestedPartySubIDType.offset = pos;
-     else keepScanning = false;
+     if( group->fieldNestedPartySubIDType.offset < 0 ) group->fieldNestedPartySubIDType.offset = gpos;
+     else { group->_fixLength = prev; badFieldPtr = fix + prev; return pos; }
      break;
 
    default: FIXPP_PRINT_UNKNOWN_FIELD
@@ -294,18 +298,18 @@ while( pos < (int)len and keepScanning ) {
  return pos;
 }
 
-offset_t GroupNestedPartyIDs::scanSafely( Array & arr, const char * fix, unsigned len, unsigned & groupCount ){
+offset_t GroupNestedPartyIDs::scanSafely( Array & arr, const char * fix, unsigned len, unsigned & groupCount, const char * & badFieldPtr ){
  GroupNestedPartyIDs * group = nullptr; 
  offset_t prev = 0, pos = 0, gpos = 0;
- const char * groupBuf = fix; 
  groupCount = 0; 
-bool keepScanning = true;
-while( pos < (int)len and keepScanning ) {
+ if( loadRawTag( fix, gpos ) != FieldNestedPartyID::RAW_TAG ) return 0;
+ const char * groupBuf = fix; 
+while( pos < (int)len ) {
    bool isGroupStart = false;
    prev = pos;
-   if( not isGoodTag( fix+pos ) ) break;
+   if( not isGoodTag( fix+pos ) ) {badFieldPtr = fix + pos; break; }
    raw_tag_t tag = loadRawTag( fix+pos, pos );
-   if( fix[pos] == 1 ) break;
+   if( fix[pos] == 1 ) { if( group ) group->_fixLength = prev; badFieldPtr = fix + prev; return pos; }
    gpos = pos - (groupBuf - fix);
    switch( tag ){
    case FieldNestedPartyID::RAW_TAG :
@@ -320,29 +324,30 @@ while( pos < (int)len and keepScanning ) {
 
    case FieldNestedPartyIDSource::RAW_TAG :
      FIXPP_PRINT_FIELD(NestedPartyIDSource)
-     if( group->fieldNestedPartyIDSource.offset < 0 ) group->fieldNestedPartyIDSource.offset = pos;
-     else keepScanning = false;
+     if( group->fieldNestedPartyIDSource.offset < 0 ) group->fieldNestedPartyIDSource.offset = gpos;
+     else { group->_fixLength = prev; badFieldPtr = fix + prev; return pos; }
      break;
 
    case FieldNestedPartyRole::RAW_TAG :
      FIXPP_PRINT_FIELD(NestedPartyRole)
-     if( group->fieldNestedPartyRole.offset < 0 ) group->fieldNestedPartyRole.offset = pos;
-     else keepScanning = false;
+     if( group->fieldNestedPartyRole.offset < 0 ) group->fieldNestedPartyRole.offset = gpos;
+     else { group->_fixLength = prev; badFieldPtr = fix + prev; return pos; }
      break;
 
    case FieldNoNestedPartySubIDs::RAW_TAG :
      FIXPP_PRINT_FIELD(NoNestedPartySubIDs) 
      if( group->fieldNoNestedPartySubIDs.offset < 0 ){
-       group->fieldNoNestedPartySubIDs.offset = pos;
+       group->fieldNoNestedPartySubIDs.offset = gpos;
        isGroupStart = true;
        {
        int groupExpected = parseGroupNoValue( fix + pos );
        unsigned groupFound = 0;
        gotoNextField( fix, pos );
-       pos += GroupNestedPartySubIDs::scanSafely( group->groupsNestedPartySubIDs, fix+pos, len - pos, groupFound );
-       if( (int)groupFound != groupExpected ) keepScanning = false;
+       pos += GroupNestedPartySubIDs::scanSafely( group->groupsNestedPartySubIDs, fix+pos, len - pos, groupFound, badFieldPtr );
+       if( badFieldPtr != nullptr ) { group->_fixLength = badFieldPtr - fix; return pos; }
+       if( (int)groupFound != groupExpected ) { group->_fixLength = prev; badFieldPtr = fix + prev; return pos; }
        }
-     } else keepScanning = false;
+     } else { group->_fixLength = prev; badFieldPtr = fix + prev; return pos; }
      break;
 
    default: FIXPP_PRINT_UNKNOWN_FIELD
@@ -355,18 +360,18 @@ while( pos < (int)len and keepScanning ) {
  return pos;
 }
 
-offset_t GroupLegs::scanSafely( Array & arr, const char * fix, unsigned len, unsigned & groupCount ){
+offset_t GroupLegs::scanSafely( Array & arr, const char * fix, unsigned len, unsigned & groupCount, const char * & badFieldPtr ){
  GroupLegs * group = nullptr; 
  offset_t prev = 0, pos = 0, gpos = 0;
- const char * groupBuf = fix; 
  groupCount = 0; 
-bool keepScanning = true;
-while( pos < (int)len and keepScanning ) {
+ if( loadRawTag( fix, gpos ) != FieldLegSymbol::RAW_TAG ) return 0;
+ const char * groupBuf = fix; 
+while( pos < (int)len ) {
    bool isGroupStart = false;
    prev = pos;
-   if( not isGoodTag( fix+pos ) ) break;
+   if( not isGoodTag( fix+pos ) ) {badFieldPtr = fix + pos; break; }
    raw_tag_t tag = loadRawTag( fix+pos, pos );
-   if( fix[pos] == 1 ) break;
+   if( fix[pos] == 1 ) { if( group ) group->_fixLength = prev; badFieldPtr = fix + prev; return pos; }
    gpos = pos - (groupBuf - fix);
    switch( tag ){
    case FieldLegSymbol::RAW_TAG :
@@ -381,68 +386,70 @@ while( pos < (int)len and keepScanning ) {
 
    case FieldLegSide::RAW_TAG :
      FIXPP_PRINT_FIELD(LegSide)
-     if( group->fieldLegSide.offset < 0 ) group->fieldLegSide.offset = pos;
-     else keepScanning = false;
+     if( group->fieldLegSide.offset < 0 ) group->fieldLegSide.offset = gpos;
+     else { group->_fixLength = prev; badFieldPtr = fix + prev; return pos; }
      break;
 
    case FieldLegQty::RAW_TAG :
      FIXPP_PRINT_FIELD(LegQty)
-     if( group->fieldLegQty.offset < 0 ) group->fieldLegQty.offset = pos;
-     else keepScanning = false;
+     if( group->fieldLegQty.offset < 0 ) group->fieldLegQty.offset = gpos;
+     else { group->_fixLength = prev; badFieldPtr = fix + prev; return pos; }
      break;
 
    case FieldNoLegStipulations::RAW_TAG :
      FIXPP_PRINT_FIELD(NoLegStipulations) 
      if( group->fieldNoLegStipulations.offset < 0 ){
-       group->fieldNoLegStipulations.offset = pos;
+       group->fieldNoLegStipulations.offset = gpos;
        isGroupStart = true;
        {
        int groupExpected = parseGroupNoValue( fix + pos );
        unsigned groupFound = 0;
        gotoNextField( fix, pos );
-       pos += GroupLegStipulations::scanSafely( group->groupsLegStipulations, fix+pos, len - pos, groupFound );
-       if( (int)groupFound != groupExpected ) keepScanning = false;
+       pos += GroupLegStipulations::scanSafely( group->groupsLegStipulations, fix+pos, len - pos, groupFound, badFieldPtr );
+       if( badFieldPtr != nullptr ) { group->_fixLength = badFieldPtr - fix; return pos; }
+       if( (int)groupFound != groupExpected ) { group->_fixLength = prev; badFieldPtr = fix + prev; return pos; }
        }
-     } else keepScanning = false;
+     } else { group->_fixLength = prev; badFieldPtr = fix + prev; return pos; }
      break;
 
    case FieldLegPositionEffect::RAW_TAG :
      FIXPP_PRINT_FIELD(LegPositionEffect)
-     if( group->fieldLegPositionEffect.offset < 0 ) group->fieldLegPositionEffect.offset = pos;
-     else keepScanning = false;
+     if( group->fieldLegPositionEffect.offset < 0 ) group->fieldLegPositionEffect.offset = gpos;
+     else { group->_fixLength = prev; badFieldPtr = fix + prev; return pos; }
      break;
 
    case FieldNoNestedPartyIDs::RAW_TAG :
      FIXPP_PRINT_FIELD(NoNestedPartyIDs) 
      if( group->fieldNoNestedPartyIDs.offset < 0 ){
-       group->fieldNoNestedPartyIDs.offset = pos;
+       group->fieldNoNestedPartyIDs.offset = gpos;
        isGroupStart = true;
        {
        int groupExpected = parseGroupNoValue( fix + pos );
        unsigned groupFound = 0;
        gotoNextField( fix, pos );
-       pos += GroupNestedPartyIDs::scanSafely( group->groupsNestedPartyIDs, fix+pos, len - pos, groupFound );
-       if( (int)groupFound != groupExpected ) keepScanning = false;
+       pos += GroupNestedPartyIDs::scanSafely( group->groupsNestedPartyIDs, fix+pos, len - pos, groupFound, badFieldPtr );
+       if( badFieldPtr != nullptr ) { group->_fixLength = badFieldPtr - fix; return pos; }
+       if( (int)groupFound != groupExpected ) { group->_fixLength = prev; badFieldPtr = fix + prev; return pos; }
        }
-     } else keepScanning = false;
+     } else { group->_fixLength = prev; badFieldPtr = fix + prev; return pos; }
      break;
 
    case FieldLegRefID::RAW_TAG :
      FIXPP_PRINT_FIELD(LegRefID)
-     if( group->fieldLegRefID.offset < 0 ) group->fieldLegRefID.offset = pos;
-     else keepScanning = false;
+     if( group->fieldLegRefID.offset < 0 ) group->fieldLegRefID.offset = gpos;
+     else { group->_fixLength = prev; badFieldPtr = fix + prev; return pos; }
      break;
 
    case FieldLegPrice::RAW_TAG :
      FIXPP_PRINT_FIELD(LegPrice)
-     if( group->fieldLegPrice.offset < 0 ) group->fieldLegPrice.offset = pos;
-     else keepScanning = false;
+     if( group->fieldLegPrice.offset < 0 ) group->fieldLegPrice.offset = gpos;
+     else { group->_fixLength = prev; badFieldPtr = fix + prev; return pos; }
      break;
 
    case FieldLegLastPx::RAW_TAG :
      FIXPP_PRINT_FIELD(LegLastPx)
-     if( group->fieldLegLastPx.offset < 0 ) group->fieldLegLastPx.offset = pos;
-     else keepScanning = false;
+     if( group->fieldLegLastPx.offset < 0 ) group->fieldLegLastPx.offset = gpos;
+     else { group->_fixLength = prev; badFieldPtr = fix + prev; return pos; }
      break;
 
    default: FIXPP_PRINT_UNKNOWN_FIELD
