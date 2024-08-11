@@ -225,6 +225,83 @@ const char * MessageExecutionReport::getFieldValue( unsigned tag ) const {
 }
 
 
+// ---------------------------------- isFieldSet ---------------------------------
+
+bool MessageHeader::isFieldSet( unsigned tag ) const {
+   if( _fixPtr == nullptr ) return false;
+   switch( tag ){
+     case FieldBeginString::TAG : return fieldBeginString.offset > 0;
+     case FieldBodyLength::TAG : return fieldBodyLength.offset > 0;
+     case FieldMsgType::TAG : return fieldMsgType.offset > 0;
+     case FieldSenderCompID::TAG : return fieldSenderCompID.offset > 0;
+     case FieldTargetCompID::TAG : return fieldTargetCompID.offset > 0;
+     case FieldMsgSeqNum::TAG : return fieldMsgSeqNum.offset > 0;
+     case FieldSendingTime::TAG : return fieldSendingTime.offset > 0;
+     case FieldCheckSum::TAG : return fieldCheckSum.offset > 0; 
+     default : return false; 
+   }
+   return false;
+}
+
+bool MessageNewOrderSingle::isFieldSet( unsigned tag ) const {
+   if( _fixPtr == nullptr ) return false;
+   switch( tag ){
+     case FieldClOrdID::TAG : return fieldClOrdID.offset > 0;
+     case FieldAccount::TAG : return fieldAccount.offset > 0;
+     case FieldSymbol::TAG : return fieldSymbol.offset > 0;
+     case FieldSecurityID::TAG : return fieldSecurityID.offset > 0;
+     case FieldSide::TAG : return fieldSide.offset > 0;
+     case FieldQtyType::TAG : return fieldQtyType.offset > 0;
+     case FieldOrderQty::TAG : return fieldOrderQty.offset > 0;
+     case FieldOrdType::TAG : return fieldOrdType.offset > 0;
+     case FieldPrice::TAG : return fieldPrice.offset > 0;
+     case FieldStopPx::TAG : return fieldStopPx.offset > 0;
+     case FieldTransactTime::TAG : return fieldTransactTime.offset > 0;
+     case FieldCheckSum::TAG : return fieldCheckSum.offset > 0; 
+     default : return false; 
+   }
+   return false;
+}
+
+bool MessageExecutionReport::isFieldSet( unsigned tag ) const {
+   if( _fixPtr == nullptr ) return false;
+   switch( tag ){
+     case FieldOrderID::TAG : return fieldOrderID.offset > 0;
+     case FieldClOrdID::TAG : return fieldClOrdID.offset > 0;
+     case FieldOrigClOrdID::TAG : return fieldOrigClOrdID.offset > 0;
+     case FieldExecID::TAG : return fieldExecID.offset > 0;
+     case FieldExecType::TAG : return fieldExecType.offset > 0;
+     case FieldOrdStatus::TAG : return fieldOrdStatus.offset > 0;
+     case FieldOrdRejReason::TAG : return fieldOrdRejReason.offset > 0;
+     case FieldAccount::TAG : return fieldAccount.offset > 0;
+     case FieldSymbol::TAG : return fieldSymbol.offset > 0;
+     case FieldSecurityID::TAG : return fieldSecurityID.offset > 0;
+     case FieldSecurityType::TAG : return fieldSecurityType.offset > 0;
+     case FieldText::TAG : return fieldText.offset > 0;
+     case FieldProduct::TAG : return fieldProduct.offset > 0;
+     case FieldSide::TAG : return fieldSide.offset > 0;
+     case FieldQtyType::TAG : return fieldQtyType.offset > 0;
+     case FieldOrderQty::TAG : return fieldOrderQty.offset > 0;
+     case FieldOrdType::TAG : return fieldOrdType.offset > 0;
+     case FieldPriceType::TAG : return fieldPriceType.offset > 0;
+     case FieldPrice::TAG : return fieldPrice.offset > 0;
+     case FieldStopPx::TAG : return fieldStopPx.offset > 0;
+     case FieldCurrency::TAG : return fieldCurrency.offset > 0;
+     case FieldTimeInForce::TAG : return fieldTimeInForce.offset > 0;
+     case FieldExecInst::TAG : return fieldExecInst.offset > 0;
+     case FieldLastQty::TAG : return fieldLastQty.offset > 0;
+     case FieldLastPx::TAG : return fieldLastPx.offset > 0;
+     case FieldLeavesQty::TAG : return fieldLeavesQty.offset > 0;
+     case FieldAvgPx::TAG : return fieldAvgPx.offset > 0;
+     case FieldCumQty::TAG : return fieldCumQty.offset > 0;
+     case FieldNoLegs::TAG : return fieldNoLegs.offset > 0;
+     case FieldCheckSum::TAG : return fieldCheckSum.offset > 0; 
+     default : return false; 
+   }
+   return false;
+}
+
+
 // ---------------------------------- getKnownFields ---------------------------------
 namespace {
 

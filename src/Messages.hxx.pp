@@ -15,6 +15,7 @@ class Message##NAME: public MessageBase\
 <n1>    offset_t skip( const char * fix, unsigned len ) const;\
 <n1>    void reset();\
 <n1>    const char * getFieldValue( tag_t tag ) const;\
+<n1>    bool isFieldSet( tag_t tag ) const;\
 <n1>    const char * findBadField() const;\
 <n1>    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;\
 <n1>    const char * findBadEnum() const;\

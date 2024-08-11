@@ -43,7 +43,8 @@ struct NAME##Enums final: FieldEnumsBase {\
 
 
 #define FIX_ENUM_DECL( NAME, E, V ) \
-<t1> static const ItemType E;
+<t1> static const ItemType E;\
+<n1> static constexpr ValueType ITEM_##E = V;
 
 #define FIX_ENUM_END \
 };

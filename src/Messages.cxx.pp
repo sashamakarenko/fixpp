@@ -108,6 +108,33 @@ const char * Message##NAME::getFieldValue( unsigned tag ) const {\
 #undef FIX_MSG_END
 #undef FIX_MSG_GROUP
 
+<com> ---------------------------------- isFieldSet ---------------------------------
+
+#define FIX_MSG_BEGIN(NAME,TYPE) \
+bool Message##NAME::isFieldSet( unsigned tag ) const {\
+<n1>  if( _fixPtr == nullptr ) return false;\
+<n1>  switch( tag ){\
+
+#define FIX_MSG_FIELD(NAME) \
+<t2>  case Field##NAME::TAG : return field##NAME.offset > 0; \
+
+#define FIX_MSG_GROUP(NAME) \
+<t2>  case FieldNo##NAME::TAG : return fieldNo##NAME.offset > 0; \
+
+#define FIX_MSG_END \
+<t2>  case FieldCheckSum::TAG : return fieldCheckSum.offset > 0; \
+<n2>  default :  return false; \
+<n1>  }\
+<n1>  return false;\
+<nl>}\
+
+#include <Messages.def>
+
+#undef FIX_MSG_FIELD
+#undef FIX_MSG_BEGIN
+#undef FIX_MSG_END
+#undef FIX_MSG_GROUP
+
 <com> ---------------------------------- getKnownFields ---------------------------------
 
 #define FIX_MSG_BEGIN(NAME,TYPE) \

@@ -34,6 +34,7 @@ class MessageHeader: public MessageBase
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
    const char * getFieldValue( tag_t tag ) const;
+   bool isFieldSet( tag_t tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
    const char * findBadEnum() const;
@@ -131,6 +132,7 @@ class MessageNewOrderSingle: public MessageBase
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
    const char * getFieldValue( tag_t tag ) const;
+   bool isFieldSet( tag_t tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
    const char * findBadEnum() const;
@@ -263,6 +265,7 @@ class MessageExecutionReport: public MessageBase
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
    const char * getFieldValue( tag_t tag ) const;
+   bool isFieldSet( tag_t tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
    const char * findBadEnum() const;

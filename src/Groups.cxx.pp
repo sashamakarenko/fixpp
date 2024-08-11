@@ -117,6 +117,34 @@ const char * Group##NAME::getFieldValue( unsigned tag ) const {\
 #undef FIX_MSG_GROUP_END
 #undef FIX_MSG_GROUP
 
+<com> ---------------------------------- isFieldSet ---------------------------------
+
+#define FIX_MSG_GROUP_BEGIN( NAME, FIRST_FIELD ) \
+bool Group##NAME::isFieldSet( unsigned tag ) const {\
+<n1>  if( _fixPtr == nullptr ) return false;\
+<n1>  switch( tag ){\
+<n2>  case Field##FIRST_FIELD::TAG : return field##FIRST_FIELD.offset > 0 ;
+
+#define FIX_MSG_FIELD(NAME) \
+<t2>  case Field##NAME::TAG : return field##NAME.offset > 0; \
+
+#define FIX_MSG_GROUP(NAME) \
+<t2>  case FieldNo##NAME::TAG : return fieldNo##NAME.offset > 0; \
+
+#define FIX_MSG_GROUP_END \
+<n2>  default :  return false; \
+<n1>  }\
+<n1>  return false;\
+<nl>}\
+
+
+#include <Groups.def>
+
+#undef FIX_MSG_FIELD
+#undef FIX_MSG_GROUP_BEGIN
+#undef FIX_MSG_GROUP_END
+#undef FIX_MSG_GROUP
+
 <com> ---------------------------------- getKnownFields ---------------------------------
 
 #define FIX_MSG_GROUP_BEGIN( NAME, FIRST_FIELD ) \

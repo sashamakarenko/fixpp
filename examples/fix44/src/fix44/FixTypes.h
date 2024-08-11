@@ -354,7 +354,7 @@ unsigned getValueLength( const char * ptr );
 // SOH terminated string
 struct sohstr
 {
-    sohstr( const char * buf = nullptr )
+    constexpr sohstr( const char * buf = nullptr )
     : ptr( buf )
     {
     }

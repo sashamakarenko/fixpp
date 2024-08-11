@@ -3732,6 +3732,1221 @@ const char * GroupMDEntries::getFieldValue( unsigned tag ) const {
 }
 
 
+// ---------------------------------- isFieldSet ---------------------------------
+
+bool GroupLegStipulations::isFieldSet( unsigned tag ) const {
+   if( _fixPtr == nullptr ) return false;
+   switch( tag ){
+     case FieldLegStipulationType::TAG : return fieldLegStipulationType.offset > 0 ;
+     case FieldLegStipulationValue::TAG : return fieldLegStipulationValue.offset > 0;
+
+     default : return false; 
+   }
+   return false;
+}
+
+bool GroupEvents::isFieldSet( unsigned tag ) const {
+   if( _fixPtr == nullptr ) return false;
+   switch( tag ){
+     case FieldEventType::TAG : return fieldEventType.offset > 0 ;
+     case FieldEventDate::TAG : return fieldEventDate.offset > 0;
+     case FieldEventPx::TAG : return fieldEventPx.offset > 0;
+     case FieldEventText::TAG : return fieldEventText.offset > 0;
+
+     default : return false; 
+   }
+   return false;
+}
+
+bool GroupLegSecurityAltID::isFieldSet( unsigned tag ) const {
+   if( _fixPtr == nullptr ) return false;
+   switch( tag ){
+     case FieldLegSecurityAltID::TAG : return fieldLegSecurityAltID.offset > 0 ;
+     case FieldLegSecurityAltIDSource::TAG : return fieldLegSecurityAltIDSource.offset > 0;
+
+     default : return false; 
+   }
+   return false;
+}
+
+bool GroupCapacities::isFieldSet( unsigned tag ) const {
+   if( _fixPtr == nullptr ) return false;
+   switch( tag ){
+     case FieldOrderCapacity::TAG : return fieldOrderCapacity.offset > 0 ;
+     case FieldOrderRestrictions::TAG : return fieldOrderRestrictions.offset > 0;
+     case FieldOrderCapacityQty::TAG : return fieldOrderCapacityQty.offset > 0;
+
+     default : return false; 
+   }
+   return false;
+}
+
+bool GroupNested3PartySubIDs::isFieldSet( unsigned tag ) const {
+   if( _fixPtr == nullptr ) return false;
+   switch( tag ){
+     case FieldNested3PartySubID::TAG : return fieldNested3PartySubID.offset > 0 ;
+     case FieldNested3PartySubIDType::TAG : return fieldNested3PartySubIDType.offset > 0;
+
+     default : return false; 
+   }
+   return false;
+}
+
+bool GroupPartySubIDs::isFieldSet( unsigned tag ) const {
+   if( _fixPtr == nullptr ) return false;
+   switch( tag ){
+     case FieldPartySubID::TAG : return fieldPartySubID.offset > 0 ;
+     case FieldPartySubIDType::TAG : return fieldPartySubIDType.offset > 0;
+
+     default : return false; 
+   }
+   return false;
+}
+
+bool GroupNested2PartySubIDs::isFieldSet( unsigned tag ) const {
+   if( _fixPtr == nullptr ) return false;
+   switch( tag ){
+     case FieldNested2PartySubID::TAG : return fieldNested2PartySubID.offset > 0 ;
+     case FieldNested2PartySubIDType::TAG : return fieldNested2PartySubIDType.offset > 0;
+
+     default : return false; 
+   }
+   return false;
+}
+
+bool GroupNested2PartyIDs::isFieldSet( unsigned tag ) const {
+   if( _fixPtr == nullptr ) return false;
+   switch( tag ){
+     case FieldNested2PartyID::TAG : return fieldNested2PartyID.offset > 0 ;
+     case FieldNested2PartyIDSource::TAG : return fieldNested2PartyIDSource.offset > 0;
+     case FieldNested2PartyRole::TAG : return fieldNested2PartyRole.offset > 0;
+     case FieldNoNested2PartySubIDs::TAG : return fieldNoNested2PartySubIDs.offset > 0;
+
+     default : return false; 
+   }
+   return false;
+}
+
+bool GroupHops::isFieldSet( unsigned tag ) const {
+   if( _fixPtr == nullptr ) return false;
+   switch( tag ){
+     case FieldHopCompID::TAG : return fieldHopCompID.offset > 0 ;
+     case FieldHopSendingTime::TAG : return fieldHopSendingTime.offset > 0;
+     case FieldHopRefID::TAG : return fieldHopRefID.offset > 0;
+
+     default : return false; 
+   }
+   return false;
+}
+
+bool GroupCollInquiryQualifier::isFieldSet( unsigned tag ) const {
+   if( _fixPtr == nullptr ) return false;
+   switch( tag ){
+     case FieldCollInquiryQualifier::TAG : return fieldCollInquiryQualifier.offset > 0 ;
+
+     default : return false; 
+   }
+   return false;
+}
+
+bool GroupPartyIDs::isFieldSet( unsigned tag ) const {
+   if( _fixPtr == nullptr ) return false;
+   switch( tag ){
+     case FieldPartyID::TAG : return fieldPartyID.offset > 0 ;
+     case FieldPartyIDSource::TAG : return fieldPartyIDSource.offset > 0;
+     case FieldPartyRole::TAG : return fieldPartyRole.offset > 0;
+     case FieldNoPartySubIDs::TAG : return fieldNoPartySubIDs.offset > 0;
+
+     default : return false; 
+   }
+   return false;
+}
+
+bool GroupAllocs::isFieldSet( unsigned tag ) const {
+   if( _fixPtr == nullptr ) return false;
+   switch( tag ){
+     case FieldAllocAccount::TAG : return fieldAllocAccount.offset > 0 ;
+     case FieldAllocAcctIDSource::TAG : return fieldAllocAcctIDSource.offset > 0;
+     case FieldAllocPrice::TAG : return fieldAllocPrice.offset > 0;
+     case FieldIndividualAllocID::TAG : return fieldIndividualAllocID.offset > 0;
+     case FieldIndividualAllocRejCode::TAG : return fieldIndividualAllocRejCode.offset > 0;
+     case FieldAllocText::TAG : return fieldAllocText.offset > 0;
+     case FieldEncodedAllocTextLen::TAG : return fieldEncodedAllocTextLen.offset > 0;
+     case FieldEncodedAllocText::TAG : return fieldEncodedAllocText.offset > 0;
+
+     default : return false; 
+   }
+   return false;
+}
+
+bool GroupTradingSessions::isFieldSet( unsigned tag ) const {
+   if( _fixPtr == nullptr ) return false;
+   switch( tag ){
+     case FieldTradingSessionID::TAG : return fieldTradingSessionID.offset > 0 ;
+     case FieldTradingSessionSubID::TAG : return fieldTradingSessionSubID.offset > 0;
+
+     default : return false; 
+   }
+   return false;
+}
+
+bool GroupSecurityAltID::isFieldSet( unsigned tag ) const {
+   if( _fixPtr == nullptr ) return false;
+   switch( tag ){
+     case FieldSecurityAltID::TAG : return fieldSecurityAltID.offset > 0 ;
+     case FieldSecurityAltIDSource::TAG : return fieldSecurityAltIDSource.offset > 0;
+
+     default : return false; 
+   }
+   return false;
+}
+
+bool GroupUnderlyingSecurityAltID::isFieldSet( unsigned tag ) const {
+   if( _fixPtr == nullptr ) return false;
+   switch( tag ){
+     case FieldUnderlyingSecurityAltID::TAG : return fieldUnderlyingSecurityAltID.offset > 0 ;
+     case FieldUnderlyingSecurityAltIDSource::TAG : return fieldUnderlyingSecurityAltIDSource.offset > 0;
+
+     default : return false; 
+   }
+   return false;
+}
+
+bool GroupUnderlyingStips::isFieldSet( unsigned tag ) const {
+   if( _fixPtr == nullptr ) return false;
+   switch( tag ){
+     case FieldUnderlyingStipType::TAG : return fieldUnderlyingStipType.offset > 0 ;
+     case FieldUnderlyingStipValue::TAG : return fieldUnderlyingStipValue.offset > 0;
+
+     default : return false; 
+   }
+   return false;
+}
+
+bool GroupUnderlyings::isFieldSet( unsigned tag ) const {
+   if( _fixPtr == nullptr ) return false;
+   switch( tag ){
+     case FieldUnderlyingSymbol::TAG : return fieldUnderlyingSymbol.offset > 0 ;
+     case FieldUnderlyingSymbolSfx::TAG : return fieldUnderlyingSymbolSfx.offset > 0;
+     case FieldUnderlyingSecurityID::TAG : return fieldUnderlyingSecurityID.offset > 0;
+     case FieldUnderlyingSecurityIDSource::TAG : return fieldUnderlyingSecurityIDSource.offset > 0;
+     case FieldNoUnderlyingSecurityAltID::TAG : return fieldNoUnderlyingSecurityAltID.offset > 0;
+     case FieldUnderlyingProduct::TAG : return fieldUnderlyingProduct.offset > 0;
+     case FieldUnderlyingCFICode::TAG : return fieldUnderlyingCFICode.offset > 0;
+     case FieldUnderlyingSecurityType::TAG : return fieldUnderlyingSecurityType.offset > 0;
+     case FieldUnderlyingSecuritySubType::TAG : return fieldUnderlyingSecuritySubType.offset > 0;
+     case FieldUnderlyingMaturityMonthYear::TAG : return fieldUnderlyingMaturityMonthYear.offset > 0;
+     case FieldUnderlyingMaturityDate::TAG : return fieldUnderlyingMaturityDate.offset > 0;
+     case FieldUnderlyingPutOrCall::TAG : return fieldUnderlyingPutOrCall.offset > 0;
+     case FieldUnderlyingCouponPaymentDate::TAG : return fieldUnderlyingCouponPaymentDate.offset > 0;
+     case FieldUnderlyingIssueDate::TAG : return fieldUnderlyingIssueDate.offset > 0;
+     case FieldUnderlyingRepoCollateralSecurityType::TAG : return fieldUnderlyingRepoCollateralSecurityType.offset > 0;
+     case FieldUnderlyingRepurchaseTerm::TAG : return fieldUnderlyingRepurchaseTerm.offset > 0;
+     case FieldUnderlyingRepurchaseRate::TAG : return fieldUnderlyingRepurchaseRate.offset > 0;
+     case FieldUnderlyingFactor::TAG : return fieldUnderlyingFactor.offset > 0;
+     case FieldUnderlyingCreditRating::TAG : return fieldUnderlyingCreditRating.offset > 0;
+     case FieldUnderlyingInstrRegistry::TAG : return fieldUnderlyingInstrRegistry.offset > 0;
+     case FieldUnderlyingCountryOfIssue::TAG : return fieldUnderlyingCountryOfIssue.offset > 0;
+     case FieldUnderlyingStateOrProvinceOfIssue::TAG : return fieldUnderlyingStateOrProvinceOfIssue.offset > 0;
+     case FieldUnderlyingLocaleOfIssue::TAG : return fieldUnderlyingLocaleOfIssue.offset > 0;
+     case FieldUnderlyingRedemptionDate::TAG : return fieldUnderlyingRedemptionDate.offset > 0;
+     case FieldUnderlyingStrikePrice::TAG : return fieldUnderlyingStrikePrice.offset > 0;
+     case FieldUnderlyingStrikeCurrency::TAG : return fieldUnderlyingStrikeCurrency.offset > 0;
+     case FieldUnderlyingOptAttribute::TAG : return fieldUnderlyingOptAttribute.offset > 0;
+     case FieldUnderlyingContractMultiplier::TAG : return fieldUnderlyingContractMultiplier.offset > 0;
+     case FieldUnderlyingCouponRate::TAG : return fieldUnderlyingCouponRate.offset > 0;
+     case FieldUnderlyingSecurityExchange::TAG : return fieldUnderlyingSecurityExchange.offset > 0;
+     case FieldUnderlyingIssuer::TAG : return fieldUnderlyingIssuer.offset > 0;
+     case FieldEncodedUnderlyingIssuerLen::TAG : return fieldEncodedUnderlyingIssuerLen.offset > 0;
+     case FieldEncodedUnderlyingIssuer::TAG : return fieldEncodedUnderlyingIssuer.offset > 0;
+     case FieldUnderlyingSecurityDesc::TAG : return fieldUnderlyingSecurityDesc.offset > 0;
+     case FieldEncodedUnderlyingSecurityDescLen::TAG : return fieldEncodedUnderlyingSecurityDescLen.offset > 0;
+     case FieldEncodedUnderlyingSecurityDesc::TAG : return fieldEncodedUnderlyingSecurityDesc.offset > 0;
+     case FieldUnderlyingCPProgram::TAG : return fieldUnderlyingCPProgram.offset > 0;
+     case FieldUnderlyingCPRegType::TAG : return fieldUnderlyingCPRegType.offset > 0;
+     case FieldUnderlyingCurrency::TAG : return fieldUnderlyingCurrency.offset > 0;
+     case FieldUnderlyingQty::TAG : return fieldUnderlyingQty.offset > 0;
+     case FieldUnderlyingPx::TAG : return fieldUnderlyingPx.offset > 0;
+     case FieldUnderlyingDirtyPrice::TAG : return fieldUnderlyingDirtyPrice.offset > 0;
+     case FieldUnderlyingEndPrice::TAG : return fieldUnderlyingEndPrice.offset > 0;
+     case FieldUnderlyingStartValue::TAG : return fieldUnderlyingStartValue.offset > 0;
+     case FieldUnderlyingCurrentValue::TAG : return fieldUnderlyingCurrentValue.offset > 0;
+     case FieldUnderlyingEndValue::TAG : return fieldUnderlyingEndValue.offset > 0;
+     case FieldNoUnderlyingStips::TAG : return fieldNoUnderlyingStips.offset > 0;
+     case FieldUnderlyingSettlPrice::TAG : return fieldUnderlyingSettlPrice.offset > 0;
+     case FieldUnderlyingSettlPriceType::TAG : return fieldUnderlyingSettlPriceType.offset > 0;
+
+     default : return false; 
+   }
+   return false;
+}
+
+bool GroupStipulations::isFieldSet( unsigned tag ) const {
+   if( _fixPtr == nullptr ) return false;
+   switch( tag ){
+     case FieldStipulationType::TAG : return fieldStipulationType.offset > 0 ;
+     case FieldStipulationValue::TAG : return fieldStipulationValue.offset > 0;
+
+     default : return false; 
+   }
+   return false;
+}
+
+bool GroupOrders::isFieldSet( unsigned tag ) const {
+   if( _fixPtr == nullptr ) return false;
+   switch( tag ){
+     case FieldClOrdID::TAG : return fieldClOrdID.offset > 0 ;
+     case FieldSecondaryClOrdID::TAG : return fieldSecondaryClOrdID.offset > 0;
+     case FieldListSeqNo::TAG : return fieldListSeqNo.offset > 0;
+     case FieldClOrdLinkID::TAG : return fieldClOrdLinkID.offset > 0;
+     case FieldSettlInstMode::TAG : return fieldSettlInstMode.offset > 0;
+     case FieldNoPartyIDs::TAG : return fieldNoPartyIDs.offset > 0;
+     case FieldTradeOriginationDate::TAG : return fieldTradeOriginationDate.offset > 0;
+     case FieldTradeDate::TAG : return fieldTradeDate.offset > 0;
+     case FieldAccount::TAG : return fieldAccount.offset > 0;
+     case FieldAcctIDSource::TAG : return fieldAcctIDSource.offset > 0;
+     case FieldAccountType::TAG : return fieldAccountType.offset > 0;
+     case FieldDayBookingInst::TAG : return fieldDayBookingInst.offset > 0;
+     case FieldBookingUnit::TAG : return fieldBookingUnit.offset > 0;
+     case FieldAllocID::TAG : return fieldAllocID.offset > 0;
+     case FieldPreallocMethod::TAG : return fieldPreallocMethod.offset > 0;
+     case FieldNoAllocs::TAG : return fieldNoAllocs.offset > 0;
+     case FieldSettlType::TAG : return fieldSettlType.offset > 0;
+     case FieldSettlDate::TAG : return fieldSettlDate.offset > 0;
+     case FieldCashMargin::TAG : return fieldCashMargin.offset > 0;
+     case FieldClearingFeeIndicator::TAG : return fieldClearingFeeIndicator.offset > 0;
+     case FieldHandlInst::TAG : return fieldHandlInst.offset > 0;
+     case FieldExecInst::TAG : return fieldExecInst.offset > 0;
+     case FieldMinQty::TAG : return fieldMinQty.offset > 0;
+     case FieldMaxFloor::TAG : return fieldMaxFloor.offset > 0;
+     case FieldExDestination::TAG : return fieldExDestination.offset > 0;
+     case FieldNoTradingSessions::TAG : return fieldNoTradingSessions.offset > 0;
+     case FieldProcessCode::TAG : return fieldProcessCode.offset > 0;
+     case FieldSymbol::TAG : return fieldSymbol.offset > 0;
+     case FieldSymbolSfx::TAG : return fieldSymbolSfx.offset > 0;
+     case FieldSecurityID::TAG : return fieldSecurityID.offset > 0;
+     case FieldSecurityIDSource::TAG : return fieldSecurityIDSource.offset > 0;
+     case FieldNoSecurityAltID::TAG : return fieldNoSecurityAltID.offset > 0;
+     case FieldProduct::TAG : return fieldProduct.offset > 0;
+     case FieldCFICode::TAG : return fieldCFICode.offset > 0;
+     case FieldSecurityType::TAG : return fieldSecurityType.offset > 0;
+     case FieldSecuritySubType::TAG : return fieldSecuritySubType.offset > 0;
+     case FieldMaturityMonthYear::TAG : return fieldMaturityMonthYear.offset > 0;
+     case FieldMaturityDate::TAG : return fieldMaturityDate.offset > 0;
+     case FieldPutOrCall::TAG : return fieldPutOrCall.offset > 0;
+     case FieldCouponPaymentDate::TAG : return fieldCouponPaymentDate.offset > 0;
+     case FieldIssueDate::TAG : return fieldIssueDate.offset > 0;
+     case FieldRepoCollateralSecurityType::TAG : return fieldRepoCollateralSecurityType.offset > 0;
+     case FieldRepurchaseTerm::TAG : return fieldRepurchaseTerm.offset > 0;
+     case FieldRepurchaseRate::TAG : return fieldRepurchaseRate.offset > 0;
+     case FieldFactor::TAG : return fieldFactor.offset > 0;
+     case FieldCreditRating::TAG : return fieldCreditRating.offset > 0;
+     case FieldInstrRegistry::TAG : return fieldInstrRegistry.offset > 0;
+     case FieldCountryOfIssue::TAG : return fieldCountryOfIssue.offset > 0;
+     case FieldStateOrProvinceOfIssue::TAG : return fieldStateOrProvinceOfIssue.offset > 0;
+     case FieldLocaleOfIssue::TAG : return fieldLocaleOfIssue.offset > 0;
+     case FieldRedemptionDate::TAG : return fieldRedemptionDate.offset > 0;
+     case FieldStrikePrice::TAG : return fieldStrikePrice.offset > 0;
+     case FieldStrikeCurrency::TAG : return fieldStrikeCurrency.offset > 0;
+     case FieldOptAttribute::TAG : return fieldOptAttribute.offset > 0;
+     case FieldContractMultiplier::TAG : return fieldContractMultiplier.offset > 0;
+     case FieldCouponRate::TAG : return fieldCouponRate.offset > 0;
+     case FieldSecurityExchange::TAG : return fieldSecurityExchange.offset > 0;
+     case FieldIssuer::TAG : return fieldIssuer.offset > 0;
+     case FieldEncodedIssuerLen::TAG : return fieldEncodedIssuerLen.offset > 0;
+     case FieldEncodedIssuer::TAG : return fieldEncodedIssuer.offset > 0;
+     case FieldSecurityDesc::TAG : return fieldSecurityDesc.offset > 0;
+     case FieldEncodedSecurityDescLen::TAG : return fieldEncodedSecurityDescLen.offset > 0;
+     case FieldEncodedSecurityDesc::TAG : return fieldEncodedSecurityDesc.offset > 0;
+     case FieldPool::TAG : return fieldPool.offset > 0;
+     case FieldContractSettlMonth::TAG : return fieldContractSettlMonth.offset > 0;
+     case FieldCPProgram::TAG : return fieldCPProgram.offset > 0;
+     case FieldCPRegType::TAG : return fieldCPRegType.offset > 0;
+     case FieldNoEvents::TAG : return fieldNoEvents.offset > 0;
+     case FieldDatedDate::TAG : return fieldDatedDate.offset > 0;
+     case FieldInterestAccrualDate::TAG : return fieldInterestAccrualDate.offset > 0;
+     case FieldNoUnderlyings::TAG : return fieldNoUnderlyings.offset > 0;
+     case FieldPrevClosePx::TAG : return fieldPrevClosePx.offset > 0;
+     case FieldSide::TAG : return fieldSide.offset > 0;
+     case FieldSideValueInd::TAG : return fieldSideValueInd.offset > 0;
+     case FieldLocateReqd::TAG : return fieldLocateReqd.offset > 0;
+     case FieldTransactTime::TAG : return fieldTransactTime.offset > 0;
+     case FieldNoStipulations::TAG : return fieldNoStipulations.offset > 0;
+     case FieldQtyType::TAG : return fieldQtyType.offset > 0;
+     case FieldOrderQty::TAG : return fieldOrderQty.offset > 0;
+     case FieldCashOrderQty::TAG : return fieldCashOrderQty.offset > 0;
+     case FieldOrderPercent::TAG : return fieldOrderPercent.offset > 0;
+     case FieldRoundingDirection::TAG : return fieldRoundingDirection.offset > 0;
+     case FieldRoundingModulus::TAG : return fieldRoundingModulus.offset > 0;
+     case FieldOrdType::TAG : return fieldOrdType.offset > 0;
+     case FieldPriceType::TAG : return fieldPriceType.offset > 0;
+     case FieldPrice::TAG : return fieldPrice.offset > 0;
+     case FieldStopPx::TAG : return fieldStopPx.offset > 0;
+     case FieldSpread::TAG : return fieldSpread.offset > 0;
+     case FieldBenchmarkCurveCurrency::TAG : return fieldBenchmarkCurveCurrency.offset > 0;
+     case FieldBenchmarkCurveName::TAG : return fieldBenchmarkCurveName.offset > 0;
+     case FieldBenchmarkCurvePoint::TAG : return fieldBenchmarkCurvePoint.offset > 0;
+     case FieldBenchmarkPrice::TAG : return fieldBenchmarkPrice.offset > 0;
+     case FieldBenchmarkPriceType::TAG : return fieldBenchmarkPriceType.offset > 0;
+     case FieldBenchmarkSecurityID::TAG : return fieldBenchmarkSecurityID.offset > 0;
+     case FieldBenchmarkSecurityIDSource::TAG : return fieldBenchmarkSecurityIDSource.offset > 0;
+     case FieldYieldType::TAG : return fieldYieldType.offset > 0;
+     case FieldYield::TAG : return fieldYield.offset > 0;
+     case FieldYieldCalcDate::TAG : return fieldYieldCalcDate.offset > 0;
+     case FieldYieldRedemptionDate::TAG : return fieldYieldRedemptionDate.offset > 0;
+     case FieldYieldRedemptionPrice::TAG : return fieldYieldRedemptionPrice.offset > 0;
+     case FieldYieldRedemptionPriceType::TAG : return fieldYieldRedemptionPriceType.offset > 0;
+     case FieldCurrency::TAG : return fieldCurrency.offset > 0;
+     case FieldComplianceID::TAG : return fieldComplianceID.offset > 0;
+     case FieldSolicitedFlag::TAG : return fieldSolicitedFlag.offset > 0;
+     case FieldIOIID::TAG : return fieldIOIID.offset > 0;
+     case FieldQuoteID::TAG : return fieldQuoteID.offset > 0;
+     case FieldTimeInForce::TAG : return fieldTimeInForce.offset > 0;
+     case FieldEffectiveTime::TAG : return fieldEffectiveTime.offset > 0;
+     case FieldExpireDate::TAG : return fieldExpireDate.offset > 0;
+     case FieldExpireTime::TAG : return fieldExpireTime.offset > 0;
+     case FieldGTBookingInst::TAG : return fieldGTBookingInst.offset > 0;
+     case FieldCommission::TAG : return fieldCommission.offset > 0;
+     case FieldCommType::TAG : return fieldCommType.offset > 0;
+     case FieldCommCurrency::TAG : return fieldCommCurrency.offset > 0;
+     case FieldFundRenewWaiv::TAG : return fieldFundRenewWaiv.offset > 0;
+     case FieldOrderCapacity::TAG : return fieldOrderCapacity.offset > 0;
+     case FieldOrderRestrictions::TAG : return fieldOrderRestrictions.offset > 0;
+     case FieldCustOrderCapacity::TAG : return fieldCustOrderCapacity.offset > 0;
+     case FieldForexReq::TAG : return fieldForexReq.offset > 0;
+     case FieldSettlCurrency::TAG : return fieldSettlCurrency.offset > 0;
+     case FieldBookingType::TAG : return fieldBookingType.offset > 0;
+     case FieldText::TAG : return fieldText.offset > 0;
+     case FieldEncodedTextLen::TAG : return fieldEncodedTextLen.offset > 0;
+     case FieldEncodedText::TAG : return fieldEncodedText.offset > 0;
+     case FieldSettlDate2::TAG : return fieldSettlDate2.offset > 0;
+     case FieldOrderQty2::TAG : return fieldOrderQty2.offset > 0;
+     case FieldPrice2::TAG : return fieldPrice2.offset > 0;
+     case FieldPositionEffect::TAG : return fieldPositionEffect.offset > 0;
+     case FieldCoveredOrUncovered::TAG : return fieldCoveredOrUncovered.offset > 0;
+     case FieldMaxShow::TAG : return fieldMaxShow.offset > 0;
+     case FieldPegOffsetValue::TAG : return fieldPegOffsetValue.offset > 0;
+     case FieldPegMoveType::TAG : return fieldPegMoveType.offset > 0;
+     case FieldPegOffsetType::TAG : return fieldPegOffsetType.offset > 0;
+     case FieldPegLimitType::TAG : return fieldPegLimitType.offset > 0;
+     case FieldPegRoundDirection::TAG : return fieldPegRoundDirection.offset > 0;
+     case FieldPegScope::TAG : return fieldPegScope.offset > 0;
+     case FieldDiscretionInst::TAG : return fieldDiscretionInst.offset > 0;
+     case FieldDiscretionOffsetValue::TAG : return fieldDiscretionOffsetValue.offset > 0;
+     case FieldDiscretionMoveType::TAG : return fieldDiscretionMoveType.offset > 0;
+     case FieldDiscretionOffsetType::TAG : return fieldDiscretionOffsetType.offset > 0;
+     case FieldDiscretionLimitType::TAG : return fieldDiscretionLimitType.offset > 0;
+     case FieldDiscretionRoundDirection::TAG : return fieldDiscretionRoundDirection.offset > 0;
+     case FieldDiscretionScope::TAG : return fieldDiscretionScope.offset > 0;
+     case FieldTargetStrategy::TAG : return fieldTargetStrategy.offset > 0;
+     case FieldTargetStrategyParameters::TAG : return fieldTargetStrategyParameters.offset > 0;
+     case FieldParticipationRate::TAG : return fieldParticipationRate.offset > 0;
+     case FieldDesignation::TAG : return fieldDesignation.offset > 0;
+
+     default : return false; 
+   }
+   return false;
+}
+
+bool GroupSettlPartySubIDs::isFieldSet( unsigned tag ) const {
+   if( _fixPtr == nullptr ) return false;
+   switch( tag ){
+     case FieldSettlPartySubID::TAG : return fieldSettlPartySubID.offset > 0 ;
+     case FieldSettlPartySubIDType::TAG : return fieldSettlPartySubIDType.offset > 0;
+
+     default : return false; 
+   }
+   return false;
+}
+
+bool GroupSettlPartyIDs::isFieldSet( unsigned tag ) const {
+   if( _fixPtr == nullptr ) return false;
+   switch( tag ){
+     case FieldSettlPartyID::TAG : return fieldSettlPartyID.offset > 0 ;
+     case FieldSettlPartyIDSource::TAG : return fieldSettlPartyIDSource.offset > 0;
+     case FieldSettlPartyRole::TAG : return fieldSettlPartyRole.offset > 0;
+     case FieldNoSettlPartySubIDs::TAG : return fieldNoSettlPartySubIDs.offset > 0;
+
+     default : return false; 
+   }
+   return false;
+}
+
+bool GroupDlvyInst::isFieldSet( unsigned tag ) const {
+   if( _fixPtr == nullptr ) return false;
+   switch( tag ){
+     case FieldSettlInstSource::TAG : return fieldSettlInstSource.offset > 0 ;
+     case FieldDlvyInstType::TAG : return fieldDlvyInstType.offset > 0;
+     case FieldNoSettlPartyIDs::TAG : return fieldNoSettlPartyIDs.offset > 0;
+
+     default : return false; 
+   }
+   return false;
+}
+
+bool GroupClearingInstructions::isFieldSet( unsigned tag ) const {
+   if( _fixPtr == nullptr ) return false;
+   switch( tag ){
+     case FieldClearingInstruction::TAG : return fieldClearingInstruction.offset > 0 ;
+
+     default : return false; 
+   }
+   return false;
+}
+
+bool GroupNestedPartySubIDs::isFieldSet( unsigned tag ) const {
+   if( _fixPtr == nullptr ) return false;
+   switch( tag ){
+     case FieldNestedPartySubID::TAG : return fieldNestedPartySubID.offset > 0 ;
+     case FieldNestedPartySubIDType::TAG : return fieldNestedPartySubIDType.offset > 0;
+
+     default : return false; 
+   }
+   return false;
+}
+
+bool GroupNestedPartyIDs::isFieldSet( unsigned tag ) const {
+   if( _fixPtr == nullptr ) return false;
+   switch( tag ){
+     case FieldNestedPartyID::TAG : return fieldNestedPartyID.offset > 0 ;
+     case FieldNestedPartyIDSource::TAG : return fieldNestedPartyIDSource.offset > 0;
+     case FieldNestedPartyRole::TAG : return fieldNestedPartyRole.offset > 0;
+     case FieldNoNestedPartySubIDs::TAG : return fieldNoNestedPartySubIDs.offset > 0;
+
+     default : return false; 
+   }
+   return false;
+}
+
+bool GroupLegs::isFieldSet( unsigned tag ) const {
+   if( _fixPtr == nullptr ) return false;
+   switch( tag ){
+     case FieldLegSymbol::TAG : return fieldLegSymbol.offset > 0 ;
+     case FieldLegSymbolSfx::TAG : return fieldLegSymbolSfx.offset > 0;
+     case FieldLegSecurityID::TAG : return fieldLegSecurityID.offset > 0;
+     case FieldLegSecurityIDSource::TAG : return fieldLegSecurityIDSource.offset > 0;
+     case FieldNoLegSecurityAltID::TAG : return fieldNoLegSecurityAltID.offset > 0;
+     case FieldLegProduct::TAG : return fieldLegProduct.offset > 0;
+     case FieldLegCFICode::TAG : return fieldLegCFICode.offset > 0;
+     case FieldLegSecurityType::TAG : return fieldLegSecurityType.offset > 0;
+     case FieldLegSecuritySubType::TAG : return fieldLegSecuritySubType.offset > 0;
+     case FieldLegMaturityMonthYear::TAG : return fieldLegMaturityMonthYear.offset > 0;
+     case FieldLegMaturityDate::TAG : return fieldLegMaturityDate.offset > 0;
+     case FieldLegCouponPaymentDate::TAG : return fieldLegCouponPaymentDate.offset > 0;
+     case FieldLegIssueDate::TAG : return fieldLegIssueDate.offset > 0;
+     case FieldLegRepoCollateralSecurityType::TAG : return fieldLegRepoCollateralSecurityType.offset > 0;
+     case FieldLegRepurchaseTerm::TAG : return fieldLegRepurchaseTerm.offset > 0;
+     case FieldLegRepurchaseRate::TAG : return fieldLegRepurchaseRate.offset > 0;
+     case FieldLegFactor::TAG : return fieldLegFactor.offset > 0;
+     case FieldLegCreditRating::TAG : return fieldLegCreditRating.offset > 0;
+     case FieldLegInstrRegistry::TAG : return fieldLegInstrRegistry.offset > 0;
+     case FieldLegCountryOfIssue::TAG : return fieldLegCountryOfIssue.offset > 0;
+     case FieldLegStateOrProvinceOfIssue::TAG : return fieldLegStateOrProvinceOfIssue.offset > 0;
+     case FieldLegLocaleOfIssue::TAG : return fieldLegLocaleOfIssue.offset > 0;
+     case FieldLegRedemptionDate::TAG : return fieldLegRedemptionDate.offset > 0;
+     case FieldLegStrikePrice::TAG : return fieldLegStrikePrice.offset > 0;
+     case FieldLegStrikeCurrency::TAG : return fieldLegStrikeCurrency.offset > 0;
+     case FieldLegOptAttribute::TAG : return fieldLegOptAttribute.offset > 0;
+     case FieldLegContractMultiplier::TAG : return fieldLegContractMultiplier.offset > 0;
+     case FieldLegCouponRate::TAG : return fieldLegCouponRate.offset > 0;
+     case FieldLegSecurityExchange::TAG : return fieldLegSecurityExchange.offset > 0;
+     case FieldLegIssuer::TAG : return fieldLegIssuer.offset > 0;
+     case FieldEncodedLegIssuerLen::TAG : return fieldEncodedLegIssuerLen.offset > 0;
+     case FieldEncodedLegIssuer::TAG : return fieldEncodedLegIssuer.offset > 0;
+     case FieldLegSecurityDesc::TAG : return fieldLegSecurityDesc.offset > 0;
+     case FieldEncodedLegSecurityDescLen::TAG : return fieldEncodedLegSecurityDescLen.offset > 0;
+     case FieldEncodedLegSecurityDesc::TAG : return fieldEncodedLegSecurityDesc.offset > 0;
+     case FieldLegRatioQty::TAG : return fieldLegRatioQty.offset > 0;
+     case FieldLegSide::TAG : return fieldLegSide.offset > 0;
+     case FieldLegCurrency::TAG : return fieldLegCurrency.offset > 0;
+     case FieldLegPool::TAG : return fieldLegPool.offset > 0;
+     case FieldLegDatedDate::TAG : return fieldLegDatedDate.offset > 0;
+     case FieldLegContractSettlMonth::TAG : return fieldLegContractSettlMonth.offset > 0;
+     case FieldLegInterestAccrualDate::TAG : return fieldLegInterestAccrualDate.offset > 0;
+     case FieldLegQty::TAG : return fieldLegQty.offset > 0;
+     case FieldLegSwapType::TAG : return fieldLegSwapType.offset > 0;
+     case FieldNoLegStipulations::TAG : return fieldNoLegStipulations.offset > 0;
+     case FieldLegPositionEffect::TAG : return fieldLegPositionEffect.offset > 0;
+     case FieldLegCoveredOrUncovered::TAG : return fieldLegCoveredOrUncovered.offset > 0;
+     case FieldNoNestedPartyIDs::TAG : return fieldNoNestedPartyIDs.offset > 0;
+     case FieldLegRefID::TAG : return fieldLegRefID.offset > 0;
+     case FieldLegPrice::TAG : return fieldLegPrice.offset > 0;
+     case FieldLegSettlType::TAG : return fieldLegSettlType.offset > 0;
+     case FieldLegSettlDate::TAG : return fieldLegSettlDate.offset > 0;
+     case FieldLegLastPx::TAG : return fieldLegLastPx.offset > 0;
+
+     default : return false; 
+   }
+   return false;
+}
+
+bool GroupQuoteEntries::isFieldSet( unsigned tag ) const {
+   if( _fixPtr == nullptr ) return false;
+   switch( tag ){
+     case FieldSymbol::TAG : return fieldSymbol.offset > 0 ;
+     case FieldSymbolSfx::TAG : return fieldSymbolSfx.offset > 0;
+     case FieldSecurityID::TAG : return fieldSecurityID.offset > 0;
+     case FieldSecurityIDSource::TAG : return fieldSecurityIDSource.offset > 0;
+     case FieldNoSecurityAltID::TAG : return fieldNoSecurityAltID.offset > 0;
+     case FieldProduct::TAG : return fieldProduct.offset > 0;
+     case FieldCFICode::TAG : return fieldCFICode.offset > 0;
+     case FieldSecurityType::TAG : return fieldSecurityType.offset > 0;
+     case FieldSecuritySubType::TAG : return fieldSecuritySubType.offset > 0;
+     case FieldMaturityMonthYear::TAG : return fieldMaturityMonthYear.offset > 0;
+     case FieldMaturityDate::TAG : return fieldMaturityDate.offset > 0;
+     case FieldPutOrCall::TAG : return fieldPutOrCall.offset > 0;
+     case FieldCouponPaymentDate::TAG : return fieldCouponPaymentDate.offset > 0;
+     case FieldIssueDate::TAG : return fieldIssueDate.offset > 0;
+     case FieldRepoCollateralSecurityType::TAG : return fieldRepoCollateralSecurityType.offset > 0;
+     case FieldRepurchaseTerm::TAG : return fieldRepurchaseTerm.offset > 0;
+     case FieldRepurchaseRate::TAG : return fieldRepurchaseRate.offset > 0;
+     case FieldFactor::TAG : return fieldFactor.offset > 0;
+     case FieldCreditRating::TAG : return fieldCreditRating.offset > 0;
+     case FieldInstrRegistry::TAG : return fieldInstrRegistry.offset > 0;
+     case FieldCountryOfIssue::TAG : return fieldCountryOfIssue.offset > 0;
+     case FieldStateOrProvinceOfIssue::TAG : return fieldStateOrProvinceOfIssue.offset > 0;
+     case FieldLocaleOfIssue::TAG : return fieldLocaleOfIssue.offset > 0;
+     case FieldRedemptionDate::TAG : return fieldRedemptionDate.offset > 0;
+     case FieldStrikePrice::TAG : return fieldStrikePrice.offset > 0;
+     case FieldStrikeCurrency::TAG : return fieldStrikeCurrency.offset > 0;
+     case FieldOptAttribute::TAG : return fieldOptAttribute.offset > 0;
+     case FieldContractMultiplier::TAG : return fieldContractMultiplier.offset > 0;
+     case FieldCouponRate::TAG : return fieldCouponRate.offset > 0;
+     case FieldSecurityExchange::TAG : return fieldSecurityExchange.offset > 0;
+     case FieldIssuer::TAG : return fieldIssuer.offset > 0;
+     case FieldEncodedIssuerLen::TAG : return fieldEncodedIssuerLen.offset > 0;
+     case FieldEncodedIssuer::TAG : return fieldEncodedIssuer.offset > 0;
+     case FieldSecurityDesc::TAG : return fieldSecurityDesc.offset > 0;
+     case FieldEncodedSecurityDescLen::TAG : return fieldEncodedSecurityDescLen.offset > 0;
+     case FieldEncodedSecurityDesc::TAG : return fieldEncodedSecurityDesc.offset > 0;
+     case FieldPool::TAG : return fieldPool.offset > 0;
+     case FieldContractSettlMonth::TAG : return fieldContractSettlMonth.offset > 0;
+     case FieldCPProgram::TAG : return fieldCPProgram.offset > 0;
+     case FieldCPRegType::TAG : return fieldCPRegType.offset > 0;
+     case FieldNoEvents::TAG : return fieldNoEvents.offset > 0;
+     case FieldDatedDate::TAG : return fieldDatedDate.offset > 0;
+     case FieldInterestAccrualDate::TAG : return fieldInterestAccrualDate.offset > 0;
+     case FieldAgreementDesc::TAG : return fieldAgreementDesc.offset > 0;
+     case FieldAgreementID::TAG : return fieldAgreementID.offset > 0;
+     case FieldAgreementDate::TAG : return fieldAgreementDate.offset > 0;
+     case FieldAgreementCurrency::TAG : return fieldAgreementCurrency.offset > 0;
+     case FieldTerminationType::TAG : return fieldTerminationType.offset > 0;
+     case FieldStartDate::TAG : return fieldStartDate.offset > 0;
+     case FieldEndDate::TAG : return fieldEndDate.offset > 0;
+     case FieldDeliveryType::TAG : return fieldDeliveryType.offset > 0;
+     case FieldMarginRatio::TAG : return fieldMarginRatio.offset > 0;
+     case FieldNoUnderlyings::TAG : return fieldNoUnderlyings.offset > 0;
+     case FieldNoLegs::TAG : return fieldNoLegs.offset > 0;
+
+     default : return false; 
+   }
+   return false;
+}
+
+bool GroupQuoteSets::isFieldSet( unsigned tag ) const {
+   if( _fixPtr == nullptr ) return false;
+   switch( tag ){
+     case FieldQuoteSetID::TAG : return fieldQuoteSetID.offset > 0 ;
+     case FieldUnderlyingSymbol::TAG : return fieldUnderlyingSymbol.offset > 0;
+     case FieldUnderlyingSymbolSfx::TAG : return fieldUnderlyingSymbolSfx.offset > 0;
+     case FieldUnderlyingSecurityID::TAG : return fieldUnderlyingSecurityID.offset > 0;
+     case FieldUnderlyingSecurityIDSource::TAG : return fieldUnderlyingSecurityIDSource.offset > 0;
+     case FieldNoUnderlyingSecurityAltID::TAG : return fieldNoUnderlyingSecurityAltID.offset > 0;
+     case FieldUnderlyingProduct::TAG : return fieldUnderlyingProduct.offset > 0;
+     case FieldUnderlyingCFICode::TAG : return fieldUnderlyingCFICode.offset > 0;
+     case FieldUnderlyingSecurityType::TAG : return fieldUnderlyingSecurityType.offset > 0;
+     case FieldUnderlyingSecuritySubType::TAG : return fieldUnderlyingSecuritySubType.offset > 0;
+     case FieldUnderlyingMaturityMonthYear::TAG : return fieldUnderlyingMaturityMonthYear.offset > 0;
+     case FieldUnderlyingMaturityDate::TAG : return fieldUnderlyingMaturityDate.offset > 0;
+     case FieldUnderlyingPutOrCall::TAG : return fieldUnderlyingPutOrCall.offset > 0;
+     case FieldUnderlyingCouponPaymentDate::TAG : return fieldUnderlyingCouponPaymentDate.offset > 0;
+     case FieldUnderlyingIssueDate::TAG : return fieldUnderlyingIssueDate.offset > 0;
+     case FieldUnderlyingRepoCollateralSecurityType::TAG : return fieldUnderlyingRepoCollateralSecurityType.offset > 0;
+     case FieldUnderlyingRepurchaseTerm::TAG : return fieldUnderlyingRepurchaseTerm.offset > 0;
+     case FieldUnderlyingRepurchaseRate::TAG : return fieldUnderlyingRepurchaseRate.offset > 0;
+     case FieldUnderlyingFactor::TAG : return fieldUnderlyingFactor.offset > 0;
+     case FieldUnderlyingCreditRating::TAG : return fieldUnderlyingCreditRating.offset > 0;
+     case FieldUnderlyingInstrRegistry::TAG : return fieldUnderlyingInstrRegistry.offset > 0;
+     case FieldUnderlyingCountryOfIssue::TAG : return fieldUnderlyingCountryOfIssue.offset > 0;
+     case FieldUnderlyingStateOrProvinceOfIssue::TAG : return fieldUnderlyingStateOrProvinceOfIssue.offset > 0;
+     case FieldUnderlyingLocaleOfIssue::TAG : return fieldUnderlyingLocaleOfIssue.offset > 0;
+     case FieldUnderlyingRedemptionDate::TAG : return fieldUnderlyingRedemptionDate.offset > 0;
+     case FieldUnderlyingStrikePrice::TAG : return fieldUnderlyingStrikePrice.offset > 0;
+     case FieldUnderlyingStrikeCurrency::TAG : return fieldUnderlyingStrikeCurrency.offset > 0;
+     case FieldUnderlyingOptAttribute::TAG : return fieldUnderlyingOptAttribute.offset > 0;
+     case FieldUnderlyingContractMultiplier::TAG : return fieldUnderlyingContractMultiplier.offset > 0;
+     case FieldUnderlyingCouponRate::TAG : return fieldUnderlyingCouponRate.offset > 0;
+     case FieldUnderlyingSecurityExchange::TAG : return fieldUnderlyingSecurityExchange.offset > 0;
+     case FieldUnderlyingIssuer::TAG : return fieldUnderlyingIssuer.offset > 0;
+     case FieldEncodedUnderlyingIssuerLen::TAG : return fieldEncodedUnderlyingIssuerLen.offset > 0;
+     case FieldEncodedUnderlyingIssuer::TAG : return fieldEncodedUnderlyingIssuer.offset > 0;
+     case FieldUnderlyingSecurityDesc::TAG : return fieldUnderlyingSecurityDesc.offset > 0;
+     case FieldEncodedUnderlyingSecurityDescLen::TAG : return fieldEncodedUnderlyingSecurityDescLen.offset > 0;
+     case FieldEncodedUnderlyingSecurityDesc::TAG : return fieldEncodedUnderlyingSecurityDesc.offset > 0;
+     case FieldUnderlyingCPProgram::TAG : return fieldUnderlyingCPProgram.offset > 0;
+     case FieldUnderlyingCPRegType::TAG : return fieldUnderlyingCPRegType.offset > 0;
+     case FieldUnderlyingCurrency::TAG : return fieldUnderlyingCurrency.offset > 0;
+     case FieldUnderlyingQty::TAG : return fieldUnderlyingQty.offset > 0;
+     case FieldUnderlyingPx::TAG : return fieldUnderlyingPx.offset > 0;
+     case FieldUnderlyingDirtyPrice::TAG : return fieldUnderlyingDirtyPrice.offset > 0;
+     case FieldUnderlyingEndPrice::TAG : return fieldUnderlyingEndPrice.offset > 0;
+     case FieldUnderlyingStartValue::TAG : return fieldUnderlyingStartValue.offset > 0;
+     case FieldUnderlyingCurrentValue::TAG : return fieldUnderlyingCurrentValue.offset > 0;
+     case FieldUnderlyingEndValue::TAG : return fieldUnderlyingEndValue.offset > 0;
+     case FieldNoUnderlyingStips::TAG : return fieldNoUnderlyingStips.offset > 0;
+     case FieldTotNoQuoteEntries::TAG : return fieldTotNoQuoteEntries.offset > 0;
+     case FieldLastFragment::TAG : return fieldLastFragment.offset > 0;
+     case FieldNoQuoteEntries::TAG : return fieldNoQuoteEntries.offset > 0;
+
+     default : return false; 
+   }
+   return false;
+}
+
+bool GroupSecurityTypes::isFieldSet( unsigned tag ) const {
+   if( _fixPtr == nullptr ) return false;
+   switch( tag ){
+     case FieldSecurityType::TAG : return fieldSecurityType.offset > 0 ;
+     case FieldSecuritySubType::TAG : return fieldSecuritySubType.offset > 0;
+     case FieldProduct::TAG : return fieldProduct.offset > 0;
+     case FieldCFICode::TAG : return fieldCFICode.offset > 0;
+
+     default : return false; 
+   }
+   return false;
+}
+
+bool GroupNested3PartyIDs::isFieldSet( unsigned tag ) const {
+   if( _fixPtr == nullptr ) return false;
+   switch( tag ){
+     case FieldNested3PartyID::TAG : return fieldNested3PartyID.offset > 0 ;
+     case FieldNested3PartyIDSource::TAG : return fieldNested3PartyIDSource.offset > 0;
+     case FieldNested3PartyRole::TAG : return fieldNested3PartyRole.offset > 0;
+     case FieldNoNested3PartySubIDs::TAG : return fieldNoNested3PartySubIDs.offset > 0;
+
+     default : return false; 
+   }
+   return false;
+}
+
+bool GroupPositions::isFieldSet( unsigned tag ) const {
+   if( _fixPtr == nullptr ) return false;
+   switch( tag ){
+     case FieldPosType::TAG : return fieldPosType.offset > 0 ;
+     case FieldLongQty::TAG : return fieldLongQty.offset > 0;
+     case FieldShortQty::TAG : return fieldShortQty.offset > 0;
+     case FieldPosQtyStatus::TAG : return fieldPosQtyStatus.offset > 0;
+     case FieldNoNestedPartyIDs::TAG : return fieldNoNestedPartyIDs.offset > 0;
+
+     default : return false; 
+   }
+   return false;
+}
+
+bool GroupAffectedOrders::isFieldSet( unsigned tag ) const {
+   if( _fixPtr == nullptr ) return false;
+   switch( tag ){
+     case FieldOrigClOrdID::TAG : return fieldOrigClOrdID.offset > 0 ;
+     case FieldAffectedOrderID::TAG : return fieldAffectedOrderID.offset > 0;
+     case FieldAffectedSecondaryOrderID::TAG : return fieldAffectedSecondaryOrderID.offset > 0;
+
+     default : return false; 
+   }
+   return false;
+}
+
+bool GroupExecs::isFieldSet( unsigned tag ) const {
+   if( _fixPtr == nullptr ) return false;
+   switch( tag ){
+     case FieldLastQty::TAG : return fieldLastQty.offset > 0 ;
+     case FieldExecID::TAG : return fieldExecID.offset > 0;
+     case FieldSecondaryExecID::TAG : return fieldSecondaryExecID.offset > 0;
+     case FieldLastPx::TAG : return fieldLastPx.offset > 0;
+     case FieldLastParPx::TAG : return fieldLastParPx.offset > 0;
+     case FieldLastCapacity::TAG : return fieldLastCapacity.offset > 0;
+
+     default : return false; 
+   }
+   return false;
+}
+
+bool GroupMsgTypes::isFieldSet( unsigned tag ) const {
+   if( _fixPtr == nullptr ) return false;
+   switch( tag ){
+     case FieldRefMsgType::TAG : return fieldRefMsgType.offset > 0 ;
+     case FieldMsgDirection::TAG : return fieldMsgDirection.offset > 0;
+
+     default : return false; 
+   }
+   return false;
+}
+
+bool GroupBidComponents::isFieldSet( unsigned tag ) const {
+   if( _fixPtr == nullptr ) return false;
+   switch( tag ){
+     case FieldListID::TAG : return fieldListID.offset > 0 ;
+     case FieldSide::TAG : return fieldSide.offset > 0;
+     case FieldTradingSessionID::TAG : return fieldTradingSessionID.offset > 0;
+     case FieldTradingSessionSubID::TAG : return fieldTradingSessionSubID.offset > 0;
+     case FieldNetGrossInd::TAG : return fieldNetGrossInd.offset > 0;
+     case FieldSettlType::TAG : return fieldSettlType.offset > 0;
+     case FieldSettlDate::TAG : return fieldSettlDate.offset > 0;
+     case FieldAccount::TAG : return fieldAccount.offset > 0;
+     case FieldAcctIDSource::TAG : return fieldAcctIDSource.offset > 0;
+
+     default : return false; 
+   }
+   return false;
+}
+
+bool GroupSettlInst::isFieldSet( unsigned tag ) const {
+   if( _fixPtr == nullptr ) return false;
+   switch( tag ){
+     case FieldSettlInstID::TAG : return fieldSettlInstID.offset > 0 ;
+     case FieldSettlInstTransType::TAG : return fieldSettlInstTransType.offset > 0;
+     case FieldSettlInstRefID::TAG : return fieldSettlInstRefID.offset > 0;
+     case FieldNoPartyIDs::TAG : return fieldNoPartyIDs.offset > 0;
+     case FieldSide::TAG : return fieldSide.offset > 0;
+     case FieldProduct::TAG : return fieldProduct.offset > 0;
+     case FieldSecurityType::TAG : return fieldSecurityType.offset > 0;
+     case FieldCFICode::TAG : return fieldCFICode.offset > 0;
+     case FieldEffectiveTime::TAG : return fieldEffectiveTime.offset > 0;
+     case FieldExpireTime::TAG : return fieldExpireTime.offset > 0;
+     case FieldLastUpdateTime::TAG : return fieldLastUpdateTime.offset > 0;
+     case FieldSettlDeliveryType::TAG : return fieldSettlDeliveryType.offset > 0;
+     case FieldStandInstDbType::TAG : return fieldStandInstDbType.offset > 0;
+     case FieldStandInstDbName::TAG : return fieldStandInstDbName.offset > 0;
+     case FieldStandInstDbID::TAG : return fieldStandInstDbID.offset > 0;
+     case FieldNoDlvyInst::TAG : return fieldNoDlvyInst.offset > 0;
+     case FieldPaymentMethod::TAG : return fieldPaymentMethod.offset > 0;
+     case FieldPaymentRef::TAG : return fieldPaymentRef.offset > 0;
+     case FieldCardHolderName::TAG : return fieldCardHolderName.offset > 0;
+     case FieldCardNumber::TAG : return fieldCardNumber.offset > 0;
+     case FieldCardStartDate::TAG : return fieldCardStartDate.offset > 0;
+     case FieldCardExpDate::TAG : return fieldCardExpDate.offset > 0;
+     case FieldCardIssNum::TAG : return fieldCardIssNum.offset > 0;
+     case FieldPaymentDate::TAG : return fieldPaymentDate.offset > 0;
+     case FieldPaymentRemitterID::TAG : return fieldPaymentRemitterID.offset > 0;
+
+     default : return false; 
+   }
+   return false;
+}
+
+bool GroupInstrAttrib::isFieldSet( unsigned tag ) const {
+   if( _fixPtr == nullptr ) return false;
+   switch( tag ){
+     case FieldInstrAttribType::TAG : return fieldInstrAttribType.offset > 0 ;
+     case FieldInstrAttribValue::TAG : return fieldInstrAttribValue.offset > 0;
+
+     default : return false; 
+   }
+   return false;
+}
+
+bool GroupMiscFees::isFieldSet( unsigned tag ) const {
+   if( _fixPtr == nullptr ) return false;
+   switch( tag ){
+     case FieldMiscFeeAmt::TAG : return fieldMiscFeeAmt.offset > 0 ;
+     case FieldMiscFeeCurr::TAG : return fieldMiscFeeCurr.offset > 0;
+     case FieldMiscFeeType::TAG : return fieldMiscFeeType.offset > 0;
+     case FieldMiscFeeBasis::TAG : return fieldMiscFeeBasis.offset > 0;
+
+     default : return false; 
+   }
+   return false;
+}
+
+bool GroupQuoteQualifiers::isFieldSet( unsigned tag ) const {
+   if( _fixPtr == nullptr ) return false;
+   switch( tag ){
+     case FieldQuoteQualifier::TAG : return fieldQuoteQualifier.offset > 0 ;
+
+     default : return false; 
+   }
+   return false;
+}
+
+bool GroupDistribInsts::isFieldSet( unsigned tag ) const {
+   if( _fixPtr == nullptr ) return false;
+   switch( tag ){
+     case FieldDistribPaymentMethod::TAG : return fieldDistribPaymentMethod.offset > 0 ;
+     case FieldDistribPercentage::TAG : return fieldDistribPercentage.offset > 0;
+     case FieldCashDistribCurr::TAG : return fieldCashDistribCurr.offset > 0;
+     case FieldCashDistribAgentName::TAG : return fieldCashDistribAgentName.offset > 0;
+     case FieldCashDistribAgentCode::TAG : return fieldCashDistribAgentCode.offset > 0;
+     case FieldCashDistribAgentAcctNumber::TAG : return fieldCashDistribAgentAcctNumber.offset > 0;
+     case FieldCashDistribPayRef::TAG : return fieldCashDistribPayRef.offset > 0;
+     case FieldCashDistribAgentAcctName::TAG : return fieldCashDistribAgentAcctName.offset > 0;
+
+     default : return false; 
+   }
+   return false;
+}
+
+bool GroupTrdRegTimestamps::isFieldSet( unsigned tag ) const {
+   if( _fixPtr == nullptr ) return false;
+   switch( tag ){
+     case FieldTrdRegTimestamp::TAG : return fieldTrdRegTimestamp.offset > 0 ;
+     case FieldTrdRegTimestampType::TAG : return fieldTrdRegTimestampType.offset > 0;
+     case FieldTrdRegTimestampOrigin::TAG : return fieldTrdRegTimestampOrigin.offset > 0;
+
+     default : return false; 
+   }
+   return false;
+}
+
+bool GroupAltMDSource::isFieldSet( unsigned tag ) const {
+   if( _fixPtr == nullptr ) return false;
+   switch( tag ){
+     case FieldAltMDSourceID::TAG : return fieldAltMDSourceID.offset > 0 ;
+
+     default : return false; 
+   }
+   return false;
+}
+
+bool GroupSides::isFieldSet( unsigned tag ) const {
+   if( _fixPtr == nullptr ) return false;
+   switch( tag ){
+     case FieldSide::TAG : return fieldSide.offset > 0 ;
+     case FieldOrigClOrdID::TAG : return fieldOrigClOrdID.offset > 0;
+     case FieldClOrdID::TAG : return fieldClOrdID.offset > 0;
+     case FieldSecondaryClOrdID::TAG : return fieldSecondaryClOrdID.offset > 0;
+     case FieldClOrdLinkID::TAG : return fieldClOrdLinkID.offset > 0;
+     case FieldOrigOrdModTime::TAG : return fieldOrigOrdModTime.offset > 0;
+     case FieldNoPartyIDs::TAG : return fieldNoPartyIDs.offset > 0;
+     case FieldTradeOriginationDate::TAG : return fieldTradeOriginationDate.offset > 0;
+     case FieldTradeDate::TAG : return fieldTradeDate.offset > 0;
+     case FieldOrderQty::TAG : return fieldOrderQty.offset > 0;
+     case FieldCashOrderQty::TAG : return fieldCashOrderQty.offset > 0;
+     case FieldOrderPercent::TAG : return fieldOrderPercent.offset > 0;
+     case FieldRoundingDirection::TAG : return fieldRoundingDirection.offset > 0;
+     case FieldRoundingModulus::TAG : return fieldRoundingModulus.offset > 0;
+     case FieldComplianceID::TAG : return fieldComplianceID.offset > 0;
+     case FieldText::TAG : return fieldText.offset > 0;
+     case FieldEncodedTextLen::TAG : return fieldEncodedTextLen.offset > 0;
+     case FieldEncodedText::TAG : return fieldEncodedText.offset > 0;
+
+     default : return false; 
+   }
+   return false;
+}
+
+bool GroupRoutingIDs::isFieldSet( unsigned tag ) const {
+   if( _fixPtr == nullptr ) return false;
+   switch( tag ){
+     case FieldRoutingType::TAG : return fieldRoutingType.offset > 0 ;
+     case FieldRoutingID::TAG : return fieldRoutingID.offset > 0;
+
+     default : return false; 
+   }
+   return false;
+}
+
+bool GroupPosAmt::isFieldSet( unsigned tag ) const {
+   if( _fixPtr == nullptr ) return false;
+   switch( tag ){
+     case FieldPosAmtType::TAG : return fieldPosAmtType.offset > 0 ;
+     case FieldPosAmt::TAG : return fieldPosAmt.offset > 0;
+
+     default : return false; 
+   }
+   return false;
+}
+
+bool GroupLinesOfText::isFieldSet( unsigned tag ) const {
+   if( _fixPtr == nullptr ) return false;
+   switch( tag ){
+     case FieldText::TAG : return fieldText.offset > 0 ;
+     case FieldEncodedTextLen::TAG : return fieldEncodedTextLen.offset > 0;
+     case FieldEncodedText::TAG : return fieldEncodedText.offset > 0;
+
+     default : return false; 
+   }
+   return false;
+}
+
+bool GroupIOIQualifiers::isFieldSet( unsigned tag ) const {
+   if( _fixPtr == nullptr ) return false;
+   switch( tag ){
+     case FieldIOIQualifier::TAG : return fieldIOIQualifier.offset > 0 ;
+
+     default : return false; 
+   }
+   return false;
+}
+
+bool GroupDates::isFieldSet( unsigned tag ) const {
+   if( _fixPtr == nullptr ) return false;
+   switch( tag ){
+     case FieldTradeDate::TAG : return fieldTradeDate.offset > 0 ;
+     case FieldTransactTime::TAG : return fieldTransactTime.offset > 0;
+
+     default : return false; 
+   }
+   return false;
+}
+
+bool GroupMDEntryTypes::isFieldSet( unsigned tag ) const {
+   if( _fixPtr == nullptr ) return false;
+   switch( tag ){
+     case FieldMDEntryType::TAG : return fieldMDEntryType.offset > 0 ;
+
+     default : return false; 
+   }
+   return false;
+}
+
+bool GroupRelatedSym::isFieldSet( unsigned tag ) const {
+   if( _fixPtr == nullptr ) return false;
+   switch( tag ){
+     case FieldSymbol::TAG : return fieldSymbol.offset > 0 ;
+     case FieldSymbolSfx::TAG : return fieldSymbolSfx.offset > 0;
+     case FieldSecurityID::TAG : return fieldSecurityID.offset > 0;
+     case FieldSecurityIDSource::TAG : return fieldSecurityIDSource.offset > 0;
+     case FieldNoSecurityAltID::TAG : return fieldNoSecurityAltID.offset > 0;
+     case FieldProduct::TAG : return fieldProduct.offset > 0;
+     case FieldCFICode::TAG : return fieldCFICode.offset > 0;
+     case FieldSecurityType::TAG : return fieldSecurityType.offset > 0;
+     case FieldSecuritySubType::TAG : return fieldSecuritySubType.offset > 0;
+     case FieldMaturityMonthYear::TAG : return fieldMaturityMonthYear.offset > 0;
+     case FieldMaturityDate::TAG : return fieldMaturityDate.offset > 0;
+     case FieldPutOrCall::TAG : return fieldPutOrCall.offset > 0;
+     case FieldCouponPaymentDate::TAG : return fieldCouponPaymentDate.offset > 0;
+     case FieldIssueDate::TAG : return fieldIssueDate.offset > 0;
+     case FieldRepoCollateralSecurityType::TAG : return fieldRepoCollateralSecurityType.offset > 0;
+     case FieldRepurchaseTerm::TAG : return fieldRepurchaseTerm.offset > 0;
+     case FieldRepurchaseRate::TAG : return fieldRepurchaseRate.offset > 0;
+     case FieldFactor::TAG : return fieldFactor.offset > 0;
+     case FieldCreditRating::TAG : return fieldCreditRating.offset > 0;
+     case FieldInstrRegistry::TAG : return fieldInstrRegistry.offset > 0;
+     case FieldCountryOfIssue::TAG : return fieldCountryOfIssue.offset > 0;
+     case FieldStateOrProvinceOfIssue::TAG : return fieldStateOrProvinceOfIssue.offset > 0;
+     case FieldLocaleOfIssue::TAG : return fieldLocaleOfIssue.offset > 0;
+     case FieldRedemptionDate::TAG : return fieldRedemptionDate.offset > 0;
+     case FieldStrikePrice::TAG : return fieldStrikePrice.offset > 0;
+     case FieldStrikeCurrency::TAG : return fieldStrikeCurrency.offset > 0;
+     case FieldOptAttribute::TAG : return fieldOptAttribute.offset > 0;
+     case FieldContractMultiplier::TAG : return fieldContractMultiplier.offset > 0;
+     case FieldCouponRate::TAG : return fieldCouponRate.offset > 0;
+     case FieldSecurityExchange::TAG : return fieldSecurityExchange.offset > 0;
+     case FieldIssuer::TAG : return fieldIssuer.offset > 0;
+     case FieldEncodedIssuerLen::TAG : return fieldEncodedIssuerLen.offset > 0;
+     case FieldEncodedIssuer::TAG : return fieldEncodedIssuer.offset > 0;
+     case FieldSecurityDesc::TAG : return fieldSecurityDesc.offset > 0;
+     case FieldEncodedSecurityDescLen::TAG : return fieldEncodedSecurityDescLen.offset > 0;
+     case FieldEncodedSecurityDesc::TAG : return fieldEncodedSecurityDesc.offset > 0;
+     case FieldPool::TAG : return fieldPool.offset > 0;
+     case FieldContractSettlMonth::TAG : return fieldContractSettlMonth.offset > 0;
+     case FieldCPProgram::TAG : return fieldCPProgram.offset > 0;
+     case FieldCPRegType::TAG : return fieldCPRegType.offset > 0;
+     case FieldNoEvents::TAG : return fieldNoEvents.offset > 0;
+     case FieldDatedDate::TAG : return fieldDatedDate.offset > 0;
+     case FieldInterestAccrualDate::TAG : return fieldInterestAccrualDate.offset > 0;
+
+     default : return false; 
+   }
+   return false;
+}
+
+bool GroupContraBrokers::isFieldSet( unsigned tag ) const {
+   if( _fixPtr == nullptr ) return false;
+   switch( tag ){
+     case FieldContraBroker::TAG : return fieldContraBroker.offset > 0 ;
+     case FieldContraTrader::TAG : return fieldContraTrader.offset > 0;
+     case FieldContraTradeQty::TAG : return fieldContraTradeQty.offset > 0;
+     case FieldContraTradeTime::TAG : return fieldContraTradeTime.offset > 0;
+     case FieldContraLegRefID::TAG : return fieldContraLegRefID.offset > 0;
+
+     default : return false; 
+   }
+   return false;
+}
+
+bool GroupTrades::isFieldSet( unsigned tag ) const {
+   if( _fixPtr == nullptr ) return false;
+   switch( tag ){
+     case FieldTradeReportID::TAG : return fieldTradeReportID.offset > 0 ;
+     case FieldSecondaryTradeReportID::TAG : return fieldSecondaryTradeReportID.offset > 0;
+
+     default : return false; 
+   }
+   return false;
+}
+
+bool GroupStrikes::isFieldSet( unsigned tag ) const {
+   if( _fixPtr == nullptr ) return false;
+   switch( tag ){
+     case FieldSymbol::TAG : return fieldSymbol.offset > 0 ;
+     case FieldSymbolSfx::TAG : return fieldSymbolSfx.offset > 0;
+     case FieldSecurityID::TAG : return fieldSecurityID.offset > 0;
+     case FieldSecurityIDSource::TAG : return fieldSecurityIDSource.offset > 0;
+     case FieldNoSecurityAltID::TAG : return fieldNoSecurityAltID.offset > 0;
+     case FieldProduct::TAG : return fieldProduct.offset > 0;
+     case FieldCFICode::TAG : return fieldCFICode.offset > 0;
+     case FieldSecurityType::TAG : return fieldSecurityType.offset > 0;
+     case FieldSecuritySubType::TAG : return fieldSecuritySubType.offset > 0;
+     case FieldMaturityMonthYear::TAG : return fieldMaturityMonthYear.offset > 0;
+     case FieldMaturityDate::TAG : return fieldMaturityDate.offset > 0;
+     case FieldPutOrCall::TAG : return fieldPutOrCall.offset > 0;
+     case FieldCouponPaymentDate::TAG : return fieldCouponPaymentDate.offset > 0;
+     case FieldIssueDate::TAG : return fieldIssueDate.offset > 0;
+     case FieldRepoCollateralSecurityType::TAG : return fieldRepoCollateralSecurityType.offset > 0;
+     case FieldRepurchaseTerm::TAG : return fieldRepurchaseTerm.offset > 0;
+     case FieldRepurchaseRate::TAG : return fieldRepurchaseRate.offset > 0;
+     case FieldFactor::TAG : return fieldFactor.offset > 0;
+     case FieldCreditRating::TAG : return fieldCreditRating.offset > 0;
+     case FieldInstrRegistry::TAG : return fieldInstrRegistry.offset > 0;
+     case FieldCountryOfIssue::TAG : return fieldCountryOfIssue.offset > 0;
+     case FieldStateOrProvinceOfIssue::TAG : return fieldStateOrProvinceOfIssue.offset > 0;
+     case FieldLocaleOfIssue::TAG : return fieldLocaleOfIssue.offset > 0;
+     case FieldRedemptionDate::TAG : return fieldRedemptionDate.offset > 0;
+     case FieldStrikePrice::TAG : return fieldStrikePrice.offset > 0;
+     case FieldStrikeCurrency::TAG : return fieldStrikeCurrency.offset > 0;
+     case FieldOptAttribute::TAG : return fieldOptAttribute.offset > 0;
+     case FieldContractMultiplier::TAG : return fieldContractMultiplier.offset > 0;
+     case FieldCouponRate::TAG : return fieldCouponRate.offset > 0;
+     case FieldSecurityExchange::TAG : return fieldSecurityExchange.offset > 0;
+     case FieldIssuer::TAG : return fieldIssuer.offset > 0;
+     case FieldEncodedIssuerLen::TAG : return fieldEncodedIssuerLen.offset > 0;
+     case FieldEncodedIssuer::TAG : return fieldEncodedIssuer.offset > 0;
+     case FieldSecurityDesc::TAG : return fieldSecurityDesc.offset > 0;
+     case FieldEncodedSecurityDescLen::TAG : return fieldEncodedSecurityDescLen.offset > 0;
+     case FieldEncodedSecurityDesc::TAG : return fieldEncodedSecurityDesc.offset > 0;
+     case FieldPool::TAG : return fieldPool.offset > 0;
+     case FieldContractSettlMonth::TAG : return fieldContractSettlMonth.offset > 0;
+     case FieldCPProgram::TAG : return fieldCPProgram.offset > 0;
+     case FieldCPRegType::TAG : return fieldCPRegType.offset > 0;
+     case FieldNoEvents::TAG : return fieldNoEvents.offset > 0;
+     case FieldDatedDate::TAG : return fieldDatedDate.offset > 0;
+     case FieldInterestAccrualDate::TAG : return fieldInterestAccrualDate.offset > 0;
+
+     default : return false; 
+   }
+   return false;
+}
+
+bool GroupBidDescriptors::isFieldSet( unsigned tag ) const {
+   if( _fixPtr == nullptr ) return false;
+   switch( tag ){
+     case FieldBidDescriptorType::TAG : return fieldBidDescriptorType.offset > 0 ;
+     case FieldBidDescriptor::TAG : return fieldBidDescriptor.offset > 0;
+     case FieldSideValueInd::TAG : return fieldSideValueInd.offset > 0;
+     case FieldLiquidityValue::TAG : return fieldLiquidityValue.offset > 0;
+     case FieldLiquidityNumSecurities::TAG : return fieldLiquidityNumSecurities.offset > 0;
+     case FieldLiquidityPctLow::TAG : return fieldLiquidityPctLow.offset > 0;
+     case FieldLiquidityPctHigh::TAG : return fieldLiquidityPctHigh.offset > 0;
+     case FieldEFPTrackingError::TAG : return fieldEFPTrackingError.offset > 0;
+     case FieldFairValue::TAG : return fieldFairValue.offset > 0;
+     case FieldOutsideIndexPct::TAG : return fieldOutsideIndexPct.offset > 0;
+     case FieldValueOfFutures::TAG : return fieldValueOfFutures.offset > 0;
+
+     default : return false; 
+   }
+   return false;
+}
+
+bool GroupCompIDs::isFieldSet( unsigned tag ) const {
+   if( _fixPtr == nullptr ) return false;
+   switch( tag ){
+     case FieldRefCompID::TAG : return fieldRefCompID.offset > 0 ;
+     case FieldRefSubID::TAG : return fieldRefSubID.offset > 0;
+     case FieldLocationID::TAG : return fieldLocationID.offset > 0;
+     case FieldDeskID::TAG : return fieldDeskID.offset > 0;
+
+     default : return false; 
+   }
+   return false;
+}
+
+bool GroupLegAllocs::isFieldSet( unsigned tag ) const {
+   if( _fixPtr == nullptr ) return false;
+   switch( tag ){
+     case FieldLegAllocAccount::TAG : return fieldLegAllocAccount.offset > 0 ;
+     case FieldLegIndividualAllocID::TAG : return fieldLegIndividualAllocID.offset > 0;
+     case FieldNoNested2PartyIDs::TAG : return fieldNoNested2PartyIDs.offset > 0;
+     case FieldLegAllocQty::TAG : return fieldLegAllocQty.offset > 0;
+     case FieldLegAllocAcctIDSource::TAG : return fieldLegAllocAcctIDSource.offset > 0;
+     case FieldLegSettlCurrency::TAG : return fieldLegSettlCurrency.offset > 0;
+
+     default : return false; 
+   }
+   return false;
+}
+
+bool GroupRegistDtls::isFieldSet( unsigned tag ) const {
+   if( _fixPtr == nullptr ) return false;
+   switch( tag ){
+     case FieldRegistDtls::TAG : return fieldRegistDtls.offset > 0 ;
+     case FieldRegistEmail::TAG : return fieldRegistEmail.offset > 0;
+     case FieldMailingDtls::TAG : return fieldMailingDtls.offset > 0;
+     case FieldMailingInst::TAG : return fieldMailingInst.offset > 0;
+     case FieldNoNestedPartyIDs::TAG : return fieldNoNestedPartyIDs.offset > 0;
+     case FieldOwnerType::TAG : return fieldOwnerType.offset > 0;
+     case FieldDateOfBirth::TAG : return fieldDateOfBirth.offset > 0;
+     case FieldInvestorCountryOfResidence::TAG : return fieldInvestorCountryOfResidence.offset > 0;
+
+     default : return false; 
+   }
+   return false;
+}
+
+bool GroupContAmts::isFieldSet( unsigned tag ) const {
+   if( _fixPtr == nullptr ) return false;
+   switch( tag ){
+     case FieldContAmtType::TAG : return fieldContAmtType.offset > 0 ;
+     case FieldContAmtValue::TAG : return fieldContAmtValue.offset > 0;
+     case FieldContAmtCurr::TAG : return fieldContAmtCurr.offset > 0;
+
+     default : return false; 
+   }
+   return false;
+}
+
+bool GroupMDEntries::isFieldSet( unsigned tag ) const {
+   if( _fixPtr == nullptr ) return false;
+   switch( tag ){
+     case FieldMDEntryType::TAG : return fieldMDEntryType.offset > 0 ;
+     case FieldMDEntryPx::TAG : return fieldMDEntryPx.offset > 0;
+     case FieldCurrency::TAG : return fieldCurrency.offset > 0;
+     case FieldMDEntrySize::TAG : return fieldMDEntrySize.offset > 0;
+     case FieldMDEntryDate::TAG : return fieldMDEntryDate.offset > 0;
+     case FieldMDEntryTime::TAG : return fieldMDEntryTime.offset > 0;
+     case FieldTickDirection::TAG : return fieldTickDirection.offset > 0;
+     case FieldMDMkt::TAG : return fieldMDMkt.offset > 0;
+     case FieldTradingSessionID::TAG : return fieldTradingSessionID.offset > 0;
+     case FieldTradingSessionSubID::TAG : return fieldTradingSessionSubID.offset > 0;
+     case FieldQuoteCondition::TAG : return fieldQuoteCondition.offset > 0;
+     case FieldTradeCondition::TAG : return fieldTradeCondition.offset > 0;
+     case FieldMDEntryOriginator::TAG : return fieldMDEntryOriginator.offset > 0;
+     case FieldLocationID::TAG : return fieldLocationID.offset > 0;
+     case FieldDeskID::TAG : return fieldDeskID.offset > 0;
+     case FieldOpenCloseSettlFlag::TAG : return fieldOpenCloseSettlFlag.offset > 0;
+     case FieldTimeInForce::TAG : return fieldTimeInForce.offset > 0;
+     case FieldExpireDate::TAG : return fieldExpireDate.offset > 0;
+     case FieldExpireTime::TAG : return fieldExpireTime.offset > 0;
+     case FieldMinQty::TAG : return fieldMinQty.offset > 0;
+     case FieldExecInst::TAG : return fieldExecInst.offset > 0;
+     case FieldSellerDays::TAG : return fieldSellerDays.offset > 0;
+     case FieldOrderID::TAG : return fieldOrderID.offset > 0;
+     case FieldQuoteEntryID::TAG : return fieldQuoteEntryID.offset > 0;
+     case FieldMDEntryBuyer::TAG : return fieldMDEntryBuyer.offset > 0;
+     case FieldMDEntrySeller::TAG : return fieldMDEntrySeller.offset > 0;
+     case FieldNumberOfOrders::TAG : return fieldNumberOfOrders.offset > 0;
+     case FieldMDEntryPositionNo::TAG : return fieldMDEntryPositionNo.offset > 0;
+     case FieldScope::TAG : return fieldScope.offset > 0;
+     case FieldPriceDelta::TAG : return fieldPriceDelta.offset > 0;
+     case FieldText::TAG : return fieldText.offset > 0;
+     case FieldEncodedTextLen::TAG : return fieldEncodedTextLen.offset > 0;
+     case FieldEncodedText::TAG : return fieldEncodedText.offset > 0;
+
+     default : return false; 
+   }
+   return false;
+}
+
+
 // ---------------------------------- getKnownFields ---------------------------------
 namespace {
 

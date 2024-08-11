@@ -1897,9 +1897,13 @@ struct AdvSideEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType BUY;
+   static constexpr ValueType ITEM_BUY = 'B';
    static const ItemType SELL;
+   static constexpr ValueType ITEM_SELL = 'S';
    static const ItemType CROSS;
+   static constexpr ValueType ITEM_CROSS = 'X';
    static const ItemType TRADE;
+   static constexpr ValueType ITEM_TRADE = 'T';
 };
 
 struct AdvTransTypeEnums final: FieldEnumsBase {
@@ -1915,8 +1919,11 @@ struct AdvTransTypeEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType NEW;
+   static constexpr ValueType ITEM_NEW = SOHSTR(N);
    static const ItemType CANCEL;
+   static constexpr ValueType ITEM_CANCEL = SOHSTR(C);
    static const ItemType REPLACE;
+   static constexpr ValueType ITEM_REPLACE = SOHSTR(R);
 };
 
 struct CommTypeEnums final: FieldEnumsBase {
@@ -1932,11 +1939,17 @@ struct CommTypeEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType PER_UNIT;
+   static constexpr ValueType ITEM_PER_UNIT = '1';
    static const ItemType PERCENTAGE;
+   static constexpr ValueType ITEM_PERCENTAGE = '2';
    static const ItemType ABSOLUTE;
+   static constexpr ValueType ITEM_ABSOLUTE = '3';
    static const ItemType _4;
+   static constexpr ValueType ITEM__4 = '4';
    static const ItemType _5;
+   static constexpr ValueType ITEM__5 = '5';
    static const ItemType POINTS_PER_BOND_OR_CONTRACT_SUPPLY_CONTRACTMULTIPLIER;
+   static constexpr ValueType ITEM_POINTS_PER_BOND_OR_CONTRACT_SUPPLY_CONTRACTMULTIPLIER = '6';
 };
 
 struct ExecInstEnums final: FieldEnumsBase {
@@ -1952,45 +1965,85 @@ struct ExecInstEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType NOT_HELD;
+   static constexpr ValueType ITEM_NOT_HELD = SOHSTR(1);
    static const ItemType WORK;
+   static constexpr ValueType ITEM_WORK = SOHSTR(2);
    static const ItemType GO_ALONG;
+   static constexpr ValueType ITEM_GO_ALONG = SOHSTR(3);
    static const ItemType OVER_THE_DAY;
+   static constexpr ValueType ITEM_OVER_THE_DAY = SOHSTR(4);
    static const ItemType HELD;
+   static constexpr ValueType ITEM_HELD = SOHSTR(5);
    static const ItemType PARTICIPATE_DONT_INITIATE;
+   static constexpr ValueType ITEM_PARTICIPATE_DONT_INITIATE = SOHSTR(6);
    static const ItemType STRICT_SCALE;
+   static constexpr ValueType ITEM_STRICT_SCALE = SOHSTR(7);
    static const ItemType TRY_TO_SCALE;
+   static constexpr ValueType ITEM_TRY_TO_SCALE = SOHSTR(8);
    static const ItemType STAY_ON_BIDSIDE;
+   static constexpr ValueType ITEM_STAY_ON_BIDSIDE = SOHSTR(9);
    static const ItemType STAY_ON_OFFERSIDE;
+   static constexpr ValueType ITEM_STAY_ON_OFFERSIDE = SOHSTR(0);
    static const ItemType NO_CROSS;
+   static constexpr ValueType ITEM_NO_CROSS = SOHSTR(A);
    static const ItemType OK_TO_CROSS;
+   static constexpr ValueType ITEM_OK_TO_CROSS = SOHSTR(B);
    static const ItemType CALL_FIRST;
+   static constexpr ValueType ITEM_CALL_FIRST = SOHSTR(C);
    static const ItemType PERCENT_OF_VOLUME;
+   static constexpr ValueType ITEM_PERCENT_OF_VOLUME = SOHSTR(D);
    static const ItemType DO_NOT_INCREASE;
+   static constexpr ValueType ITEM_DO_NOT_INCREASE = SOHSTR(E);
    static const ItemType DO_NOT_REDUCE;
+   static constexpr ValueType ITEM_DO_NOT_REDUCE = SOHSTR(F);
    static const ItemType ALL_OR_NONE;
+   static constexpr ValueType ITEM_ALL_OR_NONE = SOHSTR(G);
    static const ItemType REINSTATE_ON_SYSTEM_FAILURE;
+   static constexpr ValueType ITEM_REINSTATE_ON_SYSTEM_FAILURE = SOHSTR(H);
    static const ItemType INSTITUTIONS_ONLY;
+   static constexpr ValueType ITEM_INSTITUTIONS_ONLY = SOHSTR(I);
    static const ItemType REINSTATE_ON_TRADING_HALT;
+   static constexpr ValueType ITEM_REINSTATE_ON_TRADING_HALT = SOHSTR(J);
    static const ItemType CANCEL_ON_TRADING_HALT;
+   static constexpr ValueType ITEM_CANCEL_ON_TRADING_HALT = SOHSTR(K);
    static const ItemType LAST_PEG;
+   static constexpr ValueType ITEM_LAST_PEG = SOHSTR(L);
    static const ItemType MID_PRICE_PEG;
+   static constexpr ValueType ITEM_MID_PRICE_PEG = SOHSTR(M);
    static const ItemType NON_NEGOTIABLE;
+   static constexpr ValueType ITEM_NON_NEGOTIABLE = SOHSTR(N);
    static const ItemType OPENING_PEG;
+   static constexpr ValueType ITEM_OPENING_PEG = SOHSTR(O);
    static const ItemType MARKET_PEG;
+   static constexpr ValueType ITEM_MARKET_PEG = SOHSTR(P);
    static const ItemType CANCEL_ON_SYSTEM_FAILURE;
+   static constexpr ValueType ITEM_CANCEL_ON_SYSTEM_FAILURE = SOHSTR(Q);
    static const ItemType PRIMARY_PEG;
+   static constexpr ValueType ITEM_PRIMARY_PEG = SOHSTR(R);
    static const ItemType SUSPEND;
+   static constexpr ValueType ITEM_SUSPEND = SOHSTR(S);
    static const ItemType CUSTOMER_DISPLAY_INSTRUCTION;
+   static constexpr ValueType ITEM_CUSTOMER_DISPLAY_INSTRUCTION = SOHSTR(U);
    static const ItemType NETTING;
+   static constexpr ValueType ITEM_NETTING = SOHSTR(V);
    static const ItemType PEG_TO_VWAP;
+   static constexpr ValueType ITEM_PEG_TO_VWAP = SOHSTR(W);
    static const ItemType TRADE_ALONG;
+   static constexpr ValueType ITEM_TRADE_ALONG = SOHSTR(X);
    static const ItemType TRY_TO_STOP;
+   static constexpr ValueType ITEM_TRY_TO_STOP = SOHSTR(Y);
    static const ItemType CANCEL_IF_NOT_BEST;
+   static constexpr ValueType ITEM_CANCEL_IF_NOT_BEST = SOHSTR(Z);
    static const ItemType TRAILING_STOP_PEG;
+   static constexpr ValueType ITEM_TRAILING_STOP_PEG = SOHSTR(a);
    static const ItemType STRICT_LIMIT;
+   static constexpr ValueType ITEM_STRICT_LIMIT = SOHSTR(b);
    static const ItemType IGNORE_PRICE_VALIDITY_CHECKS;
+   static constexpr ValueType ITEM_IGNORE_PRICE_VALIDITY_CHECKS = SOHSTR(c);
    static const ItemType PEG_TO_LIMIT_PRICE;
+   static constexpr ValueType ITEM_PEG_TO_LIMIT_PRICE = SOHSTR(d);
    static const ItemType WORK_TO_TARGET_STRATEGY;
+   static constexpr ValueType ITEM_WORK_TO_TARGET_STRATEGY = SOHSTR(e);
 };
 
 struct HandlInstEnums final: FieldEnumsBase {
@@ -2006,8 +2059,11 @@ struct HandlInstEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType AUTOMATED_EXECUTION_ORDER_PRIVATE_NO_BROKER_INTERVENTION;
+   static constexpr ValueType ITEM_AUTOMATED_EXECUTION_ORDER_PRIVATE_NO_BROKER_INTERVENTION = '1';
    static const ItemType AUTOMATED_EXECUTION_ORDER_PUBLIC_BROKER_INTERVENTION_OK;
+   static constexpr ValueType ITEM_AUTOMATED_EXECUTION_ORDER_PUBLIC_BROKER_INTERVENTION_OK = '2';
    static const ItemType MANUAL_ORDER_BEST_EXECUTION;
+   static constexpr ValueType ITEM_MANUAL_ORDER_BEST_EXECUTION = '3';
 };
 
 struct SecurityIDSourceEnums final: FieldEnumsBase {
@@ -2023,24 +2079,43 @@ struct SecurityIDSourceEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType CUSIP;
+   static constexpr ValueType ITEM_CUSIP = SOHSTR(1);
    static const ItemType SEDOL;
+   static constexpr ValueType ITEM_SEDOL = SOHSTR(2);
    static const ItemType QUIK;
+   static constexpr ValueType ITEM_QUIK = SOHSTR(3);
    static const ItemType ISIN_NUMBER;
+   static constexpr ValueType ITEM_ISIN_NUMBER = SOHSTR(4);
    static const ItemType RIC_CODE;
+   static constexpr ValueType ITEM_RIC_CODE = SOHSTR(5);
    static const ItemType ISO_CURRENCY_CODE;
+   static constexpr ValueType ITEM_ISO_CURRENCY_CODE = SOHSTR(6);
    static const ItemType ISO_COUNTRY_CODE;
+   static constexpr ValueType ITEM_ISO_COUNTRY_CODE = SOHSTR(7);
    static const ItemType EXCHANGE_SYMBOL;
+   static constexpr ValueType ITEM_EXCHANGE_SYMBOL = SOHSTR(8);
    static const ItemType CONSOLIDATED_TAPE_ASSOCIATION;
+   static constexpr ValueType ITEM_CONSOLIDATED_TAPE_ASSOCIATION = SOHSTR(9);
    static const ItemType BLOOMBERG_SYMBOL;
+   static constexpr ValueType ITEM_BLOOMBERG_SYMBOL = SOHSTR(A);
    static const ItemType WERTPAPIER;
+   static constexpr ValueType ITEM_WERTPAPIER = SOHSTR(B);
    static const ItemType DUTCH;
+   static constexpr ValueType ITEM_DUTCH = SOHSTR(C);
    static const ItemType VALOREN;
+   static constexpr ValueType ITEM_VALOREN = SOHSTR(D);
    static const ItemType SICOVAM;
+   static constexpr ValueType ITEM_SICOVAM = SOHSTR(E);
    static const ItemType BELGIAN;
+   static constexpr ValueType ITEM_BELGIAN = SOHSTR(F);
    static const ItemType COMMON;
+   static constexpr ValueType ITEM_COMMON = SOHSTR(G);
    static const ItemType CLEARING_HOUSE;
+   static constexpr ValueType ITEM_CLEARING_HOUSE = SOHSTR(H);
    static const ItemType ISDA_FPML_PRODUCT_SPECIFICATION;
+   static constexpr ValueType ITEM_ISDA_FPML_PRODUCT_SPECIFICATION = SOHSTR(I);
    static const ItemType OPTIONS_PRICE_REPORTING_AUTHORITY;
+   static constexpr ValueType ITEM_OPTIONS_PRICE_REPORTING_AUTHORITY = SOHSTR(J);
 };
 
 struct IOIQltyIndEnums final: FieldEnumsBase {
@@ -2056,8 +2131,11 @@ struct IOIQltyIndEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType LOW;
+   static constexpr ValueType ITEM_LOW = 'L';
    static const ItemType MEDIUM;
+   static constexpr ValueType ITEM_MEDIUM = 'M';
    static const ItemType HIGH;
+   static constexpr ValueType ITEM_HIGH = 'H';
 };
 
 struct IOIQtyEnums final: FieldEnumsBase {
@@ -2073,8 +2151,11 @@ struct IOIQtyEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType SMALL;
+   static constexpr ValueType ITEM_SMALL = SOHSTR(S);
    static const ItemType MEDIUM;
+   static constexpr ValueType ITEM_MEDIUM = SOHSTR(M);
    static const ItemType LARGE;
+   static constexpr ValueType ITEM_LARGE = SOHSTR(L);
 };
 
 struct IOITransTypeEnums final: FieldEnumsBase {
@@ -2090,8 +2171,11 @@ struct IOITransTypeEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType NEW;
+   static constexpr ValueType ITEM_NEW = 'N';
    static const ItemType CANCEL;
+   static constexpr ValueType ITEM_CANCEL = 'C';
    static const ItemType REPLACE;
+   static constexpr ValueType ITEM_REPLACE = 'R';
 };
 
 struct LastCapacityEnums final: FieldEnumsBase {
@@ -2107,9 +2191,13 @@ struct LastCapacityEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType AGENT;
+   static constexpr ValueType ITEM_AGENT = '1';
    static const ItemType CROSS_AS_AGENT;
+   static constexpr ValueType ITEM_CROSS_AS_AGENT = '2';
    static const ItemType CROSS_AS_PRINCIPAL;
+   static constexpr ValueType ITEM_CROSS_AS_PRINCIPAL = '3';
    static const ItemType PRINCIPAL;
+   static constexpr ValueType ITEM_PRINCIPAL = '4';
 };
 
 struct MsgTypeEnums final: FieldEnumsBase {
@@ -2125,98 +2213,191 @@ struct MsgTypeEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType HEARTBEAT;
+   static constexpr ValueType ITEM_HEARTBEAT = SOHSTR(0);
    static const ItemType TEST_REQUEST;
+   static constexpr ValueType ITEM_TEST_REQUEST = SOHSTR(1);
    static const ItemType RESEND_REQUEST;
+   static constexpr ValueType ITEM_RESEND_REQUEST = SOHSTR(2);
    static const ItemType REJECT;
+   static constexpr ValueType ITEM_REJECT = SOHSTR(3);
    static const ItemType SEQUENCE_RESET;
+   static constexpr ValueType ITEM_SEQUENCE_RESET = SOHSTR(4);
    static const ItemType LOGOUT;
+   static constexpr ValueType ITEM_LOGOUT = SOHSTR(5);
    static const ItemType INDICATION_OF_INTEREST;
+   static constexpr ValueType ITEM_INDICATION_OF_INTEREST = SOHSTR(6);
    static const ItemType ADVERTISEMENT;
+   static constexpr ValueType ITEM_ADVERTISEMENT = SOHSTR(7);
    static const ItemType EXECUTION_REPORT;
+   static constexpr ValueType ITEM_EXECUTION_REPORT = SOHSTR(8);
    static const ItemType ORDER_CANCEL_REJECT;
+   static constexpr ValueType ITEM_ORDER_CANCEL_REJECT = SOHSTR(9);
    static const ItemType LOGON;
+   static constexpr ValueType ITEM_LOGON = SOHSTR(A);
    static const ItemType NEWS;
+   static constexpr ValueType ITEM_NEWS = SOHSTR(B);
    static const ItemType EMAIL;
+   static constexpr ValueType ITEM_EMAIL = SOHSTR(C);
    static const ItemType ORDER_SINGLE;
+   static constexpr ValueType ITEM_ORDER_SINGLE = SOHSTR(D);
    static const ItemType ORDER_LIST;
+   static constexpr ValueType ITEM_ORDER_LIST = SOHSTR(E);
    static const ItemType ORDER_CANCEL_REQUEST;
+   static constexpr ValueType ITEM_ORDER_CANCEL_REQUEST = SOHSTR(F);
    static const ItemType ORDER_CANCEL_REPLACE_REQUEST;
+   static constexpr ValueType ITEM_ORDER_CANCEL_REPLACE_REQUEST = SOHSTR(G);
    static const ItemType ORDER_STATUS_REQUEST;
+   static constexpr ValueType ITEM_ORDER_STATUS_REQUEST = SOHSTR(H);
    static const ItemType ALLOCATION_INSTRUCTION;
+   static constexpr ValueType ITEM_ALLOCATION_INSTRUCTION = SOHSTR(J);
    static const ItemType LIST_CANCEL_REQUEST;
+   static constexpr ValueType ITEM_LIST_CANCEL_REQUEST = SOHSTR(K);
    static const ItemType LIST_EXECUTE;
+   static constexpr ValueType ITEM_LIST_EXECUTE = SOHSTR(L);
    static const ItemType LIST_STATUS_REQUEST;
+   static constexpr ValueType ITEM_LIST_STATUS_REQUEST = SOHSTR(M);
    static const ItemType LIST_STATUS;
+   static constexpr ValueType ITEM_LIST_STATUS = SOHSTR(N);
    static const ItemType ALLOCATION_INSTRUCTION_ACK;
+   static constexpr ValueType ITEM_ALLOCATION_INSTRUCTION_ACK = SOHSTR(P);
    static const ItemType DONT_KNOW_TRADE;
+   static constexpr ValueType ITEM_DONT_KNOW_TRADE = SOHSTR(Q);
    static const ItemType QUOTE_REQUEST;
+   static constexpr ValueType ITEM_QUOTE_REQUEST = SOHSTR(R);
    static const ItemType QUOTE;
+   static constexpr ValueType ITEM_QUOTE = SOHSTR(S);
    static const ItemType SETTLEMENT_INSTRUCTIONS;
+   static constexpr ValueType ITEM_SETTLEMENT_INSTRUCTIONS = SOHSTR(T);
    static const ItemType MARKET_DATA_REQUEST;
+   static constexpr ValueType ITEM_MARKET_DATA_REQUEST = SOHSTR(V);
    static const ItemType MARKET_DATA_SNAPSHOT_FULL_REFRESH;
+   static constexpr ValueType ITEM_MARKET_DATA_SNAPSHOT_FULL_REFRESH = SOHSTR(W);
    static const ItemType MARKET_DATA_INCREMENTAL_REFRESH;
+   static constexpr ValueType ITEM_MARKET_DATA_INCREMENTAL_REFRESH = SOHSTR(X);
    static const ItemType MARKET_DATA_REQUEST_REJECT;
+   static constexpr ValueType ITEM_MARKET_DATA_REQUEST_REJECT = SOHSTR(Y);
    static const ItemType QUOTE_CANCEL;
+   static constexpr ValueType ITEM_QUOTE_CANCEL = SOHSTR(Z);
    static const ItemType QUOTE_STATUS_REQUEST;
+   static constexpr ValueType ITEM_QUOTE_STATUS_REQUEST = SOHSTR(a);
    static const ItemType MASS_QUOTE_ACKNOWLEDGEMENT;
+   static constexpr ValueType ITEM_MASS_QUOTE_ACKNOWLEDGEMENT = SOHSTR(b);
    static const ItemType SECURITY_DEFINITION_REQUEST;
+   static constexpr ValueType ITEM_SECURITY_DEFINITION_REQUEST = SOHSTR(c);
    static const ItemType SECURITY_DEFINITION;
+   static constexpr ValueType ITEM_SECURITY_DEFINITION = SOHSTR(d);
    static const ItemType SECURITY_STATUS_REQUEST;
+   static constexpr ValueType ITEM_SECURITY_STATUS_REQUEST = SOHSTR(e);
    static const ItemType SECURITY_STATUS;
+   static constexpr ValueType ITEM_SECURITY_STATUS = SOHSTR(f);
    static const ItemType TRADING_SESSION_STATUS_REQUEST;
+   static constexpr ValueType ITEM_TRADING_SESSION_STATUS_REQUEST = SOHSTR(g);
    static const ItemType TRADING_SESSION_STATUS;
+   static constexpr ValueType ITEM_TRADING_SESSION_STATUS = SOHSTR(h);
    static const ItemType MASS_QUOTE;
+   static constexpr ValueType ITEM_MASS_QUOTE = SOHSTR(i);
    static const ItemType BUSINESS_MESSAGE_REJECT;
+   static constexpr ValueType ITEM_BUSINESS_MESSAGE_REJECT = SOHSTR(j);
    static const ItemType BID_REQUEST;
+   static constexpr ValueType ITEM_BID_REQUEST = SOHSTR(k);
    static const ItemType BID_RESPONSE;
+   static constexpr ValueType ITEM_BID_RESPONSE = SOHSTR(l);
    static const ItemType LIST_STRIKE_PRICE;
+   static constexpr ValueType ITEM_LIST_STRIKE_PRICE = SOHSTR(m);
    static const ItemType XML_MESSAGE;
+   static constexpr ValueType ITEM_XML_MESSAGE = SOHSTR(n);
    static const ItemType REGISTRATION_INSTRUCTIONS;
+   static constexpr ValueType ITEM_REGISTRATION_INSTRUCTIONS = SOHSTR(o);
    static const ItemType REGISTRATION_INSTRUCTIONS_RESPONSE;
+   static constexpr ValueType ITEM_REGISTRATION_INSTRUCTIONS_RESPONSE = SOHSTR(p);
    static const ItemType ORDER_MASS_CANCEL_REQUEST;
+   static constexpr ValueType ITEM_ORDER_MASS_CANCEL_REQUEST = SOHSTR(q);
    static const ItemType ORDER_MASS_CANCEL_REPORT;
+   static constexpr ValueType ITEM_ORDER_MASS_CANCEL_REPORT = SOHSTR(r);
    static const ItemType NEW_ORDER_s;
+   static constexpr ValueType ITEM_NEW_ORDER_s = SOHSTR(s);
    static const ItemType CROSS_ORDER_CANCEL_REPLACE_REQUEST;
+   static constexpr ValueType ITEM_CROSS_ORDER_CANCEL_REPLACE_REQUEST = SOHSTR(t);
    static const ItemType CROSS_ORDER_CANCEL_REQUEST;
+   static constexpr ValueType ITEM_CROSS_ORDER_CANCEL_REQUEST = SOHSTR(u);
    static const ItemType SECURITY_TYPE_REQUEST;
+   static constexpr ValueType ITEM_SECURITY_TYPE_REQUEST = SOHSTR(v);
    static const ItemType SECURITY_TYPES;
+   static constexpr ValueType ITEM_SECURITY_TYPES = SOHSTR(w);
    static const ItemType SECURITY_LIST_REQUEST;
+   static constexpr ValueType ITEM_SECURITY_LIST_REQUEST = SOHSTR(x);
    static const ItemType SECURITY_LIST;
+   static constexpr ValueType ITEM_SECURITY_LIST = SOHSTR(y);
    static const ItemType DERIVATIVE_SECURITY_LIST_REQUEST;
+   static constexpr ValueType ITEM_DERIVATIVE_SECURITY_LIST_REQUEST = SOHSTR(z);
    static const ItemType DERIVATIVE_SECURITY_LIST;
+   static constexpr ValueType ITEM_DERIVATIVE_SECURITY_LIST = SOHSTR(AA);
    static const ItemType NEW_ORDER_AB;
+   static constexpr ValueType ITEM_NEW_ORDER_AB = SOHSTR(AB);
    static const ItemType MULTILEG_ORDER_CANCEL_REPLACE;
+   static constexpr ValueType ITEM_MULTILEG_ORDER_CANCEL_REPLACE = SOHSTR(AC);
    static const ItemType TRADE_CAPTURE_REPORT_REQUEST;
+   static constexpr ValueType ITEM_TRADE_CAPTURE_REPORT_REQUEST = SOHSTR(AD);
    static const ItemType TRADE_CAPTURE_REPORT;
+   static constexpr ValueType ITEM_TRADE_CAPTURE_REPORT = SOHSTR(AE);
    static const ItemType ORDER_MASS_STATUS_REQUEST;
+   static constexpr ValueType ITEM_ORDER_MASS_STATUS_REQUEST = SOHSTR(AF);
    static const ItemType QUOTE_REQUEST_REJECT;
+   static constexpr ValueType ITEM_QUOTE_REQUEST_REJECT = SOHSTR(AG);
    static const ItemType RFQ_REQUEST;
+   static constexpr ValueType ITEM_RFQ_REQUEST = SOHSTR(AH);
    static const ItemType QUOTE_STATUS_REPORT;
+   static constexpr ValueType ITEM_QUOTE_STATUS_REPORT = SOHSTR(AI);
    static const ItemType QUOTE_RESPONSE;
+   static constexpr ValueType ITEM_QUOTE_RESPONSE = SOHSTR(AJ);
    static const ItemType CONFIRMATION;
+   static constexpr ValueType ITEM_CONFIRMATION = SOHSTR(AK);
    static const ItemType POSITION_MAINTENANCE_REQUEST;
+   static constexpr ValueType ITEM_POSITION_MAINTENANCE_REQUEST = SOHSTR(AL);
    static const ItemType POSITION_MAINTENANCE_REPORT;
+   static constexpr ValueType ITEM_POSITION_MAINTENANCE_REPORT = SOHSTR(AM);
    static const ItemType REQUEST_FOR_POSITIONS;
+   static constexpr ValueType ITEM_REQUEST_FOR_POSITIONS = SOHSTR(AN);
    static const ItemType REQUEST_FOR_POSITIONS_ACK;
+   static constexpr ValueType ITEM_REQUEST_FOR_POSITIONS_ACK = SOHSTR(AO);
    static const ItemType POSITION_REPORT;
+   static constexpr ValueType ITEM_POSITION_REPORT = SOHSTR(AP);
    static const ItemType TRADE_CAPTURE_REPORT_REQUEST_ACK;
+   static constexpr ValueType ITEM_TRADE_CAPTURE_REPORT_REQUEST_ACK = SOHSTR(AQ);
    static const ItemType TRADE_CAPTURE_REPORT_ACK;
+   static constexpr ValueType ITEM_TRADE_CAPTURE_REPORT_ACK = SOHSTR(AR);
    static const ItemType ALLOCATION_REPORT;
+   static constexpr ValueType ITEM_ALLOCATION_REPORT = SOHSTR(AS);
    static const ItemType ALLOCATION_REPORT_ACK;
+   static constexpr ValueType ITEM_ALLOCATION_REPORT_ACK = SOHSTR(AT);
    static const ItemType CONFIRMATION_ACK;
+   static constexpr ValueType ITEM_CONFIRMATION_ACK = SOHSTR(AU);
    static const ItemType SETTLEMENT_INSTRUCTION_REQUEST;
+   static constexpr ValueType ITEM_SETTLEMENT_INSTRUCTION_REQUEST = SOHSTR(AV);
    static const ItemType ASSIGNMENT_REPORT;
+   static constexpr ValueType ITEM_ASSIGNMENT_REPORT = SOHSTR(AW);
    static const ItemType COLLATERAL_REQUEST;
+   static constexpr ValueType ITEM_COLLATERAL_REQUEST = SOHSTR(AX);
    static const ItemType COLLATERAL_ASSIGNMENT;
+   static constexpr ValueType ITEM_COLLATERAL_ASSIGNMENT = SOHSTR(AY);
    static const ItemType COLLATERAL_RESPONSE;
+   static constexpr ValueType ITEM_COLLATERAL_RESPONSE = SOHSTR(AZ);
    static const ItemType COLLATERAL_REPORT;
+   static constexpr ValueType ITEM_COLLATERAL_REPORT = SOHSTR(BA);
    static const ItemType COLLATERAL_INQUIRY;
+   static constexpr ValueType ITEM_COLLATERAL_INQUIRY = SOHSTR(BB);
    static const ItemType NETWORK_BC;
+   static constexpr ValueType ITEM_NETWORK_BC = SOHSTR(BC);
    static const ItemType NETWORK_BD;
+   static constexpr ValueType ITEM_NETWORK_BD = SOHSTR(BD);
    static const ItemType USER_REQUEST;
+   static constexpr ValueType ITEM_USER_REQUEST = SOHSTR(BE);
    static const ItemType USER_RESPONSE;
+   static constexpr ValueType ITEM_USER_RESPONSE = SOHSTR(BF);
    static const ItemType COLLATERAL_INQUIRY_ACK;
+   static constexpr ValueType ITEM_COLLATERAL_INQUIRY_ACK = SOHSTR(BG);
    static const ItemType CONFIRMATION_REQUEST;
+   static constexpr ValueType ITEM_CONFIRMATION_REQUEST = SOHSTR(BH);
 };
 
 struct OrdStatusEnums final: FieldEnumsBase {
@@ -2232,19 +2413,33 @@ struct OrdStatusEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType NEW;
+   static constexpr ValueType ITEM_NEW = '0';
    static const ItemType PARTIALLY_FILLED;
+   static constexpr ValueType ITEM_PARTIALLY_FILLED = '1';
    static const ItemType FILLED;
+   static constexpr ValueType ITEM_FILLED = '2';
    static const ItemType DONE_FOR_DAY;
+   static constexpr ValueType ITEM_DONE_FOR_DAY = '3';
    static const ItemType CANCELED;
+   static constexpr ValueType ITEM_CANCELED = '4';
    static const ItemType PENDING_CANCEL;
+   static constexpr ValueType ITEM_PENDING_CANCEL = '6';
    static const ItemType STOPPED;
+   static constexpr ValueType ITEM_STOPPED = '7';
    static const ItemType REJECTED;
+   static constexpr ValueType ITEM_REJECTED = '8';
    static const ItemType SUSPENDED;
+   static constexpr ValueType ITEM_SUSPENDED = '9';
    static const ItemType PENDING_NEW;
+   static constexpr ValueType ITEM_PENDING_NEW = 'A';
    static const ItemType CALCULATED;
+   static constexpr ValueType ITEM_CALCULATED = 'B';
    static const ItemType EXPIRED;
+   static constexpr ValueType ITEM_EXPIRED = 'C';
    static const ItemType ACCEPTED_FOR_BIDDING;
+   static constexpr ValueType ITEM_ACCEPTED_FOR_BIDDING = 'D';
    static const ItemType PENDING_REPLACE;
+   static constexpr ValueType ITEM_PENDING_REPLACE = 'E';
 };
 
 struct OrdTypeEnums final: FieldEnumsBase {
@@ -2260,22 +2455,39 @@ struct OrdTypeEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType MARKET;
+   static constexpr ValueType ITEM_MARKET = '1';
    static const ItemType LIMIT;
+   static constexpr ValueType ITEM_LIMIT = '2';
    static const ItemType STOP;
+   static constexpr ValueType ITEM_STOP = '3';
    static const ItemType STOP_LIMIT;
+   static constexpr ValueType ITEM_STOP_LIMIT = '4';
    static const ItemType WITH_OR_WITHOUT;
+   static constexpr ValueType ITEM_WITH_OR_WITHOUT = '6';
    static const ItemType LIMIT_OR_BETTER;
+   static constexpr ValueType ITEM_LIMIT_OR_BETTER = '7';
    static const ItemType LIMIT_WITH_OR_WITHOUT;
+   static constexpr ValueType ITEM_LIMIT_WITH_OR_WITHOUT = '8';
    static const ItemType ON_BASIS;
+   static constexpr ValueType ITEM_ON_BASIS = '9';
    static const ItemType PREVIOUSLY_QUOTED;
+   static constexpr ValueType ITEM_PREVIOUSLY_QUOTED = 'D';
    static const ItemType PREVIOUSLY_INDICATED;
+   static constexpr ValueType ITEM_PREVIOUSLY_INDICATED = 'E';
    static const ItemType FOREX;
+   static constexpr ValueType ITEM_FOREX = 'G';
    static const ItemType FUNARI;
+   static constexpr ValueType ITEM_FUNARI = 'I';
    static const ItemType MARKET_IF_TOUCHED;
+   static constexpr ValueType ITEM_MARKET_IF_TOUCHED = 'J';
    static const ItemType MARKET_WITH_LEFTOVER_AS_LIMIT;
+   static constexpr ValueType ITEM_MARKET_WITH_LEFTOVER_AS_LIMIT = 'K';
    static const ItemType PREVIOUS_FUND_VALUATION_POINT;
+   static constexpr ValueType ITEM_PREVIOUS_FUND_VALUATION_POINT = 'L';
    static const ItemType NEXT_FUND_VALUATION_POINT;
+   static constexpr ValueType ITEM_NEXT_FUND_VALUATION_POINT = 'M';
    static const ItemType PEGGED;
+   static constexpr ValueType ITEM_PEGGED = 'P';
 };
 
 struct PossDupFlagEnums final: FieldEnumsBase {
@@ -2291,7 +2503,9 @@ struct PossDupFlagEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType YES;
+   static constexpr ValueType ITEM_YES = 'Y';
    static const ItemType NO;
+   static constexpr ValueType ITEM_NO = 'N';
 };
 
 struct SideEnums final: FieldEnumsBase {
@@ -2307,21 +2521,37 @@ struct SideEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType BUY;
+   static constexpr ValueType ITEM_BUY = '1';
    static const ItemType SELL;
+   static constexpr ValueType ITEM_SELL = '2';
    static const ItemType BUY_MINUS;
+   static constexpr ValueType ITEM_BUY_MINUS = '3';
    static const ItemType SELL_PLUS;
+   static constexpr ValueType ITEM_SELL_PLUS = '4';
    static const ItemType SELL_SHORT;
+   static constexpr ValueType ITEM_SELL_SHORT = '5';
    static const ItemType SELL_SHORT_EXEMPT;
+   static constexpr ValueType ITEM_SELL_SHORT_EXEMPT = '6';
    static const ItemType UNDISCLOSED;
+   static constexpr ValueType ITEM_UNDISCLOSED = '7';
    static const ItemType CROSS;
+   static constexpr ValueType ITEM_CROSS = '8';
    static const ItemType CROSS_SHORT;
+   static constexpr ValueType ITEM_CROSS_SHORT = '9';
    static const ItemType CROSS_SHORT_EXEMPT;
+   static constexpr ValueType ITEM_CROSS_SHORT_EXEMPT = 'A';
    static const ItemType AS_DEFINED;
+   static constexpr ValueType ITEM_AS_DEFINED = 'B';
    static const ItemType OPPOSITE;
+   static constexpr ValueType ITEM_OPPOSITE = 'C';
    static const ItemType SUBSCRIBE;
+   static constexpr ValueType ITEM_SUBSCRIBE = 'D';
    static const ItemType REDEEM;
+   static constexpr ValueType ITEM_REDEEM = 'E';
    static const ItemType LEND;
+   static constexpr ValueType ITEM_LEND = 'F';
    static const ItemType BORROW;
+   static constexpr ValueType ITEM_BORROW = 'G';
 };
 
 struct TimeInForceEnums final: FieldEnumsBase {
@@ -2337,13 +2567,21 @@ struct TimeInForceEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType DAY;
+   static constexpr ValueType ITEM_DAY = '0';
    static const ItemType GOOD_TILL_CANCEL;
+   static constexpr ValueType ITEM_GOOD_TILL_CANCEL = '1';
    static const ItemType AT_THE_OPENING;
+   static constexpr ValueType ITEM_AT_THE_OPENING = '2';
    static const ItemType IMMEDIATE_OR_CANCEL;
+   static constexpr ValueType ITEM_IMMEDIATE_OR_CANCEL = '3';
    static const ItemType FILL_OR_KILL;
+   static constexpr ValueType ITEM_FILL_OR_KILL = '4';
    static const ItemType GOOD_TILL_CROSSING;
+   static constexpr ValueType ITEM_GOOD_TILL_CROSSING = '5';
    static const ItemType GOOD_TILL_DATE;
+   static constexpr ValueType ITEM_GOOD_TILL_DATE = '6';
    static const ItemType AT_THE_CLOSE;
+   static constexpr ValueType ITEM_AT_THE_CLOSE = '7';
 };
 
 struct UrgencyEnums final: FieldEnumsBase {
@@ -2359,8 +2597,11 @@ struct UrgencyEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType NORMAL;
+   static constexpr ValueType ITEM_NORMAL = '0';
    static const ItemType FLASH;
+   static constexpr ValueType ITEM_FLASH = '1';
    static const ItemType BACKGROUND;
+   static constexpr ValueType ITEM_BACKGROUND = '2';
 };
 
 struct SettlTypeEnums final: FieldEnumsBase {
@@ -2376,15 +2617,25 @@ struct SettlTypeEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType REGULAR;
+   static constexpr ValueType ITEM_REGULAR = '0';
    static const ItemType CASH;
+   static constexpr ValueType ITEM_CASH = '1';
    static const ItemType NEXT_DAY;
+   static constexpr ValueType ITEM_NEXT_DAY = '2';
    static const ItemType T_PLUS_2;
+   static constexpr ValueType ITEM_T_PLUS_2 = '3';
    static const ItemType T_PLUS_3;
+   static constexpr ValueType ITEM_T_PLUS_3 = '4';
    static const ItemType T_PLUS_4;
+   static constexpr ValueType ITEM_T_PLUS_4 = '5';
    static const ItemType FUTURE;
+   static constexpr ValueType ITEM_FUTURE = '6';
    static const ItemType WHEN_AND_IF_ISSUED;
+   static constexpr ValueType ITEM_WHEN_AND_IF_ISSUED = '7';
    static const ItemType SELLERS_OPTION;
+   static constexpr ValueType ITEM_SELLERS_OPTION = '8';
    static const ItemType T_PLUS_5;
+   static constexpr ValueType ITEM_T_PLUS_5 = '9';
 };
 
 struct AllocTransTypeEnums final: FieldEnumsBase {
@@ -2400,8 +2651,11 @@ struct AllocTransTypeEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType NEW;
+   static constexpr ValueType ITEM_NEW = '0';
    static const ItemType REPLACE;
+   static constexpr ValueType ITEM_REPLACE = '1';
    static const ItemType CANCEL;
+   static constexpr ValueType ITEM_CANCEL = '2';
 };
 
 struct PositionEffectEnums final: FieldEnumsBase {
@@ -2417,9 +2671,13 @@ struct PositionEffectEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType OPEN;
+   static constexpr ValueType ITEM_OPEN = 'O';
    static const ItemType CLOSE;
+   static constexpr ValueType ITEM_CLOSE = 'C';
    static const ItemType ROLLED;
+   static constexpr ValueType ITEM_ROLLED = 'R';
    static const ItemType FIFO;
+   static constexpr ValueType ITEM_FIFO = 'F';
 };
 
 struct ProcessCodeEnums final: FieldEnumsBase {
@@ -2435,12 +2693,19 @@ struct ProcessCodeEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType REGULAR;
+   static constexpr ValueType ITEM_REGULAR = '0';
    static const ItemType SOFT_DOLLAR;
+   static constexpr ValueType ITEM_SOFT_DOLLAR = '1';
    static const ItemType STEP_IN;
+   static constexpr ValueType ITEM_STEP_IN = '2';
    static const ItemType STEP_OUT;
+   static constexpr ValueType ITEM_STEP_OUT = '3';
    static const ItemType SOFT_DOLLAR_STEP_IN;
+   static constexpr ValueType ITEM_SOFT_DOLLAR_STEP_IN = '4';
    static const ItemType SOFT_DOLLAR_STEP_OUT;
+   static constexpr ValueType ITEM_SOFT_DOLLAR_STEP_OUT = '5';
    static const ItemType PLAN_SPONSOR;
+   static constexpr ValueType ITEM_PLAN_SPONSOR = '6';
 };
 
 struct AllocStatusEnums final: FieldEnumsBase {
@@ -2456,11 +2721,17 @@ struct AllocStatusEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType ACCEPTED;
+   static constexpr ValueType ITEM_ACCEPTED = 0;
    static const ItemType BLOCK_LEVEL_REJECT;
+   static constexpr ValueType ITEM_BLOCK_LEVEL_REJECT = 1;
    static const ItemType ACCOUNT_LEVEL_REJECT;
+   static constexpr ValueType ITEM_ACCOUNT_LEVEL_REJECT = 2;
    static const ItemType RECEIVED;
+   static constexpr ValueType ITEM_RECEIVED = 3;
    static const ItemType INCOMPLETE;
+   static constexpr ValueType ITEM_INCOMPLETE = 4;
    static const ItemType REJECTED_BY_INTERMEDIARY;
+   static constexpr ValueType ITEM_REJECTED_BY_INTERMEDIARY = 5;
 };
 
 struct AllocRejCodeEnums final: FieldEnumsBase {
@@ -2476,19 +2747,33 @@ struct AllocRejCodeEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType UNKNOWN_ACCOUNT;
+   static constexpr ValueType ITEM_UNKNOWN_ACCOUNT = 0;
    static const ItemType INCORRECT_QUANTITY;
+   static constexpr ValueType ITEM_INCORRECT_QUANTITY = 1;
    static const ItemType INCORRECT_AVERAGE_PRICE;
+   static constexpr ValueType ITEM_INCORRECT_AVERAGE_PRICE = 2;
    static const ItemType UNKNOWN_EXECUTING_BROKER_MNEMONIC;
+   static constexpr ValueType ITEM_UNKNOWN_EXECUTING_BROKER_MNEMONIC = 3;
    static const ItemType COMMISSION_DIFFERENCE;
+   static constexpr ValueType ITEM_COMMISSION_DIFFERENCE = 4;
    static const ItemType UNKNOWN_ORDERID;
+   static constexpr ValueType ITEM_UNKNOWN_ORDERID = 5;
    static const ItemType UNKNOWN_LISTID;
+   static constexpr ValueType ITEM_UNKNOWN_LISTID = 6;
    static const ItemType OTHER;
+   static constexpr ValueType ITEM_OTHER = 7;
    static const ItemType INCORRECT_ALLOCATED_QUANTITY;
+   static constexpr ValueType ITEM_INCORRECT_ALLOCATED_QUANTITY = 8;
    static const ItemType CALCULATION_DIFFERENCE;
+   static constexpr ValueType ITEM_CALCULATION_DIFFERENCE = 9;
    static const ItemType UNKNOWN_OR_STALE_EXECID;
+   static constexpr ValueType ITEM_UNKNOWN_OR_STALE_EXECID = 10;
    static const ItemType MISMATCHED_DATA_VALUE;
+   static constexpr ValueType ITEM_MISMATCHED_DATA_VALUE = 11;
    static const ItemType UNKNOWN_CLORDID;
+   static constexpr ValueType ITEM_UNKNOWN_CLORDID = 12;
    static const ItemType WAREHOUSE_REQUEST_REJECTED;
+   static constexpr ValueType ITEM_WAREHOUSE_REQUEST_REJECTED = 13;
 };
 
 struct EmailTypeEnums final: FieldEnumsBase {
@@ -2504,8 +2789,11 @@ struct EmailTypeEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType NEW;
+   static constexpr ValueType ITEM_NEW = '0';
    static const ItemType REPLY;
+   static constexpr ValueType ITEM_REPLY = '1';
    static const ItemType ADMIN_REPLY;
+   static constexpr ValueType ITEM_ADMIN_REPLY = '2';
 };
 
 struct PossResendEnums final: FieldEnumsBase {
@@ -2521,7 +2809,9 @@ struct PossResendEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType YES;
+   static constexpr ValueType ITEM_YES = 'Y';
    static const ItemType NO;
+   static constexpr ValueType ITEM_NO = 'N';
 };
 
 struct EncryptMethodEnums final: FieldEnumsBase {
@@ -2537,12 +2827,19 @@ struct EncryptMethodEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType NONE;
+   static constexpr ValueType ITEM_NONE = 0;
    static const ItemType PKCS;
+   static constexpr ValueType ITEM_PKCS = 1;
    static const ItemType DES;
+   static constexpr ValueType ITEM_DES = 2;
    static const ItemType PKCS_DES;
+   static constexpr ValueType ITEM_PKCS_DES = 3;
    static const ItemType PGP_DES;
+   static constexpr ValueType ITEM_PGP_DES = 4;
    static const ItemType PGP_DES_MD5;
+   static constexpr ValueType ITEM_PGP_DES_MD5 = 5;
    static const ItemType PEM_DES_MD5;
+   static constexpr ValueType ITEM_PEM_DES_MD5 = 6;
 };
 
 struct CxlRejReasonEnums final: FieldEnumsBase {
@@ -2558,13 +2855,21 @@ struct CxlRejReasonEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType TOO_LATE_TO_CANCEL;
+   static constexpr ValueType ITEM_TOO_LATE_TO_CANCEL = 0;
    static const ItemType UNKNOWN_ORDER;
+   static constexpr ValueType ITEM_UNKNOWN_ORDER = 1;
    static const ItemType BROKER;
+   static constexpr ValueType ITEM_BROKER = 2;
    static const ItemType ORDER_ALREADY_IN_PENDING_CANCEL_OR_PENDING_REPLACE_STATUS;
+   static constexpr ValueType ITEM_ORDER_ALREADY_IN_PENDING_CANCEL_OR_PENDING_REPLACE_STATUS = 3;
    static const ItemType UNABLE_TO_PROCESS_ORDER_MASS_CANCEL_REQUEST;
+   static constexpr ValueType ITEM_UNABLE_TO_PROCESS_ORDER_MASS_CANCEL_REQUEST = 4;
    static const ItemType ORIGORDMODTIME;
+   static constexpr ValueType ITEM_ORIGORDMODTIME = 5;
    static const ItemType DUPLICATE_CLORDID;
+   static constexpr ValueType ITEM_DUPLICATE_CLORDID = 6;
    static const ItemType OTHER;
+   static constexpr ValueType ITEM_OTHER = 99;
 };
 
 struct OrdRejReasonEnums final: FieldEnumsBase {
@@ -2580,21 +2885,37 @@ struct OrdRejReasonEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType BROKER;
+   static constexpr ValueType ITEM_BROKER = 0;
    static const ItemType UNKNOWN_SYMBOL;
+   static constexpr ValueType ITEM_UNKNOWN_SYMBOL = 1;
    static const ItemType EXCHANGE_CLOSED;
+   static constexpr ValueType ITEM_EXCHANGE_CLOSED = 2;
    static const ItemType ORDER_EXCEEDS_LIMIT;
+   static constexpr ValueType ITEM_ORDER_EXCEEDS_LIMIT = 3;
    static const ItemType TOO_LATE_TO_ENTER;
+   static constexpr ValueType ITEM_TOO_LATE_TO_ENTER = 4;
    static const ItemType UNKNOWN_ORDER;
+   static constexpr ValueType ITEM_UNKNOWN_ORDER = 5;
    static const ItemType DUPLICATE_ORDER;
+   static constexpr ValueType ITEM_DUPLICATE_ORDER = 6;
    static const ItemType DUPLICATE_OF_A_VERBALLY_COMMUNICATED_ORDER;
+   static constexpr ValueType ITEM_DUPLICATE_OF_A_VERBALLY_COMMUNICATED_ORDER = 7;
    static const ItemType STALE_ORDER;
+   static constexpr ValueType ITEM_STALE_ORDER = 8;
    static const ItemType TRADE_ALONG_REQUIRED;
+   static constexpr ValueType ITEM_TRADE_ALONG_REQUIRED = 9;
    static const ItemType INVALID_INVESTOR_ID;
+   static constexpr ValueType ITEM_INVALID_INVESTOR_ID = 10;
    static const ItemType UNSUPPORTED_ORDER_CHARACTERISTIC12_SURVEILLENCE_OPTION;
+   static constexpr ValueType ITEM_UNSUPPORTED_ORDER_CHARACTERISTIC12_SURVEILLENCE_OPTION = 11;
    static const ItemType INCORRECT_QUANTITY;
+   static constexpr ValueType ITEM_INCORRECT_QUANTITY = 13;
    static const ItemType INCORRECT_ALLOCATED_QUANTITY;
+   static constexpr ValueType ITEM_INCORRECT_ALLOCATED_QUANTITY = 14;
    static const ItemType UNKNOWN_ACCOUNT;
+   static constexpr ValueType ITEM_UNKNOWN_ACCOUNT = 15;
    static const ItemType OTHER;
+   static constexpr ValueType ITEM_OTHER = 99;
 };
 
 struct IOIQualifierEnums final: FieldEnumsBase {
@@ -2610,23 +2931,41 @@ struct IOIQualifierEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType ALL_OR_NONE;
+   static constexpr ValueType ITEM_ALL_OR_NONE = 'A';
    static const ItemType MARKET_ON_CLOSE;
+   static constexpr ValueType ITEM_MARKET_ON_CLOSE = 'B';
    static const ItemType AT_THE_CLOSE;
+   static constexpr ValueType ITEM_AT_THE_CLOSE = 'C';
    static const ItemType VWAP;
+   static constexpr ValueType ITEM_VWAP = 'D';
    static const ItemType IN_TOUCH_WITH;
+   static constexpr ValueType ITEM_IN_TOUCH_WITH = 'I';
    static const ItemType LIMIT;
+   static constexpr ValueType ITEM_LIMIT = 'L';
    static const ItemType MORE_BEHIND;
+   static constexpr ValueType ITEM_MORE_BEHIND = 'M';
    static const ItemType AT_THE_OPEN;
+   static constexpr ValueType ITEM_AT_THE_OPEN = 'O';
    static const ItemType TAKING_A_POSITION;
+   static constexpr ValueType ITEM_TAKING_A_POSITION = 'P';
    static const ItemType AT_THE_MARKET;
+   static constexpr ValueType ITEM_AT_THE_MARKET = 'Q';
    static const ItemType READY_TO_TRADE;
+   static constexpr ValueType ITEM_READY_TO_TRADE = 'R';
    static const ItemType PORTFOLIO_SHOWN;
+   static constexpr ValueType ITEM_PORTFOLIO_SHOWN = 'S';
    static const ItemType THROUGH_THE_DAY;
+   static constexpr ValueType ITEM_THROUGH_THE_DAY = 'T';
    static const ItemType VERSUS;
+   static constexpr ValueType ITEM_VERSUS = 'V';
    static const ItemType INDICATION;
+   static constexpr ValueType ITEM_INDICATION = 'W';
    static const ItemType CROSSING_OPPORTUNITY;
+   static constexpr ValueType ITEM_CROSSING_OPPORTUNITY = 'X';
    static const ItemType AT_THE_MIDPOINT;
+   static constexpr ValueType ITEM_AT_THE_MIDPOINT = 'Y';
    static const ItemType PRE_OPEN;
+   static constexpr ValueType ITEM_PRE_OPEN = 'Z';
 };
 
 struct ReportToExchEnums final: FieldEnumsBase {
@@ -2642,7 +2981,9 @@ struct ReportToExchEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType YES;
+   static constexpr ValueType ITEM_YES = 'Y';
    static const ItemType NO;
+   static constexpr ValueType ITEM_NO = 'N';
 };
 
 struct LocateReqdEnums final: FieldEnumsBase {
@@ -2658,7 +2999,9 @@ struct LocateReqdEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType YES;
+   static constexpr ValueType ITEM_YES = 'Y';
    static const ItemType NO;
+   static constexpr ValueType ITEM_NO = 'N';
 };
 
 struct ForexReqEnums final: FieldEnumsBase {
@@ -2674,7 +3017,9 @@ struct ForexReqEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType YES;
+   static constexpr ValueType ITEM_YES = 'Y';
    static const ItemType NO;
+   static constexpr ValueType ITEM_NO = 'N';
 };
 
 struct GapFillFlagEnums final: FieldEnumsBase {
@@ -2690,7 +3035,9 @@ struct GapFillFlagEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType YES;
+   static constexpr ValueType ITEM_YES = 'Y';
    static const ItemType NO;
+   static constexpr ValueType ITEM_NO = 'N';
 };
 
 struct DKReasonEnums final: FieldEnumsBase {
@@ -2706,12 +3053,19 @@ struct DKReasonEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType UNKNOWN_SYMBOL;
+   static constexpr ValueType ITEM_UNKNOWN_SYMBOL = 'A';
    static const ItemType WRONG_SIDE;
+   static constexpr ValueType ITEM_WRONG_SIDE = 'B';
    static const ItemType QUANTITY_EXCEEDS_ORDER;
+   static constexpr ValueType ITEM_QUANTITY_EXCEEDS_ORDER = 'C';
    static const ItemType NO_MATCHING_ORDER;
+   static constexpr ValueType ITEM_NO_MATCHING_ORDER = 'D';
    static const ItemType PRICE_EXCEEDS_LIMIT;
+   static constexpr ValueType ITEM_PRICE_EXCEEDS_LIMIT = 'E';
    static const ItemType CALCULATION_DIFFERENCE;
+   static constexpr ValueType ITEM_CALCULATION_DIFFERENCE = 'F';
    static const ItemType OTHER;
+   static constexpr ValueType ITEM_OTHER = 'Z';
 };
 
 struct IOINaturalFlagEnums final: FieldEnumsBase {
@@ -2727,7 +3081,9 @@ struct IOINaturalFlagEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType YES;
+   static constexpr ValueType ITEM_YES = 'Y';
    static const ItemType NO;
+   static constexpr ValueType ITEM_NO = 'N';
 };
 
 struct MiscFeeTypeEnums final: FieldEnumsBase {
@@ -2743,17 +3099,29 @@ struct MiscFeeTypeEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType REGULATORY;
+   static constexpr ValueType ITEM_REGULATORY = SOHSTR(1);
    static const ItemType TAX;
+   static constexpr ValueType ITEM_TAX = SOHSTR(2);
    static const ItemType LOCAL_COMMISSION;
+   static constexpr ValueType ITEM_LOCAL_COMMISSION = SOHSTR(3);
    static const ItemType EXCHANGE_FEES;
+   static constexpr ValueType ITEM_EXCHANGE_FEES = SOHSTR(4);
    static const ItemType STAMP;
+   static constexpr ValueType ITEM_STAMP = SOHSTR(5);
    static const ItemType LEVY;
+   static constexpr ValueType ITEM_LEVY = SOHSTR(6);
    static const ItemType OTHER;
+   static constexpr ValueType ITEM_OTHER = SOHSTR(7);
    static const ItemType MARKUP;
+   static constexpr ValueType ITEM_MARKUP = SOHSTR(8);
    static const ItemType CONSUMPTION_TAX;
+   static constexpr ValueType ITEM_CONSUMPTION_TAX = SOHSTR(9);
    static const ItemType PER_TRANSACTION;
+   static constexpr ValueType ITEM_PER_TRANSACTION = SOHSTR(10);
    static const ItemType CONVERSION;
+   static constexpr ValueType ITEM_CONVERSION = SOHSTR(11);
    static const ItemType AGENT;
+   static constexpr ValueType ITEM_AGENT = SOHSTR(12);
 };
 
 struct ResetSeqNumFlagEnums final: FieldEnumsBase {
@@ -2769,7 +3137,9 @@ struct ResetSeqNumFlagEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType YES;
+   static constexpr ValueType ITEM_YES = 'Y';
    static const ItemType NO;
+   static constexpr ValueType ITEM_NO = 'N';
 };
 
 struct ExecTypeEnums final: FieldEnumsBase {
@@ -2785,22 +3155,39 @@ struct ExecTypeEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType NEW;
+   static constexpr ValueType ITEM_NEW = '0';
    static const ItemType DONE_FOR_DAY;
+   static constexpr ValueType ITEM_DONE_FOR_DAY = '3';
    static const ItemType CANCELED;
+   static constexpr ValueType ITEM_CANCELED = '4';
    static const ItemType REPLACE;
+   static constexpr ValueType ITEM_REPLACE = '5';
    static const ItemType PENDING_CANCEL;
+   static constexpr ValueType ITEM_PENDING_CANCEL = '6';
    static const ItemType STOPPED;
+   static constexpr ValueType ITEM_STOPPED = '7';
    static const ItemType REJECTED;
+   static constexpr ValueType ITEM_REJECTED = '8';
    static const ItemType SUSPENDED;
+   static constexpr ValueType ITEM_SUSPENDED = '9';
    static const ItemType PENDING_NEW;
+   static constexpr ValueType ITEM_PENDING_NEW = 'A';
    static const ItemType CALCULATED;
+   static constexpr ValueType ITEM_CALCULATED = 'B';
    static const ItemType EXPIRED;
+   static constexpr ValueType ITEM_EXPIRED = 'C';
    static const ItemType RESTATED;
+   static constexpr ValueType ITEM_RESTATED = 'D';
    static const ItemType PENDING_REPLACE;
+   static constexpr ValueType ITEM_PENDING_REPLACE = 'E';
    static const ItemType TRADE;
+   static constexpr ValueType ITEM_TRADE = 'F';
    static const ItemType TRADE_CORRECT;
+   static constexpr ValueType ITEM_TRADE_CORRECT = 'G';
    static const ItemType TRADE_CANCEL;
+   static constexpr ValueType ITEM_TRADE_CANCEL = 'H';
    static const ItemType ORDER_STATUS;
+   static constexpr ValueType ITEM_ORDER_STATUS = 'I';
 };
 
 struct SettlCurrFxRateCalcEnums final: FieldEnumsBase {
@@ -2816,7 +3203,9 @@ struct SettlCurrFxRateCalcEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType MULTIPLY;
+   static constexpr ValueType ITEM_MULTIPLY = 'M';
    static const ItemType DIVIDE;
+   static constexpr ValueType ITEM_DIVIDE = 'D';
 };
 
 struct SettlInstModeEnums final: FieldEnumsBase {
@@ -2832,8 +3221,11 @@ struct SettlInstModeEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType STANDING_INSTRUCTIONS_PROVIDED;
+   static constexpr ValueType ITEM_STANDING_INSTRUCTIONS_PROVIDED = '1';
    static const ItemType SPECIFIC_ORDER_FOR_A_SINGLE_ACCOUNT;
+   static constexpr ValueType ITEM_SPECIFIC_ORDER_FOR_A_SINGLE_ACCOUNT = '4';
    static const ItemType REQUEST_REJECT;
+   static constexpr ValueType ITEM_REQUEST_REJECT = '5';
 };
 
 struct SettlInstTransTypeEnums final: FieldEnumsBase {
@@ -2849,9 +3241,13 @@ struct SettlInstTransTypeEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType NEW;
+   static constexpr ValueType ITEM_NEW = 'N';
    static const ItemType CANCEL;
+   static constexpr ValueType ITEM_CANCEL = 'C';
    static const ItemType REPLACE;
+   static constexpr ValueType ITEM_REPLACE = 'R';
    static const ItemType RESTATE;
+   static constexpr ValueType ITEM_RESTATE = 'T';
 };
 
 struct SettlInstSourceEnums final: FieldEnumsBase {
@@ -2867,8 +3263,11 @@ struct SettlInstSourceEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType BROKERS_INSTRUCTIONS;
+   static constexpr ValueType ITEM_BROKERS_INSTRUCTIONS = '1';
    static const ItemType INSTITUTIONS_INSTRUCTIONS;
+   static constexpr ValueType ITEM_INSTITUTIONS_INSTRUCTIONS = '2';
    static const ItemType INVESTOR;
+   static constexpr ValueType ITEM_INVESTOR = '3';
 };
 
 struct SecurityTypeEnums final: FieldEnumsBase {
@@ -2884,100 +3283,195 @@ struct SecurityTypeEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType FUTURE;
+   static constexpr ValueType ITEM_FUTURE = SOHSTR(FUT);
    static const ItemType OPTION;
+   static constexpr ValueType ITEM_OPTION = SOHSTR(OPT);
    static const ItemType EURO_SUPRANATIONAL_COUPONS;
+   static constexpr ValueType ITEM_EURO_SUPRANATIONAL_COUPONS = SOHSTR(EUSUPRA);
    static const ItemType FEDERAL_AGENCY_COUPON;
+   static constexpr ValueType ITEM_FEDERAL_AGENCY_COUPON = SOHSTR(FAC);
    static const ItemType FEDERAL_AGENCY_DISCOUNT_NOTE;
+   static constexpr ValueType ITEM_FEDERAL_AGENCY_DISCOUNT_NOTE = SOHSTR(FADN);
    static const ItemType PRIVATE_EXPORT_FUNDING;
+   static constexpr ValueType ITEM_PRIVATE_EXPORT_FUNDING = SOHSTR(PEF);
    static const ItemType USD_SUPRANATIONAL_COUPONS;
+   static constexpr ValueType ITEM_USD_SUPRANATIONAL_COUPONS = SOHSTR(SUPRA);
    static const ItemType CORPORATE_BOND;
+   static constexpr ValueType ITEM_CORPORATE_BOND = SOHSTR(CORP);
    static const ItemType CORPORATE_PRIVATE_PLACEMENT;
+   static constexpr ValueType ITEM_CORPORATE_PRIVATE_PLACEMENT = SOHSTR(CPP);
    static const ItemType CONVERTIBLE_BOND;
+   static constexpr ValueType ITEM_CONVERTIBLE_BOND = SOHSTR(CB);
    static const ItemType DUAL_CURRENCY;
+   static constexpr ValueType ITEM_DUAL_CURRENCY = SOHSTR(DUAL);
    static const ItemType EURO_CORPORATE_BOND;
+   static constexpr ValueType ITEM_EURO_CORPORATE_BOND = SOHSTR(EUCORP);
    static const ItemType INDEXED_LINKED;
+   static constexpr ValueType ITEM_INDEXED_LINKED = SOHSTR(XLINKD);
    static const ItemType STRUCTURED_NOTES;
+   static constexpr ValueType ITEM_STRUCTURED_NOTES = SOHSTR(STRUCT);
    static const ItemType YANKEE_CORPORATE_BOND;
+   static constexpr ValueType ITEM_YANKEE_CORPORATE_BOND = SOHSTR(YANK);
    static const ItemType FOREIGN_EXCHANGE_CONTRACT;
+   static constexpr ValueType ITEM_FOREIGN_EXCHANGE_CONTRACT = SOHSTR(FOR);
    static const ItemType COMMON_STOCK;
+   static constexpr ValueType ITEM_COMMON_STOCK = SOHSTR(CS);
    static const ItemType PREFERRED_STOCK;
+   static constexpr ValueType ITEM_PREFERRED_STOCK = SOHSTR(PS);
    static const ItemType BRADY_BOND;
+   static constexpr ValueType ITEM_BRADY_BOND = SOHSTR(BRADY);
    static const ItemType EURO_SOVEREIGNS;
+   static constexpr ValueType ITEM_EURO_SOVEREIGNS = SOHSTR(EUSOV);
    static const ItemType US_TREASURY_BOND;
+   static constexpr ValueType ITEM_US_TREASURY_BOND = SOHSTR(TBOND);
    static const ItemType INTEREST_STRIP_FROM_ANY_BOND_OR_NOTE;
+   static constexpr ValueType ITEM_INTEREST_STRIP_FROM_ANY_BOND_OR_NOTE = SOHSTR(TINT);
    static const ItemType TREASURY_INFLATION_PROTECTED_SECURITIES;
+   static constexpr ValueType ITEM_TREASURY_INFLATION_PROTECTED_SECURITIES = SOHSTR(TIPS);
    static const ItemType PRINCIPAL_STRIP_OF_A_CALLABLE_BOND_OR_NOTE;
+   static constexpr ValueType ITEM_PRINCIPAL_STRIP_OF_A_CALLABLE_BOND_OR_NOTE = SOHSTR(TCAL);
    static const ItemType PRINCIPAL_STRIP_FROM_A_NON_CALLABLE_BOND_OR_NOTE;
+   static constexpr ValueType ITEM_PRINCIPAL_STRIP_FROM_A_NON_CALLABLE_BOND_OR_NOTE = SOHSTR(TPRN);
    static const ItemType US_TREASURY_NOTE_UST;
+   static constexpr ValueType ITEM_US_TREASURY_NOTE_UST = SOHSTR(UST);
    static const ItemType US_TREASURY_BILL_USTB;
+   static constexpr ValueType ITEM_US_TREASURY_BILL_USTB = SOHSTR(USTB);
    static const ItemType US_TREASURY_NOTE_TNOTE;
+   static constexpr ValueType ITEM_US_TREASURY_NOTE_TNOTE = SOHSTR(TNOTE);
    static const ItemType US_TREASURY_BILL_TBILL;
+   static constexpr ValueType ITEM_US_TREASURY_BILL_TBILL = SOHSTR(TBILL);
    static const ItemType REPURCHASE;
+   static constexpr ValueType ITEM_REPURCHASE = SOHSTR(REPO);
    static const ItemType FORWARD;
+   static constexpr ValueType ITEM_FORWARD = SOHSTR(FORWARD);
    static const ItemType BUY_SELLBACK;
+   static constexpr ValueType ITEM_BUY_SELLBACK = SOHSTR(BUYSELL);
    static const ItemType SECURITIES_LOAN;
+   static constexpr ValueType ITEM_SECURITIES_LOAN = SOHSTR(SECLOAN);
    static const ItemType SECURITIES_PLEDGE;
+   static constexpr ValueType ITEM_SECURITIES_PLEDGE = SOHSTR(SECPLEDGE);
    static const ItemType TERM_LOAN;
+   static constexpr ValueType ITEM_TERM_LOAN = SOHSTR(TERM);
    static const ItemType REVOLVER_LOAN;
+   static constexpr ValueType ITEM_REVOLVER_LOAN = SOHSTR(RVLV);
    static const ItemType REVOLVER_TERM_LOAN;
+   static constexpr ValueType ITEM_REVOLVER_TERM_LOAN = SOHSTR(RVLVTRM);
    static const ItemType BRIDGE_LOAN;
+   static constexpr ValueType ITEM_BRIDGE_LOAN = SOHSTR(BRIDGE);
    static const ItemType LETTER_OF_CREDIT;
+   static constexpr ValueType ITEM_LETTER_OF_CREDIT = SOHSTR(LOFC);
    static const ItemType SWING_LINE_FACILITY;
+   static constexpr ValueType ITEM_SWING_LINE_FACILITY = SOHSTR(SWING);
    static const ItemType DEBTOR_IN_POSSESSION;
+   static constexpr ValueType ITEM_DEBTOR_IN_POSSESSION = SOHSTR(DINP);
    static const ItemType DEFAULTED;
+   static constexpr ValueType ITEM_DEFAULTED = SOHSTR(DEFLTED);
    static const ItemType WITHDRAWN;
+   static constexpr ValueType ITEM_WITHDRAWN = SOHSTR(WITHDRN);
    static const ItemType REPLACED;
+   static constexpr ValueType ITEM_REPLACED = SOHSTR(REPLACD);
    static const ItemType MATURED;
+   static constexpr ValueType ITEM_MATURED = SOHSTR(MATURED);
    static const ItemType AMENDED_RESTATED;
+   static constexpr ValueType ITEM_AMENDED_RESTATED = SOHSTR(AMENDED);
    static const ItemType RETIRED;
+   static constexpr ValueType ITEM_RETIRED = SOHSTR(RETIRED);
    static const ItemType BANKERS_ACCEPTANCE;
+   static constexpr ValueType ITEM_BANKERS_ACCEPTANCE = SOHSTR(BA);
    static const ItemType BANK_NOTES;
+   static constexpr ValueType ITEM_BANK_NOTES = SOHSTR(BN);
    static const ItemType BILL_OF_EXCHANGES;
+   static constexpr ValueType ITEM_BILL_OF_EXCHANGES = SOHSTR(BOX);
    static const ItemType CERTIFICATE_OF_DEPOSIT;
+   static constexpr ValueType ITEM_CERTIFICATE_OF_DEPOSIT = SOHSTR(CD);
    static const ItemType CALL_LOANS;
+   static constexpr ValueType ITEM_CALL_LOANS = SOHSTR(CL);
    static const ItemType COMMERCIAL_PAPER;
+   static constexpr ValueType ITEM_COMMERCIAL_PAPER = SOHSTR(CP);
    static const ItemType DEPOSIT_NOTES;
+   static constexpr ValueType ITEM_DEPOSIT_NOTES = SOHSTR(DN);
    static const ItemType EURO_CERTIFICATE_OF_DEPOSIT;
+   static constexpr ValueType ITEM_EURO_CERTIFICATE_OF_DEPOSIT = SOHSTR(EUCD);
    static const ItemType EURO_COMMERCIAL_PAPER;
+   static constexpr ValueType ITEM_EURO_COMMERCIAL_PAPER = SOHSTR(EUCP);
    static const ItemType LIQUIDITY_NOTE;
+   static constexpr ValueType ITEM_LIQUIDITY_NOTE = SOHSTR(LQN);
    static const ItemType MEDIUM_TERM_NOTES;
+   static constexpr ValueType ITEM_MEDIUM_TERM_NOTES = SOHSTR(MTN);
    static const ItemType OVERNIGHT;
+   static constexpr ValueType ITEM_OVERNIGHT = SOHSTR(ONITE);
    static const ItemType PROMISSORY_NOTE;
+   static constexpr ValueType ITEM_PROMISSORY_NOTE = SOHSTR(PN);
    static const ItemType PLAZOS_FIJOS;
+   static constexpr ValueType ITEM_PLAZOS_FIJOS = SOHSTR(PZFJ);
    static const ItemType SHORT_TERM_LOAN_NOTE;
+   static constexpr ValueType ITEM_SHORT_TERM_LOAN_NOTE = SOHSTR(STN);
    static const ItemType TIME_DEPOSIT;
+   static constexpr ValueType ITEM_TIME_DEPOSIT = SOHSTR(TD);
    static const ItemType EXTENDED_COMM_NOTE;
+   static constexpr ValueType ITEM_EXTENDED_COMM_NOTE = SOHSTR(XCN);
    static const ItemType YANKEE_CERTIFICATE_OF_DEPOSIT;
+   static constexpr ValueType ITEM_YANKEE_CERTIFICATE_OF_DEPOSIT = SOHSTR(YCD);
    static const ItemType ASSET_BACKED_SECURITIES;
+   static constexpr ValueType ITEM_ASSET_BACKED_SECURITIES = SOHSTR(ABS);
    static const ItemType CORP_MORTGAGE_BACKED_SECURITIES;
+   static constexpr ValueType ITEM_CORP_MORTGAGE_BACKED_SECURITIES = SOHSTR(CMBS);
    static const ItemType COLLATERALIZED_MORTGAGE_OBLIGATION;
+   static constexpr ValueType ITEM_COLLATERALIZED_MORTGAGE_OBLIGATION = SOHSTR(CMO);
    static const ItemType IOETTE_MORTGAGE;
+   static constexpr ValueType ITEM_IOETTE_MORTGAGE = SOHSTR(IET);
    static const ItemType MORTGAGE_BACKED_SECURITIES;
+   static constexpr ValueType ITEM_MORTGAGE_BACKED_SECURITIES = SOHSTR(MBS);
    static const ItemType MORTGAGE_INTEREST_ONLY;
+   static constexpr ValueType ITEM_MORTGAGE_INTEREST_ONLY = SOHSTR(MIO);
    static const ItemType MORTGAGE_PRINCIPAL_ONLY;
+   static constexpr ValueType ITEM_MORTGAGE_PRINCIPAL_ONLY = SOHSTR(MPO);
    static const ItemType MORTGAGE_PRIVATE_PLACEMENT;
+   static constexpr ValueType ITEM_MORTGAGE_PRIVATE_PLACEMENT = SOHSTR(MPP);
    static const ItemType MISCELLANEOUS_PASS_THROUGH;
+   static constexpr ValueType ITEM_MISCELLANEOUS_PASS_THROUGH = SOHSTR(MPT);
    static const ItemType PFANDBRIEFE;
+   static constexpr ValueType ITEM_PFANDBRIEFE = SOHSTR(PFAND);
    static const ItemType TO_BE_ANNOUNCED;
+   static constexpr ValueType ITEM_TO_BE_ANNOUNCED = SOHSTR(TBA);
    static const ItemType OTHER_ANTICIPATION_NOTES_BAN_GAN_ETC;
+   static constexpr ValueType ITEM_OTHER_ANTICIPATION_NOTES_BAN_GAN_ETC = SOHSTR(AN);
    static const ItemType CERTIFICATE_OF_OBLIGATION;
+   static constexpr ValueType ITEM_CERTIFICATE_OF_OBLIGATION = SOHSTR(COFO);
    static const ItemType CERTIFICATE_OF_PARTICIPATION;
+   static constexpr ValueType ITEM_CERTIFICATE_OF_PARTICIPATION = SOHSTR(COFP);
    static const ItemType GENERAL_OBLIGATION_BONDS;
+   static constexpr ValueType ITEM_GENERAL_OBLIGATION_BONDS = SOHSTR(GO);
    static const ItemType MANDATORY_TENDER;
+   static constexpr ValueType ITEM_MANDATORY_TENDER = SOHSTR(MT);
    static const ItemType REVENUE_ANTICIPATION_NOTE;
+   static constexpr ValueType ITEM_REVENUE_ANTICIPATION_NOTE = SOHSTR(RAN);
    static const ItemType REVENUE_BONDS;
+   static constexpr ValueType ITEM_REVENUE_BONDS = SOHSTR(REV);
    static const ItemType SPECIAL_ASSESSMENT;
+   static constexpr ValueType ITEM_SPECIAL_ASSESSMENT = SOHSTR(SPCLA);
    static const ItemType SPECIAL_OBLIGATION;
+   static constexpr ValueType ITEM_SPECIAL_OBLIGATION = SOHSTR(SPCLO);
    static const ItemType SPECIAL_TAX;
+   static constexpr ValueType ITEM_SPECIAL_TAX = SOHSTR(SPCLT);
    static const ItemType TAX_ANTICIPATION_NOTE;
+   static constexpr ValueType ITEM_TAX_ANTICIPATION_NOTE = SOHSTR(TAN);
    static const ItemType TAX_ALLOCATION;
+   static constexpr ValueType ITEM_TAX_ALLOCATION = SOHSTR(TAXA);
    static const ItemType TAX_EXEMPT_COMMERCIAL_PAPER;
+   static constexpr ValueType ITEM_TAX_EXEMPT_COMMERCIAL_PAPER = SOHSTR(TECP);
    static const ItemType TAX_REVENUE_ANTICIPATION_NOTE;
+   static constexpr ValueType ITEM_TAX_REVENUE_ANTICIPATION_NOTE = SOHSTR(TRAN);
    static const ItemType VARIABLE_RATE_DEMAND_NOTE;
+   static constexpr ValueType ITEM_VARIABLE_RATE_DEMAND_NOTE = SOHSTR(VRDN);
    static const ItemType WARRANT;
+   static constexpr ValueType ITEM_WARRANT = SOHSTR(WAR);
    static const ItemType MUTUAL_FUND;
+   static constexpr ValueType ITEM_MUTUAL_FUND = SOHSTR(MF);
    static const ItemType MULTI_LEG_INSTRUMENT;
+   static constexpr ValueType ITEM_MULTI_LEG_INSTRUMENT = SOHSTR(MLEG);
    static const ItemType NO_SECURITY_TYPE;
+   static constexpr ValueType ITEM_NO_SECURITY_TYPE = SOHSTR(NONE);
 };
 
 struct StandInstDbTypeEnums final: FieldEnumsBase {
@@ -2993,10 +3487,15 @@ struct StandInstDbTypeEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType OTHER;
+   static constexpr ValueType ITEM_OTHER = 0;
    static const ItemType DTC_SID;
+   static constexpr ValueType ITEM_DTC_SID = 1;
    static const ItemType THOMSON_ALERT;
+   static constexpr ValueType ITEM_THOMSON_ALERT = 2;
    static const ItemType A_GLOBAL_CUSTODIAN;
+   static constexpr ValueType ITEM_A_GLOBAL_CUSTODIAN = 3;
    static const ItemType ACCOUNTNET;
+   static constexpr ValueType ITEM_ACCOUNTNET = 4;
 };
 
 struct SettlDeliveryTypeEnums final: FieldEnumsBase {
@@ -3012,9 +3511,13 @@ struct SettlDeliveryTypeEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType VERSUS_PAYMENT_DELIVER;
+   static constexpr ValueType ITEM_VERSUS_PAYMENT_DELIVER = 0;
    static const ItemType FREE_DELIVER;
+   static constexpr ValueType ITEM_FREE_DELIVER = 1;
    static const ItemType TRI_PARTY;
+   static constexpr ValueType ITEM_TRI_PARTY = 2;
    static const ItemType HOLD_IN_CUSTODY;
+   static constexpr ValueType ITEM_HOLD_IN_CUSTODY = 3;
 };
 
 struct AllocLinkTypeEnums final: FieldEnumsBase {
@@ -3030,7 +3533,9 @@ struct AllocLinkTypeEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType F_X_NETTING;
+   static constexpr ValueType ITEM_F_X_NETTING = 0;
    static const ItemType F_X_SWAP;
+   static constexpr ValueType ITEM_F_X_SWAP = 1;
 };
 
 struct PutOrCallEnums final: FieldEnumsBase {
@@ -3046,7 +3551,9 @@ struct PutOrCallEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType PUT;
+   static constexpr ValueType ITEM_PUT = 0;
    static const ItemType CALL;
+   static constexpr ValueType ITEM_CALL = 1;
 };
 
 struct CoveredOrUncoveredEnums final: FieldEnumsBase {
@@ -3062,7 +3569,9 @@ struct CoveredOrUncoveredEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType COVERED;
+   static constexpr ValueType ITEM_COVERED = 0;
    static const ItemType UNCOVERED;
+   static constexpr ValueType ITEM_UNCOVERED = 1;
 };
 
 struct NotifyBrokerOfCreditEnums final: FieldEnumsBase {
@@ -3078,7 +3587,9 @@ struct NotifyBrokerOfCreditEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType YES;
+   static constexpr ValueType ITEM_YES = 'Y';
    static const ItemType NO;
+   static constexpr ValueType ITEM_NO = 'N';
 };
 
 struct AllocHandlInstEnums final: FieldEnumsBase {
@@ -3094,8 +3605,11 @@ struct AllocHandlInstEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType MATCH;
+   static constexpr ValueType ITEM_MATCH = 1;
    static const ItemType FORWARD;
+   static constexpr ValueType ITEM_FORWARD = 2;
    static const ItemType FORWARD_AND_MATCH;
+   static constexpr ValueType ITEM_FORWARD_AND_MATCH = 3;
 };
 
 struct RoutingTypeEnums final: FieldEnumsBase {
@@ -3111,9 +3625,13 @@ struct RoutingTypeEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType TARGET_FIRM;
+   static constexpr ValueType ITEM_TARGET_FIRM = 1;
    static const ItemType TARGET_LIST;
+   static constexpr ValueType ITEM_TARGET_LIST = 2;
    static const ItemType BLOCK_FIRM;
+   static constexpr ValueType ITEM_BLOCK_FIRM = 3;
    static const ItemType BLOCK_LIST;
+   static constexpr ValueType ITEM_BLOCK_LIST = 4;
 };
 
 struct StipulationTypeEnums final: FieldEnumsBase {
@@ -3129,55 +3647,105 @@ struct StipulationTypeEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType AMT;
+   static constexpr ValueType ITEM_AMT = SOHSTR(AMT);
    static const ItemType AUTO_REINVESTMENT_AT_RATE_OR_BETTER;
+   static constexpr ValueType ITEM_AUTO_REINVESTMENT_AT_RATE_OR_BETTER = SOHSTR(AUTOREINV);
    static const ItemType BANK_QUALIFIED;
+   static constexpr ValueType ITEM_BANK_QUALIFIED = SOHSTR(BANKQUAL);
    static const ItemType BARGAIN_CONDITIONS_SEE;
+   static constexpr ValueType ITEM_BARGAIN_CONDITIONS_SEE = SOHSTR(BGNCON);
    static const ItemType COUPON_RANGE;
+   static constexpr ValueType ITEM_COUPON_RANGE = SOHSTR(COUPON);
    static const ItemType ISO_CURRENCY_CODE;
+   static constexpr ValueType ITEM_ISO_CURRENCY_CODE = SOHSTR(CURRENCY);
    static const ItemType CUSTOM_START_END_DATE;
+   static constexpr ValueType ITEM_CUSTOM_START_END_DATE = SOHSTR(CUSTOMDATE);
    static const ItemType GEOGRAPHICS_AND_RANGE;
+   static constexpr ValueType ITEM_GEOGRAPHICS_AND_RANGE = SOHSTR(GEOG);
    static const ItemType VALUATION_DISCOUNT;
+   static constexpr ValueType ITEM_VALUATION_DISCOUNT = SOHSTR(HAIRCUT);
    static const ItemType INSURED;
+   static constexpr ValueType ITEM_INSURED = SOHSTR(INSURED);
    static const ItemType YEAR_OR_YEAR_MONTH_OF_ISSUE;
+   static constexpr ValueType ITEM_YEAR_OR_YEAR_MONTH_OF_ISSUE = SOHSTR(ISSUE);
    static const ItemType ISSUERS_TICKER;
+   static constexpr ValueType ITEM_ISSUERS_TICKER = SOHSTR(ISSUER);
    static const ItemType ISSUE_SIZE_RANGE;
+   static constexpr ValueType ITEM_ISSUE_SIZE_RANGE = SOHSTR(ISSUESIZE);
    static const ItemType LOOKBACK_DAYS;
+   static constexpr ValueType ITEM_LOOKBACK_DAYS = SOHSTR(LOOKBACK);
    static const ItemType EXPLICIT_LOT_IDENTIFIER;
+   static constexpr ValueType ITEM_EXPLICIT_LOT_IDENTIFIER = SOHSTR(LOT);
    static const ItemType LOT_VARIANCE;
+   static constexpr ValueType ITEM_LOT_VARIANCE = SOHSTR(LOTVAR);
    static const ItemType MATURITY_YEAR_AND_MONTH;
+   static constexpr ValueType ITEM_MATURITY_YEAR_AND_MONTH = SOHSTR(MAT);
    static const ItemType MATURITY_RANGE;
+   static constexpr ValueType ITEM_MATURITY_RANGE = SOHSTR(MATURITY);
    static const ItemType MAXIMUM_SUBSTITUTIONS;
+   static constexpr ValueType ITEM_MAXIMUM_SUBSTITUTIONS = SOHSTR(MAXSUBS);
    static const ItemType MINIMUM_QUANTITY;
+   static constexpr ValueType ITEM_MINIMUM_QUANTITY = SOHSTR(MINQTY);
    static const ItemType MINIMUM_INCREMENT;
+   static constexpr ValueType ITEM_MINIMUM_INCREMENT = SOHSTR(MININCR);
    static const ItemType MINIMUM_DENOMINATION;
+   static constexpr ValueType ITEM_MINIMUM_DENOMINATION = SOHSTR(MINDNOM);
    static const ItemType PAYMENT_FREQUENCY_CALENDAR;
+   static constexpr ValueType ITEM_PAYMENT_FREQUENCY_CALENDAR = SOHSTR(PAYFREQ);
    static const ItemType NUMBER_OF_PIECES;
+   static constexpr ValueType ITEM_NUMBER_OF_PIECES = SOHSTR(PIECES);
    static const ItemType POOLS_MAXIMUM;
+   static constexpr ValueType ITEM_POOLS_MAXIMUM = SOHSTR(PMAX);
    static const ItemType POOLS_PER_MILLION;
+   static constexpr ValueType ITEM_POOLS_PER_MILLION = SOHSTR(PPM);
    static const ItemType POOLS_PER_LOT;
+   static constexpr ValueType ITEM_POOLS_PER_LOT = SOHSTR(PPL);
    static const ItemType POOLS_PER_TRADE;
+   static constexpr ValueType ITEM_POOLS_PER_TRADE = SOHSTR(PPT);
    static const ItemType PRICE_RANGE;
+   static constexpr ValueType ITEM_PRICE_RANGE = SOHSTR(PRICE);
    static const ItemType PRICING_FREQUENCY;
+   static constexpr ValueType ITEM_PRICING_FREQUENCY = SOHSTR(PRICEFREQ);
    static const ItemType PRODUCTION_YEAR;
+   static constexpr ValueType ITEM_PRODUCTION_YEAR = SOHSTR(PROD);
    static const ItemType CALL_PROTECTION;
+   static constexpr ValueType ITEM_CALL_PROTECTION = SOHSTR(PROTECT);
    static const ItemType PURPOSE;
+   static constexpr ValueType ITEM_PURPOSE = SOHSTR(PURPOSE);
    static const ItemType BENCHMARK_PRICE_SOURCE;
+   static constexpr ValueType ITEM_BENCHMARK_PRICE_SOURCE = SOHSTR(PXSOURCE);
    static const ItemType RATING_SOURCE_AND_RANGE;
+   static constexpr ValueType ITEM_RATING_SOURCE_AND_RANGE = SOHSTR(RATING);
    static const ItemType TYPE_OF_REDEMPTION_VALUES_ARE_NONCALLABLE_CALLABLE_PREFUNDED_ESCROWEDTOMATURITY_PUTABLE_CONVERTIBLE;
+   static constexpr ValueType ITEM_TYPE_OF_REDEMPTION_VALUES_ARE_NONCALLABLE_CALLABLE_PREFUNDED_ESCROWEDTOMATURITY_PUTABLE_CONVERTIBLE = SOHSTR(REDEMPTION);
    static const ItemType RESTRICTED;
+   static constexpr ValueType ITEM_RESTRICTED = SOHSTR(RESTRICTED);
    static const ItemType MARKET_SECTOR;
+   static constexpr ValueType ITEM_MARKET_SECTOR = SOHSTR(SECTOR);
    static const ItemType SECURITYTYPE_INCLUDED_OR_EXCLUDED;
+   static constexpr ValueType ITEM_SECURITYTYPE_INCLUDED_OR_EXCLUDED = SOHSTR(SECTYPE);
    static const ItemType STRUCTURE;
+   static constexpr ValueType ITEM_STRUCTURE = SOHSTR(STRUCT);
    static const ItemType SUBSTITUTIONS_FREQUENCY;
+   static constexpr ValueType ITEM_SUBSTITUTIONS_FREQUENCY = SOHSTR(SUBSFREQ);
    static const ItemType SUBSTITUTIONS_LEFT;
+   static constexpr ValueType ITEM_SUBSTITUTIONS_LEFT = SOHSTR(SUBSLEFT);
    static const ItemType FREEFORM_TEXT;
+   static constexpr ValueType ITEM_FREEFORM_TEXT = SOHSTR(TEXT);
    static const ItemType TRADE_VARIANCE;
+   static constexpr ValueType ITEM_TRADE_VARIANCE = SOHSTR(TRDVAR);
    static const ItemType WEIGHTED_AVERAGE_COUPONVALUE_IN_PERCENT;
+   static constexpr ValueType ITEM_WEIGHTED_AVERAGE_COUPONVALUE_IN_PERCENT = SOHSTR(WAC);
    static const ItemType WEIGHTED_AVERAGE_LIFE_COUPON_VALUE_IN_PERCENT;
+   static constexpr ValueType ITEM_WEIGHTED_AVERAGE_LIFE_COUPON_VALUE_IN_PERCENT = SOHSTR(WAL);
    static const ItemType WEIGHTED_AVERAGE_LOAN_AGE_VALUE_IN_MONTHS;
+   static constexpr ValueType ITEM_WEIGHTED_AVERAGE_LOAN_AGE_VALUE_IN_MONTHS = SOHSTR(WALA);
    static const ItemType WEIGHTED_AVERAGE_MATURITY_VALUE_IN_MONTHS;
+   static constexpr ValueType ITEM_WEIGHTED_AVERAGE_MATURITY_VALUE_IN_MONTHS = SOHSTR(WAM);
    static const ItemType WHOLE_POOL;
+   static constexpr ValueType ITEM_WHOLE_POOL = SOHSTR(WHOLE);
    static const ItemType YIELD_RANGE;
+   static constexpr ValueType ITEM_YIELD_RANGE = SOHSTR(YIELD);
 };
 
 struct YieldTypeEnums final: FieldEnumsBase {
@@ -3193,39 +3761,73 @@ struct YieldTypeEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType AFTER_TAX_YIELD;
+   static constexpr ValueType ITEM_AFTER_TAX_YIELD = SOHSTR(AFTERTAX);
    static const ItemType ANNUAL_YIELD;
+   static constexpr ValueType ITEM_ANNUAL_YIELD = SOHSTR(ANNUAL);
    static const ItemType YIELD_AT_ISSUE;
+   static constexpr ValueType ITEM_YIELD_AT_ISSUE = SOHSTR(ATISSUE);
    static const ItemType YIELD_TO_AVERAGE_MATURITY;
+   static constexpr ValueType ITEM_YIELD_TO_AVERAGE_MATURITY = SOHSTR(AVGMATURITY);
    static const ItemType BOOK_YIELD;
+   static constexpr ValueType ITEM_BOOK_YIELD = SOHSTR(BOOK);
    static const ItemType YIELD_TO_NEXT_CALL;
+   static constexpr ValueType ITEM_YIELD_TO_NEXT_CALL = SOHSTR(CALL);
    static const ItemType YIELD_CHANGE_SINCE_CLOSE;
+   static constexpr ValueType ITEM_YIELD_CHANGE_SINCE_CLOSE = SOHSTR(CHANGE);
    static const ItemType CLOSING_YIELD;
+   static constexpr ValueType ITEM_CLOSING_YIELD = SOHSTR(CLOSE);
    static const ItemType COMPOUND_YIELD;
+   static constexpr ValueType ITEM_COMPOUND_YIELD = SOHSTR(COMPOUND);
    static const ItemType CURRENT_YIELD;
+   static constexpr ValueType ITEM_CURRENT_YIELD = SOHSTR(CURRENT);
    static const ItemType TRUE_GROSS_YIELD;
+   static constexpr ValueType ITEM_TRUE_GROSS_YIELD = SOHSTR(GROSS);
    static const ItemType GOVERNMENT_EQUIVALENT_YIELD;
+   static constexpr ValueType ITEM_GOVERNMENT_EQUIVALENT_YIELD = SOHSTR(GOVTEQUIV);
    static const ItemType YIELD_WITH_INFLATION_ASSUMPTION;
+   static constexpr ValueType ITEM_YIELD_WITH_INFLATION_ASSUMPTION = SOHSTR(INFLATION);
    static const ItemType INVERSE_FLOATER_BOND_YIELD;
+   static constexpr ValueType ITEM_INVERSE_FLOATER_BOND_YIELD = SOHSTR(INVERSEFLOATER);
    static const ItemType MOST_RECENT_CLOSING_YIELD;
+   static constexpr ValueType ITEM_MOST_RECENT_CLOSING_YIELD = SOHSTR(LASTCLOSE);
    static const ItemType CLOSING_YIELD_MOST_RECENT_MONTH;
+   static constexpr ValueType ITEM_CLOSING_YIELD_MOST_RECENT_MONTH = SOHSTR(LASTMONTH);
    static const ItemType CLOSING_YIELD_MOST_RECENT_QUARTER;
+   static constexpr ValueType ITEM_CLOSING_YIELD_MOST_RECENT_QUARTER = SOHSTR(LASTQUARTER);
    static const ItemType CLOSING_YIELD_MOST_RECENT_YEAR;
+   static constexpr ValueType ITEM_CLOSING_YIELD_MOST_RECENT_YEAR = SOHSTR(LASTYEAR);
    static const ItemType YIELD_TO_LONGEST_AVERAGE_LIFE;
+   static constexpr ValueType ITEM_YIELD_TO_LONGEST_AVERAGE_LIFE = SOHSTR(LONGAVGLIFE);
    static const ItemType MARK_TO_MARKET_YIELD;
+   static constexpr ValueType ITEM_MARK_TO_MARKET_YIELD = SOHSTR(MARK);
    static const ItemType YIELD_TO_MATURITY;
+   static constexpr ValueType ITEM_YIELD_TO_MATURITY = SOHSTR(MATURITY);
    static const ItemType YIELD_TO_NEXT_REFUND;
+   static constexpr ValueType ITEM_YIELD_TO_NEXT_REFUND = SOHSTR(NEXTREFUND);
    static const ItemType OPEN_AVERAGE_YIELD;
+   static constexpr ValueType ITEM_OPEN_AVERAGE_YIELD = SOHSTR(OPENAVG);
    static const ItemType YIELD_TO_NEXT_PUT;
+   static constexpr ValueType ITEM_YIELD_TO_NEXT_PUT = SOHSTR(PUT);
    static const ItemType PREVIOUS_CLOSE_YIELD;
+   static constexpr ValueType ITEM_PREVIOUS_CLOSE_YIELD = SOHSTR(PREVCLOSE);
    static const ItemType PROCEEDS_YIELD;
+   static constexpr ValueType ITEM_PROCEEDS_YIELD = SOHSTR(PROCEEDS);
    static const ItemType SEMI_ANNUAL_YIELD;
+   static constexpr ValueType ITEM_SEMI_ANNUAL_YIELD = SOHSTR(SEMIANNUAL);
    static const ItemType YIELD_TO_SHORTEST_AVERAGE_LIFE;
+   static constexpr ValueType ITEM_YIELD_TO_SHORTEST_AVERAGE_LIFE = SOHSTR(SHORTAVGLIFE);
    static const ItemType SIMPLE_YIELD;
+   static constexpr ValueType ITEM_SIMPLE_YIELD = SOHSTR(SIMPLE);
    static const ItemType TAX_EQUIVALENT_YIELD;
+   static constexpr ValueType ITEM_TAX_EQUIVALENT_YIELD = SOHSTR(TAXEQUIV);
    static const ItemType YIELD_TO_TENDER_DATE;
+   static constexpr ValueType ITEM_YIELD_TO_TENDER_DATE = SOHSTR(TENDER);
    static const ItemType TRUE_YIELD;
+   static constexpr ValueType ITEM_TRUE_YIELD = SOHSTR(TRUE);
    static const ItemType YIELD_VALUE_OF_1_32;
+   static constexpr ValueType ITEM_YIELD_VALUE_OF_1_32 = SOHSTR(VALUE1/32);
    static const ItemType YIELD_TO_WORST;
+   static constexpr ValueType ITEM_YIELD_TO_WORST = SOHSTR(WORST);
 };
 
 struct TradedFlatSwitchEnums final: FieldEnumsBase {
@@ -3241,7 +3843,9 @@ struct TradedFlatSwitchEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType YES;
+   static constexpr ValueType ITEM_YES = 'Y';
    static const ItemType NO;
+   static constexpr ValueType ITEM_NO = 'N';
 };
 
 struct SubscriptionRequestTypeEnums final: FieldEnumsBase {
@@ -3257,8 +3861,11 @@ struct SubscriptionRequestTypeEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType SNAPSHOT;
+   static constexpr ValueType ITEM_SNAPSHOT = '0';
    static const ItemType SNAPSHOT_PLUS_UPDATES;
+   static constexpr ValueType ITEM_SNAPSHOT_PLUS_UPDATES = '1';
    static const ItemType DISABLE_PREVIOUS_SNAPSHOT_PLUS_UPDATE_REQUEST;
+   static constexpr ValueType ITEM_DISABLE_PREVIOUS_SNAPSHOT_PLUS_UPDATE_REQUEST = '2';
 };
 
 struct MDUpdateTypeEnums final: FieldEnumsBase {
@@ -3274,7 +3881,9 @@ struct MDUpdateTypeEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType FULL_REFRESH;
+   static constexpr ValueType ITEM_FULL_REFRESH = 0;
    static const ItemType INCREMENTAL_REFRESH;
+   static constexpr ValueType ITEM_INCREMENTAL_REFRESH = 1;
 };
 
 struct AggregatedBookEnums final: FieldEnumsBase {
@@ -3290,7 +3899,9 @@ struct AggregatedBookEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType YES;
+   static constexpr ValueType ITEM_YES = 'Y';
    static const ItemType NO;
+   static constexpr ValueType ITEM_NO = 'N';
 };
 
 struct MDEntryTypeEnums final: FieldEnumsBase {
@@ -3306,18 +3917,31 @@ struct MDEntryTypeEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType BID;
+   static constexpr ValueType ITEM_BID = '0';
    static const ItemType OFFER;
+   static constexpr ValueType ITEM_OFFER = '1';
    static const ItemType TRADE;
+   static constexpr ValueType ITEM_TRADE = '2';
    static const ItemType INDEX_VALUE;
+   static constexpr ValueType ITEM_INDEX_VALUE = '3';
    static const ItemType OPENING_PRICE;
+   static constexpr ValueType ITEM_OPENING_PRICE = '4';
    static const ItemType CLOSING_PRICE;
+   static constexpr ValueType ITEM_CLOSING_PRICE = '5';
    static const ItemType SETTLEMENT_PRICE;
+   static constexpr ValueType ITEM_SETTLEMENT_PRICE = '6';
    static const ItemType TRADING_SESSION_HIGH_PRICE;
+   static constexpr ValueType ITEM_TRADING_SESSION_HIGH_PRICE = '7';
    static const ItemType TRADING_SESSION_LOW_PRICE;
+   static constexpr ValueType ITEM_TRADING_SESSION_LOW_PRICE = '8';
    static const ItemType TRADING_SESSION_VWAP_PRICE;
+   static constexpr ValueType ITEM_TRADING_SESSION_VWAP_PRICE = '9';
    static const ItemType IMBALANCE;
+   static constexpr ValueType ITEM_IMBALANCE = 'A';
    static const ItemType TRADE_VOLUME;
+   static constexpr ValueType ITEM_TRADE_VOLUME = 'B';
    static const ItemType OPEN_INTEREST;
+   static constexpr ValueType ITEM_OPEN_INTEREST = 'C';
 };
 
 struct TickDirectionEnums final: FieldEnumsBase {
@@ -3333,9 +3957,13 @@ struct TickDirectionEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType PLUS_TICK;
+   static constexpr ValueType ITEM_PLUS_TICK = '0';
    static const ItemType ZERO_PLUS_TICK;
+   static constexpr ValueType ITEM_ZERO_PLUS_TICK = '1';
    static const ItemType MINUS_TICK;
+   static constexpr ValueType ITEM_MINUS_TICK = '2';
    static const ItemType ZERO_MINUS_TICK;
+   static constexpr ValueType ITEM_ZERO_MINUS_TICK = '3';
 };
 
 struct QuoteConditionEnums final: FieldEnumsBase {
@@ -3351,14 +3979,23 @@ struct QuoteConditionEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType OPEN;
+   static constexpr ValueType ITEM_OPEN = SOHSTR(A);
    static const ItemType CLOSED;
+   static constexpr ValueType ITEM_CLOSED = SOHSTR(B);
    static const ItemType EXCHANGE_BEST;
+   static constexpr ValueType ITEM_EXCHANGE_BEST = SOHSTR(C);
    static const ItemType CONSOLIDATED_BEST;
+   static constexpr ValueType ITEM_CONSOLIDATED_BEST = SOHSTR(D);
    static const ItemType LOCKED;
+   static constexpr ValueType ITEM_LOCKED = SOHSTR(E);
    static const ItemType CROSSED;
+   static constexpr ValueType ITEM_CROSSED = SOHSTR(F);
    static const ItemType DEPTH;
+   static constexpr ValueType ITEM_DEPTH = SOHSTR(G);
    static const ItemType FAST_TRADING;
+   static constexpr ValueType ITEM_FAST_TRADING = SOHSTR(H);
    static const ItemType NON_FIRM;
+   static constexpr ValueType ITEM_NON_FIRM = SOHSTR(I);
 };
 
 struct TradeConditionEnums final: FieldEnumsBase {
@@ -3374,22 +4011,39 @@ struct TradeConditionEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType CASH;
+   static constexpr ValueType ITEM_CASH = SOHSTR(A);
    static const ItemType AVERAGE_PRICE_TRADE;
+   static constexpr ValueType ITEM_AVERAGE_PRICE_TRADE = SOHSTR(B);
    static const ItemType CASH_TRADE;
+   static constexpr ValueType ITEM_CASH_TRADE = SOHSTR(C);
    static const ItemType NEXT_DAY;
+   static constexpr ValueType ITEM_NEXT_DAY = SOHSTR(D);
    static const ItemType OPENING;
+   static constexpr ValueType ITEM_OPENING = SOHSTR(E);
    static const ItemType INTRADAY_TRADE_DETAIL;
+   static constexpr ValueType ITEM_INTRADAY_TRADE_DETAIL = SOHSTR(F);
    static const ItemType RULE_127_TRADE;
+   static constexpr ValueType ITEM_RULE_127_TRADE = SOHSTR(G);
    static const ItemType RULE_155_TRADE;
+   static constexpr ValueType ITEM_RULE_155_TRADE = SOHSTR(H);
    static const ItemType SOLD_LAST;
+   static constexpr ValueType ITEM_SOLD_LAST = SOHSTR(I);
    static const ItemType NEXT_DAY_TRADE;
+   static constexpr ValueType ITEM_NEXT_DAY_TRADE = SOHSTR(J);
    static const ItemType OPENED;
+   static constexpr ValueType ITEM_OPENED = SOHSTR(K);
    static const ItemType SELLER;
+   static constexpr ValueType ITEM_SELLER = SOHSTR(L);
    static const ItemType SOLD;
+   static constexpr ValueType ITEM_SOLD = SOHSTR(M);
    static const ItemType STOPPED_STOCK;
+   static constexpr ValueType ITEM_STOPPED_STOCK = SOHSTR(N);
    static const ItemType IMBALANCE_MORE_BUYERS;
+   static constexpr ValueType ITEM_IMBALANCE_MORE_BUYERS = SOHSTR(P);
    static const ItemType IMBALANCE_MORE_SELLERS;
+   static constexpr ValueType ITEM_IMBALANCE_MORE_SELLERS = SOHSTR(Q);
    static const ItemType OPENING_PRICE;
+   static constexpr ValueType ITEM_OPENING_PRICE = SOHSTR(R);
 };
 
 struct MDUpdateActionEnums final: FieldEnumsBase {
@@ -3405,8 +4059,11 @@ struct MDUpdateActionEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType NEW;
+   static constexpr ValueType ITEM_NEW = '0';
    static const ItemType CHANGE;
+   static constexpr ValueType ITEM_CHANGE = '1';
    static const ItemType DELETE;
+   static constexpr ValueType ITEM_DELETE = '2';
 };
 
 struct MDReqRejReasonEnums final: FieldEnumsBase {
@@ -3422,18 +4079,31 @@ struct MDReqRejReasonEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType UNKNOWN_SYMBOL;
+   static constexpr ValueType ITEM_UNKNOWN_SYMBOL = '0';
    static const ItemType DUPLICATE_MDREQID;
+   static constexpr ValueType ITEM_DUPLICATE_MDREQID = '1';
    static const ItemType INSUFFICIENT_BANDWIDTH;
+   static constexpr ValueType ITEM_INSUFFICIENT_BANDWIDTH = '2';
    static const ItemType INSUFFICIENT_PERMISSIONS;
+   static constexpr ValueType ITEM_INSUFFICIENT_PERMISSIONS = '3';
    static const ItemType UNSUPPORTED_SUBSCRIPTIONREQUESTTYPE;
+   static constexpr ValueType ITEM_UNSUPPORTED_SUBSCRIPTIONREQUESTTYPE = '4';
    static const ItemType UNSUPPORTED_MARKETDEPTH;
+   static constexpr ValueType ITEM_UNSUPPORTED_MARKETDEPTH = '5';
    static const ItemType UNSUPPORTED_MDUPDATETYPE;
+   static constexpr ValueType ITEM_UNSUPPORTED_MDUPDATETYPE = '6';
    static const ItemType UNSUPPORTED_AGGREGATEDBOOK;
+   static constexpr ValueType ITEM_UNSUPPORTED_AGGREGATEDBOOK = '7';
    static const ItemType UNSUPPORTED_MDENTRYTYPE;
+   static constexpr ValueType ITEM_UNSUPPORTED_MDENTRYTYPE = '8';
    static const ItemType UNSUPPORTED_TRADINGSESSIONID;
+   static constexpr ValueType ITEM_UNSUPPORTED_TRADINGSESSIONID = '9';
    static const ItemType UNSUPPORTED_SCOPE;
+   static constexpr ValueType ITEM_UNSUPPORTED_SCOPE = 'A';
    static const ItemType UNSUPPORTED_OPENCLOSESETTLEFLAG;
+   static constexpr ValueType ITEM_UNSUPPORTED_OPENCLOSESETTLEFLAG = 'B';
    static const ItemType UNSUPPORTED_MDIMPLICITDELETE;
+   static constexpr ValueType ITEM_UNSUPPORTED_MDIMPLICITDELETE = 'C';
 };
 
 struct DeleteReasonEnums final: FieldEnumsBase {
@@ -3449,7 +4119,9 @@ struct DeleteReasonEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType CANCELATION;
+   static constexpr ValueType ITEM_CANCELATION = '0';
    static const ItemType ERROR;
+   static constexpr ValueType ITEM_ERROR = '1';
 };
 
 struct OpenCloseSettlFlagEnums final: FieldEnumsBase {
@@ -3465,11 +4137,17 @@ struct OpenCloseSettlFlagEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType DAILY_OPEN;
+   static constexpr ValueType ITEM_DAILY_OPEN = SOHSTR(0);
    static const ItemType SESSION_OPEN;
+   static constexpr ValueType ITEM_SESSION_OPEN = SOHSTR(1);
    static const ItemType DELIVERY_SETTLEMENT_ENTRY;
+   static constexpr ValueType ITEM_DELIVERY_SETTLEMENT_ENTRY = SOHSTR(2);
    static const ItemType EXPECTED_ENTRY;
+   static constexpr ValueType ITEM_EXPECTED_ENTRY = SOHSTR(3);
    static const ItemType ENTRY_FROM_PREVIOUS_BUSINESS_DAY;
+   static constexpr ValueType ITEM_ENTRY_FROM_PREVIOUS_BUSINESS_DAY = SOHSTR(4);
    static const ItemType THEORETICAL_PRICE_VALUE;
+   static constexpr ValueType ITEM_THEORETICAL_PRICE_VALUE = SOHSTR(5);
 };
 
 struct FinancialStatusEnums final: FieldEnumsBase {
@@ -3485,7 +4163,9 @@ struct FinancialStatusEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType BANKRUPT;
+   static constexpr ValueType ITEM_BANKRUPT = SOHSTR(1);
    static const ItemType PENDING_DELISTING;
+   static constexpr ValueType ITEM_PENDING_DELISTING = SOHSTR(2);
 };
 
 struct CorporateActionEnums final: FieldEnumsBase {
@@ -3501,10 +4181,15 @@ struct CorporateActionEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType EX_DIVIDEND;
+   static constexpr ValueType ITEM_EX_DIVIDEND = SOHSTR(A);
    static const ItemType EX_DISTRIBUTION;
+   static constexpr ValueType ITEM_EX_DISTRIBUTION = SOHSTR(B);
    static const ItemType EX_RIGHTS;
+   static constexpr ValueType ITEM_EX_RIGHTS = SOHSTR(C);
    static const ItemType NEW;
+   static constexpr ValueType ITEM_NEW = SOHSTR(D);
    static const ItemType EX_INTEREST;
+   static constexpr ValueType ITEM_EX_INTEREST = SOHSTR(E);
 };
 
 struct QuoteStatusEnums final: FieldEnumsBase {
@@ -3520,21 +4205,37 @@ struct QuoteStatusEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType ACCEPTED;
+   static constexpr ValueType ITEM_ACCEPTED = 0;
    static const ItemType CANCELED_FOR_SYMBOL;
+   static constexpr ValueType ITEM_CANCELED_FOR_SYMBOL = 1;
    static const ItemType CANCELED_FOR_SECURITY_TYPE;
+   static constexpr ValueType ITEM_CANCELED_FOR_SECURITY_TYPE = 2;
    static const ItemType CANCELED_FOR_UNDERLYING;
+   static constexpr ValueType ITEM_CANCELED_FOR_UNDERLYING = 3;
    static const ItemType CANCELED_ALL;
+   static constexpr ValueType ITEM_CANCELED_ALL = 4;
    static const ItemType REJECTED;
+   static constexpr ValueType ITEM_REJECTED = 5;
    static const ItemType REMOVED_FROM_MARKET;
+   static constexpr ValueType ITEM_REMOVED_FROM_MARKET = 6;
    static const ItemType EXPIRED;
+   static constexpr ValueType ITEM_EXPIRED = 7;
    static const ItemType QUERY;
+   static constexpr ValueType ITEM_QUERY = 8;
    static const ItemType QUOTE_NOT_FOUND;
+   static constexpr ValueType ITEM_QUOTE_NOT_FOUND = 9;
    static const ItemType PENDING;
+   static constexpr ValueType ITEM_PENDING = 10;
    static const ItemType PASS;
+   static constexpr ValueType ITEM_PASS = 11;
    static const ItemType LOCKED_MARKET_WARNING;
+   static constexpr ValueType ITEM_LOCKED_MARKET_WARNING = 12;
    static const ItemType CROSS_MARKET_WARNING;
+   static constexpr ValueType ITEM_CROSS_MARKET_WARNING = 13;
    static const ItemType CANCELED_DUE_TO_LOCK_MARKET;
+   static constexpr ValueType ITEM_CANCELED_DUE_TO_LOCK_MARKET = 14;
    static const ItemType CANCELED_DUE_TO_CROSS_MARKET;
+   static constexpr ValueType ITEM_CANCELED_DUE_TO_CROSS_MARKET = 15;
 };
 
 struct QuoteCancelTypeEnums final: FieldEnumsBase {
@@ -3550,9 +4251,13 @@ struct QuoteCancelTypeEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType CANCEL_FOR_SYMBOL;
+   static constexpr ValueType ITEM_CANCEL_FOR_SYMBOL = 1;
    static const ItemType CANCEL_FOR_SECURITY_TYPE;
+   static constexpr ValueType ITEM_CANCEL_FOR_SECURITY_TYPE = 2;
    static const ItemType CANCEL_FOR_UNDERLYING_SYMBOL;
+   static constexpr ValueType ITEM_CANCEL_FOR_UNDERLYING_SYMBOL = 3;
    static const ItemType CANCEL_ALL_QUOTES;
+   static constexpr ValueType ITEM_CANCEL_ALL_QUOTES = 4;
 };
 
 struct QuoteRejectReasonEnums final: FieldEnumsBase {
@@ -3568,15 +4273,25 @@ struct QuoteRejectReasonEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType UNKNOWN_SYMBOL;
+   static constexpr ValueType ITEM_UNKNOWN_SYMBOL = 1;
    static const ItemType EXCHANGE;
+   static constexpr ValueType ITEM_EXCHANGE = 2;
    static const ItemType QUOTE_REQUEST_EXCEEDS_LIMIT;
+   static constexpr ValueType ITEM_QUOTE_REQUEST_EXCEEDS_LIMIT = 3;
    static const ItemType TOO_LATE_TO_ENTER;
+   static constexpr ValueType ITEM_TOO_LATE_TO_ENTER = 4;
    static const ItemType UNKNOWN_QUOTE;
+   static constexpr ValueType ITEM_UNKNOWN_QUOTE = 5;
    static const ItemType DUPLICATE_QUOTE;
+   static constexpr ValueType ITEM_DUPLICATE_QUOTE = 6;
    static const ItemType INVALID_BID_ASK_SPREAD;
+   static constexpr ValueType ITEM_INVALID_BID_ASK_SPREAD = 7;
    static const ItemType INVALID_PRICE;
+   static constexpr ValueType ITEM_INVALID_PRICE = 8;
    static const ItemType NOT_AUTHORIZED_TO_QUOTE_SECURITY;
+   static constexpr ValueType ITEM_NOT_AUTHORIZED_TO_QUOTE_SECURITY = 9;
    static const ItemType OTHER;
+   static constexpr ValueType ITEM_OTHER = 99;
 };
 
 struct QuoteResponseLevelEnums final: FieldEnumsBase {
@@ -3592,8 +4307,11 @@ struct QuoteResponseLevelEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType NO_ACKNOWLEDGEMENT;
+   static constexpr ValueType ITEM_NO_ACKNOWLEDGEMENT = 0;
    static const ItemType ACKNOWLEDGE_ONLY_NEGATIVE_OR_ERRONEOUS_QUOTES;
+   static constexpr ValueType ITEM_ACKNOWLEDGE_ONLY_NEGATIVE_OR_ERRONEOUS_QUOTES = 1;
    static const ItemType ACKNOWLEDGE_EACH_QUOTE_MESSAGES;
+   static constexpr ValueType ITEM_ACKNOWLEDGE_EACH_QUOTE_MESSAGES = 2;
 };
 
 struct QuoteRequestTypeEnums final: FieldEnumsBase {
@@ -3609,7 +4327,9 @@ struct QuoteRequestTypeEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType MANUAL;
+   static constexpr ValueType ITEM_MANUAL = 1;
    static const ItemType AUTOMATIC;
+   static constexpr ValueType ITEM_AUTOMATIC = 2;
 };
 
 struct SecurityRequestTypeEnums final: FieldEnumsBase {
@@ -3625,9 +4345,13 @@ struct SecurityRequestTypeEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType REQUEST_SECURITY_IDENTITY_AND_SPECIFICATIONS;
+   static constexpr ValueType ITEM_REQUEST_SECURITY_IDENTITY_AND_SPECIFICATIONS = 0;
    static const ItemType REQUEST_SECURITY_IDENTITY_FOR_THE_SPECIFICATIONS_PROVIDED;
+   static constexpr ValueType ITEM_REQUEST_SECURITY_IDENTITY_FOR_THE_SPECIFICATIONS_PROVIDED = 1;
    static const ItemType REQUEST_LIST_SECURITY_TYPES;
+   static constexpr ValueType ITEM_REQUEST_LIST_SECURITY_TYPES = 2;
    static const ItemType REQUEST_LIST_SECURITIES;
+   static constexpr ValueType ITEM_REQUEST_LIST_SECURITIES = 3;
 };
 
 struct SecurityResponseTypeEnums final: FieldEnumsBase {
@@ -3643,9 +4367,13 @@ struct SecurityResponseTypeEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType ACCEPT_SECURITY_PROPOSAL_AS_IS;
+   static constexpr ValueType ITEM_ACCEPT_SECURITY_PROPOSAL_AS_IS = 1;
    static const ItemType ACCEPT_SECURITY_PROPOSAL_WITH_REVISIONS_AS_INDICATED_IN_THE_MESSAGE;
+   static constexpr ValueType ITEM_ACCEPT_SECURITY_PROPOSAL_WITH_REVISIONS_AS_INDICATED_IN_THE_MESSAGE = 2;
    static const ItemType REJECT_SECURITY_PROPOSAL;
+   static constexpr ValueType ITEM_REJECT_SECURITY_PROPOSAL = 5;
    static const ItemType CAN_NOT_MATCH_SELECTION_CRITERIA;
+   static constexpr ValueType ITEM_CAN_NOT_MATCH_SELECTION_CRITERIA = 6;
 };
 
 struct UnsolicitedIndicatorEnums final: FieldEnumsBase {
@@ -3661,7 +4389,9 @@ struct UnsolicitedIndicatorEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType YES;
+   static constexpr ValueType ITEM_YES = 'Y';
    static const ItemType NO;
+   static constexpr ValueType ITEM_NO = 'N';
 };
 
 struct SecurityTradingStatusEnums final: FieldEnumsBase {
@@ -3677,27 +4407,49 @@ struct SecurityTradingStatusEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType OPENING_DELAY;
+   static constexpr ValueType ITEM_OPENING_DELAY = 1;
    static const ItemType TRADING_HALT;
+   static constexpr ValueType ITEM_TRADING_HALT = 2;
    static const ItemType RESUME;
+   static constexpr ValueType ITEM_RESUME = 3;
    static const ItemType NO_OPEN_NO_RESUME;
+   static constexpr ValueType ITEM_NO_OPEN_NO_RESUME = 4;
    static const ItemType PRICE_INDICATION;
+   static constexpr ValueType ITEM_PRICE_INDICATION = 5;
    static const ItemType TRADING_RANGE_INDICATION;
+   static constexpr ValueType ITEM_TRADING_RANGE_INDICATION = 6;
    static const ItemType MARKET_IMBALANCE_BUY;
+   static constexpr ValueType ITEM_MARKET_IMBALANCE_BUY = 7;
    static const ItemType MARKET_IMBALANCE_SELL;
+   static constexpr ValueType ITEM_MARKET_IMBALANCE_SELL = 8;
    static const ItemType MARKET_ON_CLOSE_IMBALANCE_BUY;
+   static constexpr ValueType ITEM_MARKET_ON_CLOSE_IMBALANCE_BUY = 9;
    static const ItemType MARKET_ON_CLOSE_IMBALANCE_SELL;
+   static constexpr ValueType ITEM_MARKET_ON_CLOSE_IMBALANCE_SELL = 10;
    static const ItemType NO_MARKET_IMBALANCE;
+   static constexpr ValueType ITEM_NO_MARKET_IMBALANCE = 12;
    static const ItemType NO_MARKET_ON_CLOSE_IMBALANCE;
+   static constexpr ValueType ITEM_NO_MARKET_ON_CLOSE_IMBALANCE = 13;
    static const ItemType ITS_PRE_OPENING;
+   static constexpr ValueType ITEM_ITS_PRE_OPENING = 14;
    static const ItemType NEW_PRICE_INDICATION;
+   static constexpr ValueType ITEM_NEW_PRICE_INDICATION = 15;
    static const ItemType TRADE_DISSEMINATION_TIME;
+   static constexpr ValueType ITEM_TRADE_DISSEMINATION_TIME = 16;
    static const ItemType READY_TO_TRADE;
+   static constexpr ValueType ITEM_READY_TO_TRADE = 17;
    static const ItemType NOT_AVAILABLE_FOR_TRADING;
+   static constexpr ValueType ITEM_NOT_AVAILABLE_FOR_TRADING = 18;
    static const ItemType NOT_TRADED_ON_THIS_MARKET;
+   static constexpr ValueType ITEM_NOT_TRADED_ON_THIS_MARKET = 19;
    static const ItemType UNKNOWN_OR_INVALID;
+   static constexpr ValueType ITEM_UNKNOWN_OR_INVALID = 20;
    static const ItemType PRE_OPEN;
+   static constexpr ValueType ITEM_PRE_OPEN = 21;
    static const ItemType OPENING_ROTATION;
+   static constexpr ValueType ITEM_OPENING_ROTATION = 22;
    static const ItemType FAST_MARKET;
+   static constexpr ValueType ITEM_FAST_MARKET = 23;
 };
 
 struct HaltReasonCharEnums final: FieldEnumsBase {
@@ -3713,11 +4465,17 @@ struct HaltReasonCharEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType ORDER_IMBALANCE;
+   static constexpr ValueType ITEM_ORDER_IMBALANCE = 'I';
    static const ItemType EQUIPMENT_CHANGEOVER;
+   static constexpr ValueType ITEM_EQUIPMENT_CHANGEOVER = 'X';
    static const ItemType NEWS_PENDING;
+   static constexpr ValueType ITEM_NEWS_PENDING = 'P';
    static const ItemType NEWS_DISSEMINATION;
+   static constexpr ValueType ITEM_NEWS_DISSEMINATION = 'D';
    static const ItemType ORDER_INFLUX;
+   static constexpr ValueType ITEM_ORDER_INFLUX = 'E';
    static const ItemType ADDITIONAL_INFORMATION;
+   static constexpr ValueType ITEM_ADDITIONAL_INFORMATION = 'M';
 };
 
 struct InViewOfCommonEnums final: FieldEnumsBase {
@@ -3733,7 +4491,9 @@ struct InViewOfCommonEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType YES;
+   static constexpr ValueType ITEM_YES = 'Y';
    static const ItemType NO;
+   static constexpr ValueType ITEM_NO = 'N';
 };
 
 struct DueToRelatedEnums final: FieldEnumsBase {
@@ -3749,7 +4509,9 @@ struct DueToRelatedEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType YES;
+   static constexpr ValueType ITEM_YES = 'Y';
    static const ItemType NO;
+   static constexpr ValueType ITEM_NO = 'N';
 };
 
 struct AdjustmentEnums final: FieldEnumsBase {
@@ -3765,8 +4527,11 @@ struct AdjustmentEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType CANCEL;
+   static constexpr ValueType ITEM_CANCEL = 1;
    static const ItemType ERROR;
+   static constexpr ValueType ITEM_ERROR = 2;
    static const ItemType CORRECTION;
+   static constexpr ValueType ITEM_CORRECTION = 3;
 };
 
 struct TradSesMethodEnums final: FieldEnumsBase {
@@ -3782,8 +4547,11 @@ struct TradSesMethodEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType ELECTRONIC;
+   static constexpr ValueType ITEM_ELECTRONIC = 1;
    static const ItemType OPEN_OUTCRY;
+   static constexpr ValueType ITEM_OPEN_OUTCRY = 2;
    static const ItemType TWO_PARTY;
+   static constexpr ValueType ITEM_TWO_PARTY = 3;
 };
 
 struct TradSesModeEnums final: FieldEnumsBase {
@@ -3799,8 +4567,11 @@ struct TradSesModeEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType TESTING;
+   static constexpr ValueType ITEM_TESTING = 1;
    static const ItemType SIMULATED;
+   static constexpr ValueType ITEM_SIMULATED = 2;
    static const ItemType PRODUCTION;
+   static constexpr ValueType ITEM_PRODUCTION = 3;
 };
 
 struct TradSesStatusEnums final: FieldEnumsBase {
@@ -3816,12 +4587,19 @@ struct TradSesStatusEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType UNKNOWN;
+   static constexpr ValueType ITEM_UNKNOWN = 0;
    static const ItemType HALTED;
+   static constexpr ValueType ITEM_HALTED = 1;
    static const ItemType OPEN;
+   static constexpr ValueType ITEM_OPEN = 2;
    static const ItemType CLOSED;
+   static constexpr ValueType ITEM_CLOSED = 3;
    static const ItemType PRE_OPEN;
+   static constexpr ValueType ITEM_PRE_OPEN = 4;
    static const ItemType PRE_CLOSE;
+   static constexpr ValueType ITEM_PRE_CLOSE = 5;
    static const ItemType REQUEST_REJECTED;
+   static constexpr ValueType ITEM_REQUEST_REJECTED = 6;
 };
 
 struct MessageEncodingEnums final: FieldEnumsBase {
@@ -3837,9 +4615,13 @@ struct MessageEncodingEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType JIS;
+   static constexpr ValueType ITEM_JIS = SOHSTR(ISO-2022-JP);
    static const ItemType EUC;
+   static constexpr ValueType ITEM_EUC = SOHSTR(EUC-JP);
    static const ItemType FOR_USING_SJIS;
+   static constexpr ValueType ITEM_FOR_USING_SJIS = SOHSTR(Shift_JIS);
    static const ItemType UNICODE;
+   static constexpr ValueType ITEM_UNICODE = SOHSTR(UTF-8);
 };
 
 struct SessionRejectReasonEnums final: FieldEnumsBase {
@@ -3855,24 +4637,43 @@ struct SessionRejectReasonEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType INVALID_TAG_NUMBER;
+   static constexpr ValueType ITEM_INVALID_TAG_NUMBER = 0;
    static const ItemType REQUIRED_TAG_MISSING;
+   static constexpr ValueType ITEM_REQUIRED_TAG_MISSING = 1;
    static const ItemType TAG_NOT_DEFINED_FOR_THIS_MESSAGE_TYPE;
+   static constexpr ValueType ITEM_TAG_NOT_DEFINED_FOR_THIS_MESSAGE_TYPE = 2;
    static const ItemType UNDEFINED_TAG;
+   static constexpr ValueType ITEM_UNDEFINED_TAG = 3;
    static const ItemType TAG_SPECIFIED_WITHOUT_A_VALUE;
+   static constexpr ValueType ITEM_TAG_SPECIFIED_WITHOUT_A_VALUE = 4;
    static const ItemType VALUE_IS_INCORRECT;
+   static constexpr ValueType ITEM_VALUE_IS_INCORRECT = 5;
    static const ItemType INCORRECT_DATA_FORMAT_FOR_VALUE;
+   static constexpr ValueType ITEM_INCORRECT_DATA_FORMAT_FOR_VALUE = 6;
    static const ItemType DECRYPTION_PROBLEM;
+   static constexpr ValueType ITEM_DECRYPTION_PROBLEM = 7;
    static const ItemType SIGNATURE_PROBLEM;
+   static constexpr ValueType ITEM_SIGNATURE_PROBLEM = 8;
    static const ItemType COMPID_PROBLEM;
+   static constexpr ValueType ITEM_COMPID_PROBLEM = 9;
    static const ItemType SENDINGTIME_ACCURACY_PROBLEM;
+   static constexpr ValueType ITEM_SENDINGTIME_ACCURACY_PROBLEM = 10;
    static const ItemType INVALID_MSGTYPE;
+   static constexpr ValueType ITEM_INVALID_MSGTYPE = 11;
    static const ItemType XML_VALIDATION_ERROR;
+   static constexpr ValueType ITEM_XML_VALIDATION_ERROR = 12;
    static const ItemType TAG_APPEARS_MORE_THAN_ONCE;
+   static constexpr ValueType ITEM_TAG_APPEARS_MORE_THAN_ONCE = 13;
    static const ItemType TAG_SPECIFIED_OUT_OF_REQUIRED_ORDER;
+   static constexpr ValueType ITEM_TAG_SPECIFIED_OUT_OF_REQUIRED_ORDER = 14;
    static const ItemType REPEATING_GROUP_FIELDS_OUT_OF_ORDER;
+   static constexpr ValueType ITEM_REPEATING_GROUP_FIELDS_OUT_OF_ORDER = 15;
    static const ItemType INCORRECT_NUMINGROUP_COUNT_FOR_REPEATING_GROUP;
+   static constexpr ValueType ITEM_INCORRECT_NUMINGROUP_COUNT_FOR_REPEATING_GROUP = 16;
    static const ItemType NON_DATA_VALUE_INCLUDES_FIELD_DELIMITER;
+   static constexpr ValueType ITEM_NON_DATA_VALUE_INCLUDES_FIELD_DELIMITER = 17;
    static const ItemType OTHER;
+   static constexpr ValueType ITEM_OTHER = 99;
 };
 
 struct BidRequestTransTypeEnums final: FieldEnumsBase {
@@ -3888,7 +4689,9 @@ struct BidRequestTransTypeEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType NEW;
+   static constexpr ValueType ITEM_NEW = 'N';
    static const ItemType CANCEL;
+   static constexpr ValueType ITEM_CANCEL = 'C';
 };
 
 struct SolicitedFlagEnums final: FieldEnumsBase {
@@ -3904,7 +4707,9 @@ struct SolicitedFlagEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType YES;
+   static constexpr ValueType ITEM_YES = 'Y';
    static const ItemType NO;
+   static constexpr ValueType ITEM_NO = 'N';
 };
 
 struct ExecRestatementReasonEnums final: FieldEnumsBase {
@@ -3920,17 +4725,29 @@ struct ExecRestatementReasonEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType GT_CORPORATE_ACTION;
+   static constexpr ValueType ITEM_GT_CORPORATE_ACTION = 0;
    static const ItemType GT_RENEWAL;
+   static constexpr ValueType ITEM_GT_RENEWAL = 1;
    static const ItemType VERBAL_CHANGE;
+   static constexpr ValueType ITEM_VERBAL_CHANGE = 2;
    static const ItemType REPRICING_OF_ORDER;
+   static constexpr ValueType ITEM_REPRICING_OF_ORDER = 3;
    static const ItemType BROKER_OPTION;
+   static constexpr ValueType ITEM_BROKER_OPTION = 4;
    static const ItemType PARTIAL_DECLINE_OF_ORDERQTY;
+   static constexpr ValueType ITEM_PARTIAL_DECLINE_OF_ORDERQTY = 5;
    static const ItemType CANCEL_ON_TRADING_HALT;
+   static constexpr ValueType ITEM_CANCEL_ON_TRADING_HALT = 6;
    static const ItemType CANCEL_ON_SYSTEM_FAILURE;
+   static constexpr ValueType ITEM_CANCEL_ON_SYSTEM_FAILURE = 7;
    static const ItemType MARKET;
+   static constexpr ValueType ITEM_MARKET = 8;
    static const ItemType CANCELED_NOT_BEST;
+   static constexpr ValueType ITEM_CANCELED_NOT_BEST = 9;
    static const ItemType WAREHOUSE_RECAP;
+   static constexpr ValueType ITEM_WAREHOUSE_RECAP = 10;
    static const ItemType OTHER;
+   static constexpr ValueType ITEM_OTHER = 99;
 };
 
 struct BusinessRejectReasonEnums final: FieldEnumsBase {
@@ -3946,13 +4763,21 @@ struct BusinessRejectReasonEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType OTHER;
+   static constexpr ValueType ITEM_OTHER = 0;
    static const ItemType UNKOWN_ID;
+   static constexpr ValueType ITEM_UNKOWN_ID = 1;
    static const ItemType UNKNOWN_SECURITY;
+   static constexpr ValueType ITEM_UNKNOWN_SECURITY = 2;
    static const ItemType UNSUPPORTED_MESSAGE_TYPE;
+   static constexpr ValueType ITEM_UNSUPPORTED_MESSAGE_TYPE = 3;
    static const ItemType APPLICATION_NOT_AVAILABLE;
+   static constexpr ValueType ITEM_APPLICATION_NOT_AVAILABLE = 4;
    static const ItemType CONDITIONALLY_REQUIRED_FIELD_MISSING;
+   static constexpr ValueType ITEM_CONDITIONALLY_REQUIRED_FIELD_MISSING = 5;
    static const ItemType NOT_AUTHORIZED;
+   static constexpr ValueType ITEM_NOT_AUTHORIZED = 6;
    static const ItemType DELIVERTO_FIRM_NOT_AVAILABLE_AT_THIS_TIME;
+   static constexpr ValueType ITEM_DELIVERTO_FIRM_NOT_AVAILABLE_AT_THIS_TIME = 7;
 };
 
 struct MsgDirectionEnums final: FieldEnumsBase {
@@ -3968,7 +4793,9 @@ struct MsgDirectionEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType SEND;
+   static constexpr ValueType ITEM_SEND = 'S';
    static const ItemType RECEIVE;
+   static constexpr ValueType ITEM_RECEIVE = 'R';
 };
 
 struct DiscretionInstEnums final: FieldEnumsBase {
@@ -3984,12 +4811,19 @@ struct DiscretionInstEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType RELATED_TO_DISPLAYED_PRICE;
+   static constexpr ValueType ITEM_RELATED_TO_DISPLAYED_PRICE = '0';
    static const ItemType RELATED_TO_MARKET_PRICE;
+   static constexpr ValueType ITEM_RELATED_TO_MARKET_PRICE = '1';
    static const ItemType RELATED_TO_PRIMARY_PRICE;
+   static constexpr ValueType ITEM_RELATED_TO_PRIMARY_PRICE = '2';
    static const ItemType RELATED_TO_LOCAL_PRIMARY_PRICE;
+   static constexpr ValueType ITEM_RELATED_TO_LOCAL_PRIMARY_PRICE = '3';
    static const ItemType RELATED_TO_MIDPOINT_PRICE;
+   static constexpr ValueType ITEM_RELATED_TO_MIDPOINT_PRICE = '4';
    static const ItemType RELATED_TO_LAST_TRADE_PRICE;
+   static constexpr ValueType ITEM_RELATED_TO_LAST_TRADE_PRICE = '5';
    static const ItemType RELATED_TO_VWAP;
+   static constexpr ValueType ITEM_RELATED_TO_VWAP = '6';
 };
 
 struct BidTypeEnums final: FieldEnumsBase {
@@ -4005,8 +4839,11 @@ struct BidTypeEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType NON_DISCLOSED_STYLE;
+   static constexpr ValueType ITEM_NON_DISCLOSED_STYLE = 1;
    static const ItemType DISCLOSED_STYLE;
+   static constexpr ValueType ITEM_DISCLOSED_STYLE = 2;
    static const ItemType NO_BIDDING_PROCESS;
+   static constexpr ValueType ITEM_NO_BIDDING_PROCESS = 3;
 };
 
 struct BidDescriptorTypeEnums final: FieldEnumsBase {
@@ -4022,8 +4859,11 @@ struct BidDescriptorTypeEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType SECTOR;
+   static constexpr ValueType ITEM_SECTOR = 1;
    static const ItemType COUNTRY;
+   static constexpr ValueType ITEM_COUNTRY = 2;
    static const ItemType INDEX;
+   static constexpr ValueType ITEM_INDEX = 3;
 };
 
 struct SideValueIndEnums final: FieldEnumsBase {
@@ -4039,7 +4879,9 @@ struct SideValueIndEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType SIDEVALUE1;
+   static constexpr ValueType ITEM_SIDEVALUE1 = 1;
    static const ItemType SIDEVALUE_2;
+   static constexpr ValueType ITEM_SIDEVALUE_2 = 2;
 };
 
 struct LiquidityIndTypeEnums final: FieldEnumsBase {
@@ -4055,9 +4897,13 @@ struct LiquidityIndTypeEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType _5DAY_MOVING_AVERAGE;
+   static constexpr ValueType ITEM__5DAY_MOVING_AVERAGE = 1;
    static const ItemType _20_DAY_MOVING_AVERAGE;
+   static constexpr ValueType ITEM__20_DAY_MOVING_AVERAGE = 2;
    static const ItemType NORMAL_MARKET_SIZE;
+   static constexpr ValueType ITEM_NORMAL_MARKET_SIZE = 3;
    static const ItemType OTHER;
+   static constexpr ValueType ITEM_OTHER = 4;
 };
 
 struct ExchangeForPhysicalEnums final: FieldEnumsBase {
@@ -4073,7 +4919,9 @@ struct ExchangeForPhysicalEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType YES;
+   static constexpr ValueType ITEM_YES = 'Y';
    static const ItemType NO;
+   static constexpr ValueType ITEM_NO = 'N';
 };
 
 struct ProgRptReqsEnums final: FieldEnumsBase {
@@ -4089,8 +4937,11 @@ struct ProgRptReqsEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType BUYSIDE_EXPLICITLY_REQUESTS_STATUS_USING_STATUSREQUEST;
+   static constexpr ValueType ITEM_BUYSIDE_EXPLICITLY_REQUESTS_STATUS_USING_STATUSREQUEST = 1;
    static const ItemType SELLSIDE_PERIODICALLY_SENDS_STATUS_USING_LISTSTATUS_PERIOD_OPTIONALLY_SPECIFIED_IN_PROGRESSPERIOD;
+   static constexpr ValueType ITEM_SELLSIDE_PERIODICALLY_SENDS_STATUS_USING_LISTSTATUS_PERIOD_OPTIONALLY_SPECIFIED_IN_PROGRESSPERIOD = 2;
    static const ItemType REAL_TIME_EXECUTION_REPORTS;
+   static constexpr ValueType ITEM_REAL_TIME_EXECUTION_REPORTS = 3;
 };
 
 struct IncTaxIndEnums final: FieldEnumsBase {
@@ -4106,7 +4957,9 @@ struct IncTaxIndEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType NET;
+   static constexpr ValueType ITEM_NET = 1;
    static const ItemType GROSS;
+   static constexpr ValueType ITEM_GROSS = 2;
 };
 
 struct BidTradeTypeEnums final: FieldEnumsBase {
@@ -4122,9 +4975,13 @@ struct BidTradeTypeEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType RISK_TRADE;
+   static constexpr ValueType ITEM_RISK_TRADE = 'R';
    static const ItemType VWAP_GUARANTEE;
+   static constexpr ValueType ITEM_VWAP_GUARANTEE = 'G';
    static const ItemType AGENCY;
+   static constexpr ValueType ITEM_AGENCY = 'A';
    static const ItemType GUARANTEED_CLOSE;
+   static constexpr ValueType ITEM_GUARANTEED_CLOSE = 'J';
 };
 
 struct BasisPxTypeEnums final: FieldEnumsBase {
@@ -4140,18 +4997,31 @@ struct BasisPxTypeEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType CLOSING_PRICE_AT_MORNING_SESSION;
+   static constexpr ValueType ITEM_CLOSING_PRICE_AT_MORNING_SESSION = '2';
    static const ItemType CLOSING_PRICE;
+   static constexpr ValueType ITEM_CLOSING_PRICE = '3';
    static const ItemType CURRENT_PRICE;
+   static constexpr ValueType ITEM_CURRENT_PRICE = '4';
    static const ItemType SQ;
+   static constexpr ValueType ITEM_SQ = '5';
    static const ItemType VWAP_THROUGH_A_DAY;
+   static constexpr ValueType ITEM_VWAP_THROUGH_A_DAY = '6';
    static const ItemType VWAP_THROUGH_A_MORNING_SESSION;
+   static constexpr ValueType ITEM_VWAP_THROUGH_A_MORNING_SESSION = '7';
    static const ItemType VWAP_THROUGH_AN_AFTERNOON_SESSION;
+   static constexpr ValueType ITEM_VWAP_THROUGH_AN_AFTERNOON_SESSION = '8';
    static const ItemType VWAP_THROUGH_A_DAY_EXCEPT_YORI;
+   static constexpr ValueType ITEM_VWAP_THROUGH_A_DAY_EXCEPT_YORI = '9';
    static const ItemType VWAP_THROUGH_A_MORNING_SESSION_EXCEPT_YORI;
+   static constexpr ValueType ITEM_VWAP_THROUGH_A_MORNING_SESSION_EXCEPT_YORI = 'A';
    static const ItemType VWAP_THROUGH_AN_AFTERNOON_SESSION_EXCEPT_YORI;
+   static constexpr ValueType ITEM_VWAP_THROUGH_AN_AFTERNOON_SESSION_EXCEPT_YORI = 'B';
    static const ItemType STRIKE;
+   static constexpr ValueType ITEM_STRIKE = 'C';
    static const ItemType OPEN;
+   static constexpr ValueType ITEM_OPEN = 'D';
    static const ItemType OTHERS;
+   static constexpr ValueType ITEM_OTHERS = 'Z';
 };
 
 struct PriceTypeEnums final: FieldEnumsBase {
@@ -4167,16 +5037,27 @@ struct PriceTypeEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType PERCENTAGE;
+   static constexpr ValueType ITEM_PERCENTAGE = 1;
    static const ItemType PER_UNIT;
+   static constexpr ValueType ITEM_PER_UNIT = 2;
    static const ItemType FIXED_AMOUNT;
+   static constexpr ValueType ITEM_FIXED_AMOUNT = 3;
    static const ItemType DISCOUNT_PERCENTAGE_POINTS_BELOW_PAR;
+   static constexpr ValueType ITEM_DISCOUNT_PERCENTAGE_POINTS_BELOW_PAR = 4;
    static const ItemType PREMIUM_PERCENTAGE_POINTS_OVER_PAR;
+   static constexpr ValueType ITEM_PREMIUM_PERCENTAGE_POINTS_OVER_PAR = 5;
    static const ItemType SPREAD;
+   static constexpr ValueType ITEM_SPREAD = 6;
    static const ItemType TED_PRICE;
+   static constexpr ValueType ITEM_TED_PRICE = 7;
    static const ItemType TED_YIELD;
+   static constexpr ValueType ITEM_TED_YIELD = 8;
    static const ItemType YIELD;
+   static constexpr ValueType ITEM_YIELD = 9;
    static const ItemType FIXED_CABINET_TRADE_PRICE;
+   static constexpr ValueType ITEM_FIXED_CABINET_TRADE_PRICE = 10;
    static const ItemType VARIABLE_CABINET_TRADE_PRICE;
+   static constexpr ValueType ITEM_VARIABLE_CABINET_TRADE_PRICE = 11;
 };
 
 struct GTBookingInstEnums final: FieldEnumsBase {
@@ -4192,8 +5073,11 @@ struct GTBookingInstEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType BOOK_OUT_ALL_TRADES_ON_DAY_OF_EXECUTION;
+   static constexpr ValueType ITEM_BOOK_OUT_ALL_TRADES_ON_DAY_OF_EXECUTION = 0;
    static const ItemType ACCUMULATE_EXECUTIONS_UNTIL_ORDER_IS_FILLED_OR_EXPIRES;
+   static constexpr ValueType ITEM_ACCUMULATE_EXECUTIONS_UNTIL_ORDER_IS_FILLED_OR_EXPIRES = 1;
    static const ItemType ACCUMULATE_UNTIL_VERBALLY_NOTIFIED_OTHERWISE;
+   static constexpr ValueType ITEM_ACCUMULATE_UNTIL_VERBALLY_NOTIFIED_OTHERWISE = 2;
 };
 
 struct ListStatusTypeEnums final: FieldEnumsBase {
@@ -4209,11 +5093,17 @@ struct ListStatusTypeEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType ACK;
+   static constexpr ValueType ITEM_ACK = 1;
    static const ItemType RESPONSE;
+   static constexpr ValueType ITEM_RESPONSE = 2;
    static const ItemType TIMED;
+   static constexpr ValueType ITEM_TIMED = 3;
    static const ItemType EXECSTARTED;
+   static constexpr ValueType ITEM_EXECSTARTED = 4;
    static const ItemType ALLDONE;
+   static constexpr ValueType ITEM_ALLDONE = 5;
    static const ItemType ALERT;
+   static constexpr ValueType ITEM_ALERT = 6;
 };
 
 struct NetGrossIndEnums final: FieldEnumsBase {
@@ -4229,7 +5119,9 @@ struct NetGrossIndEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType NET;
+   static constexpr ValueType ITEM_NET = 1;
    static const ItemType GROSS;
+   static constexpr ValueType ITEM_GROSS = 2;
 };
 
 struct ListOrderStatusEnums final: FieldEnumsBase {
@@ -4245,12 +5137,19 @@ struct ListOrderStatusEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType INBIDDINGPROCESS;
+   static constexpr ValueType ITEM_INBIDDINGPROCESS = 1;
    static const ItemType RECEIVEDFOREXECUTION;
+   static constexpr ValueType ITEM_RECEIVEDFOREXECUTION = 2;
    static const ItemType EXECUTING;
+   static constexpr ValueType ITEM_EXECUTING = 3;
    static const ItemType CANCELING;
+   static constexpr ValueType ITEM_CANCELING = 4;
    static const ItemType ALERT;
+   static constexpr ValueType ITEM_ALERT = 5;
    static const ItemType ALL_DONE;
+   static constexpr ValueType ITEM_ALL_DONE = 6;
    static const ItemType REJECT;
+   static constexpr ValueType ITEM_REJECT = 7;
 };
 
 struct ListExecInstTypeEnums final: FieldEnumsBase {
@@ -4266,10 +5165,15 @@ struct ListExecInstTypeEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType IMMEDIATE;
+   static constexpr ValueType ITEM_IMMEDIATE = '1';
    static const ItemType WAIT_FOR_EXECUTE_INSTRUCTION;
+   static constexpr ValueType ITEM_WAIT_FOR_EXECUTE_INSTRUCTION = '2';
    static const ItemType EXCHANGE_SWITCH_CIV_ORDER_SELL_DRIVEN;
+   static constexpr ValueType ITEM_EXCHANGE_SWITCH_CIV_ORDER_SELL_DRIVEN = '3';
    static const ItemType EXCHANGE_SWITCH_CIV_ORDER_BUY_DRIVEN_CASH_TOP_UP;
+   static constexpr ValueType ITEM_EXCHANGE_SWITCH_CIV_ORDER_BUY_DRIVEN_CASH_TOP_UP = '4';
    static const ItemType EXCHANGE_SWITCH_CIV_ORDER_BUY_DRIVEN_CASH_WITHDRAW;
+   static constexpr ValueType ITEM_EXCHANGE_SWITCH_CIV_ORDER_BUY_DRIVEN_CASH_WITHDRAW = '5';
 };
 
 struct CxlRejResponseToEnums final: FieldEnumsBase {
@@ -4285,7 +5189,9 @@ struct CxlRejResponseToEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType ORDER_CANCEL_REQUEST;
+   static constexpr ValueType ITEM_ORDER_CANCEL_REQUEST = '1';
    static const ItemType ORDER_CANCEL_REPLACE_REQUEST;
+   static constexpr ValueType ITEM_ORDER_CANCEL_REPLACE_REQUEST = '2';
 };
 
 struct MultiLegReportingTypeEnums final: FieldEnumsBase {
@@ -4301,8 +5207,11 @@ struct MultiLegReportingTypeEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType SINGLE_SECURITY;
+   static constexpr ValueType ITEM_SINGLE_SECURITY = '1';
    static const ItemType INDIVIDUAL_LEG_OF_A_MULTI_LEG_SECURITY;
+   static constexpr ValueType ITEM_INDIVIDUAL_LEG_OF_A_MULTI_LEG_SECURITY = '2';
    static const ItemType MULTI_LEG_SECURITY;
+   static constexpr ValueType ITEM_MULTI_LEG_SECURITY = '3';
 };
 
 struct PartyIDSourceEnums final: FieldEnumsBase {
@@ -4318,23 +5227,41 @@ struct PartyIDSourceEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType BIC;
+   static constexpr ValueType ITEM_BIC = 'B';
    static const ItemType GENERALLY_ACCEPTED_MARKET_PARTICIPANT_IDENTIFIER;
+   static constexpr ValueType ITEM_GENERALLY_ACCEPTED_MARKET_PARTICIPANT_IDENTIFIER = 'C';
    static const ItemType PROPRIETARY_CUSTOM_CODE;
+   static constexpr ValueType ITEM_PROPRIETARY_CUSTOM_CODE = 'D';
    static const ItemType ISO_COUNTRY_CODE;
+   static constexpr ValueType ITEM_ISO_COUNTRY_CODE = 'E';
    static const ItemType SETTLEMENT_ENTITY_LOCATION;
+   static constexpr ValueType ITEM_SETTLEMENT_ENTITY_LOCATION = 'F';
    static const ItemType MIC;
+   static constexpr ValueType ITEM_MIC = 'G';
    static const ItemType CSD_PARTICIPANT_MEMBER_CODE;
+   static constexpr ValueType ITEM_CSD_PARTICIPANT_MEMBER_CODE = 'H';
    static const ItemType KOREAN_INVESTOR_ID;
+   static constexpr ValueType ITEM_KOREAN_INVESTOR_ID = '1';
    static const ItemType TAIWANESE_QUALIFIED_FOREIGN_INVESTOR_ID_QFII;
+   static constexpr ValueType ITEM_TAIWANESE_QUALIFIED_FOREIGN_INVESTOR_ID_QFII = '2';
    static const ItemType TAIWANESE_TRADING_ACCOUNT;
+   static constexpr ValueType ITEM_TAIWANESE_TRADING_ACCOUNT = '3';
    static const ItemType MALAYSIAN_CENTRAL_DEPOSITORY;
+   static constexpr ValueType ITEM_MALAYSIAN_CENTRAL_DEPOSITORY = '4';
    static const ItemType CHINESE_B_SHARE;
+   static constexpr ValueType ITEM_CHINESE_B_SHARE = '5';
    static const ItemType UK_NATIONAL_INSURANCE_OR_PENSION_NUMBER;
+   static constexpr ValueType ITEM_UK_NATIONAL_INSURANCE_OR_PENSION_NUMBER = '6';
    static const ItemType US_SOCIAL_SECURITY_NUMBER;
+   static constexpr ValueType ITEM_US_SOCIAL_SECURITY_NUMBER = '7';
    static const ItemType US_EMPLOYER_IDENTIFICATION_NUMBER;
+   static constexpr ValueType ITEM_US_EMPLOYER_IDENTIFICATION_NUMBER = '8';
    static const ItemType AUSTRALIAN_BUSINESS_NUMBER;
+   static constexpr ValueType ITEM_AUSTRALIAN_BUSINESS_NUMBER = '9';
    static const ItemType AUSTRALIAN_TAX_FILE_NUMBER;
+   static constexpr ValueType ITEM_AUSTRALIAN_TAX_FILE_NUMBER = 'A';
    static const ItemType DIRECTED_BROKER_THREE_CHARACTER_ACRONYM_AS_DEFINED_IN_ISITC_ETC_BEST_PRACTICE_GUIDELINES_DOCUMENT;
+   static constexpr ValueType ITEM_DIRECTED_BROKER_THREE_CHARACTER_ACRONYM_AS_DEFINED_IN_ISITC_ETC_BEST_PRACTICE_GUIDELINES_DOCUMENT = 'I';
 };
 
 struct PartyRoleEnums final: FieldEnumsBase {
@@ -4350,42 +5277,79 @@ struct PartyRoleEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType EXECUTING_FIRM;
+   static constexpr ValueType ITEM_EXECUTING_FIRM = 1;
    static const ItemType BROKER_OF_CREDIT;
+   static constexpr ValueType ITEM_BROKER_OF_CREDIT = 2;
    static const ItemType CLIENT_ID;
+   static constexpr ValueType ITEM_CLIENT_ID = 3;
    static const ItemType CLEARING_FIRM;
+   static constexpr ValueType ITEM_CLEARING_FIRM = 4;
    static const ItemType INVESTOR_ID;
+   static constexpr ValueType ITEM_INVESTOR_ID = 5;
    static const ItemType INTRODUCING_FIRM;
+   static constexpr ValueType ITEM_INTRODUCING_FIRM = 6;
    static const ItemType ENTERING_FIRM;
+   static constexpr ValueType ITEM_ENTERING_FIRM = 7;
    static const ItemType LOCATE_LENDING_FIRM;
+   static constexpr ValueType ITEM_LOCATE_LENDING_FIRM = 8;
    static const ItemType FUND_MANAGER_CLIENT_ID;
+   static constexpr ValueType ITEM_FUND_MANAGER_CLIENT_ID = 9;
    static const ItemType SETTLEMENT_LOCATION;
+   static constexpr ValueType ITEM_SETTLEMENT_LOCATION = 10;
    static const ItemType ORDER_ORIGINATION_TRADER;
+   static constexpr ValueType ITEM_ORDER_ORIGINATION_TRADER = 11;
    static const ItemType EXECUTING_TRADER;
+   static constexpr ValueType ITEM_EXECUTING_TRADER = 12;
    static const ItemType ORDER_ORIGINATION_FIRM;
+   static constexpr ValueType ITEM_ORDER_ORIGINATION_FIRM = 13;
    static const ItemType GIVEUP_CLEARING_FIRM;
+   static constexpr ValueType ITEM_GIVEUP_CLEARING_FIRM = 14;
    static const ItemType CORRESPONDANT_CLEARING_FIRM;
+   static constexpr ValueType ITEM_CORRESPONDANT_CLEARING_FIRM = 15;
    static const ItemType EXECUTING_SYSTEM;
+   static constexpr ValueType ITEM_EXECUTING_SYSTEM = 16;
    static const ItemType CONTRA_FIRM;
+   static constexpr ValueType ITEM_CONTRA_FIRM = 17;
    static const ItemType CONTRA_CLEARING_FIRM;
+   static constexpr ValueType ITEM_CONTRA_CLEARING_FIRM = 18;
    static const ItemType SPONSORING_FIRM;
+   static constexpr ValueType ITEM_SPONSORING_FIRM = 19;
    static const ItemType UNDERLYING_CONTRA_FIRM;
+   static constexpr ValueType ITEM_UNDERLYING_CONTRA_FIRM = 20;
    static const ItemType CLEARING_ORGANIZATION;
+   static constexpr ValueType ITEM_CLEARING_ORGANIZATION = 21;
    static const ItemType EXCHANGE;
+   static constexpr ValueType ITEM_EXCHANGE = 22;
    static const ItemType CUSTOMER_ACCOUNT;
+   static constexpr ValueType ITEM_CUSTOMER_ACCOUNT = 24;
    static const ItemType CORRESPONDENT_CLEARING_ORGANIZATION;
+   static constexpr ValueType ITEM_CORRESPONDENT_CLEARING_ORGANIZATION = 25;
    static const ItemType CORRESPONDENT_BROKER;
+   static constexpr ValueType ITEM_CORRESPONDENT_BROKER = 26;
    static const ItemType BUYER_SELLER;
+   static constexpr ValueType ITEM_BUYER_SELLER = 27;
    static const ItemType CUSTODIAN;
+   static constexpr ValueType ITEM_CUSTODIAN = 28;
    static const ItemType INTERMEDIARY;
+   static constexpr ValueType ITEM_INTERMEDIARY = 29;
    static const ItemType AGENT;
+   static constexpr ValueType ITEM_AGENT = 30;
    static const ItemType SUB_CUSTODIAN;
+   static constexpr ValueType ITEM_SUB_CUSTODIAN = 31;
    static const ItemType BENEFICIARY;
+   static constexpr ValueType ITEM_BENEFICIARY = 32;
    static const ItemType INTERESTED_PARTY;
+   static constexpr ValueType ITEM_INTERESTED_PARTY = 33;
    static const ItemType REGULATORY_BODY;
+   static constexpr ValueType ITEM_REGULATORY_BODY = 34;
    static const ItemType LIQUIDITY_PROVIDER;
+   static constexpr ValueType ITEM_LIQUIDITY_PROVIDER = 35;
    static const ItemType ENTERING_TRADER;
+   static constexpr ValueType ITEM_ENTERING_TRADER = 36;
    static const ItemType CONTRA_TRADER;
+   static constexpr ValueType ITEM_CONTRA_TRADER = 37;
    static const ItemType POSITION_ACCOUNT;
+   static constexpr ValueType ITEM_POSITION_ACCOUNT = 38;
 };
 
 struct ProductEnums final: FieldEnumsBase {
@@ -4401,18 +5365,31 @@ struct ProductEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType AGENCY;
+   static constexpr ValueType ITEM_AGENCY = 1;
    static const ItemType COMMODITY;
+   static constexpr ValueType ITEM_COMMODITY = 2;
    static const ItemType CORPORATE;
+   static constexpr ValueType ITEM_CORPORATE = 3;
    static const ItemType CURRENCY;
+   static constexpr ValueType ITEM_CURRENCY = 4;
    static const ItemType EQUITY;
+   static constexpr ValueType ITEM_EQUITY = 5;
    static const ItemType GOVERNMENT;
+   static constexpr ValueType ITEM_GOVERNMENT = 6;
    static const ItemType INDEX;
+   static constexpr ValueType ITEM_INDEX = 7;
    static const ItemType LOAN;
+   static constexpr ValueType ITEM_LOAN = 8;
    static const ItemType MONEYMARKET;
+   static constexpr ValueType ITEM_MONEYMARKET = 9;
    static const ItemType MORTGAGE;
+   static constexpr ValueType ITEM_MORTGAGE = 10;
    static const ItemType MUNICIPAL;
+   static constexpr ValueType ITEM_MUNICIPAL = 11;
    static const ItemType OTHER;
+   static constexpr ValueType ITEM_OTHER = 12;
    static const ItemType FINANCING;
+   static constexpr ValueType ITEM_FINANCING = 13;
 };
 
 struct TestMessageIndicatorEnums final: FieldEnumsBase {
@@ -4428,7 +5405,9 @@ struct TestMessageIndicatorEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType YES;
+   static constexpr ValueType ITEM_YES = 'Y';
    static const ItemType NO;
+   static constexpr ValueType ITEM_NO = 'N';
 };
 
 struct RoundingDirectionEnums final: FieldEnumsBase {
@@ -4444,8 +5423,11 @@ struct RoundingDirectionEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType ROUND_TO_NEAREST;
+   static constexpr ValueType ITEM_ROUND_TO_NEAREST = '0';
    static const ItemType ROUND_DOWN;
+   static constexpr ValueType ITEM_ROUND_DOWN = '1';
    static const ItemType ROUND_UP;
+   static constexpr ValueType ITEM_ROUND_UP = '2';
 };
 
 struct DistribPaymentMethodEnums final: FieldEnumsBase {
@@ -4461,17 +5443,29 @@ struct DistribPaymentMethodEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType CREST;
+   static constexpr ValueType ITEM_CREST = 1;
    static const ItemType NSCC;
+   static constexpr ValueType ITEM_NSCC = 2;
    static const ItemType EUROCLEAR;
+   static constexpr ValueType ITEM_EUROCLEAR = 3;
    static const ItemType CLEARSTREAM;
+   static constexpr ValueType ITEM_CLEARSTREAM = 4;
    static const ItemType CHEQUE;
+   static constexpr ValueType ITEM_CHEQUE = 5;
    static const ItemType TELEGRAPHIC_TRANSFER;
+   static constexpr ValueType ITEM_TELEGRAPHIC_TRANSFER = 6;
    static const ItemType FEDWIRE;
+   static constexpr ValueType ITEM_FEDWIRE = 7;
    static const ItemType DIRECT_CREDIT;
+   static constexpr ValueType ITEM_DIRECT_CREDIT = 8;
    static const ItemType ACH_CREDIT;
+   static constexpr ValueType ITEM_ACH_CREDIT = 9;
    static const ItemType BPAY;
+   static constexpr ValueType ITEM_BPAY = 10;
    static const ItemType HIGH_VALUE_CLEARING_SYSTEM;
+   static constexpr ValueType ITEM_HIGH_VALUE_CLEARING_SYSTEM = 11;
    static const ItemType REINVEST_IN_FUND;
+   static constexpr ValueType ITEM_REINVEST_IN_FUND = 12;
 };
 
 struct CancellationRightsEnums final: FieldEnumsBase {
@@ -4487,9 +5481,13 @@ struct CancellationRightsEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType YES;
+   static constexpr ValueType ITEM_YES = 'Y';
    static const ItemType NO_EXECUTION_ONLY;
+   static constexpr ValueType ITEM_NO_EXECUTION_ONLY = 'N';
    static const ItemType NO_WAIVER_AGREEMENT;
+   static constexpr ValueType ITEM_NO_WAIVER_AGREEMENT = 'M';
    static const ItemType NO_INSTITUTIONAL;
+   static constexpr ValueType ITEM_NO_INSTITUTIONAL = 'O';
 };
 
 struct MoneyLaunderingStatusEnums final: FieldEnumsBase {
@@ -4505,10 +5503,15 @@ struct MoneyLaunderingStatusEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType PASSED;
+   static constexpr ValueType ITEM_PASSED = 'Y';
    static const ItemType NOT_CHECKED;
+   static constexpr ValueType ITEM_NOT_CHECKED = 'N';
    static const ItemType EXEMPT_BELOW_THE_LIMIT;
+   static constexpr ValueType ITEM_EXEMPT_BELOW_THE_LIMIT = '1';
    static const ItemType EXEMPT_CLIENT_MONEY_TYPE_EXEMPTION;
+   static constexpr ValueType ITEM_EXEMPT_CLIENT_MONEY_TYPE_EXEMPTION = '2';
    static const ItemType EXEMPT_AUTHORISED_CREDIT_OR_FINANCIAL_INSTITUTION;
+   static constexpr ValueType ITEM_EXEMPT_AUTHORISED_CREDIT_OR_FINANCIAL_INSTITUTION = '3';
 };
 
 struct ExecPriceTypeEnums final: FieldEnumsBase {
@@ -4524,13 +5527,21 @@ struct ExecPriceTypeEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType BID_PRICE;
+   static constexpr ValueType ITEM_BID_PRICE = 'B';
    static const ItemType CREATION_PRICE;
+   static constexpr ValueType ITEM_CREATION_PRICE = 'C';
    static const ItemType CREATION_PRICE_PLUS_ADJUSTMENT;
+   static constexpr ValueType ITEM_CREATION_PRICE_PLUS_ADJUSTMENT = 'D';
    static const ItemType CREATION_PRICE_PLUS_ADJUSTMENT_AMOUNT;
+   static constexpr ValueType ITEM_CREATION_PRICE_PLUS_ADJUSTMENT_AMOUNT = 'E';
    static const ItemType OFFER_PRICE;
+   static constexpr ValueType ITEM_OFFER_PRICE = 'O';
    static const ItemType OFFER_PRICE_MINUS_ADJUSTMENT;
+   static constexpr ValueType ITEM_OFFER_PRICE_MINUS_ADJUSTMENT = 'P';
    static const ItemType OFFER_PRICE_MINUS_ADJUSTMENT_AMOUNT;
+   static constexpr ValueType ITEM_OFFER_PRICE_MINUS_ADJUSTMENT_AMOUNT = 'Q';
    static const ItemType SINGLE_PRICE;
+   static constexpr ValueType ITEM_SINGLE_PRICE = 'S';
 };
 
 struct PaymentMethodEnums final: FieldEnumsBase {
@@ -4546,20 +5557,35 @@ struct PaymentMethodEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType CREST;
+   static constexpr ValueType ITEM_CREST = 1;
    static const ItemType NSCC;
+   static constexpr ValueType ITEM_NSCC = 2;
    static const ItemType EUROCLEAR;
+   static constexpr ValueType ITEM_EUROCLEAR = 3;
    static const ItemType CLEARSTREAM;
+   static constexpr ValueType ITEM_CLEARSTREAM = 4;
    static const ItemType CHEQUE;
+   static constexpr ValueType ITEM_CHEQUE = 5;
    static const ItemType TELEGRAPHIC_TRANSFER;
+   static constexpr ValueType ITEM_TELEGRAPHIC_TRANSFER = 6;
    static const ItemType FEDWIRE;
+   static constexpr ValueType ITEM_FEDWIRE = 7;
    static const ItemType DEBIT_CARD;
+   static constexpr ValueType ITEM_DEBIT_CARD = 8;
    static const ItemType DIRECT_DEBIT;
+   static constexpr ValueType ITEM_DIRECT_DEBIT = 9;
    static const ItemType DIRECT_CREDIT;
+   static constexpr ValueType ITEM_DIRECT_CREDIT = 10;
    static const ItemType CREDIT_CARD;
+   static constexpr ValueType ITEM_CREDIT_CARD = 11;
    static const ItemType ACH_DEBIT;
+   static constexpr ValueType ITEM_ACH_DEBIT = 12;
    static const ItemType ACH_CREDIT;
+   static constexpr ValueType ITEM_ACH_CREDIT = 13;
    static const ItemType BPAY;
+   static constexpr ValueType ITEM_BPAY = 14;
    static const ItemType HIGH_VALUE_CLEARING_SYSTEM;
+   static constexpr ValueType ITEM_HIGH_VALUE_CLEARING_SYSTEM = 15;
 };
 
 struct TaxAdvantageTypeEnums final: FieldEnumsBase {
@@ -4575,35 +5601,65 @@ struct TaxAdvantageTypeEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType NONE_NOT_APPLICABLE;
+   static constexpr ValueType ITEM_NONE_NOT_APPLICABLE = 0;
    static const ItemType MAXI_ISA;
+   static constexpr ValueType ITEM_MAXI_ISA = 1;
    static const ItemType TESSA;
+   static constexpr ValueType ITEM_TESSA = 2;
    static const ItemType MINI_CASH_ISA;
+   static constexpr ValueType ITEM_MINI_CASH_ISA = 3;
    static const ItemType MINI_STOCKS_AND_SHARES_ISA;
+   static constexpr ValueType ITEM_MINI_STOCKS_AND_SHARES_ISA = 4;
    static const ItemType MINI_INSURANCE_ISA;
+   static constexpr ValueType ITEM_MINI_INSURANCE_ISA = 5;
    static const ItemType CURRENT_YEAR_PAYMENT;
+   static constexpr ValueType ITEM_CURRENT_YEAR_PAYMENT = 6;
    static const ItemType PRIOR_YEAR_PAYMENT;
+   static constexpr ValueType ITEM_PRIOR_YEAR_PAYMENT = 7;
    static const ItemType ASSET_TRANSFER;
+   static constexpr ValueType ITEM_ASSET_TRANSFER = 8;
    static const ItemType EMPLOYEE;
+   static constexpr ValueType ITEM_EMPLOYEE = 9;
    static const ItemType EMPLOYEE_CURRENT_YEAR;
+   static constexpr ValueType ITEM_EMPLOYEE_CURRENT_YEAR = 10;
    static const ItemType EMPLOYER;
+   static constexpr ValueType ITEM_EMPLOYER = 11;
    static const ItemType EMPLOYER_CURRENT_YEAR;
+   static constexpr ValueType ITEM_EMPLOYER_CURRENT_YEAR = 12;
    static const ItemType NON_FUND_PROTOTYPE_IRA;
+   static constexpr ValueType ITEM_NON_FUND_PROTOTYPE_IRA = 13;
    static const ItemType NON_FUND_QUALIFIED_PLAN;
+   static constexpr ValueType ITEM_NON_FUND_QUALIFIED_PLAN = 14;
    static const ItemType DEFINED_CONTRIBUTION_PLAN;
+   static constexpr ValueType ITEM_DEFINED_CONTRIBUTION_PLAN = 15;
    static const ItemType INDIVIDUAL_RETIREMENT_ACCOUNT;
+   static constexpr ValueType ITEM_INDIVIDUAL_RETIREMENT_ACCOUNT = 16;
    static const ItemType INDIVIDUAL_RETIREMENT_ACCOUNT_ROLLOVER;
+   static constexpr ValueType ITEM_INDIVIDUAL_RETIREMENT_ACCOUNT_ROLLOVER = 17;
    static const ItemType KEOGH;
+   static constexpr ValueType ITEM_KEOGH = 18;
    static const ItemType PROFIT_SHARING_PLAN;
+   static constexpr ValueType ITEM_PROFIT_SHARING_PLAN = 19;
    static const ItemType _401K;
+   static constexpr ValueType ITEM__401K = 20;
    static const ItemType SELF_DIRECTED_IRA;
+   static constexpr ValueType ITEM_SELF_DIRECTED_IRA = 21;
    static const ItemType _403;
+   static constexpr ValueType ITEM__403 = 22;
    static const ItemType _457;
+   static constexpr ValueType ITEM__457 = 23;
    static const ItemType ROTH_IRA_24;
+   static constexpr ValueType ITEM_ROTH_IRA_24 = 24;
    static const ItemType ROTH_IRA_25;
+   static constexpr ValueType ITEM_ROTH_IRA_25 = 25;
    static const ItemType ROTH_CONVERSION_IRA_26;
+   static constexpr ValueType ITEM_ROTH_CONVERSION_IRA_26 = 26;
    static const ItemType ROTH_CONVERSION_IRA_27;
+   static constexpr ValueType ITEM_ROTH_CONVERSION_IRA_27 = 27;
    static const ItemType EDUCATION_IRA_28;
+   static constexpr ValueType ITEM_EDUCATION_IRA_28 = 28;
    static const ItemType EDUCATION_IRA_29;
+   static constexpr ValueType ITEM_EDUCATION_IRA_29 = 29;
 };
 
 struct FundRenewWaivEnums final: FieldEnumsBase {
@@ -4619,7 +5675,9 @@ struct FundRenewWaivEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType YES;
+   static constexpr ValueType ITEM_YES = 'Y';
    static const ItemType NO;
+   static constexpr ValueType ITEM_NO = 'N';
 };
 
 struct RegistStatusEnums final: FieldEnumsBase {
@@ -4635,9 +5693,13 @@ struct RegistStatusEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType ACCEPTED;
+   static constexpr ValueType ITEM_ACCEPTED = 'A';
    static const ItemType REJECTED;
+   static constexpr ValueType ITEM_REJECTED = 'R';
    static const ItemType HELD;
+   static constexpr ValueType ITEM_HELD = 'H';
    static const ItemType REMINDER_IE_REGISTRATION_INSTRUCTIONS_ARE_STILL_OUTSTANDING;
+   static constexpr ValueType ITEM_REMINDER_IE_REGISTRATION_INSTRUCTIONS_ARE_STILL_OUTSTANDING = 'N';
 };
 
 struct RegistRejReasonCodeEnums final: FieldEnumsBase {
@@ -4653,24 +5715,43 @@ struct RegistRejReasonCodeEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType INVALID_UNACCEPTABLE_ACCOUNT_TYPE;
+   static constexpr ValueType ITEM_INVALID_UNACCEPTABLE_ACCOUNT_TYPE = 1;
    static const ItemType INVALID_UNACCEPTABLE_TAX_EXEMPT_TYPE;
+   static constexpr ValueType ITEM_INVALID_UNACCEPTABLE_TAX_EXEMPT_TYPE = 2;
    static const ItemType INVALID_UNACCEPTABLE_OWNERSHIP_TYPE;
+   static constexpr ValueType ITEM_INVALID_UNACCEPTABLE_OWNERSHIP_TYPE = 3;
    static const ItemType INVALID_UNACCEPTABLE_NO_REG_DETLS;
+   static constexpr ValueType ITEM_INVALID_UNACCEPTABLE_NO_REG_DETLS = 4;
    static const ItemType INVALID_UNACCEPTABLE_REG_SEQ_NO;
+   static constexpr ValueType ITEM_INVALID_UNACCEPTABLE_REG_SEQ_NO = 5;
    static const ItemType INVALID_UNACCEPTABLE_REG_DTLS;
+   static constexpr ValueType ITEM_INVALID_UNACCEPTABLE_REG_DTLS = 6;
    static const ItemType INVALID_UNACCEPTABLE_MAILING_DTLS;
+   static constexpr ValueType ITEM_INVALID_UNACCEPTABLE_MAILING_DTLS = 7;
    static const ItemType INVALID_UNACCEPTABLE_MAILING_INST;
+   static constexpr ValueType ITEM_INVALID_UNACCEPTABLE_MAILING_INST = 8;
    static const ItemType INVALID_UNACCEPTABLE_INVESTOR_ID;
+   static constexpr ValueType ITEM_INVALID_UNACCEPTABLE_INVESTOR_ID = 9;
    static const ItemType INVALID_UNACCEPTABLE_INVESTOR_ID_SOURCE;
+   static constexpr ValueType ITEM_INVALID_UNACCEPTABLE_INVESTOR_ID_SOURCE = 10;
    static const ItemType INVALID_UNACCEPTABLE_DATE_OF_BIRTH;
+   static constexpr ValueType ITEM_INVALID_UNACCEPTABLE_DATE_OF_BIRTH = 11;
    static const ItemType INVALID_UNACCEPTABLE_INVESTOR_COUNTRY_OF_RESIDENCE;
+   static constexpr ValueType ITEM_INVALID_UNACCEPTABLE_INVESTOR_COUNTRY_OF_RESIDENCE = 12;
    static const ItemType INVALID_UNACCEPTABLE_NODISTRIBINSTNS;
+   static constexpr ValueType ITEM_INVALID_UNACCEPTABLE_NODISTRIBINSTNS = 13;
    static const ItemType INVALID_UNACCEPTABLE_DISTRIB_PERCENTAGE;
+   static constexpr ValueType ITEM_INVALID_UNACCEPTABLE_DISTRIB_PERCENTAGE = 14;
    static const ItemType INVALID_UNACCEPTABLE_DISTRIB_PAYMENT_METHOD;
+   static constexpr ValueType ITEM_INVALID_UNACCEPTABLE_DISTRIB_PAYMENT_METHOD = 15;
    static const ItemType INVALID_UNACCEPTABLE_CASH_DISTRIB_AGENT_ACCT_NAME;
+   static constexpr ValueType ITEM_INVALID_UNACCEPTABLE_CASH_DISTRIB_AGENT_ACCT_NAME = 16;
    static const ItemType INVALID_UNACCEPTABLE_CASH_DISTRIB_AGENT_CODE;
+   static constexpr ValueType ITEM_INVALID_UNACCEPTABLE_CASH_DISTRIB_AGENT_CODE = 17;
    static const ItemType INVALID_UNACCEPTABLE_CASH_DISTRIB_AGENT_ACCT_NUM;
+   static constexpr ValueType ITEM_INVALID_UNACCEPTABLE_CASH_DISTRIB_AGENT_ACCT_NUM = 18;
    static const ItemType OTHER;
+   static constexpr ValueType ITEM_OTHER = 99;
 };
 
 struct RegistTransTypeEnums final: FieldEnumsBase {
@@ -4686,8 +5767,11 @@ struct RegistTransTypeEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType NEW;
+   static constexpr ValueType ITEM_NEW = '0';
    static const ItemType REPLACE;
+   static constexpr ValueType ITEM_REPLACE = '1';
    static const ItemType CANCEL;
+   static constexpr ValueType ITEM_CANCEL = '2';
 };
 
 struct OwnershipTypeEnums final: FieldEnumsBase {
@@ -4703,8 +5787,11 @@ struct OwnershipTypeEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType JOINT_INVESTORS;
+   static constexpr ValueType ITEM_JOINT_INVESTORS = 'J';
    static const ItemType TENANTS_IN_COMMON;
+   static constexpr ValueType ITEM_TENANTS_IN_COMMON = 'T';
    static const ItemType JOINT_TRUSTEES;
+   static constexpr ValueType ITEM_JOINT_TRUSTEES = '2';
 };
 
 struct ContAmtTypeEnums final: FieldEnumsBase {
@@ -4720,20 +5807,35 @@ struct ContAmtTypeEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType COMMISSION_AMOUNT;
+   static constexpr ValueType ITEM_COMMISSION_AMOUNT = 1;
    static const ItemType COMMISSION;
+   static constexpr ValueType ITEM_COMMISSION = 2;
    static const ItemType INITIAL_CHARGE_AMOUNT;
+   static constexpr ValueType ITEM_INITIAL_CHARGE_AMOUNT = 3;
    static const ItemType INITIAL_CHARGE;
+   static constexpr ValueType ITEM_INITIAL_CHARGE = 4;
    static const ItemType DISCOUNT_AMOUNT;
+   static constexpr ValueType ITEM_DISCOUNT_AMOUNT = 5;
    static const ItemType DISCOUNT;
+   static constexpr ValueType ITEM_DISCOUNT = 6;
    static const ItemType DILUTION_LEVY_AMOUNT;
+   static constexpr ValueType ITEM_DILUTION_LEVY_AMOUNT = 7;
    static const ItemType DILUTION_LEVY;
+   static constexpr ValueType ITEM_DILUTION_LEVY = 8;
    static const ItemType EXIT_CHARGE_AMOUNT;
+   static constexpr ValueType ITEM_EXIT_CHARGE_AMOUNT = 9;
    static const ItemType EXIT_CHARGE;
+   static constexpr ValueType ITEM_EXIT_CHARGE = 10;
    static const ItemType FUND_BASED_RENEWAL_COMMISSION;
+   static constexpr ValueType ITEM_FUND_BASED_RENEWAL_COMMISSION = 11;
    static const ItemType PROJECTED_FUND_VALUE;
+   static constexpr ValueType ITEM_PROJECTED_FUND_VALUE = 12;
    static const ItemType FUND_BASED_RENEWAL_COMMISSION_AMOUNT_13;
+   static constexpr ValueType ITEM_FUND_BASED_RENEWAL_COMMISSION_AMOUNT_13 = 13;
    static const ItemType FUND_BASED_RENEWAL_COMMISSION_AMOUNT_14;
+   static constexpr ValueType ITEM_FUND_BASED_RENEWAL_COMMISSION_AMOUNT_14 = 14;
    static const ItemType NET_SETTLEMENT_AMOUNT;
+   static constexpr ValueType ITEM_NET_SETTLEMENT_AMOUNT = 15;
 };
 
 struct OwnerTypeEnums final: FieldEnumsBase {
@@ -4749,18 +5851,31 @@ struct OwnerTypeEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType INDIVIDUAL_INVESTOR;
+   static constexpr ValueType ITEM_INDIVIDUAL_INVESTOR = 1;
    static const ItemType PUBLIC_COMPANY;
+   static constexpr ValueType ITEM_PUBLIC_COMPANY = 2;
    static const ItemType PRIVATE_COMPANY;
+   static constexpr ValueType ITEM_PRIVATE_COMPANY = 3;
    static const ItemType INDIVIDUAL_TRUSTEE;
+   static constexpr ValueType ITEM_INDIVIDUAL_TRUSTEE = 4;
    static const ItemType COMPANY_TRUSTEE;
+   static constexpr ValueType ITEM_COMPANY_TRUSTEE = 5;
    static const ItemType PENSION_PLAN;
+   static constexpr ValueType ITEM_PENSION_PLAN = 6;
    static const ItemType CUSTODIAN_UNDER_GIFTS_TO_MINORS_ACT;
+   static constexpr ValueType ITEM_CUSTODIAN_UNDER_GIFTS_TO_MINORS_ACT = 7;
    static const ItemType TRUSTS;
+   static constexpr ValueType ITEM_TRUSTS = 8;
    static const ItemType FIDUCIARIES;
+   static constexpr ValueType ITEM_FIDUCIARIES = 9;
    static const ItemType NETWORKING_SUB_ACCOUNT;
+   static constexpr ValueType ITEM_NETWORKING_SUB_ACCOUNT = 10;
    static const ItemType NON_PROFIT_ORGANIZATION;
+   static constexpr ValueType ITEM_NON_PROFIT_ORGANIZATION = 11;
    static const ItemType CORPORATE_BODY;
+   static constexpr ValueType ITEM_CORPORATE_BODY = 12;
    static const ItemType NOMINEE;
+   static constexpr ValueType ITEM_NOMINEE = 13;
 };
 
 struct OrderCapacityEnums final: FieldEnumsBase {
@@ -4776,11 +5891,17 @@ struct OrderCapacityEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType AGENCY;
+   static constexpr ValueType ITEM_AGENCY = 'A';
    static const ItemType PROPRIETARY;
+   static constexpr ValueType ITEM_PROPRIETARY = 'G';
    static const ItemType INDIVIDUAL;
+   static constexpr ValueType ITEM_INDIVIDUAL = 'I';
    static const ItemType PRINCIPAL;
+   static constexpr ValueType ITEM_PRINCIPAL = 'P';
    static const ItemType RISKLESS_PRINCIPAL;
+   static constexpr ValueType ITEM_RISKLESS_PRINCIPAL = 'R';
    static const ItemType AGENT_FOR_OTHER_MEMBER;
+   static constexpr ValueType ITEM_AGENT_FOR_OTHER_MEMBER = 'W';
 };
 
 struct OrderRestrictionsEnums final: FieldEnumsBase {
@@ -4796,15 +5917,25 @@ struct OrderRestrictionsEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType PROGRAM_TRADE;
+   static constexpr ValueType ITEM_PROGRAM_TRADE = SOHSTR(1);
    static const ItemType INDEX_ARBITRAGE;
+   static constexpr ValueType ITEM_INDEX_ARBITRAGE = SOHSTR(2);
    static const ItemType NON_INDEX_ARBITRAGE;
+   static constexpr ValueType ITEM_NON_INDEX_ARBITRAGE = SOHSTR(3);
    static const ItemType COMPETING_MARKET_MAKER;
+   static constexpr ValueType ITEM_COMPETING_MARKET_MAKER = SOHSTR(4);
    static const ItemType ACTING_AS_MARKET_MAKER_OR_SPECIALIST_IN_THE_SECURITY;
+   static constexpr ValueType ITEM_ACTING_AS_MARKET_MAKER_OR_SPECIALIST_IN_THE_SECURITY = SOHSTR(5);
    static const ItemType ACTING_AS_MARKET_MAKER_OR_SPECIALIST_IN_THE_UNDERLYING_SECURITY_OF_A_DERIVATIVE_SECURITY;
+   static constexpr ValueType ITEM_ACTING_AS_MARKET_MAKER_OR_SPECIALIST_IN_THE_UNDERLYING_SECURITY_OF_A_DERIVATIVE_SECURITY = SOHSTR(6);
    static const ItemType FOREIGN_ENTITY;
+   static constexpr ValueType ITEM_FOREIGN_ENTITY = SOHSTR(7);
    static const ItemType EXTERNAL_MARKET_PARTICIPANT;
+   static constexpr ValueType ITEM_EXTERNAL_MARKET_PARTICIPANT = SOHSTR(8);
    static const ItemType EXTERNAL_INTER_CONNECTED_MARKET_LINKAGE;
+   static constexpr ValueType ITEM_EXTERNAL_INTER_CONNECTED_MARKET_LINKAGE = SOHSTR(9);
    static const ItemType RISKLESS_ARBITRAGE;
+   static constexpr ValueType ITEM_RISKLESS_ARBITRAGE = SOHSTR(A);
 };
 
 struct MassCancelRequestTypeEnums final: FieldEnumsBase {
@@ -4820,12 +5951,19 @@ struct MassCancelRequestTypeEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType CANCEL_ORDERS_FOR_A_SECURITY;
+   static constexpr ValueType ITEM_CANCEL_ORDERS_FOR_A_SECURITY = '1';
    static const ItemType CANCEL_ORDERS_FOR_AN_UNDERLYING_SECURITY;
+   static constexpr ValueType ITEM_CANCEL_ORDERS_FOR_AN_UNDERLYING_SECURITY = '2';
    static const ItemType CANCEL_ORDERS_FOR_A_PRODUCT;
+   static constexpr ValueType ITEM_CANCEL_ORDERS_FOR_A_PRODUCT = '3';
    static const ItemType CANCEL_ORDERS_FOR_A_CFICODE;
+   static constexpr ValueType ITEM_CANCEL_ORDERS_FOR_A_CFICODE = '4';
    static const ItemType CANCEL_ORDERS_FOR_A_SECURITYTYPE;
+   static constexpr ValueType ITEM_CANCEL_ORDERS_FOR_A_SECURITYTYPE = '5';
    static const ItemType CANCEL_ORDERS_FOR_A_TRADING_SESSION;
+   static constexpr ValueType ITEM_CANCEL_ORDERS_FOR_A_TRADING_SESSION = '6';
    static const ItemType CANCEL_ALL_ORDERS;
+   static constexpr ValueType ITEM_CANCEL_ALL_ORDERS = '7';
 };
 
 struct MassCancelResponseEnums final: FieldEnumsBase {
@@ -4841,13 +5979,21 @@ struct MassCancelResponseEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType CANCEL_REQUEST_REJECTED;
+   static constexpr ValueType ITEM_CANCEL_REQUEST_REJECTED = '0';
    static const ItemType CANCEL_ORDERS_FOR_A_SECURITY;
+   static constexpr ValueType ITEM_CANCEL_ORDERS_FOR_A_SECURITY = '1';
    static const ItemType CANCEL_ORDERS_FOR_AN_UNDERLYING_SECURITY;
+   static constexpr ValueType ITEM_CANCEL_ORDERS_FOR_AN_UNDERLYING_SECURITY = '2';
    static const ItemType CANCEL_ORDERS_FOR_A_PRODUCT;
+   static constexpr ValueType ITEM_CANCEL_ORDERS_FOR_A_PRODUCT = '3';
    static const ItemType CANCEL_ORDERS_FOR_A_CFICODE;
+   static constexpr ValueType ITEM_CANCEL_ORDERS_FOR_A_CFICODE = '4';
    static const ItemType CANCEL_ORDERS_FOR_A_SECURITYTYPE;
+   static constexpr ValueType ITEM_CANCEL_ORDERS_FOR_A_SECURITYTYPE = '5';
    static const ItemType CANCEL_ORDERS_FOR_A_TRADING_SESSION;
+   static constexpr ValueType ITEM_CANCEL_ORDERS_FOR_A_TRADING_SESSION = '6';
    static const ItemType CANCEL_ALL_ORDERS;
+   static constexpr ValueType ITEM_CANCEL_ALL_ORDERS = '7';
 };
 
 struct MassCancelRejectReasonEnums final: FieldEnumsBase {
@@ -4863,13 +6009,21 @@ struct MassCancelRejectReasonEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType MASS_CANCEL_NOT_SUPPORTED;
+   static constexpr ValueType ITEM_MASS_CANCEL_NOT_SUPPORTED = '0';
    static const ItemType INVALID_OR_UNKNOWN_SECURITY;
+   static constexpr ValueType ITEM_INVALID_OR_UNKNOWN_SECURITY = '1';
    static const ItemType INVALID_OR_UNKNOWN_UNDERLYING;
+   static constexpr ValueType ITEM_INVALID_OR_UNKNOWN_UNDERLYING = '2';
    static const ItemType INVALID_OR_UNKNOWN_PRODUCT;
+   static constexpr ValueType ITEM_INVALID_OR_UNKNOWN_PRODUCT = '3';
    static const ItemType INVALID_OR_UNKNOWN_CFICODE;
+   static constexpr ValueType ITEM_INVALID_OR_UNKNOWN_CFICODE = '4';
    static const ItemType INVALID_OR_UNKNOWN_SECURITY_TYPE;
+   static constexpr ValueType ITEM_INVALID_OR_UNKNOWN_SECURITY_TYPE = '5';
    static const ItemType INVALID_OR_UNKNOWN_TRADING_SESSION;
+   static constexpr ValueType ITEM_INVALID_OR_UNKNOWN_TRADING_SESSION = '6';
    static const ItemType OTHER;
+   static constexpr ValueType ITEM_OTHER = '9';
 };
 
 struct QuoteTypeEnums final: FieldEnumsBase {
@@ -4885,9 +6039,13 @@ struct QuoteTypeEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType INDICATIVE;
+   static constexpr ValueType ITEM_INDICATIVE = 0;
    static const ItemType TRADEABLE;
+   static constexpr ValueType ITEM_TRADEABLE = 1;
    static const ItemType RESTRICTED_TRADEABLE;
+   static constexpr ValueType ITEM_RESTRICTED_TRADEABLE = 2;
    static const ItemType COUNTER;
+   static constexpr ValueType ITEM_COUNTER = 3;
 };
 
 struct CashMarginEnums final: FieldEnumsBase {
@@ -4903,8 +6061,11 @@ struct CashMarginEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType CASH;
+   static constexpr ValueType ITEM_CASH = '1';
    static const ItemType MARGIN_OPEN;
+   static constexpr ValueType ITEM_MARGIN_OPEN = '2';
    static const ItemType MARGIN_CLOSE;
+   static constexpr ValueType ITEM_MARGIN_CLOSE = '3';
 };
 
 struct ScopeEnums final: FieldEnumsBase {
@@ -4920,8 +6081,11 @@ struct ScopeEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType LOCAL;
+   static constexpr ValueType ITEM_LOCAL = SOHSTR(1);
    static const ItemType NATIONAL;
+   static constexpr ValueType ITEM_NATIONAL = SOHSTR(2);
    static const ItemType GLOBAL;
+   static constexpr ValueType ITEM_GLOBAL = SOHSTR(3);
 };
 
 struct MDImplicitDeleteEnums final: FieldEnumsBase {
@@ -4937,7 +6101,9 @@ struct MDImplicitDeleteEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType YES;
+   static constexpr ValueType ITEM_YES = 'Y';
    static const ItemType NO;
+   static constexpr ValueType ITEM_NO = 'N';
 };
 
 struct CrossTypeEnums final: FieldEnumsBase {
@@ -4953,9 +6119,13 @@ struct CrossTypeEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType CROSS_TRADE_WHICH_IS_EXECUTED_COMPLETELY_OR_NOT_BOTH_SIDES_ARE_TREATED_IN_THE_SAME_MANNER_THIS_IS_EQUIVALENT_TO_AN_ALL_OR_NONE;
+   static constexpr ValueType ITEM_CROSS_TRADE_WHICH_IS_EXECUTED_COMPLETELY_OR_NOT_BOTH_SIDES_ARE_TREATED_IN_THE_SAME_MANNER_THIS_IS_EQUIVALENT_TO_AN_ALL_OR_NONE = 1;
    static const ItemType CROSS_TRADE_WHICH_IS_EXECUTED_PARTIALLY_AND_THE_REST_IS_CANCELLED_ONE_SIDE_IS_FULLY_EXECUTED_THE_OTHER_SIDE_IS_PARTIALLY_EXECUTED_WITH_THE_REMAINDER_BEING_CANCELLED_THIS_IS_EQUIVALENT_TO_AN_IMMEDIATE_OR_CANCEL_ON_THE_OTHER_SIDE_NOTE_THE_CROSSPRIORITZATION;
+   static constexpr ValueType ITEM_CROSS_TRADE_WHICH_IS_EXECUTED_PARTIALLY_AND_THE_REST_IS_CANCELLED_ONE_SIDE_IS_FULLY_EXECUTED_THE_OTHER_SIDE_IS_PARTIALLY_EXECUTED_WITH_THE_REMAINDER_BEING_CANCELLED_THIS_IS_EQUIVALENT_TO_AN_IMMEDIATE_OR_CANCEL_ON_THE_OTHER_SIDE_NOTE_THE_CROSSPRIORITZATION = 2;
    static const ItemType CROSS_TRADE_WHICH_IS_PARTIALLY_EXECUTED_WITH_THE_UNFILLED_PORTIONS_REMAINING_ACTIVE_ONE_SIDE_OF_THE_CROSS_IS_FULLY_EXECUTED;
+   static constexpr ValueType ITEM_CROSS_TRADE_WHICH_IS_PARTIALLY_EXECUTED_WITH_THE_UNFILLED_PORTIONS_REMAINING_ACTIVE_ONE_SIDE_OF_THE_CROSS_IS_FULLY_EXECUTED = 3;
    static const ItemType CROSS_TRADE_IS_EXECUTED_WITH_EXISTING_ORDERS_WITH_THE_SAME_PRICE_IN_THE_CASE_OTHER_ORDERS_EXIST_WITH_THE_SAME_PRICE_THE_QUANTITY_OF_THE_CROSS_IS_EXECUTED_AGAINST_THE_EXISTING_ORDERS_AND_QUOTES_THE_REMAINDER_OF_THE_CROSS_IS_EXECUTED_AGAINST_THE_OTHER_SIDE_OF_THE_CROSS_THE_TWO_SIDES_POTENTIALLY_HAVE_DIFFERENT_QUANTITIES;
+   static constexpr ValueType ITEM_CROSS_TRADE_IS_EXECUTED_WITH_EXISTING_ORDERS_WITH_THE_SAME_PRICE_IN_THE_CASE_OTHER_ORDERS_EXIST_WITH_THE_SAME_PRICE_THE_QUANTITY_OF_THE_CROSS_IS_EXECUTED_AGAINST_THE_EXISTING_ORDERS_AND_QUOTES_THE_REMAINDER_OF_THE_CROSS_IS_EXECUTED_AGAINST_THE_OTHER_SIDE_OF_THE_CROSS_THE_TWO_SIDES_POTENTIALLY_HAVE_DIFFERENT_QUANTITIES = 4;
 };
 
 struct CrossPrioritizationEnums final: FieldEnumsBase {
@@ -4971,8 +6141,11 @@ struct CrossPrioritizationEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType NONE;
+   static constexpr ValueType ITEM_NONE = 0;
    static const ItemType BUY_SIDE_IS_PRIORITIZED;
+   static constexpr ValueType ITEM_BUY_SIDE_IS_PRIORITIZED = 1;
    static const ItemType SELL_SIDE_IS_PRIORITIZED;
+   static constexpr ValueType ITEM_SELL_SIDE_IS_PRIORITIZED = 2;
 };
 
 struct NoSidesEnums final: FieldEnumsBase {
@@ -4988,7 +6161,9 @@ struct NoSidesEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType ONE_SIDE;
+   static constexpr ValueType ITEM_ONE_SIDE = 1;
    static const ItemType BOTH_SIDES;
+   static constexpr ValueType ITEM_BOTH_SIDES = 2;
 };
 
 struct SecurityListRequestTypeEnums final: FieldEnumsBase {
@@ -5004,10 +6179,15 @@ struct SecurityListRequestTypeEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType SYMBOL;
+   static constexpr ValueType ITEM_SYMBOL = 0;
    static const ItemType SECURITYTYPE_AND_OR_CFICODE;
+   static constexpr ValueType ITEM_SECURITYTYPE_AND_OR_CFICODE = 1;
    static const ItemType PRODUCT;
+   static constexpr ValueType ITEM_PRODUCT = 2;
    static const ItemType TRADINGSESSIONID;
+   static constexpr ValueType ITEM_TRADINGSESSIONID = 3;
    static const ItemType ALL_SECURITIES;
+   static constexpr ValueType ITEM_ALL_SECURITIES = 4;
 };
 
 struct SecurityRequestResultEnums final: FieldEnumsBase {
@@ -5023,11 +6203,17 @@ struct SecurityRequestResultEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType VALID_REQUEST;
+   static constexpr ValueType ITEM_VALID_REQUEST = 0;
    static const ItemType INVALID_OR_UNSUPPORTED_REQUEST;
+   static constexpr ValueType ITEM_INVALID_OR_UNSUPPORTED_REQUEST = 1;
    static const ItemType NO_INSTRUMENTS_FOUND_THAT_MATCH_SELECTION_CRITERIA;
+   static constexpr ValueType ITEM_NO_INSTRUMENTS_FOUND_THAT_MATCH_SELECTION_CRITERIA = 2;
    static const ItemType NOT_AUTHORIZED_TO_RETRIEVE_INSTRUMENT_DATA;
+   static constexpr ValueType ITEM_NOT_AUTHORIZED_TO_RETRIEVE_INSTRUMENT_DATA = 3;
    static const ItemType INSTRUMENT_DATA_TEMPORARILY_UNAVAILABLE;
+   static constexpr ValueType ITEM_INSTRUMENT_DATA_TEMPORARILY_UNAVAILABLE = 4;
    static const ItemType REQUEST_FOR_INSTRUMENT_DATA_NOT_SUPPORTED;
+   static constexpr ValueType ITEM_REQUEST_FOR_INSTRUMENT_DATA_NOT_SUPPORTED = 5;
 };
 
 struct MultiLegRptTypeReqEnums final: FieldEnumsBase {
@@ -5043,8 +6229,11 @@ struct MultiLegRptTypeReqEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType REPORT_BY_MULITLEG_SECURITY_ONLY;
+   static constexpr ValueType ITEM_REPORT_BY_MULITLEG_SECURITY_ONLY = 0;
    static const ItemType REPORT_BY_MULTILEG_SECURITY_AND_BY_INSTRUMENT_LEGS_BELONGING_TO_THE_MULTILEG_SECURITY;
+   static constexpr ValueType ITEM_REPORT_BY_MULTILEG_SECURITY_AND_BY_INSTRUMENT_LEGS_BELONGING_TO_THE_MULTILEG_SECURITY = 1;
    static const ItemType REPORT_BY_INSTRUMENT_LEGS_BELONGING_TO_THE_MULTILEG_SECURITY_ONLY;
+   static constexpr ValueType ITEM_REPORT_BY_INSTRUMENT_LEGS_BELONGING_TO_THE_MULTILEG_SECURITY_ONLY = 2;
 };
 
 struct TradSesStatusRejReasonEnums final: FieldEnumsBase {
@@ -5060,7 +6249,9 @@ struct TradSesStatusRejReasonEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType UNKNOWN_OR_INVALID_TRADINGSESSIONID;
+   static constexpr ValueType ITEM_UNKNOWN_OR_INVALID_TRADINGSESSIONID = 1;
    static const ItemType OTHER;
+   static constexpr ValueType ITEM_OTHER = 99;
 };
 
 struct TradeRequestTypeEnums final: FieldEnumsBase {
@@ -5076,10 +6267,15 @@ struct TradeRequestTypeEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType ALL_TRADES;
+   static constexpr ValueType ITEM_ALL_TRADES = 0;
    static const ItemType MATCHED_TRADES_MATCHING_CRITERIA_PROVIDED_ON_REQUEST;
+   static constexpr ValueType ITEM_MATCHED_TRADES_MATCHING_CRITERIA_PROVIDED_ON_REQUEST = 1;
    static const ItemType UNMATCHED_TRADES_THAT_MATCH_CRITERIA;
+   static constexpr ValueType ITEM_UNMATCHED_TRADES_THAT_MATCH_CRITERIA = 2;
    static const ItemType UNREPORTED_TRADES_THAT_MATCH_CRITERIA;
+   static constexpr ValueType ITEM_UNREPORTED_TRADES_THAT_MATCH_CRITERIA = 3;
    static const ItemType ADVISORIES_THAT_MATCH_CRITERIA;
+   static constexpr ValueType ITEM_ADVISORIES_THAT_MATCH_CRITERIA = 4;
 };
 
 struct PreviouslyReportedEnums final: FieldEnumsBase {
@@ -5095,7 +6291,9 @@ struct PreviouslyReportedEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType YES;
+   static constexpr ValueType ITEM_YES = 'Y';
    static const ItemType NO;
+   static constexpr ValueType ITEM_NO = 'N';
 };
 
 struct MatchStatusEnums final: FieldEnumsBase {
@@ -5111,8 +6309,11 @@ struct MatchStatusEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType COMPARED_MATCHED_OR_AFFIRMED;
+   static constexpr ValueType ITEM_COMPARED_MATCHED_OR_AFFIRMED = '0';
    static const ItemType UNCOMPARED_UNMATCHED_OR_UNAFFIRMED;
+   static constexpr ValueType ITEM_UNCOMPARED_UNMATCHED_OR_UNAFFIRMED = '1';
    static const ItemType ADVISORY_OR_ALERT;
+   static constexpr ValueType ITEM_ADVISORY_OR_ALERT = '2';
 };
 
 struct MatchTypeEnums final: FieldEnumsBase {
@@ -5128,23 +6329,41 @@ struct MatchTypeEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType EXACT_MATCH_ON_TRADE_DATE_STOCK_SYMBOL_QUANTITY_PRICE_TRADE_TYPE_AND_SPECIAL_TRADE_INDICATOR_PLUS_FOUR_BADGES_AND_EXECUTION_TIME;
+   static constexpr ValueType ITEM_EXACT_MATCH_ON_TRADE_DATE_STOCK_SYMBOL_QUANTITY_PRICE_TRADE_TYPE_AND_SPECIAL_TRADE_INDICATOR_PLUS_FOUR_BADGES_AND_EXECUTION_TIME = SOHSTR(A1);
    static const ItemType EXACT_MATCH_ON_TRADE_DATE_STOCK_SYMBOL_QUANTITY_PRICE_TRADE_TYPE_AND_SPECIAL_TRADE_INDICATOR_PLUS_FOUR_BADGES;
+   static constexpr ValueType ITEM_EXACT_MATCH_ON_TRADE_DATE_STOCK_SYMBOL_QUANTITY_PRICE_TRADE_TYPE_AND_SPECIAL_TRADE_INDICATOR_PLUS_FOUR_BADGES = SOHSTR(A2);
    static const ItemType EXACT_MATCH_ON_TRADE_DATE_STOCK_SYMBOL_QUANTITY_PRICE_TRADE_TYPE_AND_SPECIAL_TRADE_INDICATOR_PLUS_TWO_BADGES_AND_EXECUTION_TIME;
+   static constexpr ValueType ITEM_EXACT_MATCH_ON_TRADE_DATE_STOCK_SYMBOL_QUANTITY_PRICE_TRADE_TYPE_AND_SPECIAL_TRADE_INDICATOR_PLUS_TWO_BADGES_AND_EXECUTION_TIME = SOHSTR(A3);
    static const ItemType EXACT_MATCH_ON_TRADE_DATE_STOCK_SYMBOL_QUANTITY_PRICE_TRADE_TYPE_AND_SPECIAL_TRADE_INDICATOR_PLUS_TWO_BADGES;
+   static constexpr ValueType ITEM_EXACT_MATCH_ON_TRADE_DATE_STOCK_SYMBOL_QUANTITY_PRICE_TRADE_TYPE_AND_SPECIAL_TRADE_INDICATOR_PLUS_TWO_BADGES = SOHSTR(A4);
    static const ItemType EXACT_MATCH_ON_TRADE_DATE_STOCK_SYMBOL_QUANTITY_PRICE_TRADE_TYPE_AND_SPECIAL_TRADE_INDICATOR_PLUS_EXECUTION_TIME;
+   static constexpr ValueType ITEM_EXACT_MATCH_ON_TRADE_DATE_STOCK_SYMBOL_QUANTITY_PRICE_TRADE_TYPE_AND_SPECIAL_TRADE_INDICATOR_PLUS_EXECUTION_TIME = SOHSTR(A5);
    static const ItemType COMPARED_RECORDS_RESULTING_FROM_STAMPED_ADVISORIES_OR_SPECIALIST_ACCEPTS_PAIR_OFFS;
+   static constexpr ValueType ITEM_COMPARED_RECORDS_RESULTING_FROM_STAMPED_ADVISORIES_OR_SPECIALIST_ACCEPTS_PAIR_OFFS = SOHSTR(AQ);
    static const ItemType SUMMARIZED_MATCH_USING_A1_EXACT_MATCH_CRITERIA_EXCEPT_QUANTITY_IS_SUMMARIZED;
+   static constexpr ValueType ITEM_SUMMARIZED_MATCH_USING_A1_EXACT_MATCH_CRITERIA_EXCEPT_QUANTITY_IS_SUMMARIZED = SOHSTR(S1);
    static const ItemType SUMMARIZED_MATCH_USING_A2_EXACT_MATCH_CRITERIA_EXCEPT_QUANTITY_IS_SUMMARIZED;
+   static constexpr ValueType ITEM_SUMMARIZED_MATCH_USING_A2_EXACT_MATCH_CRITERIA_EXCEPT_QUANTITY_IS_SUMMARIZED = SOHSTR(S2);
    static const ItemType SUMMARIZED_MATCH_USING_A3_EXACT_MATCH_CRITERIA_EXCEPT_QUANTITY_IS_SUMMARIZED;
+   static constexpr ValueType ITEM_SUMMARIZED_MATCH_USING_A3_EXACT_MATCH_CRITERIA_EXCEPT_QUANTITY_IS_SUMMARIZED = SOHSTR(S3);
    static const ItemType SUMMARIZED_MATCH_USING_A4_EXACT_MATCH_CRITERIA_EXCEPT_QUANTITY_IS_SUMMARIZED;
+   static constexpr ValueType ITEM_SUMMARIZED_MATCH_USING_A4_EXACT_MATCH_CRITERIA_EXCEPT_QUANTITY_IS_SUMMARIZED = SOHSTR(S4);
    static const ItemType SUMMARIZED_MATCH_USING_A5_EXACT_MATCH_CRITERIA_EXCEPT_QUANTITY_IS_SUMMARIZED;
+   static constexpr ValueType ITEM_SUMMARIZED_MATCH_USING_A5_EXACT_MATCH_CRITERIA_EXCEPT_QUANTITY_IS_SUMMARIZED = SOHSTR(S5);
    static const ItemType EXACT_MATCH_ON_TRADE_DATE_STOCK_SYMBOL_QUANTITY_PRICE_TRADE_TYPE_AND_SPECIAL_TRADE_INDICATOR_MINUS_BADGES_AND_TIMES_ACT_M1_MATCH;
+   static constexpr ValueType ITEM_EXACT_MATCH_ON_TRADE_DATE_STOCK_SYMBOL_QUANTITY_PRICE_TRADE_TYPE_AND_SPECIAL_TRADE_INDICATOR_MINUS_BADGES_AND_TIMES_ACT_M1_MATCH = SOHSTR(M1);
    static const ItemType SUMMARIZED_MATCH_MINUS_BADGES_AND_TIMES_ACT_M2_MATCH;
+   static constexpr ValueType ITEM_SUMMARIZED_MATCH_MINUS_BADGES_AND_TIMES_ACT_M2_MATCH = SOHSTR(M2);
    static const ItemType OCS_LOCKED_IN_NON_ACT;
+   static constexpr ValueType ITEM_OCS_LOCKED_IN_NON_ACT = SOHSTR(MT);
    static const ItemType ACT_ACCEPTED_TRADE;
+   static constexpr ValueType ITEM_ACT_ACCEPTED_TRADE = SOHSTR(M3);
    static const ItemType ACT_DEFAULT_TRADE;
+   static constexpr ValueType ITEM_ACT_DEFAULT_TRADE = SOHSTR(M4);
    static const ItemType ACT_DEFAULT_AFTER_M2;
+   static constexpr ValueType ITEM_ACT_DEFAULT_AFTER_M2 = SOHSTR(M5);
    static const ItemType ACT_M6_MATCH;
+   static constexpr ValueType ITEM_ACT_M6_MATCH = SOHSTR(M6);
 };
 
 struct OddLotEnums final: FieldEnumsBase {
@@ -5160,7 +6379,9 @@ struct OddLotEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType YES;
+   static constexpr ValueType ITEM_YES = 'Y';
    static const ItemType NO;
+   static constexpr ValueType ITEM_NO = 'N';
 };
 
 struct ClearingInstructionEnums final: FieldEnumsBase {
@@ -5176,19 +6397,33 @@ struct ClearingInstructionEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType PROCESS_NORMALLY;
+   static constexpr ValueType ITEM_PROCESS_NORMALLY = 0;
    static const ItemType EXCLUDE_FROM_ALL_NETTING;
+   static constexpr ValueType ITEM_EXCLUDE_FROM_ALL_NETTING = 1;
    static const ItemType BILATERAL_NETTING_ONLY;
+   static constexpr ValueType ITEM_BILATERAL_NETTING_ONLY = 2;
    static const ItemType EX_CLEARING;
+   static constexpr ValueType ITEM_EX_CLEARING = 3;
    static const ItemType SPECIAL_TRADE;
+   static constexpr ValueType ITEM_SPECIAL_TRADE = 4;
    static const ItemType MULTILATERAL_NETTING;
+   static constexpr ValueType ITEM_MULTILATERAL_NETTING = 5;
    static const ItemType CLEAR_AGAINST_CENTRAL_COUNTERPARTY;
+   static constexpr ValueType ITEM_CLEAR_AGAINST_CENTRAL_COUNTERPARTY = 6;
    static const ItemType EXCLUDE_FROM_CENTRAL_COUNTERPARTY;
+   static constexpr ValueType ITEM_EXCLUDE_FROM_CENTRAL_COUNTERPARTY = 7;
    static const ItemType MANUAL_MODE;
+   static constexpr ValueType ITEM_MANUAL_MODE = 8;
    static const ItemType AUTOMATIC_POSTING_MODE;
+   static constexpr ValueType ITEM_AUTOMATIC_POSTING_MODE = 9;
    static const ItemType AUTOMATIC_GIVE_UP_MODE;
+   static constexpr ValueType ITEM_AUTOMATIC_GIVE_UP_MODE = 10;
    static const ItemType QUALIFIED_SERVICE_REPRESENTATIVE;
+   static constexpr ValueType ITEM_QUALIFIED_SERVICE_REPRESENTATIVE = 11;
    static const ItemType CUSTOMER_TRADE;
+   static constexpr ValueType ITEM_CUSTOMER_TRADE = 12;
    static const ItemType SELF_CLEARING;
+   static constexpr ValueType ITEM_SELF_CLEARING = 13;
 };
 
 struct AccountTypeEnums final: FieldEnumsBase {
@@ -5204,12 +6439,19 @@ struct AccountTypeEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType ACCOUNT_IS_CARRIED_ON_CUSTOMER_SIDE_OF_BOOKS;
+   static constexpr ValueType ITEM_ACCOUNT_IS_CARRIED_ON_CUSTOMER_SIDE_OF_BOOKS = 1;
    static const ItemType ACCOUNT_IS_CARRIED_ON_NON_CUSTOMER_SIDE_OF_BOOKS;
+   static constexpr ValueType ITEM_ACCOUNT_IS_CARRIED_ON_NON_CUSTOMER_SIDE_OF_BOOKS = 2;
    static const ItemType HOUSE_TRADER;
+   static constexpr ValueType ITEM_HOUSE_TRADER = 3;
    static const ItemType FLOOR_TRADER;
+   static constexpr ValueType ITEM_FLOOR_TRADER = 4;
    static const ItemType ACCOUNT_IS_CARRIED_ON_NON_CUSTOMER_SIDE_OF_BOOKS_AND_IS_CROSS_MARGINED;
+   static constexpr ValueType ITEM_ACCOUNT_IS_CARRIED_ON_NON_CUSTOMER_SIDE_OF_BOOKS_AND_IS_CROSS_MARGINED = 6;
    static const ItemType ACCOUNT_IS_HOUSE_TRADER_AND_IS_CROSS_MARGINED;
+   static constexpr ValueType ITEM_ACCOUNT_IS_HOUSE_TRADER_AND_IS_CROSS_MARGINED = 7;
    static const ItemType JOINT_BACKOFFICE_ACCOUNT;
+   static constexpr ValueType ITEM_JOINT_BACKOFFICE_ACCOUNT = 8;
 };
 
 struct CustOrderCapacityEnums final: FieldEnumsBase {
@@ -5225,9 +6467,13 @@ struct CustOrderCapacityEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType MEMBER_TRADING_FOR_THEIR_OWN_ACCOUNT;
+   static constexpr ValueType ITEM_MEMBER_TRADING_FOR_THEIR_OWN_ACCOUNT = 1;
    static const ItemType CLEARING_FIRM_TRADING_FOR_ITS_PROPRIETARY_ACCOUNT;
+   static constexpr ValueType ITEM_CLEARING_FIRM_TRADING_FOR_ITS_PROPRIETARY_ACCOUNT = 2;
    static const ItemType MEMBER_TRADING_FOR_ANOTHER_MEMBER;
+   static constexpr ValueType ITEM_MEMBER_TRADING_FOR_ANOTHER_MEMBER = 3;
    static const ItemType ALL_OTHER;
+   static constexpr ValueType ITEM_ALL_OTHER = 4;
 };
 
 struct MassStatusReqTypeEnums final: FieldEnumsBase {
@@ -5243,13 +6489,21 @@ struct MassStatusReqTypeEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType STATUS_FOR_ORDERS_FOR_A_SECURITY;
+   static constexpr ValueType ITEM_STATUS_FOR_ORDERS_FOR_A_SECURITY = 1;
    static const ItemType STATUS_FOR_ORDERS_FOR_AN_UNDERLYING_SECURITY;
+   static constexpr ValueType ITEM_STATUS_FOR_ORDERS_FOR_AN_UNDERLYING_SECURITY = 2;
    static const ItemType STATUS_FOR_ORDERS_FOR_A_PRODUCT;
+   static constexpr ValueType ITEM_STATUS_FOR_ORDERS_FOR_A_PRODUCT = 3;
    static const ItemType STATUS_FOR_ORDERS_FOR_A_CFICODE;
+   static constexpr ValueType ITEM_STATUS_FOR_ORDERS_FOR_A_CFICODE = 4;
    static const ItemType STATUS_FOR_ORDERS_FOR_A_SECURITYTYPE;
+   static constexpr ValueType ITEM_STATUS_FOR_ORDERS_FOR_A_SECURITYTYPE = 5;
    static const ItemType STATUS_FOR_ORDERS_FOR_A_TRADING_SESSION;
+   static constexpr ValueType ITEM_STATUS_FOR_ORDERS_FOR_A_TRADING_SESSION = 6;
    static const ItemType STATUS_FOR_ALL_ORDERS;
+   static constexpr ValueType ITEM_STATUS_FOR_ALL_ORDERS = 7;
    static const ItemType STATUS_FOR_ORDERS_FOR_A_PARTYID;
+   static constexpr ValueType ITEM_STATUS_FOR_ORDERS_FOR_A_PARTYID = 8;
 };
 
 struct DayBookingInstEnums final: FieldEnumsBase {
@@ -5265,8 +6519,11 @@ struct DayBookingInstEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType CAN_TRIGGER_BOOKING_WITHOUT_REFERENCE_TO_THE_ORDER_INITIATOR;
+   static constexpr ValueType ITEM_CAN_TRIGGER_BOOKING_WITHOUT_REFERENCE_TO_THE_ORDER_INITIATOR = '0';
    static const ItemType SPEAK_WITH_ORDER_INITIATOR_BEFORE_BOOKING;
+   static constexpr ValueType ITEM_SPEAK_WITH_ORDER_INITIATOR_BEFORE_BOOKING = '1';
    static const ItemType ACCUMULATE;
+   static constexpr ValueType ITEM_ACCUMULATE = '2';
 };
 
 struct BookingUnitEnums final: FieldEnumsBase {
@@ -5282,8 +6539,11 @@ struct BookingUnitEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType EACH_PARTIAL_EXECUTION_IS_A_BOOKABLE_UNIT;
+   static constexpr ValueType ITEM_EACH_PARTIAL_EXECUTION_IS_A_BOOKABLE_UNIT = '0';
    static const ItemType AGGREGATE_PARTIAL_EXECUTIONS_ON_THIS_ORDER_AND_BOOK_ONE_TRADE_PER_ORDER;
+   static constexpr ValueType ITEM_AGGREGATE_PARTIAL_EXECUTIONS_ON_THIS_ORDER_AND_BOOK_ONE_TRADE_PER_ORDER = '1';
    static const ItemType AGGREGATE_EXECUTIONS_FOR_THIS_SYMBOL_SIDE_AND_SETTLEMENT_DATE;
+   static constexpr ValueType ITEM_AGGREGATE_EXECUTIONS_FOR_THIS_SYMBOL_SIDE_AND_SETTLEMENT_DATE = '2';
 };
 
 struct PreallocMethodEnums final: FieldEnumsBase {
@@ -5299,7 +6559,9 @@ struct PreallocMethodEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType PRO_RATA;
+   static constexpr ValueType ITEM_PRO_RATA = '0';
    static const ItemType DO_NOT_PRO_RATA_DISCUSS_FIRST;
+   static constexpr ValueType ITEM_DO_NOT_PRO_RATA_DISCUSS_FIRST = '1';
 };
 
 struct AllocTypeEnums final: FieldEnumsBase {
@@ -5315,10 +6577,15 @@ struct AllocTypeEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType CALCULATED;
+   static constexpr ValueType ITEM_CALCULATED = 1;
    static const ItemType PRELIMINARY;
+   static constexpr ValueType ITEM_PRELIMINARY = 2;
    static const ItemType READY_TO_BOOK;
+   static constexpr ValueType ITEM_READY_TO_BOOK = 5;
    static const ItemType WAREHOUSE_INSTRUCTION;
+   static constexpr ValueType ITEM_WAREHOUSE_INSTRUCTION = 7;
    static const ItemType REQUEST_TO_INTERMEDIARY;
+   static constexpr ValueType ITEM_REQUEST_TO_INTERMEDIARY = 8;
 };
 
 struct ClearingFeeIndicatorEnums final: FieldEnumsBase {
@@ -5334,19 +6601,33 @@ struct ClearingFeeIndicatorEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType CBOE_MEMBER;
+   static constexpr ValueType ITEM_CBOE_MEMBER = SOHSTR(B);
    static const ItemType NON_MEMBER_AND_CUSTOMER;
+   static constexpr ValueType ITEM_NON_MEMBER_AND_CUSTOMER = SOHSTR(C);
    static const ItemType EQUITY_MEMBER_AND_CLEARING_MEMBER;
+   static constexpr ValueType ITEM_EQUITY_MEMBER_AND_CLEARING_MEMBER = SOHSTR(E);
    static const ItemType FULL_AND_ASSOCIATE_MEMBER_TRADING_FOR_OWN_ACCOUNT_AND_AS_FLOOR_BROKERS;
+   static constexpr ValueType ITEM_FULL_AND_ASSOCIATE_MEMBER_TRADING_FOR_OWN_ACCOUNT_AND_AS_FLOOR_BROKERS = SOHSTR(F);
    static const ItemType _106H_AND_106J_FIRMS;
+   static constexpr ValueType ITEM__106H_AND_106J_FIRMS = SOHSTR(H);
    static const ItemType GIM_IDEM_AND_COM_MEMBERSHIP_INTEREST_HOLDERS;
+   static constexpr ValueType ITEM_GIM_IDEM_AND_COM_MEMBERSHIP_INTEREST_HOLDERS = SOHSTR(I);
    static const ItemType LESSEE_AND_106F_EMPLOYEES;
+   static constexpr ValueType ITEM_LESSEE_AND_106F_EMPLOYEES = SOHSTR(L);
    static const ItemType ALL_OTHER_OWNERSHIP_TYPES;
+   static constexpr ValueType ITEM_ALL_OTHER_OWNERSHIP_TYPES = SOHSTR(M);
    static const ItemType _1ST_YEAR_DELEGATE_TRADING_FOR_HIS_OWN_ACCOUNT;
+   static constexpr ValueType ITEM__1ST_YEAR_DELEGATE_TRADING_FOR_HIS_OWN_ACCOUNT = SOHSTR(1);
    static const ItemType _2ND_YEAR_DELEGATE_TRADING_FOR_HIS_OWN_ACCOUNT;
+   static constexpr ValueType ITEM__2ND_YEAR_DELEGATE_TRADING_FOR_HIS_OWN_ACCOUNT = SOHSTR(2);
    static const ItemType _3RD_YEAR_DELEGATE_TRADING_FOR_HIS_OWN_ACCOUNT;
+   static constexpr ValueType ITEM__3RD_YEAR_DELEGATE_TRADING_FOR_HIS_OWN_ACCOUNT = SOHSTR(3);
    static const ItemType _4TH_YEAR_DELEGATE_TRADING_FOR_HIS_OWN_ACCOUNT;
+   static constexpr ValueType ITEM__4TH_YEAR_DELEGATE_TRADING_FOR_HIS_OWN_ACCOUNT = SOHSTR(4);
    static const ItemType _5TH_YEAR_DELEGATE_TRADING_FOR_HIS_OWN_ACCOUNT;
+   static constexpr ValueType ITEM__5TH_YEAR_DELEGATE_TRADING_FOR_HIS_OWN_ACCOUNT = SOHSTR(5);
    static const ItemType _6TH_YEAR_AND_BEYOND_DELEGATE_TRADING_FOR_HIS_OWN_ACCOUNT;
+   static constexpr ValueType ITEM__6TH_YEAR_AND_BEYOND_DELEGATE_TRADING_FOR_HIS_OWN_ACCOUNT = SOHSTR(9);
 };
 
 struct WorkingIndicatorEnums final: FieldEnumsBase {
@@ -5362,7 +6643,9 @@ struct WorkingIndicatorEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType YES;
+   static constexpr ValueType ITEM_YES = 'Y';
    static const ItemType NO;
+   static constexpr ValueType ITEM_NO = 'N';
 };
 
 struct PriorityIndicatorEnums final: FieldEnumsBase {
@@ -5378,7 +6661,9 @@ struct PriorityIndicatorEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType PRIORITY_UNCHANGED;
+   static constexpr ValueType ITEM_PRIORITY_UNCHANGED = 0;
    static const ItemType LOST_PRIORITY_AS_RESULT_OF_ORDER_CHANGE;
+   static constexpr ValueType ITEM_LOST_PRIORITY_AS_RESULT_OF_ORDER_CHANGE = 1;
 };
 
 struct LegalConfirmEnums final: FieldEnumsBase {
@@ -5394,7 +6679,9 @@ struct LegalConfirmEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType YES;
+   static constexpr ValueType ITEM_YES = 'Y';
    static const ItemType NO;
+   static constexpr ValueType ITEM_NO = 'N';
 };
 
 struct QuoteRequestRejectReasonEnums final: FieldEnumsBase {
@@ -5410,16 +6697,27 @@ struct QuoteRequestRejectReasonEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType UNKNOWN_SYMBOL;
+   static constexpr ValueType ITEM_UNKNOWN_SYMBOL = 1;
    static const ItemType EXCHANGE;
+   static constexpr ValueType ITEM_EXCHANGE = 2;
    static const ItemType QUOTE_REQUEST_EXCEEDS_LIMIT;
+   static constexpr ValueType ITEM_QUOTE_REQUEST_EXCEEDS_LIMIT = 3;
    static const ItemType TOO_LATE_TO_ENTER;
+   static constexpr ValueType ITEM_TOO_LATE_TO_ENTER = 4;
    static const ItemType INVALID_PRICE;
+   static constexpr ValueType ITEM_INVALID_PRICE = 5;
    static const ItemType NOT_AUTHORIZED_TO_REQUEST_QUOTE;
+   static constexpr ValueType ITEM_NOT_AUTHORIZED_TO_REQUEST_QUOTE = 6;
    static const ItemType NO_MATCH_FOR_INQUIRY;
+   static constexpr ValueType ITEM_NO_MATCH_FOR_INQUIRY = 7;
    static const ItemType NO_MARKET_FOR_INSTRUMENT;
+   static constexpr ValueType ITEM_NO_MARKET_FOR_INSTRUMENT = 8;
    static const ItemType NO_INVENTORY;
+   static constexpr ValueType ITEM_NO_INVENTORY = 9;
    static const ItemType PASS;
+   static constexpr ValueType ITEM_PASS = 10;
    static const ItemType OTHER;
+   static constexpr ValueType ITEM_OTHER = 99;
 };
 
 struct AcctIDSourceEnums final: FieldEnumsBase {
@@ -5435,11 +6733,17 @@ struct AcctIDSourceEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType BIC;
+   static constexpr ValueType ITEM_BIC = 1;
    static const ItemType SID_CODE;
+   static constexpr ValueType ITEM_SID_CODE = 2;
    static const ItemType TFM;
+   static constexpr ValueType ITEM_TFM = 3;
    static const ItemType OMGEO;
+   static constexpr ValueType ITEM_OMGEO = 4;
    static const ItemType DTCC_CODE;
+   static constexpr ValueType ITEM_DTCC_CODE = 5;
    static const ItemType OTHER;
+   static constexpr ValueType ITEM_OTHER = 99;
 };
 
 struct ConfirmStatusEnums final: FieldEnumsBase {
@@ -5455,10 +6759,15 @@ struct ConfirmStatusEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType RECEIVED;
+   static constexpr ValueType ITEM_RECEIVED = 1;
    static const ItemType MISMATCHED_ACCOUNT;
+   static constexpr ValueType ITEM_MISMATCHED_ACCOUNT = 2;
    static const ItemType MISSING_SETTLEMENT_INSTRUCTIONS;
+   static constexpr ValueType ITEM_MISSING_SETTLEMENT_INSTRUCTIONS = 3;
    static const ItemType CONFIRMED;
+   static constexpr ValueType ITEM_CONFIRMED = 4;
    static const ItemType REQUEST_REJECTED;
+   static constexpr ValueType ITEM_REQUEST_REJECTED = 5;
 };
 
 struct ConfirmTransTypeEnums final: FieldEnumsBase {
@@ -5474,8 +6783,11 @@ struct ConfirmTransTypeEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType NEW;
+   static constexpr ValueType ITEM_NEW = 0;
    static const ItemType REPLACE;
+   static constexpr ValueType ITEM_REPLACE = 1;
    static const ItemType CANCEL;
+   static constexpr ValueType ITEM_CANCEL = 2;
 };
 
 struct DeliveryFormEnums final: FieldEnumsBase {
@@ -5491,7 +6803,9 @@ struct DeliveryFormEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType BOOKENTRY;
+   static constexpr ValueType ITEM_BOOKENTRY = 1;
    static const ItemType BEARER;
+   static constexpr ValueType ITEM_BEARER = 2;
 };
 
 struct LegSwapTypeEnums final: FieldEnumsBase {
@@ -5507,9 +6821,13 @@ struct LegSwapTypeEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType PAR_FOR_PAR;
+   static constexpr ValueType ITEM_PAR_FOR_PAR = 1;
    static const ItemType MODIFIED_DURATION;
+   static constexpr ValueType ITEM_MODIFIED_DURATION = 2;
    static const ItemType RISK;
+   static constexpr ValueType ITEM_RISK = 4;
    static const ItemType PROCEEDS;
+   static constexpr ValueType ITEM_PROCEEDS = 5;
 };
 
 struct QuotePriceTypeEnums final: FieldEnumsBase {
@@ -5525,15 +6843,25 @@ struct QuotePriceTypeEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType PERCENT;
+   static constexpr ValueType ITEM_PERCENT = 1;
    static const ItemType PER_SHARE;
+   static constexpr ValueType ITEM_PER_SHARE = 2;
    static const ItemType FIXED_AMOUNT;
+   static constexpr ValueType ITEM_FIXED_AMOUNT = 3;
    static const ItemType DISCOUNT_PERCENTAGE_POINTS_BELOW_PAR;
+   static constexpr ValueType ITEM_DISCOUNT_PERCENTAGE_POINTS_BELOW_PAR = 4;
    static const ItemType PREMIUM_PERCENTAGE_POINTS_OVER_PAR;
+   static constexpr ValueType ITEM_PREMIUM_PERCENTAGE_POINTS_OVER_PAR = 5;
    static const ItemType BASIS_POINTS_RELATIVE_TO_BENCHMARK;
+   static constexpr ValueType ITEM_BASIS_POINTS_RELATIVE_TO_BENCHMARK = 6;
    static const ItemType TED_PRICE;
+   static constexpr ValueType ITEM_TED_PRICE = 7;
    static const ItemType TED_YIELD;
+   static constexpr ValueType ITEM_TED_YIELD = 8;
    static const ItemType YIELD_SPREAD;
+   static constexpr ValueType ITEM_YIELD_SPREAD = 9;
    static const ItemType YIELD;
+   static constexpr ValueType ITEM_YIELD = 10;
 };
 
 struct QuoteRespTypeEnums final: FieldEnumsBase {
@@ -5549,11 +6877,17 @@ struct QuoteRespTypeEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType HIT_LIFT;
+   static constexpr ValueType ITEM_HIT_LIFT = 1;
    static const ItemType COUNTER;
+   static constexpr ValueType ITEM_COUNTER = 2;
    static const ItemType EXPIRED;
+   static constexpr ValueType ITEM_EXPIRED = 3;
    static const ItemType COVER;
+   static constexpr ValueType ITEM_COVER = 4;
    static const ItemType DONE_AWAY;
+   static constexpr ValueType ITEM_DONE_AWAY = 5;
    static const ItemType PASS;
+   static constexpr ValueType ITEM_PASS = 6;
 };
 
 struct PosTypeEnums final: FieldEnumsBase {
@@ -5569,24 +6903,43 @@ struct PosTypeEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType TRANSACTION_QUANTITY;
+   static constexpr ValueType ITEM_TRANSACTION_QUANTITY = SOHSTR(TQ);
    static const ItemType INTRA_SPREAD_QTY;
+   static constexpr ValueType ITEM_INTRA_SPREAD_QTY = SOHSTR(IAS);
    static const ItemType INTER_SPREAD_QTY;
+   static constexpr ValueType ITEM_INTER_SPREAD_QTY = SOHSTR(IES);
    static const ItemType END_OF_DAY_QTY;
+   static constexpr ValueType ITEM_END_OF_DAY_QTY = SOHSTR(FIN);
    static const ItemType START_OF_DAY_QTY;
+   static constexpr ValueType ITEM_START_OF_DAY_QTY = SOHSTR(SOD);
    static const ItemType OPTION_EXERCISE_QTY;
+   static constexpr ValueType ITEM_OPTION_EXERCISE_QTY = SOHSTR(EX);
    static const ItemType OPTION_ASSIGNMENT;
+   static constexpr ValueType ITEM_OPTION_ASSIGNMENT = SOHSTR(AS);
    static const ItemType TRANSACTION_FROM_EXERCISE;
+   static constexpr ValueType ITEM_TRANSACTION_FROM_EXERCISE = SOHSTR(TX);
    static const ItemType TRANSACTION_FROM_ASSIGNMENT;
+   static constexpr ValueType ITEM_TRANSACTION_FROM_ASSIGNMENT = SOHSTR(TA);
    static const ItemType PIT_TRADE_QTY;
+   static constexpr ValueType ITEM_PIT_TRADE_QTY = SOHSTR(PIT);
    static const ItemType TRANSFER_TRADE_QTY;
+   static constexpr ValueType ITEM_TRANSFER_TRADE_QTY = SOHSTR(TRF);
    static const ItemType ELECTRONIC_TRADE_QTY;
+   static constexpr ValueType ITEM_ELECTRONIC_TRADE_QTY = SOHSTR(ETR);
    static const ItemType ALLOCATION_TRADE_QTY;
+   static constexpr ValueType ITEM_ALLOCATION_TRADE_QTY = SOHSTR(ALC);
    static const ItemType ADJUSTMENT_QTY;
+   static constexpr ValueType ITEM_ADJUSTMENT_QTY = SOHSTR(PA);
    static const ItemType AS_OF_TRADE_QTY;
+   static constexpr ValueType ITEM_AS_OF_TRADE_QTY = SOHSTR(ASF);
    static const ItemType DELIVERY_QTY;
+   static constexpr ValueType ITEM_DELIVERY_QTY = SOHSTR(DLV);
    static const ItemType TOTAL_TRANSACTION_QTY;
+   static constexpr ValueType ITEM_TOTAL_TRANSACTION_QTY = SOHSTR(TOT);
    static const ItemType CROSS_MARGIN_QTY;
+   static constexpr ValueType ITEM_CROSS_MARGIN_QTY = SOHSTR(XM);
    static const ItemType INTEGRAL_SPLIT;
+   static constexpr ValueType ITEM_INTEGRAL_SPLIT = SOHSTR(SPL);
 };
 
 struct PosQtyStatusEnums final: FieldEnumsBase {
@@ -5602,8 +6955,11 @@ struct PosQtyStatusEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType SUBMITTED;
+   static constexpr ValueType ITEM_SUBMITTED = 0;
    static const ItemType ACCEPTED;
+   static constexpr ValueType ITEM_ACCEPTED = 1;
    static const ItemType REJECTED;
+   static constexpr ValueType ITEM_REJECTED = 2;
 };
 
 struct PosAmtTypeEnums final: FieldEnumsBase {
@@ -5619,13 +6975,21 @@ struct PosAmtTypeEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType FINAL_MARK_TO_MARKET_AMOUNT;
+   static constexpr ValueType ITEM_FINAL_MARK_TO_MARKET_AMOUNT = SOHSTR(FMTM);
    static const ItemType INCREMENTAL_MARK_TO_MARKET_AMOUNT;
+   static constexpr ValueType ITEM_INCREMENTAL_MARK_TO_MARKET_AMOUNT = SOHSTR(IMTM);
    static const ItemType TRADE_VARIATION_AMOUNT;
+   static constexpr ValueType ITEM_TRADE_VARIATION_AMOUNT = SOHSTR(TVAR);
    static const ItemType START_OF_DAY_MARK_TO_MARKET_AMOUNT;
+   static constexpr ValueType ITEM_START_OF_DAY_MARK_TO_MARKET_AMOUNT = SOHSTR(SMTM);
    static const ItemType PREMIUM_AMOUNT;
+   static constexpr ValueType ITEM_PREMIUM_AMOUNT = SOHSTR(PREM);
    static const ItemType CASH_RESIDUAL_AMOUNT;
+   static constexpr ValueType ITEM_CASH_RESIDUAL_AMOUNT = SOHSTR(CRES);
    static const ItemType CASH_AMOUNT;
+   static constexpr ValueType ITEM_CASH_AMOUNT = SOHSTR(CASH);
    static const ItemType VALUE_ADJUSTED_AMOUNT;
+   static constexpr ValueType ITEM_VALUE_ADJUSTED_AMOUNT = SOHSTR(VADJ);
 };
 
 struct PosTransTypeEnums final: FieldEnumsBase {
@@ -5641,10 +7005,15 @@ struct PosTransTypeEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType EXERCISE;
+   static constexpr ValueType ITEM_EXERCISE = 1;
    static const ItemType DO_NOT_EXERCISE;
+   static constexpr ValueType ITEM_DO_NOT_EXERCISE = 2;
    static const ItemType POSITION_ADJUSTMENT;
+   static constexpr ValueType ITEM_POSITION_ADJUSTMENT = 3;
    static const ItemType POSITION_CHANGE_SUBMISSION_MARGIN_DISPOSITION;
+   static constexpr ValueType ITEM_POSITION_CHANGE_SUBMISSION_MARGIN_DISPOSITION = 4;
    static const ItemType PLEDGE;
+   static constexpr ValueType ITEM_PLEDGE = 5;
 };
 
 struct PosMaintActionEnums final: FieldEnumsBase {
@@ -5660,8 +7029,11 @@ struct PosMaintActionEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType NEW_USED_TO_INCREMENT_THE_OVERALL_TRANSACTION_QUANTITY;
+   static constexpr ValueType ITEM_NEW_USED_TO_INCREMENT_THE_OVERALL_TRANSACTION_QUANTITY = 1;
    static const ItemType REPLACE_USED_TO_OVERRIDE_THE_OVERALL_TRANSACTION_QUANTITY_OR_SPECIFIC_ADD_MESSAGES_BASED_ON_THE_REFERENCE_ID;
+   static constexpr ValueType ITEM_REPLACE_USED_TO_OVERRIDE_THE_OVERALL_TRANSACTION_QUANTITY_OR_SPECIFIC_ADD_MESSAGES_BASED_ON_THE_REFERENCE_ID = 2;
    static const ItemType CANCEL_USED_TO_REMOVE_THE_OVERALL_TRANSACTION_OR_SPECIFIC_ADD_MESSAGES_BASED_ON_REFERENCE_ID;
+   static constexpr ValueType ITEM_CANCEL_USED_TO_REMOVE_THE_OVERALL_TRANSACTION_OR_SPECIFIC_ADD_MESSAGES_BASED_ON_REFERENCE_ID = 3;
 };
 
 struct SettlSessIDEnums final: FieldEnumsBase {
@@ -5677,8 +7049,11 @@ struct SettlSessIDEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType INTRADAY;
+   static constexpr ValueType ITEM_INTRADAY = SOHSTR(ITD);
    static const ItemType REGULAR_TRADING_HOURS;
+   static constexpr ValueType ITEM_REGULAR_TRADING_HOURS = SOHSTR(RTH);
    static const ItemType ELECTRONIC_TRADING_HOURS;
+   static constexpr ValueType ITEM_ELECTRONIC_TRADING_HOURS = SOHSTR(ETH);
 };
 
 struct AdjustmentTypeEnums final: FieldEnumsBase {
@@ -5694,9 +7069,13 @@ struct AdjustmentTypeEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType PROCESS_REQUEST_AS_MARGIN_DISPOSITION;
+   static constexpr ValueType ITEM_PROCESS_REQUEST_AS_MARGIN_DISPOSITION = 0;
    static const ItemType DELTA_PLUS;
+   static constexpr ValueType ITEM_DELTA_PLUS = 1;
    static const ItemType DELTA_MINUS;
+   static constexpr ValueType ITEM_DELTA_MINUS = 2;
    static const ItemType FINAL;
+   static constexpr ValueType ITEM_FINAL = 3;
 };
 
 struct PosMaintStatusEnums final: FieldEnumsBase {
@@ -5712,10 +7091,15 @@ struct PosMaintStatusEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType ACCEPTED;
+   static constexpr ValueType ITEM_ACCEPTED = 0;
    static const ItemType ACCEPTED_WITH_WARNINGS;
+   static constexpr ValueType ITEM_ACCEPTED_WITH_WARNINGS = 1;
    static const ItemType REJECTED;
+   static constexpr ValueType ITEM_REJECTED = 2;
    static const ItemType COMPLETED;
+   static constexpr ValueType ITEM_COMPLETED = 3;
    static const ItemType COMPLETED_WITH_WARNINGS;
+   static constexpr ValueType ITEM_COMPLETED_WITH_WARNINGS = 4;
 };
 
 struct PosMaintResultEnums final: FieldEnumsBase {
@@ -5731,8 +7115,11 @@ struct PosMaintResultEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType SUCCESSFUL_COMPLETION;
+   static constexpr ValueType ITEM_SUCCESSFUL_COMPLETION = 0;
    static const ItemType REJECTED;
+   static constexpr ValueType ITEM_REJECTED = 1;
    static const ItemType OTHER;
+   static constexpr ValueType ITEM_OTHER = 99;
 };
 
 struct PosReqTypeEnums final: FieldEnumsBase {
@@ -5748,9 +7135,13 @@ struct PosReqTypeEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType POSITIONS;
+   static constexpr ValueType ITEM_POSITIONS = 0;
    static const ItemType TRADES;
+   static constexpr ValueType ITEM_TRADES = 1;
    static const ItemType EXERCISES;
+   static constexpr ValueType ITEM_EXERCISES = 2;
    static const ItemType ASSIGNMENTS;
+   static constexpr ValueType ITEM_ASSIGNMENTS = 3;
 };
 
 struct ResponseTransportTypeEnums final: FieldEnumsBase {
@@ -5766,7 +7157,9 @@ struct ResponseTransportTypeEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType INBAND_TRANSPORT_THE_REQUEST_WAS_SENT_OVER;
+   static constexpr ValueType ITEM_INBAND_TRANSPORT_THE_REQUEST_WAS_SENT_OVER = 0;
    static const ItemType OUT_OF_BAND_PRE_ARRANGED_OUT_OF_BAND_DELIVERY_MECHANISM;
+   static constexpr ValueType ITEM_OUT_OF_BAND_PRE_ARRANGED_OUT_OF_BAND_DELIVERY_MECHANISM = 1;
 };
 
 struct PosReqResultEnums final: FieldEnumsBase {
@@ -5782,11 +7175,17 @@ struct PosReqResultEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType VALID_REQUEST;
+   static constexpr ValueType ITEM_VALID_REQUEST = 0;
    static const ItemType INVALID_OR_UNSUPPORTED_REQUEST;
+   static constexpr ValueType ITEM_INVALID_OR_UNSUPPORTED_REQUEST = 1;
    static const ItemType NO_POSITIONS_FOUND_THAT_MATCH_CRITERIA;
+   static constexpr ValueType ITEM_NO_POSITIONS_FOUND_THAT_MATCH_CRITERIA = 2;
    static const ItemType NOT_AUTHORIZED_TO_REQUEST_POSITIONS;
+   static constexpr ValueType ITEM_NOT_AUTHORIZED_TO_REQUEST_POSITIONS = 3;
    static const ItemType REQUEST_FOR_POSITION_NOT_SUPPORTED;
+   static constexpr ValueType ITEM_REQUEST_FOR_POSITION_NOT_SUPPORTED = 4;
    static const ItemType OTHER;
+   static constexpr ValueType ITEM_OTHER = 99;
 };
 
 struct PosReqStatusEnums final: FieldEnumsBase {
@@ -5802,8 +7201,11 @@ struct PosReqStatusEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType COMPLETED;
+   static constexpr ValueType ITEM_COMPLETED = 0;
    static const ItemType COMPLETED_WITH_WARNINGS;
+   static constexpr ValueType ITEM_COMPLETED_WITH_WARNINGS = 1;
    static const ItemType REJECTED;
+   static constexpr ValueType ITEM_REJECTED = 2;
 };
 
 struct SettlPriceTypeEnums final: FieldEnumsBase {
@@ -5819,7 +7221,9 @@ struct SettlPriceTypeEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType FINAL;
+   static constexpr ValueType ITEM_FINAL = 1;
    static const ItemType THEORETICAL;
+   static constexpr ValueType ITEM_THEORETICAL = 2;
 };
 
 struct AssignmentMethodEnums final: FieldEnumsBase {
@@ -5835,7 +7239,9 @@ struct AssignmentMethodEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType RANDOM;
+   static constexpr ValueType ITEM_RANDOM = 'R';
    static const ItemType PRORATA;
+   static constexpr ValueType ITEM_PRORATA = 'P';
 };
 
 struct ExerciseMethodEnums final: FieldEnumsBase {
@@ -5851,7 +7257,9 @@ struct ExerciseMethodEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType AUTOMATIC;
+   static constexpr ValueType ITEM_AUTOMATIC = 'A';
    static const ItemType MANUAL;
+   static constexpr ValueType ITEM_MANUAL = 'M';
 };
 
 struct TradeRequestResultEnums final: FieldEnumsBase {
@@ -5867,14 +7275,23 @@ struct TradeRequestResultEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType SUCCESSFUL;
+   static constexpr ValueType ITEM_SUCCESSFUL = 0;
    static const ItemType INVALID_OR_UNKNOWN_INSTRUMENT;
+   static constexpr ValueType ITEM_INVALID_OR_UNKNOWN_INSTRUMENT = 1;
    static const ItemType INVALID_TYPE_OF_TRADE_REQUESTED;
+   static constexpr ValueType ITEM_INVALID_TYPE_OF_TRADE_REQUESTED = 2;
    static const ItemType INVALID_PARTIES;
+   static constexpr ValueType ITEM_INVALID_PARTIES = 3;
    static const ItemType INVALID_TRANSPORT_TYPE_REQUESTED;
+   static constexpr ValueType ITEM_INVALID_TRANSPORT_TYPE_REQUESTED = 4;
    static const ItemType INVALID_DESTINATION_REQUESTED;
+   static constexpr ValueType ITEM_INVALID_DESTINATION_REQUESTED = 5;
    static const ItemType TRADEREQUESTTYPE_NOT_SUPPORTED;
+   static constexpr ValueType ITEM_TRADEREQUESTTYPE_NOT_SUPPORTED = 8;
    static const ItemType UNAUTHORIZED_FOR_TRADE_CAPTURE_REPORT_REQUEST;
+   static constexpr ValueType ITEM_UNAUTHORIZED_FOR_TRADE_CAPTURE_REPORT_REQUEST = 9;
    static const ItemType OTHER;
+   static constexpr ValueType ITEM_OTHER = 99;
 };
 
 struct TradeRequestStatusEnums final: FieldEnumsBase {
@@ -5890,8 +7307,11 @@ struct TradeRequestStatusEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType ACCEPTED;
+   static constexpr ValueType ITEM_ACCEPTED = 0;
    static const ItemType COMPLETED;
+   static constexpr ValueType ITEM_COMPLETED = 1;
    static const ItemType REJECTED;
+   static constexpr ValueType ITEM_REJECTED = 2;
 };
 
 struct TradeReportRejectReasonEnums final: FieldEnumsBase {
@@ -5907,11 +7327,17 @@ struct TradeReportRejectReasonEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType SUCCESSFUL;
+   static constexpr ValueType ITEM_SUCCESSFUL = 0;
    static const ItemType INVALID_PARTY_INFORMATION;
+   static constexpr ValueType ITEM_INVALID_PARTY_INFORMATION = 1;
    static const ItemType UNKNOWN_INSTRUMENT;
+   static constexpr ValueType ITEM_UNKNOWN_INSTRUMENT = 2;
    static const ItemType UNAUTHORIZED_TO_REPORT_TRADES;
+   static constexpr ValueType ITEM_UNAUTHORIZED_TO_REPORT_TRADES = 3;
    static const ItemType INVALID_TRADE_TYPE;
+   static constexpr ValueType ITEM_INVALID_TRADE_TYPE = 4;
    static const ItemType OTHER;
+   static constexpr ValueType ITEM_OTHER = 99;
 };
 
 struct SideMultiLegReportingTypeEnums final: FieldEnumsBase {
@@ -5927,8 +7353,11 @@ struct SideMultiLegReportingTypeEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType SINGLE_SECURITY;
+   static constexpr ValueType ITEM_SINGLE_SECURITY = 1;
    static const ItemType INDIVIDUAL_LEG_OF_A_MULTI_LEG_SECURITY;
+   static constexpr ValueType ITEM_INDIVIDUAL_LEG_OF_A_MULTI_LEG_SECURITY = 2;
    static const ItemType MULTI_LEG_SECURITY;
+   static constexpr ValueType ITEM_MULTI_LEG_SECURITY = 3;
 };
 
 struct TrdRegTimestampTypeEnums final: FieldEnumsBase {
@@ -5944,10 +7373,15 @@ struct TrdRegTimestampTypeEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType EXECUTION_TIME;
+   static constexpr ValueType ITEM_EXECUTION_TIME = 1;
    static const ItemType TIME_IN;
+   static constexpr ValueType ITEM_TIME_IN = 2;
    static const ItemType TIME_OUT;
+   static constexpr ValueType ITEM_TIME_OUT = 3;
    static const ItemType BROKER_RECEIPT;
+   static constexpr ValueType ITEM_BROKER_RECEIPT = 4;
    static const ItemType BROKER_EXECUTION;
+   static constexpr ValueType ITEM_BROKER_EXECUTION = 5;
 };
 
 struct ConfirmTypeEnums final: FieldEnumsBase {
@@ -5963,8 +7397,11 @@ struct ConfirmTypeEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType STATUS;
+   static constexpr ValueType ITEM_STATUS = 1;
    static const ItemType CONFIRMATION;
+   static constexpr ValueType ITEM_CONFIRMATION = 2;
    static const ItemType CONFIRMATION_REQUEST_REJECTED;
+   static constexpr ValueType ITEM_CONFIRMATION_REQUEST_REJECTED = 3;
 };
 
 struct ConfirmRejReasonEnums final: FieldEnumsBase {
@@ -5980,8 +7417,11 @@ struct ConfirmRejReasonEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType MISMATCHED_ACCOUNT;
+   static constexpr ValueType ITEM_MISMATCHED_ACCOUNT = 1;
    static const ItemType MISSING_SETTLEMENT_INSTRUCTIONS;
+   static constexpr ValueType ITEM_MISSING_SETTLEMENT_INSTRUCTIONS = 2;
    static const ItemType OTHER;
+   static constexpr ValueType ITEM_OTHER = 99;
 };
 
 struct BookingTypeEnums final: FieldEnumsBase {
@@ -5997,8 +7437,11 @@ struct BookingTypeEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType REGULAR_BOOKING;
+   static constexpr ValueType ITEM_REGULAR_BOOKING = 0;
    static const ItemType CFD;
+   static constexpr ValueType ITEM_CFD = 1;
    static const ItemType TOTAL_RETURN_SWAP;
+   static constexpr ValueType ITEM_TOTAL_RETURN_SWAP = 2;
 };
 
 struct AllocSettlInstTypeEnums final: FieldEnumsBase {
@@ -6014,10 +7457,15 @@ struct AllocSettlInstTypeEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType USE_DEFAULT_INSTRUCTIONS;
+   static constexpr ValueType ITEM_USE_DEFAULT_INSTRUCTIONS = 0;
    static const ItemType DERIVE_FROM_PARAMETERS_PROVIDED;
+   static constexpr ValueType ITEM_DERIVE_FROM_PARAMETERS_PROVIDED = 1;
    static const ItemType FULL_DETAILS_PROVIDED;
+   static constexpr ValueType ITEM_FULL_DETAILS_PROVIDED = 2;
    static const ItemType SSI_DB_IDS_PROVIDED;
+   static constexpr ValueType ITEM_SSI_DB_IDS_PROVIDED = 3;
    static const ItemType PHONE_FOR_INSTRUCTIONS;
+   static constexpr ValueType ITEM_PHONE_FOR_INSTRUCTIONS = 4;
 };
 
 struct DlvyInstTypeEnums final: FieldEnumsBase {
@@ -6033,7 +7481,9 @@ struct DlvyInstTypeEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType SECURITIES;
+   static constexpr ValueType ITEM_SECURITIES = 'S';
    static const ItemType CASH;
+   static constexpr ValueType ITEM_CASH = 'C';
 };
 
 struct TerminationTypeEnums final: FieldEnumsBase {
@@ -6049,9 +7499,13 @@ struct TerminationTypeEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType OVERNIGHT;
+   static constexpr ValueType ITEM_OVERNIGHT = 1;
    static const ItemType TERM;
+   static constexpr ValueType ITEM_TERM = 2;
    static const ItemType FLEXIBLE;
+   static constexpr ValueType ITEM_FLEXIBLE = 3;
    static const ItemType OPEN;
+   static constexpr ValueType ITEM_OPEN = 4;
 };
 
 struct SettlInstReqRejCodeEnums final: FieldEnumsBase {
@@ -6067,9 +7521,13 @@ struct SettlInstReqRejCodeEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType UNABLE_TO_PROCESS_REQUEST;
+   static constexpr ValueType ITEM_UNABLE_TO_PROCESS_REQUEST = 0;
    static const ItemType UNKNOWN_ACCOUNT;
+   static constexpr ValueType ITEM_UNKNOWN_ACCOUNT = 1;
    static const ItemType NO_MATCHING_SETTLEMENT_INSTRUCTIONS_FOUND;
+   static constexpr ValueType ITEM_NO_MATCHING_SETTLEMENT_INSTRUCTIONS_FOUND = 2;
    static const ItemType OTHER;
+   static constexpr ValueType ITEM_OTHER = 99;
 };
 
 struct AllocReportTypeEnums final: FieldEnumsBase {
@@ -6085,9 +7543,13 @@ struct AllocReportTypeEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType SELLSIDE_CALCULATED_USING_PRELIMINARY;
+   static constexpr ValueType ITEM_SELLSIDE_CALCULATED_USING_PRELIMINARY = 3;
    static const ItemType SELLSIDE_CALCULATED_WITHOUT_PRELIMINARY;
+   static constexpr ValueType ITEM_SELLSIDE_CALCULATED_WITHOUT_PRELIMINARY = 4;
    static const ItemType WAREHOUSE_RECAP;
+   static constexpr ValueType ITEM_WAREHOUSE_RECAP = 5;
    static const ItemType REQUEST_TO_INTERMEDIARY;
+   static constexpr ValueType ITEM_REQUEST_TO_INTERMEDIARY = 8;
 };
 
 struct AllocCancReplaceReasonEnums final: FieldEnumsBase {
@@ -6103,8 +7565,11 @@ struct AllocCancReplaceReasonEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType ORIGINAL_DETAILS_INCOMPLETE_INCORRECT;
+   static constexpr ValueType ITEM_ORIGINAL_DETAILS_INCOMPLETE_INCORRECT = 1;
    static const ItemType CHANGE_IN_UNDERLYING_ORDER_DETAILS;
+   static constexpr ValueType ITEM_CHANGE_IN_UNDERLYING_ORDER_DETAILS = 2;
    static const ItemType OTHER;
+   static constexpr ValueType ITEM_OTHER = 99;
 };
 
 struct AllocAccountTypeEnums final: FieldEnumsBase {
@@ -6120,12 +7585,19 @@ struct AllocAccountTypeEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType ACCOUNT_IS_CARRIED_ON_CUSTOMER_SIDE_OF_BOOKS;
+   static constexpr ValueType ITEM_ACCOUNT_IS_CARRIED_ON_CUSTOMER_SIDE_OF_BOOKS = 1;
    static const ItemType ACCOUNT_IS_CARRIED_ON_NON_CUSTOMER_SIDE_OF_BOOKS;
+   static constexpr ValueType ITEM_ACCOUNT_IS_CARRIED_ON_NON_CUSTOMER_SIDE_OF_BOOKS = 2;
    static const ItemType HOUSE_TRADER;
+   static constexpr ValueType ITEM_HOUSE_TRADER = 3;
    static const ItemType FLOOR_TRADER;
+   static constexpr ValueType ITEM_FLOOR_TRADER = 4;
    static const ItemType ACCOUNT_IS_CARRIED_ON_NON_CUSTOMER_SIDE_OF_BOOKS_AND_IS_CROSS_MARGINED;
+   static constexpr ValueType ITEM_ACCOUNT_IS_CARRIED_ON_NON_CUSTOMER_SIDE_OF_BOOKS_AND_IS_CROSS_MARGINED = 6;
    static const ItemType ACCOUNT_IS_HOUSE_TRADER_AND_IS_CROSS_MARGINED;
+   static constexpr ValueType ITEM_ACCOUNT_IS_HOUSE_TRADER_AND_IS_CROSS_MARGINED = 7;
    static const ItemType JOINT_BACKOFFICE_ACCOUNT;
+   static constexpr ValueType ITEM_JOINT_BACKOFFICE_ACCOUNT = 8;
 };
 
 struct PartySubIDTypeEnums final: FieldEnumsBase {
@@ -6141,31 +7613,57 @@ struct PartySubIDTypeEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType FIRM;
+   static constexpr ValueType ITEM_FIRM = 1;
    static const ItemType PERSON;
+   static constexpr ValueType ITEM_PERSON = 2;
    static const ItemType SYSTEM;
+   static constexpr ValueType ITEM_SYSTEM = 3;
    static const ItemType APPLICATION;
+   static constexpr ValueType ITEM_APPLICATION = 4;
    static const ItemType FULL_LEGAL_NAME_OF_FIRM;
+   static constexpr ValueType ITEM_FULL_LEGAL_NAME_OF_FIRM = 5;
    static const ItemType POSTAL_ADDRESS;
+   static constexpr ValueType ITEM_POSTAL_ADDRESS = 6;
    static const ItemType PHONE_NUMBER;
+   static constexpr ValueType ITEM_PHONE_NUMBER = 7;
    static const ItemType EMAIL_ADDRESS;
+   static constexpr ValueType ITEM_EMAIL_ADDRESS = 8;
    static const ItemType CONTACT_NAME;
+   static constexpr ValueType ITEM_CONTACT_NAME = 9;
    static const ItemType SECURITIES_ACCOUNT_NUMBER;
+   static constexpr ValueType ITEM_SECURITIES_ACCOUNT_NUMBER = 10;
    static const ItemType REGISTRATION_NUMBER;
+   static constexpr ValueType ITEM_REGISTRATION_NUMBER = 11;
    static const ItemType REGISTERED_ADDRESS_12;
+   static constexpr ValueType ITEM_REGISTERED_ADDRESS_12 = 12;
    static const ItemType REGULATORY_STATUS;
+   static constexpr ValueType ITEM_REGULATORY_STATUS = 13;
    static const ItemType REGISTRATION_NAME;
+   static constexpr ValueType ITEM_REGISTRATION_NAME = 14;
    static const ItemType CASH_ACCOUNT_NUMBER;
+   static constexpr ValueType ITEM_CASH_ACCOUNT_NUMBER = 15;
    static const ItemType BIC;
+   static constexpr ValueType ITEM_BIC = 16;
    static const ItemType CSD_PARTICIPANT_MEMBER_CODE;
+   static constexpr ValueType ITEM_CSD_PARTICIPANT_MEMBER_CODE = 17;
    static const ItemType REGISTERED_ADDRESS_18;
+   static constexpr ValueType ITEM_REGISTERED_ADDRESS_18 = 18;
    static const ItemType FUND_ACCOUNT_NAME;
+   static constexpr ValueType ITEM_FUND_ACCOUNT_NAME = 19;
    static const ItemType TELEX_NUMBER;
+   static constexpr ValueType ITEM_TELEX_NUMBER = 20;
    static const ItemType FAX_NUMBER;
+   static constexpr ValueType ITEM_FAX_NUMBER = 21;
    static const ItemType SECURITIES_ACCOUNT_NAME;
+   static constexpr ValueType ITEM_SECURITIES_ACCOUNT_NAME = 22;
    static const ItemType CASH_ACCOUNT_NAME;
+   static constexpr ValueType ITEM_CASH_ACCOUNT_NAME = 23;
    static const ItemType DEPARTMENT;
+   static constexpr ValueType ITEM_DEPARTMENT = 24;
    static const ItemType LOCATION;
+   static constexpr ValueType ITEM_LOCATION = 25;
    static const ItemType POSITION_ACCOUNT_TYPE;
+   static constexpr ValueType ITEM_POSITION_ACCOUNT_TYPE = 26;
 };
 
 struct AllocIntermedReqTypeEnums final: FieldEnumsBase {
@@ -6181,11 +7679,17 @@ struct AllocIntermedReqTypeEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType PENDING_ACCEPT;
+   static constexpr ValueType ITEM_PENDING_ACCEPT = 1;
    static const ItemType PENDING_RELEASE;
+   static constexpr ValueType ITEM_PENDING_RELEASE = 2;
    static const ItemType PENDING_REVERSAL;
+   static constexpr ValueType ITEM_PENDING_REVERSAL = 3;
    static const ItemType ACCEPT;
+   static constexpr ValueType ITEM_ACCEPT = 4;
    static const ItemType BLOCK_LEVEL_REJECT;
+   static constexpr ValueType ITEM_BLOCK_LEVEL_REJECT = 5;
    static const ItemType ACCOUNT_LEVEL_REJECT;
+   static constexpr ValueType ITEM_ACCOUNT_LEVEL_REJECT = 6;
 };
 
 struct ApplQueueResolutionEnums final: FieldEnumsBase {
@@ -6201,9 +7705,13 @@ struct ApplQueueResolutionEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType NO_ACTION_TAKEN;
+   static constexpr ValueType ITEM_NO_ACTION_TAKEN = 0;
    static const ItemType QUEUE_FLUSHED;
+   static constexpr ValueType ITEM_QUEUE_FLUSHED = 1;
    static const ItemType OVERLAY_LAST;
+   static constexpr ValueType ITEM_OVERLAY_LAST = 2;
    static const ItemType END_SESSION;
+   static constexpr ValueType ITEM_END_SESSION = 3;
 };
 
 struct ApplQueueActionEnums final: FieldEnumsBase {
@@ -6219,9 +7727,13 @@ struct ApplQueueActionEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType NO_ACTION_TAKEN;
+   static constexpr ValueType ITEM_NO_ACTION_TAKEN = 0;
    static const ItemType QUEUE_FLUSHED;
+   static constexpr ValueType ITEM_QUEUE_FLUSHED = 1;
    static const ItemType OVERLAY_LAST;
+   static constexpr ValueType ITEM_OVERLAY_LAST = 2;
    static const ItemType END_SESSION;
+   static constexpr ValueType ITEM_END_SESSION = 3;
 };
 
 struct AvgPxIndicatorEnums final: FieldEnumsBase {
@@ -6237,8 +7749,11 @@ struct AvgPxIndicatorEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType NO_AVERAGE_PRICING;
+   static constexpr ValueType ITEM_NO_AVERAGE_PRICING = 0;
    static const ItemType TRADE_IS_PART_OF_AN_AVERAGE_PRICE_GROUP_IDENTIFIED_BY_THE_TRADELINKID;
+   static constexpr ValueType ITEM_TRADE_IS_PART_OF_AN_AVERAGE_PRICE_GROUP_IDENTIFIED_BY_THE_TRADELINKID = 1;
    static const ItemType LAST_TRADE_IN_THE_AVERAGE_PRICE_GROUP_IDENTIFIED_BY_THE_TRADELINKID;
+   static constexpr ValueType ITEM_LAST_TRADE_IN_THE_AVERAGE_PRICE_GROUP_IDENTIFIED_BY_THE_TRADELINKID = 2;
 };
 
 struct TradeAllocIndicatorEnums final: FieldEnumsBase {
@@ -6254,8 +7769,11 @@ struct TradeAllocIndicatorEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType ALLOCATION_NOT_REQUIRED;
+   static constexpr ValueType ITEM_ALLOCATION_NOT_REQUIRED = 0;
    static const ItemType ALLOCATION_REQUIRED;
+   static constexpr ValueType ITEM_ALLOCATION_REQUIRED = 1;
    static const ItemType USE_ALLOCATION_PROVIDED_WITH_THE_TRADE;
+   static constexpr ValueType ITEM_USE_ALLOCATION_PROVIDED_WITH_THE_TRADE = 2;
 };
 
 struct ExpirationCycleEnums final: FieldEnumsBase {
@@ -6271,7 +7789,9 @@ struct ExpirationCycleEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType EXPIRE_ON_TRADING_SESSION_CLOSE;
+   static constexpr ValueType ITEM_EXPIRE_ON_TRADING_SESSION_CLOSE = 0;
    static const ItemType EXPIRE_ON_TRADING_SESSION_OPEN;
+   static constexpr ValueType ITEM_EXPIRE_ON_TRADING_SESSION_OPEN = 1;
 };
 
 struct TrdTypeEnums final: FieldEnumsBase {
@@ -6287,16 +7807,27 @@ struct TrdTypeEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType REGULAR_TRADE;
+   static constexpr ValueType ITEM_REGULAR_TRADE = 0;
    static const ItemType BLOCK_TRADE;
+   static constexpr ValueType ITEM_BLOCK_TRADE = 1;
    static const ItemType EFP;
+   static constexpr ValueType ITEM_EFP = 2;
    static const ItemType TRANSFER;
+   static constexpr ValueType ITEM_TRANSFER = 3;
    static const ItemType LATE_TRADE;
+   static constexpr ValueType ITEM_LATE_TRADE = 4;
    static const ItemType T_TRADE;
+   static constexpr ValueType ITEM_T_TRADE = 5;
    static const ItemType WEIGHTED_AVERAGE_PRICE_TRADE;
+   static constexpr ValueType ITEM_WEIGHTED_AVERAGE_PRICE_TRADE = 6;
    static const ItemType BUNCHED_TRADE;
+   static constexpr ValueType ITEM_BUNCHED_TRADE = 7;
    static const ItemType LATE_BUNCHED_TRADE;
+   static constexpr ValueType ITEM_LATE_BUNCHED_TRADE = 8;
    static const ItemType PRIOR_REFERENCE_PRICE_TRADE;
+   static constexpr ValueType ITEM_PRIOR_REFERENCE_PRICE_TRADE = 9;
    static const ItemType AFTER_HOURS_TRADE;
+   static constexpr ValueType ITEM_AFTER_HOURS_TRADE = 10;
 };
 
 struct PegMoveTypeEnums final: FieldEnumsBase {
@@ -6312,7 +7843,9 @@ struct PegMoveTypeEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType FLOATING;
+   static constexpr ValueType ITEM_FLOATING = 0;
    static const ItemType FIXED;
+   static constexpr ValueType ITEM_FIXED = 1;
 };
 
 struct PegOffsetTypeEnums final: FieldEnumsBase {
@@ -6328,9 +7861,13 @@ struct PegOffsetTypeEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType PRICE;
+   static constexpr ValueType ITEM_PRICE = 0;
    static const ItemType BASIS_POINTS;
+   static constexpr ValueType ITEM_BASIS_POINTS = 1;
    static const ItemType TICKS;
+   static constexpr ValueType ITEM_TICKS = 2;
    static const ItemType PRICE_TIER;
+   static constexpr ValueType ITEM_PRICE_TIER = 3;
 };
 
 struct PegLimitTypeEnums final: FieldEnumsBase {
@@ -6346,8 +7883,11 @@ struct PegLimitTypeEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType OR_BETTER;
+   static constexpr ValueType ITEM_OR_BETTER = 0;
    static const ItemType STRICT_LIMIT_IS_A_STRICT_LIMIT;
+   static constexpr ValueType ITEM_STRICT_LIMIT_IS_A_STRICT_LIMIT = 1;
    static const ItemType OR_WORSE_FOR_A_BUY_THE_PEG_LIMIT_IS_A_MINIMUM_AND_FOR_A_SELL_THE_PEG_LIMIT_IS_A_MAXIMUM;
+   static constexpr ValueType ITEM_OR_WORSE_FOR_A_BUY_THE_PEG_LIMIT_IS_A_MINIMUM_AND_FOR_A_SELL_THE_PEG_LIMIT_IS_A_MAXIMUM = 2;
 };
 
 struct PegRoundDirectionEnums final: FieldEnumsBase {
@@ -6363,7 +7903,9 @@ struct PegRoundDirectionEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType MORE_AGGRESSIVE_ON_A_BUY_ORDER_ROUND_THE_PRICE_UP_ROUND_UP_TO_THE_NEAREST_TICK_ON_A_SELL_ROUND_DOWN_TO_THE_NEAREST_TICK;
+   static constexpr ValueType ITEM_MORE_AGGRESSIVE_ON_A_BUY_ORDER_ROUND_THE_PRICE_UP_ROUND_UP_TO_THE_NEAREST_TICK_ON_A_SELL_ROUND_DOWN_TO_THE_NEAREST_TICK = 1;
    static const ItemType MORE_PASSIVE_ON_A_BUY_ORDER_ROUND_DOWN_TO_NEAREST_TICK_ON_A_SELL_ORDER_ROUND_UP_TO_NEAREST_TICK;
+   static constexpr ValueType ITEM_MORE_PASSIVE_ON_A_BUY_ORDER_ROUND_DOWN_TO_NEAREST_TICK_ON_A_SELL_ORDER_ROUND_UP_TO_NEAREST_TICK = 2;
 };
 
 struct PegScopeEnums final: FieldEnumsBase {
@@ -6379,9 +7921,13 @@ struct PegScopeEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType LOCAL;
+   static constexpr ValueType ITEM_LOCAL = 1;
    static const ItemType NATIONAL;
+   static constexpr ValueType ITEM_NATIONAL = 2;
    static const ItemType GLOBAL;
+   static constexpr ValueType ITEM_GLOBAL = 3;
    static const ItemType NATIONAL_EXCLUDING_LOCAL;
+   static constexpr ValueType ITEM_NATIONAL_EXCLUDING_LOCAL = 4;
 };
 
 struct DiscretionMoveTypeEnums final: FieldEnumsBase {
@@ -6397,7 +7943,9 @@ struct DiscretionMoveTypeEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType FLOATING;
+   static constexpr ValueType ITEM_FLOATING = 0;
    static const ItemType FIXED;
+   static constexpr ValueType ITEM_FIXED = 1;
 };
 
 struct DiscretionOffsetTypeEnums final: FieldEnumsBase {
@@ -6413,9 +7961,13 @@ struct DiscretionOffsetTypeEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType PRICE;
+   static constexpr ValueType ITEM_PRICE = 0;
    static const ItemType BASIS_POINTS;
+   static constexpr ValueType ITEM_BASIS_POINTS = 1;
    static const ItemType TICKS;
+   static constexpr ValueType ITEM_TICKS = 2;
    static const ItemType PRICE_TIER;
+   static constexpr ValueType ITEM_PRICE_TIER = 3;
 };
 
 struct DiscretionLimitTypeEnums final: FieldEnumsBase {
@@ -6431,8 +7983,11 @@ struct DiscretionLimitTypeEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType OR_BETTER;
+   static constexpr ValueType ITEM_OR_BETTER = 0;
    static const ItemType STRICT_LIMIT_IS_A_STRICT_LIMIT;
+   static constexpr ValueType ITEM_STRICT_LIMIT_IS_A_STRICT_LIMIT = 1;
    static const ItemType OR_WORSE_FOR_A_BUY_THE_DISCRETION_PRICE_IS_A_MINIMUM_AND_FOR_A_SELL_THE_DISCRETION_PRICE_IS_A_MAXIMUM;
+   static constexpr ValueType ITEM_OR_WORSE_FOR_A_BUY_THE_DISCRETION_PRICE_IS_A_MINIMUM_AND_FOR_A_SELL_THE_DISCRETION_PRICE_IS_A_MAXIMUM = 2;
 };
 
 struct DiscretionRoundDirectionEnums final: FieldEnumsBase {
@@ -6448,7 +8003,9 @@ struct DiscretionRoundDirectionEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType MORE_AGGRESSIVE_ON_A_BUY_ORDER_ROUND_THE_PRICE_UP_ROUND_UP_TO_THE_NEAREST_TICK_ON_A_SELL_ROUND_DOWN_TO_THE_NEAREST_TICK;
+   static constexpr ValueType ITEM_MORE_AGGRESSIVE_ON_A_BUY_ORDER_ROUND_THE_PRICE_UP_ROUND_UP_TO_THE_NEAREST_TICK_ON_A_SELL_ROUND_DOWN_TO_THE_NEAREST_TICK = 1;
    static const ItemType MORE_PASSIVE_ON_A_BUY_ORDER_ROUND_DOWN_TO_NEAREST_TICK_ON_A_SELL_ORDER_ROUND_UP_TO_NEAREST_TICK;
+   static constexpr ValueType ITEM_MORE_PASSIVE_ON_A_BUY_ORDER_ROUND_DOWN_TO_NEAREST_TICK_ON_A_SELL_ORDER_ROUND_UP_TO_NEAREST_TICK = 2;
 };
 
 struct DiscretionScopeEnums final: FieldEnumsBase {
@@ -6464,9 +8021,13 @@ struct DiscretionScopeEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType LOCAL;
+   static constexpr ValueType ITEM_LOCAL = 1;
    static const ItemType NATIONAL;
+   static constexpr ValueType ITEM_NATIONAL = 2;
    static const ItemType GLOBAL;
+   static constexpr ValueType ITEM_GLOBAL = 3;
    static const ItemType NATIONAL_EXCLUDING_LOCAL;
+   static constexpr ValueType ITEM_NATIONAL_EXCLUDING_LOCAL = 4;
 };
 
 struct TargetStrategyEnums final: FieldEnumsBase {
@@ -6482,8 +8043,11 @@ struct TargetStrategyEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType VWAP;
+   static constexpr ValueType ITEM_VWAP = 1;
    static const ItemType PARTICIPATE;
+   static constexpr ValueType ITEM_PARTICIPATE = 2;
    static const ItemType MININIZE_MARKET_IMPACT;
+   static constexpr ValueType ITEM_MININIZE_MARKET_IMPACT = 3;
 };
 
 struct LastLiquidityIndEnums final: FieldEnumsBase {
@@ -6499,8 +8063,11 @@ struct LastLiquidityIndEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType ADDED_LIQUIDITY;
+   static constexpr ValueType ITEM_ADDED_LIQUIDITY = 1;
    static const ItemType REMOVED_LIQUIDITY;
+   static constexpr ValueType ITEM_REMOVED_LIQUIDITY = 2;
    static const ItemType LIQUIDITY_ROUTED_OUT;
+   static constexpr ValueType ITEM_LIQUIDITY_ROUTED_OUT = 3;
 };
 
 struct PublishTrdIndicatorEnums final: FieldEnumsBase {
@@ -6516,7 +8083,9 @@ struct PublishTrdIndicatorEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType YES;
+   static constexpr ValueType ITEM_YES = 'Y';
    static const ItemType NO;
+   static constexpr ValueType ITEM_NO = 'N';
 };
 
 struct ShortSaleReasonEnums final: FieldEnumsBase {
@@ -6532,11 +8101,17 @@ struct ShortSaleReasonEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType DEALER_SOLD_SHORT;
+   static constexpr ValueType ITEM_DEALER_SOLD_SHORT = 0;
    static const ItemType DEALER_SOLD_SHORT_EXEMPT;
+   static constexpr ValueType ITEM_DEALER_SOLD_SHORT_EXEMPT = 1;
    static const ItemType SELLING_CUSTOMER_SOLD_SHORT;
+   static constexpr ValueType ITEM_SELLING_CUSTOMER_SOLD_SHORT = 2;
    static const ItemType SELLING_CUSTOMER_SOLD_SHORT_EXEMPT;
+   static constexpr ValueType ITEM_SELLING_CUSTOMER_SOLD_SHORT_EXEMPT = 3;
    static const ItemType QUALIFED_SERVICE_REPRESENTATIVE;
+   static constexpr ValueType ITEM_QUALIFED_SERVICE_REPRESENTATIVE = 4;
    static const ItemType QSR_OR_AGU_CONTRA_SIDE_SOLD_SHORT_EXEMPT;
+   static constexpr ValueType ITEM_QSR_OR_AGU_CONTRA_SIDE_SOLD_SHORT_EXEMPT = 5;
 };
 
 struct QtyTypeEnums final: FieldEnumsBase {
@@ -6552,7 +8127,9 @@ struct QtyTypeEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType UNITS;
+   static constexpr ValueType ITEM_UNITS = 0;
    static const ItemType CONTRACTS;
+   static constexpr ValueType ITEM_CONTRACTS = 1;
 };
 
 struct TradeReportTypeEnums final: FieldEnumsBase {
@@ -6568,13 +8145,21 @@ struct TradeReportTypeEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType SUBMIT;
+   static constexpr ValueType ITEM_SUBMIT = 0;
    static const ItemType ALLEGED;
+   static constexpr ValueType ITEM_ALLEGED = 1;
    static const ItemType ACCEPT;
+   static constexpr ValueType ITEM_ACCEPT = 2;
    static const ItemType DECLINE;
+   static constexpr ValueType ITEM_DECLINE = 3;
    static const ItemType ADDENDUM;
+   static constexpr ValueType ITEM_ADDENDUM = 4;
    static const ItemType NO_WAS;
+   static constexpr ValueType ITEM_NO_WAS = 5;
    static const ItemType TRADE_REPORT_CANCEL;
+   static constexpr ValueType ITEM_TRADE_REPORT_CANCEL = 6;
    static const ItemType LOCKED_IN_TRADE_BREAK;
+   static constexpr ValueType ITEM_LOCKED_IN_TRADE_BREAK = 7;
 };
 
 struct AllocNoOrdersTypeEnums final: FieldEnumsBase {
@@ -6590,7 +8175,9 @@ struct AllocNoOrdersTypeEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType NOT_SPECIFIED;
+   static constexpr ValueType ITEM_NOT_SPECIFIED = 0;
    static const ItemType EXPLICIT_LIST_PROVIDED;
+   static constexpr ValueType ITEM_EXPLICIT_LIST_PROVIDED = 1;
 };
 
 struct EventTypeEnums final: FieldEnumsBase {
@@ -6606,10 +8193,15 @@ struct EventTypeEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType PUT;
+   static constexpr ValueType ITEM_PUT = 1;
    static const ItemType CALL;
+   static constexpr ValueType ITEM_CALL = 2;
    static const ItemType TENDER;
+   static constexpr ValueType ITEM_TENDER = 3;
    static const ItemType SINKING_FUND_CALL;
+   static constexpr ValueType ITEM_SINKING_FUND_CALL = 4;
    static const ItemType OTHER;
+   static constexpr ValueType ITEM_OTHER = 99;
 };
 
 struct InstrAttribTypeEnums final: FieldEnumsBase {
@@ -6625,28 +8217,51 @@ struct InstrAttribTypeEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType FLAT;
+   static constexpr ValueType ITEM_FLAT = 1;
    static const ItemType ZERO_COUPON;
+   static constexpr ValueType ITEM_ZERO_COUPON = 2;
    static const ItemType INTEREST_BEARING;
+   static constexpr ValueType ITEM_INTEREST_BEARING = 3;
    static const ItemType NO_PERIODIC_PAYMENTS;
+   static constexpr ValueType ITEM_NO_PERIODIC_PAYMENTS = 4;
    static const ItemType VARIABLE_RATE;
+   static constexpr ValueType ITEM_VARIABLE_RATE = 5;
    static const ItemType LESS_FEE_FOR_PUT;
+   static constexpr ValueType ITEM_LESS_FEE_FOR_PUT = 6;
    static const ItemType STEPPED_COUPON;
+   static constexpr ValueType ITEM_STEPPED_COUPON = 7;
    static const ItemType COUPON_PERIOD;
+   static constexpr ValueType ITEM_COUPON_PERIOD = 8;
    static const ItemType WHEN_AND_IF_ISSUED;
+   static constexpr ValueType ITEM_WHEN_AND_IF_ISSUED = 9;
    static const ItemType ORIGINAL_ISSUE_DISCOUNT;
+   static constexpr ValueType ITEM_ORIGINAL_ISSUE_DISCOUNT = 10;
    static const ItemType CALLABLE_PUTTABLE;
+   static constexpr ValueType ITEM_CALLABLE_PUTTABLE = 11;
    static const ItemType ESCROWED_TO_MATURITY;
+   static constexpr ValueType ITEM_ESCROWED_TO_MATURITY = 12;
    static const ItemType ESCROWED_TO_REDEMPTION_DATE_CALLABLE_SUPPLY_REDEMPTION_DATE_IN_THE_INSTRATTRIBVALUE;
+   static constexpr ValueType ITEM_ESCROWED_TO_REDEMPTION_DATE_CALLABLE_SUPPLY_REDEMPTION_DATE_IN_THE_INSTRATTRIBVALUE = 13;
    static const ItemType PREREFUNDED;
+   static constexpr ValueType ITEM_PREREFUNDED = 14;
    static const ItemType IN_DEFAULT;
+   static constexpr ValueType ITEM_IN_DEFAULT = 15;
    static const ItemType UNRATED;
+   static constexpr ValueType ITEM_UNRATED = 16;
    static const ItemType TAXABLE;
+   static constexpr ValueType ITEM_TAXABLE = 17;
    static const ItemType INDEXED;
+   static constexpr ValueType ITEM_INDEXED = 18;
    static const ItemType SUBJECT_TO_ALTERNATIVE_MINIMUM_TAX;
+   static constexpr ValueType ITEM_SUBJECT_TO_ALTERNATIVE_MINIMUM_TAX = 19;
    static const ItemType ORIGINAL_ISSUE_DISCOUNT_PRICE_SUPPLY_PRICE_IN_THE_INSTRATTRIBVALUE;
+   static constexpr ValueType ITEM_ORIGINAL_ISSUE_DISCOUNT_PRICE_SUPPLY_PRICE_IN_THE_INSTRATTRIBVALUE = 20;
    static const ItemType CALLABLE_BELOW_MATURITY_VALUE;
+   static constexpr ValueType ITEM_CALLABLE_BELOW_MATURITY_VALUE = 21;
    static const ItemType CALLABLE_WITHOUT_NOTICE_BY_MAIL_TO_HOLDER_UNLESS_REGISTERED;
+   static constexpr ValueType ITEM_CALLABLE_WITHOUT_NOTICE_BY_MAIL_TO_HOLDER_UNLESS_REGISTERED = 22;
    static const ItemType TEXT_SUPPLY_THE_TEXT_OF_THE_ATTRIBUTE_OR_DISCLAIMER_IN_THE_INSTRATTRIBVALUE;
+   static constexpr ValueType ITEM_TEXT_SUPPLY_THE_TEXT_OF_THE_ATTRIBUTE_OR_DISCLAIMER_IN_THE_INSTRATTRIBVALUE = 99;
 };
 
 struct CPProgramEnums final: FieldEnumsBase {
@@ -6662,8 +8277,11 @@ struct CPProgramEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType _3;
+   static constexpr ValueType ITEM__3 = 1;
    static const ItemType _4;
+   static constexpr ValueType ITEM__4 = 2;
    static const ItemType OTHER;
+   static constexpr ValueType ITEM_OTHER = 99;
 };
 
 struct MiscFeeBasisEnums final: FieldEnumsBase {
@@ -6679,8 +8297,11 @@ struct MiscFeeBasisEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType ABSOLUTE;
+   static constexpr ValueType ITEM_ABSOLUTE = 0;
    static const ItemType PER_UNIT;
+   static constexpr ValueType ITEM_PER_UNIT = 1;
    static const ItemType PERCENTAGE;
+   static constexpr ValueType ITEM_PERCENTAGE = 2;
 };
 
 struct LastFragmentEnums final: FieldEnumsBase {
@@ -6696,7 +8317,9 @@ struct LastFragmentEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType YES;
+   static constexpr ValueType ITEM_YES = 'Y';
    static const ItemType NO;
+   static constexpr ValueType ITEM_NO = 'N';
 };
 
 struct CollAsgnReasonEnums final: FieldEnumsBase {
@@ -6712,13 +8335,21 @@ struct CollAsgnReasonEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType INITIAL;
+   static constexpr ValueType ITEM_INITIAL = 0;
    static const ItemType SCHEDULED;
+   static constexpr ValueType ITEM_SCHEDULED = 1;
    static const ItemType TIME_WARNING;
+   static constexpr ValueType ITEM_TIME_WARNING = 2;
    static const ItemType MARGIN_DEFICIENCY;
+   static constexpr ValueType ITEM_MARGIN_DEFICIENCY = 3;
    static const ItemType MARGIN_EXCESS;
+   static constexpr ValueType ITEM_MARGIN_EXCESS = 4;
    static const ItemType FORWARD_COLLATERAL_DEMAND;
+   static constexpr ValueType ITEM_FORWARD_COLLATERAL_DEMAND = 5;
    static const ItemType EVENT_OF_DEFAULT;
+   static constexpr ValueType ITEM_EVENT_OF_DEFAULT = 6;
    static const ItemType ADVERSE_TAX_EVENT;
+   static constexpr ValueType ITEM_ADVERSE_TAX_EVENT = 7;
 };
 
 struct CollInquiryQualifierEnums final: FieldEnumsBase {
@@ -6734,13 +8365,21 @@ struct CollInquiryQualifierEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType TRADEDATE;
+   static constexpr ValueType ITEM_TRADEDATE = 0;
    static const ItemType GC_INSTRUMENT;
+   static constexpr ValueType ITEM_GC_INSTRUMENT = 1;
    static const ItemType COLLATERALINSTRUMENT;
+   static constexpr ValueType ITEM_COLLATERALINSTRUMENT = 2;
    static const ItemType SUBSTITUTION_ELIGIBLE;
+   static constexpr ValueType ITEM_SUBSTITUTION_ELIGIBLE = 3;
    static const ItemType NOT_ASSIGNED;
+   static constexpr ValueType ITEM_NOT_ASSIGNED = 4;
    static const ItemType PARTIALLY_ASSIGNED;
+   static constexpr ValueType ITEM_PARTIALLY_ASSIGNED = 5;
    static const ItemType FULLY_ASSIGNED;
+   static constexpr ValueType ITEM_FULLY_ASSIGNED = 6;
    static const ItemType OUTSTANDING_TRADES;
+   static constexpr ValueType ITEM_OUTSTANDING_TRADES = 7;
 };
 
 struct CollAsgnTransTypeEnums final: FieldEnumsBase {
@@ -6756,10 +8395,15 @@ struct CollAsgnTransTypeEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType NEW;
+   static constexpr ValueType ITEM_NEW = 0;
    static const ItemType REPLACE;
+   static constexpr ValueType ITEM_REPLACE = 1;
    static const ItemType CANCEL;
+   static constexpr ValueType ITEM_CANCEL = 2;
    static const ItemType RELEASE;
+   static constexpr ValueType ITEM_RELEASE = 3;
    static const ItemType REVERSE;
+   static constexpr ValueType ITEM_REVERSE = 4;
 };
 
 struct CollAsgnRespTypeEnums final: FieldEnumsBase {
@@ -6775,9 +8419,13 @@ struct CollAsgnRespTypeEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType RECEIVED;
+   static constexpr ValueType ITEM_RECEIVED = 0;
    static const ItemType ACCEPTED;
+   static constexpr ValueType ITEM_ACCEPTED = 1;
    static const ItemType DECLINED;
+   static constexpr ValueType ITEM_DECLINED = 2;
    static const ItemType REJECTED;
+   static constexpr ValueType ITEM_REJECTED = 3;
 };
 
 struct CollAsgnRejectReasonEnums final: FieldEnumsBase {
@@ -6793,12 +8441,19 @@ struct CollAsgnRejectReasonEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType UNKNOWN_DEAL;
+   static constexpr ValueType ITEM_UNKNOWN_DEAL = 0;
    static const ItemType UNKNOWN_OR_INVALID_INSTRUMENT;
+   static constexpr ValueType ITEM_UNKNOWN_OR_INVALID_INSTRUMENT = 1;
    static const ItemType UNAUTHORIZED_TRANSACTION;
+   static constexpr ValueType ITEM_UNAUTHORIZED_TRANSACTION = 2;
    static const ItemType INSUFFICIENT_COLLATERAL;
+   static constexpr ValueType ITEM_INSUFFICIENT_COLLATERAL = 3;
    static const ItemType INVALID_TYPE_OF_COLLATERAL;
+   static constexpr ValueType ITEM_INVALID_TYPE_OF_COLLATERAL = 4;
    static const ItemType EXCESSIVE_SUBSTITUTION;
+   static constexpr ValueType ITEM_EXCESSIVE_SUBSTITUTION = 5;
    static const ItemType OTHER;
+   static constexpr ValueType ITEM_OTHER = 99;
 };
 
 struct CollStatusEnums final: FieldEnumsBase {
@@ -6814,10 +8469,15 @@ struct CollStatusEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType UNASSIGNED;
+   static constexpr ValueType ITEM_UNASSIGNED = 0;
    static const ItemType PARTIALLY_ASSIGNED;
+   static constexpr ValueType ITEM_PARTIALLY_ASSIGNED = 1;
    static const ItemType ASSIGNMENT_PROPOSED;
+   static constexpr ValueType ITEM_ASSIGNMENT_PROPOSED = 2;
    static const ItemType ASSIGNED;
+   static constexpr ValueType ITEM_ASSIGNED = 3;
    static const ItemType CHALLENGED;
+   static constexpr ValueType ITEM_CHALLENGED = 4;
 };
 
 struct DeliveryTypeEnums final: FieldEnumsBase {
@@ -6833,9 +8493,13 @@ struct DeliveryTypeEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType VERSUS_PAYMENT_DELIVER;
+   static constexpr ValueType ITEM_VERSUS_PAYMENT_DELIVER = 0;
    static const ItemType FREE_DELIVER;
+   static constexpr ValueType ITEM_FREE_DELIVER = 1;
    static const ItemType TRI_PARTY;
+   static constexpr ValueType ITEM_TRI_PARTY = 2;
    static const ItemType HOLD_IN_CUSTODY;
+   static constexpr ValueType ITEM_HOLD_IN_CUSTODY = 3;
 };
 
 struct UserRequestTypeEnums final: FieldEnumsBase {
@@ -6851,9 +8515,13 @@ struct UserRequestTypeEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType LOGONUSER;
+   static constexpr ValueType ITEM_LOGONUSER = 1;
    static const ItemType LOGOFFUSER;
+   static constexpr ValueType ITEM_LOGOFFUSER = 2;
    static const ItemType CHANGEPASSWORDFORUSER;
+   static constexpr ValueType ITEM_CHANGEPASSWORDFORUSER = 3;
    static const ItemType REQUEST_INDIVIDUAL_USER_STATUS;
+   static constexpr ValueType ITEM_REQUEST_INDIVIDUAL_USER_STATUS = 4;
 };
 
 struct UserStatusEnums final: FieldEnumsBase {
@@ -6869,11 +8537,17 @@ struct UserStatusEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType LOGGED_IN;
+   static constexpr ValueType ITEM_LOGGED_IN = 1;
    static const ItemType NOT_LOGGED_IN;
+   static constexpr ValueType ITEM_NOT_LOGGED_IN = 2;
    static const ItemType USER_NOT_RECOGNISED;
+   static constexpr ValueType ITEM_USER_NOT_RECOGNISED = 3;
    static const ItemType PASSWORD_INCORRECT;
+   static constexpr ValueType ITEM_PASSWORD_INCORRECT = 4;
    static const ItemType PASSWORD_CHANGED;
+   static constexpr ValueType ITEM_PASSWORD_CHANGED = 5;
    static const ItemType OTHER;
+   static constexpr ValueType ITEM_OTHER = 6;
 };
 
 struct StatusValueEnums final: FieldEnumsBase {
@@ -6889,9 +8563,13 @@ struct StatusValueEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType CONNECTED;
+   static constexpr ValueType ITEM_CONNECTED = 1;
    static const ItemType NOT_CONNECTED_DOWN_EXPECTED_UP;
+   static constexpr ValueType ITEM_NOT_CONNECTED_DOWN_EXPECTED_UP = 2;
    static const ItemType NOT_CONNECTED_DOWN_EXPECTED_DOWN;
+   static constexpr ValueType ITEM_NOT_CONNECTED_DOWN_EXPECTED_DOWN = 3;
    static const ItemType IN_PROCESS;
+   static constexpr ValueType ITEM_IN_PROCESS = 4;
 };
 
 struct NetworkRequestTypeEnums final: FieldEnumsBase {
@@ -6907,9 +8585,13 @@ struct NetworkRequestTypeEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType SNAPSHOT;
+   static constexpr ValueType ITEM_SNAPSHOT = 1;
    static const ItemType SUBSCRIBE;
+   static constexpr ValueType ITEM_SUBSCRIBE = 2;
    static const ItemType STOP_SUBSCRIBING;
+   static constexpr ValueType ITEM_STOP_SUBSCRIBING = 4;
    static const ItemType LEVEL_OF_DETAIL_THEN_NOCOMPIDS_BECOMES_REQUIRED;
+   static constexpr ValueType ITEM_LEVEL_OF_DETAIL_THEN_NOCOMPIDS_BECOMES_REQUIRED = 8;
 };
 
 struct NetworkStatusResponseTypeEnums final: FieldEnumsBase {
@@ -6925,7 +8607,9 @@ struct NetworkStatusResponseTypeEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType FULL;
+   static constexpr ValueType ITEM_FULL = 1;
    static const ItemType INCREMENTAL_UPDATE;
+   static constexpr ValueType ITEM_INCREMENTAL_UPDATE = 2;
 };
 
 struct TrdRptStatusEnums final: FieldEnumsBase {
@@ -6941,7 +8625,9 @@ struct TrdRptStatusEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType ACCEPTED;
+   static constexpr ValueType ITEM_ACCEPTED = 0;
    static const ItemType REJECTED;
+   static constexpr ValueType ITEM_REJECTED = 1;
 };
 
 struct AffirmStatusEnums final: FieldEnumsBase {
@@ -6957,8 +8643,11 @@ struct AffirmStatusEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType RECEIVED;
+   static constexpr ValueType ITEM_RECEIVED = 1;
    static const ItemType CONFIRM_REJECTED_IE_NOT_AFFIRMED;
+   static constexpr ValueType ITEM_CONFIRM_REJECTED_IE_NOT_AFFIRMED = 2;
    static const ItemType AFFIRMED;
+   static constexpr ValueType ITEM_AFFIRMED = 3;
 };
 
 struct CollActionEnums final: FieldEnumsBase {
@@ -6974,8 +8663,11 @@ struct CollActionEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType RETAIN;
+   static constexpr ValueType ITEM_RETAIN = 0;
    static const ItemType ADD;
+   static constexpr ValueType ITEM_ADD = 1;
    static const ItemType REMOVE;
+   static constexpr ValueType ITEM_REMOVE = 2;
 };
 
 struct CollInquiryStatusEnums final: FieldEnumsBase {
@@ -6991,10 +8683,15 @@ struct CollInquiryStatusEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType ACCEPTED;
+   static constexpr ValueType ITEM_ACCEPTED = 0;
    static const ItemType ACCEPTED_WITH_WARNINGS;
+   static constexpr ValueType ITEM_ACCEPTED_WITH_WARNINGS = 1;
    static const ItemType COMPLETED;
+   static constexpr ValueType ITEM_COMPLETED = 2;
    static const ItemType COMPLETED_WITH_WARNINGS;
+   static constexpr ValueType ITEM_COMPLETED_WITH_WARNINGS = 3;
    static const ItemType REJECTED;
+   static constexpr ValueType ITEM_REJECTED = 4;
 };
 
 struct CollInquiryResultEnums final: FieldEnumsBase {
@@ -7010,16 +8707,27 @@ struct CollInquiryResultEnums final: FieldEnumsBase {
    virtual const FieldEnumMap & getEnumMapByRaw() const override;
    virtual const FieldEnumBase ** getEnums() const override;
    static const ItemType SUCCESSFUL;
+   static constexpr ValueType ITEM_SUCCESSFUL = 0;
    static const ItemType INVALID_OR_UNKNOWN_INSTRUMENT;
+   static constexpr ValueType ITEM_INVALID_OR_UNKNOWN_INSTRUMENT = 1;
    static const ItemType INVALID_OR_UNKNOWN_COLLATERAL_TYPE;
+   static constexpr ValueType ITEM_INVALID_OR_UNKNOWN_COLLATERAL_TYPE = 2;
    static const ItemType INVALID_PARTIES;
+   static constexpr ValueType ITEM_INVALID_PARTIES = 3;
    static const ItemType INVALID_TRANSPORT_TYPE_REQUESTED;
+   static constexpr ValueType ITEM_INVALID_TRANSPORT_TYPE_REQUESTED = 4;
    static const ItemType INVALID_DESTINATION_REQUESTED;
+   static constexpr ValueType ITEM_INVALID_DESTINATION_REQUESTED = 5;
    static const ItemType NO_COLLATERAL_FOUND_FOR_THE_TRADE_SPECIFIED;
+   static constexpr ValueType ITEM_NO_COLLATERAL_FOUND_FOR_THE_TRADE_SPECIFIED = 6;
    static const ItemType NO_COLLATERAL_FOUND_FOR_THE_ORDER_SPECIFIED;
+   static constexpr ValueType ITEM_NO_COLLATERAL_FOUND_FOR_THE_ORDER_SPECIFIED = 7;
    static const ItemType COLLATERAL_INQUIRY_TYPE_NOT_SUPPORTED;
+   static constexpr ValueType ITEM_COLLATERAL_INQUIRY_TYPE_NOT_SUPPORTED = 8;
    static const ItemType UNAUTHORIZED_FOR_COLLATERAL_INQUIRY;
+   static constexpr ValueType ITEM_UNAUTHORIZED_FOR_COLLATERAL_INQUIRY = 9;
    static const ItemType OTHER;
+   static constexpr ValueType ITEM_OTHER = 99;
 };
 
 

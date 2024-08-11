@@ -214,6 +214,61 @@ const char * GroupLegs::getFieldValue( unsigned tag ) const {
 }
 
 
+// ---------------------------------- isFieldSet ---------------------------------
+bool GroupLegStipulations::isFieldSet( unsigned tag ) const {
+   if( _fixPtr == nullptr ) return false;
+   switch( tag ){
+     case FieldLegStipulationType::TAG : return fieldLegStipulationType.offset > 0 ;
+     case FieldLegStipulationValue::TAG : return fieldLegStipulationValue.offset > 0;
+
+     default : return false; 
+   }
+   return false;
+}
+
+bool GroupNestedPartySubIDs::isFieldSet( unsigned tag ) const {
+   if( _fixPtr == nullptr ) return false;
+   switch( tag ){
+     case FieldNestedPartySubID::TAG : return fieldNestedPartySubID.offset > 0 ;
+     case FieldNestedPartySubIDType::TAG : return fieldNestedPartySubIDType.offset > 0;
+
+     default : return false; 
+   }
+   return false;
+}
+
+bool GroupNestedPartyIDs::isFieldSet( unsigned tag ) const {
+   if( _fixPtr == nullptr ) return false;
+   switch( tag ){
+     case FieldNestedPartyID::TAG : return fieldNestedPartyID.offset > 0 ;
+     case FieldNestedPartyIDSource::TAG : return fieldNestedPartyIDSource.offset > 0;
+     case FieldNestedPartyRole::TAG : return fieldNestedPartyRole.offset > 0;
+     case FieldNoNestedPartySubIDs::TAG : return fieldNoNestedPartySubIDs.offset > 0;
+
+     default : return false; 
+   }
+   return false;
+}
+
+bool GroupLegs::isFieldSet( unsigned tag ) const {
+   if( _fixPtr == nullptr ) return false;
+   switch( tag ){
+     case FieldLegSymbol::TAG : return fieldLegSymbol.offset > 0 ;
+     case FieldLegSide::TAG : return fieldLegSide.offset > 0;
+     case FieldLegQty::TAG : return fieldLegQty.offset > 0;
+     case FieldNoLegStipulations::TAG : return fieldNoLegStipulations.offset > 0;
+     case FieldLegPositionEffect::TAG : return fieldLegPositionEffect.offset > 0;
+     case FieldNoNestedPartyIDs::TAG : return fieldNoNestedPartyIDs.offset > 0;
+     case FieldLegRefID::TAG : return fieldLegRefID.offset > 0;
+     case FieldLegPrice::TAG : return fieldLegPrice.offset > 0;
+     case FieldLegLastPx::TAG : return fieldLegLastPx.offset > 0;
+
+     default : return false; 
+   }
+   return false;
+}
+
+
 // ---------------------------------- getKnownFields ---------------------------------
 namespace {
 const std::vector<unsigned> LegStipulations_knownFields = { FieldLegStipulationType::TAG
