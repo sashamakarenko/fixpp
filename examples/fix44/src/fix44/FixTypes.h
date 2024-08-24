@@ -691,9 +691,20 @@ inline std::string toString<char>( const char & value )
     return std::string( &value, 1 );
 }
 
+template<>
+inline std::string toString<bool>( const bool & value )
+{
+    return value ? std::string{ 'Y' } : std::string{ 'N' } ;
+}
+
 inline raw_enum_t toRawEnum( char c )
 {
     return (raw_enum_t)c;
+}
+
+inline raw_enum_t toRawEnum( bool b )
+{
+    return b ? (raw_enum_t)'Y' : (raw_enum_t)'N';
 }
 
 inline raw_enum_t toRawEnum( unsigned i )

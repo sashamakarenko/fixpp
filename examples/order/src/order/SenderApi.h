@@ -220,6 +220,12 @@ struct FixBufferStream
         return *this;
     }
 
+    FixBufferStream & pushValue( bool v )
+    {
+        *end++ = v ? 'Y' : 'N';
+        return *this;
+    }
+
     FixBufferStream & pushValue( unsigned v )
     {
         end += uintWidth( v );
