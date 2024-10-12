@@ -1,93 +1,412 @@
+// Generated. Delete or move this line from first position if you edit this file.
 {
-	"version": "2.0.0",
-	"tasks": [
-		{
-			"label": "TestSafeSender (debug)",
-			"type": "shell",
-			"command": "make test-SafeSender BUILD_MODE=debug",
-			"problemMatcher": [
-				"$gcc"
-			],
-			"group": {
-				"kind": "build",
-				"isDefault": true
-			}
-		},
-		{
-			"label": "TestParser (debug)",
-			"type": "shell",
-			"command": "make test-Parser BUILD_MODE=debug",
-			"problemMatcher": [
-				"$gcc"
-			],
-			"group": {
-				"kind": "build",
-				"isDefault": true
-			}
-		},
-		{
-			"label": "TestDispatcher (debug)",
-			"type": "shell",
-			"command": "make test-Dispatcher BUILD_MODE=debug",
-			"problemMatcher": [
-				"$gcc"
-			],
-			"group": {
-				"kind": "build",
-				"isDefault": true
-			}
-		},
-		{
-			"label": "TestFormats (debug)",
-			"type": "shell",
-			"command": "make test-Formats BUILD_MODE=debug",
-			"problemMatcher": [
-				"$gcc"
-			],
-			"group": {
-				"kind": "build",
-				"isDefault": true
-			}
-		},
-		{
-			"label": "make release",
-			"type": "shell",
-			"command": "make",
-			"problemMatcher": [
-				"$gcc"
-			],
-			"group": {
-				"kind": "build",
-				"isDefault": true
-			}
-		},
-		{
-			"label": "Clean",
-			"type": "shell",
-			"command": "make clean",
-			"problemMatcher": [
-				"$gcc"
-			],
-			"group": {
-				"kind": "build",
-				"isDefault": true
-			}
-		},
+    "version": "2.0.0",
+    "tasks": [
         {
-            "label": "build all tests",
+            "label": "make debug",
             "type": "shell",
-            "command": "make build-all-tests BUILD_MODE=debug",
+            "command": "make BUILD_MODE=debug",
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "make release",
+            "type": "shell",
+            "command": "make BUILD_MODE=release",
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "type": "shell",
+            "label": "Build all tests (debug)",
+            "command": "make",
+            "args": [ "build-all-tests", "BUILD_MODE=debug" ],
             "options": {
                 "cwd": "${workspaceFolder}"
             },
             "problemMatcher": [
                 "$gcc"
             ],
-			"group": {
-				"kind": "build",
-				"isDefault": true
-			}
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
         },
-
-	]
+        {
+            "label": "Build TestDispatcher (debug)",
+            "type": "shell",
+            "command": "make",
+            "args": [ "build/bin/debug/tests/TestDispatcher.exe", "BUILD_MODE=debug" ],
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+        {
+            "label": "Build TestFields (debug)",
+            "type": "shell",
+            "command": "make",
+            "args": [ "build/bin/debug/tests/TestFields.exe", "BUILD_MODE=debug" ],
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+        {
+            "label": "Build TestFloat (debug)",
+            "type": "shell",
+            "command": "make",
+            "args": [ "build/bin/debug/tests/TestFloat.exe", "BUILD_MODE=debug" ],
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+        {
+            "label": "Build TestFormats (debug)",
+            "type": "shell",
+            "command": "make",
+            "args": [ "build/bin/debug/tests/TestFormats.exe", "BUILD_MODE=debug" ],
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+        {
+            "label": "Build TestInsert (debug)",
+            "type": "shell",
+            "command": "make",
+            "args": [ "build/bin/debug/tests/TestInsert.exe", "BUILD_MODE=debug" ],
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+        {
+            "label": "Build TestIterator (debug)",
+            "type": "shell",
+            "command": "make",
+            "args": [ "build/bin/debug/tests/TestIterator.exe", "BUILD_MODE=debug" ],
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+        {
+            "label": "Build TestMessageBuilders (debug)",
+            "type": "shell",
+            "command": "make",
+            "args": [ "build/bin/debug/tests/TestMessageBuilders.exe", "BUILD_MODE=debug", "-j8" ],
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+        {
+            "label": "Build TestParser (debug)",
+            "type": "shell",
+            "command": "make",
+            "args": [ "build/bin/debug/tests/TestParser.exe", "BUILD_MODE=debug" ],
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+        {
+            "label": "Build TestPerf (debug)",
+            "type": "shell",
+            "command": "make",
+            "args": [ "build/bin/debug/tests/TestPerf.exe", "BUILD_MODE=debug" ],
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+        {
+            "label": "Build TestSafeSender (debug)",
+            "type": "shell",
+            "command": "make",
+            "args": [ "build/bin/debug/tests/TestSafeSender.exe", "BUILD_MODE=debug" ],
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+        {
+            "label": "Build TestSender (debug)",
+            "type": "shell",
+            "command": "make",
+            "args": [ "build/bin/debug/tests/TestSender.exe", "BUILD_MODE=debug" ],
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+        {
+            "label": "Build TestSenderPerf (debug)",
+            "type": "shell",
+            "command": "make",
+            "args": [ "build/bin/debug/tests/TestSenderPerf.exe", "BUILD_MODE=debug" ],
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+        {
+            "label": "Build TestSendForexPerf (debug)",
+            "type": "shell",
+            "command": "make",
+            "args": [ "build/bin/debug/tests/TestSendForexPerf.exe", "BUILD_MODE=debug" ],
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+        {
+            "type": "shell",
+            "label": "Build all tests (release)",
+            "command": "make",
+            "args": [ "build-all-tests", "BUILD_MODE=release" ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "Build TestDispatcher (release)",
+            "type": "shell",
+            "command": "make",
+            "args": [ "build/bin/release/tests/TestDispatcher.exe", "BUILD_MODE=release" ],
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+        {
+            "label": "Build TestFields (release)",
+            "type": "shell",
+            "command": "make",
+            "args": [ "build/bin/release/tests/TestFields.exe", "BUILD_MODE=release" ],
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+        {
+            "label": "Build TestFloat (release)",
+            "type": "shell",
+            "command": "make",
+            "args": [ "build/bin/release/tests/TestFloat.exe", "BUILD_MODE=release" ],
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+        {
+            "label": "Build TestFormats (release)",
+            "type": "shell",
+            "command": "make",
+            "args": [ "build/bin/release/tests/TestFormats.exe", "BUILD_MODE=release" ],
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+        {
+            "label": "Build TestInsert (release)",
+            "type": "shell",
+            "command": "make",
+            "args": [ "build/bin/release/tests/TestInsert.exe", "BUILD_MODE=release" ],
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+        {
+            "label": "Build TestIterator (release)",
+            "type": "shell",
+            "command": "make",
+            "args": [ "build/bin/release/tests/TestIterator.exe", "BUILD_MODE=release" ],
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+        {
+            "label": "Build TestMessageBuilders (release)",
+            "type": "shell",
+            "command": "make",
+            "args": [ "build/bin/release/tests/TestMessageBuilders.exe", "BUILD_MODE=release" ],
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+        {
+            "label": "Build TestParser (release)",
+            "type": "shell",
+            "command": "make",
+            "args": [ "build/bin/release/tests/TestParser.exe", "BUILD_MODE=release" ],
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+        {
+            "label": "Build TestPerf (release)",
+            "type": "shell",
+            "command": "make",
+            "args": [ "build/bin/release/tests/TestPerf.exe", "BUILD_MODE=release" ],
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+        {
+            "label": "Build TestSafeSender (release)",
+            "type": "shell",
+            "command": "make",
+            "args": [ "build/bin/release/tests/TestSafeSender.exe", "BUILD_MODE=release" ],
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+        {
+            "label": "Build TestSender (release)",
+            "type": "shell",
+            "command": "make",
+            "args": [ "build/bin/release/tests/TestSender.exe", "BUILD_MODE=release" ],
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+        {
+            "label": "Build TestSenderPerf (release)",
+            "type": "shell",
+            "command": "make",
+            "args": [ "build/bin/release/tests/TestSenderPerf.exe", "BUILD_MODE=release" ],
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+        {
+            "label": "Build TestSendForexPerf (release)",
+            "type": "shell",
+            "command": "make",
+            "args": [ "build/bin/release/tests/TestSendForexPerf.exe", "BUILD_MODE=release" ],
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+        {
+            "label": "Clean",
+            "type": "shell",
+            "command": "make clean",
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+    ]
 }

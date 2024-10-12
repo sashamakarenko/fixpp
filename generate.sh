@@ -157,6 +157,8 @@ for pp in $mydir/src/*.pp; do
         -e "s/<n1>/\\n  /g" \
         -e "s/<n2>/\\n    /g" \
         -e "s/<n3>/\\n      /g" \
+        -e "s%<def>%\\n#define%g" \
+        -e "s%<undef>%\\n#undef%g" \
         -e "s%<com>%\\n//%g" \
         -e "s%<icom>%//%g" -i $dst
     sed '/^$/N;/\n$/N;//D' -i $dst
@@ -281,3 +283,23 @@ if [[ -n "$PPDIR" ]]; then
 
 fi
 
+
+dst=${DSTDIR}/MessageBuilders.h
+echo "  updating $dst"
+sed -n -e 's/.*FIX_FIELD_DECL.*( *\(.*\) *).*/\1/gp' ${DEFDIR}/Fields.def | while read l; do
+    name=$( cut -f 1 -d , <<< "$l" | tr -d ' ' )
+    type=$( cut -f 3 -d , <<< "$l" | tr -d ' ' )
+    type=$( sed -n -e "s/typedef *\(.*\) $type;/\1/gp" < ${DSTDIR}/FixApi.h | tr -d ' ' )
+    if [[ $type = sohstr ]]; then
+        type=std::string_view
+    fi
+    sed -e "/append$name(/s/ARGS/const $type \& value/g" -e "/append$name(/s/ VALUES / value /g" -i $dst
+done
+
+sed "s/class HeaderBuilder: protected ReusableMessageBuilder/class HeaderBuilder: public HeaderTemplate/" -i $dst
+sed "/static HeaderBuilder /d" -i $dst
+sed "/HeaderTemplate/,/Message/s/Safely//g" -i $dst
+sed "/getHeader-Header@/d" -i $dst
+sed "s/-.*@//" -i $dst
+
+sed /appendCheckSum/d -i $dst
