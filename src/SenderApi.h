@@ -593,7 +593,7 @@ struct ReusableMessageBuilder: FixBufferStream
 
     void setupSendingTime( ClockPrecision precision )
     {
-        header.append<FieldSendingTime>( TimestampKeeper::PLACE_HOLDER, TimestampKeeper::precisionToLength( precision ) );
+        append<FieldSendingTime>( TimestampKeeper::PLACE_HOLDER, TimestampKeeper::precisionToLength( precision ) );
         sendingTime.setup( end - TimestampKeeper::precisionToLength( precision ), precision );
         sendingTime.update();
     }

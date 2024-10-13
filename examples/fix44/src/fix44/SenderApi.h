@@ -362,7 +362,7 @@ struct HeaderTemplate: FixBufferStream
     // Returns countable body length [I 35=.....34=]
     unsigned finalize()
     {
-        if( *( end - FieldMsgSeqNum::INSERTABLE_TAG_WIDTH ) != FIXPP_SOH or 
+        if( *( end - FieldMsgSeqNum::INSERTABLE_TAG_WIDTH ) != FIXPP_SOH or
             parseTag( end - FieldMsgSeqNum::TAG_WIDTH - 1 ) != FieldMsgSeqNum::TAG )
         {
             pushTag<FieldMsgSeqNum>();
@@ -595,7 +595,7 @@ struct ReusableMessageBuilder: FixBufferStream
 
     void setupSendingTime( ClockPrecision precision )
     {
-        header.append<FieldSendingTime>( TimestampKeeper::PLACE_HOLDER, TimestampKeeper::precisionToLength( precision ) );
+        append<FieldSendingTime>( TimestampKeeper::PLACE_HOLDER, TimestampKeeper::precisionToLength( precision ) );
         sendingTime.setup( end - TimestampKeeper::precisionToLength( precision ), precision );
         sendingTime.update();
     }
