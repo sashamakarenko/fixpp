@@ -203,6 +203,11 @@ struct FixBufferStream
         return pushValue( src.c_str(), src.size() );
     }
 
+    FixBufferStream & pushValue( const std::string_view & src )
+    {
+        return pushValue( src.data(), src.size() );
+    }
+
     FixBufferStream & pushValue( const sohstr & src )
     {
         for( const char * ptr = src.ptr; *ptr != FIXPP_SOH and *ptr; )
@@ -355,6 +360,11 @@ struct HeaderTemplate: FixBufferStream
     // Returns countable body length [I 35=.....34=]
     unsigned finalize()
     {
+        if( *( end - FieldMsgSeqNum::INSERTABLE_TAG_WIDTH ) != FIXPP_SOH or
+            parseTag( end - FieldMsgSeqNum::TAG_WIDTH - 1 ) != FieldMsgSeqNum::TAG )
+        {
+            pushTag<FieldMsgSeqNum>();
+        }
         chksum = computeChecksum( begin, end );
         return countableLength = ( end - begin ) - BODY_LENGTH_OFFSET;
     }
@@ -378,9 +388,14 @@ struct TimestampKeeper
     constexpr static unsigned DATE_TIME_NANOS_LENGTH   = 27;
     constexpr static const char * const PLACE_HOLDER   = "11112233-44:55:66.777888999";
 
-    inline unsigned length() const
+    static unsigned precisionToLength( Precision precision )
     {
-        return DATE_TIME_SECONDS_LENGTH + ( secFraction != Precision::SECONDS ? 1 : 0 ) + (unsigned)secFraction;
+        return DATE_TIME_SECONDS_LENGTH + ( precision != Precision::SECONDS ? 1 : 0 ) + (unsigned)precision;
+    }
+
+    unsigned length() const
+    {
+        return precisionToLength( secFraction );
     }
 
     explicit TimestampKeeper( char * buffer = nullptr, Precision secPrecision = Precision::SECONDS )
@@ -391,11 +406,6 @@ struct TimestampKeeper
     , lastFraction{ 0 }
     , secFraction { secPrecision }
     {
-    }
-
-    unsigned getWidth() const
-    {
-        return DATE_TIME_SECONDS_LENGTH + 1 + (unsigned)secFraction;
     }
 
     unsigned fill( char * buffer, Precision secPrecision, const TimePoint & tp = ClockType::now() )
@@ -412,7 +422,7 @@ struct TimestampKeeper
         if( buffer )
         {
             update( tp );
-            return getWidth();
+            return length();
         }
         return 0;
     }
@@ -423,10 +433,10 @@ struct TimestampKeeper
         secFraction = secPrecision;
         if( buffer )
         {
-            memcpy( buffer, PLACE_HOLDER, getWidth() );
+            memcpy( buffer, PLACE_HOLDER, length() );
             update();
         }
-        return getWidth();
+        return length();
     }
 
     char * update( const TimePoint & tp = ClockType::now() )
@@ -523,6 +533,11 @@ inline unsigned valueMaxLength( const std::string & v )
     return v.size();
 }
 
+inline unsigned valueMaxLength( const std::string_view & v )
+{
+    return v.size();
+}
+
 inline unsigned valueMaxLength( const TimestampKeeper & v )
 {
     return v.length();
@@ -575,6 +590,13 @@ struct ReusableMessageBuilder: FixBufferStream
     }
 
     ReusableMessageBuilder( const ReusableMessageBuilder & ) = delete;
+
+    void setupSendingTime( ClockPrecision precision )
+    {
+        header.append<FieldSendingTime>( TimestampKeeper::PLACE_HOLDER, TimestampKeeper::precisionToLength( precision ) );
+        sendingTime.setup( end - TimestampKeeper::precisionToLength( precision ), precision );
+        sendingTime.update();
+    }
 
     // To be called just before sending.
     // Header is supposed to be updated by this time.
