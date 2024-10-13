@@ -13,8 +13,6 @@ namespace fix44
 
 // start of MessageBuilders.hxx
 
-// Generated
-
 
 // Group LegStipulations
 class LegStipulationsBuilder : protected ReusableMessageBuilder
@@ -1150,8 +1148,9 @@ class HeartbeatBuilder: protected ReusableMessageBuilder
 {
    public:
 
-     static HeartbeatBuilder & New( ReusableMessageBuilder & builder ){ return reinterpret_cast<HeartbeatBuilder&>( builder ); }
+     static HeartbeatBuilder & coat( ReusableMessageBuilder & builder ){ return reinterpret_cast<HeartbeatBuilder&>( builder ); }
      HeaderBuilder & getHeader(){ return reinterpret_cast<HeaderBuilder&>( header ); }
+     ReusableMessageBuilder & super(){ return *this; }
      void appendTestReqID( const std::string_view & value ){ appendSafely<FieldTestReqID>( value ); }
 };
 
@@ -1161,8 +1160,9 @@ class TestRequestBuilder: protected ReusableMessageBuilder
 {
    public:
 
-     static TestRequestBuilder & New( ReusableMessageBuilder & builder ){ return reinterpret_cast<TestRequestBuilder&>( builder ); }
+     static TestRequestBuilder & coat( ReusableMessageBuilder & builder ){ return reinterpret_cast<TestRequestBuilder&>( builder ); }
      HeaderBuilder & getHeader(){ return reinterpret_cast<HeaderBuilder&>( header ); }
+     ReusableMessageBuilder & super(){ return *this; }
      void appendTestReqID( const std::string_view & value ){ appendSafely<FieldTestReqID>( value ); }
 };
 
@@ -1172,8 +1172,9 @@ class ResendRequestBuilder: protected ReusableMessageBuilder
 {
    public:
 
-     static ResendRequestBuilder & New( ReusableMessageBuilder & builder ){ return reinterpret_cast<ResendRequestBuilder&>( builder ); }
+     static ResendRequestBuilder & coat( ReusableMessageBuilder & builder ){ return reinterpret_cast<ResendRequestBuilder&>( builder ); }
      HeaderBuilder & getHeader(){ return reinterpret_cast<HeaderBuilder&>( header ); }
+     ReusableMessageBuilder & super(){ return *this; }
      void appendBeginSeqNo( const unsigned & value ){ appendSafely<FieldBeginSeqNo>( value ); }
      void appendEndSeqNo( const unsigned & value ){ appendSafely<FieldEndSeqNo>( value ); }
 };
@@ -1184,8 +1185,9 @@ class RejectBuilder: protected ReusableMessageBuilder
 {
    public:
 
-     static RejectBuilder & New( ReusableMessageBuilder & builder ){ return reinterpret_cast<RejectBuilder&>( builder ); }
+     static RejectBuilder & coat( ReusableMessageBuilder & builder ){ return reinterpret_cast<RejectBuilder&>( builder ); }
      HeaderBuilder & getHeader(){ return reinterpret_cast<HeaderBuilder&>( header ); }
+     ReusableMessageBuilder & super(){ return *this; }
      void appendRefSeqNum( const unsigned & value ){ appendSafely<FieldRefSeqNum>( value ); }
      void appendRefTagID( const int & value ){ appendSafely<FieldRefTagID>( value ); }
      void appendRefMsgType( const std::string_view & value ){ appendSafely<FieldRefMsgType>( value ); }
@@ -1201,8 +1203,9 @@ class SequenceResetBuilder: protected ReusableMessageBuilder
 {
    public:
 
-     static SequenceResetBuilder & New( ReusableMessageBuilder & builder ){ return reinterpret_cast<SequenceResetBuilder&>( builder ); }
+     static SequenceResetBuilder & coat( ReusableMessageBuilder & builder ){ return reinterpret_cast<SequenceResetBuilder&>( builder ); }
      HeaderBuilder & getHeader(){ return reinterpret_cast<HeaderBuilder&>( header ); }
+     ReusableMessageBuilder & super(){ return *this; }
      void appendGapFillFlag( const bool & value ){ appendSafely<FieldGapFillFlag>( value ); }
      void appendNewSeqNo( const unsigned & value ){ appendSafely<FieldNewSeqNo>( value ); }
 };
@@ -1213,8 +1216,9 @@ class LogoutBuilder: protected ReusableMessageBuilder
 {
    public:
 
-     static LogoutBuilder & New( ReusableMessageBuilder & builder ){ return reinterpret_cast<LogoutBuilder&>( builder ); }
+     static LogoutBuilder & coat( ReusableMessageBuilder & builder ){ return reinterpret_cast<LogoutBuilder&>( builder ); }
      HeaderBuilder & getHeader(){ return reinterpret_cast<HeaderBuilder&>( header ); }
+     ReusableMessageBuilder & super(){ return *this; }
      void appendText( const std::string_view & value ){ appendSafely<FieldText>( value ); }
      void appendEncodedTextLen( const unsigned & value ){ appendSafely<FieldEncodedTextLen>( value ); }
      void appendEncodedText( const std::string_view & value ){ appendSafely<FieldEncodedText>( value ); }
@@ -1226,8 +1230,9 @@ class IOIBuilder: protected ReusableMessageBuilder
 {
    public:
 
-     static IOIBuilder & New( ReusableMessageBuilder & builder ){ return reinterpret_cast<IOIBuilder&>( builder ); }
+     static IOIBuilder & coat( ReusableMessageBuilder & builder ){ return reinterpret_cast<IOIBuilder&>( builder ); }
      HeaderBuilder & getHeader(){ return reinterpret_cast<HeaderBuilder&>( header ); }
+     ReusableMessageBuilder & super(){ return *this; }
      void appendIOIID( const std::string_view & value ){ appendSafely<FieldIOIID>( value ); }
      void appendIOITransType( const char & value ){ appendSafely<FieldIOITransType>( value ); }
      void appendIOIRefID( const std::string_view & value ){ appendSafely<FieldIOIRefID>( value ); }
@@ -1329,8 +1334,9 @@ class AdvertisementBuilder: protected ReusableMessageBuilder
 {
    public:
 
-     static AdvertisementBuilder & New( ReusableMessageBuilder & builder ){ return reinterpret_cast<AdvertisementBuilder&>( builder ); }
+     static AdvertisementBuilder & coat( ReusableMessageBuilder & builder ){ return reinterpret_cast<AdvertisementBuilder&>( builder ); }
      HeaderBuilder & getHeader(){ return reinterpret_cast<HeaderBuilder&>( header ); }
+     ReusableMessageBuilder & super(){ return *this; }
      void appendAdvId( const std::string_view & value ){ appendSafely<FieldAdvId>( value ); }
      void appendAdvTransType( const std::string_view & value ){ appendSafely<FieldAdvTransType>( value ); }
      void appendAdvRefID( const std::string_view & value ){ appendSafely<FieldAdvRefID>( value ); }
@@ -1401,8 +1407,9 @@ class ExecutionReportBuilder: protected ReusableMessageBuilder
 {
    public:
 
-     static ExecutionReportBuilder & New( ReusableMessageBuilder & builder ){ return reinterpret_cast<ExecutionReportBuilder&>( builder ); }
+     static ExecutionReportBuilder & coat( ReusableMessageBuilder & builder ){ return reinterpret_cast<ExecutionReportBuilder&>( builder ); }
      HeaderBuilder & getHeader(){ return reinterpret_cast<HeaderBuilder&>( header ); }
+     ReusableMessageBuilder & super(){ return *this; }
      void appendOrderID( const std::string_view & value ){ appendSafely<FieldOrderID>( value ); }
      void appendSecondaryOrderID( const std::string_view & value ){ appendSafely<FieldSecondaryOrderID>( value ); }
      void appendSecondaryClOrdID( const std::string_view & value ){ appendSafely<FieldSecondaryClOrdID>( value ); }
@@ -1629,8 +1636,9 @@ class OrderCancelRejectBuilder: protected ReusableMessageBuilder
 {
    public:
 
-     static OrderCancelRejectBuilder & New( ReusableMessageBuilder & builder ){ return reinterpret_cast<OrderCancelRejectBuilder&>( builder ); }
+     static OrderCancelRejectBuilder & coat( ReusableMessageBuilder & builder ){ return reinterpret_cast<OrderCancelRejectBuilder&>( builder ); }
      HeaderBuilder & getHeader(){ return reinterpret_cast<HeaderBuilder&>( header ); }
+     ReusableMessageBuilder & super(){ return *this; }
      void appendOrderID( const std::string_view & value ){ appendSafely<FieldOrderID>( value ); }
      void appendSecondaryOrderID( const std::string_view & value ){ appendSafely<FieldSecondaryOrderID>( value ); }
      void appendSecondaryClOrdID( const std::string_view & value ){ appendSafely<FieldSecondaryClOrdID>( value ); }
@@ -1660,8 +1668,9 @@ class LogonBuilder: protected ReusableMessageBuilder
 {
    public:
 
-     static LogonBuilder & New( ReusableMessageBuilder & builder ){ return reinterpret_cast<LogonBuilder&>( builder ); }
+     static LogonBuilder & coat( ReusableMessageBuilder & builder ){ return reinterpret_cast<LogonBuilder&>( builder ); }
      HeaderBuilder & getHeader(){ return reinterpret_cast<HeaderBuilder&>( header ); }
+     ReusableMessageBuilder & super(){ return *this; }
      void appendEncryptMethod( const int & value ){ appendSafely<FieldEncryptMethod>( value ); }
      void appendHeartBtInt( const int & value ){ appendSafely<FieldHeartBtInt>( value ); }
      void appendRawDataLength( const unsigned & value ){ appendSafely<FieldRawDataLength>( value ); }
@@ -1681,8 +1690,9 @@ class NewsBuilder: protected ReusableMessageBuilder
 {
    public:
 
-     static NewsBuilder & New( ReusableMessageBuilder & builder ){ return reinterpret_cast<NewsBuilder&>( builder ); }
+     static NewsBuilder & coat( ReusableMessageBuilder & builder ){ return reinterpret_cast<NewsBuilder&>( builder ); }
      HeaderBuilder & getHeader(){ return reinterpret_cast<HeaderBuilder&>( header ); }
+     ReusableMessageBuilder & super(){ return *this; }
      void appendOrigTime( const std::string_view & value ){ appendSafely<FieldOrigTime>( value ); }
      void appendUrgency( const char & value ){ appendSafely<FieldUrgency>( value ); }
      void appendHeadline( const std::string_view & value ){ appendSafely<FieldHeadline>( value ); }
@@ -1704,8 +1714,9 @@ class EmailBuilder: protected ReusableMessageBuilder
 {
    public:
 
-     static EmailBuilder & New( ReusableMessageBuilder & builder ){ return reinterpret_cast<EmailBuilder&>( builder ); }
+     static EmailBuilder & coat( ReusableMessageBuilder & builder ){ return reinterpret_cast<EmailBuilder&>( builder ); }
      HeaderBuilder & getHeader(){ return reinterpret_cast<HeaderBuilder&>( header ); }
+     ReusableMessageBuilder & super(){ return *this; }
      void appendEmailThreadID( const std::string_view & value ){ appendSafely<FieldEmailThreadID>( value ); }
      void appendEmailType( const char & value ){ appendSafely<FieldEmailType>( value ); }
      void appendOrigTime( const std::string_view & value ){ appendSafely<FieldOrigTime>( value ); }
@@ -1729,8 +1740,9 @@ class NewOrderSingleBuilder: protected ReusableMessageBuilder
 {
    public:
 
-     static NewOrderSingleBuilder & New( ReusableMessageBuilder & builder ){ return reinterpret_cast<NewOrderSingleBuilder&>( builder ); }
+     static NewOrderSingleBuilder & coat( ReusableMessageBuilder & builder ){ return reinterpret_cast<NewOrderSingleBuilder&>( builder ); }
      HeaderBuilder & getHeader(){ return reinterpret_cast<HeaderBuilder&>( header ); }
+     ReusableMessageBuilder & super(){ return *this; }
      void appendClOrdID( const std::string_view & value ){ appendSafely<FieldClOrdID>( value ); }
      void appendSecondaryClOrdID( const std::string_view & value ){ appendSafely<FieldSecondaryClOrdID>( value ); }
      void appendClOrdLinkID( const std::string_view & value ){ appendSafely<FieldClOrdLinkID>( value ); }
@@ -1895,8 +1907,9 @@ class NewOrderListBuilder: protected ReusableMessageBuilder
 {
    public:
 
-     static NewOrderListBuilder & New( ReusableMessageBuilder & builder ){ return reinterpret_cast<NewOrderListBuilder&>( builder ); }
+     static NewOrderListBuilder & coat( ReusableMessageBuilder & builder ){ return reinterpret_cast<NewOrderListBuilder&>( builder ); }
      HeaderBuilder & getHeader(){ return reinterpret_cast<HeaderBuilder&>( header ); }
+     ReusableMessageBuilder & super(){ return *this; }
      void appendListID( const std::string_view & value ){ appendSafely<FieldListID>( value ); }
      void appendBidID( const std::string_view & value ){ appendSafely<FieldBidID>( value ); }
      void appendClientBidID( const std::string_view & value ){ appendSafely<FieldClientBidID>( value ); }
@@ -1924,8 +1937,9 @@ class OrderCancelRequestBuilder: protected ReusableMessageBuilder
 {
    public:
 
-     static OrderCancelRequestBuilder & New( ReusableMessageBuilder & builder ){ return reinterpret_cast<OrderCancelRequestBuilder&>( builder ); }
+     static OrderCancelRequestBuilder & coat( ReusableMessageBuilder & builder ){ return reinterpret_cast<OrderCancelRequestBuilder&>( builder ); }
      HeaderBuilder & getHeader(){ return reinterpret_cast<HeaderBuilder&>( header ); }
+     ReusableMessageBuilder & super(){ return *this; }
      void appendOrigClOrdID( const std::string_view & value ){ appendSafely<FieldOrigClOrdID>( value ); }
      void appendOrderID( const std::string_view & value ){ appendSafely<FieldOrderID>( value ); }
      void appendClOrdID( const std::string_view & value ){ appendSafely<FieldClOrdID>( value ); }
@@ -2009,8 +2023,9 @@ class OrderCancelReplaceRequestBuilder: protected ReusableMessageBuilder
 {
    public:
 
-     static OrderCancelReplaceRequestBuilder & New( ReusableMessageBuilder & builder ){ return reinterpret_cast<OrderCancelReplaceRequestBuilder&>( builder ); }
+     static OrderCancelReplaceRequestBuilder & coat( ReusableMessageBuilder & builder ){ return reinterpret_cast<OrderCancelReplaceRequestBuilder&>( builder ); }
      HeaderBuilder & getHeader(){ return reinterpret_cast<HeaderBuilder&>( header ); }
+     ReusableMessageBuilder & super(){ return *this; }
      void appendOrderID( const std::string_view & value ){ appendSafely<FieldOrderID>( value ); }
      PartyIDsBuilder & appendNoPartyIDs( unsigned count ) { appendSafely<FieldNoPartyIDs>( count ); return *reinterpret_cast<PartyIDsBuilder*>( this ); }
      void appendTradeOriginationDate( const std::string_view & value ){ appendSafely<FieldTradeOriginationDate>( value ); }
@@ -2174,8 +2189,9 @@ class OrderStatusRequestBuilder: protected ReusableMessageBuilder
 {
    public:
 
-     static OrderStatusRequestBuilder & New( ReusableMessageBuilder & builder ){ return reinterpret_cast<OrderStatusRequestBuilder&>( builder ); }
+     static OrderStatusRequestBuilder & coat( ReusableMessageBuilder & builder ){ return reinterpret_cast<OrderStatusRequestBuilder&>( builder ); }
      HeaderBuilder & getHeader(){ return reinterpret_cast<HeaderBuilder&>( header ); }
+     ReusableMessageBuilder & super(){ return *this; }
      void appendOrderID( const std::string_view & value ){ appendSafely<FieldOrderID>( value ); }
      void appendClOrdID( const std::string_view & value ){ appendSafely<FieldClOrdID>( value ); }
      void appendSecondaryClOrdID( const std::string_view & value ){ appendSafely<FieldSecondaryClOrdID>( value ); }
@@ -2246,8 +2262,9 @@ class AllocationInstructionBuilder: protected ReusableMessageBuilder
 {
    public:
 
-     static AllocationInstructionBuilder & New( ReusableMessageBuilder & builder ){ return reinterpret_cast<AllocationInstructionBuilder&>( builder ); }
+     static AllocationInstructionBuilder & coat( ReusableMessageBuilder & builder ){ return reinterpret_cast<AllocationInstructionBuilder&>( builder ); }
      HeaderBuilder & getHeader(){ return reinterpret_cast<HeaderBuilder&>( header ); }
+     ReusableMessageBuilder & super(){ return *this; }
      void appendAllocID( const std::string_view & value ){ appendSafely<FieldAllocID>( value ); }
      void appendAllocTransType( const char & value ){ appendSafely<FieldAllocTransType>( value ); }
      void appendAllocType( const int & value ){ appendSafely<FieldAllocType>( value ); }
@@ -2383,8 +2400,9 @@ class ListCancelRequestBuilder: protected ReusableMessageBuilder
 {
    public:
 
-     static ListCancelRequestBuilder & New( ReusableMessageBuilder & builder ){ return reinterpret_cast<ListCancelRequestBuilder&>( builder ); }
+     static ListCancelRequestBuilder & coat( ReusableMessageBuilder & builder ){ return reinterpret_cast<ListCancelRequestBuilder&>( builder ); }
      HeaderBuilder & getHeader(){ return reinterpret_cast<HeaderBuilder&>( header ); }
+     ReusableMessageBuilder & super(){ return *this; }
      void appendListID( const std::string_view & value ){ appendSafely<FieldListID>( value ); }
      void appendTransactTime( const std::string_view & value ){ appendSafely<FieldTransactTime>( value ); }
      void appendTradeOriginationDate( const std::string_view & value ){ appendSafely<FieldTradeOriginationDate>( value ); }
@@ -2400,8 +2418,9 @@ class ListExecuteBuilder: protected ReusableMessageBuilder
 {
    public:
 
-     static ListExecuteBuilder & New( ReusableMessageBuilder & builder ){ return reinterpret_cast<ListExecuteBuilder&>( builder ); }
+     static ListExecuteBuilder & coat( ReusableMessageBuilder & builder ){ return reinterpret_cast<ListExecuteBuilder&>( builder ); }
      HeaderBuilder & getHeader(){ return reinterpret_cast<HeaderBuilder&>( header ); }
+     ReusableMessageBuilder & super(){ return *this; }
      void appendListID( const std::string_view & value ){ appendSafely<FieldListID>( value ); }
      void appendClientBidID( const std::string_view & value ){ appendSafely<FieldClientBidID>( value ); }
      void appendBidID( const std::string_view & value ){ appendSafely<FieldBidID>( value ); }
@@ -2417,8 +2436,9 @@ class ListStatusRequestBuilder: protected ReusableMessageBuilder
 {
    public:
 
-     static ListStatusRequestBuilder & New( ReusableMessageBuilder & builder ){ return reinterpret_cast<ListStatusRequestBuilder&>( builder ); }
+     static ListStatusRequestBuilder & coat( ReusableMessageBuilder & builder ){ return reinterpret_cast<ListStatusRequestBuilder&>( builder ); }
      HeaderBuilder & getHeader(){ return reinterpret_cast<HeaderBuilder&>( header ); }
+     ReusableMessageBuilder & super(){ return *this; }
      void appendListID( const std::string_view & value ){ appendSafely<FieldListID>( value ); }
      void appendText( const std::string_view & value ){ appendSafely<FieldText>( value ); }
      void appendEncodedTextLen( const unsigned & value ){ appendSafely<FieldEncodedTextLen>( value ); }
@@ -2431,8 +2451,9 @@ class ListStatusBuilder: protected ReusableMessageBuilder
 {
    public:
 
-     static ListStatusBuilder & New( ReusableMessageBuilder & builder ){ return reinterpret_cast<ListStatusBuilder&>( builder ); }
+     static ListStatusBuilder & coat( ReusableMessageBuilder & builder ){ return reinterpret_cast<ListStatusBuilder&>( builder ); }
      HeaderBuilder & getHeader(){ return reinterpret_cast<HeaderBuilder&>( header ); }
+     ReusableMessageBuilder & super(){ return *this; }
      void appendListID( const std::string_view & value ){ appendSafely<FieldListID>( value ); }
      void appendListStatusType( const int & value ){ appendSafely<FieldListStatusType>( value ); }
      void appendNoRpts( const int & value ){ appendSafely<FieldNoRpts>( value ); }
@@ -2453,8 +2474,9 @@ class AllocationInstructionAckBuilder: protected ReusableMessageBuilder
 {
    public:
 
-     static AllocationInstructionAckBuilder & New( ReusableMessageBuilder & builder ){ return reinterpret_cast<AllocationInstructionAckBuilder&>( builder ); }
+     static AllocationInstructionAckBuilder & coat( ReusableMessageBuilder & builder ){ return reinterpret_cast<AllocationInstructionAckBuilder&>( builder ); }
      HeaderBuilder & getHeader(){ return reinterpret_cast<HeaderBuilder&>( header ); }
+     ReusableMessageBuilder & super(){ return *this; }
      void appendAllocID( const std::string_view & value ){ appendSafely<FieldAllocID>( value ); }
      PartyIDsBuilder & appendNoPartyIDs( unsigned count ) { appendSafely<FieldNoPartyIDs>( count ); return *reinterpret_cast<PartyIDsBuilder*>( this ); }
      void appendSecondaryAllocID( const std::string_view & value ){ appendSafely<FieldSecondaryAllocID>( value ); }
@@ -2479,8 +2501,9 @@ class DontKnowTradeBuilder: protected ReusableMessageBuilder
 {
    public:
 
-     static DontKnowTradeBuilder & New( ReusableMessageBuilder & builder ){ return reinterpret_cast<DontKnowTradeBuilder&>( builder ); }
+     static DontKnowTradeBuilder & coat( ReusableMessageBuilder & builder ){ return reinterpret_cast<DontKnowTradeBuilder&>( builder ); }
      HeaderBuilder & getHeader(){ return reinterpret_cast<HeaderBuilder&>( header ); }
+     ReusableMessageBuilder & super(){ return *this; }
      void appendOrderID( const std::string_view & value ){ appendSafely<FieldOrderID>( value ); }
      void appendSecondaryOrderID( const std::string_view & value ){ appendSafely<FieldSecondaryOrderID>( value ); }
      void appendExecID( const std::string_view & value ){ appendSafely<FieldExecID>( value ); }
@@ -2549,8 +2572,9 @@ class QuoteRequestBuilder: protected ReusableMessageBuilder
 {
    public:
 
-     static QuoteRequestBuilder & New( ReusableMessageBuilder & builder ){ return reinterpret_cast<QuoteRequestBuilder&>( builder ); }
+     static QuoteRequestBuilder & coat( ReusableMessageBuilder & builder ){ return reinterpret_cast<QuoteRequestBuilder&>( builder ); }
      HeaderBuilder & getHeader(){ return reinterpret_cast<HeaderBuilder&>( header ); }
+     ReusableMessageBuilder & super(){ return *this; }
      void appendQuoteReqID( const std::string_view & value ){ appendSafely<FieldQuoteReqID>( value ); }
      void appendRFQReqID( const std::string_view & value ){ appendSafely<FieldRFQReqID>( value ); }
      void appendClOrdID( const std::string_view & value ){ appendSafely<FieldClOrdID>( value ); }
@@ -2567,8 +2591,9 @@ class QuoteBuilder: protected ReusableMessageBuilder
 {
    public:
 
-     static QuoteBuilder & New( ReusableMessageBuilder & builder ){ return reinterpret_cast<QuoteBuilder&>( builder ); }
+     static QuoteBuilder & coat( ReusableMessageBuilder & builder ){ return reinterpret_cast<QuoteBuilder&>( builder ); }
      HeaderBuilder & getHeader(){ return reinterpret_cast<HeaderBuilder&>( header ); }
+     ReusableMessageBuilder & super(){ return *this; }
      void appendQuoteReqID( const std::string_view & value ){ appendSafely<FieldQuoteReqID>( value ); }
      void appendQuoteID( const std::string_view & value ){ appendSafely<FieldQuoteID>( value ); }
      void appendQuoteRespID( const std::string_view & value ){ appendSafely<FieldQuoteRespID>( value ); }
@@ -2702,8 +2727,9 @@ class SettlementInstructionsBuilder: protected ReusableMessageBuilder
 {
    public:
 
-     static SettlementInstructionsBuilder & New( ReusableMessageBuilder & builder ){ return reinterpret_cast<SettlementInstructionsBuilder&>( builder ); }
+     static SettlementInstructionsBuilder & coat( ReusableMessageBuilder & builder ){ return reinterpret_cast<SettlementInstructionsBuilder&>( builder ); }
      HeaderBuilder & getHeader(){ return reinterpret_cast<HeaderBuilder&>( header ); }
+     ReusableMessageBuilder & super(){ return *this; }
      void appendSettlInstMsgID( const std::string_view & value ){ appendSafely<FieldSettlInstMsgID>( value ); }
      void appendSettlInstReqID( const std::string_view & value ){ appendSafely<FieldSettlInstReqID>( value ); }
      void appendSettlInstMode( const char & value ){ appendSafely<FieldSettlInstMode>( value ); }
@@ -2722,8 +2748,9 @@ class MarketDataRequestBuilder: protected ReusableMessageBuilder
 {
    public:
 
-     static MarketDataRequestBuilder & New( ReusableMessageBuilder & builder ){ return reinterpret_cast<MarketDataRequestBuilder&>( builder ); }
+     static MarketDataRequestBuilder & coat( ReusableMessageBuilder & builder ){ return reinterpret_cast<MarketDataRequestBuilder&>( builder ); }
      HeaderBuilder & getHeader(){ return reinterpret_cast<HeaderBuilder&>( header ); }
+     ReusableMessageBuilder & super(){ return *this; }
      void appendMDReqID( const std::string_view & value ){ appendSafely<FieldMDReqID>( value ); }
      void appendSubscriptionRequestType( const char & value ){ appendSafely<FieldSubscriptionRequestType>( value ); }
      void appendMarketDepth( const int & value ){ appendSafely<FieldMarketDepth>( value ); }
@@ -2745,8 +2772,9 @@ class MarketDataSnapshotFullRefreshBuilder: protected ReusableMessageBuilder
 {
    public:
 
-     static MarketDataSnapshotFullRefreshBuilder & New( ReusableMessageBuilder & builder ){ return reinterpret_cast<MarketDataSnapshotFullRefreshBuilder&>( builder ); }
+     static MarketDataSnapshotFullRefreshBuilder & coat( ReusableMessageBuilder & builder ){ return reinterpret_cast<MarketDataSnapshotFullRefreshBuilder&>( builder ); }
      HeaderBuilder & getHeader(){ return reinterpret_cast<HeaderBuilder&>( header ); }
+     ReusableMessageBuilder & super(){ return *this; }
      void appendMDReqID( const std::string_view & value ){ appendSafely<FieldMDReqID>( value ); }
      void appendSymbol( const std::string_view & value ){ appendSafely<FieldSymbol>( value ); }
      void appendSymbolSfx( const std::string_view & value ){ appendSafely<FieldSymbolSfx>( value ); }
@@ -2807,8 +2835,9 @@ class MarketDataIncrementalRefreshBuilder: protected ReusableMessageBuilder
 {
    public:
 
-     static MarketDataIncrementalRefreshBuilder & New( ReusableMessageBuilder & builder ){ return reinterpret_cast<MarketDataIncrementalRefreshBuilder&>( builder ); }
+     static MarketDataIncrementalRefreshBuilder & coat( ReusableMessageBuilder & builder ){ return reinterpret_cast<MarketDataIncrementalRefreshBuilder&>( builder ); }
      HeaderBuilder & getHeader(){ return reinterpret_cast<HeaderBuilder&>( header ); }
+     ReusableMessageBuilder & super(){ return *this; }
      void appendMDReqID( const std::string_view & value ){ appendSafely<FieldMDReqID>( value ); }
      MDEntriesBuilder & appendNoMDEntries( unsigned count ) { appendSafely<FieldNoMDEntries>( count ); return *reinterpret_cast<MDEntriesBuilder*>( this ); }
      void appendApplQueueDepth( const int & value ){ appendSafely<FieldApplQueueDepth>( value ); }
@@ -2821,8 +2850,9 @@ class MarketDataRequestRejectBuilder: protected ReusableMessageBuilder
 {
    public:
 
-     static MarketDataRequestRejectBuilder & New( ReusableMessageBuilder & builder ){ return reinterpret_cast<MarketDataRequestRejectBuilder&>( builder ); }
+     static MarketDataRequestRejectBuilder & coat( ReusableMessageBuilder & builder ){ return reinterpret_cast<MarketDataRequestRejectBuilder&>( builder ); }
      HeaderBuilder & getHeader(){ return reinterpret_cast<HeaderBuilder&>( header ); }
+     ReusableMessageBuilder & super(){ return *this; }
      void appendMDReqID( const std::string_view & value ){ appendSafely<FieldMDReqID>( value ); }
      void appendMDReqRejReason( const char & value ){ appendSafely<FieldMDReqRejReason>( value ); }
      AltMDSourceBuilder & appendNoAltMDSource( unsigned count ) { appendSafely<FieldNoAltMDSource>( count ); return *reinterpret_cast<AltMDSourceBuilder*>( this ); }
@@ -2837,8 +2867,9 @@ class QuoteCancelBuilder: protected ReusableMessageBuilder
 {
    public:
 
-     static QuoteCancelBuilder & New( ReusableMessageBuilder & builder ){ return reinterpret_cast<QuoteCancelBuilder&>( builder ); }
+     static QuoteCancelBuilder & coat( ReusableMessageBuilder & builder ){ return reinterpret_cast<QuoteCancelBuilder&>( builder ); }
      HeaderBuilder & getHeader(){ return reinterpret_cast<HeaderBuilder&>( header ); }
+     ReusableMessageBuilder & super(){ return *this; }
      void appendQuoteReqID( const std::string_view & value ){ appendSafely<FieldQuoteReqID>( value ); }
      void appendQuoteID( const std::string_view & value ){ appendSafely<FieldQuoteID>( value ); }
      void appendQuoteCancelType( const int & value ){ appendSafely<FieldQuoteCancelType>( value ); }
@@ -2858,8 +2889,9 @@ class QuoteStatusRequestBuilder: protected ReusableMessageBuilder
 {
    public:
 
-     static QuoteStatusRequestBuilder & New( ReusableMessageBuilder & builder ){ return reinterpret_cast<QuoteStatusRequestBuilder&>( builder ); }
+     static QuoteStatusRequestBuilder & coat( ReusableMessageBuilder & builder ){ return reinterpret_cast<QuoteStatusRequestBuilder&>( builder ); }
      HeaderBuilder & getHeader(){ return reinterpret_cast<HeaderBuilder&>( header ); }
+     ReusableMessageBuilder & super(){ return *this; }
      void appendQuoteStatusReqID( const std::string_view & value ){ appendSafely<FieldQuoteStatusReqID>( value ); }
      void appendQuoteID( const std::string_view & value ){ appendSafely<FieldQuoteID>( value ); }
      void appendSymbol( const std::string_view & value ){ appendSafely<FieldSymbol>( value ); }
@@ -2931,8 +2963,9 @@ class MassQuoteAcknowledgementBuilder: protected ReusableMessageBuilder
 {
    public:
 
-     static MassQuoteAcknowledgementBuilder & New( ReusableMessageBuilder & builder ){ return reinterpret_cast<MassQuoteAcknowledgementBuilder&>( builder ); }
+     static MassQuoteAcknowledgementBuilder & coat( ReusableMessageBuilder & builder ){ return reinterpret_cast<MassQuoteAcknowledgementBuilder&>( builder ); }
      HeaderBuilder & getHeader(){ return reinterpret_cast<HeaderBuilder&>( header ); }
+     ReusableMessageBuilder & super(){ return *this; }
      void appendQuoteReqID( const std::string_view & value ){ appendSafely<FieldQuoteReqID>( value ); }
      void appendQuoteID( const std::string_view & value ){ appendSafely<FieldQuoteID>( value ); }
      void appendQuoteStatus( const int & value ){ appendSafely<FieldQuoteStatus>( value ); }
@@ -2955,8 +2988,9 @@ class SecurityDefinitionRequestBuilder: protected ReusableMessageBuilder
 {
    public:
 
-     static SecurityDefinitionRequestBuilder & New( ReusableMessageBuilder & builder ){ return reinterpret_cast<SecurityDefinitionRequestBuilder&>( builder ); }
+     static SecurityDefinitionRequestBuilder & coat( ReusableMessageBuilder & builder ){ return reinterpret_cast<SecurityDefinitionRequestBuilder&>( builder ); }
      HeaderBuilder & getHeader(){ return reinterpret_cast<HeaderBuilder&>( header ); }
+     ReusableMessageBuilder & super(){ return *this; }
      void appendSecurityReqID( const std::string_view & value ){ appendSafely<FieldSecurityReqID>( value ); }
      void appendSecurityRequestType( const int & value ){ appendSafely<FieldSecurityRequestType>( value ); }
      void appendSymbol( const std::string_view & value ){ appendSafely<FieldSymbol>( value ); }
@@ -3023,8 +3057,9 @@ class SecurityDefinitionBuilder: protected ReusableMessageBuilder
 {
    public:
 
-     static SecurityDefinitionBuilder & New( ReusableMessageBuilder & builder ){ return reinterpret_cast<SecurityDefinitionBuilder&>( builder ); }
+     static SecurityDefinitionBuilder & coat( ReusableMessageBuilder & builder ){ return reinterpret_cast<SecurityDefinitionBuilder&>( builder ); }
      HeaderBuilder & getHeader(){ return reinterpret_cast<HeaderBuilder&>( header ); }
+     ReusableMessageBuilder & super(){ return *this; }
      void appendSecurityReqID( const std::string_view & value ){ appendSafely<FieldSecurityReqID>( value ); }
      void appendSecurityResponseID( const std::string_view & value ){ appendSafely<FieldSecurityResponseID>( value ); }
      void appendSecurityResponseType( const int & value ){ appendSafely<FieldSecurityResponseType>( value ); }
@@ -3093,8 +3128,9 @@ class SecurityStatusRequestBuilder: protected ReusableMessageBuilder
 {
    public:
 
-     static SecurityStatusRequestBuilder & New( ReusableMessageBuilder & builder ){ return reinterpret_cast<SecurityStatusRequestBuilder&>( builder ); }
+     static SecurityStatusRequestBuilder & coat( ReusableMessageBuilder & builder ){ return reinterpret_cast<SecurityStatusRequestBuilder&>( builder ); }
      HeaderBuilder & getHeader(){ return reinterpret_cast<HeaderBuilder&>( header ); }
+     ReusableMessageBuilder & super(){ return *this; }
      void appendSecurityStatusReqID( const std::string_view & value ){ appendSafely<FieldSecurityStatusReqID>( value ); }
      void appendSymbol( const std::string_view & value ){ appendSafely<FieldSymbol>( value ); }
      void appendSymbolSfx( const std::string_view & value ){ appendSafely<FieldSymbolSfx>( value ); }
@@ -3156,8 +3192,9 @@ class SecurityStatusBuilder: protected ReusableMessageBuilder
 {
    public:
 
-     static SecurityStatusBuilder & New( ReusableMessageBuilder & builder ){ return reinterpret_cast<SecurityStatusBuilder&>( builder ); }
+     static SecurityStatusBuilder & coat( ReusableMessageBuilder & builder ){ return reinterpret_cast<SecurityStatusBuilder&>( builder ); }
      HeaderBuilder & getHeader(){ return reinterpret_cast<HeaderBuilder&>( header ); }
+     ReusableMessageBuilder & super(){ return *this; }
      void appendSecurityStatusReqID( const std::string_view & value ){ appendSafely<FieldSecurityStatusReqID>( value ); }
      void appendSymbol( const std::string_view & value ){ appendSafely<FieldSymbol>( value ); }
      void appendSymbolSfx( const std::string_view & value ){ appendSafely<FieldSymbolSfx>( value ); }
@@ -3235,8 +3272,9 @@ class TradingSessionStatusRequestBuilder: protected ReusableMessageBuilder
 {
    public:
 
-     static TradingSessionStatusRequestBuilder & New( ReusableMessageBuilder & builder ){ return reinterpret_cast<TradingSessionStatusRequestBuilder&>( builder ); }
+     static TradingSessionStatusRequestBuilder & coat( ReusableMessageBuilder & builder ){ return reinterpret_cast<TradingSessionStatusRequestBuilder&>( builder ); }
      HeaderBuilder & getHeader(){ return reinterpret_cast<HeaderBuilder&>( header ); }
+     ReusableMessageBuilder & super(){ return *this; }
      void appendTradSesReqID( const std::string_view & value ){ appendSafely<FieldTradSesReqID>( value ); }
      void appendTradingSessionID( const std::string_view & value ){ appendSafely<FieldTradingSessionID>( value ); }
      void appendTradingSessionSubID( const std::string_view & value ){ appendSafely<FieldTradingSessionSubID>( value ); }
@@ -3251,8 +3289,9 @@ class TradingSessionStatusBuilder: protected ReusableMessageBuilder
 {
    public:
 
-     static TradingSessionStatusBuilder & New( ReusableMessageBuilder & builder ){ return reinterpret_cast<TradingSessionStatusBuilder&>( builder ); }
+     static TradingSessionStatusBuilder & coat( ReusableMessageBuilder & builder ){ return reinterpret_cast<TradingSessionStatusBuilder&>( builder ); }
      HeaderBuilder & getHeader(){ return reinterpret_cast<HeaderBuilder&>( header ); }
+     ReusableMessageBuilder & super(){ return *this; }
      void appendTradSesReqID( const std::string_view & value ){ appendSafely<FieldTradSesReqID>( value ); }
      void appendTradingSessionID( const std::string_view & value ){ appendSafely<FieldTradingSessionID>( value ); }
      void appendTradingSessionSubID( const std::string_view & value ){ appendSafely<FieldTradingSessionSubID>( value ); }
@@ -3278,8 +3317,9 @@ class MassQuoteBuilder: protected ReusableMessageBuilder
 {
    public:
 
-     static MassQuoteBuilder & New( ReusableMessageBuilder & builder ){ return reinterpret_cast<MassQuoteBuilder&>( builder ); }
+     static MassQuoteBuilder & coat( ReusableMessageBuilder & builder ){ return reinterpret_cast<MassQuoteBuilder&>( builder ); }
      HeaderBuilder & getHeader(){ return reinterpret_cast<HeaderBuilder&>( header ); }
+     ReusableMessageBuilder & super(){ return *this; }
      void appendQuoteReqID( const std::string_view & value ){ appendSafely<FieldQuoteReqID>( value ); }
      void appendQuoteID( const std::string_view & value ){ appendSafely<FieldQuoteID>( value ); }
      void appendQuoteType( const int & value ){ appendSafely<FieldQuoteType>( value ); }
@@ -3299,8 +3339,9 @@ class BusinessMessageRejectBuilder: protected ReusableMessageBuilder
 {
    public:
 
-     static BusinessMessageRejectBuilder & New( ReusableMessageBuilder & builder ){ return reinterpret_cast<BusinessMessageRejectBuilder&>( builder ); }
+     static BusinessMessageRejectBuilder & coat( ReusableMessageBuilder & builder ){ return reinterpret_cast<BusinessMessageRejectBuilder&>( builder ); }
      HeaderBuilder & getHeader(){ return reinterpret_cast<HeaderBuilder&>( header ); }
+     ReusableMessageBuilder & super(){ return *this; }
      void appendRefSeqNum( const unsigned & value ){ appendSafely<FieldRefSeqNum>( value ); }
      void appendRefMsgType( const std::string_view & value ){ appendSafely<FieldRefMsgType>( value ); }
      void appendBusinessRejectRefID( const std::string_view & value ){ appendSafely<FieldBusinessRejectRefID>( value ); }
@@ -3316,8 +3357,9 @@ class BidRequestBuilder: protected ReusableMessageBuilder
 {
    public:
 
-     static BidRequestBuilder & New( ReusableMessageBuilder & builder ){ return reinterpret_cast<BidRequestBuilder&>( builder ); }
+     static BidRequestBuilder & coat( ReusableMessageBuilder & builder ){ return reinterpret_cast<BidRequestBuilder&>( builder ); }
      HeaderBuilder & getHeader(){ return reinterpret_cast<HeaderBuilder&>( header ); }
+     ReusableMessageBuilder & super(){ return *this; }
      void appendBidID( const std::string_view & value ){ appendSafely<FieldBidID>( value ); }
      void appendClientBidID( const std::string_view & value ){ appendSafely<FieldClientBidID>( value ); }
      void appendBidRequestTransType( const char & value ){ appendSafely<FieldBidRequestTransType>( value ); }
@@ -3355,8 +3397,9 @@ class BidResponseBuilder: protected ReusableMessageBuilder
 {
    public:
 
-     static BidResponseBuilder & New( ReusableMessageBuilder & builder ){ return reinterpret_cast<BidResponseBuilder&>( builder ); }
+     static BidResponseBuilder & coat( ReusableMessageBuilder & builder ){ return reinterpret_cast<BidResponseBuilder&>( builder ); }
      HeaderBuilder & getHeader(){ return reinterpret_cast<HeaderBuilder&>( header ); }
+     ReusableMessageBuilder & super(){ return *this; }
      void appendBidID( const std::string_view & value ){ appendSafely<FieldBidID>( value ); }
      void appendClientBidID( const std::string_view & value ){ appendSafely<FieldClientBidID>( value ); }
      BidComponentsBuilder & appendNoBidComponents( unsigned count ) { appendSafely<FieldNoBidComponents>( count ); return *reinterpret_cast<BidComponentsBuilder*>( this ); }
@@ -3368,8 +3411,9 @@ class ListStrikePriceBuilder: protected ReusableMessageBuilder
 {
    public:
 
-     static ListStrikePriceBuilder & New( ReusableMessageBuilder & builder ){ return reinterpret_cast<ListStrikePriceBuilder&>( builder ); }
+     static ListStrikePriceBuilder & coat( ReusableMessageBuilder & builder ){ return reinterpret_cast<ListStrikePriceBuilder&>( builder ); }
      HeaderBuilder & getHeader(){ return reinterpret_cast<HeaderBuilder&>( header ); }
+     ReusableMessageBuilder & super(){ return *this; }
      void appendListID( const std::string_view & value ){ appendSafely<FieldListID>( value ); }
      void appendTotNoStrikes( const int & value ){ appendSafely<FieldTotNoStrikes>( value ); }
      void appendLastFragment( const bool & value ){ appendSafely<FieldLastFragment>( value ); }
@@ -3383,8 +3427,9 @@ class XMLnonFIXBuilder: protected ReusableMessageBuilder
 {
    public:
 
-     static XMLnonFIXBuilder & New( ReusableMessageBuilder & builder ){ return reinterpret_cast<XMLnonFIXBuilder&>( builder ); }
+     static XMLnonFIXBuilder & coat( ReusableMessageBuilder & builder ){ return reinterpret_cast<XMLnonFIXBuilder&>( builder ); }
      HeaderBuilder & getHeader(){ return reinterpret_cast<HeaderBuilder&>( header ); }
+     ReusableMessageBuilder & super(){ return *this; }
 };
 
 
@@ -3393,8 +3438,9 @@ class RegistrationInstructionsBuilder: protected ReusableMessageBuilder
 {
    public:
 
-     static RegistrationInstructionsBuilder & New( ReusableMessageBuilder & builder ){ return reinterpret_cast<RegistrationInstructionsBuilder&>( builder ); }
+     static RegistrationInstructionsBuilder & coat( ReusableMessageBuilder & builder ){ return reinterpret_cast<RegistrationInstructionsBuilder&>( builder ); }
      HeaderBuilder & getHeader(){ return reinterpret_cast<HeaderBuilder&>( header ); }
+     ReusableMessageBuilder & super(){ return *this; }
      void appendRegistID( const std::string_view & value ){ appendSafely<FieldRegistID>( value ); }
      void appendRegistTransType( const char & value ){ appendSafely<FieldRegistTransType>( value ); }
      void appendRegistRefID( const std::string_view & value ){ appendSafely<FieldRegistRefID>( value ); }
@@ -3415,8 +3461,9 @@ class RegistrationInstructionsResponseBuilder: protected ReusableMessageBuilder
 {
    public:
 
-     static RegistrationInstructionsResponseBuilder & New( ReusableMessageBuilder & builder ){ return reinterpret_cast<RegistrationInstructionsResponseBuilder&>( builder ); }
+     static RegistrationInstructionsResponseBuilder & coat( ReusableMessageBuilder & builder ){ return reinterpret_cast<RegistrationInstructionsResponseBuilder&>( builder ); }
      HeaderBuilder & getHeader(){ return reinterpret_cast<HeaderBuilder&>( header ); }
+     ReusableMessageBuilder & super(){ return *this; }
      void appendRegistID( const std::string_view & value ){ appendSafely<FieldRegistID>( value ); }
      void appendRegistTransType( const char & value ){ appendSafely<FieldRegistTransType>( value ); }
      void appendRegistRefID( const std::string_view & value ){ appendSafely<FieldRegistRefID>( value ); }
@@ -3435,8 +3482,9 @@ class OrderMassCancelRequestBuilder: protected ReusableMessageBuilder
 {
    public:
 
-     static OrderMassCancelRequestBuilder & New( ReusableMessageBuilder & builder ){ return reinterpret_cast<OrderMassCancelRequestBuilder&>( builder ); }
+     static OrderMassCancelRequestBuilder & coat( ReusableMessageBuilder & builder ){ return reinterpret_cast<OrderMassCancelRequestBuilder&>( builder ); }
      HeaderBuilder & getHeader(){ return reinterpret_cast<HeaderBuilder&>( header ); }
+     ReusableMessageBuilder & super(){ return *this; }
      void appendClOrdID( const std::string_view & value ){ appendSafely<FieldClOrdID>( value ); }
      void appendSecondaryClOrdID( const std::string_view & value ){ appendSafely<FieldSecondaryClOrdID>( value ); }
      void appendMassCancelRequestType( const char & value ){ appendSafely<FieldMassCancelRequestType>( value ); }
@@ -3545,8 +3593,9 @@ class OrderMassCancelReportBuilder: protected ReusableMessageBuilder
 {
    public:
 
-     static OrderMassCancelReportBuilder & New( ReusableMessageBuilder & builder ){ return reinterpret_cast<OrderMassCancelReportBuilder&>( builder ); }
+     static OrderMassCancelReportBuilder & coat( ReusableMessageBuilder & builder ){ return reinterpret_cast<OrderMassCancelReportBuilder&>( builder ); }
      HeaderBuilder & getHeader(){ return reinterpret_cast<HeaderBuilder&>( header ); }
+     ReusableMessageBuilder & super(){ return *this; }
      void appendClOrdID( const std::string_view & value ){ appendSafely<FieldClOrdID>( value ); }
      void appendSecondaryClOrdID( const std::string_view & value ){ appendSafely<FieldSecondaryClOrdID>( value ); }
      void appendOrderID( const std::string_view & value ){ appendSafely<FieldOrderID>( value ); }
@@ -3661,8 +3710,9 @@ class NewOrderCrossBuilder: protected ReusableMessageBuilder
 {
    public:
 
-     static NewOrderCrossBuilder & New( ReusableMessageBuilder & builder ){ return reinterpret_cast<NewOrderCrossBuilder&>( builder ); }
+     static NewOrderCrossBuilder & coat( ReusableMessageBuilder & builder ){ return reinterpret_cast<NewOrderCrossBuilder&>( builder ); }
      HeaderBuilder & getHeader(){ return reinterpret_cast<HeaderBuilder&>( header ); }
+     ReusableMessageBuilder & super(){ return *this; }
      void appendCrossID( const std::string_view & value ){ appendSafely<FieldCrossID>( value ); }
      void appendCrossType( const int & value ){ appendSafely<FieldCrossType>( value ); }
      void appendCrossPrioritization( const int & value ){ appendSafely<FieldCrossPrioritization>( value ); }
@@ -3781,8 +3831,9 @@ class CrossOrderCancelReplaceRequestBuilder: protected ReusableMessageBuilder
 {
    public:
 
-     static CrossOrderCancelReplaceRequestBuilder & New( ReusableMessageBuilder & builder ){ return reinterpret_cast<CrossOrderCancelReplaceRequestBuilder&>( builder ); }
+     static CrossOrderCancelReplaceRequestBuilder & coat( ReusableMessageBuilder & builder ){ return reinterpret_cast<CrossOrderCancelReplaceRequestBuilder&>( builder ); }
      HeaderBuilder & getHeader(){ return reinterpret_cast<HeaderBuilder&>( header ); }
+     ReusableMessageBuilder & super(){ return *this; }
      void appendOrderID( const std::string_view & value ){ appendSafely<FieldOrderID>( value ); }
      void appendCrossID( const std::string_view & value ){ appendSafely<FieldCrossID>( value ); }
      void appendOrigCrossID( const std::string_view & value ){ appendSafely<FieldOrigCrossID>( value ); }
@@ -3903,8 +3954,9 @@ class CrossOrderCancelRequestBuilder: protected ReusableMessageBuilder
 {
    public:
 
-     static CrossOrderCancelRequestBuilder & New( ReusableMessageBuilder & builder ){ return reinterpret_cast<CrossOrderCancelRequestBuilder&>( builder ); }
+     static CrossOrderCancelRequestBuilder & coat( ReusableMessageBuilder & builder ){ return reinterpret_cast<CrossOrderCancelRequestBuilder&>( builder ); }
      HeaderBuilder & getHeader(){ return reinterpret_cast<HeaderBuilder&>( header ); }
+     ReusableMessageBuilder & super(){ return *this; }
      void appendOrderID( const std::string_view & value ){ appendSafely<FieldOrderID>( value ); }
      void appendCrossID( const std::string_view & value ){ appendSafely<FieldCrossID>( value ); }
      void appendOrigCrossID( const std::string_view & value ){ appendSafely<FieldOrigCrossID>( value ); }
@@ -3965,8 +4017,9 @@ class SecurityTypeRequestBuilder: protected ReusableMessageBuilder
 {
    public:
 
-     static SecurityTypeRequestBuilder & New( ReusableMessageBuilder & builder ){ return reinterpret_cast<SecurityTypeRequestBuilder&>( builder ); }
+     static SecurityTypeRequestBuilder & coat( ReusableMessageBuilder & builder ){ return reinterpret_cast<SecurityTypeRequestBuilder&>( builder ); }
      HeaderBuilder & getHeader(){ return reinterpret_cast<HeaderBuilder&>( header ); }
+     ReusableMessageBuilder & super(){ return *this; }
      void appendSecurityReqID( const std::string_view & value ){ appendSafely<FieldSecurityReqID>( value ); }
      void appendText( const std::string_view & value ){ appendSafely<FieldText>( value ); }
      void appendEncodedTextLen( const unsigned & value ){ appendSafely<FieldEncodedTextLen>( value ); }
@@ -3984,8 +4037,9 @@ class SecurityTypesBuilder: protected ReusableMessageBuilder
 {
    public:
 
-     static SecurityTypesBuilder & New( ReusableMessageBuilder & builder ){ return reinterpret_cast<SecurityTypesBuilder&>( builder ); }
+     static SecurityTypesBuilder & coat( ReusableMessageBuilder & builder ){ return reinterpret_cast<SecurityTypesBuilder&>( builder ); }
      HeaderBuilder & getHeader(){ return reinterpret_cast<HeaderBuilder&>( header ); }
+     ReusableMessageBuilder & super(){ return *this; }
      void appendSecurityReqID( const std::string_view & value ){ appendSafely<FieldSecurityReqID>( value ); }
      void appendSecurityResponseID( const std::string_view & value ){ appendSafely<FieldSecurityResponseID>( value ); }
      void appendSecurityResponseType( const int & value ){ appendSafely<FieldSecurityResponseType>( value ); }
@@ -4006,8 +4060,9 @@ class SecurityListRequestBuilder: protected ReusableMessageBuilder
 {
    public:
 
-     static SecurityListRequestBuilder & New( ReusableMessageBuilder & builder ){ return reinterpret_cast<SecurityListRequestBuilder&>( builder ); }
+     static SecurityListRequestBuilder & coat( ReusableMessageBuilder & builder ){ return reinterpret_cast<SecurityListRequestBuilder&>( builder ); }
      HeaderBuilder & getHeader(){ return reinterpret_cast<HeaderBuilder&>( header ); }
+     ReusableMessageBuilder & super(){ return *this; }
      void appendSecurityReqID( const std::string_view & value ){ appendSafely<FieldSecurityReqID>( value ); }
      void appendSecurityListRequestType( const int & value ){ appendSafely<FieldSecurityListRequestType>( value ); }
      void appendSymbol( const std::string_view & value ){ appendSafely<FieldSymbol>( value ); }
@@ -4082,8 +4137,9 @@ class SecurityListBuilder: protected ReusableMessageBuilder
 {
    public:
 
-     static SecurityListBuilder & New( ReusableMessageBuilder & builder ){ return reinterpret_cast<SecurityListBuilder&>( builder ); }
+     static SecurityListBuilder & coat( ReusableMessageBuilder & builder ){ return reinterpret_cast<SecurityListBuilder&>( builder ); }
      HeaderBuilder & getHeader(){ return reinterpret_cast<HeaderBuilder&>( header ); }
+     ReusableMessageBuilder & super(){ return *this; }
      void appendSecurityReqID( const std::string_view & value ){ appendSafely<FieldSecurityReqID>( value ); }
      void appendSecurityResponseID( const std::string_view & value ){ appendSafely<FieldSecurityResponseID>( value ); }
      void appendSecurityRequestResult( const int & value ){ appendSafely<FieldSecurityRequestResult>( value ); }
@@ -4098,8 +4154,9 @@ class DerivativeSecurityListRequestBuilder: protected ReusableMessageBuilder
 {
    public:
 
-     static DerivativeSecurityListRequestBuilder & New( ReusableMessageBuilder & builder ){ return reinterpret_cast<DerivativeSecurityListRequestBuilder&>( builder ); }
+     static DerivativeSecurityListRequestBuilder & coat( ReusableMessageBuilder & builder ){ return reinterpret_cast<DerivativeSecurityListRequestBuilder&>( builder ); }
      HeaderBuilder & getHeader(){ return reinterpret_cast<HeaderBuilder&>( header ); }
+     ReusableMessageBuilder & super(){ return *this; }
      void appendSecurityReqID( const std::string_view & value ){ appendSafely<FieldSecurityReqID>( value ); }
      void appendSecurityListRequestType( const int & value ){ appendSafely<FieldSecurityListRequestType>( value ); }
      void appendUnderlyingSymbol( const std::string_view & value ){ appendSafely<FieldUnderlyingSymbol>( value ); }
@@ -4165,8 +4222,9 @@ class DerivativeSecurityListBuilder: protected ReusableMessageBuilder
 {
    public:
 
-     static DerivativeSecurityListBuilder & New( ReusableMessageBuilder & builder ){ return reinterpret_cast<DerivativeSecurityListBuilder&>( builder ); }
+     static DerivativeSecurityListBuilder & coat( ReusableMessageBuilder & builder ){ return reinterpret_cast<DerivativeSecurityListBuilder&>( builder ); }
      HeaderBuilder & getHeader(){ return reinterpret_cast<HeaderBuilder&>( header ); }
+     ReusableMessageBuilder & super(){ return *this; }
      void appendSecurityReqID( const std::string_view & value ){ appendSafely<FieldSecurityReqID>( value ); }
      void appendSecurityResponseID( const std::string_view & value ){ appendSafely<FieldSecurityResponseID>( value ); }
      void appendSecurityRequestResult( const int & value ){ appendSafely<FieldSecurityRequestResult>( value ); }
@@ -4228,8 +4286,9 @@ class NewOrderMultilegBuilder: protected ReusableMessageBuilder
 {
    public:
 
-     static NewOrderMultilegBuilder & New( ReusableMessageBuilder & builder ){ return reinterpret_cast<NewOrderMultilegBuilder&>( builder ); }
+     static NewOrderMultilegBuilder & coat( ReusableMessageBuilder & builder ){ return reinterpret_cast<NewOrderMultilegBuilder&>( builder ); }
      HeaderBuilder & getHeader(){ return reinterpret_cast<HeaderBuilder&>( header ); }
+     ReusableMessageBuilder & super(){ return *this; }
      void appendClOrdID( const std::string_view & value ){ appendSafely<FieldClOrdID>( value ); }
      void appendSecondaryClOrdID( const std::string_view & value ){ appendSafely<FieldSecondaryClOrdID>( value ); }
      void appendClOrdLinkID( const std::string_view & value ){ appendSafely<FieldClOrdLinkID>( value ); }
@@ -4369,8 +4428,9 @@ class MultilegOrderCancelReplaceBuilder: protected ReusableMessageBuilder
 {
    public:
 
-     static MultilegOrderCancelReplaceBuilder & New( ReusableMessageBuilder & builder ){ return reinterpret_cast<MultilegOrderCancelReplaceBuilder&>( builder ); }
+     static MultilegOrderCancelReplaceBuilder & coat( ReusableMessageBuilder & builder ){ return reinterpret_cast<MultilegOrderCancelReplaceBuilder&>( builder ); }
      HeaderBuilder & getHeader(){ return reinterpret_cast<HeaderBuilder&>( header ); }
+     ReusableMessageBuilder & super(){ return *this; }
      void appendOrderID( const std::string_view & value ){ appendSafely<FieldOrderID>( value ); }
      void appendOrigClOrdID( const std::string_view & value ){ appendSafely<FieldOrigClOrdID>( value ); }
      void appendClOrdID( const std::string_view & value ){ appendSafely<FieldClOrdID>( value ); }
@@ -4513,8 +4573,9 @@ class TradeCaptureReportRequestBuilder: protected ReusableMessageBuilder
 {
    public:
 
-     static TradeCaptureReportRequestBuilder & New( ReusableMessageBuilder & builder ){ return reinterpret_cast<TradeCaptureReportRequestBuilder&>( builder ); }
+     static TradeCaptureReportRequestBuilder & coat( ReusableMessageBuilder & builder ){ return reinterpret_cast<TradeCaptureReportRequestBuilder&>( builder ); }
      HeaderBuilder & getHeader(){ return reinterpret_cast<HeaderBuilder&>( header ); }
+     ReusableMessageBuilder & super(){ return *this; }
      void appendTradeRequestID( const std::string_view & value ){ appendSafely<FieldTradeRequestID>( value ); }
      void appendTradeRequestType( const int & value ){ appendSafely<FieldTradeRequestType>( value ); }
      void appendSubscriptionRequestType( const char & value ){ appendSafely<FieldSubscriptionRequestType>( value ); }
@@ -4611,8 +4672,9 @@ class TradeCaptureReportBuilder: protected ReusableMessageBuilder
 {
    public:
 
-     static TradeCaptureReportBuilder & New( ReusableMessageBuilder & builder ){ return reinterpret_cast<TradeCaptureReportBuilder&>( builder ); }
+     static TradeCaptureReportBuilder & coat( ReusableMessageBuilder & builder ){ return reinterpret_cast<TradeCaptureReportBuilder&>( builder ); }
      HeaderBuilder & getHeader(){ return reinterpret_cast<HeaderBuilder&>( header ); }
+     ReusableMessageBuilder & super(){ return *this; }
      void appendTradeReportID( const std::string_view & value ){ appendSafely<FieldTradeReportID>( value ); }
      void appendTradeReportTransType( const int & value ){ appendSafely<FieldTradeReportTransType>( value ); }
      void appendTradeReportType( const int & value ){ appendSafely<FieldTradeReportType>( value ); }
@@ -4744,8 +4806,9 @@ class OrderMassStatusRequestBuilder: protected ReusableMessageBuilder
 {
    public:
 
-     static OrderMassStatusRequestBuilder & New( ReusableMessageBuilder & builder ){ return reinterpret_cast<OrderMassStatusRequestBuilder&>( builder ); }
+     static OrderMassStatusRequestBuilder & coat( ReusableMessageBuilder & builder ){ return reinterpret_cast<OrderMassStatusRequestBuilder&>( builder ); }
      HeaderBuilder & getHeader(){ return reinterpret_cast<HeaderBuilder&>( header ); }
+     ReusableMessageBuilder & super(){ return *this; }
      void appendMassStatusReqID( const std::string_view & value ){ appendSafely<FieldMassStatusReqID>( value ); }
      void appendMassStatusReqType( const int & value ){ appendSafely<FieldMassStatusReqType>( value ); }
      PartyIDsBuilder & appendNoPartyIDs( unsigned count ) { appendSafely<FieldNoPartyIDs>( count ); return *reinterpret_cast<PartyIDsBuilder*>( this ); }
@@ -4852,8 +4915,9 @@ class QuoteRequestRejectBuilder: protected ReusableMessageBuilder
 {
    public:
 
-     static QuoteRequestRejectBuilder & New( ReusableMessageBuilder & builder ){ return reinterpret_cast<QuoteRequestRejectBuilder&>( builder ); }
+     static QuoteRequestRejectBuilder & coat( ReusableMessageBuilder & builder ){ return reinterpret_cast<QuoteRequestRejectBuilder&>( builder ); }
      HeaderBuilder & getHeader(){ return reinterpret_cast<HeaderBuilder&>( header ); }
+     ReusableMessageBuilder & super(){ return *this; }
      void appendQuoteReqID( const std::string_view & value ){ appendSafely<FieldQuoteReqID>( value ); }
      void appendRFQReqID( const std::string_view & value ){ appendSafely<FieldRFQReqID>( value ); }
      void appendQuoteRequestRejectReason( const int & value ){ appendSafely<FieldQuoteRequestRejectReason>( value ); }
@@ -4869,8 +4933,9 @@ class RFQRequestBuilder: protected ReusableMessageBuilder
 {
    public:
 
-     static RFQRequestBuilder & New( ReusableMessageBuilder & builder ){ return reinterpret_cast<RFQRequestBuilder&>( builder ); }
+     static RFQRequestBuilder & coat( ReusableMessageBuilder & builder ){ return reinterpret_cast<RFQRequestBuilder&>( builder ); }
      HeaderBuilder & getHeader(){ return reinterpret_cast<HeaderBuilder&>( header ); }
+     ReusableMessageBuilder & super(){ return *this; }
      void appendRFQReqID( const std::string_view & value ){ appendSafely<FieldRFQReqID>( value ); }
      RelatedSymBuilder & appendNoRelatedSym( unsigned count ) { appendSafely<FieldNoRelatedSym>( count ); return *reinterpret_cast<RelatedSymBuilder*>( this ); }
      void appendSubscriptionRequestType( const char & value ){ appendSafely<FieldSubscriptionRequestType>( value ); }
@@ -4882,8 +4947,9 @@ class QuoteStatusReportBuilder: protected ReusableMessageBuilder
 {
    public:
 
-     static QuoteStatusReportBuilder & New( ReusableMessageBuilder & builder ){ return reinterpret_cast<QuoteStatusReportBuilder&>( builder ); }
+     static QuoteStatusReportBuilder & coat( ReusableMessageBuilder & builder ){ return reinterpret_cast<QuoteStatusReportBuilder&>( builder ); }
      HeaderBuilder & getHeader(){ return reinterpret_cast<HeaderBuilder&>( header ); }
+     ReusableMessageBuilder & super(){ return *this; }
      void appendQuoteStatusReqID( const std::string_view & value ){ appendSafely<FieldQuoteStatusReqID>( value ); }
      void appendQuoteReqID( const std::string_view & value ){ appendSafely<FieldQuoteReqID>( value ); }
      void appendQuoteID( const std::string_view & value ){ appendSafely<FieldQuoteID>( value ); }
@@ -5019,8 +5085,9 @@ class QuoteResponseBuilder: protected ReusableMessageBuilder
 {
    public:
 
-     static QuoteResponseBuilder & New( ReusableMessageBuilder & builder ){ return reinterpret_cast<QuoteResponseBuilder&>( builder ); }
+     static QuoteResponseBuilder & coat( ReusableMessageBuilder & builder ){ return reinterpret_cast<QuoteResponseBuilder&>( builder ); }
      HeaderBuilder & getHeader(){ return reinterpret_cast<HeaderBuilder&>( header ); }
+     ReusableMessageBuilder & super(){ return *this; }
      void appendQuoteRespID( const std::string_view & value ){ appendSafely<FieldQuoteRespID>( value ); }
      void appendQuoteID( const std::string_view & value ){ appendSafely<FieldQuoteID>( value ); }
      void appendQuoteRespType( const int & value ){ appendSafely<FieldQuoteRespType>( value ); }
@@ -5156,8 +5223,9 @@ class ConfirmationBuilder: protected ReusableMessageBuilder
 {
    public:
 
-     static ConfirmationBuilder & New( ReusableMessageBuilder & builder ){ return reinterpret_cast<ConfirmationBuilder&>( builder ); }
+     static ConfirmationBuilder & coat( ReusableMessageBuilder & builder ){ return reinterpret_cast<ConfirmationBuilder&>( builder ); }
      HeaderBuilder & getHeader(){ return reinterpret_cast<HeaderBuilder&>( header ); }
+     ReusableMessageBuilder & super(){ return *this; }
      void appendConfirmID( const std::string_view & value ){ appendSafely<FieldConfirmID>( value ); }
      void appendConfirmRefID( const std::string_view & value ){ appendSafely<FieldConfirmRefID>( value ); }
      void appendConfirmReqID( const std::string_view & value ){ appendSafely<FieldConfirmReqID>( value ); }
@@ -5302,8 +5370,9 @@ class PositionMaintenanceRequestBuilder: protected ReusableMessageBuilder
 {
    public:
 
-     static PositionMaintenanceRequestBuilder & New( ReusableMessageBuilder & builder ){ return reinterpret_cast<PositionMaintenanceRequestBuilder&>( builder ); }
+     static PositionMaintenanceRequestBuilder & coat( ReusableMessageBuilder & builder ){ return reinterpret_cast<PositionMaintenanceRequestBuilder&>( builder ); }
      HeaderBuilder & getHeader(){ return reinterpret_cast<HeaderBuilder&>( header ); }
+     ReusableMessageBuilder & super(){ return *this; }
      void appendPosReqID( const std::string_view & value ){ appendSafely<FieldPosReqID>( value ); }
      void appendPosTransType( const int & value ){ appendSafely<FieldPosTransType>( value ); }
      void appendPosMaintAction( const int & value ){ appendSafely<FieldPosMaintAction>( value ); }
@@ -5380,8 +5449,9 @@ class PositionMaintenanceReportBuilder: protected ReusableMessageBuilder
 {
    public:
 
-     static PositionMaintenanceReportBuilder & New( ReusableMessageBuilder & builder ){ return reinterpret_cast<PositionMaintenanceReportBuilder&>( builder ); }
+     static PositionMaintenanceReportBuilder & coat( ReusableMessageBuilder & builder ){ return reinterpret_cast<PositionMaintenanceReportBuilder&>( builder ); }
      HeaderBuilder & getHeader(){ return reinterpret_cast<HeaderBuilder&>( header ); }
+     ReusableMessageBuilder & super(){ return *this; }
      void appendPosMaintRptID( const std::string_view & value ){ appendSafely<FieldPosMaintRptID>( value ); }
      void appendPosTransType( const int & value ){ appendSafely<FieldPosTransType>( value ); }
      void appendPosReqID( const std::string_view & value ){ appendSafely<FieldPosReqID>( value ); }
@@ -5459,8 +5529,9 @@ class RequestForPositionsBuilder: protected ReusableMessageBuilder
 {
    public:
 
-     static RequestForPositionsBuilder & New( ReusableMessageBuilder & builder ){ return reinterpret_cast<RequestForPositionsBuilder&>( builder ); }
+     static RequestForPositionsBuilder & coat( ReusableMessageBuilder & builder ){ return reinterpret_cast<RequestForPositionsBuilder&>( builder ); }
      HeaderBuilder & getHeader(){ return reinterpret_cast<HeaderBuilder&>( header ); }
+     ReusableMessageBuilder & super(){ return *this; }
      void appendPosReqID( const std::string_view & value ){ appendSafely<FieldPosReqID>( value ); }
      void appendPosReqType( const int & value ){ appendSafely<FieldPosReqType>( value ); }
      void appendMatchStatus( const char & value ){ appendSafely<FieldMatchStatus>( value ); }
@@ -5533,8 +5604,9 @@ class RequestForPositionsAckBuilder: protected ReusableMessageBuilder
 {
    public:
 
-     static RequestForPositionsAckBuilder & New( ReusableMessageBuilder & builder ){ return reinterpret_cast<RequestForPositionsAckBuilder&>( builder ); }
+     static RequestForPositionsAckBuilder & coat( ReusableMessageBuilder & builder ){ return reinterpret_cast<RequestForPositionsAckBuilder&>( builder ); }
      HeaderBuilder & getHeader(){ return reinterpret_cast<HeaderBuilder&>( header ); }
+     ReusableMessageBuilder & super(){ return *this; }
      void appendPosMaintRptID( const std::string_view & value ){ appendSafely<FieldPosMaintRptID>( value ); }
      void appendPosReqID( const std::string_view & value ){ appendSafely<FieldPosReqID>( value ); }
      void appendTotalNumPosReports( const int & value ){ appendSafely<FieldTotalNumPosReports>( value ); }
@@ -5604,8 +5676,9 @@ class PositionReportBuilder: protected ReusableMessageBuilder
 {
    public:
 
-     static PositionReportBuilder & New( ReusableMessageBuilder & builder ){ return reinterpret_cast<PositionReportBuilder&>( builder ); }
+     static PositionReportBuilder & coat( ReusableMessageBuilder & builder ){ return reinterpret_cast<PositionReportBuilder&>( builder ); }
      HeaderBuilder & getHeader(){ return reinterpret_cast<HeaderBuilder&>( header ); }
+     ReusableMessageBuilder & super(){ return *this; }
      void appendPosMaintRptID( const std::string_view & value ){ appendSafely<FieldPosMaintRptID>( value ); }
      void appendPosReqID( const std::string_view & value ){ appendSafely<FieldPosReqID>( value ); }
      void appendPosReqType( const int & value ){ appendSafely<FieldPosReqType>( value ); }
@@ -5684,8 +5757,9 @@ class TradeCaptureReportRequestAckBuilder: protected ReusableMessageBuilder
 {
    public:
 
-     static TradeCaptureReportRequestAckBuilder & New( ReusableMessageBuilder & builder ){ return reinterpret_cast<TradeCaptureReportRequestAckBuilder&>( builder ); }
+     static TradeCaptureReportRequestAckBuilder & coat( ReusableMessageBuilder & builder ){ return reinterpret_cast<TradeCaptureReportRequestAckBuilder&>( builder ); }
      HeaderBuilder & getHeader(){ return reinterpret_cast<HeaderBuilder&>( header ); }
+     ReusableMessageBuilder & super(){ return *this; }
      void appendTradeRequestID( const std::string_view & value ){ appendSafely<FieldTradeRequestID>( value ); }
      void appendTradeRequestType( const int & value ){ appendSafely<FieldTradeRequestType>( value ); }
      void appendSubscriptionRequestType( const char & value ){ appendSafely<FieldSubscriptionRequestType>( value ); }
@@ -5751,8 +5825,9 @@ class TradeCaptureReportAckBuilder: protected ReusableMessageBuilder
 {
    public:
 
-     static TradeCaptureReportAckBuilder & New( ReusableMessageBuilder & builder ){ return reinterpret_cast<TradeCaptureReportAckBuilder&>( builder ); }
+     static TradeCaptureReportAckBuilder & coat( ReusableMessageBuilder & builder ){ return reinterpret_cast<TradeCaptureReportAckBuilder&>( builder ); }
      HeaderBuilder & getHeader(){ return reinterpret_cast<HeaderBuilder&>( header ); }
+     ReusableMessageBuilder & super(){ return *this; }
      void appendTradeReportID( const std::string_view & value ){ appendSafely<FieldTradeReportID>( value ); }
      void appendTradeReportTransType( const int & value ){ appendSafely<FieldTradeReportTransType>( value ); }
      void appendTradeReportType( const int & value ){ appendSafely<FieldTradeReportType>( value ); }
@@ -5840,8 +5915,9 @@ class AllocationReportBuilder: protected ReusableMessageBuilder
 {
    public:
 
-     static AllocationReportBuilder & New( ReusableMessageBuilder & builder ){ return reinterpret_cast<AllocationReportBuilder&>( builder ); }
+     static AllocationReportBuilder & coat( ReusableMessageBuilder & builder ){ return reinterpret_cast<AllocationReportBuilder&>( builder ); }
      HeaderBuilder & getHeader(){ return reinterpret_cast<HeaderBuilder&>( header ); }
+     ReusableMessageBuilder & super(){ return *this; }
      void appendAllocReportID( const std::string_view & value ){ appendSafely<FieldAllocReportID>( value ); }
      void appendAllocID( const std::string_view & value ){ appendSafely<FieldAllocID>( value ); }
      void appendAllocTransType( const char & value ){ appendSafely<FieldAllocTransType>( value ); }
@@ -5981,8 +6057,9 @@ class AllocationReportAckBuilder: protected ReusableMessageBuilder
 {
    public:
 
-     static AllocationReportAckBuilder & New( ReusableMessageBuilder & builder ){ return reinterpret_cast<AllocationReportAckBuilder&>( builder ); }
+     static AllocationReportAckBuilder & coat( ReusableMessageBuilder & builder ){ return reinterpret_cast<AllocationReportAckBuilder&>( builder ); }
      HeaderBuilder & getHeader(){ return reinterpret_cast<HeaderBuilder&>( header ); }
+     ReusableMessageBuilder & super(){ return *this; }
      void appendAllocReportID( const std::string_view & value ){ appendSafely<FieldAllocReportID>( value ); }
      void appendAllocID( const std::string_view & value ){ appendSafely<FieldAllocID>( value ); }
      PartyIDsBuilder & appendNoPartyIDs( unsigned count ) { appendSafely<FieldNoPartyIDs>( count ); return *reinterpret_cast<PartyIDsBuilder*>( this ); }
@@ -6008,8 +6085,9 @@ class ConfirmationAckBuilder: protected ReusableMessageBuilder
 {
    public:
 
-     static ConfirmationAckBuilder & New( ReusableMessageBuilder & builder ){ return reinterpret_cast<ConfirmationAckBuilder&>( builder ); }
+     static ConfirmationAckBuilder & coat( ReusableMessageBuilder & builder ){ return reinterpret_cast<ConfirmationAckBuilder&>( builder ); }
      HeaderBuilder & getHeader(){ return reinterpret_cast<HeaderBuilder&>( header ); }
+     ReusableMessageBuilder & super(){ return *this; }
      void appendConfirmID( const std::string_view & value ){ appendSafely<FieldConfirmID>( value ); }
      void appendTradeDate( const std::string_view & value ){ appendSafely<FieldTradeDate>( value ); }
      void appendTransactTime( const std::string_view & value ){ appendSafely<FieldTransactTime>( value ); }
@@ -6027,8 +6105,9 @@ class SettlementInstructionRequestBuilder: protected ReusableMessageBuilder
 {
    public:
 
-     static SettlementInstructionRequestBuilder & New( ReusableMessageBuilder & builder ){ return reinterpret_cast<SettlementInstructionRequestBuilder&>( builder ); }
+     static SettlementInstructionRequestBuilder & coat( ReusableMessageBuilder & builder ){ return reinterpret_cast<SettlementInstructionRequestBuilder&>( builder ); }
      HeaderBuilder & getHeader(){ return reinterpret_cast<HeaderBuilder&>( header ); }
+     ReusableMessageBuilder & super(){ return *this; }
      void appendSettlInstReqID( const std::string_view & value ){ appendSafely<FieldSettlInstReqID>( value ); }
      void appendTransactTime( const std::string_view & value ){ appendSafely<FieldTransactTime>( value ); }
      PartyIDsBuilder & appendNoPartyIDs( unsigned count ) { appendSafely<FieldNoPartyIDs>( count ); return *reinterpret_cast<PartyIDsBuilder*>( this ); }
@@ -6052,8 +6131,9 @@ class AssignmentReportBuilder: protected ReusableMessageBuilder
 {
    public:
 
-     static AssignmentReportBuilder & New( ReusableMessageBuilder & builder ){ return reinterpret_cast<AssignmentReportBuilder&>( builder ); }
+     static AssignmentReportBuilder & coat( ReusableMessageBuilder & builder ){ return reinterpret_cast<AssignmentReportBuilder&>( builder ); }
      HeaderBuilder & getHeader(){ return reinterpret_cast<HeaderBuilder&>( header ); }
+     ReusableMessageBuilder & super(){ return *this; }
      void appendAsgnRptID( const std::string_view & value ){ appendSafely<FieldAsgnRptID>( value ); }
      void appendTotNumAssignmentReports( const int & value ){ appendSafely<FieldTotNumAssignmentReports>( value ); }
      void appendLastRptRequested( const bool & value ){ appendSafely<FieldLastRptRequested>( value ); }
@@ -6131,8 +6211,9 @@ class CollateralRequestBuilder: protected ReusableMessageBuilder
 {
    public:
 
-     static CollateralRequestBuilder & New( ReusableMessageBuilder & builder ){ return reinterpret_cast<CollateralRequestBuilder&>( builder ); }
+     static CollateralRequestBuilder & coat( ReusableMessageBuilder & builder ){ return reinterpret_cast<CollateralRequestBuilder&>( builder ); }
      HeaderBuilder & getHeader(){ return reinterpret_cast<HeaderBuilder&>( header ); }
+     ReusableMessageBuilder & super(){ return *this; }
      void appendCollReqID( const std::string_view & value ){ appendSafely<FieldCollReqID>( value ); }
      void appendCollAsgnReason( const int & value ){ appendSafely<FieldCollAsgnReason>( value ); }
      void appendTransactTime( const std::string_view & value ){ appendSafely<FieldTransactTime>( value ); }
@@ -6241,8 +6322,9 @@ class CollateralAssignmentBuilder: protected ReusableMessageBuilder
 {
    public:
 
-     static CollateralAssignmentBuilder & New( ReusableMessageBuilder & builder ){ return reinterpret_cast<CollateralAssignmentBuilder&>( builder ); }
+     static CollateralAssignmentBuilder & coat( ReusableMessageBuilder & builder ){ return reinterpret_cast<CollateralAssignmentBuilder&>( builder ); }
      HeaderBuilder & getHeader(){ return reinterpret_cast<HeaderBuilder&>( header ); }
+     ReusableMessageBuilder & super(){ return *this; }
      void appendCollAsgnID( const std::string_view & value ){ appendSafely<FieldCollAsgnID>( value ); }
      void appendCollReqID( const std::string_view & value ){ appendSafely<FieldCollReqID>( value ); }
      void appendCollAsgnReason( const int & value ){ appendSafely<FieldCollAsgnReason>( value ); }
@@ -6359,8 +6441,9 @@ class CollateralResponseBuilder: protected ReusableMessageBuilder
 {
    public:
 
-     static CollateralResponseBuilder & New( ReusableMessageBuilder & builder ){ return reinterpret_cast<CollateralResponseBuilder&>( builder ); }
+     static CollateralResponseBuilder & coat( ReusableMessageBuilder & builder ){ return reinterpret_cast<CollateralResponseBuilder&>( builder ); }
      HeaderBuilder & getHeader(){ return reinterpret_cast<HeaderBuilder&>( header ); }
+     ReusableMessageBuilder & super(){ return *this; }
      void appendCollRespID( const std::string_view & value ){ appendSafely<FieldCollRespID>( value ); }
      void appendCollAsgnID( const std::string_view & value ){ appendSafely<FieldCollAsgnID>( value ); }
      void appendCollReqID( const std::string_view & value ){ appendSafely<FieldCollReqID>( value ); }
@@ -6468,8 +6551,9 @@ class CollateralReportBuilder: protected ReusableMessageBuilder
 {
    public:
 
-     static CollateralReportBuilder & New( ReusableMessageBuilder & builder ){ return reinterpret_cast<CollateralReportBuilder&>( builder ); }
+     static CollateralReportBuilder & coat( ReusableMessageBuilder & builder ){ return reinterpret_cast<CollateralReportBuilder&>( builder ); }
      HeaderBuilder & getHeader(){ return reinterpret_cast<HeaderBuilder&>( header ); }
+     ReusableMessageBuilder & super(){ return *this; }
      void appendCollRptID( const std::string_view & value ){ appendSafely<FieldCollRptID>( value ); }
      void appendCollInquiryID( const std::string_view & value ){ appendSafely<FieldCollInquiryID>( value ); }
      void appendCollStatus( const int & value ){ appendSafely<FieldCollStatus>( value ); }
@@ -6584,8 +6668,9 @@ class CollateralInquiryBuilder: protected ReusableMessageBuilder
 {
    public:
 
-     static CollateralInquiryBuilder & New( ReusableMessageBuilder & builder ){ return reinterpret_cast<CollateralInquiryBuilder&>( builder ); }
+     static CollateralInquiryBuilder & coat( ReusableMessageBuilder & builder ){ return reinterpret_cast<CollateralInquiryBuilder&>( builder ); }
      HeaderBuilder & getHeader(){ return reinterpret_cast<HeaderBuilder&>( header ); }
+     ReusableMessageBuilder & super(){ return *this; }
      void appendCollInquiryID( const std::string_view & value ){ appendSafely<FieldCollInquiryID>( value ); }
      CollInquiryQualifierBuilder & appendNoCollInquiryQualifier( unsigned count ) { appendSafely<FieldNoCollInquiryQualifier>( count ); return *reinterpret_cast<CollInquiryQualifierBuilder*>( this ); }
      void appendSubscriptionRequestType( const char & value ){ appendSafely<FieldSubscriptionRequestType>( value ); }
@@ -6699,8 +6784,9 @@ class NetworkCounterpartySystemStatusRequestBuilder: protected ReusableMessageBu
 {
    public:
 
-     static NetworkCounterpartySystemStatusRequestBuilder & New( ReusableMessageBuilder & builder ){ return reinterpret_cast<NetworkCounterpartySystemStatusRequestBuilder&>( builder ); }
+     static NetworkCounterpartySystemStatusRequestBuilder & coat( ReusableMessageBuilder & builder ){ return reinterpret_cast<NetworkCounterpartySystemStatusRequestBuilder&>( builder ); }
      HeaderBuilder & getHeader(){ return reinterpret_cast<HeaderBuilder&>( header ); }
+     ReusableMessageBuilder & super(){ return *this; }
      void appendNetworkRequestType( const int & value ){ appendSafely<FieldNetworkRequestType>( value ); }
      void appendNetworkRequestID( const std::string_view & value ){ appendSafely<FieldNetworkRequestID>( value ); }
      CompIDsBuilder & appendNoCompIDs( unsigned count ) { appendSafely<FieldNoCompIDs>( count ); return *reinterpret_cast<CompIDsBuilder*>( this ); }
@@ -6712,8 +6798,9 @@ class NetworkCounterpartySystemStatusResponseBuilder: protected ReusableMessageB
 {
    public:
 
-     static NetworkCounterpartySystemStatusResponseBuilder & New( ReusableMessageBuilder & builder ){ return reinterpret_cast<NetworkCounterpartySystemStatusResponseBuilder&>( builder ); }
+     static NetworkCounterpartySystemStatusResponseBuilder & coat( ReusableMessageBuilder & builder ){ return reinterpret_cast<NetworkCounterpartySystemStatusResponseBuilder&>( builder ); }
      HeaderBuilder & getHeader(){ return reinterpret_cast<HeaderBuilder&>( header ); }
+     ReusableMessageBuilder & super(){ return *this; }
      void appendNetworkStatusResponseType( const int & value ){ appendSafely<FieldNetworkStatusResponseType>( value ); }
      void appendNetworkRequestID( const std::string_view & value ){ appendSafely<FieldNetworkRequestID>( value ); }
      void appendNetworkResponseID( const std::string_view & value ){ appendSafely<FieldNetworkResponseID>( value ); }
@@ -6727,8 +6814,9 @@ class UserRequestBuilder: protected ReusableMessageBuilder
 {
    public:
 
-     static UserRequestBuilder & New( ReusableMessageBuilder & builder ){ return reinterpret_cast<UserRequestBuilder&>( builder ); }
+     static UserRequestBuilder & coat( ReusableMessageBuilder & builder ){ return reinterpret_cast<UserRequestBuilder&>( builder ); }
      HeaderBuilder & getHeader(){ return reinterpret_cast<HeaderBuilder&>( header ); }
+     ReusableMessageBuilder & super(){ return *this; }
      void appendUserRequestID( const std::string_view & value ){ appendSafely<FieldUserRequestID>( value ); }
      void appendUserRequestType( const int & value ){ appendSafely<FieldUserRequestType>( value ); }
      void appendUsername( const std::string_view & value ){ appendSafely<FieldUsername>( value ); }
@@ -6744,8 +6832,9 @@ class UserResponseBuilder: protected ReusableMessageBuilder
 {
    public:
 
-     static UserResponseBuilder & New( ReusableMessageBuilder & builder ){ return reinterpret_cast<UserResponseBuilder&>( builder ); }
+     static UserResponseBuilder & coat( ReusableMessageBuilder & builder ){ return reinterpret_cast<UserResponseBuilder&>( builder ); }
      HeaderBuilder & getHeader(){ return reinterpret_cast<HeaderBuilder&>( header ); }
+     ReusableMessageBuilder & super(){ return *this; }
      void appendUserRequestID( const std::string_view & value ){ appendSafely<FieldUserRequestID>( value ); }
      void appendUsername( const std::string_view & value ){ appendSafely<FieldUsername>( value ); }
      void appendUserStatus( const int & value ){ appendSafely<FieldUserStatus>( value ); }
@@ -6758,8 +6847,9 @@ class CollateralInquiryAckBuilder: protected ReusableMessageBuilder
 {
    public:
 
-     static CollateralInquiryAckBuilder & New( ReusableMessageBuilder & builder ){ return reinterpret_cast<CollateralInquiryAckBuilder&>( builder ); }
+     static CollateralInquiryAckBuilder & coat( ReusableMessageBuilder & builder ){ return reinterpret_cast<CollateralInquiryAckBuilder&>( builder ); }
      HeaderBuilder & getHeader(){ return reinterpret_cast<HeaderBuilder&>( header ); }
+     ReusableMessageBuilder & super(){ return *this; }
      void appendCollInquiryID( const std::string_view & value ){ appendSafely<FieldCollInquiryID>( value ); }
      void appendCollInquiryStatus( const int & value ){ appendSafely<FieldCollInquiryStatus>( value ); }
      void appendCollInquiryResult( const int & value ){ appendSafely<FieldCollInquiryResult>( value ); }
@@ -6850,8 +6940,9 @@ class ConfirmationRequestBuilder: protected ReusableMessageBuilder
 {
    public:
 
-     static ConfirmationRequestBuilder & New( ReusableMessageBuilder & builder ){ return reinterpret_cast<ConfirmationRequestBuilder&>( builder ); }
+     static ConfirmationRequestBuilder & coat( ReusableMessageBuilder & builder ){ return reinterpret_cast<ConfirmationRequestBuilder&>( builder ); }
      HeaderBuilder & getHeader(){ return reinterpret_cast<HeaderBuilder&>( header ); }
+     ReusableMessageBuilder & super(){ return *this; }
      void appendConfirmReqID( const std::string_view & value ){ appendSafely<FieldConfirmReqID>( value ); }
      void appendConfirmType( const int & value ){ appendSafely<FieldConfirmType>( value ); }
      OrdersBuilder & appendNoOrders( unsigned count ) { appendSafely<FieldNoOrders>( count ); return *reinterpret_cast<OrdersBuilder*>( this ); }

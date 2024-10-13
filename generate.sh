@@ -298,8 +298,8 @@ done
 
 sed "s/class HeaderBuilder: protected ReusableMessageBuilder/class HeaderBuilder: public HeaderTemplate/" -i $dst
 sed "/static HeaderBuilder /d" -i $dst
-sed "/HeaderTemplate/,/Message/s/Safely//g" -i $dst
-sed "/getHeader-Header@/d" -i $dst
+sed -e "/getHeader-Header@/d" -e "/super-Header@/d" -i $dst
 sed "s/-.*@//" -i $dst
+sed "/HeaderTemplate/,/Message/s/Safely//g" -i $dst
 
 sed /appendCheckSum/d -i $dst

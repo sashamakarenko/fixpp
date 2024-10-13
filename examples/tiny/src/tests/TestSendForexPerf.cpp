@@ -60,7 +60,6 @@ int main( int args, const char ** argv )
     ForexNewOrderSingle order;
     order.header.append<FieldSenderCompID>("ASENDER");
     order.header.append<FieldTargetCompID>("ATARGET");
-    order.header.pushTag<FieldMsgSeqNum>();
     order.header.finalize();
 
     //auto constexpr tsLen  = TimestampKeeper::DATE_TIME_SECONDS_LENGTH;

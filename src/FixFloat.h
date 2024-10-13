@@ -68,22 +68,22 @@ class Float
         {
         }
 
-        Float( const char * str )
+        explicit Float( const char * str )
         {
             parse( str );
         }
 
-        Float( const sohstr & str )
+        explicit Float( const sohstr & str )
         {
             parse( str.data() );
         }
 
-        Float( const std::string & str )
+        explicit Float( const std::string & str )
         {
             parse( str.data() );
         }
 
-        Float( const std::string_view & str )
+        explicit Float( const std::string_view & str )
         {
             parse( str.data() );
         }

@@ -13,8 +13,6 @@ namespace order
 
 // start of MessageBuilders.hxx
 
-// Generated
-
 // Group LegStipulations
 class LegStipulationsBuilder : protected ReusableMessageBuilder
 {
@@ -80,8 +78,9 @@ class NewOrderSingleBuilder: protected ReusableMessageBuilder
 {
    public:
 
-     static NewOrderSingleBuilder & New( ReusableMessageBuilder & builder ){ return reinterpret_cast<NewOrderSingleBuilder&>( builder ); }
+     static NewOrderSingleBuilder & coat( ReusableMessageBuilder & builder ){ return reinterpret_cast<NewOrderSingleBuilder&>( builder ); }
      HeaderBuilder & getHeader(){ return reinterpret_cast<HeaderBuilder&>( header ); }
+     ReusableMessageBuilder & super(){ return *this; }
      void appendClOrdID( const std::string_view & value ){ appendSafely<FieldClOrdID>( value ); }
      void appendAccount( const std::string_view & value ){ appendSafely<FieldAccount>( value ); }
      void appendSymbol( const std::string_view & value ){ appendSafely<FieldSymbol>( value ); }
@@ -101,8 +100,9 @@ class ExecutionReportBuilder: protected ReusableMessageBuilder
 {
    public:
 
-     static ExecutionReportBuilder & New( ReusableMessageBuilder & builder ){ return reinterpret_cast<ExecutionReportBuilder&>( builder ); }
+     static ExecutionReportBuilder & coat( ReusableMessageBuilder & builder ){ return reinterpret_cast<ExecutionReportBuilder&>( builder ); }
      HeaderBuilder & getHeader(){ return reinterpret_cast<HeaderBuilder&>( header ); }
+     ReusableMessageBuilder & super(){ return *this; }
      void appendOrderID( const std::string_view & value ){ appendSafely<FieldOrderID>( value ); }
      void appendClOrdID( const std::string_view & value ){ appendSafely<FieldClOrdID>( value ); }
      void appendOrigClOrdID( const std::string_view & value ){ appendSafely<FieldOrigClOrdID>( value ); }
