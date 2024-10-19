@@ -147,6 +147,7 @@ Where the options are:
 * `-i` prefix to use in include statements (ex: `#include <prefix/Field.h>`)
 * `-n` namespace to use
 * `-p` pretty printers destination dir
+* `--clean-fields` remove from Fields.def fields not referred to from Messages.def and Groups.def
 
 It will create the following tree:
 ```
@@ -166,14 +167,23 @@ MYPRJ
     └── myprj
         │
         └── fix // generated files
-            ├── Fields.cpp
-            ├── Fields.h
-            ├── FixApi.h
-            ├── Groups.cpp
-            ├── Groups.h
-            ├── Messages.cpp
-            ├── Messages.h
-            └── SenderApi.h
+            ├── Fields.cpp
+            ├── Fields.h
+            ├── FixApi.h
+            ├── FixFloat.cpp
+            ├── FixFloat.h
+            ├── FixTypes.h
+            ├── GroupSanity.cpp
+            ├── GroupScanners.cpp
+            ├── Groups.cpp
+            ├── Groups.h
+            ├── MessageBuilders.h
+            ├── MessageSanity.cpp
+            ├── MessageScanners.cpp
+            ├── Messages.cpp
+            ├── Messages.h
+            ├── PrjInfo.h
+            └── SenderApi.h
 ```
 
 A fully generated and committed primitive project is available in examples/order.
@@ -415,19 +425,13 @@ A typical scenario will be
     ReusableMessageBuilder order( NewOrderSingle::getMessageType(), 512, 128 );
     order.header.append<SenderCompID>("ASENDER");
     order.header.append<TargetCompID>("ATARGET");
-    order.header.pushTag<FieldMsgSeqNum>();
     order.header.finalize();
 
     // append SendingTime to the header
-    auto constexpr tsLen  = TimestampKeeper::DATE_TIME_MILLIS_LENGTH;
-    auto constexpr tsFrac = TimestampKeeper::Precision::MILLISECONDS;
-    order.append<SendingTime>( TimestampKeeper::PLACE_HOLDER, tsLen );
-    // initialize the timestamp keeper
-    order.sendingTime.setup( order.end - tsLen, tsFrac );
-    order.sendingTime.update();
+    order.setupSendingTime( TimestampKeeper::Precision::MILLISECONDS );
     const unsigned sendingTimeLength = order.end - order.begin;
     ...
-    /// sending it
+    /// sending it without rebuilding the header
     void sendOrder( const OrderFields & of )
     {
         // move end past SendingTime
@@ -450,6 +454,86 @@ A typical scenario will be
         socket.send( order.start, order.end - order.start );
     }
 
+```
+
+### Type safe message builders
+
+The `ReusableMessageBuilder` API allows to append any value type along with any tag.
+For example one could write:
+```cpp
+    order.append<Price>( "not-a-price-value" );
+    order.append<OrdType>( 12345 );
+```
+
+To prevent from such situation and to get your IDE completion working with message sending API, consider using 
+message specific builders.
+The example above will appear as follows:
+
+```cpp
+#include <MessageBuilders.h>
+    ...
+    using namespace fix;
+    using namespace fix::field;
+    using namespace fix::message;
+    ...
+
+    /// before we send it
+
+    // prepare
+    ReusableMessageBuilder order( NewOrderSingle::getMessageType(), 512, 128 );
+    auto & builder = NewOrderSingleBuilder::Ref( order );
+    builder.getHeader().appendSenderCompID("ASENDER");
+    builder.getHeader().appendTargetCompID("ATARGET");
+    builder.getHeader().finalize();
+
+    // append SendingTime to the header
+    builder.setupSendingTime( TimestampKeeper::Precision::MILLISECONDS );
+    const unsigned sendingTimeLength = order.end - order.begin;
+    ...
+    /// sending it without rebuilding the header
+    void sendOrder( const OrderFields & of )
+    {
+        // move end past SendingTime
+        order.rewind( sendingTimeLength );
+        // update changing fields in SendingTime
+        order.sendingTime.update();
+        // append order specific fields
+        builder.appendAccount( of.account );
+        builder.appendClOrdID( of.orderId );
+        builder.appendSymbol( of.symbol );
+        // Only proper enum values can be used
+        builder.appendSide( of.isBid() ? SideEnums::BUY : SideEnums::OFFER );
+        builder.appendPrice( of.price, 6 );
+        builder.appendOrderQty( of.qty );
+        builder.appendTransactTime( order.sendingTime.begin, order.sendingTime.length() );
+        builder.appendOrdType( OrdType::LIMIT );
+        builder.finalizeWithSeqnum(++seqnum);
+        // send it
+        socket.send( order.start, order.end - order.start );
+    }
+
+```
+For messages with repeating groups, it will look like:
+
+```c++
+    ReusableMessageBuilder * mdfr = myFactory->createMessage( MessageMarketDataSnapshotFullRefresh::getMessageType() );
+    auto & builder = MarketDataSnapshotFullRefreshBuilder::Ref( *mdfr );
+    builder.appendMDReqID( "reqid" );
+
+    // groups
+    auto & entries = builder.appendNoMDEntries( 2 );
+    // groups 1
+    entries.appendMDEntryType( MDEntryTypeEnums::BID );
+    entries.appendMDEntryPositionNo( 1 );
+    entries.appendMDEntryPx( 1.123, 6 );
+    entries.appendMDEntrySize( 100 );
+    // group 2
+    entries.appendMDEntryType( MDEntryTypeEnums::OFFER );
+    entries.appendMDEntryPositionNo( 1 );
+    entries.appendMDEntryPx( 1.234, 6 );
+    entries.appendMDEntrySize( 200 );
+
+    builder.finalizeWithSeqnum(1);
 ```
 
 ## Examples

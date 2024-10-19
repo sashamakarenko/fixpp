@@ -215,10 +215,12 @@ const char * const FixNoNestedPartySubIDs = "NoNestedPartySubIDs";
 const char * const FixNestedPartySubIDType = "NestedPartySubIDType";
 
 
+const QtyTypeEnums::ItemType QtyTypeEnums::BAD_ENUM( "BAD_ENUM", QtyTypeEnums::ITEM_BAD_ENUM );
 const QtyTypeEnums::ItemType QtyTypeEnums::UNITS( "UNITS", 0 );
 const QtyTypeEnums::ItemType QtyTypeEnums::CONTRACTS( "CONTRACTS", 1 );
 
 
+const ProductEnums::ItemType ProductEnums::BAD_ENUM( "BAD_ENUM", ProductEnums::ITEM_BAD_ENUM );
 const ProductEnums::ItemType ProductEnums::AGENCY( "AGENCY", 1 );
 const ProductEnums::ItemType ProductEnums::COMMODITY( "COMMODITY", 2 );
 const ProductEnums::ItemType ProductEnums::CORPORATE( "CORPORATE", 3 );
@@ -234,10 +236,12 @@ const ProductEnums::ItemType ProductEnums::OTHER( "OTHER", 12 );
 const ProductEnums::ItemType ProductEnums::FINANCING( "FINANCING", 13 );
 
 
+const MsgTypeEnums::ItemType MsgTypeEnums::BAD_ENUM( "BAD_ENUM", MsgTypeEnums::ITEM_BAD_ENUM );
 const MsgTypeEnums::ItemType MsgTypeEnums::EXECUTION_REPORT( "EXECUTION_REPORT", SOHSTR(8) );
 const MsgTypeEnums::ItemType MsgTypeEnums::NEW_ORDER_SINGLE( "NEW_ORDER_SINGLE", SOHSTR(D) );
 
 
+const OrdStatusEnums::ItemType OrdStatusEnums::BAD_ENUM( "BAD_ENUM", OrdStatusEnums::ITEM_BAD_ENUM );
 const OrdStatusEnums::ItemType OrdStatusEnums::NEW( "NEW", '0' );
 const OrdStatusEnums::ItemType OrdStatusEnums::PARTIALLY_FILLED( "PARTIALLY_FILLED", '1' );
 const OrdStatusEnums::ItemType OrdStatusEnums::FILLED( "FILLED", '2' );
@@ -254,6 +258,7 @@ const OrdStatusEnums::ItemType OrdStatusEnums::ACCEPTED_FOR_BIDDING( "ACCEPTED_F
 const OrdStatusEnums::ItemType OrdStatusEnums::PENDING_REPLACE( "PENDING_REPLACE", 'E' );
 
 
+const OrdTypeEnums::ItemType OrdTypeEnums::BAD_ENUM( "BAD_ENUM", OrdTypeEnums::ITEM_BAD_ENUM );
 const OrdTypeEnums::ItemType OrdTypeEnums::MARKET( "MARKET", '1' );
 const OrdTypeEnums::ItemType OrdTypeEnums::LIMIT( "LIMIT", '2' );
 const OrdTypeEnums::ItemType OrdTypeEnums::STOP( "STOP", '3' );
@@ -273,10 +278,12 @@ const OrdTypeEnums::ItemType OrdTypeEnums::NEXT_FUND_VALUATION_POINT( "NEXT_FUND
 const OrdTypeEnums::ItemType OrdTypeEnums::PEGGED( "PEGGED", 'P' );
 
 
+const SideEnums::ItemType SideEnums::BAD_ENUM( "BAD_ENUM", SideEnums::ITEM_BAD_ENUM );
 const SideEnums::ItemType SideEnums::BUY( "BUY", '1' );
 const SideEnums::ItemType SideEnums::SELL( "SELL", '2' );
 
 
+const TimeInForceEnums::ItemType TimeInForceEnums::BAD_ENUM( "BAD_ENUM", TimeInForceEnums::ITEM_BAD_ENUM );
 const TimeInForceEnums::ItemType TimeInForceEnums::DAY( "DAY", '0' );
 const TimeInForceEnums::ItemType TimeInForceEnums::GOOD_TILL_CANCEL( "GOOD_TILL_CANCEL", '1' );
 const TimeInForceEnums::ItemType TimeInForceEnums::AT_THE_OPENING( "AT_THE_OPENING", '2' );
@@ -287,6 +294,7 @@ const TimeInForceEnums::ItemType TimeInForceEnums::GOOD_TILL_DATE( "GOOD_TILL_DA
 const TimeInForceEnums::ItemType TimeInForceEnums::AT_THE_CLOSE( "AT_THE_CLOSE", '7' );
 
 
+const PriceTypeEnums::ItemType PriceTypeEnums::BAD_ENUM( "BAD_ENUM", PriceTypeEnums::ITEM_BAD_ENUM );
 const PriceTypeEnums::ItemType PriceTypeEnums::PERCENTAGE( "PERCENTAGE", 1 );
 const PriceTypeEnums::ItemType PriceTypeEnums::PER_UNIT( "PER_UNIT", 2 );
 const PriceTypeEnums::ItemType PriceTypeEnums::FIXED_AMOUNT( "FIXED_AMOUNT", 3 );
@@ -300,6 +308,7 @@ const PriceTypeEnums::ItemType PriceTypeEnums::FIXED_CABINET_TRADE_PRICE( "FIXED
 const PriceTypeEnums::ItemType PriceTypeEnums::VARIABLE_CABINET_TRADE_PRICE( "VARIABLE_CABINET_TRADE_PRICE", 11 );
 
 
+const SecurityTypeEnums::ItemType SecurityTypeEnums::BAD_ENUM( "BAD_ENUM", SecurityTypeEnums::ITEM_BAD_ENUM );
 const SecurityTypeEnums::ItemType SecurityTypeEnums::FUTURE( "FUTURE", SOHSTR(FUT) );
 const SecurityTypeEnums::ItemType SecurityTypeEnums::OPTION( "OPTION", SOHSTR(OPT) );
 const SecurityTypeEnums::ItemType SecurityTypeEnums::EURO_SUPRANATIONAL_COUPONS( "EURO_SUPRANATIONAL_COUPONS", SOHSTR(EUSUPRA) );

@@ -88,6 +88,12 @@ inline std::string toString( const FieldEnum< VT > & item )
     return toString( item.value );
 }
 
+template<typename T>
+struct BadEnum{ static constexpr T value = std::numeric_limits<T>::max(); };
+
+template<>
+struct BadEnum<sohstr>{ static constexpr sohstr value{nullptr}; };
+
 using FieldEnumMap = std::map< raw_enum_t, const FieldEnumBase * >;
 
 // Base structure for all field enums.

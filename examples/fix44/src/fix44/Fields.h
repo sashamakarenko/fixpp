@@ -1904,6 +1904,8 @@ struct AdvSideEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_CROSS = 'X';
    static const ItemType TRADE;
    static constexpr ValueType ITEM_TRADE = 'T';
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct AdvTransTypeEnums final: FieldEnumsBase {
@@ -1924,6 +1926,8 @@ struct AdvTransTypeEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_CANCEL = SOHSTR(C);
    static const ItemType REPLACE;
    static constexpr ValueType ITEM_REPLACE = SOHSTR(R);
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct CommTypeEnums final: FieldEnumsBase {
@@ -1950,6 +1954,8 @@ struct CommTypeEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM__5 = '5';
    static const ItemType POINTS_PER_BOND_OR_CONTRACT_SUPPLY_CONTRACTMULTIPLIER;
    static constexpr ValueType ITEM_POINTS_PER_BOND_OR_CONTRACT_SUPPLY_CONTRACTMULTIPLIER = '6';
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct ExecInstEnums final: FieldEnumsBase {
@@ -2044,6 +2050,8 @@ struct ExecInstEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_PEG_TO_LIMIT_PRICE = SOHSTR(d);
    static const ItemType WORK_TO_TARGET_STRATEGY;
    static constexpr ValueType ITEM_WORK_TO_TARGET_STRATEGY = SOHSTR(e);
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct HandlInstEnums final: FieldEnumsBase {
@@ -2064,6 +2072,8 @@ struct HandlInstEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_AUTOMATED_EXECUTION_ORDER_PUBLIC_BROKER_INTERVENTION_OK = '2';
    static const ItemType MANUAL_ORDER_BEST_EXECUTION;
    static constexpr ValueType ITEM_MANUAL_ORDER_BEST_EXECUTION = '3';
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct SecurityIDSourceEnums final: FieldEnumsBase {
@@ -2116,6 +2126,8 @@ struct SecurityIDSourceEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_ISDA_FPML_PRODUCT_SPECIFICATION = SOHSTR(I);
    static const ItemType OPTIONS_PRICE_REPORTING_AUTHORITY;
    static constexpr ValueType ITEM_OPTIONS_PRICE_REPORTING_AUTHORITY = SOHSTR(J);
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct IOIQltyIndEnums final: FieldEnumsBase {
@@ -2136,6 +2148,8 @@ struct IOIQltyIndEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_MEDIUM = 'M';
    static const ItemType HIGH;
    static constexpr ValueType ITEM_HIGH = 'H';
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct IOIQtyEnums final: FieldEnumsBase {
@@ -2156,6 +2170,8 @@ struct IOIQtyEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_MEDIUM = SOHSTR(M);
    static const ItemType LARGE;
    static constexpr ValueType ITEM_LARGE = SOHSTR(L);
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct IOITransTypeEnums final: FieldEnumsBase {
@@ -2176,6 +2192,8 @@ struct IOITransTypeEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_CANCEL = 'C';
    static const ItemType REPLACE;
    static constexpr ValueType ITEM_REPLACE = 'R';
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct LastCapacityEnums final: FieldEnumsBase {
@@ -2198,6 +2216,8 @@ struct LastCapacityEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_CROSS_AS_PRINCIPAL = '3';
    static const ItemType PRINCIPAL;
    static constexpr ValueType ITEM_PRINCIPAL = '4';
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct MsgTypeEnums final: FieldEnumsBase {
@@ -2398,6 +2418,8 @@ struct MsgTypeEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_COLLATERAL_INQUIRY_ACK = SOHSTR(BG);
    static const ItemType CONFIRMATION_REQUEST;
    static constexpr ValueType ITEM_CONFIRMATION_REQUEST = SOHSTR(BH);
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct OrdStatusEnums final: FieldEnumsBase {
@@ -2440,6 +2462,8 @@ struct OrdStatusEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_ACCEPTED_FOR_BIDDING = 'D';
    static const ItemType PENDING_REPLACE;
    static constexpr ValueType ITEM_PENDING_REPLACE = 'E';
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct OrdTypeEnums final: FieldEnumsBase {
@@ -2488,6 +2512,8 @@ struct OrdTypeEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_NEXT_FUND_VALUATION_POINT = 'M';
    static const ItemType PEGGED;
    static constexpr ValueType ITEM_PEGGED = 'P';
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct PossDupFlagEnums final: FieldEnumsBase {
@@ -2506,6 +2532,8 @@ struct PossDupFlagEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_YES = 'Y';
    static const ItemType NO;
    static constexpr ValueType ITEM_NO = 'N';
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct SideEnums final: FieldEnumsBase {
@@ -2552,6 +2580,8 @@ struct SideEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_LEND = 'F';
    static const ItemType BORROW;
    static constexpr ValueType ITEM_BORROW = 'G';
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct TimeInForceEnums final: FieldEnumsBase {
@@ -2582,6 +2612,8 @@ struct TimeInForceEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_GOOD_TILL_DATE = '6';
    static const ItemType AT_THE_CLOSE;
    static constexpr ValueType ITEM_AT_THE_CLOSE = '7';
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct UrgencyEnums final: FieldEnumsBase {
@@ -2602,6 +2634,8 @@ struct UrgencyEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_FLASH = '1';
    static const ItemType BACKGROUND;
    static constexpr ValueType ITEM_BACKGROUND = '2';
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct SettlTypeEnums final: FieldEnumsBase {
@@ -2636,6 +2670,8 @@ struct SettlTypeEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_SELLERS_OPTION = '8';
    static const ItemType T_PLUS_5;
    static constexpr ValueType ITEM_T_PLUS_5 = '9';
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct AllocTransTypeEnums final: FieldEnumsBase {
@@ -2656,6 +2692,8 @@ struct AllocTransTypeEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_REPLACE = '1';
    static const ItemType CANCEL;
    static constexpr ValueType ITEM_CANCEL = '2';
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct PositionEffectEnums final: FieldEnumsBase {
@@ -2678,6 +2716,8 @@ struct PositionEffectEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_ROLLED = 'R';
    static const ItemType FIFO;
    static constexpr ValueType ITEM_FIFO = 'F';
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct ProcessCodeEnums final: FieldEnumsBase {
@@ -2706,6 +2746,8 @@ struct ProcessCodeEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_SOFT_DOLLAR_STEP_OUT = '5';
    static const ItemType PLAN_SPONSOR;
    static constexpr ValueType ITEM_PLAN_SPONSOR = '6';
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct AllocStatusEnums final: FieldEnumsBase {
@@ -2732,6 +2774,8 @@ struct AllocStatusEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_INCOMPLETE = 4;
    static const ItemType REJECTED_BY_INTERMEDIARY;
    static constexpr ValueType ITEM_REJECTED_BY_INTERMEDIARY = 5;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct AllocRejCodeEnums final: FieldEnumsBase {
@@ -2774,6 +2818,8 @@ struct AllocRejCodeEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_UNKNOWN_CLORDID = 12;
    static const ItemType WAREHOUSE_REQUEST_REJECTED;
    static constexpr ValueType ITEM_WAREHOUSE_REQUEST_REJECTED = 13;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct EmailTypeEnums final: FieldEnumsBase {
@@ -2794,6 +2840,8 @@ struct EmailTypeEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_REPLY = '1';
    static const ItemType ADMIN_REPLY;
    static constexpr ValueType ITEM_ADMIN_REPLY = '2';
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct PossResendEnums final: FieldEnumsBase {
@@ -2812,6 +2860,8 @@ struct PossResendEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_YES = 'Y';
    static const ItemType NO;
    static constexpr ValueType ITEM_NO = 'N';
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct EncryptMethodEnums final: FieldEnumsBase {
@@ -2840,6 +2890,8 @@ struct EncryptMethodEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_PGP_DES_MD5 = 5;
    static const ItemType PEM_DES_MD5;
    static constexpr ValueType ITEM_PEM_DES_MD5 = 6;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct CxlRejReasonEnums final: FieldEnumsBase {
@@ -2870,6 +2922,8 @@ struct CxlRejReasonEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_DUPLICATE_CLORDID = 6;
    static const ItemType OTHER;
    static constexpr ValueType ITEM_OTHER = 99;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct OrdRejReasonEnums final: FieldEnumsBase {
@@ -2916,6 +2970,8 @@ struct OrdRejReasonEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_UNKNOWN_ACCOUNT = 15;
    static const ItemType OTHER;
    static constexpr ValueType ITEM_OTHER = 99;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct IOIQualifierEnums final: FieldEnumsBase {
@@ -2966,6 +3022,8 @@ struct IOIQualifierEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_AT_THE_MIDPOINT = 'Y';
    static const ItemType PRE_OPEN;
    static constexpr ValueType ITEM_PRE_OPEN = 'Z';
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct ReportToExchEnums final: FieldEnumsBase {
@@ -2984,6 +3042,8 @@ struct ReportToExchEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_YES = 'Y';
    static const ItemType NO;
    static constexpr ValueType ITEM_NO = 'N';
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct LocateReqdEnums final: FieldEnumsBase {
@@ -3002,6 +3062,8 @@ struct LocateReqdEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_YES = 'Y';
    static const ItemType NO;
    static constexpr ValueType ITEM_NO = 'N';
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct ForexReqEnums final: FieldEnumsBase {
@@ -3020,6 +3082,8 @@ struct ForexReqEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_YES = 'Y';
    static const ItemType NO;
    static constexpr ValueType ITEM_NO = 'N';
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct GapFillFlagEnums final: FieldEnumsBase {
@@ -3038,6 +3102,8 @@ struct GapFillFlagEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_YES = 'Y';
    static const ItemType NO;
    static constexpr ValueType ITEM_NO = 'N';
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct DKReasonEnums final: FieldEnumsBase {
@@ -3066,6 +3132,8 @@ struct DKReasonEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_CALCULATION_DIFFERENCE = 'F';
    static const ItemType OTHER;
    static constexpr ValueType ITEM_OTHER = 'Z';
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct IOINaturalFlagEnums final: FieldEnumsBase {
@@ -3084,6 +3152,8 @@ struct IOINaturalFlagEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_YES = 'Y';
    static const ItemType NO;
    static constexpr ValueType ITEM_NO = 'N';
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct MiscFeeTypeEnums final: FieldEnumsBase {
@@ -3122,6 +3192,8 @@ struct MiscFeeTypeEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_CONVERSION = SOHSTR(11);
    static const ItemType AGENT;
    static constexpr ValueType ITEM_AGENT = SOHSTR(12);
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct ResetSeqNumFlagEnums final: FieldEnumsBase {
@@ -3140,6 +3212,8 @@ struct ResetSeqNumFlagEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_YES = 'Y';
    static const ItemType NO;
    static constexpr ValueType ITEM_NO = 'N';
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct ExecTypeEnums final: FieldEnumsBase {
@@ -3188,6 +3262,8 @@ struct ExecTypeEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_TRADE_CANCEL = 'H';
    static const ItemType ORDER_STATUS;
    static constexpr ValueType ITEM_ORDER_STATUS = 'I';
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct SettlCurrFxRateCalcEnums final: FieldEnumsBase {
@@ -3206,6 +3282,8 @@ struct SettlCurrFxRateCalcEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_MULTIPLY = 'M';
    static const ItemType DIVIDE;
    static constexpr ValueType ITEM_DIVIDE = 'D';
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct SettlInstModeEnums final: FieldEnumsBase {
@@ -3226,6 +3304,8 @@ struct SettlInstModeEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_SPECIFIC_ORDER_FOR_A_SINGLE_ACCOUNT = '4';
    static const ItemType REQUEST_REJECT;
    static constexpr ValueType ITEM_REQUEST_REJECT = '5';
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct SettlInstTransTypeEnums final: FieldEnumsBase {
@@ -3248,6 +3328,8 @@ struct SettlInstTransTypeEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_REPLACE = 'R';
    static const ItemType RESTATE;
    static constexpr ValueType ITEM_RESTATE = 'T';
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct SettlInstSourceEnums final: FieldEnumsBase {
@@ -3268,6 +3350,8 @@ struct SettlInstSourceEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_INSTITUTIONS_INSTRUCTIONS = '2';
    static const ItemType INVESTOR;
    static constexpr ValueType ITEM_INVESTOR = '3';
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct SecurityTypeEnums final: FieldEnumsBase {
@@ -3472,6 +3556,8 @@ struct SecurityTypeEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_MULTI_LEG_INSTRUMENT = SOHSTR(MLEG);
    static const ItemType NO_SECURITY_TYPE;
    static constexpr ValueType ITEM_NO_SECURITY_TYPE = SOHSTR(NONE);
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct StandInstDbTypeEnums final: FieldEnumsBase {
@@ -3496,6 +3582,8 @@ struct StandInstDbTypeEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_A_GLOBAL_CUSTODIAN = 3;
    static const ItemType ACCOUNTNET;
    static constexpr ValueType ITEM_ACCOUNTNET = 4;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct SettlDeliveryTypeEnums final: FieldEnumsBase {
@@ -3518,6 +3606,8 @@ struct SettlDeliveryTypeEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_TRI_PARTY = 2;
    static const ItemType HOLD_IN_CUSTODY;
    static constexpr ValueType ITEM_HOLD_IN_CUSTODY = 3;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct AllocLinkTypeEnums final: FieldEnumsBase {
@@ -3536,6 +3626,8 @@ struct AllocLinkTypeEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_F_X_NETTING = 0;
    static const ItemType F_X_SWAP;
    static constexpr ValueType ITEM_F_X_SWAP = 1;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct PutOrCallEnums final: FieldEnumsBase {
@@ -3554,6 +3646,8 @@ struct PutOrCallEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_PUT = 0;
    static const ItemType CALL;
    static constexpr ValueType ITEM_CALL = 1;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct CoveredOrUncoveredEnums final: FieldEnumsBase {
@@ -3572,6 +3666,8 @@ struct CoveredOrUncoveredEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_COVERED = 0;
    static const ItemType UNCOVERED;
    static constexpr ValueType ITEM_UNCOVERED = 1;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct NotifyBrokerOfCreditEnums final: FieldEnumsBase {
@@ -3590,6 +3686,8 @@ struct NotifyBrokerOfCreditEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_YES = 'Y';
    static const ItemType NO;
    static constexpr ValueType ITEM_NO = 'N';
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct AllocHandlInstEnums final: FieldEnumsBase {
@@ -3610,6 +3708,8 @@ struct AllocHandlInstEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_FORWARD = 2;
    static const ItemType FORWARD_AND_MATCH;
    static constexpr ValueType ITEM_FORWARD_AND_MATCH = 3;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct RoutingTypeEnums final: FieldEnumsBase {
@@ -3632,6 +3732,8 @@ struct RoutingTypeEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_BLOCK_FIRM = 3;
    static const ItemType BLOCK_LIST;
    static constexpr ValueType ITEM_BLOCK_LIST = 4;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct StipulationTypeEnums final: FieldEnumsBase {
@@ -3746,6 +3848,8 @@ struct StipulationTypeEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_WHOLE_POOL = SOHSTR(WHOLE);
    static const ItemType YIELD_RANGE;
    static constexpr ValueType ITEM_YIELD_RANGE = SOHSTR(YIELD);
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct YieldTypeEnums final: FieldEnumsBase {
@@ -3828,6 +3932,8 @@ struct YieldTypeEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_YIELD_VALUE_OF_1_32 = SOHSTR(VALUE1/32);
    static const ItemType YIELD_TO_WORST;
    static constexpr ValueType ITEM_YIELD_TO_WORST = SOHSTR(WORST);
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct TradedFlatSwitchEnums final: FieldEnumsBase {
@@ -3846,6 +3952,8 @@ struct TradedFlatSwitchEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_YES = 'Y';
    static const ItemType NO;
    static constexpr ValueType ITEM_NO = 'N';
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct SubscriptionRequestTypeEnums final: FieldEnumsBase {
@@ -3866,6 +3974,8 @@ struct SubscriptionRequestTypeEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_SNAPSHOT_PLUS_UPDATES = '1';
    static const ItemType DISABLE_PREVIOUS_SNAPSHOT_PLUS_UPDATE_REQUEST;
    static constexpr ValueType ITEM_DISABLE_PREVIOUS_SNAPSHOT_PLUS_UPDATE_REQUEST = '2';
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct MDUpdateTypeEnums final: FieldEnumsBase {
@@ -3884,6 +3994,8 @@ struct MDUpdateTypeEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_FULL_REFRESH = 0;
    static const ItemType INCREMENTAL_REFRESH;
    static constexpr ValueType ITEM_INCREMENTAL_REFRESH = 1;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct AggregatedBookEnums final: FieldEnumsBase {
@@ -3902,6 +4014,8 @@ struct AggregatedBookEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_YES = 'Y';
    static const ItemType NO;
    static constexpr ValueType ITEM_NO = 'N';
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct MDEntryTypeEnums final: FieldEnumsBase {
@@ -3942,6 +4056,8 @@ struct MDEntryTypeEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_TRADE_VOLUME = 'B';
    static const ItemType OPEN_INTEREST;
    static constexpr ValueType ITEM_OPEN_INTEREST = 'C';
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct TickDirectionEnums final: FieldEnumsBase {
@@ -3964,6 +4080,8 @@ struct TickDirectionEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_MINUS_TICK = '2';
    static const ItemType ZERO_MINUS_TICK;
    static constexpr ValueType ITEM_ZERO_MINUS_TICK = '3';
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct QuoteConditionEnums final: FieldEnumsBase {
@@ -3996,6 +4114,8 @@ struct QuoteConditionEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_FAST_TRADING = SOHSTR(H);
    static const ItemType NON_FIRM;
    static constexpr ValueType ITEM_NON_FIRM = SOHSTR(I);
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct TradeConditionEnums final: FieldEnumsBase {
@@ -4044,6 +4164,8 @@ struct TradeConditionEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_IMBALANCE_MORE_SELLERS = SOHSTR(Q);
    static const ItemType OPENING_PRICE;
    static constexpr ValueType ITEM_OPENING_PRICE = SOHSTR(R);
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct MDUpdateActionEnums final: FieldEnumsBase {
@@ -4064,6 +4186,8 @@ struct MDUpdateActionEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_CHANGE = '1';
    static const ItemType DELETE;
    static constexpr ValueType ITEM_DELETE = '2';
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct MDReqRejReasonEnums final: FieldEnumsBase {
@@ -4104,6 +4228,8 @@ struct MDReqRejReasonEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_UNSUPPORTED_OPENCLOSESETTLEFLAG = 'B';
    static const ItemType UNSUPPORTED_MDIMPLICITDELETE;
    static constexpr ValueType ITEM_UNSUPPORTED_MDIMPLICITDELETE = 'C';
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct DeleteReasonEnums final: FieldEnumsBase {
@@ -4122,6 +4248,8 @@ struct DeleteReasonEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_CANCELATION = '0';
    static const ItemType ERROR;
    static constexpr ValueType ITEM_ERROR = '1';
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct OpenCloseSettlFlagEnums final: FieldEnumsBase {
@@ -4148,6 +4276,8 @@ struct OpenCloseSettlFlagEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_ENTRY_FROM_PREVIOUS_BUSINESS_DAY = SOHSTR(4);
    static const ItemType THEORETICAL_PRICE_VALUE;
    static constexpr ValueType ITEM_THEORETICAL_PRICE_VALUE = SOHSTR(5);
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct FinancialStatusEnums final: FieldEnumsBase {
@@ -4166,6 +4296,8 @@ struct FinancialStatusEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_BANKRUPT = SOHSTR(1);
    static const ItemType PENDING_DELISTING;
    static constexpr ValueType ITEM_PENDING_DELISTING = SOHSTR(2);
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct CorporateActionEnums final: FieldEnumsBase {
@@ -4190,6 +4322,8 @@ struct CorporateActionEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_NEW = SOHSTR(D);
    static const ItemType EX_INTEREST;
    static constexpr ValueType ITEM_EX_INTEREST = SOHSTR(E);
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct QuoteStatusEnums final: FieldEnumsBase {
@@ -4236,6 +4370,8 @@ struct QuoteStatusEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_CANCELED_DUE_TO_LOCK_MARKET = 14;
    static const ItemType CANCELED_DUE_TO_CROSS_MARKET;
    static constexpr ValueType ITEM_CANCELED_DUE_TO_CROSS_MARKET = 15;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct QuoteCancelTypeEnums final: FieldEnumsBase {
@@ -4258,6 +4394,8 @@ struct QuoteCancelTypeEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_CANCEL_FOR_UNDERLYING_SYMBOL = 3;
    static const ItemType CANCEL_ALL_QUOTES;
    static constexpr ValueType ITEM_CANCEL_ALL_QUOTES = 4;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct QuoteRejectReasonEnums final: FieldEnumsBase {
@@ -4292,6 +4430,8 @@ struct QuoteRejectReasonEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_NOT_AUTHORIZED_TO_QUOTE_SECURITY = 9;
    static const ItemType OTHER;
    static constexpr ValueType ITEM_OTHER = 99;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct QuoteResponseLevelEnums final: FieldEnumsBase {
@@ -4312,6 +4452,8 @@ struct QuoteResponseLevelEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_ACKNOWLEDGE_ONLY_NEGATIVE_OR_ERRONEOUS_QUOTES = 1;
    static const ItemType ACKNOWLEDGE_EACH_QUOTE_MESSAGES;
    static constexpr ValueType ITEM_ACKNOWLEDGE_EACH_QUOTE_MESSAGES = 2;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct QuoteRequestTypeEnums final: FieldEnumsBase {
@@ -4330,6 +4472,8 @@ struct QuoteRequestTypeEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_MANUAL = 1;
    static const ItemType AUTOMATIC;
    static constexpr ValueType ITEM_AUTOMATIC = 2;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct SecurityRequestTypeEnums final: FieldEnumsBase {
@@ -4352,6 +4496,8 @@ struct SecurityRequestTypeEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_REQUEST_LIST_SECURITY_TYPES = 2;
    static const ItemType REQUEST_LIST_SECURITIES;
    static constexpr ValueType ITEM_REQUEST_LIST_SECURITIES = 3;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct SecurityResponseTypeEnums final: FieldEnumsBase {
@@ -4374,6 +4520,8 @@ struct SecurityResponseTypeEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_REJECT_SECURITY_PROPOSAL = 5;
    static const ItemType CAN_NOT_MATCH_SELECTION_CRITERIA;
    static constexpr ValueType ITEM_CAN_NOT_MATCH_SELECTION_CRITERIA = 6;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct UnsolicitedIndicatorEnums final: FieldEnumsBase {
@@ -4392,6 +4540,8 @@ struct UnsolicitedIndicatorEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_YES = 'Y';
    static const ItemType NO;
    static constexpr ValueType ITEM_NO = 'N';
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct SecurityTradingStatusEnums final: FieldEnumsBase {
@@ -4450,6 +4600,8 @@ struct SecurityTradingStatusEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_OPENING_ROTATION = 22;
    static const ItemType FAST_MARKET;
    static constexpr ValueType ITEM_FAST_MARKET = 23;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct HaltReasonCharEnums final: FieldEnumsBase {
@@ -4476,6 +4628,8 @@ struct HaltReasonCharEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_ORDER_INFLUX = 'E';
    static const ItemType ADDITIONAL_INFORMATION;
    static constexpr ValueType ITEM_ADDITIONAL_INFORMATION = 'M';
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct InViewOfCommonEnums final: FieldEnumsBase {
@@ -4494,6 +4648,8 @@ struct InViewOfCommonEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_YES = 'Y';
    static const ItemType NO;
    static constexpr ValueType ITEM_NO = 'N';
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct DueToRelatedEnums final: FieldEnumsBase {
@@ -4512,6 +4668,8 @@ struct DueToRelatedEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_YES = 'Y';
    static const ItemType NO;
    static constexpr ValueType ITEM_NO = 'N';
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct AdjustmentEnums final: FieldEnumsBase {
@@ -4532,6 +4690,8 @@ struct AdjustmentEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_ERROR = 2;
    static const ItemType CORRECTION;
    static constexpr ValueType ITEM_CORRECTION = 3;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct TradSesMethodEnums final: FieldEnumsBase {
@@ -4552,6 +4712,8 @@ struct TradSesMethodEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_OPEN_OUTCRY = 2;
    static const ItemType TWO_PARTY;
    static constexpr ValueType ITEM_TWO_PARTY = 3;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct TradSesModeEnums final: FieldEnumsBase {
@@ -4572,6 +4734,8 @@ struct TradSesModeEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_SIMULATED = 2;
    static const ItemType PRODUCTION;
    static constexpr ValueType ITEM_PRODUCTION = 3;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct TradSesStatusEnums final: FieldEnumsBase {
@@ -4600,6 +4764,8 @@ struct TradSesStatusEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_PRE_CLOSE = 5;
    static const ItemType REQUEST_REJECTED;
    static constexpr ValueType ITEM_REQUEST_REJECTED = 6;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct MessageEncodingEnums final: FieldEnumsBase {
@@ -4622,6 +4788,8 @@ struct MessageEncodingEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_FOR_USING_SJIS = SOHSTR(Shift_JIS);
    static const ItemType UNICODE;
    static constexpr ValueType ITEM_UNICODE = SOHSTR(UTF-8);
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct SessionRejectReasonEnums final: FieldEnumsBase {
@@ -4674,6 +4842,8 @@ struct SessionRejectReasonEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_NON_DATA_VALUE_INCLUDES_FIELD_DELIMITER = 17;
    static const ItemType OTHER;
    static constexpr ValueType ITEM_OTHER = 99;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct BidRequestTransTypeEnums final: FieldEnumsBase {
@@ -4692,6 +4862,8 @@ struct BidRequestTransTypeEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_NEW = 'N';
    static const ItemType CANCEL;
    static constexpr ValueType ITEM_CANCEL = 'C';
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct SolicitedFlagEnums final: FieldEnumsBase {
@@ -4710,6 +4882,8 @@ struct SolicitedFlagEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_YES = 'Y';
    static const ItemType NO;
    static constexpr ValueType ITEM_NO = 'N';
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct ExecRestatementReasonEnums final: FieldEnumsBase {
@@ -4748,6 +4922,8 @@ struct ExecRestatementReasonEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_WAREHOUSE_RECAP = 10;
    static const ItemType OTHER;
    static constexpr ValueType ITEM_OTHER = 99;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct BusinessRejectReasonEnums final: FieldEnumsBase {
@@ -4778,6 +4954,8 @@ struct BusinessRejectReasonEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_NOT_AUTHORIZED = 6;
    static const ItemType DELIVERTO_FIRM_NOT_AVAILABLE_AT_THIS_TIME;
    static constexpr ValueType ITEM_DELIVERTO_FIRM_NOT_AVAILABLE_AT_THIS_TIME = 7;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct MsgDirectionEnums final: FieldEnumsBase {
@@ -4796,6 +4974,8 @@ struct MsgDirectionEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_SEND = 'S';
    static const ItemType RECEIVE;
    static constexpr ValueType ITEM_RECEIVE = 'R';
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct DiscretionInstEnums final: FieldEnumsBase {
@@ -4824,6 +5004,8 @@ struct DiscretionInstEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_RELATED_TO_LAST_TRADE_PRICE = '5';
    static const ItemType RELATED_TO_VWAP;
    static constexpr ValueType ITEM_RELATED_TO_VWAP = '6';
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct BidTypeEnums final: FieldEnumsBase {
@@ -4844,6 +5026,8 @@ struct BidTypeEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_DISCLOSED_STYLE = 2;
    static const ItemType NO_BIDDING_PROCESS;
    static constexpr ValueType ITEM_NO_BIDDING_PROCESS = 3;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct BidDescriptorTypeEnums final: FieldEnumsBase {
@@ -4864,6 +5048,8 @@ struct BidDescriptorTypeEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_COUNTRY = 2;
    static const ItemType INDEX;
    static constexpr ValueType ITEM_INDEX = 3;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct SideValueIndEnums final: FieldEnumsBase {
@@ -4882,6 +5068,8 @@ struct SideValueIndEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_SIDEVALUE1 = 1;
    static const ItemType SIDEVALUE_2;
    static constexpr ValueType ITEM_SIDEVALUE_2 = 2;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct LiquidityIndTypeEnums final: FieldEnumsBase {
@@ -4904,6 +5092,8 @@ struct LiquidityIndTypeEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_NORMAL_MARKET_SIZE = 3;
    static const ItemType OTHER;
    static constexpr ValueType ITEM_OTHER = 4;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct ExchangeForPhysicalEnums final: FieldEnumsBase {
@@ -4922,6 +5112,8 @@ struct ExchangeForPhysicalEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_YES = 'Y';
    static const ItemType NO;
    static constexpr ValueType ITEM_NO = 'N';
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct ProgRptReqsEnums final: FieldEnumsBase {
@@ -4942,6 +5134,8 @@ struct ProgRptReqsEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_SELLSIDE_PERIODICALLY_SENDS_STATUS_USING_LISTSTATUS_PERIOD_OPTIONALLY_SPECIFIED_IN_PROGRESSPERIOD = 2;
    static const ItemType REAL_TIME_EXECUTION_REPORTS;
    static constexpr ValueType ITEM_REAL_TIME_EXECUTION_REPORTS = 3;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct IncTaxIndEnums final: FieldEnumsBase {
@@ -4960,6 +5154,8 @@ struct IncTaxIndEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_NET = 1;
    static const ItemType GROSS;
    static constexpr ValueType ITEM_GROSS = 2;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct BidTradeTypeEnums final: FieldEnumsBase {
@@ -4982,6 +5178,8 @@ struct BidTradeTypeEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_AGENCY = 'A';
    static const ItemType GUARANTEED_CLOSE;
    static constexpr ValueType ITEM_GUARANTEED_CLOSE = 'J';
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct BasisPxTypeEnums final: FieldEnumsBase {
@@ -5022,6 +5220,8 @@ struct BasisPxTypeEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_OPEN = 'D';
    static const ItemType OTHERS;
    static constexpr ValueType ITEM_OTHERS = 'Z';
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct PriceTypeEnums final: FieldEnumsBase {
@@ -5058,6 +5258,8 @@ struct PriceTypeEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_FIXED_CABINET_TRADE_PRICE = 10;
    static const ItemType VARIABLE_CABINET_TRADE_PRICE;
    static constexpr ValueType ITEM_VARIABLE_CABINET_TRADE_PRICE = 11;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct GTBookingInstEnums final: FieldEnumsBase {
@@ -5078,6 +5280,8 @@ struct GTBookingInstEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_ACCUMULATE_EXECUTIONS_UNTIL_ORDER_IS_FILLED_OR_EXPIRES = 1;
    static const ItemType ACCUMULATE_UNTIL_VERBALLY_NOTIFIED_OTHERWISE;
    static constexpr ValueType ITEM_ACCUMULATE_UNTIL_VERBALLY_NOTIFIED_OTHERWISE = 2;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct ListStatusTypeEnums final: FieldEnumsBase {
@@ -5104,6 +5308,8 @@ struct ListStatusTypeEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_ALLDONE = 5;
    static const ItemType ALERT;
    static constexpr ValueType ITEM_ALERT = 6;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct NetGrossIndEnums final: FieldEnumsBase {
@@ -5122,6 +5328,8 @@ struct NetGrossIndEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_NET = 1;
    static const ItemType GROSS;
    static constexpr ValueType ITEM_GROSS = 2;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct ListOrderStatusEnums final: FieldEnumsBase {
@@ -5150,6 +5358,8 @@ struct ListOrderStatusEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_ALL_DONE = 6;
    static const ItemType REJECT;
    static constexpr ValueType ITEM_REJECT = 7;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct ListExecInstTypeEnums final: FieldEnumsBase {
@@ -5174,6 +5384,8 @@ struct ListExecInstTypeEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_EXCHANGE_SWITCH_CIV_ORDER_BUY_DRIVEN_CASH_TOP_UP = '4';
    static const ItemType EXCHANGE_SWITCH_CIV_ORDER_BUY_DRIVEN_CASH_WITHDRAW;
    static constexpr ValueType ITEM_EXCHANGE_SWITCH_CIV_ORDER_BUY_DRIVEN_CASH_WITHDRAW = '5';
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct CxlRejResponseToEnums final: FieldEnumsBase {
@@ -5192,6 +5404,8 @@ struct CxlRejResponseToEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_ORDER_CANCEL_REQUEST = '1';
    static const ItemType ORDER_CANCEL_REPLACE_REQUEST;
    static constexpr ValueType ITEM_ORDER_CANCEL_REPLACE_REQUEST = '2';
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct MultiLegReportingTypeEnums final: FieldEnumsBase {
@@ -5212,6 +5426,8 @@ struct MultiLegReportingTypeEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_INDIVIDUAL_LEG_OF_A_MULTI_LEG_SECURITY = '2';
    static const ItemType MULTI_LEG_SECURITY;
    static constexpr ValueType ITEM_MULTI_LEG_SECURITY = '3';
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct PartyIDSourceEnums final: FieldEnumsBase {
@@ -5262,6 +5478,8 @@ struct PartyIDSourceEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_AUSTRALIAN_TAX_FILE_NUMBER = 'A';
    static const ItemType DIRECTED_BROKER_THREE_CHARACTER_ACRONYM_AS_DEFINED_IN_ISITC_ETC_BEST_PRACTICE_GUIDELINES_DOCUMENT;
    static constexpr ValueType ITEM_DIRECTED_BROKER_THREE_CHARACTER_ACRONYM_AS_DEFINED_IN_ISITC_ETC_BEST_PRACTICE_GUIDELINES_DOCUMENT = 'I';
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct PartyRoleEnums final: FieldEnumsBase {
@@ -5350,6 +5568,8 @@ struct PartyRoleEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_CONTRA_TRADER = 37;
    static const ItemType POSITION_ACCOUNT;
    static constexpr ValueType ITEM_POSITION_ACCOUNT = 38;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct ProductEnums final: FieldEnumsBase {
@@ -5390,6 +5610,8 @@ struct ProductEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_OTHER = 12;
    static const ItemType FINANCING;
    static constexpr ValueType ITEM_FINANCING = 13;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct TestMessageIndicatorEnums final: FieldEnumsBase {
@@ -5408,6 +5630,8 @@ struct TestMessageIndicatorEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_YES = 'Y';
    static const ItemType NO;
    static constexpr ValueType ITEM_NO = 'N';
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct RoundingDirectionEnums final: FieldEnumsBase {
@@ -5428,6 +5652,8 @@ struct RoundingDirectionEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_ROUND_DOWN = '1';
    static const ItemType ROUND_UP;
    static constexpr ValueType ITEM_ROUND_UP = '2';
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct DistribPaymentMethodEnums final: FieldEnumsBase {
@@ -5466,6 +5692,8 @@ struct DistribPaymentMethodEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_HIGH_VALUE_CLEARING_SYSTEM = 11;
    static const ItemType REINVEST_IN_FUND;
    static constexpr ValueType ITEM_REINVEST_IN_FUND = 12;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct CancellationRightsEnums final: FieldEnumsBase {
@@ -5488,6 +5716,8 @@ struct CancellationRightsEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_NO_WAIVER_AGREEMENT = 'M';
    static const ItemType NO_INSTITUTIONAL;
    static constexpr ValueType ITEM_NO_INSTITUTIONAL = 'O';
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct MoneyLaunderingStatusEnums final: FieldEnumsBase {
@@ -5512,6 +5742,8 @@ struct MoneyLaunderingStatusEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_EXEMPT_CLIENT_MONEY_TYPE_EXEMPTION = '2';
    static const ItemType EXEMPT_AUTHORISED_CREDIT_OR_FINANCIAL_INSTITUTION;
    static constexpr ValueType ITEM_EXEMPT_AUTHORISED_CREDIT_OR_FINANCIAL_INSTITUTION = '3';
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct ExecPriceTypeEnums final: FieldEnumsBase {
@@ -5542,6 +5774,8 @@ struct ExecPriceTypeEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_OFFER_PRICE_MINUS_ADJUSTMENT_AMOUNT = 'Q';
    static const ItemType SINGLE_PRICE;
    static constexpr ValueType ITEM_SINGLE_PRICE = 'S';
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct PaymentMethodEnums final: FieldEnumsBase {
@@ -5586,6 +5820,8 @@ struct PaymentMethodEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_BPAY = 14;
    static const ItemType HIGH_VALUE_CLEARING_SYSTEM;
    static constexpr ValueType ITEM_HIGH_VALUE_CLEARING_SYSTEM = 15;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct TaxAdvantageTypeEnums final: FieldEnumsBase {
@@ -5660,6 +5896,8 @@ struct TaxAdvantageTypeEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_EDUCATION_IRA_28 = 28;
    static const ItemType EDUCATION_IRA_29;
    static constexpr ValueType ITEM_EDUCATION_IRA_29 = 29;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct FundRenewWaivEnums final: FieldEnumsBase {
@@ -5678,6 +5916,8 @@ struct FundRenewWaivEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_YES = 'Y';
    static const ItemType NO;
    static constexpr ValueType ITEM_NO = 'N';
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct RegistStatusEnums final: FieldEnumsBase {
@@ -5700,6 +5940,8 @@ struct RegistStatusEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_HELD = 'H';
    static const ItemType REMINDER_IE_REGISTRATION_INSTRUCTIONS_ARE_STILL_OUTSTANDING;
    static constexpr ValueType ITEM_REMINDER_IE_REGISTRATION_INSTRUCTIONS_ARE_STILL_OUTSTANDING = 'N';
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct RegistRejReasonCodeEnums final: FieldEnumsBase {
@@ -5752,6 +5994,8 @@ struct RegistRejReasonCodeEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_INVALID_UNACCEPTABLE_CASH_DISTRIB_AGENT_ACCT_NUM = 18;
    static const ItemType OTHER;
    static constexpr ValueType ITEM_OTHER = 99;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct RegistTransTypeEnums final: FieldEnumsBase {
@@ -5772,6 +6016,8 @@ struct RegistTransTypeEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_REPLACE = '1';
    static const ItemType CANCEL;
    static constexpr ValueType ITEM_CANCEL = '2';
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct OwnershipTypeEnums final: FieldEnumsBase {
@@ -5792,6 +6038,8 @@ struct OwnershipTypeEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_TENANTS_IN_COMMON = 'T';
    static const ItemType JOINT_TRUSTEES;
    static constexpr ValueType ITEM_JOINT_TRUSTEES = '2';
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct ContAmtTypeEnums final: FieldEnumsBase {
@@ -5836,6 +6084,8 @@ struct ContAmtTypeEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_FUND_BASED_RENEWAL_COMMISSION_AMOUNT_14 = 14;
    static const ItemType NET_SETTLEMENT_AMOUNT;
    static constexpr ValueType ITEM_NET_SETTLEMENT_AMOUNT = 15;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct OwnerTypeEnums final: FieldEnumsBase {
@@ -5876,6 +6126,8 @@ struct OwnerTypeEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_CORPORATE_BODY = 12;
    static const ItemType NOMINEE;
    static constexpr ValueType ITEM_NOMINEE = 13;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct OrderCapacityEnums final: FieldEnumsBase {
@@ -5902,6 +6154,8 @@ struct OrderCapacityEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_RISKLESS_PRINCIPAL = 'R';
    static const ItemType AGENT_FOR_OTHER_MEMBER;
    static constexpr ValueType ITEM_AGENT_FOR_OTHER_MEMBER = 'W';
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct OrderRestrictionsEnums final: FieldEnumsBase {
@@ -5936,6 +6190,8 @@ struct OrderRestrictionsEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_EXTERNAL_INTER_CONNECTED_MARKET_LINKAGE = SOHSTR(9);
    static const ItemType RISKLESS_ARBITRAGE;
    static constexpr ValueType ITEM_RISKLESS_ARBITRAGE = SOHSTR(A);
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct MassCancelRequestTypeEnums final: FieldEnumsBase {
@@ -5964,6 +6220,8 @@ struct MassCancelRequestTypeEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_CANCEL_ORDERS_FOR_A_TRADING_SESSION = '6';
    static const ItemType CANCEL_ALL_ORDERS;
    static constexpr ValueType ITEM_CANCEL_ALL_ORDERS = '7';
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct MassCancelResponseEnums final: FieldEnumsBase {
@@ -5994,6 +6252,8 @@ struct MassCancelResponseEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_CANCEL_ORDERS_FOR_A_TRADING_SESSION = '6';
    static const ItemType CANCEL_ALL_ORDERS;
    static constexpr ValueType ITEM_CANCEL_ALL_ORDERS = '7';
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct MassCancelRejectReasonEnums final: FieldEnumsBase {
@@ -6024,6 +6284,8 @@ struct MassCancelRejectReasonEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_INVALID_OR_UNKNOWN_TRADING_SESSION = '6';
    static const ItemType OTHER;
    static constexpr ValueType ITEM_OTHER = '9';
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct QuoteTypeEnums final: FieldEnumsBase {
@@ -6046,6 +6308,8 @@ struct QuoteTypeEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_RESTRICTED_TRADEABLE = 2;
    static const ItemType COUNTER;
    static constexpr ValueType ITEM_COUNTER = 3;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct CashMarginEnums final: FieldEnumsBase {
@@ -6066,6 +6330,8 @@ struct CashMarginEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_MARGIN_OPEN = '2';
    static const ItemType MARGIN_CLOSE;
    static constexpr ValueType ITEM_MARGIN_CLOSE = '3';
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct ScopeEnums final: FieldEnumsBase {
@@ -6086,6 +6352,8 @@ struct ScopeEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_NATIONAL = SOHSTR(2);
    static const ItemType GLOBAL;
    static constexpr ValueType ITEM_GLOBAL = SOHSTR(3);
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct MDImplicitDeleteEnums final: FieldEnumsBase {
@@ -6104,6 +6372,8 @@ struct MDImplicitDeleteEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_YES = 'Y';
    static const ItemType NO;
    static constexpr ValueType ITEM_NO = 'N';
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct CrossTypeEnums final: FieldEnumsBase {
@@ -6126,6 +6396,8 @@ struct CrossTypeEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_CROSS_TRADE_WHICH_IS_PARTIALLY_EXECUTED_WITH_THE_UNFILLED_PORTIONS_REMAINING_ACTIVE_ONE_SIDE_OF_THE_CROSS_IS_FULLY_EXECUTED = 3;
    static const ItemType CROSS_TRADE_IS_EXECUTED_WITH_EXISTING_ORDERS_WITH_THE_SAME_PRICE_IN_THE_CASE_OTHER_ORDERS_EXIST_WITH_THE_SAME_PRICE_THE_QUANTITY_OF_THE_CROSS_IS_EXECUTED_AGAINST_THE_EXISTING_ORDERS_AND_QUOTES_THE_REMAINDER_OF_THE_CROSS_IS_EXECUTED_AGAINST_THE_OTHER_SIDE_OF_THE_CROSS_THE_TWO_SIDES_POTENTIALLY_HAVE_DIFFERENT_QUANTITIES;
    static constexpr ValueType ITEM_CROSS_TRADE_IS_EXECUTED_WITH_EXISTING_ORDERS_WITH_THE_SAME_PRICE_IN_THE_CASE_OTHER_ORDERS_EXIST_WITH_THE_SAME_PRICE_THE_QUANTITY_OF_THE_CROSS_IS_EXECUTED_AGAINST_THE_EXISTING_ORDERS_AND_QUOTES_THE_REMAINDER_OF_THE_CROSS_IS_EXECUTED_AGAINST_THE_OTHER_SIDE_OF_THE_CROSS_THE_TWO_SIDES_POTENTIALLY_HAVE_DIFFERENT_QUANTITIES = 4;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct CrossPrioritizationEnums final: FieldEnumsBase {
@@ -6146,6 +6418,8 @@ struct CrossPrioritizationEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_BUY_SIDE_IS_PRIORITIZED = 1;
    static const ItemType SELL_SIDE_IS_PRIORITIZED;
    static constexpr ValueType ITEM_SELL_SIDE_IS_PRIORITIZED = 2;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct NoSidesEnums final: FieldEnumsBase {
@@ -6164,6 +6438,8 @@ struct NoSidesEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_ONE_SIDE = 1;
    static const ItemType BOTH_SIDES;
    static constexpr ValueType ITEM_BOTH_SIDES = 2;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct SecurityListRequestTypeEnums final: FieldEnumsBase {
@@ -6188,6 +6464,8 @@ struct SecurityListRequestTypeEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_TRADINGSESSIONID = 3;
    static const ItemType ALL_SECURITIES;
    static constexpr ValueType ITEM_ALL_SECURITIES = 4;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct SecurityRequestResultEnums final: FieldEnumsBase {
@@ -6214,6 +6492,8 @@ struct SecurityRequestResultEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_INSTRUMENT_DATA_TEMPORARILY_UNAVAILABLE = 4;
    static const ItemType REQUEST_FOR_INSTRUMENT_DATA_NOT_SUPPORTED;
    static constexpr ValueType ITEM_REQUEST_FOR_INSTRUMENT_DATA_NOT_SUPPORTED = 5;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct MultiLegRptTypeReqEnums final: FieldEnumsBase {
@@ -6234,6 +6514,8 @@ struct MultiLegRptTypeReqEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_REPORT_BY_MULTILEG_SECURITY_AND_BY_INSTRUMENT_LEGS_BELONGING_TO_THE_MULTILEG_SECURITY = 1;
    static const ItemType REPORT_BY_INSTRUMENT_LEGS_BELONGING_TO_THE_MULTILEG_SECURITY_ONLY;
    static constexpr ValueType ITEM_REPORT_BY_INSTRUMENT_LEGS_BELONGING_TO_THE_MULTILEG_SECURITY_ONLY = 2;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct TradSesStatusRejReasonEnums final: FieldEnumsBase {
@@ -6252,6 +6534,8 @@ struct TradSesStatusRejReasonEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_UNKNOWN_OR_INVALID_TRADINGSESSIONID = 1;
    static const ItemType OTHER;
    static constexpr ValueType ITEM_OTHER = 99;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct TradeRequestTypeEnums final: FieldEnumsBase {
@@ -6276,6 +6560,8 @@ struct TradeRequestTypeEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_UNREPORTED_TRADES_THAT_MATCH_CRITERIA = 3;
    static const ItemType ADVISORIES_THAT_MATCH_CRITERIA;
    static constexpr ValueType ITEM_ADVISORIES_THAT_MATCH_CRITERIA = 4;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct PreviouslyReportedEnums final: FieldEnumsBase {
@@ -6294,6 +6580,8 @@ struct PreviouslyReportedEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_YES = 'Y';
    static const ItemType NO;
    static constexpr ValueType ITEM_NO = 'N';
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct MatchStatusEnums final: FieldEnumsBase {
@@ -6314,6 +6602,8 @@ struct MatchStatusEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_UNCOMPARED_UNMATCHED_OR_UNAFFIRMED = '1';
    static const ItemType ADVISORY_OR_ALERT;
    static constexpr ValueType ITEM_ADVISORY_OR_ALERT = '2';
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct MatchTypeEnums final: FieldEnumsBase {
@@ -6364,6 +6654,8 @@ struct MatchTypeEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_ACT_DEFAULT_AFTER_M2 = SOHSTR(M5);
    static const ItemType ACT_M6_MATCH;
    static constexpr ValueType ITEM_ACT_M6_MATCH = SOHSTR(M6);
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct OddLotEnums final: FieldEnumsBase {
@@ -6382,6 +6674,8 @@ struct OddLotEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_YES = 'Y';
    static const ItemType NO;
    static constexpr ValueType ITEM_NO = 'N';
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct ClearingInstructionEnums final: FieldEnumsBase {
@@ -6424,6 +6718,8 @@ struct ClearingInstructionEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_CUSTOMER_TRADE = 12;
    static const ItemType SELF_CLEARING;
    static constexpr ValueType ITEM_SELF_CLEARING = 13;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct AccountTypeEnums final: FieldEnumsBase {
@@ -6452,6 +6748,8 @@ struct AccountTypeEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_ACCOUNT_IS_HOUSE_TRADER_AND_IS_CROSS_MARGINED = 7;
    static const ItemType JOINT_BACKOFFICE_ACCOUNT;
    static constexpr ValueType ITEM_JOINT_BACKOFFICE_ACCOUNT = 8;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct CustOrderCapacityEnums final: FieldEnumsBase {
@@ -6474,6 +6772,8 @@ struct CustOrderCapacityEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_MEMBER_TRADING_FOR_ANOTHER_MEMBER = 3;
    static const ItemType ALL_OTHER;
    static constexpr ValueType ITEM_ALL_OTHER = 4;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct MassStatusReqTypeEnums final: FieldEnumsBase {
@@ -6504,6 +6804,8 @@ struct MassStatusReqTypeEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_STATUS_FOR_ALL_ORDERS = 7;
    static const ItemType STATUS_FOR_ORDERS_FOR_A_PARTYID;
    static constexpr ValueType ITEM_STATUS_FOR_ORDERS_FOR_A_PARTYID = 8;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct DayBookingInstEnums final: FieldEnumsBase {
@@ -6524,6 +6826,8 @@ struct DayBookingInstEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_SPEAK_WITH_ORDER_INITIATOR_BEFORE_BOOKING = '1';
    static const ItemType ACCUMULATE;
    static constexpr ValueType ITEM_ACCUMULATE = '2';
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct BookingUnitEnums final: FieldEnumsBase {
@@ -6544,6 +6848,8 @@ struct BookingUnitEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_AGGREGATE_PARTIAL_EXECUTIONS_ON_THIS_ORDER_AND_BOOK_ONE_TRADE_PER_ORDER = '1';
    static const ItemType AGGREGATE_EXECUTIONS_FOR_THIS_SYMBOL_SIDE_AND_SETTLEMENT_DATE;
    static constexpr ValueType ITEM_AGGREGATE_EXECUTIONS_FOR_THIS_SYMBOL_SIDE_AND_SETTLEMENT_DATE = '2';
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct PreallocMethodEnums final: FieldEnumsBase {
@@ -6562,6 +6868,8 @@ struct PreallocMethodEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_PRO_RATA = '0';
    static const ItemType DO_NOT_PRO_RATA_DISCUSS_FIRST;
    static constexpr ValueType ITEM_DO_NOT_PRO_RATA_DISCUSS_FIRST = '1';
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct AllocTypeEnums final: FieldEnumsBase {
@@ -6586,6 +6894,8 @@ struct AllocTypeEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_WAREHOUSE_INSTRUCTION = 7;
    static const ItemType REQUEST_TO_INTERMEDIARY;
    static constexpr ValueType ITEM_REQUEST_TO_INTERMEDIARY = 8;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct ClearingFeeIndicatorEnums final: FieldEnumsBase {
@@ -6628,6 +6938,8 @@ struct ClearingFeeIndicatorEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM__5TH_YEAR_DELEGATE_TRADING_FOR_HIS_OWN_ACCOUNT = SOHSTR(5);
    static const ItemType _6TH_YEAR_AND_BEYOND_DELEGATE_TRADING_FOR_HIS_OWN_ACCOUNT;
    static constexpr ValueType ITEM__6TH_YEAR_AND_BEYOND_DELEGATE_TRADING_FOR_HIS_OWN_ACCOUNT = SOHSTR(9);
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct WorkingIndicatorEnums final: FieldEnumsBase {
@@ -6646,6 +6958,8 @@ struct WorkingIndicatorEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_YES = 'Y';
    static const ItemType NO;
    static constexpr ValueType ITEM_NO = 'N';
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct PriorityIndicatorEnums final: FieldEnumsBase {
@@ -6664,6 +6978,8 @@ struct PriorityIndicatorEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_PRIORITY_UNCHANGED = 0;
    static const ItemType LOST_PRIORITY_AS_RESULT_OF_ORDER_CHANGE;
    static constexpr ValueType ITEM_LOST_PRIORITY_AS_RESULT_OF_ORDER_CHANGE = 1;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct LegalConfirmEnums final: FieldEnumsBase {
@@ -6682,6 +6998,8 @@ struct LegalConfirmEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_YES = 'Y';
    static const ItemType NO;
    static constexpr ValueType ITEM_NO = 'N';
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct QuoteRequestRejectReasonEnums final: FieldEnumsBase {
@@ -6718,6 +7036,8 @@ struct QuoteRequestRejectReasonEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_PASS = 10;
    static const ItemType OTHER;
    static constexpr ValueType ITEM_OTHER = 99;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct AcctIDSourceEnums final: FieldEnumsBase {
@@ -6744,6 +7064,8 @@ struct AcctIDSourceEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_DTCC_CODE = 5;
    static const ItemType OTHER;
    static constexpr ValueType ITEM_OTHER = 99;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct ConfirmStatusEnums final: FieldEnumsBase {
@@ -6768,6 +7090,8 @@ struct ConfirmStatusEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_CONFIRMED = 4;
    static const ItemType REQUEST_REJECTED;
    static constexpr ValueType ITEM_REQUEST_REJECTED = 5;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct ConfirmTransTypeEnums final: FieldEnumsBase {
@@ -6788,6 +7112,8 @@ struct ConfirmTransTypeEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_REPLACE = 1;
    static const ItemType CANCEL;
    static constexpr ValueType ITEM_CANCEL = 2;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct DeliveryFormEnums final: FieldEnumsBase {
@@ -6806,6 +7132,8 @@ struct DeliveryFormEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_BOOKENTRY = 1;
    static const ItemType BEARER;
    static constexpr ValueType ITEM_BEARER = 2;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct LegSwapTypeEnums final: FieldEnumsBase {
@@ -6828,6 +7156,8 @@ struct LegSwapTypeEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_RISK = 4;
    static const ItemType PROCEEDS;
    static constexpr ValueType ITEM_PROCEEDS = 5;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct QuotePriceTypeEnums final: FieldEnumsBase {
@@ -6862,6 +7192,8 @@ struct QuotePriceTypeEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_YIELD_SPREAD = 9;
    static const ItemType YIELD;
    static constexpr ValueType ITEM_YIELD = 10;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct QuoteRespTypeEnums final: FieldEnumsBase {
@@ -6888,6 +7220,8 @@ struct QuoteRespTypeEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_DONE_AWAY = 5;
    static const ItemType PASS;
    static constexpr ValueType ITEM_PASS = 6;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct PosTypeEnums final: FieldEnumsBase {
@@ -6940,6 +7274,8 @@ struct PosTypeEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_CROSS_MARGIN_QTY = SOHSTR(XM);
    static const ItemType INTEGRAL_SPLIT;
    static constexpr ValueType ITEM_INTEGRAL_SPLIT = SOHSTR(SPL);
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct PosQtyStatusEnums final: FieldEnumsBase {
@@ -6960,6 +7296,8 @@ struct PosQtyStatusEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_ACCEPTED = 1;
    static const ItemType REJECTED;
    static constexpr ValueType ITEM_REJECTED = 2;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct PosAmtTypeEnums final: FieldEnumsBase {
@@ -6990,6 +7328,8 @@ struct PosAmtTypeEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_CASH_AMOUNT = SOHSTR(CASH);
    static const ItemType VALUE_ADJUSTED_AMOUNT;
    static constexpr ValueType ITEM_VALUE_ADJUSTED_AMOUNT = SOHSTR(VADJ);
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct PosTransTypeEnums final: FieldEnumsBase {
@@ -7014,6 +7354,8 @@ struct PosTransTypeEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_POSITION_CHANGE_SUBMISSION_MARGIN_DISPOSITION = 4;
    static const ItemType PLEDGE;
    static constexpr ValueType ITEM_PLEDGE = 5;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct PosMaintActionEnums final: FieldEnumsBase {
@@ -7034,6 +7376,8 @@ struct PosMaintActionEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_REPLACE_USED_TO_OVERRIDE_THE_OVERALL_TRANSACTION_QUANTITY_OR_SPECIFIC_ADD_MESSAGES_BASED_ON_THE_REFERENCE_ID = 2;
    static const ItemType CANCEL_USED_TO_REMOVE_THE_OVERALL_TRANSACTION_OR_SPECIFIC_ADD_MESSAGES_BASED_ON_REFERENCE_ID;
    static constexpr ValueType ITEM_CANCEL_USED_TO_REMOVE_THE_OVERALL_TRANSACTION_OR_SPECIFIC_ADD_MESSAGES_BASED_ON_REFERENCE_ID = 3;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct SettlSessIDEnums final: FieldEnumsBase {
@@ -7054,6 +7398,8 @@ struct SettlSessIDEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_REGULAR_TRADING_HOURS = SOHSTR(RTH);
    static const ItemType ELECTRONIC_TRADING_HOURS;
    static constexpr ValueType ITEM_ELECTRONIC_TRADING_HOURS = SOHSTR(ETH);
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct AdjustmentTypeEnums final: FieldEnumsBase {
@@ -7076,6 +7422,8 @@ struct AdjustmentTypeEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_DELTA_MINUS = 2;
    static const ItemType FINAL;
    static constexpr ValueType ITEM_FINAL = 3;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct PosMaintStatusEnums final: FieldEnumsBase {
@@ -7100,6 +7448,8 @@ struct PosMaintStatusEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_COMPLETED = 3;
    static const ItemType COMPLETED_WITH_WARNINGS;
    static constexpr ValueType ITEM_COMPLETED_WITH_WARNINGS = 4;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct PosMaintResultEnums final: FieldEnumsBase {
@@ -7120,6 +7470,8 @@ struct PosMaintResultEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_REJECTED = 1;
    static const ItemType OTHER;
    static constexpr ValueType ITEM_OTHER = 99;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct PosReqTypeEnums final: FieldEnumsBase {
@@ -7142,6 +7494,8 @@ struct PosReqTypeEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_EXERCISES = 2;
    static const ItemType ASSIGNMENTS;
    static constexpr ValueType ITEM_ASSIGNMENTS = 3;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct ResponseTransportTypeEnums final: FieldEnumsBase {
@@ -7160,6 +7514,8 @@ struct ResponseTransportTypeEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_INBAND_TRANSPORT_THE_REQUEST_WAS_SENT_OVER = 0;
    static const ItemType OUT_OF_BAND_PRE_ARRANGED_OUT_OF_BAND_DELIVERY_MECHANISM;
    static constexpr ValueType ITEM_OUT_OF_BAND_PRE_ARRANGED_OUT_OF_BAND_DELIVERY_MECHANISM = 1;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct PosReqResultEnums final: FieldEnumsBase {
@@ -7186,6 +7542,8 @@ struct PosReqResultEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_REQUEST_FOR_POSITION_NOT_SUPPORTED = 4;
    static const ItemType OTHER;
    static constexpr ValueType ITEM_OTHER = 99;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct PosReqStatusEnums final: FieldEnumsBase {
@@ -7206,6 +7564,8 @@ struct PosReqStatusEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_COMPLETED_WITH_WARNINGS = 1;
    static const ItemType REJECTED;
    static constexpr ValueType ITEM_REJECTED = 2;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct SettlPriceTypeEnums final: FieldEnumsBase {
@@ -7224,6 +7584,8 @@ struct SettlPriceTypeEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_FINAL = 1;
    static const ItemType THEORETICAL;
    static constexpr ValueType ITEM_THEORETICAL = 2;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct AssignmentMethodEnums final: FieldEnumsBase {
@@ -7242,6 +7604,8 @@ struct AssignmentMethodEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_RANDOM = 'R';
    static const ItemType PRORATA;
    static constexpr ValueType ITEM_PRORATA = 'P';
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct ExerciseMethodEnums final: FieldEnumsBase {
@@ -7260,6 +7624,8 @@ struct ExerciseMethodEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_AUTOMATIC = 'A';
    static const ItemType MANUAL;
    static constexpr ValueType ITEM_MANUAL = 'M';
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct TradeRequestResultEnums final: FieldEnumsBase {
@@ -7292,6 +7658,8 @@ struct TradeRequestResultEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_UNAUTHORIZED_FOR_TRADE_CAPTURE_REPORT_REQUEST = 9;
    static const ItemType OTHER;
    static constexpr ValueType ITEM_OTHER = 99;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct TradeRequestStatusEnums final: FieldEnumsBase {
@@ -7312,6 +7680,8 @@ struct TradeRequestStatusEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_COMPLETED = 1;
    static const ItemType REJECTED;
    static constexpr ValueType ITEM_REJECTED = 2;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct TradeReportRejectReasonEnums final: FieldEnumsBase {
@@ -7338,6 +7708,8 @@ struct TradeReportRejectReasonEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_INVALID_TRADE_TYPE = 4;
    static const ItemType OTHER;
    static constexpr ValueType ITEM_OTHER = 99;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct SideMultiLegReportingTypeEnums final: FieldEnumsBase {
@@ -7358,6 +7730,8 @@ struct SideMultiLegReportingTypeEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_INDIVIDUAL_LEG_OF_A_MULTI_LEG_SECURITY = 2;
    static const ItemType MULTI_LEG_SECURITY;
    static constexpr ValueType ITEM_MULTI_LEG_SECURITY = 3;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct TrdRegTimestampTypeEnums final: FieldEnumsBase {
@@ -7382,6 +7756,8 @@ struct TrdRegTimestampTypeEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_BROKER_RECEIPT = 4;
    static const ItemType BROKER_EXECUTION;
    static constexpr ValueType ITEM_BROKER_EXECUTION = 5;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct ConfirmTypeEnums final: FieldEnumsBase {
@@ -7402,6 +7778,8 @@ struct ConfirmTypeEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_CONFIRMATION = 2;
    static const ItemType CONFIRMATION_REQUEST_REJECTED;
    static constexpr ValueType ITEM_CONFIRMATION_REQUEST_REJECTED = 3;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct ConfirmRejReasonEnums final: FieldEnumsBase {
@@ -7422,6 +7800,8 @@ struct ConfirmRejReasonEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_MISSING_SETTLEMENT_INSTRUCTIONS = 2;
    static const ItemType OTHER;
    static constexpr ValueType ITEM_OTHER = 99;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct BookingTypeEnums final: FieldEnumsBase {
@@ -7442,6 +7822,8 @@ struct BookingTypeEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_CFD = 1;
    static const ItemType TOTAL_RETURN_SWAP;
    static constexpr ValueType ITEM_TOTAL_RETURN_SWAP = 2;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct AllocSettlInstTypeEnums final: FieldEnumsBase {
@@ -7466,6 +7848,8 @@ struct AllocSettlInstTypeEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_SSI_DB_IDS_PROVIDED = 3;
    static const ItemType PHONE_FOR_INSTRUCTIONS;
    static constexpr ValueType ITEM_PHONE_FOR_INSTRUCTIONS = 4;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct DlvyInstTypeEnums final: FieldEnumsBase {
@@ -7484,6 +7868,8 @@ struct DlvyInstTypeEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_SECURITIES = 'S';
    static const ItemType CASH;
    static constexpr ValueType ITEM_CASH = 'C';
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct TerminationTypeEnums final: FieldEnumsBase {
@@ -7506,6 +7892,8 @@ struct TerminationTypeEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_FLEXIBLE = 3;
    static const ItemType OPEN;
    static constexpr ValueType ITEM_OPEN = 4;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct SettlInstReqRejCodeEnums final: FieldEnumsBase {
@@ -7528,6 +7916,8 @@ struct SettlInstReqRejCodeEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_NO_MATCHING_SETTLEMENT_INSTRUCTIONS_FOUND = 2;
    static const ItemType OTHER;
    static constexpr ValueType ITEM_OTHER = 99;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct AllocReportTypeEnums final: FieldEnumsBase {
@@ -7550,6 +7940,8 @@ struct AllocReportTypeEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_WAREHOUSE_RECAP = 5;
    static const ItemType REQUEST_TO_INTERMEDIARY;
    static constexpr ValueType ITEM_REQUEST_TO_INTERMEDIARY = 8;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct AllocCancReplaceReasonEnums final: FieldEnumsBase {
@@ -7570,6 +7962,8 @@ struct AllocCancReplaceReasonEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_CHANGE_IN_UNDERLYING_ORDER_DETAILS = 2;
    static const ItemType OTHER;
    static constexpr ValueType ITEM_OTHER = 99;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct AllocAccountTypeEnums final: FieldEnumsBase {
@@ -7598,6 +7992,8 @@ struct AllocAccountTypeEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_ACCOUNT_IS_HOUSE_TRADER_AND_IS_CROSS_MARGINED = 7;
    static const ItemType JOINT_BACKOFFICE_ACCOUNT;
    static constexpr ValueType ITEM_JOINT_BACKOFFICE_ACCOUNT = 8;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct PartySubIDTypeEnums final: FieldEnumsBase {
@@ -7664,6 +8060,8 @@ struct PartySubIDTypeEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_LOCATION = 25;
    static const ItemType POSITION_ACCOUNT_TYPE;
    static constexpr ValueType ITEM_POSITION_ACCOUNT_TYPE = 26;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct AllocIntermedReqTypeEnums final: FieldEnumsBase {
@@ -7690,6 +8088,8 @@ struct AllocIntermedReqTypeEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_BLOCK_LEVEL_REJECT = 5;
    static const ItemType ACCOUNT_LEVEL_REJECT;
    static constexpr ValueType ITEM_ACCOUNT_LEVEL_REJECT = 6;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct ApplQueueResolutionEnums final: FieldEnumsBase {
@@ -7712,6 +8112,8 @@ struct ApplQueueResolutionEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_OVERLAY_LAST = 2;
    static const ItemType END_SESSION;
    static constexpr ValueType ITEM_END_SESSION = 3;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct ApplQueueActionEnums final: FieldEnumsBase {
@@ -7734,6 +8136,8 @@ struct ApplQueueActionEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_OVERLAY_LAST = 2;
    static const ItemType END_SESSION;
    static constexpr ValueType ITEM_END_SESSION = 3;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct AvgPxIndicatorEnums final: FieldEnumsBase {
@@ -7754,6 +8158,8 @@ struct AvgPxIndicatorEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_TRADE_IS_PART_OF_AN_AVERAGE_PRICE_GROUP_IDENTIFIED_BY_THE_TRADELINKID = 1;
    static const ItemType LAST_TRADE_IN_THE_AVERAGE_PRICE_GROUP_IDENTIFIED_BY_THE_TRADELINKID;
    static constexpr ValueType ITEM_LAST_TRADE_IN_THE_AVERAGE_PRICE_GROUP_IDENTIFIED_BY_THE_TRADELINKID = 2;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct TradeAllocIndicatorEnums final: FieldEnumsBase {
@@ -7774,6 +8180,8 @@ struct TradeAllocIndicatorEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_ALLOCATION_REQUIRED = 1;
    static const ItemType USE_ALLOCATION_PROVIDED_WITH_THE_TRADE;
    static constexpr ValueType ITEM_USE_ALLOCATION_PROVIDED_WITH_THE_TRADE = 2;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct ExpirationCycleEnums final: FieldEnumsBase {
@@ -7792,6 +8200,8 @@ struct ExpirationCycleEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_EXPIRE_ON_TRADING_SESSION_CLOSE = 0;
    static const ItemType EXPIRE_ON_TRADING_SESSION_OPEN;
    static constexpr ValueType ITEM_EXPIRE_ON_TRADING_SESSION_OPEN = 1;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct TrdTypeEnums final: FieldEnumsBase {
@@ -7828,6 +8238,8 @@ struct TrdTypeEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_PRIOR_REFERENCE_PRICE_TRADE = 9;
    static const ItemType AFTER_HOURS_TRADE;
    static constexpr ValueType ITEM_AFTER_HOURS_TRADE = 10;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct PegMoveTypeEnums final: FieldEnumsBase {
@@ -7846,6 +8258,8 @@ struct PegMoveTypeEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_FLOATING = 0;
    static const ItemType FIXED;
    static constexpr ValueType ITEM_FIXED = 1;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct PegOffsetTypeEnums final: FieldEnumsBase {
@@ -7868,6 +8282,8 @@ struct PegOffsetTypeEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_TICKS = 2;
    static const ItemType PRICE_TIER;
    static constexpr ValueType ITEM_PRICE_TIER = 3;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct PegLimitTypeEnums final: FieldEnumsBase {
@@ -7888,6 +8304,8 @@ struct PegLimitTypeEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_STRICT_LIMIT_IS_A_STRICT_LIMIT = 1;
    static const ItemType OR_WORSE_FOR_A_BUY_THE_PEG_LIMIT_IS_A_MINIMUM_AND_FOR_A_SELL_THE_PEG_LIMIT_IS_A_MAXIMUM;
    static constexpr ValueType ITEM_OR_WORSE_FOR_A_BUY_THE_PEG_LIMIT_IS_A_MINIMUM_AND_FOR_A_SELL_THE_PEG_LIMIT_IS_A_MAXIMUM = 2;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct PegRoundDirectionEnums final: FieldEnumsBase {
@@ -7906,6 +8324,8 @@ struct PegRoundDirectionEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_MORE_AGGRESSIVE_ON_A_BUY_ORDER_ROUND_THE_PRICE_UP_ROUND_UP_TO_THE_NEAREST_TICK_ON_A_SELL_ROUND_DOWN_TO_THE_NEAREST_TICK = 1;
    static const ItemType MORE_PASSIVE_ON_A_BUY_ORDER_ROUND_DOWN_TO_NEAREST_TICK_ON_A_SELL_ORDER_ROUND_UP_TO_NEAREST_TICK;
    static constexpr ValueType ITEM_MORE_PASSIVE_ON_A_BUY_ORDER_ROUND_DOWN_TO_NEAREST_TICK_ON_A_SELL_ORDER_ROUND_UP_TO_NEAREST_TICK = 2;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct PegScopeEnums final: FieldEnumsBase {
@@ -7928,6 +8348,8 @@ struct PegScopeEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_GLOBAL = 3;
    static const ItemType NATIONAL_EXCLUDING_LOCAL;
    static constexpr ValueType ITEM_NATIONAL_EXCLUDING_LOCAL = 4;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct DiscretionMoveTypeEnums final: FieldEnumsBase {
@@ -7946,6 +8368,8 @@ struct DiscretionMoveTypeEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_FLOATING = 0;
    static const ItemType FIXED;
    static constexpr ValueType ITEM_FIXED = 1;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct DiscretionOffsetTypeEnums final: FieldEnumsBase {
@@ -7968,6 +8392,8 @@ struct DiscretionOffsetTypeEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_TICKS = 2;
    static const ItemType PRICE_TIER;
    static constexpr ValueType ITEM_PRICE_TIER = 3;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct DiscretionLimitTypeEnums final: FieldEnumsBase {
@@ -7988,6 +8414,8 @@ struct DiscretionLimitTypeEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_STRICT_LIMIT_IS_A_STRICT_LIMIT = 1;
    static const ItemType OR_WORSE_FOR_A_BUY_THE_DISCRETION_PRICE_IS_A_MINIMUM_AND_FOR_A_SELL_THE_DISCRETION_PRICE_IS_A_MAXIMUM;
    static constexpr ValueType ITEM_OR_WORSE_FOR_A_BUY_THE_DISCRETION_PRICE_IS_A_MINIMUM_AND_FOR_A_SELL_THE_DISCRETION_PRICE_IS_A_MAXIMUM = 2;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct DiscretionRoundDirectionEnums final: FieldEnumsBase {
@@ -8006,6 +8434,8 @@ struct DiscretionRoundDirectionEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_MORE_AGGRESSIVE_ON_A_BUY_ORDER_ROUND_THE_PRICE_UP_ROUND_UP_TO_THE_NEAREST_TICK_ON_A_SELL_ROUND_DOWN_TO_THE_NEAREST_TICK = 1;
    static const ItemType MORE_PASSIVE_ON_A_BUY_ORDER_ROUND_DOWN_TO_NEAREST_TICK_ON_A_SELL_ORDER_ROUND_UP_TO_NEAREST_TICK;
    static constexpr ValueType ITEM_MORE_PASSIVE_ON_A_BUY_ORDER_ROUND_DOWN_TO_NEAREST_TICK_ON_A_SELL_ORDER_ROUND_UP_TO_NEAREST_TICK = 2;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct DiscretionScopeEnums final: FieldEnumsBase {
@@ -8028,6 +8458,8 @@ struct DiscretionScopeEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_GLOBAL = 3;
    static const ItemType NATIONAL_EXCLUDING_LOCAL;
    static constexpr ValueType ITEM_NATIONAL_EXCLUDING_LOCAL = 4;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct TargetStrategyEnums final: FieldEnumsBase {
@@ -8048,6 +8480,8 @@ struct TargetStrategyEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_PARTICIPATE = 2;
    static const ItemType MININIZE_MARKET_IMPACT;
    static constexpr ValueType ITEM_MININIZE_MARKET_IMPACT = 3;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct LastLiquidityIndEnums final: FieldEnumsBase {
@@ -8068,6 +8502,8 @@ struct LastLiquidityIndEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_REMOVED_LIQUIDITY = 2;
    static const ItemType LIQUIDITY_ROUTED_OUT;
    static constexpr ValueType ITEM_LIQUIDITY_ROUTED_OUT = 3;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct PublishTrdIndicatorEnums final: FieldEnumsBase {
@@ -8086,6 +8522,8 @@ struct PublishTrdIndicatorEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_YES = 'Y';
    static const ItemType NO;
    static constexpr ValueType ITEM_NO = 'N';
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct ShortSaleReasonEnums final: FieldEnumsBase {
@@ -8112,6 +8550,8 @@ struct ShortSaleReasonEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_QUALIFED_SERVICE_REPRESENTATIVE = 4;
    static const ItemType QSR_OR_AGU_CONTRA_SIDE_SOLD_SHORT_EXEMPT;
    static constexpr ValueType ITEM_QSR_OR_AGU_CONTRA_SIDE_SOLD_SHORT_EXEMPT = 5;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct QtyTypeEnums final: FieldEnumsBase {
@@ -8130,6 +8570,8 @@ struct QtyTypeEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_UNITS = 0;
    static const ItemType CONTRACTS;
    static constexpr ValueType ITEM_CONTRACTS = 1;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct TradeReportTypeEnums final: FieldEnumsBase {
@@ -8160,6 +8602,8 @@ struct TradeReportTypeEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_TRADE_REPORT_CANCEL = 6;
    static const ItemType LOCKED_IN_TRADE_BREAK;
    static constexpr ValueType ITEM_LOCKED_IN_TRADE_BREAK = 7;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct AllocNoOrdersTypeEnums final: FieldEnumsBase {
@@ -8178,6 +8622,8 @@ struct AllocNoOrdersTypeEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_NOT_SPECIFIED = 0;
    static const ItemType EXPLICIT_LIST_PROVIDED;
    static constexpr ValueType ITEM_EXPLICIT_LIST_PROVIDED = 1;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct EventTypeEnums final: FieldEnumsBase {
@@ -8202,6 +8648,8 @@ struct EventTypeEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_SINKING_FUND_CALL = 4;
    static const ItemType OTHER;
    static constexpr ValueType ITEM_OTHER = 99;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct InstrAttribTypeEnums final: FieldEnumsBase {
@@ -8262,6 +8710,8 @@ struct InstrAttribTypeEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_CALLABLE_WITHOUT_NOTICE_BY_MAIL_TO_HOLDER_UNLESS_REGISTERED = 22;
    static const ItemType TEXT_SUPPLY_THE_TEXT_OF_THE_ATTRIBUTE_OR_DISCLAIMER_IN_THE_INSTRATTRIBVALUE;
    static constexpr ValueType ITEM_TEXT_SUPPLY_THE_TEXT_OF_THE_ATTRIBUTE_OR_DISCLAIMER_IN_THE_INSTRATTRIBVALUE = 99;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct CPProgramEnums final: FieldEnumsBase {
@@ -8282,6 +8732,8 @@ struct CPProgramEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM__4 = 2;
    static const ItemType OTHER;
    static constexpr ValueType ITEM_OTHER = 99;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct MiscFeeBasisEnums final: FieldEnumsBase {
@@ -8302,6 +8754,8 @@ struct MiscFeeBasisEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_PER_UNIT = 1;
    static const ItemType PERCENTAGE;
    static constexpr ValueType ITEM_PERCENTAGE = 2;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct LastFragmentEnums final: FieldEnumsBase {
@@ -8320,6 +8774,8 @@ struct LastFragmentEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_YES = 'Y';
    static const ItemType NO;
    static constexpr ValueType ITEM_NO = 'N';
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct CollAsgnReasonEnums final: FieldEnumsBase {
@@ -8350,6 +8806,8 @@ struct CollAsgnReasonEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_EVENT_OF_DEFAULT = 6;
    static const ItemType ADVERSE_TAX_EVENT;
    static constexpr ValueType ITEM_ADVERSE_TAX_EVENT = 7;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct CollInquiryQualifierEnums final: FieldEnumsBase {
@@ -8380,6 +8838,8 @@ struct CollInquiryQualifierEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_FULLY_ASSIGNED = 6;
    static const ItemType OUTSTANDING_TRADES;
    static constexpr ValueType ITEM_OUTSTANDING_TRADES = 7;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct CollAsgnTransTypeEnums final: FieldEnumsBase {
@@ -8404,6 +8864,8 @@ struct CollAsgnTransTypeEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_RELEASE = 3;
    static const ItemType REVERSE;
    static constexpr ValueType ITEM_REVERSE = 4;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct CollAsgnRespTypeEnums final: FieldEnumsBase {
@@ -8426,6 +8888,8 @@ struct CollAsgnRespTypeEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_DECLINED = 2;
    static const ItemType REJECTED;
    static constexpr ValueType ITEM_REJECTED = 3;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct CollAsgnRejectReasonEnums final: FieldEnumsBase {
@@ -8454,6 +8918,8 @@ struct CollAsgnRejectReasonEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_EXCESSIVE_SUBSTITUTION = 5;
    static const ItemType OTHER;
    static constexpr ValueType ITEM_OTHER = 99;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct CollStatusEnums final: FieldEnumsBase {
@@ -8478,6 +8944,8 @@ struct CollStatusEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_ASSIGNED = 3;
    static const ItemType CHALLENGED;
    static constexpr ValueType ITEM_CHALLENGED = 4;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct DeliveryTypeEnums final: FieldEnumsBase {
@@ -8500,6 +8968,8 @@ struct DeliveryTypeEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_TRI_PARTY = 2;
    static const ItemType HOLD_IN_CUSTODY;
    static constexpr ValueType ITEM_HOLD_IN_CUSTODY = 3;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct UserRequestTypeEnums final: FieldEnumsBase {
@@ -8522,6 +8992,8 @@ struct UserRequestTypeEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_CHANGEPASSWORDFORUSER = 3;
    static const ItemType REQUEST_INDIVIDUAL_USER_STATUS;
    static constexpr ValueType ITEM_REQUEST_INDIVIDUAL_USER_STATUS = 4;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct UserStatusEnums final: FieldEnumsBase {
@@ -8548,6 +9020,8 @@ struct UserStatusEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_PASSWORD_CHANGED = 5;
    static const ItemType OTHER;
    static constexpr ValueType ITEM_OTHER = 6;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct StatusValueEnums final: FieldEnumsBase {
@@ -8570,6 +9044,8 @@ struct StatusValueEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_NOT_CONNECTED_DOWN_EXPECTED_DOWN = 3;
    static const ItemType IN_PROCESS;
    static constexpr ValueType ITEM_IN_PROCESS = 4;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct NetworkRequestTypeEnums final: FieldEnumsBase {
@@ -8592,6 +9068,8 @@ struct NetworkRequestTypeEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_STOP_SUBSCRIBING = 4;
    static const ItemType LEVEL_OF_DETAIL_THEN_NOCOMPIDS_BECOMES_REQUIRED;
    static constexpr ValueType ITEM_LEVEL_OF_DETAIL_THEN_NOCOMPIDS_BECOMES_REQUIRED = 8;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct NetworkStatusResponseTypeEnums final: FieldEnumsBase {
@@ -8610,6 +9088,8 @@ struct NetworkStatusResponseTypeEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_FULL = 1;
    static const ItemType INCREMENTAL_UPDATE;
    static constexpr ValueType ITEM_INCREMENTAL_UPDATE = 2;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct TrdRptStatusEnums final: FieldEnumsBase {
@@ -8628,6 +9108,8 @@ struct TrdRptStatusEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_ACCEPTED = 0;
    static const ItemType REJECTED;
    static constexpr ValueType ITEM_REJECTED = 1;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct AffirmStatusEnums final: FieldEnumsBase {
@@ -8648,6 +9130,8 @@ struct AffirmStatusEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_CONFIRM_REJECTED_IE_NOT_AFFIRMED = 2;
    static const ItemType AFFIRMED;
    static constexpr ValueType ITEM_AFFIRMED = 3;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct CollActionEnums final: FieldEnumsBase {
@@ -8668,6 +9152,8 @@ struct CollActionEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_ADD = 1;
    static const ItemType REMOVE;
    static constexpr ValueType ITEM_REMOVE = 2;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct CollInquiryStatusEnums final: FieldEnumsBase {
@@ -8692,6 +9178,8 @@ struct CollInquiryStatusEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_COMPLETED_WITH_WARNINGS = 3;
    static const ItemType REJECTED;
    static constexpr ValueType ITEM_REJECTED = 4;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 struct CollInquiryResultEnums final: FieldEnumsBase {
@@ -8728,6 +9216,8 @@ struct CollInquiryResultEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_UNAUTHORIZED_FOR_COLLATERAL_INQUIRY = 9;
    static const ItemType OTHER;
    static constexpr ValueType ITEM_OTHER = 99;
+   static const ItemType BAD_ENUM;
+   static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
 

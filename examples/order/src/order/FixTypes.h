@@ -679,11 +679,14 @@ inline std::string toString( const V & value )
 template<>
 inline std::string toString<sohstr>( const sohstr & value )
 {
-    offset_t pos = 0;
-    gotoNextField( value.ptr, pos );
-    return std::string( value.ptr, (std::size_t)pos-1 );
+    if( value.ptr )
+    {
+        offset_t pos = 0;
+        gotoNextField( value.ptr, pos );
+        return std::string( value.ptr, (std::size_t)pos-1 );
+    }
+    return {};
 }
-
 
 template<>
 inline std::string toString<char>( const char & value )
@@ -725,10 +728,13 @@ inline raw_enum_t toRawEnum( int i )
 inline raw_enum_t toRawEnum( const char * str )
 {
     raw_enum_t value{0};
-    char * to = reinterpret_cast<char *>( &value );
-    for( unsigned len = 0; str[len] != FIXPP_SOH && len < sizeof( value ); ++len )
+    if( str )
     {
-        to[ len ] = str[ len ];
+        char * to = reinterpret_cast<char *>( &value );
+        for( unsigned len = 0; str[len] != FIXPP_SOH && len < sizeof( value ); ++len )
+        {
+            to[ len ] = str[ len ];
+        }
     }
     return value;
 }

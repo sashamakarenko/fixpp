@@ -127,17 +127,20 @@ fi
 mkdir -p ${DSTDIR}
 
 # Extract enums
+all_enums=$( sed -n -e "s/FIX_ENUM_BEGIN.*( *\(.*\) *)/\1/gp" ${DEFDIR}/Fields.def )
+declare -A field_is_enum
 dst=${DEFDIR}/MessageEnums.tmp
 echo "  generating $dst"
 cp -f ${DEFDIR}/Messages.def $dst
-for e in $( sed -n -e "s/FIX_ENUM_BEGIN.*( *\(.*\) *)/\1/gp" ${DEFDIR}/Fields.def ); do
+for e in $all_enums; do
+    field_is_enum[$e]=y
     sed "s/FIX_MSG_FIELD *( *$e *)/FIX_MSG_ENUM_FIELD( $e )/g" -i $dst
 done
 
 dst=${DEFDIR}/GroupEnums.tmp
 echo "  generating $dst"
 cp -f ${DEFDIR}/Groups.def $dst
-for e in $( sed -n -e "s/FIX_ENUM_BEGIN.*( *\(.*\) *)/\1/gp" ${DEFDIR}/Fields.def ); do
+for e in $all_enums; do
     sed "s/FIX_MSG_FIELD *( *$e *)/FIX_MSG_ENUM_FIELD( $e )/g" -i $dst
 done
 
@@ -286,20 +289,45 @@ fi
 
 dst=${DSTDIR}/MessageBuilders.h
 echo "  updating $dst"
+declare -A fixtypes
+fixtypes[STRING]=std::string_view
 sed -n -e 's/.*FIX_FIELD_DECL.*( *\(.*\) *).*/\1/gp' ${DEFDIR}/Fields.def | while read l; do
     name=$( cut -f 1 -d , <<< "$l" | tr -d ' ' )
-    type=$( cut -f 3 -d , <<< "$l" | tr -d ' ' )
-    type=$( sed -n -e "s/typedef *\(.*\) $type;/\1/gp" < ${DSTDIR}/FixApi.h | tr -d ' ' )
-    if [[ $type = sohstr ]]; then
-        type=std::string_view
+    fieldtype=$( cut -f 3 -d , <<< "$l" | tr -d ' ' )
+    altargs=
+    if [[ $fieldtype = UTCTIMESTAMP || $fieldtype = TZTIMESTAMP ]]; then
+        altargs="TimestampKeeper \\& value, const TimePoint \\& time = ClockType::now()"
+        altvalues="value, time"
+    elif [[ $fieldtype = PRICE ]]; then
+        altargs="double value, unsigned precision"
+        altvalues="value, precision"
+    elif [[ $fieldtype = QTY ]]; then
+        altargs="size_t value"
+        altvalues="value"
+    elif [[ -n "${field_is_enum[$name]}" ]]; then
+        # echo "enum: $name"
+        altargs="const Field${name}::EnumType \\& item"
+        altvalues="item"
     fi
-    sed -e "/append$name(/s/ARGS/const $type \& value/g" -e "/append$name(/s/ VALUES / value /g" -i $dst
+    type="${fixtypes[$fieldtype]}"
+    if [[ -z "$type" ]]; then
+        type=$( sed -n -e "s/typedef *\(.*\) $fieldtype;/\1/gp" < ${DSTDIR}/FixApi.h | tr -d ' ' )
+        if [[ $type = sohstr ]]; then
+            type=std::string_view
+        fi
+        # echo "  new fix type: $name $fieldtype -> $type"
+        fixtypes[$fieldtype]=$type
+    fi
+    if [[ -z "${field_is_enum[$name]}" ]]; then
+        sed -e "/append$name(/s/ ARGS / const $type \& value /g" -e "/append$name(/s/ VALUES / value /g" -i $dst
+    fi
+    if [[ -n "$altargs" ]]; then
+        # echo "  new alt args: $name $fieldtype -> $altargs"
+        sed -e "/append$name(/s/ ALTARGS / $altargs /g" -e "/append$name(/s/ ALTVALUES / $altvalues /g" -i $dst
+    fi
 done
 
 sed "s/class HeaderBuilder: protected ReusableMessageBuilder/class HeaderBuilder: public HeaderTemplate/" -i $dst
-sed "/static HeaderBuilder /d" -i $dst
-sed -e "/getHeader-Header@/d" -e "/super-Header@/d" -i $dst
+sed -e "/static HeaderBuilder /d" -e "/ ALTARGS /d" -e "/ ARGS /d" -e "/getHeader-Header@/d" -e "/super-Header@/d"  -e "/finalizeWithSeqnum-Header@/d" -i $dst
 sed "s/-.*@//" -i $dst
 sed "/HeaderTemplate/,/Message/s/Safely//g" -i $dst
-
-sed /appendCheckSum/d -i $dst

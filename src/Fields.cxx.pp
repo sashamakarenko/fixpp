@@ -7,7 +7,8 @@
 #define FIX_FIELD_DECL( NAME, TAG, TYPE ) \
 const char * const Fix##NAME = #NAME;
 
-#define FIX_ENUM_BEGIN( NAME )
+#define FIX_ENUM_BEGIN( NAME ) \
+const NAME##Enums::ItemType NAME##Enums::BAD_ENUM( "BAD_ENUM", NAME##Enums::ITEM_BAD_ENUM );
 
 #define FIX_ENUM_DECL( NAME, E, V ) \
 const NAME##Enums::ItemType NAME##Enums::E( #E, V ); \

@@ -1090,18 +1090,20 @@ const char * const FixNested3PartySubIDType = "Nested3PartySubIDType";
 const char * const FixLegContractSettlMonth = "LegContractSettlMonth";
 const char * const FixLegInterestAccrualDate = "LegInterestAccrualDate";
 
-
+const AdvSideEnums::ItemType AdvSideEnums::BAD_ENUM( "BAD_ENUM", AdvSideEnums::ITEM_BAD_ENUM );
 const AdvSideEnums::ItemType AdvSideEnums::BUY( "BUY", 'B' );
 const AdvSideEnums::ItemType AdvSideEnums::SELL( "SELL", 'S' );
 const AdvSideEnums::ItemType AdvSideEnums::CROSS( "CROSS", 'X' );
 const AdvSideEnums::ItemType AdvSideEnums::TRADE( "TRADE", 'T' );
 
 
+const AdvTransTypeEnums::ItemType AdvTransTypeEnums::BAD_ENUM( "BAD_ENUM", AdvTransTypeEnums::ITEM_BAD_ENUM );
 const AdvTransTypeEnums::ItemType AdvTransTypeEnums::NEW( "NEW", SOHSTR(N) );
 const AdvTransTypeEnums::ItemType AdvTransTypeEnums::CANCEL( "CANCEL", SOHSTR(C) );
 const AdvTransTypeEnums::ItemType AdvTransTypeEnums::REPLACE( "REPLACE", SOHSTR(R) );
 
 
+const CommTypeEnums::ItemType CommTypeEnums::BAD_ENUM( "BAD_ENUM", CommTypeEnums::ITEM_BAD_ENUM );
 const CommTypeEnums::ItemType CommTypeEnums::PER_UNIT( "PER_UNIT", '1' );
 const CommTypeEnums::ItemType CommTypeEnums::PERCENTAGE( "PERCENTAGE", '2' );
 const CommTypeEnums::ItemType CommTypeEnums::ABSOLUTE( "ABSOLUTE", '3' );
@@ -1110,6 +1112,7 @@ const CommTypeEnums::ItemType CommTypeEnums::_5( "_5", '5' );
 const CommTypeEnums::ItemType CommTypeEnums::POINTS_PER_BOND_OR_CONTRACT_SUPPLY_CONTRACTMULTIPLIER( "POINTS_PER_BOND_OR_CONTRACT_SUPPLY_CONTRACTMULTIPLIER", '6' );
 
 
+const ExecInstEnums::ItemType ExecInstEnums::BAD_ENUM( "BAD_ENUM", ExecInstEnums::ITEM_BAD_ENUM );
 const ExecInstEnums::ItemType ExecInstEnums::NOT_HELD( "NOT_HELD", SOHSTR(1) );
 const ExecInstEnums::ItemType ExecInstEnums::WORK( "WORK", SOHSTR(2) );
 const ExecInstEnums::ItemType ExecInstEnums::GO_ALONG( "GO_ALONG", SOHSTR(3) );
@@ -1152,11 +1155,13 @@ const ExecInstEnums::ItemType ExecInstEnums::PEG_TO_LIMIT_PRICE( "PEG_TO_LIMIT_P
 const ExecInstEnums::ItemType ExecInstEnums::WORK_TO_TARGET_STRATEGY( "WORK_TO_TARGET_STRATEGY", SOHSTR(e) );
 
 
+const HandlInstEnums::ItemType HandlInstEnums::BAD_ENUM( "BAD_ENUM", HandlInstEnums::ITEM_BAD_ENUM );
 const HandlInstEnums::ItemType HandlInstEnums::AUTOMATED_EXECUTION_ORDER_PRIVATE_NO_BROKER_INTERVENTION( "AUTOMATED_EXECUTION_ORDER_PRIVATE_NO_BROKER_INTERVENTION", '1' );
 const HandlInstEnums::ItemType HandlInstEnums::AUTOMATED_EXECUTION_ORDER_PUBLIC_BROKER_INTERVENTION_OK( "AUTOMATED_EXECUTION_ORDER_PUBLIC_BROKER_INTERVENTION_OK", '2' );
 const HandlInstEnums::ItemType HandlInstEnums::MANUAL_ORDER_BEST_EXECUTION( "MANUAL_ORDER_BEST_EXECUTION", '3' );
 
 
+const SecurityIDSourceEnums::ItemType SecurityIDSourceEnums::BAD_ENUM( "BAD_ENUM", SecurityIDSourceEnums::ITEM_BAD_ENUM );
 const SecurityIDSourceEnums::ItemType SecurityIDSourceEnums::CUSIP( "CUSIP", SOHSTR(1) );
 const SecurityIDSourceEnums::ItemType SecurityIDSourceEnums::SEDOL( "SEDOL", SOHSTR(2) );
 const SecurityIDSourceEnums::ItemType SecurityIDSourceEnums::QUIK( "QUIK", SOHSTR(3) );
@@ -1178,27 +1183,32 @@ const SecurityIDSourceEnums::ItemType SecurityIDSourceEnums::ISDA_FPML_PRODUCT_S
 const SecurityIDSourceEnums::ItemType SecurityIDSourceEnums::OPTIONS_PRICE_REPORTING_AUTHORITY( "OPTIONS_PRICE_REPORTING_AUTHORITY", SOHSTR(J) );
 
 
+const IOIQltyIndEnums::ItemType IOIQltyIndEnums::BAD_ENUM( "BAD_ENUM", IOIQltyIndEnums::ITEM_BAD_ENUM );
 const IOIQltyIndEnums::ItemType IOIQltyIndEnums::LOW( "LOW", 'L' );
 const IOIQltyIndEnums::ItemType IOIQltyIndEnums::MEDIUM( "MEDIUM", 'M' );
 const IOIQltyIndEnums::ItemType IOIQltyIndEnums::HIGH( "HIGH", 'H' );
 
 
+const IOIQtyEnums::ItemType IOIQtyEnums::BAD_ENUM( "BAD_ENUM", IOIQtyEnums::ITEM_BAD_ENUM );
 const IOIQtyEnums::ItemType IOIQtyEnums::SMALL( "SMALL", SOHSTR(S) );
 const IOIQtyEnums::ItemType IOIQtyEnums::MEDIUM( "MEDIUM", SOHSTR(M) );
 const IOIQtyEnums::ItemType IOIQtyEnums::LARGE( "LARGE", SOHSTR(L) );
 
 
+const IOITransTypeEnums::ItemType IOITransTypeEnums::BAD_ENUM( "BAD_ENUM", IOITransTypeEnums::ITEM_BAD_ENUM );
 const IOITransTypeEnums::ItemType IOITransTypeEnums::NEW( "NEW", 'N' );
 const IOITransTypeEnums::ItemType IOITransTypeEnums::CANCEL( "CANCEL", 'C' );
 const IOITransTypeEnums::ItemType IOITransTypeEnums::REPLACE( "REPLACE", 'R' );
 
 
+const LastCapacityEnums::ItemType LastCapacityEnums::BAD_ENUM( "BAD_ENUM", LastCapacityEnums::ITEM_BAD_ENUM );
 const LastCapacityEnums::ItemType LastCapacityEnums::AGENT( "AGENT", '1' );
 const LastCapacityEnums::ItemType LastCapacityEnums::CROSS_AS_AGENT( "CROSS_AS_AGENT", '2' );
 const LastCapacityEnums::ItemType LastCapacityEnums::CROSS_AS_PRINCIPAL( "CROSS_AS_PRINCIPAL", '3' );
 const LastCapacityEnums::ItemType LastCapacityEnums::PRINCIPAL( "PRINCIPAL", '4' );
 
 
+const MsgTypeEnums::ItemType MsgTypeEnums::BAD_ENUM( "BAD_ENUM", MsgTypeEnums::ITEM_BAD_ENUM );
 const MsgTypeEnums::ItemType MsgTypeEnums::HEARTBEAT( "HEARTBEAT", SOHSTR(0) );
 const MsgTypeEnums::ItemType MsgTypeEnums::TEST_REQUEST( "TEST_REQUEST", SOHSTR(1) );
 const MsgTypeEnums::ItemType MsgTypeEnums::RESEND_REQUEST( "RESEND_REQUEST", SOHSTR(2) );
@@ -1294,6 +1304,7 @@ const MsgTypeEnums::ItemType MsgTypeEnums::COLLATERAL_INQUIRY_ACK( "COLLATERAL_I
 const MsgTypeEnums::ItemType MsgTypeEnums::CONFIRMATION_REQUEST( "CONFIRMATION_REQUEST", SOHSTR(BH) );
 
 
+const OrdStatusEnums::ItemType OrdStatusEnums::BAD_ENUM( "BAD_ENUM", OrdStatusEnums::ITEM_BAD_ENUM );
 const OrdStatusEnums::ItemType OrdStatusEnums::NEW( "NEW", '0' );
 const OrdStatusEnums::ItemType OrdStatusEnums::PARTIALLY_FILLED( "PARTIALLY_FILLED", '1' );
 const OrdStatusEnums::ItemType OrdStatusEnums::FILLED( "FILLED", '2' );
@@ -1310,6 +1321,7 @@ const OrdStatusEnums::ItemType OrdStatusEnums::ACCEPTED_FOR_BIDDING( "ACCEPTED_F
 const OrdStatusEnums::ItemType OrdStatusEnums::PENDING_REPLACE( "PENDING_REPLACE", 'E' );
 
 
+const OrdTypeEnums::ItemType OrdTypeEnums::BAD_ENUM( "BAD_ENUM", OrdTypeEnums::ITEM_BAD_ENUM );
 const OrdTypeEnums::ItemType OrdTypeEnums::MARKET( "MARKET", '1' );
 const OrdTypeEnums::ItemType OrdTypeEnums::LIMIT( "LIMIT", '2' );
 const OrdTypeEnums::ItemType OrdTypeEnums::STOP( "STOP", '3' );
@@ -1329,10 +1341,12 @@ const OrdTypeEnums::ItemType OrdTypeEnums::NEXT_FUND_VALUATION_POINT( "NEXT_FUND
 const OrdTypeEnums::ItemType OrdTypeEnums::PEGGED( "PEGGED", 'P' );
 
 
+const PossDupFlagEnums::ItemType PossDupFlagEnums::BAD_ENUM( "BAD_ENUM", PossDupFlagEnums::ITEM_BAD_ENUM );
 const PossDupFlagEnums::ItemType PossDupFlagEnums::YES( "YES", 'Y' );
 const PossDupFlagEnums::ItemType PossDupFlagEnums::NO( "NO", 'N' );
 
 
+const SideEnums::ItemType SideEnums::BAD_ENUM( "BAD_ENUM", SideEnums::ITEM_BAD_ENUM );
 const SideEnums::ItemType SideEnums::BUY( "BUY", '1' );
 const SideEnums::ItemType SideEnums::SELL( "SELL", '2' );
 const SideEnums::ItemType SideEnums::BUY_MINUS( "BUY_MINUS", '3' );
@@ -1351,6 +1365,7 @@ const SideEnums::ItemType SideEnums::LEND( "LEND", 'F' );
 const SideEnums::ItemType SideEnums::BORROW( "BORROW", 'G' );
 
 
+const TimeInForceEnums::ItemType TimeInForceEnums::BAD_ENUM( "BAD_ENUM", TimeInForceEnums::ITEM_BAD_ENUM );
 const TimeInForceEnums::ItemType TimeInForceEnums::DAY( "DAY", '0' );
 const TimeInForceEnums::ItemType TimeInForceEnums::GOOD_TILL_CANCEL( "GOOD_TILL_CANCEL", '1' );
 const TimeInForceEnums::ItemType TimeInForceEnums::AT_THE_OPENING( "AT_THE_OPENING", '2' );
@@ -1361,11 +1376,13 @@ const TimeInForceEnums::ItemType TimeInForceEnums::GOOD_TILL_DATE( "GOOD_TILL_DA
 const TimeInForceEnums::ItemType TimeInForceEnums::AT_THE_CLOSE( "AT_THE_CLOSE", '7' );
 
 
+const UrgencyEnums::ItemType UrgencyEnums::BAD_ENUM( "BAD_ENUM", UrgencyEnums::ITEM_BAD_ENUM );
 const UrgencyEnums::ItemType UrgencyEnums::NORMAL( "NORMAL", '0' );
 const UrgencyEnums::ItemType UrgencyEnums::FLASH( "FLASH", '1' );
 const UrgencyEnums::ItemType UrgencyEnums::BACKGROUND( "BACKGROUND", '2' );
 
 
+const SettlTypeEnums::ItemType SettlTypeEnums::BAD_ENUM( "BAD_ENUM", SettlTypeEnums::ITEM_BAD_ENUM );
 const SettlTypeEnums::ItemType SettlTypeEnums::REGULAR( "REGULAR", '0' );
 const SettlTypeEnums::ItemType SettlTypeEnums::CASH( "CASH", '1' );
 const SettlTypeEnums::ItemType SettlTypeEnums::NEXT_DAY( "NEXT_DAY", '2' );
@@ -1378,17 +1395,20 @@ const SettlTypeEnums::ItemType SettlTypeEnums::SELLERS_OPTION( "SELLERS_OPTION",
 const SettlTypeEnums::ItemType SettlTypeEnums::T_PLUS_5( "T_PLUS_5", '9' );
 
 
+const AllocTransTypeEnums::ItemType AllocTransTypeEnums::BAD_ENUM( "BAD_ENUM", AllocTransTypeEnums::ITEM_BAD_ENUM );
 const AllocTransTypeEnums::ItemType AllocTransTypeEnums::NEW( "NEW", '0' );
 const AllocTransTypeEnums::ItemType AllocTransTypeEnums::REPLACE( "REPLACE", '1' );
 const AllocTransTypeEnums::ItemType AllocTransTypeEnums::CANCEL( "CANCEL", '2' );
 
 
+const PositionEffectEnums::ItemType PositionEffectEnums::BAD_ENUM( "BAD_ENUM", PositionEffectEnums::ITEM_BAD_ENUM );
 const PositionEffectEnums::ItemType PositionEffectEnums::OPEN( "OPEN", 'O' );
 const PositionEffectEnums::ItemType PositionEffectEnums::CLOSE( "CLOSE", 'C' );
 const PositionEffectEnums::ItemType PositionEffectEnums::ROLLED( "ROLLED", 'R' );
 const PositionEffectEnums::ItemType PositionEffectEnums::FIFO( "FIFO", 'F' );
 
 
+const ProcessCodeEnums::ItemType ProcessCodeEnums::BAD_ENUM( "BAD_ENUM", ProcessCodeEnums::ITEM_BAD_ENUM );
 const ProcessCodeEnums::ItemType ProcessCodeEnums::REGULAR( "REGULAR", '0' );
 const ProcessCodeEnums::ItemType ProcessCodeEnums::SOFT_DOLLAR( "SOFT_DOLLAR", '1' );
 const ProcessCodeEnums::ItemType ProcessCodeEnums::STEP_IN( "STEP_IN", '2' );
@@ -1398,6 +1418,7 @@ const ProcessCodeEnums::ItemType ProcessCodeEnums::SOFT_DOLLAR_STEP_OUT( "SOFT_D
 const ProcessCodeEnums::ItemType ProcessCodeEnums::PLAN_SPONSOR( "PLAN_SPONSOR", '6' );
 
 
+const AllocStatusEnums::ItemType AllocStatusEnums::BAD_ENUM( "BAD_ENUM", AllocStatusEnums::ITEM_BAD_ENUM );
 const AllocStatusEnums::ItemType AllocStatusEnums::ACCEPTED( "ACCEPTED", 0 );
 const AllocStatusEnums::ItemType AllocStatusEnums::BLOCK_LEVEL_REJECT( "BLOCK_LEVEL_REJECT", 1 );
 const AllocStatusEnums::ItemType AllocStatusEnums::ACCOUNT_LEVEL_REJECT( "ACCOUNT_LEVEL_REJECT", 2 );
@@ -1406,6 +1427,7 @@ const AllocStatusEnums::ItemType AllocStatusEnums::INCOMPLETE( "INCOMPLETE", 4 )
 const AllocStatusEnums::ItemType AllocStatusEnums::REJECTED_BY_INTERMEDIARY( "REJECTED_BY_INTERMEDIARY", 5 );
 
 
+const AllocRejCodeEnums::ItemType AllocRejCodeEnums::BAD_ENUM( "BAD_ENUM", AllocRejCodeEnums::ITEM_BAD_ENUM );
 const AllocRejCodeEnums::ItemType AllocRejCodeEnums::UNKNOWN_ACCOUNT( "UNKNOWN_ACCOUNT", 0 );
 const AllocRejCodeEnums::ItemType AllocRejCodeEnums::INCORRECT_QUANTITY( "INCORRECT_QUANTITY", 1 );
 const AllocRejCodeEnums::ItemType AllocRejCodeEnums::INCORRECT_AVERAGE_PRICE( "INCORRECT_AVERAGE_PRICE", 2 );
@@ -1422,15 +1444,18 @@ const AllocRejCodeEnums::ItemType AllocRejCodeEnums::UNKNOWN_CLORDID( "UNKNOWN_C
 const AllocRejCodeEnums::ItemType AllocRejCodeEnums::WAREHOUSE_REQUEST_REJECTED( "WAREHOUSE_REQUEST_REJECTED", 13 );
 
 
+const EmailTypeEnums::ItemType EmailTypeEnums::BAD_ENUM( "BAD_ENUM", EmailTypeEnums::ITEM_BAD_ENUM );
 const EmailTypeEnums::ItemType EmailTypeEnums::NEW( "NEW", '0' );
 const EmailTypeEnums::ItemType EmailTypeEnums::REPLY( "REPLY", '1' );
 const EmailTypeEnums::ItemType EmailTypeEnums::ADMIN_REPLY( "ADMIN_REPLY", '2' );
 
 
+const PossResendEnums::ItemType PossResendEnums::BAD_ENUM( "BAD_ENUM", PossResendEnums::ITEM_BAD_ENUM );
 const PossResendEnums::ItemType PossResendEnums::YES( "YES", 'Y' );
 const PossResendEnums::ItemType PossResendEnums::NO( "NO", 'N' );
 
 
+const EncryptMethodEnums::ItemType EncryptMethodEnums::BAD_ENUM( "BAD_ENUM", EncryptMethodEnums::ITEM_BAD_ENUM );
 const EncryptMethodEnums::ItemType EncryptMethodEnums::NONE( "NONE", 0 );
 const EncryptMethodEnums::ItemType EncryptMethodEnums::PKCS( "PKCS", 1 );
 const EncryptMethodEnums::ItemType EncryptMethodEnums::DES( "DES", 2 );
@@ -1440,6 +1465,7 @@ const EncryptMethodEnums::ItemType EncryptMethodEnums::PGP_DES_MD5( "PGP_DES_MD5
 const EncryptMethodEnums::ItemType EncryptMethodEnums::PEM_DES_MD5( "PEM_DES_MD5", 6 );
 
 
+const CxlRejReasonEnums::ItemType CxlRejReasonEnums::BAD_ENUM( "BAD_ENUM", CxlRejReasonEnums::ITEM_BAD_ENUM );
 const CxlRejReasonEnums::ItemType CxlRejReasonEnums::TOO_LATE_TO_CANCEL( "TOO_LATE_TO_CANCEL", 0 );
 const CxlRejReasonEnums::ItemType CxlRejReasonEnums::UNKNOWN_ORDER( "UNKNOWN_ORDER", 1 );
 const CxlRejReasonEnums::ItemType CxlRejReasonEnums::BROKER( "BROKER", 2 );
@@ -1450,6 +1476,7 @@ const CxlRejReasonEnums::ItemType CxlRejReasonEnums::DUPLICATE_CLORDID( "DUPLICA
 const CxlRejReasonEnums::ItemType CxlRejReasonEnums::OTHER( "OTHER", 99 );
 
 
+const OrdRejReasonEnums::ItemType OrdRejReasonEnums::BAD_ENUM( "BAD_ENUM", OrdRejReasonEnums::ITEM_BAD_ENUM );
 const OrdRejReasonEnums::ItemType OrdRejReasonEnums::BROKER( "BROKER", 0 );
 const OrdRejReasonEnums::ItemType OrdRejReasonEnums::UNKNOWN_SYMBOL( "UNKNOWN_SYMBOL", 1 );
 const OrdRejReasonEnums::ItemType OrdRejReasonEnums::EXCHANGE_CLOSED( "EXCHANGE_CLOSED", 2 );
@@ -1468,6 +1495,7 @@ const OrdRejReasonEnums::ItemType OrdRejReasonEnums::UNKNOWN_ACCOUNT( "UNKNOWN_A
 const OrdRejReasonEnums::ItemType OrdRejReasonEnums::OTHER( "OTHER", 99 );
 
 
+const IOIQualifierEnums::ItemType IOIQualifierEnums::BAD_ENUM( "BAD_ENUM", IOIQualifierEnums::ITEM_BAD_ENUM );
 const IOIQualifierEnums::ItemType IOIQualifierEnums::ALL_OR_NONE( "ALL_OR_NONE", 'A' );
 const IOIQualifierEnums::ItemType IOIQualifierEnums::MARKET_ON_CLOSE( "MARKET_ON_CLOSE", 'B' );
 const IOIQualifierEnums::ItemType IOIQualifierEnums::AT_THE_CLOSE( "AT_THE_CLOSE", 'C' );
@@ -1488,22 +1516,27 @@ const IOIQualifierEnums::ItemType IOIQualifierEnums::AT_THE_MIDPOINT( "AT_THE_MI
 const IOIQualifierEnums::ItemType IOIQualifierEnums::PRE_OPEN( "PRE_OPEN", 'Z' );
 
 
+const ReportToExchEnums::ItemType ReportToExchEnums::BAD_ENUM( "BAD_ENUM", ReportToExchEnums::ITEM_BAD_ENUM );
 const ReportToExchEnums::ItemType ReportToExchEnums::YES( "YES", 'Y' );
 const ReportToExchEnums::ItemType ReportToExchEnums::NO( "NO", 'N' );
 
 
+const LocateReqdEnums::ItemType LocateReqdEnums::BAD_ENUM( "BAD_ENUM", LocateReqdEnums::ITEM_BAD_ENUM );
 const LocateReqdEnums::ItemType LocateReqdEnums::YES( "YES", 'Y' );
 const LocateReqdEnums::ItemType LocateReqdEnums::NO( "NO", 'N' );
 
 
+const ForexReqEnums::ItemType ForexReqEnums::BAD_ENUM( "BAD_ENUM", ForexReqEnums::ITEM_BAD_ENUM );
 const ForexReqEnums::ItemType ForexReqEnums::YES( "YES", 'Y' );
 const ForexReqEnums::ItemType ForexReqEnums::NO( "NO", 'N' );
 
 
+const GapFillFlagEnums::ItemType GapFillFlagEnums::BAD_ENUM( "BAD_ENUM", GapFillFlagEnums::ITEM_BAD_ENUM );
 const GapFillFlagEnums::ItemType GapFillFlagEnums::YES( "YES", 'Y' );
 const GapFillFlagEnums::ItemType GapFillFlagEnums::NO( "NO", 'N' );
 
 
+const DKReasonEnums::ItemType DKReasonEnums::BAD_ENUM( "BAD_ENUM", DKReasonEnums::ITEM_BAD_ENUM );
 const DKReasonEnums::ItemType DKReasonEnums::UNKNOWN_SYMBOL( "UNKNOWN_SYMBOL", 'A' );
 const DKReasonEnums::ItemType DKReasonEnums::WRONG_SIDE( "WRONG_SIDE", 'B' );
 const DKReasonEnums::ItemType DKReasonEnums::QUANTITY_EXCEEDS_ORDER( "QUANTITY_EXCEEDS_ORDER", 'C' );
@@ -1513,10 +1546,12 @@ const DKReasonEnums::ItemType DKReasonEnums::CALCULATION_DIFFERENCE( "CALCULATIO
 const DKReasonEnums::ItemType DKReasonEnums::OTHER( "OTHER", 'Z' );
 
 
+const IOINaturalFlagEnums::ItemType IOINaturalFlagEnums::BAD_ENUM( "BAD_ENUM", IOINaturalFlagEnums::ITEM_BAD_ENUM );
 const IOINaturalFlagEnums::ItemType IOINaturalFlagEnums::YES( "YES", 'Y' );
 const IOINaturalFlagEnums::ItemType IOINaturalFlagEnums::NO( "NO", 'N' );
 
 
+const MiscFeeTypeEnums::ItemType MiscFeeTypeEnums::BAD_ENUM( "BAD_ENUM", MiscFeeTypeEnums::ITEM_BAD_ENUM );
 const MiscFeeTypeEnums::ItemType MiscFeeTypeEnums::REGULATORY( "REGULATORY", SOHSTR(1) );
 const MiscFeeTypeEnums::ItemType MiscFeeTypeEnums::TAX( "TAX", SOHSTR(2) );
 const MiscFeeTypeEnums::ItemType MiscFeeTypeEnums::LOCAL_COMMISSION( "LOCAL_COMMISSION", SOHSTR(3) );
@@ -1531,10 +1566,12 @@ const MiscFeeTypeEnums::ItemType MiscFeeTypeEnums::CONVERSION( "CONVERSION", SOH
 const MiscFeeTypeEnums::ItemType MiscFeeTypeEnums::AGENT( "AGENT", SOHSTR(12) );
 
 
+const ResetSeqNumFlagEnums::ItemType ResetSeqNumFlagEnums::BAD_ENUM( "BAD_ENUM", ResetSeqNumFlagEnums::ITEM_BAD_ENUM );
 const ResetSeqNumFlagEnums::ItemType ResetSeqNumFlagEnums::YES( "YES", 'Y' );
 const ResetSeqNumFlagEnums::ItemType ResetSeqNumFlagEnums::NO( "NO", 'N' );
 
 
+const ExecTypeEnums::ItemType ExecTypeEnums::BAD_ENUM( "BAD_ENUM", ExecTypeEnums::ITEM_BAD_ENUM );
 const ExecTypeEnums::ItemType ExecTypeEnums::NEW( "NEW", '0' );
 const ExecTypeEnums::ItemType ExecTypeEnums::DONE_FOR_DAY( "DONE_FOR_DAY", '3' );
 const ExecTypeEnums::ItemType ExecTypeEnums::CANCELED( "CANCELED", '4' );
@@ -1554,26 +1591,31 @@ const ExecTypeEnums::ItemType ExecTypeEnums::TRADE_CANCEL( "TRADE_CANCEL", 'H' )
 const ExecTypeEnums::ItemType ExecTypeEnums::ORDER_STATUS( "ORDER_STATUS", 'I' );
 
 
+const SettlCurrFxRateCalcEnums::ItemType SettlCurrFxRateCalcEnums::BAD_ENUM( "BAD_ENUM", SettlCurrFxRateCalcEnums::ITEM_BAD_ENUM );
 const SettlCurrFxRateCalcEnums::ItemType SettlCurrFxRateCalcEnums::MULTIPLY( "MULTIPLY", 'M' );
 const SettlCurrFxRateCalcEnums::ItemType SettlCurrFxRateCalcEnums::DIVIDE( "DIVIDE", 'D' );
 
 
+const SettlInstModeEnums::ItemType SettlInstModeEnums::BAD_ENUM( "BAD_ENUM", SettlInstModeEnums::ITEM_BAD_ENUM );
 const SettlInstModeEnums::ItemType SettlInstModeEnums::STANDING_INSTRUCTIONS_PROVIDED( "STANDING_INSTRUCTIONS_PROVIDED", '1' );
 const SettlInstModeEnums::ItemType SettlInstModeEnums::SPECIFIC_ORDER_FOR_A_SINGLE_ACCOUNT( "SPECIFIC_ORDER_FOR_A_SINGLE_ACCOUNT", '4' );
 const SettlInstModeEnums::ItemType SettlInstModeEnums::REQUEST_REJECT( "REQUEST_REJECT", '5' );
 
 
+const SettlInstTransTypeEnums::ItemType SettlInstTransTypeEnums::BAD_ENUM( "BAD_ENUM", SettlInstTransTypeEnums::ITEM_BAD_ENUM );
 const SettlInstTransTypeEnums::ItemType SettlInstTransTypeEnums::NEW( "NEW", 'N' );
 const SettlInstTransTypeEnums::ItemType SettlInstTransTypeEnums::CANCEL( "CANCEL", 'C' );
 const SettlInstTransTypeEnums::ItemType SettlInstTransTypeEnums::REPLACE( "REPLACE", 'R' );
 const SettlInstTransTypeEnums::ItemType SettlInstTransTypeEnums::RESTATE( "RESTATE", 'T' );
 
 
+const SettlInstSourceEnums::ItemType SettlInstSourceEnums::BAD_ENUM( "BAD_ENUM", SettlInstSourceEnums::ITEM_BAD_ENUM );
 const SettlInstSourceEnums::ItemType SettlInstSourceEnums::BROKERS_INSTRUCTIONS( "BROKERS_INSTRUCTIONS", '1' );
 const SettlInstSourceEnums::ItemType SettlInstSourceEnums::INSTITUTIONS_INSTRUCTIONS( "INSTITUTIONS_INSTRUCTIONS", '2' );
 const SettlInstSourceEnums::ItemType SettlInstSourceEnums::INVESTOR( "INVESTOR", '3' );
 
 
+const SecurityTypeEnums::ItemType SecurityTypeEnums::BAD_ENUM( "BAD_ENUM", SecurityTypeEnums::ITEM_BAD_ENUM );
 const SecurityTypeEnums::ItemType SecurityTypeEnums::FUTURE( "FUTURE", SOHSTR(FUT) );
 const SecurityTypeEnums::ItemType SecurityTypeEnums::OPTION( "OPTION", SOHSTR(OPT) );
 const SecurityTypeEnums::ItemType SecurityTypeEnums::EURO_SUPRANATIONAL_COUPONS( "EURO_SUPRANATIONAL_COUPONS", SOHSTR(EUSUPRA) );
@@ -1671,6 +1713,7 @@ const SecurityTypeEnums::ItemType SecurityTypeEnums::MULTI_LEG_INSTRUMENT( "MULT
 const SecurityTypeEnums::ItemType SecurityTypeEnums::NO_SECURITY_TYPE( "NO_SECURITY_TYPE", SOHSTR(NONE) );
 
 
+const StandInstDbTypeEnums::ItemType StandInstDbTypeEnums::BAD_ENUM( "BAD_ENUM", StandInstDbTypeEnums::ITEM_BAD_ENUM );
 const StandInstDbTypeEnums::ItemType StandInstDbTypeEnums::OTHER( "OTHER", 0 );
 const StandInstDbTypeEnums::ItemType StandInstDbTypeEnums::DTC_SID( "DTC_SID", 1 );
 const StandInstDbTypeEnums::ItemType StandInstDbTypeEnums::THOMSON_ALERT( "THOMSON_ALERT", 2 );
@@ -1678,39 +1721,47 @@ const StandInstDbTypeEnums::ItemType StandInstDbTypeEnums::A_GLOBAL_CUSTODIAN( "
 const StandInstDbTypeEnums::ItemType StandInstDbTypeEnums::ACCOUNTNET( "ACCOUNTNET", 4 );
 
 
+const SettlDeliveryTypeEnums::ItemType SettlDeliveryTypeEnums::BAD_ENUM( "BAD_ENUM", SettlDeliveryTypeEnums::ITEM_BAD_ENUM );
 const SettlDeliveryTypeEnums::ItemType SettlDeliveryTypeEnums::VERSUS_PAYMENT_DELIVER( "VERSUS_PAYMENT_DELIVER", 0 );
 const SettlDeliveryTypeEnums::ItemType SettlDeliveryTypeEnums::FREE_DELIVER( "FREE_DELIVER", 1 );
 const SettlDeliveryTypeEnums::ItemType SettlDeliveryTypeEnums::TRI_PARTY( "TRI_PARTY", 2 );
 const SettlDeliveryTypeEnums::ItemType SettlDeliveryTypeEnums::HOLD_IN_CUSTODY( "HOLD_IN_CUSTODY", 3 );
 
 
+const AllocLinkTypeEnums::ItemType AllocLinkTypeEnums::BAD_ENUM( "BAD_ENUM", AllocLinkTypeEnums::ITEM_BAD_ENUM );
 const AllocLinkTypeEnums::ItemType AllocLinkTypeEnums::F_X_NETTING( "F_X_NETTING", 0 );
 const AllocLinkTypeEnums::ItemType AllocLinkTypeEnums::F_X_SWAP( "F_X_SWAP", 1 );
 
 
+const PutOrCallEnums::ItemType PutOrCallEnums::BAD_ENUM( "BAD_ENUM", PutOrCallEnums::ITEM_BAD_ENUM );
 const PutOrCallEnums::ItemType PutOrCallEnums::PUT( "PUT", 0 );
 const PutOrCallEnums::ItemType PutOrCallEnums::CALL( "CALL", 1 );
 
 
+const CoveredOrUncoveredEnums::ItemType CoveredOrUncoveredEnums::BAD_ENUM( "BAD_ENUM", CoveredOrUncoveredEnums::ITEM_BAD_ENUM );
 const CoveredOrUncoveredEnums::ItemType CoveredOrUncoveredEnums::COVERED( "COVERED", 0 );
 const CoveredOrUncoveredEnums::ItemType CoveredOrUncoveredEnums::UNCOVERED( "UNCOVERED", 1 );
 
 
+const NotifyBrokerOfCreditEnums::ItemType NotifyBrokerOfCreditEnums::BAD_ENUM( "BAD_ENUM", NotifyBrokerOfCreditEnums::ITEM_BAD_ENUM );
 const NotifyBrokerOfCreditEnums::ItemType NotifyBrokerOfCreditEnums::YES( "YES", 'Y' );
 const NotifyBrokerOfCreditEnums::ItemType NotifyBrokerOfCreditEnums::NO( "NO", 'N' );
 
 
+const AllocHandlInstEnums::ItemType AllocHandlInstEnums::BAD_ENUM( "BAD_ENUM", AllocHandlInstEnums::ITEM_BAD_ENUM );
 const AllocHandlInstEnums::ItemType AllocHandlInstEnums::MATCH( "MATCH", 1 );
 const AllocHandlInstEnums::ItemType AllocHandlInstEnums::FORWARD( "FORWARD", 2 );
 const AllocHandlInstEnums::ItemType AllocHandlInstEnums::FORWARD_AND_MATCH( "FORWARD_AND_MATCH", 3 );
 
 
+const RoutingTypeEnums::ItemType RoutingTypeEnums::BAD_ENUM( "BAD_ENUM", RoutingTypeEnums::ITEM_BAD_ENUM );
 const RoutingTypeEnums::ItemType RoutingTypeEnums::TARGET_FIRM( "TARGET_FIRM", 1 );
 const RoutingTypeEnums::ItemType RoutingTypeEnums::TARGET_LIST( "TARGET_LIST", 2 );
 const RoutingTypeEnums::ItemType RoutingTypeEnums::BLOCK_FIRM( "BLOCK_FIRM", 3 );
 const RoutingTypeEnums::ItemType RoutingTypeEnums::BLOCK_LIST( "BLOCK_LIST", 4 );
 
 
+const StipulationTypeEnums::ItemType StipulationTypeEnums::BAD_ENUM( "BAD_ENUM", StipulationTypeEnums::ITEM_BAD_ENUM );
 const StipulationTypeEnums::ItemType StipulationTypeEnums::AMT( "AMT", SOHSTR(AMT) );
 const StipulationTypeEnums::ItemType StipulationTypeEnums::AUTO_REINVESTMENT_AT_RATE_OR_BETTER( "AUTO_REINVESTMENT_AT_RATE_OR_BETTER", SOHSTR(AUTOREINV) );
 const StipulationTypeEnums::ItemType StipulationTypeEnums::BANK_QUALIFIED( "BANK_QUALIFIED", SOHSTR(BANKQUAL) );
@@ -1763,6 +1814,7 @@ const StipulationTypeEnums::ItemType StipulationTypeEnums::WHOLE_POOL( "WHOLE_PO
 const StipulationTypeEnums::ItemType StipulationTypeEnums::YIELD_RANGE( "YIELD_RANGE", SOHSTR(YIELD) );
 
 
+const YieldTypeEnums::ItemType YieldTypeEnums::BAD_ENUM( "BAD_ENUM", YieldTypeEnums::ITEM_BAD_ENUM );
 const YieldTypeEnums::ItemType YieldTypeEnums::AFTER_TAX_YIELD( "AFTER_TAX_YIELD", SOHSTR(AFTERTAX) );
 const YieldTypeEnums::ItemType YieldTypeEnums::ANNUAL_YIELD( "ANNUAL_YIELD", SOHSTR(ANNUAL) );
 const YieldTypeEnums::ItemType YieldTypeEnums::YIELD_AT_ISSUE( "YIELD_AT_ISSUE", SOHSTR(ATISSUE) );
@@ -1799,23 +1851,28 @@ const YieldTypeEnums::ItemType YieldTypeEnums::YIELD_VALUE_OF_1_32( "YIELD_VALUE
 const YieldTypeEnums::ItemType YieldTypeEnums::YIELD_TO_WORST( "YIELD_TO_WORST", SOHSTR(WORST) );
 
 
+const TradedFlatSwitchEnums::ItemType TradedFlatSwitchEnums::BAD_ENUM( "BAD_ENUM", TradedFlatSwitchEnums::ITEM_BAD_ENUM );
 const TradedFlatSwitchEnums::ItemType TradedFlatSwitchEnums::YES( "YES", 'Y' );
 const TradedFlatSwitchEnums::ItemType TradedFlatSwitchEnums::NO( "NO", 'N' );
 
 
+const SubscriptionRequestTypeEnums::ItemType SubscriptionRequestTypeEnums::BAD_ENUM( "BAD_ENUM", SubscriptionRequestTypeEnums::ITEM_BAD_ENUM );
 const SubscriptionRequestTypeEnums::ItemType SubscriptionRequestTypeEnums::SNAPSHOT( "SNAPSHOT", '0' );
 const SubscriptionRequestTypeEnums::ItemType SubscriptionRequestTypeEnums::SNAPSHOT_PLUS_UPDATES( "SNAPSHOT_PLUS_UPDATES", '1' );
 const SubscriptionRequestTypeEnums::ItemType SubscriptionRequestTypeEnums::DISABLE_PREVIOUS_SNAPSHOT_PLUS_UPDATE_REQUEST( "DISABLE_PREVIOUS_SNAPSHOT_PLUS_UPDATE_REQUEST", '2' );
 
 
+const MDUpdateTypeEnums::ItemType MDUpdateTypeEnums::BAD_ENUM( "BAD_ENUM", MDUpdateTypeEnums::ITEM_BAD_ENUM );
 const MDUpdateTypeEnums::ItemType MDUpdateTypeEnums::FULL_REFRESH( "FULL_REFRESH", 0 );
 const MDUpdateTypeEnums::ItemType MDUpdateTypeEnums::INCREMENTAL_REFRESH( "INCREMENTAL_REFRESH", 1 );
 
 
+const AggregatedBookEnums::ItemType AggregatedBookEnums::BAD_ENUM( "BAD_ENUM", AggregatedBookEnums::ITEM_BAD_ENUM );
 const AggregatedBookEnums::ItemType AggregatedBookEnums::YES( "YES", 'Y' );
 const AggregatedBookEnums::ItemType AggregatedBookEnums::NO( "NO", 'N' );
 
 
+const MDEntryTypeEnums::ItemType MDEntryTypeEnums::BAD_ENUM( "BAD_ENUM", MDEntryTypeEnums::ITEM_BAD_ENUM );
 const MDEntryTypeEnums::ItemType MDEntryTypeEnums::BID( "BID", '0' );
 const MDEntryTypeEnums::ItemType MDEntryTypeEnums::OFFER( "OFFER", '1' );
 const MDEntryTypeEnums::ItemType MDEntryTypeEnums::TRADE( "TRADE", '2' );
@@ -1831,12 +1888,14 @@ const MDEntryTypeEnums::ItemType MDEntryTypeEnums::TRADE_VOLUME( "TRADE_VOLUME",
 const MDEntryTypeEnums::ItemType MDEntryTypeEnums::OPEN_INTEREST( "OPEN_INTEREST", 'C' );
 
 
+const TickDirectionEnums::ItemType TickDirectionEnums::BAD_ENUM( "BAD_ENUM", TickDirectionEnums::ITEM_BAD_ENUM );
 const TickDirectionEnums::ItemType TickDirectionEnums::PLUS_TICK( "PLUS_TICK", '0' );
 const TickDirectionEnums::ItemType TickDirectionEnums::ZERO_PLUS_TICK( "ZERO_PLUS_TICK", '1' );
 const TickDirectionEnums::ItemType TickDirectionEnums::MINUS_TICK( "MINUS_TICK", '2' );
 const TickDirectionEnums::ItemType TickDirectionEnums::ZERO_MINUS_TICK( "ZERO_MINUS_TICK", '3' );
 
 
+const QuoteConditionEnums::ItemType QuoteConditionEnums::BAD_ENUM( "BAD_ENUM", QuoteConditionEnums::ITEM_BAD_ENUM );
 const QuoteConditionEnums::ItemType QuoteConditionEnums::OPEN( "OPEN", SOHSTR(A) );
 const QuoteConditionEnums::ItemType QuoteConditionEnums::CLOSED( "CLOSED", SOHSTR(B) );
 const QuoteConditionEnums::ItemType QuoteConditionEnums::EXCHANGE_BEST( "EXCHANGE_BEST", SOHSTR(C) );
@@ -1848,6 +1907,7 @@ const QuoteConditionEnums::ItemType QuoteConditionEnums::FAST_TRADING( "FAST_TRA
 const QuoteConditionEnums::ItemType QuoteConditionEnums::NON_FIRM( "NON_FIRM", SOHSTR(I) );
 
 
+const TradeConditionEnums::ItemType TradeConditionEnums::BAD_ENUM( "BAD_ENUM", TradeConditionEnums::ITEM_BAD_ENUM );
 const TradeConditionEnums::ItemType TradeConditionEnums::CASH( "CASH", SOHSTR(A) );
 const TradeConditionEnums::ItemType TradeConditionEnums::AVERAGE_PRICE_TRADE( "AVERAGE_PRICE_TRADE", SOHSTR(B) );
 const TradeConditionEnums::ItemType TradeConditionEnums::CASH_TRADE( "CASH_TRADE", SOHSTR(C) );
@@ -1867,11 +1927,13 @@ const TradeConditionEnums::ItemType TradeConditionEnums::IMBALANCE_MORE_SELLERS(
 const TradeConditionEnums::ItemType TradeConditionEnums::OPENING_PRICE( "OPENING_PRICE", SOHSTR(R) );
 
 
+const MDUpdateActionEnums::ItemType MDUpdateActionEnums::BAD_ENUM( "BAD_ENUM", MDUpdateActionEnums::ITEM_BAD_ENUM );
 const MDUpdateActionEnums::ItemType MDUpdateActionEnums::NEW( "NEW", '0' );
 const MDUpdateActionEnums::ItemType MDUpdateActionEnums::CHANGE( "CHANGE", '1' );
 const MDUpdateActionEnums::ItemType MDUpdateActionEnums::DELETE( "DELETE", '2' );
 
 
+const MDReqRejReasonEnums::ItemType MDReqRejReasonEnums::BAD_ENUM( "BAD_ENUM", MDReqRejReasonEnums::ITEM_BAD_ENUM );
 const MDReqRejReasonEnums::ItemType MDReqRejReasonEnums::UNKNOWN_SYMBOL( "UNKNOWN_SYMBOL", '0' );
 const MDReqRejReasonEnums::ItemType MDReqRejReasonEnums::DUPLICATE_MDREQID( "DUPLICATE_MDREQID", '1' );
 const MDReqRejReasonEnums::ItemType MDReqRejReasonEnums::INSUFFICIENT_BANDWIDTH( "INSUFFICIENT_BANDWIDTH", '2' );
@@ -1887,10 +1949,12 @@ const MDReqRejReasonEnums::ItemType MDReqRejReasonEnums::UNSUPPORTED_OPENCLOSESE
 const MDReqRejReasonEnums::ItemType MDReqRejReasonEnums::UNSUPPORTED_MDIMPLICITDELETE( "UNSUPPORTED_MDIMPLICITDELETE", 'C' );
 
 
+const DeleteReasonEnums::ItemType DeleteReasonEnums::BAD_ENUM( "BAD_ENUM", DeleteReasonEnums::ITEM_BAD_ENUM );
 const DeleteReasonEnums::ItemType DeleteReasonEnums::CANCELATION( "CANCELATION", '0' );
 const DeleteReasonEnums::ItemType DeleteReasonEnums::ERROR( "ERROR", '1' );
 
 
+const OpenCloseSettlFlagEnums::ItemType OpenCloseSettlFlagEnums::BAD_ENUM( "BAD_ENUM", OpenCloseSettlFlagEnums::ITEM_BAD_ENUM );
 const OpenCloseSettlFlagEnums::ItemType OpenCloseSettlFlagEnums::DAILY_OPEN( "DAILY_OPEN", SOHSTR(0) );
 const OpenCloseSettlFlagEnums::ItemType OpenCloseSettlFlagEnums::SESSION_OPEN( "SESSION_OPEN", SOHSTR(1) );
 const OpenCloseSettlFlagEnums::ItemType OpenCloseSettlFlagEnums::DELIVERY_SETTLEMENT_ENTRY( "DELIVERY_SETTLEMENT_ENTRY", SOHSTR(2) );
@@ -1899,10 +1963,12 @@ const OpenCloseSettlFlagEnums::ItemType OpenCloseSettlFlagEnums::ENTRY_FROM_PREV
 const OpenCloseSettlFlagEnums::ItemType OpenCloseSettlFlagEnums::THEORETICAL_PRICE_VALUE( "THEORETICAL_PRICE_VALUE", SOHSTR(5) );
 
 
+const FinancialStatusEnums::ItemType FinancialStatusEnums::BAD_ENUM( "BAD_ENUM", FinancialStatusEnums::ITEM_BAD_ENUM );
 const FinancialStatusEnums::ItemType FinancialStatusEnums::BANKRUPT( "BANKRUPT", SOHSTR(1) );
 const FinancialStatusEnums::ItemType FinancialStatusEnums::PENDING_DELISTING( "PENDING_DELISTING", SOHSTR(2) );
 
 
+const CorporateActionEnums::ItemType CorporateActionEnums::BAD_ENUM( "BAD_ENUM", CorporateActionEnums::ITEM_BAD_ENUM );
 const CorporateActionEnums::ItemType CorporateActionEnums::EX_DIVIDEND( "EX_DIVIDEND", SOHSTR(A) );
 const CorporateActionEnums::ItemType CorporateActionEnums::EX_DISTRIBUTION( "EX_DISTRIBUTION", SOHSTR(B) );
 const CorporateActionEnums::ItemType CorporateActionEnums::EX_RIGHTS( "EX_RIGHTS", SOHSTR(C) );
@@ -1910,6 +1976,7 @@ const CorporateActionEnums::ItemType CorporateActionEnums::NEW( "NEW", SOHSTR(D)
 const CorporateActionEnums::ItemType CorporateActionEnums::EX_INTEREST( "EX_INTEREST", SOHSTR(E) );
 
 
+const QuoteStatusEnums::ItemType QuoteStatusEnums::BAD_ENUM( "BAD_ENUM", QuoteStatusEnums::ITEM_BAD_ENUM );
 const QuoteStatusEnums::ItemType QuoteStatusEnums::ACCEPTED( "ACCEPTED", 0 );
 const QuoteStatusEnums::ItemType QuoteStatusEnums::CANCELED_FOR_SYMBOL( "CANCELED_FOR_SYMBOL", 1 );
 const QuoteStatusEnums::ItemType QuoteStatusEnums::CANCELED_FOR_SECURITY_TYPE( "CANCELED_FOR_SECURITY_TYPE", 2 );
@@ -1928,12 +1995,14 @@ const QuoteStatusEnums::ItemType QuoteStatusEnums::CANCELED_DUE_TO_LOCK_MARKET( 
 const QuoteStatusEnums::ItemType QuoteStatusEnums::CANCELED_DUE_TO_CROSS_MARKET( "CANCELED_DUE_TO_CROSS_MARKET", 15 );
 
 
+const QuoteCancelTypeEnums::ItemType QuoteCancelTypeEnums::BAD_ENUM( "BAD_ENUM", QuoteCancelTypeEnums::ITEM_BAD_ENUM );
 const QuoteCancelTypeEnums::ItemType QuoteCancelTypeEnums::CANCEL_FOR_SYMBOL( "CANCEL_FOR_SYMBOL", 1 );
 const QuoteCancelTypeEnums::ItemType QuoteCancelTypeEnums::CANCEL_FOR_SECURITY_TYPE( "CANCEL_FOR_SECURITY_TYPE", 2 );
 const QuoteCancelTypeEnums::ItemType QuoteCancelTypeEnums::CANCEL_FOR_UNDERLYING_SYMBOL( "CANCEL_FOR_UNDERLYING_SYMBOL", 3 );
 const QuoteCancelTypeEnums::ItemType QuoteCancelTypeEnums::CANCEL_ALL_QUOTES( "CANCEL_ALL_QUOTES", 4 );
 
 
+const QuoteRejectReasonEnums::ItemType QuoteRejectReasonEnums::BAD_ENUM( "BAD_ENUM", QuoteRejectReasonEnums::ITEM_BAD_ENUM );
 const QuoteRejectReasonEnums::ItemType QuoteRejectReasonEnums::UNKNOWN_SYMBOL( "UNKNOWN_SYMBOL", 1 );
 const QuoteRejectReasonEnums::ItemType QuoteRejectReasonEnums::EXCHANGE( "EXCHANGE", 2 );
 const QuoteRejectReasonEnums::ItemType QuoteRejectReasonEnums::QUOTE_REQUEST_EXCEEDS_LIMIT( "QUOTE_REQUEST_EXCEEDS_LIMIT", 3 );
@@ -1946,31 +2015,37 @@ const QuoteRejectReasonEnums::ItemType QuoteRejectReasonEnums::NOT_AUTHORIZED_TO
 const QuoteRejectReasonEnums::ItemType QuoteRejectReasonEnums::OTHER( "OTHER", 99 );
 
 
+const QuoteResponseLevelEnums::ItemType QuoteResponseLevelEnums::BAD_ENUM( "BAD_ENUM", QuoteResponseLevelEnums::ITEM_BAD_ENUM );
 const QuoteResponseLevelEnums::ItemType QuoteResponseLevelEnums::NO_ACKNOWLEDGEMENT( "NO_ACKNOWLEDGEMENT", 0 );
 const QuoteResponseLevelEnums::ItemType QuoteResponseLevelEnums::ACKNOWLEDGE_ONLY_NEGATIVE_OR_ERRONEOUS_QUOTES( "ACKNOWLEDGE_ONLY_NEGATIVE_OR_ERRONEOUS_QUOTES", 1 );
 const QuoteResponseLevelEnums::ItemType QuoteResponseLevelEnums::ACKNOWLEDGE_EACH_QUOTE_MESSAGES( "ACKNOWLEDGE_EACH_QUOTE_MESSAGES", 2 );
 
 
+const QuoteRequestTypeEnums::ItemType QuoteRequestTypeEnums::BAD_ENUM( "BAD_ENUM", QuoteRequestTypeEnums::ITEM_BAD_ENUM );
 const QuoteRequestTypeEnums::ItemType QuoteRequestTypeEnums::MANUAL( "MANUAL", 1 );
 const QuoteRequestTypeEnums::ItemType QuoteRequestTypeEnums::AUTOMATIC( "AUTOMATIC", 2 );
 
 
+const SecurityRequestTypeEnums::ItemType SecurityRequestTypeEnums::BAD_ENUM( "BAD_ENUM", SecurityRequestTypeEnums::ITEM_BAD_ENUM );
 const SecurityRequestTypeEnums::ItemType SecurityRequestTypeEnums::REQUEST_SECURITY_IDENTITY_AND_SPECIFICATIONS( "REQUEST_SECURITY_IDENTITY_AND_SPECIFICATIONS", 0 );
 const SecurityRequestTypeEnums::ItemType SecurityRequestTypeEnums::REQUEST_SECURITY_IDENTITY_FOR_THE_SPECIFICATIONS_PROVIDED( "REQUEST_SECURITY_IDENTITY_FOR_THE_SPECIFICATIONS_PROVIDED", 1 );
 const SecurityRequestTypeEnums::ItemType SecurityRequestTypeEnums::REQUEST_LIST_SECURITY_TYPES( "REQUEST_LIST_SECURITY_TYPES", 2 );
 const SecurityRequestTypeEnums::ItemType SecurityRequestTypeEnums::REQUEST_LIST_SECURITIES( "REQUEST_LIST_SECURITIES", 3 );
 
 
+const SecurityResponseTypeEnums::ItemType SecurityResponseTypeEnums::BAD_ENUM( "BAD_ENUM", SecurityResponseTypeEnums::ITEM_BAD_ENUM );
 const SecurityResponseTypeEnums::ItemType SecurityResponseTypeEnums::ACCEPT_SECURITY_PROPOSAL_AS_IS( "ACCEPT_SECURITY_PROPOSAL_AS_IS", 1 );
 const SecurityResponseTypeEnums::ItemType SecurityResponseTypeEnums::ACCEPT_SECURITY_PROPOSAL_WITH_REVISIONS_AS_INDICATED_IN_THE_MESSAGE( "ACCEPT_SECURITY_PROPOSAL_WITH_REVISIONS_AS_INDICATED_IN_THE_MESSAGE", 2 );
 const SecurityResponseTypeEnums::ItemType SecurityResponseTypeEnums::REJECT_SECURITY_PROPOSAL( "REJECT_SECURITY_PROPOSAL", 5 );
 const SecurityResponseTypeEnums::ItemType SecurityResponseTypeEnums::CAN_NOT_MATCH_SELECTION_CRITERIA( "CAN_NOT_MATCH_SELECTION_CRITERIA", 6 );
 
 
+const UnsolicitedIndicatorEnums::ItemType UnsolicitedIndicatorEnums::BAD_ENUM( "BAD_ENUM", UnsolicitedIndicatorEnums::ITEM_BAD_ENUM );
 const UnsolicitedIndicatorEnums::ItemType UnsolicitedIndicatorEnums::YES( "YES", 'Y' );
 const UnsolicitedIndicatorEnums::ItemType UnsolicitedIndicatorEnums::NO( "NO", 'N' );
 
 
+const SecurityTradingStatusEnums::ItemType SecurityTradingStatusEnums::BAD_ENUM( "BAD_ENUM", SecurityTradingStatusEnums::ITEM_BAD_ENUM );
 const SecurityTradingStatusEnums::ItemType SecurityTradingStatusEnums::OPENING_DELAY( "OPENING_DELAY", 1 );
 const SecurityTradingStatusEnums::ItemType SecurityTradingStatusEnums::TRADING_HALT( "TRADING_HALT", 2 );
 const SecurityTradingStatusEnums::ItemType SecurityTradingStatusEnums::RESUME( "RESUME", 3 );
@@ -1995,6 +2070,7 @@ const SecurityTradingStatusEnums::ItemType SecurityTradingStatusEnums::OPENING_R
 const SecurityTradingStatusEnums::ItemType SecurityTradingStatusEnums::FAST_MARKET( "FAST_MARKET", 23 );
 
 
+const HaltReasonCharEnums::ItemType HaltReasonCharEnums::BAD_ENUM( "BAD_ENUM", HaltReasonCharEnums::ITEM_BAD_ENUM );
 const HaltReasonCharEnums::ItemType HaltReasonCharEnums::ORDER_IMBALANCE( "ORDER_IMBALANCE", 'I' );
 const HaltReasonCharEnums::ItemType HaltReasonCharEnums::EQUIPMENT_CHANGEOVER( "EQUIPMENT_CHANGEOVER", 'X' );
 const HaltReasonCharEnums::ItemType HaltReasonCharEnums::NEWS_PENDING( "NEWS_PENDING", 'P' );
@@ -2003,29 +2079,35 @@ const HaltReasonCharEnums::ItemType HaltReasonCharEnums::ORDER_INFLUX( "ORDER_IN
 const HaltReasonCharEnums::ItemType HaltReasonCharEnums::ADDITIONAL_INFORMATION( "ADDITIONAL_INFORMATION", 'M' );
 
 
+const InViewOfCommonEnums::ItemType InViewOfCommonEnums::BAD_ENUM( "BAD_ENUM", InViewOfCommonEnums::ITEM_BAD_ENUM );
 const InViewOfCommonEnums::ItemType InViewOfCommonEnums::YES( "YES", 'Y' );
 const InViewOfCommonEnums::ItemType InViewOfCommonEnums::NO( "NO", 'N' );
 
 
+const DueToRelatedEnums::ItemType DueToRelatedEnums::BAD_ENUM( "BAD_ENUM", DueToRelatedEnums::ITEM_BAD_ENUM );
 const DueToRelatedEnums::ItemType DueToRelatedEnums::YES( "YES", 'Y' );
 const DueToRelatedEnums::ItemType DueToRelatedEnums::NO( "NO", 'N' );
 
 
+const AdjustmentEnums::ItemType AdjustmentEnums::BAD_ENUM( "BAD_ENUM", AdjustmentEnums::ITEM_BAD_ENUM );
 const AdjustmentEnums::ItemType AdjustmentEnums::CANCEL( "CANCEL", 1 );
 const AdjustmentEnums::ItemType AdjustmentEnums::ERROR( "ERROR", 2 );
 const AdjustmentEnums::ItemType AdjustmentEnums::CORRECTION( "CORRECTION", 3 );
 
 
+const TradSesMethodEnums::ItemType TradSesMethodEnums::BAD_ENUM( "BAD_ENUM", TradSesMethodEnums::ITEM_BAD_ENUM );
 const TradSesMethodEnums::ItemType TradSesMethodEnums::ELECTRONIC( "ELECTRONIC", 1 );
 const TradSesMethodEnums::ItemType TradSesMethodEnums::OPEN_OUTCRY( "OPEN_OUTCRY", 2 );
 const TradSesMethodEnums::ItemType TradSesMethodEnums::TWO_PARTY( "TWO_PARTY", 3 );
 
 
+const TradSesModeEnums::ItemType TradSesModeEnums::BAD_ENUM( "BAD_ENUM", TradSesModeEnums::ITEM_BAD_ENUM );
 const TradSesModeEnums::ItemType TradSesModeEnums::TESTING( "TESTING", 1 );
 const TradSesModeEnums::ItemType TradSesModeEnums::SIMULATED( "SIMULATED", 2 );
 const TradSesModeEnums::ItemType TradSesModeEnums::PRODUCTION( "PRODUCTION", 3 );
 
 
+const TradSesStatusEnums::ItemType TradSesStatusEnums::BAD_ENUM( "BAD_ENUM", TradSesStatusEnums::ITEM_BAD_ENUM );
 const TradSesStatusEnums::ItemType TradSesStatusEnums::UNKNOWN( "UNKNOWN", 0 );
 const TradSesStatusEnums::ItemType TradSesStatusEnums::HALTED( "HALTED", 1 );
 const TradSesStatusEnums::ItemType TradSesStatusEnums::OPEN( "OPEN", 2 );
@@ -2035,12 +2117,14 @@ const TradSesStatusEnums::ItemType TradSesStatusEnums::PRE_CLOSE( "PRE_CLOSE", 5
 const TradSesStatusEnums::ItemType TradSesStatusEnums::REQUEST_REJECTED( "REQUEST_REJECTED", 6 );
 
 
+const MessageEncodingEnums::ItemType MessageEncodingEnums::BAD_ENUM( "BAD_ENUM", MessageEncodingEnums::ITEM_BAD_ENUM );
 const MessageEncodingEnums::ItemType MessageEncodingEnums::JIS( "JIS", SOHSTR(ISO-2022-JP) );
 const MessageEncodingEnums::ItemType MessageEncodingEnums::EUC( "EUC", SOHSTR(EUC-JP) );
 const MessageEncodingEnums::ItemType MessageEncodingEnums::FOR_USING_SJIS( "FOR_USING_SJIS", SOHSTR(Shift_JIS) );
 const MessageEncodingEnums::ItemType MessageEncodingEnums::UNICODE( "UNICODE", SOHSTR(UTF-8) );
 
 
+const SessionRejectReasonEnums::ItemType SessionRejectReasonEnums::BAD_ENUM( "BAD_ENUM", SessionRejectReasonEnums::ITEM_BAD_ENUM );
 const SessionRejectReasonEnums::ItemType SessionRejectReasonEnums::INVALID_TAG_NUMBER( "INVALID_TAG_NUMBER", 0 );
 const SessionRejectReasonEnums::ItemType SessionRejectReasonEnums::REQUIRED_TAG_MISSING( "REQUIRED_TAG_MISSING", 1 );
 const SessionRejectReasonEnums::ItemType SessionRejectReasonEnums::TAG_NOT_DEFINED_FOR_THIS_MESSAGE_TYPE( "TAG_NOT_DEFINED_FOR_THIS_MESSAGE_TYPE", 2 );
@@ -2062,14 +2146,17 @@ const SessionRejectReasonEnums::ItemType SessionRejectReasonEnums::NON_DATA_VALU
 const SessionRejectReasonEnums::ItemType SessionRejectReasonEnums::OTHER( "OTHER", 99 );
 
 
+const BidRequestTransTypeEnums::ItemType BidRequestTransTypeEnums::BAD_ENUM( "BAD_ENUM", BidRequestTransTypeEnums::ITEM_BAD_ENUM );
 const BidRequestTransTypeEnums::ItemType BidRequestTransTypeEnums::NEW( "NEW", 'N' );
 const BidRequestTransTypeEnums::ItemType BidRequestTransTypeEnums::CANCEL( "CANCEL", 'C' );
 
 
+const SolicitedFlagEnums::ItemType SolicitedFlagEnums::BAD_ENUM( "BAD_ENUM", SolicitedFlagEnums::ITEM_BAD_ENUM );
 const SolicitedFlagEnums::ItemType SolicitedFlagEnums::YES( "YES", 'Y' );
 const SolicitedFlagEnums::ItemType SolicitedFlagEnums::NO( "NO", 'N' );
 
 
+const ExecRestatementReasonEnums::ItemType ExecRestatementReasonEnums::BAD_ENUM( "BAD_ENUM", ExecRestatementReasonEnums::ITEM_BAD_ENUM );
 const ExecRestatementReasonEnums::ItemType ExecRestatementReasonEnums::GT_CORPORATE_ACTION( "GT_CORPORATE_ACTION", 0 );
 const ExecRestatementReasonEnums::ItemType ExecRestatementReasonEnums::GT_RENEWAL( "GT_RENEWAL", 1 );
 const ExecRestatementReasonEnums::ItemType ExecRestatementReasonEnums::VERBAL_CHANGE( "VERBAL_CHANGE", 2 );
@@ -2084,6 +2171,7 @@ const ExecRestatementReasonEnums::ItemType ExecRestatementReasonEnums::WAREHOUSE
 const ExecRestatementReasonEnums::ItemType ExecRestatementReasonEnums::OTHER( "OTHER", 99 );
 
 
+const BusinessRejectReasonEnums::ItemType BusinessRejectReasonEnums::BAD_ENUM( "BAD_ENUM", BusinessRejectReasonEnums::ITEM_BAD_ENUM );
 const BusinessRejectReasonEnums::ItemType BusinessRejectReasonEnums::OTHER( "OTHER", 0 );
 const BusinessRejectReasonEnums::ItemType BusinessRejectReasonEnums::UNKOWN_ID( "UNKOWN_ID", 1 );
 const BusinessRejectReasonEnums::ItemType BusinessRejectReasonEnums::UNKNOWN_SECURITY( "UNKNOWN_SECURITY", 2 );
@@ -2094,10 +2182,12 @@ const BusinessRejectReasonEnums::ItemType BusinessRejectReasonEnums::NOT_AUTHORI
 const BusinessRejectReasonEnums::ItemType BusinessRejectReasonEnums::DELIVERTO_FIRM_NOT_AVAILABLE_AT_THIS_TIME( "DELIVERTO_FIRM_NOT_AVAILABLE_AT_THIS_TIME", 7 );
 
 
+const MsgDirectionEnums::ItemType MsgDirectionEnums::BAD_ENUM( "BAD_ENUM", MsgDirectionEnums::ITEM_BAD_ENUM );
 const MsgDirectionEnums::ItemType MsgDirectionEnums::SEND( "SEND", 'S' );
 const MsgDirectionEnums::ItemType MsgDirectionEnums::RECEIVE( "RECEIVE", 'R' );
 
 
+const DiscretionInstEnums::ItemType DiscretionInstEnums::BAD_ENUM( "BAD_ENUM", DiscretionInstEnums::ITEM_BAD_ENUM );
 const DiscretionInstEnums::ItemType DiscretionInstEnums::RELATED_TO_DISPLAYED_PRICE( "RELATED_TO_DISPLAYED_PRICE", '0' );
 const DiscretionInstEnums::ItemType DiscretionInstEnums::RELATED_TO_MARKET_PRICE( "RELATED_TO_MARKET_PRICE", '1' );
 const DiscretionInstEnums::ItemType DiscretionInstEnums::RELATED_TO_PRIMARY_PRICE( "RELATED_TO_PRIMARY_PRICE", '2' );
@@ -2107,45 +2197,54 @@ const DiscretionInstEnums::ItemType DiscretionInstEnums::RELATED_TO_LAST_TRADE_P
 const DiscretionInstEnums::ItemType DiscretionInstEnums::RELATED_TO_VWAP( "RELATED_TO_VWAP", '6' );
 
 
+const BidTypeEnums::ItemType BidTypeEnums::BAD_ENUM( "BAD_ENUM", BidTypeEnums::ITEM_BAD_ENUM );
 const BidTypeEnums::ItemType BidTypeEnums::NON_DISCLOSED_STYLE( "NON_DISCLOSED_STYLE", 1 );
 const BidTypeEnums::ItemType BidTypeEnums::DISCLOSED_STYLE( "DISCLOSED_STYLE", 2 );
 const BidTypeEnums::ItemType BidTypeEnums::NO_BIDDING_PROCESS( "NO_BIDDING_PROCESS", 3 );
 
 
+const BidDescriptorTypeEnums::ItemType BidDescriptorTypeEnums::BAD_ENUM( "BAD_ENUM", BidDescriptorTypeEnums::ITEM_BAD_ENUM );
 const BidDescriptorTypeEnums::ItemType BidDescriptorTypeEnums::SECTOR( "SECTOR", 1 );
 const BidDescriptorTypeEnums::ItemType BidDescriptorTypeEnums::COUNTRY( "COUNTRY", 2 );
 const BidDescriptorTypeEnums::ItemType BidDescriptorTypeEnums::INDEX( "INDEX", 3 );
 
 
+const SideValueIndEnums::ItemType SideValueIndEnums::BAD_ENUM( "BAD_ENUM", SideValueIndEnums::ITEM_BAD_ENUM );
 const SideValueIndEnums::ItemType SideValueIndEnums::SIDEVALUE1( "SIDEVALUE1", 1 );
 const SideValueIndEnums::ItemType SideValueIndEnums::SIDEVALUE_2( "SIDEVALUE_2", 2 );
 
 
+const LiquidityIndTypeEnums::ItemType LiquidityIndTypeEnums::BAD_ENUM( "BAD_ENUM", LiquidityIndTypeEnums::ITEM_BAD_ENUM );
 const LiquidityIndTypeEnums::ItemType LiquidityIndTypeEnums::_5DAY_MOVING_AVERAGE( "_5DAY_MOVING_AVERAGE", 1 );
 const LiquidityIndTypeEnums::ItemType LiquidityIndTypeEnums::_20_DAY_MOVING_AVERAGE( "_20_DAY_MOVING_AVERAGE", 2 );
 const LiquidityIndTypeEnums::ItemType LiquidityIndTypeEnums::NORMAL_MARKET_SIZE( "NORMAL_MARKET_SIZE", 3 );
 const LiquidityIndTypeEnums::ItemType LiquidityIndTypeEnums::OTHER( "OTHER", 4 );
 
 
+const ExchangeForPhysicalEnums::ItemType ExchangeForPhysicalEnums::BAD_ENUM( "BAD_ENUM", ExchangeForPhysicalEnums::ITEM_BAD_ENUM );
 const ExchangeForPhysicalEnums::ItemType ExchangeForPhysicalEnums::YES( "YES", 'Y' );
 const ExchangeForPhysicalEnums::ItemType ExchangeForPhysicalEnums::NO( "NO", 'N' );
 
 
+const ProgRptReqsEnums::ItemType ProgRptReqsEnums::BAD_ENUM( "BAD_ENUM", ProgRptReqsEnums::ITEM_BAD_ENUM );
 const ProgRptReqsEnums::ItemType ProgRptReqsEnums::BUYSIDE_EXPLICITLY_REQUESTS_STATUS_USING_STATUSREQUEST( "BUYSIDE_EXPLICITLY_REQUESTS_STATUS_USING_STATUSREQUEST", 1 );
 const ProgRptReqsEnums::ItemType ProgRptReqsEnums::SELLSIDE_PERIODICALLY_SENDS_STATUS_USING_LISTSTATUS_PERIOD_OPTIONALLY_SPECIFIED_IN_PROGRESSPERIOD( "SELLSIDE_PERIODICALLY_SENDS_STATUS_USING_LISTSTATUS_PERIOD_OPTIONALLY_SPECIFIED_IN_PROGRESSPERIOD", 2 );
 const ProgRptReqsEnums::ItemType ProgRptReqsEnums::REAL_TIME_EXECUTION_REPORTS( "REAL_TIME_EXECUTION_REPORTS", 3 );
 
 
+const IncTaxIndEnums::ItemType IncTaxIndEnums::BAD_ENUM( "BAD_ENUM", IncTaxIndEnums::ITEM_BAD_ENUM );
 const IncTaxIndEnums::ItemType IncTaxIndEnums::NET( "NET", 1 );
 const IncTaxIndEnums::ItemType IncTaxIndEnums::GROSS( "GROSS", 2 );
 
 
+const BidTradeTypeEnums::ItemType BidTradeTypeEnums::BAD_ENUM( "BAD_ENUM", BidTradeTypeEnums::ITEM_BAD_ENUM );
 const BidTradeTypeEnums::ItemType BidTradeTypeEnums::RISK_TRADE( "RISK_TRADE", 'R' );
 const BidTradeTypeEnums::ItemType BidTradeTypeEnums::VWAP_GUARANTEE( "VWAP_GUARANTEE", 'G' );
 const BidTradeTypeEnums::ItemType BidTradeTypeEnums::AGENCY( "AGENCY", 'A' );
 const BidTradeTypeEnums::ItemType BidTradeTypeEnums::GUARANTEED_CLOSE( "GUARANTEED_CLOSE", 'J' );
 
 
+const BasisPxTypeEnums::ItemType BasisPxTypeEnums::BAD_ENUM( "BAD_ENUM", BasisPxTypeEnums::ITEM_BAD_ENUM );
 const BasisPxTypeEnums::ItemType BasisPxTypeEnums::CLOSING_PRICE_AT_MORNING_SESSION( "CLOSING_PRICE_AT_MORNING_SESSION", '2' );
 const BasisPxTypeEnums::ItemType BasisPxTypeEnums::CLOSING_PRICE( "CLOSING_PRICE", '3' );
 const BasisPxTypeEnums::ItemType BasisPxTypeEnums::CURRENT_PRICE( "CURRENT_PRICE", '4' );
@@ -2161,6 +2260,7 @@ const BasisPxTypeEnums::ItemType BasisPxTypeEnums::OPEN( "OPEN", 'D' );
 const BasisPxTypeEnums::ItemType BasisPxTypeEnums::OTHERS( "OTHERS", 'Z' );
 
 
+const PriceTypeEnums::ItemType PriceTypeEnums::BAD_ENUM( "BAD_ENUM", PriceTypeEnums::ITEM_BAD_ENUM );
 const PriceTypeEnums::ItemType PriceTypeEnums::PERCENTAGE( "PERCENTAGE", 1 );
 const PriceTypeEnums::ItemType PriceTypeEnums::PER_UNIT( "PER_UNIT", 2 );
 const PriceTypeEnums::ItemType PriceTypeEnums::FIXED_AMOUNT( "FIXED_AMOUNT", 3 );
@@ -2174,11 +2274,13 @@ const PriceTypeEnums::ItemType PriceTypeEnums::FIXED_CABINET_TRADE_PRICE( "FIXED
 const PriceTypeEnums::ItemType PriceTypeEnums::VARIABLE_CABINET_TRADE_PRICE( "VARIABLE_CABINET_TRADE_PRICE", 11 );
 
 
+const GTBookingInstEnums::ItemType GTBookingInstEnums::BAD_ENUM( "BAD_ENUM", GTBookingInstEnums::ITEM_BAD_ENUM );
 const GTBookingInstEnums::ItemType GTBookingInstEnums::BOOK_OUT_ALL_TRADES_ON_DAY_OF_EXECUTION( "BOOK_OUT_ALL_TRADES_ON_DAY_OF_EXECUTION", 0 );
 const GTBookingInstEnums::ItemType GTBookingInstEnums::ACCUMULATE_EXECUTIONS_UNTIL_ORDER_IS_FILLED_OR_EXPIRES( "ACCUMULATE_EXECUTIONS_UNTIL_ORDER_IS_FILLED_OR_EXPIRES", 1 );
 const GTBookingInstEnums::ItemType GTBookingInstEnums::ACCUMULATE_UNTIL_VERBALLY_NOTIFIED_OTHERWISE( "ACCUMULATE_UNTIL_VERBALLY_NOTIFIED_OTHERWISE", 2 );
 
 
+const ListStatusTypeEnums::ItemType ListStatusTypeEnums::BAD_ENUM( "BAD_ENUM", ListStatusTypeEnums::ITEM_BAD_ENUM );
 const ListStatusTypeEnums::ItemType ListStatusTypeEnums::ACK( "ACK", 1 );
 const ListStatusTypeEnums::ItemType ListStatusTypeEnums::RESPONSE( "RESPONSE", 2 );
 const ListStatusTypeEnums::ItemType ListStatusTypeEnums::TIMED( "TIMED", 3 );
@@ -2187,10 +2289,12 @@ const ListStatusTypeEnums::ItemType ListStatusTypeEnums::ALLDONE( "ALLDONE", 5 )
 const ListStatusTypeEnums::ItemType ListStatusTypeEnums::ALERT( "ALERT", 6 );
 
 
+const NetGrossIndEnums::ItemType NetGrossIndEnums::BAD_ENUM( "BAD_ENUM", NetGrossIndEnums::ITEM_BAD_ENUM );
 const NetGrossIndEnums::ItemType NetGrossIndEnums::NET( "NET", 1 );
 const NetGrossIndEnums::ItemType NetGrossIndEnums::GROSS( "GROSS", 2 );
 
 
+const ListOrderStatusEnums::ItemType ListOrderStatusEnums::BAD_ENUM( "BAD_ENUM", ListOrderStatusEnums::ITEM_BAD_ENUM );
 const ListOrderStatusEnums::ItemType ListOrderStatusEnums::INBIDDINGPROCESS( "INBIDDINGPROCESS", 1 );
 const ListOrderStatusEnums::ItemType ListOrderStatusEnums::RECEIVEDFOREXECUTION( "RECEIVEDFOREXECUTION", 2 );
 const ListOrderStatusEnums::ItemType ListOrderStatusEnums::EXECUTING( "EXECUTING", 3 );
@@ -2200,6 +2304,7 @@ const ListOrderStatusEnums::ItemType ListOrderStatusEnums::ALL_DONE( "ALL_DONE",
 const ListOrderStatusEnums::ItemType ListOrderStatusEnums::REJECT( "REJECT", 7 );
 
 
+const ListExecInstTypeEnums::ItemType ListExecInstTypeEnums::BAD_ENUM( "BAD_ENUM", ListExecInstTypeEnums::ITEM_BAD_ENUM );
 const ListExecInstTypeEnums::ItemType ListExecInstTypeEnums::IMMEDIATE( "IMMEDIATE", '1' );
 const ListExecInstTypeEnums::ItemType ListExecInstTypeEnums::WAIT_FOR_EXECUTE_INSTRUCTION( "WAIT_FOR_EXECUTE_INSTRUCTION", '2' );
 const ListExecInstTypeEnums::ItemType ListExecInstTypeEnums::EXCHANGE_SWITCH_CIV_ORDER_SELL_DRIVEN( "EXCHANGE_SWITCH_CIV_ORDER_SELL_DRIVEN", '3' );
@@ -2207,15 +2312,18 @@ const ListExecInstTypeEnums::ItemType ListExecInstTypeEnums::EXCHANGE_SWITCH_CIV
 const ListExecInstTypeEnums::ItemType ListExecInstTypeEnums::EXCHANGE_SWITCH_CIV_ORDER_BUY_DRIVEN_CASH_WITHDRAW( "EXCHANGE_SWITCH_CIV_ORDER_BUY_DRIVEN_CASH_WITHDRAW", '5' );
 
 
+const CxlRejResponseToEnums::ItemType CxlRejResponseToEnums::BAD_ENUM( "BAD_ENUM", CxlRejResponseToEnums::ITEM_BAD_ENUM );
 const CxlRejResponseToEnums::ItemType CxlRejResponseToEnums::ORDER_CANCEL_REQUEST( "ORDER_CANCEL_REQUEST", '1' );
 const CxlRejResponseToEnums::ItemType CxlRejResponseToEnums::ORDER_CANCEL_REPLACE_REQUEST( "ORDER_CANCEL_REPLACE_REQUEST", '2' );
 
 
+const MultiLegReportingTypeEnums::ItemType MultiLegReportingTypeEnums::BAD_ENUM( "BAD_ENUM", MultiLegReportingTypeEnums::ITEM_BAD_ENUM );
 const MultiLegReportingTypeEnums::ItemType MultiLegReportingTypeEnums::SINGLE_SECURITY( "SINGLE_SECURITY", '1' );
 const MultiLegReportingTypeEnums::ItemType MultiLegReportingTypeEnums::INDIVIDUAL_LEG_OF_A_MULTI_LEG_SECURITY( "INDIVIDUAL_LEG_OF_A_MULTI_LEG_SECURITY", '2' );
 const MultiLegReportingTypeEnums::ItemType MultiLegReportingTypeEnums::MULTI_LEG_SECURITY( "MULTI_LEG_SECURITY", '3' );
 
 
+const PartyIDSourceEnums::ItemType PartyIDSourceEnums::BAD_ENUM( "BAD_ENUM", PartyIDSourceEnums::ITEM_BAD_ENUM );
 const PartyIDSourceEnums::ItemType PartyIDSourceEnums::BIC( "BIC", 'B' );
 const PartyIDSourceEnums::ItemType PartyIDSourceEnums::GENERALLY_ACCEPTED_MARKET_PARTICIPANT_IDENTIFIER( "GENERALLY_ACCEPTED_MARKET_PARTICIPANT_IDENTIFIER", 'C' );
 const PartyIDSourceEnums::ItemType PartyIDSourceEnums::PROPRIETARY_CUSTOM_CODE( "PROPRIETARY_CUSTOM_CODE", 'D' );
@@ -2236,6 +2344,7 @@ const PartyIDSourceEnums::ItemType PartyIDSourceEnums::AUSTRALIAN_TAX_FILE_NUMBE
 const PartyIDSourceEnums::ItemType PartyIDSourceEnums::DIRECTED_BROKER_THREE_CHARACTER_ACRONYM_AS_DEFINED_IN_ISITC_ETC_BEST_PRACTICE_GUIDELINES_DOCUMENT( "DIRECTED_BROKER_THREE_CHARACTER_ACRONYM_AS_DEFINED_IN_ISITC_ETC_BEST_PRACTICE_GUIDELINES_DOCUMENT", 'I' );
 
 
+const PartyRoleEnums::ItemType PartyRoleEnums::BAD_ENUM( "BAD_ENUM", PartyRoleEnums::ITEM_BAD_ENUM );
 const PartyRoleEnums::ItemType PartyRoleEnums::EXECUTING_FIRM( "EXECUTING_FIRM", 1 );
 const PartyRoleEnums::ItemType PartyRoleEnums::BROKER_OF_CREDIT( "BROKER_OF_CREDIT", 2 );
 const PartyRoleEnums::ItemType PartyRoleEnums::CLIENT_ID( "CLIENT_ID", 3 );
@@ -2275,6 +2384,7 @@ const PartyRoleEnums::ItemType PartyRoleEnums::CONTRA_TRADER( "CONTRA_TRADER", 3
 const PartyRoleEnums::ItemType PartyRoleEnums::POSITION_ACCOUNT( "POSITION_ACCOUNT", 38 );
 
 
+const ProductEnums::ItemType ProductEnums::BAD_ENUM( "BAD_ENUM", ProductEnums::ITEM_BAD_ENUM );
 const ProductEnums::ItemType ProductEnums::AGENCY( "AGENCY", 1 );
 const ProductEnums::ItemType ProductEnums::COMMODITY( "COMMODITY", 2 );
 const ProductEnums::ItemType ProductEnums::CORPORATE( "CORPORATE", 3 );
@@ -2290,15 +2400,18 @@ const ProductEnums::ItemType ProductEnums::OTHER( "OTHER", 12 );
 const ProductEnums::ItemType ProductEnums::FINANCING( "FINANCING", 13 );
 
 
+const TestMessageIndicatorEnums::ItemType TestMessageIndicatorEnums::BAD_ENUM( "BAD_ENUM", TestMessageIndicatorEnums::ITEM_BAD_ENUM );
 const TestMessageIndicatorEnums::ItemType TestMessageIndicatorEnums::YES( "YES", 'Y' );
 const TestMessageIndicatorEnums::ItemType TestMessageIndicatorEnums::NO( "NO", 'N' );
 
 
+const RoundingDirectionEnums::ItemType RoundingDirectionEnums::BAD_ENUM( "BAD_ENUM", RoundingDirectionEnums::ITEM_BAD_ENUM );
 const RoundingDirectionEnums::ItemType RoundingDirectionEnums::ROUND_TO_NEAREST( "ROUND_TO_NEAREST", '0' );
 const RoundingDirectionEnums::ItemType RoundingDirectionEnums::ROUND_DOWN( "ROUND_DOWN", '1' );
 const RoundingDirectionEnums::ItemType RoundingDirectionEnums::ROUND_UP( "ROUND_UP", '2' );
 
 
+const DistribPaymentMethodEnums::ItemType DistribPaymentMethodEnums::BAD_ENUM( "BAD_ENUM", DistribPaymentMethodEnums::ITEM_BAD_ENUM );
 const DistribPaymentMethodEnums::ItemType DistribPaymentMethodEnums::CREST( "CREST", 1 );
 const DistribPaymentMethodEnums::ItemType DistribPaymentMethodEnums::NSCC( "NSCC", 2 );
 const DistribPaymentMethodEnums::ItemType DistribPaymentMethodEnums::EUROCLEAR( "EUROCLEAR", 3 );
@@ -2313,12 +2426,14 @@ const DistribPaymentMethodEnums::ItemType DistribPaymentMethodEnums::HIGH_VALUE_
 const DistribPaymentMethodEnums::ItemType DistribPaymentMethodEnums::REINVEST_IN_FUND( "REINVEST_IN_FUND", 12 );
 
 
+const CancellationRightsEnums::ItemType CancellationRightsEnums::BAD_ENUM( "BAD_ENUM", CancellationRightsEnums::ITEM_BAD_ENUM );
 const CancellationRightsEnums::ItemType CancellationRightsEnums::YES( "YES", 'Y' );
 const CancellationRightsEnums::ItemType CancellationRightsEnums::NO_EXECUTION_ONLY( "NO_EXECUTION_ONLY", 'N' );
 const CancellationRightsEnums::ItemType CancellationRightsEnums::NO_WAIVER_AGREEMENT( "NO_WAIVER_AGREEMENT", 'M' );
 const CancellationRightsEnums::ItemType CancellationRightsEnums::NO_INSTITUTIONAL( "NO_INSTITUTIONAL", 'O' );
 
 
+const MoneyLaunderingStatusEnums::ItemType MoneyLaunderingStatusEnums::BAD_ENUM( "BAD_ENUM", MoneyLaunderingStatusEnums::ITEM_BAD_ENUM );
 const MoneyLaunderingStatusEnums::ItemType MoneyLaunderingStatusEnums::PASSED( "PASSED", 'Y' );
 const MoneyLaunderingStatusEnums::ItemType MoneyLaunderingStatusEnums::NOT_CHECKED( "NOT_CHECKED", 'N' );
 const MoneyLaunderingStatusEnums::ItemType MoneyLaunderingStatusEnums::EXEMPT_BELOW_THE_LIMIT( "EXEMPT_BELOW_THE_LIMIT", '1' );
@@ -2326,6 +2441,7 @@ const MoneyLaunderingStatusEnums::ItemType MoneyLaunderingStatusEnums::EXEMPT_CL
 const MoneyLaunderingStatusEnums::ItemType MoneyLaunderingStatusEnums::EXEMPT_AUTHORISED_CREDIT_OR_FINANCIAL_INSTITUTION( "EXEMPT_AUTHORISED_CREDIT_OR_FINANCIAL_INSTITUTION", '3' );
 
 
+const ExecPriceTypeEnums::ItemType ExecPriceTypeEnums::BAD_ENUM( "BAD_ENUM", ExecPriceTypeEnums::ITEM_BAD_ENUM );
 const ExecPriceTypeEnums::ItemType ExecPriceTypeEnums::BID_PRICE( "BID_PRICE", 'B' );
 const ExecPriceTypeEnums::ItemType ExecPriceTypeEnums::CREATION_PRICE( "CREATION_PRICE", 'C' );
 const ExecPriceTypeEnums::ItemType ExecPriceTypeEnums::CREATION_PRICE_PLUS_ADJUSTMENT( "CREATION_PRICE_PLUS_ADJUSTMENT", 'D' );
@@ -2336,6 +2452,7 @@ const ExecPriceTypeEnums::ItemType ExecPriceTypeEnums::OFFER_PRICE_MINUS_ADJUSTM
 const ExecPriceTypeEnums::ItemType ExecPriceTypeEnums::SINGLE_PRICE( "SINGLE_PRICE", 'S' );
 
 
+const PaymentMethodEnums::ItemType PaymentMethodEnums::BAD_ENUM( "BAD_ENUM", PaymentMethodEnums::ITEM_BAD_ENUM );
 const PaymentMethodEnums::ItemType PaymentMethodEnums::CREST( "CREST", 1 );
 const PaymentMethodEnums::ItemType PaymentMethodEnums::NSCC( "NSCC", 2 );
 const PaymentMethodEnums::ItemType PaymentMethodEnums::EUROCLEAR( "EUROCLEAR", 3 );
@@ -2353,6 +2470,7 @@ const PaymentMethodEnums::ItemType PaymentMethodEnums::BPAY( "BPAY", 14 );
 const PaymentMethodEnums::ItemType PaymentMethodEnums::HIGH_VALUE_CLEARING_SYSTEM( "HIGH_VALUE_CLEARING_SYSTEM", 15 );
 
 
+const TaxAdvantageTypeEnums::ItemType TaxAdvantageTypeEnums::BAD_ENUM( "BAD_ENUM", TaxAdvantageTypeEnums::ITEM_BAD_ENUM );
 const TaxAdvantageTypeEnums::ItemType TaxAdvantageTypeEnums::NONE_NOT_APPLICABLE( "NONE_NOT_APPLICABLE", 0 );
 const TaxAdvantageTypeEnums::ItemType TaxAdvantageTypeEnums::MAXI_ISA( "MAXI_ISA", 1 );
 const TaxAdvantageTypeEnums::ItemType TaxAdvantageTypeEnums::TESSA( "TESSA", 2 );
@@ -2385,16 +2503,19 @@ const TaxAdvantageTypeEnums::ItemType TaxAdvantageTypeEnums::EDUCATION_IRA_28( "
 const TaxAdvantageTypeEnums::ItemType TaxAdvantageTypeEnums::EDUCATION_IRA_29( "EDUCATION_IRA_29", 29 );
 
 
+const FundRenewWaivEnums::ItemType FundRenewWaivEnums::BAD_ENUM( "BAD_ENUM", FundRenewWaivEnums::ITEM_BAD_ENUM );
 const FundRenewWaivEnums::ItemType FundRenewWaivEnums::YES( "YES", 'Y' );
 const FundRenewWaivEnums::ItemType FundRenewWaivEnums::NO( "NO", 'N' );
 
 
+const RegistStatusEnums::ItemType RegistStatusEnums::BAD_ENUM( "BAD_ENUM", RegistStatusEnums::ITEM_BAD_ENUM );
 const RegistStatusEnums::ItemType RegistStatusEnums::ACCEPTED( "ACCEPTED", 'A' );
 const RegistStatusEnums::ItemType RegistStatusEnums::REJECTED( "REJECTED", 'R' );
 const RegistStatusEnums::ItemType RegistStatusEnums::HELD( "HELD", 'H' );
 const RegistStatusEnums::ItemType RegistStatusEnums::REMINDER_IE_REGISTRATION_INSTRUCTIONS_ARE_STILL_OUTSTANDING( "REMINDER_IE_REGISTRATION_INSTRUCTIONS_ARE_STILL_OUTSTANDING", 'N' );
 
 
+const RegistRejReasonCodeEnums::ItemType RegistRejReasonCodeEnums::BAD_ENUM( "BAD_ENUM", RegistRejReasonCodeEnums::ITEM_BAD_ENUM );
 const RegistRejReasonCodeEnums::ItemType RegistRejReasonCodeEnums::INVALID_UNACCEPTABLE_ACCOUNT_TYPE( "INVALID_UNACCEPTABLE_ACCOUNT_TYPE", 1 );
 const RegistRejReasonCodeEnums::ItemType RegistRejReasonCodeEnums::INVALID_UNACCEPTABLE_TAX_EXEMPT_TYPE( "INVALID_UNACCEPTABLE_TAX_EXEMPT_TYPE", 2 );
 const RegistRejReasonCodeEnums::ItemType RegistRejReasonCodeEnums::INVALID_UNACCEPTABLE_OWNERSHIP_TYPE( "INVALID_UNACCEPTABLE_OWNERSHIP_TYPE", 3 );
@@ -2416,16 +2537,19 @@ const RegistRejReasonCodeEnums::ItemType RegistRejReasonCodeEnums::INVALID_UNACC
 const RegistRejReasonCodeEnums::ItemType RegistRejReasonCodeEnums::OTHER( "OTHER", 99 );
 
 
+const RegistTransTypeEnums::ItemType RegistTransTypeEnums::BAD_ENUM( "BAD_ENUM", RegistTransTypeEnums::ITEM_BAD_ENUM );
 const RegistTransTypeEnums::ItemType RegistTransTypeEnums::NEW( "NEW", '0' );
 const RegistTransTypeEnums::ItemType RegistTransTypeEnums::REPLACE( "REPLACE", '1' );
 const RegistTransTypeEnums::ItemType RegistTransTypeEnums::CANCEL( "CANCEL", '2' );
 
 
+const OwnershipTypeEnums::ItemType OwnershipTypeEnums::BAD_ENUM( "BAD_ENUM", OwnershipTypeEnums::ITEM_BAD_ENUM );
 const OwnershipTypeEnums::ItemType OwnershipTypeEnums::JOINT_INVESTORS( "JOINT_INVESTORS", 'J' );
 const OwnershipTypeEnums::ItemType OwnershipTypeEnums::TENANTS_IN_COMMON( "TENANTS_IN_COMMON", 'T' );
 const OwnershipTypeEnums::ItemType OwnershipTypeEnums::JOINT_TRUSTEES( "JOINT_TRUSTEES", '2' );
 
 
+const ContAmtTypeEnums::ItemType ContAmtTypeEnums::BAD_ENUM( "BAD_ENUM", ContAmtTypeEnums::ITEM_BAD_ENUM );
 const ContAmtTypeEnums::ItemType ContAmtTypeEnums::COMMISSION_AMOUNT( "COMMISSION_AMOUNT", 1 );
 const ContAmtTypeEnums::ItemType ContAmtTypeEnums::COMMISSION( "COMMISSION", 2 );
 const ContAmtTypeEnums::ItemType ContAmtTypeEnums::INITIAL_CHARGE_AMOUNT( "INITIAL_CHARGE_AMOUNT", 3 );
@@ -2443,6 +2567,7 @@ const ContAmtTypeEnums::ItemType ContAmtTypeEnums::FUND_BASED_RENEWAL_COMMISSION
 const ContAmtTypeEnums::ItemType ContAmtTypeEnums::NET_SETTLEMENT_AMOUNT( "NET_SETTLEMENT_AMOUNT", 15 );
 
 
+const OwnerTypeEnums::ItemType OwnerTypeEnums::BAD_ENUM( "BAD_ENUM", OwnerTypeEnums::ITEM_BAD_ENUM );
 const OwnerTypeEnums::ItemType OwnerTypeEnums::INDIVIDUAL_INVESTOR( "INDIVIDUAL_INVESTOR", 1 );
 const OwnerTypeEnums::ItemType OwnerTypeEnums::PUBLIC_COMPANY( "PUBLIC_COMPANY", 2 );
 const OwnerTypeEnums::ItemType OwnerTypeEnums::PRIVATE_COMPANY( "PRIVATE_COMPANY", 3 );
@@ -2458,6 +2583,7 @@ const OwnerTypeEnums::ItemType OwnerTypeEnums::CORPORATE_BODY( "CORPORATE_BODY",
 const OwnerTypeEnums::ItemType OwnerTypeEnums::NOMINEE( "NOMINEE", 13 );
 
 
+const OrderCapacityEnums::ItemType OrderCapacityEnums::BAD_ENUM( "BAD_ENUM", OrderCapacityEnums::ITEM_BAD_ENUM );
 const OrderCapacityEnums::ItemType OrderCapacityEnums::AGENCY( "AGENCY", 'A' );
 const OrderCapacityEnums::ItemType OrderCapacityEnums::PROPRIETARY( "PROPRIETARY", 'G' );
 const OrderCapacityEnums::ItemType OrderCapacityEnums::INDIVIDUAL( "INDIVIDUAL", 'I' );
@@ -2466,6 +2592,7 @@ const OrderCapacityEnums::ItemType OrderCapacityEnums::RISKLESS_PRINCIPAL( "RISK
 const OrderCapacityEnums::ItemType OrderCapacityEnums::AGENT_FOR_OTHER_MEMBER( "AGENT_FOR_OTHER_MEMBER", 'W' );
 
 
+const OrderRestrictionsEnums::ItemType OrderRestrictionsEnums::BAD_ENUM( "BAD_ENUM", OrderRestrictionsEnums::ITEM_BAD_ENUM );
 const OrderRestrictionsEnums::ItemType OrderRestrictionsEnums::PROGRAM_TRADE( "PROGRAM_TRADE", SOHSTR(1) );
 const OrderRestrictionsEnums::ItemType OrderRestrictionsEnums::INDEX_ARBITRAGE( "INDEX_ARBITRAGE", SOHSTR(2) );
 const OrderRestrictionsEnums::ItemType OrderRestrictionsEnums::NON_INDEX_ARBITRAGE( "NON_INDEX_ARBITRAGE", SOHSTR(3) );
@@ -2478,6 +2605,7 @@ const OrderRestrictionsEnums::ItemType OrderRestrictionsEnums::EXTERNAL_INTER_CO
 const OrderRestrictionsEnums::ItemType OrderRestrictionsEnums::RISKLESS_ARBITRAGE( "RISKLESS_ARBITRAGE", SOHSTR(A) );
 
 
+const MassCancelRequestTypeEnums::ItemType MassCancelRequestTypeEnums::BAD_ENUM( "BAD_ENUM", MassCancelRequestTypeEnums::ITEM_BAD_ENUM );
 const MassCancelRequestTypeEnums::ItemType MassCancelRequestTypeEnums::CANCEL_ORDERS_FOR_A_SECURITY( "CANCEL_ORDERS_FOR_A_SECURITY", '1' );
 const MassCancelRequestTypeEnums::ItemType MassCancelRequestTypeEnums::CANCEL_ORDERS_FOR_AN_UNDERLYING_SECURITY( "CANCEL_ORDERS_FOR_AN_UNDERLYING_SECURITY", '2' );
 const MassCancelRequestTypeEnums::ItemType MassCancelRequestTypeEnums::CANCEL_ORDERS_FOR_A_PRODUCT( "CANCEL_ORDERS_FOR_A_PRODUCT", '3' );
@@ -2487,6 +2615,7 @@ const MassCancelRequestTypeEnums::ItemType MassCancelRequestTypeEnums::CANCEL_OR
 const MassCancelRequestTypeEnums::ItemType MassCancelRequestTypeEnums::CANCEL_ALL_ORDERS( "CANCEL_ALL_ORDERS", '7' );
 
 
+const MassCancelResponseEnums::ItemType MassCancelResponseEnums::BAD_ENUM( "BAD_ENUM", MassCancelResponseEnums::ITEM_BAD_ENUM );
 const MassCancelResponseEnums::ItemType MassCancelResponseEnums::CANCEL_REQUEST_REJECTED( "CANCEL_REQUEST_REJECTED", '0' );
 const MassCancelResponseEnums::ItemType MassCancelResponseEnums::CANCEL_ORDERS_FOR_A_SECURITY( "CANCEL_ORDERS_FOR_A_SECURITY", '1' );
 const MassCancelResponseEnums::ItemType MassCancelResponseEnums::CANCEL_ORDERS_FOR_AN_UNDERLYING_SECURITY( "CANCEL_ORDERS_FOR_AN_UNDERLYING_SECURITY", '2' );
@@ -2497,6 +2626,7 @@ const MassCancelResponseEnums::ItemType MassCancelResponseEnums::CANCEL_ORDERS_F
 const MassCancelResponseEnums::ItemType MassCancelResponseEnums::CANCEL_ALL_ORDERS( "CANCEL_ALL_ORDERS", '7' );
 
 
+const MassCancelRejectReasonEnums::ItemType MassCancelRejectReasonEnums::BAD_ENUM( "BAD_ENUM", MassCancelRejectReasonEnums::ITEM_BAD_ENUM );
 const MassCancelRejectReasonEnums::ItemType MassCancelRejectReasonEnums::MASS_CANCEL_NOT_SUPPORTED( "MASS_CANCEL_NOT_SUPPORTED", '0' );
 const MassCancelRejectReasonEnums::ItemType MassCancelRejectReasonEnums::INVALID_OR_UNKNOWN_SECURITY( "INVALID_OR_UNKNOWN_SECURITY", '1' );
 const MassCancelRejectReasonEnums::ItemType MassCancelRejectReasonEnums::INVALID_OR_UNKNOWN_UNDERLYING( "INVALID_OR_UNKNOWN_UNDERLYING", '2' );
@@ -2507,41 +2637,49 @@ const MassCancelRejectReasonEnums::ItemType MassCancelRejectReasonEnums::INVALID
 const MassCancelRejectReasonEnums::ItemType MassCancelRejectReasonEnums::OTHER( "OTHER", '9' );
 
 
+const QuoteTypeEnums::ItemType QuoteTypeEnums::BAD_ENUM( "BAD_ENUM", QuoteTypeEnums::ITEM_BAD_ENUM );
 const QuoteTypeEnums::ItemType QuoteTypeEnums::INDICATIVE( "INDICATIVE", 0 );
 const QuoteTypeEnums::ItemType QuoteTypeEnums::TRADEABLE( "TRADEABLE", 1 );
 const QuoteTypeEnums::ItemType QuoteTypeEnums::RESTRICTED_TRADEABLE( "RESTRICTED_TRADEABLE", 2 );
 const QuoteTypeEnums::ItemType QuoteTypeEnums::COUNTER( "COUNTER", 3 );
 
 
+const CashMarginEnums::ItemType CashMarginEnums::BAD_ENUM( "BAD_ENUM", CashMarginEnums::ITEM_BAD_ENUM );
 const CashMarginEnums::ItemType CashMarginEnums::CASH( "CASH", '1' );
 const CashMarginEnums::ItemType CashMarginEnums::MARGIN_OPEN( "MARGIN_OPEN", '2' );
 const CashMarginEnums::ItemType CashMarginEnums::MARGIN_CLOSE( "MARGIN_CLOSE", '3' );
 
 
+const ScopeEnums::ItemType ScopeEnums::BAD_ENUM( "BAD_ENUM", ScopeEnums::ITEM_BAD_ENUM );
 const ScopeEnums::ItemType ScopeEnums::LOCAL( "LOCAL", SOHSTR(1) );
 const ScopeEnums::ItemType ScopeEnums::NATIONAL( "NATIONAL", SOHSTR(2) );
 const ScopeEnums::ItemType ScopeEnums::GLOBAL( "GLOBAL", SOHSTR(3) );
 
 
+const MDImplicitDeleteEnums::ItemType MDImplicitDeleteEnums::BAD_ENUM( "BAD_ENUM", MDImplicitDeleteEnums::ITEM_BAD_ENUM );
 const MDImplicitDeleteEnums::ItemType MDImplicitDeleteEnums::YES( "YES", 'Y' );
 const MDImplicitDeleteEnums::ItemType MDImplicitDeleteEnums::NO( "NO", 'N' );
 
 
+const CrossTypeEnums::ItemType CrossTypeEnums::BAD_ENUM( "BAD_ENUM", CrossTypeEnums::ITEM_BAD_ENUM );
 const CrossTypeEnums::ItemType CrossTypeEnums::CROSS_TRADE_WHICH_IS_EXECUTED_COMPLETELY_OR_NOT_BOTH_SIDES_ARE_TREATED_IN_THE_SAME_MANNER_THIS_IS_EQUIVALENT_TO_AN_ALL_OR_NONE( "CROSS_TRADE_WHICH_IS_EXECUTED_COMPLETELY_OR_NOT_BOTH_SIDES_ARE_TREATED_IN_THE_SAME_MANNER_THIS_IS_EQUIVALENT_TO_AN_ALL_OR_NONE", 1 );
 const CrossTypeEnums::ItemType CrossTypeEnums::CROSS_TRADE_WHICH_IS_EXECUTED_PARTIALLY_AND_THE_REST_IS_CANCELLED_ONE_SIDE_IS_FULLY_EXECUTED_THE_OTHER_SIDE_IS_PARTIALLY_EXECUTED_WITH_THE_REMAINDER_BEING_CANCELLED_THIS_IS_EQUIVALENT_TO_AN_IMMEDIATE_OR_CANCEL_ON_THE_OTHER_SIDE_NOTE_THE_CROSSPRIORITZATION( "CROSS_TRADE_WHICH_IS_EXECUTED_PARTIALLY_AND_THE_REST_IS_CANCELLED_ONE_SIDE_IS_FULLY_EXECUTED_THE_OTHER_SIDE_IS_PARTIALLY_EXECUTED_WITH_THE_REMAINDER_BEING_CANCELLED_THIS_IS_EQUIVALENT_TO_AN_IMMEDIATE_OR_CANCEL_ON_THE_OTHER_SIDE_NOTE_THE_CROSSPRIORITZATION", 2 );
 const CrossTypeEnums::ItemType CrossTypeEnums::CROSS_TRADE_WHICH_IS_PARTIALLY_EXECUTED_WITH_THE_UNFILLED_PORTIONS_REMAINING_ACTIVE_ONE_SIDE_OF_THE_CROSS_IS_FULLY_EXECUTED( "CROSS_TRADE_WHICH_IS_PARTIALLY_EXECUTED_WITH_THE_UNFILLED_PORTIONS_REMAINING_ACTIVE_ONE_SIDE_OF_THE_CROSS_IS_FULLY_EXECUTED", 3 );
 const CrossTypeEnums::ItemType CrossTypeEnums::CROSS_TRADE_IS_EXECUTED_WITH_EXISTING_ORDERS_WITH_THE_SAME_PRICE_IN_THE_CASE_OTHER_ORDERS_EXIST_WITH_THE_SAME_PRICE_THE_QUANTITY_OF_THE_CROSS_IS_EXECUTED_AGAINST_THE_EXISTING_ORDERS_AND_QUOTES_THE_REMAINDER_OF_THE_CROSS_IS_EXECUTED_AGAINST_THE_OTHER_SIDE_OF_THE_CROSS_THE_TWO_SIDES_POTENTIALLY_HAVE_DIFFERENT_QUANTITIES( "CROSS_TRADE_IS_EXECUTED_WITH_EXISTING_ORDERS_WITH_THE_SAME_PRICE_IN_THE_CASE_OTHER_ORDERS_EXIST_WITH_THE_SAME_PRICE_THE_QUANTITY_OF_THE_CROSS_IS_EXECUTED_AGAINST_THE_EXISTING_ORDERS_AND_QUOTES_THE_REMAINDER_OF_THE_CROSS_IS_EXECUTED_AGAINST_THE_OTHER_SIDE_OF_THE_CROSS_THE_TWO_SIDES_POTENTIALLY_HAVE_DIFFERENT_QUANTITIES", 4 );
 
 
+const CrossPrioritizationEnums::ItemType CrossPrioritizationEnums::BAD_ENUM( "BAD_ENUM", CrossPrioritizationEnums::ITEM_BAD_ENUM );
 const CrossPrioritizationEnums::ItemType CrossPrioritizationEnums::NONE( "NONE", 0 );
 const CrossPrioritizationEnums::ItemType CrossPrioritizationEnums::BUY_SIDE_IS_PRIORITIZED( "BUY_SIDE_IS_PRIORITIZED", 1 );
 const CrossPrioritizationEnums::ItemType CrossPrioritizationEnums::SELL_SIDE_IS_PRIORITIZED( "SELL_SIDE_IS_PRIORITIZED", 2 );
 
 
+const NoSidesEnums::ItemType NoSidesEnums::BAD_ENUM( "BAD_ENUM", NoSidesEnums::ITEM_BAD_ENUM );
 const NoSidesEnums::ItemType NoSidesEnums::ONE_SIDE( "ONE_SIDE", 1 );
 const NoSidesEnums::ItemType NoSidesEnums::BOTH_SIDES( "BOTH_SIDES", 2 );
 
 
+const SecurityListRequestTypeEnums::ItemType SecurityListRequestTypeEnums::BAD_ENUM( "BAD_ENUM", SecurityListRequestTypeEnums::ITEM_BAD_ENUM );
 const SecurityListRequestTypeEnums::ItemType SecurityListRequestTypeEnums::SYMBOL( "SYMBOL", 0 );
 const SecurityListRequestTypeEnums::ItemType SecurityListRequestTypeEnums::SECURITYTYPE_AND_OR_CFICODE( "SECURITYTYPE_AND_OR_CFICODE", 1 );
 const SecurityListRequestTypeEnums::ItemType SecurityListRequestTypeEnums::PRODUCT( "PRODUCT", 2 );
@@ -2549,6 +2687,7 @@ const SecurityListRequestTypeEnums::ItemType SecurityListRequestTypeEnums::TRADI
 const SecurityListRequestTypeEnums::ItemType SecurityListRequestTypeEnums::ALL_SECURITIES( "ALL_SECURITIES", 4 );
 
 
+const SecurityRequestResultEnums::ItemType SecurityRequestResultEnums::BAD_ENUM( "BAD_ENUM", SecurityRequestResultEnums::ITEM_BAD_ENUM );
 const SecurityRequestResultEnums::ItemType SecurityRequestResultEnums::VALID_REQUEST( "VALID_REQUEST", 0 );
 const SecurityRequestResultEnums::ItemType SecurityRequestResultEnums::INVALID_OR_UNSUPPORTED_REQUEST( "INVALID_OR_UNSUPPORTED_REQUEST", 1 );
 const SecurityRequestResultEnums::ItemType SecurityRequestResultEnums::NO_INSTRUMENTS_FOUND_THAT_MATCH_SELECTION_CRITERIA( "NO_INSTRUMENTS_FOUND_THAT_MATCH_SELECTION_CRITERIA", 2 );
@@ -2557,15 +2696,18 @@ const SecurityRequestResultEnums::ItemType SecurityRequestResultEnums::INSTRUMEN
 const SecurityRequestResultEnums::ItemType SecurityRequestResultEnums::REQUEST_FOR_INSTRUMENT_DATA_NOT_SUPPORTED( "REQUEST_FOR_INSTRUMENT_DATA_NOT_SUPPORTED", 5 );
 
 
+const MultiLegRptTypeReqEnums::ItemType MultiLegRptTypeReqEnums::BAD_ENUM( "BAD_ENUM", MultiLegRptTypeReqEnums::ITEM_BAD_ENUM );
 const MultiLegRptTypeReqEnums::ItemType MultiLegRptTypeReqEnums::REPORT_BY_MULITLEG_SECURITY_ONLY( "REPORT_BY_MULITLEG_SECURITY_ONLY", 0 );
 const MultiLegRptTypeReqEnums::ItemType MultiLegRptTypeReqEnums::REPORT_BY_MULTILEG_SECURITY_AND_BY_INSTRUMENT_LEGS_BELONGING_TO_THE_MULTILEG_SECURITY( "REPORT_BY_MULTILEG_SECURITY_AND_BY_INSTRUMENT_LEGS_BELONGING_TO_THE_MULTILEG_SECURITY", 1 );
 const MultiLegRptTypeReqEnums::ItemType MultiLegRptTypeReqEnums::REPORT_BY_INSTRUMENT_LEGS_BELONGING_TO_THE_MULTILEG_SECURITY_ONLY( "REPORT_BY_INSTRUMENT_LEGS_BELONGING_TO_THE_MULTILEG_SECURITY_ONLY", 2 );
 
 
+const TradSesStatusRejReasonEnums::ItemType TradSesStatusRejReasonEnums::BAD_ENUM( "BAD_ENUM", TradSesStatusRejReasonEnums::ITEM_BAD_ENUM );
 const TradSesStatusRejReasonEnums::ItemType TradSesStatusRejReasonEnums::UNKNOWN_OR_INVALID_TRADINGSESSIONID( "UNKNOWN_OR_INVALID_TRADINGSESSIONID", 1 );
 const TradSesStatusRejReasonEnums::ItemType TradSesStatusRejReasonEnums::OTHER( "OTHER", 99 );
 
 
+const TradeRequestTypeEnums::ItemType TradeRequestTypeEnums::BAD_ENUM( "BAD_ENUM", TradeRequestTypeEnums::ITEM_BAD_ENUM );
 const TradeRequestTypeEnums::ItemType TradeRequestTypeEnums::ALL_TRADES( "ALL_TRADES", 0 );
 const TradeRequestTypeEnums::ItemType TradeRequestTypeEnums::MATCHED_TRADES_MATCHING_CRITERIA_PROVIDED_ON_REQUEST( "MATCHED_TRADES_MATCHING_CRITERIA_PROVIDED_ON_REQUEST", 1 );
 const TradeRequestTypeEnums::ItemType TradeRequestTypeEnums::UNMATCHED_TRADES_THAT_MATCH_CRITERIA( "UNMATCHED_TRADES_THAT_MATCH_CRITERIA", 2 );
@@ -2573,15 +2715,18 @@ const TradeRequestTypeEnums::ItemType TradeRequestTypeEnums::UNREPORTED_TRADES_T
 const TradeRequestTypeEnums::ItemType TradeRequestTypeEnums::ADVISORIES_THAT_MATCH_CRITERIA( "ADVISORIES_THAT_MATCH_CRITERIA", 4 );
 
 
+const PreviouslyReportedEnums::ItemType PreviouslyReportedEnums::BAD_ENUM( "BAD_ENUM", PreviouslyReportedEnums::ITEM_BAD_ENUM );
 const PreviouslyReportedEnums::ItemType PreviouslyReportedEnums::YES( "YES", 'Y' );
 const PreviouslyReportedEnums::ItemType PreviouslyReportedEnums::NO( "NO", 'N' );
 
 
+const MatchStatusEnums::ItemType MatchStatusEnums::BAD_ENUM( "BAD_ENUM", MatchStatusEnums::ITEM_BAD_ENUM );
 const MatchStatusEnums::ItemType MatchStatusEnums::COMPARED_MATCHED_OR_AFFIRMED( "COMPARED_MATCHED_OR_AFFIRMED", '0' );
 const MatchStatusEnums::ItemType MatchStatusEnums::UNCOMPARED_UNMATCHED_OR_UNAFFIRMED( "UNCOMPARED_UNMATCHED_OR_UNAFFIRMED", '1' );
 const MatchStatusEnums::ItemType MatchStatusEnums::ADVISORY_OR_ALERT( "ADVISORY_OR_ALERT", '2' );
 
 
+const MatchTypeEnums::ItemType MatchTypeEnums::BAD_ENUM( "BAD_ENUM", MatchTypeEnums::ITEM_BAD_ENUM );
 const MatchTypeEnums::ItemType MatchTypeEnums::EXACT_MATCH_ON_TRADE_DATE_STOCK_SYMBOL_QUANTITY_PRICE_TRADE_TYPE_AND_SPECIAL_TRADE_INDICATOR_PLUS_FOUR_BADGES_AND_EXECUTION_TIME( "EXACT_MATCH_ON_TRADE_DATE_STOCK_SYMBOL_QUANTITY_PRICE_TRADE_TYPE_AND_SPECIAL_TRADE_INDICATOR_PLUS_FOUR_BADGES_AND_EXECUTION_TIME", SOHSTR(A1) );
 const MatchTypeEnums::ItemType MatchTypeEnums::EXACT_MATCH_ON_TRADE_DATE_STOCK_SYMBOL_QUANTITY_PRICE_TRADE_TYPE_AND_SPECIAL_TRADE_INDICATOR_PLUS_FOUR_BADGES( "EXACT_MATCH_ON_TRADE_DATE_STOCK_SYMBOL_QUANTITY_PRICE_TRADE_TYPE_AND_SPECIAL_TRADE_INDICATOR_PLUS_FOUR_BADGES", SOHSTR(A2) );
 const MatchTypeEnums::ItemType MatchTypeEnums::EXACT_MATCH_ON_TRADE_DATE_STOCK_SYMBOL_QUANTITY_PRICE_TRADE_TYPE_AND_SPECIAL_TRADE_INDICATOR_PLUS_TWO_BADGES_AND_EXECUTION_TIME( "EXACT_MATCH_ON_TRADE_DATE_STOCK_SYMBOL_QUANTITY_PRICE_TRADE_TYPE_AND_SPECIAL_TRADE_INDICATOR_PLUS_TWO_BADGES_AND_EXECUTION_TIME", SOHSTR(A3) );
@@ -2602,10 +2747,12 @@ const MatchTypeEnums::ItemType MatchTypeEnums::ACT_DEFAULT_AFTER_M2( "ACT_DEFAUL
 const MatchTypeEnums::ItemType MatchTypeEnums::ACT_M6_MATCH( "ACT_M6_MATCH", SOHSTR(M6) );
 
 
+const OddLotEnums::ItemType OddLotEnums::BAD_ENUM( "BAD_ENUM", OddLotEnums::ITEM_BAD_ENUM );
 const OddLotEnums::ItemType OddLotEnums::YES( "YES", 'Y' );
 const OddLotEnums::ItemType OddLotEnums::NO( "NO", 'N' );
 
 
+const ClearingInstructionEnums::ItemType ClearingInstructionEnums::BAD_ENUM( "BAD_ENUM", ClearingInstructionEnums::ITEM_BAD_ENUM );
 const ClearingInstructionEnums::ItemType ClearingInstructionEnums::PROCESS_NORMALLY( "PROCESS_NORMALLY", 0 );
 const ClearingInstructionEnums::ItemType ClearingInstructionEnums::EXCLUDE_FROM_ALL_NETTING( "EXCLUDE_FROM_ALL_NETTING", 1 );
 const ClearingInstructionEnums::ItemType ClearingInstructionEnums::BILATERAL_NETTING_ONLY( "BILATERAL_NETTING_ONLY", 2 );
@@ -2622,6 +2769,7 @@ const ClearingInstructionEnums::ItemType ClearingInstructionEnums::CUSTOMER_TRAD
 const ClearingInstructionEnums::ItemType ClearingInstructionEnums::SELF_CLEARING( "SELF_CLEARING", 13 );
 
 
+const AccountTypeEnums::ItemType AccountTypeEnums::BAD_ENUM( "BAD_ENUM", AccountTypeEnums::ITEM_BAD_ENUM );
 const AccountTypeEnums::ItemType AccountTypeEnums::ACCOUNT_IS_CARRIED_ON_CUSTOMER_SIDE_OF_BOOKS( "ACCOUNT_IS_CARRIED_ON_CUSTOMER_SIDE_OF_BOOKS", 1 );
 const AccountTypeEnums::ItemType AccountTypeEnums::ACCOUNT_IS_CARRIED_ON_NON_CUSTOMER_SIDE_OF_BOOKS( "ACCOUNT_IS_CARRIED_ON_NON_CUSTOMER_SIDE_OF_BOOKS", 2 );
 const AccountTypeEnums::ItemType AccountTypeEnums::HOUSE_TRADER( "HOUSE_TRADER", 3 );
@@ -2631,12 +2779,14 @@ const AccountTypeEnums::ItemType AccountTypeEnums::ACCOUNT_IS_HOUSE_TRADER_AND_I
 const AccountTypeEnums::ItemType AccountTypeEnums::JOINT_BACKOFFICE_ACCOUNT( "JOINT_BACKOFFICE_ACCOUNT", 8 );
 
 
+const CustOrderCapacityEnums::ItemType CustOrderCapacityEnums::BAD_ENUM( "BAD_ENUM", CustOrderCapacityEnums::ITEM_BAD_ENUM );
 const CustOrderCapacityEnums::ItemType CustOrderCapacityEnums::MEMBER_TRADING_FOR_THEIR_OWN_ACCOUNT( "MEMBER_TRADING_FOR_THEIR_OWN_ACCOUNT", 1 );
 const CustOrderCapacityEnums::ItemType CustOrderCapacityEnums::CLEARING_FIRM_TRADING_FOR_ITS_PROPRIETARY_ACCOUNT( "CLEARING_FIRM_TRADING_FOR_ITS_PROPRIETARY_ACCOUNT", 2 );
 const CustOrderCapacityEnums::ItemType CustOrderCapacityEnums::MEMBER_TRADING_FOR_ANOTHER_MEMBER( "MEMBER_TRADING_FOR_ANOTHER_MEMBER", 3 );
 const CustOrderCapacityEnums::ItemType CustOrderCapacityEnums::ALL_OTHER( "ALL_OTHER", 4 );
 
 
+const MassStatusReqTypeEnums::ItemType MassStatusReqTypeEnums::BAD_ENUM( "BAD_ENUM", MassStatusReqTypeEnums::ITEM_BAD_ENUM );
 const MassStatusReqTypeEnums::ItemType MassStatusReqTypeEnums::STATUS_FOR_ORDERS_FOR_A_SECURITY( "STATUS_FOR_ORDERS_FOR_A_SECURITY", 1 );
 const MassStatusReqTypeEnums::ItemType MassStatusReqTypeEnums::STATUS_FOR_ORDERS_FOR_AN_UNDERLYING_SECURITY( "STATUS_FOR_ORDERS_FOR_AN_UNDERLYING_SECURITY", 2 );
 const MassStatusReqTypeEnums::ItemType MassStatusReqTypeEnums::STATUS_FOR_ORDERS_FOR_A_PRODUCT( "STATUS_FOR_ORDERS_FOR_A_PRODUCT", 3 );
@@ -2647,20 +2797,24 @@ const MassStatusReqTypeEnums::ItemType MassStatusReqTypeEnums::STATUS_FOR_ALL_OR
 const MassStatusReqTypeEnums::ItemType MassStatusReqTypeEnums::STATUS_FOR_ORDERS_FOR_A_PARTYID( "STATUS_FOR_ORDERS_FOR_A_PARTYID", 8 );
 
 
+const DayBookingInstEnums::ItemType DayBookingInstEnums::BAD_ENUM( "BAD_ENUM", DayBookingInstEnums::ITEM_BAD_ENUM );
 const DayBookingInstEnums::ItemType DayBookingInstEnums::CAN_TRIGGER_BOOKING_WITHOUT_REFERENCE_TO_THE_ORDER_INITIATOR( "CAN_TRIGGER_BOOKING_WITHOUT_REFERENCE_TO_THE_ORDER_INITIATOR", '0' );
 const DayBookingInstEnums::ItemType DayBookingInstEnums::SPEAK_WITH_ORDER_INITIATOR_BEFORE_BOOKING( "SPEAK_WITH_ORDER_INITIATOR_BEFORE_BOOKING", '1' );
 const DayBookingInstEnums::ItemType DayBookingInstEnums::ACCUMULATE( "ACCUMULATE", '2' );
 
 
+const BookingUnitEnums::ItemType BookingUnitEnums::BAD_ENUM( "BAD_ENUM", BookingUnitEnums::ITEM_BAD_ENUM );
 const BookingUnitEnums::ItemType BookingUnitEnums::EACH_PARTIAL_EXECUTION_IS_A_BOOKABLE_UNIT( "EACH_PARTIAL_EXECUTION_IS_A_BOOKABLE_UNIT", '0' );
 const BookingUnitEnums::ItemType BookingUnitEnums::AGGREGATE_PARTIAL_EXECUTIONS_ON_THIS_ORDER_AND_BOOK_ONE_TRADE_PER_ORDER( "AGGREGATE_PARTIAL_EXECUTIONS_ON_THIS_ORDER_AND_BOOK_ONE_TRADE_PER_ORDER", '1' );
 const BookingUnitEnums::ItemType BookingUnitEnums::AGGREGATE_EXECUTIONS_FOR_THIS_SYMBOL_SIDE_AND_SETTLEMENT_DATE( "AGGREGATE_EXECUTIONS_FOR_THIS_SYMBOL_SIDE_AND_SETTLEMENT_DATE", '2' );
 
 
+const PreallocMethodEnums::ItemType PreallocMethodEnums::BAD_ENUM( "BAD_ENUM", PreallocMethodEnums::ITEM_BAD_ENUM );
 const PreallocMethodEnums::ItemType PreallocMethodEnums::PRO_RATA( "PRO_RATA", '0' );
 const PreallocMethodEnums::ItemType PreallocMethodEnums::DO_NOT_PRO_RATA_DISCUSS_FIRST( "DO_NOT_PRO_RATA_DISCUSS_FIRST", '1' );
 
 
+const AllocTypeEnums::ItemType AllocTypeEnums::BAD_ENUM( "BAD_ENUM", AllocTypeEnums::ITEM_BAD_ENUM );
 const AllocTypeEnums::ItemType AllocTypeEnums::CALCULATED( "CALCULATED", 1 );
 const AllocTypeEnums::ItemType AllocTypeEnums::PRELIMINARY( "PRELIMINARY", 2 );
 const AllocTypeEnums::ItemType AllocTypeEnums::READY_TO_BOOK( "READY_TO_BOOK", 5 );
@@ -2668,6 +2822,7 @@ const AllocTypeEnums::ItemType AllocTypeEnums::WAREHOUSE_INSTRUCTION( "WAREHOUSE
 const AllocTypeEnums::ItemType AllocTypeEnums::REQUEST_TO_INTERMEDIARY( "REQUEST_TO_INTERMEDIARY", 8 );
 
 
+const ClearingFeeIndicatorEnums::ItemType ClearingFeeIndicatorEnums::BAD_ENUM( "BAD_ENUM", ClearingFeeIndicatorEnums::ITEM_BAD_ENUM );
 const ClearingFeeIndicatorEnums::ItemType ClearingFeeIndicatorEnums::CBOE_MEMBER( "CBOE_MEMBER", SOHSTR(B) );
 const ClearingFeeIndicatorEnums::ItemType ClearingFeeIndicatorEnums::NON_MEMBER_AND_CUSTOMER( "NON_MEMBER_AND_CUSTOMER", SOHSTR(C) );
 const ClearingFeeIndicatorEnums::ItemType ClearingFeeIndicatorEnums::EQUITY_MEMBER_AND_CLEARING_MEMBER( "EQUITY_MEMBER_AND_CLEARING_MEMBER", SOHSTR(E) );
@@ -2684,18 +2839,22 @@ const ClearingFeeIndicatorEnums::ItemType ClearingFeeIndicatorEnums::_5TH_YEAR_D
 const ClearingFeeIndicatorEnums::ItemType ClearingFeeIndicatorEnums::_6TH_YEAR_AND_BEYOND_DELEGATE_TRADING_FOR_HIS_OWN_ACCOUNT( "_6TH_YEAR_AND_BEYOND_DELEGATE_TRADING_FOR_HIS_OWN_ACCOUNT", SOHSTR(9) );
 
 
+const WorkingIndicatorEnums::ItemType WorkingIndicatorEnums::BAD_ENUM( "BAD_ENUM", WorkingIndicatorEnums::ITEM_BAD_ENUM );
 const WorkingIndicatorEnums::ItemType WorkingIndicatorEnums::YES( "YES", 'Y' );
 const WorkingIndicatorEnums::ItemType WorkingIndicatorEnums::NO( "NO", 'N' );
 
 
+const PriorityIndicatorEnums::ItemType PriorityIndicatorEnums::BAD_ENUM( "BAD_ENUM", PriorityIndicatorEnums::ITEM_BAD_ENUM );
 const PriorityIndicatorEnums::ItemType PriorityIndicatorEnums::PRIORITY_UNCHANGED( "PRIORITY_UNCHANGED", 0 );
 const PriorityIndicatorEnums::ItemType PriorityIndicatorEnums::LOST_PRIORITY_AS_RESULT_OF_ORDER_CHANGE( "LOST_PRIORITY_AS_RESULT_OF_ORDER_CHANGE", 1 );
 
 
+const LegalConfirmEnums::ItemType LegalConfirmEnums::BAD_ENUM( "BAD_ENUM", LegalConfirmEnums::ITEM_BAD_ENUM );
 const LegalConfirmEnums::ItemType LegalConfirmEnums::YES( "YES", 'Y' );
 const LegalConfirmEnums::ItemType LegalConfirmEnums::NO( "NO", 'N' );
 
 
+const QuoteRequestRejectReasonEnums::ItemType QuoteRequestRejectReasonEnums::BAD_ENUM( "BAD_ENUM", QuoteRequestRejectReasonEnums::ITEM_BAD_ENUM );
 const QuoteRequestRejectReasonEnums::ItemType QuoteRequestRejectReasonEnums::UNKNOWN_SYMBOL( "UNKNOWN_SYMBOL", 1 );
 const QuoteRequestRejectReasonEnums::ItemType QuoteRequestRejectReasonEnums::EXCHANGE( "EXCHANGE", 2 );
 const QuoteRequestRejectReasonEnums::ItemType QuoteRequestRejectReasonEnums::QUOTE_REQUEST_EXCEEDS_LIMIT( "QUOTE_REQUEST_EXCEEDS_LIMIT", 3 );
@@ -2709,6 +2868,7 @@ const QuoteRequestRejectReasonEnums::ItemType QuoteRequestRejectReasonEnums::PAS
 const QuoteRequestRejectReasonEnums::ItemType QuoteRequestRejectReasonEnums::OTHER( "OTHER", 99 );
 
 
+const AcctIDSourceEnums::ItemType AcctIDSourceEnums::BAD_ENUM( "BAD_ENUM", AcctIDSourceEnums::ITEM_BAD_ENUM );
 const AcctIDSourceEnums::ItemType AcctIDSourceEnums::BIC( "BIC", 1 );
 const AcctIDSourceEnums::ItemType AcctIDSourceEnums::SID_CODE( "SID_CODE", 2 );
 const AcctIDSourceEnums::ItemType AcctIDSourceEnums::TFM( "TFM", 3 );
@@ -2717,6 +2877,7 @@ const AcctIDSourceEnums::ItemType AcctIDSourceEnums::DTCC_CODE( "DTCC_CODE", 5 )
 const AcctIDSourceEnums::ItemType AcctIDSourceEnums::OTHER( "OTHER", 99 );
 
 
+const ConfirmStatusEnums::ItemType ConfirmStatusEnums::BAD_ENUM( "BAD_ENUM", ConfirmStatusEnums::ITEM_BAD_ENUM );
 const ConfirmStatusEnums::ItemType ConfirmStatusEnums::RECEIVED( "RECEIVED", 1 );
 const ConfirmStatusEnums::ItemType ConfirmStatusEnums::MISMATCHED_ACCOUNT( "MISMATCHED_ACCOUNT", 2 );
 const ConfirmStatusEnums::ItemType ConfirmStatusEnums::MISSING_SETTLEMENT_INSTRUCTIONS( "MISSING_SETTLEMENT_INSTRUCTIONS", 3 );
@@ -2724,21 +2885,25 @@ const ConfirmStatusEnums::ItemType ConfirmStatusEnums::CONFIRMED( "CONFIRMED", 4
 const ConfirmStatusEnums::ItemType ConfirmStatusEnums::REQUEST_REJECTED( "REQUEST_REJECTED", 5 );
 
 
+const ConfirmTransTypeEnums::ItemType ConfirmTransTypeEnums::BAD_ENUM( "BAD_ENUM", ConfirmTransTypeEnums::ITEM_BAD_ENUM );
 const ConfirmTransTypeEnums::ItemType ConfirmTransTypeEnums::NEW( "NEW", 0 );
 const ConfirmTransTypeEnums::ItemType ConfirmTransTypeEnums::REPLACE( "REPLACE", 1 );
 const ConfirmTransTypeEnums::ItemType ConfirmTransTypeEnums::CANCEL( "CANCEL", 2 );
 
 
+const DeliveryFormEnums::ItemType DeliveryFormEnums::BAD_ENUM( "BAD_ENUM", DeliveryFormEnums::ITEM_BAD_ENUM );
 const DeliveryFormEnums::ItemType DeliveryFormEnums::BOOKENTRY( "BOOKENTRY", 1 );
 const DeliveryFormEnums::ItemType DeliveryFormEnums::BEARER( "BEARER", 2 );
 
 
+const LegSwapTypeEnums::ItemType LegSwapTypeEnums::BAD_ENUM( "BAD_ENUM", LegSwapTypeEnums::ITEM_BAD_ENUM );
 const LegSwapTypeEnums::ItemType LegSwapTypeEnums::PAR_FOR_PAR( "PAR_FOR_PAR", 1 );
 const LegSwapTypeEnums::ItemType LegSwapTypeEnums::MODIFIED_DURATION( "MODIFIED_DURATION", 2 );
 const LegSwapTypeEnums::ItemType LegSwapTypeEnums::RISK( "RISK", 4 );
 const LegSwapTypeEnums::ItemType LegSwapTypeEnums::PROCEEDS( "PROCEEDS", 5 );
 
 
+const QuotePriceTypeEnums::ItemType QuotePriceTypeEnums::BAD_ENUM( "BAD_ENUM", QuotePriceTypeEnums::ITEM_BAD_ENUM );
 const QuotePriceTypeEnums::ItemType QuotePriceTypeEnums::PERCENT( "PERCENT", 1 );
 const QuotePriceTypeEnums::ItemType QuotePriceTypeEnums::PER_SHARE( "PER_SHARE", 2 );
 const QuotePriceTypeEnums::ItemType QuotePriceTypeEnums::FIXED_AMOUNT( "FIXED_AMOUNT", 3 );
@@ -2751,6 +2916,7 @@ const QuotePriceTypeEnums::ItemType QuotePriceTypeEnums::YIELD_SPREAD( "YIELD_SP
 const QuotePriceTypeEnums::ItemType QuotePriceTypeEnums::YIELD( "YIELD", 10 );
 
 
+const QuoteRespTypeEnums::ItemType QuoteRespTypeEnums::BAD_ENUM( "BAD_ENUM", QuoteRespTypeEnums::ITEM_BAD_ENUM );
 const QuoteRespTypeEnums::ItemType QuoteRespTypeEnums::HIT_LIFT( "HIT_LIFT", 1 );
 const QuoteRespTypeEnums::ItemType QuoteRespTypeEnums::COUNTER( "COUNTER", 2 );
 const QuoteRespTypeEnums::ItemType QuoteRespTypeEnums::EXPIRED( "EXPIRED", 3 );
@@ -2759,6 +2925,7 @@ const QuoteRespTypeEnums::ItemType QuoteRespTypeEnums::DONE_AWAY( "DONE_AWAY", 5
 const QuoteRespTypeEnums::ItemType QuoteRespTypeEnums::PASS( "PASS", 6 );
 
 
+const PosTypeEnums::ItemType PosTypeEnums::BAD_ENUM( "BAD_ENUM", PosTypeEnums::ITEM_BAD_ENUM );
 const PosTypeEnums::ItemType PosTypeEnums::TRANSACTION_QUANTITY( "TRANSACTION_QUANTITY", SOHSTR(TQ) );
 const PosTypeEnums::ItemType PosTypeEnums::INTRA_SPREAD_QTY( "INTRA_SPREAD_QTY", SOHSTR(IAS) );
 const PosTypeEnums::ItemType PosTypeEnums::INTER_SPREAD_QTY( "INTER_SPREAD_QTY", SOHSTR(IES) );
@@ -2780,11 +2947,13 @@ const PosTypeEnums::ItemType PosTypeEnums::CROSS_MARGIN_QTY( "CROSS_MARGIN_QTY",
 const PosTypeEnums::ItemType PosTypeEnums::INTEGRAL_SPLIT( "INTEGRAL_SPLIT", SOHSTR(SPL) );
 
 
+const PosQtyStatusEnums::ItemType PosQtyStatusEnums::BAD_ENUM( "BAD_ENUM", PosQtyStatusEnums::ITEM_BAD_ENUM );
 const PosQtyStatusEnums::ItemType PosQtyStatusEnums::SUBMITTED( "SUBMITTED", 0 );
 const PosQtyStatusEnums::ItemType PosQtyStatusEnums::ACCEPTED( "ACCEPTED", 1 );
 const PosQtyStatusEnums::ItemType PosQtyStatusEnums::REJECTED( "REJECTED", 2 );
 
 
+const PosAmtTypeEnums::ItemType PosAmtTypeEnums::BAD_ENUM( "BAD_ENUM", PosAmtTypeEnums::ITEM_BAD_ENUM );
 const PosAmtTypeEnums::ItemType PosAmtTypeEnums::FINAL_MARK_TO_MARKET_AMOUNT( "FINAL_MARK_TO_MARKET_AMOUNT", SOHSTR(FMTM) );
 const PosAmtTypeEnums::ItemType PosAmtTypeEnums::INCREMENTAL_MARK_TO_MARKET_AMOUNT( "INCREMENTAL_MARK_TO_MARKET_AMOUNT", SOHSTR(IMTM) );
 const PosAmtTypeEnums::ItemType PosAmtTypeEnums::TRADE_VARIATION_AMOUNT( "TRADE_VARIATION_AMOUNT", SOHSTR(TVAR) );
@@ -2795,6 +2964,7 @@ const PosAmtTypeEnums::ItemType PosAmtTypeEnums::CASH_AMOUNT( "CASH_AMOUNT", SOH
 const PosAmtTypeEnums::ItemType PosAmtTypeEnums::VALUE_ADJUSTED_AMOUNT( "VALUE_ADJUSTED_AMOUNT", SOHSTR(VADJ) );
 
 
+const PosTransTypeEnums::ItemType PosTransTypeEnums::BAD_ENUM( "BAD_ENUM", PosTransTypeEnums::ITEM_BAD_ENUM );
 const PosTransTypeEnums::ItemType PosTransTypeEnums::EXERCISE( "EXERCISE", 1 );
 const PosTransTypeEnums::ItemType PosTransTypeEnums::DO_NOT_EXERCISE( "DO_NOT_EXERCISE", 2 );
 const PosTransTypeEnums::ItemType PosTransTypeEnums::POSITION_ADJUSTMENT( "POSITION_ADJUSTMENT", 3 );
@@ -2802,22 +2972,26 @@ const PosTransTypeEnums::ItemType PosTransTypeEnums::POSITION_CHANGE_SUBMISSION_
 const PosTransTypeEnums::ItemType PosTransTypeEnums::PLEDGE( "PLEDGE", 5 );
 
 
+const PosMaintActionEnums::ItemType PosMaintActionEnums::BAD_ENUM( "BAD_ENUM", PosMaintActionEnums::ITEM_BAD_ENUM );
 const PosMaintActionEnums::ItemType PosMaintActionEnums::NEW_USED_TO_INCREMENT_THE_OVERALL_TRANSACTION_QUANTITY( "NEW_USED_TO_INCREMENT_THE_OVERALL_TRANSACTION_QUANTITY", 1 );
 const PosMaintActionEnums::ItemType PosMaintActionEnums::REPLACE_USED_TO_OVERRIDE_THE_OVERALL_TRANSACTION_QUANTITY_OR_SPECIFIC_ADD_MESSAGES_BASED_ON_THE_REFERENCE_ID( "REPLACE_USED_TO_OVERRIDE_THE_OVERALL_TRANSACTION_QUANTITY_OR_SPECIFIC_ADD_MESSAGES_BASED_ON_THE_REFERENCE_ID", 2 );
 const PosMaintActionEnums::ItemType PosMaintActionEnums::CANCEL_USED_TO_REMOVE_THE_OVERALL_TRANSACTION_OR_SPECIFIC_ADD_MESSAGES_BASED_ON_REFERENCE_ID( "CANCEL_USED_TO_REMOVE_THE_OVERALL_TRANSACTION_OR_SPECIFIC_ADD_MESSAGES_BASED_ON_REFERENCE_ID", 3 );
 
 
+const SettlSessIDEnums::ItemType SettlSessIDEnums::BAD_ENUM( "BAD_ENUM", SettlSessIDEnums::ITEM_BAD_ENUM );
 const SettlSessIDEnums::ItemType SettlSessIDEnums::INTRADAY( "INTRADAY", SOHSTR(ITD) );
 const SettlSessIDEnums::ItemType SettlSessIDEnums::REGULAR_TRADING_HOURS( "REGULAR_TRADING_HOURS", SOHSTR(RTH) );
 const SettlSessIDEnums::ItemType SettlSessIDEnums::ELECTRONIC_TRADING_HOURS( "ELECTRONIC_TRADING_HOURS", SOHSTR(ETH) );
 
 
+const AdjustmentTypeEnums::ItemType AdjustmentTypeEnums::BAD_ENUM( "BAD_ENUM", AdjustmentTypeEnums::ITEM_BAD_ENUM );
 const AdjustmentTypeEnums::ItemType AdjustmentTypeEnums::PROCESS_REQUEST_AS_MARGIN_DISPOSITION( "PROCESS_REQUEST_AS_MARGIN_DISPOSITION", 0 );
 const AdjustmentTypeEnums::ItemType AdjustmentTypeEnums::DELTA_PLUS( "DELTA_PLUS", 1 );
 const AdjustmentTypeEnums::ItemType AdjustmentTypeEnums::DELTA_MINUS( "DELTA_MINUS", 2 );
 const AdjustmentTypeEnums::ItemType AdjustmentTypeEnums::FINAL( "FINAL", 3 );
 
 
+const PosMaintStatusEnums::ItemType PosMaintStatusEnums::BAD_ENUM( "BAD_ENUM", PosMaintStatusEnums::ITEM_BAD_ENUM );
 const PosMaintStatusEnums::ItemType PosMaintStatusEnums::ACCEPTED( "ACCEPTED", 0 );
 const PosMaintStatusEnums::ItemType PosMaintStatusEnums::ACCEPTED_WITH_WARNINGS( "ACCEPTED_WITH_WARNINGS", 1 );
 const PosMaintStatusEnums::ItemType PosMaintStatusEnums::REJECTED( "REJECTED", 2 );
@@ -2825,21 +2999,25 @@ const PosMaintStatusEnums::ItemType PosMaintStatusEnums::COMPLETED( "COMPLETED",
 const PosMaintStatusEnums::ItemType PosMaintStatusEnums::COMPLETED_WITH_WARNINGS( "COMPLETED_WITH_WARNINGS", 4 );
 
 
+const PosMaintResultEnums::ItemType PosMaintResultEnums::BAD_ENUM( "BAD_ENUM", PosMaintResultEnums::ITEM_BAD_ENUM );
 const PosMaintResultEnums::ItemType PosMaintResultEnums::SUCCESSFUL_COMPLETION( "SUCCESSFUL_COMPLETION", 0 );
 const PosMaintResultEnums::ItemType PosMaintResultEnums::REJECTED( "REJECTED", 1 );
 const PosMaintResultEnums::ItemType PosMaintResultEnums::OTHER( "OTHER", 99 );
 
 
+const PosReqTypeEnums::ItemType PosReqTypeEnums::BAD_ENUM( "BAD_ENUM", PosReqTypeEnums::ITEM_BAD_ENUM );
 const PosReqTypeEnums::ItemType PosReqTypeEnums::POSITIONS( "POSITIONS", 0 );
 const PosReqTypeEnums::ItemType PosReqTypeEnums::TRADES( "TRADES", 1 );
 const PosReqTypeEnums::ItemType PosReqTypeEnums::EXERCISES( "EXERCISES", 2 );
 const PosReqTypeEnums::ItemType PosReqTypeEnums::ASSIGNMENTS( "ASSIGNMENTS", 3 );
 
 
+const ResponseTransportTypeEnums::ItemType ResponseTransportTypeEnums::BAD_ENUM( "BAD_ENUM", ResponseTransportTypeEnums::ITEM_BAD_ENUM );
 const ResponseTransportTypeEnums::ItemType ResponseTransportTypeEnums::INBAND_TRANSPORT_THE_REQUEST_WAS_SENT_OVER( "INBAND_TRANSPORT_THE_REQUEST_WAS_SENT_OVER", 0 );
 const ResponseTransportTypeEnums::ItemType ResponseTransportTypeEnums::OUT_OF_BAND_PRE_ARRANGED_OUT_OF_BAND_DELIVERY_MECHANISM( "OUT_OF_BAND_PRE_ARRANGED_OUT_OF_BAND_DELIVERY_MECHANISM", 1 );
 
 
+const PosReqResultEnums::ItemType PosReqResultEnums::BAD_ENUM( "BAD_ENUM", PosReqResultEnums::ITEM_BAD_ENUM );
 const PosReqResultEnums::ItemType PosReqResultEnums::VALID_REQUEST( "VALID_REQUEST", 0 );
 const PosReqResultEnums::ItemType PosReqResultEnums::INVALID_OR_UNSUPPORTED_REQUEST( "INVALID_OR_UNSUPPORTED_REQUEST", 1 );
 const PosReqResultEnums::ItemType PosReqResultEnums::NO_POSITIONS_FOUND_THAT_MATCH_CRITERIA( "NO_POSITIONS_FOUND_THAT_MATCH_CRITERIA", 2 );
@@ -2848,23 +3026,28 @@ const PosReqResultEnums::ItemType PosReqResultEnums::REQUEST_FOR_POSITION_NOT_SU
 const PosReqResultEnums::ItemType PosReqResultEnums::OTHER( "OTHER", 99 );
 
 
+const PosReqStatusEnums::ItemType PosReqStatusEnums::BAD_ENUM( "BAD_ENUM", PosReqStatusEnums::ITEM_BAD_ENUM );
 const PosReqStatusEnums::ItemType PosReqStatusEnums::COMPLETED( "COMPLETED", 0 );
 const PosReqStatusEnums::ItemType PosReqStatusEnums::COMPLETED_WITH_WARNINGS( "COMPLETED_WITH_WARNINGS", 1 );
 const PosReqStatusEnums::ItemType PosReqStatusEnums::REJECTED( "REJECTED", 2 );
 
 
+const SettlPriceTypeEnums::ItemType SettlPriceTypeEnums::BAD_ENUM( "BAD_ENUM", SettlPriceTypeEnums::ITEM_BAD_ENUM );
 const SettlPriceTypeEnums::ItemType SettlPriceTypeEnums::FINAL( "FINAL", 1 );
 const SettlPriceTypeEnums::ItemType SettlPriceTypeEnums::THEORETICAL( "THEORETICAL", 2 );
 
 
+const AssignmentMethodEnums::ItemType AssignmentMethodEnums::BAD_ENUM( "BAD_ENUM", AssignmentMethodEnums::ITEM_BAD_ENUM );
 const AssignmentMethodEnums::ItemType AssignmentMethodEnums::RANDOM( "RANDOM", 'R' );
 const AssignmentMethodEnums::ItemType AssignmentMethodEnums::PRORATA( "PRORATA", 'P' );
 
 
+const ExerciseMethodEnums::ItemType ExerciseMethodEnums::BAD_ENUM( "BAD_ENUM", ExerciseMethodEnums::ITEM_BAD_ENUM );
 const ExerciseMethodEnums::ItemType ExerciseMethodEnums::AUTOMATIC( "AUTOMATIC", 'A' );
 const ExerciseMethodEnums::ItemType ExerciseMethodEnums::MANUAL( "MANUAL", 'M' );
 
 
+const TradeRequestResultEnums::ItemType TradeRequestResultEnums::BAD_ENUM( "BAD_ENUM", TradeRequestResultEnums::ITEM_BAD_ENUM );
 const TradeRequestResultEnums::ItemType TradeRequestResultEnums::SUCCESSFUL( "SUCCESSFUL", 0 );
 const TradeRequestResultEnums::ItemType TradeRequestResultEnums::INVALID_OR_UNKNOWN_INSTRUMENT( "INVALID_OR_UNKNOWN_INSTRUMENT", 1 );
 const TradeRequestResultEnums::ItemType TradeRequestResultEnums::INVALID_TYPE_OF_TRADE_REQUESTED( "INVALID_TYPE_OF_TRADE_REQUESTED", 2 );
@@ -2876,11 +3059,13 @@ const TradeRequestResultEnums::ItemType TradeRequestResultEnums::UNAUTHORIZED_FO
 const TradeRequestResultEnums::ItemType TradeRequestResultEnums::OTHER( "OTHER", 99 );
 
 
+const TradeRequestStatusEnums::ItemType TradeRequestStatusEnums::BAD_ENUM( "BAD_ENUM", TradeRequestStatusEnums::ITEM_BAD_ENUM );
 const TradeRequestStatusEnums::ItemType TradeRequestStatusEnums::ACCEPTED( "ACCEPTED", 0 );
 const TradeRequestStatusEnums::ItemType TradeRequestStatusEnums::COMPLETED( "COMPLETED", 1 );
 const TradeRequestStatusEnums::ItemType TradeRequestStatusEnums::REJECTED( "REJECTED", 2 );
 
 
+const TradeReportRejectReasonEnums::ItemType TradeReportRejectReasonEnums::BAD_ENUM( "BAD_ENUM", TradeReportRejectReasonEnums::ITEM_BAD_ENUM );
 const TradeReportRejectReasonEnums::ItemType TradeReportRejectReasonEnums::SUCCESSFUL( "SUCCESSFUL", 0 );
 const TradeReportRejectReasonEnums::ItemType TradeReportRejectReasonEnums::INVALID_PARTY_INFORMATION( "INVALID_PARTY_INFORMATION", 1 );
 const TradeReportRejectReasonEnums::ItemType TradeReportRejectReasonEnums::UNKNOWN_INSTRUMENT( "UNKNOWN_INSTRUMENT", 2 );
@@ -2889,11 +3074,13 @@ const TradeReportRejectReasonEnums::ItemType TradeReportRejectReasonEnums::INVAL
 const TradeReportRejectReasonEnums::ItemType TradeReportRejectReasonEnums::OTHER( "OTHER", 99 );
 
 
+const SideMultiLegReportingTypeEnums::ItemType SideMultiLegReportingTypeEnums::BAD_ENUM( "BAD_ENUM", SideMultiLegReportingTypeEnums::ITEM_BAD_ENUM );
 const SideMultiLegReportingTypeEnums::ItemType SideMultiLegReportingTypeEnums::SINGLE_SECURITY( "SINGLE_SECURITY", 1 );
 const SideMultiLegReportingTypeEnums::ItemType SideMultiLegReportingTypeEnums::INDIVIDUAL_LEG_OF_A_MULTI_LEG_SECURITY( "INDIVIDUAL_LEG_OF_A_MULTI_LEG_SECURITY", 2 );
 const SideMultiLegReportingTypeEnums::ItemType SideMultiLegReportingTypeEnums::MULTI_LEG_SECURITY( "MULTI_LEG_SECURITY", 3 );
 
 
+const TrdRegTimestampTypeEnums::ItemType TrdRegTimestampTypeEnums::BAD_ENUM( "BAD_ENUM", TrdRegTimestampTypeEnums::ITEM_BAD_ENUM );
 const TrdRegTimestampTypeEnums::ItemType TrdRegTimestampTypeEnums::EXECUTION_TIME( "EXECUTION_TIME", 1 );
 const TrdRegTimestampTypeEnums::ItemType TrdRegTimestampTypeEnums::TIME_IN( "TIME_IN", 2 );
 const TrdRegTimestampTypeEnums::ItemType TrdRegTimestampTypeEnums::TIME_OUT( "TIME_OUT", 3 );
@@ -2901,21 +3088,25 @@ const TrdRegTimestampTypeEnums::ItemType TrdRegTimestampTypeEnums::BROKER_RECEIP
 const TrdRegTimestampTypeEnums::ItemType TrdRegTimestampTypeEnums::BROKER_EXECUTION( "BROKER_EXECUTION", 5 );
 
 
+const ConfirmTypeEnums::ItemType ConfirmTypeEnums::BAD_ENUM( "BAD_ENUM", ConfirmTypeEnums::ITEM_BAD_ENUM );
 const ConfirmTypeEnums::ItemType ConfirmTypeEnums::STATUS( "STATUS", 1 );
 const ConfirmTypeEnums::ItemType ConfirmTypeEnums::CONFIRMATION( "CONFIRMATION", 2 );
 const ConfirmTypeEnums::ItemType ConfirmTypeEnums::CONFIRMATION_REQUEST_REJECTED( "CONFIRMATION_REQUEST_REJECTED", 3 );
 
 
+const ConfirmRejReasonEnums::ItemType ConfirmRejReasonEnums::BAD_ENUM( "BAD_ENUM", ConfirmRejReasonEnums::ITEM_BAD_ENUM );
 const ConfirmRejReasonEnums::ItemType ConfirmRejReasonEnums::MISMATCHED_ACCOUNT( "MISMATCHED_ACCOUNT", 1 );
 const ConfirmRejReasonEnums::ItemType ConfirmRejReasonEnums::MISSING_SETTLEMENT_INSTRUCTIONS( "MISSING_SETTLEMENT_INSTRUCTIONS", 2 );
 const ConfirmRejReasonEnums::ItemType ConfirmRejReasonEnums::OTHER( "OTHER", 99 );
 
 
+const BookingTypeEnums::ItemType BookingTypeEnums::BAD_ENUM( "BAD_ENUM", BookingTypeEnums::ITEM_BAD_ENUM );
 const BookingTypeEnums::ItemType BookingTypeEnums::REGULAR_BOOKING( "REGULAR_BOOKING", 0 );
 const BookingTypeEnums::ItemType BookingTypeEnums::CFD( "CFD", 1 );
 const BookingTypeEnums::ItemType BookingTypeEnums::TOTAL_RETURN_SWAP( "TOTAL_RETURN_SWAP", 2 );
 
 
+const AllocSettlInstTypeEnums::ItemType AllocSettlInstTypeEnums::BAD_ENUM( "BAD_ENUM", AllocSettlInstTypeEnums::ITEM_BAD_ENUM );
 const AllocSettlInstTypeEnums::ItemType AllocSettlInstTypeEnums::USE_DEFAULT_INSTRUCTIONS( "USE_DEFAULT_INSTRUCTIONS", 0 );
 const AllocSettlInstTypeEnums::ItemType AllocSettlInstTypeEnums::DERIVE_FROM_PARAMETERS_PROVIDED( "DERIVE_FROM_PARAMETERS_PROVIDED", 1 );
 const AllocSettlInstTypeEnums::ItemType AllocSettlInstTypeEnums::FULL_DETAILS_PROVIDED( "FULL_DETAILS_PROVIDED", 2 );
@@ -2923,33 +3114,39 @@ const AllocSettlInstTypeEnums::ItemType AllocSettlInstTypeEnums::SSI_DB_IDS_PROV
 const AllocSettlInstTypeEnums::ItemType AllocSettlInstTypeEnums::PHONE_FOR_INSTRUCTIONS( "PHONE_FOR_INSTRUCTIONS", 4 );
 
 
+const DlvyInstTypeEnums::ItemType DlvyInstTypeEnums::BAD_ENUM( "BAD_ENUM", DlvyInstTypeEnums::ITEM_BAD_ENUM );
 const DlvyInstTypeEnums::ItemType DlvyInstTypeEnums::SECURITIES( "SECURITIES", 'S' );
 const DlvyInstTypeEnums::ItemType DlvyInstTypeEnums::CASH( "CASH", 'C' );
 
 
+const TerminationTypeEnums::ItemType TerminationTypeEnums::BAD_ENUM( "BAD_ENUM", TerminationTypeEnums::ITEM_BAD_ENUM );
 const TerminationTypeEnums::ItemType TerminationTypeEnums::OVERNIGHT( "OVERNIGHT", 1 );
 const TerminationTypeEnums::ItemType TerminationTypeEnums::TERM( "TERM", 2 );
 const TerminationTypeEnums::ItemType TerminationTypeEnums::FLEXIBLE( "FLEXIBLE", 3 );
 const TerminationTypeEnums::ItemType TerminationTypeEnums::OPEN( "OPEN", 4 );
 
 
+const SettlInstReqRejCodeEnums::ItemType SettlInstReqRejCodeEnums::BAD_ENUM( "BAD_ENUM", SettlInstReqRejCodeEnums::ITEM_BAD_ENUM );
 const SettlInstReqRejCodeEnums::ItemType SettlInstReqRejCodeEnums::UNABLE_TO_PROCESS_REQUEST( "UNABLE_TO_PROCESS_REQUEST", 0 );
 const SettlInstReqRejCodeEnums::ItemType SettlInstReqRejCodeEnums::UNKNOWN_ACCOUNT( "UNKNOWN_ACCOUNT", 1 );
 const SettlInstReqRejCodeEnums::ItemType SettlInstReqRejCodeEnums::NO_MATCHING_SETTLEMENT_INSTRUCTIONS_FOUND( "NO_MATCHING_SETTLEMENT_INSTRUCTIONS_FOUND", 2 );
 const SettlInstReqRejCodeEnums::ItemType SettlInstReqRejCodeEnums::OTHER( "OTHER", 99 );
 
 
+const AllocReportTypeEnums::ItemType AllocReportTypeEnums::BAD_ENUM( "BAD_ENUM", AllocReportTypeEnums::ITEM_BAD_ENUM );
 const AllocReportTypeEnums::ItemType AllocReportTypeEnums::SELLSIDE_CALCULATED_USING_PRELIMINARY( "SELLSIDE_CALCULATED_USING_PRELIMINARY", 3 );
 const AllocReportTypeEnums::ItemType AllocReportTypeEnums::SELLSIDE_CALCULATED_WITHOUT_PRELIMINARY( "SELLSIDE_CALCULATED_WITHOUT_PRELIMINARY", 4 );
 const AllocReportTypeEnums::ItemType AllocReportTypeEnums::WAREHOUSE_RECAP( "WAREHOUSE_RECAP", 5 );
 const AllocReportTypeEnums::ItemType AllocReportTypeEnums::REQUEST_TO_INTERMEDIARY( "REQUEST_TO_INTERMEDIARY", 8 );
 
 
+const AllocCancReplaceReasonEnums::ItemType AllocCancReplaceReasonEnums::BAD_ENUM( "BAD_ENUM", AllocCancReplaceReasonEnums::ITEM_BAD_ENUM );
 const AllocCancReplaceReasonEnums::ItemType AllocCancReplaceReasonEnums::ORIGINAL_DETAILS_INCOMPLETE_INCORRECT( "ORIGINAL_DETAILS_INCOMPLETE_INCORRECT", 1 );
 const AllocCancReplaceReasonEnums::ItemType AllocCancReplaceReasonEnums::CHANGE_IN_UNDERLYING_ORDER_DETAILS( "CHANGE_IN_UNDERLYING_ORDER_DETAILS", 2 );
 const AllocCancReplaceReasonEnums::ItemType AllocCancReplaceReasonEnums::OTHER( "OTHER", 99 );
 
 
+const AllocAccountTypeEnums::ItemType AllocAccountTypeEnums::BAD_ENUM( "BAD_ENUM", AllocAccountTypeEnums::ITEM_BAD_ENUM );
 const AllocAccountTypeEnums::ItemType AllocAccountTypeEnums::ACCOUNT_IS_CARRIED_ON_CUSTOMER_SIDE_OF_BOOKS( "ACCOUNT_IS_CARRIED_ON_CUSTOMER_SIDE_OF_BOOKS", 1 );
 const AllocAccountTypeEnums::ItemType AllocAccountTypeEnums::ACCOUNT_IS_CARRIED_ON_NON_CUSTOMER_SIDE_OF_BOOKS( "ACCOUNT_IS_CARRIED_ON_NON_CUSTOMER_SIDE_OF_BOOKS", 2 );
 const AllocAccountTypeEnums::ItemType AllocAccountTypeEnums::HOUSE_TRADER( "HOUSE_TRADER", 3 );
@@ -2959,6 +3156,7 @@ const AllocAccountTypeEnums::ItemType AllocAccountTypeEnums::ACCOUNT_IS_HOUSE_TR
 const AllocAccountTypeEnums::ItemType AllocAccountTypeEnums::JOINT_BACKOFFICE_ACCOUNT( "JOINT_BACKOFFICE_ACCOUNT", 8 );
 
 
+const PartySubIDTypeEnums::ItemType PartySubIDTypeEnums::BAD_ENUM( "BAD_ENUM", PartySubIDTypeEnums::ITEM_BAD_ENUM );
 const PartySubIDTypeEnums::ItemType PartySubIDTypeEnums::FIRM( "FIRM", 1 );
 const PartySubIDTypeEnums::ItemType PartySubIDTypeEnums::PERSON( "PERSON", 2 );
 const PartySubIDTypeEnums::ItemType PartySubIDTypeEnums::SYSTEM( "SYSTEM", 3 );
@@ -2987,6 +3185,7 @@ const PartySubIDTypeEnums::ItemType PartySubIDTypeEnums::LOCATION( "LOCATION", 2
 const PartySubIDTypeEnums::ItemType PartySubIDTypeEnums::POSITION_ACCOUNT_TYPE( "POSITION_ACCOUNT_TYPE", 26 );
 
 
+const AllocIntermedReqTypeEnums::ItemType AllocIntermedReqTypeEnums::BAD_ENUM( "BAD_ENUM", AllocIntermedReqTypeEnums::ITEM_BAD_ENUM );
 const AllocIntermedReqTypeEnums::ItemType AllocIntermedReqTypeEnums::PENDING_ACCEPT( "PENDING_ACCEPT", 1 );
 const AllocIntermedReqTypeEnums::ItemType AllocIntermedReqTypeEnums::PENDING_RELEASE( "PENDING_RELEASE", 2 );
 const AllocIntermedReqTypeEnums::ItemType AllocIntermedReqTypeEnums::PENDING_REVERSAL( "PENDING_REVERSAL", 3 );
@@ -2995,32 +3194,38 @@ const AllocIntermedReqTypeEnums::ItemType AllocIntermedReqTypeEnums::BLOCK_LEVEL
 const AllocIntermedReqTypeEnums::ItemType AllocIntermedReqTypeEnums::ACCOUNT_LEVEL_REJECT( "ACCOUNT_LEVEL_REJECT", 6 );
 
 
+const ApplQueueResolutionEnums::ItemType ApplQueueResolutionEnums::BAD_ENUM( "BAD_ENUM", ApplQueueResolutionEnums::ITEM_BAD_ENUM );
 const ApplQueueResolutionEnums::ItemType ApplQueueResolutionEnums::NO_ACTION_TAKEN( "NO_ACTION_TAKEN", 0 );
 const ApplQueueResolutionEnums::ItemType ApplQueueResolutionEnums::QUEUE_FLUSHED( "QUEUE_FLUSHED", 1 );
 const ApplQueueResolutionEnums::ItemType ApplQueueResolutionEnums::OVERLAY_LAST( "OVERLAY_LAST", 2 );
 const ApplQueueResolutionEnums::ItemType ApplQueueResolutionEnums::END_SESSION( "END_SESSION", 3 );
 
 
+const ApplQueueActionEnums::ItemType ApplQueueActionEnums::BAD_ENUM( "BAD_ENUM", ApplQueueActionEnums::ITEM_BAD_ENUM );
 const ApplQueueActionEnums::ItemType ApplQueueActionEnums::NO_ACTION_TAKEN( "NO_ACTION_TAKEN", 0 );
 const ApplQueueActionEnums::ItemType ApplQueueActionEnums::QUEUE_FLUSHED( "QUEUE_FLUSHED", 1 );
 const ApplQueueActionEnums::ItemType ApplQueueActionEnums::OVERLAY_LAST( "OVERLAY_LAST", 2 );
 const ApplQueueActionEnums::ItemType ApplQueueActionEnums::END_SESSION( "END_SESSION", 3 );
 
 
+const AvgPxIndicatorEnums::ItemType AvgPxIndicatorEnums::BAD_ENUM( "BAD_ENUM", AvgPxIndicatorEnums::ITEM_BAD_ENUM );
 const AvgPxIndicatorEnums::ItemType AvgPxIndicatorEnums::NO_AVERAGE_PRICING( "NO_AVERAGE_PRICING", 0 );
 const AvgPxIndicatorEnums::ItemType AvgPxIndicatorEnums::TRADE_IS_PART_OF_AN_AVERAGE_PRICE_GROUP_IDENTIFIED_BY_THE_TRADELINKID( "TRADE_IS_PART_OF_AN_AVERAGE_PRICE_GROUP_IDENTIFIED_BY_THE_TRADELINKID", 1 );
 const AvgPxIndicatorEnums::ItemType AvgPxIndicatorEnums::LAST_TRADE_IN_THE_AVERAGE_PRICE_GROUP_IDENTIFIED_BY_THE_TRADELINKID( "LAST_TRADE_IN_THE_AVERAGE_PRICE_GROUP_IDENTIFIED_BY_THE_TRADELINKID", 2 );
 
 
+const TradeAllocIndicatorEnums::ItemType TradeAllocIndicatorEnums::BAD_ENUM( "BAD_ENUM", TradeAllocIndicatorEnums::ITEM_BAD_ENUM );
 const TradeAllocIndicatorEnums::ItemType TradeAllocIndicatorEnums::ALLOCATION_NOT_REQUIRED( "ALLOCATION_NOT_REQUIRED", 0 );
 const TradeAllocIndicatorEnums::ItemType TradeAllocIndicatorEnums::ALLOCATION_REQUIRED( "ALLOCATION_REQUIRED", 1 );
 const TradeAllocIndicatorEnums::ItemType TradeAllocIndicatorEnums::USE_ALLOCATION_PROVIDED_WITH_THE_TRADE( "USE_ALLOCATION_PROVIDED_WITH_THE_TRADE", 2 );
 
 
+const ExpirationCycleEnums::ItemType ExpirationCycleEnums::BAD_ENUM( "BAD_ENUM", ExpirationCycleEnums::ITEM_BAD_ENUM );
 const ExpirationCycleEnums::ItemType ExpirationCycleEnums::EXPIRE_ON_TRADING_SESSION_CLOSE( "EXPIRE_ON_TRADING_SESSION_CLOSE", 0 );
 const ExpirationCycleEnums::ItemType ExpirationCycleEnums::EXPIRE_ON_TRADING_SESSION_OPEN( "EXPIRE_ON_TRADING_SESSION_OPEN", 1 );
 
 
+const TrdTypeEnums::ItemType TrdTypeEnums::BAD_ENUM( "BAD_ENUM", TrdTypeEnums::ITEM_BAD_ENUM );
 const TrdTypeEnums::ItemType TrdTypeEnums::REGULAR_TRADE( "REGULAR_TRADE", 0 );
 const TrdTypeEnums::ItemType TrdTypeEnums::BLOCK_TRADE( "BLOCK_TRADE", 1 );
 const TrdTypeEnums::ItemType TrdTypeEnums::EFP( "EFP", 2 );
@@ -3034,70 +3239,84 @@ const TrdTypeEnums::ItemType TrdTypeEnums::PRIOR_REFERENCE_PRICE_TRADE( "PRIOR_R
 const TrdTypeEnums::ItemType TrdTypeEnums::AFTER_HOURS_TRADE( "AFTER_HOURS_TRADE", 10 );
 
 
+const PegMoveTypeEnums::ItemType PegMoveTypeEnums::BAD_ENUM( "BAD_ENUM", PegMoveTypeEnums::ITEM_BAD_ENUM );
 const PegMoveTypeEnums::ItemType PegMoveTypeEnums::FLOATING( "FLOATING", 0 );
 const PegMoveTypeEnums::ItemType PegMoveTypeEnums::FIXED( "FIXED", 1 );
 
 
+const PegOffsetTypeEnums::ItemType PegOffsetTypeEnums::BAD_ENUM( "BAD_ENUM", PegOffsetTypeEnums::ITEM_BAD_ENUM );
 const PegOffsetTypeEnums::ItemType PegOffsetTypeEnums::PRICE( "PRICE", 0 );
 const PegOffsetTypeEnums::ItemType PegOffsetTypeEnums::BASIS_POINTS( "BASIS_POINTS", 1 );
 const PegOffsetTypeEnums::ItemType PegOffsetTypeEnums::TICKS( "TICKS", 2 );
 const PegOffsetTypeEnums::ItemType PegOffsetTypeEnums::PRICE_TIER( "PRICE_TIER", 3 );
 
 
+const PegLimitTypeEnums::ItemType PegLimitTypeEnums::BAD_ENUM( "BAD_ENUM", PegLimitTypeEnums::ITEM_BAD_ENUM );
 const PegLimitTypeEnums::ItemType PegLimitTypeEnums::OR_BETTER( "OR_BETTER", 0 );
 const PegLimitTypeEnums::ItemType PegLimitTypeEnums::STRICT_LIMIT_IS_A_STRICT_LIMIT( "STRICT_LIMIT_IS_A_STRICT_LIMIT", 1 );
 const PegLimitTypeEnums::ItemType PegLimitTypeEnums::OR_WORSE_FOR_A_BUY_THE_PEG_LIMIT_IS_A_MINIMUM_AND_FOR_A_SELL_THE_PEG_LIMIT_IS_A_MAXIMUM( "OR_WORSE_FOR_A_BUY_THE_PEG_LIMIT_IS_A_MINIMUM_AND_FOR_A_SELL_THE_PEG_LIMIT_IS_A_MAXIMUM", 2 );
 
 
+const PegRoundDirectionEnums::ItemType PegRoundDirectionEnums::BAD_ENUM( "BAD_ENUM", PegRoundDirectionEnums::ITEM_BAD_ENUM );
 const PegRoundDirectionEnums::ItemType PegRoundDirectionEnums::MORE_AGGRESSIVE_ON_A_BUY_ORDER_ROUND_THE_PRICE_UP_ROUND_UP_TO_THE_NEAREST_TICK_ON_A_SELL_ROUND_DOWN_TO_THE_NEAREST_TICK( "MORE_AGGRESSIVE_ON_A_BUY_ORDER_ROUND_THE_PRICE_UP_ROUND_UP_TO_THE_NEAREST_TICK_ON_A_SELL_ROUND_DOWN_TO_THE_NEAREST_TICK", 1 );
 const PegRoundDirectionEnums::ItemType PegRoundDirectionEnums::MORE_PASSIVE_ON_A_BUY_ORDER_ROUND_DOWN_TO_NEAREST_TICK_ON_A_SELL_ORDER_ROUND_UP_TO_NEAREST_TICK( "MORE_PASSIVE_ON_A_BUY_ORDER_ROUND_DOWN_TO_NEAREST_TICK_ON_A_SELL_ORDER_ROUND_UP_TO_NEAREST_TICK", 2 );
 
 
+const PegScopeEnums::ItemType PegScopeEnums::BAD_ENUM( "BAD_ENUM", PegScopeEnums::ITEM_BAD_ENUM );
 const PegScopeEnums::ItemType PegScopeEnums::LOCAL( "LOCAL", 1 );
 const PegScopeEnums::ItemType PegScopeEnums::NATIONAL( "NATIONAL", 2 );
 const PegScopeEnums::ItemType PegScopeEnums::GLOBAL( "GLOBAL", 3 );
 const PegScopeEnums::ItemType PegScopeEnums::NATIONAL_EXCLUDING_LOCAL( "NATIONAL_EXCLUDING_LOCAL", 4 );
 
 
+const DiscretionMoveTypeEnums::ItemType DiscretionMoveTypeEnums::BAD_ENUM( "BAD_ENUM", DiscretionMoveTypeEnums::ITEM_BAD_ENUM );
 const DiscretionMoveTypeEnums::ItemType DiscretionMoveTypeEnums::FLOATING( "FLOATING", 0 );
 const DiscretionMoveTypeEnums::ItemType DiscretionMoveTypeEnums::FIXED( "FIXED", 1 );
 
 
+const DiscretionOffsetTypeEnums::ItemType DiscretionOffsetTypeEnums::BAD_ENUM( "BAD_ENUM", DiscretionOffsetTypeEnums::ITEM_BAD_ENUM );
 const DiscretionOffsetTypeEnums::ItemType DiscretionOffsetTypeEnums::PRICE( "PRICE", 0 );
 const DiscretionOffsetTypeEnums::ItemType DiscretionOffsetTypeEnums::BASIS_POINTS( "BASIS_POINTS", 1 );
 const DiscretionOffsetTypeEnums::ItemType DiscretionOffsetTypeEnums::TICKS( "TICKS", 2 );
 const DiscretionOffsetTypeEnums::ItemType DiscretionOffsetTypeEnums::PRICE_TIER( "PRICE_TIER", 3 );
 
 
+const DiscretionLimitTypeEnums::ItemType DiscretionLimitTypeEnums::BAD_ENUM( "BAD_ENUM", DiscretionLimitTypeEnums::ITEM_BAD_ENUM );
 const DiscretionLimitTypeEnums::ItemType DiscretionLimitTypeEnums::OR_BETTER( "OR_BETTER", 0 );
 const DiscretionLimitTypeEnums::ItemType DiscretionLimitTypeEnums::STRICT_LIMIT_IS_A_STRICT_LIMIT( "STRICT_LIMIT_IS_A_STRICT_LIMIT", 1 );
 const DiscretionLimitTypeEnums::ItemType DiscretionLimitTypeEnums::OR_WORSE_FOR_A_BUY_THE_DISCRETION_PRICE_IS_A_MINIMUM_AND_FOR_A_SELL_THE_DISCRETION_PRICE_IS_A_MAXIMUM( "OR_WORSE_FOR_A_BUY_THE_DISCRETION_PRICE_IS_A_MINIMUM_AND_FOR_A_SELL_THE_DISCRETION_PRICE_IS_A_MAXIMUM", 2 );
 
 
+const DiscretionRoundDirectionEnums::ItemType DiscretionRoundDirectionEnums::BAD_ENUM( "BAD_ENUM", DiscretionRoundDirectionEnums::ITEM_BAD_ENUM );
 const DiscretionRoundDirectionEnums::ItemType DiscretionRoundDirectionEnums::MORE_AGGRESSIVE_ON_A_BUY_ORDER_ROUND_THE_PRICE_UP_ROUND_UP_TO_THE_NEAREST_TICK_ON_A_SELL_ROUND_DOWN_TO_THE_NEAREST_TICK( "MORE_AGGRESSIVE_ON_A_BUY_ORDER_ROUND_THE_PRICE_UP_ROUND_UP_TO_THE_NEAREST_TICK_ON_A_SELL_ROUND_DOWN_TO_THE_NEAREST_TICK", 1 );
 const DiscretionRoundDirectionEnums::ItemType DiscretionRoundDirectionEnums::MORE_PASSIVE_ON_A_BUY_ORDER_ROUND_DOWN_TO_NEAREST_TICK_ON_A_SELL_ORDER_ROUND_UP_TO_NEAREST_TICK( "MORE_PASSIVE_ON_A_BUY_ORDER_ROUND_DOWN_TO_NEAREST_TICK_ON_A_SELL_ORDER_ROUND_UP_TO_NEAREST_TICK", 2 );
 
 
+const DiscretionScopeEnums::ItemType DiscretionScopeEnums::BAD_ENUM( "BAD_ENUM", DiscretionScopeEnums::ITEM_BAD_ENUM );
 const DiscretionScopeEnums::ItemType DiscretionScopeEnums::LOCAL( "LOCAL", 1 );
 const DiscretionScopeEnums::ItemType DiscretionScopeEnums::NATIONAL( "NATIONAL", 2 );
 const DiscretionScopeEnums::ItemType DiscretionScopeEnums::GLOBAL( "GLOBAL", 3 );
 const DiscretionScopeEnums::ItemType DiscretionScopeEnums::NATIONAL_EXCLUDING_LOCAL( "NATIONAL_EXCLUDING_LOCAL", 4 );
 
 
+const TargetStrategyEnums::ItemType TargetStrategyEnums::BAD_ENUM( "BAD_ENUM", TargetStrategyEnums::ITEM_BAD_ENUM );
 const TargetStrategyEnums::ItemType TargetStrategyEnums::VWAP( "VWAP", 1 );
 const TargetStrategyEnums::ItemType TargetStrategyEnums::PARTICIPATE( "PARTICIPATE", 2 );
 const TargetStrategyEnums::ItemType TargetStrategyEnums::MININIZE_MARKET_IMPACT( "MININIZE_MARKET_IMPACT", 3 );
 
 
+const LastLiquidityIndEnums::ItemType LastLiquidityIndEnums::BAD_ENUM( "BAD_ENUM", LastLiquidityIndEnums::ITEM_BAD_ENUM );
 const LastLiquidityIndEnums::ItemType LastLiquidityIndEnums::ADDED_LIQUIDITY( "ADDED_LIQUIDITY", 1 );
 const LastLiquidityIndEnums::ItemType LastLiquidityIndEnums::REMOVED_LIQUIDITY( "REMOVED_LIQUIDITY", 2 );
 const LastLiquidityIndEnums::ItemType LastLiquidityIndEnums::LIQUIDITY_ROUTED_OUT( "LIQUIDITY_ROUTED_OUT", 3 );
 
 
+const PublishTrdIndicatorEnums::ItemType PublishTrdIndicatorEnums::BAD_ENUM( "BAD_ENUM", PublishTrdIndicatorEnums::ITEM_BAD_ENUM );
 const PublishTrdIndicatorEnums::ItemType PublishTrdIndicatorEnums::YES( "YES", 'Y' );
 const PublishTrdIndicatorEnums::ItemType PublishTrdIndicatorEnums::NO( "NO", 'N' );
 
 
+const ShortSaleReasonEnums::ItemType ShortSaleReasonEnums::BAD_ENUM( "BAD_ENUM", ShortSaleReasonEnums::ITEM_BAD_ENUM );
 const ShortSaleReasonEnums::ItemType ShortSaleReasonEnums::DEALER_SOLD_SHORT( "DEALER_SOLD_SHORT", 0 );
 const ShortSaleReasonEnums::ItemType ShortSaleReasonEnums::DEALER_SOLD_SHORT_EXEMPT( "DEALER_SOLD_SHORT_EXEMPT", 1 );
 const ShortSaleReasonEnums::ItemType ShortSaleReasonEnums::SELLING_CUSTOMER_SOLD_SHORT( "SELLING_CUSTOMER_SOLD_SHORT", 2 );
@@ -3106,10 +3325,12 @@ const ShortSaleReasonEnums::ItemType ShortSaleReasonEnums::QUALIFED_SERVICE_REPR
 const ShortSaleReasonEnums::ItemType ShortSaleReasonEnums::QSR_OR_AGU_CONTRA_SIDE_SOLD_SHORT_EXEMPT( "QSR_OR_AGU_CONTRA_SIDE_SOLD_SHORT_EXEMPT", 5 );
 
 
+const QtyTypeEnums::ItemType QtyTypeEnums::BAD_ENUM( "BAD_ENUM", QtyTypeEnums::ITEM_BAD_ENUM );
 const QtyTypeEnums::ItemType QtyTypeEnums::UNITS( "UNITS", 0 );
 const QtyTypeEnums::ItemType QtyTypeEnums::CONTRACTS( "CONTRACTS", 1 );
 
 
+const TradeReportTypeEnums::ItemType TradeReportTypeEnums::BAD_ENUM( "BAD_ENUM", TradeReportTypeEnums::ITEM_BAD_ENUM );
 const TradeReportTypeEnums::ItemType TradeReportTypeEnums::SUBMIT( "SUBMIT", 0 );
 const TradeReportTypeEnums::ItemType TradeReportTypeEnums::ALLEGED( "ALLEGED", 1 );
 const TradeReportTypeEnums::ItemType TradeReportTypeEnums::ACCEPT( "ACCEPT", 2 );
@@ -3120,10 +3341,12 @@ const TradeReportTypeEnums::ItemType TradeReportTypeEnums::TRADE_REPORT_CANCEL( 
 const TradeReportTypeEnums::ItemType TradeReportTypeEnums::LOCKED_IN_TRADE_BREAK( "LOCKED_IN_TRADE_BREAK", 7 );
 
 
+const AllocNoOrdersTypeEnums::ItemType AllocNoOrdersTypeEnums::BAD_ENUM( "BAD_ENUM", AllocNoOrdersTypeEnums::ITEM_BAD_ENUM );
 const AllocNoOrdersTypeEnums::ItemType AllocNoOrdersTypeEnums::NOT_SPECIFIED( "NOT_SPECIFIED", 0 );
 const AllocNoOrdersTypeEnums::ItemType AllocNoOrdersTypeEnums::EXPLICIT_LIST_PROVIDED( "EXPLICIT_LIST_PROVIDED", 1 );
 
 
+const EventTypeEnums::ItemType EventTypeEnums::BAD_ENUM( "BAD_ENUM", EventTypeEnums::ITEM_BAD_ENUM );
 const EventTypeEnums::ItemType EventTypeEnums::PUT( "PUT", 1 );
 const EventTypeEnums::ItemType EventTypeEnums::CALL( "CALL", 2 );
 const EventTypeEnums::ItemType EventTypeEnums::TENDER( "TENDER", 3 );
@@ -3131,6 +3354,7 @@ const EventTypeEnums::ItemType EventTypeEnums::SINKING_FUND_CALL( "SINKING_FUND_
 const EventTypeEnums::ItemType EventTypeEnums::OTHER( "OTHER", 99 );
 
 
+const InstrAttribTypeEnums::ItemType InstrAttribTypeEnums::BAD_ENUM( "BAD_ENUM", InstrAttribTypeEnums::ITEM_BAD_ENUM );
 const InstrAttribTypeEnums::ItemType InstrAttribTypeEnums::FLAT( "FLAT", 1 );
 const InstrAttribTypeEnums::ItemType InstrAttribTypeEnums::ZERO_COUPON( "ZERO_COUPON", 2 );
 const InstrAttribTypeEnums::ItemType InstrAttribTypeEnums::INTEREST_BEARING( "INTEREST_BEARING", 3 );
@@ -3156,20 +3380,24 @@ const InstrAttribTypeEnums::ItemType InstrAttribTypeEnums::CALLABLE_WITHOUT_NOTI
 const InstrAttribTypeEnums::ItemType InstrAttribTypeEnums::TEXT_SUPPLY_THE_TEXT_OF_THE_ATTRIBUTE_OR_DISCLAIMER_IN_THE_INSTRATTRIBVALUE( "TEXT_SUPPLY_THE_TEXT_OF_THE_ATTRIBUTE_OR_DISCLAIMER_IN_THE_INSTRATTRIBVALUE", 99 );
 
 
+const CPProgramEnums::ItemType CPProgramEnums::BAD_ENUM( "BAD_ENUM", CPProgramEnums::ITEM_BAD_ENUM );
 const CPProgramEnums::ItemType CPProgramEnums::_3( "_3", 1 );
 const CPProgramEnums::ItemType CPProgramEnums::_4( "_4", 2 );
 const CPProgramEnums::ItemType CPProgramEnums::OTHER( "OTHER", 99 );
 
 
+const MiscFeeBasisEnums::ItemType MiscFeeBasisEnums::BAD_ENUM( "BAD_ENUM", MiscFeeBasisEnums::ITEM_BAD_ENUM );
 const MiscFeeBasisEnums::ItemType MiscFeeBasisEnums::ABSOLUTE( "ABSOLUTE", 0 );
 const MiscFeeBasisEnums::ItemType MiscFeeBasisEnums::PER_UNIT( "PER_UNIT", 1 );
 const MiscFeeBasisEnums::ItemType MiscFeeBasisEnums::PERCENTAGE( "PERCENTAGE", 2 );
 
 
+const LastFragmentEnums::ItemType LastFragmentEnums::BAD_ENUM( "BAD_ENUM", LastFragmentEnums::ITEM_BAD_ENUM );
 const LastFragmentEnums::ItemType LastFragmentEnums::YES( "YES", 'Y' );
 const LastFragmentEnums::ItemType LastFragmentEnums::NO( "NO", 'N' );
 
 
+const CollAsgnReasonEnums::ItemType CollAsgnReasonEnums::BAD_ENUM( "BAD_ENUM", CollAsgnReasonEnums::ITEM_BAD_ENUM );
 const CollAsgnReasonEnums::ItemType CollAsgnReasonEnums::INITIAL( "INITIAL", 0 );
 const CollAsgnReasonEnums::ItemType CollAsgnReasonEnums::SCHEDULED( "SCHEDULED", 1 );
 const CollAsgnReasonEnums::ItemType CollAsgnReasonEnums::TIME_WARNING( "TIME_WARNING", 2 );
@@ -3180,6 +3408,7 @@ const CollAsgnReasonEnums::ItemType CollAsgnReasonEnums::EVENT_OF_DEFAULT( "EVEN
 const CollAsgnReasonEnums::ItemType CollAsgnReasonEnums::ADVERSE_TAX_EVENT( "ADVERSE_TAX_EVENT", 7 );
 
 
+const CollInquiryQualifierEnums::ItemType CollInquiryQualifierEnums::BAD_ENUM( "BAD_ENUM", CollInquiryQualifierEnums::ITEM_BAD_ENUM );
 const CollInquiryQualifierEnums::ItemType CollInquiryQualifierEnums::TRADEDATE( "TRADEDATE", 0 );
 const CollInquiryQualifierEnums::ItemType CollInquiryQualifierEnums::GC_INSTRUMENT( "GC_INSTRUMENT", 1 );
 const CollInquiryQualifierEnums::ItemType CollInquiryQualifierEnums::COLLATERALINSTRUMENT( "COLLATERALINSTRUMENT", 2 );
@@ -3190,6 +3419,7 @@ const CollInquiryQualifierEnums::ItemType CollInquiryQualifierEnums::FULLY_ASSIG
 const CollInquiryQualifierEnums::ItemType CollInquiryQualifierEnums::OUTSTANDING_TRADES( "OUTSTANDING_TRADES", 7 );
 
 
+const CollAsgnTransTypeEnums::ItemType CollAsgnTransTypeEnums::BAD_ENUM( "BAD_ENUM", CollAsgnTransTypeEnums::ITEM_BAD_ENUM );
 const CollAsgnTransTypeEnums::ItemType CollAsgnTransTypeEnums::NEW( "NEW", 0 );
 const CollAsgnTransTypeEnums::ItemType CollAsgnTransTypeEnums::REPLACE( "REPLACE", 1 );
 const CollAsgnTransTypeEnums::ItemType CollAsgnTransTypeEnums::CANCEL( "CANCEL", 2 );
@@ -3197,12 +3427,14 @@ const CollAsgnTransTypeEnums::ItemType CollAsgnTransTypeEnums::RELEASE( "RELEASE
 const CollAsgnTransTypeEnums::ItemType CollAsgnTransTypeEnums::REVERSE( "REVERSE", 4 );
 
 
+const CollAsgnRespTypeEnums::ItemType CollAsgnRespTypeEnums::BAD_ENUM( "BAD_ENUM", CollAsgnRespTypeEnums::ITEM_BAD_ENUM );
 const CollAsgnRespTypeEnums::ItemType CollAsgnRespTypeEnums::RECEIVED( "RECEIVED", 0 );
 const CollAsgnRespTypeEnums::ItemType CollAsgnRespTypeEnums::ACCEPTED( "ACCEPTED", 1 );
 const CollAsgnRespTypeEnums::ItemType CollAsgnRespTypeEnums::DECLINED( "DECLINED", 2 );
 const CollAsgnRespTypeEnums::ItemType CollAsgnRespTypeEnums::REJECTED( "REJECTED", 3 );
 
 
+const CollAsgnRejectReasonEnums::ItemType CollAsgnRejectReasonEnums::BAD_ENUM( "BAD_ENUM", CollAsgnRejectReasonEnums::ITEM_BAD_ENUM );
 const CollAsgnRejectReasonEnums::ItemType CollAsgnRejectReasonEnums::UNKNOWN_DEAL( "UNKNOWN_DEAL", 0 );
 const CollAsgnRejectReasonEnums::ItemType CollAsgnRejectReasonEnums::UNKNOWN_OR_INVALID_INSTRUMENT( "UNKNOWN_OR_INVALID_INSTRUMENT", 1 );
 const CollAsgnRejectReasonEnums::ItemType CollAsgnRejectReasonEnums::UNAUTHORIZED_TRANSACTION( "UNAUTHORIZED_TRANSACTION", 2 );
@@ -3212,6 +3444,7 @@ const CollAsgnRejectReasonEnums::ItemType CollAsgnRejectReasonEnums::EXCESSIVE_S
 const CollAsgnRejectReasonEnums::ItemType CollAsgnRejectReasonEnums::OTHER( "OTHER", 99 );
 
 
+const CollStatusEnums::ItemType CollStatusEnums::BAD_ENUM( "BAD_ENUM", CollStatusEnums::ITEM_BAD_ENUM );
 const CollStatusEnums::ItemType CollStatusEnums::UNASSIGNED( "UNASSIGNED", 0 );
 const CollStatusEnums::ItemType CollStatusEnums::PARTIALLY_ASSIGNED( "PARTIALLY_ASSIGNED", 1 );
 const CollStatusEnums::ItemType CollStatusEnums::ASSIGNMENT_PROPOSED( "ASSIGNMENT_PROPOSED", 2 );
@@ -3219,18 +3452,21 @@ const CollStatusEnums::ItemType CollStatusEnums::ASSIGNED( "ASSIGNED", 3 );
 const CollStatusEnums::ItemType CollStatusEnums::CHALLENGED( "CHALLENGED", 4 );
 
 
+const DeliveryTypeEnums::ItemType DeliveryTypeEnums::BAD_ENUM( "BAD_ENUM", DeliveryTypeEnums::ITEM_BAD_ENUM );
 const DeliveryTypeEnums::ItemType DeliveryTypeEnums::VERSUS_PAYMENT_DELIVER( "VERSUS_PAYMENT_DELIVER", 0 );
 const DeliveryTypeEnums::ItemType DeliveryTypeEnums::FREE_DELIVER( "FREE_DELIVER", 1 );
 const DeliveryTypeEnums::ItemType DeliveryTypeEnums::TRI_PARTY( "TRI_PARTY", 2 );
 const DeliveryTypeEnums::ItemType DeliveryTypeEnums::HOLD_IN_CUSTODY( "HOLD_IN_CUSTODY", 3 );
 
 
+const UserRequestTypeEnums::ItemType UserRequestTypeEnums::BAD_ENUM( "BAD_ENUM", UserRequestTypeEnums::ITEM_BAD_ENUM );
 const UserRequestTypeEnums::ItemType UserRequestTypeEnums::LOGONUSER( "LOGONUSER", 1 );
 const UserRequestTypeEnums::ItemType UserRequestTypeEnums::LOGOFFUSER( "LOGOFFUSER", 2 );
 const UserRequestTypeEnums::ItemType UserRequestTypeEnums::CHANGEPASSWORDFORUSER( "CHANGEPASSWORDFORUSER", 3 );
 const UserRequestTypeEnums::ItemType UserRequestTypeEnums::REQUEST_INDIVIDUAL_USER_STATUS( "REQUEST_INDIVIDUAL_USER_STATUS", 4 );
 
 
+const UserStatusEnums::ItemType UserStatusEnums::BAD_ENUM( "BAD_ENUM", UserStatusEnums::ITEM_BAD_ENUM );
 const UserStatusEnums::ItemType UserStatusEnums::LOGGED_IN( "LOGGED_IN", 1 );
 const UserStatusEnums::ItemType UserStatusEnums::NOT_LOGGED_IN( "NOT_LOGGED_IN", 2 );
 const UserStatusEnums::ItemType UserStatusEnums::USER_NOT_RECOGNISED( "USER_NOT_RECOGNISED", 3 );
@@ -3239,36 +3475,43 @@ const UserStatusEnums::ItemType UserStatusEnums::PASSWORD_CHANGED( "PASSWORD_CHA
 const UserStatusEnums::ItemType UserStatusEnums::OTHER( "OTHER", 6 );
 
 
+const StatusValueEnums::ItemType StatusValueEnums::BAD_ENUM( "BAD_ENUM", StatusValueEnums::ITEM_BAD_ENUM );
 const StatusValueEnums::ItemType StatusValueEnums::CONNECTED( "CONNECTED", 1 );
 const StatusValueEnums::ItemType StatusValueEnums::NOT_CONNECTED_DOWN_EXPECTED_UP( "NOT_CONNECTED_DOWN_EXPECTED_UP", 2 );
 const StatusValueEnums::ItemType StatusValueEnums::NOT_CONNECTED_DOWN_EXPECTED_DOWN( "NOT_CONNECTED_DOWN_EXPECTED_DOWN", 3 );
 const StatusValueEnums::ItemType StatusValueEnums::IN_PROCESS( "IN_PROCESS", 4 );
 
 
+const NetworkRequestTypeEnums::ItemType NetworkRequestTypeEnums::BAD_ENUM( "BAD_ENUM", NetworkRequestTypeEnums::ITEM_BAD_ENUM );
 const NetworkRequestTypeEnums::ItemType NetworkRequestTypeEnums::SNAPSHOT( "SNAPSHOT", 1 );
 const NetworkRequestTypeEnums::ItemType NetworkRequestTypeEnums::SUBSCRIBE( "SUBSCRIBE", 2 );
 const NetworkRequestTypeEnums::ItemType NetworkRequestTypeEnums::STOP_SUBSCRIBING( "STOP_SUBSCRIBING", 4 );
 const NetworkRequestTypeEnums::ItemType NetworkRequestTypeEnums::LEVEL_OF_DETAIL_THEN_NOCOMPIDS_BECOMES_REQUIRED( "LEVEL_OF_DETAIL_THEN_NOCOMPIDS_BECOMES_REQUIRED", 8 );
 
 
+const NetworkStatusResponseTypeEnums::ItemType NetworkStatusResponseTypeEnums::BAD_ENUM( "BAD_ENUM", NetworkStatusResponseTypeEnums::ITEM_BAD_ENUM );
 const NetworkStatusResponseTypeEnums::ItemType NetworkStatusResponseTypeEnums::FULL( "FULL", 1 );
 const NetworkStatusResponseTypeEnums::ItemType NetworkStatusResponseTypeEnums::INCREMENTAL_UPDATE( "INCREMENTAL_UPDATE", 2 );
 
 
+const TrdRptStatusEnums::ItemType TrdRptStatusEnums::BAD_ENUM( "BAD_ENUM", TrdRptStatusEnums::ITEM_BAD_ENUM );
 const TrdRptStatusEnums::ItemType TrdRptStatusEnums::ACCEPTED( "ACCEPTED", 0 );
 const TrdRptStatusEnums::ItemType TrdRptStatusEnums::REJECTED( "REJECTED", 1 );
 
 
+const AffirmStatusEnums::ItemType AffirmStatusEnums::BAD_ENUM( "BAD_ENUM", AffirmStatusEnums::ITEM_BAD_ENUM );
 const AffirmStatusEnums::ItemType AffirmStatusEnums::RECEIVED( "RECEIVED", 1 );
 const AffirmStatusEnums::ItemType AffirmStatusEnums::CONFIRM_REJECTED_IE_NOT_AFFIRMED( "CONFIRM_REJECTED_IE_NOT_AFFIRMED", 2 );
 const AffirmStatusEnums::ItemType AffirmStatusEnums::AFFIRMED( "AFFIRMED", 3 );
 
 
+const CollActionEnums::ItemType CollActionEnums::BAD_ENUM( "BAD_ENUM", CollActionEnums::ITEM_BAD_ENUM );
 const CollActionEnums::ItemType CollActionEnums::RETAIN( "RETAIN", 0 );
 const CollActionEnums::ItemType CollActionEnums::ADD( "ADD", 1 );
 const CollActionEnums::ItemType CollActionEnums::REMOVE( "REMOVE", 2 );
 
 
+const CollInquiryStatusEnums::ItemType CollInquiryStatusEnums::BAD_ENUM( "BAD_ENUM", CollInquiryStatusEnums::ITEM_BAD_ENUM );
 const CollInquiryStatusEnums::ItemType CollInquiryStatusEnums::ACCEPTED( "ACCEPTED", 0 );
 const CollInquiryStatusEnums::ItemType CollInquiryStatusEnums::ACCEPTED_WITH_WARNINGS( "ACCEPTED_WITH_WARNINGS", 1 );
 const CollInquiryStatusEnums::ItemType CollInquiryStatusEnums::COMPLETED( "COMPLETED", 2 );
@@ -3276,6 +3519,7 @@ const CollInquiryStatusEnums::ItemType CollInquiryStatusEnums::COMPLETED_WITH_WA
 const CollInquiryStatusEnums::ItemType CollInquiryStatusEnums::REJECTED( "REJECTED", 4 );
 
 
+const CollInquiryResultEnums::ItemType CollInquiryResultEnums::BAD_ENUM( "BAD_ENUM", CollInquiryResultEnums::ITEM_BAD_ENUM );
 const CollInquiryResultEnums::ItemType CollInquiryResultEnums::SUCCESSFUL( "SUCCESSFUL", 0 );
 const CollInquiryResultEnums::ItemType CollInquiryResultEnums::INVALID_OR_UNKNOWN_INSTRUMENT( "INVALID_OR_UNKNOWN_INSTRUMENT", 1 );
 const CollInquiryResultEnums::ItemType CollInquiryResultEnums::INVALID_OR_UNKNOWN_COLLATERAL_TYPE( "INVALID_OR_UNKNOWN_COLLATERAL_TYPE", 2 );

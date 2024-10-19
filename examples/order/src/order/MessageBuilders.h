@@ -49,12 +49,15 @@ class LegsBuilder : protected ReusableMessageBuilder
      void appendLegSymbol( const std::string_view & value ){ appendSafely<FieldLegSymbol>( value ); }
      void appendLegSide( const char & value ){ appendSafely<FieldLegSide>( value ); }
      void appendLegQty( const Float & value ){ appendSafely<FieldLegQty>( value ); }
+     void appendLegQty( size_t value ){ appendSafely<FieldLegQty>( value ); }
      LegStipulationsBuilder & appendNoLegStipulations( unsigned count ) { appendSafely<FieldNoLegStipulations>( count ); return *reinterpret_cast<LegStipulationsBuilder*>( this ); }
      void appendLegPositionEffect( const char & value ){ appendSafely<FieldLegPositionEffect>( value ); }
      NestedPartyIDsBuilder & appendNoNestedPartyIDs( unsigned count ) { appendSafely<FieldNoNestedPartyIDs>( count ); return *reinterpret_cast<NestedPartyIDsBuilder*>( this ); }
      void appendLegRefID( const std::string_view & value ){ appendSafely<FieldLegRefID>( value ); }
      void appendLegPrice( const Float & value ){ appendSafely<FieldLegPrice>( value ); }
+     void appendLegPrice( double value, unsigned precision ){ appendSafely<FieldLegPrice>( value, precision ); }
      void appendLegLastPx( const Float & value ){ appendSafely<FieldLegLastPx>( value ); }
+     void appendLegLastPx( double value, unsigned precision ){ appendSafely<FieldLegLastPx>( value, precision ); }
 };
 
 
@@ -65,11 +68,12 @@ class HeaderBuilder: public HeaderTemplate
 
      void appendBeginString( const std::string_view & value ){ append<FieldBeginString>( value ); }
      void appendBodyLength( const unsigned & value ){ append<FieldBodyLength>( value ); }
-     void appendMsgType( const std::string_view & value ){ append<FieldMsgType>( value ); }
+     void appendMsgType( const FieldMsgType::EnumType & item ){ append<FieldMsgType>( item ); }
      void appendSenderCompID( const std::string_view & value ){ append<FieldSenderCompID>( value ); }
      void appendTargetCompID( const std::string_view & value ){ append<FieldTargetCompID>( value ); }
      void appendMsgSeqNum( const unsigned & value ){ append<FieldMsgSeqNum>( value ); }
      void appendSendingTime( const std::string_view & value ){ append<FieldSendingTime>( value ); }
+     void appendSendingTime( TimestampKeeper & value, const TimePoint & time = ClockType::now() ){ append<FieldSendingTime>( value, time ); }
 };
 
 
@@ -78,20 +82,25 @@ class NewOrderSingleBuilder: protected ReusableMessageBuilder
 {
    public:
 
-     static NewOrderSingleBuilder & coat( ReusableMessageBuilder & builder ){ return reinterpret_cast<NewOrderSingleBuilder&>( builder ); }
+     static NewOrderSingleBuilder & Ref( ReusableMessageBuilder & builder ){ return reinterpret_cast<NewOrderSingleBuilder&>( builder ); }
      HeaderBuilder & getHeader(){ return reinterpret_cast<HeaderBuilder&>( header ); }
      ReusableMessageBuilder & super(){ return *this; }
+     void finalizeWithSeqnum( unsigned seqnum ){ setSeqnumAndUpdateHeaderAndChecksum( seqnum ); }
      void appendClOrdID( const std::string_view & value ){ appendSafely<FieldClOrdID>( value ); }
      void appendAccount( const std::string_view & value ){ appendSafely<FieldAccount>( value ); }
      void appendSymbol( const std::string_view & value ){ appendSafely<FieldSymbol>( value ); }
      void appendSecurityID( const std::string_view & value ){ appendSafely<FieldSecurityID>( value ); }
-     void appendSide( const char & value ){ appendSafely<FieldSide>( value ); }
-     void appendQtyType( const int & value ){ appendSafely<FieldQtyType>( value ); }
+     void appendSide( const FieldSide::EnumType & item ){ appendSafely<FieldSide>( item ); }
+     void appendQtyType( const FieldQtyType::EnumType & item ){ appendSafely<FieldQtyType>( item ); }
      void appendOrderQty( const Float & value ){ appendSafely<FieldOrderQty>( value ); }
-     void appendOrdType( const char & value ){ appendSafely<FieldOrdType>( value ); }
+     void appendOrderQty( size_t value ){ appendSafely<FieldOrderQty>( value ); }
+     void appendOrdType( const FieldOrdType::EnumType & item ){ appendSafely<FieldOrdType>( item ); }
      void appendPrice( const Float & value ){ appendSafely<FieldPrice>( value ); }
+     void appendPrice( double value, unsigned precision ){ appendSafely<FieldPrice>( value, precision ); }
      void appendStopPx( const Float & value ){ appendSafely<FieldStopPx>( value ); }
+     void appendStopPx( double value, unsigned precision ){ appendSafely<FieldStopPx>( value, precision ); }
      void appendTransactTime( const std::string_view & value ){ appendSafely<FieldTransactTime>( value ); }
+     void appendTransactTime( TimestampKeeper & value, const TimePoint & time = ClockType::now() ){ appendSafely<FieldTransactTime>( value, time ); }
 };
 
 
@@ -100,37 +109,46 @@ class ExecutionReportBuilder: protected ReusableMessageBuilder
 {
    public:
 
-     static ExecutionReportBuilder & coat( ReusableMessageBuilder & builder ){ return reinterpret_cast<ExecutionReportBuilder&>( builder ); }
+     static ExecutionReportBuilder & Ref( ReusableMessageBuilder & builder ){ return reinterpret_cast<ExecutionReportBuilder&>( builder ); }
      HeaderBuilder & getHeader(){ return reinterpret_cast<HeaderBuilder&>( header ); }
      ReusableMessageBuilder & super(){ return *this; }
+     void finalizeWithSeqnum( unsigned seqnum ){ setSeqnumAndUpdateHeaderAndChecksum( seqnum ); }
      void appendOrderID( const std::string_view & value ){ appendSafely<FieldOrderID>( value ); }
      void appendClOrdID( const std::string_view & value ){ appendSafely<FieldClOrdID>( value ); }
      void appendOrigClOrdID( const std::string_view & value ){ appendSafely<FieldOrigClOrdID>( value ); }
      void appendExecID( const std::string_view & value ){ appendSafely<FieldExecID>( value ); }
      void appendExecType( const char & value ){ appendSafely<FieldExecType>( value ); }
-     void appendOrdStatus( const char & value ){ appendSafely<FieldOrdStatus>( value ); }
+     void appendOrdStatus( const FieldOrdStatus::EnumType & item ){ appendSafely<FieldOrdStatus>( item ); }
      void appendOrdRejReason( const int & value ){ appendSafely<FieldOrdRejReason>( value ); }
      void appendAccount( const std::string_view & value ){ appendSafely<FieldAccount>( value ); }
      void appendSymbol( const std::string_view & value ){ appendSafely<FieldSymbol>( value ); }
      void appendSecurityID( const std::string_view & value ){ appendSafely<FieldSecurityID>( value ); }
-     void appendSecurityType( const std::string_view & value ){ appendSafely<FieldSecurityType>( value ); }
+     void appendSecurityType( const FieldSecurityType::EnumType & item ){ appendSafely<FieldSecurityType>( item ); }
      void appendText( const std::string_view & value ){ appendSafely<FieldText>( value ); }
-     void appendProduct( const int & value ){ appendSafely<FieldProduct>( value ); }
-     void appendSide( const char & value ){ appendSafely<FieldSide>( value ); }
-     void appendQtyType( const int & value ){ appendSafely<FieldQtyType>( value ); }
+     void appendProduct( const FieldProduct::EnumType & item ){ appendSafely<FieldProduct>( item ); }
+     void appendSide( const FieldSide::EnumType & item ){ appendSafely<FieldSide>( item ); }
+     void appendQtyType( const FieldQtyType::EnumType & item ){ appendSafely<FieldQtyType>( item ); }
      void appendOrderQty( const Float & value ){ appendSafely<FieldOrderQty>( value ); }
-     void appendOrdType( const char & value ){ appendSafely<FieldOrdType>( value ); }
-     void appendPriceType( const int & value ){ appendSafely<FieldPriceType>( value ); }
+     void appendOrderQty( size_t value ){ appendSafely<FieldOrderQty>( value ); }
+     void appendOrdType( const FieldOrdType::EnumType & item ){ appendSafely<FieldOrdType>( item ); }
+     void appendPriceType( const FieldPriceType::EnumType & item ){ appendSafely<FieldPriceType>( item ); }
      void appendPrice( const Float & value ){ appendSafely<FieldPrice>( value ); }
+     void appendPrice( double value, unsigned precision ){ appendSafely<FieldPrice>( value, precision ); }
      void appendStopPx( const Float & value ){ appendSafely<FieldStopPx>( value ); }
+     void appendStopPx( double value, unsigned precision ){ appendSafely<FieldStopPx>( value, precision ); }
      void appendCurrency( const std::string_view & value ){ appendSafely<FieldCurrency>( value ); }
-     void appendTimeInForce( const char & value ){ appendSafely<FieldTimeInForce>( value ); }
+     void appendTimeInForce( const FieldTimeInForce::EnumType & item ){ appendSafely<FieldTimeInForce>( item ); }
      void appendExecInst( const std::string_view & value ){ appendSafely<FieldExecInst>( value ); }
      void appendLastQty( const Float & value ){ appendSafely<FieldLastQty>( value ); }
+     void appendLastQty( size_t value ){ appendSafely<FieldLastQty>( value ); }
      void appendLastPx( const Float & value ){ appendSafely<FieldLastPx>( value ); }
+     void appendLastPx( double value, unsigned precision ){ appendSafely<FieldLastPx>( value, precision ); }
      void appendLeavesQty( const Float & value ){ appendSafely<FieldLeavesQty>( value ); }
+     void appendLeavesQty( size_t value ){ appendSafely<FieldLeavesQty>( value ); }
      void appendAvgPx( const Float & value ){ appendSafely<FieldAvgPx>( value ); }
+     void appendAvgPx( double value, unsigned precision ){ appendSafely<FieldAvgPx>( value, precision ); }
      void appendCumQty( const Float & value ){ appendSafely<FieldCumQty>( value ); }
+     void appendCumQty( size_t value ){ appendSafely<FieldCumQty>( value ); }
      LegsBuilder & appendNoLegs( unsigned count ) { appendSafely<FieldNoLegs>( count ); return *reinterpret_cast<LegsBuilder*>( this ); }
 };
 // end of MessageBuilders.hxx

@@ -47,7 +47,9 @@ struct NAME##Enums final: FieldEnumsBase {\
 <n1> static constexpr ValueType ITEM_##E = V;
 
 #define FIX_ENUM_END \
-};
+<t1> static const ItemType BAD_ENUM;\
+<n1> static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;\
+<nl>};
 
 #include <Fields.def>
 
