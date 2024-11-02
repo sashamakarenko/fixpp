@@ -40,7 +40,7 @@ struct ForexNewOrderSingle: public ReusableMessageBuilder
     template< typename FIELD >
     unsigned getOffset() const
     {
-        return ( end - begin ) + FIELD::INSERTABLE_TAG_WIDTH;
+        return ( _end - _begin ) + FIELD::INSERTABLE_TAG_WIDTH;
     }
 
     unsigned accountOffset, orderIdOffset, symbolOffset, sideOffset, transactTimeOffset, ordTypeOffset, orderQtyOffset;
@@ -58,9 +58,9 @@ int main( int args, const char ** argv )
     m.initialize( 100 );
 
     ForexNewOrderSingle order;
-    order.header.append<FieldSenderCompID>("ASENDER");
-    order.header.append<FieldTargetCompID>("ATARGET");
-    order.header.finalize();
+    order.header().append<FieldSenderCompID>("ASENDER");
+    order.header().append<FieldTargetCompID>("ATARGET");
+    order.header().finalize();
 
     //auto constexpr tsLen  = TimestampKeeper::DATE_TIME_SECONDS_LENGTH;
     //auto constexpr tsFrac = TimestampKeeper::Precision::SECONDS;
@@ -71,16 +71,16 @@ int main( int args, const char ** argv )
     //auto constexpr tsLen  = TimestampKeeper::DATE_TIME_NANOS_LENGTH;
     //auto constexpr tsFrac = TimestampKeeper::Precision::NANOSECONDS;
     order.append<FieldSendingTime>( TimestampKeeper::PLACE_HOLDER, tsLen );
-    order.sendingTime.setup( order.end - tsLen, tsFrac );
-    order.sendingTime.update();
-    const unsigned sendingTimeLength = order.end - order.begin;
+    order.sendingTime().setup( order.end() - tsLen, tsFrac );
+    order.sendingTime().update();
+    const unsigned sendingTimeLength = order.end() - order.begin();
 
     unsigned seqnum = 1000;
     // build order template
     {
         const OrderFields & of = orders[0];
         order.rewind( sendingTimeLength );
-        order.sendingTime.update();
+        order.sendingTime().update();
 
         // fixed width fields
         order.accountOffset = order.getOffset<FieldAccount>();
@@ -96,7 +96,7 @@ int main( int args, const char ** argv )
         order.append<FieldSide>( of.side );
 
         order.transactTimeOffset = order.getOffset<FieldTransactTime>();
-        order.append<FieldTransactTime>( order.sendingTime.begin, tsLen );
+        order.append<FieldTransactTime>( order.sendingTime().data(), tsLen );
 
         order.ordTypeOffset = order.getOffset<FieldOrdType>();
         order.append<FieldOrdType>( of.type );
@@ -107,41 +107,41 @@ int main( int args, const char ** argv )
 
         order.append<FieldPrice>( of.price, 6 );
         order.setSeqnumAndUpdateHeaderAndChecksum(++seqnum);
-        std::cout << fixstr( order.start, ttyRgbStyle ) << std::endl;
+        std::cout << fixstr( order.messageBegin(), ttyRgbStyle ) << std::endl;
     }
 
     // check it
     {
         const OrderFields & of = orders[1];
-        order.sendingTime.update();
+        order.sendingTime().update();
 
         // fixed width fields
-        memcpy( order.begin + order.accountOffset, of.account, of.accountLen );
-        memcpy( order.begin + order.orderIdOffset, of.orderId, of.orderIdLen );
-        memcpy( order.begin + order.symbolOffset , of.symbol, of.symbolLen );
-        order.begin[order.sideOffset] = of.side;
-        memcpy( order.begin + order.transactTimeOffset, order.sendingTime.begin, tsLen );
-        order.begin[order.ordTypeOffset] = of.type;
+        memcpy( order.begin() + order.accountOffset, of.account, of.accountLen );
+        memcpy( order.begin() + order.orderIdOffset, of.orderId, of.orderIdLen );
+        memcpy( order.begin() + order.symbolOffset , of.symbol, of.symbolLen );
+        order.begin()[order.sideOffset] = of.side;
+        memcpy( order.begin() + order.transactTimeOffset, order.sendingTime().data(), tsLen );
+        order.begin()[order.ordTypeOffset] = of.type;
 
         // changing width fields
         order.rewind( order.orderQtyOffset );
         order.pushValue( of.qty );
         order.append<FieldPrice>( of.price, 6 );
         order.setSeqnumAndUpdateHeaderAndChecksum(seqnum);
-        std::cout << fixstr( order.start, ttyRgbStyle ) << std::endl;
+        std::cout << fixstr( order.messageBegin(), ttyRgbStyle ) << std::endl;
     }
 
     for( unsigned i = 0; i < m.getMaxCaptures(); ++i )
     {
         const OrderFields & of = orders[ i % 8 ];
         m.startCapture();
-        order.sendingTime.update();
-        memcpy( order.begin + order.accountOffset, of.account, of.accountLen );
-        memcpy( order.begin + order.orderIdOffset, of.orderId, of.orderIdLen );
-        memcpy( order.begin + order.symbolOffset, of.symbol, of.symbolLen );
-        order.begin[order.sideOffset] = of.side;
-        memcpy( order.begin + order.transactTimeOffset, order.sendingTime.begin, tsLen );
-        order.begin[order.ordTypeOffset] = of.type;
+        order.sendingTime().update();
+        memcpy( order.begin() + order.accountOffset, of.account, of.accountLen );
+        memcpy( order.begin() + order.orderIdOffset, of.orderId, of.orderIdLen );
+        memcpy( order.begin() + order.symbolOffset, of.symbol, of.symbolLen );
+        order.begin()[order.sideOffset] = of.side;
+        memcpy( order.begin() + order.transactTimeOffset, order.sendingTime().data(), tsLen );
+        order.begin()[order.ordTypeOffset] = of.type;
         order.rewind( order.orderQtyOffset );
         order.pushValue( of.qty );
         order.append<FieldPrice>( of.price, 6 );

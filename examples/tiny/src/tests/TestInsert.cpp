@@ -65,7 +65,7 @@ int main( int args, const char ** argv )
 
     FixBufferStream fixstr( buf );
     fixstr.pushTag<FieldBeginString>().pushTag<FieldBodyLength>().append<FieldAccount>( "trader", 6 ).append<FieldNoLegs>(679);
-    *fixstr.end = 0;
+    *fixstr.end() = 0;
     std::cout << buf << "\n";
 
     std::cout << MessageExecutionReport::getMessageName() << " " << MessageExecutionReport::getMessageType() << "\n";

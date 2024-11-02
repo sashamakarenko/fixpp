@@ -47,10 +47,10 @@ int main( int args, const char ** argv )
     m.initialize( 100 );
 
     ReusableMessageBuilder order( MessageNewOrderSingle::getMessageType(), 512, 128 );
-    order.header.append<SenderCompID>("ASENDER");
-    order.header.append<TargetCompID>("ATARGET");
-    order.header.pushTag<MsgSeqNum>();
-    order.header.finalize();
+    order.header().append<SenderCompID>("ASENDER");
+    order.header().append<TargetCompID>("ATARGET");
+    order.header().pushTag<MsgSeqNum>();
+    order.header().finalize();
 
     //auto constexpr tsLen  = TimestampKeeper::DATE_TIME_SECONDS_LENGTH;
     //auto constexpr tsFrac = TimestampKeeper::Precision::SECONDS;
@@ -61,25 +61,25 @@ int main( int args, const char ** argv )
     //auto constexpr tsLen  = TimestampKeeper::DATE_TIME_NANOS_LENGTH;
     //auto constexpr tsFrac = TimestampKeeper::Precision::NANOSECONDS;
     order.append<SendingTime>( TimestampKeeper::PLACE_HOLDER, tsLen );
-    order.sendingTime.setup( order.end - tsLen, tsFrac );
-    order.sendingTime.update();
-    const unsigned sendingTimeLength = order.end - order.begin;
+    order.sendingTime().setup( order.end() - tsLen, tsFrac );
+    order.sendingTime().update();
+    const unsigned sendingTimeLength = order.end() - order.begin();
 
     unsigned seqnum = 1000;
     {
         const OrderFields & of = orders[0];
         order.rewind( sendingTimeLength );
-        order.sendingTime.update();
+        order.sendingTime().update();
         order.append<Account>( of.account );
         order.append<ClOrdID>( of.orderId );
         order.append<Symbol>( of.symbol );
         order.append<Side>( of.side );
         order.append<OrderQty>( of.qty );
         order.append<Price>( of.price, 6 );
-        order.append<TransactTime>( order.sendingTime.begin, tsLen );
+        order.append<TransactTime>( order.sendingTime().data(), tsLen );
         order.append<OrdType>( of.type );
         order.setSeqnumAndUpdateHeaderAndChecksum(seqnum);
-        std::cout << fixstr( order.start, ttyRgbStyle ) << std::endl;
+        std::cout << fixstr( order.messageBegin(), ttyRgbStyle ) << std::endl;
     }
 
     for( unsigned i = 0; i < m.getMaxCaptures(); ++i )
@@ -87,14 +87,14 @@ int main( int args, const char ** argv )
         const OrderFields & of = orders[ i % 8 ];
         m.startCapture();
         order.rewind( sendingTimeLength );
-        order.sendingTime.update();
+        order.sendingTime().update();
         order.append<Account>( of.account, of.accountLen );
         order.append<ClOrdID>( of.orderId, of.orderIdLen );
         order.append<Symbol>( of.symbol, of.symbolLen );
         order.append<Side>( of.side );
         order.append<Price>( of.price, 6 );
         order.append<OrderQty>( of.qty );
-        order.append<TransactTime>( order.sendingTime.begin, tsLen );
+        order.append<TransactTime>( order.sendingTime().data(), tsLen );
         order.append<OrdType>( of.type );
         order.setSeqnumAndUpdateHeaderAndChecksum(++seqnum);
         m.stopCapture();
@@ -119,7 +119,7 @@ int main( int args, const char ** argv )
     {
         order.rewind( sendingTimeLength );
         m.startCapture();
-        order.sendingTime.update();
+        order.sendingTime().update();
         m.stopCapture();
     }
 
@@ -174,7 +174,7 @@ int main( int args, const char ** argv )
     {
         const OrderFields & of = orders[ i % 8 ];
         order.rewind( sendingTimeLength );
-        order.sendingTime.update();
+        order.sendingTime().update();
         order.append<Account>( of.account, of.accountLen );
         order.append<ClOrdID>( of.orderId, of.orderIdLen );
         order.append<Symbol>( of.symbol, of.symbolLen );

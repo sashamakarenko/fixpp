@@ -23,5 +23,5 @@ int main( int args, const char ** argv )
     entries.appendMDEntryPx( 1.234, 6 );
     entries.appendMDEntrySize( 200 );
     builder.finalizeWithSeqnum(1);
-    std::cout << fixstr( mdfr.start, ttyRgbStyle ) << std::endl;
+    std::cout << fixstr( mdfr.messageBegin(), ttyRgbStyle ) << std::endl;
 }

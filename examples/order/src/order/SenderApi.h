@@ -161,172 +161,193 @@ enum class ClockPrecision: unsigned
 };
 
 // Used to build FIX messages.
-struct FixBufferStream
+class FixBufferStream
 {
-    explicit FixBufferStream( char * buf )
-    : begin{ buf }
-    , end  { buf }
-    {
-    }
+    public:
 
-    template< typename FIELD >
-    FixBufferStream & pushTag()
-    {
-        end = insert<FIELD>(end);
-        return *this;
-    }
-
-    FixBufferStream & pushTag( unsigned tag )
-    {
-        *end++ = FIXPP_SOH;
-        pushValue( tag );
-        *end++ = '=';
-        return *this;
-    }
-
-    FixBufferStream & pushValue( const char * src, unsigned len )
-    {
-        memcpy( end, src, len );
-        end += len;
-        return *this;
-    }
-
-    FixBufferStream & pushValue( const char * src )
-    {
-        while( *src )
+        explicit FixBufferStream( char * buf )
+        : _begin{ buf }
+        , _end  { buf }
         {
-            *end++ = *src++;
         }
-        return *this;
-    }
 
-    FixBufferStream & pushValue( const std::string & src )
-    {
-        return pushValue( src.c_str(), src.size() );
-    }
-
-    FixBufferStream & pushValue( const std::string_view & src )
-    {
-        return pushValue( src.data(), src.size() );
-    }
-
-    FixBufferStream & pushValue( const sohstr & src )
-    {
-        for( const char * ptr = src.ptr; *ptr != FIXPP_SOH and *ptr; )
+        template< typename FIELD >
+        FixBufferStream & pushTag()
         {
-            *end++ = *ptr++;
+            _end = insert<FIELD>(_end);
+            return *this;
         }
-        return *this;
-    }
 
-    FixBufferStream & pushValue( char v )
-    {
-        *end++ = v;
-        return *this;
-    }
-
-    FixBufferStream & pushValue( bool v )
-    {
-        *end++ = v ? 'Y' : 'N';
-        return *this;
-    }
-
-    FixBufferStream & pushValue( unsigned v )
-    {
-        end += uintWidth( v );
-        reverseUIntToString( end, v );
-        return *this;
-    }
-
-    FixBufferStream & pushValue( long unsigned v )
-    {
-        end += uintWidth( v );
-        reverseUIntToString( end, v );
-        return *this;
-    }
-
-    FixBufferStream & pushValue( int v )
-    {
-        unsigned uv = v;
-        if( v < 0 )
+        FixBufferStream & pushTag( unsigned tag )
         {
-            uv = -v;
-            *end++ = '-';
+            *_end++ = FIXPP_SOH;
+            pushValue( tag );
+            *_end++ = '=';
+            return *this;
         }
-        end += uintWidth( uv );
-        reverseUIntToString( end, uv );
-        return *this;
-    }
 
-    FixBufferStream & pushValue( double v, unsigned precision )
-    {
-        if( v < 0 )
+        FixBufferStream & pushValue( const char * src, unsigned len )
         {
-            *end++ = '-';
-            v = -v;
+            memcpy( _end, src, len );
+            _end += len;
+            return *this;
         }
-        unsigned i = (unsigned)v;
-        end += uintWidth( i );
-        reverseUIntToString( end, i );
-        *end++ = '.';
-        char * first = end;
-        i = ( v - i ) * uintPow10[ precision ] + 0.5;
-        end += precision;
-        for( char * last = reverseUIntToString( end, i ) - 1; last >= first; --last )
+
+        FixBufferStream & pushValue( const char * src )
         {
-            *last = '0';
+            while( *src )
+            {
+                *_end++ = *src++;
+            }
+            return *this;
         }
-        return *this;
-    }
 
-    FixBufferStream & pushValue( const Float & v )
-    {
-        end = v.format( end );
-        return *this;
-    }
+        FixBufferStream & pushValue( const std::string & src )
+        {
+            return pushValue( src.c_str(), src.size() );
+        }
 
-    inline FixBufferStream & pushValue( TimestampKeeper & tk, const TimePoint & tp );
+        FixBufferStream & pushValue( const std::string_view & src )
+        {
+            return pushValue( src.data(), src.size() );
+        }
 
-    template< typename FIELD >
-    FixBufferStream & append( const char * v, unsigned len )
-    {
-        end = insert<FIELD>(end);
-        return pushValue( v, len );
-    }
+        FixBufferStream & pushValue( const sohstr & src )
+        {
+            for( const char * ptr = src.ptr; *ptr != FIXPP_SOH and *ptr; )
+            {
+                *_end++ = *ptr++;
+            }
+            return *this;
+        }
 
-    template< typename FIELD, typename VALUE >
-    FixBufferStream & append( const VALUE & v )
-    {
-        end = insert<FIELD>(end);
-        return pushValue( v );
-    }
+        FixBufferStream & pushValue( char v )
+        {
+            *_end++ = v;
+            return *this;
+        }
 
-    template< typename FIELD >
-    FixBufferStream & append( double v, unsigned precision )
-    {
-        end = insert<FIELD>(end);
-        return pushValue( v, precision );
-    }
+        FixBufferStream & pushValue( bool v )
+        {
+            *_end++ = v ? 'Y' : 'N';
+            return *this;
+        }
 
-    template< typename FIELD >
-    FixBufferStream & append( TimestampKeeper & v, const TimePoint & tp = ClockType::now() )
-    {
-        end = insert<FIELD>(end);
-        return pushValue( v, tp );
-    }
+        FixBufferStream & pushValue( unsigned v )
+        {
+            _end += uintWidth( v );
+            reverseUIntToString( _end, v );
+            return *this;
+        }
 
-    template< typename FIELD >
-    FixBufferStream & append( const FieldEnum< typename FIELD::ValueType > & item  )
-    {
-        return append<FIELD>( item.value );
-    }
+        FixBufferStream & pushValue( long unsigned v )
+        {
+            _end += uintWidth( v );
+            reverseUIntToString( _end, v );
+            return *this;
+        }
 
-    // not efficient
-    template< typename FIELD >
-    FixBufferStream & append( const TimePoint & tp, ClockPrecision precision );
+        FixBufferStream & pushValue( int v )
+        {
+            unsigned uv = v;
+            if( v < 0 )
+            {
+                uv = -v;
+                *_end++ = '-';
+            }
+            _end += uintWidth( uv );
+            reverseUIntToString( _end, uv );
+            return *this;
+        }
 
-    char * begin;
-    char * end;
+        FixBufferStream & pushValue( double v, unsigned precision )
+        {
+            if( v < 0 )
+            {
+                *_end++ = '-';
+                v = -v;
+            }
+            unsigned i = (unsigned)v;
+            _end += uintWidth( i );
+            reverseUIntToString( _end, i );
+            *_end++ = '.';
+            char * first = _end;
+            i = ( v - i ) * uintPow10[ precision ] + 0.5;
+            _end += precision;
+            for( char * last = reverseUIntToString( _end, i ) - 1; last >= first; --last )
+            {
+                *last = '0';
+            }
+            return *this;
+        }
+
+        FixBufferStream & pushValue( const Float & v )
+        {
+            _end = v.format( _end );
+            return *this;
+        }
+
+        inline FixBufferStream & pushValue( TimestampKeeper & tk, const TimePoint & tp );
+
+        template< typename FIELD >
+        FixBufferStream & append( const char * v, unsigned len )
+        {
+            _end = insert<FIELD>(_end);
+            return pushValue( v, len );
+        }
+
+        template< typename FIELD, typename VALUE >
+        FixBufferStream & append( const VALUE & v )
+        {
+            _end = insert<FIELD>(_end);
+            return pushValue( v );
+        }
+
+        template< typename FIELD >
+        FixBufferStream & append( double v, unsigned precision )
+        {
+            _end = insert<FIELD>(_end);
+            return pushValue( v, precision );
+        }
+
+        template< typename FIELD >
+        FixBufferStream & append( TimestampKeeper & v, const TimePoint & tp = ClockType::now() )
+        {
+            _end = insert<FIELD>(_end);
+            return pushValue( v, tp );
+        }
+
+        template< typename FIELD >
+        FixBufferStream & append( const FieldEnum< typename FIELD::ValueType > & item  )
+        {
+            return append<FIELD>( item.value );
+        }
+
+        // not efficient
+        template< typename FIELD >
+        FixBufferStream & append( const TimePoint & tp, ClockPrecision precision );
+
+        char * begin() const
+        {
+            return _begin;
+        }
+
+        char * end() const
+        {
+            return _end;
+        }
+
+        std::ptrdiff_t length() const
+        {
+            return _end - _begin;
+        }
+
+    protected:
+
+        friend class ReusableMessageBuilder;
+
+        char * _begin;
+        char * _end;
 };
 
 constexpr unsigned BODY_LENGTH_OFFSET = FixBeginStringInsertableTagLength + FieldBodyLength::INSERTABLE_TAG_WIDTH;
@@ -338,197 +359,226 @@ constexpr unsigned BODY_LENGTH_OFFSET = FixBeginStringInsertableTagLength + Fiel
 //  "..."   "8=FIX.4.4" I "9=315" I "35=W" I "49=foo" I "56=bar" I "34=1234" I "52=20190101-01:01:01.000" I "..."
 //           ----------------***  -------------------------------------****              --------========
 //
-struct HeaderTemplate: FixBufferStream
+class HeaderTemplate: public FixBufferStream
 {
-    HeaderTemplate( unsigned capacity, const std::string & msgType )
-    : FixBufferStream( nullptr )
-    , buffer( capacity, (char)0 )
-    , chksum( 0 )
-    , countableLength( 0 )
-    {
-        begin = end = &buffer[0];
-        end = insert<FieldBeginString>( end );
-        end = insert<FieldBodyLength>( end );
-        append<FieldMsgType>( msgType );
-    }
+    public:
 
-    HeaderTemplate()
-    : FixBufferStream( nullptr )
-    , buffer()
-    , chksum( 0 )
-    {
-    }
-
-    // Returns countable body length [I 35=.....34=]
-    unsigned finalize()
-    {
-        if( *( end - FieldMsgSeqNum::INSERTABLE_TAG_WIDTH ) != FIXPP_SOH or
-            parseTag( end - FieldMsgSeqNum::TAG_WIDTH - 1 ) != FieldMsgSeqNum::TAG )
+        HeaderTemplate( unsigned capacity, const std::string & msgType )
+        : FixBufferStream( nullptr )
+        , _buffer( capacity, (char)0 )
+        , _chksum( 0 )
+        , _countableLength( 0 )
         {
-            pushTag<FieldMsgSeqNum>();
+            _begin = _end = & _buffer[0];
+            _end = insert<FieldBeginString>( _end );
+            _end = insert<FieldBodyLength>( _end );
+            append<FieldMsgType>( msgType );
         }
-        chksum = computeChecksum( begin, end );
-        return countableLength = ( end - begin ) - BODY_LENGTH_OFFSET;
-    }
 
-    std::vector<char> buffer;
-    unsigned          chksum;
-    unsigned          countableLength;
+        HeaderTemplate()
+        : FixBufferStream( nullptr )
+        , _buffer()
+        , _chksum( 0 )
+        , _countableLength( 0 )
+        {
+        }
+
+        // Returns countable body length [I 35=.....34=]
+        unsigned finalize()
+        {
+            if( *( _end - FieldMsgSeqNum::INSERTABLE_TAG_WIDTH ) != FIXPP_SOH or
+                parseTag( _end - FieldMsgSeqNum::TAG_WIDTH - 1 ) != FieldMsgSeqNum::TAG )
+            {
+                pushTag<FieldMsgSeqNum>();
+            }
+            _chksum = computeChecksum( _begin, _end );
+            return _countableLength = ( _end - _begin ) - BODY_LENGTH_OFFSET;
+        }
+
+    protected:
+
+        friend class ReusableMessageBuilder;
+
+        std::vector<char> _buffer;
+        unsigned          _chksum;
+        unsigned          _countableLength;
 };
 
 // Reusable timestamp strcuture.
 // Updates only changed values - mostly time since date doesn't change often.
-struct TimestampKeeper
+class TimestampKeeper
 {
-    using Precision = ClockPrecision;
 
-    // YYYYMMDD-HH:MM:SS.mmmnnnuuu
-    constexpr static unsigned DATE_LENGTH              = 8;
-    constexpr static unsigned DATE_TIME_SECONDS_LENGTH = 17;
-    constexpr static unsigned DATE_TIME_MILLIS_LENGTH  = 21;
-    constexpr static unsigned DATE_TIME_MICROS_LENGTH  = 24;
-    constexpr static unsigned DATE_TIME_NANOS_LENGTH   = 27;
-    constexpr static const char * const PLACE_HOLDER   = "11112233-44:55:66.777888999";
+    public:
 
-    static unsigned precisionToLength( Precision precision )
-    {
-        return DATE_TIME_SECONDS_LENGTH + ( precision != Precision::SECONDS ? 1 : 0 ) + (unsigned)precision;
-    }
+        using Precision = ClockPrecision;
 
-    unsigned length() const
-    {
-        return precisionToLength( secFraction );
-    }
+        // YYYYMMDD-HH:MM:SS.mmmnnnuuu
+        constexpr static unsigned DATE_LENGTH              = 8;
+        constexpr static unsigned DATE_TIME_SECONDS_LENGTH = 17;
+        constexpr static unsigned DATE_TIME_MILLIS_LENGTH  = 21;
+        constexpr static unsigned DATE_TIME_MICROS_LENGTH  = 24;
+        constexpr static unsigned DATE_TIME_NANOS_LENGTH   = 27;
+        constexpr static const char * const PLACE_HOLDER   = "11112233-44:55:66.777888999";
 
-    explicit TimestampKeeper( char * buffer = nullptr, Precision secPrecision = Precision::SECONDS )
-    : startOfDay  { 0 }
-    , endOfDay    { 0 }
-    , begin       { buffer }
-    , lastSecond  { 0 }
-    , lastFraction{ 0 }
-    , secFraction { secPrecision }
-    {
-    }
-
-    void reset()
-    {
-        startOfDay   = 0;
-        endOfDay     = 0;
-        begin        = nullptr;
-        lastSecond   = 0;
-        lastFraction = 0;
-        secFraction  = Precision::SECONDS;
-    }
-
-    unsigned fill( char * buffer, Precision secPrecision, const TimePoint & tp = ClockType::now() )
-    {
-        if( begin != buffer or secFraction != secPrecision )
+        static unsigned precisionToLength( Precision precision )
         {
-            begin        = buffer;
-            secFraction  = secPrecision;
-            startOfDay   = 0;
-            endOfDay     = 0;
-            lastSecond   = 0;
-            lastFraction = 0;
+            return DATE_TIME_SECONDS_LENGTH + ( precision != Precision::SECONDS ? 1 : 0 ) + (unsigned)precision;
         }
-        if( buffer )
+
+        unsigned length() const
         {
-            update( tp );
+            return precisionToLength( _precision );
+        }
+
+        explicit TimestampKeeper( char * buffer = nullptr, Precision precision = Precision::SECONDS )
+        : _startOfDay  { 0 }
+        , _endOfDay    { 0 }
+        , _begin       { buffer }
+        , _lastSecond  { 0 }
+        , _lastFraction{ 0 }
+        , _precision   { precision }
+        {
+        }
+
+        void reset()
+        {
+            _startOfDay   = 0;
+            _endOfDay     = 0;
+            _begin        = nullptr;
+            _lastSecond   = 0;
+            _lastFraction = 0;
+            _precision  = Precision::SECONDS;
+        }
+
+        unsigned fill( char * buffer, Precision precision, const TimePoint & tp = ClockType::now() )
+        {
+            if( _begin != buffer or _precision != precision )
+            {
+                _begin        = buffer;
+                _precision    = precision;
+                _startOfDay   = 0;
+                _endOfDay     = 0;
+                _lastSecond   = 0;
+                _lastFraction = 0;
+            }
+            if( buffer )
+            {
+                update( tp );
+                return length();
+            }
+            return 0;
+        }
+
+        unsigned setup( char * buffer, Precision precision )
+        {
+            _begin = buffer;
+            _precision = precision;
+            if( buffer )
+            {
+                memcpy( buffer, PLACE_HOLDER, length() );
+                update();
+            }
             return length();
         }
-        return 0;
-    }
 
-    unsigned setup( char * buffer, Precision secPrecision )
-    {
-        begin = buffer;
-        secFraction = secPrecision;
-        if( buffer )
+        char * update( const TimePoint & tp = ClockType::now() )
         {
-            memcpy( buffer, PLACE_HOLDER, length() );
-            update();
-        }
-        return length();
-    }
-
-    char * update( const TimePoint & tp = ClockType::now() )
-    {
-        const std::time_t tpt = ClockType::to_time_t( tp );
-        if( tpt < startOfDay or tpt >= endOfDay )
-        {
-            startOfDay = tpt - ( tpt % ( 3600 * 24 ) );
-            endOfDay = startOfDay + 3600 * 24;
-            std::tm tm;
-            gmtime_r( &tpt, &tm );
-            std::strftime( begin, 64, "%Y%m%d-%H:%M:%S", &tm );
-        }
-
-        unsigned diff = tpt - startOfDay;
-        if( lastSecond != diff )
-        {
-            uint16_t hours   = diff / 3600;
-            uint16_t minutes = ( ( diff / 60 ) % 60 );
-            uint16_t seconds = ( diff % 60 );
-            char * ptr = begin + DATE_LENGTH + 1;
-            ptr[0] = hours   / 10 + '0';
-            ptr[1] = hours   % 10 + '0';
-            ptr[3] = minutes / 10 + '0';
-            ptr[4] = minutes % 10 + '0';
-            ptr[6] = seconds / 10 + '0';
-            ptr[7] = seconds % 10 + '0';
-            lastSecond = diff;
-        }
-
-        if( secFraction != Precision::SECONDS )
-        {
-            begin[DATE_TIME_SECONDS_LENGTH] = '.';
-            unsigned fraction = 0;
-            if( secFraction == Precision::MILLISECONDS )
+            const std::time_t tpt = ClockType::to_time_t( tp );
+            if( tpt < _startOfDay or tpt >= _endOfDay )
             {
-                fraction = std::chrono::time_point_cast<std::chrono::milliseconds>(tp).time_since_epoch().count() % 1000;
+                _startOfDay = tpt - ( tpt % ( 3600 * 24 ) );
+                _endOfDay = _startOfDay + 3600 * 24;
+                std::tm tm;
+                gmtime_r( &tpt, &tm );
+                std::strftime( _begin, 64, "%Y%m%d-%H:%M:%S", &tm );
             }
-            else if( secFraction == Precision::MICROSECONDS )
+
+            unsigned diff = tpt - _startOfDay;
+            if( _lastSecond != diff )
             {
-                fraction = std::chrono::time_point_cast<std::chrono::microseconds>(tp).time_since_epoch().count() % 1000'000;
+                uint16_t hours   = diff / 3600;
+                uint16_t minutes = ( ( diff / 60 ) % 60 );
+                uint16_t seconds = ( diff % 60 );
+                char * ptr = _begin + DATE_LENGTH + 1;
+                ptr[0] = hours   / 10 + '0';
+                ptr[1] = hours   % 10 + '0';
+                ptr[3] = minutes / 10 + '0';
+                ptr[4] = minutes % 10 + '0';
+                ptr[6] = seconds / 10 + '0';
+                ptr[7] = seconds % 10 + '0';
+                _lastSecond = diff;
             }
-            else // nanos
+
+            if( _precision != Precision::SECONDS )
             {
-                fraction = std::chrono::time_point_cast<std::chrono::nanoseconds>(tp).time_since_epoch().count() % 1000'000'000;
-            }
-            if( fraction != lastFraction )
-            {
-                char * first = begin + DATE_TIME_SECONDS_LENGTH + 1;
-                for( char * last = reverseUIntToString( first + (unsigned)secFraction, fraction ) - 1; last >= first; --last )
+                _begin[DATE_TIME_SECONDS_LENGTH] = '.';
+                unsigned fraction = 0;
+                if( _precision == Precision::MILLISECONDS )
                 {
-                    *last = '0';
+                    fraction = std::chrono::time_point_cast<std::chrono::milliseconds>(tp).time_since_epoch().count() % 1000;
                 }
-                lastFraction = fraction;
+                else if( _precision == Precision::MICROSECONDS )
+                {
+                    fraction = std::chrono::time_point_cast<std::chrono::microseconds>(tp).time_since_epoch().count() % 1000'000;
+                }
+                else // nanos
+                {
+                    fraction = std::chrono::time_point_cast<std::chrono::nanoseconds>(tp).time_since_epoch().count() % 1000'000'000;
+                }
+                if( fraction != _lastFraction )
+                {
+                    char * first = _begin + DATE_TIME_SECONDS_LENGTH + 1;
+                    for( char * last = reverseUIntToString( first + (unsigned)_precision, fraction ) - 1; last >= first; --last )
+                    {
+                        *last = '0';
+                    }
+                    _lastFraction = fraction;
+                }
             }
+            unsigned len = DATE_TIME_SECONDS_LENGTH + 1 + (unsigned)_precision;
+            _begin[len] = FIXPP_SOH;
+            return _begin + len;
         }
-        unsigned len = DATE_TIME_SECONDS_LENGTH + 1 + (unsigned)secFraction;
-        begin[len] = FIXPP_SOH;
-        return begin + len;
-    }
 
-    time_t    startOfDay;
-    time_t    endOfDay;
-    char    * begin;
-    unsigned  lastSecond;
-    unsigned  lastFraction;
-    Precision secFraction;
+        Precision getPrecision() const
+        {
+            return _precision;
+        }
+
+        void setPrecision( Precision precision )
+        {
+            _precision = precision;
+        }
+
+        char * data() const
+        {
+            return  _begin;
+        }
+
+    private:
+
+        friend class ReusableMessageBuilder;
+
+        time_t    _startOfDay;
+        time_t    _endOfDay;
+        char    * _begin;
+        unsigned  _lastSecond;
+        unsigned  _lastFraction;
+        Precision _precision;
 };
 
 FixBufferStream & FixBufferStream::pushValue( TimestampKeeper & tk, const TimePoint & tp )
 {
-    tk.fill( end, tk.secFraction, tp );
-    end += tk.length();
+    tk.fill( _end, tk.getPrecision(), tp );
+    _end += tk.length();
     return *this;
 }
 
 template< typename FIELD >
 inline FixBufferStream & FixBufferStream::append( const TimePoint & tp, ClockPrecision precision )
 {
-    end = insert<FIELD>(end);
+    _end = insert<FIELD>(_end);
     TimestampKeeper tmp( nullptr, precision );
     return pushValue( tmp, tp );
 }
@@ -584,166 +634,240 @@ buffer   start                msgType                                    sending
 
 Since header length depends on seqnum and body length, start is not usable before calling setSeqnumAndUpdateHeaderAndChecksum().
 */
-struct ReusableMessageBuilder: FixBufferStream
+class ReusableMessageBuilder: public FixBufferStream
 {
-    ReusableMessageBuilder( const std::string & messageType, unsigned maxBodyLength, unsigned headerTemplateCapacity = 128 )
-    : FixBufferStream    ( nullptr )
-    , msgType            ( messageType )
-    , buffer             ( headerTemplateCapacity + maxBodyLength + 1, (char)0 )
-    , start              ( nullptr )
-    , lastSeqnumWidth    ( 0 )
-    , minSeqnumWidth     ( 1 )
-    , lastBodyLengthWidth( 0 )
-    , minBodyLengthWidth ( 2 )
-    , bufferGrowChunk    ( 1024 )
-    , header             ( headerTemplateCapacity, messageType )
-    {
-        begin = end = &buffer[0] + headerTemplateCapacity;
-        for( unsigned i = 0; i < NO_TIMES; ++i )
+    public:
+
+        ReusableMessageBuilder( const std::string & messageType, unsigned maxBodyLength, unsigned headerTemplateCapacity = 128 )
+        : FixBufferStream     ( nullptr )
+        , _msgType            ( messageType )
+        , _buffer             ( headerTemplateCapacity + maxBodyLength + 1, (char)0 )
+        , _start              ( nullptr )
+        , _lastSeqnumWidth    ( 0 )
+        , _minSeqnumWidth     ( 1 )
+        , _lastBodyLengthWidth( 0 )
+        , _minBodyLengthWidth ( 2 )
+        , _bufferGrowChunk    ( 1024 )
+        , _header             ( headerTemplateCapacity, messageType )
         {
-            userTime[i].reset();
-        }
-    }
-
-    ReusableMessageBuilder( const ReusableMessageBuilder & ) = delete;
-
-    void setupSendingTime( ClockPrecision precision )
-    {
-        append<FieldSendingTime>( TimestampKeeper::PLACE_HOLDER, TimestampKeeper::precisionToLength( precision ) );
-        sendingTime.setup( end - TimestampKeeper::precisionToLength( precision ), precision );
-        sendingTime.update();
-    }
-
-    // To be called just before sending.
-    // Header is supposed to be updated by this time.
-    const char * setSeqnumAndUpdateHeaderAndChecksum( unsigned seqnum )
-    {
-        unsigned chksum = header.chksum;
-        char * ptr = reversePaddedUIntToString( begin, seqnum, minSeqnumWidth, chksum );
-        unsigned seqnumWidth = begin - ptr;
-        unsigned bodyLength = header.countableLength + seqnumWidth + ( end - begin );
-
-        char * msgTypePtr = begin - header.countableLength - seqnumWidth;
-        ptr = reversePaddedUIntToString( msgTypePtr, bodyLength, minBodyLengthWidth, chksum );
-        unsigned bodyLengthWidth = msgTypePtr - ptr;
-
-        start = begin - seqnumWidth - header.countableLength - bodyLengthWidth - BODY_LENGTH_OFFSET;
-        if( unlikely( seqnumWidth != lastSeqnumWidth ) )
-        {
-            lastBodyLengthWidth = bodyLengthWidth;
-            lastSeqnumWidth = seqnumWidth;
-            memcpy( start, header.begin, BODY_LENGTH_OFFSET );
-            memcpy( msgTypePtr, header.begin + BODY_LENGTH_OFFSET, header.countableLength );
-        }
-        else if( unlikely( bodyLengthWidth != lastBodyLengthWidth ) )
-        {
-            lastBodyLengthWidth = bodyLengthWidth;
-            memcpy( start, header.begin, BODY_LENGTH_OFFSET );
-        }
-        chksum += computeChecksum( begin, end ) + 1; // 1 = last SOH not inserted yet
-        pushTag<FieldCheckSum>();
-        chksum = chksum & 0xff;
-        end[0] = '0' + chksum / 100;
-        end[1] = '0' + ( chksum / 10 ) % 10;
-        end[2] = '0' + chksum % 10;
-        end[3] = 1;
-        end += 4;
-        return start;
-    }
-
-    void rewind( unsigned pos = 0 )
-    {
-        end = begin + pos;
-    }
-
-    // Resizes the buffer if necessary to receive next value.
-    // start will be updated in setSeqnumAndUpdateHeaderAndChecksum().
-    void resizeIfNecessary( unsigned valueLength )
-    {
-        valueLength += 8; // max "|tag=" length ?
-        auto endOffset = end - &buffer[0];
-        if( endOffset + (ssize_t)valueLength >= (ssize_t)buffer.size() )
-        {
-            auto beginOffset = begin - &buffer[0];
-            ssize_t userTimeOffset[NO_TIMES] = {};
+            _begin = _end = &_buffer[0] + headerTemplateCapacity;
             for( unsigned i = 0; i < NO_TIMES; ++i )
             {
-                if( userTime[i].begin )
-                {
-                    userTimeOffset[i] = userTime[i].begin - &buffer[0];
-                }
+                _userTime[i].reset();
             }
-            buffer.resize( ( 1 + ( endOffset + valueLength ) / bufferGrowChunk ) * bufferGrowChunk );
-            begin = &buffer[0] + beginOffset;
-            end   = &buffer[0] + endOffset;
-            for( unsigned i = 0; i < 5; ++i )
+        }
+
+        ReusableMessageBuilder( const ReusableMessageBuilder & ) = delete;
+
+        void setupSendingTime( ClockPrecision precision )
+        {
+            append<FieldSendingTime>( TimestampKeeper::PLACE_HOLDER, TimestampKeeper::precisionToLength( precision ) );
+            _sendingTime.setup( _end - TimestampKeeper::precisionToLength( precision ), precision );
+            _sendingTime.update();
+        }
+
+        char * messageBegin() const
+        {
+            return _start;
+        }
+
+        char * bodyBegin() const
+        {
+            return _begin;
+        }
+
+        std::ptrdiff_t totalLength() const
+        {
+            return _end - _start;
+        }
+
+        std::ptrdiff_t bodyLength() const
+        {
+            return _end - _begin;
+        }
+
+        static constexpr unsigned NO_TIMES = 5;
+
+        TimestampKeeper & userTime( unsigned idx )
+        {
+            return _userTime[ idx ];
+        }
+
+        TimestampKeeper & sendingTime()
+        {
+            return _sendingTime;
+        }
+
+        // To be called just before sending.
+        // Header is supposed to be updated by this time.
+        const char * setSeqnumAndUpdateHeaderAndChecksum( unsigned seqnum )
+        {
+            unsigned chksum      = _header._chksum;
+            char   * ptr         = reversePaddedUIntToString( _begin, seqnum, _minSeqnumWidth, chksum );
+            unsigned seqnumWidth = _begin - ptr;
+            unsigned bodyLength  = _header._countableLength + seqnumWidth + ( _end - _begin );
+            char   * msgTypePtr  = _begin - _header._countableLength - seqnumWidth;
+            ptr = reversePaddedUIntToString( msgTypePtr, bodyLength, _minBodyLengthWidth, chksum );
+            unsigned bodyLengthWidth = msgTypePtr - ptr;
+
+            _start = _begin - seqnumWidth - _header._countableLength - bodyLengthWidth - BODY_LENGTH_OFFSET;
+            if( unlikely( seqnumWidth != _lastSeqnumWidth ) )
             {
-                if( userTime[i].begin )
+                _lastBodyLengthWidth = bodyLengthWidth;
+                _lastSeqnumWidth = seqnumWidth;
+                memcpy( _start, _header._begin, BODY_LENGTH_OFFSET );
+                memcpy( msgTypePtr, _header._begin + BODY_LENGTH_OFFSET, _header._countableLength );
+            }
+            else if( unlikely( bodyLengthWidth != _lastBodyLengthWidth ) )
+            {
+                _lastBodyLengthWidth = bodyLengthWidth;
+                memcpy( _start, _header._begin, BODY_LENGTH_OFFSET );
+            }
+            chksum += computeChecksum( _begin, _end ) + 1; // 1 = last SOH not inserted yet
+            pushTag<FieldCheckSum>();
+            chksum = chksum & 0xff;
+            _end[0] = '0' + chksum / 100;
+            _end[1] = '0' + ( chksum / 10 ) % 10;
+            _end[2] = '0' + chksum % 10;
+            _end[3] = 1;
+            _end += 4;
+            return _start;
+        }
+
+        void rewind( unsigned pos = 0 )
+        {
+            _end = _begin + pos;
+        }
+
+        // Resizes the buffer if necessary to receive next value.
+        // start will be updated in setSeqnumAndUpdateHeaderAndChecksum().
+        void resizeIfNecessary( unsigned valueLength )
+        {
+            valueLength += 8; // max "|tag=" length ?
+            auto endOffset = _end - &_buffer[0];
+            if( endOffset + (ssize_t)valueLength >= (ssize_t)_buffer.size() )
+            {
+                auto beginOffset = _begin - &_buffer[0];
+                ssize_t userTimeOffset[NO_TIMES] = {};
+                for( unsigned i = 0; i < NO_TIMES; ++i )
                 {
-                    userTime[i].begin = &buffer[0] + userTimeOffset[i];
+                    if( _userTime[i]._begin )
+                    {
+                        userTimeOffset[i] = _userTime[i]._begin - &_buffer[0];
+                    }
+                }
+                _buffer.resize( ( 1 + ( endOffset + valueLength ) / _bufferGrowChunk ) * _bufferGrowChunk );
+                _begin = &_buffer[0] + beginOffset;
+                _end   = &_buffer[0] + endOffset;
+                for( unsigned i = 0; i < 5; ++i )
+                {
+                    if( _userTime[i]._begin )
+                    {
+                        _userTime[i]._begin = &_buffer[0] + userTimeOffset[i];
+                    }
                 }
             }
         }
-    }
 
-    // Methods resizing the buffer if necessary.
-    // Otherwise use FixBufferStream::append().
+        // Methods resizing the buffer if necessary.
+        // Otherwise use FixBufferStream::append().
 
-    template< typename FIELD >
-    FixBufferStream & appendSafely( const char * v, unsigned len )
-    {
-        resizeIfNecessary( len );
-        end = insert<FIELD>(end);
-        return pushValue( v, len );
-    }
+        template< typename FIELD >
+        FixBufferStream & appendSafely( const char * v, unsigned len )
+        {
+            resizeIfNecessary( len );
+            _end = insert<FIELD>(_end);
+            return pushValue( v, len );
+        }
 
-    template< typename FIELD, typename VALUE >
-    FixBufferStream & appendSafely( const VALUE & v )
-    {
-        resizeIfNecessary( valueMaxLength(v) );
-        end = insert<FIELD>(end);
-        return pushValue( v );
-    }
+        template< typename FIELD, typename VALUE >
+        FixBufferStream & appendSafely( const VALUE & v )
+        {
+            resizeIfNecessary( valueMaxLength(v) );
+            _end = insert<FIELD>(_end);
+            return pushValue( v );
+        }
 
-    template< typename FIELD >
-    FixBufferStream & appendSafely( double v, unsigned precision )
-    {
-        resizeIfNecessary( 16 ); // formatted floating point max length ?
-        end = insert<FIELD>(end);
-        return pushValue( v, precision );
-    }
+        template< typename FIELD >
+        FixBufferStream & appendSafely( double v, unsigned precision )
+        {
+            resizeIfNecessary( 16 ); // formatted floating point max length ?
+            _end = insert<FIELD>(_end);
+            return pushValue( v, precision );
+        }
 
-    template< typename FIELD >
-    FixBufferStream & appendSafely( TimestampKeeper & v, const TimePoint & tp = ClockType::now() )
-    {
-        resizeIfNecessary( TimestampKeeper::DATE_TIME_NANOS_LENGTH );
-        end = insert<FIELD>(end);
-        return pushValue( v, tp );
-    }
+        template< typename FIELD >
+        FixBufferStream & appendSafely( TimestampKeeper & v, const TimePoint & tp = ClockType::now() )
+        {
+            resizeIfNecessary( TimestampKeeper::DATE_TIME_NANOS_LENGTH );
+            _end = insert<FIELD>(_end);
+            return pushValue( v, tp );
+        }
 
-    template< typename FIELD >
-    FixBufferStream & appendSafely( const FieldEnum< typename FIELD::ValueType > & item  )
-    {
-        resizeIfNecessary( valueMaxLength( item.value ) );
-        return append<FIELD>( item.value );
-    }
+        template< typename FIELD >
+        FixBufferStream & appendSafely( const FieldEnum< typename FIELD::ValueType > & item  )
+        {
+            resizeIfNecessary( valueMaxLength( item.value ) );
+            return append<FIELD>( item.value );
+        }
 
-    const std::string             msgType;
-    std::vector<char>             buffer;
-    char                        * start;
-    unsigned                      lastSeqnumWidth;
-    unsigned                      minSeqnumWidth;
-    unsigned                      lastBodyLengthWidth;
-    unsigned                      minBodyLengthWidth;
-    unsigned                      bufferGrowChunk;
-    HeaderTemplate                header;
+        bool setBufferGrowChunkSize( unsigned chunkSize )
+        {
+            if( chunkSize >= 8 and chunkSize <= ( 1 << 20 ) )
+            {
+                _bufferGrowChunk = chunkSize;
+                return true;
+            }
+            return false;
+        }
 
-    static constexpr unsigned     NO_TIMES = 5;
-    union
-    {
-    TimestampKeeper               sendingTime;
-    TimestampKeeper               userTime[NO_TIMES];
-    };
+        unsigned getBufferGrowChunkSize() const
+        {
+            return _bufferGrowChunk;
+        }
+
+        HeaderTemplate & header()
+        {
+            return _header;
+        }
+
+        void setMinSeqnumWidth( unsigned width )
+        {
+            _minSeqnumWidth = width;
+        }
+
+        unsigned getMinSeqnumWidth() const
+        {
+            return _minSeqnumWidth;
+        }
+
+        void setMinBodyLengthWidth( unsigned width )
+        {
+            _minBodyLengthWidth = width;
+        }
+
+        unsigned getMinBodyLengthWidth() const
+        {
+            return _minBodyLengthWidth;
+        }
+
+    protected:
+
+        const std::string             _msgType;
+        std::vector<char>             _buffer;
+        char                        * _start;
+        unsigned                      _lastSeqnumWidth;
+        unsigned                      _minSeqnumWidth;
+        unsigned                      _lastBodyLengthWidth;
+        unsigned                      _minBodyLengthWidth;
+        unsigned                      _bufferGrowChunk;
+        HeaderTemplate                _header;
+
+        union
+        {
+        TimestampKeeper               _sendingTime;
+        TimestampKeeper               _userTime[NO_TIMES];
+        };
 
 };
 

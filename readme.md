@@ -378,13 +378,13 @@ const char * execReport = "8=FIX.4.4" I "9=332" I "35=8" I "49=foo" I "56=bar" I
 ## Sending API
 
 You will have to include SenderApi.h to build FIX messages with `fixpp`. It offers both
-- low level buffer construction with FixBufferStream
-- and reusable memory approach with ReusableMessageBuilder
+- low level buffer construction with `FixBufferStream`
+- and reusable memory approach with `ReusableMessageBuilder`
 
 ### FixBufferStream
 
-This structure has two attributes: `begin` and `end`. Respectively pointing to the message's first and past last byte.
-Each time a new field is inserted `end` will shift forward accordingly. In most cases the fields will be appended as tag-value pairs:
+This class has two attributes: `_begin` and `_end`. Respectively pointing to the message's first and past last byte.
+Each time a new field is inserted `_end` will shift forward accordingly. In most cases the fields will be appended as tag-value pairs:
 ```cpp
 execReport.append<ClOrdID>("OID4567");
 execReport.append<QtyType>( QtyTypeEnums::UNITS );
@@ -397,18 +397,24 @@ execReport.pushTag<ClOrdID>().pushValue("OID4567");
 ```
 
 ### ReusableMessageBuilder
-The idea behind is for a given FIX session:
+The idea behind is, for a given FIX session:
 - to reuse the header since most of it's fields will not change,
 - to pre-compute the checksum for non-changing header's fields,
 - to update only changing time within timestamps since the date does not change intra day.
 
-This structure inherits the `begin` and `end` pointers from FixBufferStream. But `begin` refers to the first changing field like SendingTime for instance. The very first byte of the sending buffer will be pointed to by `start`. The latter will move each time the header's width changes. For example when the sequence number or body length change their widths.
+This class inherits the `_begin` and `_end` pointers from `FixBufferStream`, but `_begin` refers to the first changing field like `SendingTime` for instance. The very first byte of the sending buffer will be pointed to by `_start`. The latter will move each time the header's width changes. For example when the sequence number or body length change their widths.
 ```
-buffer   start                msgType                                    sendingTime                  body
+
+         messageBegin()
+         |
+_buffer  _start               _msgType                                   _sendingTime                 _body
 |        |                    |                                          |                            |
 "..."   "8=FIX.4.4" I "9=315" I "35=W" I "49=foo" I "56=bar" I "34=1234" I "52=20190101-01:01:01.000" I "..."
+                         ---                                       ----  |                            |
+                         | body length and seqno will be updated   |     _begin                       _end
                                                                          |                            |
-                                                                         begin                        end
+                                                                         bodyBegin()                  end()
+
 ```
 
 A typical scenario will be
@@ -423,13 +429,13 @@ A typical scenario will be
 
     // prepare
     ReusableMessageBuilder order( NewOrderSingle::getMessageType(), 512, 128 );
-    order.header.append<SenderCompID>("ASENDER");
-    order.header.append<TargetCompID>("ATARGET");
-    order.header.finalize();
+    order.header().append<SenderCompID>("ASENDER");
+    order.header().append<TargetCompID>("ATARGET");
+    order.header().finalize();
 
     // append SendingTime to the header
     order.setupSendingTime( TimestampKeeper::Precision::MILLISECONDS );
-    const unsigned sendingTimeLength = order.end - order.begin;
+    const unsigned sendingTimeLength = order.end() - order.begin();
     ...
     /// sending it without rebuilding the header
     void sendOrder( const OrderFields & of )
@@ -437,7 +443,7 @@ A typical scenario will be
         // move end past SendingTime
         order.rewind( sendingTimeLength );
         // update changing fields in SendingTime
-        order.sendingTime.update();
+        order.sendingTime().update();
         // append order specific fields
         order.append<Account>( of.account, of.accountLen );
         order.append<ClOrdID>( of.orderId, of.orderIdLen );
@@ -496,7 +502,7 @@ The example above will appear as follows:
         // move end past SendingTime
         order.rewind( sendingTimeLength );
         // update changing fields in SendingTime
-        order.sendingTime.update();
+        order.sendingTime().update();
         // append order specific fields
         builder.appendAccount( of.account );
         builder.appendClOrdID( of.orderId );

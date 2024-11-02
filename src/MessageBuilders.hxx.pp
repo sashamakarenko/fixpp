@@ -24,7 +24,7 @@
 <n1>    public:\
 <nl>\
 <n2>        static NAME##Builder & Ref( ReusableMessageBuilder & builder ){ return reinterpret_cast<NAME##Builder&>( builder ); }\
-<n2>        HeaderBuilder & getHeader-NAME@(){ return reinterpret_cast<HeaderBuilder&>( header ); }\
+<n2>        HeaderBuilder & getHeader-NAME@(){ return reinterpret_cast<HeaderBuilder&>( _header ); }\
 <n2>        ReusableMessageBuilder & super-NAME@(){ return *this; }\
 <n2>        void finalizeWithSeqnum-NAME@( unsigned seqnum ){ setSeqnumAndUpdateHeaderAndChecksum( seqnum ); }
 

@@ -83,7 +83,7 @@ class NewOrderSingleBuilder: protected ReusableMessageBuilder
    public:
 
      static NewOrderSingleBuilder & Ref( ReusableMessageBuilder & builder ){ return reinterpret_cast<NewOrderSingleBuilder&>( builder ); }
-     HeaderBuilder & getHeader(){ return reinterpret_cast<HeaderBuilder&>( header ); }
+     HeaderBuilder & getHeader(){ return reinterpret_cast<HeaderBuilder&>( _header ); }
      ReusableMessageBuilder & super(){ return *this; }
      void finalizeWithSeqnum( unsigned seqnum ){ setSeqnumAndUpdateHeaderAndChecksum( seqnum ); }
      void appendClOrdID( const std::string_view & value ){ appendSafely<FieldClOrdID>( value ); }
@@ -110,7 +110,7 @@ class ExecutionReportBuilder: protected ReusableMessageBuilder
    public:
 
      static ExecutionReportBuilder & Ref( ReusableMessageBuilder & builder ){ return reinterpret_cast<ExecutionReportBuilder&>( builder ); }
-     HeaderBuilder & getHeader(){ return reinterpret_cast<HeaderBuilder&>( header ); }
+     HeaderBuilder & getHeader(){ return reinterpret_cast<HeaderBuilder&>( _header ); }
      ReusableMessageBuilder & super(){ return *this; }
      void finalizeWithSeqnum( unsigned seqnum ){ setSeqnumAndUpdateHeaderAndChecksum( seqnum ); }
      void appendOrderID( const std::string_view & value ){ appendSafely<FieldOrderID>( value ); }
