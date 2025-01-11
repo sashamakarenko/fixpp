@@ -289,6 +289,13 @@ class FixBufferStream
 
         inline FixBufferStream & pushValue( TimestampKeeper & tk, const TimePoint & tp );
 
+        char * span( unsigned length )
+        {
+            char * oldEnd = _end;
+            _end += length;
+            return oldEnd;
+        }
+
         template< typename FIELD >
         FixBufferStream & append( const char * v, unsigned len )
         {
@@ -626,11 +633,15 @@ inline unsigned valueMaxLength( const char * & v )
 
 Convenience class to reuse header, timestamps and the buffer.
 
-buffer   start                msgType                                    sendingTime                  body
+         messageBegin()
+         |
+_buffer  _start               _msgType                                   _sendingTime                 _body
 |        |                    |                                          |                            |
 "..."   "8=FIX.4.4" I "9=315" I "35=W" I "49=foo" I "56=bar" I "34=1234" I "52=20190101-01:01:01.000" I "..."
                          ---                                       ----  |                            |
-                         | body length and seqno will be updated   |     begin                        end
+                         | body length and seqno will be updated   |     _begin                       _end
+                                                                         |                            |
+                                                                         bodyBegin()                  end()
 
 Since header length depends on seqnum and body length, start is not usable before calling setSeqnumAndUpdateHeaderAndChecksum().
 */
@@ -809,6 +820,14 @@ class ReusableMessageBuilder: public FixBufferStream
         {
             resizeIfNecessary( valueMaxLength( item.value ) );
             return append<FIELD>( item.value );
+        }
+
+        template< typename FIELD >
+        char * spanSafely( unsigned valueLength )
+        {
+            resizeIfNecessary( valueLength );
+            _end = insert<FIELD>(_end);
+            return span( valueLength );
         }
 
         bool setBufferGrowChunkSize( unsigned chunkSize )

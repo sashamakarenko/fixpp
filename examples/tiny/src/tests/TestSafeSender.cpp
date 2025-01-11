@@ -17,7 +17,7 @@ int main( int args, const char ** argv )
     auto sz1 = execReport.length();
     execReport.userTime(1).setPrecision( ClockPrecision::MILLISECONDS );
     execReport.appendSafely<TransactTime>( execReport.userTime(1) );
-    execReport.appendSafely<ClOrdID>("OID123");
+    memcpy( execReport.spanSafely<ClOrdID>(6), "OID123", 6 );
     execReport.appendSafely<QtyType>( QtyTypeEnums::CONTRACTS );
     execReport.appendSafely<Price>( 123.04567, 4 );
     execReport.userTime(1).update();
