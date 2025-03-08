@@ -164,7 +164,8 @@ for pp in $mydir/src/*.pp; do
         -e "s%<undef>%\\n#undef%g" \
         -e "s%<com>%\\n//%g" \
         -e "s%<icom>%//%g" -i $dst
-    sed '/^$/N;/\n$/N;//D' -i $dst
+    sed '/^$/N;/^\n$/D' -i $dst
+    sed '/^$/N;/^\n$/D' -i $dst
 done
 rm -f ${DSTDIR}/Common.hxx
 rm -f ${DEFDIR}/MessageEnums.tmp
@@ -331,3 +332,7 @@ sed "s/class HeaderBuilder: protected ReusableMessageBuilder/class HeaderBuilder
 sed -e "/static HeaderBuilder /d" -e "/ ALTARGS /d" -e "/ ARGS /d" -e "/getHeader-Header@/d" -e "/super-Header@/d"  -e "/finalizeWithSeqnum-Header@/d" -i $dst
 sed "s/-.*@//" -i $dst
 sed "/HeaderTemplate/,/Message/s/Safely//g" -i $dst
+
+sed "/case-begin-_/,/case-end-_/d" -i ${DSTDIR}/Messages.cpp
+sed "/on-message-begin-_/,/on-message-end-_/d" -i ${DSTDIR}/Messages.cpp
+sed "/on-message-begin-_/,/on-message-end-_/d" -i ${DSTDIR}/Messages.h

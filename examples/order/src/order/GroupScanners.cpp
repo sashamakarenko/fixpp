@@ -12,7 +12,6 @@ namespace order
 
 // Generated
 
-
 // -------------------------------------- scan ----------------------------------------
 offset_t GroupLegStipulations::scan( Array & arr, const char * fix, unsigned len ){
  GroupLegStipulations * group = nullptr; 
@@ -215,7 +214,6 @@ offset_t GroupLegs::scan( Array & arr, const char * fix, unsigned len ){
  if( group ) group->_fixLength = gpos;
  return pos;
 }
-
 
 // -------------------------------------- scanSafely ----------------------------------------
 offset_t GroupLegStipulations::scanSafely( Array & arr, const char * fix, unsigned len, unsigned & groupCount, const char * & badFieldPtr ){
@@ -462,7 +460,6 @@ while( pos < (int)len ) {
  return pos;
 }
 
-
 // -------------------------------------- skip ----------------------------------------
 offset_t GroupLegStipulations::skip( const char * fix, unsigned len ){
  offset_t prev = 0, pos = 0; 
@@ -583,7 +580,6 @@ offset_t GroupLegs::skip( const char * fix, unsigned len ){
  }
  return pos;
 }
-
 
 // -------------------------------------- reset ----------------------------------------
 void GroupLegStipulations::reset(){

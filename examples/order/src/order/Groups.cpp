@@ -16,21 +16,17 @@ const char * GroupLegStipulations::getMessageName(){
      return "LegStipulations";
 }
 
-
 const char * GroupNestedPartySubIDs::getMessageName(){
      return "NestedPartySubIDs";
 }
-
 
 const char * GroupNestedPartyIDs::getMessageName(){
      return "NestedPartyIDs";
 }
 
-
 const char * GroupLegs::getMessageName(){
      return "Legs";
 }
-
 
 // -------------------------------------- constructor ----------------------------------------
 GroupLegStipulations::GroupLegStipulations(){
@@ -55,7 +51,6 @@ GroupLegs::GroupLegs(){
 
 }
 
-
 // ---------------------------------- getFieldDepth ---------------------------------
 GetDepthMethod GroupLegStipulations::groupGetDepthMethods[] = {
    nullptr };
@@ -71,7 +66,6 @@ GetDepthMethod GroupLegs::groupGetDepthMethods[] = {
    GroupLegStipulations::getFieldDepth,
    GroupNestedPartyIDs::getFieldDepth,
    nullptr };
-
 
 FieldDepth GroupLegStipulations::getFieldDepth( raw_tag_t tag ){
    FieldDepth ret;
@@ -158,7 +152,6 @@ FieldDepth GroupLegs::getFieldDepth( raw_tag_t tag ){
    return ret;
 }
 
-
 // ---------------------------------- getFieldValue ---------------------------------
 const char * GroupLegStipulations::getFieldValue( unsigned tag ) const {
    if( _fixPtr == nullptr ) return nullptr;
@@ -212,7 +205,6 @@ const char * GroupLegs::getFieldValue( unsigned tag ) const {
    }
    return nullptr;
 }
-
 
 // ---------------------------------- isFieldSet ---------------------------------
 bool GroupLegStipulations::isFieldSet( unsigned tag ) const {
@@ -268,7 +260,6 @@ bool GroupLegs::isFieldSet( unsigned tag ) const {
    return false;
 }
 
-
 // ---------------------------------- getKnownFields ---------------------------------
 namespace {
 const std::vector<unsigned> LegStipulations_knownFields = { FieldLegStipulationType::TAG
@@ -297,7 +288,6 @@ const std::vector<unsigned> Legs_knownFields = { FieldLegSymbol::TAG
 };
 
 }
-
 
 const std::vector<unsigned> & GroupLegStipulations::getKnownFields(){ return LegStipulations_knownFields; }
 

@@ -64,9 +64,11 @@ class ParserDispatcher
      inline MessageHeader & getCurrentHeader() { return _msgHeader; }
 
 <t2> <com> dispatching
- <com> onHeader will never be called
 #define FIX_MSG_BEGIN(NAME,TYPE) \
- <t2> virtual void onMessage( Message##NAME & msg );
+<com> on-message-begin-TYPE\
+<com> After generation one can sed this out if TYPE is not incoming message\
+<n2> virtual void onMessage( Message##NAME & msg );\
+<com> on-message-end-TYPE
 
 #include <Messages.def>
 

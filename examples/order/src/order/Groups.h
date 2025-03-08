@@ -16,7 +16,6 @@ namespace order
 
 // Generated
 
-
 class GroupLegStipulations : public MessageBase
 {
   

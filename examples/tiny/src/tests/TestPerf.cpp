@@ -1,3 +1,4 @@
+#include <utests/TrivialHelper.h>
 #include <tiny/Messages.h>
 #include "FixSamples.h"
 #include <pe/Measurement.h>
@@ -42,7 +43,7 @@ int main( int args, const char ** argv )
     std::size_t len = std::strlen( buffer );
     MyProcessor mp;
 
-    std::cout << "\n - - - - - - - - - -  ExecutionReport: Parse and dispatch   - - - - - - - - - -\n";
+    HIGHLIGHT( ExecutionReport: Parse and dispatch )
     for( int iter = 0; iter < 2; ++iter )
     {
         const char * cursor = buffer;
@@ -61,7 +62,7 @@ int main( int args, const char ** argv )
     MessageHeader header;
     MessageExecutionReport er;
 
-    std::cout << "\n - - - - - - - - - -  ExecutionReport: Reset and scan   - - - - - - - - - -\n";
+    HIGHLIGHT( ExecutionReport: Reset and scan )
     for( int j = 0; j < 10; ++j )
     {
         m.startCapture();
@@ -76,7 +77,7 @@ int main( int args, const char ** argv )
     m.showAverageValues( std::cout );
     m.rewind();
 
-    std::cout << "\n - - - - - - - - - -  ExecutionReport: Pure scanSafely   - - - - - - - - - -\n";
+    HIGHLIGHT( ExecutionReport: Pure scanSafely )
     for( int j = 0; j < 10; ++j )
     {
         header.reset();
@@ -91,7 +92,7 @@ int main( int args, const char ** argv )
     m.showAverageValues( std::cout );
     m.rewind();
 
-    std::cout << "\n - - - - - - - - - -  ExecutionReport: Pure scan   - - - - - - - - - -\n";
+    HIGHLIGHT( ExecutionReport: Pure scan )
     for( int j = 0; j < 10; ++j )
     {
         header.reset();
@@ -108,7 +109,7 @@ int main( int args, const char ** argv )
 
     buffer = EXAMPLE_LARGE_EXEC_REPORT;
     len = std::strlen( buffer );
-    std::cout << "\n - - - - - - - - - -  Large ExecutionReport: Pure scan   - - - - - - - - - -\n";
+    HIGHLIGHT( Large ExecutionReport: Pure scan )
     for( int j = 0; j < 10; ++j )
     {
         m.startCapture();
@@ -126,7 +127,7 @@ int main( int args, const char ** argv )
     MessageMarketDataSnapshotFullRefresh mdsfr;
     buffer = EXAMPLE_MARKETDATA_FULL_REFRESH;
     len = std::strlen( buffer );
-    std::cout << "\n - - - - - - - - - -  MarketDataSnapshotFullRefresh: Pure scan   - - - - - - - - - -\n";
+    HIGHLIGHT( MarketDataSnapshotFullRefresh: Pure scan )
     for( int j = 0; j < 10; ++j )
     {
         m.startCapture();
@@ -141,7 +142,7 @@ int main( int args, const char ** argv )
     m.showAverageValues( std::cout );
     m.rewind();
 
-    std::cout << "\n - - - - - - - - - -  MarketDataSnapshotFullRefresh: Pure scanSafe   - - - - - - - - - -\n";
+    HIGHLIGHT( MarketDataSnapshotFullRefresh: Pure scanSafe )
     for( int j = 0; j < 10; ++j )
     {
         m.startCapture();
@@ -159,7 +160,7 @@ int main( int args, const char ** argv )
     MessageSecurityDefinition secdef;
     buffer = EXAMPLE_SECURITY_DEFINITION;
     len = std::strlen( buffer );
-    std::cout << "\n - - - - - - - - - -  MessageSecurityDefinition: Pure scan   - - - - - - - - - -\n";
+    HIGHLIGHT( MessageSecurityDefinition: Pure scan )
     for( int j = 0; j < 10; ++j )
     {
         m.startCapture();
@@ -174,7 +175,7 @@ int main( int args, const char ** argv )
     m.showAverageValues( std::cout );
     m.rewind();
 
-    std::cout << "\n - - - - - - - - - -   parseYYYYMMDD(y,m,d)  - - - - - - - - - -\n";
+    HIGHLIGHT(  parseYYYYMMDD(y,m,d))
     std::unique_ptr<unsigned> yyyy = std::make_unique<unsigned>(1);
     std::unique_ptr<unsigned> mm   = std::make_unique<unsigned>(2);
     std::unique_ptr<unsigned> dd   = std::make_unique<unsigned>(3);
@@ -190,7 +191,7 @@ int main( int args, const char ** argv )
     m.showAverageValues( std::cout );
     m.rewind();
 
-    std::cout << "\n - - - - - - - - - -   parseYYYYMMDD  - - - - - - - - - -\n";
+    HIGHLIGHT(  parseYYYYMMDD)
     std::unique_ptr<unsigned> ymd = std::make_unique<unsigned>();
     for( int j = 0; j < 10; ++j )
     {

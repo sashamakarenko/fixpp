@@ -967,9 +967,7 @@ extern const char * const FixNested3PartySubIDType;
 extern const char * const FixLegContractSettlMonth;
 extern const char * const FixLegInterestAccrualDate;
 
-
 // -------------------------------------- typedefs and enums ----------------------------------------
-
 
 typedef Field< FixAccount, 1, STRING > FieldAccount;
 typedef Field< FixAdvId, 2, STRING > FieldAdvId;
@@ -9220,11 +9218,9 @@ struct CollInquiryResultEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
-
 // -------------------------------------- convenience field namespace ----------------------------------------
 namespace field
 {
-
 
 typedef FieldAccount Account;
 typedef FieldAdvId AdvId;
@@ -10138,7 +10134,6 @@ typedef FieldNested3PartySubID Nested3PartySubID;
 typedef FieldNested3PartySubIDType Nested3PartySubIDType;
 typedef FieldLegContractSettlMonth LegContractSettlMonth;
 typedef FieldLegInterestAccrualDate LegInterestAccrualDate;
-
 
 }
 

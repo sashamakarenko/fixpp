@@ -16,7 +16,6 @@ namespace fix44
 
 // Generated
 
-
 class GroupLegStipulations : public MessageBase
 {
   

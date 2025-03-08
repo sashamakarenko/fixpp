@@ -11,7 +11,6 @@ namespace order
 
 // Generated
 
-
 // ---------------------------------- findBadField ---------------------------------
 
 const char * MessageHeader::findBadField() const {
@@ -222,7 +221,6 @@ const char * MessageExecutionReport::findBadField() const {
    return nullptr;
 }
 
-
 // ---------------------------------- findBadGroup ---------------------------------
 
 const char * MessageHeader::findBadGroup( unsigned & noExpected, unsigned & noReceived ) const {
@@ -250,7 +248,6 @@ const char * MessageExecutionReport::findBadGroup( unsigned & noExpected, unsign
    }
    return nullptr;
 }
-
 
 // ---------------------------------- findBadEnum ---------------------------------
 

@@ -21,7 +21,6 @@ class LegStipulationsBuilder : protected ReusableMessageBuilder
      void appendLegStipulationValue( const std::string_view & value ){ appendSafely<FieldLegStipulationValue>( value ); }
 };
 
-
 // Group NestedPartySubIDs
 class NestedPartySubIDsBuilder : protected ReusableMessageBuilder
 {
@@ -29,7 +28,6 @@ class NestedPartySubIDsBuilder : protected ReusableMessageBuilder
      void appendNestedPartySubID( const std::string_view & value ){ appendSafely<FieldNestedPartySubID>( value ); }
      void appendNestedPartySubIDType( const int & value ){ appendSafely<FieldNestedPartySubIDType>( value ); }
 };
-
 
 // Group NestedPartyIDs
 class NestedPartyIDsBuilder : protected ReusableMessageBuilder
@@ -40,7 +38,6 @@ class NestedPartyIDsBuilder : protected ReusableMessageBuilder
      void appendNestedPartyRole( const int & value ){ appendSafely<FieldNestedPartyRole>( value ); }
      NestedPartySubIDsBuilder & appendNoNestedPartySubIDs( unsigned count ) { appendSafely<FieldNoNestedPartySubIDs>( count ); return *reinterpret_cast<NestedPartySubIDsBuilder*>( this ); }
 };
-
 
 // Group Legs
 class LegsBuilder : protected ReusableMessageBuilder
@@ -60,7 +57,6 @@ class LegsBuilder : protected ReusableMessageBuilder
      void appendLegLastPx( double value, unsigned precision ){ appendSafely<FieldLegLastPx>( value, precision ); }
 };
 
-
 // Message Header
 class HeaderBuilder: public HeaderTemplate
 {
@@ -75,7 +71,6 @@ class HeaderBuilder: public HeaderTemplate
      void appendSendingTime( const std::string_view & value ){ append<FieldSendingTime>( value ); }
      void appendSendingTime( TimestampKeeper & value, const TimePoint & time = ClockType::now() ){ append<FieldSendingTime>( value, time ); }
 };
-
 
 // Message NewOrderSingle
 class NewOrderSingleBuilder: protected ReusableMessageBuilder
@@ -102,7 +97,6 @@ class NewOrderSingleBuilder: protected ReusableMessageBuilder
      void appendTransactTime( const std::string_view & value ){ appendSafely<FieldTransactTime>( value ); }
      void appendTransactTime( TimestampKeeper & value, const TimePoint & time = ClockType::now() ){ appendSafely<FieldTransactTime>( value, time ); }
 };
-
 
 // Message ExecutionReport
 class ExecutionReportBuilder: protected ReusableMessageBuilder

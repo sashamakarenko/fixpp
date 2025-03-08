@@ -35,7 +35,7 @@ int main( int args, const char ** argv )
     };
 
     std::string checkPrettyPrinting( "text to show in debugger" );
-    std::cout << "\n\n -- ExecutionReport --" << std::endl;
+    HIGHLIGHT( ExecutionReport );
     ExecutionReport er;
     parse( FIX_BUFFER_EXEC_REPORT, er );
     CHECK_EQ( header length, (ssize_t)header.getMessageLength(), er.ptrToTagClOrdID() - fix )
@@ -51,7 +51,7 @@ int main( int args, const char ** argv )
     CHECK_EQ( exec report body length, header.getBodyLength(), header.getMessageLength() + er.getMessageLength() - ( header.ptrToTagMsgType() - header.getMessageBuffer() ) - CHECKSUM_FIELD_LENGTH )
     CHECK_EQ( exec report check sum, er.getCheckSum(), (int)computeChecksum( fix, er.ptrToTagCheckSum() ) )
 
-    std::cout << "\n\n -- ExecutionReport (large) --" << std::endl;
+    HIGHLIGHT( Large ExecutionReport );
     ExecutionReport ler;
     parse( FIX_BUFFER_LARGE_EXEC_REPORT, ler );
     CHECK_EQ( large exec report order status, ler.getOrdStatus(), OrdStatusEnums::PENDING_NEW )
@@ -104,7 +104,7 @@ int main( int args, const char ** argv )
         }
     }
 
-    std::cout << "\n\n -- MarketDataSnapshotFullRefresh --" << std::endl;
+    HIGHLIGHT( MarketDataSnapshotFullRefresh );
     MarketDataSnapshotFullRefresh mdsfr;
     parse( FIX_BUFFER_MD_FULL_REFRESH, mdsfr );
     raw_enum_t msgTypeRaw = toRawEnum( header.ptrToMsgType() );
@@ -139,7 +139,7 @@ int main( int args, const char ** argv )
     CHECK_EQ( safely mdfr zero group md entries, mdsfr.getNoMDEntries(), 0 )
     CHECK_EQ( safely mdfr zero group eom, mdsfr.getMessageLength() + header.getMessageLength(), strlen( fix ) )
 
-    std::cout << "\n\n -- Raw iterating --" << std::endl;
+    HIGHLIGHT( Raw iterating );
     pos = 0;
     fix = FIX_BUFFER_LARGE_EXEC_REPORT;
     while( fix[pos] )
@@ -151,12 +151,12 @@ int main( int args, const char ** argv )
         if( raw == FieldCheckSum::RAW_TAG ) break;
     }
 
-    std::cout << "\n\n -- Pretty Printing --" << std::endl;
+    HIGHLIGHT( Pretty Printing );
     std::cout << fixstr( FIX_BUFFER_EXEC_REPORT      , ttyRgbStyle ) << std::endl;
     std::cout << fixstr( FIX_BUFFER_LARGE_EXEC_REPORT, ttyRgbStyle ) << std::endl;
     std::cout << fixstr( FIX_BUFFER_MD_FULL_REFRESH  , ttyRgbStyle ) << std::endl;
 
-    std::cout << "\n\n -- SecurityDefinition --" << std::endl;
+    HIGHLIGHT( SecurityDefinition );
     SecurityDefinition secdef;
     parse( FIX_BUFFER_SECURITY_DEFINITION, secdef );
     msgTypeRaw = toRawEnum( header.ptrToMsgType() );

@@ -694,7 +694,6 @@ const char * GroupMDEntries::findBadGroup( unsigned & noExpected, unsigned & noR
    return nullptr;
 }
 
-
 // ---------------------------------- findBadField ---------------------------------
 
 const char * GroupLegStipulations::findBadField() const {
@@ -3654,7 +3653,6 @@ const char * GroupMDEntries::findBadField() const {
    }
    return nullptr;
 }
-
 
 // ---------------------------------- findBadEnum ---------------------------------
 

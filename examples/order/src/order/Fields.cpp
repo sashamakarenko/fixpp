@@ -214,11 +214,9 @@ const char * const FixNestedPartySubID = "NestedPartySubID";
 const char * const FixNoNestedPartySubIDs = "NoNestedPartySubIDs";
 const char * const FixNestedPartySubIDType = "NestedPartySubIDType";
 
-
 const QtyTypeEnums::ItemType QtyTypeEnums::BAD_ENUM( "BAD_ENUM", QtyTypeEnums::ITEM_BAD_ENUM );
 const QtyTypeEnums::ItemType QtyTypeEnums::UNITS( "UNITS", 0 );
 const QtyTypeEnums::ItemType QtyTypeEnums::CONTRACTS( "CONTRACTS", 1 );
-
 
 const ProductEnums::ItemType ProductEnums::BAD_ENUM( "BAD_ENUM", ProductEnums::ITEM_BAD_ENUM );
 const ProductEnums::ItemType ProductEnums::AGENCY( "AGENCY", 1 );
@@ -235,11 +233,9 @@ const ProductEnums::ItemType ProductEnums::MUNICIPAL( "MUNICIPAL", 11 );
 const ProductEnums::ItemType ProductEnums::OTHER( "OTHER", 12 );
 const ProductEnums::ItemType ProductEnums::FINANCING( "FINANCING", 13 );
 
-
 const MsgTypeEnums::ItemType MsgTypeEnums::BAD_ENUM( "BAD_ENUM", MsgTypeEnums::ITEM_BAD_ENUM );
 const MsgTypeEnums::ItemType MsgTypeEnums::EXECUTION_REPORT( "EXECUTION_REPORT", SOHSTR(8) );
 const MsgTypeEnums::ItemType MsgTypeEnums::NEW_ORDER_SINGLE( "NEW_ORDER_SINGLE", SOHSTR(D) );
-
 
 const OrdStatusEnums::ItemType OrdStatusEnums::BAD_ENUM( "BAD_ENUM", OrdStatusEnums::ITEM_BAD_ENUM );
 const OrdStatusEnums::ItemType OrdStatusEnums::NEW( "NEW", '0' );
@@ -256,7 +252,6 @@ const OrdStatusEnums::ItemType OrdStatusEnums::CALCULATED( "CALCULATED", 'B' );
 const OrdStatusEnums::ItemType OrdStatusEnums::EXPIRED( "EXPIRED", 'C' );
 const OrdStatusEnums::ItemType OrdStatusEnums::ACCEPTED_FOR_BIDDING( "ACCEPTED_FOR_BIDDING", 'D' );
 const OrdStatusEnums::ItemType OrdStatusEnums::PENDING_REPLACE( "PENDING_REPLACE", 'E' );
-
 
 const OrdTypeEnums::ItemType OrdTypeEnums::BAD_ENUM( "BAD_ENUM", OrdTypeEnums::ITEM_BAD_ENUM );
 const OrdTypeEnums::ItemType OrdTypeEnums::MARKET( "MARKET", '1' );
@@ -277,11 +272,9 @@ const OrdTypeEnums::ItemType OrdTypeEnums::PREVIOUS_FUND_VALUATION_POINT( "PREVI
 const OrdTypeEnums::ItemType OrdTypeEnums::NEXT_FUND_VALUATION_POINT( "NEXT_FUND_VALUATION_POINT", 'M' );
 const OrdTypeEnums::ItemType OrdTypeEnums::PEGGED( "PEGGED", 'P' );
 
-
 const SideEnums::ItemType SideEnums::BAD_ENUM( "BAD_ENUM", SideEnums::ITEM_BAD_ENUM );
 const SideEnums::ItemType SideEnums::BUY( "BUY", '1' );
 const SideEnums::ItemType SideEnums::SELL( "SELL", '2' );
-
 
 const TimeInForceEnums::ItemType TimeInForceEnums::BAD_ENUM( "BAD_ENUM", TimeInForceEnums::ITEM_BAD_ENUM );
 const TimeInForceEnums::ItemType TimeInForceEnums::DAY( "DAY", '0' );
@@ -292,7 +285,6 @@ const TimeInForceEnums::ItemType TimeInForceEnums::FILL_OR_KILL( "FILL_OR_KILL",
 const TimeInForceEnums::ItemType TimeInForceEnums::GOOD_TILL_CROSSING( "GOOD_TILL_CROSSING", '5' );
 const TimeInForceEnums::ItemType TimeInForceEnums::GOOD_TILL_DATE( "GOOD_TILL_DATE", '6' );
 const TimeInForceEnums::ItemType TimeInForceEnums::AT_THE_CLOSE( "AT_THE_CLOSE", '7' );
-
 
 const PriceTypeEnums::ItemType PriceTypeEnums::BAD_ENUM( "BAD_ENUM", PriceTypeEnums::ITEM_BAD_ENUM );
 const PriceTypeEnums::ItemType PriceTypeEnums::PERCENTAGE( "PERCENTAGE", 1 );
@@ -306,7 +298,6 @@ const PriceTypeEnums::ItemType PriceTypeEnums::TED_YIELD( "TED_YIELD", 8 );
 const PriceTypeEnums::ItemType PriceTypeEnums::YIELD( "YIELD", 9 );
 const PriceTypeEnums::ItemType PriceTypeEnums::FIXED_CABINET_TRADE_PRICE( "FIXED_CABINET_TRADE_PRICE", 10 );
 const PriceTypeEnums::ItemType PriceTypeEnums::VARIABLE_CABINET_TRADE_PRICE( "VARIABLE_CABINET_TRADE_PRICE", 11 );
-
 
 const SecurityTypeEnums::ItemType SecurityTypeEnums::BAD_ENUM( "BAD_ENUM", SecurityTypeEnums::ITEM_BAD_ENUM );
 const SecurityTypeEnums::ItemType SecurityTypeEnums::FUTURE( "FUTURE", SOHSTR(FUT) );
@@ -405,9 +396,7 @@ const SecurityTypeEnums::ItemType SecurityTypeEnums::MUTUAL_FUND( "MUTUAL_FUND",
 const SecurityTypeEnums::ItemType SecurityTypeEnums::MULTI_LEG_INSTRUMENT( "MULTI_LEG_INSTRUMENT", SOHSTR(MLEG) );
 const SecurityTypeEnums::ItemType SecurityTypeEnums::NO_SECURITY_TYPE( "NO_SECURITY_TYPE", SOHSTR(NONE) );
 
-
 // ------------------------------- enum items and type names -------------------------------------
-
 
 template<> const FieldEnumBase * const * FieldAccount::enumItems = nullptr;
 template<> FieldType FieldAccount::getType() { return FieldType::STRING; }
@@ -575,7 +564,6 @@ template<> const FieldEnumBase * const * FieldNestedPartySubIDType::enumItems = 
 template<> FieldType FieldNestedPartySubIDType::getType() { return FieldType::INT; }
 template<> const std::string & FieldNestedPartySubIDType::getTypeName() { static const std::string fixType{ "INT" }; return fixType; }
 
-
 const char * QtyTypeEnums::getFieldName() const { return FixQtyType; }
 const FieldEnumBase * QtyTypeEnums::findEnum( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : it->second; }
 const QtyTypeEnums::ValueType * QtyTypeEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
@@ -587,7 +575,6 @@ const FieldEnumBase * QtyTypeEnums::items[] = {
 & QtyTypeEnums::UNITS,
 & QtyTypeEnums::CONTRACTS,
 nullptr };
-
 
 const char * ProductEnums::getFieldName() const { return FixProduct; }
 const FieldEnumBase * ProductEnums::findEnum( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : it->second; }
@@ -612,7 +599,6 @@ const FieldEnumBase * ProductEnums::items[] = {
 & ProductEnums::FINANCING,
 nullptr };
 
-
 const char * MsgTypeEnums::getFieldName() const { return FixMsgType; }
 const FieldEnumBase * MsgTypeEnums::findEnum( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : it->second; }
 const MsgTypeEnums::ValueType * MsgTypeEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
@@ -624,7 +610,6 @@ const FieldEnumBase * MsgTypeEnums::items[] = {
 & MsgTypeEnums::EXECUTION_REPORT,
 & MsgTypeEnums::NEW_ORDER_SINGLE,
 nullptr };
-
 
 const char * OrdStatusEnums::getFieldName() const { return FixOrdStatus; }
 const FieldEnumBase * OrdStatusEnums::findEnum( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : it->second; }
@@ -649,7 +634,6 @@ const FieldEnumBase * OrdStatusEnums::items[] = {
 & OrdStatusEnums::ACCEPTED_FOR_BIDDING,
 & OrdStatusEnums::PENDING_REPLACE,
 nullptr };
-
 
 const char * OrdTypeEnums::getFieldName() const { return FixOrdType; }
 const FieldEnumBase * OrdTypeEnums::findEnum( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : it->second; }
@@ -678,7 +662,6 @@ const FieldEnumBase * OrdTypeEnums::items[] = {
 & OrdTypeEnums::PEGGED,
 nullptr };
 
-
 const char * SideEnums::getFieldName() const { return FixSide; }
 const FieldEnumBase * SideEnums::findEnum( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : it->second; }
 const SideEnums::ValueType * SideEnums::findEnumValue( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : & static_cast<const ItemType*>(it->second)->value; }
@@ -690,7 +673,6 @@ const FieldEnumBase * SideEnums::items[] = {
 & SideEnums::BUY,
 & SideEnums::SELL,
 nullptr };
-
 
 const char * TimeInForceEnums::getFieldName() const { return FixTimeInForce; }
 const FieldEnumBase * TimeInForceEnums::findEnum( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : it->second; }
@@ -709,7 +691,6 @@ const FieldEnumBase * TimeInForceEnums::items[] = {
 & TimeInForceEnums::GOOD_TILL_DATE,
 & TimeInForceEnums::AT_THE_CLOSE,
 nullptr };
-
 
 const char * PriceTypeEnums::getFieldName() const { return FixPriceType; }
 const FieldEnumBase * PriceTypeEnums::findEnum( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : it->second; }
@@ -731,7 +712,6 @@ const FieldEnumBase * PriceTypeEnums::items[] = {
 & PriceTypeEnums::FIXED_CABINET_TRADE_PRICE,
 & PriceTypeEnums::VARIABLE_CABINET_TRADE_PRICE,
 nullptr };
-
 
 const char * SecurityTypeEnums::getFieldName() const { return FixSecurityType; }
 const FieldEnumBase * SecurityTypeEnums::findEnum( raw_enum_t raw ) { auto it = itemByRaw.find(raw); return it == itemByRaw.end() ? nullptr : it->second; }
@@ -838,9 +818,7 @@ const FieldEnumBase * SecurityTypeEnums::items[] = {
 & SecurityTypeEnums::NO_SECURITY_TYPE,
 nullptr };
 
-
 // -------------------------------------- enum maps ----------------------------------------
-
 
 const FieldEnumMap QtyTypeEnums::itemByRaw = {
 { QtyTypeEnums::UNITS.raw, & QtyTypeEnums::UNITS },
@@ -904,7 +882,6 @@ const FieldEnumMap OrdTypeEnums::itemByRaw = {
 { OrdTypeEnums::NEXT_FUND_VALUATION_POINT.raw, & OrdTypeEnums::NEXT_FUND_VALUATION_POINT },
 { OrdTypeEnums::PEGGED.raw, & OrdTypeEnums::PEGGED },
 };
-
 
 const FieldEnumMap SideEnums::itemByRaw = {
 { SideEnums::BUY.raw, & SideEnums::BUY },
@@ -1034,15 +1011,12 @@ const FieldEnumMap SecurityTypeEnums::itemByRaw = {
 { SecurityTypeEnums::NO_SECURITY_TYPE.raw, & SecurityTypeEnums::NO_SECURITY_TYPE },
 };
 
-
 // -------------------------------------- init ----------------------------------------
 #pragma GCC push_options
 #pragma GCC optimize("O0")
 
-
 int initStatics()
 {
-
 
   tagNameByRaw.emplace( tag_as_raw<1>(), FixAccount );
   tagNameByValue.emplace( 1, FixAccount );
@@ -1374,7 +1348,6 @@ int initStatics()
   fieldTypeByValue.emplace( 805, FieldType::INT );
   fieldTypeNameByValue.emplace( 805, "INT" );
 
-
   FieldQtyType::enumItems = QtyTypeEnums::items;
   enumsByRaw.emplace( FieldQtyType::RAW_TAG, & QtyTypeEnums::instance );
   enumsByTag.emplace( FieldQtyType::TAG, & QtyTypeEnums::instance );
@@ -1394,7 +1367,6 @@ int initStatics()
   FieldOrdType::enumItems = OrdTypeEnums::items;
   enumsByRaw.emplace( FieldOrdType::RAW_TAG, & OrdTypeEnums::instance );
   enumsByTag.emplace( FieldOrdType::TAG, & OrdTypeEnums::instance );
-
 
   FieldSide::enumItems = SideEnums::items;
   enumsByRaw.emplace( FieldSide::RAW_TAG, & SideEnums::instance );

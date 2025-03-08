@@ -11,7 +11,6 @@ namespace fix44
 
 // Generated
 
-
 // ---------------------------------- findBadField ---------------------------------
 
 const char * MessageHeader::findBadField() const {
@@ -21549,7 +21548,6 @@ const char * MessageConfirmationRequest::findBadField() const {
    return nullptr;
 }
 
-
 // ---------------------------------- findBadGroup ---------------------------------
 
 const char * MessageHeader::findBadGroup( unsigned & noExpected, unsigned & noReceived ) const {
@@ -25948,7 +25946,6 @@ const char * MessageConfirmationRequest::findBadGroup( unsigned & noExpected, un
    }
    return nullptr;
 }
-
 
 // ---------------------------------- findBadEnum ---------------------------------
 

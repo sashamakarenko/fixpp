@@ -17,296 +17,237 @@ const char * GroupLegStipulations::getMessageName(){
      return "LegStipulations";
 }
 
-
 const char * GroupEvents::getMessageName(){
      return "Events";
 }
-
 
 const char * GroupLegSecurityAltID::getMessageName(){
      return "LegSecurityAltID";
 }
 
-
 const char * GroupCapacities::getMessageName(){
      return "Capacities";
 }
-
 
 const char * GroupNested3PartySubIDs::getMessageName(){
      return "Nested3PartySubIDs";
 }
 
-
 const char * GroupPartySubIDs::getMessageName(){
      return "PartySubIDs";
 }
-
 
 const char * GroupNested2PartySubIDs::getMessageName(){
      return "Nested2PartySubIDs";
 }
 
-
 const char * GroupNested2PartyIDs::getMessageName(){
      return "Nested2PartyIDs";
 }
-
 
 const char * GroupHops::getMessageName(){
      return "Hops";
 }
 
-
 const char * GroupCollInquiryQualifier::getMessageName(){
      return "CollInquiryQualifier";
 }
-
 
 const char * GroupPartyIDs::getMessageName(){
      return "PartyIDs";
 }
 
-
 const char * GroupAllocs::getMessageName(){
      return "Allocs";
 }
-
 
 const char * GroupTradingSessions::getMessageName(){
      return "TradingSessions";
 }
 
-
 const char * GroupSecurityAltID::getMessageName(){
      return "SecurityAltID";
 }
-
 
 const char * GroupUnderlyingSecurityAltID::getMessageName(){
      return "UnderlyingSecurityAltID";
 }
 
-
 const char * GroupUnderlyingStips::getMessageName(){
      return "UnderlyingStips";
 }
-
 
 const char * GroupUnderlyings::getMessageName(){
      return "Underlyings";
 }
 
-
 const char * GroupStipulations::getMessageName(){
      return "Stipulations";
 }
-
 
 const char * GroupOrders::getMessageName(){
      return "Orders";
 }
 
-
 const char * GroupSettlPartySubIDs::getMessageName(){
      return "SettlPartySubIDs";
 }
-
 
 const char * GroupSettlPartyIDs::getMessageName(){
      return "SettlPartyIDs";
 }
 
-
 const char * GroupDlvyInst::getMessageName(){
      return "DlvyInst";
 }
-
 
 const char * GroupClearingInstructions::getMessageName(){
      return "ClearingInstructions";
 }
 
-
 const char * GroupNestedPartySubIDs::getMessageName(){
      return "NestedPartySubIDs";
 }
-
 
 const char * GroupNestedPartyIDs::getMessageName(){
      return "NestedPartyIDs";
 }
 
-
 const char * GroupLegs::getMessageName(){
      return "Legs";
 }
-
 
 const char * GroupQuoteEntries::getMessageName(){
      return "QuoteEntries";
 }
 
-
 const char * GroupQuoteSets::getMessageName(){
      return "QuoteSets";
 }
-
 
 const char * GroupSecurityTypes::getMessageName(){
      return "SecurityTypes";
 }
 
-
 const char * GroupNested3PartyIDs::getMessageName(){
      return "Nested3PartyIDs";
 }
-
 
 const char * GroupPositions::getMessageName(){
      return "Positions";
 }
 
-
 const char * GroupAffectedOrders::getMessageName(){
      return "AffectedOrders";
 }
-
 
 const char * GroupExecs::getMessageName(){
      return "Execs";
 }
 
-
 const char * GroupMsgTypes::getMessageName(){
      return "MsgTypes";
 }
-
 
 const char * GroupBidComponents::getMessageName(){
      return "BidComponents";
 }
 
-
 const char * GroupSettlInst::getMessageName(){
      return "SettlInst";
 }
-
 
 const char * GroupInstrAttrib::getMessageName(){
      return "InstrAttrib";
 }
 
-
 const char * GroupMiscFees::getMessageName(){
      return "MiscFees";
 }
-
 
 const char * GroupQuoteQualifiers::getMessageName(){
      return "QuoteQualifiers";
 }
 
-
 const char * GroupDistribInsts::getMessageName(){
      return "DistribInsts";
 }
-
 
 const char * GroupTrdRegTimestamps::getMessageName(){
      return "TrdRegTimestamps";
 }
 
-
 const char * GroupAltMDSource::getMessageName(){
      return "AltMDSource";
 }
-
 
 const char * GroupSides::getMessageName(){
      return "Sides";
 }
 
-
 const char * GroupRoutingIDs::getMessageName(){
      return "RoutingIDs";
 }
-
 
 const char * GroupPosAmt::getMessageName(){
      return "PosAmt";
 }
 
-
 const char * GroupLinesOfText::getMessageName(){
      return "LinesOfText";
 }
-
 
 const char * GroupIOIQualifiers::getMessageName(){
      return "IOIQualifiers";
 }
 
-
 const char * GroupDates::getMessageName(){
      return "Dates";
 }
-
 
 const char * GroupMDEntryTypes::getMessageName(){
      return "MDEntryTypes";
 }
 
-
 const char * GroupRelatedSym::getMessageName(){
      return "RelatedSym";
 }
-
 
 const char * GroupContraBrokers::getMessageName(){
      return "ContraBrokers";
 }
 
-
 const char * GroupTrades::getMessageName(){
      return "Trades";
 }
-
 
 const char * GroupStrikes::getMessageName(){
      return "Strikes";
 }
 
-
 const char * GroupBidDescriptors::getMessageName(){
      return "BidDescriptors";
 }
-
 
 const char * GroupCompIDs::getMessageName(){
      return "CompIDs";
 }
 
-
 const char * GroupLegAllocs::getMessageName(){
      return "LegAllocs";
 }
-
 
 const char * GroupRegistDtls::getMessageName(){
      return "RegistDtls";
 }
 
-
 const char * GroupContAmts::getMessageName(){
      return "ContAmts";
 }
 
-
 const char * GroupMDEntries::getMessageName(){
      return "MDEntries";
 }
-
 
 // -------------------------------------- constructor ----------------------------------------
 
@@ -616,7 +557,6 @@ GroupMDEntries::GroupMDEntries(){
 
 }
 
-
 // ---------------------------------- getFieldDepth ---------------------------------
 
 GetDepthMethod GroupLegStipulations::groupGetDepthMethods[] = {
@@ -830,7 +770,6 @@ GetDepthMethod GroupContAmts::groupGetDepthMethods[] = {
 
 GetDepthMethod GroupMDEntries::groupGetDepthMethods[] = {
    nullptr };
-
 
 FieldDepth GroupLegStipulations::getFieldDepth( raw_tag_t tag ){
    FieldDepth ret;
@@ -2516,7 +2455,6 @@ FieldDepth GroupMDEntries::getFieldDepth( raw_tag_t tag ){
    return ret;
 }
 
-
 // ---------------------------------- getFieldValue ---------------------------------
 
 const char * GroupLegStipulations::getFieldValue( unsigned tag ) const {
@@ -3730,7 +3668,6 @@ const char * GroupMDEntries::getFieldValue( unsigned tag ) const {
    }
    return nullptr;
 }
-
 
 // ---------------------------------- isFieldSet ---------------------------------
 
@@ -4946,7 +4883,6 @@ bool GroupMDEntries::isFieldSet( unsigned tag ) const {
    return false;
 }
 
-
 // ---------------------------------- getKnownFields ---------------------------------
 namespace {
 
@@ -5750,7 +5686,6 @@ const std::vector<unsigned> MDEntries_knownFields = { FieldMDEntryType::TAG
 };
 
 }
-
 
 const std::vector<unsigned> & GroupLegStipulations::getKnownFields(){ return LegStipulations_knownFields; }
 

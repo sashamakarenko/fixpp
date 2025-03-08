@@ -243,10 +243,14 @@ const char * ParserDispatcher::parseAndDipatch( const char * buf, unsigned len, 
 }
 
 #undef FIX_MSG_BEGIN
-#define FIX_MSG_BEGIN(NAME,TYPE) void ParserDispatcher::onMessage( Message##NAME & msg )\
+#define FIX_MSG_BEGIN(NAME,TYPE)\
+<com> on-message-begin-TYPE\
+<com> After generation one can sed this out if TYPE is not incoming message\
+<nl>void ParserDispatcher::onMessage( Message##NAME & msg )\
 <nl>{\
 <n1>  unprocessedMessage( MsgTypeRaw_##TYPE, msg ); \
 <n1>  msg.reset(); \
-<nl>}
+<nl>}\
+<com> on-message-end-TYPE
 
 #include <Messages.def>

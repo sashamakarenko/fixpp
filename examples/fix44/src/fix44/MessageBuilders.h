@@ -13,7 +13,6 @@ namespace fix44
 
 // start of MessageBuilders.hxx
 
-
 // Group LegStipulations
 class LegStipulationsBuilder : protected ReusableMessageBuilder
 {
@@ -21,7 +20,6 @@ class LegStipulationsBuilder : protected ReusableMessageBuilder
      void appendLegStipulationType( const std::string_view & value ){ appendSafely<FieldLegStipulationType>( value ); }
      void appendLegStipulationValue( const std::string_view & value ){ appendSafely<FieldLegStipulationValue>( value ); }
 };
-
 
 // Group Events
 class EventsBuilder : protected ReusableMessageBuilder
@@ -34,7 +32,6 @@ class EventsBuilder : protected ReusableMessageBuilder
      void appendEventText( const std::string_view & value ){ appendSafely<FieldEventText>( value ); }
 };
 
-
 // Group LegSecurityAltID
 class LegSecurityAltIDBuilder : protected ReusableMessageBuilder
 {
@@ -42,7 +39,6 @@ class LegSecurityAltIDBuilder : protected ReusableMessageBuilder
      void appendLegSecurityAltID( const std::string_view & value ){ appendSafely<FieldLegSecurityAltID>( value ); }
      void appendLegSecurityAltIDSource( const std::string_view & value ){ appendSafely<FieldLegSecurityAltIDSource>( value ); }
 };
-
 
 // Group Capacities
 class CapacitiesBuilder : protected ReusableMessageBuilder
@@ -54,7 +50,6 @@ class CapacitiesBuilder : protected ReusableMessageBuilder
      void appendOrderCapacityQty( size_t value ){ appendSafely<FieldOrderCapacityQty>( value ); }
 };
 
-
 // Group Nested3PartySubIDs
 class Nested3PartySubIDsBuilder : protected ReusableMessageBuilder
 {
@@ -62,7 +57,6 @@ class Nested3PartySubIDsBuilder : protected ReusableMessageBuilder
      void appendNested3PartySubID( const std::string_view & value ){ appendSafely<FieldNested3PartySubID>( value ); }
      void appendNested3PartySubIDType( const int & value ){ appendSafely<FieldNested3PartySubIDType>( value ); }
 };
-
 
 // Group PartySubIDs
 class PartySubIDsBuilder : protected ReusableMessageBuilder
@@ -72,7 +66,6 @@ class PartySubIDsBuilder : protected ReusableMessageBuilder
      void appendPartySubIDType( const FieldPartySubIDType::EnumType & item ){ appendSafely<FieldPartySubIDType>( item ); }
 };
 
-
 // Group Nested2PartySubIDs
 class Nested2PartySubIDsBuilder : protected ReusableMessageBuilder
 {
@@ -80,7 +73,6 @@ class Nested2PartySubIDsBuilder : protected ReusableMessageBuilder
      void appendNested2PartySubID( const std::string_view & value ){ appendSafely<FieldNested2PartySubID>( value ); }
      void appendNested2PartySubIDType( const int & value ){ appendSafely<FieldNested2PartySubIDType>( value ); }
 };
-
 
 // Group Nested2PartyIDs
 class Nested2PartyIDsBuilder : protected ReusableMessageBuilder
@@ -92,7 +84,6 @@ class Nested2PartyIDsBuilder : protected ReusableMessageBuilder
      Nested2PartySubIDsBuilder & appendNoNested2PartySubIDs( unsigned count ) { appendSafely<FieldNoNested2PartySubIDs>( count ); return *reinterpret_cast<Nested2PartySubIDsBuilder*>( this ); }
 };
 
-
 // Group Hops
 class HopsBuilder : protected ReusableMessageBuilder
 {
@@ -103,14 +94,12 @@ class HopsBuilder : protected ReusableMessageBuilder
      void appendHopRefID( const unsigned & value ){ appendSafely<FieldHopRefID>( value ); }
 };
 
-
 // Group CollInquiryQualifier
 class CollInquiryQualifierBuilder : protected ReusableMessageBuilder
 {
    public:
      void appendCollInquiryQualifier( const FieldCollInquiryQualifier::EnumType & item ){ appendSafely<FieldCollInquiryQualifier>( item ); }
 };
-
 
 // Group PartyIDs
 class PartyIDsBuilder : protected ReusableMessageBuilder
@@ -121,7 +110,6 @@ class PartyIDsBuilder : protected ReusableMessageBuilder
      void appendPartyRole( const FieldPartyRole::EnumType & item ){ appendSafely<FieldPartyRole>( item ); }
      PartySubIDsBuilder & appendNoPartySubIDs( unsigned count ) { appendSafely<FieldNoPartySubIDs>( count ); return *reinterpret_cast<PartySubIDsBuilder*>( this ); }
 };
-
 
 // Group Allocs
 class AllocsBuilder : protected ReusableMessageBuilder
@@ -138,7 +126,6 @@ class AllocsBuilder : protected ReusableMessageBuilder
      void appendEncodedAllocText( const std::string_view & value ){ appendSafely<FieldEncodedAllocText>( value ); }
 };
 
-
 // Group TradingSessions
 class TradingSessionsBuilder : protected ReusableMessageBuilder
 {
@@ -146,7 +133,6 @@ class TradingSessionsBuilder : protected ReusableMessageBuilder
      void appendTradingSessionID( const std::string_view & value ){ appendSafely<FieldTradingSessionID>( value ); }
      void appendTradingSessionSubID( const std::string_view & value ){ appendSafely<FieldTradingSessionSubID>( value ); }
 };
-
 
 // Group SecurityAltID
 class SecurityAltIDBuilder : protected ReusableMessageBuilder
@@ -156,7 +142,6 @@ class SecurityAltIDBuilder : protected ReusableMessageBuilder
      void appendSecurityAltIDSource( const std::string_view & value ){ appendSafely<FieldSecurityAltIDSource>( value ); }
 };
 
-
 // Group UnderlyingSecurityAltID
 class UnderlyingSecurityAltIDBuilder : protected ReusableMessageBuilder
 {
@@ -165,7 +150,6 @@ class UnderlyingSecurityAltIDBuilder : protected ReusableMessageBuilder
      void appendUnderlyingSecurityAltIDSource( const std::string_view & value ){ appendSafely<FieldUnderlyingSecurityAltIDSource>( value ); }
 };
 
-
 // Group UnderlyingStips
 class UnderlyingStipsBuilder : protected ReusableMessageBuilder
 {
@@ -173,7 +157,6 @@ class UnderlyingStipsBuilder : protected ReusableMessageBuilder
      void appendUnderlyingStipType( const std::string_view & value ){ appendSafely<FieldUnderlyingStipType>( value ); }
      void appendUnderlyingStipValue( const std::string_view & value ){ appendSafely<FieldUnderlyingStipValue>( value ); }
 };
-
 
 // Group Underlyings
 class UnderlyingsBuilder : protected ReusableMessageBuilder
@@ -236,7 +219,6 @@ class UnderlyingsBuilder : protected ReusableMessageBuilder
      void appendUnderlyingSettlPriceType( const int & value ){ appendSafely<FieldUnderlyingSettlPriceType>( value ); }
 };
 
-
 // Group Stipulations
 class StipulationsBuilder : protected ReusableMessageBuilder
 {
@@ -244,7 +226,6 @@ class StipulationsBuilder : protected ReusableMessageBuilder
      void appendStipulationType( const FieldStipulationType::EnumType & item ){ appendSafely<FieldStipulationType>( item ); }
      void appendStipulationValue( const std::string_view & value ){ appendSafely<FieldStipulationValue>( value ); }
 };
-
 
 // Group Orders
 class OrdersBuilder : protected ReusableMessageBuilder
@@ -415,7 +396,6 @@ class OrdersBuilder : protected ReusableMessageBuilder
      void appendDesignation( const std::string_view & value ){ appendSafely<FieldDesignation>( value ); }
 };
 
-
 // Group SettlPartySubIDs
 class SettlPartySubIDsBuilder : protected ReusableMessageBuilder
 {
@@ -423,7 +403,6 @@ class SettlPartySubIDsBuilder : protected ReusableMessageBuilder
      void appendSettlPartySubID( const std::string_view & value ){ appendSafely<FieldSettlPartySubID>( value ); }
      void appendSettlPartySubIDType( const int & value ){ appendSafely<FieldSettlPartySubIDType>( value ); }
 };
-
 
 // Group SettlPartyIDs
 class SettlPartyIDsBuilder : protected ReusableMessageBuilder
@@ -435,7 +414,6 @@ class SettlPartyIDsBuilder : protected ReusableMessageBuilder
      SettlPartySubIDsBuilder & appendNoSettlPartySubIDs( unsigned count ) { appendSafely<FieldNoSettlPartySubIDs>( count ); return *reinterpret_cast<SettlPartySubIDsBuilder*>( this ); }
 };
 
-
 // Group DlvyInst
 class DlvyInstBuilder : protected ReusableMessageBuilder
 {
@@ -445,14 +423,12 @@ class DlvyInstBuilder : protected ReusableMessageBuilder
      SettlPartyIDsBuilder & appendNoSettlPartyIDs( unsigned count ) { appendSafely<FieldNoSettlPartyIDs>( count ); return *reinterpret_cast<SettlPartyIDsBuilder*>( this ); }
 };
 
-
 // Group ClearingInstructions
 class ClearingInstructionsBuilder : protected ReusableMessageBuilder
 {
    public:
      void appendClearingInstruction( const FieldClearingInstruction::EnumType & item ){ appendSafely<FieldClearingInstruction>( item ); }
 };
-
 
 // Group NestedPartySubIDs
 class NestedPartySubIDsBuilder : protected ReusableMessageBuilder
@@ -461,7 +437,6 @@ class NestedPartySubIDsBuilder : protected ReusableMessageBuilder
      void appendNestedPartySubID( const std::string_view & value ){ appendSafely<FieldNestedPartySubID>( value ); }
      void appendNestedPartySubIDType( const int & value ){ appendSafely<FieldNestedPartySubIDType>( value ); }
 };
-
 
 // Group NestedPartyIDs
 class NestedPartyIDsBuilder : protected ReusableMessageBuilder
@@ -472,7 +447,6 @@ class NestedPartyIDsBuilder : protected ReusableMessageBuilder
      void appendNestedPartyRole( const int & value ){ appendSafely<FieldNestedPartyRole>( value ); }
      NestedPartySubIDsBuilder & appendNoNestedPartySubIDs( unsigned count ) { appendSafely<FieldNoNestedPartySubIDs>( count ); return *reinterpret_cast<NestedPartySubIDsBuilder*>( this ); }
 };
-
 
 // Group Legs
 class LegsBuilder : protected ReusableMessageBuilder
@@ -537,7 +511,6 @@ class LegsBuilder : protected ReusableMessageBuilder
      void appendLegLastPx( double value, unsigned precision ){ appendSafely<FieldLegLastPx>( value, precision ); }
 };
 
-
 // Group QuoteEntries
 class QuoteEntriesBuilder : protected ReusableMessageBuilder
 {
@@ -598,7 +571,6 @@ class QuoteEntriesBuilder : protected ReusableMessageBuilder
      UnderlyingsBuilder & appendNoUnderlyings( unsigned count ) { appendSafely<FieldNoUnderlyings>( count ); return *reinterpret_cast<UnderlyingsBuilder*>( this ); }
      LegsBuilder & appendNoLegs( unsigned count ) { appendSafely<FieldNoLegs>( count ); return *reinterpret_cast<LegsBuilder*>( this ); }
 };
-
 
 // Group QuoteSets
 class QuoteSetsBuilder : protected ReusableMessageBuilder
@@ -662,7 +634,6 @@ class QuoteSetsBuilder : protected ReusableMessageBuilder
      QuoteEntriesBuilder & appendNoQuoteEntries( unsigned count ) { appendSafely<FieldNoQuoteEntries>( count ); return *reinterpret_cast<QuoteEntriesBuilder*>( this ); }
 };
 
-
 // Group SecurityTypes
 class SecurityTypesBuilder : protected ReusableMessageBuilder
 {
@@ -673,7 +644,6 @@ class SecurityTypesBuilder : protected ReusableMessageBuilder
      void appendCFICode( const std::string_view & value ){ appendSafely<FieldCFICode>( value ); }
 };
 
-
 // Group Nested3PartyIDs
 class Nested3PartyIDsBuilder : protected ReusableMessageBuilder
 {
@@ -683,7 +653,6 @@ class Nested3PartyIDsBuilder : protected ReusableMessageBuilder
      void appendNested3PartyRole( const int & value ){ appendSafely<FieldNested3PartyRole>( value ); }
      Nested3PartySubIDsBuilder & appendNoNested3PartySubIDs( unsigned count ) { appendSafely<FieldNoNested3PartySubIDs>( count ); return *reinterpret_cast<Nested3PartySubIDsBuilder*>( this ); }
 };
-
 
 // Group Positions
 class PositionsBuilder : protected ReusableMessageBuilder
@@ -698,7 +667,6 @@ class PositionsBuilder : protected ReusableMessageBuilder
      NestedPartyIDsBuilder & appendNoNestedPartyIDs( unsigned count ) { appendSafely<FieldNoNestedPartyIDs>( count ); return *reinterpret_cast<NestedPartyIDsBuilder*>( this ); }
 };
 
-
 // Group AffectedOrders
 class AffectedOrdersBuilder : protected ReusableMessageBuilder
 {
@@ -707,7 +675,6 @@ class AffectedOrdersBuilder : protected ReusableMessageBuilder
      void appendAffectedOrderID( const std::string_view & value ){ appendSafely<FieldAffectedOrderID>( value ); }
      void appendAffectedSecondaryOrderID( const std::string_view & value ){ appendSafely<FieldAffectedSecondaryOrderID>( value ); }
 };
-
 
 // Group Execs
 class ExecsBuilder : protected ReusableMessageBuilder
@@ -724,7 +691,6 @@ class ExecsBuilder : protected ReusableMessageBuilder
      void appendLastCapacity( const FieldLastCapacity::EnumType & item ){ appendSafely<FieldLastCapacity>( item ); }
 };
 
-
 // Group MsgTypes
 class MsgTypesBuilder : protected ReusableMessageBuilder
 {
@@ -732,7 +698,6 @@ class MsgTypesBuilder : protected ReusableMessageBuilder
      void appendRefMsgType( const std::string_view & value ){ appendSafely<FieldRefMsgType>( value ); }
      void appendMsgDirection( const FieldMsgDirection::EnumType & item ){ appendSafely<FieldMsgDirection>( item ); }
 };
-
 
 // Group BidComponents
 class BidComponentsBuilder : protected ReusableMessageBuilder
@@ -748,7 +713,6 @@ class BidComponentsBuilder : protected ReusableMessageBuilder
      void appendAccount( const std::string_view & value ){ appendSafely<FieldAccount>( value ); }
      void appendAcctIDSource( const FieldAcctIDSource::EnumType & item ){ appendSafely<FieldAcctIDSource>( item ); }
 };
-
 
 // Group SettlInst
 class SettlInstBuilder : protected ReusableMessageBuilder
@@ -784,7 +748,6 @@ class SettlInstBuilder : protected ReusableMessageBuilder
      void appendPaymentRemitterID( const std::string_view & value ){ appendSafely<FieldPaymentRemitterID>( value ); }
 };
 
-
 // Group InstrAttrib
 class InstrAttribBuilder : protected ReusableMessageBuilder
 {
@@ -792,7 +755,6 @@ class InstrAttribBuilder : protected ReusableMessageBuilder
      void appendInstrAttribType( const FieldInstrAttribType::EnumType & item ){ appendSafely<FieldInstrAttribType>( item ); }
      void appendInstrAttribValue( const std::string_view & value ){ appendSafely<FieldInstrAttribValue>( value ); }
 };
-
 
 // Group MiscFees
 class MiscFeesBuilder : protected ReusableMessageBuilder
@@ -804,14 +766,12 @@ class MiscFeesBuilder : protected ReusableMessageBuilder
      void appendMiscFeeBasis( const FieldMiscFeeBasis::EnumType & item ){ appendSafely<FieldMiscFeeBasis>( item ); }
 };
 
-
 // Group QuoteQualifiers
 class QuoteQualifiersBuilder : protected ReusableMessageBuilder
 {
    public:
      void appendQuoteQualifier( const char & value ){ appendSafely<FieldQuoteQualifier>( value ); }
 };
-
 
 // Group DistribInsts
 class DistribInstsBuilder : protected ReusableMessageBuilder
@@ -827,7 +787,6 @@ class DistribInstsBuilder : protected ReusableMessageBuilder
      void appendCashDistribAgentAcctName( const std::string_view & value ){ appendSafely<FieldCashDistribAgentAcctName>( value ); }
 };
 
-
 // Group TrdRegTimestamps
 class TrdRegTimestampsBuilder : protected ReusableMessageBuilder
 {
@@ -838,14 +797,12 @@ class TrdRegTimestampsBuilder : protected ReusableMessageBuilder
      void appendTrdRegTimestampOrigin( const std::string_view & value ){ appendSafely<FieldTrdRegTimestampOrigin>( value ); }
 };
 
-
 // Group AltMDSource
 class AltMDSourceBuilder : protected ReusableMessageBuilder
 {
    public:
      void appendAltMDSourceID( const std::string_view & value ){ appendSafely<FieldAltMDSourceID>( value ); }
 };
-
 
 // Group Sides
 class SidesBuilder : protected ReusableMessageBuilder
@@ -874,7 +831,6 @@ class SidesBuilder : protected ReusableMessageBuilder
      void appendEncodedText( const std::string_view & value ){ appendSafely<FieldEncodedText>( value ); }
 };
 
-
 // Group RoutingIDs
 class RoutingIDsBuilder : protected ReusableMessageBuilder
 {
@@ -883,7 +839,6 @@ class RoutingIDsBuilder : protected ReusableMessageBuilder
      void appendRoutingID( const std::string_view & value ){ appendSafely<FieldRoutingID>( value ); }
 };
 
-
 // Group PosAmt
 class PosAmtBuilder : protected ReusableMessageBuilder
 {
@@ -891,7 +846,6 @@ class PosAmtBuilder : protected ReusableMessageBuilder
      void appendPosAmtType( const FieldPosAmtType::EnumType & item ){ appendSafely<FieldPosAmtType>( item ); }
      void appendPosAmt( const Float & value ){ appendSafely<FieldPosAmt>( value ); }
 };
-
 
 // Group LinesOfText
 class LinesOfTextBuilder : protected ReusableMessageBuilder
@@ -902,14 +856,12 @@ class LinesOfTextBuilder : protected ReusableMessageBuilder
      void appendEncodedText( const std::string_view & value ){ appendSafely<FieldEncodedText>( value ); }
 };
 
-
 // Group IOIQualifiers
 class IOIQualifiersBuilder : protected ReusableMessageBuilder
 {
    public:
      void appendIOIQualifier( const FieldIOIQualifier::EnumType & item ){ appendSafely<FieldIOIQualifier>( item ); }
 };
-
 
 // Group Dates
 class DatesBuilder : protected ReusableMessageBuilder
@@ -920,14 +872,12 @@ class DatesBuilder : protected ReusableMessageBuilder
      void appendTransactTime( TimestampKeeper & value, const TimePoint & time = ClockType::now() ){ appendSafely<FieldTransactTime>( value, time ); }
 };
 
-
 // Group MDEntryTypes
 class MDEntryTypesBuilder : protected ReusableMessageBuilder
 {
    public:
      void appendMDEntryType( const FieldMDEntryType::EnumType & item ){ appendSafely<FieldMDEntryType>( item ); }
 };
-
 
 // Group RelatedSym
 class RelatedSymBuilder : protected ReusableMessageBuilder
@@ -979,7 +929,6 @@ class RelatedSymBuilder : protected ReusableMessageBuilder
      void appendInterestAccrualDate( const std::string_view & value ){ appendSafely<FieldInterestAccrualDate>( value ); }
 };
 
-
 // Group ContraBrokers
 class ContraBrokersBuilder : protected ReusableMessageBuilder
 {
@@ -993,7 +942,6 @@ class ContraBrokersBuilder : protected ReusableMessageBuilder
      void appendContraLegRefID( const std::string_view & value ){ appendSafely<FieldContraLegRefID>( value ); }
 };
 
-
 // Group Trades
 class TradesBuilder : protected ReusableMessageBuilder
 {
@@ -1001,7 +949,6 @@ class TradesBuilder : protected ReusableMessageBuilder
      void appendTradeReportID( const std::string_view & value ){ appendSafely<FieldTradeReportID>( value ); }
      void appendSecondaryTradeReportID( const std::string_view & value ){ appendSafely<FieldSecondaryTradeReportID>( value ); }
 };
-
 
 // Group Strikes
 class StrikesBuilder : protected ReusableMessageBuilder
@@ -1053,7 +1000,6 @@ class StrikesBuilder : protected ReusableMessageBuilder
      void appendInterestAccrualDate( const std::string_view & value ){ appendSafely<FieldInterestAccrualDate>( value ); }
 };
 
-
 // Group BidDescriptors
 class BidDescriptorsBuilder : protected ReusableMessageBuilder
 {
@@ -1071,7 +1017,6 @@ class BidDescriptorsBuilder : protected ReusableMessageBuilder
      void appendValueOfFutures( const Float & value ){ appendSafely<FieldValueOfFutures>( value ); }
 };
 
-
 // Group CompIDs
 class CompIDsBuilder : protected ReusableMessageBuilder
 {
@@ -1081,7 +1026,6 @@ class CompIDsBuilder : protected ReusableMessageBuilder
      void appendLocationID( const std::string_view & value ){ appendSafely<FieldLocationID>( value ); }
      void appendDeskID( const std::string_view & value ){ appendSafely<FieldDeskID>( value ); }
 };
-
 
 // Group LegAllocs
 class LegAllocsBuilder : protected ReusableMessageBuilder
@@ -1095,7 +1039,6 @@ class LegAllocsBuilder : protected ReusableMessageBuilder
      void appendLegAllocAcctIDSource( const std::string_view & value ){ appendSafely<FieldLegAllocAcctIDSource>( value ); }
      void appendLegSettlCurrency( const std::string_view & value ){ appendSafely<FieldLegSettlCurrency>( value ); }
 };
-
 
 // Group RegistDtls
 class RegistDtlsBuilder : protected ReusableMessageBuilder
@@ -1111,7 +1054,6 @@ class RegistDtlsBuilder : protected ReusableMessageBuilder
      void appendInvestorCountryOfResidence( const std::string_view & value ){ appendSafely<FieldInvestorCountryOfResidence>( value ); }
 };
 
-
 // Group ContAmts
 class ContAmtsBuilder : protected ReusableMessageBuilder
 {
@@ -1120,7 +1062,6 @@ class ContAmtsBuilder : protected ReusableMessageBuilder
      void appendContAmtValue( const Float & value ){ appendSafely<FieldContAmtValue>( value ); }
      void appendContAmtCurr( const std::string_view & value ){ appendSafely<FieldContAmtCurr>( value ); }
 };
-
 
 // Group MDEntries
 class MDEntriesBuilder : protected ReusableMessageBuilder
@@ -1165,7 +1106,6 @@ class MDEntriesBuilder : protected ReusableMessageBuilder
      void appendEncodedText( const std::string_view & value ){ appendSafely<FieldEncodedText>( value ); }
 };
 
-
 // Message Header
 class HeaderBuilder: public HeaderTemplate
 {
@@ -1202,7 +1142,6 @@ class HeaderBuilder: public HeaderTemplate
      HopsBuilder & appendNoHops( unsigned count ) { appendSafely<FieldNoHops>( count ); return *reinterpret_cast<HopsBuilder*>( this ); }
 };
 
-
 // Message Heartbeat
 class HeartbeatBuilder: protected ReusableMessageBuilder
 {
@@ -1214,7 +1153,6 @@ class HeartbeatBuilder: protected ReusableMessageBuilder
      void finalizeWithSeqnum( unsigned seqnum ){ setSeqnumAndUpdateHeaderAndChecksum( seqnum ); }
      void appendTestReqID( const std::string_view & value ){ appendSafely<FieldTestReqID>( value ); }
 };
-
 
 // Message TestRequest
 class TestRequestBuilder: protected ReusableMessageBuilder
@@ -1228,7 +1166,6 @@ class TestRequestBuilder: protected ReusableMessageBuilder
      void appendTestReqID( const std::string_view & value ){ appendSafely<FieldTestReqID>( value ); }
 };
 
-
 // Message ResendRequest
 class ResendRequestBuilder: protected ReusableMessageBuilder
 {
@@ -1241,7 +1178,6 @@ class ResendRequestBuilder: protected ReusableMessageBuilder
      void appendBeginSeqNo( const unsigned & value ){ appendSafely<FieldBeginSeqNo>( value ); }
      void appendEndSeqNo( const unsigned & value ){ appendSafely<FieldEndSeqNo>( value ); }
 };
-
 
 // Message Reject
 class RejectBuilder: protected ReusableMessageBuilder
@@ -1261,7 +1197,6 @@ class RejectBuilder: protected ReusableMessageBuilder
      void appendEncodedText( const std::string_view & value ){ appendSafely<FieldEncodedText>( value ); }
 };
 
-
 // Message SequenceReset
 class SequenceResetBuilder: protected ReusableMessageBuilder
 {
@@ -1274,7 +1209,6 @@ class SequenceResetBuilder: protected ReusableMessageBuilder
      void appendGapFillFlag( const FieldGapFillFlag::EnumType & item ){ appendSafely<FieldGapFillFlag>( item ); }
      void appendNewSeqNo( const unsigned & value ){ appendSafely<FieldNewSeqNo>( value ); }
 };
-
 
 // Message Logout
 class LogoutBuilder: protected ReusableMessageBuilder
@@ -1289,7 +1223,6 @@ class LogoutBuilder: protected ReusableMessageBuilder
      void appendEncodedTextLen( const unsigned & value ){ appendSafely<FieldEncodedTextLen>( value ); }
      void appendEncodedText( const std::string_view & value ){ appendSafely<FieldEncodedText>( value ); }
 };
-
 
 // Message IOI
 class IOIBuilder: protected ReusableMessageBuilder
@@ -1403,7 +1336,6 @@ class IOIBuilder: protected ReusableMessageBuilder
      void appendYieldRedemptionPriceType( const int & value ){ appendSafely<FieldYieldRedemptionPriceType>( value ); }
 };
 
-
 // Message Advertisement
 class AdvertisementBuilder: protected ReusableMessageBuilder
 {
@@ -1480,7 +1412,6 @@ class AdvertisementBuilder: protected ReusableMessageBuilder
      void appendTradingSessionID( const std::string_view & value ){ appendSafely<FieldTradingSessionID>( value ); }
      void appendTradingSessionSubID( const std::string_view & value ){ appendSafely<FieldTradingSessionSubID>( value ); }
 };
-
 
 // Message ExecutionReport
 class ExecutionReportBuilder: protected ReusableMessageBuilder
@@ -1742,7 +1673,6 @@ class ExecutionReportBuilder: protected ReusableMessageBuilder
      MiscFeesBuilder & appendNoMiscFees( unsigned count ) { appendSafely<FieldNoMiscFees>( count ); return *reinterpret_cast<MiscFeesBuilder*>( this ); }
 };
 
-
 // Message OrderCancelReject
 class OrderCancelRejectBuilder: protected ReusableMessageBuilder
 {
@@ -1777,7 +1707,6 @@ class OrderCancelRejectBuilder: protected ReusableMessageBuilder
      void appendEncodedText( const std::string_view & value ){ appendSafely<FieldEncodedText>( value ); }
 };
 
-
 // Message Logon
 class LogonBuilder: protected ReusableMessageBuilder
 {
@@ -1799,7 +1728,6 @@ class LogonBuilder: protected ReusableMessageBuilder
      void appendUsername( const std::string_view & value ){ appendSafely<FieldUsername>( value ); }
      void appendPassword( const std::string_view & value ){ appendSafely<FieldPassword>( value ); }
 };
-
 
 // Message News
 class NewsBuilder: protected ReusableMessageBuilder
@@ -1825,7 +1753,6 @@ class NewsBuilder: protected ReusableMessageBuilder
      void appendRawDataLength( const unsigned & value ){ appendSafely<FieldRawDataLength>( value ); }
      void appendRawData( const std::string_view & value ){ appendSafely<FieldRawData>( value ); }
 };
-
 
 // Message Email
 class EmailBuilder: protected ReusableMessageBuilder
@@ -1853,7 +1780,6 @@ class EmailBuilder: protected ReusableMessageBuilder
      void appendRawDataLength( const unsigned & value ){ appendSafely<FieldRawDataLength>( value ); }
      void appendRawData( const std::string_view & value ){ appendSafely<FieldRawData>( value ); }
 };
-
 
 // Message NewOrderSingle
 class NewOrderSingleBuilder: protected ReusableMessageBuilder
@@ -2038,7 +1964,6 @@ class NewOrderSingleBuilder: protected ReusableMessageBuilder
      void appendDesignation( const std::string_view & value ){ appendSafely<FieldDesignation>( value ); }
 };
 
-
 // Message NewOrderList
 class NewOrderListBuilder: protected ReusableMessageBuilder
 {
@@ -2068,7 +1993,6 @@ class NewOrderListBuilder: protected ReusableMessageBuilder
      void appendLastFragment( const FieldLastFragment::EnumType & item ){ appendSafely<FieldLastFragment>( item ); }
      OrdersBuilder & appendNoOrders( unsigned count ) { appendSafely<FieldNoOrders>( count ); return *reinterpret_cast<OrdersBuilder*>( this ); }
 };
-
 
 // Message OrderCancelRequest
 class OrderCancelRequestBuilder: protected ReusableMessageBuilder
@@ -2160,7 +2084,6 @@ class OrderCancelRequestBuilder: protected ReusableMessageBuilder
      void appendEncodedTextLen( const unsigned & value ){ appendSafely<FieldEncodedTextLen>( value ); }
      void appendEncodedText( const std::string_view & value ){ appendSafely<FieldEncodedText>( value ); }
 };
-
 
 // Message OrderCancelReplaceRequest
 class OrderCancelReplaceRequestBuilder: protected ReusableMessageBuilder
@@ -2344,7 +2267,6 @@ class OrderCancelReplaceRequestBuilder: protected ReusableMessageBuilder
      void appendDesignation( const std::string_view & value ){ appendSafely<FieldDesignation>( value ); }
 };
 
-
 // Message OrderStatusRequest
 class OrderStatusRequestBuilder: protected ReusableMessageBuilder
 {
@@ -2418,7 +2340,6 @@ class OrderStatusRequestBuilder: protected ReusableMessageBuilder
      UnderlyingsBuilder & appendNoUnderlyings( unsigned count ) { appendSafely<FieldNoUnderlyings>( count ); return *reinterpret_cast<UnderlyingsBuilder*>( this ); }
      void appendSide( const FieldSide::EnumType & item ){ appendSafely<FieldSide>( item ); }
 };
-
 
 // Message AllocationInstruction
 class AllocationInstructionBuilder: protected ReusableMessageBuilder
@@ -2565,7 +2486,6 @@ class AllocationInstructionBuilder: protected ReusableMessageBuilder
      AllocsBuilder & appendNoAllocs( unsigned count ) { appendSafely<FieldNoAllocs>( count ); return *reinterpret_cast<AllocsBuilder*>( this ); }
 };
 
-
 // Message ListCancelRequest
 class ListCancelRequestBuilder: protected ReusableMessageBuilder
 {
@@ -2584,7 +2504,6 @@ class ListCancelRequestBuilder: protected ReusableMessageBuilder
      void appendEncodedTextLen( const unsigned & value ){ appendSafely<FieldEncodedTextLen>( value ); }
      void appendEncodedText( const std::string_view & value ){ appendSafely<FieldEncodedText>( value ); }
 };
-
 
 // Message ListExecute
 class ListExecuteBuilder: protected ReusableMessageBuilder
@@ -2605,7 +2524,6 @@ class ListExecuteBuilder: protected ReusableMessageBuilder
      void appendEncodedText( const std::string_view & value ){ appendSafely<FieldEncodedText>( value ); }
 };
 
-
 // Message ListStatusRequest
 class ListStatusRequestBuilder: protected ReusableMessageBuilder
 {
@@ -2620,7 +2538,6 @@ class ListStatusRequestBuilder: protected ReusableMessageBuilder
      void appendEncodedTextLen( const unsigned & value ){ appendSafely<FieldEncodedTextLen>( value ); }
      void appendEncodedText( const std::string_view & value ){ appendSafely<FieldEncodedText>( value ); }
 };
-
 
 // Message ListStatus
 class ListStatusBuilder: protected ReusableMessageBuilder
@@ -2645,7 +2562,6 @@ class ListStatusBuilder: protected ReusableMessageBuilder
      void appendLastFragment( const FieldLastFragment::EnumType & item ){ appendSafely<FieldLastFragment>( item ); }
      OrdersBuilder & appendNoOrders( unsigned count ) { appendSafely<FieldNoOrders>( count ); return *reinterpret_cast<OrdersBuilder*>( this ); }
 };
-
 
 // Message AllocationInstructionAck
 class AllocationInstructionAckBuilder: protected ReusableMessageBuilder
@@ -2674,7 +2590,6 @@ class AllocationInstructionAckBuilder: protected ReusableMessageBuilder
      void appendEncodedText( const std::string_view & value ){ appendSafely<FieldEncodedText>( value ); }
      AllocsBuilder & appendNoAllocs( unsigned count ) { appendSafely<FieldNoAllocs>( count ); return *reinterpret_cast<AllocsBuilder*>( this ); }
 };
-
 
 // Message DontKnowTrade
 class DontKnowTradeBuilder: protected ReusableMessageBuilder
@@ -2752,7 +2667,6 @@ class DontKnowTradeBuilder: protected ReusableMessageBuilder
      void appendEncodedText( const std::string_view & value ){ appendSafely<FieldEncodedText>( value ); }
 };
 
-
 // Message QuoteRequest
 class QuoteRequestBuilder: protected ReusableMessageBuilder
 {
@@ -2771,7 +2685,6 @@ class QuoteRequestBuilder: protected ReusableMessageBuilder
      void appendEncodedTextLen( const unsigned & value ){ appendSafely<FieldEncodedTextLen>( value ); }
      void appendEncodedText( const std::string_view & value ){ appendSafely<FieldEncodedText>( value ); }
 };
-
 
 // Message Quote
 class QuoteBuilder: protected ReusableMessageBuilder
@@ -2928,7 +2841,6 @@ class QuoteBuilder: protected ReusableMessageBuilder
      void appendEncodedText( const std::string_view & value ){ appendSafely<FieldEncodedText>( value ); }
 };
 
-
 // Message SettlementInstructions
 class SettlementInstructionsBuilder: protected ReusableMessageBuilder
 {
@@ -2950,7 +2862,6 @@ class SettlementInstructionsBuilder: protected ReusableMessageBuilder
      void appendTransactTime( TimestampKeeper & value, const TimePoint & time = ClockType::now() ){ appendSafely<FieldTransactTime>( value, time ); }
      SettlInstBuilder & appendNoSettlInst( unsigned count ) { appendSafely<FieldNoSettlInst>( count ); return *reinterpret_cast<SettlInstBuilder*>( this ); }
 };
-
 
 // Message MarketDataRequest
 class MarketDataRequestBuilder: protected ReusableMessageBuilder
@@ -2975,7 +2886,6 @@ class MarketDataRequestBuilder: protected ReusableMessageBuilder
      void appendApplQueueAction( const FieldApplQueueAction::EnumType & item ){ appendSafely<FieldApplQueueAction>( item ); }
      void appendApplQueueMax( const int & value ){ appendSafely<FieldApplQueueMax>( value ); }
 };
-
 
 // Message MarketDataSnapshotFullRefresh
 class MarketDataSnapshotFullRefreshBuilder: protected ReusableMessageBuilder
@@ -3041,7 +2951,6 @@ class MarketDataSnapshotFullRefreshBuilder: protected ReusableMessageBuilder
      void appendApplQueueResolution( const FieldApplQueueResolution::EnumType & item ){ appendSafely<FieldApplQueueResolution>( item ); }
 };
 
-
 // Message MarketDataIncrementalRefresh
 class MarketDataIncrementalRefreshBuilder: protected ReusableMessageBuilder
 {
@@ -3056,7 +2965,6 @@ class MarketDataIncrementalRefreshBuilder: protected ReusableMessageBuilder
      void appendApplQueueDepth( const int & value ){ appendSafely<FieldApplQueueDepth>( value ); }
      void appendApplQueueResolution( const FieldApplQueueResolution::EnumType & item ){ appendSafely<FieldApplQueueResolution>( item ); }
 };
-
 
 // Message MarketDataRequestReject
 class MarketDataRequestRejectBuilder: protected ReusableMessageBuilder
@@ -3074,7 +2982,6 @@ class MarketDataRequestRejectBuilder: protected ReusableMessageBuilder
      void appendEncodedTextLen( const unsigned & value ){ appendSafely<FieldEncodedTextLen>( value ); }
      void appendEncodedText( const std::string_view & value ){ appendSafely<FieldEncodedText>( value ); }
 };
-
 
 // Message QuoteCancel
 class QuoteCancelBuilder: protected ReusableMessageBuilder
@@ -3097,7 +3004,6 @@ class QuoteCancelBuilder: protected ReusableMessageBuilder
      void appendTradingSessionSubID( const std::string_view & value ){ appendSafely<FieldTradingSessionSubID>( value ); }
      QuoteEntriesBuilder & appendNoQuoteEntries( unsigned count ) { appendSafely<FieldNoQuoteEntries>( count ); return *reinterpret_cast<QuoteEntriesBuilder*>( this ); }
 };
-
 
 // Message QuoteStatusRequest
 class QuoteStatusRequestBuilder: protected ReusableMessageBuilder
@@ -3174,7 +3080,6 @@ class QuoteStatusRequestBuilder: protected ReusableMessageBuilder
      void appendSubscriptionRequestType( const FieldSubscriptionRequestType::EnumType & item ){ appendSafely<FieldSubscriptionRequestType>( item ); }
 };
 
-
 // Message MassQuoteAcknowledgement
 class MassQuoteAcknowledgementBuilder: protected ReusableMessageBuilder
 {
@@ -3199,7 +3104,6 @@ class MassQuoteAcknowledgementBuilder: protected ReusableMessageBuilder
      void appendEncodedText( const std::string_view & value ){ appendSafely<FieldEncodedText>( value ); }
      QuoteSetsBuilder & appendNoQuoteSets( unsigned count ) { appendSafely<FieldNoQuoteSets>( count ); return *reinterpret_cast<QuoteSetsBuilder*>( this ); }
 };
-
 
 // Message SecurityDefinitionRequest
 class SecurityDefinitionRequestBuilder: protected ReusableMessageBuilder
@@ -3270,7 +3174,6 @@ class SecurityDefinitionRequestBuilder: protected ReusableMessageBuilder
      void appendExpirationCycle( const FieldExpirationCycle::EnumType & item ){ appendSafely<FieldExpirationCycle>( item ); }
      void appendSubscriptionRequestType( const FieldSubscriptionRequestType::EnumType & item ){ appendSafely<FieldSubscriptionRequestType>( item ); }
 };
-
 
 // Message SecurityDefinition
 class SecurityDefinitionBuilder: protected ReusableMessageBuilder
@@ -3346,7 +3249,6 @@ class SecurityDefinitionBuilder: protected ReusableMessageBuilder
      void appendMinTradeVol( size_t value ){ appendSafely<FieldMinTradeVol>( value ); }
 };
 
-
 // Message SecurityStatusRequest
 class SecurityStatusRequestBuilder: protected ReusableMessageBuilder
 {
@@ -3411,7 +3313,6 @@ class SecurityStatusRequestBuilder: protected ReusableMessageBuilder
      void appendTradingSessionID( const std::string_view & value ){ appendSafely<FieldTradingSessionID>( value ); }
      void appendTradingSessionSubID( const std::string_view & value ){ appendSafely<FieldTradingSessionSubID>( value ); }
 };
-
 
 // Message SecurityStatus
 class SecurityStatusBuilder: protected ReusableMessageBuilder
@@ -3500,7 +3401,6 @@ class SecurityStatusBuilder: protected ReusableMessageBuilder
      void appendEncodedText( const std::string_view & value ){ appendSafely<FieldEncodedText>( value ); }
 };
 
-
 // Message TradingSessionStatusRequest
 class TradingSessionStatusRequestBuilder: protected ReusableMessageBuilder
 {
@@ -3517,7 +3417,6 @@ class TradingSessionStatusRequestBuilder: protected ReusableMessageBuilder
      void appendTradSesMode( const FieldTradSesMode::EnumType & item ){ appendSafely<FieldTradSesMode>( item ); }
      void appendSubscriptionRequestType( const FieldSubscriptionRequestType::EnumType & item ){ appendSafely<FieldSubscriptionRequestType>( item ); }
 };
-
 
 // Message TradingSessionStatus
 class TradingSessionStatusBuilder: protected ReusableMessageBuilder
@@ -3553,7 +3452,6 @@ class TradingSessionStatusBuilder: protected ReusableMessageBuilder
      void appendEncodedText( const std::string_view & value ){ appendSafely<FieldEncodedText>( value ); }
 };
 
-
 // Message MassQuote
 class MassQuoteBuilder: protected ReusableMessageBuilder
 {
@@ -3578,7 +3476,6 @@ class MassQuoteBuilder: protected ReusableMessageBuilder
      QuoteSetsBuilder & appendNoQuoteSets( unsigned count ) { appendSafely<FieldNoQuoteSets>( count ); return *reinterpret_cast<QuoteSetsBuilder*>( this ); }
 };
 
-
 // Message BusinessMessageReject
 class BusinessMessageRejectBuilder: protected ReusableMessageBuilder
 {
@@ -3596,7 +3493,6 @@ class BusinessMessageRejectBuilder: protected ReusableMessageBuilder
      void appendEncodedTextLen( const unsigned & value ){ appendSafely<FieldEncodedTextLen>( value ); }
      void appendEncodedText( const std::string_view & value ){ appendSafely<FieldEncodedText>( value ); }
 };
-
 
 // Message BidRequest
 class BidRequestBuilder: protected ReusableMessageBuilder
@@ -3639,7 +3535,6 @@ class BidRequestBuilder: protected ReusableMessageBuilder
      void appendEncodedText( const std::string_view & value ){ appendSafely<FieldEncodedText>( value ); }
 };
 
-
 // Message BidResponse
 class BidResponseBuilder: protected ReusableMessageBuilder
 {
@@ -3653,7 +3548,6 @@ class BidResponseBuilder: protected ReusableMessageBuilder
      void appendClientBidID( const std::string_view & value ){ appendSafely<FieldClientBidID>( value ); }
      BidComponentsBuilder & appendNoBidComponents( unsigned count ) { appendSafely<FieldNoBidComponents>( count ); return *reinterpret_cast<BidComponentsBuilder*>( this ); }
 };
-
 
 // Message ListStrikePrice
 class ListStrikePriceBuilder: protected ReusableMessageBuilder
@@ -3671,7 +3565,6 @@ class ListStrikePriceBuilder: protected ReusableMessageBuilder
      UnderlyingsBuilder & appendNoUnderlyings( unsigned count ) { appendSafely<FieldNoUnderlyings>( count ); return *reinterpret_cast<UnderlyingsBuilder*>( this ); }
 };
 
-
 // Message XMLnonFIX
 class XMLnonFIXBuilder: protected ReusableMessageBuilder
 {
@@ -3682,7 +3575,6 @@ class XMLnonFIXBuilder: protected ReusableMessageBuilder
      ReusableMessageBuilder & super(){ return *this; }
      void finalizeWithSeqnum( unsigned seqnum ){ setSeqnumAndUpdateHeaderAndChecksum( seqnum ); }
 };
-
 
 // Message RegistrationInstructions
 class RegistrationInstructionsBuilder: protected ReusableMessageBuilder
@@ -3707,7 +3599,6 @@ class RegistrationInstructionsBuilder: protected ReusableMessageBuilder
      DistribInstsBuilder & appendNoDistribInsts( unsigned count ) { appendSafely<FieldNoDistribInsts>( count ); return *reinterpret_cast<DistribInstsBuilder*>( this ); }
 };
 
-
 // Message RegistrationInstructionsResponse
 class RegistrationInstructionsResponseBuilder: protected ReusableMessageBuilder
 {
@@ -3728,7 +3619,6 @@ class RegistrationInstructionsResponseBuilder: protected ReusableMessageBuilder
      void appendRegistRejReasonCode( const FieldRegistRejReasonCode::EnumType & item ){ appendSafely<FieldRegistRejReasonCode>( item ); }
      void appendRegistRejReasonText( const std::string_view & value ){ appendSafely<FieldRegistRejReasonText>( value ); }
 };
-
 
 // Message OrderMassCancelRequest
 class OrderMassCancelRequestBuilder: protected ReusableMessageBuilder
@@ -3847,7 +3737,6 @@ class OrderMassCancelRequestBuilder: protected ReusableMessageBuilder
      void appendEncodedTextLen( const unsigned & value ){ appendSafely<FieldEncodedTextLen>( value ); }
      void appendEncodedText( const std::string_view & value ){ appendSafely<FieldEncodedText>( value ); }
 };
-
 
 // Message OrderMassCancelReport
 class OrderMassCancelReportBuilder: protected ReusableMessageBuilder
@@ -3972,7 +3861,6 @@ class OrderMassCancelReportBuilder: protected ReusableMessageBuilder
      void appendEncodedTextLen( const unsigned & value ){ appendSafely<FieldEncodedTextLen>( value ); }
      void appendEncodedText( const std::string_view & value ){ appendSafely<FieldEncodedText>( value ); }
 };
-
 
 // Message NewOrderCross
 class NewOrderCrossBuilder: protected ReusableMessageBuilder
@@ -4106,7 +3994,6 @@ class NewOrderCrossBuilder: protected ReusableMessageBuilder
      void appendRegistID( const std::string_view & value ){ appendSafely<FieldRegistID>( value ); }
      void appendDesignation( const std::string_view & value ){ appendSafely<FieldDesignation>( value ); }
 };
-
 
 // Message CrossOrderCancelReplaceRequest
 class CrossOrderCancelReplaceRequestBuilder: protected ReusableMessageBuilder
@@ -4243,7 +4130,6 @@ class CrossOrderCancelReplaceRequestBuilder: protected ReusableMessageBuilder
      void appendDesignation( const std::string_view & value ){ appendSafely<FieldDesignation>( value ); }
 };
 
-
 // Message CrossOrderCancelRequest
 class CrossOrderCancelRequestBuilder: protected ReusableMessageBuilder
 {
@@ -4309,7 +4195,6 @@ class CrossOrderCancelRequestBuilder: protected ReusableMessageBuilder
      void appendTransactTime( TimestampKeeper & value, const TimePoint & time = ClockType::now() ){ appendSafely<FieldTransactTime>( value, time ); }
 };
 
-
 // Message SecurityTypeRequest
 class SecurityTypeRequestBuilder: protected ReusableMessageBuilder
 {
@@ -4329,7 +4214,6 @@ class SecurityTypeRequestBuilder: protected ReusableMessageBuilder
      void appendSecurityType( const FieldSecurityType::EnumType & item ){ appendSafely<FieldSecurityType>( item ); }
      void appendSecuritySubType( const std::string_view & value ){ appendSafely<FieldSecuritySubType>( value ); }
 };
-
 
 // Message SecurityTypes
 class SecurityTypesBuilder: protected ReusableMessageBuilder
@@ -4353,7 +4237,6 @@ class SecurityTypesBuilder: protected ReusableMessageBuilder
      void appendTradingSessionSubID( const std::string_view & value ){ appendSafely<FieldTradingSessionSubID>( value ); }
      void appendSubscriptionRequestType( const FieldSubscriptionRequestType::EnumType & item ){ appendSafely<FieldSubscriptionRequestType>( item ); }
 };
-
 
 // Message SecurityListRequest
 class SecurityListRequestBuilder: protected ReusableMessageBuilder
@@ -4433,7 +4316,6 @@ class SecurityListRequestBuilder: protected ReusableMessageBuilder
      void appendSubscriptionRequestType( const FieldSubscriptionRequestType::EnumType & item ){ appendSafely<FieldSubscriptionRequestType>( item ); }
 };
 
-
 // Message SecurityList
 class SecurityListBuilder: protected ReusableMessageBuilder
 {
@@ -4450,7 +4332,6 @@ class SecurityListBuilder: protected ReusableMessageBuilder
      void appendLastFragment( const FieldLastFragment::EnumType & item ){ appendSafely<FieldLastFragment>( item ); }
      RelatedSymBuilder & appendNoRelatedSym( unsigned count ) { appendSafely<FieldNoRelatedSym>( count ); return *reinterpret_cast<RelatedSymBuilder*>( this ); }
 };
-
 
 // Message DerivativeSecurityListRequest
 class DerivativeSecurityListRequestBuilder: protected ReusableMessageBuilder
@@ -4525,7 +4406,6 @@ class DerivativeSecurityListRequestBuilder: protected ReusableMessageBuilder
      void appendSubscriptionRequestType( const FieldSubscriptionRequestType::EnumType & item ){ appendSafely<FieldSubscriptionRequestType>( item ); }
 };
 
-
 // Message DerivativeSecurityList
 class DerivativeSecurityListBuilder: protected ReusableMessageBuilder
 {
@@ -4594,7 +4474,6 @@ class DerivativeSecurityListBuilder: protected ReusableMessageBuilder
      void appendLastFragment( const FieldLastFragment::EnumType & item ){ appendSafely<FieldLastFragment>( item ); }
      RelatedSymBuilder & appendNoRelatedSym( unsigned count ) { appendSafely<FieldNoRelatedSym>( count ); return *reinterpret_cast<RelatedSymBuilder*>( this ); }
 };
-
 
 // Message NewOrderMultileg
 class NewOrderMultilegBuilder: protected ReusableMessageBuilder
@@ -4749,7 +4628,6 @@ class NewOrderMultilegBuilder: protected ReusableMessageBuilder
      void appendDesignation( const std::string_view & value ){ appendSafely<FieldDesignation>( value ); }
      void appendMultiLegRptTypeReq( const FieldMultiLegRptTypeReq::EnumType & item ){ appendSafely<FieldMultiLegRptTypeReq>( item ); }
 };
-
 
 // Message MultilegOrderCancelReplace
 class MultilegOrderCancelReplaceBuilder: protected ReusableMessageBuilder
@@ -4909,7 +4787,6 @@ class MultilegOrderCancelReplaceBuilder: protected ReusableMessageBuilder
      void appendMultiLegRptTypeReq( const FieldMultiLegRptTypeReq::EnumType & item ){ appendSafely<FieldMultiLegRptTypeReq>( item ); }
 };
 
-
 // Message TradeCaptureReportRequest
 class TradeCaptureReportRequestBuilder: protected ReusableMessageBuilder
 {
@@ -5009,7 +4886,6 @@ class TradeCaptureReportRequestBuilder: protected ReusableMessageBuilder
      void appendEncodedTextLen( const unsigned & value ){ appendSafely<FieldEncodedTextLen>( value ); }
      void appendEncodedText( const std::string_view & value ){ appendSafely<FieldEncodedText>( value ); }
 };
-
 
 // Message TradeCaptureReport
 class TradeCaptureReportBuilder: protected ReusableMessageBuilder
@@ -5156,7 +5032,6 @@ class TradeCaptureReportBuilder: protected ReusableMessageBuilder
      void appendShortSaleReason( const FieldShortSaleReason::EnumType & item ){ appendSafely<FieldShortSaleReason>( item ); }
 };
 
-
 // Message OrderMassStatusRequest
 class OrderMassStatusRequestBuilder: protected ReusableMessageBuilder
 {
@@ -5272,7 +5147,6 @@ class OrderMassStatusRequestBuilder: protected ReusableMessageBuilder
      void appendSide( const FieldSide::EnumType & item ){ appendSafely<FieldSide>( item ); }
 };
 
-
 // Message QuoteRequestReject
 class QuoteRequestRejectBuilder: protected ReusableMessageBuilder
 {
@@ -5291,7 +5165,6 @@ class QuoteRequestRejectBuilder: protected ReusableMessageBuilder
      void appendEncodedText( const std::string_view & value ){ appendSafely<FieldEncodedText>( value ); }
 };
 
-
 // Message RFQRequest
 class RFQRequestBuilder: protected ReusableMessageBuilder
 {
@@ -5305,7 +5178,6 @@ class RFQRequestBuilder: protected ReusableMessageBuilder
      RelatedSymBuilder & appendNoRelatedSym( unsigned count ) { appendSafely<FieldNoRelatedSym>( count ); return *reinterpret_cast<RelatedSymBuilder*>( this ); }
      void appendSubscriptionRequestType( const FieldSubscriptionRequestType::EnumType & item ){ appendSafely<FieldSubscriptionRequestType>( item ); }
 };
-
 
 // Message QuoteStatusReport
 class QuoteStatusReportBuilder: protected ReusableMessageBuilder
@@ -5466,7 +5338,6 @@ class QuoteStatusReportBuilder: protected ReusableMessageBuilder
      void appendEncodedText( const std::string_view & value ){ appendSafely<FieldEncodedText>( value ); }
 };
 
-
 // Message QuoteResponse
 class QuoteResponseBuilder: protected ReusableMessageBuilder
 {
@@ -5625,7 +5496,6 @@ class QuoteResponseBuilder: protected ReusableMessageBuilder
      void appendYieldRedemptionPriceType( const int & value ){ appendSafely<FieldYieldRedemptionPriceType>( value ); }
 };
 
-
 // Message Confirmation
 class ConfirmationBuilder: protected ReusableMessageBuilder
 {
@@ -5781,7 +5651,6 @@ class ConfirmationBuilder: protected ReusableMessageBuilder
      MiscFeesBuilder & appendNoMiscFees( unsigned count ) { appendSafely<FieldNoMiscFees>( count ); return *reinterpret_cast<MiscFeesBuilder*>( this ); }
 };
 
-
 // Message PositionMaintenanceRequest
 class PositionMaintenanceRequestBuilder: protected ReusableMessageBuilder
 {
@@ -5862,7 +5731,6 @@ class PositionMaintenanceRequestBuilder: protected ReusableMessageBuilder
      void appendEncodedTextLen( const unsigned & value ){ appendSafely<FieldEncodedTextLen>( value ); }
      void appendEncodedText( const std::string_view & value ){ appendSafely<FieldEncodedText>( value ); }
 };
-
 
 // Message PositionMaintenanceReport
 class PositionMaintenanceReportBuilder: protected ReusableMessageBuilder
@@ -5946,7 +5814,6 @@ class PositionMaintenanceReportBuilder: protected ReusableMessageBuilder
      void appendEncodedText( const std::string_view & value ){ appendSafely<FieldEncodedText>( value ); }
 };
 
-
 // Message RequestForPositions
 class RequestForPositionsBuilder: protected ReusableMessageBuilder
 {
@@ -6024,7 +5891,6 @@ class RequestForPositionsBuilder: protected ReusableMessageBuilder
      void appendEncodedText( const std::string_view & value ){ appendSafely<FieldEncodedText>( value ); }
 };
 
-
 // Message RequestForPositionsAck
 class RequestForPositionsAckBuilder: protected ReusableMessageBuilder
 {
@@ -6097,7 +5963,6 @@ class RequestForPositionsAckBuilder: protected ReusableMessageBuilder
      void appendEncodedTextLen( const unsigned & value ){ appendSafely<FieldEncodedTextLen>( value ); }
      void appendEncodedText( const std::string_view & value ){ appendSafely<FieldEncodedText>( value ); }
 };
-
 
 // Message PositionReport
 class PositionReportBuilder: protected ReusableMessageBuilder
@@ -6183,7 +6048,6 @@ class PositionReportBuilder: protected ReusableMessageBuilder
      void appendEncodedText( const std::string_view & value ){ appendSafely<FieldEncodedText>( value ); }
 };
 
-
 // Message TradeCaptureReportRequestAck
 class TradeCaptureReportRequestAckBuilder: protected ReusableMessageBuilder
 {
@@ -6252,7 +6116,6 @@ class TradeCaptureReportRequestAckBuilder: protected ReusableMessageBuilder
      void appendEncodedTextLen( const unsigned & value ){ appendSafely<FieldEncodedTextLen>( value ); }
      void appendEncodedText( const std::string_view & value ){ appendSafely<FieldEncodedText>( value ); }
 };
-
 
 // Message TradeCaptureReportAck
 class TradeCaptureReportAckBuilder: protected ReusableMessageBuilder
@@ -6345,7 +6208,6 @@ class TradeCaptureReportAckBuilder: protected ReusableMessageBuilder
      void appendPreallocMethod( const FieldPreallocMethod::EnumType & item ){ appendSafely<FieldPreallocMethod>( item ); }
      AllocsBuilder & appendNoAllocs( unsigned count ) { appendSafely<FieldNoAllocs>( count ); return *reinterpret_cast<AllocsBuilder*>( this ); }
 };
-
 
 // Message AllocationReport
 class AllocationReportBuilder: protected ReusableMessageBuilder
@@ -6496,7 +6358,6 @@ class AllocationReportBuilder: protected ReusableMessageBuilder
      AllocsBuilder & appendNoAllocs( unsigned count ) { appendSafely<FieldNoAllocs>( count ); return *reinterpret_cast<AllocsBuilder*>( this ); }
 };
 
-
 // Message AllocationReportAck
 class AllocationReportAckBuilder: protected ReusableMessageBuilder
 {
@@ -6526,7 +6387,6 @@ class AllocationReportAckBuilder: protected ReusableMessageBuilder
      AllocsBuilder & appendNoAllocs( unsigned count ) { appendSafely<FieldNoAllocs>( count ); return *reinterpret_cast<AllocsBuilder*>( this ); }
 };
 
-
 // Message ConfirmationAck
 class ConfirmationAckBuilder: protected ReusableMessageBuilder
 {
@@ -6547,7 +6407,6 @@ class ConfirmationAckBuilder: protected ReusableMessageBuilder
      void appendEncodedTextLen( const unsigned & value ){ appendSafely<FieldEncodedTextLen>( value ); }
      void appendEncodedText( const std::string_view & value ){ appendSafely<FieldEncodedText>( value ); }
 };
-
 
 // Message SettlementInstructionRequest
 class SettlementInstructionRequestBuilder: protected ReusableMessageBuilder
@@ -6578,7 +6437,6 @@ class SettlementInstructionRequestBuilder: protected ReusableMessageBuilder
      void appendStandInstDbName( const std::string_view & value ){ appendSafely<FieldStandInstDbName>( value ); }
      void appendStandInstDbID( const std::string_view & value ){ appendSafely<FieldStandInstDbID>( value ); }
 };
-
 
 // Message AssignmentReport
 class AssignmentReportBuilder: protected ReusableMessageBuilder
@@ -6663,7 +6521,6 @@ class AssignmentReportBuilder: protected ReusableMessageBuilder
      void appendEncodedTextLen( const unsigned & value ){ appendSafely<FieldEncodedTextLen>( value ); }
      void appendEncodedText( const std::string_view & value ){ appendSafely<FieldEncodedText>( value ); }
 };
-
 
 // Message CollateralRequest
 class CollateralRequestBuilder: protected ReusableMessageBuilder
@@ -6781,7 +6638,6 @@ class CollateralRequestBuilder: protected ReusableMessageBuilder
      void appendEncodedTextLen( const unsigned & value ){ appendSafely<FieldEncodedTextLen>( value ); }
      void appendEncodedText( const std::string_view & value ){ appendSafely<FieldEncodedText>( value ); }
 };
-
 
 // Message CollateralAssignment
 class CollateralAssignmentBuilder: protected ReusableMessageBuilder
@@ -6908,7 +6764,6 @@ class CollateralAssignmentBuilder: protected ReusableMessageBuilder
      void appendEncodedText( const std::string_view & value ){ appendSafely<FieldEncodedText>( value ); }
 };
 
-
 // Message CollateralResponse
 class CollateralResponseBuilder: protected ReusableMessageBuilder
 {
@@ -7023,7 +6878,6 @@ class CollateralResponseBuilder: protected ReusableMessageBuilder
      void appendEncodedTextLen( const unsigned & value ){ appendSafely<FieldEncodedTextLen>( value ); }
      void appendEncodedText( const std::string_view & value ){ appendSafely<FieldEncodedText>( value ); }
 };
-
 
 // Message CollateralReport
 class CollateralReportBuilder: protected ReusableMessageBuilder
@@ -7146,7 +7000,6 @@ class CollateralReportBuilder: protected ReusableMessageBuilder
      void appendEncodedText( const std::string_view & value ){ appendSafely<FieldEncodedText>( value ); }
 };
 
-
 // Message CollateralInquiry
 class CollateralInquiryBuilder: protected ReusableMessageBuilder
 {
@@ -7267,7 +7120,6 @@ class CollateralInquiryBuilder: protected ReusableMessageBuilder
      void appendEncodedText( const std::string_view & value ){ appendSafely<FieldEncodedText>( value ); }
 };
 
-
 // Message NetworkCounterpartySystemStatusRequest
 class NetworkCounterpartySystemStatusRequestBuilder: protected ReusableMessageBuilder
 {
@@ -7281,7 +7133,6 @@ class NetworkCounterpartySystemStatusRequestBuilder: protected ReusableMessageBu
      void appendNetworkRequestID( const std::string_view & value ){ appendSafely<FieldNetworkRequestID>( value ); }
      CompIDsBuilder & appendNoCompIDs( unsigned count ) { appendSafely<FieldNoCompIDs>( count ); return *reinterpret_cast<CompIDsBuilder*>( this ); }
 };
-
 
 // Message NetworkCounterpartySystemStatusResponse
 class NetworkCounterpartySystemStatusResponseBuilder: protected ReusableMessageBuilder
@@ -7298,7 +7149,6 @@ class NetworkCounterpartySystemStatusResponseBuilder: protected ReusableMessageB
      void appendLastNetworkResponseID( const std::string_view & value ){ appendSafely<FieldLastNetworkResponseID>( value ); }
      CompIDsBuilder & appendNoCompIDs( unsigned count ) { appendSafely<FieldNoCompIDs>( count ); return *reinterpret_cast<CompIDsBuilder*>( this ); }
 };
-
 
 // Message UserRequest
 class UserRequestBuilder: protected ReusableMessageBuilder
@@ -7318,7 +7168,6 @@ class UserRequestBuilder: protected ReusableMessageBuilder
      void appendRawData( const std::string_view & value ){ appendSafely<FieldRawData>( value ); }
 };
 
-
 // Message UserResponse
 class UserResponseBuilder: protected ReusableMessageBuilder
 {
@@ -7333,7 +7182,6 @@ class UserResponseBuilder: protected ReusableMessageBuilder
      void appendUserStatus( const FieldUserStatus::EnumType & item ){ appendSafely<FieldUserStatus>( item ); }
      void appendUserStatusText( const std::string_view & value ){ appendSafely<FieldUserStatusText>( value ); }
 };
-
 
 // Message CollateralInquiryAck
 class CollateralInquiryAckBuilder: protected ReusableMessageBuilder
@@ -7429,7 +7277,6 @@ class CollateralInquiryAckBuilder: protected ReusableMessageBuilder
      void appendEncodedTextLen( const unsigned & value ){ appendSafely<FieldEncodedTextLen>( value ); }
      void appendEncodedText( const std::string_view & value ){ appendSafely<FieldEncodedText>( value ); }
 };
-
 
 // Message ConfirmationRequest
 class ConfirmationRequestBuilder: protected ReusableMessageBuilder

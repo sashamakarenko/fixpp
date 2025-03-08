@@ -110,9 +110,7 @@ extern const char * const FixNestedPartySubID;
 extern const char * const FixNoNestedPartySubIDs;
 extern const char * const FixNestedPartySubIDType;
 
-
 // -------------------------------------- typedefs and enums ----------------------------------------
-
 
 typedef Field< FixAccount, 1, STRING > FieldAccount;
 typedef Field< FixAvgPx, 6, PRICE > FieldAvgPx;
@@ -169,7 +167,6 @@ typedef Field< FixNoNestedPartyIDs, 539, NUMINGROUP > FieldNoNestedPartyIDs;
 typedef Field< FixNestedPartySubID, 545, STRING > FieldNestedPartySubID;
 typedef Field< FixNoNestedPartySubIDs, 804, NUMINGROUP > FieldNoNestedPartySubIDs;
 typedef Field< FixNestedPartySubIDType, 805, INT > FieldNestedPartySubIDType;
-
 
 struct QtyTypeEnums final: FieldEnumsBase {
    typedef FieldQtyType::ValueType ValueType;
@@ -346,7 +343,6 @@ struct OrdTypeEnums final: FieldEnumsBase {
    static const ItemType BAD_ENUM;
    static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
-
 
 struct SideEnums final: FieldEnumsBase {
    typedef FieldSide::ValueType ValueType;
@@ -644,11 +640,9 @@ struct SecurityTypeEnums final: FieldEnumsBase {
    static constexpr ValueType ITEM_BAD_ENUM = BadEnum<ValueType>::value;
 };
 
-
 // -------------------------------------- convenience field namespace ----------------------------------------
 namespace field
 {
-
 
 typedef FieldAccount Account;
 typedef FieldAvgPx AvgPx;
@@ -705,7 +699,6 @@ typedef FieldNoNestedPartyIDs NoNestedPartyIDs;
 typedef FieldNestedPartySubID NestedPartySubID;
 typedef FieldNoNestedPartySubIDs NoNestedPartySubIDs;
 typedef FieldNestedPartySubIDType NestedPartySubIDType;
-
 
 }
 

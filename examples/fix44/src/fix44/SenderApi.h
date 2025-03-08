@@ -114,7 +114,7 @@ inline char * reverseUIntToString( char * ptr, unsigned value )
 {
     do
     {
-        *(--ptr) = '0' + (value % 10);
+        *(--ptr) = '0' + ( value % 10 );
         value /= 10;
     } while ( value > 0 );
     return ptr;
@@ -126,7 +126,7 @@ inline char * reverseUIntToString( char * ptr, unsigned value, unsigned & chksum
 {
     do
     {
-        char c = '0' + (value % 10);
+        char c = '0' + ( value % 10 );
         *(--ptr) = c;
         chksum += (unsigned)c;
         value /= 10;
@@ -134,7 +134,7 @@ inline char * reverseUIntToString( char * ptr, unsigned value, unsigned & chksum
     return ptr;
 }
 
-// Formats value from right to left, zero pads it if necesary, and computes check sum of the inserted string.
+// Formats value from right to left, zero pads it if necessary, and computes check sum of the inserted string.
 // @return next left most position.
 inline char * reversePaddedUIntToString( char * ptr, unsigned value, unsigned width, unsigned & chksum )
 {
@@ -174,7 +174,7 @@ class FixBufferStream
         template< typename FIELD >
         FixBufferStream & pushTag()
         {
-            _end = insert<FIELD>(_end);
+            _end = insert<FIELD>( _end );
             return *this;
         }
 
@@ -299,28 +299,28 @@ class FixBufferStream
         template< typename FIELD >
         FixBufferStream & append( const char * v, unsigned len )
         {
-            _end = insert<FIELD>(_end);
+            _end = insert<FIELD>( _end );
             return pushValue( v, len );
         }
 
         template< typename FIELD, typename VALUE >
         FixBufferStream & append( const VALUE & v )
         {
-            _end = insert<FIELD>(_end);
+            _end = insert<FIELD>( _end );
             return pushValue( v );
         }
 
         template< typename FIELD >
         FixBufferStream & append( double v, unsigned precision )
         {
-            _end = insert<FIELD>(_end);
+            _end = insert<FIELD>( _end );
             return pushValue( v, precision );
         }
 
         template< typename FIELD >
         FixBufferStream & append( TimestampKeeper & v, const TimePoint & tp = ClockType::now() )
         {
-            _end = insert<FIELD>(_end);
+            _end = insert<FIELD>( _end );
             return pushValue( v, tp );
         }
 
@@ -585,7 +585,7 @@ FixBufferStream & FixBufferStream::pushValue( TimestampKeeper & tk, const TimePo
 template< typename FIELD >
 inline FixBufferStream & FixBufferStream::append( const TimePoint & tp, ClockPrecision precision )
 {
-    _end = insert<FIELD>(_end);
+    _end = insert<FIELD>( _end );
     TimestampKeeper tmp( nullptr, precision );
     return pushValue( tmp, tp );
 }
@@ -787,7 +787,7 @@ class ReusableMessageBuilder: public FixBufferStream
         FixBufferStream & appendSafely( const char * v, unsigned len )
         {
             resizeIfNecessary( len );
-            _end = insert<FIELD>(_end);
+            _end = insert<FIELD>( _end );
             return pushValue( v, len );
         }
 
@@ -795,7 +795,7 @@ class ReusableMessageBuilder: public FixBufferStream
         FixBufferStream & appendSafely( const VALUE & v )
         {
             resizeIfNecessary( valueMaxLength(v) );
-            _end = insert<FIELD>(_end);
+            _end = insert<FIELD>( _end );
             return pushValue( v );
         }
 
@@ -803,7 +803,7 @@ class ReusableMessageBuilder: public FixBufferStream
         FixBufferStream & appendSafely( double v, unsigned precision )
         {
             resizeIfNecessary( 16 ); // formatted floating point max length ?
-            _end = insert<FIELD>(_end);
+            _end = insert<FIELD>( _end );
             return pushValue( v, precision );
         }
 
@@ -811,7 +811,7 @@ class ReusableMessageBuilder: public FixBufferStream
         FixBufferStream & appendSafely( TimestampKeeper & v, const TimePoint & tp = ClockType::now() )
         {
             resizeIfNecessary( TimestampKeeper::DATE_TIME_NANOS_LENGTH );
-            _end = insert<FIELD>(_end);
+            _end = insert<FIELD>( _end );
             return pushValue( v, tp );
         }
 
@@ -826,7 +826,7 @@ class ReusableMessageBuilder: public FixBufferStream
         char * spanSafely( unsigned valueLength )
         {
             resizeIfNecessary( valueLength );
-            _end = insert<FIELD>(_end);
+            _end = insert<FIELD>( _end );
             return span( valueLength );
         }
 

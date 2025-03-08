@@ -355,7 +355,7 @@ class Float
         Int  _int   = 0;
         Dot  _dot   = 0;
         Flag _flags = Flag::CLEAR;
-};
+} __attribute__((packed));
 
 constexpr Float FLOAT_0  ( 0,0);
 constexpr Float FLOAT_1  ( 1,0);

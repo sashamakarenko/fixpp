@@ -26,7 +26,6 @@ const std::string & MessageHeader::getMessageType(){
      return EMPTY_STRING;
 }
 
-
 const char * MessageNewOrderSingle::getMessageName(){
      return "NewOrderSingle";
 }
@@ -35,7 +34,6 @@ const std::string & MessageNewOrderSingle::getMessageType(){
      return MsgTypeEnums::NEW_ORDER_SINGLE.str;
 }
 
-
 const char * MessageExecutionReport::getMessageName(){
      return "ExecutionReport";
 }
@@ -43,7 +41,6 @@ const char * MessageExecutionReport::getMessageName(){
 const std::string & MessageExecutionReport::getMessageType(){
      return MsgTypeEnums::EXECUTION_REPORT.str;
 }
-
 
 // ---------------------------------- fields ---------------------------------
 
@@ -56,7 +53,6 @@ GetDepthMethod MessageNewOrderSingle::groupGetDepthMethods[] = {
 GetDepthMethod MessageExecutionReport::groupGetDepthMethods[] = {
   GroupLegs::getFieldDepth,
   nullptr };
-
 
 FieldDepth MessageHeader::getFieldDepth( raw_tag_t tag ){
    FieldDepth ret;
@@ -147,7 +143,6 @@ FieldDepth MessageExecutionReport::getFieldDepth( raw_tag_t tag ){
    return ret;
 }
 
-
 // ---------------------------------- getFieldValue ---------------------------------
 
 const char * MessageHeader::getFieldValue( unsigned tag ) const {
@@ -223,7 +218,6 @@ const char * MessageExecutionReport::getFieldValue( unsigned tag ) const {
    }
    return nullptr;
 }
-
 
 // ---------------------------------- isFieldSet ---------------------------------
 
@@ -301,7 +295,6 @@ bool MessageExecutionReport::isFieldSet( unsigned tag ) const {
    return false;
 }
 
-
 // ---------------------------------- getKnownFields ---------------------------------
 namespace {
 
@@ -363,13 +356,11 @@ FieldCheckSum::TAG };
 
 }
 
-
 const std::vector<tag_t> & MessageHeader::getKnownFields(){ return Header_knownFields; }
 
 const std::vector<tag_t> & MessageNewOrderSingle::getKnownFields(){ return NewOrderSingle_knownFields; }
 
 const std::vector<tag_t> & MessageExecutionReport::getKnownFields(){ return ExecutionReport_knownFields; }
-
 
 GetDepthMethod getTagDepthMethodByRawMsgType( raw_enum_t rawMsgType ){
   switch( rawMsgType ){
@@ -386,9 +377,7 @@ GetDepthMethod getTagDepthMethodByRawMsgType( raw_enum_t rawMsgType ){
   return nullptr;
 }
 
-
 // -------------------------------------- ParserDispatcher ----------------------------------------
-
 
 const char * ParserDispatcher::parseAndDipatch( const char * buf, unsigned len, bool resetMessage )
 {
@@ -416,17 +405,6 @@ const char * ParserDispatcher::parseAndDipatch( const char * buf, unsigned len, 
     {
 
 
-// case-begin-_
-// After generation one can sed this out if _ is not incoming message
-      case MsgTypeRaw__ : {
-       if( resetMessage ) _msgHeader.reset();
-       pos = _msgHeader.scan( buf, len - pos );
-       onMessage( _msgHeader );
-       break;
-      }
-// case-end-_
-
-
 // case-begin-NEW_ORDER_SINGLE
 // After generation one can sed this out if NEW_ORDER_SINGLE is not incoming message
       case MsgTypeRaw_NEW_ORDER_SINGLE : {
@@ -436,7 +414,6 @@ const char * ParserDispatcher::parseAndDipatch( const char * buf, unsigned len, 
        break;
       }
 // case-end-NEW_ORDER_SINGLE
-
 
 // case-begin-EXECUTION_REPORT
 // After generation one can sed this out if EXECUTION_REPORT is not incoming message
@@ -448,7 +425,6 @@ const char * ParserDispatcher::parseAndDipatch( const char * buf, unsigned len, 
       }
 // case-end-EXECUTION_REPORT
 
-
       default:
         onUnknownMessage( msgType );
         return endOfMessage;
@@ -456,26 +432,24 @@ const char * ParserDispatcher::parseAndDipatch( const char * buf, unsigned len, 
     return buf + pos;
 }
 
-void ParserDispatcher::onMessage( MessageHeader & msg )
-{
-   unprocessedMessage( MsgTypeRaw__, msg ); 
-   msg.reset(); 
-}
 
-
+// on-message-begin-NEW_ORDER_SINGLE
+// After generation one can sed this out if NEW_ORDER_SINGLE is not incoming message
 void ParserDispatcher::onMessage( MessageNewOrderSingle & msg )
 {
    unprocessedMessage( MsgTypeRaw_NEW_ORDER_SINGLE, msg ); 
    msg.reset(); 
 }
+// on-message-end-NEW_ORDER_SINGLE
 
-
+// on-message-begin-EXECUTION_REPORT
+// After generation one can sed this out if EXECUTION_REPORT is not incoming message
 void ParserDispatcher::onMessage( MessageExecutionReport & msg )
 {
    unprocessedMessage( MsgTypeRaw_EXECUTION_REPORT, msg ); 
    msg.reset(); 
 }
-
+// on-message-end-EXECUTION_REPORT
 
 // end of Messages.cxx
 

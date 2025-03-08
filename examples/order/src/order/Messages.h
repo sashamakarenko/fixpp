@@ -20,7 +20,6 @@ GetDepthMethod getTagDepthMethodByRawMsgType( raw_enum_t rawMsgType );
 
 // Generated
 
-
 class MessageHeader: public MessageBase
 {
   
@@ -552,7 +551,6 @@ class MessageExecutionReport: public MessageBase
    private: FieldCheckSum fieldCheckSum;
 };
 
-
 class ParserDispatcher
 {
    public:
@@ -575,33 +573,27 @@ class ParserDispatcher
 
      
 // dispatching
- 
-// onHeader will never be called
 
 
-     virtual void onMessage( MessageHeader & msg );
-
-
+// on-message-begin-NEW_ORDER_SINGLE
+// After generation one can sed this out if NEW_ORDER_SINGLE is not incoming message
      virtual void onMessage( MessageNewOrderSingle & msg );
+// on-message-end-NEW_ORDER_SINGLE
 
-
+// on-message-begin-EXECUTION_REPORT
+// After generation one can sed this out if EXECUTION_REPORT is not incoming message
      virtual void onMessage( MessageExecutionReport & msg );
-
+// on-message-end-EXECUTION_REPORT
 
    private:
 
-
      MessageHeader _msgHeader;
-
 
      MessageNewOrderSingle _msgNewOrderSingle;
 
-
      MessageExecutionReport _msgExecutionReport;
 
-
 };
-
 
 // -------------------------------------- convenience message namespace ----------------------------------------
 namespace message
@@ -609,12 +601,9 @@ namespace message
 
 typedef MessageHeader Header;
 
-
 typedef MessageNewOrderSingle NewOrderSingle;
 
-
 typedef MessageExecutionReport ExecutionReport;
-
 
 }
 // end of Messages.hxx

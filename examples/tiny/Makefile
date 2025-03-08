@@ -52,7 +52,11 @@ generate: build/fixgenerated.mk
 
 src/$(PRJ_NAME)/FixApi.h: $(wildcard src/spec/*.def) $(wildcard $(FIXPP_DIR)/src/*.*) $(FIXPP_DIR)/generate.sh
 	$(V)$(FIXPP_DIR)/generate.sh --clean-fields -d $$PWD/src/$(PRJ_NAME) -s $$PWD/src/spec -i $(PRJ_NAME) -n $(PRJ_NAME) -p $$PWD/src/gdb
-	$(V)for mt in _ $(OUTBOUND_MESAGES); do sed "/case-begin-$$mt/,/case-end-$$mt/d" -i src/$(PRJ_NAME)/Messages.cpp; done
+	$(V)for mt in $(OUTBOUND_MESAGES); do\
+	    sed "/case-begin-$$mt/,/case-end-$$mt/d" -i src/$(PRJ_NAME)/Messages.cpp;\
+	    sed "/on-message-begin-$$mt/,/on-message-end-$$mt/d" -i src/$(PRJ_NAME)/Messages.h;\
+	    sed "/on-message-begin-$$mt/,/on-message-end-$$mt/d" -i src/$(PRJ_NAME)/Messages.cpp;\
+	done
 
 endif
 

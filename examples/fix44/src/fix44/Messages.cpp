@@ -26,7 +26,6 @@ const std::string & MessageHeader::getMessageType(){
      return EMPTY_STRING;
 }
 
-
 const char * MessageHeartbeat::getMessageName(){
      return "Heartbeat";
 }
@@ -34,7 +33,6 @@ const char * MessageHeartbeat::getMessageName(){
 const std::string & MessageHeartbeat::getMessageType(){
      return MsgTypeEnums::HEARTBEAT.str;
 }
-
 
 const char * MessageTestRequest::getMessageName(){
      return "TestRequest";
@@ -44,7 +42,6 @@ const std::string & MessageTestRequest::getMessageType(){
      return MsgTypeEnums::TEST_REQUEST.str;
 }
 
-
 const char * MessageResendRequest::getMessageName(){
      return "ResendRequest";
 }
@@ -52,7 +49,6 @@ const char * MessageResendRequest::getMessageName(){
 const std::string & MessageResendRequest::getMessageType(){
      return MsgTypeEnums::RESEND_REQUEST.str;
 }
-
 
 const char * MessageReject::getMessageName(){
      return "Reject";
@@ -62,7 +58,6 @@ const std::string & MessageReject::getMessageType(){
      return MsgTypeEnums::REJECT.str;
 }
 
-
 const char * MessageSequenceReset::getMessageName(){
      return "SequenceReset";
 }
@@ -70,7 +65,6 @@ const char * MessageSequenceReset::getMessageName(){
 const std::string & MessageSequenceReset::getMessageType(){
      return MsgTypeEnums::SEQUENCE_RESET.str;
 }
-
 
 const char * MessageLogout::getMessageName(){
      return "Logout";
@@ -80,7 +74,6 @@ const std::string & MessageLogout::getMessageType(){
      return MsgTypeEnums::LOGOUT.str;
 }
 
-
 const char * MessageIOI::getMessageName(){
      return "IOI";
 }
@@ -88,7 +81,6 @@ const char * MessageIOI::getMessageName(){
 const std::string & MessageIOI::getMessageType(){
      return MsgTypeEnums::INDICATION_OF_INTEREST.str;
 }
-
 
 const char * MessageAdvertisement::getMessageName(){
      return "Advertisement";
@@ -98,7 +90,6 @@ const std::string & MessageAdvertisement::getMessageType(){
      return MsgTypeEnums::ADVERTISEMENT.str;
 }
 
-
 const char * MessageExecutionReport::getMessageName(){
      return "ExecutionReport";
 }
@@ -106,7 +97,6 @@ const char * MessageExecutionReport::getMessageName(){
 const std::string & MessageExecutionReport::getMessageType(){
      return MsgTypeEnums::EXECUTION_REPORT.str;
 }
-
 
 const char * MessageOrderCancelReject::getMessageName(){
      return "OrderCancelReject";
@@ -116,7 +106,6 @@ const std::string & MessageOrderCancelReject::getMessageType(){
      return MsgTypeEnums::ORDER_CANCEL_REJECT.str;
 }
 
-
 const char * MessageLogon::getMessageName(){
      return "Logon";
 }
@@ -124,7 +113,6 @@ const char * MessageLogon::getMessageName(){
 const std::string & MessageLogon::getMessageType(){
      return MsgTypeEnums::LOGON.str;
 }
-
 
 const char * MessageNews::getMessageName(){
      return "News";
@@ -134,7 +122,6 @@ const std::string & MessageNews::getMessageType(){
      return MsgTypeEnums::NEWS.str;
 }
 
-
 const char * MessageEmail::getMessageName(){
      return "Email";
 }
@@ -142,7 +129,6 @@ const char * MessageEmail::getMessageName(){
 const std::string & MessageEmail::getMessageType(){
      return MsgTypeEnums::EMAIL.str;
 }
-
 
 const char * MessageNewOrderSingle::getMessageName(){
      return "NewOrderSingle";
@@ -152,7 +138,6 @@ const std::string & MessageNewOrderSingle::getMessageType(){
      return MsgTypeEnums::ORDER_SINGLE.str;
 }
 
-
 const char * MessageNewOrderList::getMessageName(){
      return "NewOrderList";
 }
@@ -160,7 +145,6 @@ const char * MessageNewOrderList::getMessageName(){
 const std::string & MessageNewOrderList::getMessageType(){
      return MsgTypeEnums::ORDER_LIST.str;
 }
-
 
 const char * MessageOrderCancelRequest::getMessageName(){
      return "OrderCancelRequest";
@@ -170,7 +154,6 @@ const std::string & MessageOrderCancelRequest::getMessageType(){
      return MsgTypeEnums::ORDER_CANCEL_REQUEST.str;
 }
 
-
 const char * MessageOrderCancelReplaceRequest::getMessageName(){
      return "OrderCancelReplaceRequest";
 }
@@ -178,7 +161,6 @@ const char * MessageOrderCancelReplaceRequest::getMessageName(){
 const std::string & MessageOrderCancelReplaceRequest::getMessageType(){
      return MsgTypeEnums::ORDER_CANCEL_REPLACE_REQUEST.str;
 }
-
 
 const char * MessageOrderStatusRequest::getMessageName(){
      return "OrderStatusRequest";
@@ -188,7 +170,6 @@ const std::string & MessageOrderStatusRequest::getMessageType(){
      return MsgTypeEnums::ORDER_STATUS_REQUEST.str;
 }
 
-
 const char * MessageAllocationInstruction::getMessageName(){
      return "AllocationInstruction";
 }
@@ -196,7 +177,6 @@ const char * MessageAllocationInstruction::getMessageName(){
 const std::string & MessageAllocationInstruction::getMessageType(){
      return MsgTypeEnums::ALLOCATION_INSTRUCTION.str;
 }
-
 
 const char * MessageListCancelRequest::getMessageName(){
      return "ListCancelRequest";
@@ -206,7 +186,6 @@ const std::string & MessageListCancelRequest::getMessageType(){
      return MsgTypeEnums::LIST_CANCEL_REQUEST.str;
 }
 
-
 const char * MessageListExecute::getMessageName(){
      return "ListExecute";
 }
@@ -214,7 +193,6 @@ const char * MessageListExecute::getMessageName(){
 const std::string & MessageListExecute::getMessageType(){
      return MsgTypeEnums::LIST_EXECUTE.str;
 }
-
 
 const char * MessageListStatusRequest::getMessageName(){
      return "ListStatusRequest";
@@ -224,7 +202,6 @@ const std::string & MessageListStatusRequest::getMessageType(){
      return MsgTypeEnums::LIST_STATUS_REQUEST.str;
 }
 
-
 const char * MessageListStatus::getMessageName(){
      return "ListStatus";
 }
@@ -232,7 +209,6 @@ const char * MessageListStatus::getMessageName(){
 const std::string & MessageListStatus::getMessageType(){
      return MsgTypeEnums::LIST_STATUS.str;
 }
-
 
 const char * MessageAllocationInstructionAck::getMessageName(){
      return "AllocationInstructionAck";
@@ -242,7 +218,6 @@ const std::string & MessageAllocationInstructionAck::getMessageType(){
      return MsgTypeEnums::ALLOCATION_INSTRUCTION_ACK.str;
 }
 
-
 const char * MessageDontKnowTrade::getMessageName(){
      return "DontKnowTrade";
 }
@@ -250,7 +225,6 @@ const char * MessageDontKnowTrade::getMessageName(){
 const std::string & MessageDontKnowTrade::getMessageType(){
      return MsgTypeEnums::DONT_KNOW_TRADE.str;
 }
-
 
 const char * MessageQuoteRequest::getMessageName(){
      return "QuoteRequest";
@@ -260,7 +234,6 @@ const std::string & MessageQuoteRequest::getMessageType(){
      return MsgTypeEnums::QUOTE_REQUEST.str;
 }
 
-
 const char * MessageQuote::getMessageName(){
      return "Quote";
 }
@@ -268,7 +241,6 @@ const char * MessageQuote::getMessageName(){
 const std::string & MessageQuote::getMessageType(){
      return MsgTypeEnums::QUOTE.str;
 }
-
 
 const char * MessageSettlementInstructions::getMessageName(){
      return "SettlementInstructions";
@@ -278,7 +250,6 @@ const std::string & MessageSettlementInstructions::getMessageType(){
      return MsgTypeEnums::SETTLEMENT_INSTRUCTIONS.str;
 }
 
-
 const char * MessageMarketDataRequest::getMessageName(){
      return "MarketDataRequest";
 }
@@ -286,7 +257,6 @@ const char * MessageMarketDataRequest::getMessageName(){
 const std::string & MessageMarketDataRequest::getMessageType(){
      return MsgTypeEnums::MARKET_DATA_REQUEST.str;
 }
-
 
 const char * MessageMarketDataSnapshotFullRefresh::getMessageName(){
      return "MarketDataSnapshotFullRefresh";
@@ -296,7 +266,6 @@ const std::string & MessageMarketDataSnapshotFullRefresh::getMessageType(){
      return MsgTypeEnums::MARKET_DATA_SNAPSHOT_FULL_REFRESH.str;
 }
 
-
 const char * MessageMarketDataIncrementalRefresh::getMessageName(){
      return "MarketDataIncrementalRefresh";
 }
@@ -304,7 +273,6 @@ const char * MessageMarketDataIncrementalRefresh::getMessageName(){
 const std::string & MessageMarketDataIncrementalRefresh::getMessageType(){
      return MsgTypeEnums::MARKET_DATA_INCREMENTAL_REFRESH.str;
 }
-
 
 const char * MessageMarketDataRequestReject::getMessageName(){
      return "MarketDataRequestReject";
@@ -314,7 +282,6 @@ const std::string & MessageMarketDataRequestReject::getMessageType(){
      return MsgTypeEnums::MARKET_DATA_REQUEST_REJECT.str;
 }
 
-
 const char * MessageQuoteCancel::getMessageName(){
      return "QuoteCancel";
 }
@@ -322,7 +289,6 @@ const char * MessageQuoteCancel::getMessageName(){
 const std::string & MessageQuoteCancel::getMessageType(){
      return MsgTypeEnums::QUOTE_CANCEL.str;
 }
-
 
 const char * MessageQuoteStatusRequest::getMessageName(){
      return "QuoteStatusRequest";
@@ -332,7 +298,6 @@ const std::string & MessageQuoteStatusRequest::getMessageType(){
      return MsgTypeEnums::QUOTE_STATUS_REQUEST.str;
 }
 
-
 const char * MessageMassQuoteAcknowledgement::getMessageName(){
      return "MassQuoteAcknowledgement";
 }
@@ -340,7 +305,6 @@ const char * MessageMassQuoteAcknowledgement::getMessageName(){
 const std::string & MessageMassQuoteAcknowledgement::getMessageType(){
      return MsgTypeEnums::MASS_QUOTE_ACKNOWLEDGEMENT.str;
 }
-
 
 const char * MessageSecurityDefinitionRequest::getMessageName(){
      return "SecurityDefinitionRequest";
@@ -350,7 +314,6 @@ const std::string & MessageSecurityDefinitionRequest::getMessageType(){
      return MsgTypeEnums::SECURITY_DEFINITION_REQUEST.str;
 }
 
-
 const char * MessageSecurityDefinition::getMessageName(){
      return "SecurityDefinition";
 }
@@ -358,7 +321,6 @@ const char * MessageSecurityDefinition::getMessageName(){
 const std::string & MessageSecurityDefinition::getMessageType(){
      return MsgTypeEnums::SECURITY_DEFINITION.str;
 }
-
 
 const char * MessageSecurityStatusRequest::getMessageName(){
      return "SecurityStatusRequest";
@@ -368,7 +330,6 @@ const std::string & MessageSecurityStatusRequest::getMessageType(){
      return MsgTypeEnums::SECURITY_STATUS_REQUEST.str;
 }
 
-
 const char * MessageSecurityStatus::getMessageName(){
      return "SecurityStatus";
 }
@@ -376,7 +337,6 @@ const char * MessageSecurityStatus::getMessageName(){
 const std::string & MessageSecurityStatus::getMessageType(){
      return MsgTypeEnums::SECURITY_STATUS.str;
 }
-
 
 const char * MessageTradingSessionStatusRequest::getMessageName(){
      return "TradingSessionStatusRequest";
@@ -386,7 +346,6 @@ const std::string & MessageTradingSessionStatusRequest::getMessageType(){
      return MsgTypeEnums::TRADING_SESSION_STATUS_REQUEST.str;
 }
 
-
 const char * MessageTradingSessionStatus::getMessageName(){
      return "TradingSessionStatus";
 }
@@ -394,7 +353,6 @@ const char * MessageTradingSessionStatus::getMessageName(){
 const std::string & MessageTradingSessionStatus::getMessageType(){
      return MsgTypeEnums::TRADING_SESSION_STATUS.str;
 }
-
 
 const char * MessageMassQuote::getMessageName(){
      return "MassQuote";
@@ -404,7 +362,6 @@ const std::string & MessageMassQuote::getMessageType(){
      return MsgTypeEnums::MASS_QUOTE.str;
 }
 
-
 const char * MessageBusinessMessageReject::getMessageName(){
      return "BusinessMessageReject";
 }
@@ -412,7 +369,6 @@ const char * MessageBusinessMessageReject::getMessageName(){
 const std::string & MessageBusinessMessageReject::getMessageType(){
      return MsgTypeEnums::BUSINESS_MESSAGE_REJECT.str;
 }
-
 
 const char * MessageBidRequest::getMessageName(){
      return "BidRequest";
@@ -422,7 +378,6 @@ const std::string & MessageBidRequest::getMessageType(){
      return MsgTypeEnums::BID_REQUEST.str;
 }
 
-
 const char * MessageBidResponse::getMessageName(){
      return "BidResponse";
 }
@@ -430,7 +385,6 @@ const char * MessageBidResponse::getMessageName(){
 const std::string & MessageBidResponse::getMessageType(){
      return MsgTypeEnums::BID_RESPONSE.str;
 }
-
 
 const char * MessageListStrikePrice::getMessageName(){
      return "ListStrikePrice";
@@ -440,7 +394,6 @@ const std::string & MessageListStrikePrice::getMessageType(){
      return MsgTypeEnums::LIST_STRIKE_PRICE.str;
 }
 
-
 const char * MessageXMLnonFIX::getMessageName(){
      return "XMLnonFIX";
 }
@@ -448,7 +401,6 @@ const char * MessageXMLnonFIX::getMessageName(){
 const std::string & MessageXMLnonFIX::getMessageType(){
      return MsgTypeEnums::XML_MESSAGE.str;
 }
-
 
 const char * MessageRegistrationInstructions::getMessageName(){
      return "RegistrationInstructions";
@@ -458,7 +410,6 @@ const std::string & MessageRegistrationInstructions::getMessageType(){
      return MsgTypeEnums::REGISTRATION_INSTRUCTIONS.str;
 }
 
-
 const char * MessageRegistrationInstructionsResponse::getMessageName(){
      return "RegistrationInstructionsResponse";
 }
@@ -466,7 +417,6 @@ const char * MessageRegistrationInstructionsResponse::getMessageName(){
 const std::string & MessageRegistrationInstructionsResponse::getMessageType(){
      return MsgTypeEnums::REGISTRATION_INSTRUCTIONS_RESPONSE.str;
 }
-
 
 const char * MessageOrderMassCancelRequest::getMessageName(){
      return "OrderMassCancelRequest";
@@ -476,7 +426,6 @@ const std::string & MessageOrderMassCancelRequest::getMessageType(){
      return MsgTypeEnums::ORDER_MASS_CANCEL_REQUEST.str;
 }
 
-
 const char * MessageOrderMassCancelReport::getMessageName(){
      return "OrderMassCancelReport";
 }
@@ -484,7 +433,6 @@ const char * MessageOrderMassCancelReport::getMessageName(){
 const std::string & MessageOrderMassCancelReport::getMessageType(){
      return MsgTypeEnums::ORDER_MASS_CANCEL_REPORT.str;
 }
-
 
 const char * MessageNewOrderCross::getMessageName(){
      return "NewOrderCross";
@@ -494,7 +442,6 @@ const std::string & MessageNewOrderCross::getMessageType(){
      return MsgTypeEnums::NEW_ORDER_s.str;
 }
 
-
 const char * MessageCrossOrderCancelReplaceRequest::getMessageName(){
      return "CrossOrderCancelReplaceRequest";
 }
@@ -502,7 +449,6 @@ const char * MessageCrossOrderCancelReplaceRequest::getMessageName(){
 const std::string & MessageCrossOrderCancelReplaceRequest::getMessageType(){
      return MsgTypeEnums::CROSS_ORDER_CANCEL_REPLACE_REQUEST.str;
 }
-
 
 const char * MessageCrossOrderCancelRequest::getMessageName(){
      return "CrossOrderCancelRequest";
@@ -512,7 +458,6 @@ const std::string & MessageCrossOrderCancelRequest::getMessageType(){
      return MsgTypeEnums::CROSS_ORDER_CANCEL_REQUEST.str;
 }
 
-
 const char * MessageSecurityTypeRequest::getMessageName(){
      return "SecurityTypeRequest";
 }
@@ -520,7 +465,6 @@ const char * MessageSecurityTypeRequest::getMessageName(){
 const std::string & MessageSecurityTypeRequest::getMessageType(){
      return MsgTypeEnums::SECURITY_TYPE_REQUEST.str;
 }
-
 
 const char * MessageSecurityTypes::getMessageName(){
      return "SecurityTypes";
@@ -530,7 +474,6 @@ const std::string & MessageSecurityTypes::getMessageType(){
      return MsgTypeEnums::SECURITY_TYPES.str;
 }
 
-
 const char * MessageSecurityListRequest::getMessageName(){
      return "SecurityListRequest";
 }
@@ -538,7 +481,6 @@ const char * MessageSecurityListRequest::getMessageName(){
 const std::string & MessageSecurityListRequest::getMessageType(){
      return MsgTypeEnums::SECURITY_LIST_REQUEST.str;
 }
-
 
 const char * MessageSecurityList::getMessageName(){
      return "SecurityList";
@@ -548,7 +490,6 @@ const std::string & MessageSecurityList::getMessageType(){
      return MsgTypeEnums::SECURITY_LIST.str;
 }
 
-
 const char * MessageDerivativeSecurityListRequest::getMessageName(){
      return "DerivativeSecurityListRequest";
 }
@@ -556,7 +497,6 @@ const char * MessageDerivativeSecurityListRequest::getMessageName(){
 const std::string & MessageDerivativeSecurityListRequest::getMessageType(){
      return MsgTypeEnums::DERIVATIVE_SECURITY_LIST_REQUEST.str;
 }
-
 
 const char * MessageDerivativeSecurityList::getMessageName(){
      return "DerivativeSecurityList";
@@ -566,7 +506,6 @@ const std::string & MessageDerivativeSecurityList::getMessageType(){
      return MsgTypeEnums::DERIVATIVE_SECURITY_LIST.str;
 }
 
-
 const char * MessageNewOrderMultileg::getMessageName(){
      return "NewOrderMultileg";
 }
@@ -574,7 +513,6 @@ const char * MessageNewOrderMultileg::getMessageName(){
 const std::string & MessageNewOrderMultileg::getMessageType(){
      return MsgTypeEnums::NEW_ORDER_AB.str;
 }
-
 
 const char * MessageMultilegOrderCancelReplace::getMessageName(){
      return "MultilegOrderCancelReplace";
@@ -584,7 +522,6 @@ const std::string & MessageMultilegOrderCancelReplace::getMessageType(){
      return MsgTypeEnums::MULTILEG_ORDER_CANCEL_REPLACE.str;
 }
 
-
 const char * MessageTradeCaptureReportRequest::getMessageName(){
      return "TradeCaptureReportRequest";
 }
@@ -592,7 +529,6 @@ const char * MessageTradeCaptureReportRequest::getMessageName(){
 const std::string & MessageTradeCaptureReportRequest::getMessageType(){
      return MsgTypeEnums::TRADE_CAPTURE_REPORT_REQUEST.str;
 }
-
 
 const char * MessageTradeCaptureReport::getMessageName(){
      return "TradeCaptureReport";
@@ -602,7 +538,6 @@ const std::string & MessageTradeCaptureReport::getMessageType(){
      return MsgTypeEnums::TRADE_CAPTURE_REPORT.str;
 }
 
-
 const char * MessageOrderMassStatusRequest::getMessageName(){
      return "OrderMassStatusRequest";
 }
@@ -610,7 +545,6 @@ const char * MessageOrderMassStatusRequest::getMessageName(){
 const std::string & MessageOrderMassStatusRequest::getMessageType(){
      return MsgTypeEnums::ORDER_MASS_STATUS_REQUEST.str;
 }
-
 
 const char * MessageQuoteRequestReject::getMessageName(){
      return "QuoteRequestReject";
@@ -620,7 +554,6 @@ const std::string & MessageQuoteRequestReject::getMessageType(){
      return MsgTypeEnums::QUOTE_REQUEST_REJECT.str;
 }
 
-
 const char * MessageRFQRequest::getMessageName(){
      return "RFQRequest";
 }
@@ -628,7 +561,6 @@ const char * MessageRFQRequest::getMessageName(){
 const std::string & MessageRFQRequest::getMessageType(){
      return MsgTypeEnums::RFQ_REQUEST.str;
 }
-
 
 const char * MessageQuoteStatusReport::getMessageName(){
      return "QuoteStatusReport";
@@ -638,7 +570,6 @@ const std::string & MessageQuoteStatusReport::getMessageType(){
      return MsgTypeEnums::QUOTE_STATUS_REPORT.str;
 }
 
-
 const char * MessageQuoteResponse::getMessageName(){
      return "QuoteResponse";
 }
@@ -646,7 +577,6 @@ const char * MessageQuoteResponse::getMessageName(){
 const std::string & MessageQuoteResponse::getMessageType(){
      return MsgTypeEnums::QUOTE_RESPONSE.str;
 }
-
 
 const char * MessageConfirmation::getMessageName(){
      return "Confirmation";
@@ -656,7 +586,6 @@ const std::string & MessageConfirmation::getMessageType(){
      return MsgTypeEnums::CONFIRMATION.str;
 }
 
-
 const char * MessagePositionMaintenanceRequest::getMessageName(){
      return "PositionMaintenanceRequest";
 }
@@ -664,7 +593,6 @@ const char * MessagePositionMaintenanceRequest::getMessageName(){
 const std::string & MessagePositionMaintenanceRequest::getMessageType(){
      return MsgTypeEnums::POSITION_MAINTENANCE_REQUEST.str;
 }
-
 
 const char * MessagePositionMaintenanceReport::getMessageName(){
      return "PositionMaintenanceReport";
@@ -674,7 +602,6 @@ const std::string & MessagePositionMaintenanceReport::getMessageType(){
      return MsgTypeEnums::POSITION_MAINTENANCE_REPORT.str;
 }
 
-
 const char * MessageRequestForPositions::getMessageName(){
      return "RequestForPositions";
 }
@@ -682,7 +609,6 @@ const char * MessageRequestForPositions::getMessageName(){
 const std::string & MessageRequestForPositions::getMessageType(){
      return MsgTypeEnums::REQUEST_FOR_POSITIONS.str;
 }
-
 
 const char * MessageRequestForPositionsAck::getMessageName(){
      return "RequestForPositionsAck";
@@ -692,7 +618,6 @@ const std::string & MessageRequestForPositionsAck::getMessageType(){
      return MsgTypeEnums::REQUEST_FOR_POSITIONS_ACK.str;
 }
 
-
 const char * MessagePositionReport::getMessageName(){
      return "PositionReport";
 }
@@ -700,7 +625,6 @@ const char * MessagePositionReport::getMessageName(){
 const std::string & MessagePositionReport::getMessageType(){
      return MsgTypeEnums::POSITION_REPORT.str;
 }
-
 
 const char * MessageTradeCaptureReportRequestAck::getMessageName(){
      return "TradeCaptureReportRequestAck";
@@ -710,7 +634,6 @@ const std::string & MessageTradeCaptureReportRequestAck::getMessageType(){
      return MsgTypeEnums::TRADE_CAPTURE_REPORT_REQUEST_ACK.str;
 }
 
-
 const char * MessageTradeCaptureReportAck::getMessageName(){
      return "TradeCaptureReportAck";
 }
@@ -718,7 +641,6 @@ const char * MessageTradeCaptureReportAck::getMessageName(){
 const std::string & MessageTradeCaptureReportAck::getMessageType(){
      return MsgTypeEnums::TRADE_CAPTURE_REPORT_ACK.str;
 }
-
 
 const char * MessageAllocationReport::getMessageName(){
      return "AllocationReport";
@@ -728,7 +650,6 @@ const std::string & MessageAllocationReport::getMessageType(){
      return MsgTypeEnums::ALLOCATION_REPORT.str;
 }
 
-
 const char * MessageAllocationReportAck::getMessageName(){
      return "AllocationReportAck";
 }
@@ -736,7 +657,6 @@ const char * MessageAllocationReportAck::getMessageName(){
 const std::string & MessageAllocationReportAck::getMessageType(){
      return MsgTypeEnums::ALLOCATION_REPORT_ACK.str;
 }
-
 
 const char * MessageConfirmationAck::getMessageName(){
      return "ConfirmationAck";
@@ -746,7 +666,6 @@ const std::string & MessageConfirmationAck::getMessageType(){
      return MsgTypeEnums::CONFIRMATION_ACK.str;
 }
 
-
 const char * MessageSettlementInstructionRequest::getMessageName(){
      return "SettlementInstructionRequest";
 }
@@ -754,7 +673,6 @@ const char * MessageSettlementInstructionRequest::getMessageName(){
 const std::string & MessageSettlementInstructionRequest::getMessageType(){
      return MsgTypeEnums::SETTLEMENT_INSTRUCTION_REQUEST.str;
 }
-
 
 const char * MessageAssignmentReport::getMessageName(){
      return "AssignmentReport";
@@ -764,7 +682,6 @@ const std::string & MessageAssignmentReport::getMessageType(){
      return MsgTypeEnums::ASSIGNMENT_REPORT.str;
 }
 
-
 const char * MessageCollateralRequest::getMessageName(){
      return "CollateralRequest";
 }
@@ -772,7 +689,6 @@ const char * MessageCollateralRequest::getMessageName(){
 const std::string & MessageCollateralRequest::getMessageType(){
      return MsgTypeEnums::COLLATERAL_REQUEST.str;
 }
-
 
 const char * MessageCollateralAssignment::getMessageName(){
      return "CollateralAssignment";
@@ -782,7 +698,6 @@ const std::string & MessageCollateralAssignment::getMessageType(){
      return MsgTypeEnums::COLLATERAL_ASSIGNMENT.str;
 }
 
-
 const char * MessageCollateralResponse::getMessageName(){
      return "CollateralResponse";
 }
@@ -790,7 +705,6 @@ const char * MessageCollateralResponse::getMessageName(){
 const std::string & MessageCollateralResponse::getMessageType(){
      return MsgTypeEnums::COLLATERAL_RESPONSE.str;
 }
-
 
 const char * MessageCollateralReport::getMessageName(){
      return "CollateralReport";
@@ -800,7 +714,6 @@ const std::string & MessageCollateralReport::getMessageType(){
      return MsgTypeEnums::COLLATERAL_REPORT.str;
 }
 
-
 const char * MessageCollateralInquiry::getMessageName(){
      return "CollateralInquiry";
 }
@@ -808,7 +721,6 @@ const char * MessageCollateralInquiry::getMessageName(){
 const std::string & MessageCollateralInquiry::getMessageType(){
      return MsgTypeEnums::COLLATERAL_INQUIRY.str;
 }
-
 
 const char * MessageNetworkCounterpartySystemStatusRequest::getMessageName(){
      return "NetworkCounterpartySystemStatusRequest";
@@ -818,7 +730,6 @@ const std::string & MessageNetworkCounterpartySystemStatusRequest::getMessageTyp
      return MsgTypeEnums::NETWORK_BC.str;
 }
 
-
 const char * MessageNetworkCounterpartySystemStatusResponse::getMessageName(){
      return "NetworkCounterpartySystemStatusResponse";
 }
@@ -826,7 +737,6 @@ const char * MessageNetworkCounterpartySystemStatusResponse::getMessageName(){
 const std::string & MessageNetworkCounterpartySystemStatusResponse::getMessageType(){
      return MsgTypeEnums::NETWORK_BD.str;
 }
-
 
 const char * MessageUserRequest::getMessageName(){
      return "UserRequest";
@@ -836,7 +746,6 @@ const std::string & MessageUserRequest::getMessageType(){
      return MsgTypeEnums::USER_REQUEST.str;
 }
 
-
 const char * MessageUserResponse::getMessageName(){
      return "UserResponse";
 }
@@ -844,7 +753,6 @@ const char * MessageUserResponse::getMessageName(){
 const std::string & MessageUserResponse::getMessageType(){
      return MsgTypeEnums::USER_RESPONSE.str;
 }
-
 
 const char * MessageCollateralInquiryAck::getMessageName(){
      return "CollateralInquiryAck";
@@ -854,7 +762,6 @@ const std::string & MessageCollateralInquiryAck::getMessageType(){
      return MsgTypeEnums::COLLATERAL_INQUIRY_ACK.str;
 }
 
-
 const char * MessageConfirmationRequest::getMessageName(){
      return "ConfirmationRequest";
 }
@@ -862,7 +769,6 @@ const char * MessageConfirmationRequest::getMessageName(){
 const std::string & MessageConfirmationRequest::getMessageType(){
      return MsgTypeEnums::CONFIRMATION_REQUEST.str;
 }
-
 
 // ---------------------------------- fields ---------------------------------
 
@@ -1504,7 +1410,6 @@ GetDepthMethod MessageCollateralInquiryAck::groupGetDepthMethods[] = {
 GetDepthMethod MessageConfirmationRequest::groupGetDepthMethods[] = {
   GroupOrders::getFieldDepth,
   nullptr };
-
 
 FieldDepth MessageHeader::getFieldDepth( raw_tag_t tag ){
    FieldDepth ret;
@@ -7642,7 +7547,6 @@ FieldDepth MessageConfirmationRequest::getFieldDepth( raw_tag_t tag ){
    return ret;
 }
 
-
 // ---------------------------------- getFieldValue ---------------------------------
 
 const char * MessageHeader::getFieldValue( unsigned tag ) const {
@@ -13310,7 +13214,6 @@ const char * MessageConfirmationRequest::getFieldValue( unsigned tag ) const {
    }
    return nullptr;
 }
-
 
 // ---------------------------------- isFieldSet ---------------------------------
 
@@ -18980,7 +18883,6 @@ bool MessageConfirmationRequest::isFieldSet( unsigned tag ) const {
    return false;
 }
 
-
 // ---------------------------------- getKnownFields ---------------------------------
 namespace {
 
@@ -24088,7 +23990,6 @@ FieldCheckSum::TAG };
 
 }
 
-
 const std::vector<tag_t> & MessageHeader::getKnownFields(){ return Header_knownFields; }
 
 const std::vector<tag_t> & MessageHeartbeat::getKnownFields(){ return Heartbeat_knownFields; }
@@ -24276,7 +24177,6 @@ const std::vector<tag_t> & MessageUserResponse::getKnownFields(){ return UserRes
 const std::vector<tag_t> & MessageCollateralInquiryAck::getKnownFields(){ return CollateralInquiryAck_knownFields; }
 
 const std::vector<tag_t> & MessageConfirmationRequest::getKnownFields(){ return ConfirmationRequest_knownFields; }
-
 
 GetDepthMethod getTagDepthMethodByRawMsgType( raw_enum_t rawMsgType ){
   switch( rawMsgType ){
@@ -24566,9 +24466,7 @@ GetDepthMethod getTagDepthMethodByRawMsgType( raw_enum_t rawMsgType ){
   return nullptr;
 }
 
-
 // -------------------------------------- ParserDispatcher ----------------------------------------
-
 
 const char * ParserDispatcher::parseAndDipatch( const char * buf, unsigned len, bool resetMessage )
 {
@@ -24596,17 +24494,6 @@ const char * ParserDispatcher::parseAndDipatch( const char * buf, unsigned len, 
     {
 
 
-// case-begin-_
-// After generation one can sed this out if _ is not incoming message
-      case MsgTypeRaw__ : {
-       if( resetMessage ) _msgHeader.reset();
-       pos = _msgHeader.scan( buf, len - pos );
-       onMessage( _msgHeader );
-       break;
-      }
-// case-end-_
-
-
 // case-begin-HEARTBEAT
 // After generation one can sed this out if HEARTBEAT is not incoming message
       case MsgTypeRaw_HEARTBEAT : {
@@ -24616,7 +24503,6 @@ const char * ParserDispatcher::parseAndDipatch( const char * buf, unsigned len, 
        break;
       }
 // case-end-HEARTBEAT
-
 
 // case-begin-TEST_REQUEST
 // After generation one can sed this out if TEST_REQUEST is not incoming message
@@ -24628,7 +24514,6 @@ const char * ParserDispatcher::parseAndDipatch( const char * buf, unsigned len, 
       }
 // case-end-TEST_REQUEST
 
-
 // case-begin-RESEND_REQUEST
 // After generation one can sed this out if RESEND_REQUEST is not incoming message
       case MsgTypeRaw_RESEND_REQUEST : {
@@ -24638,7 +24523,6 @@ const char * ParserDispatcher::parseAndDipatch( const char * buf, unsigned len, 
        break;
       }
 // case-end-RESEND_REQUEST
-
 
 // case-begin-REJECT
 // After generation one can sed this out if REJECT is not incoming message
@@ -24650,7 +24534,6 @@ const char * ParserDispatcher::parseAndDipatch( const char * buf, unsigned len, 
       }
 // case-end-REJECT
 
-
 // case-begin-SEQUENCE_RESET
 // After generation one can sed this out if SEQUENCE_RESET is not incoming message
       case MsgTypeRaw_SEQUENCE_RESET : {
@@ -24660,7 +24543,6 @@ const char * ParserDispatcher::parseAndDipatch( const char * buf, unsigned len, 
        break;
       }
 // case-end-SEQUENCE_RESET
-
 
 // case-begin-LOGOUT
 // After generation one can sed this out if LOGOUT is not incoming message
@@ -24672,7 +24554,6 @@ const char * ParserDispatcher::parseAndDipatch( const char * buf, unsigned len, 
       }
 // case-end-LOGOUT
 
-
 // case-begin-INDICATION_OF_INTEREST
 // After generation one can sed this out if INDICATION_OF_INTEREST is not incoming message
       case MsgTypeRaw_INDICATION_OF_INTEREST : {
@@ -24682,7 +24563,6 @@ const char * ParserDispatcher::parseAndDipatch( const char * buf, unsigned len, 
        break;
       }
 // case-end-INDICATION_OF_INTEREST
-
 
 // case-begin-ADVERTISEMENT
 // After generation one can sed this out if ADVERTISEMENT is not incoming message
@@ -24694,7 +24574,6 @@ const char * ParserDispatcher::parseAndDipatch( const char * buf, unsigned len, 
       }
 // case-end-ADVERTISEMENT
 
-
 // case-begin-EXECUTION_REPORT
 // After generation one can sed this out if EXECUTION_REPORT is not incoming message
       case MsgTypeRaw_EXECUTION_REPORT : {
@@ -24704,7 +24583,6 @@ const char * ParserDispatcher::parseAndDipatch( const char * buf, unsigned len, 
        break;
       }
 // case-end-EXECUTION_REPORT
-
 
 // case-begin-ORDER_CANCEL_REJECT
 // After generation one can sed this out if ORDER_CANCEL_REJECT is not incoming message
@@ -24716,7 +24594,6 @@ const char * ParserDispatcher::parseAndDipatch( const char * buf, unsigned len, 
       }
 // case-end-ORDER_CANCEL_REJECT
 
-
 // case-begin-LOGON
 // After generation one can sed this out if LOGON is not incoming message
       case MsgTypeRaw_LOGON : {
@@ -24726,7 +24603,6 @@ const char * ParserDispatcher::parseAndDipatch( const char * buf, unsigned len, 
        break;
       }
 // case-end-LOGON
-
 
 // case-begin-NEWS
 // After generation one can sed this out if NEWS is not incoming message
@@ -24738,7 +24614,6 @@ const char * ParserDispatcher::parseAndDipatch( const char * buf, unsigned len, 
       }
 // case-end-NEWS
 
-
 // case-begin-EMAIL
 // After generation one can sed this out if EMAIL is not incoming message
       case MsgTypeRaw_EMAIL : {
@@ -24748,7 +24623,6 @@ const char * ParserDispatcher::parseAndDipatch( const char * buf, unsigned len, 
        break;
       }
 // case-end-EMAIL
-
 
 // case-begin-ORDER_SINGLE
 // After generation one can sed this out if ORDER_SINGLE is not incoming message
@@ -24760,7 +24634,6 @@ const char * ParserDispatcher::parseAndDipatch( const char * buf, unsigned len, 
       }
 // case-end-ORDER_SINGLE
 
-
 // case-begin-ORDER_LIST
 // After generation one can sed this out if ORDER_LIST is not incoming message
       case MsgTypeRaw_ORDER_LIST : {
@@ -24770,7 +24643,6 @@ const char * ParserDispatcher::parseAndDipatch( const char * buf, unsigned len, 
        break;
       }
 // case-end-ORDER_LIST
-
 
 // case-begin-ORDER_CANCEL_REQUEST
 // After generation one can sed this out if ORDER_CANCEL_REQUEST is not incoming message
@@ -24782,7 +24654,6 @@ const char * ParserDispatcher::parseAndDipatch( const char * buf, unsigned len, 
       }
 // case-end-ORDER_CANCEL_REQUEST
 
-
 // case-begin-ORDER_CANCEL_REPLACE_REQUEST
 // After generation one can sed this out if ORDER_CANCEL_REPLACE_REQUEST is not incoming message
       case MsgTypeRaw_ORDER_CANCEL_REPLACE_REQUEST : {
@@ -24792,7 +24663,6 @@ const char * ParserDispatcher::parseAndDipatch( const char * buf, unsigned len, 
        break;
       }
 // case-end-ORDER_CANCEL_REPLACE_REQUEST
-
 
 // case-begin-ORDER_STATUS_REQUEST
 // After generation one can sed this out if ORDER_STATUS_REQUEST is not incoming message
@@ -24804,7 +24674,6 @@ const char * ParserDispatcher::parseAndDipatch( const char * buf, unsigned len, 
       }
 // case-end-ORDER_STATUS_REQUEST
 
-
 // case-begin-ALLOCATION_INSTRUCTION
 // After generation one can sed this out if ALLOCATION_INSTRUCTION is not incoming message
       case MsgTypeRaw_ALLOCATION_INSTRUCTION : {
@@ -24814,7 +24683,6 @@ const char * ParserDispatcher::parseAndDipatch( const char * buf, unsigned len, 
        break;
       }
 // case-end-ALLOCATION_INSTRUCTION
-
 
 // case-begin-LIST_CANCEL_REQUEST
 // After generation one can sed this out if LIST_CANCEL_REQUEST is not incoming message
@@ -24826,7 +24694,6 @@ const char * ParserDispatcher::parseAndDipatch( const char * buf, unsigned len, 
       }
 // case-end-LIST_CANCEL_REQUEST
 
-
 // case-begin-LIST_EXECUTE
 // After generation one can sed this out if LIST_EXECUTE is not incoming message
       case MsgTypeRaw_LIST_EXECUTE : {
@@ -24836,7 +24703,6 @@ const char * ParserDispatcher::parseAndDipatch( const char * buf, unsigned len, 
        break;
       }
 // case-end-LIST_EXECUTE
-
 
 // case-begin-LIST_STATUS_REQUEST
 // After generation one can sed this out if LIST_STATUS_REQUEST is not incoming message
@@ -24848,7 +24714,6 @@ const char * ParserDispatcher::parseAndDipatch( const char * buf, unsigned len, 
       }
 // case-end-LIST_STATUS_REQUEST
 
-
 // case-begin-LIST_STATUS
 // After generation one can sed this out if LIST_STATUS is not incoming message
       case MsgTypeRaw_LIST_STATUS : {
@@ -24858,7 +24723,6 @@ const char * ParserDispatcher::parseAndDipatch( const char * buf, unsigned len, 
        break;
       }
 // case-end-LIST_STATUS
-
 
 // case-begin-ALLOCATION_INSTRUCTION_ACK
 // After generation one can sed this out if ALLOCATION_INSTRUCTION_ACK is not incoming message
@@ -24870,7 +24734,6 @@ const char * ParserDispatcher::parseAndDipatch( const char * buf, unsigned len, 
       }
 // case-end-ALLOCATION_INSTRUCTION_ACK
 
-
 // case-begin-DONT_KNOW_TRADE
 // After generation one can sed this out if DONT_KNOW_TRADE is not incoming message
       case MsgTypeRaw_DONT_KNOW_TRADE : {
@@ -24880,7 +24743,6 @@ const char * ParserDispatcher::parseAndDipatch( const char * buf, unsigned len, 
        break;
       }
 // case-end-DONT_KNOW_TRADE
-
 
 // case-begin-QUOTE_REQUEST
 // After generation one can sed this out if QUOTE_REQUEST is not incoming message
@@ -24892,7 +24754,6 @@ const char * ParserDispatcher::parseAndDipatch( const char * buf, unsigned len, 
       }
 // case-end-QUOTE_REQUEST
 
-
 // case-begin-QUOTE
 // After generation one can sed this out if QUOTE is not incoming message
       case MsgTypeRaw_QUOTE : {
@@ -24902,7 +24763,6 @@ const char * ParserDispatcher::parseAndDipatch( const char * buf, unsigned len, 
        break;
       }
 // case-end-QUOTE
-
 
 // case-begin-SETTLEMENT_INSTRUCTIONS
 // After generation one can sed this out if SETTLEMENT_INSTRUCTIONS is not incoming message
@@ -24914,7 +24774,6 @@ const char * ParserDispatcher::parseAndDipatch( const char * buf, unsigned len, 
       }
 // case-end-SETTLEMENT_INSTRUCTIONS
 
-
 // case-begin-MARKET_DATA_REQUEST
 // After generation one can sed this out if MARKET_DATA_REQUEST is not incoming message
       case MsgTypeRaw_MARKET_DATA_REQUEST : {
@@ -24924,7 +24783,6 @@ const char * ParserDispatcher::parseAndDipatch( const char * buf, unsigned len, 
        break;
       }
 // case-end-MARKET_DATA_REQUEST
-
 
 // case-begin-MARKET_DATA_SNAPSHOT_FULL_REFRESH
 // After generation one can sed this out if MARKET_DATA_SNAPSHOT_FULL_REFRESH is not incoming message
@@ -24936,7 +24794,6 @@ const char * ParserDispatcher::parseAndDipatch( const char * buf, unsigned len, 
       }
 // case-end-MARKET_DATA_SNAPSHOT_FULL_REFRESH
 
-
 // case-begin-MARKET_DATA_INCREMENTAL_REFRESH
 // After generation one can sed this out if MARKET_DATA_INCREMENTAL_REFRESH is not incoming message
       case MsgTypeRaw_MARKET_DATA_INCREMENTAL_REFRESH : {
@@ -24946,7 +24803,6 @@ const char * ParserDispatcher::parseAndDipatch( const char * buf, unsigned len, 
        break;
       }
 // case-end-MARKET_DATA_INCREMENTAL_REFRESH
-
 
 // case-begin-MARKET_DATA_REQUEST_REJECT
 // After generation one can sed this out if MARKET_DATA_REQUEST_REJECT is not incoming message
@@ -24958,7 +24814,6 @@ const char * ParserDispatcher::parseAndDipatch( const char * buf, unsigned len, 
       }
 // case-end-MARKET_DATA_REQUEST_REJECT
 
-
 // case-begin-QUOTE_CANCEL
 // After generation one can sed this out if QUOTE_CANCEL is not incoming message
       case MsgTypeRaw_QUOTE_CANCEL : {
@@ -24968,7 +24823,6 @@ const char * ParserDispatcher::parseAndDipatch( const char * buf, unsigned len, 
        break;
       }
 // case-end-QUOTE_CANCEL
-
 
 // case-begin-QUOTE_STATUS_REQUEST
 // After generation one can sed this out if QUOTE_STATUS_REQUEST is not incoming message
@@ -24980,7 +24834,6 @@ const char * ParserDispatcher::parseAndDipatch( const char * buf, unsigned len, 
       }
 // case-end-QUOTE_STATUS_REQUEST
 
-
 // case-begin-MASS_QUOTE_ACKNOWLEDGEMENT
 // After generation one can sed this out if MASS_QUOTE_ACKNOWLEDGEMENT is not incoming message
       case MsgTypeRaw_MASS_QUOTE_ACKNOWLEDGEMENT : {
@@ -24990,7 +24843,6 @@ const char * ParserDispatcher::parseAndDipatch( const char * buf, unsigned len, 
        break;
       }
 // case-end-MASS_QUOTE_ACKNOWLEDGEMENT
-
 
 // case-begin-SECURITY_DEFINITION_REQUEST
 // After generation one can sed this out if SECURITY_DEFINITION_REQUEST is not incoming message
@@ -25002,7 +24854,6 @@ const char * ParserDispatcher::parseAndDipatch( const char * buf, unsigned len, 
       }
 // case-end-SECURITY_DEFINITION_REQUEST
 
-
 // case-begin-SECURITY_DEFINITION
 // After generation one can sed this out if SECURITY_DEFINITION is not incoming message
       case MsgTypeRaw_SECURITY_DEFINITION : {
@@ -25012,7 +24863,6 @@ const char * ParserDispatcher::parseAndDipatch( const char * buf, unsigned len, 
        break;
       }
 // case-end-SECURITY_DEFINITION
-
 
 // case-begin-SECURITY_STATUS_REQUEST
 // After generation one can sed this out if SECURITY_STATUS_REQUEST is not incoming message
@@ -25024,7 +24874,6 @@ const char * ParserDispatcher::parseAndDipatch( const char * buf, unsigned len, 
       }
 // case-end-SECURITY_STATUS_REQUEST
 
-
 // case-begin-SECURITY_STATUS
 // After generation one can sed this out if SECURITY_STATUS is not incoming message
       case MsgTypeRaw_SECURITY_STATUS : {
@@ -25034,7 +24883,6 @@ const char * ParserDispatcher::parseAndDipatch( const char * buf, unsigned len, 
        break;
       }
 // case-end-SECURITY_STATUS
-
 
 // case-begin-TRADING_SESSION_STATUS_REQUEST
 // After generation one can sed this out if TRADING_SESSION_STATUS_REQUEST is not incoming message
@@ -25046,7 +24894,6 @@ const char * ParserDispatcher::parseAndDipatch( const char * buf, unsigned len, 
       }
 // case-end-TRADING_SESSION_STATUS_REQUEST
 
-
 // case-begin-TRADING_SESSION_STATUS
 // After generation one can sed this out if TRADING_SESSION_STATUS is not incoming message
       case MsgTypeRaw_TRADING_SESSION_STATUS : {
@@ -25056,7 +24903,6 @@ const char * ParserDispatcher::parseAndDipatch( const char * buf, unsigned len, 
        break;
       }
 // case-end-TRADING_SESSION_STATUS
-
 
 // case-begin-MASS_QUOTE
 // After generation one can sed this out if MASS_QUOTE is not incoming message
@@ -25068,7 +24914,6 @@ const char * ParserDispatcher::parseAndDipatch( const char * buf, unsigned len, 
       }
 // case-end-MASS_QUOTE
 
-
 // case-begin-BUSINESS_MESSAGE_REJECT
 // After generation one can sed this out if BUSINESS_MESSAGE_REJECT is not incoming message
       case MsgTypeRaw_BUSINESS_MESSAGE_REJECT : {
@@ -25078,7 +24923,6 @@ const char * ParserDispatcher::parseAndDipatch( const char * buf, unsigned len, 
        break;
       }
 // case-end-BUSINESS_MESSAGE_REJECT
-
 
 // case-begin-BID_REQUEST
 // After generation one can sed this out if BID_REQUEST is not incoming message
@@ -25090,7 +24934,6 @@ const char * ParserDispatcher::parseAndDipatch( const char * buf, unsigned len, 
       }
 // case-end-BID_REQUEST
 
-
 // case-begin-BID_RESPONSE
 // After generation one can sed this out if BID_RESPONSE is not incoming message
       case MsgTypeRaw_BID_RESPONSE : {
@@ -25100,7 +24943,6 @@ const char * ParserDispatcher::parseAndDipatch( const char * buf, unsigned len, 
        break;
       }
 // case-end-BID_RESPONSE
-
 
 // case-begin-LIST_STRIKE_PRICE
 // After generation one can sed this out if LIST_STRIKE_PRICE is not incoming message
@@ -25112,7 +24954,6 @@ const char * ParserDispatcher::parseAndDipatch( const char * buf, unsigned len, 
       }
 // case-end-LIST_STRIKE_PRICE
 
-
 // case-begin-XML_MESSAGE
 // After generation one can sed this out if XML_MESSAGE is not incoming message
       case MsgTypeRaw_XML_MESSAGE : {
@@ -25122,7 +24963,6 @@ const char * ParserDispatcher::parseAndDipatch( const char * buf, unsigned len, 
        break;
       }
 // case-end-XML_MESSAGE
-
 
 // case-begin-REGISTRATION_INSTRUCTIONS
 // After generation one can sed this out if REGISTRATION_INSTRUCTIONS is not incoming message
@@ -25134,7 +24974,6 @@ const char * ParserDispatcher::parseAndDipatch( const char * buf, unsigned len, 
       }
 // case-end-REGISTRATION_INSTRUCTIONS
 
-
 // case-begin-REGISTRATION_INSTRUCTIONS_RESPONSE
 // After generation one can sed this out if REGISTRATION_INSTRUCTIONS_RESPONSE is not incoming message
       case MsgTypeRaw_REGISTRATION_INSTRUCTIONS_RESPONSE : {
@@ -25144,7 +24983,6 @@ const char * ParserDispatcher::parseAndDipatch( const char * buf, unsigned len, 
        break;
       }
 // case-end-REGISTRATION_INSTRUCTIONS_RESPONSE
-
 
 // case-begin-ORDER_MASS_CANCEL_REQUEST
 // After generation one can sed this out if ORDER_MASS_CANCEL_REQUEST is not incoming message
@@ -25156,7 +24994,6 @@ const char * ParserDispatcher::parseAndDipatch( const char * buf, unsigned len, 
       }
 // case-end-ORDER_MASS_CANCEL_REQUEST
 
-
 // case-begin-ORDER_MASS_CANCEL_REPORT
 // After generation one can sed this out if ORDER_MASS_CANCEL_REPORT is not incoming message
       case MsgTypeRaw_ORDER_MASS_CANCEL_REPORT : {
@@ -25166,7 +25003,6 @@ const char * ParserDispatcher::parseAndDipatch( const char * buf, unsigned len, 
        break;
       }
 // case-end-ORDER_MASS_CANCEL_REPORT
-
 
 // case-begin-NEW_ORDER_s
 // After generation one can sed this out if NEW_ORDER_s is not incoming message
@@ -25178,7 +25014,6 @@ const char * ParserDispatcher::parseAndDipatch( const char * buf, unsigned len, 
       }
 // case-end-NEW_ORDER_s
 
-
 // case-begin-CROSS_ORDER_CANCEL_REPLACE_REQUEST
 // After generation one can sed this out if CROSS_ORDER_CANCEL_REPLACE_REQUEST is not incoming message
       case MsgTypeRaw_CROSS_ORDER_CANCEL_REPLACE_REQUEST : {
@@ -25188,7 +25023,6 @@ const char * ParserDispatcher::parseAndDipatch( const char * buf, unsigned len, 
        break;
       }
 // case-end-CROSS_ORDER_CANCEL_REPLACE_REQUEST
-
 
 // case-begin-CROSS_ORDER_CANCEL_REQUEST
 // After generation one can sed this out if CROSS_ORDER_CANCEL_REQUEST is not incoming message
@@ -25200,7 +25034,6 @@ const char * ParserDispatcher::parseAndDipatch( const char * buf, unsigned len, 
       }
 // case-end-CROSS_ORDER_CANCEL_REQUEST
 
-
 // case-begin-SECURITY_TYPE_REQUEST
 // After generation one can sed this out if SECURITY_TYPE_REQUEST is not incoming message
       case MsgTypeRaw_SECURITY_TYPE_REQUEST : {
@@ -25210,7 +25043,6 @@ const char * ParserDispatcher::parseAndDipatch( const char * buf, unsigned len, 
        break;
       }
 // case-end-SECURITY_TYPE_REQUEST
-
 
 // case-begin-SECURITY_TYPES
 // After generation one can sed this out if SECURITY_TYPES is not incoming message
@@ -25222,7 +25054,6 @@ const char * ParserDispatcher::parseAndDipatch( const char * buf, unsigned len, 
       }
 // case-end-SECURITY_TYPES
 
-
 // case-begin-SECURITY_LIST_REQUEST
 // After generation one can sed this out if SECURITY_LIST_REQUEST is not incoming message
       case MsgTypeRaw_SECURITY_LIST_REQUEST : {
@@ -25232,7 +25063,6 @@ const char * ParserDispatcher::parseAndDipatch( const char * buf, unsigned len, 
        break;
       }
 // case-end-SECURITY_LIST_REQUEST
-
 
 // case-begin-SECURITY_LIST
 // After generation one can sed this out if SECURITY_LIST is not incoming message
@@ -25244,7 +25074,6 @@ const char * ParserDispatcher::parseAndDipatch( const char * buf, unsigned len, 
       }
 // case-end-SECURITY_LIST
 
-
 // case-begin-DERIVATIVE_SECURITY_LIST_REQUEST
 // After generation one can sed this out if DERIVATIVE_SECURITY_LIST_REQUEST is not incoming message
       case MsgTypeRaw_DERIVATIVE_SECURITY_LIST_REQUEST : {
@@ -25254,7 +25083,6 @@ const char * ParserDispatcher::parseAndDipatch( const char * buf, unsigned len, 
        break;
       }
 // case-end-DERIVATIVE_SECURITY_LIST_REQUEST
-
 
 // case-begin-DERIVATIVE_SECURITY_LIST
 // After generation one can sed this out if DERIVATIVE_SECURITY_LIST is not incoming message
@@ -25266,7 +25094,6 @@ const char * ParserDispatcher::parseAndDipatch( const char * buf, unsigned len, 
       }
 // case-end-DERIVATIVE_SECURITY_LIST
 
-
 // case-begin-NEW_ORDER_AB
 // After generation one can sed this out if NEW_ORDER_AB is not incoming message
       case MsgTypeRaw_NEW_ORDER_AB : {
@@ -25276,7 +25103,6 @@ const char * ParserDispatcher::parseAndDipatch( const char * buf, unsigned len, 
        break;
       }
 // case-end-NEW_ORDER_AB
-
 
 // case-begin-MULTILEG_ORDER_CANCEL_REPLACE
 // After generation one can sed this out if MULTILEG_ORDER_CANCEL_REPLACE is not incoming message
@@ -25288,7 +25114,6 @@ const char * ParserDispatcher::parseAndDipatch( const char * buf, unsigned len, 
       }
 // case-end-MULTILEG_ORDER_CANCEL_REPLACE
 
-
 // case-begin-TRADE_CAPTURE_REPORT_REQUEST
 // After generation one can sed this out if TRADE_CAPTURE_REPORT_REQUEST is not incoming message
       case MsgTypeRaw_TRADE_CAPTURE_REPORT_REQUEST : {
@@ -25298,7 +25123,6 @@ const char * ParserDispatcher::parseAndDipatch( const char * buf, unsigned len, 
        break;
       }
 // case-end-TRADE_CAPTURE_REPORT_REQUEST
-
 
 // case-begin-TRADE_CAPTURE_REPORT
 // After generation one can sed this out if TRADE_CAPTURE_REPORT is not incoming message
@@ -25310,7 +25134,6 @@ const char * ParserDispatcher::parseAndDipatch( const char * buf, unsigned len, 
       }
 // case-end-TRADE_CAPTURE_REPORT
 
-
 // case-begin-ORDER_MASS_STATUS_REQUEST
 // After generation one can sed this out if ORDER_MASS_STATUS_REQUEST is not incoming message
       case MsgTypeRaw_ORDER_MASS_STATUS_REQUEST : {
@@ -25320,7 +25143,6 @@ const char * ParserDispatcher::parseAndDipatch( const char * buf, unsigned len, 
        break;
       }
 // case-end-ORDER_MASS_STATUS_REQUEST
-
 
 // case-begin-QUOTE_REQUEST_REJECT
 // After generation one can sed this out if QUOTE_REQUEST_REJECT is not incoming message
@@ -25332,7 +25154,6 @@ const char * ParserDispatcher::parseAndDipatch( const char * buf, unsigned len, 
       }
 // case-end-QUOTE_REQUEST_REJECT
 
-
 // case-begin-RFQ_REQUEST
 // After generation one can sed this out if RFQ_REQUEST is not incoming message
       case MsgTypeRaw_RFQ_REQUEST : {
@@ -25342,7 +25163,6 @@ const char * ParserDispatcher::parseAndDipatch( const char * buf, unsigned len, 
        break;
       }
 // case-end-RFQ_REQUEST
-
 
 // case-begin-QUOTE_STATUS_REPORT
 // After generation one can sed this out if QUOTE_STATUS_REPORT is not incoming message
@@ -25354,7 +25174,6 @@ const char * ParserDispatcher::parseAndDipatch( const char * buf, unsigned len, 
       }
 // case-end-QUOTE_STATUS_REPORT
 
-
 // case-begin-QUOTE_RESPONSE
 // After generation one can sed this out if QUOTE_RESPONSE is not incoming message
       case MsgTypeRaw_QUOTE_RESPONSE : {
@@ -25364,7 +25183,6 @@ const char * ParserDispatcher::parseAndDipatch( const char * buf, unsigned len, 
        break;
       }
 // case-end-QUOTE_RESPONSE
-
 
 // case-begin-CONFIRMATION
 // After generation one can sed this out if CONFIRMATION is not incoming message
@@ -25376,7 +25194,6 @@ const char * ParserDispatcher::parseAndDipatch( const char * buf, unsigned len, 
       }
 // case-end-CONFIRMATION
 
-
 // case-begin-POSITION_MAINTENANCE_REQUEST
 // After generation one can sed this out if POSITION_MAINTENANCE_REQUEST is not incoming message
       case MsgTypeRaw_POSITION_MAINTENANCE_REQUEST : {
@@ -25386,7 +25203,6 @@ const char * ParserDispatcher::parseAndDipatch( const char * buf, unsigned len, 
        break;
       }
 // case-end-POSITION_MAINTENANCE_REQUEST
-
 
 // case-begin-POSITION_MAINTENANCE_REPORT
 // After generation one can sed this out if POSITION_MAINTENANCE_REPORT is not incoming message
@@ -25398,7 +25214,6 @@ const char * ParserDispatcher::parseAndDipatch( const char * buf, unsigned len, 
       }
 // case-end-POSITION_MAINTENANCE_REPORT
 
-
 // case-begin-REQUEST_FOR_POSITIONS
 // After generation one can sed this out if REQUEST_FOR_POSITIONS is not incoming message
       case MsgTypeRaw_REQUEST_FOR_POSITIONS : {
@@ -25408,7 +25223,6 @@ const char * ParserDispatcher::parseAndDipatch( const char * buf, unsigned len, 
        break;
       }
 // case-end-REQUEST_FOR_POSITIONS
-
 
 // case-begin-REQUEST_FOR_POSITIONS_ACK
 // After generation one can sed this out if REQUEST_FOR_POSITIONS_ACK is not incoming message
@@ -25420,7 +25234,6 @@ const char * ParserDispatcher::parseAndDipatch( const char * buf, unsigned len, 
       }
 // case-end-REQUEST_FOR_POSITIONS_ACK
 
-
 // case-begin-POSITION_REPORT
 // After generation one can sed this out if POSITION_REPORT is not incoming message
       case MsgTypeRaw_POSITION_REPORT : {
@@ -25430,7 +25243,6 @@ const char * ParserDispatcher::parseAndDipatch( const char * buf, unsigned len, 
        break;
       }
 // case-end-POSITION_REPORT
-
 
 // case-begin-TRADE_CAPTURE_REPORT_REQUEST_ACK
 // After generation one can sed this out if TRADE_CAPTURE_REPORT_REQUEST_ACK is not incoming message
@@ -25442,7 +25254,6 @@ const char * ParserDispatcher::parseAndDipatch( const char * buf, unsigned len, 
       }
 // case-end-TRADE_CAPTURE_REPORT_REQUEST_ACK
 
-
 // case-begin-TRADE_CAPTURE_REPORT_ACK
 // After generation one can sed this out if TRADE_CAPTURE_REPORT_ACK is not incoming message
       case MsgTypeRaw_TRADE_CAPTURE_REPORT_ACK : {
@@ -25452,7 +25263,6 @@ const char * ParserDispatcher::parseAndDipatch( const char * buf, unsigned len, 
        break;
       }
 // case-end-TRADE_CAPTURE_REPORT_ACK
-
 
 // case-begin-ALLOCATION_REPORT
 // After generation one can sed this out if ALLOCATION_REPORT is not incoming message
@@ -25464,7 +25274,6 @@ const char * ParserDispatcher::parseAndDipatch( const char * buf, unsigned len, 
       }
 // case-end-ALLOCATION_REPORT
 
-
 // case-begin-ALLOCATION_REPORT_ACK
 // After generation one can sed this out if ALLOCATION_REPORT_ACK is not incoming message
       case MsgTypeRaw_ALLOCATION_REPORT_ACK : {
@@ -25474,7 +25283,6 @@ const char * ParserDispatcher::parseAndDipatch( const char * buf, unsigned len, 
        break;
       }
 // case-end-ALLOCATION_REPORT_ACK
-
 
 // case-begin-CONFIRMATION_ACK
 // After generation one can sed this out if CONFIRMATION_ACK is not incoming message
@@ -25486,7 +25294,6 @@ const char * ParserDispatcher::parseAndDipatch( const char * buf, unsigned len, 
       }
 // case-end-CONFIRMATION_ACK
 
-
 // case-begin-SETTLEMENT_INSTRUCTION_REQUEST
 // After generation one can sed this out if SETTLEMENT_INSTRUCTION_REQUEST is not incoming message
       case MsgTypeRaw_SETTLEMENT_INSTRUCTION_REQUEST : {
@@ -25496,7 +25303,6 @@ const char * ParserDispatcher::parseAndDipatch( const char * buf, unsigned len, 
        break;
       }
 // case-end-SETTLEMENT_INSTRUCTION_REQUEST
-
 
 // case-begin-ASSIGNMENT_REPORT
 // After generation one can sed this out if ASSIGNMENT_REPORT is not incoming message
@@ -25508,7 +25314,6 @@ const char * ParserDispatcher::parseAndDipatch( const char * buf, unsigned len, 
       }
 // case-end-ASSIGNMENT_REPORT
 
-
 // case-begin-COLLATERAL_REQUEST
 // After generation one can sed this out if COLLATERAL_REQUEST is not incoming message
       case MsgTypeRaw_COLLATERAL_REQUEST : {
@@ -25518,7 +25323,6 @@ const char * ParserDispatcher::parseAndDipatch( const char * buf, unsigned len, 
        break;
       }
 // case-end-COLLATERAL_REQUEST
-
 
 // case-begin-COLLATERAL_ASSIGNMENT
 // After generation one can sed this out if COLLATERAL_ASSIGNMENT is not incoming message
@@ -25530,7 +25334,6 @@ const char * ParserDispatcher::parseAndDipatch( const char * buf, unsigned len, 
       }
 // case-end-COLLATERAL_ASSIGNMENT
 
-
 // case-begin-COLLATERAL_RESPONSE
 // After generation one can sed this out if COLLATERAL_RESPONSE is not incoming message
       case MsgTypeRaw_COLLATERAL_RESPONSE : {
@@ -25540,7 +25343,6 @@ const char * ParserDispatcher::parseAndDipatch( const char * buf, unsigned len, 
        break;
       }
 // case-end-COLLATERAL_RESPONSE
-
 
 // case-begin-COLLATERAL_REPORT
 // After generation one can sed this out if COLLATERAL_REPORT is not incoming message
@@ -25552,7 +25354,6 @@ const char * ParserDispatcher::parseAndDipatch( const char * buf, unsigned len, 
       }
 // case-end-COLLATERAL_REPORT
 
-
 // case-begin-COLLATERAL_INQUIRY
 // After generation one can sed this out if COLLATERAL_INQUIRY is not incoming message
       case MsgTypeRaw_COLLATERAL_INQUIRY : {
@@ -25562,7 +25363,6 @@ const char * ParserDispatcher::parseAndDipatch( const char * buf, unsigned len, 
        break;
       }
 // case-end-COLLATERAL_INQUIRY
-
 
 // case-begin-NETWORK_BC
 // After generation one can sed this out if NETWORK_BC is not incoming message
@@ -25574,7 +25374,6 @@ const char * ParserDispatcher::parseAndDipatch( const char * buf, unsigned len, 
       }
 // case-end-NETWORK_BC
 
-
 // case-begin-NETWORK_BD
 // After generation one can sed this out if NETWORK_BD is not incoming message
       case MsgTypeRaw_NETWORK_BD : {
@@ -25584,7 +25383,6 @@ const char * ParserDispatcher::parseAndDipatch( const char * buf, unsigned len, 
        break;
       }
 // case-end-NETWORK_BD
-
 
 // case-begin-USER_REQUEST
 // After generation one can sed this out if USER_REQUEST is not incoming message
@@ -25596,7 +25394,6 @@ const char * ParserDispatcher::parseAndDipatch( const char * buf, unsigned len, 
       }
 // case-end-USER_REQUEST
 
-
 // case-begin-USER_RESPONSE
 // After generation one can sed this out if USER_RESPONSE is not incoming message
       case MsgTypeRaw_USER_RESPONSE : {
@@ -25606,7 +25403,6 @@ const char * ParserDispatcher::parseAndDipatch( const char * buf, unsigned len, 
        break;
       }
 // case-end-USER_RESPONSE
-
 
 // case-begin-COLLATERAL_INQUIRY_ACK
 // After generation one can sed this out if COLLATERAL_INQUIRY_ACK is not incoming message
@@ -25618,7 +25414,6 @@ const char * ParserDispatcher::parseAndDipatch( const char * buf, unsigned len, 
       }
 // case-end-COLLATERAL_INQUIRY_ACK
 
-
 // case-begin-CONFIRMATION_REQUEST
 // After generation one can sed this out if CONFIRMATION_REQUEST is not incoming message
       case MsgTypeRaw_CONFIRMATION_REQUEST : {
@@ -25629,7 +25424,6 @@ const char * ParserDispatcher::parseAndDipatch( const char * buf, unsigned len, 
       }
 // case-end-CONFIRMATION_REQUEST
 
-
       default:
         onUnknownMessage( msgType );
         return endOfMessage;
@@ -25637,663 +25431,843 @@ const char * ParserDispatcher::parseAndDipatch( const char * buf, unsigned len, 
     return buf + pos;
 }
 
-void ParserDispatcher::onMessage( MessageHeader & msg )
-{
-   unprocessedMessage( MsgTypeRaw__, msg ); 
-   msg.reset(); 
-}
 
-
+// on-message-begin-HEARTBEAT
+// After generation one can sed this out if HEARTBEAT is not incoming message
 void ParserDispatcher::onMessage( MessageHeartbeat & msg )
 {
    unprocessedMessage( MsgTypeRaw_HEARTBEAT, msg ); 
    msg.reset(); 
 }
+// on-message-end-HEARTBEAT
 
-
+// on-message-begin-TEST_REQUEST
+// After generation one can sed this out if TEST_REQUEST is not incoming message
 void ParserDispatcher::onMessage( MessageTestRequest & msg )
 {
    unprocessedMessage( MsgTypeRaw_TEST_REQUEST, msg ); 
    msg.reset(); 
 }
+// on-message-end-TEST_REQUEST
 
-
+// on-message-begin-RESEND_REQUEST
+// After generation one can sed this out if RESEND_REQUEST is not incoming message
 void ParserDispatcher::onMessage( MessageResendRequest & msg )
 {
    unprocessedMessage( MsgTypeRaw_RESEND_REQUEST, msg ); 
    msg.reset(); 
 }
+// on-message-end-RESEND_REQUEST
 
-
+// on-message-begin-REJECT
+// After generation one can sed this out if REJECT is not incoming message
 void ParserDispatcher::onMessage( MessageReject & msg )
 {
    unprocessedMessage( MsgTypeRaw_REJECT, msg ); 
    msg.reset(); 
 }
+// on-message-end-REJECT
 
-
+// on-message-begin-SEQUENCE_RESET
+// After generation one can sed this out if SEQUENCE_RESET is not incoming message
 void ParserDispatcher::onMessage( MessageSequenceReset & msg )
 {
    unprocessedMessage( MsgTypeRaw_SEQUENCE_RESET, msg ); 
    msg.reset(); 
 }
+// on-message-end-SEQUENCE_RESET
 
-
+// on-message-begin-LOGOUT
+// After generation one can sed this out if LOGOUT is not incoming message
 void ParserDispatcher::onMessage( MessageLogout & msg )
 {
    unprocessedMessage( MsgTypeRaw_LOGOUT, msg ); 
    msg.reset(); 
 }
+// on-message-end-LOGOUT
 
-
+// on-message-begin-INDICATION_OF_INTEREST
+// After generation one can sed this out if INDICATION_OF_INTEREST is not incoming message
 void ParserDispatcher::onMessage( MessageIOI & msg )
 {
    unprocessedMessage( MsgTypeRaw_INDICATION_OF_INTEREST, msg ); 
    msg.reset(); 
 }
+// on-message-end-INDICATION_OF_INTEREST
 
-
+// on-message-begin-ADVERTISEMENT
+// After generation one can sed this out if ADVERTISEMENT is not incoming message
 void ParserDispatcher::onMessage( MessageAdvertisement & msg )
 {
    unprocessedMessage( MsgTypeRaw_ADVERTISEMENT, msg ); 
    msg.reset(); 
 }
+// on-message-end-ADVERTISEMENT
 
-
+// on-message-begin-EXECUTION_REPORT
+// After generation one can sed this out if EXECUTION_REPORT is not incoming message
 void ParserDispatcher::onMessage( MessageExecutionReport & msg )
 {
    unprocessedMessage( MsgTypeRaw_EXECUTION_REPORT, msg ); 
    msg.reset(); 
 }
+// on-message-end-EXECUTION_REPORT
 
-
+// on-message-begin-ORDER_CANCEL_REJECT
+// After generation one can sed this out if ORDER_CANCEL_REJECT is not incoming message
 void ParserDispatcher::onMessage( MessageOrderCancelReject & msg )
 {
    unprocessedMessage( MsgTypeRaw_ORDER_CANCEL_REJECT, msg ); 
    msg.reset(); 
 }
+// on-message-end-ORDER_CANCEL_REJECT
 
-
+// on-message-begin-LOGON
+// After generation one can sed this out if LOGON is not incoming message
 void ParserDispatcher::onMessage( MessageLogon & msg )
 {
    unprocessedMessage( MsgTypeRaw_LOGON, msg ); 
    msg.reset(); 
 }
+// on-message-end-LOGON
 
-
+// on-message-begin-NEWS
+// After generation one can sed this out if NEWS is not incoming message
 void ParserDispatcher::onMessage( MessageNews & msg )
 {
    unprocessedMessage( MsgTypeRaw_NEWS, msg ); 
    msg.reset(); 
 }
+// on-message-end-NEWS
 
-
+// on-message-begin-EMAIL
+// After generation one can sed this out if EMAIL is not incoming message
 void ParserDispatcher::onMessage( MessageEmail & msg )
 {
    unprocessedMessage( MsgTypeRaw_EMAIL, msg ); 
    msg.reset(); 
 }
+// on-message-end-EMAIL
 
-
+// on-message-begin-ORDER_SINGLE
+// After generation one can sed this out if ORDER_SINGLE is not incoming message
 void ParserDispatcher::onMessage( MessageNewOrderSingle & msg )
 {
    unprocessedMessage( MsgTypeRaw_ORDER_SINGLE, msg ); 
    msg.reset(); 
 }
+// on-message-end-ORDER_SINGLE
 
-
+// on-message-begin-ORDER_LIST
+// After generation one can sed this out if ORDER_LIST is not incoming message
 void ParserDispatcher::onMessage( MessageNewOrderList & msg )
 {
    unprocessedMessage( MsgTypeRaw_ORDER_LIST, msg ); 
    msg.reset(); 
 }
+// on-message-end-ORDER_LIST
 
-
+// on-message-begin-ORDER_CANCEL_REQUEST
+// After generation one can sed this out if ORDER_CANCEL_REQUEST is not incoming message
 void ParserDispatcher::onMessage( MessageOrderCancelRequest & msg )
 {
    unprocessedMessage( MsgTypeRaw_ORDER_CANCEL_REQUEST, msg ); 
    msg.reset(); 
 }
+// on-message-end-ORDER_CANCEL_REQUEST
 
-
+// on-message-begin-ORDER_CANCEL_REPLACE_REQUEST
+// After generation one can sed this out if ORDER_CANCEL_REPLACE_REQUEST is not incoming message
 void ParserDispatcher::onMessage( MessageOrderCancelReplaceRequest & msg )
 {
    unprocessedMessage( MsgTypeRaw_ORDER_CANCEL_REPLACE_REQUEST, msg ); 
    msg.reset(); 
 }
+// on-message-end-ORDER_CANCEL_REPLACE_REQUEST
 
-
+// on-message-begin-ORDER_STATUS_REQUEST
+// After generation one can sed this out if ORDER_STATUS_REQUEST is not incoming message
 void ParserDispatcher::onMessage( MessageOrderStatusRequest & msg )
 {
    unprocessedMessage( MsgTypeRaw_ORDER_STATUS_REQUEST, msg ); 
    msg.reset(); 
 }
+// on-message-end-ORDER_STATUS_REQUEST
 
-
+// on-message-begin-ALLOCATION_INSTRUCTION
+// After generation one can sed this out if ALLOCATION_INSTRUCTION is not incoming message
 void ParserDispatcher::onMessage( MessageAllocationInstruction & msg )
 {
    unprocessedMessage( MsgTypeRaw_ALLOCATION_INSTRUCTION, msg ); 
    msg.reset(); 
 }
+// on-message-end-ALLOCATION_INSTRUCTION
 
-
+// on-message-begin-LIST_CANCEL_REQUEST
+// After generation one can sed this out if LIST_CANCEL_REQUEST is not incoming message
 void ParserDispatcher::onMessage( MessageListCancelRequest & msg )
 {
    unprocessedMessage( MsgTypeRaw_LIST_CANCEL_REQUEST, msg ); 
    msg.reset(); 
 }
+// on-message-end-LIST_CANCEL_REQUEST
 
-
+// on-message-begin-LIST_EXECUTE
+// After generation one can sed this out if LIST_EXECUTE is not incoming message
 void ParserDispatcher::onMessage( MessageListExecute & msg )
 {
    unprocessedMessage( MsgTypeRaw_LIST_EXECUTE, msg ); 
    msg.reset(); 
 }
+// on-message-end-LIST_EXECUTE
 
-
+// on-message-begin-LIST_STATUS_REQUEST
+// After generation one can sed this out if LIST_STATUS_REQUEST is not incoming message
 void ParserDispatcher::onMessage( MessageListStatusRequest & msg )
 {
    unprocessedMessage( MsgTypeRaw_LIST_STATUS_REQUEST, msg ); 
    msg.reset(); 
 }
+// on-message-end-LIST_STATUS_REQUEST
 
-
+// on-message-begin-LIST_STATUS
+// After generation one can sed this out if LIST_STATUS is not incoming message
 void ParserDispatcher::onMessage( MessageListStatus & msg )
 {
    unprocessedMessage( MsgTypeRaw_LIST_STATUS, msg ); 
    msg.reset(); 
 }
+// on-message-end-LIST_STATUS
 
-
+// on-message-begin-ALLOCATION_INSTRUCTION_ACK
+// After generation one can sed this out if ALLOCATION_INSTRUCTION_ACK is not incoming message
 void ParserDispatcher::onMessage( MessageAllocationInstructionAck & msg )
 {
    unprocessedMessage( MsgTypeRaw_ALLOCATION_INSTRUCTION_ACK, msg ); 
    msg.reset(); 
 }
+// on-message-end-ALLOCATION_INSTRUCTION_ACK
 
-
+// on-message-begin-DONT_KNOW_TRADE
+// After generation one can sed this out if DONT_KNOW_TRADE is not incoming message
 void ParserDispatcher::onMessage( MessageDontKnowTrade & msg )
 {
    unprocessedMessage( MsgTypeRaw_DONT_KNOW_TRADE, msg ); 
    msg.reset(); 
 }
+// on-message-end-DONT_KNOW_TRADE
 
-
+// on-message-begin-QUOTE_REQUEST
+// After generation one can sed this out if QUOTE_REQUEST is not incoming message
 void ParserDispatcher::onMessage( MessageQuoteRequest & msg )
 {
    unprocessedMessage( MsgTypeRaw_QUOTE_REQUEST, msg ); 
    msg.reset(); 
 }
+// on-message-end-QUOTE_REQUEST
 
-
+// on-message-begin-QUOTE
+// After generation one can sed this out if QUOTE is not incoming message
 void ParserDispatcher::onMessage( MessageQuote & msg )
 {
    unprocessedMessage( MsgTypeRaw_QUOTE, msg ); 
    msg.reset(); 
 }
+// on-message-end-QUOTE
 
-
+// on-message-begin-SETTLEMENT_INSTRUCTIONS
+// After generation one can sed this out if SETTLEMENT_INSTRUCTIONS is not incoming message
 void ParserDispatcher::onMessage( MessageSettlementInstructions & msg )
 {
    unprocessedMessage( MsgTypeRaw_SETTLEMENT_INSTRUCTIONS, msg ); 
    msg.reset(); 
 }
+// on-message-end-SETTLEMENT_INSTRUCTIONS
 
-
+// on-message-begin-MARKET_DATA_REQUEST
+// After generation one can sed this out if MARKET_DATA_REQUEST is not incoming message
 void ParserDispatcher::onMessage( MessageMarketDataRequest & msg )
 {
    unprocessedMessage( MsgTypeRaw_MARKET_DATA_REQUEST, msg ); 
    msg.reset(); 
 }
+// on-message-end-MARKET_DATA_REQUEST
 
-
+// on-message-begin-MARKET_DATA_SNAPSHOT_FULL_REFRESH
+// After generation one can sed this out if MARKET_DATA_SNAPSHOT_FULL_REFRESH is not incoming message
 void ParserDispatcher::onMessage( MessageMarketDataSnapshotFullRefresh & msg )
 {
    unprocessedMessage( MsgTypeRaw_MARKET_DATA_SNAPSHOT_FULL_REFRESH, msg ); 
    msg.reset(); 
 }
+// on-message-end-MARKET_DATA_SNAPSHOT_FULL_REFRESH
 
-
+// on-message-begin-MARKET_DATA_INCREMENTAL_REFRESH
+// After generation one can sed this out if MARKET_DATA_INCREMENTAL_REFRESH is not incoming message
 void ParserDispatcher::onMessage( MessageMarketDataIncrementalRefresh & msg )
 {
    unprocessedMessage( MsgTypeRaw_MARKET_DATA_INCREMENTAL_REFRESH, msg ); 
    msg.reset(); 
 }
+// on-message-end-MARKET_DATA_INCREMENTAL_REFRESH
 
-
+// on-message-begin-MARKET_DATA_REQUEST_REJECT
+// After generation one can sed this out if MARKET_DATA_REQUEST_REJECT is not incoming message
 void ParserDispatcher::onMessage( MessageMarketDataRequestReject & msg )
 {
    unprocessedMessage( MsgTypeRaw_MARKET_DATA_REQUEST_REJECT, msg ); 
    msg.reset(); 
 }
+// on-message-end-MARKET_DATA_REQUEST_REJECT
 
-
+// on-message-begin-QUOTE_CANCEL
+// After generation one can sed this out if QUOTE_CANCEL is not incoming message
 void ParserDispatcher::onMessage( MessageQuoteCancel & msg )
 {
    unprocessedMessage( MsgTypeRaw_QUOTE_CANCEL, msg ); 
    msg.reset(); 
 }
+// on-message-end-QUOTE_CANCEL
 
-
+// on-message-begin-QUOTE_STATUS_REQUEST
+// After generation one can sed this out if QUOTE_STATUS_REQUEST is not incoming message
 void ParserDispatcher::onMessage( MessageQuoteStatusRequest & msg )
 {
    unprocessedMessage( MsgTypeRaw_QUOTE_STATUS_REQUEST, msg ); 
    msg.reset(); 
 }
+// on-message-end-QUOTE_STATUS_REQUEST
 
-
+// on-message-begin-MASS_QUOTE_ACKNOWLEDGEMENT
+// After generation one can sed this out if MASS_QUOTE_ACKNOWLEDGEMENT is not incoming message
 void ParserDispatcher::onMessage( MessageMassQuoteAcknowledgement & msg )
 {
    unprocessedMessage( MsgTypeRaw_MASS_QUOTE_ACKNOWLEDGEMENT, msg ); 
    msg.reset(); 
 }
+// on-message-end-MASS_QUOTE_ACKNOWLEDGEMENT
 
-
+// on-message-begin-SECURITY_DEFINITION_REQUEST
+// After generation one can sed this out if SECURITY_DEFINITION_REQUEST is not incoming message
 void ParserDispatcher::onMessage( MessageSecurityDefinitionRequest & msg )
 {
    unprocessedMessage( MsgTypeRaw_SECURITY_DEFINITION_REQUEST, msg ); 
    msg.reset(); 
 }
+// on-message-end-SECURITY_DEFINITION_REQUEST
 
-
+// on-message-begin-SECURITY_DEFINITION
+// After generation one can sed this out if SECURITY_DEFINITION is not incoming message
 void ParserDispatcher::onMessage( MessageSecurityDefinition & msg )
 {
    unprocessedMessage( MsgTypeRaw_SECURITY_DEFINITION, msg ); 
    msg.reset(); 
 }
+// on-message-end-SECURITY_DEFINITION
 
-
+// on-message-begin-SECURITY_STATUS_REQUEST
+// After generation one can sed this out if SECURITY_STATUS_REQUEST is not incoming message
 void ParserDispatcher::onMessage( MessageSecurityStatusRequest & msg )
 {
    unprocessedMessage( MsgTypeRaw_SECURITY_STATUS_REQUEST, msg ); 
    msg.reset(); 
 }
+// on-message-end-SECURITY_STATUS_REQUEST
 
-
+// on-message-begin-SECURITY_STATUS
+// After generation one can sed this out if SECURITY_STATUS is not incoming message
 void ParserDispatcher::onMessage( MessageSecurityStatus & msg )
 {
    unprocessedMessage( MsgTypeRaw_SECURITY_STATUS, msg ); 
    msg.reset(); 
 }
+// on-message-end-SECURITY_STATUS
 
-
+// on-message-begin-TRADING_SESSION_STATUS_REQUEST
+// After generation one can sed this out if TRADING_SESSION_STATUS_REQUEST is not incoming message
 void ParserDispatcher::onMessage( MessageTradingSessionStatusRequest & msg )
 {
    unprocessedMessage( MsgTypeRaw_TRADING_SESSION_STATUS_REQUEST, msg ); 
    msg.reset(); 
 }
+// on-message-end-TRADING_SESSION_STATUS_REQUEST
 
-
+// on-message-begin-TRADING_SESSION_STATUS
+// After generation one can sed this out if TRADING_SESSION_STATUS is not incoming message
 void ParserDispatcher::onMessage( MessageTradingSessionStatus & msg )
 {
    unprocessedMessage( MsgTypeRaw_TRADING_SESSION_STATUS, msg ); 
    msg.reset(); 
 }
+// on-message-end-TRADING_SESSION_STATUS
 
-
+// on-message-begin-MASS_QUOTE
+// After generation one can sed this out if MASS_QUOTE is not incoming message
 void ParserDispatcher::onMessage( MessageMassQuote & msg )
 {
    unprocessedMessage( MsgTypeRaw_MASS_QUOTE, msg ); 
    msg.reset(); 
 }
+// on-message-end-MASS_QUOTE
 
-
+// on-message-begin-BUSINESS_MESSAGE_REJECT
+// After generation one can sed this out if BUSINESS_MESSAGE_REJECT is not incoming message
 void ParserDispatcher::onMessage( MessageBusinessMessageReject & msg )
 {
    unprocessedMessage( MsgTypeRaw_BUSINESS_MESSAGE_REJECT, msg ); 
    msg.reset(); 
 }
+// on-message-end-BUSINESS_MESSAGE_REJECT
 
-
+// on-message-begin-BID_REQUEST
+// After generation one can sed this out if BID_REQUEST is not incoming message
 void ParserDispatcher::onMessage( MessageBidRequest & msg )
 {
    unprocessedMessage( MsgTypeRaw_BID_REQUEST, msg ); 
    msg.reset(); 
 }
+// on-message-end-BID_REQUEST
 
-
+// on-message-begin-BID_RESPONSE
+// After generation one can sed this out if BID_RESPONSE is not incoming message
 void ParserDispatcher::onMessage( MessageBidResponse & msg )
 {
    unprocessedMessage( MsgTypeRaw_BID_RESPONSE, msg ); 
    msg.reset(); 
 }
+// on-message-end-BID_RESPONSE
 
-
+// on-message-begin-LIST_STRIKE_PRICE
+// After generation one can sed this out if LIST_STRIKE_PRICE is not incoming message
 void ParserDispatcher::onMessage( MessageListStrikePrice & msg )
 {
    unprocessedMessage( MsgTypeRaw_LIST_STRIKE_PRICE, msg ); 
    msg.reset(); 
 }
+// on-message-end-LIST_STRIKE_PRICE
 
-
+// on-message-begin-XML_MESSAGE
+// After generation one can sed this out if XML_MESSAGE is not incoming message
 void ParserDispatcher::onMessage( MessageXMLnonFIX & msg )
 {
    unprocessedMessage( MsgTypeRaw_XML_MESSAGE, msg ); 
    msg.reset(); 
 }
+// on-message-end-XML_MESSAGE
 
-
+// on-message-begin-REGISTRATION_INSTRUCTIONS
+// After generation one can sed this out if REGISTRATION_INSTRUCTIONS is not incoming message
 void ParserDispatcher::onMessage( MessageRegistrationInstructions & msg )
 {
    unprocessedMessage( MsgTypeRaw_REGISTRATION_INSTRUCTIONS, msg ); 
    msg.reset(); 
 }
+// on-message-end-REGISTRATION_INSTRUCTIONS
 
-
+// on-message-begin-REGISTRATION_INSTRUCTIONS_RESPONSE
+// After generation one can sed this out if REGISTRATION_INSTRUCTIONS_RESPONSE is not incoming message
 void ParserDispatcher::onMessage( MessageRegistrationInstructionsResponse & msg )
 {
    unprocessedMessage( MsgTypeRaw_REGISTRATION_INSTRUCTIONS_RESPONSE, msg ); 
    msg.reset(); 
 }
+// on-message-end-REGISTRATION_INSTRUCTIONS_RESPONSE
 
-
+// on-message-begin-ORDER_MASS_CANCEL_REQUEST
+// After generation one can sed this out if ORDER_MASS_CANCEL_REQUEST is not incoming message
 void ParserDispatcher::onMessage( MessageOrderMassCancelRequest & msg )
 {
    unprocessedMessage( MsgTypeRaw_ORDER_MASS_CANCEL_REQUEST, msg ); 
    msg.reset(); 
 }
+// on-message-end-ORDER_MASS_CANCEL_REQUEST
 
-
+// on-message-begin-ORDER_MASS_CANCEL_REPORT
+// After generation one can sed this out if ORDER_MASS_CANCEL_REPORT is not incoming message
 void ParserDispatcher::onMessage( MessageOrderMassCancelReport & msg )
 {
    unprocessedMessage( MsgTypeRaw_ORDER_MASS_CANCEL_REPORT, msg ); 
    msg.reset(); 
 }
+// on-message-end-ORDER_MASS_CANCEL_REPORT
 
-
+// on-message-begin-NEW_ORDER_s
+// After generation one can sed this out if NEW_ORDER_s is not incoming message
 void ParserDispatcher::onMessage( MessageNewOrderCross & msg )
 {
    unprocessedMessage( MsgTypeRaw_NEW_ORDER_s, msg ); 
    msg.reset(); 
 }
+// on-message-end-NEW_ORDER_s
 
-
+// on-message-begin-CROSS_ORDER_CANCEL_REPLACE_REQUEST
+// After generation one can sed this out if CROSS_ORDER_CANCEL_REPLACE_REQUEST is not incoming message
 void ParserDispatcher::onMessage( MessageCrossOrderCancelReplaceRequest & msg )
 {
    unprocessedMessage( MsgTypeRaw_CROSS_ORDER_CANCEL_REPLACE_REQUEST, msg ); 
    msg.reset(); 
 }
+// on-message-end-CROSS_ORDER_CANCEL_REPLACE_REQUEST
 
-
+// on-message-begin-CROSS_ORDER_CANCEL_REQUEST
+// After generation one can sed this out if CROSS_ORDER_CANCEL_REQUEST is not incoming message
 void ParserDispatcher::onMessage( MessageCrossOrderCancelRequest & msg )
 {
    unprocessedMessage( MsgTypeRaw_CROSS_ORDER_CANCEL_REQUEST, msg ); 
    msg.reset(); 
 }
+// on-message-end-CROSS_ORDER_CANCEL_REQUEST
 
-
+// on-message-begin-SECURITY_TYPE_REQUEST
+// After generation one can sed this out if SECURITY_TYPE_REQUEST is not incoming message
 void ParserDispatcher::onMessage( MessageSecurityTypeRequest & msg )
 {
    unprocessedMessage( MsgTypeRaw_SECURITY_TYPE_REQUEST, msg ); 
    msg.reset(); 
 }
+// on-message-end-SECURITY_TYPE_REQUEST
 
-
+// on-message-begin-SECURITY_TYPES
+// After generation one can sed this out if SECURITY_TYPES is not incoming message
 void ParserDispatcher::onMessage( MessageSecurityTypes & msg )
 {
    unprocessedMessage( MsgTypeRaw_SECURITY_TYPES, msg ); 
    msg.reset(); 
 }
+// on-message-end-SECURITY_TYPES
 
-
+// on-message-begin-SECURITY_LIST_REQUEST
+// After generation one can sed this out if SECURITY_LIST_REQUEST is not incoming message
 void ParserDispatcher::onMessage( MessageSecurityListRequest & msg )
 {
    unprocessedMessage( MsgTypeRaw_SECURITY_LIST_REQUEST, msg ); 
    msg.reset(); 
 }
+// on-message-end-SECURITY_LIST_REQUEST
 
-
+// on-message-begin-SECURITY_LIST
+// After generation one can sed this out if SECURITY_LIST is not incoming message
 void ParserDispatcher::onMessage( MessageSecurityList & msg )
 {
    unprocessedMessage( MsgTypeRaw_SECURITY_LIST, msg ); 
    msg.reset(); 
 }
+// on-message-end-SECURITY_LIST
 
-
+// on-message-begin-DERIVATIVE_SECURITY_LIST_REQUEST
+// After generation one can sed this out if DERIVATIVE_SECURITY_LIST_REQUEST is not incoming message
 void ParserDispatcher::onMessage( MessageDerivativeSecurityListRequest & msg )
 {
    unprocessedMessage( MsgTypeRaw_DERIVATIVE_SECURITY_LIST_REQUEST, msg ); 
    msg.reset(); 
 }
+// on-message-end-DERIVATIVE_SECURITY_LIST_REQUEST
 
-
+// on-message-begin-DERIVATIVE_SECURITY_LIST
+// After generation one can sed this out if DERIVATIVE_SECURITY_LIST is not incoming message
 void ParserDispatcher::onMessage( MessageDerivativeSecurityList & msg )
 {
    unprocessedMessage( MsgTypeRaw_DERIVATIVE_SECURITY_LIST, msg ); 
    msg.reset(); 
 }
+// on-message-end-DERIVATIVE_SECURITY_LIST
 
-
+// on-message-begin-NEW_ORDER_AB
+// After generation one can sed this out if NEW_ORDER_AB is not incoming message
 void ParserDispatcher::onMessage( MessageNewOrderMultileg & msg )
 {
    unprocessedMessage( MsgTypeRaw_NEW_ORDER_AB, msg ); 
    msg.reset(); 
 }
+// on-message-end-NEW_ORDER_AB
 
-
+// on-message-begin-MULTILEG_ORDER_CANCEL_REPLACE
+// After generation one can sed this out if MULTILEG_ORDER_CANCEL_REPLACE is not incoming message
 void ParserDispatcher::onMessage( MessageMultilegOrderCancelReplace & msg )
 {
    unprocessedMessage( MsgTypeRaw_MULTILEG_ORDER_CANCEL_REPLACE, msg ); 
    msg.reset(); 
 }
+// on-message-end-MULTILEG_ORDER_CANCEL_REPLACE
 
-
+// on-message-begin-TRADE_CAPTURE_REPORT_REQUEST
+// After generation one can sed this out if TRADE_CAPTURE_REPORT_REQUEST is not incoming message
 void ParserDispatcher::onMessage( MessageTradeCaptureReportRequest & msg )
 {
    unprocessedMessage( MsgTypeRaw_TRADE_CAPTURE_REPORT_REQUEST, msg ); 
    msg.reset(); 
 }
+// on-message-end-TRADE_CAPTURE_REPORT_REQUEST
 
-
+// on-message-begin-TRADE_CAPTURE_REPORT
+// After generation one can sed this out if TRADE_CAPTURE_REPORT is not incoming message
 void ParserDispatcher::onMessage( MessageTradeCaptureReport & msg )
 {
    unprocessedMessage( MsgTypeRaw_TRADE_CAPTURE_REPORT, msg ); 
    msg.reset(); 
 }
+// on-message-end-TRADE_CAPTURE_REPORT
 
-
+// on-message-begin-ORDER_MASS_STATUS_REQUEST
+// After generation one can sed this out if ORDER_MASS_STATUS_REQUEST is not incoming message
 void ParserDispatcher::onMessage( MessageOrderMassStatusRequest & msg )
 {
    unprocessedMessage( MsgTypeRaw_ORDER_MASS_STATUS_REQUEST, msg ); 
    msg.reset(); 
 }
+// on-message-end-ORDER_MASS_STATUS_REQUEST
 
-
+// on-message-begin-QUOTE_REQUEST_REJECT
+// After generation one can sed this out if QUOTE_REQUEST_REJECT is not incoming message
 void ParserDispatcher::onMessage( MessageQuoteRequestReject & msg )
 {
    unprocessedMessage( MsgTypeRaw_QUOTE_REQUEST_REJECT, msg ); 
    msg.reset(); 
 }
+// on-message-end-QUOTE_REQUEST_REJECT
 
-
+// on-message-begin-RFQ_REQUEST
+// After generation one can sed this out if RFQ_REQUEST is not incoming message
 void ParserDispatcher::onMessage( MessageRFQRequest & msg )
 {
    unprocessedMessage( MsgTypeRaw_RFQ_REQUEST, msg ); 
    msg.reset(); 
 }
+// on-message-end-RFQ_REQUEST
 
-
+// on-message-begin-QUOTE_STATUS_REPORT
+// After generation one can sed this out if QUOTE_STATUS_REPORT is not incoming message
 void ParserDispatcher::onMessage( MessageQuoteStatusReport & msg )
 {
    unprocessedMessage( MsgTypeRaw_QUOTE_STATUS_REPORT, msg ); 
    msg.reset(); 
 }
+// on-message-end-QUOTE_STATUS_REPORT
 
-
+// on-message-begin-QUOTE_RESPONSE
+// After generation one can sed this out if QUOTE_RESPONSE is not incoming message
 void ParserDispatcher::onMessage( MessageQuoteResponse & msg )
 {
    unprocessedMessage( MsgTypeRaw_QUOTE_RESPONSE, msg ); 
    msg.reset(); 
 }
+// on-message-end-QUOTE_RESPONSE
 
-
+// on-message-begin-CONFIRMATION
+// After generation one can sed this out if CONFIRMATION is not incoming message
 void ParserDispatcher::onMessage( MessageConfirmation & msg )
 {
    unprocessedMessage( MsgTypeRaw_CONFIRMATION, msg ); 
    msg.reset(); 
 }
+// on-message-end-CONFIRMATION
 
-
+// on-message-begin-POSITION_MAINTENANCE_REQUEST
+// After generation one can sed this out if POSITION_MAINTENANCE_REQUEST is not incoming message
 void ParserDispatcher::onMessage( MessagePositionMaintenanceRequest & msg )
 {
    unprocessedMessage( MsgTypeRaw_POSITION_MAINTENANCE_REQUEST, msg ); 
    msg.reset(); 
 }
+// on-message-end-POSITION_MAINTENANCE_REQUEST
 
-
+// on-message-begin-POSITION_MAINTENANCE_REPORT
+// After generation one can sed this out if POSITION_MAINTENANCE_REPORT is not incoming message
 void ParserDispatcher::onMessage( MessagePositionMaintenanceReport & msg )
 {
    unprocessedMessage( MsgTypeRaw_POSITION_MAINTENANCE_REPORT, msg ); 
    msg.reset(); 
 }
+// on-message-end-POSITION_MAINTENANCE_REPORT
 
-
+// on-message-begin-REQUEST_FOR_POSITIONS
+// After generation one can sed this out if REQUEST_FOR_POSITIONS is not incoming message
 void ParserDispatcher::onMessage( MessageRequestForPositions & msg )
 {
    unprocessedMessage( MsgTypeRaw_REQUEST_FOR_POSITIONS, msg ); 
    msg.reset(); 
 }
+// on-message-end-REQUEST_FOR_POSITIONS
 
-
+// on-message-begin-REQUEST_FOR_POSITIONS_ACK
+// After generation one can sed this out if REQUEST_FOR_POSITIONS_ACK is not incoming message
 void ParserDispatcher::onMessage( MessageRequestForPositionsAck & msg )
 {
    unprocessedMessage( MsgTypeRaw_REQUEST_FOR_POSITIONS_ACK, msg ); 
    msg.reset(); 
 }
+// on-message-end-REQUEST_FOR_POSITIONS_ACK
 
-
+// on-message-begin-POSITION_REPORT
+// After generation one can sed this out if POSITION_REPORT is not incoming message
 void ParserDispatcher::onMessage( MessagePositionReport & msg )
 {
    unprocessedMessage( MsgTypeRaw_POSITION_REPORT, msg ); 
    msg.reset(); 
 }
+// on-message-end-POSITION_REPORT
 
-
+// on-message-begin-TRADE_CAPTURE_REPORT_REQUEST_ACK
+// After generation one can sed this out if TRADE_CAPTURE_REPORT_REQUEST_ACK is not incoming message
 void ParserDispatcher::onMessage( MessageTradeCaptureReportRequestAck & msg )
 {
    unprocessedMessage( MsgTypeRaw_TRADE_CAPTURE_REPORT_REQUEST_ACK, msg ); 
    msg.reset(); 
 }
+// on-message-end-TRADE_CAPTURE_REPORT_REQUEST_ACK
 
-
+// on-message-begin-TRADE_CAPTURE_REPORT_ACK
+// After generation one can sed this out if TRADE_CAPTURE_REPORT_ACK is not incoming message
 void ParserDispatcher::onMessage( MessageTradeCaptureReportAck & msg )
 {
    unprocessedMessage( MsgTypeRaw_TRADE_CAPTURE_REPORT_ACK, msg ); 
    msg.reset(); 
 }
+// on-message-end-TRADE_CAPTURE_REPORT_ACK
 
-
+// on-message-begin-ALLOCATION_REPORT
+// After generation one can sed this out if ALLOCATION_REPORT is not incoming message
 void ParserDispatcher::onMessage( MessageAllocationReport & msg )
 {
    unprocessedMessage( MsgTypeRaw_ALLOCATION_REPORT, msg ); 
    msg.reset(); 
 }
+// on-message-end-ALLOCATION_REPORT
 
-
+// on-message-begin-ALLOCATION_REPORT_ACK
+// After generation one can sed this out if ALLOCATION_REPORT_ACK is not incoming message
 void ParserDispatcher::onMessage( MessageAllocationReportAck & msg )
 {
    unprocessedMessage( MsgTypeRaw_ALLOCATION_REPORT_ACK, msg ); 
    msg.reset(); 
 }
+// on-message-end-ALLOCATION_REPORT_ACK
 
-
+// on-message-begin-CONFIRMATION_ACK
+// After generation one can sed this out if CONFIRMATION_ACK is not incoming message
 void ParserDispatcher::onMessage( MessageConfirmationAck & msg )
 {
    unprocessedMessage( MsgTypeRaw_CONFIRMATION_ACK, msg ); 
    msg.reset(); 
 }
+// on-message-end-CONFIRMATION_ACK
 
-
+// on-message-begin-SETTLEMENT_INSTRUCTION_REQUEST
+// After generation one can sed this out if SETTLEMENT_INSTRUCTION_REQUEST is not incoming message
 void ParserDispatcher::onMessage( MessageSettlementInstructionRequest & msg )
 {
    unprocessedMessage( MsgTypeRaw_SETTLEMENT_INSTRUCTION_REQUEST, msg ); 
    msg.reset(); 
 }
+// on-message-end-SETTLEMENT_INSTRUCTION_REQUEST
 
-
+// on-message-begin-ASSIGNMENT_REPORT
+// After generation one can sed this out if ASSIGNMENT_REPORT is not incoming message
 void ParserDispatcher::onMessage( MessageAssignmentReport & msg )
 {
    unprocessedMessage( MsgTypeRaw_ASSIGNMENT_REPORT, msg ); 
    msg.reset(); 
 }
+// on-message-end-ASSIGNMENT_REPORT
 
-
+// on-message-begin-COLLATERAL_REQUEST
+// After generation one can sed this out if COLLATERAL_REQUEST is not incoming message
 void ParserDispatcher::onMessage( MessageCollateralRequest & msg )
 {
    unprocessedMessage( MsgTypeRaw_COLLATERAL_REQUEST, msg ); 
    msg.reset(); 
 }
+// on-message-end-COLLATERAL_REQUEST
 
-
+// on-message-begin-COLLATERAL_ASSIGNMENT
+// After generation one can sed this out if COLLATERAL_ASSIGNMENT is not incoming message
 void ParserDispatcher::onMessage( MessageCollateralAssignment & msg )
 {
    unprocessedMessage( MsgTypeRaw_COLLATERAL_ASSIGNMENT, msg ); 
    msg.reset(); 
 }
+// on-message-end-COLLATERAL_ASSIGNMENT
 
-
+// on-message-begin-COLLATERAL_RESPONSE
+// After generation one can sed this out if COLLATERAL_RESPONSE is not incoming message
 void ParserDispatcher::onMessage( MessageCollateralResponse & msg )
 {
    unprocessedMessage( MsgTypeRaw_COLLATERAL_RESPONSE, msg ); 
    msg.reset(); 
 }
+// on-message-end-COLLATERAL_RESPONSE
 
-
+// on-message-begin-COLLATERAL_REPORT
+// After generation one can sed this out if COLLATERAL_REPORT is not incoming message
 void ParserDispatcher::onMessage( MessageCollateralReport & msg )
 {
    unprocessedMessage( MsgTypeRaw_COLLATERAL_REPORT, msg ); 
    msg.reset(); 
 }
+// on-message-end-COLLATERAL_REPORT
 
-
+// on-message-begin-COLLATERAL_INQUIRY
+// After generation one can sed this out if COLLATERAL_INQUIRY is not incoming message
 void ParserDispatcher::onMessage( MessageCollateralInquiry & msg )
 {
    unprocessedMessage( MsgTypeRaw_COLLATERAL_INQUIRY, msg ); 
    msg.reset(); 
 }
+// on-message-end-COLLATERAL_INQUIRY
 
-
+// on-message-begin-NETWORK_BC
+// After generation one can sed this out if NETWORK_BC is not incoming message
 void ParserDispatcher::onMessage( MessageNetworkCounterpartySystemStatusRequest & msg )
 {
    unprocessedMessage( MsgTypeRaw_NETWORK_BC, msg ); 
    msg.reset(); 
 }
+// on-message-end-NETWORK_BC
 
-
+// on-message-begin-NETWORK_BD
+// After generation one can sed this out if NETWORK_BD is not incoming message
 void ParserDispatcher::onMessage( MessageNetworkCounterpartySystemStatusResponse & msg )
 {
    unprocessedMessage( MsgTypeRaw_NETWORK_BD, msg ); 
    msg.reset(); 
 }
+// on-message-end-NETWORK_BD
 
-
+// on-message-begin-USER_REQUEST
+// After generation one can sed this out if USER_REQUEST is not incoming message
 void ParserDispatcher::onMessage( MessageUserRequest & msg )
 {
    unprocessedMessage( MsgTypeRaw_USER_REQUEST, msg ); 
    msg.reset(); 
 }
+// on-message-end-USER_REQUEST
 
-
+// on-message-begin-USER_RESPONSE
+// After generation one can sed this out if USER_RESPONSE is not incoming message
 void ParserDispatcher::onMessage( MessageUserResponse & msg )
 {
    unprocessedMessage( MsgTypeRaw_USER_RESPONSE, msg ); 
    msg.reset(); 
 }
+// on-message-end-USER_RESPONSE
 
-
+// on-message-begin-COLLATERAL_INQUIRY_ACK
+// After generation one can sed this out if COLLATERAL_INQUIRY_ACK is not incoming message
 void ParserDispatcher::onMessage( MessageCollateralInquiryAck & msg )
 {
    unprocessedMessage( MsgTypeRaw_COLLATERAL_INQUIRY_ACK, msg ); 
    msg.reset(); 
 }
+// on-message-end-COLLATERAL_INQUIRY_ACK
 
-
+// on-message-begin-CONFIRMATION_REQUEST
+// After generation one can sed this out if CONFIRMATION_REQUEST is not incoming message
 void ParserDispatcher::onMessage( MessageConfirmationRequest & msg )
 {
    unprocessedMessage( MsgTypeRaw_CONFIRMATION_REQUEST, msg ); 
    msg.reset(); 
 }
-
+// on-message-end-CONFIRMATION_REQUEST
 
 // end of Messages.cxx
 

@@ -1,3 +1,4 @@
+#include <utests/TrivialHelper.h>
 #include <tiny/SenderApi.h>
 #include <pe/Measurement.h>
 
@@ -158,7 +159,7 @@ int main( int args, const char ** argv )
     cch.ll.rmiss:	0
     br.misses:	1
     */
-    std::cout << "\n -- Build order -- " << std::endl;
+    HIGHLIGHT( Build order )
     m.prepareResults();
     m.printCaptures();
     m.showAverageValues( std::cout );

@@ -12,7 +12,6 @@ namespace fix44
 
 // Generated
 
-
 // -------------------------------------- scan ----------------------------------------
 
 offset_t GroupLegStipulations::scan( Array & arr, const char * fix, unsigned len ){
@@ -5117,7 +5116,6 @@ offset_t GroupMDEntries::scan( Array & arr, const char * fix, unsigned len ){
  if( group ) group->_fixLength = gpos;
  return pos;
 }
-
 
 // -------------------------------------- scanSafely ----------------------------------------
 
@@ -11613,7 +11611,6 @@ while( pos < (int)len ) {
  return pos;
 }
 
-
 // -------------------------------------- skip ----------------------------------------
 
 offset_t GroupLegStipulations::skip( const char * fix, unsigned len ){
@@ -14648,7 +14645,6 @@ offset_t GroupMDEntries::skip( const char * fix, unsigned len ){
  }
  return pos;
 }
-
 
 // -------------------------------------- reset ----------------------------------------
 

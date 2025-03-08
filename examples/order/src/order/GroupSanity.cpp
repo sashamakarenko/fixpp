@@ -66,7 +66,6 @@ const char * GroupLegs::findBadGroup( unsigned & noExpected, unsigned & noReceiv
    return nullptr;
 }
 
-
 // ---------------------------------- findBadField ---------------------------------
 const char * GroupLegStipulations::findBadField() const {
    if( _fixPtr == nullptr ) return nullptr;
@@ -154,7 +153,6 @@ const char * GroupLegs::findBadField() const {
    }
    return nullptr;
 }
-
 
 // ---------------------------------- findBadEnum ---------------------------------
 const char * GroupLegStipulations::findBadEnum() const {

@@ -11,7 +11,6 @@ namespace order
 
 // Generated
 
-
 // -------------------------------------- scan ----------------------------------------
 
 offset_t MessageHeader::scan( const char * fix, unsigned len ){
@@ -329,7 +328,6 @@ while( pos < (int)len ) {
  _fixLength = pos;
  return pos;
 }
-
 
 // -------------------------------------- scanSafely ----------------------------------------
 
@@ -758,7 +756,6 @@ while( pos < (int)len ) {
  return pos;
 }
 
-
 // -------------------------------------- skip ----------------------------------------
 
 offset_t MessageHeader::skip( const char * fix, unsigned len ) const
@@ -970,7 +967,6 @@ while( pos < (int)len ) {
  }
  return pos;
 }
-
 
 // -------------------------------------- reset ----------------------------------------
 
