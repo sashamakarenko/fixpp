@@ -25,50 +25,50 @@ int main( int args, const char ** argv )
 
     raw_tag_t raw = tag_as_raw<1>();
     tag_t tag = raw_to_tag( raw );
-    CHECK( tag 1, tag, == 1 );
+    CHECK_EQ( tag 1, tag, 1 );
 
     raw = tag_as_raw<12>();
     tag = raw_to_tag( raw );
-    CHECK( tag 12, tag, == 12 );
+    CHECK_EQ( tag 12, tag, 12 );
 
     raw = tag_as_raw<123>();
     tag = raw_to_tag( raw );
-    CHECK( tag 123, tag, == 123 );
+    CHECK_EQ( tag 123, tag, 123 );
 
     raw = tag_as_raw<1234>();
     tag = raw_to_tag( raw );
-    CHECK( tag 1234, tag, == 1234 );
+    CHECK_EQ( tag 1234, tag, 1234 );
 
     raw = tag_as_raw<12345>();
     tag = raw_to_tag( raw );
-    CHECK( tag 12345, tag, == 12345 );
+    CHECK_EQ( tag 12345, tag, 12345 );
 
     offset_t pos = 0;
     raw = tiny::loadRawTag( "1=", pos );
-    CHECK( load tag 1, raw, == tag_as_raw<1>() );
+    CHECK_EQ( load tag 1, raw, tag_as_raw<1>() );
 
     pos = 0;
     raw = tiny::loadRawTag( "12345=", pos );
-    CHECK( load tag 12345, raw, == tag_as_raw<12345>() );
+    CHECK_EQ( load tag 12345, raw, tag_as_raw<12345>() );
 
     tag = tiny::parseTag( "12345=" );
-    CHECK( parse tag 12345, tag, == 12345 );
+    CHECK_EQ( parse tag 12345, tag, 12345 );
 
     tag = tiny::parseTag( "=" );
-    CHECK( parse empty tag, tag, == 0 );
+    CHECK_EQ( parse empty tag, tag, 0 );
 
-    CHECK( is good tag 0,      tiny::isGoodTag( "0=" ),      == false );
-    CHECK( is good tag 02,     tiny::isGoodTag( "02=" ),     == false );
-    CHECK( is good tag 123456, tiny::isGoodTag( "123456=" ), == false );
-    CHECK( is good tag 1 2,    tiny::isGoodTag( "1 2=" ),    == false );
-    CHECK( is good tag NaN,    tiny::isGoodTag( "NAN=" ),    == false );
-    CHECK( is good tag empty,  tiny::isGoodTag( "=" ),       == false );
-    CHECK( is good tag SOH,    tiny::isGoodTag( "\1=" ),     == false );
-    CHECK( is good tag 1,      tiny::isGoodTag( "1=" ),      == true );
-    CHECK( is good tag 12345,  tiny::isGoodTag( "12345=" ),  == true );
+    CHECK_EQ( is good tag 0,      tiny::isGoodTag( "0=" ),      false );
+    CHECK_EQ( is good tag 02,     tiny::isGoodTag( "02=" ),     false );
+    CHECK_EQ( is good tag 123456, tiny::isGoodTag( "123456=" ), false );
+    CHECK_EQ( is good tag 1 2,    tiny::isGoodTag( "1 2=" ),    false );
+    CHECK_EQ( is good tag NaN,    tiny::isGoodTag( "NAN=" ),    false );
+    CHECK_EQ( is good tag empty,  tiny::isGoodTag( "=" ),       false );
+    CHECK_EQ( is good tag SOH,    tiny::isGoodTag( "\1=" ),     false );
+    CHECK_EQ( is good tag 1,      tiny::isGoodTag( "1=" ),      true );
+    CHECK_EQ( is good tag 12345,  tiny::isGoodTag( "12345=" ),  true );
 
     tag = tiny::parseTag( "A=" ); // 17=
-    CHECK( parse tag A, tag, == 'A' - '0' );
+    CHECK_EQ( parse tag A, tag, 'A' - '0' );
 
     const char * fixBuffer = EXAMPLE_MARKETDATA_FULL_REFRESH;
     tiny::MessageHeader header;
@@ -80,7 +80,7 @@ int main( int args, const char ** argv )
     std::stringstream result;
     unsigned yyyymmdd = parseYYYYMMDD( header.ptrToSendingTime() );
     result << yyyymmdd;
-    CHECK( YYYYMMDD, result.str(), == std::string_view( header.ptrToSendingTime(), 8 ) )
+    CHECK_EQ( YYYYMMDD, result.str(), std::string_view( header.ptrToSendingTime(), 8 ) )
     unsigned yyyy, mm, dd;
     const char *timeptr = parseYYYYMMDD( header.ptrToSendingTime(), yyyy, mm, dd ) + 1;
     unsigned hour, minute, second, nanos;
@@ -93,7 +93,7 @@ int main( int args, const char ** argv )
            << W2 << minute << ":"
            << W2 << second << "."
            << W3 << (nanos/1000000);
-    CHECK( parseTime, result.str(), == std::string_view( header.ptrToSendingTime(), 21 ) )
+    CHECK_EQ( parseTime, result.str(), std::string_view( header.ptrToSendingTime(), 21 ) )
 
 
     parseTimestamp( header.ptrToSendingTime(), yyyy, mm, dd, hour, minute, second, nanos );
@@ -105,7 +105,7 @@ int main( int args, const char ** argv )
            << W2 << minute << ":"
            << W2 << second << "."
            << W3 << (nanos/1000000);
-    CHECK( parseTimestamp, result.str(), == std::string_view( header.ptrToSendingTime(), 21 ) )
+    CHECK_EQ( parseTimestamp, result.str(), std::string_view( header.ptrToSendingTime(), 21 ) )
 
     {
     unsigned short yyyy, mm, dd;
@@ -115,7 +115,7 @@ int main( int args, const char ** argv )
     }
 
     {
-    short yyyy, mm, dd;
+    unsigned short yyyy, mm, dd;
     const char *timeptr = parseYYYYMMDD( header.ptrToSendingTime(), yyyy, mm, dd ) + 1;
     short hour, minute, second;
     parseTime( timeptr, hour, minute, second, nanos );
@@ -127,7 +127,7 @@ int main( int args, const char ** argv )
            << W2 << minute << ":"
            << W2 << second << "."
            << W3 << (nanos/1000000);
-    CHECK( short parseTime, result.str(), == std::string_view( header.ptrToSendingTime(), 21 ) )
+    CHECK_EQ( short parseTime, result.str(), std::string_view( header.ptrToSendingTime(), 21 ) )
     }
 
     {
@@ -143,7 +143,7 @@ int main( int args, const char ** argv )
            << W2 << minute << ":"
            << W2 << second << "."
            << W3 << (nanos/1000000);
-    CHECK( u64 parseTime, result.str(), == std::string_view( header.ptrToSendingTime(), 21 ) )
+    CHECK_EQ( u64 parseTime, result.str(), std::string_view( header.ptrToSendingTime(), 21 ) )
     }
 
     std::tm tm = {};
@@ -159,7 +159,7 @@ int main( int args, const char ** argv )
            << W2 << minute << ":"
            << W2 << second << "."
            << W9 << nanos;
-    CHECK( 12:34:56, result.str(), == timeptr + ".000000000"s )
+    CHECK_EQ( 12:34:56, result.str(), timeptr + ".000000000"s )
 
     timeptr = "12:34:56.";
     parseTime( timeptr, hour, minute, second, nanos );
@@ -168,7 +168,7 @@ int main( int args, const char ** argv )
            << W2 << minute << ":"
            << W2 << second << "."
            << W9 << nanos;
-    CHECK( 12:34:56., result.str(), == timeptr + "000000000"s )
+    CHECK_EQ( 12:34:56., result.str(), timeptr + "000000000"s )
 
     timeptr = "12:34:56.789";
     parseTime( timeptr, hour, minute, second, nanos );
@@ -177,7 +177,7 @@ int main( int args, const char ** argv )
            << W2 << minute << ":"
            << W2 << second << "."
            << W9 << nanos;
-    CHECK( 12:34:56.789, result.str(), == timeptr + "000000"s )
+    CHECK_EQ( 12:34:56.789, result.str(), timeptr + "000000"s )
 
     timeptr = "12:34:56.789012";
     parseTime( timeptr, hour, minute, second, nanos );
@@ -186,7 +186,7 @@ int main( int args, const char ** argv )
            << W2 << minute << ":"
            << W2 << second << "."
            << W9 << nanos;
-    CHECK( 12:34:56.789012, result.str(), == timeptr + "000"s )
+    CHECK_EQ( 12:34:56.789012, result.str(), timeptr + "000"s )
 
     timeptr = "12:34:56.789012345";
     parseTime( timeptr, hour, minute, second, nanos );
@@ -195,7 +195,7 @@ int main( int args, const char ** argv )
            << W2 << minute << ":"
            << W2 << second << "."
            << W9 << nanos;
-    CHECK( 12:34:56.789012345, result.str(), == timeptr )
+    CHECK_EQ( 12:34:56.789012345, result.str(), timeptr )
 
     timeptr = "01:02:03.999999999";
     parseTime( timeptr, hour, minute, second, nanos );
@@ -205,7 +205,7 @@ int main( int args, const char ** argv )
            << W2 << minute << ":"
            << W2 << second << "."
            << W9 << nanos;
-    CHECK( 01:02:03.999999999, result.str(), == timeptr )
+    CHECK_EQ( 01:02:03.999999999, result.str(), timeptr )
 
     timeptr = "12:34:56.001";
     parseTime( timeptr, hour, minute, second, nanos );
@@ -214,7 +214,7 @@ int main( int args, const char ** argv )
            << W2 << minute << ":"
            << W2 << second << "."
            << W9 << nanos;
-    CHECK( 12:34:56.001, result.str(), == timeptr + "000000"s )
+    CHECK_EQ( 12:34:56.001, result.str(), timeptr + "000000"s )
 
     timeptr = "12:34:56.000002";
     parseTime( timeptr, hour, minute, second, nanos );
@@ -223,7 +223,7 @@ int main( int args, const char ** argv )
            << W2 << minute << ":"
            << W2 << second << "."
            << W9 << nanos;
-    CHECK( 12:34:56.000002, result.str(), == timeptr + "000"s )
+    CHECK_EQ( 12:34:56.000002, result.str(), timeptr + "000"s )
 
     timeptr = "12:34:56.000000003";
     parseTime( timeptr, hour, minute, second, nanos );
@@ -232,7 +232,7 @@ int main( int args, const char ** argv )
            << W2 << minute << ":"
            << W2 << second << "."
            << W9 << nanos;
-    CHECK( 12:34:56.00000003, result.str(), == timeptr )
+    CHECK_EQ( 12:34:56.00000003, result.str(), timeptr )
 
     auto noMdEntries = mdsfr.getNoMDEntries();
     for( unsigned i = 0; i < noMdEntries; ++i )
@@ -244,56 +244,56 @@ int main( int args, const char ** argv )
     }
 
     double d = parseDouble( "0" I );
-    CHECK( double 0, d, == 0 );
+    CHECK_EQ( double 0, d, 0 );
 
     d = parseDouble( "0.0" I );
-    CHECK( double 0.0, d, == 0.0 );
+    CHECK_EQ( double 0.0, d, 0.0 );
 
     d = parseDouble( "0.123" I );
-    CHECK( double 0.123, d, == 0.123 );
+    CHECK_EQ( double 0.123, d, 0.123 );
 
     d = parseDouble( ".123" I );
-    CHECK( double .123, d, == .123 );
+    CHECK_EQ( double .123, d, .123 );
 
     d = parseDouble( "0000.123000" I );
-    CHECK( double 0000.123000, d, == 0.123 );
+    CHECK_EQ( double 0000.123000, d, 0.123 );
 
     d = parseDouble( "1000" I );
-    CHECK( double 1000, d, == 1000 );
+    CHECK_EQ( double 1000, d, 1000 );
 
     d = parseDouble( "23.0000001" I );
-    CHECK( double 23.0000001, d, == 23.0000001 );
+    CHECK_EQ( double 23.0000001, d, 23.0000001 );
 
     d = parseDouble( "-1.345" I );
-    CHECK( double -1.345, d, == -1.345 );
+    CHECK_EQ( double -1.345, d, -1.345 );
 
     Quantity qty( "0" I );
-    CHECK( qty 0 is int, qty.isInteger(), == true );
-    CHECK( qty 0, qty.asInt(), == 0 );
-    CHECK( qty < 0, qty < 0, == false );
-    CHECK( qty > 0, qty > 0, == false );
-    CHECK( qty < 1, qty < 1, == true );
+    CHECK_EQ( qty 0 is int, qty.isInteger(), true );
+    CHECK_EQ( qty 0, qty.asInt(), 0 );
+    CHECK_EQ( qty < 0, qty < 0, false );
+    CHECK_EQ( qty > 0, qty > 0, false );
+    CHECK_EQ( qty < 1, qty < 1, true );
 
     qty.parse( "0.0" I );
-    CHECK( qty 0.0 is int, qty.isInteger(), == false );
-    CHECK( qty 0.0, qty.asDouble(), == 0.0 );
+    CHECK_EQ( qty 0.0 is int, qty.isInteger(), false );
+    CHECK_EQ( qty 0.0, qty.asDouble(), 0.0 );
 
     qty.parse( "10.023" I );
-    CHECK( qty 10.023 is int, qty.isInteger(), == false );
-    CHECK( qty 10.023, qty.asDouble(), == 10.023 );
+    CHECK_EQ( qty 10.023 is int, qty.isInteger(), false );
+    CHECK_EQ( qty 10.023, qty.asDouble(), 10.023 );
 
     qty = 1.2345;
-    CHECK( qty 1.2345 is int, qty.isInteger(), == false );
-    CHECK( qty 1.2345 get double, qty.asDouble(), == 1.2345 );
-    CHECK( qty 1.2345 get int, qty.asInt(), == 1 );
+    CHECK_EQ( qty 1.2345 is int, qty.isInteger(), false );
+    CHECK_EQ( qty 1.2345 get double, qty.asDouble(), 1.2345 );
+    CHECK_EQ( qty 1.2345 get int, qty.asInt(), 1 );
 
     std::set<Quantity> qtySet;
     qtySet.insert(   0 );
     qtySet.insert( 0.0 );
-    CHECK( qty set size 1, qtySet.size(), == 1 );
+    CHECK_EQ( qty set size 1, qtySet.size(), 1 );
     qtySet.insert( 1.0 );
     qtySet.insert(   1 );
-    CHECK( qty set size 2, qtySet.size(), == 2 );
+    CHECK_EQ( qty set size 2, qtySet.size(), 2 );
 
     return 0;
 }
