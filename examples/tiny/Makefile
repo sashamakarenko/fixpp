@@ -31,7 +31,13 @@ else
 endif
 
 TEST_DEFINES = -DEXIT_ON_ERROR
-CPP_EXTRA_FLAGS = -Wall -Wextra -Wno-unused-parameter -Werror -fmax-errors=1 #-Wpedantic
+CPP_EXTRA_FLAGS = -Wall -Wextra -Wno-unused-parameter -Werror
+ifeq ($(COMPILER),c++)
+    CPP_EXTRA_FLAGS += -fmax-errors=1
+else
+    # clang
+    CPP_EXTRA_FLAGS += -Wno-unknown-pragmas -Wno-string-plus-int -Wno-c++20-extensions
+endif
 
 -include $(DEV_ROOT)/makefile/Makefile
 
