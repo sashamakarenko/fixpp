@@ -17,6 +17,7 @@ class Message##NAME: public MessageBase\
 <n1>    const char * getFieldValue( tag_t tag ) const;\
 <n1>    template< typename FIELD > typename FIELD::ValueType get() const;\
 <n1>    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<Message##NAME,0,FIELDS...>(*this,tpl); return tpl; };\
+<n1>    template< typename... FIELDS > std::tuple<typeExists<FIELDS>...> getPresenceOf() const { std::tuple< typeExists<FIELDS>... > tpl{}; buildPresenceTuple<Message##NAME,0,FIELDS...>(*this,tpl); return tpl; };\
 <n1>    bool isFieldSet( tag_t tag ) const;\
 <n1>    const char * findBadField() const;\
 <n1>    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;\

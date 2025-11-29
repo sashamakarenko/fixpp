@@ -1,6 +1,7 @@
 
 #define FIX_MSG_FIELD(NAME) \
 <n1> public:\
+<n1> using NAME = Field##NAME; \
 <n1> bool isSet##NAME() const { return field##NAME.offset > 0; }\
 <n1> Field##NAME::ValueType get##NAME() const { return field##NAME.getValue( _fixPtr ); }\
 <n1> std::string_view get##NAME##View() const { return field##NAME.offset > 0 ? std::string_view{ _fixPtr + field##NAME.offset, getValueLength( _fixPtr + field##NAME.offset ) } : std::string_view{}; }\

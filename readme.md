@@ -222,6 +222,11 @@ Access multiple fields at a time:
     auto & mdentry = mdsfr.getGroupMDEntries(0);
     auto [ mddepth, mdpx, mdqty ] = mdentry.getFields<MDEntryPositionNo,MDEntryPx,MDEntrySize>();
 ```
+For optional fields:
+```c++
+    // std::tuple<bool,bool,bool>
+    auto [ mdHasPx, mdHasQty, mdHasDepth ] = mdentry.getPresenceOf<MDEntryPx,MDEntrySize,MDEntryPositionNo>();
+```
 
 ### Scanning
 

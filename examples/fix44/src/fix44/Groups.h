@@ -31,6 +31,7 @@ class GroupLegStipulations : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<GroupLegStipulations,0,FIELDS...>(*this,tpl); return tpl; };
+   template< typename... FIELDS > std::tuple<typeExists<FIELDS>... > getPresenceOf() const { std::tuple< typeExists<FIELDS>... > tpl{}; buildPresenceTuple<GroupLegStipulations,0,FIELDS...>(*this,tpl); return tpl; };
    bool isFieldSet( tag_t tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
@@ -40,6 +41,7 @@ class GroupLegStipulations : public MessageBase
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
+   using LegStipulationType = FieldLegStipulationType; 
    bool isSetLegStipulationType() const { return fieldLegStipulationType.offset > 0; }
    FieldLegStipulationType::ValueType getLegStipulationType() const { return fieldLegStipulationType.getValue( _fixPtr ); }
    std::string_view getLegStipulationTypeView() const { return fieldLegStipulationType.offset > 0 ? std::string_view{ _fixPtr + fieldLegStipulationType.offset, getValueLength( _fixPtr + fieldLegStipulationType.offset ) } : std::string_view{}; }
@@ -49,6 +51,7 @@ class GroupLegStipulations : public MessageBase
    private: FieldLegStipulationType fieldLegStipulationType;
 
    public:
+   using LegStipulationValue = FieldLegStipulationValue; 
    bool isSetLegStipulationValue() const { return fieldLegStipulationValue.offset > 0; }
    FieldLegStipulationValue::ValueType getLegStipulationValue() const { return fieldLegStipulationValue.getValue( _fixPtr ); }
    std::string_view getLegStipulationValueView() const { return fieldLegStipulationValue.offset > 0 ? std::string_view{ _fixPtr + fieldLegStipulationValue.offset, getValueLength( _fixPtr + fieldLegStipulationValue.offset ) } : std::string_view{}; }
@@ -74,6 +77,7 @@ class GroupEvents : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<GroupEvents,0,FIELDS...>(*this,tpl); return tpl; };
+   template< typename... FIELDS > std::tuple<typeExists<FIELDS>... > getPresenceOf() const { std::tuple< typeExists<FIELDS>... > tpl{}; buildPresenceTuple<GroupEvents,0,FIELDS...>(*this,tpl); return tpl; };
    bool isFieldSet( tag_t tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
@@ -83,6 +87,7 @@ class GroupEvents : public MessageBase
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
+   using EventType = FieldEventType; 
    bool isSetEventType() const { return fieldEventType.offset > 0; }
    FieldEventType::ValueType getEventType() const { return fieldEventType.getValue( _fixPtr ); }
    std::string_view getEventTypeView() const { return fieldEventType.offset > 0 ? std::string_view{ _fixPtr + fieldEventType.offset, getValueLength( _fixPtr + fieldEventType.offset ) } : std::string_view{}; }
@@ -92,6 +97,7 @@ class GroupEvents : public MessageBase
    private: FieldEventType fieldEventType;
 
    public:
+   using EventDate = FieldEventDate; 
    bool isSetEventDate() const { return fieldEventDate.offset > 0; }
    FieldEventDate::ValueType getEventDate() const { return fieldEventDate.getValue( _fixPtr ); }
    std::string_view getEventDateView() const { return fieldEventDate.offset > 0 ? std::string_view{ _fixPtr + fieldEventDate.offset, getValueLength( _fixPtr + fieldEventDate.offset ) } : std::string_view{}; }
@@ -101,6 +107,7 @@ class GroupEvents : public MessageBase
    private: FieldEventDate fieldEventDate;
 
    public:
+   using EventPx = FieldEventPx; 
    bool isSetEventPx() const { return fieldEventPx.offset > 0; }
    FieldEventPx::ValueType getEventPx() const { return fieldEventPx.getValue( _fixPtr ); }
    std::string_view getEventPxView() const { return fieldEventPx.offset > 0 ? std::string_view{ _fixPtr + fieldEventPx.offset, getValueLength( _fixPtr + fieldEventPx.offset ) } : std::string_view{}; }
@@ -110,6 +117,7 @@ class GroupEvents : public MessageBase
    private: FieldEventPx fieldEventPx;
 
    public:
+   using EventText = FieldEventText; 
    bool isSetEventText() const { return fieldEventText.offset > 0; }
    FieldEventText::ValueType getEventText() const { return fieldEventText.getValue( _fixPtr ); }
    std::string_view getEventTextView() const { return fieldEventText.offset > 0 ? std::string_view{ _fixPtr + fieldEventText.offset, getValueLength( _fixPtr + fieldEventText.offset ) } : std::string_view{}; }
@@ -135,6 +143,7 @@ class GroupLegSecurityAltID : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<GroupLegSecurityAltID,0,FIELDS...>(*this,tpl); return tpl; };
+   template< typename... FIELDS > std::tuple<typeExists<FIELDS>... > getPresenceOf() const { std::tuple< typeExists<FIELDS>... > tpl{}; buildPresenceTuple<GroupLegSecurityAltID,0,FIELDS...>(*this,tpl); return tpl; };
    bool isFieldSet( tag_t tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
@@ -144,6 +153,7 @@ class GroupLegSecurityAltID : public MessageBase
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
+   using LegSecurityAltID = FieldLegSecurityAltID; 
    bool isSetLegSecurityAltID() const { return fieldLegSecurityAltID.offset > 0; }
    FieldLegSecurityAltID::ValueType getLegSecurityAltID() const { return fieldLegSecurityAltID.getValue( _fixPtr ); }
    std::string_view getLegSecurityAltIDView() const { return fieldLegSecurityAltID.offset > 0 ? std::string_view{ _fixPtr + fieldLegSecurityAltID.offset, getValueLength( _fixPtr + fieldLegSecurityAltID.offset ) } : std::string_view{}; }
@@ -153,6 +163,7 @@ class GroupLegSecurityAltID : public MessageBase
    private: FieldLegSecurityAltID fieldLegSecurityAltID;
 
    public:
+   using LegSecurityAltIDSource = FieldLegSecurityAltIDSource; 
    bool isSetLegSecurityAltIDSource() const { return fieldLegSecurityAltIDSource.offset > 0; }
    FieldLegSecurityAltIDSource::ValueType getLegSecurityAltIDSource() const { return fieldLegSecurityAltIDSource.getValue( _fixPtr ); }
    std::string_view getLegSecurityAltIDSourceView() const { return fieldLegSecurityAltIDSource.offset > 0 ? std::string_view{ _fixPtr + fieldLegSecurityAltIDSource.offset, getValueLength( _fixPtr + fieldLegSecurityAltIDSource.offset ) } : std::string_view{}; }
@@ -178,6 +189,7 @@ class GroupCapacities : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<GroupCapacities,0,FIELDS...>(*this,tpl); return tpl; };
+   template< typename... FIELDS > std::tuple<typeExists<FIELDS>... > getPresenceOf() const { std::tuple< typeExists<FIELDS>... > tpl{}; buildPresenceTuple<GroupCapacities,0,FIELDS...>(*this,tpl); return tpl; };
    bool isFieldSet( tag_t tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
@@ -187,6 +199,7 @@ class GroupCapacities : public MessageBase
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
+   using OrderCapacity = FieldOrderCapacity; 
    bool isSetOrderCapacity() const { return fieldOrderCapacity.offset > 0; }
    FieldOrderCapacity::ValueType getOrderCapacity() const { return fieldOrderCapacity.getValue( _fixPtr ); }
    std::string_view getOrderCapacityView() const { return fieldOrderCapacity.offset > 0 ? std::string_view{ _fixPtr + fieldOrderCapacity.offset, getValueLength( _fixPtr + fieldOrderCapacity.offset ) } : std::string_view{}; }
@@ -196,6 +209,7 @@ class GroupCapacities : public MessageBase
    private: FieldOrderCapacity fieldOrderCapacity;
 
    public:
+   using OrderRestrictions = FieldOrderRestrictions; 
    bool isSetOrderRestrictions() const { return fieldOrderRestrictions.offset > 0; }
    FieldOrderRestrictions::ValueType getOrderRestrictions() const { return fieldOrderRestrictions.getValue( _fixPtr ); }
    std::string_view getOrderRestrictionsView() const { return fieldOrderRestrictions.offset > 0 ? std::string_view{ _fixPtr + fieldOrderRestrictions.offset, getValueLength( _fixPtr + fieldOrderRestrictions.offset ) } : std::string_view{}; }
@@ -205,6 +219,7 @@ class GroupCapacities : public MessageBase
    private: FieldOrderRestrictions fieldOrderRestrictions;
 
    public:
+   using OrderCapacityQty = FieldOrderCapacityQty; 
    bool isSetOrderCapacityQty() const { return fieldOrderCapacityQty.offset > 0; }
    FieldOrderCapacityQty::ValueType getOrderCapacityQty() const { return fieldOrderCapacityQty.getValue( _fixPtr ); }
    std::string_view getOrderCapacityQtyView() const { return fieldOrderCapacityQty.offset > 0 ? std::string_view{ _fixPtr + fieldOrderCapacityQty.offset, getValueLength( _fixPtr + fieldOrderCapacityQty.offset ) } : std::string_view{}; }
@@ -230,6 +245,7 @@ class GroupNested3PartySubIDs : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<GroupNested3PartySubIDs,0,FIELDS...>(*this,tpl); return tpl; };
+   template< typename... FIELDS > std::tuple<typeExists<FIELDS>... > getPresenceOf() const { std::tuple< typeExists<FIELDS>... > tpl{}; buildPresenceTuple<GroupNested3PartySubIDs,0,FIELDS...>(*this,tpl); return tpl; };
    bool isFieldSet( tag_t tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
@@ -239,6 +255,7 @@ class GroupNested3PartySubIDs : public MessageBase
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
+   using Nested3PartySubID = FieldNested3PartySubID; 
    bool isSetNested3PartySubID() const { return fieldNested3PartySubID.offset > 0; }
    FieldNested3PartySubID::ValueType getNested3PartySubID() const { return fieldNested3PartySubID.getValue( _fixPtr ); }
    std::string_view getNested3PartySubIDView() const { return fieldNested3PartySubID.offset > 0 ? std::string_view{ _fixPtr + fieldNested3PartySubID.offset, getValueLength( _fixPtr + fieldNested3PartySubID.offset ) } : std::string_view{}; }
@@ -248,6 +265,7 @@ class GroupNested3PartySubIDs : public MessageBase
    private: FieldNested3PartySubID fieldNested3PartySubID;
 
    public:
+   using Nested3PartySubIDType = FieldNested3PartySubIDType; 
    bool isSetNested3PartySubIDType() const { return fieldNested3PartySubIDType.offset > 0; }
    FieldNested3PartySubIDType::ValueType getNested3PartySubIDType() const { return fieldNested3PartySubIDType.getValue( _fixPtr ); }
    std::string_view getNested3PartySubIDTypeView() const { return fieldNested3PartySubIDType.offset > 0 ? std::string_view{ _fixPtr + fieldNested3PartySubIDType.offset, getValueLength( _fixPtr + fieldNested3PartySubIDType.offset ) } : std::string_view{}; }
@@ -273,6 +291,7 @@ class GroupPartySubIDs : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<GroupPartySubIDs,0,FIELDS...>(*this,tpl); return tpl; };
+   template< typename... FIELDS > std::tuple<typeExists<FIELDS>... > getPresenceOf() const { std::tuple< typeExists<FIELDS>... > tpl{}; buildPresenceTuple<GroupPartySubIDs,0,FIELDS...>(*this,tpl); return tpl; };
    bool isFieldSet( tag_t tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
@@ -282,6 +301,7 @@ class GroupPartySubIDs : public MessageBase
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
+   using PartySubID = FieldPartySubID; 
    bool isSetPartySubID() const { return fieldPartySubID.offset > 0; }
    FieldPartySubID::ValueType getPartySubID() const { return fieldPartySubID.getValue( _fixPtr ); }
    std::string_view getPartySubIDView() const { return fieldPartySubID.offset > 0 ? std::string_view{ _fixPtr + fieldPartySubID.offset, getValueLength( _fixPtr + fieldPartySubID.offset ) } : std::string_view{}; }
@@ -291,6 +311,7 @@ class GroupPartySubIDs : public MessageBase
    private: FieldPartySubID fieldPartySubID;
 
    public:
+   using PartySubIDType = FieldPartySubIDType; 
    bool isSetPartySubIDType() const { return fieldPartySubIDType.offset > 0; }
    FieldPartySubIDType::ValueType getPartySubIDType() const { return fieldPartySubIDType.getValue( _fixPtr ); }
    std::string_view getPartySubIDTypeView() const { return fieldPartySubIDType.offset > 0 ? std::string_view{ _fixPtr + fieldPartySubIDType.offset, getValueLength( _fixPtr + fieldPartySubIDType.offset ) } : std::string_view{}; }
@@ -316,6 +337,7 @@ class GroupNested2PartySubIDs : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<GroupNested2PartySubIDs,0,FIELDS...>(*this,tpl); return tpl; };
+   template< typename... FIELDS > std::tuple<typeExists<FIELDS>... > getPresenceOf() const { std::tuple< typeExists<FIELDS>... > tpl{}; buildPresenceTuple<GroupNested2PartySubIDs,0,FIELDS...>(*this,tpl); return tpl; };
    bool isFieldSet( tag_t tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
@@ -325,6 +347,7 @@ class GroupNested2PartySubIDs : public MessageBase
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
+   using Nested2PartySubID = FieldNested2PartySubID; 
    bool isSetNested2PartySubID() const { return fieldNested2PartySubID.offset > 0; }
    FieldNested2PartySubID::ValueType getNested2PartySubID() const { return fieldNested2PartySubID.getValue( _fixPtr ); }
    std::string_view getNested2PartySubIDView() const { return fieldNested2PartySubID.offset > 0 ? std::string_view{ _fixPtr + fieldNested2PartySubID.offset, getValueLength( _fixPtr + fieldNested2PartySubID.offset ) } : std::string_view{}; }
@@ -334,6 +357,7 @@ class GroupNested2PartySubIDs : public MessageBase
    private: FieldNested2PartySubID fieldNested2PartySubID;
 
    public:
+   using Nested2PartySubIDType = FieldNested2PartySubIDType; 
    bool isSetNested2PartySubIDType() const { return fieldNested2PartySubIDType.offset > 0; }
    FieldNested2PartySubIDType::ValueType getNested2PartySubIDType() const { return fieldNested2PartySubIDType.getValue( _fixPtr ); }
    std::string_view getNested2PartySubIDTypeView() const { return fieldNested2PartySubIDType.offset > 0 ? std::string_view{ _fixPtr + fieldNested2PartySubIDType.offset, getValueLength( _fixPtr + fieldNested2PartySubIDType.offset ) } : std::string_view{}; }
@@ -359,6 +383,7 @@ class GroupNested2PartyIDs : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<GroupNested2PartyIDs,0,FIELDS...>(*this,tpl); return tpl; };
+   template< typename... FIELDS > std::tuple<typeExists<FIELDS>... > getPresenceOf() const { std::tuple< typeExists<FIELDS>... > tpl{}; buildPresenceTuple<GroupNested2PartyIDs,0,FIELDS...>(*this,tpl); return tpl; };
    bool isFieldSet( tag_t tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
@@ -368,6 +393,7 @@ class GroupNested2PartyIDs : public MessageBase
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
+   using Nested2PartyID = FieldNested2PartyID; 
    bool isSetNested2PartyID() const { return fieldNested2PartyID.offset > 0; }
    FieldNested2PartyID::ValueType getNested2PartyID() const { return fieldNested2PartyID.getValue( _fixPtr ); }
    std::string_view getNested2PartyIDView() const { return fieldNested2PartyID.offset > 0 ? std::string_view{ _fixPtr + fieldNested2PartyID.offset, getValueLength( _fixPtr + fieldNested2PartyID.offset ) } : std::string_view{}; }
@@ -377,6 +403,7 @@ class GroupNested2PartyIDs : public MessageBase
    private: FieldNested2PartyID fieldNested2PartyID;
 
    public:
+   using Nested2PartyIDSource = FieldNested2PartyIDSource; 
    bool isSetNested2PartyIDSource() const { return fieldNested2PartyIDSource.offset > 0; }
    FieldNested2PartyIDSource::ValueType getNested2PartyIDSource() const { return fieldNested2PartyIDSource.getValue( _fixPtr ); }
    std::string_view getNested2PartyIDSourceView() const { return fieldNested2PartyIDSource.offset > 0 ? std::string_view{ _fixPtr + fieldNested2PartyIDSource.offset, getValueLength( _fixPtr + fieldNested2PartyIDSource.offset ) } : std::string_view{}; }
@@ -386,6 +413,7 @@ class GroupNested2PartyIDs : public MessageBase
    private: FieldNested2PartyIDSource fieldNested2PartyIDSource;
 
    public:
+   using Nested2PartyRole = FieldNested2PartyRole; 
    bool isSetNested2PartyRole() const { return fieldNested2PartyRole.offset > 0; }
    FieldNested2PartyRole::ValueType getNested2PartyRole() const { return fieldNested2PartyRole.getValue( _fixPtr ); }
    std::string_view getNested2PartyRoleView() const { return fieldNested2PartyRole.offset > 0 ? std::string_view{ _fixPtr + fieldNested2PartyRole.offset, getValueLength( _fixPtr + fieldNested2PartyRole.offset ) } : std::string_view{}; }
@@ -395,6 +423,7 @@ class GroupNested2PartyIDs : public MessageBase
    private: FieldNested2PartyRole fieldNested2PartyRole;
 
    public:
+   using NoNested2PartySubIDs = FieldNoNested2PartySubIDs; 
    bool isSetNoNested2PartySubIDs() const { return fieldNoNested2PartySubIDs.offset > 0; }
    FieldNoNested2PartySubIDs::ValueType getNoNested2PartySubIDs() const { return fieldNoNested2PartySubIDs.getValue( _fixPtr ); }
    std::string_view getNoNested2PartySubIDsView() const { return fieldNoNested2PartySubIDs.offset > 0 ? std::string_view{ _fixPtr + fieldNoNested2PartySubIDs.offset, getValueLength( _fixPtr + fieldNoNested2PartySubIDs.offset ) } : std::string_view{}; }
@@ -425,6 +454,7 @@ class GroupHops : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<GroupHops,0,FIELDS...>(*this,tpl); return tpl; };
+   template< typename... FIELDS > std::tuple<typeExists<FIELDS>... > getPresenceOf() const { std::tuple< typeExists<FIELDS>... > tpl{}; buildPresenceTuple<GroupHops,0,FIELDS...>(*this,tpl); return tpl; };
    bool isFieldSet( tag_t tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
@@ -434,6 +464,7 @@ class GroupHops : public MessageBase
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
+   using HopCompID = FieldHopCompID; 
    bool isSetHopCompID() const { return fieldHopCompID.offset > 0; }
    FieldHopCompID::ValueType getHopCompID() const { return fieldHopCompID.getValue( _fixPtr ); }
    std::string_view getHopCompIDView() const { return fieldHopCompID.offset > 0 ? std::string_view{ _fixPtr + fieldHopCompID.offset, getValueLength( _fixPtr + fieldHopCompID.offset ) } : std::string_view{}; }
@@ -443,6 +474,7 @@ class GroupHops : public MessageBase
    private: FieldHopCompID fieldHopCompID;
 
    public:
+   using HopSendingTime = FieldHopSendingTime; 
    bool isSetHopSendingTime() const { return fieldHopSendingTime.offset > 0; }
    FieldHopSendingTime::ValueType getHopSendingTime() const { return fieldHopSendingTime.getValue( _fixPtr ); }
    std::string_view getHopSendingTimeView() const { return fieldHopSendingTime.offset > 0 ? std::string_view{ _fixPtr + fieldHopSendingTime.offset, getValueLength( _fixPtr + fieldHopSendingTime.offset ) } : std::string_view{}; }
@@ -452,6 +484,7 @@ class GroupHops : public MessageBase
    private: FieldHopSendingTime fieldHopSendingTime;
 
    public:
+   using HopRefID = FieldHopRefID; 
    bool isSetHopRefID() const { return fieldHopRefID.offset > 0; }
    FieldHopRefID::ValueType getHopRefID() const { return fieldHopRefID.getValue( _fixPtr ); }
    std::string_view getHopRefIDView() const { return fieldHopRefID.offset > 0 ? std::string_view{ _fixPtr + fieldHopRefID.offset, getValueLength( _fixPtr + fieldHopRefID.offset ) } : std::string_view{}; }
@@ -477,6 +510,7 @@ class GroupCollInquiryQualifier : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<GroupCollInquiryQualifier,0,FIELDS...>(*this,tpl); return tpl; };
+   template< typename... FIELDS > std::tuple<typeExists<FIELDS>... > getPresenceOf() const { std::tuple< typeExists<FIELDS>... > tpl{}; buildPresenceTuple<GroupCollInquiryQualifier,0,FIELDS...>(*this,tpl); return tpl; };
    bool isFieldSet( tag_t tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
@@ -486,6 +520,7 @@ class GroupCollInquiryQualifier : public MessageBase
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
+   using CollInquiryQualifier = FieldCollInquiryQualifier; 
    bool isSetCollInquiryQualifier() const { return fieldCollInquiryQualifier.offset > 0; }
    FieldCollInquiryQualifier::ValueType getCollInquiryQualifier() const { return fieldCollInquiryQualifier.getValue( _fixPtr ); }
    std::string_view getCollInquiryQualifierView() const { return fieldCollInquiryQualifier.offset > 0 ? std::string_view{ _fixPtr + fieldCollInquiryQualifier.offset, getValueLength( _fixPtr + fieldCollInquiryQualifier.offset ) } : std::string_view{}; }
@@ -511,6 +546,7 @@ class GroupPartyIDs : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<GroupPartyIDs,0,FIELDS...>(*this,tpl); return tpl; };
+   template< typename... FIELDS > std::tuple<typeExists<FIELDS>... > getPresenceOf() const { std::tuple< typeExists<FIELDS>... > tpl{}; buildPresenceTuple<GroupPartyIDs,0,FIELDS...>(*this,tpl); return tpl; };
    bool isFieldSet( tag_t tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
@@ -520,6 +556,7 @@ class GroupPartyIDs : public MessageBase
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
+   using PartyID = FieldPartyID; 
    bool isSetPartyID() const { return fieldPartyID.offset > 0; }
    FieldPartyID::ValueType getPartyID() const { return fieldPartyID.getValue( _fixPtr ); }
    std::string_view getPartyIDView() const { return fieldPartyID.offset > 0 ? std::string_view{ _fixPtr + fieldPartyID.offset, getValueLength( _fixPtr + fieldPartyID.offset ) } : std::string_view{}; }
@@ -529,6 +566,7 @@ class GroupPartyIDs : public MessageBase
    private: FieldPartyID fieldPartyID;
 
    public:
+   using PartyIDSource = FieldPartyIDSource; 
    bool isSetPartyIDSource() const { return fieldPartyIDSource.offset > 0; }
    FieldPartyIDSource::ValueType getPartyIDSource() const { return fieldPartyIDSource.getValue( _fixPtr ); }
    std::string_view getPartyIDSourceView() const { return fieldPartyIDSource.offset > 0 ? std::string_view{ _fixPtr + fieldPartyIDSource.offset, getValueLength( _fixPtr + fieldPartyIDSource.offset ) } : std::string_view{}; }
@@ -538,6 +576,7 @@ class GroupPartyIDs : public MessageBase
    private: FieldPartyIDSource fieldPartyIDSource;
 
    public:
+   using PartyRole = FieldPartyRole; 
    bool isSetPartyRole() const { return fieldPartyRole.offset > 0; }
    FieldPartyRole::ValueType getPartyRole() const { return fieldPartyRole.getValue( _fixPtr ); }
    std::string_view getPartyRoleView() const { return fieldPartyRole.offset > 0 ? std::string_view{ _fixPtr + fieldPartyRole.offset, getValueLength( _fixPtr + fieldPartyRole.offset ) } : std::string_view{}; }
@@ -547,6 +586,7 @@ class GroupPartyIDs : public MessageBase
    private: FieldPartyRole fieldPartyRole;
 
    public:
+   using NoPartySubIDs = FieldNoPartySubIDs; 
    bool isSetNoPartySubIDs() const { return fieldNoPartySubIDs.offset > 0; }
    FieldNoPartySubIDs::ValueType getNoPartySubIDs() const { return fieldNoPartySubIDs.getValue( _fixPtr ); }
    std::string_view getNoPartySubIDsView() const { return fieldNoPartySubIDs.offset > 0 ? std::string_view{ _fixPtr + fieldNoPartySubIDs.offset, getValueLength( _fixPtr + fieldNoPartySubIDs.offset ) } : std::string_view{}; }
@@ -577,6 +617,7 @@ class GroupAllocs : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<GroupAllocs,0,FIELDS...>(*this,tpl); return tpl; };
+   template< typename... FIELDS > std::tuple<typeExists<FIELDS>... > getPresenceOf() const { std::tuple< typeExists<FIELDS>... > tpl{}; buildPresenceTuple<GroupAllocs,0,FIELDS...>(*this,tpl); return tpl; };
    bool isFieldSet( tag_t tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
@@ -586,6 +627,7 @@ class GroupAllocs : public MessageBase
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
+   using AllocAccount = FieldAllocAccount; 
    bool isSetAllocAccount() const { return fieldAllocAccount.offset > 0; }
    FieldAllocAccount::ValueType getAllocAccount() const { return fieldAllocAccount.getValue( _fixPtr ); }
    std::string_view getAllocAccountView() const { return fieldAllocAccount.offset > 0 ? std::string_view{ _fixPtr + fieldAllocAccount.offset, getValueLength( _fixPtr + fieldAllocAccount.offset ) } : std::string_view{}; }
@@ -595,6 +637,7 @@ class GroupAllocs : public MessageBase
    private: FieldAllocAccount fieldAllocAccount;
 
    public:
+   using AllocAcctIDSource = FieldAllocAcctIDSource; 
    bool isSetAllocAcctIDSource() const { return fieldAllocAcctIDSource.offset > 0; }
    FieldAllocAcctIDSource::ValueType getAllocAcctIDSource() const { return fieldAllocAcctIDSource.getValue( _fixPtr ); }
    std::string_view getAllocAcctIDSourceView() const { return fieldAllocAcctIDSource.offset > 0 ? std::string_view{ _fixPtr + fieldAllocAcctIDSource.offset, getValueLength( _fixPtr + fieldAllocAcctIDSource.offset ) } : std::string_view{}; }
@@ -604,6 +647,7 @@ class GroupAllocs : public MessageBase
    private: FieldAllocAcctIDSource fieldAllocAcctIDSource;
 
    public:
+   using AllocPrice = FieldAllocPrice; 
    bool isSetAllocPrice() const { return fieldAllocPrice.offset > 0; }
    FieldAllocPrice::ValueType getAllocPrice() const { return fieldAllocPrice.getValue( _fixPtr ); }
    std::string_view getAllocPriceView() const { return fieldAllocPrice.offset > 0 ? std::string_view{ _fixPtr + fieldAllocPrice.offset, getValueLength( _fixPtr + fieldAllocPrice.offset ) } : std::string_view{}; }
@@ -613,6 +657,7 @@ class GroupAllocs : public MessageBase
    private: FieldAllocPrice fieldAllocPrice;
 
    public:
+   using IndividualAllocID = FieldIndividualAllocID; 
    bool isSetIndividualAllocID() const { return fieldIndividualAllocID.offset > 0; }
    FieldIndividualAllocID::ValueType getIndividualAllocID() const { return fieldIndividualAllocID.getValue( _fixPtr ); }
    std::string_view getIndividualAllocIDView() const { return fieldIndividualAllocID.offset > 0 ? std::string_view{ _fixPtr + fieldIndividualAllocID.offset, getValueLength( _fixPtr + fieldIndividualAllocID.offset ) } : std::string_view{}; }
@@ -622,6 +667,7 @@ class GroupAllocs : public MessageBase
    private: FieldIndividualAllocID fieldIndividualAllocID;
 
    public:
+   using IndividualAllocRejCode = FieldIndividualAllocRejCode; 
    bool isSetIndividualAllocRejCode() const { return fieldIndividualAllocRejCode.offset > 0; }
    FieldIndividualAllocRejCode::ValueType getIndividualAllocRejCode() const { return fieldIndividualAllocRejCode.getValue( _fixPtr ); }
    std::string_view getIndividualAllocRejCodeView() const { return fieldIndividualAllocRejCode.offset > 0 ? std::string_view{ _fixPtr + fieldIndividualAllocRejCode.offset, getValueLength( _fixPtr + fieldIndividualAllocRejCode.offset ) } : std::string_view{}; }
@@ -631,6 +677,7 @@ class GroupAllocs : public MessageBase
    private: FieldIndividualAllocRejCode fieldIndividualAllocRejCode;
 
    public:
+   using AllocText = FieldAllocText; 
    bool isSetAllocText() const { return fieldAllocText.offset > 0; }
    FieldAllocText::ValueType getAllocText() const { return fieldAllocText.getValue( _fixPtr ); }
    std::string_view getAllocTextView() const { return fieldAllocText.offset > 0 ? std::string_view{ _fixPtr + fieldAllocText.offset, getValueLength( _fixPtr + fieldAllocText.offset ) } : std::string_view{}; }
@@ -640,6 +687,7 @@ class GroupAllocs : public MessageBase
    private: FieldAllocText fieldAllocText;
 
    public:
+   using EncodedAllocTextLen = FieldEncodedAllocTextLen; 
    bool isSetEncodedAllocTextLen() const { return fieldEncodedAllocTextLen.offset > 0; }
    FieldEncodedAllocTextLen::ValueType getEncodedAllocTextLen() const { return fieldEncodedAllocTextLen.getValue( _fixPtr ); }
    std::string_view getEncodedAllocTextLenView() const { return fieldEncodedAllocTextLen.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedAllocTextLen.offset, getValueLength( _fixPtr + fieldEncodedAllocTextLen.offset ) } : std::string_view{}; }
@@ -649,6 +697,7 @@ class GroupAllocs : public MessageBase
    private: FieldEncodedAllocTextLen fieldEncodedAllocTextLen;
 
    public:
+   using EncodedAllocText = FieldEncodedAllocText; 
    bool isSetEncodedAllocText() const { return fieldEncodedAllocText.offset > 0; }
    FieldEncodedAllocText::ValueType getEncodedAllocText() const { return fieldEncodedAllocText.getValue( _fixPtr ); }
    std::string_view getEncodedAllocTextView() const { return fieldEncodedAllocText.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedAllocText.offset, getValueLength( _fixPtr + fieldEncodedAllocText.offset ) } : std::string_view{}; }
@@ -674,6 +723,7 @@ class GroupTradingSessions : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<GroupTradingSessions,0,FIELDS...>(*this,tpl); return tpl; };
+   template< typename... FIELDS > std::tuple<typeExists<FIELDS>... > getPresenceOf() const { std::tuple< typeExists<FIELDS>... > tpl{}; buildPresenceTuple<GroupTradingSessions,0,FIELDS...>(*this,tpl); return tpl; };
    bool isFieldSet( tag_t tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
@@ -683,6 +733,7 @@ class GroupTradingSessions : public MessageBase
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
+   using TradingSessionID = FieldTradingSessionID; 
    bool isSetTradingSessionID() const { return fieldTradingSessionID.offset > 0; }
    FieldTradingSessionID::ValueType getTradingSessionID() const { return fieldTradingSessionID.getValue( _fixPtr ); }
    std::string_view getTradingSessionIDView() const { return fieldTradingSessionID.offset > 0 ? std::string_view{ _fixPtr + fieldTradingSessionID.offset, getValueLength( _fixPtr + fieldTradingSessionID.offset ) } : std::string_view{}; }
@@ -692,6 +743,7 @@ class GroupTradingSessions : public MessageBase
    private: FieldTradingSessionID fieldTradingSessionID;
 
    public:
+   using TradingSessionSubID = FieldTradingSessionSubID; 
    bool isSetTradingSessionSubID() const { return fieldTradingSessionSubID.offset > 0; }
    FieldTradingSessionSubID::ValueType getTradingSessionSubID() const { return fieldTradingSessionSubID.getValue( _fixPtr ); }
    std::string_view getTradingSessionSubIDView() const { return fieldTradingSessionSubID.offset > 0 ? std::string_view{ _fixPtr + fieldTradingSessionSubID.offset, getValueLength( _fixPtr + fieldTradingSessionSubID.offset ) } : std::string_view{}; }
@@ -717,6 +769,7 @@ class GroupSecurityAltID : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<GroupSecurityAltID,0,FIELDS...>(*this,tpl); return tpl; };
+   template< typename... FIELDS > std::tuple<typeExists<FIELDS>... > getPresenceOf() const { std::tuple< typeExists<FIELDS>... > tpl{}; buildPresenceTuple<GroupSecurityAltID,0,FIELDS...>(*this,tpl); return tpl; };
    bool isFieldSet( tag_t tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
@@ -726,6 +779,7 @@ class GroupSecurityAltID : public MessageBase
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
+   using SecurityAltID = FieldSecurityAltID; 
    bool isSetSecurityAltID() const { return fieldSecurityAltID.offset > 0; }
    FieldSecurityAltID::ValueType getSecurityAltID() const { return fieldSecurityAltID.getValue( _fixPtr ); }
    std::string_view getSecurityAltIDView() const { return fieldSecurityAltID.offset > 0 ? std::string_view{ _fixPtr + fieldSecurityAltID.offset, getValueLength( _fixPtr + fieldSecurityAltID.offset ) } : std::string_view{}; }
@@ -735,6 +789,7 @@ class GroupSecurityAltID : public MessageBase
    private: FieldSecurityAltID fieldSecurityAltID;
 
    public:
+   using SecurityAltIDSource = FieldSecurityAltIDSource; 
    bool isSetSecurityAltIDSource() const { return fieldSecurityAltIDSource.offset > 0; }
    FieldSecurityAltIDSource::ValueType getSecurityAltIDSource() const { return fieldSecurityAltIDSource.getValue( _fixPtr ); }
    std::string_view getSecurityAltIDSourceView() const { return fieldSecurityAltIDSource.offset > 0 ? std::string_view{ _fixPtr + fieldSecurityAltIDSource.offset, getValueLength( _fixPtr + fieldSecurityAltIDSource.offset ) } : std::string_view{}; }
@@ -760,6 +815,7 @@ class GroupUnderlyingSecurityAltID : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<GroupUnderlyingSecurityAltID,0,FIELDS...>(*this,tpl); return tpl; };
+   template< typename... FIELDS > std::tuple<typeExists<FIELDS>... > getPresenceOf() const { std::tuple< typeExists<FIELDS>... > tpl{}; buildPresenceTuple<GroupUnderlyingSecurityAltID,0,FIELDS...>(*this,tpl); return tpl; };
    bool isFieldSet( tag_t tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
@@ -769,6 +825,7 @@ class GroupUnderlyingSecurityAltID : public MessageBase
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
+   using UnderlyingSecurityAltID = FieldUnderlyingSecurityAltID; 
    bool isSetUnderlyingSecurityAltID() const { return fieldUnderlyingSecurityAltID.offset > 0; }
    FieldUnderlyingSecurityAltID::ValueType getUnderlyingSecurityAltID() const { return fieldUnderlyingSecurityAltID.getValue( _fixPtr ); }
    std::string_view getUnderlyingSecurityAltIDView() const { return fieldUnderlyingSecurityAltID.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingSecurityAltID.offset, getValueLength( _fixPtr + fieldUnderlyingSecurityAltID.offset ) } : std::string_view{}; }
@@ -778,6 +835,7 @@ class GroupUnderlyingSecurityAltID : public MessageBase
    private: FieldUnderlyingSecurityAltID fieldUnderlyingSecurityAltID;
 
    public:
+   using UnderlyingSecurityAltIDSource = FieldUnderlyingSecurityAltIDSource; 
    bool isSetUnderlyingSecurityAltIDSource() const { return fieldUnderlyingSecurityAltIDSource.offset > 0; }
    FieldUnderlyingSecurityAltIDSource::ValueType getUnderlyingSecurityAltIDSource() const { return fieldUnderlyingSecurityAltIDSource.getValue( _fixPtr ); }
    std::string_view getUnderlyingSecurityAltIDSourceView() const { return fieldUnderlyingSecurityAltIDSource.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingSecurityAltIDSource.offset, getValueLength( _fixPtr + fieldUnderlyingSecurityAltIDSource.offset ) } : std::string_view{}; }
@@ -803,6 +861,7 @@ class GroupUnderlyingStips : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<GroupUnderlyingStips,0,FIELDS...>(*this,tpl); return tpl; };
+   template< typename... FIELDS > std::tuple<typeExists<FIELDS>... > getPresenceOf() const { std::tuple< typeExists<FIELDS>... > tpl{}; buildPresenceTuple<GroupUnderlyingStips,0,FIELDS...>(*this,tpl); return tpl; };
    bool isFieldSet( tag_t tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
@@ -812,6 +871,7 @@ class GroupUnderlyingStips : public MessageBase
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
+   using UnderlyingStipType = FieldUnderlyingStipType; 
    bool isSetUnderlyingStipType() const { return fieldUnderlyingStipType.offset > 0; }
    FieldUnderlyingStipType::ValueType getUnderlyingStipType() const { return fieldUnderlyingStipType.getValue( _fixPtr ); }
    std::string_view getUnderlyingStipTypeView() const { return fieldUnderlyingStipType.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingStipType.offset, getValueLength( _fixPtr + fieldUnderlyingStipType.offset ) } : std::string_view{}; }
@@ -821,6 +881,7 @@ class GroupUnderlyingStips : public MessageBase
    private: FieldUnderlyingStipType fieldUnderlyingStipType;
 
    public:
+   using UnderlyingStipValue = FieldUnderlyingStipValue; 
    bool isSetUnderlyingStipValue() const { return fieldUnderlyingStipValue.offset > 0; }
    FieldUnderlyingStipValue::ValueType getUnderlyingStipValue() const { return fieldUnderlyingStipValue.getValue( _fixPtr ); }
    std::string_view getUnderlyingStipValueView() const { return fieldUnderlyingStipValue.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingStipValue.offset, getValueLength( _fixPtr + fieldUnderlyingStipValue.offset ) } : std::string_view{}; }
@@ -846,6 +907,7 @@ class GroupUnderlyings : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<GroupUnderlyings,0,FIELDS...>(*this,tpl); return tpl; };
+   template< typename... FIELDS > std::tuple<typeExists<FIELDS>... > getPresenceOf() const { std::tuple< typeExists<FIELDS>... > tpl{}; buildPresenceTuple<GroupUnderlyings,0,FIELDS...>(*this,tpl); return tpl; };
    bool isFieldSet( tag_t tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
@@ -855,6 +917,7 @@ class GroupUnderlyings : public MessageBase
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
+   using UnderlyingSymbol = FieldUnderlyingSymbol; 
    bool isSetUnderlyingSymbol() const { return fieldUnderlyingSymbol.offset > 0; }
    FieldUnderlyingSymbol::ValueType getUnderlyingSymbol() const { return fieldUnderlyingSymbol.getValue( _fixPtr ); }
    std::string_view getUnderlyingSymbolView() const { return fieldUnderlyingSymbol.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingSymbol.offset, getValueLength( _fixPtr + fieldUnderlyingSymbol.offset ) } : std::string_view{}; }
@@ -864,6 +927,7 @@ class GroupUnderlyings : public MessageBase
    private: FieldUnderlyingSymbol fieldUnderlyingSymbol;
 
    public:
+   using UnderlyingSymbolSfx = FieldUnderlyingSymbolSfx; 
    bool isSetUnderlyingSymbolSfx() const { return fieldUnderlyingSymbolSfx.offset > 0; }
    FieldUnderlyingSymbolSfx::ValueType getUnderlyingSymbolSfx() const { return fieldUnderlyingSymbolSfx.getValue( _fixPtr ); }
    std::string_view getUnderlyingSymbolSfxView() const { return fieldUnderlyingSymbolSfx.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingSymbolSfx.offset, getValueLength( _fixPtr + fieldUnderlyingSymbolSfx.offset ) } : std::string_view{}; }
@@ -873,6 +937,7 @@ class GroupUnderlyings : public MessageBase
    private: FieldUnderlyingSymbolSfx fieldUnderlyingSymbolSfx;
 
    public:
+   using UnderlyingSecurityID = FieldUnderlyingSecurityID; 
    bool isSetUnderlyingSecurityID() const { return fieldUnderlyingSecurityID.offset > 0; }
    FieldUnderlyingSecurityID::ValueType getUnderlyingSecurityID() const { return fieldUnderlyingSecurityID.getValue( _fixPtr ); }
    std::string_view getUnderlyingSecurityIDView() const { return fieldUnderlyingSecurityID.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingSecurityID.offset, getValueLength( _fixPtr + fieldUnderlyingSecurityID.offset ) } : std::string_view{}; }
@@ -882,6 +947,7 @@ class GroupUnderlyings : public MessageBase
    private: FieldUnderlyingSecurityID fieldUnderlyingSecurityID;
 
    public:
+   using UnderlyingSecurityIDSource = FieldUnderlyingSecurityIDSource; 
    bool isSetUnderlyingSecurityIDSource() const { return fieldUnderlyingSecurityIDSource.offset > 0; }
    FieldUnderlyingSecurityIDSource::ValueType getUnderlyingSecurityIDSource() const { return fieldUnderlyingSecurityIDSource.getValue( _fixPtr ); }
    std::string_view getUnderlyingSecurityIDSourceView() const { return fieldUnderlyingSecurityIDSource.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingSecurityIDSource.offset, getValueLength( _fixPtr + fieldUnderlyingSecurityIDSource.offset ) } : std::string_view{}; }
@@ -891,6 +957,7 @@ class GroupUnderlyings : public MessageBase
    private: FieldUnderlyingSecurityIDSource fieldUnderlyingSecurityIDSource;
 
    public:
+   using NoUnderlyingSecurityAltID = FieldNoUnderlyingSecurityAltID; 
    bool isSetNoUnderlyingSecurityAltID() const { return fieldNoUnderlyingSecurityAltID.offset > 0; }
    FieldNoUnderlyingSecurityAltID::ValueType getNoUnderlyingSecurityAltID() const { return fieldNoUnderlyingSecurityAltID.getValue( _fixPtr ); }
    std::string_view getNoUnderlyingSecurityAltIDView() const { return fieldNoUnderlyingSecurityAltID.offset > 0 ? std::string_view{ _fixPtr + fieldNoUnderlyingSecurityAltID.offset, getValueLength( _fixPtr + fieldNoUnderlyingSecurityAltID.offset ) } : std::string_view{}; }
@@ -905,6 +972,7 @@ class GroupUnderlyings : public MessageBase
    private: GroupUnderlyingSecurityAltID::Array groupsUnderlyingSecurityAltID{ 10 };
 
    public:
+   using UnderlyingProduct = FieldUnderlyingProduct; 
    bool isSetUnderlyingProduct() const { return fieldUnderlyingProduct.offset > 0; }
    FieldUnderlyingProduct::ValueType getUnderlyingProduct() const { return fieldUnderlyingProduct.getValue( _fixPtr ); }
    std::string_view getUnderlyingProductView() const { return fieldUnderlyingProduct.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingProduct.offset, getValueLength( _fixPtr + fieldUnderlyingProduct.offset ) } : std::string_view{}; }
@@ -914,6 +982,7 @@ class GroupUnderlyings : public MessageBase
    private: FieldUnderlyingProduct fieldUnderlyingProduct;
 
    public:
+   using UnderlyingCFICode = FieldUnderlyingCFICode; 
    bool isSetUnderlyingCFICode() const { return fieldUnderlyingCFICode.offset > 0; }
    FieldUnderlyingCFICode::ValueType getUnderlyingCFICode() const { return fieldUnderlyingCFICode.getValue( _fixPtr ); }
    std::string_view getUnderlyingCFICodeView() const { return fieldUnderlyingCFICode.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingCFICode.offset, getValueLength( _fixPtr + fieldUnderlyingCFICode.offset ) } : std::string_view{}; }
@@ -923,6 +992,7 @@ class GroupUnderlyings : public MessageBase
    private: FieldUnderlyingCFICode fieldUnderlyingCFICode;
 
    public:
+   using UnderlyingSecurityType = FieldUnderlyingSecurityType; 
    bool isSetUnderlyingSecurityType() const { return fieldUnderlyingSecurityType.offset > 0; }
    FieldUnderlyingSecurityType::ValueType getUnderlyingSecurityType() const { return fieldUnderlyingSecurityType.getValue( _fixPtr ); }
    std::string_view getUnderlyingSecurityTypeView() const { return fieldUnderlyingSecurityType.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingSecurityType.offset, getValueLength( _fixPtr + fieldUnderlyingSecurityType.offset ) } : std::string_view{}; }
@@ -932,6 +1002,7 @@ class GroupUnderlyings : public MessageBase
    private: FieldUnderlyingSecurityType fieldUnderlyingSecurityType;
 
    public:
+   using UnderlyingSecuritySubType = FieldUnderlyingSecuritySubType; 
    bool isSetUnderlyingSecuritySubType() const { return fieldUnderlyingSecuritySubType.offset > 0; }
    FieldUnderlyingSecuritySubType::ValueType getUnderlyingSecuritySubType() const { return fieldUnderlyingSecuritySubType.getValue( _fixPtr ); }
    std::string_view getUnderlyingSecuritySubTypeView() const { return fieldUnderlyingSecuritySubType.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingSecuritySubType.offset, getValueLength( _fixPtr + fieldUnderlyingSecuritySubType.offset ) } : std::string_view{}; }
@@ -941,6 +1012,7 @@ class GroupUnderlyings : public MessageBase
    private: FieldUnderlyingSecuritySubType fieldUnderlyingSecuritySubType;
 
    public:
+   using UnderlyingMaturityMonthYear = FieldUnderlyingMaturityMonthYear; 
    bool isSetUnderlyingMaturityMonthYear() const { return fieldUnderlyingMaturityMonthYear.offset > 0; }
    FieldUnderlyingMaturityMonthYear::ValueType getUnderlyingMaturityMonthYear() const { return fieldUnderlyingMaturityMonthYear.getValue( _fixPtr ); }
    std::string_view getUnderlyingMaturityMonthYearView() const { return fieldUnderlyingMaturityMonthYear.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingMaturityMonthYear.offset, getValueLength( _fixPtr + fieldUnderlyingMaturityMonthYear.offset ) } : std::string_view{}; }
@@ -950,6 +1022,7 @@ class GroupUnderlyings : public MessageBase
    private: FieldUnderlyingMaturityMonthYear fieldUnderlyingMaturityMonthYear;
 
    public:
+   using UnderlyingMaturityDate = FieldUnderlyingMaturityDate; 
    bool isSetUnderlyingMaturityDate() const { return fieldUnderlyingMaturityDate.offset > 0; }
    FieldUnderlyingMaturityDate::ValueType getUnderlyingMaturityDate() const { return fieldUnderlyingMaturityDate.getValue( _fixPtr ); }
    std::string_view getUnderlyingMaturityDateView() const { return fieldUnderlyingMaturityDate.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingMaturityDate.offset, getValueLength( _fixPtr + fieldUnderlyingMaturityDate.offset ) } : std::string_view{}; }
@@ -959,6 +1032,7 @@ class GroupUnderlyings : public MessageBase
    private: FieldUnderlyingMaturityDate fieldUnderlyingMaturityDate;
 
    public:
+   using UnderlyingPutOrCall = FieldUnderlyingPutOrCall; 
    bool isSetUnderlyingPutOrCall() const { return fieldUnderlyingPutOrCall.offset > 0; }
    FieldUnderlyingPutOrCall::ValueType getUnderlyingPutOrCall() const { return fieldUnderlyingPutOrCall.getValue( _fixPtr ); }
    std::string_view getUnderlyingPutOrCallView() const { return fieldUnderlyingPutOrCall.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingPutOrCall.offset, getValueLength( _fixPtr + fieldUnderlyingPutOrCall.offset ) } : std::string_view{}; }
@@ -968,6 +1042,7 @@ class GroupUnderlyings : public MessageBase
    private: FieldUnderlyingPutOrCall fieldUnderlyingPutOrCall;
 
    public:
+   using UnderlyingCouponPaymentDate = FieldUnderlyingCouponPaymentDate; 
    bool isSetUnderlyingCouponPaymentDate() const { return fieldUnderlyingCouponPaymentDate.offset > 0; }
    FieldUnderlyingCouponPaymentDate::ValueType getUnderlyingCouponPaymentDate() const { return fieldUnderlyingCouponPaymentDate.getValue( _fixPtr ); }
    std::string_view getUnderlyingCouponPaymentDateView() const { return fieldUnderlyingCouponPaymentDate.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingCouponPaymentDate.offset, getValueLength( _fixPtr + fieldUnderlyingCouponPaymentDate.offset ) } : std::string_view{}; }
@@ -977,6 +1052,7 @@ class GroupUnderlyings : public MessageBase
    private: FieldUnderlyingCouponPaymentDate fieldUnderlyingCouponPaymentDate;
 
    public:
+   using UnderlyingIssueDate = FieldUnderlyingIssueDate; 
    bool isSetUnderlyingIssueDate() const { return fieldUnderlyingIssueDate.offset > 0; }
    FieldUnderlyingIssueDate::ValueType getUnderlyingIssueDate() const { return fieldUnderlyingIssueDate.getValue( _fixPtr ); }
    std::string_view getUnderlyingIssueDateView() const { return fieldUnderlyingIssueDate.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingIssueDate.offset, getValueLength( _fixPtr + fieldUnderlyingIssueDate.offset ) } : std::string_view{}; }
@@ -986,6 +1062,7 @@ class GroupUnderlyings : public MessageBase
    private: FieldUnderlyingIssueDate fieldUnderlyingIssueDate;
 
    public:
+   using UnderlyingRepoCollateralSecurityType = FieldUnderlyingRepoCollateralSecurityType; 
    bool isSetUnderlyingRepoCollateralSecurityType() const { return fieldUnderlyingRepoCollateralSecurityType.offset > 0; }
    FieldUnderlyingRepoCollateralSecurityType::ValueType getUnderlyingRepoCollateralSecurityType() const { return fieldUnderlyingRepoCollateralSecurityType.getValue( _fixPtr ); }
    std::string_view getUnderlyingRepoCollateralSecurityTypeView() const { return fieldUnderlyingRepoCollateralSecurityType.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingRepoCollateralSecurityType.offset, getValueLength( _fixPtr + fieldUnderlyingRepoCollateralSecurityType.offset ) } : std::string_view{}; }
@@ -995,6 +1072,7 @@ class GroupUnderlyings : public MessageBase
    private: FieldUnderlyingRepoCollateralSecurityType fieldUnderlyingRepoCollateralSecurityType;
 
    public:
+   using UnderlyingRepurchaseTerm = FieldUnderlyingRepurchaseTerm; 
    bool isSetUnderlyingRepurchaseTerm() const { return fieldUnderlyingRepurchaseTerm.offset > 0; }
    FieldUnderlyingRepurchaseTerm::ValueType getUnderlyingRepurchaseTerm() const { return fieldUnderlyingRepurchaseTerm.getValue( _fixPtr ); }
    std::string_view getUnderlyingRepurchaseTermView() const { return fieldUnderlyingRepurchaseTerm.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingRepurchaseTerm.offset, getValueLength( _fixPtr + fieldUnderlyingRepurchaseTerm.offset ) } : std::string_view{}; }
@@ -1004,6 +1082,7 @@ class GroupUnderlyings : public MessageBase
    private: FieldUnderlyingRepurchaseTerm fieldUnderlyingRepurchaseTerm;
 
    public:
+   using UnderlyingRepurchaseRate = FieldUnderlyingRepurchaseRate; 
    bool isSetUnderlyingRepurchaseRate() const { return fieldUnderlyingRepurchaseRate.offset > 0; }
    FieldUnderlyingRepurchaseRate::ValueType getUnderlyingRepurchaseRate() const { return fieldUnderlyingRepurchaseRate.getValue( _fixPtr ); }
    std::string_view getUnderlyingRepurchaseRateView() const { return fieldUnderlyingRepurchaseRate.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingRepurchaseRate.offset, getValueLength( _fixPtr + fieldUnderlyingRepurchaseRate.offset ) } : std::string_view{}; }
@@ -1013,6 +1092,7 @@ class GroupUnderlyings : public MessageBase
    private: FieldUnderlyingRepurchaseRate fieldUnderlyingRepurchaseRate;
 
    public:
+   using UnderlyingFactor = FieldUnderlyingFactor; 
    bool isSetUnderlyingFactor() const { return fieldUnderlyingFactor.offset > 0; }
    FieldUnderlyingFactor::ValueType getUnderlyingFactor() const { return fieldUnderlyingFactor.getValue( _fixPtr ); }
    std::string_view getUnderlyingFactorView() const { return fieldUnderlyingFactor.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingFactor.offset, getValueLength( _fixPtr + fieldUnderlyingFactor.offset ) } : std::string_view{}; }
@@ -1022,6 +1102,7 @@ class GroupUnderlyings : public MessageBase
    private: FieldUnderlyingFactor fieldUnderlyingFactor;
 
    public:
+   using UnderlyingCreditRating = FieldUnderlyingCreditRating; 
    bool isSetUnderlyingCreditRating() const { return fieldUnderlyingCreditRating.offset > 0; }
    FieldUnderlyingCreditRating::ValueType getUnderlyingCreditRating() const { return fieldUnderlyingCreditRating.getValue( _fixPtr ); }
    std::string_view getUnderlyingCreditRatingView() const { return fieldUnderlyingCreditRating.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingCreditRating.offset, getValueLength( _fixPtr + fieldUnderlyingCreditRating.offset ) } : std::string_view{}; }
@@ -1031,6 +1112,7 @@ class GroupUnderlyings : public MessageBase
    private: FieldUnderlyingCreditRating fieldUnderlyingCreditRating;
 
    public:
+   using UnderlyingInstrRegistry = FieldUnderlyingInstrRegistry; 
    bool isSetUnderlyingInstrRegistry() const { return fieldUnderlyingInstrRegistry.offset > 0; }
    FieldUnderlyingInstrRegistry::ValueType getUnderlyingInstrRegistry() const { return fieldUnderlyingInstrRegistry.getValue( _fixPtr ); }
    std::string_view getUnderlyingInstrRegistryView() const { return fieldUnderlyingInstrRegistry.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingInstrRegistry.offset, getValueLength( _fixPtr + fieldUnderlyingInstrRegistry.offset ) } : std::string_view{}; }
@@ -1040,6 +1122,7 @@ class GroupUnderlyings : public MessageBase
    private: FieldUnderlyingInstrRegistry fieldUnderlyingInstrRegistry;
 
    public:
+   using UnderlyingCountryOfIssue = FieldUnderlyingCountryOfIssue; 
    bool isSetUnderlyingCountryOfIssue() const { return fieldUnderlyingCountryOfIssue.offset > 0; }
    FieldUnderlyingCountryOfIssue::ValueType getUnderlyingCountryOfIssue() const { return fieldUnderlyingCountryOfIssue.getValue( _fixPtr ); }
    std::string_view getUnderlyingCountryOfIssueView() const { return fieldUnderlyingCountryOfIssue.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingCountryOfIssue.offset, getValueLength( _fixPtr + fieldUnderlyingCountryOfIssue.offset ) } : std::string_view{}; }
@@ -1049,6 +1132,7 @@ class GroupUnderlyings : public MessageBase
    private: FieldUnderlyingCountryOfIssue fieldUnderlyingCountryOfIssue;
 
    public:
+   using UnderlyingStateOrProvinceOfIssue = FieldUnderlyingStateOrProvinceOfIssue; 
    bool isSetUnderlyingStateOrProvinceOfIssue() const { return fieldUnderlyingStateOrProvinceOfIssue.offset > 0; }
    FieldUnderlyingStateOrProvinceOfIssue::ValueType getUnderlyingStateOrProvinceOfIssue() const { return fieldUnderlyingStateOrProvinceOfIssue.getValue( _fixPtr ); }
    std::string_view getUnderlyingStateOrProvinceOfIssueView() const { return fieldUnderlyingStateOrProvinceOfIssue.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingStateOrProvinceOfIssue.offset, getValueLength( _fixPtr + fieldUnderlyingStateOrProvinceOfIssue.offset ) } : std::string_view{}; }
@@ -1058,6 +1142,7 @@ class GroupUnderlyings : public MessageBase
    private: FieldUnderlyingStateOrProvinceOfIssue fieldUnderlyingStateOrProvinceOfIssue;
 
    public:
+   using UnderlyingLocaleOfIssue = FieldUnderlyingLocaleOfIssue; 
    bool isSetUnderlyingLocaleOfIssue() const { return fieldUnderlyingLocaleOfIssue.offset > 0; }
    FieldUnderlyingLocaleOfIssue::ValueType getUnderlyingLocaleOfIssue() const { return fieldUnderlyingLocaleOfIssue.getValue( _fixPtr ); }
    std::string_view getUnderlyingLocaleOfIssueView() const { return fieldUnderlyingLocaleOfIssue.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingLocaleOfIssue.offset, getValueLength( _fixPtr + fieldUnderlyingLocaleOfIssue.offset ) } : std::string_view{}; }
@@ -1067,6 +1152,7 @@ class GroupUnderlyings : public MessageBase
    private: FieldUnderlyingLocaleOfIssue fieldUnderlyingLocaleOfIssue;
 
    public:
+   using UnderlyingRedemptionDate = FieldUnderlyingRedemptionDate; 
    bool isSetUnderlyingRedemptionDate() const { return fieldUnderlyingRedemptionDate.offset > 0; }
    FieldUnderlyingRedemptionDate::ValueType getUnderlyingRedemptionDate() const { return fieldUnderlyingRedemptionDate.getValue( _fixPtr ); }
    std::string_view getUnderlyingRedemptionDateView() const { return fieldUnderlyingRedemptionDate.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingRedemptionDate.offset, getValueLength( _fixPtr + fieldUnderlyingRedemptionDate.offset ) } : std::string_view{}; }
@@ -1076,6 +1162,7 @@ class GroupUnderlyings : public MessageBase
    private: FieldUnderlyingRedemptionDate fieldUnderlyingRedemptionDate;
 
    public:
+   using UnderlyingStrikePrice = FieldUnderlyingStrikePrice; 
    bool isSetUnderlyingStrikePrice() const { return fieldUnderlyingStrikePrice.offset > 0; }
    FieldUnderlyingStrikePrice::ValueType getUnderlyingStrikePrice() const { return fieldUnderlyingStrikePrice.getValue( _fixPtr ); }
    std::string_view getUnderlyingStrikePriceView() const { return fieldUnderlyingStrikePrice.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingStrikePrice.offset, getValueLength( _fixPtr + fieldUnderlyingStrikePrice.offset ) } : std::string_view{}; }
@@ -1085,6 +1172,7 @@ class GroupUnderlyings : public MessageBase
    private: FieldUnderlyingStrikePrice fieldUnderlyingStrikePrice;
 
    public:
+   using UnderlyingStrikeCurrency = FieldUnderlyingStrikeCurrency; 
    bool isSetUnderlyingStrikeCurrency() const { return fieldUnderlyingStrikeCurrency.offset > 0; }
    FieldUnderlyingStrikeCurrency::ValueType getUnderlyingStrikeCurrency() const { return fieldUnderlyingStrikeCurrency.getValue( _fixPtr ); }
    std::string_view getUnderlyingStrikeCurrencyView() const { return fieldUnderlyingStrikeCurrency.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingStrikeCurrency.offset, getValueLength( _fixPtr + fieldUnderlyingStrikeCurrency.offset ) } : std::string_view{}; }
@@ -1094,6 +1182,7 @@ class GroupUnderlyings : public MessageBase
    private: FieldUnderlyingStrikeCurrency fieldUnderlyingStrikeCurrency;
 
    public:
+   using UnderlyingOptAttribute = FieldUnderlyingOptAttribute; 
    bool isSetUnderlyingOptAttribute() const { return fieldUnderlyingOptAttribute.offset > 0; }
    FieldUnderlyingOptAttribute::ValueType getUnderlyingOptAttribute() const { return fieldUnderlyingOptAttribute.getValue( _fixPtr ); }
    std::string_view getUnderlyingOptAttributeView() const { return fieldUnderlyingOptAttribute.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingOptAttribute.offset, getValueLength( _fixPtr + fieldUnderlyingOptAttribute.offset ) } : std::string_view{}; }
@@ -1103,6 +1192,7 @@ class GroupUnderlyings : public MessageBase
    private: FieldUnderlyingOptAttribute fieldUnderlyingOptAttribute;
 
    public:
+   using UnderlyingContractMultiplier = FieldUnderlyingContractMultiplier; 
    bool isSetUnderlyingContractMultiplier() const { return fieldUnderlyingContractMultiplier.offset > 0; }
    FieldUnderlyingContractMultiplier::ValueType getUnderlyingContractMultiplier() const { return fieldUnderlyingContractMultiplier.getValue( _fixPtr ); }
    std::string_view getUnderlyingContractMultiplierView() const { return fieldUnderlyingContractMultiplier.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingContractMultiplier.offset, getValueLength( _fixPtr + fieldUnderlyingContractMultiplier.offset ) } : std::string_view{}; }
@@ -1112,6 +1202,7 @@ class GroupUnderlyings : public MessageBase
    private: FieldUnderlyingContractMultiplier fieldUnderlyingContractMultiplier;
 
    public:
+   using UnderlyingCouponRate = FieldUnderlyingCouponRate; 
    bool isSetUnderlyingCouponRate() const { return fieldUnderlyingCouponRate.offset > 0; }
    FieldUnderlyingCouponRate::ValueType getUnderlyingCouponRate() const { return fieldUnderlyingCouponRate.getValue( _fixPtr ); }
    std::string_view getUnderlyingCouponRateView() const { return fieldUnderlyingCouponRate.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingCouponRate.offset, getValueLength( _fixPtr + fieldUnderlyingCouponRate.offset ) } : std::string_view{}; }
@@ -1121,6 +1212,7 @@ class GroupUnderlyings : public MessageBase
    private: FieldUnderlyingCouponRate fieldUnderlyingCouponRate;
 
    public:
+   using UnderlyingSecurityExchange = FieldUnderlyingSecurityExchange; 
    bool isSetUnderlyingSecurityExchange() const { return fieldUnderlyingSecurityExchange.offset > 0; }
    FieldUnderlyingSecurityExchange::ValueType getUnderlyingSecurityExchange() const { return fieldUnderlyingSecurityExchange.getValue( _fixPtr ); }
    std::string_view getUnderlyingSecurityExchangeView() const { return fieldUnderlyingSecurityExchange.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingSecurityExchange.offset, getValueLength( _fixPtr + fieldUnderlyingSecurityExchange.offset ) } : std::string_view{}; }
@@ -1130,6 +1222,7 @@ class GroupUnderlyings : public MessageBase
    private: FieldUnderlyingSecurityExchange fieldUnderlyingSecurityExchange;
 
    public:
+   using UnderlyingIssuer = FieldUnderlyingIssuer; 
    bool isSetUnderlyingIssuer() const { return fieldUnderlyingIssuer.offset > 0; }
    FieldUnderlyingIssuer::ValueType getUnderlyingIssuer() const { return fieldUnderlyingIssuer.getValue( _fixPtr ); }
    std::string_view getUnderlyingIssuerView() const { return fieldUnderlyingIssuer.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingIssuer.offset, getValueLength( _fixPtr + fieldUnderlyingIssuer.offset ) } : std::string_view{}; }
@@ -1139,6 +1232,7 @@ class GroupUnderlyings : public MessageBase
    private: FieldUnderlyingIssuer fieldUnderlyingIssuer;
 
    public:
+   using EncodedUnderlyingIssuerLen = FieldEncodedUnderlyingIssuerLen; 
    bool isSetEncodedUnderlyingIssuerLen() const { return fieldEncodedUnderlyingIssuerLen.offset > 0; }
    FieldEncodedUnderlyingIssuerLen::ValueType getEncodedUnderlyingIssuerLen() const { return fieldEncodedUnderlyingIssuerLen.getValue( _fixPtr ); }
    std::string_view getEncodedUnderlyingIssuerLenView() const { return fieldEncodedUnderlyingIssuerLen.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedUnderlyingIssuerLen.offset, getValueLength( _fixPtr + fieldEncodedUnderlyingIssuerLen.offset ) } : std::string_view{}; }
@@ -1148,6 +1242,7 @@ class GroupUnderlyings : public MessageBase
    private: FieldEncodedUnderlyingIssuerLen fieldEncodedUnderlyingIssuerLen;
 
    public:
+   using EncodedUnderlyingIssuer = FieldEncodedUnderlyingIssuer; 
    bool isSetEncodedUnderlyingIssuer() const { return fieldEncodedUnderlyingIssuer.offset > 0; }
    FieldEncodedUnderlyingIssuer::ValueType getEncodedUnderlyingIssuer() const { return fieldEncodedUnderlyingIssuer.getValue( _fixPtr ); }
    std::string_view getEncodedUnderlyingIssuerView() const { return fieldEncodedUnderlyingIssuer.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedUnderlyingIssuer.offset, getValueLength( _fixPtr + fieldEncodedUnderlyingIssuer.offset ) } : std::string_view{}; }
@@ -1157,6 +1252,7 @@ class GroupUnderlyings : public MessageBase
    private: FieldEncodedUnderlyingIssuer fieldEncodedUnderlyingIssuer;
 
    public:
+   using UnderlyingSecurityDesc = FieldUnderlyingSecurityDesc; 
    bool isSetUnderlyingSecurityDesc() const { return fieldUnderlyingSecurityDesc.offset > 0; }
    FieldUnderlyingSecurityDesc::ValueType getUnderlyingSecurityDesc() const { return fieldUnderlyingSecurityDesc.getValue( _fixPtr ); }
    std::string_view getUnderlyingSecurityDescView() const { return fieldUnderlyingSecurityDesc.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingSecurityDesc.offset, getValueLength( _fixPtr + fieldUnderlyingSecurityDesc.offset ) } : std::string_view{}; }
@@ -1166,6 +1262,7 @@ class GroupUnderlyings : public MessageBase
    private: FieldUnderlyingSecurityDesc fieldUnderlyingSecurityDesc;
 
    public:
+   using EncodedUnderlyingSecurityDescLen = FieldEncodedUnderlyingSecurityDescLen; 
    bool isSetEncodedUnderlyingSecurityDescLen() const { return fieldEncodedUnderlyingSecurityDescLen.offset > 0; }
    FieldEncodedUnderlyingSecurityDescLen::ValueType getEncodedUnderlyingSecurityDescLen() const { return fieldEncodedUnderlyingSecurityDescLen.getValue( _fixPtr ); }
    std::string_view getEncodedUnderlyingSecurityDescLenView() const { return fieldEncodedUnderlyingSecurityDescLen.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedUnderlyingSecurityDescLen.offset, getValueLength( _fixPtr + fieldEncodedUnderlyingSecurityDescLen.offset ) } : std::string_view{}; }
@@ -1175,6 +1272,7 @@ class GroupUnderlyings : public MessageBase
    private: FieldEncodedUnderlyingSecurityDescLen fieldEncodedUnderlyingSecurityDescLen;
 
    public:
+   using EncodedUnderlyingSecurityDesc = FieldEncodedUnderlyingSecurityDesc; 
    bool isSetEncodedUnderlyingSecurityDesc() const { return fieldEncodedUnderlyingSecurityDesc.offset > 0; }
    FieldEncodedUnderlyingSecurityDesc::ValueType getEncodedUnderlyingSecurityDesc() const { return fieldEncodedUnderlyingSecurityDesc.getValue( _fixPtr ); }
    std::string_view getEncodedUnderlyingSecurityDescView() const { return fieldEncodedUnderlyingSecurityDesc.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedUnderlyingSecurityDesc.offset, getValueLength( _fixPtr + fieldEncodedUnderlyingSecurityDesc.offset ) } : std::string_view{}; }
@@ -1184,6 +1282,7 @@ class GroupUnderlyings : public MessageBase
    private: FieldEncodedUnderlyingSecurityDesc fieldEncodedUnderlyingSecurityDesc;
 
    public:
+   using UnderlyingCPProgram = FieldUnderlyingCPProgram; 
    bool isSetUnderlyingCPProgram() const { return fieldUnderlyingCPProgram.offset > 0; }
    FieldUnderlyingCPProgram::ValueType getUnderlyingCPProgram() const { return fieldUnderlyingCPProgram.getValue( _fixPtr ); }
    std::string_view getUnderlyingCPProgramView() const { return fieldUnderlyingCPProgram.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingCPProgram.offset, getValueLength( _fixPtr + fieldUnderlyingCPProgram.offset ) } : std::string_view{}; }
@@ -1193,6 +1292,7 @@ class GroupUnderlyings : public MessageBase
    private: FieldUnderlyingCPProgram fieldUnderlyingCPProgram;
 
    public:
+   using UnderlyingCPRegType = FieldUnderlyingCPRegType; 
    bool isSetUnderlyingCPRegType() const { return fieldUnderlyingCPRegType.offset > 0; }
    FieldUnderlyingCPRegType::ValueType getUnderlyingCPRegType() const { return fieldUnderlyingCPRegType.getValue( _fixPtr ); }
    std::string_view getUnderlyingCPRegTypeView() const { return fieldUnderlyingCPRegType.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingCPRegType.offset, getValueLength( _fixPtr + fieldUnderlyingCPRegType.offset ) } : std::string_view{}; }
@@ -1202,6 +1302,7 @@ class GroupUnderlyings : public MessageBase
    private: FieldUnderlyingCPRegType fieldUnderlyingCPRegType;
 
    public:
+   using UnderlyingCurrency = FieldUnderlyingCurrency; 
    bool isSetUnderlyingCurrency() const { return fieldUnderlyingCurrency.offset > 0; }
    FieldUnderlyingCurrency::ValueType getUnderlyingCurrency() const { return fieldUnderlyingCurrency.getValue( _fixPtr ); }
    std::string_view getUnderlyingCurrencyView() const { return fieldUnderlyingCurrency.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingCurrency.offset, getValueLength( _fixPtr + fieldUnderlyingCurrency.offset ) } : std::string_view{}; }
@@ -1211,6 +1312,7 @@ class GroupUnderlyings : public MessageBase
    private: FieldUnderlyingCurrency fieldUnderlyingCurrency;
 
    public:
+   using UnderlyingQty = FieldUnderlyingQty; 
    bool isSetUnderlyingQty() const { return fieldUnderlyingQty.offset > 0; }
    FieldUnderlyingQty::ValueType getUnderlyingQty() const { return fieldUnderlyingQty.getValue( _fixPtr ); }
    std::string_view getUnderlyingQtyView() const { return fieldUnderlyingQty.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingQty.offset, getValueLength( _fixPtr + fieldUnderlyingQty.offset ) } : std::string_view{}; }
@@ -1220,6 +1322,7 @@ class GroupUnderlyings : public MessageBase
    private: FieldUnderlyingQty fieldUnderlyingQty;
 
    public:
+   using UnderlyingPx = FieldUnderlyingPx; 
    bool isSetUnderlyingPx() const { return fieldUnderlyingPx.offset > 0; }
    FieldUnderlyingPx::ValueType getUnderlyingPx() const { return fieldUnderlyingPx.getValue( _fixPtr ); }
    std::string_view getUnderlyingPxView() const { return fieldUnderlyingPx.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingPx.offset, getValueLength( _fixPtr + fieldUnderlyingPx.offset ) } : std::string_view{}; }
@@ -1229,6 +1332,7 @@ class GroupUnderlyings : public MessageBase
    private: FieldUnderlyingPx fieldUnderlyingPx;
 
    public:
+   using UnderlyingDirtyPrice = FieldUnderlyingDirtyPrice; 
    bool isSetUnderlyingDirtyPrice() const { return fieldUnderlyingDirtyPrice.offset > 0; }
    FieldUnderlyingDirtyPrice::ValueType getUnderlyingDirtyPrice() const { return fieldUnderlyingDirtyPrice.getValue( _fixPtr ); }
    std::string_view getUnderlyingDirtyPriceView() const { return fieldUnderlyingDirtyPrice.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingDirtyPrice.offset, getValueLength( _fixPtr + fieldUnderlyingDirtyPrice.offset ) } : std::string_view{}; }
@@ -1238,6 +1342,7 @@ class GroupUnderlyings : public MessageBase
    private: FieldUnderlyingDirtyPrice fieldUnderlyingDirtyPrice;
 
    public:
+   using UnderlyingEndPrice = FieldUnderlyingEndPrice; 
    bool isSetUnderlyingEndPrice() const { return fieldUnderlyingEndPrice.offset > 0; }
    FieldUnderlyingEndPrice::ValueType getUnderlyingEndPrice() const { return fieldUnderlyingEndPrice.getValue( _fixPtr ); }
    std::string_view getUnderlyingEndPriceView() const { return fieldUnderlyingEndPrice.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingEndPrice.offset, getValueLength( _fixPtr + fieldUnderlyingEndPrice.offset ) } : std::string_view{}; }
@@ -1247,6 +1352,7 @@ class GroupUnderlyings : public MessageBase
    private: FieldUnderlyingEndPrice fieldUnderlyingEndPrice;
 
    public:
+   using UnderlyingStartValue = FieldUnderlyingStartValue; 
    bool isSetUnderlyingStartValue() const { return fieldUnderlyingStartValue.offset > 0; }
    FieldUnderlyingStartValue::ValueType getUnderlyingStartValue() const { return fieldUnderlyingStartValue.getValue( _fixPtr ); }
    std::string_view getUnderlyingStartValueView() const { return fieldUnderlyingStartValue.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingStartValue.offset, getValueLength( _fixPtr + fieldUnderlyingStartValue.offset ) } : std::string_view{}; }
@@ -1256,6 +1362,7 @@ class GroupUnderlyings : public MessageBase
    private: FieldUnderlyingStartValue fieldUnderlyingStartValue;
 
    public:
+   using UnderlyingCurrentValue = FieldUnderlyingCurrentValue; 
    bool isSetUnderlyingCurrentValue() const { return fieldUnderlyingCurrentValue.offset > 0; }
    FieldUnderlyingCurrentValue::ValueType getUnderlyingCurrentValue() const { return fieldUnderlyingCurrentValue.getValue( _fixPtr ); }
    std::string_view getUnderlyingCurrentValueView() const { return fieldUnderlyingCurrentValue.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingCurrentValue.offset, getValueLength( _fixPtr + fieldUnderlyingCurrentValue.offset ) } : std::string_view{}; }
@@ -1265,6 +1372,7 @@ class GroupUnderlyings : public MessageBase
    private: FieldUnderlyingCurrentValue fieldUnderlyingCurrentValue;
 
    public:
+   using UnderlyingEndValue = FieldUnderlyingEndValue; 
    bool isSetUnderlyingEndValue() const { return fieldUnderlyingEndValue.offset > 0; }
    FieldUnderlyingEndValue::ValueType getUnderlyingEndValue() const { return fieldUnderlyingEndValue.getValue( _fixPtr ); }
    std::string_view getUnderlyingEndValueView() const { return fieldUnderlyingEndValue.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingEndValue.offset, getValueLength( _fixPtr + fieldUnderlyingEndValue.offset ) } : std::string_view{}; }
@@ -1274,6 +1382,7 @@ class GroupUnderlyings : public MessageBase
    private: FieldUnderlyingEndValue fieldUnderlyingEndValue;
 
    public:
+   using NoUnderlyingStips = FieldNoUnderlyingStips; 
    bool isSetNoUnderlyingStips() const { return fieldNoUnderlyingStips.offset > 0; }
    FieldNoUnderlyingStips::ValueType getNoUnderlyingStips() const { return fieldNoUnderlyingStips.getValue( _fixPtr ); }
    std::string_view getNoUnderlyingStipsView() const { return fieldNoUnderlyingStips.offset > 0 ? std::string_view{ _fixPtr + fieldNoUnderlyingStips.offset, getValueLength( _fixPtr + fieldNoUnderlyingStips.offset ) } : std::string_view{}; }
@@ -1288,6 +1397,7 @@ class GroupUnderlyings : public MessageBase
    private: GroupUnderlyingStips::Array groupsUnderlyingStips{ 10 };
 
    public:
+   using UnderlyingSettlPrice = FieldUnderlyingSettlPrice; 
    bool isSetUnderlyingSettlPrice() const { return fieldUnderlyingSettlPrice.offset > 0; }
    FieldUnderlyingSettlPrice::ValueType getUnderlyingSettlPrice() const { return fieldUnderlyingSettlPrice.getValue( _fixPtr ); }
    std::string_view getUnderlyingSettlPriceView() const { return fieldUnderlyingSettlPrice.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingSettlPrice.offset, getValueLength( _fixPtr + fieldUnderlyingSettlPrice.offset ) } : std::string_view{}; }
@@ -1297,6 +1407,7 @@ class GroupUnderlyings : public MessageBase
    private: FieldUnderlyingSettlPrice fieldUnderlyingSettlPrice;
 
    public:
+   using UnderlyingSettlPriceType = FieldUnderlyingSettlPriceType; 
    bool isSetUnderlyingSettlPriceType() const { return fieldUnderlyingSettlPriceType.offset > 0; }
    FieldUnderlyingSettlPriceType::ValueType getUnderlyingSettlPriceType() const { return fieldUnderlyingSettlPriceType.getValue( _fixPtr ); }
    std::string_view getUnderlyingSettlPriceTypeView() const { return fieldUnderlyingSettlPriceType.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingSettlPriceType.offset, getValueLength( _fixPtr + fieldUnderlyingSettlPriceType.offset ) } : std::string_view{}; }
@@ -1322,6 +1433,7 @@ class GroupStipulations : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<GroupStipulations,0,FIELDS...>(*this,tpl); return tpl; };
+   template< typename... FIELDS > std::tuple<typeExists<FIELDS>... > getPresenceOf() const { std::tuple< typeExists<FIELDS>... > tpl{}; buildPresenceTuple<GroupStipulations,0,FIELDS...>(*this,tpl); return tpl; };
    bool isFieldSet( tag_t tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
@@ -1331,6 +1443,7 @@ class GroupStipulations : public MessageBase
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
+   using StipulationType = FieldStipulationType; 
    bool isSetStipulationType() const { return fieldStipulationType.offset > 0; }
    FieldStipulationType::ValueType getStipulationType() const { return fieldStipulationType.getValue( _fixPtr ); }
    std::string_view getStipulationTypeView() const { return fieldStipulationType.offset > 0 ? std::string_view{ _fixPtr + fieldStipulationType.offset, getValueLength( _fixPtr + fieldStipulationType.offset ) } : std::string_view{}; }
@@ -1340,6 +1453,7 @@ class GroupStipulations : public MessageBase
    private: FieldStipulationType fieldStipulationType;
 
    public:
+   using StipulationValue = FieldStipulationValue; 
    bool isSetStipulationValue() const { return fieldStipulationValue.offset > 0; }
    FieldStipulationValue::ValueType getStipulationValue() const { return fieldStipulationValue.getValue( _fixPtr ); }
    std::string_view getStipulationValueView() const { return fieldStipulationValue.offset > 0 ? std::string_view{ _fixPtr + fieldStipulationValue.offset, getValueLength( _fixPtr + fieldStipulationValue.offset ) } : std::string_view{}; }
@@ -1365,6 +1479,7 @@ class GroupOrders : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<GroupOrders,0,FIELDS...>(*this,tpl); return tpl; };
+   template< typename... FIELDS > std::tuple<typeExists<FIELDS>... > getPresenceOf() const { std::tuple< typeExists<FIELDS>... > tpl{}; buildPresenceTuple<GroupOrders,0,FIELDS...>(*this,tpl); return tpl; };
    bool isFieldSet( tag_t tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
@@ -1374,6 +1489,7 @@ class GroupOrders : public MessageBase
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
+   using ClOrdID = FieldClOrdID; 
    bool isSetClOrdID() const { return fieldClOrdID.offset > 0; }
    FieldClOrdID::ValueType getClOrdID() const { return fieldClOrdID.getValue( _fixPtr ); }
    std::string_view getClOrdIDView() const { return fieldClOrdID.offset > 0 ? std::string_view{ _fixPtr + fieldClOrdID.offset, getValueLength( _fixPtr + fieldClOrdID.offset ) } : std::string_view{}; }
@@ -1383,6 +1499,7 @@ class GroupOrders : public MessageBase
    private: FieldClOrdID fieldClOrdID;
 
    public:
+   using SecondaryClOrdID = FieldSecondaryClOrdID; 
    bool isSetSecondaryClOrdID() const { return fieldSecondaryClOrdID.offset > 0; }
    FieldSecondaryClOrdID::ValueType getSecondaryClOrdID() const { return fieldSecondaryClOrdID.getValue( _fixPtr ); }
    std::string_view getSecondaryClOrdIDView() const { return fieldSecondaryClOrdID.offset > 0 ? std::string_view{ _fixPtr + fieldSecondaryClOrdID.offset, getValueLength( _fixPtr + fieldSecondaryClOrdID.offset ) } : std::string_view{}; }
@@ -1392,6 +1509,7 @@ class GroupOrders : public MessageBase
    private: FieldSecondaryClOrdID fieldSecondaryClOrdID;
 
    public:
+   using ListSeqNo = FieldListSeqNo; 
    bool isSetListSeqNo() const { return fieldListSeqNo.offset > 0; }
    FieldListSeqNo::ValueType getListSeqNo() const { return fieldListSeqNo.getValue( _fixPtr ); }
    std::string_view getListSeqNoView() const { return fieldListSeqNo.offset > 0 ? std::string_view{ _fixPtr + fieldListSeqNo.offset, getValueLength( _fixPtr + fieldListSeqNo.offset ) } : std::string_view{}; }
@@ -1401,6 +1519,7 @@ class GroupOrders : public MessageBase
    private: FieldListSeqNo fieldListSeqNo;
 
    public:
+   using ClOrdLinkID = FieldClOrdLinkID; 
    bool isSetClOrdLinkID() const { return fieldClOrdLinkID.offset > 0; }
    FieldClOrdLinkID::ValueType getClOrdLinkID() const { return fieldClOrdLinkID.getValue( _fixPtr ); }
    std::string_view getClOrdLinkIDView() const { return fieldClOrdLinkID.offset > 0 ? std::string_view{ _fixPtr + fieldClOrdLinkID.offset, getValueLength( _fixPtr + fieldClOrdLinkID.offset ) } : std::string_view{}; }
@@ -1410,6 +1529,7 @@ class GroupOrders : public MessageBase
    private: FieldClOrdLinkID fieldClOrdLinkID;
 
    public:
+   using SettlInstMode = FieldSettlInstMode; 
    bool isSetSettlInstMode() const { return fieldSettlInstMode.offset > 0; }
    FieldSettlInstMode::ValueType getSettlInstMode() const { return fieldSettlInstMode.getValue( _fixPtr ); }
    std::string_view getSettlInstModeView() const { return fieldSettlInstMode.offset > 0 ? std::string_view{ _fixPtr + fieldSettlInstMode.offset, getValueLength( _fixPtr + fieldSettlInstMode.offset ) } : std::string_view{}; }
@@ -1419,6 +1539,7 @@ class GroupOrders : public MessageBase
    private: FieldSettlInstMode fieldSettlInstMode;
 
    public:
+   using NoPartyIDs = FieldNoPartyIDs; 
    bool isSetNoPartyIDs() const { return fieldNoPartyIDs.offset > 0; }
    FieldNoPartyIDs::ValueType getNoPartyIDs() const { return fieldNoPartyIDs.getValue( _fixPtr ); }
    std::string_view getNoPartyIDsView() const { return fieldNoPartyIDs.offset > 0 ? std::string_view{ _fixPtr + fieldNoPartyIDs.offset, getValueLength( _fixPtr + fieldNoPartyIDs.offset ) } : std::string_view{}; }
@@ -1433,6 +1554,7 @@ class GroupOrders : public MessageBase
    private: GroupPartyIDs::Array groupsPartyIDs{ 10 };
 
    public:
+   using TradeOriginationDate = FieldTradeOriginationDate; 
    bool isSetTradeOriginationDate() const { return fieldTradeOriginationDate.offset > 0; }
    FieldTradeOriginationDate::ValueType getTradeOriginationDate() const { return fieldTradeOriginationDate.getValue( _fixPtr ); }
    std::string_view getTradeOriginationDateView() const { return fieldTradeOriginationDate.offset > 0 ? std::string_view{ _fixPtr + fieldTradeOriginationDate.offset, getValueLength( _fixPtr + fieldTradeOriginationDate.offset ) } : std::string_view{}; }
@@ -1442,6 +1564,7 @@ class GroupOrders : public MessageBase
    private: FieldTradeOriginationDate fieldTradeOriginationDate;
 
    public:
+   using TradeDate = FieldTradeDate; 
    bool isSetTradeDate() const { return fieldTradeDate.offset > 0; }
    FieldTradeDate::ValueType getTradeDate() const { return fieldTradeDate.getValue( _fixPtr ); }
    std::string_view getTradeDateView() const { return fieldTradeDate.offset > 0 ? std::string_view{ _fixPtr + fieldTradeDate.offset, getValueLength( _fixPtr + fieldTradeDate.offset ) } : std::string_view{}; }
@@ -1451,6 +1574,7 @@ class GroupOrders : public MessageBase
    private: FieldTradeDate fieldTradeDate;
 
    public:
+   using Account = FieldAccount; 
    bool isSetAccount() const { return fieldAccount.offset > 0; }
    FieldAccount::ValueType getAccount() const { return fieldAccount.getValue( _fixPtr ); }
    std::string_view getAccountView() const { return fieldAccount.offset > 0 ? std::string_view{ _fixPtr + fieldAccount.offset, getValueLength( _fixPtr + fieldAccount.offset ) } : std::string_view{}; }
@@ -1460,6 +1584,7 @@ class GroupOrders : public MessageBase
    private: FieldAccount fieldAccount;
 
    public:
+   using AcctIDSource = FieldAcctIDSource; 
    bool isSetAcctIDSource() const { return fieldAcctIDSource.offset > 0; }
    FieldAcctIDSource::ValueType getAcctIDSource() const { return fieldAcctIDSource.getValue( _fixPtr ); }
    std::string_view getAcctIDSourceView() const { return fieldAcctIDSource.offset > 0 ? std::string_view{ _fixPtr + fieldAcctIDSource.offset, getValueLength( _fixPtr + fieldAcctIDSource.offset ) } : std::string_view{}; }
@@ -1469,6 +1594,7 @@ class GroupOrders : public MessageBase
    private: FieldAcctIDSource fieldAcctIDSource;
 
    public:
+   using AccountType = FieldAccountType; 
    bool isSetAccountType() const { return fieldAccountType.offset > 0; }
    FieldAccountType::ValueType getAccountType() const { return fieldAccountType.getValue( _fixPtr ); }
    std::string_view getAccountTypeView() const { return fieldAccountType.offset > 0 ? std::string_view{ _fixPtr + fieldAccountType.offset, getValueLength( _fixPtr + fieldAccountType.offset ) } : std::string_view{}; }
@@ -1478,6 +1604,7 @@ class GroupOrders : public MessageBase
    private: FieldAccountType fieldAccountType;
 
    public:
+   using DayBookingInst = FieldDayBookingInst; 
    bool isSetDayBookingInst() const { return fieldDayBookingInst.offset > 0; }
    FieldDayBookingInst::ValueType getDayBookingInst() const { return fieldDayBookingInst.getValue( _fixPtr ); }
    std::string_view getDayBookingInstView() const { return fieldDayBookingInst.offset > 0 ? std::string_view{ _fixPtr + fieldDayBookingInst.offset, getValueLength( _fixPtr + fieldDayBookingInst.offset ) } : std::string_view{}; }
@@ -1487,6 +1614,7 @@ class GroupOrders : public MessageBase
    private: FieldDayBookingInst fieldDayBookingInst;
 
    public:
+   using BookingUnit = FieldBookingUnit; 
    bool isSetBookingUnit() const { return fieldBookingUnit.offset > 0; }
    FieldBookingUnit::ValueType getBookingUnit() const { return fieldBookingUnit.getValue( _fixPtr ); }
    std::string_view getBookingUnitView() const { return fieldBookingUnit.offset > 0 ? std::string_view{ _fixPtr + fieldBookingUnit.offset, getValueLength( _fixPtr + fieldBookingUnit.offset ) } : std::string_view{}; }
@@ -1496,6 +1624,7 @@ class GroupOrders : public MessageBase
    private: FieldBookingUnit fieldBookingUnit;
 
    public:
+   using AllocID = FieldAllocID; 
    bool isSetAllocID() const { return fieldAllocID.offset > 0; }
    FieldAllocID::ValueType getAllocID() const { return fieldAllocID.getValue( _fixPtr ); }
    std::string_view getAllocIDView() const { return fieldAllocID.offset > 0 ? std::string_view{ _fixPtr + fieldAllocID.offset, getValueLength( _fixPtr + fieldAllocID.offset ) } : std::string_view{}; }
@@ -1505,6 +1634,7 @@ class GroupOrders : public MessageBase
    private: FieldAllocID fieldAllocID;
 
    public:
+   using PreallocMethod = FieldPreallocMethod; 
    bool isSetPreallocMethod() const { return fieldPreallocMethod.offset > 0; }
    FieldPreallocMethod::ValueType getPreallocMethod() const { return fieldPreallocMethod.getValue( _fixPtr ); }
    std::string_view getPreallocMethodView() const { return fieldPreallocMethod.offset > 0 ? std::string_view{ _fixPtr + fieldPreallocMethod.offset, getValueLength( _fixPtr + fieldPreallocMethod.offset ) } : std::string_view{}; }
@@ -1514,6 +1644,7 @@ class GroupOrders : public MessageBase
    private: FieldPreallocMethod fieldPreallocMethod;
 
    public:
+   using NoAllocs = FieldNoAllocs; 
    bool isSetNoAllocs() const { return fieldNoAllocs.offset > 0; }
    FieldNoAllocs::ValueType getNoAllocs() const { return fieldNoAllocs.getValue( _fixPtr ); }
    std::string_view getNoAllocsView() const { return fieldNoAllocs.offset > 0 ? std::string_view{ _fixPtr + fieldNoAllocs.offset, getValueLength( _fixPtr + fieldNoAllocs.offset ) } : std::string_view{}; }
@@ -1528,6 +1659,7 @@ class GroupOrders : public MessageBase
    private: GroupAllocs::Array groupsAllocs{ 10 };
 
    public:
+   using SettlType = FieldSettlType; 
    bool isSetSettlType() const { return fieldSettlType.offset > 0; }
    FieldSettlType::ValueType getSettlType() const { return fieldSettlType.getValue( _fixPtr ); }
    std::string_view getSettlTypeView() const { return fieldSettlType.offset > 0 ? std::string_view{ _fixPtr + fieldSettlType.offset, getValueLength( _fixPtr + fieldSettlType.offset ) } : std::string_view{}; }
@@ -1537,6 +1669,7 @@ class GroupOrders : public MessageBase
    private: FieldSettlType fieldSettlType;
 
    public:
+   using SettlDate = FieldSettlDate; 
    bool isSetSettlDate() const { return fieldSettlDate.offset > 0; }
    FieldSettlDate::ValueType getSettlDate() const { return fieldSettlDate.getValue( _fixPtr ); }
    std::string_view getSettlDateView() const { return fieldSettlDate.offset > 0 ? std::string_view{ _fixPtr + fieldSettlDate.offset, getValueLength( _fixPtr + fieldSettlDate.offset ) } : std::string_view{}; }
@@ -1546,6 +1679,7 @@ class GroupOrders : public MessageBase
    private: FieldSettlDate fieldSettlDate;
 
    public:
+   using CashMargin = FieldCashMargin; 
    bool isSetCashMargin() const { return fieldCashMargin.offset > 0; }
    FieldCashMargin::ValueType getCashMargin() const { return fieldCashMargin.getValue( _fixPtr ); }
    std::string_view getCashMarginView() const { return fieldCashMargin.offset > 0 ? std::string_view{ _fixPtr + fieldCashMargin.offset, getValueLength( _fixPtr + fieldCashMargin.offset ) } : std::string_view{}; }
@@ -1555,6 +1689,7 @@ class GroupOrders : public MessageBase
    private: FieldCashMargin fieldCashMargin;
 
    public:
+   using ClearingFeeIndicator = FieldClearingFeeIndicator; 
    bool isSetClearingFeeIndicator() const { return fieldClearingFeeIndicator.offset > 0; }
    FieldClearingFeeIndicator::ValueType getClearingFeeIndicator() const { return fieldClearingFeeIndicator.getValue( _fixPtr ); }
    std::string_view getClearingFeeIndicatorView() const { return fieldClearingFeeIndicator.offset > 0 ? std::string_view{ _fixPtr + fieldClearingFeeIndicator.offset, getValueLength( _fixPtr + fieldClearingFeeIndicator.offset ) } : std::string_view{}; }
@@ -1564,6 +1699,7 @@ class GroupOrders : public MessageBase
    private: FieldClearingFeeIndicator fieldClearingFeeIndicator;
 
    public:
+   using HandlInst = FieldHandlInst; 
    bool isSetHandlInst() const { return fieldHandlInst.offset > 0; }
    FieldHandlInst::ValueType getHandlInst() const { return fieldHandlInst.getValue( _fixPtr ); }
    std::string_view getHandlInstView() const { return fieldHandlInst.offset > 0 ? std::string_view{ _fixPtr + fieldHandlInst.offset, getValueLength( _fixPtr + fieldHandlInst.offset ) } : std::string_view{}; }
@@ -1573,6 +1709,7 @@ class GroupOrders : public MessageBase
    private: FieldHandlInst fieldHandlInst;
 
    public:
+   using ExecInst = FieldExecInst; 
    bool isSetExecInst() const { return fieldExecInst.offset > 0; }
    FieldExecInst::ValueType getExecInst() const { return fieldExecInst.getValue( _fixPtr ); }
    std::string_view getExecInstView() const { return fieldExecInst.offset > 0 ? std::string_view{ _fixPtr + fieldExecInst.offset, getValueLength( _fixPtr + fieldExecInst.offset ) } : std::string_view{}; }
@@ -1582,6 +1719,7 @@ class GroupOrders : public MessageBase
    private: FieldExecInst fieldExecInst;
 
    public:
+   using MinQty = FieldMinQty; 
    bool isSetMinQty() const { return fieldMinQty.offset > 0; }
    FieldMinQty::ValueType getMinQty() const { return fieldMinQty.getValue( _fixPtr ); }
    std::string_view getMinQtyView() const { return fieldMinQty.offset > 0 ? std::string_view{ _fixPtr + fieldMinQty.offset, getValueLength( _fixPtr + fieldMinQty.offset ) } : std::string_view{}; }
@@ -1591,6 +1729,7 @@ class GroupOrders : public MessageBase
    private: FieldMinQty fieldMinQty;
 
    public:
+   using MaxFloor = FieldMaxFloor; 
    bool isSetMaxFloor() const { return fieldMaxFloor.offset > 0; }
    FieldMaxFloor::ValueType getMaxFloor() const { return fieldMaxFloor.getValue( _fixPtr ); }
    std::string_view getMaxFloorView() const { return fieldMaxFloor.offset > 0 ? std::string_view{ _fixPtr + fieldMaxFloor.offset, getValueLength( _fixPtr + fieldMaxFloor.offset ) } : std::string_view{}; }
@@ -1600,6 +1739,7 @@ class GroupOrders : public MessageBase
    private: FieldMaxFloor fieldMaxFloor;
 
    public:
+   using ExDestination = FieldExDestination; 
    bool isSetExDestination() const { return fieldExDestination.offset > 0; }
    FieldExDestination::ValueType getExDestination() const { return fieldExDestination.getValue( _fixPtr ); }
    std::string_view getExDestinationView() const { return fieldExDestination.offset > 0 ? std::string_view{ _fixPtr + fieldExDestination.offset, getValueLength( _fixPtr + fieldExDestination.offset ) } : std::string_view{}; }
@@ -1609,6 +1749,7 @@ class GroupOrders : public MessageBase
    private: FieldExDestination fieldExDestination;
 
    public:
+   using NoTradingSessions = FieldNoTradingSessions; 
    bool isSetNoTradingSessions() const { return fieldNoTradingSessions.offset > 0; }
    FieldNoTradingSessions::ValueType getNoTradingSessions() const { return fieldNoTradingSessions.getValue( _fixPtr ); }
    std::string_view getNoTradingSessionsView() const { return fieldNoTradingSessions.offset > 0 ? std::string_view{ _fixPtr + fieldNoTradingSessions.offset, getValueLength( _fixPtr + fieldNoTradingSessions.offset ) } : std::string_view{}; }
@@ -1623,6 +1764,7 @@ class GroupOrders : public MessageBase
    private: GroupTradingSessions::Array groupsTradingSessions{ 10 };
 
    public:
+   using ProcessCode = FieldProcessCode; 
    bool isSetProcessCode() const { return fieldProcessCode.offset > 0; }
    FieldProcessCode::ValueType getProcessCode() const { return fieldProcessCode.getValue( _fixPtr ); }
    std::string_view getProcessCodeView() const { return fieldProcessCode.offset > 0 ? std::string_view{ _fixPtr + fieldProcessCode.offset, getValueLength( _fixPtr + fieldProcessCode.offset ) } : std::string_view{}; }
@@ -1632,6 +1774,7 @@ class GroupOrders : public MessageBase
    private: FieldProcessCode fieldProcessCode;
 
    public:
+   using Symbol = FieldSymbol; 
    bool isSetSymbol() const { return fieldSymbol.offset > 0; }
    FieldSymbol::ValueType getSymbol() const { return fieldSymbol.getValue( _fixPtr ); }
    std::string_view getSymbolView() const { return fieldSymbol.offset > 0 ? std::string_view{ _fixPtr + fieldSymbol.offset, getValueLength( _fixPtr + fieldSymbol.offset ) } : std::string_view{}; }
@@ -1641,6 +1784,7 @@ class GroupOrders : public MessageBase
    private: FieldSymbol fieldSymbol;
 
    public:
+   using SymbolSfx = FieldSymbolSfx; 
    bool isSetSymbolSfx() const { return fieldSymbolSfx.offset > 0; }
    FieldSymbolSfx::ValueType getSymbolSfx() const { return fieldSymbolSfx.getValue( _fixPtr ); }
    std::string_view getSymbolSfxView() const { return fieldSymbolSfx.offset > 0 ? std::string_view{ _fixPtr + fieldSymbolSfx.offset, getValueLength( _fixPtr + fieldSymbolSfx.offset ) } : std::string_view{}; }
@@ -1650,6 +1794,7 @@ class GroupOrders : public MessageBase
    private: FieldSymbolSfx fieldSymbolSfx;
 
    public:
+   using SecurityID = FieldSecurityID; 
    bool isSetSecurityID() const { return fieldSecurityID.offset > 0; }
    FieldSecurityID::ValueType getSecurityID() const { return fieldSecurityID.getValue( _fixPtr ); }
    std::string_view getSecurityIDView() const { return fieldSecurityID.offset > 0 ? std::string_view{ _fixPtr + fieldSecurityID.offset, getValueLength( _fixPtr + fieldSecurityID.offset ) } : std::string_view{}; }
@@ -1659,6 +1804,7 @@ class GroupOrders : public MessageBase
    private: FieldSecurityID fieldSecurityID;
 
    public:
+   using SecurityIDSource = FieldSecurityIDSource; 
    bool isSetSecurityIDSource() const { return fieldSecurityIDSource.offset > 0; }
    FieldSecurityIDSource::ValueType getSecurityIDSource() const { return fieldSecurityIDSource.getValue( _fixPtr ); }
    std::string_view getSecurityIDSourceView() const { return fieldSecurityIDSource.offset > 0 ? std::string_view{ _fixPtr + fieldSecurityIDSource.offset, getValueLength( _fixPtr + fieldSecurityIDSource.offset ) } : std::string_view{}; }
@@ -1668,6 +1814,7 @@ class GroupOrders : public MessageBase
    private: FieldSecurityIDSource fieldSecurityIDSource;
 
    public:
+   using NoSecurityAltID = FieldNoSecurityAltID; 
    bool isSetNoSecurityAltID() const { return fieldNoSecurityAltID.offset > 0; }
    FieldNoSecurityAltID::ValueType getNoSecurityAltID() const { return fieldNoSecurityAltID.getValue( _fixPtr ); }
    std::string_view getNoSecurityAltIDView() const { return fieldNoSecurityAltID.offset > 0 ? std::string_view{ _fixPtr + fieldNoSecurityAltID.offset, getValueLength( _fixPtr + fieldNoSecurityAltID.offset ) } : std::string_view{}; }
@@ -1682,6 +1829,7 @@ class GroupOrders : public MessageBase
    private: GroupSecurityAltID::Array groupsSecurityAltID{ 10 };
 
    public:
+   using Product = FieldProduct; 
    bool isSetProduct() const { return fieldProduct.offset > 0; }
    FieldProduct::ValueType getProduct() const { return fieldProduct.getValue( _fixPtr ); }
    std::string_view getProductView() const { return fieldProduct.offset > 0 ? std::string_view{ _fixPtr + fieldProduct.offset, getValueLength( _fixPtr + fieldProduct.offset ) } : std::string_view{}; }
@@ -1691,6 +1839,7 @@ class GroupOrders : public MessageBase
    private: FieldProduct fieldProduct;
 
    public:
+   using CFICode = FieldCFICode; 
    bool isSetCFICode() const { return fieldCFICode.offset > 0; }
    FieldCFICode::ValueType getCFICode() const { return fieldCFICode.getValue( _fixPtr ); }
    std::string_view getCFICodeView() const { return fieldCFICode.offset > 0 ? std::string_view{ _fixPtr + fieldCFICode.offset, getValueLength( _fixPtr + fieldCFICode.offset ) } : std::string_view{}; }
@@ -1700,6 +1849,7 @@ class GroupOrders : public MessageBase
    private: FieldCFICode fieldCFICode;
 
    public:
+   using SecurityType = FieldSecurityType; 
    bool isSetSecurityType() const { return fieldSecurityType.offset > 0; }
    FieldSecurityType::ValueType getSecurityType() const { return fieldSecurityType.getValue( _fixPtr ); }
    std::string_view getSecurityTypeView() const { return fieldSecurityType.offset > 0 ? std::string_view{ _fixPtr + fieldSecurityType.offset, getValueLength( _fixPtr + fieldSecurityType.offset ) } : std::string_view{}; }
@@ -1709,6 +1859,7 @@ class GroupOrders : public MessageBase
    private: FieldSecurityType fieldSecurityType;
 
    public:
+   using SecuritySubType = FieldSecuritySubType; 
    bool isSetSecuritySubType() const { return fieldSecuritySubType.offset > 0; }
    FieldSecuritySubType::ValueType getSecuritySubType() const { return fieldSecuritySubType.getValue( _fixPtr ); }
    std::string_view getSecuritySubTypeView() const { return fieldSecuritySubType.offset > 0 ? std::string_view{ _fixPtr + fieldSecuritySubType.offset, getValueLength( _fixPtr + fieldSecuritySubType.offset ) } : std::string_view{}; }
@@ -1718,6 +1869,7 @@ class GroupOrders : public MessageBase
    private: FieldSecuritySubType fieldSecuritySubType;
 
    public:
+   using MaturityMonthYear = FieldMaturityMonthYear; 
    bool isSetMaturityMonthYear() const { return fieldMaturityMonthYear.offset > 0; }
    FieldMaturityMonthYear::ValueType getMaturityMonthYear() const { return fieldMaturityMonthYear.getValue( _fixPtr ); }
    std::string_view getMaturityMonthYearView() const { return fieldMaturityMonthYear.offset > 0 ? std::string_view{ _fixPtr + fieldMaturityMonthYear.offset, getValueLength( _fixPtr + fieldMaturityMonthYear.offset ) } : std::string_view{}; }
@@ -1727,6 +1879,7 @@ class GroupOrders : public MessageBase
    private: FieldMaturityMonthYear fieldMaturityMonthYear;
 
    public:
+   using MaturityDate = FieldMaturityDate; 
    bool isSetMaturityDate() const { return fieldMaturityDate.offset > 0; }
    FieldMaturityDate::ValueType getMaturityDate() const { return fieldMaturityDate.getValue( _fixPtr ); }
    std::string_view getMaturityDateView() const { return fieldMaturityDate.offset > 0 ? std::string_view{ _fixPtr + fieldMaturityDate.offset, getValueLength( _fixPtr + fieldMaturityDate.offset ) } : std::string_view{}; }
@@ -1736,6 +1889,7 @@ class GroupOrders : public MessageBase
    private: FieldMaturityDate fieldMaturityDate;
 
    public:
+   using PutOrCall = FieldPutOrCall; 
    bool isSetPutOrCall() const { return fieldPutOrCall.offset > 0; }
    FieldPutOrCall::ValueType getPutOrCall() const { return fieldPutOrCall.getValue( _fixPtr ); }
    std::string_view getPutOrCallView() const { return fieldPutOrCall.offset > 0 ? std::string_view{ _fixPtr + fieldPutOrCall.offset, getValueLength( _fixPtr + fieldPutOrCall.offset ) } : std::string_view{}; }
@@ -1745,6 +1899,7 @@ class GroupOrders : public MessageBase
    private: FieldPutOrCall fieldPutOrCall;
 
    public:
+   using CouponPaymentDate = FieldCouponPaymentDate; 
    bool isSetCouponPaymentDate() const { return fieldCouponPaymentDate.offset > 0; }
    FieldCouponPaymentDate::ValueType getCouponPaymentDate() const { return fieldCouponPaymentDate.getValue( _fixPtr ); }
    std::string_view getCouponPaymentDateView() const { return fieldCouponPaymentDate.offset > 0 ? std::string_view{ _fixPtr + fieldCouponPaymentDate.offset, getValueLength( _fixPtr + fieldCouponPaymentDate.offset ) } : std::string_view{}; }
@@ -1754,6 +1909,7 @@ class GroupOrders : public MessageBase
    private: FieldCouponPaymentDate fieldCouponPaymentDate;
 
    public:
+   using IssueDate = FieldIssueDate; 
    bool isSetIssueDate() const { return fieldIssueDate.offset > 0; }
    FieldIssueDate::ValueType getIssueDate() const { return fieldIssueDate.getValue( _fixPtr ); }
    std::string_view getIssueDateView() const { return fieldIssueDate.offset > 0 ? std::string_view{ _fixPtr + fieldIssueDate.offset, getValueLength( _fixPtr + fieldIssueDate.offset ) } : std::string_view{}; }
@@ -1763,6 +1919,7 @@ class GroupOrders : public MessageBase
    private: FieldIssueDate fieldIssueDate;
 
    public:
+   using RepoCollateralSecurityType = FieldRepoCollateralSecurityType; 
    bool isSetRepoCollateralSecurityType() const { return fieldRepoCollateralSecurityType.offset > 0; }
    FieldRepoCollateralSecurityType::ValueType getRepoCollateralSecurityType() const { return fieldRepoCollateralSecurityType.getValue( _fixPtr ); }
    std::string_view getRepoCollateralSecurityTypeView() const { return fieldRepoCollateralSecurityType.offset > 0 ? std::string_view{ _fixPtr + fieldRepoCollateralSecurityType.offset, getValueLength( _fixPtr + fieldRepoCollateralSecurityType.offset ) } : std::string_view{}; }
@@ -1772,6 +1929,7 @@ class GroupOrders : public MessageBase
    private: FieldRepoCollateralSecurityType fieldRepoCollateralSecurityType;
 
    public:
+   using RepurchaseTerm = FieldRepurchaseTerm; 
    bool isSetRepurchaseTerm() const { return fieldRepurchaseTerm.offset > 0; }
    FieldRepurchaseTerm::ValueType getRepurchaseTerm() const { return fieldRepurchaseTerm.getValue( _fixPtr ); }
    std::string_view getRepurchaseTermView() const { return fieldRepurchaseTerm.offset > 0 ? std::string_view{ _fixPtr + fieldRepurchaseTerm.offset, getValueLength( _fixPtr + fieldRepurchaseTerm.offset ) } : std::string_view{}; }
@@ -1781,6 +1939,7 @@ class GroupOrders : public MessageBase
    private: FieldRepurchaseTerm fieldRepurchaseTerm;
 
    public:
+   using RepurchaseRate = FieldRepurchaseRate; 
    bool isSetRepurchaseRate() const { return fieldRepurchaseRate.offset > 0; }
    FieldRepurchaseRate::ValueType getRepurchaseRate() const { return fieldRepurchaseRate.getValue( _fixPtr ); }
    std::string_view getRepurchaseRateView() const { return fieldRepurchaseRate.offset > 0 ? std::string_view{ _fixPtr + fieldRepurchaseRate.offset, getValueLength( _fixPtr + fieldRepurchaseRate.offset ) } : std::string_view{}; }
@@ -1790,6 +1949,7 @@ class GroupOrders : public MessageBase
    private: FieldRepurchaseRate fieldRepurchaseRate;
 
    public:
+   using Factor = FieldFactor; 
    bool isSetFactor() const { return fieldFactor.offset > 0; }
    FieldFactor::ValueType getFactor() const { return fieldFactor.getValue( _fixPtr ); }
    std::string_view getFactorView() const { return fieldFactor.offset > 0 ? std::string_view{ _fixPtr + fieldFactor.offset, getValueLength( _fixPtr + fieldFactor.offset ) } : std::string_view{}; }
@@ -1799,6 +1959,7 @@ class GroupOrders : public MessageBase
    private: FieldFactor fieldFactor;
 
    public:
+   using CreditRating = FieldCreditRating; 
    bool isSetCreditRating() const { return fieldCreditRating.offset > 0; }
    FieldCreditRating::ValueType getCreditRating() const { return fieldCreditRating.getValue( _fixPtr ); }
    std::string_view getCreditRatingView() const { return fieldCreditRating.offset > 0 ? std::string_view{ _fixPtr + fieldCreditRating.offset, getValueLength( _fixPtr + fieldCreditRating.offset ) } : std::string_view{}; }
@@ -1808,6 +1969,7 @@ class GroupOrders : public MessageBase
    private: FieldCreditRating fieldCreditRating;
 
    public:
+   using InstrRegistry = FieldInstrRegistry; 
    bool isSetInstrRegistry() const { return fieldInstrRegistry.offset > 0; }
    FieldInstrRegistry::ValueType getInstrRegistry() const { return fieldInstrRegistry.getValue( _fixPtr ); }
    std::string_view getInstrRegistryView() const { return fieldInstrRegistry.offset > 0 ? std::string_view{ _fixPtr + fieldInstrRegistry.offset, getValueLength( _fixPtr + fieldInstrRegistry.offset ) } : std::string_view{}; }
@@ -1817,6 +1979,7 @@ class GroupOrders : public MessageBase
    private: FieldInstrRegistry fieldInstrRegistry;
 
    public:
+   using CountryOfIssue = FieldCountryOfIssue; 
    bool isSetCountryOfIssue() const { return fieldCountryOfIssue.offset > 0; }
    FieldCountryOfIssue::ValueType getCountryOfIssue() const { return fieldCountryOfIssue.getValue( _fixPtr ); }
    std::string_view getCountryOfIssueView() const { return fieldCountryOfIssue.offset > 0 ? std::string_view{ _fixPtr + fieldCountryOfIssue.offset, getValueLength( _fixPtr + fieldCountryOfIssue.offset ) } : std::string_view{}; }
@@ -1826,6 +1989,7 @@ class GroupOrders : public MessageBase
    private: FieldCountryOfIssue fieldCountryOfIssue;
 
    public:
+   using StateOrProvinceOfIssue = FieldStateOrProvinceOfIssue; 
    bool isSetStateOrProvinceOfIssue() const { return fieldStateOrProvinceOfIssue.offset > 0; }
    FieldStateOrProvinceOfIssue::ValueType getStateOrProvinceOfIssue() const { return fieldStateOrProvinceOfIssue.getValue( _fixPtr ); }
    std::string_view getStateOrProvinceOfIssueView() const { return fieldStateOrProvinceOfIssue.offset > 0 ? std::string_view{ _fixPtr + fieldStateOrProvinceOfIssue.offset, getValueLength( _fixPtr + fieldStateOrProvinceOfIssue.offset ) } : std::string_view{}; }
@@ -1835,6 +1999,7 @@ class GroupOrders : public MessageBase
    private: FieldStateOrProvinceOfIssue fieldStateOrProvinceOfIssue;
 
    public:
+   using LocaleOfIssue = FieldLocaleOfIssue; 
    bool isSetLocaleOfIssue() const { return fieldLocaleOfIssue.offset > 0; }
    FieldLocaleOfIssue::ValueType getLocaleOfIssue() const { return fieldLocaleOfIssue.getValue( _fixPtr ); }
    std::string_view getLocaleOfIssueView() const { return fieldLocaleOfIssue.offset > 0 ? std::string_view{ _fixPtr + fieldLocaleOfIssue.offset, getValueLength( _fixPtr + fieldLocaleOfIssue.offset ) } : std::string_view{}; }
@@ -1844,6 +2009,7 @@ class GroupOrders : public MessageBase
    private: FieldLocaleOfIssue fieldLocaleOfIssue;
 
    public:
+   using RedemptionDate = FieldRedemptionDate; 
    bool isSetRedemptionDate() const { return fieldRedemptionDate.offset > 0; }
    FieldRedemptionDate::ValueType getRedemptionDate() const { return fieldRedemptionDate.getValue( _fixPtr ); }
    std::string_view getRedemptionDateView() const { return fieldRedemptionDate.offset > 0 ? std::string_view{ _fixPtr + fieldRedemptionDate.offset, getValueLength( _fixPtr + fieldRedemptionDate.offset ) } : std::string_view{}; }
@@ -1853,6 +2019,7 @@ class GroupOrders : public MessageBase
    private: FieldRedemptionDate fieldRedemptionDate;
 
    public:
+   using StrikePrice = FieldStrikePrice; 
    bool isSetStrikePrice() const { return fieldStrikePrice.offset > 0; }
    FieldStrikePrice::ValueType getStrikePrice() const { return fieldStrikePrice.getValue( _fixPtr ); }
    std::string_view getStrikePriceView() const { return fieldStrikePrice.offset > 0 ? std::string_view{ _fixPtr + fieldStrikePrice.offset, getValueLength( _fixPtr + fieldStrikePrice.offset ) } : std::string_view{}; }
@@ -1862,6 +2029,7 @@ class GroupOrders : public MessageBase
    private: FieldStrikePrice fieldStrikePrice;
 
    public:
+   using StrikeCurrency = FieldStrikeCurrency; 
    bool isSetStrikeCurrency() const { return fieldStrikeCurrency.offset > 0; }
    FieldStrikeCurrency::ValueType getStrikeCurrency() const { return fieldStrikeCurrency.getValue( _fixPtr ); }
    std::string_view getStrikeCurrencyView() const { return fieldStrikeCurrency.offset > 0 ? std::string_view{ _fixPtr + fieldStrikeCurrency.offset, getValueLength( _fixPtr + fieldStrikeCurrency.offset ) } : std::string_view{}; }
@@ -1871,6 +2039,7 @@ class GroupOrders : public MessageBase
    private: FieldStrikeCurrency fieldStrikeCurrency;
 
    public:
+   using OptAttribute = FieldOptAttribute; 
    bool isSetOptAttribute() const { return fieldOptAttribute.offset > 0; }
    FieldOptAttribute::ValueType getOptAttribute() const { return fieldOptAttribute.getValue( _fixPtr ); }
    std::string_view getOptAttributeView() const { return fieldOptAttribute.offset > 0 ? std::string_view{ _fixPtr + fieldOptAttribute.offset, getValueLength( _fixPtr + fieldOptAttribute.offset ) } : std::string_view{}; }
@@ -1880,6 +2049,7 @@ class GroupOrders : public MessageBase
    private: FieldOptAttribute fieldOptAttribute;
 
    public:
+   using ContractMultiplier = FieldContractMultiplier; 
    bool isSetContractMultiplier() const { return fieldContractMultiplier.offset > 0; }
    FieldContractMultiplier::ValueType getContractMultiplier() const { return fieldContractMultiplier.getValue( _fixPtr ); }
    std::string_view getContractMultiplierView() const { return fieldContractMultiplier.offset > 0 ? std::string_view{ _fixPtr + fieldContractMultiplier.offset, getValueLength( _fixPtr + fieldContractMultiplier.offset ) } : std::string_view{}; }
@@ -1889,6 +2059,7 @@ class GroupOrders : public MessageBase
    private: FieldContractMultiplier fieldContractMultiplier;
 
    public:
+   using CouponRate = FieldCouponRate; 
    bool isSetCouponRate() const { return fieldCouponRate.offset > 0; }
    FieldCouponRate::ValueType getCouponRate() const { return fieldCouponRate.getValue( _fixPtr ); }
    std::string_view getCouponRateView() const { return fieldCouponRate.offset > 0 ? std::string_view{ _fixPtr + fieldCouponRate.offset, getValueLength( _fixPtr + fieldCouponRate.offset ) } : std::string_view{}; }
@@ -1898,6 +2069,7 @@ class GroupOrders : public MessageBase
    private: FieldCouponRate fieldCouponRate;
 
    public:
+   using SecurityExchange = FieldSecurityExchange; 
    bool isSetSecurityExchange() const { return fieldSecurityExchange.offset > 0; }
    FieldSecurityExchange::ValueType getSecurityExchange() const { return fieldSecurityExchange.getValue( _fixPtr ); }
    std::string_view getSecurityExchangeView() const { return fieldSecurityExchange.offset > 0 ? std::string_view{ _fixPtr + fieldSecurityExchange.offset, getValueLength( _fixPtr + fieldSecurityExchange.offset ) } : std::string_view{}; }
@@ -1907,6 +2079,7 @@ class GroupOrders : public MessageBase
    private: FieldSecurityExchange fieldSecurityExchange;
 
    public:
+   using Issuer = FieldIssuer; 
    bool isSetIssuer() const { return fieldIssuer.offset > 0; }
    FieldIssuer::ValueType getIssuer() const { return fieldIssuer.getValue( _fixPtr ); }
    std::string_view getIssuerView() const { return fieldIssuer.offset > 0 ? std::string_view{ _fixPtr + fieldIssuer.offset, getValueLength( _fixPtr + fieldIssuer.offset ) } : std::string_view{}; }
@@ -1916,6 +2089,7 @@ class GroupOrders : public MessageBase
    private: FieldIssuer fieldIssuer;
 
    public:
+   using EncodedIssuerLen = FieldEncodedIssuerLen; 
    bool isSetEncodedIssuerLen() const { return fieldEncodedIssuerLen.offset > 0; }
    FieldEncodedIssuerLen::ValueType getEncodedIssuerLen() const { return fieldEncodedIssuerLen.getValue( _fixPtr ); }
    std::string_view getEncodedIssuerLenView() const { return fieldEncodedIssuerLen.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedIssuerLen.offset, getValueLength( _fixPtr + fieldEncodedIssuerLen.offset ) } : std::string_view{}; }
@@ -1925,6 +2099,7 @@ class GroupOrders : public MessageBase
    private: FieldEncodedIssuerLen fieldEncodedIssuerLen;
 
    public:
+   using EncodedIssuer = FieldEncodedIssuer; 
    bool isSetEncodedIssuer() const { return fieldEncodedIssuer.offset > 0; }
    FieldEncodedIssuer::ValueType getEncodedIssuer() const { return fieldEncodedIssuer.getValue( _fixPtr ); }
    std::string_view getEncodedIssuerView() const { return fieldEncodedIssuer.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedIssuer.offset, getValueLength( _fixPtr + fieldEncodedIssuer.offset ) } : std::string_view{}; }
@@ -1934,6 +2109,7 @@ class GroupOrders : public MessageBase
    private: FieldEncodedIssuer fieldEncodedIssuer;
 
    public:
+   using SecurityDesc = FieldSecurityDesc; 
    bool isSetSecurityDesc() const { return fieldSecurityDesc.offset > 0; }
    FieldSecurityDesc::ValueType getSecurityDesc() const { return fieldSecurityDesc.getValue( _fixPtr ); }
    std::string_view getSecurityDescView() const { return fieldSecurityDesc.offset > 0 ? std::string_view{ _fixPtr + fieldSecurityDesc.offset, getValueLength( _fixPtr + fieldSecurityDesc.offset ) } : std::string_view{}; }
@@ -1943,6 +2119,7 @@ class GroupOrders : public MessageBase
    private: FieldSecurityDesc fieldSecurityDesc;
 
    public:
+   using EncodedSecurityDescLen = FieldEncodedSecurityDescLen; 
    bool isSetEncodedSecurityDescLen() const { return fieldEncodedSecurityDescLen.offset > 0; }
    FieldEncodedSecurityDescLen::ValueType getEncodedSecurityDescLen() const { return fieldEncodedSecurityDescLen.getValue( _fixPtr ); }
    std::string_view getEncodedSecurityDescLenView() const { return fieldEncodedSecurityDescLen.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedSecurityDescLen.offset, getValueLength( _fixPtr + fieldEncodedSecurityDescLen.offset ) } : std::string_view{}; }
@@ -1952,6 +2129,7 @@ class GroupOrders : public MessageBase
    private: FieldEncodedSecurityDescLen fieldEncodedSecurityDescLen;
 
    public:
+   using EncodedSecurityDesc = FieldEncodedSecurityDesc; 
    bool isSetEncodedSecurityDesc() const { return fieldEncodedSecurityDesc.offset > 0; }
    FieldEncodedSecurityDesc::ValueType getEncodedSecurityDesc() const { return fieldEncodedSecurityDesc.getValue( _fixPtr ); }
    std::string_view getEncodedSecurityDescView() const { return fieldEncodedSecurityDesc.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedSecurityDesc.offset, getValueLength( _fixPtr + fieldEncodedSecurityDesc.offset ) } : std::string_view{}; }
@@ -1961,6 +2139,7 @@ class GroupOrders : public MessageBase
    private: FieldEncodedSecurityDesc fieldEncodedSecurityDesc;
 
    public:
+   using Pool = FieldPool; 
    bool isSetPool() const { return fieldPool.offset > 0; }
    FieldPool::ValueType getPool() const { return fieldPool.getValue( _fixPtr ); }
    std::string_view getPoolView() const { return fieldPool.offset > 0 ? std::string_view{ _fixPtr + fieldPool.offset, getValueLength( _fixPtr + fieldPool.offset ) } : std::string_view{}; }
@@ -1970,6 +2149,7 @@ class GroupOrders : public MessageBase
    private: FieldPool fieldPool;
 
    public:
+   using ContractSettlMonth = FieldContractSettlMonth; 
    bool isSetContractSettlMonth() const { return fieldContractSettlMonth.offset > 0; }
    FieldContractSettlMonth::ValueType getContractSettlMonth() const { return fieldContractSettlMonth.getValue( _fixPtr ); }
    std::string_view getContractSettlMonthView() const { return fieldContractSettlMonth.offset > 0 ? std::string_view{ _fixPtr + fieldContractSettlMonth.offset, getValueLength( _fixPtr + fieldContractSettlMonth.offset ) } : std::string_view{}; }
@@ -1979,6 +2159,7 @@ class GroupOrders : public MessageBase
    private: FieldContractSettlMonth fieldContractSettlMonth;
 
    public:
+   using CPProgram = FieldCPProgram; 
    bool isSetCPProgram() const { return fieldCPProgram.offset > 0; }
    FieldCPProgram::ValueType getCPProgram() const { return fieldCPProgram.getValue( _fixPtr ); }
    std::string_view getCPProgramView() const { return fieldCPProgram.offset > 0 ? std::string_view{ _fixPtr + fieldCPProgram.offset, getValueLength( _fixPtr + fieldCPProgram.offset ) } : std::string_view{}; }
@@ -1988,6 +2169,7 @@ class GroupOrders : public MessageBase
    private: FieldCPProgram fieldCPProgram;
 
    public:
+   using CPRegType = FieldCPRegType; 
    bool isSetCPRegType() const { return fieldCPRegType.offset > 0; }
    FieldCPRegType::ValueType getCPRegType() const { return fieldCPRegType.getValue( _fixPtr ); }
    std::string_view getCPRegTypeView() const { return fieldCPRegType.offset > 0 ? std::string_view{ _fixPtr + fieldCPRegType.offset, getValueLength( _fixPtr + fieldCPRegType.offset ) } : std::string_view{}; }
@@ -1997,6 +2179,7 @@ class GroupOrders : public MessageBase
    private: FieldCPRegType fieldCPRegType;
 
    public:
+   using NoEvents = FieldNoEvents; 
    bool isSetNoEvents() const { return fieldNoEvents.offset > 0; }
    FieldNoEvents::ValueType getNoEvents() const { return fieldNoEvents.getValue( _fixPtr ); }
    std::string_view getNoEventsView() const { return fieldNoEvents.offset > 0 ? std::string_view{ _fixPtr + fieldNoEvents.offset, getValueLength( _fixPtr + fieldNoEvents.offset ) } : std::string_view{}; }
@@ -2011,6 +2194,7 @@ class GroupOrders : public MessageBase
    private: GroupEvents::Array groupsEvents{ 10 };
 
    public:
+   using DatedDate = FieldDatedDate; 
    bool isSetDatedDate() const { return fieldDatedDate.offset > 0; }
    FieldDatedDate::ValueType getDatedDate() const { return fieldDatedDate.getValue( _fixPtr ); }
    std::string_view getDatedDateView() const { return fieldDatedDate.offset > 0 ? std::string_view{ _fixPtr + fieldDatedDate.offset, getValueLength( _fixPtr + fieldDatedDate.offset ) } : std::string_view{}; }
@@ -2020,6 +2204,7 @@ class GroupOrders : public MessageBase
    private: FieldDatedDate fieldDatedDate;
 
    public:
+   using InterestAccrualDate = FieldInterestAccrualDate; 
    bool isSetInterestAccrualDate() const { return fieldInterestAccrualDate.offset > 0; }
    FieldInterestAccrualDate::ValueType getInterestAccrualDate() const { return fieldInterestAccrualDate.getValue( _fixPtr ); }
    std::string_view getInterestAccrualDateView() const { return fieldInterestAccrualDate.offset > 0 ? std::string_view{ _fixPtr + fieldInterestAccrualDate.offset, getValueLength( _fixPtr + fieldInterestAccrualDate.offset ) } : std::string_view{}; }
@@ -2029,6 +2214,7 @@ class GroupOrders : public MessageBase
    private: FieldInterestAccrualDate fieldInterestAccrualDate;
 
    public:
+   using NoUnderlyings = FieldNoUnderlyings; 
    bool isSetNoUnderlyings() const { return fieldNoUnderlyings.offset > 0; }
    FieldNoUnderlyings::ValueType getNoUnderlyings() const { return fieldNoUnderlyings.getValue( _fixPtr ); }
    std::string_view getNoUnderlyingsView() const { return fieldNoUnderlyings.offset > 0 ? std::string_view{ _fixPtr + fieldNoUnderlyings.offset, getValueLength( _fixPtr + fieldNoUnderlyings.offset ) } : std::string_view{}; }
@@ -2043,6 +2229,7 @@ class GroupOrders : public MessageBase
    private: GroupUnderlyings::Array groupsUnderlyings{ 10 };
 
    public:
+   using PrevClosePx = FieldPrevClosePx; 
    bool isSetPrevClosePx() const { return fieldPrevClosePx.offset > 0; }
    FieldPrevClosePx::ValueType getPrevClosePx() const { return fieldPrevClosePx.getValue( _fixPtr ); }
    std::string_view getPrevClosePxView() const { return fieldPrevClosePx.offset > 0 ? std::string_view{ _fixPtr + fieldPrevClosePx.offset, getValueLength( _fixPtr + fieldPrevClosePx.offset ) } : std::string_view{}; }
@@ -2052,6 +2239,7 @@ class GroupOrders : public MessageBase
    private: FieldPrevClosePx fieldPrevClosePx;
 
    public:
+   using Side = FieldSide; 
    bool isSetSide() const { return fieldSide.offset > 0; }
    FieldSide::ValueType getSide() const { return fieldSide.getValue( _fixPtr ); }
    std::string_view getSideView() const { return fieldSide.offset > 0 ? std::string_view{ _fixPtr + fieldSide.offset, getValueLength( _fixPtr + fieldSide.offset ) } : std::string_view{}; }
@@ -2061,6 +2249,7 @@ class GroupOrders : public MessageBase
    private: FieldSide fieldSide;
 
    public:
+   using SideValueInd = FieldSideValueInd; 
    bool isSetSideValueInd() const { return fieldSideValueInd.offset > 0; }
    FieldSideValueInd::ValueType getSideValueInd() const { return fieldSideValueInd.getValue( _fixPtr ); }
    std::string_view getSideValueIndView() const { return fieldSideValueInd.offset > 0 ? std::string_view{ _fixPtr + fieldSideValueInd.offset, getValueLength( _fixPtr + fieldSideValueInd.offset ) } : std::string_view{}; }
@@ -2070,6 +2259,7 @@ class GroupOrders : public MessageBase
    private: FieldSideValueInd fieldSideValueInd;
 
    public:
+   using LocateReqd = FieldLocateReqd; 
    bool isSetLocateReqd() const { return fieldLocateReqd.offset > 0; }
    FieldLocateReqd::ValueType getLocateReqd() const { return fieldLocateReqd.getValue( _fixPtr ); }
    std::string_view getLocateReqdView() const { return fieldLocateReqd.offset > 0 ? std::string_view{ _fixPtr + fieldLocateReqd.offset, getValueLength( _fixPtr + fieldLocateReqd.offset ) } : std::string_view{}; }
@@ -2079,6 +2269,7 @@ class GroupOrders : public MessageBase
    private: FieldLocateReqd fieldLocateReqd;
 
    public:
+   using TransactTime = FieldTransactTime; 
    bool isSetTransactTime() const { return fieldTransactTime.offset > 0; }
    FieldTransactTime::ValueType getTransactTime() const { return fieldTransactTime.getValue( _fixPtr ); }
    std::string_view getTransactTimeView() const { return fieldTransactTime.offset > 0 ? std::string_view{ _fixPtr + fieldTransactTime.offset, getValueLength( _fixPtr + fieldTransactTime.offset ) } : std::string_view{}; }
@@ -2088,6 +2279,7 @@ class GroupOrders : public MessageBase
    private: FieldTransactTime fieldTransactTime;
 
    public:
+   using NoStipulations = FieldNoStipulations; 
    bool isSetNoStipulations() const { return fieldNoStipulations.offset > 0; }
    FieldNoStipulations::ValueType getNoStipulations() const { return fieldNoStipulations.getValue( _fixPtr ); }
    std::string_view getNoStipulationsView() const { return fieldNoStipulations.offset > 0 ? std::string_view{ _fixPtr + fieldNoStipulations.offset, getValueLength( _fixPtr + fieldNoStipulations.offset ) } : std::string_view{}; }
@@ -2102,6 +2294,7 @@ class GroupOrders : public MessageBase
    private: GroupStipulations::Array groupsStipulations{ 10 };
 
    public:
+   using QtyType = FieldQtyType; 
    bool isSetQtyType() const { return fieldQtyType.offset > 0; }
    FieldQtyType::ValueType getQtyType() const { return fieldQtyType.getValue( _fixPtr ); }
    std::string_view getQtyTypeView() const { return fieldQtyType.offset > 0 ? std::string_view{ _fixPtr + fieldQtyType.offset, getValueLength( _fixPtr + fieldQtyType.offset ) } : std::string_view{}; }
@@ -2111,6 +2304,7 @@ class GroupOrders : public MessageBase
    private: FieldQtyType fieldQtyType;
 
    public:
+   using OrderQty = FieldOrderQty; 
    bool isSetOrderQty() const { return fieldOrderQty.offset > 0; }
    FieldOrderQty::ValueType getOrderQty() const { return fieldOrderQty.getValue( _fixPtr ); }
    std::string_view getOrderQtyView() const { return fieldOrderQty.offset > 0 ? std::string_view{ _fixPtr + fieldOrderQty.offset, getValueLength( _fixPtr + fieldOrderQty.offset ) } : std::string_view{}; }
@@ -2120,6 +2314,7 @@ class GroupOrders : public MessageBase
    private: FieldOrderQty fieldOrderQty;
 
    public:
+   using CashOrderQty = FieldCashOrderQty; 
    bool isSetCashOrderQty() const { return fieldCashOrderQty.offset > 0; }
    FieldCashOrderQty::ValueType getCashOrderQty() const { return fieldCashOrderQty.getValue( _fixPtr ); }
    std::string_view getCashOrderQtyView() const { return fieldCashOrderQty.offset > 0 ? std::string_view{ _fixPtr + fieldCashOrderQty.offset, getValueLength( _fixPtr + fieldCashOrderQty.offset ) } : std::string_view{}; }
@@ -2129,6 +2324,7 @@ class GroupOrders : public MessageBase
    private: FieldCashOrderQty fieldCashOrderQty;
 
    public:
+   using OrderPercent = FieldOrderPercent; 
    bool isSetOrderPercent() const { return fieldOrderPercent.offset > 0; }
    FieldOrderPercent::ValueType getOrderPercent() const { return fieldOrderPercent.getValue( _fixPtr ); }
    std::string_view getOrderPercentView() const { return fieldOrderPercent.offset > 0 ? std::string_view{ _fixPtr + fieldOrderPercent.offset, getValueLength( _fixPtr + fieldOrderPercent.offset ) } : std::string_view{}; }
@@ -2138,6 +2334,7 @@ class GroupOrders : public MessageBase
    private: FieldOrderPercent fieldOrderPercent;
 
    public:
+   using RoundingDirection = FieldRoundingDirection; 
    bool isSetRoundingDirection() const { return fieldRoundingDirection.offset > 0; }
    FieldRoundingDirection::ValueType getRoundingDirection() const { return fieldRoundingDirection.getValue( _fixPtr ); }
    std::string_view getRoundingDirectionView() const { return fieldRoundingDirection.offset > 0 ? std::string_view{ _fixPtr + fieldRoundingDirection.offset, getValueLength( _fixPtr + fieldRoundingDirection.offset ) } : std::string_view{}; }
@@ -2147,6 +2344,7 @@ class GroupOrders : public MessageBase
    private: FieldRoundingDirection fieldRoundingDirection;
 
    public:
+   using RoundingModulus = FieldRoundingModulus; 
    bool isSetRoundingModulus() const { return fieldRoundingModulus.offset > 0; }
    FieldRoundingModulus::ValueType getRoundingModulus() const { return fieldRoundingModulus.getValue( _fixPtr ); }
    std::string_view getRoundingModulusView() const { return fieldRoundingModulus.offset > 0 ? std::string_view{ _fixPtr + fieldRoundingModulus.offset, getValueLength( _fixPtr + fieldRoundingModulus.offset ) } : std::string_view{}; }
@@ -2156,6 +2354,7 @@ class GroupOrders : public MessageBase
    private: FieldRoundingModulus fieldRoundingModulus;
 
    public:
+   using OrdType = FieldOrdType; 
    bool isSetOrdType() const { return fieldOrdType.offset > 0; }
    FieldOrdType::ValueType getOrdType() const { return fieldOrdType.getValue( _fixPtr ); }
    std::string_view getOrdTypeView() const { return fieldOrdType.offset > 0 ? std::string_view{ _fixPtr + fieldOrdType.offset, getValueLength( _fixPtr + fieldOrdType.offset ) } : std::string_view{}; }
@@ -2165,6 +2364,7 @@ class GroupOrders : public MessageBase
    private: FieldOrdType fieldOrdType;
 
    public:
+   using PriceType = FieldPriceType; 
    bool isSetPriceType() const { return fieldPriceType.offset > 0; }
    FieldPriceType::ValueType getPriceType() const { return fieldPriceType.getValue( _fixPtr ); }
    std::string_view getPriceTypeView() const { return fieldPriceType.offset > 0 ? std::string_view{ _fixPtr + fieldPriceType.offset, getValueLength( _fixPtr + fieldPriceType.offset ) } : std::string_view{}; }
@@ -2174,6 +2374,7 @@ class GroupOrders : public MessageBase
    private: FieldPriceType fieldPriceType;
 
    public:
+   using Price = FieldPrice; 
    bool isSetPrice() const { return fieldPrice.offset > 0; }
    FieldPrice::ValueType getPrice() const { return fieldPrice.getValue( _fixPtr ); }
    std::string_view getPriceView() const { return fieldPrice.offset > 0 ? std::string_view{ _fixPtr + fieldPrice.offset, getValueLength( _fixPtr + fieldPrice.offset ) } : std::string_view{}; }
@@ -2183,6 +2384,7 @@ class GroupOrders : public MessageBase
    private: FieldPrice fieldPrice;
 
    public:
+   using StopPx = FieldStopPx; 
    bool isSetStopPx() const { return fieldStopPx.offset > 0; }
    FieldStopPx::ValueType getStopPx() const { return fieldStopPx.getValue( _fixPtr ); }
    std::string_view getStopPxView() const { return fieldStopPx.offset > 0 ? std::string_view{ _fixPtr + fieldStopPx.offset, getValueLength( _fixPtr + fieldStopPx.offset ) } : std::string_view{}; }
@@ -2192,6 +2394,7 @@ class GroupOrders : public MessageBase
    private: FieldStopPx fieldStopPx;
 
    public:
+   using Spread = FieldSpread; 
    bool isSetSpread() const { return fieldSpread.offset > 0; }
    FieldSpread::ValueType getSpread() const { return fieldSpread.getValue( _fixPtr ); }
    std::string_view getSpreadView() const { return fieldSpread.offset > 0 ? std::string_view{ _fixPtr + fieldSpread.offset, getValueLength( _fixPtr + fieldSpread.offset ) } : std::string_view{}; }
@@ -2201,6 +2404,7 @@ class GroupOrders : public MessageBase
    private: FieldSpread fieldSpread;
 
    public:
+   using BenchmarkCurveCurrency = FieldBenchmarkCurveCurrency; 
    bool isSetBenchmarkCurveCurrency() const { return fieldBenchmarkCurveCurrency.offset > 0; }
    FieldBenchmarkCurveCurrency::ValueType getBenchmarkCurveCurrency() const { return fieldBenchmarkCurveCurrency.getValue( _fixPtr ); }
    std::string_view getBenchmarkCurveCurrencyView() const { return fieldBenchmarkCurveCurrency.offset > 0 ? std::string_view{ _fixPtr + fieldBenchmarkCurveCurrency.offset, getValueLength( _fixPtr + fieldBenchmarkCurveCurrency.offset ) } : std::string_view{}; }
@@ -2210,6 +2414,7 @@ class GroupOrders : public MessageBase
    private: FieldBenchmarkCurveCurrency fieldBenchmarkCurveCurrency;
 
    public:
+   using BenchmarkCurveName = FieldBenchmarkCurveName; 
    bool isSetBenchmarkCurveName() const { return fieldBenchmarkCurveName.offset > 0; }
    FieldBenchmarkCurveName::ValueType getBenchmarkCurveName() const { return fieldBenchmarkCurveName.getValue( _fixPtr ); }
    std::string_view getBenchmarkCurveNameView() const { return fieldBenchmarkCurveName.offset > 0 ? std::string_view{ _fixPtr + fieldBenchmarkCurveName.offset, getValueLength( _fixPtr + fieldBenchmarkCurveName.offset ) } : std::string_view{}; }
@@ -2219,6 +2424,7 @@ class GroupOrders : public MessageBase
    private: FieldBenchmarkCurveName fieldBenchmarkCurveName;
 
    public:
+   using BenchmarkCurvePoint = FieldBenchmarkCurvePoint; 
    bool isSetBenchmarkCurvePoint() const { return fieldBenchmarkCurvePoint.offset > 0; }
    FieldBenchmarkCurvePoint::ValueType getBenchmarkCurvePoint() const { return fieldBenchmarkCurvePoint.getValue( _fixPtr ); }
    std::string_view getBenchmarkCurvePointView() const { return fieldBenchmarkCurvePoint.offset > 0 ? std::string_view{ _fixPtr + fieldBenchmarkCurvePoint.offset, getValueLength( _fixPtr + fieldBenchmarkCurvePoint.offset ) } : std::string_view{}; }
@@ -2228,6 +2434,7 @@ class GroupOrders : public MessageBase
    private: FieldBenchmarkCurvePoint fieldBenchmarkCurvePoint;
 
    public:
+   using BenchmarkPrice = FieldBenchmarkPrice; 
    bool isSetBenchmarkPrice() const { return fieldBenchmarkPrice.offset > 0; }
    FieldBenchmarkPrice::ValueType getBenchmarkPrice() const { return fieldBenchmarkPrice.getValue( _fixPtr ); }
    std::string_view getBenchmarkPriceView() const { return fieldBenchmarkPrice.offset > 0 ? std::string_view{ _fixPtr + fieldBenchmarkPrice.offset, getValueLength( _fixPtr + fieldBenchmarkPrice.offset ) } : std::string_view{}; }
@@ -2237,6 +2444,7 @@ class GroupOrders : public MessageBase
    private: FieldBenchmarkPrice fieldBenchmarkPrice;
 
    public:
+   using BenchmarkPriceType = FieldBenchmarkPriceType; 
    bool isSetBenchmarkPriceType() const { return fieldBenchmarkPriceType.offset > 0; }
    FieldBenchmarkPriceType::ValueType getBenchmarkPriceType() const { return fieldBenchmarkPriceType.getValue( _fixPtr ); }
    std::string_view getBenchmarkPriceTypeView() const { return fieldBenchmarkPriceType.offset > 0 ? std::string_view{ _fixPtr + fieldBenchmarkPriceType.offset, getValueLength( _fixPtr + fieldBenchmarkPriceType.offset ) } : std::string_view{}; }
@@ -2246,6 +2454,7 @@ class GroupOrders : public MessageBase
    private: FieldBenchmarkPriceType fieldBenchmarkPriceType;
 
    public:
+   using BenchmarkSecurityID = FieldBenchmarkSecurityID; 
    bool isSetBenchmarkSecurityID() const { return fieldBenchmarkSecurityID.offset > 0; }
    FieldBenchmarkSecurityID::ValueType getBenchmarkSecurityID() const { return fieldBenchmarkSecurityID.getValue( _fixPtr ); }
    std::string_view getBenchmarkSecurityIDView() const { return fieldBenchmarkSecurityID.offset > 0 ? std::string_view{ _fixPtr + fieldBenchmarkSecurityID.offset, getValueLength( _fixPtr + fieldBenchmarkSecurityID.offset ) } : std::string_view{}; }
@@ -2255,6 +2464,7 @@ class GroupOrders : public MessageBase
    private: FieldBenchmarkSecurityID fieldBenchmarkSecurityID;
 
    public:
+   using BenchmarkSecurityIDSource = FieldBenchmarkSecurityIDSource; 
    bool isSetBenchmarkSecurityIDSource() const { return fieldBenchmarkSecurityIDSource.offset > 0; }
    FieldBenchmarkSecurityIDSource::ValueType getBenchmarkSecurityIDSource() const { return fieldBenchmarkSecurityIDSource.getValue( _fixPtr ); }
    std::string_view getBenchmarkSecurityIDSourceView() const { return fieldBenchmarkSecurityIDSource.offset > 0 ? std::string_view{ _fixPtr + fieldBenchmarkSecurityIDSource.offset, getValueLength( _fixPtr + fieldBenchmarkSecurityIDSource.offset ) } : std::string_view{}; }
@@ -2264,6 +2474,7 @@ class GroupOrders : public MessageBase
    private: FieldBenchmarkSecurityIDSource fieldBenchmarkSecurityIDSource;
 
    public:
+   using YieldType = FieldYieldType; 
    bool isSetYieldType() const { return fieldYieldType.offset > 0; }
    FieldYieldType::ValueType getYieldType() const { return fieldYieldType.getValue( _fixPtr ); }
    std::string_view getYieldTypeView() const { return fieldYieldType.offset > 0 ? std::string_view{ _fixPtr + fieldYieldType.offset, getValueLength( _fixPtr + fieldYieldType.offset ) } : std::string_view{}; }
@@ -2273,6 +2484,7 @@ class GroupOrders : public MessageBase
    private: FieldYieldType fieldYieldType;
 
    public:
+   using Yield = FieldYield; 
    bool isSetYield() const { return fieldYield.offset > 0; }
    FieldYield::ValueType getYield() const { return fieldYield.getValue( _fixPtr ); }
    std::string_view getYieldView() const { return fieldYield.offset > 0 ? std::string_view{ _fixPtr + fieldYield.offset, getValueLength( _fixPtr + fieldYield.offset ) } : std::string_view{}; }
@@ -2282,6 +2494,7 @@ class GroupOrders : public MessageBase
    private: FieldYield fieldYield;
 
    public:
+   using YieldCalcDate = FieldYieldCalcDate; 
    bool isSetYieldCalcDate() const { return fieldYieldCalcDate.offset > 0; }
    FieldYieldCalcDate::ValueType getYieldCalcDate() const { return fieldYieldCalcDate.getValue( _fixPtr ); }
    std::string_view getYieldCalcDateView() const { return fieldYieldCalcDate.offset > 0 ? std::string_view{ _fixPtr + fieldYieldCalcDate.offset, getValueLength( _fixPtr + fieldYieldCalcDate.offset ) } : std::string_view{}; }
@@ -2291,6 +2504,7 @@ class GroupOrders : public MessageBase
    private: FieldYieldCalcDate fieldYieldCalcDate;
 
    public:
+   using YieldRedemptionDate = FieldYieldRedemptionDate; 
    bool isSetYieldRedemptionDate() const { return fieldYieldRedemptionDate.offset > 0; }
    FieldYieldRedemptionDate::ValueType getYieldRedemptionDate() const { return fieldYieldRedemptionDate.getValue( _fixPtr ); }
    std::string_view getYieldRedemptionDateView() const { return fieldYieldRedemptionDate.offset > 0 ? std::string_view{ _fixPtr + fieldYieldRedemptionDate.offset, getValueLength( _fixPtr + fieldYieldRedemptionDate.offset ) } : std::string_view{}; }
@@ -2300,6 +2514,7 @@ class GroupOrders : public MessageBase
    private: FieldYieldRedemptionDate fieldYieldRedemptionDate;
 
    public:
+   using YieldRedemptionPrice = FieldYieldRedemptionPrice; 
    bool isSetYieldRedemptionPrice() const { return fieldYieldRedemptionPrice.offset > 0; }
    FieldYieldRedemptionPrice::ValueType getYieldRedemptionPrice() const { return fieldYieldRedemptionPrice.getValue( _fixPtr ); }
    std::string_view getYieldRedemptionPriceView() const { return fieldYieldRedemptionPrice.offset > 0 ? std::string_view{ _fixPtr + fieldYieldRedemptionPrice.offset, getValueLength( _fixPtr + fieldYieldRedemptionPrice.offset ) } : std::string_view{}; }
@@ -2309,6 +2524,7 @@ class GroupOrders : public MessageBase
    private: FieldYieldRedemptionPrice fieldYieldRedemptionPrice;
 
    public:
+   using YieldRedemptionPriceType = FieldYieldRedemptionPriceType; 
    bool isSetYieldRedemptionPriceType() const { return fieldYieldRedemptionPriceType.offset > 0; }
    FieldYieldRedemptionPriceType::ValueType getYieldRedemptionPriceType() const { return fieldYieldRedemptionPriceType.getValue( _fixPtr ); }
    std::string_view getYieldRedemptionPriceTypeView() const { return fieldYieldRedemptionPriceType.offset > 0 ? std::string_view{ _fixPtr + fieldYieldRedemptionPriceType.offset, getValueLength( _fixPtr + fieldYieldRedemptionPriceType.offset ) } : std::string_view{}; }
@@ -2318,6 +2534,7 @@ class GroupOrders : public MessageBase
    private: FieldYieldRedemptionPriceType fieldYieldRedemptionPriceType;
 
    public:
+   using Currency = FieldCurrency; 
    bool isSetCurrency() const { return fieldCurrency.offset > 0; }
    FieldCurrency::ValueType getCurrency() const { return fieldCurrency.getValue( _fixPtr ); }
    std::string_view getCurrencyView() const { return fieldCurrency.offset > 0 ? std::string_view{ _fixPtr + fieldCurrency.offset, getValueLength( _fixPtr + fieldCurrency.offset ) } : std::string_view{}; }
@@ -2327,6 +2544,7 @@ class GroupOrders : public MessageBase
    private: FieldCurrency fieldCurrency;
 
    public:
+   using ComplianceID = FieldComplianceID; 
    bool isSetComplianceID() const { return fieldComplianceID.offset > 0; }
    FieldComplianceID::ValueType getComplianceID() const { return fieldComplianceID.getValue( _fixPtr ); }
    std::string_view getComplianceIDView() const { return fieldComplianceID.offset > 0 ? std::string_view{ _fixPtr + fieldComplianceID.offset, getValueLength( _fixPtr + fieldComplianceID.offset ) } : std::string_view{}; }
@@ -2336,6 +2554,7 @@ class GroupOrders : public MessageBase
    private: FieldComplianceID fieldComplianceID;
 
    public:
+   using SolicitedFlag = FieldSolicitedFlag; 
    bool isSetSolicitedFlag() const { return fieldSolicitedFlag.offset > 0; }
    FieldSolicitedFlag::ValueType getSolicitedFlag() const { return fieldSolicitedFlag.getValue( _fixPtr ); }
    std::string_view getSolicitedFlagView() const { return fieldSolicitedFlag.offset > 0 ? std::string_view{ _fixPtr + fieldSolicitedFlag.offset, getValueLength( _fixPtr + fieldSolicitedFlag.offset ) } : std::string_view{}; }
@@ -2345,6 +2564,7 @@ class GroupOrders : public MessageBase
    private: FieldSolicitedFlag fieldSolicitedFlag;
 
    public:
+   using IOIID = FieldIOIID; 
    bool isSetIOIID() const { return fieldIOIID.offset > 0; }
    FieldIOIID::ValueType getIOIID() const { return fieldIOIID.getValue( _fixPtr ); }
    std::string_view getIOIIDView() const { return fieldIOIID.offset > 0 ? std::string_view{ _fixPtr + fieldIOIID.offset, getValueLength( _fixPtr + fieldIOIID.offset ) } : std::string_view{}; }
@@ -2354,6 +2574,7 @@ class GroupOrders : public MessageBase
    private: FieldIOIID fieldIOIID;
 
    public:
+   using QuoteID = FieldQuoteID; 
    bool isSetQuoteID() const { return fieldQuoteID.offset > 0; }
    FieldQuoteID::ValueType getQuoteID() const { return fieldQuoteID.getValue( _fixPtr ); }
    std::string_view getQuoteIDView() const { return fieldQuoteID.offset > 0 ? std::string_view{ _fixPtr + fieldQuoteID.offset, getValueLength( _fixPtr + fieldQuoteID.offset ) } : std::string_view{}; }
@@ -2363,6 +2584,7 @@ class GroupOrders : public MessageBase
    private: FieldQuoteID fieldQuoteID;
 
    public:
+   using TimeInForce = FieldTimeInForce; 
    bool isSetTimeInForce() const { return fieldTimeInForce.offset > 0; }
    FieldTimeInForce::ValueType getTimeInForce() const { return fieldTimeInForce.getValue( _fixPtr ); }
    std::string_view getTimeInForceView() const { return fieldTimeInForce.offset > 0 ? std::string_view{ _fixPtr + fieldTimeInForce.offset, getValueLength( _fixPtr + fieldTimeInForce.offset ) } : std::string_view{}; }
@@ -2372,6 +2594,7 @@ class GroupOrders : public MessageBase
    private: FieldTimeInForce fieldTimeInForce;
 
    public:
+   using EffectiveTime = FieldEffectiveTime; 
    bool isSetEffectiveTime() const { return fieldEffectiveTime.offset > 0; }
    FieldEffectiveTime::ValueType getEffectiveTime() const { return fieldEffectiveTime.getValue( _fixPtr ); }
    std::string_view getEffectiveTimeView() const { return fieldEffectiveTime.offset > 0 ? std::string_view{ _fixPtr + fieldEffectiveTime.offset, getValueLength( _fixPtr + fieldEffectiveTime.offset ) } : std::string_view{}; }
@@ -2381,6 +2604,7 @@ class GroupOrders : public MessageBase
    private: FieldEffectiveTime fieldEffectiveTime;
 
    public:
+   using ExpireDate = FieldExpireDate; 
    bool isSetExpireDate() const { return fieldExpireDate.offset > 0; }
    FieldExpireDate::ValueType getExpireDate() const { return fieldExpireDate.getValue( _fixPtr ); }
    std::string_view getExpireDateView() const { return fieldExpireDate.offset > 0 ? std::string_view{ _fixPtr + fieldExpireDate.offset, getValueLength( _fixPtr + fieldExpireDate.offset ) } : std::string_view{}; }
@@ -2390,6 +2614,7 @@ class GroupOrders : public MessageBase
    private: FieldExpireDate fieldExpireDate;
 
    public:
+   using ExpireTime = FieldExpireTime; 
    bool isSetExpireTime() const { return fieldExpireTime.offset > 0; }
    FieldExpireTime::ValueType getExpireTime() const { return fieldExpireTime.getValue( _fixPtr ); }
    std::string_view getExpireTimeView() const { return fieldExpireTime.offset > 0 ? std::string_view{ _fixPtr + fieldExpireTime.offset, getValueLength( _fixPtr + fieldExpireTime.offset ) } : std::string_view{}; }
@@ -2399,6 +2624,7 @@ class GroupOrders : public MessageBase
    private: FieldExpireTime fieldExpireTime;
 
    public:
+   using GTBookingInst = FieldGTBookingInst; 
    bool isSetGTBookingInst() const { return fieldGTBookingInst.offset > 0; }
    FieldGTBookingInst::ValueType getGTBookingInst() const { return fieldGTBookingInst.getValue( _fixPtr ); }
    std::string_view getGTBookingInstView() const { return fieldGTBookingInst.offset > 0 ? std::string_view{ _fixPtr + fieldGTBookingInst.offset, getValueLength( _fixPtr + fieldGTBookingInst.offset ) } : std::string_view{}; }
@@ -2408,6 +2634,7 @@ class GroupOrders : public MessageBase
    private: FieldGTBookingInst fieldGTBookingInst;
 
    public:
+   using Commission = FieldCommission; 
    bool isSetCommission() const { return fieldCommission.offset > 0; }
    FieldCommission::ValueType getCommission() const { return fieldCommission.getValue( _fixPtr ); }
    std::string_view getCommissionView() const { return fieldCommission.offset > 0 ? std::string_view{ _fixPtr + fieldCommission.offset, getValueLength( _fixPtr + fieldCommission.offset ) } : std::string_view{}; }
@@ -2417,6 +2644,7 @@ class GroupOrders : public MessageBase
    private: FieldCommission fieldCommission;
 
    public:
+   using CommType = FieldCommType; 
    bool isSetCommType() const { return fieldCommType.offset > 0; }
    FieldCommType::ValueType getCommType() const { return fieldCommType.getValue( _fixPtr ); }
    std::string_view getCommTypeView() const { return fieldCommType.offset > 0 ? std::string_view{ _fixPtr + fieldCommType.offset, getValueLength( _fixPtr + fieldCommType.offset ) } : std::string_view{}; }
@@ -2426,6 +2654,7 @@ class GroupOrders : public MessageBase
    private: FieldCommType fieldCommType;
 
    public:
+   using CommCurrency = FieldCommCurrency; 
    bool isSetCommCurrency() const { return fieldCommCurrency.offset > 0; }
    FieldCommCurrency::ValueType getCommCurrency() const { return fieldCommCurrency.getValue( _fixPtr ); }
    std::string_view getCommCurrencyView() const { return fieldCommCurrency.offset > 0 ? std::string_view{ _fixPtr + fieldCommCurrency.offset, getValueLength( _fixPtr + fieldCommCurrency.offset ) } : std::string_view{}; }
@@ -2435,6 +2664,7 @@ class GroupOrders : public MessageBase
    private: FieldCommCurrency fieldCommCurrency;
 
    public:
+   using FundRenewWaiv = FieldFundRenewWaiv; 
    bool isSetFundRenewWaiv() const { return fieldFundRenewWaiv.offset > 0; }
    FieldFundRenewWaiv::ValueType getFundRenewWaiv() const { return fieldFundRenewWaiv.getValue( _fixPtr ); }
    std::string_view getFundRenewWaivView() const { return fieldFundRenewWaiv.offset > 0 ? std::string_view{ _fixPtr + fieldFundRenewWaiv.offset, getValueLength( _fixPtr + fieldFundRenewWaiv.offset ) } : std::string_view{}; }
@@ -2444,6 +2674,7 @@ class GroupOrders : public MessageBase
    private: FieldFundRenewWaiv fieldFundRenewWaiv;
 
    public:
+   using OrderCapacity = FieldOrderCapacity; 
    bool isSetOrderCapacity() const { return fieldOrderCapacity.offset > 0; }
    FieldOrderCapacity::ValueType getOrderCapacity() const { return fieldOrderCapacity.getValue( _fixPtr ); }
    std::string_view getOrderCapacityView() const { return fieldOrderCapacity.offset > 0 ? std::string_view{ _fixPtr + fieldOrderCapacity.offset, getValueLength( _fixPtr + fieldOrderCapacity.offset ) } : std::string_view{}; }
@@ -2453,6 +2684,7 @@ class GroupOrders : public MessageBase
    private: FieldOrderCapacity fieldOrderCapacity;
 
    public:
+   using OrderRestrictions = FieldOrderRestrictions; 
    bool isSetOrderRestrictions() const { return fieldOrderRestrictions.offset > 0; }
    FieldOrderRestrictions::ValueType getOrderRestrictions() const { return fieldOrderRestrictions.getValue( _fixPtr ); }
    std::string_view getOrderRestrictionsView() const { return fieldOrderRestrictions.offset > 0 ? std::string_view{ _fixPtr + fieldOrderRestrictions.offset, getValueLength( _fixPtr + fieldOrderRestrictions.offset ) } : std::string_view{}; }
@@ -2462,6 +2694,7 @@ class GroupOrders : public MessageBase
    private: FieldOrderRestrictions fieldOrderRestrictions;
 
    public:
+   using CustOrderCapacity = FieldCustOrderCapacity; 
    bool isSetCustOrderCapacity() const { return fieldCustOrderCapacity.offset > 0; }
    FieldCustOrderCapacity::ValueType getCustOrderCapacity() const { return fieldCustOrderCapacity.getValue( _fixPtr ); }
    std::string_view getCustOrderCapacityView() const { return fieldCustOrderCapacity.offset > 0 ? std::string_view{ _fixPtr + fieldCustOrderCapacity.offset, getValueLength( _fixPtr + fieldCustOrderCapacity.offset ) } : std::string_view{}; }
@@ -2471,6 +2704,7 @@ class GroupOrders : public MessageBase
    private: FieldCustOrderCapacity fieldCustOrderCapacity;
 
    public:
+   using ForexReq = FieldForexReq; 
    bool isSetForexReq() const { return fieldForexReq.offset > 0; }
    FieldForexReq::ValueType getForexReq() const { return fieldForexReq.getValue( _fixPtr ); }
    std::string_view getForexReqView() const { return fieldForexReq.offset > 0 ? std::string_view{ _fixPtr + fieldForexReq.offset, getValueLength( _fixPtr + fieldForexReq.offset ) } : std::string_view{}; }
@@ -2480,6 +2714,7 @@ class GroupOrders : public MessageBase
    private: FieldForexReq fieldForexReq;
 
    public:
+   using SettlCurrency = FieldSettlCurrency; 
    bool isSetSettlCurrency() const { return fieldSettlCurrency.offset > 0; }
    FieldSettlCurrency::ValueType getSettlCurrency() const { return fieldSettlCurrency.getValue( _fixPtr ); }
    std::string_view getSettlCurrencyView() const { return fieldSettlCurrency.offset > 0 ? std::string_view{ _fixPtr + fieldSettlCurrency.offset, getValueLength( _fixPtr + fieldSettlCurrency.offset ) } : std::string_view{}; }
@@ -2489,6 +2724,7 @@ class GroupOrders : public MessageBase
    private: FieldSettlCurrency fieldSettlCurrency;
 
    public:
+   using BookingType = FieldBookingType; 
    bool isSetBookingType() const { return fieldBookingType.offset > 0; }
    FieldBookingType::ValueType getBookingType() const { return fieldBookingType.getValue( _fixPtr ); }
    std::string_view getBookingTypeView() const { return fieldBookingType.offset > 0 ? std::string_view{ _fixPtr + fieldBookingType.offset, getValueLength( _fixPtr + fieldBookingType.offset ) } : std::string_view{}; }
@@ -2498,6 +2734,7 @@ class GroupOrders : public MessageBase
    private: FieldBookingType fieldBookingType;
 
    public:
+   using Text = FieldText; 
    bool isSetText() const { return fieldText.offset > 0; }
    FieldText::ValueType getText() const { return fieldText.getValue( _fixPtr ); }
    std::string_view getTextView() const { return fieldText.offset > 0 ? std::string_view{ _fixPtr + fieldText.offset, getValueLength( _fixPtr + fieldText.offset ) } : std::string_view{}; }
@@ -2507,6 +2744,7 @@ class GroupOrders : public MessageBase
    private: FieldText fieldText;
 
    public:
+   using EncodedTextLen = FieldEncodedTextLen; 
    bool isSetEncodedTextLen() const { return fieldEncodedTextLen.offset > 0; }
    FieldEncodedTextLen::ValueType getEncodedTextLen() const { return fieldEncodedTextLen.getValue( _fixPtr ); }
    std::string_view getEncodedTextLenView() const { return fieldEncodedTextLen.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedTextLen.offset, getValueLength( _fixPtr + fieldEncodedTextLen.offset ) } : std::string_view{}; }
@@ -2516,6 +2754,7 @@ class GroupOrders : public MessageBase
    private: FieldEncodedTextLen fieldEncodedTextLen;
 
    public:
+   using EncodedText = FieldEncodedText; 
    bool isSetEncodedText() const { return fieldEncodedText.offset > 0; }
    FieldEncodedText::ValueType getEncodedText() const { return fieldEncodedText.getValue( _fixPtr ); }
    std::string_view getEncodedTextView() const { return fieldEncodedText.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedText.offset, getValueLength( _fixPtr + fieldEncodedText.offset ) } : std::string_view{}; }
@@ -2525,6 +2764,7 @@ class GroupOrders : public MessageBase
    private: FieldEncodedText fieldEncodedText;
 
    public:
+   using SettlDate2 = FieldSettlDate2; 
    bool isSetSettlDate2() const { return fieldSettlDate2.offset > 0; }
    FieldSettlDate2::ValueType getSettlDate2() const { return fieldSettlDate2.getValue( _fixPtr ); }
    std::string_view getSettlDate2View() const { return fieldSettlDate2.offset > 0 ? std::string_view{ _fixPtr + fieldSettlDate2.offset, getValueLength( _fixPtr + fieldSettlDate2.offset ) } : std::string_view{}; }
@@ -2534,6 +2774,7 @@ class GroupOrders : public MessageBase
    private: FieldSettlDate2 fieldSettlDate2;
 
    public:
+   using OrderQty2 = FieldOrderQty2; 
    bool isSetOrderQty2() const { return fieldOrderQty2.offset > 0; }
    FieldOrderQty2::ValueType getOrderQty2() const { return fieldOrderQty2.getValue( _fixPtr ); }
    std::string_view getOrderQty2View() const { return fieldOrderQty2.offset > 0 ? std::string_view{ _fixPtr + fieldOrderQty2.offset, getValueLength( _fixPtr + fieldOrderQty2.offset ) } : std::string_view{}; }
@@ -2543,6 +2784,7 @@ class GroupOrders : public MessageBase
    private: FieldOrderQty2 fieldOrderQty2;
 
    public:
+   using Price2 = FieldPrice2; 
    bool isSetPrice2() const { return fieldPrice2.offset > 0; }
    FieldPrice2::ValueType getPrice2() const { return fieldPrice2.getValue( _fixPtr ); }
    std::string_view getPrice2View() const { return fieldPrice2.offset > 0 ? std::string_view{ _fixPtr + fieldPrice2.offset, getValueLength( _fixPtr + fieldPrice2.offset ) } : std::string_view{}; }
@@ -2552,6 +2794,7 @@ class GroupOrders : public MessageBase
    private: FieldPrice2 fieldPrice2;
 
    public:
+   using PositionEffect = FieldPositionEffect; 
    bool isSetPositionEffect() const { return fieldPositionEffect.offset > 0; }
    FieldPositionEffect::ValueType getPositionEffect() const { return fieldPositionEffect.getValue( _fixPtr ); }
    std::string_view getPositionEffectView() const { return fieldPositionEffect.offset > 0 ? std::string_view{ _fixPtr + fieldPositionEffect.offset, getValueLength( _fixPtr + fieldPositionEffect.offset ) } : std::string_view{}; }
@@ -2561,6 +2804,7 @@ class GroupOrders : public MessageBase
    private: FieldPositionEffect fieldPositionEffect;
 
    public:
+   using CoveredOrUncovered = FieldCoveredOrUncovered; 
    bool isSetCoveredOrUncovered() const { return fieldCoveredOrUncovered.offset > 0; }
    FieldCoveredOrUncovered::ValueType getCoveredOrUncovered() const { return fieldCoveredOrUncovered.getValue( _fixPtr ); }
    std::string_view getCoveredOrUncoveredView() const { return fieldCoveredOrUncovered.offset > 0 ? std::string_view{ _fixPtr + fieldCoveredOrUncovered.offset, getValueLength( _fixPtr + fieldCoveredOrUncovered.offset ) } : std::string_view{}; }
@@ -2570,6 +2814,7 @@ class GroupOrders : public MessageBase
    private: FieldCoveredOrUncovered fieldCoveredOrUncovered;
 
    public:
+   using MaxShow = FieldMaxShow; 
    bool isSetMaxShow() const { return fieldMaxShow.offset > 0; }
    FieldMaxShow::ValueType getMaxShow() const { return fieldMaxShow.getValue( _fixPtr ); }
    std::string_view getMaxShowView() const { return fieldMaxShow.offset > 0 ? std::string_view{ _fixPtr + fieldMaxShow.offset, getValueLength( _fixPtr + fieldMaxShow.offset ) } : std::string_view{}; }
@@ -2579,6 +2824,7 @@ class GroupOrders : public MessageBase
    private: FieldMaxShow fieldMaxShow;
 
    public:
+   using PegOffsetValue = FieldPegOffsetValue; 
    bool isSetPegOffsetValue() const { return fieldPegOffsetValue.offset > 0; }
    FieldPegOffsetValue::ValueType getPegOffsetValue() const { return fieldPegOffsetValue.getValue( _fixPtr ); }
    std::string_view getPegOffsetValueView() const { return fieldPegOffsetValue.offset > 0 ? std::string_view{ _fixPtr + fieldPegOffsetValue.offset, getValueLength( _fixPtr + fieldPegOffsetValue.offset ) } : std::string_view{}; }
@@ -2588,6 +2834,7 @@ class GroupOrders : public MessageBase
    private: FieldPegOffsetValue fieldPegOffsetValue;
 
    public:
+   using PegMoveType = FieldPegMoveType; 
    bool isSetPegMoveType() const { return fieldPegMoveType.offset > 0; }
    FieldPegMoveType::ValueType getPegMoveType() const { return fieldPegMoveType.getValue( _fixPtr ); }
    std::string_view getPegMoveTypeView() const { return fieldPegMoveType.offset > 0 ? std::string_view{ _fixPtr + fieldPegMoveType.offset, getValueLength( _fixPtr + fieldPegMoveType.offset ) } : std::string_view{}; }
@@ -2597,6 +2844,7 @@ class GroupOrders : public MessageBase
    private: FieldPegMoveType fieldPegMoveType;
 
    public:
+   using PegOffsetType = FieldPegOffsetType; 
    bool isSetPegOffsetType() const { return fieldPegOffsetType.offset > 0; }
    FieldPegOffsetType::ValueType getPegOffsetType() const { return fieldPegOffsetType.getValue( _fixPtr ); }
    std::string_view getPegOffsetTypeView() const { return fieldPegOffsetType.offset > 0 ? std::string_view{ _fixPtr + fieldPegOffsetType.offset, getValueLength( _fixPtr + fieldPegOffsetType.offset ) } : std::string_view{}; }
@@ -2606,6 +2854,7 @@ class GroupOrders : public MessageBase
    private: FieldPegOffsetType fieldPegOffsetType;
 
    public:
+   using PegLimitType = FieldPegLimitType; 
    bool isSetPegLimitType() const { return fieldPegLimitType.offset > 0; }
    FieldPegLimitType::ValueType getPegLimitType() const { return fieldPegLimitType.getValue( _fixPtr ); }
    std::string_view getPegLimitTypeView() const { return fieldPegLimitType.offset > 0 ? std::string_view{ _fixPtr + fieldPegLimitType.offset, getValueLength( _fixPtr + fieldPegLimitType.offset ) } : std::string_view{}; }
@@ -2615,6 +2864,7 @@ class GroupOrders : public MessageBase
    private: FieldPegLimitType fieldPegLimitType;
 
    public:
+   using PegRoundDirection = FieldPegRoundDirection; 
    bool isSetPegRoundDirection() const { return fieldPegRoundDirection.offset > 0; }
    FieldPegRoundDirection::ValueType getPegRoundDirection() const { return fieldPegRoundDirection.getValue( _fixPtr ); }
    std::string_view getPegRoundDirectionView() const { return fieldPegRoundDirection.offset > 0 ? std::string_view{ _fixPtr + fieldPegRoundDirection.offset, getValueLength( _fixPtr + fieldPegRoundDirection.offset ) } : std::string_view{}; }
@@ -2624,6 +2874,7 @@ class GroupOrders : public MessageBase
    private: FieldPegRoundDirection fieldPegRoundDirection;
 
    public:
+   using PegScope = FieldPegScope; 
    bool isSetPegScope() const { return fieldPegScope.offset > 0; }
    FieldPegScope::ValueType getPegScope() const { return fieldPegScope.getValue( _fixPtr ); }
    std::string_view getPegScopeView() const { return fieldPegScope.offset > 0 ? std::string_view{ _fixPtr + fieldPegScope.offset, getValueLength( _fixPtr + fieldPegScope.offset ) } : std::string_view{}; }
@@ -2633,6 +2884,7 @@ class GroupOrders : public MessageBase
    private: FieldPegScope fieldPegScope;
 
    public:
+   using DiscretionInst = FieldDiscretionInst; 
    bool isSetDiscretionInst() const { return fieldDiscretionInst.offset > 0; }
    FieldDiscretionInst::ValueType getDiscretionInst() const { return fieldDiscretionInst.getValue( _fixPtr ); }
    std::string_view getDiscretionInstView() const { return fieldDiscretionInst.offset > 0 ? std::string_view{ _fixPtr + fieldDiscretionInst.offset, getValueLength( _fixPtr + fieldDiscretionInst.offset ) } : std::string_view{}; }
@@ -2642,6 +2894,7 @@ class GroupOrders : public MessageBase
    private: FieldDiscretionInst fieldDiscretionInst;
 
    public:
+   using DiscretionOffsetValue = FieldDiscretionOffsetValue; 
    bool isSetDiscretionOffsetValue() const { return fieldDiscretionOffsetValue.offset > 0; }
    FieldDiscretionOffsetValue::ValueType getDiscretionOffsetValue() const { return fieldDiscretionOffsetValue.getValue( _fixPtr ); }
    std::string_view getDiscretionOffsetValueView() const { return fieldDiscretionOffsetValue.offset > 0 ? std::string_view{ _fixPtr + fieldDiscretionOffsetValue.offset, getValueLength( _fixPtr + fieldDiscretionOffsetValue.offset ) } : std::string_view{}; }
@@ -2651,6 +2904,7 @@ class GroupOrders : public MessageBase
    private: FieldDiscretionOffsetValue fieldDiscretionOffsetValue;
 
    public:
+   using DiscretionMoveType = FieldDiscretionMoveType; 
    bool isSetDiscretionMoveType() const { return fieldDiscretionMoveType.offset > 0; }
    FieldDiscretionMoveType::ValueType getDiscretionMoveType() const { return fieldDiscretionMoveType.getValue( _fixPtr ); }
    std::string_view getDiscretionMoveTypeView() const { return fieldDiscretionMoveType.offset > 0 ? std::string_view{ _fixPtr + fieldDiscretionMoveType.offset, getValueLength( _fixPtr + fieldDiscretionMoveType.offset ) } : std::string_view{}; }
@@ -2660,6 +2914,7 @@ class GroupOrders : public MessageBase
    private: FieldDiscretionMoveType fieldDiscretionMoveType;
 
    public:
+   using DiscretionOffsetType = FieldDiscretionOffsetType; 
    bool isSetDiscretionOffsetType() const { return fieldDiscretionOffsetType.offset > 0; }
    FieldDiscretionOffsetType::ValueType getDiscretionOffsetType() const { return fieldDiscretionOffsetType.getValue( _fixPtr ); }
    std::string_view getDiscretionOffsetTypeView() const { return fieldDiscretionOffsetType.offset > 0 ? std::string_view{ _fixPtr + fieldDiscretionOffsetType.offset, getValueLength( _fixPtr + fieldDiscretionOffsetType.offset ) } : std::string_view{}; }
@@ -2669,6 +2924,7 @@ class GroupOrders : public MessageBase
    private: FieldDiscretionOffsetType fieldDiscretionOffsetType;
 
    public:
+   using DiscretionLimitType = FieldDiscretionLimitType; 
    bool isSetDiscretionLimitType() const { return fieldDiscretionLimitType.offset > 0; }
    FieldDiscretionLimitType::ValueType getDiscretionLimitType() const { return fieldDiscretionLimitType.getValue( _fixPtr ); }
    std::string_view getDiscretionLimitTypeView() const { return fieldDiscretionLimitType.offset > 0 ? std::string_view{ _fixPtr + fieldDiscretionLimitType.offset, getValueLength( _fixPtr + fieldDiscretionLimitType.offset ) } : std::string_view{}; }
@@ -2678,6 +2934,7 @@ class GroupOrders : public MessageBase
    private: FieldDiscretionLimitType fieldDiscretionLimitType;
 
    public:
+   using DiscretionRoundDirection = FieldDiscretionRoundDirection; 
    bool isSetDiscretionRoundDirection() const { return fieldDiscretionRoundDirection.offset > 0; }
    FieldDiscretionRoundDirection::ValueType getDiscretionRoundDirection() const { return fieldDiscretionRoundDirection.getValue( _fixPtr ); }
    std::string_view getDiscretionRoundDirectionView() const { return fieldDiscretionRoundDirection.offset > 0 ? std::string_view{ _fixPtr + fieldDiscretionRoundDirection.offset, getValueLength( _fixPtr + fieldDiscretionRoundDirection.offset ) } : std::string_view{}; }
@@ -2687,6 +2944,7 @@ class GroupOrders : public MessageBase
    private: FieldDiscretionRoundDirection fieldDiscretionRoundDirection;
 
    public:
+   using DiscretionScope = FieldDiscretionScope; 
    bool isSetDiscretionScope() const { return fieldDiscretionScope.offset > 0; }
    FieldDiscretionScope::ValueType getDiscretionScope() const { return fieldDiscretionScope.getValue( _fixPtr ); }
    std::string_view getDiscretionScopeView() const { return fieldDiscretionScope.offset > 0 ? std::string_view{ _fixPtr + fieldDiscretionScope.offset, getValueLength( _fixPtr + fieldDiscretionScope.offset ) } : std::string_view{}; }
@@ -2696,6 +2954,7 @@ class GroupOrders : public MessageBase
    private: FieldDiscretionScope fieldDiscretionScope;
 
    public:
+   using TargetStrategy = FieldTargetStrategy; 
    bool isSetTargetStrategy() const { return fieldTargetStrategy.offset > 0; }
    FieldTargetStrategy::ValueType getTargetStrategy() const { return fieldTargetStrategy.getValue( _fixPtr ); }
    std::string_view getTargetStrategyView() const { return fieldTargetStrategy.offset > 0 ? std::string_view{ _fixPtr + fieldTargetStrategy.offset, getValueLength( _fixPtr + fieldTargetStrategy.offset ) } : std::string_view{}; }
@@ -2705,6 +2964,7 @@ class GroupOrders : public MessageBase
    private: FieldTargetStrategy fieldTargetStrategy;
 
    public:
+   using TargetStrategyParameters = FieldTargetStrategyParameters; 
    bool isSetTargetStrategyParameters() const { return fieldTargetStrategyParameters.offset > 0; }
    FieldTargetStrategyParameters::ValueType getTargetStrategyParameters() const { return fieldTargetStrategyParameters.getValue( _fixPtr ); }
    std::string_view getTargetStrategyParametersView() const { return fieldTargetStrategyParameters.offset > 0 ? std::string_view{ _fixPtr + fieldTargetStrategyParameters.offset, getValueLength( _fixPtr + fieldTargetStrategyParameters.offset ) } : std::string_view{}; }
@@ -2714,6 +2974,7 @@ class GroupOrders : public MessageBase
    private: FieldTargetStrategyParameters fieldTargetStrategyParameters;
 
    public:
+   using ParticipationRate = FieldParticipationRate; 
    bool isSetParticipationRate() const { return fieldParticipationRate.offset > 0; }
    FieldParticipationRate::ValueType getParticipationRate() const { return fieldParticipationRate.getValue( _fixPtr ); }
    std::string_view getParticipationRateView() const { return fieldParticipationRate.offset > 0 ? std::string_view{ _fixPtr + fieldParticipationRate.offset, getValueLength( _fixPtr + fieldParticipationRate.offset ) } : std::string_view{}; }
@@ -2723,6 +2984,7 @@ class GroupOrders : public MessageBase
    private: FieldParticipationRate fieldParticipationRate;
 
    public:
+   using Designation = FieldDesignation; 
    bool isSetDesignation() const { return fieldDesignation.offset > 0; }
    FieldDesignation::ValueType getDesignation() const { return fieldDesignation.getValue( _fixPtr ); }
    std::string_view getDesignationView() const { return fieldDesignation.offset > 0 ? std::string_view{ _fixPtr + fieldDesignation.offset, getValueLength( _fixPtr + fieldDesignation.offset ) } : std::string_view{}; }
@@ -2748,6 +3010,7 @@ class GroupSettlPartySubIDs : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<GroupSettlPartySubIDs,0,FIELDS...>(*this,tpl); return tpl; };
+   template< typename... FIELDS > std::tuple<typeExists<FIELDS>... > getPresenceOf() const { std::tuple< typeExists<FIELDS>... > tpl{}; buildPresenceTuple<GroupSettlPartySubIDs,0,FIELDS...>(*this,tpl); return tpl; };
    bool isFieldSet( tag_t tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
@@ -2757,6 +3020,7 @@ class GroupSettlPartySubIDs : public MessageBase
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
+   using SettlPartySubID = FieldSettlPartySubID; 
    bool isSetSettlPartySubID() const { return fieldSettlPartySubID.offset > 0; }
    FieldSettlPartySubID::ValueType getSettlPartySubID() const { return fieldSettlPartySubID.getValue( _fixPtr ); }
    std::string_view getSettlPartySubIDView() const { return fieldSettlPartySubID.offset > 0 ? std::string_view{ _fixPtr + fieldSettlPartySubID.offset, getValueLength( _fixPtr + fieldSettlPartySubID.offset ) } : std::string_view{}; }
@@ -2766,6 +3030,7 @@ class GroupSettlPartySubIDs : public MessageBase
    private: FieldSettlPartySubID fieldSettlPartySubID;
 
    public:
+   using SettlPartySubIDType = FieldSettlPartySubIDType; 
    bool isSetSettlPartySubIDType() const { return fieldSettlPartySubIDType.offset > 0; }
    FieldSettlPartySubIDType::ValueType getSettlPartySubIDType() const { return fieldSettlPartySubIDType.getValue( _fixPtr ); }
    std::string_view getSettlPartySubIDTypeView() const { return fieldSettlPartySubIDType.offset > 0 ? std::string_view{ _fixPtr + fieldSettlPartySubIDType.offset, getValueLength( _fixPtr + fieldSettlPartySubIDType.offset ) } : std::string_view{}; }
@@ -2791,6 +3056,7 @@ class GroupSettlPartyIDs : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<GroupSettlPartyIDs,0,FIELDS...>(*this,tpl); return tpl; };
+   template< typename... FIELDS > std::tuple<typeExists<FIELDS>... > getPresenceOf() const { std::tuple< typeExists<FIELDS>... > tpl{}; buildPresenceTuple<GroupSettlPartyIDs,0,FIELDS...>(*this,tpl); return tpl; };
    bool isFieldSet( tag_t tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
@@ -2800,6 +3066,7 @@ class GroupSettlPartyIDs : public MessageBase
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
+   using SettlPartyID = FieldSettlPartyID; 
    bool isSetSettlPartyID() const { return fieldSettlPartyID.offset > 0; }
    FieldSettlPartyID::ValueType getSettlPartyID() const { return fieldSettlPartyID.getValue( _fixPtr ); }
    std::string_view getSettlPartyIDView() const { return fieldSettlPartyID.offset > 0 ? std::string_view{ _fixPtr + fieldSettlPartyID.offset, getValueLength( _fixPtr + fieldSettlPartyID.offset ) } : std::string_view{}; }
@@ -2809,6 +3076,7 @@ class GroupSettlPartyIDs : public MessageBase
    private: FieldSettlPartyID fieldSettlPartyID;
 
    public:
+   using SettlPartyIDSource = FieldSettlPartyIDSource; 
    bool isSetSettlPartyIDSource() const { return fieldSettlPartyIDSource.offset > 0; }
    FieldSettlPartyIDSource::ValueType getSettlPartyIDSource() const { return fieldSettlPartyIDSource.getValue( _fixPtr ); }
    std::string_view getSettlPartyIDSourceView() const { return fieldSettlPartyIDSource.offset > 0 ? std::string_view{ _fixPtr + fieldSettlPartyIDSource.offset, getValueLength( _fixPtr + fieldSettlPartyIDSource.offset ) } : std::string_view{}; }
@@ -2818,6 +3086,7 @@ class GroupSettlPartyIDs : public MessageBase
    private: FieldSettlPartyIDSource fieldSettlPartyIDSource;
 
    public:
+   using SettlPartyRole = FieldSettlPartyRole; 
    bool isSetSettlPartyRole() const { return fieldSettlPartyRole.offset > 0; }
    FieldSettlPartyRole::ValueType getSettlPartyRole() const { return fieldSettlPartyRole.getValue( _fixPtr ); }
    std::string_view getSettlPartyRoleView() const { return fieldSettlPartyRole.offset > 0 ? std::string_view{ _fixPtr + fieldSettlPartyRole.offset, getValueLength( _fixPtr + fieldSettlPartyRole.offset ) } : std::string_view{}; }
@@ -2827,6 +3096,7 @@ class GroupSettlPartyIDs : public MessageBase
    private: FieldSettlPartyRole fieldSettlPartyRole;
 
    public:
+   using NoSettlPartySubIDs = FieldNoSettlPartySubIDs; 
    bool isSetNoSettlPartySubIDs() const { return fieldNoSettlPartySubIDs.offset > 0; }
    FieldNoSettlPartySubIDs::ValueType getNoSettlPartySubIDs() const { return fieldNoSettlPartySubIDs.getValue( _fixPtr ); }
    std::string_view getNoSettlPartySubIDsView() const { return fieldNoSettlPartySubIDs.offset > 0 ? std::string_view{ _fixPtr + fieldNoSettlPartySubIDs.offset, getValueLength( _fixPtr + fieldNoSettlPartySubIDs.offset ) } : std::string_view{}; }
@@ -2857,6 +3127,7 @@ class GroupDlvyInst : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<GroupDlvyInst,0,FIELDS...>(*this,tpl); return tpl; };
+   template< typename... FIELDS > std::tuple<typeExists<FIELDS>... > getPresenceOf() const { std::tuple< typeExists<FIELDS>... > tpl{}; buildPresenceTuple<GroupDlvyInst,0,FIELDS...>(*this,tpl); return tpl; };
    bool isFieldSet( tag_t tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
@@ -2866,6 +3137,7 @@ class GroupDlvyInst : public MessageBase
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
+   using SettlInstSource = FieldSettlInstSource; 
    bool isSetSettlInstSource() const { return fieldSettlInstSource.offset > 0; }
    FieldSettlInstSource::ValueType getSettlInstSource() const { return fieldSettlInstSource.getValue( _fixPtr ); }
    std::string_view getSettlInstSourceView() const { return fieldSettlInstSource.offset > 0 ? std::string_view{ _fixPtr + fieldSettlInstSource.offset, getValueLength( _fixPtr + fieldSettlInstSource.offset ) } : std::string_view{}; }
@@ -2875,6 +3147,7 @@ class GroupDlvyInst : public MessageBase
    private: FieldSettlInstSource fieldSettlInstSource;
 
    public:
+   using DlvyInstType = FieldDlvyInstType; 
    bool isSetDlvyInstType() const { return fieldDlvyInstType.offset > 0; }
    FieldDlvyInstType::ValueType getDlvyInstType() const { return fieldDlvyInstType.getValue( _fixPtr ); }
    std::string_view getDlvyInstTypeView() const { return fieldDlvyInstType.offset > 0 ? std::string_view{ _fixPtr + fieldDlvyInstType.offset, getValueLength( _fixPtr + fieldDlvyInstType.offset ) } : std::string_view{}; }
@@ -2884,6 +3157,7 @@ class GroupDlvyInst : public MessageBase
    private: FieldDlvyInstType fieldDlvyInstType;
 
    public:
+   using NoSettlPartyIDs = FieldNoSettlPartyIDs; 
    bool isSetNoSettlPartyIDs() const { return fieldNoSettlPartyIDs.offset > 0; }
    FieldNoSettlPartyIDs::ValueType getNoSettlPartyIDs() const { return fieldNoSettlPartyIDs.getValue( _fixPtr ); }
    std::string_view getNoSettlPartyIDsView() const { return fieldNoSettlPartyIDs.offset > 0 ? std::string_view{ _fixPtr + fieldNoSettlPartyIDs.offset, getValueLength( _fixPtr + fieldNoSettlPartyIDs.offset ) } : std::string_view{}; }
@@ -2914,6 +3188,7 @@ class GroupClearingInstructions : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<GroupClearingInstructions,0,FIELDS...>(*this,tpl); return tpl; };
+   template< typename... FIELDS > std::tuple<typeExists<FIELDS>... > getPresenceOf() const { std::tuple< typeExists<FIELDS>... > tpl{}; buildPresenceTuple<GroupClearingInstructions,0,FIELDS...>(*this,tpl); return tpl; };
    bool isFieldSet( tag_t tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
@@ -2923,6 +3198,7 @@ class GroupClearingInstructions : public MessageBase
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
+   using ClearingInstruction = FieldClearingInstruction; 
    bool isSetClearingInstruction() const { return fieldClearingInstruction.offset > 0; }
    FieldClearingInstruction::ValueType getClearingInstruction() const { return fieldClearingInstruction.getValue( _fixPtr ); }
    std::string_view getClearingInstructionView() const { return fieldClearingInstruction.offset > 0 ? std::string_view{ _fixPtr + fieldClearingInstruction.offset, getValueLength( _fixPtr + fieldClearingInstruction.offset ) } : std::string_view{}; }
@@ -2948,6 +3224,7 @@ class GroupNestedPartySubIDs : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<GroupNestedPartySubIDs,0,FIELDS...>(*this,tpl); return tpl; };
+   template< typename... FIELDS > std::tuple<typeExists<FIELDS>... > getPresenceOf() const { std::tuple< typeExists<FIELDS>... > tpl{}; buildPresenceTuple<GroupNestedPartySubIDs,0,FIELDS...>(*this,tpl); return tpl; };
    bool isFieldSet( tag_t tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
@@ -2957,6 +3234,7 @@ class GroupNestedPartySubIDs : public MessageBase
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
+   using NestedPartySubID = FieldNestedPartySubID; 
    bool isSetNestedPartySubID() const { return fieldNestedPartySubID.offset > 0; }
    FieldNestedPartySubID::ValueType getNestedPartySubID() const { return fieldNestedPartySubID.getValue( _fixPtr ); }
    std::string_view getNestedPartySubIDView() const { return fieldNestedPartySubID.offset > 0 ? std::string_view{ _fixPtr + fieldNestedPartySubID.offset, getValueLength( _fixPtr + fieldNestedPartySubID.offset ) } : std::string_view{}; }
@@ -2966,6 +3244,7 @@ class GroupNestedPartySubIDs : public MessageBase
    private: FieldNestedPartySubID fieldNestedPartySubID;
 
    public:
+   using NestedPartySubIDType = FieldNestedPartySubIDType; 
    bool isSetNestedPartySubIDType() const { return fieldNestedPartySubIDType.offset > 0; }
    FieldNestedPartySubIDType::ValueType getNestedPartySubIDType() const { return fieldNestedPartySubIDType.getValue( _fixPtr ); }
    std::string_view getNestedPartySubIDTypeView() const { return fieldNestedPartySubIDType.offset > 0 ? std::string_view{ _fixPtr + fieldNestedPartySubIDType.offset, getValueLength( _fixPtr + fieldNestedPartySubIDType.offset ) } : std::string_view{}; }
@@ -2991,6 +3270,7 @@ class GroupNestedPartyIDs : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<GroupNestedPartyIDs,0,FIELDS...>(*this,tpl); return tpl; };
+   template< typename... FIELDS > std::tuple<typeExists<FIELDS>... > getPresenceOf() const { std::tuple< typeExists<FIELDS>... > tpl{}; buildPresenceTuple<GroupNestedPartyIDs,0,FIELDS...>(*this,tpl); return tpl; };
    bool isFieldSet( tag_t tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
@@ -3000,6 +3280,7 @@ class GroupNestedPartyIDs : public MessageBase
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
+   using NestedPartyID = FieldNestedPartyID; 
    bool isSetNestedPartyID() const { return fieldNestedPartyID.offset > 0; }
    FieldNestedPartyID::ValueType getNestedPartyID() const { return fieldNestedPartyID.getValue( _fixPtr ); }
    std::string_view getNestedPartyIDView() const { return fieldNestedPartyID.offset > 0 ? std::string_view{ _fixPtr + fieldNestedPartyID.offset, getValueLength( _fixPtr + fieldNestedPartyID.offset ) } : std::string_view{}; }
@@ -3009,6 +3290,7 @@ class GroupNestedPartyIDs : public MessageBase
    private: FieldNestedPartyID fieldNestedPartyID;
 
    public:
+   using NestedPartyIDSource = FieldNestedPartyIDSource; 
    bool isSetNestedPartyIDSource() const { return fieldNestedPartyIDSource.offset > 0; }
    FieldNestedPartyIDSource::ValueType getNestedPartyIDSource() const { return fieldNestedPartyIDSource.getValue( _fixPtr ); }
    std::string_view getNestedPartyIDSourceView() const { return fieldNestedPartyIDSource.offset > 0 ? std::string_view{ _fixPtr + fieldNestedPartyIDSource.offset, getValueLength( _fixPtr + fieldNestedPartyIDSource.offset ) } : std::string_view{}; }
@@ -3018,6 +3300,7 @@ class GroupNestedPartyIDs : public MessageBase
    private: FieldNestedPartyIDSource fieldNestedPartyIDSource;
 
    public:
+   using NestedPartyRole = FieldNestedPartyRole; 
    bool isSetNestedPartyRole() const { return fieldNestedPartyRole.offset > 0; }
    FieldNestedPartyRole::ValueType getNestedPartyRole() const { return fieldNestedPartyRole.getValue( _fixPtr ); }
    std::string_view getNestedPartyRoleView() const { return fieldNestedPartyRole.offset > 0 ? std::string_view{ _fixPtr + fieldNestedPartyRole.offset, getValueLength( _fixPtr + fieldNestedPartyRole.offset ) } : std::string_view{}; }
@@ -3027,6 +3310,7 @@ class GroupNestedPartyIDs : public MessageBase
    private: FieldNestedPartyRole fieldNestedPartyRole;
 
    public:
+   using NoNestedPartySubIDs = FieldNoNestedPartySubIDs; 
    bool isSetNoNestedPartySubIDs() const { return fieldNoNestedPartySubIDs.offset > 0; }
    FieldNoNestedPartySubIDs::ValueType getNoNestedPartySubIDs() const { return fieldNoNestedPartySubIDs.getValue( _fixPtr ); }
    std::string_view getNoNestedPartySubIDsView() const { return fieldNoNestedPartySubIDs.offset > 0 ? std::string_view{ _fixPtr + fieldNoNestedPartySubIDs.offset, getValueLength( _fixPtr + fieldNoNestedPartySubIDs.offset ) } : std::string_view{}; }
@@ -3057,6 +3341,7 @@ class GroupLegs : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<GroupLegs,0,FIELDS...>(*this,tpl); return tpl; };
+   template< typename... FIELDS > std::tuple<typeExists<FIELDS>... > getPresenceOf() const { std::tuple< typeExists<FIELDS>... > tpl{}; buildPresenceTuple<GroupLegs,0,FIELDS...>(*this,tpl); return tpl; };
    bool isFieldSet( tag_t tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
@@ -3066,6 +3351,7 @@ class GroupLegs : public MessageBase
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
+   using LegSymbol = FieldLegSymbol; 
    bool isSetLegSymbol() const { return fieldLegSymbol.offset > 0; }
    FieldLegSymbol::ValueType getLegSymbol() const { return fieldLegSymbol.getValue( _fixPtr ); }
    std::string_view getLegSymbolView() const { return fieldLegSymbol.offset > 0 ? std::string_view{ _fixPtr + fieldLegSymbol.offset, getValueLength( _fixPtr + fieldLegSymbol.offset ) } : std::string_view{}; }
@@ -3075,6 +3361,7 @@ class GroupLegs : public MessageBase
    private: FieldLegSymbol fieldLegSymbol;
 
    public:
+   using LegSymbolSfx = FieldLegSymbolSfx; 
    bool isSetLegSymbolSfx() const { return fieldLegSymbolSfx.offset > 0; }
    FieldLegSymbolSfx::ValueType getLegSymbolSfx() const { return fieldLegSymbolSfx.getValue( _fixPtr ); }
    std::string_view getLegSymbolSfxView() const { return fieldLegSymbolSfx.offset > 0 ? std::string_view{ _fixPtr + fieldLegSymbolSfx.offset, getValueLength( _fixPtr + fieldLegSymbolSfx.offset ) } : std::string_view{}; }
@@ -3084,6 +3371,7 @@ class GroupLegs : public MessageBase
    private: FieldLegSymbolSfx fieldLegSymbolSfx;
 
    public:
+   using LegSecurityID = FieldLegSecurityID; 
    bool isSetLegSecurityID() const { return fieldLegSecurityID.offset > 0; }
    FieldLegSecurityID::ValueType getLegSecurityID() const { return fieldLegSecurityID.getValue( _fixPtr ); }
    std::string_view getLegSecurityIDView() const { return fieldLegSecurityID.offset > 0 ? std::string_view{ _fixPtr + fieldLegSecurityID.offset, getValueLength( _fixPtr + fieldLegSecurityID.offset ) } : std::string_view{}; }
@@ -3093,6 +3381,7 @@ class GroupLegs : public MessageBase
    private: FieldLegSecurityID fieldLegSecurityID;
 
    public:
+   using LegSecurityIDSource = FieldLegSecurityIDSource; 
    bool isSetLegSecurityIDSource() const { return fieldLegSecurityIDSource.offset > 0; }
    FieldLegSecurityIDSource::ValueType getLegSecurityIDSource() const { return fieldLegSecurityIDSource.getValue( _fixPtr ); }
    std::string_view getLegSecurityIDSourceView() const { return fieldLegSecurityIDSource.offset > 0 ? std::string_view{ _fixPtr + fieldLegSecurityIDSource.offset, getValueLength( _fixPtr + fieldLegSecurityIDSource.offset ) } : std::string_view{}; }
@@ -3102,6 +3391,7 @@ class GroupLegs : public MessageBase
    private: FieldLegSecurityIDSource fieldLegSecurityIDSource;
 
    public:
+   using NoLegSecurityAltID = FieldNoLegSecurityAltID; 
    bool isSetNoLegSecurityAltID() const { return fieldNoLegSecurityAltID.offset > 0; }
    FieldNoLegSecurityAltID::ValueType getNoLegSecurityAltID() const { return fieldNoLegSecurityAltID.getValue( _fixPtr ); }
    std::string_view getNoLegSecurityAltIDView() const { return fieldNoLegSecurityAltID.offset > 0 ? std::string_view{ _fixPtr + fieldNoLegSecurityAltID.offset, getValueLength( _fixPtr + fieldNoLegSecurityAltID.offset ) } : std::string_view{}; }
@@ -3116,6 +3406,7 @@ class GroupLegs : public MessageBase
    private: GroupLegSecurityAltID::Array groupsLegSecurityAltID{ 10 };
 
    public:
+   using LegProduct = FieldLegProduct; 
    bool isSetLegProduct() const { return fieldLegProduct.offset > 0; }
    FieldLegProduct::ValueType getLegProduct() const { return fieldLegProduct.getValue( _fixPtr ); }
    std::string_view getLegProductView() const { return fieldLegProduct.offset > 0 ? std::string_view{ _fixPtr + fieldLegProduct.offset, getValueLength( _fixPtr + fieldLegProduct.offset ) } : std::string_view{}; }
@@ -3125,6 +3416,7 @@ class GroupLegs : public MessageBase
    private: FieldLegProduct fieldLegProduct;
 
    public:
+   using LegCFICode = FieldLegCFICode; 
    bool isSetLegCFICode() const { return fieldLegCFICode.offset > 0; }
    FieldLegCFICode::ValueType getLegCFICode() const { return fieldLegCFICode.getValue( _fixPtr ); }
    std::string_view getLegCFICodeView() const { return fieldLegCFICode.offset > 0 ? std::string_view{ _fixPtr + fieldLegCFICode.offset, getValueLength( _fixPtr + fieldLegCFICode.offset ) } : std::string_view{}; }
@@ -3134,6 +3426,7 @@ class GroupLegs : public MessageBase
    private: FieldLegCFICode fieldLegCFICode;
 
    public:
+   using LegSecurityType = FieldLegSecurityType; 
    bool isSetLegSecurityType() const { return fieldLegSecurityType.offset > 0; }
    FieldLegSecurityType::ValueType getLegSecurityType() const { return fieldLegSecurityType.getValue( _fixPtr ); }
    std::string_view getLegSecurityTypeView() const { return fieldLegSecurityType.offset > 0 ? std::string_view{ _fixPtr + fieldLegSecurityType.offset, getValueLength( _fixPtr + fieldLegSecurityType.offset ) } : std::string_view{}; }
@@ -3143,6 +3436,7 @@ class GroupLegs : public MessageBase
    private: FieldLegSecurityType fieldLegSecurityType;
 
    public:
+   using LegSecuritySubType = FieldLegSecuritySubType; 
    bool isSetLegSecuritySubType() const { return fieldLegSecuritySubType.offset > 0; }
    FieldLegSecuritySubType::ValueType getLegSecuritySubType() const { return fieldLegSecuritySubType.getValue( _fixPtr ); }
    std::string_view getLegSecuritySubTypeView() const { return fieldLegSecuritySubType.offset > 0 ? std::string_view{ _fixPtr + fieldLegSecuritySubType.offset, getValueLength( _fixPtr + fieldLegSecuritySubType.offset ) } : std::string_view{}; }
@@ -3152,6 +3446,7 @@ class GroupLegs : public MessageBase
    private: FieldLegSecuritySubType fieldLegSecuritySubType;
 
    public:
+   using LegMaturityMonthYear = FieldLegMaturityMonthYear; 
    bool isSetLegMaturityMonthYear() const { return fieldLegMaturityMonthYear.offset > 0; }
    FieldLegMaturityMonthYear::ValueType getLegMaturityMonthYear() const { return fieldLegMaturityMonthYear.getValue( _fixPtr ); }
    std::string_view getLegMaturityMonthYearView() const { return fieldLegMaturityMonthYear.offset > 0 ? std::string_view{ _fixPtr + fieldLegMaturityMonthYear.offset, getValueLength( _fixPtr + fieldLegMaturityMonthYear.offset ) } : std::string_view{}; }
@@ -3161,6 +3456,7 @@ class GroupLegs : public MessageBase
    private: FieldLegMaturityMonthYear fieldLegMaturityMonthYear;
 
    public:
+   using LegMaturityDate = FieldLegMaturityDate; 
    bool isSetLegMaturityDate() const { return fieldLegMaturityDate.offset > 0; }
    FieldLegMaturityDate::ValueType getLegMaturityDate() const { return fieldLegMaturityDate.getValue( _fixPtr ); }
    std::string_view getLegMaturityDateView() const { return fieldLegMaturityDate.offset > 0 ? std::string_view{ _fixPtr + fieldLegMaturityDate.offset, getValueLength( _fixPtr + fieldLegMaturityDate.offset ) } : std::string_view{}; }
@@ -3170,6 +3466,7 @@ class GroupLegs : public MessageBase
    private: FieldLegMaturityDate fieldLegMaturityDate;
 
    public:
+   using LegCouponPaymentDate = FieldLegCouponPaymentDate; 
    bool isSetLegCouponPaymentDate() const { return fieldLegCouponPaymentDate.offset > 0; }
    FieldLegCouponPaymentDate::ValueType getLegCouponPaymentDate() const { return fieldLegCouponPaymentDate.getValue( _fixPtr ); }
    std::string_view getLegCouponPaymentDateView() const { return fieldLegCouponPaymentDate.offset > 0 ? std::string_view{ _fixPtr + fieldLegCouponPaymentDate.offset, getValueLength( _fixPtr + fieldLegCouponPaymentDate.offset ) } : std::string_view{}; }
@@ -3179,6 +3476,7 @@ class GroupLegs : public MessageBase
    private: FieldLegCouponPaymentDate fieldLegCouponPaymentDate;
 
    public:
+   using LegIssueDate = FieldLegIssueDate; 
    bool isSetLegIssueDate() const { return fieldLegIssueDate.offset > 0; }
    FieldLegIssueDate::ValueType getLegIssueDate() const { return fieldLegIssueDate.getValue( _fixPtr ); }
    std::string_view getLegIssueDateView() const { return fieldLegIssueDate.offset > 0 ? std::string_view{ _fixPtr + fieldLegIssueDate.offset, getValueLength( _fixPtr + fieldLegIssueDate.offset ) } : std::string_view{}; }
@@ -3188,6 +3486,7 @@ class GroupLegs : public MessageBase
    private: FieldLegIssueDate fieldLegIssueDate;
 
    public:
+   using LegRepoCollateralSecurityType = FieldLegRepoCollateralSecurityType; 
    bool isSetLegRepoCollateralSecurityType() const { return fieldLegRepoCollateralSecurityType.offset > 0; }
    FieldLegRepoCollateralSecurityType::ValueType getLegRepoCollateralSecurityType() const { return fieldLegRepoCollateralSecurityType.getValue( _fixPtr ); }
    std::string_view getLegRepoCollateralSecurityTypeView() const { return fieldLegRepoCollateralSecurityType.offset > 0 ? std::string_view{ _fixPtr + fieldLegRepoCollateralSecurityType.offset, getValueLength( _fixPtr + fieldLegRepoCollateralSecurityType.offset ) } : std::string_view{}; }
@@ -3197,6 +3496,7 @@ class GroupLegs : public MessageBase
    private: FieldLegRepoCollateralSecurityType fieldLegRepoCollateralSecurityType;
 
    public:
+   using LegRepurchaseTerm = FieldLegRepurchaseTerm; 
    bool isSetLegRepurchaseTerm() const { return fieldLegRepurchaseTerm.offset > 0; }
    FieldLegRepurchaseTerm::ValueType getLegRepurchaseTerm() const { return fieldLegRepurchaseTerm.getValue( _fixPtr ); }
    std::string_view getLegRepurchaseTermView() const { return fieldLegRepurchaseTerm.offset > 0 ? std::string_view{ _fixPtr + fieldLegRepurchaseTerm.offset, getValueLength( _fixPtr + fieldLegRepurchaseTerm.offset ) } : std::string_view{}; }
@@ -3206,6 +3506,7 @@ class GroupLegs : public MessageBase
    private: FieldLegRepurchaseTerm fieldLegRepurchaseTerm;
 
    public:
+   using LegRepurchaseRate = FieldLegRepurchaseRate; 
    bool isSetLegRepurchaseRate() const { return fieldLegRepurchaseRate.offset > 0; }
    FieldLegRepurchaseRate::ValueType getLegRepurchaseRate() const { return fieldLegRepurchaseRate.getValue( _fixPtr ); }
    std::string_view getLegRepurchaseRateView() const { return fieldLegRepurchaseRate.offset > 0 ? std::string_view{ _fixPtr + fieldLegRepurchaseRate.offset, getValueLength( _fixPtr + fieldLegRepurchaseRate.offset ) } : std::string_view{}; }
@@ -3215,6 +3516,7 @@ class GroupLegs : public MessageBase
    private: FieldLegRepurchaseRate fieldLegRepurchaseRate;
 
    public:
+   using LegFactor = FieldLegFactor; 
    bool isSetLegFactor() const { return fieldLegFactor.offset > 0; }
    FieldLegFactor::ValueType getLegFactor() const { return fieldLegFactor.getValue( _fixPtr ); }
    std::string_view getLegFactorView() const { return fieldLegFactor.offset > 0 ? std::string_view{ _fixPtr + fieldLegFactor.offset, getValueLength( _fixPtr + fieldLegFactor.offset ) } : std::string_view{}; }
@@ -3224,6 +3526,7 @@ class GroupLegs : public MessageBase
    private: FieldLegFactor fieldLegFactor;
 
    public:
+   using LegCreditRating = FieldLegCreditRating; 
    bool isSetLegCreditRating() const { return fieldLegCreditRating.offset > 0; }
    FieldLegCreditRating::ValueType getLegCreditRating() const { return fieldLegCreditRating.getValue( _fixPtr ); }
    std::string_view getLegCreditRatingView() const { return fieldLegCreditRating.offset > 0 ? std::string_view{ _fixPtr + fieldLegCreditRating.offset, getValueLength( _fixPtr + fieldLegCreditRating.offset ) } : std::string_view{}; }
@@ -3233,6 +3536,7 @@ class GroupLegs : public MessageBase
    private: FieldLegCreditRating fieldLegCreditRating;
 
    public:
+   using LegInstrRegistry = FieldLegInstrRegistry; 
    bool isSetLegInstrRegistry() const { return fieldLegInstrRegistry.offset > 0; }
    FieldLegInstrRegistry::ValueType getLegInstrRegistry() const { return fieldLegInstrRegistry.getValue( _fixPtr ); }
    std::string_view getLegInstrRegistryView() const { return fieldLegInstrRegistry.offset > 0 ? std::string_view{ _fixPtr + fieldLegInstrRegistry.offset, getValueLength( _fixPtr + fieldLegInstrRegistry.offset ) } : std::string_view{}; }
@@ -3242,6 +3546,7 @@ class GroupLegs : public MessageBase
    private: FieldLegInstrRegistry fieldLegInstrRegistry;
 
    public:
+   using LegCountryOfIssue = FieldLegCountryOfIssue; 
    bool isSetLegCountryOfIssue() const { return fieldLegCountryOfIssue.offset > 0; }
    FieldLegCountryOfIssue::ValueType getLegCountryOfIssue() const { return fieldLegCountryOfIssue.getValue( _fixPtr ); }
    std::string_view getLegCountryOfIssueView() const { return fieldLegCountryOfIssue.offset > 0 ? std::string_view{ _fixPtr + fieldLegCountryOfIssue.offset, getValueLength( _fixPtr + fieldLegCountryOfIssue.offset ) } : std::string_view{}; }
@@ -3251,6 +3556,7 @@ class GroupLegs : public MessageBase
    private: FieldLegCountryOfIssue fieldLegCountryOfIssue;
 
    public:
+   using LegStateOrProvinceOfIssue = FieldLegStateOrProvinceOfIssue; 
    bool isSetLegStateOrProvinceOfIssue() const { return fieldLegStateOrProvinceOfIssue.offset > 0; }
    FieldLegStateOrProvinceOfIssue::ValueType getLegStateOrProvinceOfIssue() const { return fieldLegStateOrProvinceOfIssue.getValue( _fixPtr ); }
    std::string_view getLegStateOrProvinceOfIssueView() const { return fieldLegStateOrProvinceOfIssue.offset > 0 ? std::string_view{ _fixPtr + fieldLegStateOrProvinceOfIssue.offset, getValueLength( _fixPtr + fieldLegStateOrProvinceOfIssue.offset ) } : std::string_view{}; }
@@ -3260,6 +3566,7 @@ class GroupLegs : public MessageBase
    private: FieldLegStateOrProvinceOfIssue fieldLegStateOrProvinceOfIssue;
 
    public:
+   using LegLocaleOfIssue = FieldLegLocaleOfIssue; 
    bool isSetLegLocaleOfIssue() const { return fieldLegLocaleOfIssue.offset > 0; }
    FieldLegLocaleOfIssue::ValueType getLegLocaleOfIssue() const { return fieldLegLocaleOfIssue.getValue( _fixPtr ); }
    std::string_view getLegLocaleOfIssueView() const { return fieldLegLocaleOfIssue.offset > 0 ? std::string_view{ _fixPtr + fieldLegLocaleOfIssue.offset, getValueLength( _fixPtr + fieldLegLocaleOfIssue.offset ) } : std::string_view{}; }
@@ -3269,6 +3576,7 @@ class GroupLegs : public MessageBase
    private: FieldLegLocaleOfIssue fieldLegLocaleOfIssue;
 
    public:
+   using LegRedemptionDate = FieldLegRedemptionDate; 
    bool isSetLegRedemptionDate() const { return fieldLegRedemptionDate.offset > 0; }
    FieldLegRedemptionDate::ValueType getLegRedemptionDate() const { return fieldLegRedemptionDate.getValue( _fixPtr ); }
    std::string_view getLegRedemptionDateView() const { return fieldLegRedemptionDate.offset > 0 ? std::string_view{ _fixPtr + fieldLegRedemptionDate.offset, getValueLength( _fixPtr + fieldLegRedemptionDate.offset ) } : std::string_view{}; }
@@ -3278,6 +3586,7 @@ class GroupLegs : public MessageBase
    private: FieldLegRedemptionDate fieldLegRedemptionDate;
 
    public:
+   using LegStrikePrice = FieldLegStrikePrice; 
    bool isSetLegStrikePrice() const { return fieldLegStrikePrice.offset > 0; }
    FieldLegStrikePrice::ValueType getLegStrikePrice() const { return fieldLegStrikePrice.getValue( _fixPtr ); }
    std::string_view getLegStrikePriceView() const { return fieldLegStrikePrice.offset > 0 ? std::string_view{ _fixPtr + fieldLegStrikePrice.offset, getValueLength( _fixPtr + fieldLegStrikePrice.offset ) } : std::string_view{}; }
@@ -3287,6 +3596,7 @@ class GroupLegs : public MessageBase
    private: FieldLegStrikePrice fieldLegStrikePrice;
 
    public:
+   using LegStrikeCurrency = FieldLegStrikeCurrency; 
    bool isSetLegStrikeCurrency() const { return fieldLegStrikeCurrency.offset > 0; }
    FieldLegStrikeCurrency::ValueType getLegStrikeCurrency() const { return fieldLegStrikeCurrency.getValue( _fixPtr ); }
    std::string_view getLegStrikeCurrencyView() const { return fieldLegStrikeCurrency.offset > 0 ? std::string_view{ _fixPtr + fieldLegStrikeCurrency.offset, getValueLength( _fixPtr + fieldLegStrikeCurrency.offset ) } : std::string_view{}; }
@@ -3296,6 +3606,7 @@ class GroupLegs : public MessageBase
    private: FieldLegStrikeCurrency fieldLegStrikeCurrency;
 
    public:
+   using LegOptAttribute = FieldLegOptAttribute; 
    bool isSetLegOptAttribute() const { return fieldLegOptAttribute.offset > 0; }
    FieldLegOptAttribute::ValueType getLegOptAttribute() const { return fieldLegOptAttribute.getValue( _fixPtr ); }
    std::string_view getLegOptAttributeView() const { return fieldLegOptAttribute.offset > 0 ? std::string_view{ _fixPtr + fieldLegOptAttribute.offset, getValueLength( _fixPtr + fieldLegOptAttribute.offset ) } : std::string_view{}; }
@@ -3305,6 +3616,7 @@ class GroupLegs : public MessageBase
    private: FieldLegOptAttribute fieldLegOptAttribute;
 
    public:
+   using LegContractMultiplier = FieldLegContractMultiplier; 
    bool isSetLegContractMultiplier() const { return fieldLegContractMultiplier.offset > 0; }
    FieldLegContractMultiplier::ValueType getLegContractMultiplier() const { return fieldLegContractMultiplier.getValue( _fixPtr ); }
    std::string_view getLegContractMultiplierView() const { return fieldLegContractMultiplier.offset > 0 ? std::string_view{ _fixPtr + fieldLegContractMultiplier.offset, getValueLength( _fixPtr + fieldLegContractMultiplier.offset ) } : std::string_view{}; }
@@ -3314,6 +3626,7 @@ class GroupLegs : public MessageBase
    private: FieldLegContractMultiplier fieldLegContractMultiplier;
 
    public:
+   using LegCouponRate = FieldLegCouponRate; 
    bool isSetLegCouponRate() const { return fieldLegCouponRate.offset > 0; }
    FieldLegCouponRate::ValueType getLegCouponRate() const { return fieldLegCouponRate.getValue( _fixPtr ); }
    std::string_view getLegCouponRateView() const { return fieldLegCouponRate.offset > 0 ? std::string_view{ _fixPtr + fieldLegCouponRate.offset, getValueLength( _fixPtr + fieldLegCouponRate.offset ) } : std::string_view{}; }
@@ -3323,6 +3636,7 @@ class GroupLegs : public MessageBase
    private: FieldLegCouponRate fieldLegCouponRate;
 
    public:
+   using LegSecurityExchange = FieldLegSecurityExchange; 
    bool isSetLegSecurityExchange() const { return fieldLegSecurityExchange.offset > 0; }
    FieldLegSecurityExchange::ValueType getLegSecurityExchange() const { return fieldLegSecurityExchange.getValue( _fixPtr ); }
    std::string_view getLegSecurityExchangeView() const { return fieldLegSecurityExchange.offset > 0 ? std::string_view{ _fixPtr + fieldLegSecurityExchange.offset, getValueLength( _fixPtr + fieldLegSecurityExchange.offset ) } : std::string_view{}; }
@@ -3332,6 +3646,7 @@ class GroupLegs : public MessageBase
    private: FieldLegSecurityExchange fieldLegSecurityExchange;
 
    public:
+   using LegIssuer = FieldLegIssuer; 
    bool isSetLegIssuer() const { return fieldLegIssuer.offset > 0; }
    FieldLegIssuer::ValueType getLegIssuer() const { return fieldLegIssuer.getValue( _fixPtr ); }
    std::string_view getLegIssuerView() const { return fieldLegIssuer.offset > 0 ? std::string_view{ _fixPtr + fieldLegIssuer.offset, getValueLength( _fixPtr + fieldLegIssuer.offset ) } : std::string_view{}; }
@@ -3341,6 +3656,7 @@ class GroupLegs : public MessageBase
    private: FieldLegIssuer fieldLegIssuer;
 
    public:
+   using EncodedLegIssuerLen = FieldEncodedLegIssuerLen; 
    bool isSetEncodedLegIssuerLen() const { return fieldEncodedLegIssuerLen.offset > 0; }
    FieldEncodedLegIssuerLen::ValueType getEncodedLegIssuerLen() const { return fieldEncodedLegIssuerLen.getValue( _fixPtr ); }
    std::string_view getEncodedLegIssuerLenView() const { return fieldEncodedLegIssuerLen.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedLegIssuerLen.offset, getValueLength( _fixPtr + fieldEncodedLegIssuerLen.offset ) } : std::string_view{}; }
@@ -3350,6 +3666,7 @@ class GroupLegs : public MessageBase
    private: FieldEncodedLegIssuerLen fieldEncodedLegIssuerLen;
 
    public:
+   using EncodedLegIssuer = FieldEncodedLegIssuer; 
    bool isSetEncodedLegIssuer() const { return fieldEncodedLegIssuer.offset > 0; }
    FieldEncodedLegIssuer::ValueType getEncodedLegIssuer() const { return fieldEncodedLegIssuer.getValue( _fixPtr ); }
    std::string_view getEncodedLegIssuerView() const { return fieldEncodedLegIssuer.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedLegIssuer.offset, getValueLength( _fixPtr + fieldEncodedLegIssuer.offset ) } : std::string_view{}; }
@@ -3359,6 +3676,7 @@ class GroupLegs : public MessageBase
    private: FieldEncodedLegIssuer fieldEncodedLegIssuer;
 
    public:
+   using LegSecurityDesc = FieldLegSecurityDesc; 
    bool isSetLegSecurityDesc() const { return fieldLegSecurityDesc.offset > 0; }
    FieldLegSecurityDesc::ValueType getLegSecurityDesc() const { return fieldLegSecurityDesc.getValue( _fixPtr ); }
    std::string_view getLegSecurityDescView() const { return fieldLegSecurityDesc.offset > 0 ? std::string_view{ _fixPtr + fieldLegSecurityDesc.offset, getValueLength( _fixPtr + fieldLegSecurityDesc.offset ) } : std::string_view{}; }
@@ -3368,6 +3686,7 @@ class GroupLegs : public MessageBase
    private: FieldLegSecurityDesc fieldLegSecurityDesc;
 
    public:
+   using EncodedLegSecurityDescLen = FieldEncodedLegSecurityDescLen; 
    bool isSetEncodedLegSecurityDescLen() const { return fieldEncodedLegSecurityDescLen.offset > 0; }
    FieldEncodedLegSecurityDescLen::ValueType getEncodedLegSecurityDescLen() const { return fieldEncodedLegSecurityDescLen.getValue( _fixPtr ); }
    std::string_view getEncodedLegSecurityDescLenView() const { return fieldEncodedLegSecurityDescLen.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedLegSecurityDescLen.offset, getValueLength( _fixPtr + fieldEncodedLegSecurityDescLen.offset ) } : std::string_view{}; }
@@ -3377,6 +3696,7 @@ class GroupLegs : public MessageBase
    private: FieldEncodedLegSecurityDescLen fieldEncodedLegSecurityDescLen;
 
    public:
+   using EncodedLegSecurityDesc = FieldEncodedLegSecurityDesc; 
    bool isSetEncodedLegSecurityDesc() const { return fieldEncodedLegSecurityDesc.offset > 0; }
    FieldEncodedLegSecurityDesc::ValueType getEncodedLegSecurityDesc() const { return fieldEncodedLegSecurityDesc.getValue( _fixPtr ); }
    std::string_view getEncodedLegSecurityDescView() const { return fieldEncodedLegSecurityDesc.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedLegSecurityDesc.offset, getValueLength( _fixPtr + fieldEncodedLegSecurityDesc.offset ) } : std::string_view{}; }
@@ -3386,6 +3706,7 @@ class GroupLegs : public MessageBase
    private: FieldEncodedLegSecurityDesc fieldEncodedLegSecurityDesc;
 
    public:
+   using LegRatioQty = FieldLegRatioQty; 
    bool isSetLegRatioQty() const { return fieldLegRatioQty.offset > 0; }
    FieldLegRatioQty::ValueType getLegRatioQty() const { return fieldLegRatioQty.getValue( _fixPtr ); }
    std::string_view getLegRatioQtyView() const { return fieldLegRatioQty.offset > 0 ? std::string_view{ _fixPtr + fieldLegRatioQty.offset, getValueLength( _fixPtr + fieldLegRatioQty.offset ) } : std::string_view{}; }
@@ -3395,6 +3716,7 @@ class GroupLegs : public MessageBase
    private: FieldLegRatioQty fieldLegRatioQty;
 
    public:
+   using LegSide = FieldLegSide; 
    bool isSetLegSide() const { return fieldLegSide.offset > 0; }
    FieldLegSide::ValueType getLegSide() const { return fieldLegSide.getValue( _fixPtr ); }
    std::string_view getLegSideView() const { return fieldLegSide.offset > 0 ? std::string_view{ _fixPtr + fieldLegSide.offset, getValueLength( _fixPtr + fieldLegSide.offset ) } : std::string_view{}; }
@@ -3404,6 +3726,7 @@ class GroupLegs : public MessageBase
    private: FieldLegSide fieldLegSide;
 
    public:
+   using LegCurrency = FieldLegCurrency; 
    bool isSetLegCurrency() const { return fieldLegCurrency.offset > 0; }
    FieldLegCurrency::ValueType getLegCurrency() const { return fieldLegCurrency.getValue( _fixPtr ); }
    std::string_view getLegCurrencyView() const { return fieldLegCurrency.offset > 0 ? std::string_view{ _fixPtr + fieldLegCurrency.offset, getValueLength( _fixPtr + fieldLegCurrency.offset ) } : std::string_view{}; }
@@ -3413,6 +3736,7 @@ class GroupLegs : public MessageBase
    private: FieldLegCurrency fieldLegCurrency;
 
    public:
+   using LegPool = FieldLegPool; 
    bool isSetLegPool() const { return fieldLegPool.offset > 0; }
    FieldLegPool::ValueType getLegPool() const { return fieldLegPool.getValue( _fixPtr ); }
    std::string_view getLegPoolView() const { return fieldLegPool.offset > 0 ? std::string_view{ _fixPtr + fieldLegPool.offset, getValueLength( _fixPtr + fieldLegPool.offset ) } : std::string_view{}; }
@@ -3422,6 +3746,7 @@ class GroupLegs : public MessageBase
    private: FieldLegPool fieldLegPool;
 
    public:
+   using LegDatedDate = FieldLegDatedDate; 
    bool isSetLegDatedDate() const { return fieldLegDatedDate.offset > 0; }
    FieldLegDatedDate::ValueType getLegDatedDate() const { return fieldLegDatedDate.getValue( _fixPtr ); }
    std::string_view getLegDatedDateView() const { return fieldLegDatedDate.offset > 0 ? std::string_view{ _fixPtr + fieldLegDatedDate.offset, getValueLength( _fixPtr + fieldLegDatedDate.offset ) } : std::string_view{}; }
@@ -3431,6 +3756,7 @@ class GroupLegs : public MessageBase
    private: FieldLegDatedDate fieldLegDatedDate;
 
    public:
+   using LegContractSettlMonth = FieldLegContractSettlMonth; 
    bool isSetLegContractSettlMonth() const { return fieldLegContractSettlMonth.offset > 0; }
    FieldLegContractSettlMonth::ValueType getLegContractSettlMonth() const { return fieldLegContractSettlMonth.getValue( _fixPtr ); }
    std::string_view getLegContractSettlMonthView() const { return fieldLegContractSettlMonth.offset > 0 ? std::string_view{ _fixPtr + fieldLegContractSettlMonth.offset, getValueLength( _fixPtr + fieldLegContractSettlMonth.offset ) } : std::string_view{}; }
@@ -3440,6 +3766,7 @@ class GroupLegs : public MessageBase
    private: FieldLegContractSettlMonth fieldLegContractSettlMonth;
 
    public:
+   using LegInterestAccrualDate = FieldLegInterestAccrualDate; 
    bool isSetLegInterestAccrualDate() const { return fieldLegInterestAccrualDate.offset > 0; }
    FieldLegInterestAccrualDate::ValueType getLegInterestAccrualDate() const { return fieldLegInterestAccrualDate.getValue( _fixPtr ); }
    std::string_view getLegInterestAccrualDateView() const { return fieldLegInterestAccrualDate.offset > 0 ? std::string_view{ _fixPtr + fieldLegInterestAccrualDate.offset, getValueLength( _fixPtr + fieldLegInterestAccrualDate.offset ) } : std::string_view{}; }
@@ -3449,6 +3776,7 @@ class GroupLegs : public MessageBase
    private: FieldLegInterestAccrualDate fieldLegInterestAccrualDate;
 
    public:
+   using LegQty = FieldLegQty; 
    bool isSetLegQty() const { return fieldLegQty.offset > 0; }
    FieldLegQty::ValueType getLegQty() const { return fieldLegQty.getValue( _fixPtr ); }
    std::string_view getLegQtyView() const { return fieldLegQty.offset > 0 ? std::string_view{ _fixPtr + fieldLegQty.offset, getValueLength( _fixPtr + fieldLegQty.offset ) } : std::string_view{}; }
@@ -3458,6 +3786,7 @@ class GroupLegs : public MessageBase
    private: FieldLegQty fieldLegQty;
 
    public:
+   using LegSwapType = FieldLegSwapType; 
    bool isSetLegSwapType() const { return fieldLegSwapType.offset > 0; }
    FieldLegSwapType::ValueType getLegSwapType() const { return fieldLegSwapType.getValue( _fixPtr ); }
    std::string_view getLegSwapTypeView() const { return fieldLegSwapType.offset > 0 ? std::string_view{ _fixPtr + fieldLegSwapType.offset, getValueLength( _fixPtr + fieldLegSwapType.offset ) } : std::string_view{}; }
@@ -3467,6 +3796,7 @@ class GroupLegs : public MessageBase
    private: FieldLegSwapType fieldLegSwapType;
 
    public:
+   using NoLegStipulations = FieldNoLegStipulations; 
    bool isSetNoLegStipulations() const { return fieldNoLegStipulations.offset > 0; }
    FieldNoLegStipulations::ValueType getNoLegStipulations() const { return fieldNoLegStipulations.getValue( _fixPtr ); }
    std::string_view getNoLegStipulationsView() const { return fieldNoLegStipulations.offset > 0 ? std::string_view{ _fixPtr + fieldNoLegStipulations.offset, getValueLength( _fixPtr + fieldNoLegStipulations.offset ) } : std::string_view{}; }
@@ -3481,6 +3811,7 @@ class GroupLegs : public MessageBase
    private: GroupLegStipulations::Array groupsLegStipulations{ 10 };
 
    public:
+   using LegPositionEffect = FieldLegPositionEffect; 
    bool isSetLegPositionEffect() const { return fieldLegPositionEffect.offset > 0; }
    FieldLegPositionEffect::ValueType getLegPositionEffect() const { return fieldLegPositionEffect.getValue( _fixPtr ); }
    std::string_view getLegPositionEffectView() const { return fieldLegPositionEffect.offset > 0 ? std::string_view{ _fixPtr + fieldLegPositionEffect.offset, getValueLength( _fixPtr + fieldLegPositionEffect.offset ) } : std::string_view{}; }
@@ -3490,6 +3821,7 @@ class GroupLegs : public MessageBase
    private: FieldLegPositionEffect fieldLegPositionEffect;
 
    public:
+   using LegCoveredOrUncovered = FieldLegCoveredOrUncovered; 
    bool isSetLegCoveredOrUncovered() const { return fieldLegCoveredOrUncovered.offset > 0; }
    FieldLegCoveredOrUncovered::ValueType getLegCoveredOrUncovered() const { return fieldLegCoveredOrUncovered.getValue( _fixPtr ); }
    std::string_view getLegCoveredOrUncoveredView() const { return fieldLegCoveredOrUncovered.offset > 0 ? std::string_view{ _fixPtr + fieldLegCoveredOrUncovered.offset, getValueLength( _fixPtr + fieldLegCoveredOrUncovered.offset ) } : std::string_view{}; }
@@ -3499,6 +3831,7 @@ class GroupLegs : public MessageBase
    private: FieldLegCoveredOrUncovered fieldLegCoveredOrUncovered;
 
    public:
+   using NoNestedPartyIDs = FieldNoNestedPartyIDs; 
    bool isSetNoNestedPartyIDs() const { return fieldNoNestedPartyIDs.offset > 0; }
    FieldNoNestedPartyIDs::ValueType getNoNestedPartyIDs() const { return fieldNoNestedPartyIDs.getValue( _fixPtr ); }
    std::string_view getNoNestedPartyIDsView() const { return fieldNoNestedPartyIDs.offset > 0 ? std::string_view{ _fixPtr + fieldNoNestedPartyIDs.offset, getValueLength( _fixPtr + fieldNoNestedPartyIDs.offset ) } : std::string_view{}; }
@@ -3513,6 +3846,7 @@ class GroupLegs : public MessageBase
    private: GroupNestedPartyIDs::Array groupsNestedPartyIDs{ 10 };
 
    public:
+   using LegRefID = FieldLegRefID; 
    bool isSetLegRefID() const { return fieldLegRefID.offset > 0; }
    FieldLegRefID::ValueType getLegRefID() const { return fieldLegRefID.getValue( _fixPtr ); }
    std::string_view getLegRefIDView() const { return fieldLegRefID.offset > 0 ? std::string_view{ _fixPtr + fieldLegRefID.offset, getValueLength( _fixPtr + fieldLegRefID.offset ) } : std::string_view{}; }
@@ -3522,6 +3856,7 @@ class GroupLegs : public MessageBase
    private: FieldLegRefID fieldLegRefID;
 
    public:
+   using LegPrice = FieldLegPrice; 
    bool isSetLegPrice() const { return fieldLegPrice.offset > 0; }
    FieldLegPrice::ValueType getLegPrice() const { return fieldLegPrice.getValue( _fixPtr ); }
    std::string_view getLegPriceView() const { return fieldLegPrice.offset > 0 ? std::string_view{ _fixPtr + fieldLegPrice.offset, getValueLength( _fixPtr + fieldLegPrice.offset ) } : std::string_view{}; }
@@ -3531,6 +3866,7 @@ class GroupLegs : public MessageBase
    private: FieldLegPrice fieldLegPrice;
 
    public:
+   using LegSettlType = FieldLegSettlType; 
    bool isSetLegSettlType() const { return fieldLegSettlType.offset > 0; }
    FieldLegSettlType::ValueType getLegSettlType() const { return fieldLegSettlType.getValue( _fixPtr ); }
    std::string_view getLegSettlTypeView() const { return fieldLegSettlType.offset > 0 ? std::string_view{ _fixPtr + fieldLegSettlType.offset, getValueLength( _fixPtr + fieldLegSettlType.offset ) } : std::string_view{}; }
@@ -3540,6 +3876,7 @@ class GroupLegs : public MessageBase
    private: FieldLegSettlType fieldLegSettlType;
 
    public:
+   using LegSettlDate = FieldLegSettlDate; 
    bool isSetLegSettlDate() const { return fieldLegSettlDate.offset > 0; }
    FieldLegSettlDate::ValueType getLegSettlDate() const { return fieldLegSettlDate.getValue( _fixPtr ); }
    std::string_view getLegSettlDateView() const { return fieldLegSettlDate.offset > 0 ? std::string_view{ _fixPtr + fieldLegSettlDate.offset, getValueLength( _fixPtr + fieldLegSettlDate.offset ) } : std::string_view{}; }
@@ -3549,6 +3886,7 @@ class GroupLegs : public MessageBase
    private: FieldLegSettlDate fieldLegSettlDate;
 
    public:
+   using LegLastPx = FieldLegLastPx; 
    bool isSetLegLastPx() const { return fieldLegLastPx.offset > 0; }
    FieldLegLastPx::ValueType getLegLastPx() const { return fieldLegLastPx.getValue( _fixPtr ); }
    std::string_view getLegLastPxView() const { return fieldLegLastPx.offset > 0 ? std::string_view{ _fixPtr + fieldLegLastPx.offset, getValueLength( _fixPtr + fieldLegLastPx.offset ) } : std::string_view{}; }
@@ -3574,6 +3912,7 @@ class GroupQuoteEntries : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<GroupQuoteEntries,0,FIELDS...>(*this,tpl); return tpl; };
+   template< typename... FIELDS > std::tuple<typeExists<FIELDS>... > getPresenceOf() const { std::tuple< typeExists<FIELDS>... > tpl{}; buildPresenceTuple<GroupQuoteEntries,0,FIELDS...>(*this,tpl); return tpl; };
    bool isFieldSet( tag_t tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
@@ -3583,6 +3922,7 @@ class GroupQuoteEntries : public MessageBase
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
+   using Symbol = FieldSymbol; 
    bool isSetSymbol() const { return fieldSymbol.offset > 0; }
    FieldSymbol::ValueType getSymbol() const { return fieldSymbol.getValue( _fixPtr ); }
    std::string_view getSymbolView() const { return fieldSymbol.offset > 0 ? std::string_view{ _fixPtr + fieldSymbol.offset, getValueLength( _fixPtr + fieldSymbol.offset ) } : std::string_view{}; }
@@ -3592,6 +3932,7 @@ class GroupQuoteEntries : public MessageBase
    private: FieldSymbol fieldSymbol;
 
    public:
+   using SymbolSfx = FieldSymbolSfx; 
    bool isSetSymbolSfx() const { return fieldSymbolSfx.offset > 0; }
    FieldSymbolSfx::ValueType getSymbolSfx() const { return fieldSymbolSfx.getValue( _fixPtr ); }
    std::string_view getSymbolSfxView() const { return fieldSymbolSfx.offset > 0 ? std::string_view{ _fixPtr + fieldSymbolSfx.offset, getValueLength( _fixPtr + fieldSymbolSfx.offset ) } : std::string_view{}; }
@@ -3601,6 +3942,7 @@ class GroupQuoteEntries : public MessageBase
    private: FieldSymbolSfx fieldSymbolSfx;
 
    public:
+   using SecurityID = FieldSecurityID; 
    bool isSetSecurityID() const { return fieldSecurityID.offset > 0; }
    FieldSecurityID::ValueType getSecurityID() const { return fieldSecurityID.getValue( _fixPtr ); }
    std::string_view getSecurityIDView() const { return fieldSecurityID.offset > 0 ? std::string_view{ _fixPtr + fieldSecurityID.offset, getValueLength( _fixPtr + fieldSecurityID.offset ) } : std::string_view{}; }
@@ -3610,6 +3952,7 @@ class GroupQuoteEntries : public MessageBase
    private: FieldSecurityID fieldSecurityID;
 
    public:
+   using SecurityIDSource = FieldSecurityIDSource; 
    bool isSetSecurityIDSource() const { return fieldSecurityIDSource.offset > 0; }
    FieldSecurityIDSource::ValueType getSecurityIDSource() const { return fieldSecurityIDSource.getValue( _fixPtr ); }
    std::string_view getSecurityIDSourceView() const { return fieldSecurityIDSource.offset > 0 ? std::string_view{ _fixPtr + fieldSecurityIDSource.offset, getValueLength( _fixPtr + fieldSecurityIDSource.offset ) } : std::string_view{}; }
@@ -3619,6 +3962,7 @@ class GroupQuoteEntries : public MessageBase
    private: FieldSecurityIDSource fieldSecurityIDSource;
 
    public:
+   using NoSecurityAltID = FieldNoSecurityAltID; 
    bool isSetNoSecurityAltID() const { return fieldNoSecurityAltID.offset > 0; }
    FieldNoSecurityAltID::ValueType getNoSecurityAltID() const { return fieldNoSecurityAltID.getValue( _fixPtr ); }
    std::string_view getNoSecurityAltIDView() const { return fieldNoSecurityAltID.offset > 0 ? std::string_view{ _fixPtr + fieldNoSecurityAltID.offset, getValueLength( _fixPtr + fieldNoSecurityAltID.offset ) } : std::string_view{}; }
@@ -3633,6 +3977,7 @@ class GroupQuoteEntries : public MessageBase
    private: GroupSecurityAltID::Array groupsSecurityAltID{ 10 };
 
    public:
+   using Product = FieldProduct; 
    bool isSetProduct() const { return fieldProduct.offset > 0; }
    FieldProduct::ValueType getProduct() const { return fieldProduct.getValue( _fixPtr ); }
    std::string_view getProductView() const { return fieldProduct.offset > 0 ? std::string_view{ _fixPtr + fieldProduct.offset, getValueLength( _fixPtr + fieldProduct.offset ) } : std::string_view{}; }
@@ -3642,6 +3987,7 @@ class GroupQuoteEntries : public MessageBase
    private: FieldProduct fieldProduct;
 
    public:
+   using CFICode = FieldCFICode; 
    bool isSetCFICode() const { return fieldCFICode.offset > 0; }
    FieldCFICode::ValueType getCFICode() const { return fieldCFICode.getValue( _fixPtr ); }
    std::string_view getCFICodeView() const { return fieldCFICode.offset > 0 ? std::string_view{ _fixPtr + fieldCFICode.offset, getValueLength( _fixPtr + fieldCFICode.offset ) } : std::string_view{}; }
@@ -3651,6 +3997,7 @@ class GroupQuoteEntries : public MessageBase
    private: FieldCFICode fieldCFICode;
 
    public:
+   using SecurityType = FieldSecurityType; 
    bool isSetSecurityType() const { return fieldSecurityType.offset > 0; }
    FieldSecurityType::ValueType getSecurityType() const { return fieldSecurityType.getValue( _fixPtr ); }
    std::string_view getSecurityTypeView() const { return fieldSecurityType.offset > 0 ? std::string_view{ _fixPtr + fieldSecurityType.offset, getValueLength( _fixPtr + fieldSecurityType.offset ) } : std::string_view{}; }
@@ -3660,6 +4007,7 @@ class GroupQuoteEntries : public MessageBase
    private: FieldSecurityType fieldSecurityType;
 
    public:
+   using SecuritySubType = FieldSecuritySubType; 
    bool isSetSecuritySubType() const { return fieldSecuritySubType.offset > 0; }
    FieldSecuritySubType::ValueType getSecuritySubType() const { return fieldSecuritySubType.getValue( _fixPtr ); }
    std::string_view getSecuritySubTypeView() const { return fieldSecuritySubType.offset > 0 ? std::string_view{ _fixPtr + fieldSecuritySubType.offset, getValueLength( _fixPtr + fieldSecuritySubType.offset ) } : std::string_view{}; }
@@ -3669,6 +4017,7 @@ class GroupQuoteEntries : public MessageBase
    private: FieldSecuritySubType fieldSecuritySubType;
 
    public:
+   using MaturityMonthYear = FieldMaturityMonthYear; 
    bool isSetMaturityMonthYear() const { return fieldMaturityMonthYear.offset > 0; }
    FieldMaturityMonthYear::ValueType getMaturityMonthYear() const { return fieldMaturityMonthYear.getValue( _fixPtr ); }
    std::string_view getMaturityMonthYearView() const { return fieldMaturityMonthYear.offset > 0 ? std::string_view{ _fixPtr + fieldMaturityMonthYear.offset, getValueLength( _fixPtr + fieldMaturityMonthYear.offset ) } : std::string_view{}; }
@@ -3678,6 +4027,7 @@ class GroupQuoteEntries : public MessageBase
    private: FieldMaturityMonthYear fieldMaturityMonthYear;
 
    public:
+   using MaturityDate = FieldMaturityDate; 
    bool isSetMaturityDate() const { return fieldMaturityDate.offset > 0; }
    FieldMaturityDate::ValueType getMaturityDate() const { return fieldMaturityDate.getValue( _fixPtr ); }
    std::string_view getMaturityDateView() const { return fieldMaturityDate.offset > 0 ? std::string_view{ _fixPtr + fieldMaturityDate.offset, getValueLength( _fixPtr + fieldMaturityDate.offset ) } : std::string_view{}; }
@@ -3687,6 +4037,7 @@ class GroupQuoteEntries : public MessageBase
    private: FieldMaturityDate fieldMaturityDate;
 
    public:
+   using PutOrCall = FieldPutOrCall; 
    bool isSetPutOrCall() const { return fieldPutOrCall.offset > 0; }
    FieldPutOrCall::ValueType getPutOrCall() const { return fieldPutOrCall.getValue( _fixPtr ); }
    std::string_view getPutOrCallView() const { return fieldPutOrCall.offset > 0 ? std::string_view{ _fixPtr + fieldPutOrCall.offset, getValueLength( _fixPtr + fieldPutOrCall.offset ) } : std::string_view{}; }
@@ -3696,6 +4047,7 @@ class GroupQuoteEntries : public MessageBase
    private: FieldPutOrCall fieldPutOrCall;
 
    public:
+   using CouponPaymentDate = FieldCouponPaymentDate; 
    bool isSetCouponPaymentDate() const { return fieldCouponPaymentDate.offset > 0; }
    FieldCouponPaymentDate::ValueType getCouponPaymentDate() const { return fieldCouponPaymentDate.getValue( _fixPtr ); }
    std::string_view getCouponPaymentDateView() const { return fieldCouponPaymentDate.offset > 0 ? std::string_view{ _fixPtr + fieldCouponPaymentDate.offset, getValueLength( _fixPtr + fieldCouponPaymentDate.offset ) } : std::string_view{}; }
@@ -3705,6 +4057,7 @@ class GroupQuoteEntries : public MessageBase
    private: FieldCouponPaymentDate fieldCouponPaymentDate;
 
    public:
+   using IssueDate = FieldIssueDate; 
    bool isSetIssueDate() const { return fieldIssueDate.offset > 0; }
    FieldIssueDate::ValueType getIssueDate() const { return fieldIssueDate.getValue( _fixPtr ); }
    std::string_view getIssueDateView() const { return fieldIssueDate.offset > 0 ? std::string_view{ _fixPtr + fieldIssueDate.offset, getValueLength( _fixPtr + fieldIssueDate.offset ) } : std::string_view{}; }
@@ -3714,6 +4067,7 @@ class GroupQuoteEntries : public MessageBase
    private: FieldIssueDate fieldIssueDate;
 
    public:
+   using RepoCollateralSecurityType = FieldRepoCollateralSecurityType; 
    bool isSetRepoCollateralSecurityType() const { return fieldRepoCollateralSecurityType.offset > 0; }
    FieldRepoCollateralSecurityType::ValueType getRepoCollateralSecurityType() const { return fieldRepoCollateralSecurityType.getValue( _fixPtr ); }
    std::string_view getRepoCollateralSecurityTypeView() const { return fieldRepoCollateralSecurityType.offset > 0 ? std::string_view{ _fixPtr + fieldRepoCollateralSecurityType.offset, getValueLength( _fixPtr + fieldRepoCollateralSecurityType.offset ) } : std::string_view{}; }
@@ -3723,6 +4077,7 @@ class GroupQuoteEntries : public MessageBase
    private: FieldRepoCollateralSecurityType fieldRepoCollateralSecurityType;
 
    public:
+   using RepurchaseTerm = FieldRepurchaseTerm; 
    bool isSetRepurchaseTerm() const { return fieldRepurchaseTerm.offset > 0; }
    FieldRepurchaseTerm::ValueType getRepurchaseTerm() const { return fieldRepurchaseTerm.getValue( _fixPtr ); }
    std::string_view getRepurchaseTermView() const { return fieldRepurchaseTerm.offset > 0 ? std::string_view{ _fixPtr + fieldRepurchaseTerm.offset, getValueLength( _fixPtr + fieldRepurchaseTerm.offset ) } : std::string_view{}; }
@@ -3732,6 +4087,7 @@ class GroupQuoteEntries : public MessageBase
    private: FieldRepurchaseTerm fieldRepurchaseTerm;
 
    public:
+   using RepurchaseRate = FieldRepurchaseRate; 
    bool isSetRepurchaseRate() const { return fieldRepurchaseRate.offset > 0; }
    FieldRepurchaseRate::ValueType getRepurchaseRate() const { return fieldRepurchaseRate.getValue( _fixPtr ); }
    std::string_view getRepurchaseRateView() const { return fieldRepurchaseRate.offset > 0 ? std::string_view{ _fixPtr + fieldRepurchaseRate.offset, getValueLength( _fixPtr + fieldRepurchaseRate.offset ) } : std::string_view{}; }
@@ -3741,6 +4097,7 @@ class GroupQuoteEntries : public MessageBase
    private: FieldRepurchaseRate fieldRepurchaseRate;
 
    public:
+   using Factor = FieldFactor; 
    bool isSetFactor() const { return fieldFactor.offset > 0; }
    FieldFactor::ValueType getFactor() const { return fieldFactor.getValue( _fixPtr ); }
    std::string_view getFactorView() const { return fieldFactor.offset > 0 ? std::string_view{ _fixPtr + fieldFactor.offset, getValueLength( _fixPtr + fieldFactor.offset ) } : std::string_view{}; }
@@ -3750,6 +4107,7 @@ class GroupQuoteEntries : public MessageBase
    private: FieldFactor fieldFactor;
 
    public:
+   using CreditRating = FieldCreditRating; 
    bool isSetCreditRating() const { return fieldCreditRating.offset > 0; }
    FieldCreditRating::ValueType getCreditRating() const { return fieldCreditRating.getValue( _fixPtr ); }
    std::string_view getCreditRatingView() const { return fieldCreditRating.offset > 0 ? std::string_view{ _fixPtr + fieldCreditRating.offset, getValueLength( _fixPtr + fieldCreditRating.offset ) } : std::string_view{}; }
@@ -3759,6 +4117,7 @@ class GroupQuoteEntries : public MessageBase
    private: FieldCreditRating fieldCreditRating;
 
    public:
+   using InstrRegistry = FieldInstrRegistry; 
    bool isSetInstrRegistry() const { return fieldInstrRegistry.offset > 0; }
    FieldInstrRegistry::ValueType getInstrRegistry() const { return fieldInstrRegistry.getValue( _fixPtr ); }
    std::string_view getInstrRegistryView() const { return fieldInstrRegistry.offset > 0 ? std::string_view{ _fixPtr + fieldInstrRegistry.offset, getValueLength( _fixPtr + fieldInstrRegistry.offset ) } : std::string_view{}; }
@@ -3768,6 +4127,7 @@ class GroupQuoteEntries : public MessageBase
    private: FieldInstrRegistry fieldInstrRegistry;
 
    public:
+   using CountryOfIssue = FieldCountryOfIssue; 
    bool isSetCountryOfIssue() const { return fieldCountryOfIssue.offset > 0; }
    FieldCountryOfIssue::ValueType getCountryOfIssue() const { return fieldCountryOfIssue.getValue( _fixPtr ); }
    std::string_view getCountryOfIssueView() const { return fieldCountryOfIssue.offset > 0 ? std::string_view{ _fixPtr + fieldCountryOfIssue.offset, getValueLength( _fixPtr + fieldCountryOfIssue.offset ) } : std::string_view{}; }
@@ -3777,6 +4137,7 @@ class GroupQuoteEntries : public MessageBase
    private: FieldCountryOfIssue fieldCountryOfIssue;
 
    public:
+   using StateOrProvinceOfIssue = FieldStateOrProvinceOfIssue; 
    bool isSetStateOrProvinceOfIssue() const { return fieldStateOrProvinceOfIssue.offset > 0; }
    FieldStateOrProvinceOfIssue::ValueType getStateOrProvinceOfIssue() const { return fieldStateOrProvinceOfIssue.getValue( _fixPtr ); }
    std::string_view getStateOrProvinceOfIssueView() const { return fieldStateOrProvinceOfIssue.offset > 0 ? std::string_view{ _fixPtr + fieldStateOrProvinceOfIssue.offset, getValueLength( _fixPtr + fieldStateOrProvinceOfIssue.offset ) } : std::string_view{}; }
@@ -3786,6 +4147,7 @@ class GroupQuoteEntries : public MessageBase
    private: FieldStateOrProvinceOfIssue fieldStateOrProvinceOfIssue;
 
    public:
+   using LocaleOfIssue = FieldLocaleOfIssue; 
    bool isSetLocaleOfIssue() const { return fieldLocaleOfIssue.offset > 0; }
    FieldLocaleOfIssue::ValueType getLocaleOfIssue() const { return fieldLocaleOfIssue.getValue( _fixPtr ); }
    std::string_view getLocaleOfIssueView() const { return fieldLocaleOfIssue.offset > 0 ? std::string_view{ _fixPtr + fieldLocaleOfIssue.offset, getValueLength( _fixPtr + fieldLocaleOfIssue.offset ) } : std::string_view{}; }
@@ -3795,6 +4157,7 @@ class GroupQuoteEntries : public MessageBase
    private: FieldLocaleOfIssue fieldLocaleOfIssue;
 
    public:
+   using RedemptionDate = FieldRedemptionDate; 
    bool isSetRedemptionDate() const { return fieldRedemptionDate.offset > 0; }
    FieldRedemptionDate::ValueType getRedemptionDate() const { return fieldRedemptionDate.getValue( _fixPtr ); }
    std::string_view getRedemptionDateView() const { return fieldRedemptionDate.offset > 0 ? std::string_view{ _fixPtr + fieldRedemptionDate.offset, getValueLength( _fixPtr + fieldRedemptionDate.offset ) } : std::string_view{}; }
@@ -3804,6 +4167,7 @@ class GroupQuoteEntries : public MessageBase
    private: FieldRedemptionDate fieldRedemptionDate;
 
    public:
+   using StrikePrice = FieldStrikePrice; 
    bool isSetStrikePrice() const { return fieldStrikePrice.offset > 0; }
    FieldStrikePrice::ValueType getStrikePrice() const { return fieldStrikePrice.getValue( _fixPtr ); }
    std::string_view getStrikePriceView() const { return fieldStrikePrice.offset > 0 ? std::string_view{ _fixPtr + fieldStrikePrice.offset, getValueLength( _fixPtr + fieldStrikePrice.offset ) } : std::string_view{}; }
@@ -3813,6 +4177,7 @@ class GroupQuoteEntries : public MessageBase
    private: FieldStrikePrice fieldStrikePrice;
 
    public:
+   using StrikeCurrency = FieldStrikeCurrency; 
    bool isSetStrikeCurrency() const { return fieldStrikeCurrency.offset > 0; }
    FieldStrikeCurrency::ValueType getStrikeCurrency() const { return fieldStrikeCurrency.getValue( _fixPtr ); }
    std::string_view getStrikeCurrencyView() const { return fieldStrikeCurrency.offset > 0 ? std::string_view{ _fixPtr + fieldStrikeCurrency.offset, getValueLength( _fixPtr + fieldStrikeCurrency.offset ) } : std::string_view{}; }
@@ -3822,6 +4187,7 @@ class GroupQuoteEntries : public MessageBase
    private: FieldStrikeCurrency fieldStrikeCurrency;
 
    public:
+   using OptAttribute = FieldOptAttribute; 
    bool isSetOptAttribute() const { return fieldOptAttribute.offset > 0; }
    FieldOptAttribute::ValueType getOptAttribute() const { return fieldOptAttribute.getValue( _fixPtr ); }
    std::string_view getOptAttributeView() const { return fieldOptAttribute.offset > 0 ? std::string_view{ _fixPtr + fieldOptAttribute.offset, getValueLength( _fixPtr + fieldOptAttribute.offset ) } : std::string_view{}; }
@@ -3831,6 +4197,7 @@ class GroupQuoteEntries : public MessageBase
    private: FieldOptAttribute fieldOptAttribute;
 
    public:
+   using ContractMultiplier = FieldContractMultiplier; 
    bool isSetContractMultiplier() const { return fieldContractMultiplier.offset > 0; }
    FieldContractMultiplier::ValueType getContractMultiplier() const { return fieldContractMultiplier.getValue( _fixPtr ); }
    std::string_view getContractMultiplierView() const { return fieldContractMultiplier.offset > 0 ? std::string_view{ _fixPtr + fieldContractMultiplier.offset, getValueLength( _fixPtr + fieldContractMultiplier.offset ) } : std::string_view{}; }
@@ -3840,6 +4207,7 @@ class GroupQuoteEntries : public MessageBase
    private: FieldContractMultiplier fieldContractMultiplier;
 
    public:
+   using CouponRate = FieldCouponRate; 
    bool isSetCouponRate() const { return fieldCouponRate.offset > 0; }
    FieldCouponRate::ValueType getCouponRate() const { return fieldCouponRate.getValue( _fixPtr ); }
    std::string_view getCouponRateView() const { return fieldCouponRate.offset > 0 ? std::string_view{ _fixPtr + fieldCouponRate.offset, getValueLength( _fixPtr + fieldCouponRate.offset ) } : std::string_view{}; }
@@ -3849,6 +4217,7 @@ class GroupQuoteEntries : public MessageBase
    private: FieldCouponRate fieldCouponRate;
 
    public:
+   using SecurityExchange = FieldSecurityExchange; 
    bool isSetSecurityExchange() const { return fieldSecurityExchange.offset > 0; }
    FieldSecurityExchange::ValueType getSecurityExchange() const { return fieldSecurityExchange.getValue( _fixPtr ); }
    std::string_view getSecurityExchangeView() const { return fieldSecurityExchange.offset > 0 ? std::string_view{ _fixPtr + fieldSecurityExchange.offset, getValueLength( _fixPtr + fieldSecurityExchange.offset ) } : std::string_view{}; }
@@ -3858,6 +4227,7 @@ class GroupQuoteEntries : public MessageBase
    private: FieldSecurityExchange fieldSecurityExchange;
 
    public:
+   using Issuer = FieldIssuer; 
    bool isSetIssuer() const { return fieldIssuer.offset > 0; }
    FieldIssuer::ValueType getIssuer() const { return fieldIssuer.getValue( _fixPtr ); }
    std::string_view getIssuerView() const { return fieldIssuer.offset > 0 ? std::string_view{ _fixPtr + fieldIssuer.offset, getValueLength( _fixPtr + fieldIssuer.offset ) } : std::string_view{}; }
@@ -3867,6 +4237,7 @@ class GroupQuoteEntries : public MessageBase
    private: FieldIssuer fieldIssuer;
 
    public:
+   using EncodedIssuerLen = FieldEncodedIssuerLen; 
    bool isSetEncodedIssuerLen() const { return fieldEncodedIssuerLen.offset > 0; }
    FieldEncodedIssuerLen::ValueType getEncodedIssuerLen() const { return fieldEncodedIssuerLen.getValue( _fixPtr ); }
    std::string_view getEncodedIssuerLenView() const { return fieldEncodedIssuerLen.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedIssuerLen.offset, getValueLength( _fixPtr + fieldEncodedIssuerLen.offset ) } : std::string_view{}; }
@@ -3876,6 +4247,7 @@ class GroupQuoteEntries : public MessageBase
    private: FieldEncodedIssuerLen fieldEncodedIssuerLen;
 
    public:
+   using EncodedIssuer = FieldEncodedIssuer; 
    bool isSetEncodedIssuer() const { return fieldEncodedIssuer.offset > 0; }
    FieldEncodedIssuer::ValueType getEncodedIssuer() const { return fieldEncodedIssuer.getValue( _fixPtr ); }
    std::string_view getEncodedIssuerView() const { return fieldEncodedIssuer.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedIssuer.offset, getValueLength( _fixPtr + fieldEncodedIssuer.offset ) } : std::string_view{}; }
@@ -3885,6 +4257,7 @@ class GroupQuoteEntries : public MessageBase
    private: FieldEncodedIssuer fieldEncodedIssuer;
 
    public:
+   using SecurityDesc = FieldSecurityDesc; 
    bool isSetSecurityDesc() const { return fieldSecurityDesc.offset > 0; }
    FieldSecurityDesc::ValueType getSecurityDesc() const { return fieldSecurityDesc.getValue( _fixPtr ); }
    std::string_view getSecurityDescView() const { return fieldSecurityDesc.offset > 0 ? std::string_view{ _fixPtr + fieldSecurityDesc.offset, getValueLength( _fixPtr + fieldSecurityDesc.offset ) } : std::string_view{}; }
@@ -3894,6 +4267,7 @@ class GroupQuoteEntries : public MessageBase
    private: FieldSecurityDesc fieldSecurityDesc;
 
    public:
+   using EncodedSecurityDescLen = FieldEncodedSecurityDescLen; 
    bool isSetEncodedSecurityDescLen() const { return fieldEncodedSecurityDescLen.offset > 0; }
    FieldEncodedSecurityDescLen::ValueType getEncodedSecurityDescLen() const { return fieldEncodedSecurityDescLen.getValue( _fixPtr ); }
    std::string_view getEncodedSecurityDescLenView() const { return fieldEncodedSecurityDescLen.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedSecurityDescLen.offset, getValueLength( _fixPtr + fieldEncodedSecurityDescLen.offset ) } : std::string_view{}; }
@@ -3903,6 +4277,7 @@ class GroupQuoteEntries : public MessageBase
    private: FieldEncodedSecurityDescLen fieldEncodedSecurityDescLen;
 
    public:
+   using EncodedSecurityDesc = FieldEncodedSecurityDesc; 
    bool isSetEncodedSecurityDesc() const { return fieldEncodedSecurityDesc.offset > 0; }
    FieldEncodedSecurityDesc::ValueType getEncodedSecurityDesc() const { return fieldEncodedSecurityDesc.getValue( _fixPtr ); }
    std::string_view getEncodedSecurityDescView() const { return fieldEncodedSecurityDesc.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedSecurityDesc.offset, getValueLength( _fixPtr + fieldEncodedSecurityDesc.offset ) } : std::string_view{}; }
@@ -3912,6 +4287,7 @@ class GroupQuoteEntries : public MessageBase
    private: FieldEncodedSecurityDesc fieldEncodedSecurityDesc;
 
    public:
+   using Pool = FieldPool; 
    bool isSetPool() const { return fieldPool.offset > 0; }
    FieldPool::ValueType getPool() const { return fieldPool.getValue( _fixPtr ); }
    std::string_view getPoolView() const { return fieldPool.offset > 0 ? std::string_view{ _fixPtr + fieldPool.offset, getValueLength( _fixPtr + fieldPool.offset ) } : std::string_view{}; }
@@ -3921,6 +4297,7 @@ class GroupQuoteEntries : public MessageBase
    private: FieldPool fieldPool;
 
    public:
+   using ContractSettlMonth = FieldContractSettlMonth; 
    bool isSetContractSettlMonth() const { return fieldContractSettlMonth.offset > 0; }
    FieldContractSettlMonth::ValueType getContractSettlMonth() const { return fieldContractSettlMonth.getValue( _fixPtr ); }
    std::string_view getContractSettlMonthView() const { return fieldContractSettlMonth.offset > 0 ? std::string_view{ _fixPtr + fieldContractSettlMonth.offset, getValueLength( _fixPtr + fieldContractSettlMonth.offset ) } : std::string_view{}; }
@@ -3930,6 +4307,7 @@ class GroupQuoteEntries : public MessageBase
    private: FieldContractSettlMonth fieldContractSettlMonth;
 
    public:
+   using CPProgram = FieldCPProgram; 
    bool isSetCPProgram() const { return fieldCPProgram.offset > 0; }
    FieldCPProgram::ValueType getCPProgram() const { return fieldCPProgram.getValue( _fixPtr ); }
    std::string_view getCPProgramView() const { return fieldCPProgram.offset > 0 ? std::string_view{ _fixPtr + fieldCPProgram.offset, getValueLength( _fixPtr + fieldCPProgram.offset ) } : std::string_view{}; }
@@ -3939,6 +4317,7 @@ class GroupQuoteEntries : public MessageBase
    private: FieldCPProgram fieldCPProgram;
 
    public:
+   using CPRegType = FieldCPRegType; 
    bool isSetCPRegType() const { return fieldCPRegType.offset > 0; }
    FieldCPRegType::ValueType getCPRegType() const { return fieldCPRegType.getValue( _fixPtr ); }
    std::string_view getCPRegTypeView() const { return fieldCPRegType.offset > 0 ? std::string_view{ _fixPtr + fieldCPRegType.offset, getValueLength( _fixPtr + fieldCPRegType.offset ) } : std::string_view{}; }
@@ -3948,6 +4327,7 @@ class GroupQuoteEntries : public MessageBase
    private: FieldCPRegType fieldCPRegType;
 
    public:
+   using NoEvents = FieldNoEvents; 
    bool isSetNoEvents() const { return fieldNoEvents.offset > 0; }
    FieldNoEvents::ValueType getNoEvents() const { return fieldNoEvents.getValue( _fixPtr ); }
    std::string_view getNoEventsView() const { return fieldNoEvents.offset > 0 ? std::string_view{ _fixPtr + fieldNoEvents.offset, getValueLength( _fixPtr + fieldNoEvents.offset ) } : std::string_view{}; }
@@ -3962,6 +4342,7 @@ class GroupQuoteEntries : public MessageBase
    private: GroupEvents::Array groupsEvents{ 10 };
 
    public:
+   using DatedDate = FieldDatedDate; 
    bool isSetDatedDate() const { return fieldDatedDate.offset > 0; }
    FieldDatedDate::ValueType getDatedDate() const { return fieldDatedDate.getValue( _fixPtr ); }
    std::string_view getDatedDateView() const { return fieldDatedDate.offset > 0 ? std::string_view{ _fixPtr + fieldDatedDate.offset, getValueLength( _fixPtr + fieldDatedDate.offset ) } : std::string_view{}; }
@@ -3971,6 +4352,7 @@ class GroupQuoteEntries : public MessageBase
    private: FieldDatedDate fieldDatedDate;
 
    public:
+   using InterestAccrualDate = FieldInterestAccrualDate; 
    bool isSetInterestAccrualDate() const { return fieldInterestAccrualDate.offset > 0; }
    FieldInterestAccrualDate::ValueType getInterestAccrualDate() const { return fieldInterestAccrualDate.getValue( _fixPtr ); }
    std::string_view getInterestAccrualDateView() const { return fieldInterestAccrualDate.offset > 0 ? std::string_view{ _fixPtr + fieldInterestAccrualDate.offset, getValueLength( _fixPtr + fieldInterestAccrualDate.offset ) } : std::string_view{}; }
@@ -3980,6 +4362,7 @@ class GroupQuoteEntries : public MessageBase
    private: FieldInterestAccrualDate fieldInterestAccrualDate;
 
    public:
+   using AgreementDesc = FieldAgreementDesc; 
    bool isSetAgreementDesc() const { return fieldAgreementDesc.offset > 0; }
    FieldAgreementDesc::ValueType getAgreementDesc() const { return fieldAgreementDesc.getValue( _fixPtr ); }
    std::string_view getAgreementDescView() const { return fieldAgreementDesc.offset > 0 ? std::string_view{ _fixPtr + fieldAgreementDesc.offset, getValueLength( _fixPtr + fieldAgreementDesc.offset ) } : std::string_view{}; }
@@ -3989,6 +4372,7 @@ class GroupQuoteEntries : public MessageBase
    private: FieldAgreementDesc fieldAgreementDesc;
 
    public:
+   using AgreementID = FieldAgreementID; 
    bool isSetAgreementID() const { return fieldAgreementID.offset > 0; }
    FieldAgreementID::ValueType getAgreementID() const { return fieldAgreementID.getValue( _fixPtr ); }
    std::string_view getAgreementIDView() const { return fieldAgreementID.offset > 0 ? std::string_view{ _fixPtr + fieldAgreementID.offset, getValueLength( _fixPtr + fieldAgreementID.offset ) } : std::string_view{}; }
@@ -3998,6 +4382,7 @@ class GroupQuoteEntries : public MessageBase
    private: FieldAgreementID fieldAgreementID;
 
    public:
+   using AgreementDate = FieldAgreementDate; 
    bool isSetAgreementDate() const { return fieldAgreementDate.offset > 0; }
    FieldAgreementDate::ValueType getAgreementDate() const { return fieldAgreementDate.getValue( _fixPtr ); }
    std::string_view getAgreementDateView() const { return fieldAgreementDate.offset > 0 ? std::string_view{ _fixPtr + fieldAgreementDate.offset, getValueLength( _fixPtr + fieldAgreementDate.offset ) } : std::string_view{}; }
@@ -4007,6 +4392,7 @@ class GroupQuoteEntries : public MessageBase
    private: FieldAgreementDate fieldAgreementDate;
 
    public:
+   using AgreementCurrency = FieldAgreementCurrency; 
    bool isSetAgreementCurrency() const { return fieldAgreementCurrency.offset > 0; }
    FieldAgreementCurrency::ValueType getAgreementCurrency() const { return fieldAgreementCurrency.getValue( _fixPtr ); }
    std::string_view getAgreementCurrencyView() const { return fieldAgreementCurrency.offset > 0 ? std::string_view{ _fixPtr + fieldAgreementCurrency.offset, getValueLength( _fixPtr + fieldAgreementCurrency.offset ) } : std::string_view{}; }
@@ -4016,6 +4402,7 @@ class GroupQuoteEntries : public MessageBase
    private: FieldAgreementCurrency fieldAgreementCurrency;
 
    public:
+   using TerminationType = FieldTerminationType; 
    bool isSetTerminationType() const { return fieldTerminationType.offset > 0; }
    FieldTerminationType::ValueType getTerminationType() const { return fieldTerminationType.getValue( _fixPtr ); }
    std::string_view getTerminationTypeView() const { return fieldTerminationType.offset > 0 ? std::string_view{ _fixPtr + fieldTerminationType.offset, getValueLength( _fixPtr + fieldTerminationType.offset ) } : std::string_view{}; }
@@ -4025,6 +4412,7 @@ class GroupQuoteEntries : public MessageBase
    private: FieldTerminationType fieldTerminationType;
 
    public:
+   using StartDate = FieldStartDate; 
    bool isSetStartDate() const { return fieldStartDate.offset > 0; }
    FieldStartDate::ValueType getStartDate() const { return fieldStartDate.getValue( _fixPtr ); }
    std::string_view getStartDateView() const { return fieldStartDate.offset > 0 ? std::string_view{ _fixPtr + fieldStartDate.offset, getValueLength( _fixPtr + fieldStartDate.offset ) } : std::string_view{}; }
@@ -4034,6 +4422,7 @@ class GroupQuoteEntries : public MessageBase
    private: FieldStartDate fieldStartDate;
 
    public:
+   using EndDate = FieldEndDate; 
    bool isSetEndDate() const { return fieldEndDate.offset > 0; }
    FieldEndDate::ValueType getEndDate() const { return fieldEndDate.getValue( _fixPtr ); }
    std::string_view getEndDateView() const { return fieldEndDate.offset > 0 ? std::string_view{ _fixPtr + fieldEndDate.offset, getValueLength( _fixPtr + fieldEndDate.offset ) } : std::string_view{}; }
@@ -4043,6 +4432,7 @@ class GroupQuoteEntries : public MessageBase
    private: FieldEndDate fieldEndDate;
 
    public:
+   using DeliveryType = FieldDeliveryType; 
    bool isSetDeliveryType() const { return fieldDeliveryType.offset > 0; }
    FieldDeliveryType::ValueType getDeliveryType() const { return fieldDeliveryType.getValue( _fixPtr ); }
    std::string_view getDeliveryTypeView() const { return fieldDeliveryType.offset > 0 ? std::string_view{ _fixPtr + fieldDeliveryType.offset, getValueLength( _fixPtr + fieldDeliveryType.offset ) } : std::string_view{}; }
@@ -4052,6 +4442,7 @@ class GroupQuoteEntries : public MessageBase
    private: FieldDeliveryType fieldDeliveryType;
 
    public:
+   using MarginRatio = FieldMarginRatio; 
    bool isSetMarginRatio() const { return fieldMarginRatio.offset > 0; }
    FieldMarginRatio::ValueType getMarginRatio() const { return fieldMarginRatio.getValue( _fixPtr ); }
    std::string_view getMarginRatioView() const { return fieldMarginRatio.offset > 0 ? std::string_view{ _fixPtr + fieldMarginRatio.offset, getValueLength( _fixPtr + fieldMarginRatio.offset ) } : std::string_view{}; }
@@ -4061,6 +4452,7 @@ class GroupQuoteEntries : public MessageBase
    private: FieldMarginRatio fieldMarginRatio;
 
    public:
+   using NoUnderlyings = FieldNoUnderlyings; 
    bool isSetNoUnderlyings() const { return fieldNoUnderlyings.offset > 0; }
    FieldNoUnderlyings::ValueType getNoUnderlyings() const { return fieldNoUnderlyings.getValue( _fixPtr ); }
    std::string_view getNoUnderlyingsView() const { return fieldNoUnderlyings.offset > 0 ? std::string_view{ _fixPtr + fieldNoUnderlyings.offset, getValueLength( _fixPtr + fieldNoUnderlyings.offset ) } : std::string_view{}; }
@@ -4075,6 +4467,7 @@ class GroupQuoteEntries : public MessageBase
    private: GroupUnderlyings::Array groupsUnderlyings{ 10 };
 
    public:
+   using NoLegs = FieldNoLegs; 
    bool isSetNoLegs() const { return fieldNoLegs.offset > 0; }
    FieldNoLegs::ValueType getNoLegs() const { return fieldNoLegs.getValue( _fixPtr ); }
    std::string_view getNoLegsView() const { return fieldNoLegs.offset > 0 ? std::string_view{ _fixPtr + fieldNoLegs.offset, getValueLength( _fixPtr + fieldNoLegs.offset ) } : std::string_view{}; }
@@ -4105,6 +4498,7 @@ class GroupQuoteSets : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<GroupQuoteSets,0,FIELDS...>(*this,tpl); return tpl; };
+   template< typename... FIELDS > std::tuple<typeExists<FIELDS>... > getPresenceOf() const { std::tuple< typeExists<FIELDS>... > tpl{}; buildPresenceTuple<GroupQuoteSets,0,FIELDS...>(*this,tpl); return tpl; };
    bool isFieldSet( tag_t tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
@@ -4114,6 +4508,7 @@ class GroupQuoteSets : public MessageBase
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
+   using QuoteSetID = FieldQuoteSetID; 
    bool isSetQuoteSetID() const { return fieldQuoteSetID.offset > 0; }
    FieldQuoteSetID::ValueType getQuoteSetID() const { return fieldQuoteSetID.getValue( _fixPtr ); }
    std::string_view getQuoteSetIDView() const { return fieldQuoteSetID.offset > 0 ? std::string_view{ _fixPtr + fieldQuoteSetID.offset, getValueLength( _fixPtr + fieldQuoteSetID.offset ) } : std::string_view{}; }
@@ -4123,6 +4518,7 @@ class GroupQuoteSets : public MessageBase
    private: FieldQuoteSetID fieldQuoteSetID;
 
    public:
+   using UnderlyingSymbol = FieldUnderlyingSymbol; 
    bool isSetUnderlyingSymbol() const { return fieldUnderlyingSymbol.offset > 0; }
    FieldUnderlyingSymbol::ValueType getUnderlyingSymbol() const { return fieldUnderlyingSymbol.getValue( _fixPtr ); }
    std::string_view getUnderlyingSymbolView() const { return fieldUnderlyingSymbol.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingSymbol.offset, getValueLength( _fixPtr + fieldUnderlyingSymbol.offset ) } : std::string_view{}; }
@@ -4132,6 +4528,7 @@ class GroupQuoteSets : public MessageBase
    private: FieldUnderlyingSymbol fieldUnderlyingSymbol;
 
    public:
+   using UnderlyingSymbolSfx = FieldUnderlyingSymbolSfx; 
    bool isSetUnderlyingSymbolSfx() const { return fieldUnderlyingSymbolSfx.offset > 0; }
    FieldUnderlyingSymbolSfx::ValueType getUnderlyingSymbolSfx() const { return fieldUnderlyingSymbolSfx.getValue( _fixPtr ); }
    std::string_view getUnderlyingSymbolSfxView() const { return fieldUnderlyingSymbolSfx.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingSymbolSfx.offset, getValueLength( _fixPtr + fieldUnderlyingSymbolSfx.offset ) } : std::string_view{}; }
@@ -4141,6 +4538,7 @@ class GroupQuoteSets : public MessageBase
    private: FieldUnderlyingSymbolSfx fieldUnderlyingSymbolSfx;
 
    public:
+   using UnderlyingSecurityID = FieldUnderlyingSecurityID; 
    bool isSetUnderlyingSecurityID() const { return fieldUnderlyingSecurityID.offset > 0; }
    FieldUnderlyingSecurityID::ValueType getUnderlyingSecurityID() const { return fieldUnderlyingSecurityID.getValue( _fixPtr ); }
    std::string_view getUnderlyingSecurityIDView() const { return fieldUnderlyingSecurityID.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingSecurityID.offset, getValueLength( _fixPtr + fieldUnderlyingSecurityID.offset ) } : std::string_view{}; }
@@ -4150,6 +4548,7 @@ class GroupQuoteSets : public MessageBase
    private: FieldUnderlyingSecurityID fieldUnderlyingSecurityID;
 
    public:
+   using UnderlyingSecurityIDSource = FieldUnderlyingSecurityIDSource; 
    bool isSetUnderlyingSecurityIDSource() const { return fieldUnderlyingSecurityIDSource.offset > 0; }
    FieldUnderlyingSecurityIDSource::ValueType getUnderlyingSecurityIDSource() const { return fieldUnderlyingSecurityIDSource.getValue( _fixPtr ); }
    std::string_view getUnderlyingSecurityIDSourceView() const { return fieldUnderlyingSecurityIDSource.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingSecurityIDSource.offset, getValueLength( _fixPtr + fieldUnderlyingSecurityIDSource.offset ) } : std::string_view{}; }
@@ -4159,6 +4558,7 @@ class GroupQuoteSets : public MessageBase
    private: FieldUnderlyingSecurityIDSource fieldUnderlyingSecurityIDSource;
 
    public:
+   using NoUnderlyingSecurityAltID = FieldNoUnderlyingSecurityAltID; 
    bool isSetNoUnderlyingSecurityAltID() const { return fieldNoUnderlyingSecurityAltID.offset > 0; }
    FieldNoUnderlyingSecurityAltID::ValueType getNoUnderlyingSecurityAltID() const { return fieldNoUnderlyingSecurityAltID.getValue( _fixPtr ); }
    std::string_view getNoUnderlyingSecurityAltIDView() const { return fieldNoUnderlyingSecurityAltID.offset > 0 ? std::string_view{ _fixPtr + fieldNoUnderlyingSecurityAltID.offset, getValueLength( _fixPtr + fieldNoUnderlyingSecurityAltID.offset ) } : std::string_view{}; }
@@ -4173,6 +4573,7 @@ class GroupQuoteSets : public MessageBase
    private: GroupUnderlyingSecurityAltID::Array groupsUnderlyingSecurityAltID{ 10 };
 
    public:
+   using UnderlyingProduct = FieldUnderlyingProduct; 
    bool isSetUnderlyingProduct() const { return fieldUnderlyingProduct.offset > 0; }
    FieldUnderlyingProduct::ValueType getUnderlyingProduct() const { return fieldUnderlyingProduct.getValue( _fixPtr ); }
    std::string_view getUnderlyingProductView() const { return fieldUnderlyingProduct.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingProduct.offset, getValueLength( _fixPtr + fieldUnderlyingProduct.offset ) } : std::string_view{}; }
@@ -4182,6 +4583,7 @@ class GroupQuoteSets : public MessageBase
    private: FieldUnderlyingProduct fieldUnderlyingProduct;
 
    public:
+   using UnderlyingCFICode = FieldUnderlyingCFICode; 
    bool isSetUnderlyingCFICode() const { return fieldUnderlyingCFICode.offset > 0; }
    FieldUnderlyingCFICode::ValueType getUnderlyingCFICode() const { return fieldUnderlyingCFICode.getValue( _fixPtr ); }
    std::string_view getUnderlyingCFICodeView() const { return fieldUnderlyingCFICode.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingCFICode.offset, getValueLength( _fixPtr + fieldUnderlyingCFICode.offset ) } : std::string_view{}; }
@@ -4191,6 +4593,7 @@ class GroupQuoteSets : public MessageBase
    private: FieldUnderlyingCFICode fieldUnderlyingCFICode;
 
    public:
+   using UnderlyingSecurityType = FieldUnderlyingSecurityType; 
    bool isSetUnderlyingSecurityType() const { return fieldUnderlyingSecurityType.offset > 0; }
    FieldUnderlyingSecurityType::ValueType getUnderlyingSecurityType() const { return fieldUnderlyingSecurityType.getValue( _fixPtr ); }
    std::string_view getUnderlyingSecurityTypeView() const { return fieldUnderlyingSecurityType.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingSecurityType.offset, getValueLength( _fixPtr + fieldUnderlyingSecurityType.offset ) } : std::string_view{}; }
@@ -4200,6 +4603,7 @@ class GroupQuoteSets : public MessageBase
    private: FieldUnderlyingSecurityType fieldUnderlyingSecurityType;
 
    public:
+   using UnderlyingSecuritySubType = FieldUnderlyingSecuritySubType; 
    bool isSetUnderlyingSecuritySubType() const { return fieldUnderlyingSecuritySubType.offset > 0; }
    FieldUnderlyingSecuritySubType::ValueType getUnderlyingSecuritySubType() const { return fieldUnderlyingSecuritySubType.getValue( _fixPtr ); }
    std::string_view getUnderlyingSecuritySubTypeView() const { return fieldUnderlyingSecuritySubType.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingSecuritySubType.offset, getValueLength( _fixPtr + fieldUnderlyingSecuritySubType.offset ) } : std::string_view{}; }
@@ -4209,6 +4613,7 @@ class GroupQuoteSets : public MessageBase
    private: FieldUnderlyingSecuritySubType fieldUnderlyingSecuritySubType;
 
    public:
+   using UnderlyingMaturityMonthYear = FieldUnderlyingMaturityMonthYear; 
    bool isSetUnderlyingMaturityMonthYear() const { return fieldUnderlyingMaturityMonthYear.offset > 0; }
    FieldUnderlyingMaturityMonthYear::ValueType getUnderlyingMaturityMonthYear() const { return fieldUnderlyingMaturityMonthYear.getValue( _fixPtr ); }
    std::string_view getUnderlyingMaturityMonthYearView() const { return fieldUnderlyingMaturityMonthYear.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingMaturityMonthYear.offset, getValueLength( _fixPtr + fieldUnderlyingMaturityMonthYear.offset ) } : std::string_view{}; }
@@ -4218,6 +4623,7 @@ class GroupQuoteSets : public MessageBase
    private: FieldUnderlyingMaturityMonthYear fieldUnderlyingMaturityMonthYear;
 
    public:
+   using UnderlyingMaturityDate = FieldUnderlyingMaturityDate; 
    bool isSetUnderlyingMaturityDate() const { return fieldUnderlyingMaturityDate.offset > 0; }
    FieldUnderlyingMaturityDate::ValueType getUnderlyingMaturityDate() const { return fieldUnderlyingMaturityDate.getValue( _fixPtr ); }
    std::string_view getUnderlyingMaturityDateView() const { return fieldUnderlyingMaturityDate.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingMaturityDate.offset, getValueLength( _fixPtr + fieldUnderlyingMaturityDate.offset ) } : std::string_view{}; }
@@ -4227,6 +4633,7 @@ class GroupQuoteSets : public MessageBase
    private: FieldUnderlyingMaturityDate fieldUnderlyingMaturityDate;
 
    public:
+   using UnderlyingPutOrCall = FieldUnderlyingPutOrCall; 
    bool isSetUnderlyingPutOrCall() const { return fieldUnderlyingPutOrCall.offset > 0; }
    FieldUnderlyingPutOrCall::ValueType getUnderlyingPutOrCall() const { return fieldUnderlyingPutOrCall.getValue( _fixPtr ); }
    std::string_view getUnderlyingPutOrCallView() const { return fieldUnderlyingPutOrCall.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingPutOrCall.offset, getValueLength( _fixPtr + fieldUnderlyingPutOrCall.offset ) } : std::string_view{}; }
@@ -4236,6 +4643,7 @@ class GroupQuoteSets : public MessageBase
    private: FieldUnderlyingPutOrCall fieldUnderlyingPutOrCall;
 
    public:
+   using UnderlyingCouponPaymentDate = FieldUnderlyingCouponPaymentDate; 
    bool isSetUnderlyingCouponPaymentDate() const { return fieldUnderlyingCouponPaymentDate.offset > 0; }
    FieldUnderlyingCouponPaymentDate::ValueType getUnderlyingCouponPaymentDate() const { return fieldUnderlyingCouponPaymentDate.getValue( _fixPtr ); }
    std::string_view getUnderlyingCouponPaymentDateView() const { return fieldUnderlyingCouponPaymentDate.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingCouponPaymentDate.offset, getValueLength( _fixPtr + fieldUnderlyingCouponPaymentDate.offset ) } : std::string_view{}; }
@@ -4245,6 +4653,7 @@ class GroupQuoteSets : public MessageBase
    private: FieldUnderlyingCouponPaymentDate fieldUnderlyingCouponPaymentDate;
 
    public:
+   using UnderlyingIssueDate = FieldUnderlyingIssueDate; 
    bool isSetUnderlyingIssueDate() const { return fieldUnderlyingIssueDate.offset > 0; }
    FieldUnderlyingIssueDate::ValueType getUnderlyingIssueDate() const { return fieldUnderlyingIssueDate.getValue( _fixPtr ); }
    std::string_view getUnderlyingIssueDateView() const { return fieldUnderlyingIssueDate.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingIssueDate.offset, getValueLength( _fixPtr + fieldUnderlyingIssueDate.offset ) } : std::string_view{}; }
@@ -4254,6 +4663,7 @@ class GroupQuoteSets : public MessageBase
    private: FieldUnderlyingIssueDate fieldUnderlyingIssueDate;
 
    public:
+   using UnderlyingRepoCollateralSecurityType = FieldUnderlyingRepoCollateralSecurityType; 
    bool isSetUnderlyingRepoCollateralSecurityType() const { return fieldUnderlyingRepoCollateralSecurityType.offset > 0; }
    FieldUnderlyingRepoCollateralSecurityType::ValueType getUnderlyingRepoCollateralSecurityType() const { return fieldUnderlyingRepoCollateralSecurityType.getValue( _fixPtr ); }
    std::string_view getUnderlyingRepoCollateralSecurityTypeView() const { return fieldUnderlyingRepoCollateralSecurityType.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingRepoCollateralSecurityType.offset, getValueLength( _fixPtr + fieldUnderlyingRepoCollateralSecurityType.offset ) } : std::string_view{}; }
@@ -4263,6 +4673,7 @@ class GroupQuoteSets : public MessageBase
    private: FieldUnderlyingRepoCollateralSecurityType fieldUnderlyingRepoCollateralSecurityType;
 
    public:
+   using UnderlyingRepurchaseTerm = FieldUnderlyingRepurchaseTerm; 
    bool isSetUnderlyingRepurchaseTerm() const { return fieldUnderlyingRepurchaseTerm.offset > 0; }
    FieldUnderlyingRepurchaseTerm::ValueType getUnderlyingRepurchaseTerm() const { return fieldUnderlyingRepurchaseTerm.getValue( _fixPtr ); }
    std::string_view getUnderlyingRepurchaseTermView() const { return fieldUnderlyingRepurchaseTerm.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingRepurchaseTerm.offset, getValueLength( _fixPtr + fieldUnderlyingRepurchaseTerm.offset ) } : std::string_view{}; }
@@ -4272,6 +4683,7 @@ class GroupQuoteSets : public MessageBase
    private: FieldUnderlyingRepurchaseTerm fieldUnderlyingRepurchaseTerm;
 
    public:
+   using UnderlyingRepurchaseRate = FieldUnderlyingRepurchaseRate; 
    bool isSetUnderlyingRepurchaseRate() const { return fieldUnderlyingRepurchaseRate.offset > 0; }
    FieldUnderlyingRepurchaseRate::ValueType getUnderlyingRepurchaseRate() const { return fieldUnderlyingRepurchaseRate.getValue( _fixPtr ); }
    std::string_view getUnderlyingRepurchaseRateView() const { return fieldUnderlyingRepurchaseRate.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingRepurchaseRate.offset, getValueLength( _fixPtr + fieldUnderlyingRepurchaseRate.offset ) } : std::string_view{}; }
@@ -4281,6 +4693,7 @@ class GroupQuoteSets : public MessageBase
    private: FieldUnderlyingRepurchaseRate fieldUnderlyingRepurchaseRate;
 
    public:
+   using UnderlyingFactor = FieldUnderlyingFactor; 
    bool isSetUnderlyingFactor() const { return fieldUnderlyingFactor.offset > 0; }
    FieldUnderlyingFactor::ValueType getUnderlyingFactor() const { return fieldUnderlyingFactor.getValue( _fixPtr ); }
    std::string_view getUnderlyingFactorView() const { return fieldUnderlyingFactor.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingFactor.offset, getValueLength( _fixPtr + fieldUnderlyingFactor.offset ) } : std::string_view{}; }
@@ -4290,6 +4703,7 @@ class GroupQuoteSets : public MessageBase
    private: FieldUnderlyingFactor fieldUnderlyingFactor;
 
    public:
+   using UnderlyingCreditRating = FieldUnderlyingCreditRating; 
    bool isSetUnderlyingCreditRating() const { return fieldUnderlyingCreditRating.offset > 0; }
    FieldUnderlyingCreditRating::ValueType getUnderlyingCreditRating() const { return fieldUnderlyingCreditRating.getValue( _fixPtr ); }
    std::string_view getUnderlyingCreditRatingView() const { return fieldUnderlyingCreditRating.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingCreditRating.offset, getValueLength( _fixPtr + fieldUnderlyingCreditRating.offset ) } : std::string_view{}; }
@@ -4299,6 +4713,7 @@ class GroupQuoteSets : public MessageBase
    private: FieldUnderlyingCreditRating fieldUnderlyingCreditRating;
 
    public:
+   using UnderlyingInstrRegistry = FieldUnderlyingInstrRegistry; 
    bool isSetUnderlyingInstrRegistry() const { return fieldUnderlyingInstrRegistry.offset > 0; }
    FieldUnderlyingInstrRegistry::ValueType getUnderlyingInstrRegistry() const { return fieldUnderlyingInstrRegistry.getValue( _fixPtr ); }
    std::string_view getUnderlyingInstrRegistryView() const { return fieldUnderlyingInstrRegistry.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingInstrRegistry.offset, getValueLength( _fixPtr + fieldUnderlyingInstrRegistry.offset ) } : std::string_view{}; }
@@ -4308,6 +4723,7 @@ class GroupQuoteSets : public MessageBase
    private: FieldUnderlyingInstrRegistry fieldUnderlyingInstrRegistry;
 
    public:
+   using UnderlyingCountryOfIssue = FieldUnderlyingCountryOfIssue; 
    bool isSetUnderlyingCountryOfIssue() const { return fieldUnderlyingCountryOfIssue.offset > 0; }
    FieldUnderlyingCountryOfIssue::ValueType getUnderlyingCountryOfIssue() const { return fieldUnderlyingCountryOfIssue.getValue( _fixPtr ); }
    std::string_view getUnderlyingCountryOfIssueView() const { return fieldUnderlyingCountryOfIssue.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingCountryOfIssue.offset, getValueLength( _fixPtr + fieldUnderlyingCountryOfIssue.offset ) } : std::string_view{}; }
@@ -4317,6 +4733,7 @@ class GroupQuoteSets : public MessageBase
    private: FieldUnderlyingCountryOfIssue fieldUnderlyingCountryOfIssue;
 
    public:
+   using UnderlyingStateOrProvinceOfIssue = FieldUnderlyingStateOrProvinceOfIssue; 
    bool isSetUnderlyingStateOrProvinceOfIssue() const { return fieldUnderlyingStateOrProvinceOfIssue.offset > 0; }
    FieldUnderlyingStateOrProvinceOfIssue::ValueType getUnderlyingStateOrProvinceOfIssue() const { return fieldUnderlyingStateOrProvinceOfIssue.getValue( _fixPtr ); }
    std::string_view getUnderlyingStateOrProvinceOfIssueView() const { return fieldUnderlyingStateOrProvinceOfIssue.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingStateOrProvinceOfIssue.offset, getValueLength( _fixPtr + fieldUnderlyingStateOrProvinceOfIssue.offset ) } : std::string_view{}; }
@@ -4326,6 +4743,7 @@ class GroupQuoteSets : public MessageBase
    private: FieldUnderlyingStateOrProvinceOfIssue fieldUnderlyingStateOrProvinceOfIssue;
 
    public:
+   using UnderlyingLocaleOfIssue = FieldUnderlyingLocaleOfIssue; 
    bool isSetUnderlyingLocaleOfIssue() const { return fieldUnderlyingLocaleOfIssue.offset > 0; }
    FieldUnderlyingLocaleOfIssue::ValueType getUnderlyingLocaleOfIssue() const { return fieldUnderlyingLocaleOfIssue.getValue( _fixPtr ); }
    std::string_view getUnderlyingLocaleOfIssueView() const { return fieldUnderlyingLocaleOfIssue.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingLocaleOfIssue.offset, getValueLength( _fixPtr + fieldUnderlyingLocaleOfIssue.offset ) } : std::string_view{}; }
@@ -4335,6 +4753,7 @@ class GroupQuoteSets : public MessageBase
    private: FieldUnderlyingLocaleOfIssue fieldUnderlyingLocaleOfIssue;
 
    public:
+   using UnderlyingRedemptionDate = FieldUnderlyingRedemptionDate; 
    bool isSetUnderlyingRedemptionDate() const { return fieldUnderlyingRedemptionDate.offset > 0; }
    FieldUnderlyingRedemptionDate::ValueType getUnderlyingRedemptionDate() const { return fieldUnderlyingRedemptionDate.getValue( _fixPtr ); }
    std::string_view getUnderlyingRedemptionDateView() const { return fieldUnderlyingRedemptionDate.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingRedemptionDate.offset, getValueLength( _fixPtr + fieldUnderlyingRedemptionDate.offset ) } : std::string_view{}; }
@@ -4344,6 +4763,7 @@ class GroupQuoteSets : public MessageBase
    private: FieldUnderlyingRedemptionDate fieldUnderlyingRedemptionDate;
 
    public:
+   using UnderlyingStrikePrice = FieldUnderlyingStrikePrice; 
    bool isSetUnderlyingStrikePrice() const { return fieldUnderlyingStrikePrice.offset > 0; }
    FieldUnderlyingStrikePrice::ValueType getUnderlyingStrikePrice() const { return fieldUnderlyingStrikePrice.getValue( _fixPtr ); }
    std::string_view getUnderlyingStrikePriceView() const { return fieldUnderlyingStrikePrice.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingStrikePrice.offset, getValueLength( _fixPtr + fieldUnderlyingStrikePrice.offset ) } : std::string_view{}; }
@@ -4353,6 +4773,7 @@ class GroupQuoteSets : public MessageBase
    private: FieldUnderlyingStrikePrice fieldUnderlyingStrikePrice;
 
    public:
+   using UnderlyingStrikeCurrency = FieldUnderlyingStrikeCurrency; 
    bool isSetUnderlyingStrikeCurrency() const { return fieldUnderlyingStrikeCurrency.offset > 0; }
    FieldUnderlyingStrikeCurrency::ValueType getUnderlyingStrikeCurrency() const { return fieldUnderlyingStrikeCurrency.getValue( _fixPtr ); }
    std::string_view getUnderlyingStrikeCurrencyView() const { return fieldUnderlyingStrikeCurrency.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingStrikeCurrency.offset, getValueLength( _fixPtr + fieldUnderlyingStrikeCurrency.offset ) } : std::string_view{}; }
@@ -4362,6 +4783,7 @@ class GroupQuoteSets : public MessageBase
    private: FieldUnderlyingStrikeCurrency fieldUnderlyingStrikeCurrency;
 
    public:
+   using UnderlyingOptAttribute = FieldUnderlyingOptAttribute; 
    bool isSetUnderlyingOptAttribute() const { return fieldUnderlyingOptAttribute.offset > 0; }
    FieldUnderlyingOptAttribute::ValueType getUnderlyingOptAttribute() const { return fieldUnderlyingOptAttribute.getValue( _fixPtr ); }
    std::string_view getUnderlyingOptAttributeView() const { return fieldUnderlyingOptAttribute.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingOptAttribute.offset, getValueLength( _fixPtr + fieldUnderlyingOptAttribute.offset ) } : std::string_view{}; }
@@ -4371,6 +4793,7 @@ class GroupQuoteSets : public MessageBase
    private: FieldUnderlyingOptAttribute fieldUnderlyingOptAttribute;
 
    public:
+   using UnderlyingContractMultiplier = FieldUnderlyingContractMultiplier; 
    bool isSetUnderlyingContractMultiplier() const { return fieldUnderlyingContractMultiplier.offset > 0; }
    FieldUnderlyingContractMultiplier::ValueType getUnderlyingContractMultiplier() const { return fieldUnderlyingContractMultiplier.getValue( _fixPtr ); }
    std::string_view getUnderlyingContractMultiplierView() const { return fieldUnderlyingContractMultiplier.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingContractMultiplier.offset, getValueLength( _fixPtr + fieldUnderlyingContractMultiplier.offset ) } : std::string_view{}; }
@@ -4380,6 +4803,7 @@ class GroupQuoteSets : public MessageBase
    private: FieldUnderlyingContractMultiplier fieldUnderlyingContractMultiplier;
 
    public:
+   using UnderlyingCouponRate = FieldUnderlyingCouponRate; 
    bool isSetUnderlyingCouponRate() const { return fieldUnderlyingCouponRate.offset > 0; }
    FieldUnderlyingCouponRate::ValueType getUnderlyingCouponRate() const { return fieldUnderlyingCouponRate.getValue( _fixPtr ); }
    std::string_view getUnderlyingCouponRateView() const { return fieldUnderlyingCouponRate.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingCouponRate.offset, getValueLength( _fixPtr + fieldUnderlyingCouponRate.offset ) } : std::string_view{}; }
@@ -4389,6 +4813,7 @@ class GroupQuoteSets : public MessageBase
    private: FieldUnderlyingCouponRate fieldUnderlyingCouponRate;
 
    public:
+   using UnderlyingSecurityExchange = FieldUnderlyingSecurityExchange; 
    bool isSetUnderlyingSecurityExchange() const { return fieldUnderlyingSecurityExchange.offset > 0; }
    FieldUnderlyingSecurityExchange::ValueType getUnderlyingSecurityExchange() const { return fieldUnderlyingSecurityExchange.getValue( _fixPtr ); }
    std::string_view getUnderlyingSecurityExchangeView() const { return fieldUnderlyingSecurityExchange.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingSecurityExchange.offset, getValueLength( _fixPtr + fieldUnderlyingSecurityExchange.offset ) } : std::string_view{}; }
@@ -4398,6 +4823,7 @@ class GroupQuoteSets : public MessageBase
    private: FieldUnderlyingSecurityExchange fieldUnderlyingSecurityExchange;
 
    public:
+   using UnderlyingIssuer = FieldUnderlyingIssuer; 
    bool isSetUnderlyingIssuer() const { return fieldUnderlyingIssuer.offset > 0; }
    FieldUnderlyingIssuer::ValueType getUnderlyingIssuer() const { return fieldUnderlyingIssuer.getValue( _fixPtr ); }
    std::string_view getUnderlyingIssuerView() const { return fieldUnderlyingIssuer.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingIssuer.offset, getValueLength( _fixPtr + fieldUnderlyingIssuer.offset ) } : std::string_view{}; }
@@ -4407,6 +4833,7 @@ class GroupQuoteSets : public MessageBase
    private: FieldUnderlyingIssuer fieldUnderlyingIssuer;
 
    public:
+   using EncodedUnderlyingIssuerLen = FieldEncodedUnderlyingIssuerLen; 
    bool isSetEncodedUnderlyingIssuerLen() const { return fieldEncodedUnderlyingIssuerLen.offset > 0; }
    FieldEncodedUnderlyingIssuerLen::ValueType getEncodedUnderlyingIssuerLen() const { return fieldEncodedUnderlyingIssuerLen.getValue( _fixPtr ); }
    std::string_view getEncodedUnderlyingIssuerLenView() const { return fieldEncodedUnderlyingIssuerLen.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedUnderlyingIssuerLen.offset, getValueLength( _fixPtr + fieldEncodedUnderlyingIssuerLen.offset ) } : std::string_view{}; }
@@ -4416,6 +4843,7 @@ class GroupQuoteSets : public MessageBase
    private: FieldEncodedUnderlyingIssuerLen fieldEncodedUnderlyingIssuerLen;
 
    public:
+   using EncodedUnderlyingIssuer = FieldEncodedUnderlyingIssuer; 
    bool isSetEncodedUnderlyingIssuer() const { return fieldEncodedUnderlyingIssuer.offset > 0; }
    FieldEncodedUnderlyingIssuer::ValueType getEncodedUnderlyingIssuer() const { return fieldEncodedUnderlyingIssuer.getValue( _fixPtr ); }
    std::string_view getEncodedUnderlyingIssuerView() const { return fieldEncodedUnderlyingIssuer.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedUnderlyingIssuer.offset, getValueLength( _fixPtr + fieldEncodedUnderlyingIssuer.offset ) } : std::string_view{}; }
@@ -4425,6 +4853,7 @@ class GroupQuoteSets : public MessageBase
    private: FieldEncodedUnderlyingIssuer fieldEncodedUnderlyingIssuer;
 
    public:
+   using UnderlyingSecurityDesc = FieldUnderlyingSecurityDesc; 
    bool isSetUnderlyingSecurityDesc() const { return fieldUnderlyingSecurityDesc.offset > 0; }
    FieldUnderlyingSecurityDesc::ValueType getUnderlyingSecurityDesc() const { return fieldUnderlyingSecurityDesc.getValue( _fixPtr ); }
    std::string_view getUnderlyingSecurityDescView() const { return fieldUnderlyingSecurityDesc.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingSecurityDesc.offset, getValueLength( _fixPtr + fieldUnderlyingSecurityDesc.offset ) } : std::string_view{}; }
@@ -4434,6 +4863,7 @@ class GroupQuoteSets : public MessageBase
    private: FieldUnderlyingSecurityDesc fieldUnderlyingSecurityDesc;
 
    public:
+   using EncodedUnderlyingSecurityDescLen = FieldEncodedUnderlyingSecurityDescLen; 
    bool isSetEncodedUnderlyingSecurityDescLen() const { return fieldEncodedUnderlyingSecurityDescLen.offset > 0; }
    FieldEncodedUnderlyingSecurityDescLen::ValueType getEncodedUnderlyingSecurityDescLen() const { return fieldEncodedUnderlyingSecurityDescLen.getValue( _fixPtr ); }
    std::string_view getEncodedUnderlyingSecurityDescLenView() const { return fieldEncodedUnderlyingSecurityDescLen.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedUnderlyingSecurityDescLen.offset, getValueLength( _fixPtr + fieldEncodedUnderlyingSecurityDescLen.offset ) } : std::string_view{}; }
@@ -4443,6 +4873,7 @@ class GroupQuoteSets : public MessageBase
    private: FieldEncodedUnderlyingSecurityDescLen fieldEncodedUnderlyingSecurityDescLen;
 
    public:
+   using EncodedUnderlyingSecurityDesc = FieldEncodedUnderlyingSecurityDesc; 
    bool isSetEncodedUnderlyingSecurityDesc() const { return fieldEncodedUnderlyingSecurityDesc.offset > 0; }
    FieldEncodedUnderlyingSecurityDesc::ValueType getEncodedUnderlyingSecurityDesc() const { return fieldEncodedUnderlyingSecurityDesc.getValue( _fixPtr ); }
    std::string_view getEncodedUnderlyingSecurityDescView() const { return fieldEncodedUnderlyingSecurityDesc.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedUnderlyingSecurityDesc.offset, getValueLength( _fixPtr + fieldEncodedUnderlyingSecurityDesc.offset ) } : std::string_view{}; }
@@ -4452,6 +4883,7 @@ class GroupQuoteSets : public MessageBase
    private: FieldEncodedUnderlyingSecurityDesc fieldEncodedUnderlyingSecurityDesc;
 
    public:
+   using UnderlyingCPProgram = FieldUnderlyingCPProgram; 
    bool isSetUnderlyingCPProgram() const { return fieldUnderlyingCPProgram.offset > 0; }
    FieldUnderlyingCPProgram::ValueType getUnderlyingCPProgram() const { return fieldUnderlyingCPProgram.getValue( _fixPtr ); }
    std::string_view getUnderlyingCPProgramView() const { return fieldUnderlyingCPProgram.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingCPProgram.offset, getValueLength( _fixPtr + fieldUnderlyingCPProgram.offset ) } : std::string_view{}; }
@@ -4461,6 +4893,7 @@ class GroupQuoteSets : public MessageBase
    private: FieldUnderlyingCPProgram fieldUnderlyingCPProgram;
 
    public:
+   using UnderlyingCPRegType = FieldUnderlyingCPRegType; 
    bool isSetUnderlyingCPRegType() const { return fieldUnderlyingCPRegType.offset > 0; }
    FieldUnderlyingCPRegType::ValueType getUnderlyingCPRegType() const { return fieldUnderlyingCPRegType.getValue( _fixPtr ); }
    std::string_view getUnderlyingCPRegTypeView() const { return fieldUnderlyingCPRegType.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingCPRegType.offset, getValueLength( _fixPtr + fieldUnderlyingCPRegType.offset ) } : std::string_view{}; }
@@ -4470,6 +4903,7 @@ class GroupQuoteSets : public MessageBase
    private: FieldUnderlyingCPRegType fieldUnderlyingCPRegType;
 
    public:
+   using UnderlyingCurrency = FieldUnderlyingCurrency; 
    bool isSetUnderlyingCurrency() const { return fieldUnderlyingCurrency.offset > 0; }
    FieldUnderlyingCurrency::ValueType getUnderlyingCurrency() const { return fieldUnderlyingCurrency.getValue( _fixPtr ); }
    std::string_view getUnderlyingCurrencyView() const { return fieldUnderlyingCurrency.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingCurrency.offset, getValueLength( _fixPtr + fieldUnderlyingCurrency.offset ) } : std::string_view{}; }
@@ -4479,6 +4913,7 @@ class GroupQuoteSets : public MessageBase
    private: FieldUnderlyingCurrency fieldUnderlyingCurrency;
 
    public:
+   using UnderlyingQty = FieldUnderlyingQty; 
    bool isSetUnderlyingQty() const { return fieldUnderlyingQty.offset > 0; }
    FieldUnderlyingQty::ValueType getUnderlyingQty() const { return fieldUnderlyingQty.getValue( _fixPtr ); }
    std::string_view getUnderlyingQtyView() const { return fieldUnderlyingQty.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingQty.offset, getValueLength( _fixPtr + fieldUnderlyingQty.offset ) } : std::string_view{}; }
@@ -4488,6 +4923,7 @@ class GroupQuoteSets : public MessageBase
    private: FieldUnderlyingQty fieldUnderlyingQty;
 
    public:
+   using UnderlyingPx = FieldUnderlyingPx; 
    bool isSetUnderlyingPx() const { return fieldUnderlyingPx.offset > 0; }
    FieldUnderlyingPx::ValueType getUnderlyingPx() const { return fieldUnderlyingPx.getValue( _fixPtr ); }
    std::string_view getUnderlyingPxView() const { return fieldUnderlyingPx.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingPx.offset, getValueLength( _fixPtr + fieldUnderlyingPx.offset ) } : std::string_view{}; }
@@ -4497,6 +4933,7 @@ class GroupQuoteSets : public MessageBase
    private: FieldUnderlyingPx fieldUnderlyingPx;
 
    public:
+   using UnderlyingDirtyPrice = FieldUnderlyingDirtyPrice; 
    bool isSetUnderlyingDirtyPrice() const { return fieldUnderlyingDirtyPrice.offset > 0; }
    FieldUnderlyingDirtyPrice::ValueType getUnderlyingDirtyPrice() const { return fieldUnderlyingDirtyPrice.getValue( _fixPtr ); }
    std::string_view getUnderlyingDirtyPriceView() const { return fieldUnderlyingDirtyPrice.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingDirtyPrice.offset, getValueLength( _fixPtr + fieldUnderlyingDirtyPrice.offset ) } : std::string_view{}; }
@@ -4506,6 +4943,7 @@ class GroupQuoteSets : public MessageBase
    private: FieldUnderlyingDirtyPrice fieldUnderlyingDirtyPrice;
 
    public:
+   using UnderlyingEndPrice = FieldUnderlyingEndPrice; 
    bool isSetUnderlyingEndPrice() const { return fieldUnderlyingEndPrice.offset > 0; }
    FieldUnderlyingEndPrice::ValueType getUnderlyingEndPrice() const { return fieldUnderlyingEndPrice.getValue( _fixPtr ); }
    std::string_view getUnderlyingEndPriceView() const { return fieldUnderlyingEndPrice.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingEndPrice.offset, getValueLength( _fixPtr + fieldUnderlyingEndPrice.offset ) } : std::string_view{}; }
@@ -4515,6 +4953,7 @@ class GroupQuoteSets : public MessageBase
    private: FieldUnderlyingEndPrice fieldUnderlyingEndPrice;
 
    public:
+   using UnderlyingStartValue = FieldUnderlyingStartValue; 
    bool isSetUnderlyingStartValue() const { return fieldUnderlyingStartValue.offset > 0; }
    FieldUnderlyingStartValue::ValueType getUnderlyingStartValue() const { return fieldUnderlyingStartValue.getValue( _fixPtr ); }
    std::string_view getUnderlyingStartValueView() const { return fieldUnderlyingStartValue.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingStartValue.offset, getValueLength( _fixPtr + fieldUnderlyingStartValue.offset ) } : std::string_view{}; }
@@ -4524,6 +4963,7 @@ class GroupQuoteSets : public MessageBase
    private: FieldUnderlyingStartValue fieldUnderlyingStartValue;
 
    public:
+   using UnderlyingCurrentValue = FieldUnderlyingCurrentValue; 
    bool isSetUnderlyingCurrentValue() const { return fieldUnderlyingCurrentValue.offset > 0; }
    FieldUnderlyingCurrentValue::ValueType getUnderlyingCurrentValue() const { return fieldUnderlyingCurrentValue.getValue( _fixPtr ); }
    std::string_view getUnderlyingCurrentValueView() const { return fieldUnderlyingCurrentValue.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingCurrentValue.offset, getValueLength( _fixPtr + fieldUnderlyingCurrentValue.offset ) } : std::string_view{}; }
@@ -4533,6 +4973,7 @@ class GroupQuoteSets : public MessageBase
    private: FieldUnderlyingCurrentValue fieldUnderlyingCurrentValue;
 
    public:
+   using UnderlyingEndValue = FieldUnderlyingEndValue; 
    bool isSetUnderlyingEndValue() const { return fieldUnderlyingEndValue.offset > 0; }
    FieldUnderlyingEndValue::ValueType getUnderlyingEndValue() const { return fieldUnderlyingEndValue.getValue( _fixPtr ); }
    std::string_view getUnderlyingEndValueView() const { return fieldUnderlyingEndValue.offset > 0 ? std::string_view{ _fixPtr + fieldUnderlyingEndValue.offset, getValueLength( _fixPtr + fieldUnderlyingEndValue.offset ) } : std::string_view{}; }
@@ -4542,6 +4983,7 @@ class GroupQuoteSets : public MessageBase
    private: FieldUnderlyingEndValue fieldUnderlyingEndValue;
 
    public:
+   using NoUnderlyingStips = FieldNoUnderlyingStips; 
    bool isSetNoUnderlyingStips() const { return fieldNoUnderlyingStips.offset > 0; }
    FieldNoUnderlyingStips::ValueType getNoUnderlyingStips() const { return fieldNoUnderlyingStips.getValue( _fixPtr ); }
    std::string_view getNoUnderlyingStipsView() const { return fieldNoUnderlyingStips.offset > 0 ? std::string_view{ _fixPtr + fieldNoUnderlyingStips.offset, getValueLength( _fixPtr + fieldNoUnderlyingStips.offset ) } : std::string_view{}; }
@@ -4556,6 +4998,7 @@ class GroupQuoteSets : public MessageBase
    private: GroupUnderlyingStips::Array groupsUnderlyingStips{ 10 };
 
    public:
+   using TotNoQuoteEntries = FieldTotNoQuoteEntries; 
    bool isSetTotNoQuoteEntries() const { return fieldTotNoQuoteEntries.offset > 0; }
    FieldTotNoQuoteEntries::ValueType getTotNoQuoteEntries() const { return fieldTotNoQuoteEntries.getValue( _fixPtr ); }
    std::string_view getTotNoQuoteEntriesView() const { return fieldTotNoQuoteEntries.offset > 0 ? std::string_view{ _fixPtr + fieldTotNoQuoteEntries.offset, getValueLength( _fixPtr + fieldTotNoQuoteEntries.offset ) } : std::string_view{}; }
@@ -4565,6 +5008,7 @@ class GroupQuoteSets : public MessageBase
    private: FieldTotNoQuoteEntries fieldTotNoQuoteEntries;
 
    public:
+   using LastFragment = FieldLastFragment; 
    bool isSetLastFragment() const { return fieldLastFragment.offset > 0; }
    FieldLastFragment::ValueType getLastFragment() const { return fieldLastFragment.getValue( _fixPtr ); }
    std::string_view getLastFragmentView() const { return fieldLastFragment.offset > 0 ? std::string_view{ _fixPtr + fieldLastFragment.offset, getValueLength( _fixPtr + fieldLastFragment.offset ) } : std::string_view{}; }
@@ -4574,6 +5018,7 @@ class GroupQuoteSets : public MessageBase
    private: FieldLastFragment fieldLastFragment;
 
    public:
+   using NoQuoteEntries = FieldNoQuoteEntries; 
    bool isSetNoQuoteEntries() const { return fieldNoQuoteEntries.offset > 0; }
    FieldNoQuoteEntries::ValueType getNoQuoteEntries() const { return fieldNoQuoteEntries.getValue( _fixPtr ); }
    std::string_view getNoQuoteEntriesView() const { return fieldNoQuoteEntries.offset > 0 ? std::string_view{ _fixPtr + fieldNoQuoteEntries.offset, getValueLength( _fixPtr + fieldNoQuoteEntries.offset ) } : std::string_view{}; }
@@ -4604,6 +5049,7 @@ class GroupSecurityTypes : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<GroupSecurityTypes,0,FIELDS...>(*this,tpl); return tpl; };
+   template< typename... FIELDS > std::tuple<typeExists<FIELDS>... > getPresenceOf() const { std::tuple< typeExists<FIELDS>... > tpl{}; buildPresenceTuple<GroupSecurityTypes,0,FIELDS...>(*this,tpl); return tpl; };
    bool isFieldSet( tag_t tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
@@ -4613,6 +5059,7 @@ class GroupSecurityTypes : public MessageBase
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
+   using SecurityType = FieldSecurityType; 
    bool isSetSecurityType() const { return fieldSecurityType.offset > 0; }
    FieldSecurityType::ValueType getSecurityType() const { return fieldSecurityType.getValue( _fixPtr ); }
    std::string_view getSecurityTypeView() const { return fieldSecurityType.offset > 0 ? std::string_view{ _fixPtr + fieldSecurityType.offset, getValueLength( _fixPtr + fieldSecurityType.offset ) } : std::string_view{}; }
@@ -4622,6 +5069,7 @@ class GroupSecurityTypes : public MessageBase
    private: FieldSecurityType fieldSecurityType;
 
    public:
+   using SecuritySubType = FieldSecuritySubType; 
    bool isSetSecuritySubType() const { return fieldSecuritySubType.offset > 0; }
    FieldSecuritySubType::ValueType getSecuritySubType() const { return fieldSecuritySubType.getValue( _fixPtr ); }
    std::string_view getSecuritySubTypeView() const { return fieldSecuritySubType.offset > 0 ? std::string_view{ _fixPtr + fieldSecuritySubType.offset, getValueLength( _fixPtr + fieldSecuritySubType.offset ) } : std::string_view{}; }
@@ -4631,6 +5079,7 @@ class GroupSecurityTypes : public MessageBase
    private: FieldSecuritySubType fieldSecuritySubType;
 
    public:
+   using Product = FieldProduct; 
    bool isSetProduct() const { return fieldProduct.offset > 0; }
    FieldProduct::ValueType getProduct() const { return fieldProduct.getValue( _fixPtr ); }
    std::string_view getProductView() const { return fieldProduct.offset > 0 ? std::string_view{ _fixPtr + fieldProduct.offset, getValueLength( _fixPtr + fieldProduct.offset ) } : std::string_view{}; }
@@ -4640,6 +5089,7 @@ class GroupSecurityTypes : public MessageBase
    private: FieldProduct fieldProduct;
 
    public:
+   using CFICode = FieldCFICode; 
    bool isSetCFICode() const { return fieldCFICode.offset > 0; }
    FieldCFICode::ValueType getCFICode() const { return fieldCFICode.getValue( _fixPtr ); }
    std::string_view getCFICodeView() const { return fieldCFICode.offset > 0 ? std::string_view{ _fixPtr + fieldCFICode.offset, getValueLength( _fixPtr + fieldCFICode.offset ) } : std::string_view{}; }
@@ -4665,6 +5115,7 @@ class GroupNested3PartyIDs : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<GroupNested3PartyIDs,0,FIELDS...>(*this,tpl); return tpl; };
+   template< typename... FIELDS > std::tuple<typeExists<FIELDS>... > getPresenceOf() const { std::tuple< typeExists<FIELDS>... > tpl{}; buildPresenceTuple<GroupNested3PartyIDs,0,FIELDS...>(*this,tpl); return tpl; };
    bool isFieldSet( tag_t tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
@@ -4674,6 +5125,7 @@ class GroupNested3PartyIDs : public MessageBase
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
+   using Nested3PartyID = FieldNested3PartyID; 
    bool isSetNested3PartyID() const { return fieldNested3PartyID.offset > 0; }
    FieldNested3PartyID::ValueType getNested3PartyID() const { return fieldNested3PartyID.getValue( _fixPtr ); }
    std::string_view getNested3PartyIDView() const { return fieldNested3PartyID.offset > 0 ? std::string_view{ _fixPtr + fieldNested3PartyID.offset, getValueLength( _fixPtr + fieldNested3PartyID.offset ) } : std::string_view{}; }
@@ -4683,6 +5135,7 @@ class GroupNested3PartyIDs : public MessageBase
    private: FieldNested3PartyID fieldNested3PartyID;
 
    public:
+   using Nested3PartyIDSource = FieldNested3PartyIDSource; 
    bool isSetNested3PartyIDSource() const { return fieldNested3PartyIDSource.offset > 0; }
    FieldNested3PartyIDSource::ValueType getNested3PartyIDSource() const { return fieldNested3PartyIDSource.getValue( _fixPtr ); }
    std::string_view getNested3PartyIDSourceView() const { return fieldNested3PartyIDSource.offset > 0 ? std::string_view{ _fixPtr + fieldNested3PartyIDSource.offset, getValueLength( _fixPtr + fieldNested3PartyIDSource.offset ) } : std::string_view{}; }
@@ -4692,6 +5145,7 @@ class GroupNested3PartyIDs : public MessageBase
    private: FieldNested3PartyIDSource fieldNested3PartyIDSource;
 
    public:
+   using Nested3PartyRole = FieldNested3PartyRole; 
    bool isSetNested3PartyRole() const { return fieldNested3PartyRole.offset > 0; }
    FieldNested3PartyRole::ValueType getNested3PartyRole() const { return fieldNested3PartyRole.getValue( _fixPtr ); }
    std::string_view getNested3PartyRoleView() const { return fieldNested3PartyRole.offset > 0 ? std::string_view{ _fixPtr + fieldNested3PartyRole.offset, getValueLength( _fixPtr + fieldNested3PartyRole.offset ) } : std::string_view{}; }
@@ -4701,6 +5155,7 @@ class GroupNested3PartyIDs : public MessageBase
    private: FieldNested3PartyRole fieldNested3PartyRole;
 
    public:
+   using NoNested3PartySubIDs = FieldNoNested3PartySubIDs; 
    bool isSetNoNested3PartySubIDs() const { return fieldNoNested3PartySubIDs.offset > 0; }
    FieldNoNested3PartySubIDs::ValueType getNoNested3PartySubIDs() const { return fieldNoNested3PartySubIDs.getValue( _fixPtr ); }
    std::string_view getNoNested3PartySubIDsView() const { return fieldNoNested3PartySubIDs.offset > 0 ? std::string_view{ _fixPtr + fieldNoNested3PartySubIDs.offset, getValueLength( _fixPtr + fieldNoNested3PartySubIDs.offset ) } : std::string_view{}; }
@@ -4731,6 +5186,7 @@ class GroupPositions : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<GroupPositions,0,FIELDS...>(*this,tpl); return tpl; };
+   template< typename... FIELDS > std::tuple<typeExists<FIELDS>... > getPresenceOf() const { std::tuple< typeExists<FIELDS>... > tpl{}; buildPresenceTuple<GroupPositions,0,FIELDS...>(*this,tpl); return tpl; };
    bool isFieldSet( tag_t tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
@@ -4740,6 +5196,7 @@ class GroupPositions : public MessageBase
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
+   using PosType = FieldPosType; 
    bool isSetPosType() const { return fieldPosType.offset > 0; }
    FieldPosType::ValueType getPosType() const { return fieldPosType.getValue( _fixPtr ); }
    std::string_view getPosTypeView() const { return fieldPosType.offset > 0 ? std::string_view{ _fixPtr + fieldPosType.offset, getValueLength( _fixPtr + fieldPosType.offset ) } : std::string_view{}; }
@@ -4749,6 +5206,7 @@ class GroupPositions : public MessageBase
    private: FieldPosType fieldPosType;
 
    public:
+   using LongQty = FieldLongQty; 
    bool isSetLongQty() const { return fieldLongQty.offset > 0; }
    FieldLongQty::ValueType getLongQty() const { return fieldLongQty.getValue( _fixPtr ); }
    std::string_view getLongQtyView() const { return fieldLongQty.offset > 0 ? std::string_view{ _fixPtr + fieldLongQty.offset, getValueLength( _fixPtr + fieldLongQty.offset ) } : std::string_view{}; }
@@ -4758,6 +5216,7 @@ class GroupPositions : public MessageBase
    private: FieldLongQty fieldLongQty;
 
    public:
+   using ShortQty = FieldShortQty; 
    bool isSetShortQty() const { return fieldShortQty.offset > 0; }
    FieldShortQty::ValueType getShortQty() const { return fieldShortQty.getValue( _fixPtr ); }
    std::string_view getShortQtyView() const { return fieldShortQty.offset > 0 ? std::string_view{ _fixPtr + fieldShortQty.offset, getValueLength( _fixPtr + fieldShortQty.offset ) } : std::string_view{}; }
@@ -4767,6 +5226,7 @@ class GroupPositions : public MessageBase
    private: FieldShortQty fieldShortQty;
 
    public:
+   using PosQtyStatus = FieldPosQtyStatus; 
    bool isSetPosQtyStatus() const { return fieldPosQtyStatus.offset > 0; }
    FieldPosQtyStatus::ValueType getPosQtyStatus() const { return fieldPosQtyStatus.getValue( _fixPtr ); }
    std::string_view getPosQtyStatusView() const { return fieldPosQtyStatus.offset > 0 ? std::string_view{ _fixPtr + fieldPosQtyStatus.offset, getValueLength( _fixPtr + fieldPosQtyStatus.offset ) } : std::string_view{}; }
@@ -4776,6 +5236,7 @@ class GroupPositions : public MessageBase
    private: FieldPosQtyStatus fieldPosQtyStatus;
 
    public:
+   using NoNestedPartyIDs = FieldNoNestedPartyIDs; 
    bool isSetNoNestedPartyIDs() const { return fieldNoNestedPartyIDs.offset > 0; }
    FieldNoNestedPartyIDs::ValueType getNoNestedPartyIDs() const { return fieldNoNestedPartyIDs.getValue( _fixPtr ); }
    std::string_view getNoNestedPartyIDsView() const { return fieldNoNestedPartyIDs.offset > 0 ? std::string_view{ _fixPtr + fieldNoNestedPartyIDs.offset, getValueLength( _fixPtr + fieldNoNestedPartyIDs.offset ) } : std::string_view{}; }
@@ -4806,6 +5267,7 @@ class GroupAffectedOrders : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<GroupAffectedOrders,0,FIELDS...>(*this,tpl); return tpl; };
+   template< typename... FIELDS > std::tuple<typeExists<FIELDS>... > getPresenceOf() const { std::tuple< typeExists<FIELDS>... > tpl{}; buildPresenceTuple<GroupAffectedOrders,0,FIELDS...>(*this,tpl); return tpl; };
    bool isFieldSet( tag_t tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
@@ -4815,6 +5277,7 @@ class GroupAffectedOrders : public MessageBase
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
+   using OrigClOrdID = FieldOrigClOrdID; 
    bool isSetOrigClOrdID() const { return fieldOrigClOrdID.offset > 0; }
    FieldOrigClOrdID::ValueType getOrigClOrdID() const { return fieldOrigClOrdID.getValue( _fixPtr ); }
    std::string_view getOrigClOrdIDView() const { return fieldOrigClOrdID.offset > 0 ? std::string_view{ _fixPtr + fieldOrigClOrdID.offset, getValueLength( _fixPtr + fieldOrigClOrdID.offset ) } : std::string_view{}; }
@@ -4824,6 +5287,7 @@ class GroupAffectedOrders : public MessageBase
    private: FieldOrigClOrdID fieldOrigClOrdID;
 
    public:
+   using AffectedOrderID = FieldAffectedOrderID; 
    bool isSetAffectedOrderID() const { return fieldAffectedOrderID.offset > 0; }
    FieldAffectedOrderID::ValueType getAffectedOrderID() const { return fieldAffectedOrderID.getValue( _fixPtr ); }
    std::string_view getAffectedOrderIDView() const { return fieldAffectedOrderID.offset > 0 ? std::string_view{ _fixPtr + fieldAffectedOrderID.offset, getValueLength( _fixPtr + fieldAffectedOrderID.offset ) } : std::string_view{}; }
@@ -4833,6 +5297,7 @@ class GroupAffectedOrders : public MessageBase
    private: FieldAffectedOrderID fieldAffectedOrderID;
 
    public:
+   using AffectedSecondaryOrderID = FieldAffectedSecondaryOrderID; 
    bool isSetAffectedSecondaryOrderID() const { return fieldAffectedSecondaryOrderID.offset > 0; }
    FieldAffectedSecondaryOrderID::ValueType getAffectedSecondaryOrderID() const { return fieldAffectedSecondaryOrderID.getValue( _fixPtr ); }
    std::string_view getAffectedSecondaryOrderIDView() const { return fieldAffectedSecondaryOrderID.offset > 0 ? std::string_view{ _fixPtr + fieldAffectedSecondaryOrderID.offset, getValueLength( _fixPtr + fieldAffectedSecondaryOrderID.offset ) } : std::string_view{}; }
@@ -4858,6 +5323,7 @@ class GroupExecs : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<GroupExecs,0,FIELDS...>(*this,tpl); return tpl; };
+   template< typename... FIELDS > std::tuple<typeExists<FIELDS>... > getPresenceOf() const { std::tuple< typeExists<FIELDS>... > tpl{}; buildPresenceTuple<GroupExecs,0,FIELDS...>(*this,tpl); return tpl; };
    bool isFieldSet( tag_t tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
@@ -4867,6 +5333,7 @@ class GroupExecs : public MessageBase
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
+   using LastQty = FieldLastQty; 
    bool isSetLastQty() const { return fieldLastQty.offset > 0; }
    FieldLastQty::ValueType getLastQty() const { return fieldLastQty.getValue( _fixPtr ); }
    std::string_view getLastQtyView() const { return fieldLastQty.offset > 0 ? std::string_view{ _fixPtr + fieldLastQty.offset, getValueLength( _fixPtr + fieldLastQty.offset ) } : std::string_view{}; }
@@ -4876,6 +5343,7 @@ class GroupExecs : public MessageBase
    private: FieldLastQty fieldLastQty;
 
    public:
+   using ExecID = FieldExecID; 
    bool isSetExecID() const { return fieldExecID.offset > 0; }
    FieldExecID::ValueType getExecID() const { return fieldExecID.getValue( _fixPtr ); }
    std::string_view getExecIDView() const { return fieldExecID.offset > 0 ? std::string_view{ _fixPtr + fieldExecID.offset, getValueLength( _fixPtr + fieldExecID.offset ) } : std::string_view{}; }
@@ -4885,6 +5353,7 @@ class GroupExecs : public MessageBase
    private: FieldExecID fieldExecID;
 
    public:
+   using SecondaryExecID = FieldSecondaryExecID; 
    bool isSetSecondaryExecID() const { return fieldSecondaryExecID.offset > 0; }
    FieldSecondaryExecID::ValueType getSecondaryExecID() const { return fieldSecondaryExecID.getValue( _fixPtr ); }
    std::string_view getSecondaryExecIDView() const { return fieldSecondaryExecID.offset > 0 ? std::string_view{ _fixPtr + fieldSecondaryExecID.offset, getValueLength( _fixPtr + fieldSecondaryExecID.offset ) } : std::string_view{}; }
@@ -4894,6 +5363,7 @@ class GroupExecs : public MessageBase
    private: FieldSecondaryExecID fieldSecondaryExecID;
 
    public:
+   using LastPx = FieldLastPx; 
    bool isSetLastPx() const { return fieldLastPx.offset > 0; }
    FieldLastPx::ValueType getLastPx() const { return fieldLastPx.getValue( _fixPtr ); }
    std::string_view getLastPxView() const { return fieldLastPx.offset > 0 ? std::string_view{ _fixPtr + fieldLastPx.offset, getValueLength( _fixPtr + fieldLastPx.offset ) } : std::string_view{}; }
@@ -4903,6 +5373,7 @@ class GroupExecs : public MessageBase
    private: FieldLastPx fieldLastPx;
 
    public:
+   using LastParPx = FieldLastParPx; 
    bool isSetLastParPx() const { return fieldLastParPx.offset > 0; }
    FieldLastParPx::ValueType getLastParPx() const { return fieldLastParPx.getValue( _fixPtr ); }
    std::string_view getLastParPxView() const { return fieldLastParPx.offset > 0 ? std::string_view{ _fixPtr + fieldLastParPx.offset, getValueLength( _fixPtr + fieldLastParPx.offset ) } : std::string_view{}; }
@@ -4912,6 +5383,7 @@ class GroupExecs : public MessageBase
    private: FieldLastParPx fieldLastParPx;
 
    public:
+   using LastCapacity = FieldLastCapacity; 
    bool isSetLastCapacity() const { return fieldLastCapacity.offset > 0; }
    FieldLastCapacity::ValueType getLastCapacity() const { return fieldLastCapacity.getValue( _fixPtr ); }
    std::string_view getLastCapacityView() const { return fieldLastCapacity.offset > 0 ? std::string_view{ _fixPtr + fieldLastCapacity.offset, getValueLength( _fixPtr + fieldLastCapacity.offset ) } : std::string_view{}; }
@@ -4937,6 +5409,7 @@ class GroupMsgTypes : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<GroupMsgTypes,0,FIELDS...>(*this,tpl); return tpl; };
+   template< typename... FIELDS > std::tuple<typeExists<FIELDS>... > getPresenceOf() const { std::tuple< typeExists<FIELDS>... > tpl{}; buildPresenceTuple<GroupMsgTypes,0,FIELDS...>(*this,tpl); return tpl; };
    bool isFieldSet( tag_t tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
@@ -4946,6 +5419,7 @@ class GroupMsgTypes : public MessageBase
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
+   using RefMsgType = FieldRefMsgType; 
    bool isSetRefMsgType() const { return fieldRefMsgType.offset > 0; }
    FieldRefMsgType::ValueType getRefMsgType() const { return fieldRefMsgType.getValue( _fixPtr ); }
    std::string_view getRefMsgTypeView() const { return fieldRefMsgType.offset > 0 ? std::string_view{ _fixPtr + fieldRefMsgType.offset, getValueLength( _fixPtr + fieldRefMsgType.offset ) } : std::string_view{}; }
@@ -4955,6 +5429,7 @@ class GroupMsgTypes : public MessageBase
    private: FieldRefMsgType fieldRefMsgType;
 
    public:
+   using MsgDirection = FieldMsgDirection; 
    bool isSetMsgDirection() const { return fieldMsgDirection.offset > 0; }
    FieldMsgDirection::ValueType getMsgDirection() const { return fieldMsgDirection.getValue( _fixPtr ); }
    std::string_view getMsgDirectionView() const { return fieldMsgDirection.offset > 0 ? std::string_view{ _fixPtr + fieldMsgDirection.offset, getValueLength( _fixPtr + fieldMsgDirection.offset ) } : std::string_view{}; }
@@ -4980,6 +5455,7 @@ class GroupBidComponents : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<GroupBidComponents,0,FIELDS...>(*this,tpl); return tpl; };
+   template< typename... FIELDS > std::tuple<typeExists<FIELDS>... > getPresenceOf() const { std::tuple< typeExists<FIELDS>... > tpl{}; buildPresenceTuple<GroupBidComponents,0,FIELDS...>(*this,tpl); return tpl; };
    bool isFieldSet( tag_t tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
@@ -4989,6 +5465,7 @@ class GroupBidComponents : public MessageBase
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
+   using ListID = FieldListID; 
    bool isSetListID() const { return fieldListID.offset > 0; }
    FieldListID::ValueType getListID() const { return fieldListID.getValue( _fixPtr ); }
    std::string_view getListIDView() const { return fieldListID.offset > 0 ? std::string_view{ _fixPtr + fieldListID.offset, getValueLength( _fixPtr + fieldListID.offset ) } : std::string_view{}; }
@@ -4998,6 +5475,7 @@ class GroupBidComponents : public MessageBase
    private: FieldListID fieldListID;
 
    public:
+   using Side = FieldSide; 
    bool isSetSide() const { return fieldSide.offset > 0; }
    FieldSide::ValueType getSide() const { return fieldSide.getValue( _fixPtr ); }
    std::string_view getSideView() const { return fieldSide.offset > 0 ? std::string_view{ _fixPtr + fieldSide.offset, getValueLength( _fixPtr + fieldSide.offset ) } : std::string_view{}; }
@@ -5007,6 +5485,7 @@ class GroupBidComponents : public MessageBase
    private: FieldSide fieldSide;
 
    public:
+   using TradingSessionID = FieldTradingSessionID; 
    bool isSetTradingSessionID() const { return fieldTradingSessionID.offset > 0; }
    FieldTradingSessionID::ValueType getTradingSessionID() const { return fieldTradingSessionID.getValue( _fixPtr ); }
    std::string_view getTradingSessionIDView() const { return fieldTradingSessionID.offset > 0 ? std::string_view{ _fixPtr + fieldTradingSessionID.offset, getValueLength( _fixPtr + fieldTradingSessionID.offset ) } : std::string_view{}; }
@@ -5016,6 +5495,7 @@ class GroupBidComponents : public MessageBase
    private: FieldTradingSessionID fieldTradingSessionID;
 
    public:
+   using TradingSessionSubID = FieldTradingSessionSubID; 
    bool isSetTradingSessionSubID() const { return fieldTradingSessionSubID.offset > 0; }
    FieldTradingSessionSubID::ValueType getTradingSessionSubID() const { return fieldTradingSessionSubID.getValue( _fixPtr ); }
    std::string_view getTradingSessionSubIDView() const { return fieldTradingSessionSubID.offset > 0 ? std::string_view{ _fixPtr + fieldTradingSessionSubID.offset, getValueLength( _fixPtr + fieldTradingSessionSubID.offset ) } : std::string_view{}; }
@@ -5025,6 +5505,7 @@ class GroupBidComponents : public MessageBase
    private: FieldTradingSessionSubID fieldTradingSessionSubID;
 
    public:
+   using NetGrossInd = FieldNetGrossInd; 
    bool isSetNetGrossInd() const { return fieldNetGrossInd.offset > 0; }
    FieldNetGrossInd::ValueType getNetGrossInd() const { return fieldNetGrossInd.getValue( _fixPtr ); }
    std::string_view getNetGrossIndView() const { return fieldNetGrossInd.offset > 0 ? std::string_view{ _fixPtr + fieldNetGrossInd.offset, getValueLength( _fixPtr + fieldNetGrossInd.offset ) } : std::string_view{}; }
@@ -5034,6 +5515,7 @@ class GroupBidComponents : public MessageBase
    private: FieldNetGrossInd fieldNetGrossInd;
 
    public:
+   using SettlType = FieldSettlType; 
    bool isSetSettlType() const { return fieldSettlType.offset > 0; }
    FieldSettlType::ValueType getSettlType() const { return fieldSettlType.getValue( _fixPtr ); }
    std::string_view getSettlTypeView() const { return fieldSettlType.offset > 0 ? std::string_view{ _fixPtr + fieldSettlType.offset, getValueLength( _fixPtr + fieldSettlType.offset ) } : std::string_view{}; }
@@ -5043,6 +5525,7 @@ class GroupBidComponents : public MessageBase
    private: FieldSettlType fieldSettlType;
 
    public:
+   using SettlDate = FieldSettlDate; 
    bool isSetSettlDate() const { return fieldSettlDate.offset > 0; }
    FieldSettlDate::ValueType getSettlDate() const { return fieldSettlDate.getValue( _fixPtr ); }
    std::string_view getSettlDateView() const { return fieldSettlDate.offset > 0 ? std::string_view{ _fixPtr + fieldSettlDate.offset, getValueLength( _fixPtr + fieldSettlDate.offset ) } : std::string_view{}; }
@@ -5052,6 +5535,7 @@ class GroupBidComponents : public MessageBase
    private: FieldSettlDate fieldSettlDate;
 
    public:
+   using Account = FieldAccount; 
    bool isSetAccount() const { return fieldAccount.offset > 0; }
    FieldAccount::ValueType getAccount() const { return fieldAccount.getValue( _fixPtr ); }
    std::string_view getAccountView() const { return fieldAccount.offset > 0 ? std::string_view{ _fixPtr + fieldAccount.offset, getValueLength( _fixPtr + fieldAccount.offset ) } : std::string_view{}; }
@@ -5061,6 +5545,7 @@ class GroupBidComponents : public MessageBase
    private: FieldAccount fieldAccount;
 
    public:
+   using AcctIDSource = FieldAcctIDSource; 
    bool isSetAcctIDSource() const { return fieldAcctIDSource.offset > 0; }
    FieldAcctIDSource::ValueType getAcctIDSource() const { return fieldAcctIDSource.getValue( _fixPtr ); }
    std::string_view getAcctIDSourceView() const { return fieldAcctIDSource.offset > 0 ? std::string_view{ _fixPtr + fieldAcctIDSource.offset, getValueLength( _fixPtr + fieldAcctIDSource.offset ) } : std::string_view{}; }
@@ -5086,6 +5571,7 @@ class GroupSettlInst : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<GroupSettlInst,0,FIELDS...>(*this,tpl); return tpl; };
+   template< typename... FIELDS > std::tuple<typeExists<FIELDS>... > getPresenceOf() const { std::tuple< typeExists<FIELDS>... > tpl{}; buildPresenceTuple<GroupSettlInst,0,FIELDS...>(*this,tpl); return tpl; };
    bool isFieldSet( tag_t tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
@@ -5095,6 +5581,7 @@ class GroupSettlInst : public MessageBase
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
+   using SettlInstID = FieldSettlInstID; 
    bool isSetSettlInstID() const { return fieldSettlInstID.offset > 0; }
    FieldSettlInstID::ValueType getSettlInstID() const { return fieldSettlInstID.getValue( _fixPtr ); }
    std::string_view getSettlInstIDView() const { return fieldSettlInstID.offset > 0 ? std::string_view{ _fixPtr + fieldSettlInstID.offset, getValueLength( _fixPtr + fieldSettlInstID.offset ) } : std::string_view{}; }
@@ -5104,6 +5591,7 @@ class GroupSettlInst : public MessageBase
    private: FieldSettlInstID fieldSettlInstID;
 
    public:
+   using SettlInstTransType = FieldSettlInstTransType; 
    bool isSetSettlInstTransType() const { return fieldSettlInstTransType.offset > 0; }
    FieldSettlInstTransType::ValueType getSettlInstTransType() const { return fieldSettlInstTransType.getValue( _fixPtr ); }
    std::string_view getSettlInstTransTypeView() const { return fieldSettlInstTransType.offset > 0 ? std::string_view{ _fixPtr + fieldSettlInstTransType.offset, getValueLength( _fixPtr + fieldSettlInstTransType.offset ) } : std::string_view{}; }
@@ -5113,6 +5601,7 @@ class GroupSettlInst : public MessageBase
    private: FieldSettlInstTransType fieldSettlInstTransType;
 
    public:
+   using SettlInstRefID = FieldSettlInstRefID; 
    bool isSetSettlInstRefID() const { return fieldSettlInstRefID.offset > 0; }
    FieldSettlInstRefID::ValueType getSettlInstRefID() const { return fieldSettlInstRefID.getValue( _fixPtr ); }
    std::string_view getSettlInstRefIDView() const { return fieldSettlInstRefID.offset > 0 ? std::string_view{ _fixPtr + fieldSettlInstRefID.offset, getValueLength( _fixPtr + fieldSettlInstRefID.offset ) } : std::string_view{}; }
@@ -5122,6 +5611,7 @@ class GroupSettlInst : public MessageBase
    private: FieldSettlInstRefID fieldSettlInstRefID;
 
    public:
+   using NoPartyIDs = FieldNoPartyIDs; 
    bool isSetNoPartyIDs() const { return fieldNoPartyIDs.offset > 0; }
    FieldNoPartyIDs::ValueType getNoPartyIDs() const { return fieldNoPartyIDs.getValue( _fixPtr ); }
    std::string_view getNoPartyIDsView() const { return fieldNoPartyIDs.offset > 0 ? std::string_view{ _fixPtr + fieldNoPartyIDs.offset, getValueLength( _fixPtr + fieldNoPartyIDs.offset ) } : std::string_view{}; }
@@ -5136,6 +5626,7 @@ class GroupSettlInst : public MessageBase
    private: GroupPartyIDs::Array groupsPartyIDs{ 10 };
 
    public:
+   using Side = FieldSide; 
    bool isSetSide() const { return fieldSide.offset > 0; }
    FieldSide::ValueType getSide() const { return fieldSide.getValue( _fixPtr ); }
    std::string_view getSideView() const { return fieldSide.offset > 0 ? std::string_view{ _fixPtr + fieldSide.offset, getValueLength( _fixPtr + fieldSide.offset ) } : std::string_view{}; }
@@ -5145,6 +5636,7 @@ class GroupSettlInst : public MessageBase
    private: FieldSide fieldSide;
 
    public:
+   using Product = FieldProduct; 
    bool isSetProduct() const { return fieldProduct.offset > 0; }
    FieldProduct::ValueType getProduct() const { return fieldProduct.getValue( _fixPtr ); }
    std::string_view getProductView() const { return fieldProduct.offset > 0 ? std::string_view{ _fixPtr + fieldProduct.offset, getValueLength( _fixPtr + fieldProduct.offset ) } : std::string_view{}; }
@@ -5154,6 +5646,7 @@ class GroupSettlInst : public MessageBase
    private: FieldProduct fieldProduct;
 
    public:
+   using SecurityType = FieldSecurityType; 
    bool isSetSecurityType() const { return fieldSecurityType.offset > 0; }
    FieldSecurityType::ValueType getSecurityType() const { return fieldSecurityType.getValue( _fixPtr ); }
    std::string_view getSecurityTypeView() const { return fieldSecurityType.offset > 0 ? std::string_view{ _fixPtr + fieldSecurityType.offset, getValueLength( _fixPtr + fieldSecurityType.offset ) } : std::string_view{}; }
@@ -5163,6 +5656,7 @@ class GroupSettlInst : public MessageBase
    private: FieldSecurityType fieldSecurityType;
 
    public:
+   using CFICode = FieldCFICode; 
    bool isSetCFICode() const { return fieldCFICode.offset > 0; }
    FieldCFICode::ValueType getCFICode() const { return fieldCFICode.getValue( _fixPtr ); }
    std::string_view getCFICodeView() const { return fieldCFICode.offset > 0 ? std::string_view{ _fixPtr + fieldCFICode.offset, getValueLength( _fixPtr + fieldCFICode.offset ) } : std::string_view{}; }
@@ -5172,6 +5666,7 @@ class GroupSettlInst : public MessageBase
    private: FieldCFICode fieldCFICode;
 
    public:
+   using EffectiveTime = FieldEffectiveTime; 
    bool isSetEffectiveTime() const { return fieldEffectiveTime.offset > 0; }
    FieldEffectiveTime::ValueType getEffectiveTime() const { return fieldEffectiveTime.getValue( _fixPtr ); }
    std::string_view getEffectiveTimeView() const { return fieldEffectiveTime.offset > 0 ? std::string_view{ _fixPtr + fieldEffectiveTime.offset, getValueLength( _fixPtr + fieldEffectiveTime.offset ) } : std::string_view{}; }
@@ -5181,6 +5676,7 @@ class GroupSettlInst : public MessageBase
    private: FieldEffectiveTime fieldEffectiveTime;
 
    public:
+   using ExpireTime = FieldExpireTime; 
    bool isSetExpireTime() const { return fieldExpireTime.offset > 0; }
    FieldExpireTime::ValueType getExpireTime() const { return fieldExpireTime.getValue( _fixPtr ); }
    std::string_view getExpireTimeView() const { return fieldExpireTime.offset > 0 ? std::string_view{ _fixPtr + fieldExpireTime.offset, getValueLength( _fixPtr + fieldExpireTime.offset ) } : std::string_view{}; }
@@ -5190,6 +5686,7 @@ class GroupSettlInst : public MessageBase
    private: FieldExpireTime fieldExpireTime;
 
    public:
+   using LastUpdateTime = FieldLastUpdateTime; 
    bool isSetLastUpdateTime() const { return fieldLastUpdateTime.offset > 0; }
    FieldLastUpdateTime::ValueType getLastUpdateTime() const { return fieldLastUpdateTime.getValue( _fixPtr ); }
    std::string_view getLastUpdateTimeView() const { return fieldLastUpdateTime.offset > 0 ? std::string_view{ _fixPtr + fieldLastUpdateTime.offset, getValueLength( _fixPtr + fieldLastUpdateTime.offset ) } : std::string_view{}; }
@@ -5199,6 +5696,7 @@ class GroupSettlInst : public MessageBase
    private: FieldLastUpdateTime fieldLastUpdateTime;
 
    public:
+   using SettlDeliveryType = FieldSettlDeliveryType; 
    bool isSetSettlDeliveryType() const { return fieldSettlDeliveryType.offset > 0; }
    FieldSettlDeliveryType::ValueType getSettlDeliveryType() const { return fieldSettlDeliveryType.getValue( _fixPtr ); }
    std::string_view getSettlDeliveryTypeView() const { return fieldSettlDeliveryType.offset > 0 ? std::string_view{ _fixPtr + fieldSettlDeliveryType.offset, getValueLength( _fixPtr + fieldSettlDeliveryType.offset ) } : std::string_view{}; }
@@ -5208,6 +5706,7 @@ class GroupSettlInst : public MessageBase
    private: FieldSettlDeliveryType fieldSettlDeliveryType;
 
    public:
+   using StandInstDbType = FieldStandInstDbType; 
    bool isSetStandInstDbType() const { return fieldStandInstDbType.offset > 0; }
    FieldStandInstDbType::ValueType getStandInstDbType() const { return fieldStandInstDbType.getValue( _fixPtr ); }
    std::string_view getStandInstDbTypeView() const { return fieldStandInstDbType.offset > 0 ? std::string_view{ _fixPtr + fieldStandInstDbType.offset, getValueLength( _fixPtr + fieldStandInstDbType.offset ) } : std::string_view{}; }
@@ -5217,6 +5716,7 @@ class GroupSettlInst : public MessageBase
    private: FieldStandInstDbType fieldStandInstDbType;
 
    public:
+   using StandInstDbName = FieldStandInstDbName; 
    bool isSetStandInstDbName() const { return fieldStandInstDbName.offset > 0; }
    FieldStandInstDbName::ValueType getStandInstDbName() const { return fieldStandInstDbName.getValue( _fixPtr ); }
    std::string_view getStandInstDbNameView() const { return fieldStandInstDbName.offset > 0 ? std::string_view{ _fixPtr + fieldStandInstDbName.offset, getValueLength( _fixPtr + fieldStandInstDbName.offset ) } : std::string_view{}; }
@@ -5226,6 +5726,7 @@ class GroupSettlInst : public MessageBase
    private: FieldStandInstDbName fieldStandInstDbName;
 
    public:
+   using StandInstDbID = FieldStandInstDbID; 
    bool isSetStandInstDbID() const { return fieldStandInstDbID.offset > 0; }
    FieldStandInstDbID::ValueType getStandInstDbID() const { return fieldStandInstDbID.getValue( _fixPtr ); }
    std::string_view getStandInstDbIDView() const { return fieldStandInstDbID.offset > 0 ? std::string_view{ _fixPtr + fieldStandInstDbID.offset, getValueLength( _fixPtr + fieldStandInstDbID.offset ) } : std::string_view{}; }
@@ -5235,6 +5736,7 @@ class GroupSettlInst : public MessageBase
    private: FieldStandInstDbID fieldStandInstDbID;
 
    public:
+   using NoDlvyInst = FieldNoDlvyInst; 
    bool isSetNoDlvyInst() const { return fieldNoDlvyInst.offset > 0; }
    FieldNoDlvyInst::ValueType getNoDlvyInst() const { return fieldNoDlvyInst.getValue( _fixPtr ); }
    std::string_view getNoDlvyInstView() const { return fieldNoDlvyInst.offset > 0 ? std::string_view{ _fixPtr + fieldNoDlvyInst.offset, getValueLength( _fixPtr + fieldNoDlvyInst.offset ) } : std::string_view{}; }
@@ -5249,6 +5751,7 @@ class GroupSettlInst : public MessageBase
    private: GroupDlvyInst::Array groupsDlvyInst{ 10 };
 
    public:
+   using PaymentMethod = FieldPaymentMethod; 
    bool isSetPaymentMethod() const { return fieldPaymentMethod.offset > 0; }
    FieldPaymentMethod::ValueType getPaymentMethod() const { return fieldPaymentMethod.getValue( _fixPtr ); }
    std::string_view getPaymentMethodView() const { return fieldPaymentMethod.offset > 0 ? std::string_view{ _fixPtr + fieldPaymentMethod.offset, getValueLength( _fixPtr + fieldPaymentMethod.offset ) } : std::string_view{}; }
@@ -5258,6 +5761,7 @@ class GroupSettlInst : public MessageBase
    private: FieldPaymentMethod fieldPaymentMethod;
 
    public:
+   using PaymentRef = FieldPaymentRef; 
    bool isSetPaymentRef() const { return fieldPaymentRef.offset > 0; }
    FieldPaymentRef::ValueType getPaymentRef() const { return fieldPaymentRef.getValue( _fixPtr ); }
    std::string_view getPaymentRefView() const { return fieldPaymentRef.offset > 0 ? std::string_view{ _fixPtr + fieldPaymentRef.offset, getValueLength( _fixPtr + fieldPaymentRef.offset ) } : std::string_view{}; }
@@ -5267,6 +5771,7 @@ class GroupSettlInst : public MessageBase
    private: FieldPaymentRef fieldPaymentRef;
 
    public:
+   using CardHolderName = FieldCardHolderName; 
    bool isSetCardHolderName() const { return fieldCardHolderName.offset > 0; }
    FieldCardHolderName::ValueType getCardHolderName() const { return fieldCardHolderName.getValue( _fixPtr ); }
    std::string_view getCardHolderNameView() const { return fieldCardHolderName.offset > 0 ? std::string_view{ _fixPtr + fieldCardHolderName.offset, getValueLength( _fixPtr + fieldCardHolderName.offset ) } : std::string_view{}; }
@@ -5276,6 +5781,7 @@ class GroupSettlInst : public MessageBase
    private: FieldCardHolderName fieldCardHolderName;
 
    public:
+   using CardNumber = FieldCardNumber; 
    bool isSetCardNumber() const { return fieldCardNumber.offset > 0; }
    FieldCardNumber::ValueType getCardNumber() const { return fieldCardNumber.getValue( _fixPtr ); }
    std::string_view getCardNumberView() const { return fieldCardNumber.offset > 0 ? std::string_view{ _fixPtr + fieldCardNumber.offset, getValueLength( _fixPtr + fieldCardNumber.offset ) } : std::string_view{}; }
@@ -5285,6 +5791,7 @@ class GroupSettlInst : public MessageBase
    private: FieldCardNumber fieldCardNumber;
 
    public:
+   using CardStartDate = FieldCardStartDate; 
    bool isSetCardStartDate() const { return fieldCardStartDate.offset > 0; }
    FieldCardStartDate::ValueType getCardStartDate() const { return fieldCardStartDate.getValue( _fixPtr ); }
    std::string_view getCardStartDateView() const { return fieldCardStartDate.offset > 0 ? std::string_view{ _fixPtr + fieldCardStartDate.offset, getValueLength( _fixPtr + fieldCardStartDate.offset ) } : std::string_view{}; }
@@ -5294,6 +5801,7 @@ class GroupSettlInst : public MessageBase
    private: FieldCardStartDate fieldCardStartDate;
 
    public:
+   using CardExpDate = FieldCardExpDate; 
    bool isSetCardExpDate() const { return fieldCardExpDate.offset > 0; }
    FieldCardExpDate::ValueType getCardExpDate() const { return fieldCardExpDate.getValue( _fixPtr ); }
    std::string_view getCardExpDateView() const { return fieldCardExpDate.offset > 0 ? std::string_view{ _fixPtr + fieldCardExpDate.offset, getValueLength( _fixPtr + fieldCardExpDate.offset ) } : std::string_view{}; }
@@ -5303,6 +5811,7 @@ class GroupSettlInst : public MessageBase
    private: FieldCardExpDate fieldCardExpDate;
 
    public:
+   using CardIssNum = FieldCardIssNum; 
    bool isSetCardIssNum() const { return fieldCardIssNum.offset > 0; }
    FieldCardIssNum::ValueType getCardIssNum() const { return fieldCardIssNum.getValue( _fixPtr ); }
    std::string_view getCardIssNumView() const { return fieldCardIssNum.offset > 0 ? std::string_view{ _fixPtr + fieldCardIssNum.offset, getValueLength( _fixPtr + fieldCardIssNum.offset ) } : std::string_view{}; }
@@ -5312,6 +5821,7 @@ class GroupSettlInst : public MessageBase
    private: FieldCardIssNum fieldCardIssNum;
 
    public:
+   using PaymentDate = FieldPaymentDate; 
    bool isSetPaymentDate() const { return fieldPaymentDate.offset > 0; }
    FieldPaymentDate::ValueType getPaymentDate() const { return fieldPaymentDate.getValue( _fixPtr ); }
    std::string_view getPaymentDateView() const { return fieldPaymentDate.offset > 0 ? std::string_view{ _fixPtr + fieldPaymentDate.offset, getValueLength( _fixPtr + fieldPaymentDate.offset ) } : std::string_view{}; }
@@ -5321,6 +5831,7 @@ class GroupSettlInst : public MessageBase
    private: FieldPaymentDate fieldPaymentDate;
 
    public:
+   using PaymentRemitterID = FieldPaymentRemitterID; 
    bool isSetPaymentRemitterID() const { return fieldPaymentRemitterID.offset > 0; }
    FieldPaymentRemitterID::ValueType getPaymentRemitterID() const { return fieldPaymentRemitterID.getValue( _fixPtr ); }
    std::string_view getPaymentRemitterIDView() const { return fieldPaymentRemitterID.offset > 0 ? std::string_view{ _fixPtr + fieldPaymentRemitterID.offset, getValueLength( _fixPtr + fieldPaymentRemitterID.offset ) } : std::string_view{}; }
@@ -5346,6 +5857,7 @@ class GroupInstrAttrib : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<GroupInstrAttrib,0,FIELDS...>(*this,tpl); return tpl; };
+   template< typename... FIELDS > std::tuple<typeExists<FIELDS>... > getPresenceOf() const { std::tuple< typeExists<FIELDS>... > tpl{}; buildPresenceTuple<GroupInstrAttrib,0,FIELDS...>(*this,tpl); return tpl; };
    bool isFieldSet( tag_t tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
@@ -5355,6 +5867,7 @@ class GroupInstrAttrib : public MessageBase
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
+   using InstrAttribType = FieldInstrAttribType; 
    bool isSetInstrAttribType() const { return fieldInstrAttribType.offset > 0; }
    FieldInstrAttribType::ValueType getInstrAttribType() const { return fieldInstrAttribType.getValue( _fixPtr ); }
    std::string_view getInstrAttribTypeView() const { return fieldInstrAttribType.offset > 0 ? std::string_view{ _fixPtr + fieldInstrAttribType.offset, getValueLength( _fixPtr + fieldInstrAttribType.offset ) } : std::string_view{}; }
@@ -5364,6 +5877,7 @@ class GroupInstrAttrib : public MessageBase
    private: FieldInstrAttribType fieldInstrAttribType;
 
    public:
+   using InstrAttribValue = FieldInstrAttribValue; 
    bool isSetInstrAttribValue() const { return fieldInstrAttribValue.offset > 0; }
    FieldInstrAttribValue::ValueType getInstrAttribValue() const { return fieldInstrAttribValue.getValue( _fixPtr ); }
    std::string_view getInstrAttribValueView() const { return fieldInstrAttribValue.offset > 0 ? std::string_view{ _fixPtr + fieldInstrAttribValue.offset, getValueLength( _fixPtr + fieldInstrAttribValue.offset ) } : std::string_view{}; }
@@ -5389,6 +5903,7 @@ class GroupMiscFees : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<GroupMiscFees,0,FIELDS...>(*this,tpl); return tpl; };
+   template< typename... FIELDS > std::tuple<typeExists<FIELDS>... > getPresenceOf() const { std::tuple< typeExists<FIELDS>... > tpl{}; buildPresenceTuple<GroupMiscFees,0,FIELDS...>(*this,tpl); return tpl; };
    bool isFieldSet( tag_t tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
@@ -5398,6 +5913,7 @@ class GroupMiscFees : public MessageBase
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
+   using MiscFeeAmt = FieldMiscFeeAmt; 
    bool isSetMiscFeeAmt() const { return fieldMiscFeeAmt.offset > 0; }
    FieldMiscFeeAmt::ValueType getMiscFeeAmt() const { return fieldMiscFeeAmt.getValue( _fixPtr ); }
    std::string_view getMiscFeeAmtView() const { return fieldMiscFeeAmt.offset > 0 ? std::string_view{ _fixPtr + fieldMiscFeeAmt.offset, getValueLength( _fixPtr + fieldMiscFeeAmt.offset ) } : std::string_view{}; }
@@ -5407,6 +5923,7 @@ class GroupMiscFees : public MessageBase
    private: FieldMiscFeeAmt fieldMiscFeeAmt;
 
    public:
+   using MiscFeeCurr = FieldMiscFeeCurr; 
    bool isSetMiscFeeCurr() const { return fieldMiscFeeCurr.offset > 0; }
    FieldMiscFeeCurr::ValueType getMiscFeeCurr() const { return fieldMiscFeeCurr.getValue( _fixPtr ); }
    std::string_view getMiscFeeCurrView() const { return fieldMiscFeeCurr.offset > 0 ? std::string_view{ _fixPtr + fieldMiscFeeCurr.offset, getValueLength( _fixPtr + fieldMiscFeeCurr.offset ) } : std::string_view{}; }
@@ -5416,6 +5933,7 @@ class GroupMiscFees : public MessageBase
    private: FieldMiscFeeCurr fieldMiscFeeCurr;
 
    public:
+   using MiscFeeType = FieldMiscFeeType; 
    bool isSetMiscFeeType() const { return fieldMiscFeeType.offset > 0; }
    FieldMiscFeeType::ValueType getMiscFeeType() const { return fieldMiscFeeType.getValue( _fixPtr ); }
    std::string_view getMiscFeeTypeView() const { return fieldMiscFeeType.offset > 0 ? std::string_view{ _fixPtr + fieldMiscFeeType.offset, getValueLength( _fixPtr + fieldMiscFeeType.offset ) } : std::string_view{}; }
@@ -5425,6 +5943,7 @@ class GroupMiscFees : public MessageBase
    private: FieldMiscFeeType fieldMiscFeeType;
 
    public:
+   using MiscFeeBasis = FieldMiscFeeBasis; 
    bool isSetMiscFeeBasis() const { return fieldMiscFeeBasis.offset > 0; }
    FieldMiscFeeBasis::ValueType getMiscFeeBasis() const { return fieldMiscFeeBasis.getValue( _fixPtr ); }
    std::string_view getMiscFeeBasisView() const { return fieldMiscFeeBasis.offset > 0 ? std::string_view{ _fixPtr + fieldMiscFeeBasis.offset, getValueLength( _fixPtr + fieldMiscFeeBasis.offset ) } : std::string_view{}; }
@@ -5450,6 +5969,7 @@ class GroupQuoteQualifiers : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<GroupQuoteQualifiers,0,FIELDS...>(*this,tpl); return tpl; };
+   template< typename... FIELDS > std::tuple<typeExists<FIELDS>... > getPresenceOf() const { std::tuple< typeExists<FIELDS>... > tpl{}; buildPresenceTuple<GroupQuoteQualifiers,0,FIELDS...>(*this,tpl); return tpl; };
    bool isFieldSet( tag_t tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
@@ -5459,6 +5979,7 @@ class GroupQuoteQualifiers : public MessageBase
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
+   using QuoteQualifier = FieldQuoteQualifier; 
    bool isSetQuoteQualifier() const { return fieldQuoteQualifier.offset > 0; }
    FieldQuoteQualifier::ValueType getQuoteQualifier() const { return fieldQuoteQualifier.getValue( _fixPtr ); }
    std::string_view getQuoteQualifierView() const { return fieldQuoteQualifier.offset > 0 ? std::string_view{ _fixPtr + fieldQuoteQualifier.offset, getValueLength( _fixPtr + fieldQuoteQualifier.offset ) } : std::string_view{}; }
@@ -5484,6 +6005,7 @@ class GroupDistribInsts : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<GroupDistribInsts,0,FIELDS...>(*this,tpl); return tpl; };
+   template< typename... FIELDS > std::tuple<typeExists<FIELDS>... > getPresenceOf() const { std::tuple< typeExists<FIELDS>... > tpl{}; buildPresenceTuple<GroupDistribInsts,0,FIELDS...>(*this,tpl); return tpl; };
    bool isFieldSet( tag_t tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
@@ -5493,6 +6015,7 @@ class GroupDistribInsts : public MessageBase
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
+   using DistribPaymentMethod = FieldDistribPaymentMethod; 
    bool isSetDistribPaymentMethod() const { return fieldDistribPaymentMethod.offset > 0; }
    FieldDistribPaymentMethod::ValueType getDistribPaymentMethod() const { return fieldDistribPaymentMethod.getValue( _fixPtr ); }
    std::string_view getDistribPaymentMethodView() const { return fieldDistribPaymentMethod.offset > 0 ? std::string_view{ _fixPtr + fieldDistribPaymentMethod.offset, getValueLength( _fixPtr + fieldDistribPaymentMethod.offset ) } : std::string_view{}; }
@@ -5502,6 +6025,7 @@ class GroupDistribInsts : public MessageBase
    private: FieldDistribPaymentMethod fieldDistribPaymentMethod;
 
    public:
+   using DistribPercentage = FieldDistribPercentage; 
    bool isSetDistribPercentage() const { return fieldDistribPercentage.offset > 0; }
    FieldDistribPercentage::ValueType getDistribPercentage() const { return fieldDistribPercentage.getValue( _fixPtr ); }
    std::string_view getDistribPercentageView() const { return fieldDistribPercentage.offset > 0 ? std::string_view{ _fixPtr + fieldDistribPercentage.offset, getValueLength( _fixPtr + fieldDistribPercentage.offset ) } : std::string_view{}; }
@@ -5511,6 +6035,7 @@ class GroupDistribInsts : public MessageBase
    private: FieldDistribPercentage fieldDistribPercentage;
 
    public:
+   using CashDistribCurr = FieldCashDistribCurr; 
    bool isSetCashDistribCurr() const { return fieldCashDistribCurr.offset > 0; }
    FieldCashDistribCurr::ValueType getCashDistribCurr() const { return fieldCashDistribCurr.getValue( _fixPtr ); }
    std::string_view getCashDistribCurrView() const { return fieldCashDistribCurr.offset > 0 ? std::string_view{ _fixPtr + fieldCashDistribCurr.offset, getValueLength( _fixPtr + fieldCashDistribCurr.offset ) } : std::string_view{}; }
@@ -5520,6 +6045,7 @@ class GroupDistribInsts : public MessageBase
    private: FieldCashDistribCurr fieldCashDistribCurr;
 
    public:
+   using CashDistribAgentName = FieldCashDistribAgentName; 
    bool isSetCashDistribAgentName() const { return fieldCashDistribAgentName.offset > 0; }
    FieldCashDistribAgentName::ValueType getCashDistribAgentName() const { return fieldCashDistribAgentName.getValue( _fixPtr ); }
    std::string_view getCashDistribAgentNameView() const { return fieldCashDistribAgentName.offset > 0 ? std::string_view{ _fixPtr + fieldCashDistribAgentName.offset, getValueLength( _fixPtr + fieldCashDistribAgentName.offset ) } : std::string_view{}; }
@@ -5529,6 +6055,7 @@ class GroupDistribInsts : public MessageBase
    private: FieldCashDistribAgentName fieldCashDistribAgentName;
 
    public:
+   using CashDistribAgentCode = FieldCashDistribAgentCode; 
    bool isSetCashDistribAgentCode() const { return fieldCashDistribAgentCode.offset > 0; }
    FieldCashDistribAgentCode::ValueType getCashDistribAgentCode() const { return fieldCashDistribAgentCode.getValue( _fixPtr ); }
    std::string_view getCashDistribAgentCodeView() const { return fieldCashDistribAgentCode.offset > 0 ? std::string_view{ _fixPtr + fieldCashDistribAgentCode.offset, getValueLength( _fixPtr + fieldCashDistribAgentCode.offset ) } : std::string_view{}; }
@@ -5538,6 +6065,7 @@ class GroupDistribInsts : public MessageBase
    private: FieldCashDistribAgentCode fieldCashDistribAgentCode;
 
    public:
+   using CashDistribAgentAcctNumber = FieldCashDistribAgentAcctNumber; 
    bool isSetCashDistribAgentAcctNumber() const { return fieldCashDistribAgentAcctNumber.offset > 0; }
    FieldCashDistribAgentAcctNumber::ValueType getCashDistribAgentAcctNumber() const { return fieldCashDistribAgentAcctNumber.getValue( _fixPtr ); }
    std::string_view getCashDistribAgentAcctNumberView() const { return fieldCashDistribAgentAcctNumber.offset > 0 ? std::string_view{ _fixPtr + fieldCashDistribAgentAcctNumber.offset, getValueLength( _fixPtr + fieldCashDistribAgentAcctNumber.offset ) } : std::string_view{}; }
@@ -5547,6 +6075,7 @@ class GroupDistribInsts : public MessageBase
    private: FieldCashDistribAgentAcctNumber fieldCashDistribAgentAcctNumber;
 
    public:
+   using CashDistribPayRef = FieldCashDistribPayRef; 
    bool isSetCashDistribPayRef() const { return fieldCashDistribPayRef.offset > 0; }
    FieldCashDistribPayRef::ValueType getCashDistribPayRef() const { return fieldCashDistribPayRef.getValue( _fixPtr ); }
    std::string_view getCashDistribPayRefView() const { return fieldCashDistribPayRef.offset > 0 ? std::string_view{ _fixPtr + fieldCashDistribPayRef.offset, getValueLength( _fixPtr + fieldCashDistribPayRef.offset ) } : std::string_view{}; }
@@ -5556,6 +6085,7 @@ class GroupDistribInsts : public MessageBase
    private: FieldCashDistribPayRef fieldCashDistribPayRef;
 
    public:
+   using CashDistribAgentAcctName = FieldCashDistribAgentAcctName; 
    bool isSetCashDistribAgentAcctName() const { return fieldCashDistribAgentAcctName.offset > 0; }
    FieldCashDistribAgentAcctName::ValueType getCashDistribAgentAcctName() const { return fieldCashDistribAgentAcctName.getValue( _fixPtr ); }
    std::string_view getCashDistribAgentAcctNameView() const { return fieldCashDistribAgentAcctName.offset > 0 ? std::string_view{ _fixPtr + fieldCashDistribAgentAcctName.offset, getValueLength( _fixPtr + fieldCashDistribAgentAcctName.offset ) } : std::string_view{}; }
@@ -5581,6 +6111,7 @@ class GroupTrdRegTimestamps : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<GroupTrdRegTimestamps,0,FIELDS...>(*this,tpl); return tpl; };
+   template< typename... FIELDS > std::tuple<typeExists<FIELDS>... > getPresenceOf() const { std::tuple< typeExists<FIELDS>... > tpl{}; buildPresenceTuple<GroupTrdRegTimestamps,0,FIELDS...>(*this,tpl); return tpl; };
    bool isFieldSet( tag_t tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
@@ -5590,6 +6121,7 @@ class GroupTrdRegTimestamps : public MessageBase
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
+   using TrdRegTimestamp = FieldTrdRegTimestamp; 
    bool isSetTrdRegTimestamp() const { return fieldTrdRegTimestamp.offset > 0; }
    FieldTrdRegTimestamp::ValueType getTrdRegTimestamp() const { return fieldTrdRegTimestamp.getValue( _fixPtr ); }
    std::string_view getTrdRegTimestampView() const { return fieldTrdRegTimestamp.offset > 0 ? std::string_view{ _fixPtr + fieldTrdRegTimestamp.offset, getValueLength( _fixPtr + fieldTrdRegTimestamp.offset ) } : std::string_view{}; }
@@ -5599,6 +6131,7 @@ class GroupTrdRegTimestamps : public MessageBase
    private: FieldTrdRegTimestamp fieldTrdRegTimestamp;
 
    public:
+   using TrdRegTimestampType = FieldTrdRegTimestampType; 
    bool isSetTrdRegTimestampType() const { return fieldTrdRegTimestampType.offset > 0; }
    FieldTrdRegTimestampType::ValueType getTrdRegTimestampType() const { return fieldTrdRegTimestampType.getValue( _fixPtr ); }
    std::string_view getTrdRegTimestampTypeView() const { return fieldTrdRegTimestampType.offset > 0 ? std::string_view{ _fixPtr + fieldTrdRegTimestampType.offset, getValueLength( _fixPtr + fieldTrdRegTimestampType.offset ) } : std::string_view{}; }
@@ -5608,6 +6141,7 @@ class GroupTrdRegTimestamps : public MessageBase
    private: FieldTrdRegTimestampType fieldTrdRegTimestampType;
 
    public:
+   using TrdRegTimestampOrigin = FieldTrdRegTimestampOrigin; 
    bool isSetTrdRegTimestampOrigin() const { return fieldTrdRegTimestampOrigin.offset > 0; }
    FieldTrdRegTimestampOrigin::ValueType getTrdRegTimestampOrigin() const { return fieldTrdRegTimestampOrigin.getValue( _fixPtr ); }
    std::string_view getTrdRegTimestampOriginView() const { return fieldTrdRegTimestampOrigin.offset > 0 ? std::string_view{ _fixPtr + fieldTrdRegTimestampOrigin.offset, getValueLength( _fixPtr + fieldTrdRegTimestampOrigin.offset ) } : std::string_view{}; }
@@ -5633,6 +6167,7 @@ class GroupAltMDSource : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<GroupAltMDSource,0,FIELDS...>(*this,tpl); return tpl; };
+   template< typename... FIELDS > std::tuple<typeExists<FIELDS>... > getPresenceOf() const { std::tuple< typeExists<FIELDS>... > tpl{}; buildPresenceTuple<GroupAltMDSource,0,FIELDS...>(*this,tpl); return tpl; };
    bool isFieldSet( tag_t tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
@@ -5642,6 +6177,7 @@ class GroupAltMDSource : public MessageBase
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
+   using AltMDSourceID = FieldAltMDSourceID; 
    bool isSetAltMDSourceID() const { return fieldAltMDSourceID.offset > 0; }
    FieldAltMDSourceID::ValueType getAltMDSourceID() const { return fieldAltMDSourceID.getValue( _fixPtr ); }
    std::string_view getAltMDSourceIDView() const { return fieldAltMDSourceID.offset > 0 ? std::string_view{ _fixPtr + fieldAltMDSourceID.offset, getValueLength( _fixPtr + fieldAltMDSourceID.offset ) } : std::string_view{}; }
@@ -5667,6 +6203,7 @@ class GroupSides : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<GroupSides,0,FIELDS...>(*this,tpl); return tpl; };
+   template< typename... FIELDS > std::tuple<typeExists<FIELDS>... > getPresenceOf() const { std::tuple< typeExists<FIELDS>... > tpl{}; buildPresenceTuple<GroupSides,0,FIELDS...>(*this,tpl); return tpl; };
    bool isFieldSet( tag_t tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
@@ -5676,6 +6213,7 @@ class GroupSides : public MessageBase
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
+   using Side = FieldSide; 
    bool isSetSide() const { return fieldSide.offset > 0; }
    FieldSide::ValueType getSide() const { return fieldSide.getValue( _fixPtr ); }
    std::string_view getSideView() const { return fieldSide.offset > 0 ? std::string_view{ _fixPtr + fieldSide.offset, getValueLength( _fixPtr + fieldSide.offset ) } : std::string_view{}; }
@@ -5685,6 +6223,7 @@ class GroupSides : public MessageBase
    private: FieldSide fieldSide;
 
    public:
+   using OrigClOrdID = FieldOrigClOrdID; 
    bool isSetOrigClOrdID() const { return fieldOrigClOrdID.offset > 0; }
    FieldOrigClOrdID::ValueType getOrigClOrdID() const { return fieldOrigClOrdID.getValue( _fixPtr ); }
    std::string_view getOrigClOrdIDView() const { return fieldOrigClOrdID.offset > 0 ? std::string_view{ _fixPtr + fieldOrigClOrdID.offset, getValueLength( _fixPtr + fieldOrigClOrdID.offset ) } : std::string_view{}; }
@@ -5694,6 +6233,7 @@ class GroupSides : public MessageBase
    private: FieldOrigClOrdID fieldOrigClOrdID;
 
    public:
+   using ClOrdID = FieldClOrdID; 
    bool isSetClOrdID() const { return fieldClOrdID.offset > 0; }
    FieldClOrdID::ValueType getClOrdID() const { return fieldClOrdID.getValue( _fixPtr ); }
    std::string_view getClOrdIDView() const { return fieldClOrdID.offset > 0 ? std::string_view{ _fixPtr + fieldClOrdID.offset, getValueLength( _fixPtr + fieldClOrdID.offset ) } : std::string_view{}; }
@@ -5703,6 +6243,7 @@ class GroupSides : public MessageBase
    private: FieldClOrdID fieldClOrdID;
 
    public:
+   using SecondaryClOrdID = FieldSecondaryClOrdID; 
    bool isSetSecondaryClOrdID() const { return fieldSecondaryClOrdID.offset > 0; }
    FieldSecondaryClOrdID::ValueType getSecondaryClOrdID() const { return fieldSecondaryClOrdID.getValue( _fixPtr ); }
    std::string_view getSecondaryClOrdIDView() const { return fieldSecondaryClOrdID.offset > 0 ? std::string_view{ _fixPtr + fieldSecondaryClOrdID.offset, getValueLength( _fixPtr + fieldSecondaryClOrdID.offset ) } : std::string_view{}; }
@@ -5712,6 +6253,7 @@ class GroupSides : public MessageBase
    private: FieldSecondaryClOrdID fieldSecondaryClOrdID;
 
    public:
+   using ClOrdLinkID = FieldClOrdLinkID; 
    bool isSetClOrdLinkID() const { return fieldClOrdLinkID.offset > 0; }
    FieldClOrdLinkID::ValueType getClOrdLinkID() const { return fieldClOrdLinkID.getValue( _fixPtr ); }
    std::string_view getClOrdLinkIDView() const { return fieldClOrdLinkID.offset > 0 ? std::string_view{ _fixPtr + fieldClOrdLinkID.offset, getValueLength( _fixPtr + fieldClOrdLinkID.offset ) } : std::string_view{}; }
@@ -5721,6 +6263,7 @@ class GroupSides : public MessageBase
    private: FieldClOrdLinkID fieldClOrdLinkID;
 
    public:
+   using OrigOrdModTime = FieldOrigOrdModTime; 
    bool isSetOrigOrdModTime() const { return fieldOrigOrdModTime.offset > 0; }
    FieldOrigOrdModTime::ValueType getOrigOrdModTime() const { return fieldOrigOrdModTime.getValue( _fixPtr ); }
    std::string_view getOrigOrdModTimeView() const { return fieldOrigOrdModTime.offset > 0 ? std::string_view{ _fixPtr + fieldOrigOrdModTime.offset, getValueLength( _fixPtr + fieldOrigOrdModTime.offset ) } : std::string_view{}; }
@@ -5730,6 +6273,7 @@ class GroupSides : public MessageBase
    private: FieldOrigOrdModTime fieldOrigOrdModTime;
 
    public:
+   using NoPartyIDs = FieldNoPartyIDs; 
    bool isSetNoPartyIDs() const { return fieldNoPartyIDs.offset > 0; }
    FieldNoPartyIDs::ValueType getNoPartyIDs() const { return fieldNoPartyIDs.getValue( _fixPtr ); }
    std::string_view getNoPartyIDsView() const { return fieldNoPartyIDs.offset > 0 ? std::string_view{ _fixPtr + fieldNoPartyIDs.offset, getValueLength( _fixPtr + fieldNoPartyIDs.offset ) } : std::string_view{}; }
@@ -5744,6 +6288,7 @@ class GroupSides : public MessageBase
    private: GroupPartyIDs::Array groupsPartyIDs{ 10 };
 
    public:
+   using TradeOriginationDate = FieldTradeOriginationDate; 
    bool isSetTradeOriginationDate() const { return fieldTradeOriginationDate.offset > 0; }
    FieldTradeOriginationDate::ValueType getTradeOriginationDate() const { return fieldTradeOriginationDate.getValue( _fixPtr ); }
    std::string_view getTradeOriginationDateView() const { return fieldTradeOriginationDate.offset > 0 ? std::string_view{ _fixPtr + fieldTradeOriginationDate.offset, getValueLength( _fixPtr + fieldTradeOriginationDate.offset ) } : std::string_view{}; }
@@ -5753,6 +6298,7 @@ class GroupSides : public MessageBase
    private: FieldTradeOriginationDate fieldTradeOriginationDate;
 
    public:
+   using TradeDate = FieldTradeDate; 
    bool isSetTradeDate() const { return fieldTradeDate.offset > 0; }
    FieldTradeDate::ValueType getTradeDate() const { return fieldTradeDate.getValue( _fixPtr ); }
    std::string_view getTradeDateView() const { return fieldTradeDate.offset > 0 ? std::string_view{ _fixPtr + fieldTradeDate.offset, getValueLength( _fixPtr + fieldTradeDate.offset ) } : std::string_view{}; }
@@ -5762,6 +6308,7 @@ class GroupSides : public MessageBase
    private: FieldTradeDate fieldTradeDate;
 
    public:
+   using OrderQty = FieldOrderQty; 
    bool isSetOrderQty() const { return fieldOrderQty.offset > 0; }
    FieldOrderQty::ValueType getOrderQty() const { return fieldOrderQty.getValue( _fixPtr ); }
    std::string_view getOrderQtyView() const { return fieldOrderQty.offset > 0 ? std::string_view{ _fixPtr + fieldOrderQty.offset, getValueLength( _fixPtr + fieldOrderQty.offset ) } : std::string_view{}; }
@@ -5771,6 +6318,7 @@ class GroupSides : public MessageBase
    private: FieldOrderQty fieldOrderQty;
 
    public:
+   using CashOrderQty = FieldCashOrderQty; 
    bool isSetCashOrderQty() const { return fieldCashOrderQty.offset > 0; }
    FieldCashOrderQty::ValueType getCashOrderQty() const { return fieldCashOrderQty.getValue( _fixPtr ); }
    std::string_view getCashOrderQtyView() const { return fieldCashOrderQty.offset > 0 ? std::string_view{ _fixPtr + fieldCashOrderQty.offset, getValueLength( _fixPtr + fieldCashOrderQty.offset ) } : std::string_view{}; }
@@ -5780,6 +6328,7 @@ class GroupSides : public MessageBase
    private: FieldCashOrderQty fieldCashOrderQty;
 
    public:
+   using OrderPercent = FieldOrderPercent; 
    bool isSetOrderPercent() const { return fieldOrderPercent.offset > 0; }
    FieldOrderPercent::ValueType getOrderPercent() const { return fieldOrderPercent.getValue( _fixPtr ); }
    std::string_view getOrderPercentView() const { return fieldOrderPercent.offset > 0 ? std::string_view{ _fixPtr + fieldOrderPercent.offset, getValueLength( _fixPtr + fieldOrderPercent.offset ) } : std::string_view{}; }
@@ -5789,6 +6338,7 @@ class GroupSides : public MessageBase
    private: FieldOrderPercent fieldOrderPercent;
 
    public:
+   using RoundingDirection = FieldRoundingDirection; 
    bool isSetRoundingDirection() const { return fieldRoundingDirection.offset > 0; }
    FieldRoundingDirection::ValueType getRoundingDirection() const { return fieldRoundingDirection.getValue( _fixPtr ); }
    std::string_view getRoundingDirectionView() const { return fieldRoundingDirection.offset > 0 ? std::string_view{ _fixPtr + fieldRoundingDirection.offset, getValueLength( _fixPtr + fieldRoundingDirection.offset ) } : std::string_view{}; }
@@ -5798,6 +6348,7 @@ class GroupSides : public MessageBase
    private: FieldRoundingDirection fieldRoundingDirection;
 
    public:
+   using RoundingModulus = FieldRoundingModulus; 
    bool isSetRoundingModulus() const { return fieldRoundingModulus.offset > 0; }
    FieldRoundingModulus::ValueType getRoundingModulus() const { return fieldRoundingModulus.getValue( _fixPtr ); }
    std::string_view getRoundingModulusView() const { return fieldRoundingModulus.offset > 0 ? std::string_view{ _fixPtr + fieldRoundingModulus.offset, getValueLength( _fixPtr + fieldRoundingModulus.offset ) } : std::string_view{}; }
@@ -5807,6 +6358,7 @@ class GroupSides : public MessageBase
    private: FieldRoundingModulus fieldRoundingModulus;
 
    public:
+   using ComplianceID = FieldComplianceID; 
    bool isSetComplianceID() const { return fieldComplianceID.offset > 0; }
    FieldComplianceID::ValueType getComplianceID() const { return fieldComplianceID.getValue( _fixPtr ); }
    std::string_view getComplianceIDView() const { return fieldComplianceID.offset > 0 ? std::string_view{ _fixPtr + fieldComplianceID.offset, getValueLength( _fixPtr + fieldComplianceID.offset ) } : std::string_view{}; }
@@ -5816,6 +6368,7 @@ class GroupSides : public MessageBase
    private: FieldComplianceID fieldComplianceID;
 
    public:
+   using Text = FieldText; 
    bool isSetText() const { return fieldText.offset > 0; }
    FieldText::ValueType getText() const { return fieldText.getValue( _fixPtr ); }
    std::string_view getTextView() const { return fieldText.offset > 0 ? std::string_view{ _fixPtr + fieldText.offset, getValueLength( _fixPtr + fieldText.offset ) } : std::string_view{}; }
@@ -5825,6 +6378,7 @@ class GroupSides : public MessageBase
    private: FieldText fieldText;
 
    public:
+   using EncodedTextLen = FieldEncodedTextLen; 
    bool isSetEncodedTextLen() const { return fieldEncodedTextLen.offset > 0; }
    FieldEncodedTextLen::ValueType getEncodedTextLen() const { return fieldEncodedTextLen.getValue( _fixPtr ); }
    std::string_view getEncodedTextLenView() const { return fieldEncodedTextLen.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedTextLen.offset, getValueLength( _fixPtr + fieldEncodedTextLen.offset ) } : std::string_view{}; }
@@ -5834,6 +6388,7 @@ class GroupSides : public MessageBase
    private: FieldEncodedTextLen fieldEncodedTextLen;
 
    public:
+   using EncodedText = FieldEncodedText; 
    bool isSetEncodedText() const { return fieldEncodedText.offset > 0; }
    FieldEncodedText::ValueType getEncodedText() const { return fieldEncodedText.getValue( _fixPtr ); }
    std::string_view getEncodedTextView() const { return fieldEncodedText.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedText.offset, getValueLength( _fixPtr + fieldEncodedText.offset ) } : std::string_view{}; }
@@ -5859,6 +6414,7 @@ class GroupRoutingIDs : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<GroupRoutingIDs,0,FIELDS...>(*this,tpl); return tpl; };
+   template< typename... FIELDS > std::tuple<typeExists<FIELDS>... > getPresenceOf() const { std::tuple< typeExists<FIELDS>... > tpl{}; buildPresenceTuple<GroupRoutingIDs,0,FIELDS...>(*this,tpl); return tpl; };
    bool isFieldSet( tag_t tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
@@ -5868,6 +6424,7 @@ class GroupRoutingIDs : public MessageBase
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
+   using RoutingType = FieldRoutingType; 
    bool isSetRoutingType() const { return fieldRoutingType.offset > 0; }
    FieldRoutingType::ValueType getRoutingType() const { return fieldRoutingType.getValue( _fixPtr ); }
    std::string_view getRoutingTypeView() const { return fieldRoutingType.offset > 0 ? std::string_view{ _fixPtr + fieldRoutingType.offset, getValueLength( _fixPtr + fieldRoutingType.offset ) } : std::string_view{}; }
@@ -5877,6 +6434,7 @@ class GroupRoutingIDs : public MessageBase
    private: FieldRoutingType fieldRoutingType;
 
    public:
+   using RoutingID = FieldRoutingID; 
    bool isSetRoutingID() const { return fieldRoutingID.offset > 0; }
    FieldRoutingID::ValueType getRoutingID() const { return fieldRoutingID.getValue( _fixPtr ); }
    std::string_view getRoutingIDView() const { return fieldRoutingID.offset > 0 ? std::string_view{ _fixPtr + fieldRoutingID.offset, getValueLength( _fixPtr + fieldRoutingID.offset ) } : std::string_view{}; }
@@ -5902,6 +6460,7 @@ class GroupPosAmt : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<GroupPosAmt,0,FIELDS...>(*this,tpl); return tpl; };
+   template< typename... FIELDS > std::tuple<typeExists<FIELDS>... > getPresenceOf() const { std::tuple< typeExists<FIELDS>... > tpl{}; buildPresenceTuple<GroupPosAmt,0,FIELDS...>(*this,tpl); return tpl; };
    bool isFieldSet( tag_t tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
@@ -5911,6 +6470,7 @@ class GroupPosAmt : public MessageBase
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
+   using PosAmtType = FieldPosAmtType; 
    bool isSetPosAmtType() const { return fieldPosAmtType.offset > 0; }
    FieldPosAmtType::ValueType getPosAmtType() const { return fieldPosAmtType.getValue( _fixPtr ); }
    std::string_view getPosAmtTypeView() const { return fieldPosAmtType.offset > 0 ? std::string_view{ _fixPtr + fieldPosAmtType.offset, getValueLength( _fixPtr + fieldPosAmtType.offset ) } : std::string_view{}; }
@@ -5920,6 +6480,7 @@ class GroupPosAmt : public MessageBase
    private: FieldPosAmtType fieldPosAmtType;
 
    public:
+   using PosAmt = FieldPosAmt; 
    bool isSetPosAmt() const { return fieldPosAmt.offset > 0; }
    FieldPosAmt::ValueType getPosAmt() const { return fieldPosAmt.getValue( _fixPtr ); }
    std::string_view getPosAmtView() const { return fieldPosAmt.offset > 0 ? std::string_view{ _fixPtr + fieldPosAmt.offset, getValueLength( _fixPtr + fieldPosAmt.offset ) } : std::string_view{}; }
@@ -5945,6 +6506,7 @@ class GroupLinesOfText : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<GroupLinesOfText,0,FIELDS...>(*this,tpl); return tpl; };
+   template< typename... FIELDS > std::tuple<typeExists<FIELDS>... > getPresenceOf() const { std::tuple< typeExists<FIELDS>... > tpl{}; buildPresenceTuple<GroupLinesOfText,0,FIELDS...>(*this,tpl); return tpl; };
    bool isFieldSet( tag_t tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
@@ -5954,6 +6516,7 @@ class GroupLinesOfText : public MessageBase
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
+   using Text = FieldText; 
    bool isSetText() const { return fieldText.offset > 0; }
    FieldText::ValueType getText() const { return fieldText.getValue( _fixPtr ); }
    std::string_view getTextView() const { return fieldText.offset > 0 ? std::string_view{ _fixPtr + fieldText.offset, getValueLength( _fixPtr + fieldText.offset ) } : std::string_view{}; }
@@ -5963,6 +6526,7 @@ class GroupLinesOfText : public MessageBase
    private: FieldText fieldText;
 
    public:
+   using EncodedTextLen = FieldEncodedTextLen; 
    bool isSetEncodedTextLen() const { return fieldEncodedTextLen.offset > 0; }
    FieldEncodedTextLen::ValueType getEncodedTextLen() const { return fieldEncodedTextLen.getValue( _fixPtr ); }
    std::string_view getEncodedTextLenView() const { return fieldEncodedTextLen.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedTextLen.offset, getValueLength( _fixPtr + fieldEncodedTextLen.offset ) } : std::string_view{}; }
@@ -5972,6 +6536,7 @@ class GroupLinesOfText : public MessageBase
    private: FieldEncodedTextLen fieldEncodedTextLen;
 
    public:
+   using EncodedText = FieldEncodedText; 
    bool isSetEncodedText() const { return fieldEncodedText.offset > 0; }
    FieldEncodedText::ValueType getEncodedText() const { return fieldEncodedText.getValue( _fixPtr ); }
    std::string_view getEncodedTextView() const { return fieldEncodedText.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedText.offset, getValueLength( _fixPtr + fieldEncodedText.offset ) } : std::string_view{}; }
@@ -5997,6 +6562,7 @@ class GroupIOIQualifiers : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<GroupIOIQualifiers,0,FIELDS...>(*this,tpl); return tpl; };
+   template< typename... FIELDS > std::tuple<typeExists<FIELDS>... > getPresenceOf() const { std::tuple< typeExists<FIELDS>... > tpl{}; buildPresenceTuple<GroupIOIQualifiers,0,FIELDS...>(*this,tpl); return tpl; };
    bool isFieldSet( tag_t tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
@@ -6006,6 +6572,7 @@ class GroupIOIQualifiers : public MessageBase
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
+   using IOIQualifier = FieldIOIQualifier; 
    bool isSetIOIQualifier() const { return fieldIOIQualifier.offset > 0; }
    FieldIOIQualifier::ValueType getIOIQualifier() const { return fieldIOIQualifier.getValue( _fixPtr ); }
    std::string_view getIOIQualifierView() const { return fieldIOIQualifier.offset > 0 ? std::string_view{ _fixPtr + fieldIOIQualifier.offset, getValueLength( _fixPtr + fieldIOIQualifier.offset ) } : std::string_view{}; }
@@ -6031,6 +6598,7 @@ class GroupDates : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<GroupDates,0,FIELDS...>(*this,tpl); return tpl; };
+   template< typename... FIELDS > std::tuple<typeExists<FIELDS>... > getPresenceOf() const { std::tuple< typeExists<FIELDS>... > tpl{}; buildPresenceTuple<GroupDates,0,FIELDS...>(*this,tpl); return tpl; };
    bool isFieldSet( tag_t tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
@@ -6040,6 +6608,7 @@ class GroupDates : public MessageBase
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
+   using TradeDate = FieldTradeDate; 
    bool isSetTradeDate() const { return fieldTradeDate.offset > 0; }
    FieldTradeDate::ValueType getTradeDate() const { return fieldTradeDate.getValue( _fixPtr ); }
    std::string_view getTradeDateView() const { return fieldTradeDate.offset > 0 ? std::string_view{ _fixPtr + fieldTradeDate.offset, getValueLength( _fixPtr + fieldTradeDate.offset ) } : std::string_view{}; }
@@ -6049,6 +6618,7 @@ class GroupDates : public MessageBase
    private: FieldTradeDate fieldTradeDate;
 
    public:
+   using TransactTime = FieldTransactTime; 
    bool isSetTransactTime() const { return fieldTransactTime.offset > 0; }
    FieldTransactTime::ValueType getTransactTime() const { return fieldTransactTime.getValue( _fixPtr ); }
    std::string_view getTransactTimeView() const { return fieldTransactTime.offset > 0 ? std::string_view{ _fixPtr + fieldTransactTime.offset, getValueLength( _fixPtr + fieldTransactTime.offset ) } : std::string_view{}; }
@@ -6074,6 +6644,7 @@ class GroupMDEntryTypes : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<GroupMDEntryTypes,0,FIELDS...>(*this,tpl); return tpl; };
+   template< typename... FIELDS > std::tuple<typeExists<FIELDS>... > getPresenceOf() const { std::tuple< typeExists<FIELDS>... > tpl{}; buildPresenceTuple<GroupMDEntryTypes,0,FIELDS...>(*this,tpl); return tpl; };
    bool isFieldSet( tag_t tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
@@ -6083,6 +6654,7 @@ class GroupMDEntryTypes : public MessageBase
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
+   using MDEntryType = FieldMDEntryType; 
    bool isSetMDEntryType() const { return fieldMDEntryType.offset > 0; }
    FieldMDEntryType::ValueType getMDEntryType() const { return fieldMDEntryType.getValue( _fixPtr ); }
    std::string_view getMDEntryTypeView() const { return fieldMDEntryType.offset > 0 ? std::string_view{ _fixPtr + fieldMDEntryType.offset, getValueLength( _fixPtr + fieldMDEntryType.offset ) } : std::string_view{}; }
@@ -6108,6 +6680,7 @@ class GroupRelatedSym : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<GroupRelatedSym,0,FIELDS...>(*this,tpl); return tpl; };
+   template< typename... FIELDS > std::tuple<typeExists<FIELDS>... > getPresenceOf() const { std::tuple< typeExists<FIELDS>... > tpl{}; buildPresenceTuple<GroupRelatedSym,0,FIELDS...>(*this,tpl); return tpl; };
    bool isFieldSet( tag_t tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
@@ -6117,6 +6690,7 @@ class GroupRelatedSym : public MessageBase
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
+   using Symbol = FieldSymbol; 
    bool isSetSymbol() const { return fieldSymbol.offset > 0; }
    FieldSymbol::ValueType getSymbol() const { return fieldSymbol.getValue( _fixPtr ); }
    std::string_view getSymbolView() const { return fieldSymbol.offset > 0 ? std::string_view{ _fixPtr + fieldSymbol.offset, getValueLength( _fixPtr + fieldSymbol.offset ) } : std::string_view{}; }
@@ -6126,6 +6700,7 @@ class GroupRelatedSym : public MessageBase
    private: FieldSymbol fieldSymbol;
 
    public:
+   using SymbolSfx = FieldSymbolSfx; 
    bool isSetSymbolSfx() const { return fieldSymbolSfx.offset > 0; }
    FieldSymbolSfx::ValueType getSymbolSfx() const { return fieldSymbolSfx.getValue( _fixPtr ); }
    std::string_view getSymbolSfxView() const { return fieldSymbolSfx.offset > 0 ? std::string_view{ _fixPtr + fieldSymbolSfx.offset, getValueLength( _fixPtr + fieldSymbolSfx.offset ) } : std::string_view{}; }
@@ -6135,6 +6710,7 @@ class GroupRelatedSym : public MessageBase
    private: FieldSymbolSfx fieldSymbolSfx;
 
    public:
+   using SecurityID = FieldSecurityID; 
    bool isSetSecurityID() const { return fieldSecurityID.offset > 0; }
    FieldSecurityID::ValueType getSecurityID() const { return fieldSecurityID.getValue( _fixPtr ); }
    std::string_view getSecurityIDView() const { return fieldSecurityID.offset > 0 ? std::string_view{ _fixPtr + fieldSecurityID.offset, getValueLength( _fixPtr + fieldSecurityID.offset ) } : std::string_view{}; }
@@ -6144,6 +6720,7 @@ class GroupRelatedSym : public MessageBase
    private: FieldSecurityID fieldSecurityID;
 
    public:
+   using SecurityIDSource = FieldSecurityIDSource; 
    bool isSetSecurityIDSource() const { return fieldSecurityIDSource.offset > 0; }
    FieldSecurityIDSource::ValueType getSecurityIDSource() const { return fieldSecurityIDSource.getValue( _fixPtr ); }
    std::string_view getSecurityIDSourceView() const { return fieldSecurityIDSource.offset > 0 ? std::string_view{ _fixPtr + fieldSecurityIDSource.offset, getValueLength( _fixPtr + fieldSecurityIDSource.offset ) } : std::string_view{}; }
@@ -6153,6 +6730,7 @@ class GroupRelatedSym : public MessageBase
    private: FieldSecurityIDSource fieldSecurityIDSource;
 
    public:
+   using NoSecurityAltID = FieldNoSecurityAltID; 
    bool isSetNoSecurityAltID() const { return fieldNoSecurityAltID.offset > 0; }
    FieldNoSecurityAltID::ValueType getNoSecurityAltID() const { return fieldNoSecurityAltID.getValue( _fixPtr ); }
    std::string_view getNoSecurityAltIDView() const { return fieldNoSecurityAltID.offset > 0 ? std::string_view{ _fixPtr + fieldNoSecurityAltID.offset, getValueLength( _fixPtr + fieldNoSecurityAltID.offset ) } : std::string_view{}; }
@@ -6167,6 +6745,7 @@ class GroupRelatedSym : public MessageBase
    private: GroupSecurityAltID::Array groupsSecurityAltID{ 10 };
 
    public:
+   using Product = FieldProduct; 
    bool isSetProduct() const { return fieldProduct.offset > 0; }
    FieldProduct::ValueType getProduct() const { return fieldProduct.getValue( _fixPtr ); }
    std::string_view getProductView() const { return fieldProduct.offset > 0 ? std::string_view{ _fixPtr + fieldProduct.offset, getValueLength( _fixPtr + fieldProduct.offset ) } : std::string_view{}; }
@@ -6176,6 +6755,7 @@ class GroupRelatedSym : public MessageBase
    private: FieldProduct fieldProduct;
 
    public:
+   using CFICode = FieldCFICode; 
    bool isSetCFICode() const { return fieldCFICode.offset > 0; }
    FieldCFICode::ValueType getCFICode() const { return fieldCFICode.getValue( _fixPtr ); }
    std::string_view getCFICodeView() const { return fieldCFICode.offset > 0 ? std::string_view{ _fixPtr + fieldCFICode.offset, getValueLength( _fixPtr + fieldCFICode.offset ) } : std::string_view{}; }
@@ -6185,6 +6765,7 @@ class GroupRelatedSym : public MessageBase
    private: FieldCFICode fieldCFICode;
 
    public:
+   using SecurityType = FieldSecurityType; 
    bool isSetSecurityType() const { return fieldSecurityType.offset > 0; }
    FieldSecurityType::ValueType getSecurityType() const { return fieldSecurityType.getValue( _fixPtr ); }
    std::string_view getSecurityTypeView() const { return fieldSecurityType.offset > 0 ? std::string_view{ _fixPtr + fieldSecurityType.offset, getValueLength( _fixPtr + fieldSecurityType.offset ) } : std::string_view{}; }
@@ -6194,6 +6775,7 @@ class GroupRelatedSym : public MessageBase
    private: FieldSecurityType fieldSecurityType;
 
    public:
+   using SecuritySubType = FieldSecuritySubType; 
    bool isSetSecuritySubType() const { return fieldSecuritySubType.offset > 0; }
    FieldSecuritySubType::ValueType getSecuritySubType() const { return fieldSecuritySubType.getValue( _fixPtr ); }
    std::string_view getSecuritySubTypeView() const { return fieldSecuritySubType.offset > 0 ? std::string_view{ _fixPtr + fieldSecuritySubType.offset, getValueLength( _fixPtr + fieldSecuritySubType.offset ) } : std::string_view{}; }
@@ -6203,6 +6785,7 @@ class GroupRelatedSym : public MessageBase
    private: FieldSecuritySubType fieldSecuritySubType;
 
    public:
+   using MaturityMonthYear = FieldMaturityMonthYear; 
    bool isSetMaturityMonthYear() const { return fieldMaturityMonthYear.offset > 0; }
    FieldMaturityMonthYear::ValueType getMaturityMonthYear() const { return fieldMaturityMonthYear.getValue( _fixPtr ); }
    std::string_view getMaturityMonthYearView() const { return fieldMaturityMonthYear.offset > 0 ? std::string_view{ _fixPtr + fieldMaturityMonthYear.offset, getValueLength( _fixPtr + fieldMaturityMonthYear.offset ) } : std::string_view{}; }
@@ -6212,6 +6795,7 @@ class GroupRelatedSym : public MessageBase
    private: FieldMaturityMonthYear fieldMaturityMonthYear;
 
    public:
+   using MaturityDate = FieldMaturityDate; 
    bool isSetMaturityDate() const { return fieldMaturityDate.offset > 0; }
    FieldMaturityDate::ValueType getMaturityDate() const { return fieldMaturityDate.getValue( _fixPtr ); }
    std::string_view getMaturityDateView() const { return fieldMaturityDate.offset > 0 ? std::string_view{ _fixPtr + fieldMaturityDate.offset, getValueLength( _fixPtr + fieldMaturityDate.offset ) } : std::string_view{}; }
@@ -6221,6 +6805,7 @@ class GroupRelatedSym : public MessageBase
    private: FieldMaturityDate fieldMaturityDate;
 
    public:
+   using PutOrCall = FieldPutOrCall; 
    bool isSetPutOrCall() const { return fieldPutOrCall.offset > 0; }
    FieldPutOrCall::ValueType getPutOrCall() const { return fieldPutOrCall.getValue( _fixPtr ); }
    std::string_view getPutOrCallView() const { return fieldPutOrCall.offset > 0 ? std::string_view{ _fixPtr + fieldPutOrCall.offset, getValueLength( _fixPtr + fieldPutOrCall.offset ) } : std::string_view{}; }
@@ -6230,6 +6815,7 @@ class GroupRelatedSym : public MessageBase
    private: FieldPutOrCall fieldPutOrCall;
 
    public:
+   using CouponPaymentDate = FieldCouponPaymentDate; 
    bool isSetCouponPaymentDate() const { return fieldCouponPaymentDate.offset > 0; }
    FieldCouponPaymentDate::ValueType getCouponPaymentDate() const { return fieldCouponPaymentDate.getValue( _fixPtr ); }
    std::string_view getCouponPaymentDateView() const { return fieldCouponPaymentDate.offset > 0 ? std::string_view{ _fixPtr + fieldCouponPaymentDate.offset, getValueLength( _fixPtr + fieldCouponPaymentDate.offset ) } : std::string_view{}; }
@@ -6239,6 +6825,7 @@ class GroupRelatedSym : public MessageBase
    private: FieldCouponPaymentDate fieldCouponPaymentDate;
 
    public:
+   using IssueDate = FieldIssueDate; 
    bool isSetIssueDate() const { return fieldIssueDate.offset > 0; }
    FieldIssueDate::ValueType getIssueDate() const { return fieldIssueDate.getValue( _fixPtr ); }
    std::string_view getIssueDateView() const { return fieldIssueDate.offset > 0 ? std::string_view{ _fixPtr + fieldIssueDate.offset, getValueLength( _fixPtr + fieldIssueDate.offset ) } : std::string_view{}; }
@@ -6248,6 +6835,7 @@ class GroupRelatedSym : public MessageBase
    private: FieldIssueDate fieldIssueDate;
 
    public:
+   using RepoCollateralSecurityType = FieldRepoCollateralSecurityType; 
    bool isSetRepoCollateralSecurityType() const { return fieldRepoCollateralSecurityType.offset > 0; }
    FieldRepoCollateralSecurityType::ValueType getRepoCollateralSecurityType() const { return fieldRepoCollateralSecurityType.getValue( _fixPtr ); }
    std::string_view getRepoCollateralSecurityTypeView() const { return fieldRepoCollateralSecurityType.offset > 0 ? std::string_view{ _fixPtr + fieldRepoCollateralSecurityType.offset, getValueLength( _fixPtr + fieldRepoCollateralSecurityType.offset ) } : std::string_view{}; }
@@ -6257,6 +6845,7 @@ class GroupRelatedSym : public MessageBase
    private: FieldRepoCollateralSecurityType fieldRepoCollateralSecurityType;
 
    public:
+   using RepurchaseTerm = FieldRepurchaseTerm; 
    bool isSetRepurchaseTerm() const { return fieldRepurchaseTerm.offset > 0; }
    FieldRepurchaseTerm::ValueType getRepurchaseTerm() const { return fieldRepurchaseTerm.getValue( _fixPtr ); }
    std::string_view getRepurchaseTermView() const { return fieldRepurchaseTerm.offset > 0 ? std::string_view{ _fixPtr + fieldRepurchaseTerm.offset, getValueLength( _fixPtr + fieldRepurchaseTerm.offset ) } : std::string_view{}; }
@@ -6266,6 +6855,7 @@ class GroupRelatedSym : public MessageBase
    private: FieldRepurchaseTerm fieldRepurchaseTerm;
 
    public:
+   using RepurchaseRate = FieldRepurchaseRate; 
    bool isSetRepurchaseRate() const { return fieldRepurchaseRate.offset > 0; }
    FieldRepurchaseRate::ValueType getRepurchaseRate() const { return fieldRepurchaseRate.getValue( _fixPtr ); }
    std::string_view getRepurchaseRateView() const { return fieldRepurchaseRate.offset > 0 ? std::string_view{ _fixPtr + fieldRepurchaseRate.offset, getValueLength( _fixPtr + fieldRepurchaseRate.offset ) } : std::string_view{}; }
@@ -6275,6 +6865,7 @@ class GroupRelatedSym : public MessageBase
    private: FieldRepurchaseRate fieldRepurchaseRate;
 
    public:
+   using Factor = FieldFactor; 
    bool isSetFactor() const { return fieldFactor.offset > 0; }
    FieldFactor::ValueType getFactor() const { return fieldFactor.getValue( _fixPtr ); }
    std::string_view getFactorView() const { return fieldFactor.offset > 0 ? std::string_view{ _fixPtr + fieldFactor.offset, getValueLength( _fixPtr + fieldFactor.offset ) } : std::string_view{}; }
@@ -6284,6 +6875,7 @@ class GroupRelatedSym : public MessageBase
    private: FieldFactor fieldFactor;
 
    public:
+   using CreditRating = FieldCreditRating; 
    bool isSetCreditRating() const { return fieldCreditRating.offset > 0; }
    FieldCreditRating::ValueType getCreditRating() const { return fieldCreditRating.getValue( _fixPtr ); }
    std::string_view getCreditRatingView() const { return fieldCreditRating.offset > 0 ? std::string_view{ _fixPtr + fieldCreditRating.offset, getValueLength( _fixPtr + fieldCreditRating.offset ) } : std::string_view{}; }
@@ -6293,6 +6885,7 @@ class GroupRelatedSym : public MessageBase
    private: FieldCreditRating fieldCreditRating;
 
    public:
+   using InstrRegistry = FieldInstrRegistry; 
    bool isSetInstrRegistry() const { return fieldInstrRegistry.offset > 0; }
    FieldInstrRegistry::ValueType getInstrRegistry() const { return fieldInstrRegistry.getValue( _fixPtr ); }
    std::string_view getInstrRegistryView() const { return fieldInstrRegistry.offset > 0 ? std::string_view{ _fixPtr + fieldInstrRegistry.offset, getValueLength( _fixPtr + fieldInstrRegistry.offset ) } : std::string_view{}; }
@@ -6302,6 +6895,7 @@ class GroupRelatedSym : public MessageBase
    private: FieldInstrRegistry fieldInstrRegistry;
 
    public:
+   using CountryOfIssue = FieldCountryOfIssue; 
    bool isSetCountryOfIssue() const { return fieldCountryOfIssue.offset > 0; }
    FieldCountryOfIssue::ValueType getCountryOfIssue() const { return fieldCountryOfIssue.getValue( _fixPtr ); }
    std::string_view getCountryOfIssueView() const { return fieldCountryOfIssue.offset > 0 ? std::string_view{ _fixPtr + fieldCountryOfIssue.offset, getValueLength( _fixPtr + fieldCountryOfIssue.offset ) } : std::string_view{}; }
@@ -6311,6 +6905,7 @@ class GroupRelatedSym : public MessageBase
    private: FieldCountryOfIssue fieldCountryOfIssue;
 
    public:
+   using StateOrProvinceOfIssue = FieldStateOrProvinceOfIssue; 
    bool isSetStateOrProvinceOfIssue() const { return fieldStateOrProvinceOfIssue.offset > 0; }
    FieldStateOrProvinceOfIssue::ValueType getStateOrProvinceOfIssue() const { return fieldStateOrProvinceOfIssue.getValue( _fixPtr ); }
    std::string_view getStateOrProvinceOfIssueView() const { return fieldStateOrProvinceOfIssue.offset > 0 ? std::string_view{ _fixPtr + fieldStateOrProvinceOfIssue.offset, getValueLength( _fixPtr + fieldStateOrProvinceOfIssue.offset ) } : std::string_view{}; }
@@ -6320,6 +6915,7 @@ class GroupRelatedSym : public MessageBase
    private: FieldStateOrProvinceOfIssue fieldStateOrProvinceOfIssue;
 
    public:
+   using LocaleOfIssue = FieldLocaleOfIssue; 
    bool isSetLocaleOfIssue() const { return fieldLocaleOfIssue.offset > 0; }
    FieldLocaleOfIssue::ValueType getLocaleOfIssue() const { return fieldLocaleOfIssue.getValue( _fixPtr ); }
    std::string_view getLocaleOfIssueView() const { return fieldLocaleOfIssue.offset > 0 ? std::string_view{ _fixPtr + fieldLocaleOfIssue.offset, getValueLength( _fixPtr + fieldLocaleOfIssue.offset ) } : std::string_view{}; }
@@ -6329,6 +6925,7 @@ class GroupRelatedSym : public MessageBase
    private: FieldLocaleOfIssue fieldLocaleOfIssue;
 
    public:
+   using RedemptionDate = FieldRedemptionDate; 
    bool isSetRedemptionDate() const { return fieldRedemptionDate.offset > 0; }
    FieldRedemptionDate::ValueType getRedemptionDate() const { return fieldRedemptionDate.getValue( _fixPtr ); }
    std::string_view getRedemptionDateView() const { return fieldRedemptionDate.offset > 0 ? std::string_view{ _fixPtr + fieldRedemptionDate.offset, getValueLength( _fixPtr + fieldRedemptionDate.offset ) } : std::string_view{}; }
@@ -6338,6 +6935,7 @@ class GroupRelatedSym : public MessageBase
    private: FieldRedemptionDate fieldRedemptionDate;
 
    public:
+   using StrikePrice = FieldStrikePrice; 
    bool isSetStrikePrice() const { return fieldStrikePrice.offset > 0; }
    FieldStrikePrice::ValueType getStrikePrice() const { return fieldStrikePrice.getValue( _fixPtr ); }
    std::string_view getStrikePriceView() const { return fieldStrikePrice.offset > 0 ? std::string_view{ _fixPtr + fieldStrikePrice.offset, getValueLength( _fixPtr + fieldStrikePrice.offset ) } : std::string_view{}; }
@@ -6347,6 +6945,7 @@ class GroupRelatedSym : public MessageBase
    private: FieldStrikePrice fieldStrikePrice;
 
    public:
+   using StrikeCurrency = FieldStrikeCurrency; 
    bool isSetStrikeCurrency() const { return fieldStrikeCurrency.offset > 0; }
    FieldStrikeCurrency::ValueType getStrikeCurrency() const { return fieldStrikeCurrency.getValue( _fixPtr ); }
    std::string_view getStrikeCurrencyView() const { return fieldStrikeCurrency.offset > 0 ? std::string_view{ _fixPtr + fieldStrikeCurrency.offset, getValueLength( _fixPtr + fieldStrikeCurrency.offset ) } : std::string_view{}; }
@@ -6356,6 +6955,7 @@ class GroupRelatedSym : public MessageBase
    private: FieldStrikeCurrency fieldStrikeCurrency;
 
    public:
+   using OptAttribute = FieldOptAttribute; 
    bool isSetOptAttribute() const { return fieldOptAttribute.offset > 0; }
    FieldOptAttribute::ValueType getOptAttribute() const { return fieldOptAttribute.getValue( _fixPtr ); }
    std::string_view getOptAttributeView() const { return fieldOptAttribute.offset > 0 ? std::string_view{ _fixPtr + fieldOptAttribute.offset, getValueLength( _fixPtr + fieldOptAttribute.offset ) } : std::string_view{}; }
@@ -6365,6 +6965,7 @@ class GroupRelatedSym : public MessageBase
    private: FieldOptAttribute fieldOptAttribute;
 
    public:
+   using ContractMultiplier = FieldContractMultiplier; 
    bool isSetContractMultiplier() const { return fieldContractMultiplier.offset > 0; }
    FieldContractMultiplier::ValueType getContractMultiplier() const { return fieldContractMultiplier.getValue( _fixPtr ); }
    std::string_view getContractMultiplierView() const { return fieldContractMultiplier.offset > 0 ? std::string_view{ _fixPtr + fieldContractMultiplier.offset, getValueLength( _fixPtr + fieldContractMultiplier.offset ) } : std::string_view{}; }
@@ -6374,6 +6975,7 @@ class GroupRelatedSym : public MessageBase
    private: FieldContractMultiplier fieldContractMultiplier;
 
    public:
+   using CouponRate = FieldCouponRate; 
    bool isSetCouponRate() const { return fieldCouponRate.offset > 0; }
    FieldCouponRate::ValueType getCouponRate() const { return fieldCouponRate.getValue( _fixPtr ); }
    std::string_view getCouponRateView() const { return fieldCouponRate.offset > 0 ? std::string_view{ _fixPtr + fieldCouponRate.offset, getValueLength( _fixPtr + fieldCouponRate.offset ) } : std::string_view{}; }
@@ -6383,6 +6985,7 @@ class GroupRelatedSym : public MessageBase
    private: FieldCouponRate fieldCouponRate;
 
    public:
+   using SecurityExchange = FieldSecurityExchange; 
    bool isSetSecurityExchange() const { return fieldSecurityExchange.offset > 0; }
    FieldSecurityExchange::ValueType getSecurityExchange() const { return fieldSecurityExchange.getValue( _fixPtr ); }
    std::string_view getSecurityExchangeView() const { return fieldSecurityExchange.offset > 0 ? std::string_view{ _fixPtr + fieldSecurityExchange.offset, getValueLength( _fixPtr + fieldSecurityExchange.offset ) } : std::string_view{}; }
@@ -6392,6 +6995,7 @@ class GroupRelatedSym : public MessageBase
    private: FieldSecurityExchange fieldSecurityExchange;
 
    public:
+   using Issuer = FieldIssuer; 
    bool isSetIssuer() const { return fieldIssuer.offset > 0; }
    FieldIssuer::ValueType getIssuer() const { return fieldIssuer.getValue( _fixPtr ); }
    std::string_view getIssuerView() const { return fieldIssuer.offset > 0 ? std::string_view{ _fixPtr + fieldIssuer.offset, getValueLength( _fixPtr + fieldIssuer.offset ) } : std::string_view{}; }
@@ -6401,6 +7005,7 @@ class GroupRelatedSym : public MessageBase
    private: FieldIssuer fieldIssuer;
 
    public:
+   using EncodedIssuerLen = FieldEncodedIssuerLen; 
    bool isSetEncodedIssuerLen() const { return fieldEncodedIssuerLen.offset > 0; }
    FieldEncodedIssuerLen::ValueType getEncodedIssuerLen() const { return fieldEncodedIssuerLen.getValue( _fixPtr ); }
    std::string_view getEncodedIssuerLenView() const { return fieldEncodedIssuerLen.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedIssuerLen.offset, getValueLength( _fixPtr + fieldEncodedIssuerLen.offset ) } : std::string_view{}; }
@@ -6410,6 +7015,7 @@ class GroupRelatedSym : public MessageBase
    private: FieldEncodedIssuerLen fieldEncodedIssuerLen;
 
    public:
+   using EncodedIssuer = FieldEncodedIssuer; 
    bool isSetEncodedIssuer() const { return fieldEncodedIssuer.offset > 0; }
    FieldEncodedIssuer::ValueType getEncodedIssuer() const { return fieldEncodedIssuer.getValue( _fixPtr ); }
    std::string_view getEncodedIssuerView() const { return fieldEncodedIssuer.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedIssuer.offset, getValueLength( _fixPtr + fieldEncodedIssuer.offset ) } : std::string_view{}; }
@@ -6419,6 +7025,7 @@ class GroupRelatedSym : public MessageBase
    private: FieldEncodedIssuer fieldEncodedIssuer;
 
    public:
+   using SecurityDesc = FieldSecurityDesc; 
    bool isSetSecurityDesc() const { return fieldSecurityDesc.offset > 0; }
    FieldSecurityDesc::ValueType getSecurityDesc() const { return fieldSecurityDesc.getValue( _fixPtr ); }
    std::string_view getSecurityDescView() const { return fieldSecurityDesc.offset > 0 ? std::string_view{ _fixPtr + fieldSecurityDesc.offset, getValueLength( _fixPtr + fieldSecurityDesc.offset ) } : std::string_view{}; }
@@ -6428,6 +7035,7 @@ class GroupRelatedSym : public MessageBase
    private: FieldSecurityDesc fieldSecurityDesc;
 
    public:
+   using EncodedSecurityDescLen = FieldEncodedSecurityDescLen; 
    bool isSetEncodedSecurityDescLen() const { return fieldEncodedSecurityDescLen.offset > 0; }
    FieldEncodedSecurityDescLen::ValueType getEncodedSecurityDescLen() const { return fieldEncodedSecurityDescLen.getValue( _fixPtr ); }
    std::string_view getEncodedSecurityDescLenView() const { return fieldEncodedSecurityDescLen.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedSecurityDescLen.offset, getValueLength( _fixPtr + fieldEncodedSecurityDescLen.offset ) } : std::string_view{}; }
@@ -6437,6 +7045,7 @@ class GroupRelatedSym : public MessageBase
    private: FieldEncodedSecurityDescLen fieldEncodedSecurityDescLen;
 
    public:
+   using EncodedSecurityDesc = FieldEncodedSecurityDesc; 
    bool isSetEncodedSecurityDesc() const { return fieldEncodedSecurityDesc.offset > 0; }
    FieldEncodedSecurityDesc::ValueType getEncodedSecurityDesc() const { return fieldEncodedSecurityDesc.getValue( _fixPtr ); }
    std::string_view getEncodedSecurityDescView() const { return fieldEncodedSecurityDesc.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedSecurityDesc.offset, getValueLength( _fixPtr + fieldEncodedSecurityDesc.offset ) } : std::string_view{}; }
@@ -6446,6 +7055,7 @@ class GroupRelatedSym : public MessageBase
    private: FieldEncodedSecurityDesc fieldEncodedSecurityDesc;
 
    public:
+   using Pool = FieldPool; 
    bool isSetPool() const { return fieldPool.offset > 0; }
    FieldPool::ValueType getPool() const { return fieldPool.getValue( _fixPtr ); }
    std::string_view getPoolView() const { return fieldPool.offset > 0 ? std::string_view{ _fixPtr + fieldPool.offset, getValueLength( _fixPtr + fieldPool.offset ) } : std::string_view{}; }
@@ -6455,6 +7065,7 @@ class GroupRelatedSym : public MessageBase
    private: FieldPool fieldPool;
 
    public:
+   using ContractSettlMonth = FieldContractSettlMonth; 
    bool isSetContractSettlMonth() const { return fieldContractSettlMonth.offset > 0; }
    FieldContractSettlMonth::ValueType getContractSettlMonth() const { return fieldContractSettlMonth.getValue( _fixPtr ); }
    std::string_view getContractSettlMonthView() const { return fieldContractSettlMonth.offset > 0 ? std::string_view{ _fixPtr + fieldContractSettlMonth.offset, getValueLength( _fixPtr + fieldContractSettlMonth.offset ) } : std::string_view{}; }
@@ -6464,6 +7075,7 @@ class GroupRelatedSym : public MessageBase
    private: FieldContractSettlMonth fieldContractSettlMonth;
 
    public:
+   using CPProgram = FieldCPProgram; 
    bool isSetCPProgram() const { return fieldCPProgram.offset > 0; }
    FieldCPProgram::ValueType getCPProgram() const { return fieldCPProgram.getValue( _fixPtr ); }
    std::string_view getCPProgramView() const { return fieldCPProgram.offset > 0 ? std::string_view{ _fixPtr + fieldCPProgram.offset, getValueLength( _fixPtr + fieldCPProgram.offset ) } : std::string_view{}; }
@@ -6473,6 +7085,7 @@ class GroupRelatedSym : public MessageBase
    private: FieldCPProgram fieldCPProgram;
 
    public:
+   using CPRegType = FieldCPRegType; 
    bool isSetCPRegType() const { return fieldCPRegType.offset > 0; }
    FieldCPRegType::ValueType getCPRegType() const { return fieldCPRegType.getValue( _fixPtr ); }
    std::string_view getCPRegTypeView() const { return fieldCPRegType.offset > 0 ? std::string_view{ _fixPtr + fieldCPRegType.offset, getValueLength( _fixPtr + fieldCPRegType.offset ) } : std::string_view{}; }
@@ -6482,6 +7095,7 @@ class GroupRelatedSym : public MessageBase
    private: FieldCPRegType fieldCPRegType;
 
    public:
+   using NoEvents = FieldNoEvents; 
    bool isSetNoEvents() const { return fieldNoEvents.offset > 0; }
    FieldNoEvents::ValueType getNoEvents() const { return fieldNoEvents.getValue( _fixPtr ); }
    std::string_view getNoEventsView() const { return fieldNoEvents.offset > 0 ? std::string_view{ _fixPtr + fieldNoEvents.offset, getValueLength( _fixPtr + fieldNoEvents.offset ) } : std::string_view{}; }
@@ -6496,6 +7110,7 @@ class GroupRelatedSym : public MessageBase
    private: GroupEvents::Array groupsEvents{ 10 };
 
    public:
+   using DatedDate = FieldDatedDate; 
    bool isSetDatedDate() const { return fieldDatedDate.offset > 0; }
    FieldDatedDate::ValueType getDatedDate() const { return fieldDatedDate.getValue( _fixPtr ); }
    std::string_view getDatedDateView() const { return fieldDatedDate.offset > 0 ? std::string_view{ _fixPtr + fieldDatedDate.offset, getValueLength( _fixPtr + fieldDatedDate.offset ) } : std::string_view{}; }
@@ -6505,6 +7120,7 @@ class GroupRelatedSym : public MessageBase
    private: FieldDatedDate fieldDatedDate;
 
    public:
+   using InterestAccrualDate = FieldInterestAccrualDate; 
    bool isSetInterestAccrualDate() const { return fieldInterestAccrualDate.offset > 0; }
    FieldInterestAccrualDate::ValueType getInterestAccrualDate() const { return fieldInterestAccrualDate.getValue( _fixPtr ); }
    std::string_view getInterestAccrualDateView() const { return fieldInterestAccrualDate.offset > 0 ? std::string_view{ _fixPtr + fieldInterestAccrualDate.offset, getValueLength( _fixPtr + fieldInterestAccrualDate.offset ) } : std::string_view{}; }
@@ -6530,6 +7146,7 @@ class GroupContraBrokers : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<GroupContraBrokers,0,FIELDS...>(*this,tpl); return tpl; };
+   template< typename... FIELDS > std::tuple<typeExists<FIELDS>... > getPresenceOf() const { std::tuple< typeExists<FIELDS>... > tpl{}; buildPresenceTuple<GroupContraBrokers,0,FIELDS...>(*this,tpl); return tpl; };
    bool isFieldSet( tag_t tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
@@ -6539,6 +7156,7 @@ class GroupContraBrokers : public MessageBase
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
+   using ContraBroker = FieldContraBroker; 
    bool isSetContraBroker() const { return fieldContraBroker.offset > 0; }
    FieldContraBroker::ValueType getContraBroker() const { return fieldContraBroker.getValue( _fixPtr ); }
    std::string_view getContraBrokerView() const { return fieldContraBroker.offset > 0 ? std::string_view{ _fixPtr + fieldContraBroker.offset, getValueLength( _fixPtr + fieldContraBroker.offset ) } : std::string_view{}; }
@@ -6548,6 +7166,7 @@ class GroupContraBrokers : public MessageBase
    private: FieldContraBroker fieldContraBroker;
 
    public:
+   using ContraTrader = FieldContraTrader; 
    bool isSetContraTrader() const { return fieldContraTrader.offset > 0; }
    FieldContraTrader::ValueType getContraTrader() const { return fieldContraTrader.getValue( _fixPtr ); }
    std::string_view getContraTraderView() const { return fieldContraTrader.offset > 0 ? std::string_view{ _fixPtr + fieldContraTrader.offset, getValueLength( _fixPtr + fieldContraTrader.offset ) } : std::string_view{}; }
@@ -6557,6 +7176,7 @@ class GroupContraBrokers : public MessageBase
    private: FieldContraTrader fieldContraTrader;
 
    public:
+   using ContraTradeQty = FieldContraTradeQty; 
    bool isSetContraTradeQty() const { return fieldContraTradeQty.offset > 0; }
    FieldContraTradeQty::ValueType getContraTradeQty() const { return fieldContraTradeQty.getValue( _fixPtr ); }
    std::string_view getContraTradeQtyView() const { return fieldContraTradeQty.offset > 0 ? std::string_view{ _fixPtr + fieldContraTradeQty.offset, getValueLength( _fixPtr + fieldContraTradeQty.offset ) } : std::string_view{}; }
@@ -6566,6 +7186,7 @@ class GroupContraBrokers : public MessageBase
    private: FieldContraTradeQty fieldContraTradeQty;
 
    public:
+   using ContraTradeTime = FieldContraTradeTime; 
    bool isSetContraTradeTime() const { return fieldContraTradeTime.offset > 0; }
    FieldContraTradeTime::ValueType getContraTradeTime() const { return fieldContraTradeTime.getValue( _fixPtr ); }
    std::string_view getContraTradeTimeView() const { return fieldContraTradeTime.offset > 0 ? std::string_view{ _fixPtr + fieldContraTradeTime.offset, getValueLength( _fixPtr + fieldContraTradeTime.offset ) } : std::string_view{}; }
@@ -6575,6 +7196,7 @@ class GroupContraBrokers : public MessageBase
    private: FieldContraTradeTime fieldContraTradeTime;
 
    public:
+   using ContraLegRefID = FieldContraLegRefID; 
    bool isSetContraLegRefID() const { return fieldContraLegRefID.offset > 0; }
    FieldContraLegRefID::ValueType getContraLegRefID() const { return fieldContraLegRefID.getValue( _fixPtr ); }
    std::string_view getContraLegRefIDView() const { return fieldContraLegRefID.offset > 0 ? std::string_view{ _fixPtr + fieldContraLegRefID.offset, getValueLength( _fixPtr + fieldContraLegRefID.offset ) } : std::string_view{}; }
@@ -6600,6 +7222,7 @@ class GroupTrades : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<GroupTrades,0,FIELDS...>(*this,tpl); return tpl; };
+   template< typename... FIELDS > std::tuple<typeExists<FIELDS>... > getPresenceOf() const { std::tuple< typeExists<FIELDS>... > tpl{}; buildPresenceTuple<GroupTrades,0,FIELDS...>(*this,tpl); return tpl; };
    bool isFieldSet( tag_t tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
@@ -6609,6 +7232,7 @@ class GroupTrades : public MessageBase
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
+   using TradeReportID = FieldTradeReportID; 
    bool isSetTradeReportID() const { return fieldTradeReportID.offset > 0; }
    FieldTradeReportID::ValueType getTradeReportID() const { return fieldTradeReportID.getValue( _fixPtr ); }
    std::string_view getTradeReportIDView() const { return fieldTradeReportID.offset > 0 ? std::string_view{ _fixPtr + fieldTradeReportID.offset, getValueLength( _fixPtr + fieldTradeReportID.offset ) } : std::string_view{}; }
@@ -6618,6 +7242,7 @@ class GroupTrades : public MessageBase
    private: FieldTradeReportID fieldTradeReportID;
 
    public:
+   using SecondaryTradeReportID = FieldSecondaryTradeReportID; 
    bool isSetSecondaryTradeReportID() const { return fieldSecondaryTradeReportID.offset > 0; }
    FieldSecondaryTradeReportID::ValueType getSecondaryTradeReportID() const { return fieldSecondaryTradeReportID.getValue( _fixPtr ); }
    std::string_view getSecondaryTradeReportIDView() const { return fieldSecondaryTradeReportID.offset > 0 ? std::string_view{ _fixPtr + fieldSecondaryTradeReportID.offset, getValueLength( _fixPtr + fieldSecondaryTradeReportID.offset ) } : std::string_view{}; }
@@ -6643,6 +7268,7 @@ class GroupStrikes : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<GroupStrikes,0,FIELDS...>(*this,tpl); return tpl; };
+   template< typename... FIELDS > std::tuple<typeExists<FIELDS>... > getPresenceOf() const { std::tuple< typeExists<FIELDS>... > tpl{}; buildPresenceTuple<GroupStrikes,0,FIELDS...>(*this,tpl); return tpl; };
    bool isFieldSet( tag_t tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
@@ -6652,6 +7278,7 @@ class GroupStrikes : public MessageBase
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
+   using Symbol = FieldSymbol; 
    bool isSetSymbol() const { return fieldSymbol.offset > 0; }
    FieldSymbol::ValueType getSymbol() const { return fieldSymbol.getValue( _fixPtr ); }
    std::string_view getSymbolView() const { return fieldSymbol.offset > 0 ? std::string_view{ _fixPtr + fieldSymbol.offset, getValueLength( _fixPtr + fieldSymbol.offset ) } : std::string_view{}; }
@@ -6661,6 +7288,7 @@ class GroupStrikes : public MessageBase
    private: FieldSymbol fieldSymbol;
 
    public:
+   using SymbolSfx = FieldSymbolSfx; 
    bool isSetSymbolSfx() const { return fieldSymbolSfx.offset > 0; }
    FieldSymbolSfx::ValueType getSymbolSfx() const { return fieldSymbolSfx.getValue( _fixPtr ); }
    std::string_view getSymbolSfxView() const { return fieldSymbolSfx.offset > 0 ? std::string_view{ _fixPtr + fieldSymbolSfx.offset, getValueLength( _fixPtr + fieldSymbolSfx.offset ) } : std::string_view{}; }
@@ -6670,6 +7298,7 @@ class GroupStrikes : public MessageBase
    private: FieldSymbolSfx fieldSymbolSfx;
 
    public:
+   using SecurityID = FieldSecurityID; 
    bool isSetSecurityID() const { return fieldSecurityID.offset > 0; }
    FieldSecurityID::ValueType getSecurityID() const { return fieldSecurityID.getValue( _fixPtr ); }
    std::string_view getSecurityIDView() const { return fieldSecurityID.offset > 0 ? std::string_view{ _fixPtr + fieldSecurityID.offset, getValueLength( _fixPtr + fieldSecurityID.offset ) } : std::string_view{}; }
@@ -6679,6 +7308,7 @@ class GroupStrikes : public MessageBase
    private: FieldSecurityID fieldSecurityID;
 
    public:
+   using SecurityIDSource = FieldSecurityIDSource; 
    bool isSetSecurityIDSource() const { return fieldSecurityIDSource.offset > 0; }
    FieldSecurityIDSource::ValueType getSecurityIDSource() const { return fieldSecurityIDSource.getValue( _fixPtr ); }
    std::string_view getSecurityIDSourceView() const { return fieldSecurityIDSource.offset > 0 ? std::string_view{ _fixPtr + fieldSecurityIDSource.offset, getValueLength( _fixPtr + fieldSecurityIDSource.offset ) } : std::string_view{}; }
@@ -6688,6 +7318,7 @@ class GroupStrikes : public MessageBase
    private: FieldSecurityIDSource fieldSecurityIDSource;
 
    public:
+   using NoSecurityAltID = FieldNoSecurityAltID; 
    bool isSetNoSecurityAltID() const { return fieldNoSecurityAltID.offset > 0; }
    FieldNoSecurityAltID::ValueType getNoSecurityAltID() const { return fieldNoSecurityAltID.getValue( _fixPtr ); }
    std::string_view getNoSecurityAltIDView() const { return fieldNoSecurityAltID.offset > 0 ? std::string_view{ _fixPtr + fieldNoSecurityAltID.offset, getValueLength( _fixPtr + fieldNoSecurityAltID.offset ) } : std::string_view{}; }
@@ -6702,6 +7333,7 @@ class GroupStrikes : public MessageBase
    private: GroupSecurityAltID::Array groupsSecurityAltID{ 10 };
 
    public:
+   using Product = FieldProduct; 
    bool isSetProduct() const { return fieldProduct.offset > 0; }
    FieldProduct::ValueType getProduct() const { return fieldProduct.getValue( _fixPtr ); }
    std::string_view getProductView() const { return fieldProduct.offset > 0 ? std::string_view{ _fixPtr + fieldProduct.offset, getValueLength( _fixPtr + fieldProduct.offset ) } : std::string_view{}; }
@@ -6711,6 +7343,7 @@ class GroupStrikes : public MessageBase
    private: FieldProduct fieldProduct;
 
    public:
+   using CFICode = FieldCFICode; 
    bool isSetCFICode() const { return fieldCFICode.offset > 0; }
    FieldCFICode::ValueType getCFICode() const { return fieldCFICode.getValue( _fixPtr ); }
    std::string_view getCFICodeView() const { return fieldCFICode.offset > 0 ? std::string_view{ _fixPtr + fieldCFICode.offset, getValueLength( _fixPtr + fieldCFICode.offset ) } : std::string_view{}; }
@@ -6720,6 +7353,7 @@ class GroupStrikes : public MessageBase
    private: FieldCFICode fieldCFICode;
 
    public:
+   using SecurityType = FieldSecurityType; 
    bool isSetSecurityType() const { return fieldSecurityType.offset > 0; }
    FieldSecurityType::ValueType getSecurityType() const { return fieldSecurityType.getValue( _fixPtr ); }
    std::string_view getSecurityTypeView() const { return fieldSecurityType.offset > 0 ? std::string_view{ _fixPtr + fieldSecurityType.offset, getValueLength( _fixPtr + fieldSecurityType.offset ) } : std::string_view{}; }
@@ -6729,6 +7363,7 @@ class GroupStrikes : public MessageBase
    private: FieldSecurityType fieldSecurityType;
 
    public:
+   using SecuritySubType = FieldSecuritySubType; 
    bool isSetSecuritySubType() const { return fieldSecuritySubType.offset > 0; }
    FieldSecuritySubType::ValueType getSecuritySubType() const { return fieldSecuritySubType.getValue( _fixPtr ); }
    std::string_view getSecuritySubTypeView() const { return fieldSecuritySubType.offset > 0 ? std::string_view{ _fixPtr + fieldSecuritySubType.offset, getValueLength( _fixPtr + fieldSecuritySubType.offset ) } : std::string_view{}; }
@@ -6738,6 +7373,7 @@ class GroupStrikes : public MessageBase
    private: FieldSecuritySubType fieldSecuritySubType;
 
    public:
+   using MaturityMonthYear = FieldMaturityMonthYear; 
    bool isSetMaturityMonthYear() const { return fieldMaturityMonthYear.offset > 0; }
    FieldMaturityMonthYear::ValueType getMaturityMonthYear() const { return fieldMaturityMonthYear.getValue( _fixPtr ); }
    std::string_view getMaturityMonthYearView() const { return fieldMaturityMonthYear.offset > 0 ? std::string_view{ _fixPtr + fieldMaturityMonthYear.offset, getValueLength( _fixPtr + fieldMaturityMonthYear.offset ) } : std::string_view{}; }
@@ -6747,6 +7383,7 @@ class GroupStrikes : public MessageBase
    private: FieldMaturityMonthYear fieldMaturityMonthYear;
 
    public:
+   using MaturityDate = FieldMaturityDate; 
    bool isSetMaturityDate() const { return fieldMaturityDate.offset > 0; }
    FieldMaturityDate::ValueType getMaturityDate() const { return fieldMaturityDate.getValue( _fixPtr ); }
    std::string_view getMaturityDateView() const { return fieldMaturityDate.offset > 0 ? std::string_view{ _fixPtr + fieldMaturityDate.offset, getValueLength( _fixPtr + fieldMaturityDate.offset ) } : std::string_view{}; }
@@ -6756,6 +7393,7 @@ class GroupStrikes : public MessageBase
    private: FieldMaturityDate fieldMaturityDate;
 
    public:
+   using PutOrCall = FieldPutOrCall; 
    bool isSetPutOrCall() const { return fieldPutOrCall.offset > 0; }
    FieldPutOrCall::ValueType getPutOrCall() const { return fieldPutOrCall.getValue( _fixPtr ); }
    std::string_view getPutOrCallView() const { return fieldPutOrCall.offset > 0 ? std::string_view{ _fixPtr + fieldPutOrCall.offset, getValueLength( _fixPtr + fieldPutOrCall.offset ) } : std::string_view{}; }
@@ -6765,6 +7403,7 @@ class GroupStrikes : public MessageBase
    private: FieldPutOrCall fieldPutOrCall;
 
    public:
+   using CouponPaymentDate = FieldCouponPaymentDate; 
    bool isSetCouponPaymentDate() const { return fieldCouponPaymentDate.offset > 0; }
    FieldCouponPaymentDate::ValueType getCouponPaymentDate() const { return fieldCouponPaymentDate.getValue( _fixPtr ); }
    std::string_view getCouponPaymentDateView() const { return fieldCouponPaymentDate.offset > 0 ? std::string_view{ _fixPtr + fieldCouponPaymentDate.offset, getValueLength( _fixPtr + fieldCouponPaymentDate.offset ) } : std::string_view{}; }
@@ -6774,6 +7413,7 @@ class GroupStrikes : public MessageBase
    private: FieldCouponPaymentDate fieldCouponPaymentDate;
 
    public:
+   using IssueDate = FieldIssueDate; 
    bool isSetIssueDate() const { return fieldIssueDate.offset > 0; }
    FieldIssueDate::ValueType getIssueDate() const { return fieldIssueDate.getValue( _fixPtr ); }
    std::string_view getIssueDateView() const { return fieldIssueDate.offset > 0 ? std::string_view{ _fixPtr + fieldIssueDate.offset, getValueLength( _fixPtr + fieldIssueDate.offset ) } : std::string_view{}; }
@@ -6783,6 +7423,7 @@ class GroupStrikes : public MessageBase
    private: FieldIssueDate fieldIssueDate;
 
    public:
+   using RepoCollateralSecurityType = FieldRepoCollateralSecurityType; 
    bool isSetRepoCollateralSecurityType() const { return fieldRepoCollateralSecurityType.offset > 0; }
    FieldRepoCollateralSecurityType::ValueType getRepoCollateralSecurityType() const { return fieldRepoCollateralSecurityType.getValue( _fixPtr ); }
    std::string_view getRepoCollateralSecurityTypeView() const { return fieldRepoCollateralSecurityType.offset > 0 ? std::string_view{ _fixPtr + fieldRepoCollateralSecurityType.offset, getValueLength( _fixPtr + fieldRepoCollateralSecurityType.offset ) } : std::string_view{}; }
@@ -6792,6 +7433,7 @@ class GroupStrikes : public MessageBase
    private: FieldRepoCollateralSecurityType fieldRepoCollateralSecurityType;
 
    public:
+   using RepurchaseTerm = FieldRepurchaseTerm; 
    bool isSetRepurchaseTerm() const { return fieldRepurchaseTerm.offset > 0; }
    FieldRepurchaseTerm::ValueType getRepurchaseTerm() const { return fieldRepurchaseTerm.getValue( _fixPtr ); }
    std::string_view getRepurchaseTermView() const { return fieldRepurchaseTerm.offset > 0 ? std::string_view{ _fixPtr + fieldRepurchaseTerm.offset, getValueLength( _fixPtr + fieldRepurchaseTerm.offset ) } : std::string_view{}; }
@@ -6801,6 +7443,7 @@ class GroupStrikes : public MessageBase
    private: FieldRepurchaseTerm fieldRepurchaseTerm;
 
    public:
+   using RepurchaseRate = FieldRepurchaseRate; 
    bool isSetRepurchaseRate() const { return fieldRepurchaseRate.offset > 0; }
    FieldRepurchaseRate::ValueType getRepurchaseRate() const { return fieldRepurchaseRate.getValue( _fixPtr ); }
    std::string_view getRepurchaseRateView() const { return fieldRepurchaseRate.offset > 0 ? std::string_view{ _fixPtr + fieldRepurchaseRate.offset, getValueLength( _fixPtr + fieldRepurchaseRate.offset ) } : std::string_view{}; }
@@ -6810,6 +7453,7 @@ class GroupStrikes : public MessageBase
    private: FieldRepurchaseRate fieldRepurchaseRate;
 
    public:
+   using Factor = FieldFactor; 
    bool isSetFactor() const { return fieldFactor.offset > 0; }
    FieldFactor::ValueType getFactor() const { return fieldFactor.getValue( _fixPtr ); }
    std::string_view getFactorView() const { return fieldFactor.offset > 0 ? std::string_view{ _fixPtr + fieldFactor.offset, getValueLength( _fixPtr + fieldFactor.offset ) } : std::string_view{}; }
@@ -6819,6 +7463,7 @@ class GroupStrikes : public MessageBase
    private: FieldFactor fieldFactor;
 
    public:
+   using CreditRating = FieldCreditRating; 
    bool isSetCreditRating() const { return fieldCreditRating.offset > 0; }
    FieldCreditRating::ValueType getCreditRating() const { return fieldCreditRating.getValue( _fixPtr ); }
    std::string_view getCreditRatingView() const { return fieldCreditRating.offset > 0 ? std::string_view{ _fixPtr + fieldCreditRating.offset, getValueLength( _fixPtr + fieldCreditRating.offset ) } : std::string_view{}; }
@@ -6828,6 +7473,7 @@ class GroupStrikes : public MessageBase
    private: FieldCreditRating fieldCreditRating;
 
    public:
+   using InstrRegistry = FieldInstrRegistry; 
    bool isSetInstrRegistry() const { return fieldInstrRegistry.offset > 0; }
    FieldInstrRegistry::ValueType getInstrRegistry() const { return fieldInstrRegistry.getValue( _fixPtr ); }
    std::string_view getInstrRegistryView() const { return fieldInstrRegistry.offset > 0 ? std::string_view{ _fixPtr + fieldInstrRegistry.offset, getValueLength( _fixPtr + fieldInstrRegistry.offset ) } : std::string_view{}; }
@@ -6837,6 +7483,7 @@ class GroupStrikes : public MessageBase
    private: FieldInstrRegistry fieldInstrRegistry;
 
    public:
+   using CountryOfIssue = FieldCountryOfIssue; 
    bool isSetCountryOfIssue() const { return fieldCountryOfIssue.offset > 0; }
    FieldCountryOfIssue::ValueType getCountryOfIssue() const { return fieldCountryOfIssue.getValue( _fixPtr ); }
    std::string_view getCountryOfIssueView() const { return fieldCountryOfIssue.offset > 0 ? std::string_view{ _fixPtr + fieldCountryOfIssue.offset, getValueLength( _fixPtr + fieldCountryOfIssue.offset ) } : std::string_view{}; }
@@ -6846,6 +7493,7 @@ class GroupStrikes : public MessageBase
    private: FieldCountryOfIssue fieldCountryOfIssue;
 
    public:
+   using StateOrProvinceOfIssue = FieldStateOrProvinceOfIssue; 
    bool isSetStateOrProvinceOfIssue() const { return fieldStateOrProvinceOfIssue.offset > 0; }
    FieldStateOrProvinceOfIssue::ValueType getStateOrProvinceOfIssue() const { return fieldStateOrProvinceOfIssue.getValue( _fixPtr ); }
    std::string_view getStateOrProvinceOfIssueView() const { return fieldStateOrProvinceOfIssue.offset > 0 ? std::string_view{ _fixPtr + fieldStateOrProvinceOfIssue.offset, getValueLength( _fixPtr + fieldStateOrProvinceOfIssue.offset ) } : std::string_view{}; }
@@ -6855,6 +7503,7 @@ class GroupStrikes : public MessageBase
    private: FieldStateOrProvinceOfIssue fieldStateOrProvinceOfIssue;
 
    public:
+   using LocaleOfIssue = FieldLocaleOfIssue; 
    bool isSetLocaleOfIssue() const { return fieldLocaleOfIssue.offset > 0; }
    FieldLocaleOfIssue::ValueType getLocaleOfIssue() const { return fieldLocaleOfIssue.getValue( _fixPtr ); }
    std::string_view getLocaleOfIssueView() const { return fieldLocaleOfIssue.offset > 0 ? std::string_view{ _fixPtr + fieldLocaleOfIssue.offset, getValueLength( _fixPtr + fieldLocaleOfIssue.offset ) } : std::string_view{}; }
@@ -6864,6 +7513,7 @@ class GroupStrikes : public MessageBase
    private: FieldLocaleOfIssue fieldLocaleOfIssue;
 
    public:
+   using RedemptionDate = FieldRedemptionDate; 
    bool isSetRedemptionDate() const { return fieldRedemptionDate.offset > 0; }
    FieldRedemptionDate::ValueType getRedemptionDate() const { return fieldRedemptionDate.getValue( _fixPtr ); }
    std::string_view getRedemptionDateView() const { return fieldRedemptionDate.offset > 0 ? std::string_view{ _fixPtr + fieldRedemptionDate.offset, getValueLength( _fixPtr + fieldRedemptionDate.offset ) } : std::string_view{}; }
@@ -6873,6 +7523,7 @@ class GroupStrikes : public MessageBase
    private: FieldRedemptionDate fieldRedemptionDate;
 
    public:
+   using StrikePrice = FieldStrikePrice; 
    bool isSetStrikePrice() const { return fieldStrikePrice.offset > 0; }
    FieldStrikePrice::ValueType getStrikePrice() const { return fieldStrikePrice.getValue( _fixPtr ); }
    std::string_view getStrikePriceView() const { return fieldStrikePrice.offset > 0 ? std::string_view{ _fixPtr + fieldStrikePrice.offset, getValueLength( _fixPtr + fieldStrikePrice.offset ) } : std::string_view{}; }
@@ -6882,6 +7533,7 @@ class GroupStrikes : public MessageBase
    private: FieldStrikePrice fieldStrikePrice;
 
    public:
+   using StrikeCurrency = FieldStrikeCurrency; 
    bool isSetStrikeCurrency() const { return fieldStrikeCurrency.offset > 0; }
    FieldStrikeCurrency::ValueType getStrikeCurrency() const { return fieldStrikeCurrency.getValue( _fixPtr ); }
    std::string_view getStrikeCurrencyView() const { return fieldStrikeCurrency.offset > 0 ? std::string_view{ _fixPtr + fieldStrikeCurrency.offset, getValueLength( _fixPtr + fieldStrikeCurrency.offset ) } : std::string_view{}; }
@@ -6891,6 +7543,7 @@ class GroupStrikes : public MessageBase
    private: FieldStrikeCurrency fieldStrikeCurrency;
 
    public:
+   using OptAttribute = FieldOptAttribute; 
    bool isSetOptAttribute() const { return fieldOptAttribute.offset > 0; }
    FieldOptAttribute::ValueType getOptAttribute() const { return fieldOptAttribute.getValue( _fixPtr ); }
    std::string_view getOptAttributeView() const { return fieldOptAttribute.offset > 0 ? std::string_view{ _fixPtr + fieldOptAttribute.offset, getValueLength( _fixPtr + fieldOptAttribute.offset ) } : std::string_view{}; }
@@ -6900,6 +7553,7 @@ class GroupStrikes : public MessageBase
    private: FieldOptAttribute fieldOptAttribute;
 
    public:
+   using ContractMultiplier = FieldContractMultiplier; 
    bool isSetContractMultiplier() const { return fieldContractMultiplier.offset > 0; }
    FieldContractMultiplier::ValueType getContractMultiplier() const { return fieldContractMultiplier.getValue( _fixPtr ); }
    std::string_view getContractMultiplierView() const { return fieldContractMultiplier.offset > 0 ? std::string_view{ _fixPtr + fieldContractMultiplier.offset, getValueLength( _fixPtr + fieldContractMultiplier.offset ) } : std::string_view{}; }
@@ -6909,6 +7563,7 @@ class GroupStrikes : public MessageBase
    private: FieldContractMultiplier fieldContractMultiplier;
 
    public:
+   using CouponRate = FieldCouponRate; 
    bool isSetCouponRate() const { return fieldCouponRate.offset > 0; }
    FieldCouponRate::ValueType getCouponRate() const { return fieldCouponRate.getValue( _fixPtr ); }
    std::string_view getCouponRateView() const { return fieldCouponRate.offset > 0 ? std::string_view{ _fixPtr + fieldCouponRate.offset, getValueLength( _fixPtr + fieldCouponRate.offset ) } : std::string_view{}; }
@@ -6918,6 +7573,7 @@ class GroupStrikes : public MessageBase
    private: FieldCouponRate fieldCouponRate;
 
    public:
+   using SecurityExchange = FieldSecurityExchange; 
    bool isSetSecurityExchange() const { return fieldSecurityExchange.offset > 0; }
    FieldSecurityExchange::ValueType getSecurityExchange() const { return fieldSecurityExchange.getValue( _fixPtr ); }
    std::string_view getSecurityExchangeView() const { return fieldSecurityExchange.offset > 0 ? std::string_view{ _fixPtr + fieldSecurityExchange.offset, getValueLength( _fixPtr + fieldSecurityExchange.offset ) } : std::string_view{}; }
@@ -6927,6 +7583,7 @@ class GroupStrikes : public MessageBase
    private: FieldSecurityExchange fieldSecurityExchange;
 
    public:
+   using Issuer = FieldIssuer; 
    bool isSetIssuer() const { return fieldIssuer.offset > 0; }
    FieldIssuer::ValueType getIssuer() const { return fieldIssuer.getValue( _fixPtr ); }
    std::string_view getIssuerView() const { return fieldIssuer.offset > 0 ? std::string_view{ _fixPtr + fieldIssuer.offset, getValueLength( _fixPtr + fieldIssuer.offset ) } : std::string_view{}; }
@@ -6936,6 +7593,7 @@ class GroupStrikes : public MessageBase
    private: FieldIssuer fieldIssuer;
 
    public:
+   using EncodedIssuerLen = FieldEncodedIssuerLen; 
    bool isSetEncodedIssuerLen() const { return fieldEncodedIssuerLen.offset > 0; }
    FieldEncodedIssuerLen::ValueType getEncodedIssuerLen() const { return fieldEncodedIssuerLen.getValue( _fixPtr ); }
    std::string_view getEncodedIssuerLenView() const { return fieldEncodedIssuerLen.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedIssuerLen.offset, getValueLength( _fixPtr + fieldEncodedIssuerLen.offset ) } : std::string_view{}; }
@@ -6945,6 +7603,7 @@ class GroupStrikes : public MessageBase
    private: FieldEncodedIssuerLen fieldEncodedIssuerLen;
 
    public:
+   using EncodedIssuer = FieldEncodedIssuer; 
    bool isSetEncodedIssuer() const { return fieldEncodedIssuer.offset > 0; }
    FieldEncodedIssuer::ValueType getEncodedIssuer() const { return fieldEncodedIssuer.getValue( _fixPtr ); }
    std::string_view getEncodedIssuerView() const { return fieldEncodedIssuer.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedIssuer.offset, getValueLength( _fixPtr + fieldEncodedIssuer.offset ) } : std::string_view{}; }
@@ -6954,6 +7613,7 @@ class GroupStrikes : public MessageBase
    private: FieldEncodedIssuer fieldEncodedIssuer;
 
    public:
+   using SecurityDesc = FieldSecurityDesc; 
    bool isSetSecurityDesc() const { return fieldSecurityDesc.offset > 0; }
    FieldSecurityDesc::ValueType getSecurityDesc() const { return fieldSecurityDesc.getValue( _fixPtr ); }
    std::string_view getSecurityDescView() const { return fieldSecurityDesc.offset > 0 ? std::string_view{ _fixPtr + fieldSecurityDesc.offset, getValueLength( _fixPtr + fieldSecurityDesc.offset ) } : std::string_view{}; }
@@ -6963,6 +7623,7 @@ class GroupStrikes : public MessageBase
    private: FieldSecurityDesc fieldSecurityDesc;
 
    public:
+   using EncodedSecurityDescLen = FieldEncodedSecurityDescLen; 
    bool isSetEncodedSecurityDescLen() const { return fieldEncodedSecurityDescLen.offset > 0; }
    FieldEncodedSecurityDescLen::ValueType getEncodedSecurityDescLen() const { return fieldEncodedSecurityDescLen.getValue( _fixPtr ); }
    std::string_view getEncodedSecurityDescLenView() const { return fieldEncodedSecurityDescLen.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedSecurityDescLen.offset, getValueLength( _fixPtr + fieldEncodedSecurityDescLen.offset ) } : std::string_view{}; }
@@ -6972,6 +7633,7 @@ class GroupStrikes : public MessageBase
    private: FieldEncodedSecurityDescLen fieldEncodedSecurityDescLen;
 
    public:
+   using EncodedSecurityDesc = FieldEncodedSecurityDesc; 
    bool isSetEncodedSecurityDesc() const { return fieldEncodedSecurityDesc.offset > 0; }
    FieldEncodedSecurityDesc::ValueType getEncodedSecurityDesc() const { return fieldEncodedSecurityDesc.getValue( _fixPtr ); }
    std::string_view getEncodedSecurityDescView() const { return fieldEncodedSecurityDesc.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedSecurityDesc.offset, getValueLength( _fixPtr + fieldEncodedSecurityDesc.offset ) } : std::string_view{}; }
@@ -6981,6 +7643,7 @@ class GroupStrikes : public MessageBase
    private: FieldEncodedSecurityDesc fieldEncodedSecurityDesc;
 
    public:
+   using Pool = FieldPool; 
    bool isSetPool() const { return fieldPool.offset > 0; }
    FieldPool::ValueType getPool() const { return fieldPool.getValue( _fixPtr ); }
    std::string_view getPoolView() const { return fieldPool.offset > 0 ? std::string_view{ _fixPtr + fieldPool.offset, getValueLength( _fixPtr + fieldPool.offset ) } : std::string_view{}; }
@@ -6990,6 +7653,7 @@ class GroupStrikes : public MessageBase
    private: FieldPool fieldPool;
 
    public:
+   using ContractSettlMonth = FieldContractSettlMonth; 
    bool isSetContractSettlMonth() const { return fieldContractSettlMonth.offset > 0; }
    FieldContractSettlMonth::ValueType getContractSettlMonth() const { return fieldContractSettlMonth.getValue( _fixPtr ); }
    std::string_view getContractSettlMonthView() const { return fieldContractSettlMonth.offset > 0 ? std::string_view{ _fixPtr + fieldContractSettlMonth.offset, getValueLength( _fixPtr + fieldContractSettlMonth.offset ) } : std::string_view{}; }
@@ -6999,6 +7663,7 @@ class GroupStrikes : public MessageBase
    private: FieldContractSettlMonth fieldContractSettlMonth;
 
    public:
+   using CPProgram = FieldCPProgram; 
    bool isSetCPProgram() const { return fieldCPProgram.offset > 0; }
    FieldCPProgram::ValueType getCPProgram() const { return fieldCPProgram.getValue( _fixPtr ); }
    std::string_view getCPProgramView() const { return fieldCPProgram.offset > 0 ? std::string_view{ _fixPtr + fieldCPProgram.offset, getValueLength( _fixPtr + fieldCPProgram.offset ) } : std::string_view{}; }
@@ -7008,6 +7673,7 @@ class GroupStrikes : public MessageBase
    private: FieldCPProgram fieldCPProgram;
 
    public:
+   using CPRegType = FieldCPRegType; 
    bool isSetCPRegType() const { return fieldCPRegType.offset > 0; }
    FieldCPRegType::ValueType getCPRegType() const { return fieldCPRegType.getValue( _fixPtr ); }
    std::string_view getCPRegTypeView() const { return fieldCPRegType.offset > 0 ? std::string_view{ _fixPtr + fieldCPRegType.offset, getValueLength( _fixPtr + fieldCPRegType.offset ) } : std::string_view{}; }
@@ -7017,6 +7683,7 @@ class GroupStrikes : public MessageBase
    private: FieldCPRegType fieldCPRegType;
 
    public:
+   using NoEvents = FieldNoEvents; 
    bool isSetNoEvents() const { return fieldNoEvents.offset > 0; }
    FieldNoEvents::ValueType getNoEvents() const { return fieldNoEvents.getValue( _fixPtr ); }
    std::string_view getNoEventsView() const { return fieldNoEvents.offset > 0 ? std::string_view{ _fixPtr + fieldNoEvents.offset, getValueLength( _fixPtr + fieldNoEvents.offset ) } : std::string_view{}; }
@@ -7031,6 +7698,7 @@ class GroupStrikes : public MessageBase
    private: GroupEvents::Array groupsEvents{ 10 };
 
    public:
+   using DatedDate = FieldDatedDate; 
    bool isSetDatedDate() const { return fieldDatedDate.offset > 0; }
    FieldDatedDate::ValueType getDatedDate() const { return fieldDatedDate.getValue( _fixPtr ); }
    std::string_view getDatedDateView() const { return fieldDatedDate.offset > 0 ? std::string_view{ _fixPtr + fieldDatedDate.offset, getValueLength( _fixPtr + fieldDatedDate.offset ) } : std::string_view{}; }
@@ -7040,6 +7708,7 @@ class GroupStrikes : public MessageBase
    private: FieldDatedDate fieldDatedDate;
 
    public:
+   using InterestAccrualDate = FieldInterestAccrualDate; 
    bool isSetInterestAccrualDate() const { return fieldInterestAccrualDate.offset > 0; }
    FieldInterestAccrualDate::ValueType getInterestAccrualDate() const { return fieldInterestAccrualDate.getValue( _fixPtr ); }
    std::string_view getInterestAccrualDateView() const { return fieldInterestAccrualDate.offset > 0 ? std::string_view{ _fixPtr + fieldInterestAccrualDate.offset, getValueLength( _fixPtr + fieldInterestAccrualDate.offset ) } : std::string_view{}; }
@@ -7065,6 +7734,7 @@ class GroupBidDescriptors : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<GroupBidDescriptors,0,FIELDS...>(*this,tpl); return tpl; };
+   template< typename... FIELDS > std::tuple<typeExists<FIELDS>... > getPresenceOf() const { std::tuple< typeExists<FIELDS>... > tpl{}; buildPresenceTuple<GroupBidDescriptors,0,FIELDS...>(*this,tpl); return tpl; };
    bool isFieldSet( tag_t tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
@@ -7074,6 +7744,7 @@ class GroupBidDescriptors : public MessageBase
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
+   using BidDescriptorType = FieldBidDescriptorType; 
    bool isSetBidDescriptorType() const { return fieldBidDescriptorType.offset > 0; }
    FieldBidDescriptorType::ValueType getBidDescriptorType() const { return fieldBidDescriptorType.getValue( _fixPtr ); }
    std::string_view getBidDescriptorTypeView() const { return fieldBidDescriptorType.offset > 0 ? std::string_view{ _fixPtr + fieldBidDescriptorType.offset, getValueLength( _fixPtr + fieldBidDescriptorType.offset ) } : std::string_view{}; }
@@ -7083,6 +7754,7 @@ class GroupBidDescriptors : public MessageBase
    private: FieldBidDescriptorType fieldBidDescriptorType;
 
    public:
+   using BidDescriptor = FieldBidDescriptor; 
    bool isSetBidDescriptor() const { return fieldBidDescriptor.offset > 0; }
    FieldBidDescriptor::ValueType getBidDescriptor() const { return fieldBidDescriptor.getValue( _fixPtr ); }
    std::string_view getBidDescriptorView() const { return fieldBidDescriptor.offset > 0 ? std::string_view{ _fixPtr + fieldBidDescriptor.offset, getValueLength( _fixPtr + fieldBidDescriptor.offset ) } : std::string_view{}; }
@@ -7092,6 +7764,7 @@ class GroupBidDescriptors : public MessageBase
    private: FieldBidDescriptor fieldBidDescriptor;
 
    public:
+   using SideValueInd = FieldSideValueInd; 
    bool isSetSideValueInd() const { return fieldSideValueInd.offset > 0; }
    FieldSideValueInd::ValueType getSideValueInd() const { return fieldSideValueInd.getValue( _fixPtr ); }
    std::string_view getSideValueIndView() const { return fieldSideValueInd.offset > 0 ? std::string_view{ _fixPtr + fieldSideValueInd.offset, getValueLength( _fixPtr + fieldSideValueInd.offset ) } : std::string_view{}; }
@@ -7101,6 +7774,7 @@ class GroupBidDescriptors : public MessageBase
    private: FieldSideValueInd fieldSideValueInd;
 
    public:
+   using LiquidityValue = FieldLiquidityValue; 
    bool isSetLiquidityValue() const { return fieldLiquidityValue.offset > 0; }
    FieldLiquidityValue::ValueType getLiquidityValue() const { return fieldLiquidityValue.getValue( _fixPtr ); }
    std::string_view getLiquidityValueView() const { return fieldLiquidityValue.offset > 0 ? std::string_view{ _fixPtr + fieldLiquidityValue.offset, getValueLength( _fixPtr + fieldLiquidityValue.offset ) } : std::string_view{}; }
@@ -7110,6 +7784,7 @@ class GroupBidDescriptors : public MessageBase
    private: FieldLiquidityValue fieldLiquidityValue;
 
    public:
+   using LiquidityNumSecurities = FieldLiquidityNumSecurities; 
    bool isSetLiquidityNumSecurities() const { return fieldLiquidityNumSecurities.offset > 0; }
    FieldLiquidityNumSecurities::ValueType getLiquidityNumSecurities() const { return fieldLiquidityNumSecurities.getValue( _fixPtr ); }
    std::string_view getLiquidityNumSecuritiesView() const { return fieldLiquidityNumSecurities.offset > 0 ? std::string_view{ _fixPtr + fieldLiquidityNumSecurities.offset, getValueLength( _fixPtr + fieldLiquidityNumSecurities.offset ) } : std::string_view{}; }
@@ -7119,6 +7794,7 @@ class GroupBidDescriptors : public MessageBase
    private: FieldLiquidityNumSecurities fieldLiquidityNumSecurities;
 
    public:
+   using LiquidityPctLow = FieldLiquidityPctLow; 
    bool isSetLiquidityPctLow() const { return fieldLiquidityPctLow.offset > 0; }
    FieldLiquidityPctLow::ValueType getLiquidityPctLow() const { return fieldLiquidityPctLow.getValue( _fixPtr ); }
    std::string_view getLiquidityPctLowView() const { return fieldLiquidityPctLow.offset > 0 ? std::string_view{ _fixPtr + fieldLiquidityPctLow.offset, getValueLength( _fixPtr + fieldLiquidityPctLow.offset ) } : std::string_view{}; }
@@ -7128,6 +7804,7 @@ class GroupBidDescriptors : public MessageBase
    private: FieldLiquidityPctLow fieldLiquidityPctLow;
 
    public:
+   using LiquidityPctHigh = FieldLiquidityPctHigh; 
    bool isSetLiquidityPctHigh() const { return fieldLiquidityPctHigh.offset > 0; }
    FieldLiquidityPctHigh::ValueType getLiquidityPctHigh() const { return fieldLiquidityPctHigh.getValue( _fixPtr ); }
    std::string_view getLiquidityPctHighView() const { return fieldLiquidityPctHigh.offset > 0 ? std::string_view{ _fixPtr + fieldLiquidityPctHigh.offset, getValueLength( _fixPtr + fieldLiquidityPctHigh.offset ) } : std::string_view{}; }
@@ -7137,6 +7814,7 @@ class GroupBidDescriptors : public MessageBase
    private: FieldLiquidityPctHigh fieldLiquidityPctHigh;
 
    public:
+   using EFPTrackingError = FieldEFPTrackingError; 
    bool isSetEFPTrackingError() const { return fieldEFPTrackingError.offset > 0; }
    FieldEFPTrackingError::ValueType getEFPTrackingError() const { return fieldEFPTrackingError.getValue( _fixPtr ); }
    std::string_view getEFPTrackingErrorView() const { return fieldEFPTrackingError.offset > 0 ? std::string_view{ _fixPtr + fieldEFPTrackingError.offset, getValueLength( _fixPtr + fieldEFPTrackingError.offset ) } : std::string_view{}; }
@@ -7146,6 +7824,7 @@ class GroupBidDescriptors : public MessageBase
    private: FieldEFPTrackingError fieldEFPTrackingError;
 
    public:
+   using FairValue = FieldFairValue; 
    bool isSetFairValue() const { return fieldFairValue.offset > 0; }
    FieldFairValue::ValueType getFairValue() const { return fieldFairValue.getValue( _fixPtr ); }
    std::string_view getFairValueView() const { return fieldFairValue.offset > 0 ? std::string_view{ _fixPtr + fieldFairValue.offset, getValueLength( _fixPtr + fieldFairValue.offset ) } : std::string_view{}; }
@@ -7155,6 +7834,7 @@ class GroupBidDescriptors : public MessageBase
    private: FieldFairValue fieldFairValue;
 
    public:
+   using OutsideIndexPct = FieldOutsideIndexPct; 
    bool isSetOutsideIndexPct() const { return fieldOutsideIndexPct.offset > 0; }
    FieldOutsideIndexPct::ValueType getOutsideIndexPct() const { return fieldOutsideIndexPct.getValue( _fixPtr ); }
    std::string_view getOutsideIndexPctView() const { return fieldOutsideIndexPct.offset > 0 ? std::string_view{ _fixPtr + fieldOutsideIndexPct.offset, getValueLength( _fixPtr + fieldOutsideIndexPct.offset ) } : std::string_view{}; }
@@ -7164,6 +7844,7 @@ class GroupBidDescriptors : public MessageBase
    private: FieldOutsideIndexPct fieldOutsideIndexPct;
 
    public:
+   using ValueOfFutures = FieldValueOfFutures; 
    bool isSetValueOfFutures() const { return fieldValueOfFutures.offset > 0; }
    FieldValueOfFutures::ValueType getValueOfFutures() const { return fieldValueOfFutures.getValue( _fixPtr ); }
    std::string_view getValueOfFuturesView() const { return fieldValueOfFutures.offset > 0 ? std::string_view{ _fixPtr + fieldValueOfFutures.offset, getValueLength( _fixPtr + fieldValueOfFutures.offset ) } : std::string_view{}; }
@@ -7189,6 +7870,7 @@ class GroupCompIDs : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<GroupCompIDs,0,FIELDS...>(*this,tpl); return tpl; };
+   template< typename... FIELDS > std::tuple<typeExists<FIELDS>... > getPresenceOf() const { std::tuple< typeExists<FIELDS>... > tpl{}; buildPresenceTuple<GroupCompIDs,0,FIELDS...>(*this,tpl); return tpl; };
    bool isFieldSet( tag_t tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
@@ -7198,6 +7880,7 @@ class GroupCompIDs : public MessageBase
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
+   using RefCompID = FieldRefCompID; 
    bool isSetRefCompID() const { return fieldRefCompID.offset > 0; }
    FieldRefCompID::ValueType getRefCompID() const { return fieldRefCompID.getValue( _fixPtr ); }
    std::string_view getRefCompIDView() const { return fieldRefCompID.offset > 0 ? std::string_view{ _fixPtr + fieldRefCompID.offset, getValueLength( _fixPtr + fieldRefCompID.offset ) } : std::string_view{}; }
@@ -7207,6 +7890,7 @@ class GroupCompIDs : public MessageBase
    private: FieldRefCompID fieldRefCompID;
 
    public:
+   using RefSubID = FieldRefSubID; 
    bool isSetRefSubID() const { return fieldRefSubID.offset > 0; }
    FieldRefSubID::ValueType getRefSubID() const { return fieldRefSubID.getValue( _fixPtr ); }
    std::string_view getRefSubIDView() const { return fieldRefSubID.offset > 0 ? std::string_view{ _fixPtr + fieldRefSubID.offset, getValueLength( _fixPtr + fieldRefSubID.offset ) } : std::string_view{}; }
@@ -7216,6 +7900,7 @@ class GroupCompIDs : public MessageBase
    private: FieldRefSubID fieldRefSubID;
 
    public:
+   using LocationID = FieldLocationID; 
    bool isSetLocationID() const { return fieldLocationID.offset > 0; }
    FieldLocationID::ValueType getLocationID() const { return fieldLocationID.getValue( _fixPtr ); }
    std::string_view getLocationIDView() const { return fieldLocationID.offset > 0 ? std::string_view{ _fixPtr + fieldLocationID.offset, getValueLength( _fixPtr + fieldLocationID.offset ) } : std::string_view{}; }
@@ -7225,6 +7910,7 @@ class GroupCompIDs : public MessageBase
    private: FieldLocationID fieldLocationID;
 
    public:
+   using DeskID = FieldDeskID; 
    bool isSetDeskID() const { return fieldDeskID.offset > 0; }
    FieldDeskID::ValueType getDeskID() const { return fieldDeskID.getValue( _fixPtr ); }
    std::string_view getDeskIDView() const { return fieldDeskID.offset > 0 ? std::string_view{ _fixPtr + fieldDeskID.offset, getValueLength( _fixPtr + fieldDeskID.offset ) } : std::string_view{}; }
@@ -7250,6 +7936,7 @@ class GroupLegAllocs : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<GroupLegAllocs,0,FIELDS...>(*this,tpl); return tpl; };
+   template< typename... FIELDS > std::tuple<typeExists<FIELDS>... > getPresenceOf() const { std::tuple< typeExists<FIELDS>... > tpl{}; buildPresenceTuple<GroupLegAllocs,0,FIELDS...>(*this,tpl); return tpl; };
    bool isFieldSet( tag_t tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
@@ -7259,6 +7946,7 @@ class GroupLegAllocs : public MessageBase
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
+   using LegAllocAccount = FieldLegAllocAccount; 
    bool isSetLegAllocAccount() const { return fieldLegAllocAccount.offset > 0; }
    FieldLegAllocAccount::ValueType getLegAllocAccount() const { return fieldLegAllocAccount.getValue( _fixPtr ); }
    std::string_view getLegAllocAccountView() const { return fieldLegAllocAccount.offset > 0 ? std::string_view{ _fixPtr + fieldLegAllocAccount.offset, getValueLength( _fixPtr + fieldLegAllocAccount.offset ) } : std::string_view{}; }
@@ -7268,6 +7956,7 @@ class GroupLegAllocs : public MessageBase
    private: FieldLegAllocAccount fieldLegAllocAccount;
 
    public:
+   using LegIndividualAllocID = FieldLegIndividualAllocID; 
    bool isSetLegIndividualAllocID() const { return fieldLegIndividualAllocID.offset > 0; }
    FieldLegIndividualAllocID::ValueType getLegIndividualAllocID() const { return fieldLegIndividualAllocID.getValue( _fixPtr ); }
    std::string_view getLegIndividualAllocIDView() const { return fieldLegIndividualAllocID.offset > 0 ? std::string_view{ _fixPtr + fieldLegIndividualAllocID.offset, getValueLength( _fixPtr + fieldLegIndividualAllocID.offset ) } : std::string_view{}; }
@@ -7277,6 +7966,7 @@ class GroupLegAllocs : public MessageBase
    private: FieldLegIndividualAllocID fieldLegIndividualAllocID;
 
    public:
+   using NoNested2PartyIDs = FieldNoNested2PartyIDs; 
    bool isSetNoNested2PartyIDs() const { return fieldNoNested2PartyIDs.offset > 0; }
    FieldNoNested2PartyIDs::ValueType getNoNested2PartyIDs() const { return fieldNoNested2PartyIDs.getValue( _fixPtr ); }
    std::string_view getNoNested2PartyIDsView() const { return fieldNoNested2PartyIDs.offset > 0 ? std::string_view{ _fixPtr + fieldNoNested2PartyIDs.offset, getValueLength( _fixPtr + fieldNoNested2PartyIDs.offset ) } : std::string_view{}; }
@@ -7291,6 +7981,7 @@ class GroupLegAllocs : public MessageBase
    private: GroupNested2PartyIDs::Array groupsNested2PartyIDs{ 10 };
 
    public:
+   using LegAllocQty = FieldLegAllocQty; 
    bool isSetLegAllocQty() const { return fieldLegAllocQty.offset > 0; }
    FieldLegAllocQty::ValueType getLegAllocQty() const { return fieldLegAllocQty.getValue( _fixPtr ); }
    std::string_view getLegAllocQtyView() const { return fieldLegAllocQty.offset > 0 ? std::string_view{ _fixPtr + fieldLegAllocQty.offset, getValueLength( _fixPtr + fieldLegAllocQty.offset ) } : std::string_view{}; }
@@ -7300,6 +7991,7 @@ class GroupLegAllocs : public MessageBase
    private: FieldLegAllocQty fieldLegAllocQty;
 
    public:
+   using LegAllocAcctIDSource = FieldLegAllocAcctIDSource; 
    bool isSetLegAllocAcctIDSource() const { return fieldLegAllocAcctIDSource.offset > 0; }
    FieldLegAllocAcctIDSource::ValueType getLegAllocAcctIDSource() const { return fieldLegAllocAcctIDSource.getValue( _fixPtr ); }
    std::string_view getLegAllocAcctIDSourceView() const { return fieldLegAllocAcctIDSource.offset > 0 ? std::string_view{ _fixPtr + fieldLegAllocAcctIDSource.offset, getValueLength( _fixPtr + fieldLegAllocAcctIDSource.offset ) } : std::string_view{}; }
@@ -7309,6 +8001,7 @@ class GroupLegAllocs : public MessageBase
    private: FieldLegAllocAcctIDSource fieldLegAllocAcctIDSource;
 
    public:
+   using LegSettlCurrency = FieldLegSettlCurrency; 
    bool isSetLegSettlCurrency() const { return fieldLegSettlCurrency.offset > 0; }
    FieldLegSettlCurrency::ValueType getLegSettlCurrency() const { return fieldLegSettlCurrency.getValue( _fixPtr ); }
    std::string_view getLegSettlCurrencyView() const { return fieldLegSettlCurrency.offset > 0 ? std::string_view{ _fixPtr + fieldLegSettlCurrency.offset, getValueLength( _fixPtr + fieldLegSettlCurrency.offset ) } : std::string_view{}; }
@@ -7334,6 +8027,7 @@ class GroupRegistDtls : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<GroupRegistDtls,0,FIELDS...>(*this,tpl); return tpl; };
+   template< typename... FIELDS > std::tuple<typeExists<FIELDS>... > getPresenceOf() const { std::tuple< typeExists<FIELDS>... > tpl{}; buildPresenceTuple<GroupRegistDtls,0,FIELDS...>(*this,tpl); return tpl; };
    bool isFieldSet( tag_t tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
@@ -7343,6 +8037,7 @@ class GroupRegistDtls : public MessageBase
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
+   using RegistDtls = FieldRegistDtls; 
    bool isSetRegistDtls() const { return fieldRegistDtls.offset > 0; }
    FieldRegistDtls::ValueType getRegistDtls() const { return fieldRegistDtls.getValue( _fixPtr ); }
    std::string_view getRegistDtlsView() const { return fieldRegistDtls.offset > 0 ? std::string_view{ _fixPtr + fieldRegistDtls.offset, getValueLength( _fixPtr + fieldRegistDtls.offset ) } : std::string_view{}; }
@@ -7352,6 +8047,7 @@ class GroupRegistDtls : public MessageBase
    private: FieldRegistDtls fieldRegistDtls;
 
    public:
+   using RegistEmail = FieldRegistEmail; 
    bool isSetRegistEmail() const { return fieldRegistEmail.offset > 0; }
    FieldRegistEmail::ValueType getRegistEmail() const { return fieldRegistEmail.getValue( _fixPtr ); }
    std::string_view getRegistEmailView() const { return fieldRegistEmail.offset > 0 ? std::string_view{ _fixPtr + fieldRegistEmail.offset, getValueLength( _fixPtr + fieldRegistEmail.offset ) } : std::string_view{}; }
@@ -7361,6 +8057,7 @@ class GroupRegistDtls : public MessageBase
    private: FieldRegistEmail fieldRegistEmail;
 
    public:
+   using MailingDtls = FieldMailingDtls; 
    bool isSetMailingDtls() const { return fieldMailingDtls.offset > 0; }
    FieldMailingDtls::ValueType getMailingDtls() const { return fieldMailingDtls.getValue( _fixPtr ); }
    std::string_view getMailingDtlsView() const { return fieldMailingDtls.offset > 0 ? std::string_view{ _fixPtr + fieldMailingDtls.offset, getValueLength( _fixPtr + fieldMailingDtls.offset ) } : std::string_view{}; }
@@ -7370,6 +8067,7 @@ class GroupRegistDtls : public MessageBase
    private: FieldMailingDtls fieldMailingDtls;
 
    public:
+   using MailingInst = FieldMailingInst; 
    bool isSetMailingInst() const { return fieldMailingInst.offset > 0; }
    FieldMailingInst::ValueType getMailingInst() const { return fieldMailingInst.getValue( _fixPtr ); }
    std::string_view getMailingInstView() const { return fieldMailingInst.offset > 0 ? std::string_view{ _fixPtr + fieldMailingInst.offset, getValueLength( _fixPtr + fieldMailingInst.offset ) } : std::string_view{}; }
@@ -7379,6 +8077,7 @@ class GroupRegistDtls : public MessageBase
    private: FieldMailingInst fieldMailingInst;
 
    public:
+   using NoNestedPartyIDs = FieldNoNestedPartyIDs; 
    bool isSetNoNestedPartyIDs() const { return fieldNoNestedPartyIDs.offset > 0; }
    FieldNoNestedPartyIDs::ValueType getNoNestedPartyIDs() const { return fieldNoNestedPartyIDs.getValue( _fixPtr ); }
    std::string_view getNoNestedPartyIDsView() const { return fieldNoNestedPartyIDs.offset > 0 ? std::string_view{ _fixPtr + fieldNoNestedPartyIDs.offset, getValueLength( _fixPtr + fieldNoNestedPartyIDs.offset ) } : std::string_view{}; }
@@ -7393,6 +8092,7 @@ class GroupRegistDtls : public MessageBase
    private: GroupNestedPartyIDs::Array groupsNestedPartyIDs{ 10 };
 
    public:
+   using OwnerType = FieldOwnerType; 
    bool isSetOwnerType() const { return fieldOwnerType.offset > 0; }
    FieldOwnerType::ValueType getOwnerType() const { return fieldOwnerType.getValue( _fixPtr ); }
    std::string_view getOwnerTypeView() const { return fieldOwnerType.offset > 0 ? std::string_view{ _fixPtr + fieldOwnerType.offset, getValueLength( _fixPtr + fieldOwnerType.offset ) } : std::string_view{}; }
@@ -7402,6 +8102,7 @@ class GroupRegistDtls : public MessageBase
    private: FieldOwnerType fieldOwnerType;
 
    public:
+   using DateOfBirth = FieldDateOfBirth; 
    bool isSetDateOfBirth() const { return fieldDateOfBirth.offset > 0; }
    FieldDateOfBirth::ValueType getDateOfBirth() const { return fieldDateOfBirth.getValue( _fixPtr ); }
    std::string_view getDateOfBirthView() const { return fieldDateOfBirth.offset > 0 ? std::string_view{ _fixPtr + fieldDateOfBirth.offset, getValueLength( _fixPtr + fieldDateOfBirth.offset ) } : std::string_view{}; }
@@ -7411,6 +8112,7 @@ class GroupRegistDtls : public MessageBase
    private: FieldDateOfBirth fieldDateOfBirth;
 
    public:
+   using InvestorCountryOfResidence = FieldInvestorCountryOfResidence; 
    bool isSetInvestorCountryOfResidence() const { return fieldInvestorCountryOfResidence.offset > 0; }
    FieldInvestorCountryOfResidence::ValueType getInvestorCountryOfResidence() const { return fieldInvestorCountryOfResidence.getValue( _fixPtr ); }
    std::string_view getInvestorCountryOfResidenceView() const { return fieldInvestorCountryOfResidence.offset > 0 ? std::string_view{ _fixPtr + fieldInvestorCountryOfResidence.offset, getValueLength( _fixPtr + fieldInvestorCountryOfResidence.offset ) } : std::string_view{}; }
@@ -7436,6 +8138,7 @@ class GroupContAmts : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<GroupContAmts,0,FIELDS...>(*this,tpl); return tpl; };
+   template< typename... FIELDS > std::tuple<typeExists<FIELDS>... > getPresenceOf() const { std::tuple< typeExists<FIELDS>... > tpl{}; buildPresenceTuple<GroupContAmts,0,FIELDS...>(*this,tpl); return tpl; };
    bool isFieldSet( tag_t tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
@@ -7445,6 +8148,7 @@ class GroupContAmts : public MessageBase
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
+   using ContAmtType = FieldContAmtType; 
    bool isSetContAmtType() const { return fieldContAmtType.offset > 0; }
    FieldContAmtType::ValueType getContAmtType() const { return fieldContAmtType.getValue( _fixPtr ); }
    std::string_view getContAmtTypeView() const { return fieldContAmtType.offset > 0 ? std::string_view{ _fixPtr + fieldContAmtType.offset, getValueLength( _fixPtr + fieldContAmtType.offset ) } : std::string_view{}; }
@@ -7454,6 +8158,7 @@ class GroupContAmts : public MessageBase
    private: FieldContAmtType fieldContAmtType;
 
    public:
+   using ContAmtValue = FieldContAmtValue; 
    bool isSetContAmtValue() const { return fieldContAmtValue.offset > 0; }
    FieldContAmtValue::ValueType getContAmtValue() const { return fieldContAmtValue.getValue( _fixPtr ); }
    std::string_view getContAmtValueView() const { return fieldContAmtValue.offset > 0 ? std::string_view{ _fixPtr + fieldContAmtValue.offset, getValueLength( _fixPtr + fieldContAmtValue.offset ) } : std::string_view{}; }
@@ -7463,6 +8168,7 @@ class GroupContAmts : public MessageBase
    private: FieldContAmtValue fieldContAmtValue;
 
    public:
+   using ContAmtCurr = FieldContAmtCurr; 
    bool isSetContAmtCurr() const { return fieldContAmtCurr.offset > 0; }
    FieldContAmtCurr::ValueType getContAmtCurr() const { return fieldContAmtCurr.getValue( _fixPtr ); }
    std::string_view getContAmtCurrView() const { return fieldContAmtCurr.offset > 0 ? std::string_view{ _fixPtr + fieldContAmtCurr.offset, getValueLength( _fixPtr + fieldContAmtCurr.offset ) } : std::string_view{}; }
@@ -7488,6 +8194,7 @@ class GroupMDEntries : public MessageBase
    const char * getFieldValue( unsigned tag ) const;
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<GroupMDEntries,0,FIELDS...>(*this,tpl); return tpl; };
+   template< typename... FIELDS > std::tuple<typeExists<FIELDS>... > getPresenceOf() const { std::tuple< typeExists<FIELDS>... > tpl{}; buildPresenceTuple<GroupMDEntries,0,FIELDS...>(*this,tpl); return tpl; };
    bool isFieldSet( tag_t tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
@@ -7497,6 +8204,7 @@ class GroupMDEntries : public MessageBase
    private: static GetDepthMethod groupGetDepthMethods[];
    
    public:
+   using MDEntryType = FieldMDEntryType; 
    bool isSetMDEntryType() const { return fieldMDEntryType.offset > 0; }
    FieldMDEntryType::ValueType getMDEntryType() const { return fieldMDEntryType.getValue( _fixPtr ); }
    std::string_view getMDEntryTypeView() const { return fieldMDEntryType.offset > 0 ? std::string_view{ _fixPtr + fieldMDEntryType.offset, getValueLength( _fixPtr + fieldMDEntryType.offset ) } : std::string_view{}; }
@@ -7506,6 +8214,7 @@ class GroupMDEntries : public MessageBase
    private: FieldMDEntryType fieldMDEntryType;
 
    public:
+   using MDEntryPx = FieldMDEntryPx; 
    bool isSetMDEntryPx() const { return fieldMDEntryPx.offset > 0; }
    FieldMDEntryPx::ValueType getMDEntryPx() const { return fieldMDEntryPx.getValue( _fixPtr ); }
    std::string_view getMDEntryPxView() const { return fieldMDEntryPx.offset > 0 ? std::string_view{ _fixPtr + fieldMDEntryPx.offset, getValueLength( _fixPtr + fieldMDEntryPx.offset ) } : std::string_view{}; }
@@ -7515,6 +8224,7 @@ class GroupMDEntries : public MessageBase
    private: FieldMDEntryPx fieldMDEntryPx;
 
    public:
+   using Currency = FieldCurrency; 
    bool isSetCurrency() const { return fieldCurrency.offset > 0; }
    FieldCurrency::ValueType getCurrency() const { return fieldCurrency.getValue( _fixPtr ); }
    std::string_view getCurrencyView() const { return fieldCurrency.offset > 0 ? std::string_view{ _fixPtr + fieldCurrency.offset, getValueLength( _fixPtr + fieldCurrency.offset ) } : std::string_view{}; }
@@ -7524,6 +8234,7 @@ class GroupMDEntries : public MessageBase
    private: FieldCurrency fieldCurrency;
 
    public:
+   using MDEntrySize = FieldMDEntrySize; 
    bool isSetMDEntrySize() const { return fieldMDEntrySize.offset > 0; }
    FieldMDEntrySize::ValueType getMDEntrySize() const { return fieldMDEntrySize.getValue( _fixPtr ); }
    std::string_view getMDEntrySizeView() const { return fieldMDEntrySize.offset > 0 ? std::string_view{ _fixPtr + fieldMDEntrySize.offset, getValueLength( _fixPtr + fieldMDEntrySize.offset ) } : std::string_view{}; }
@@ -7533,6 +8244,7 @@ class GroupMDEntries : public MessageBase
    private: FieldMDEntrySize fieldMDEntrySize;
 
    public:
+   using MDEntryDate = FieldMDEntryDate; 
    bool isSetMDEntryDate() const { return fieldMDEntryDate.offset > 0; }
    FieldMDEntryDate::ValueType getMDEntryDate() const { return fieldMDEntryDate.getValue( _fixPtr ); }
    std::string_view getMDEntryDateView() const { return fieldMDEntryDate.offset > 0 ? std::string_view{ _fixPtr + fieldMDEntryDate.offset, getValueLength( _fixPtr + fieldMDEntryDate.offset ) } : std::string_view{}; }
@@ -7542,6 +8254,7 @@ class GroupMDEntries : public MessageBase
    private: FieldMDEntryDate fieldMDEntryDate;
 
    public:
+   using MDEntryTime = FieldMDEntryTime; 
    bool isSetMDEntryTime() const { return fieldMDEntryTime.offset > 0; }
    FieldMDEntryTime::ValueType getMDEntryTime() const { return fieldMDEntryTime.getValue( _fixPtr ); }
    std::string_view getMDEntryTimeView() const { return fieldMDEntryTime.offset > 0 ? std::string_view{ _fixPtr + fieldMDEntryTime.offset, getValueLength( _fixPtr + fieldMDEntryTime.offset ) } : std::string_view{}; }
@@ -7551,6 +8264,7 @@ class GroupMDEntries : public MessageBase
    private: FieldMDEntryTime fieldMDEntryTime;
 
    public:
+   using TickDirection = FieldTickDirection; 
    bool isSetTickDirection() const { return fieldTickDirection.offset > 0; }
    FieldTickDirection::ValueType getTickDirection() const { return fieldTickDirection.getValue( _fixPtr ); }
    std::string_view getTickDirectionView() const { return fieldTickDirection.offset > 0 ? std::string_view{ _fixPtr + fieldTickDirection.offset, getValueLength( _fixPtr + fieldTickDirection.offset ) } : std::string_view{}; }
@@ -7560,6 +8274,7 @@ class GroupMDEntries : public MessageBase
    private: FieldTickDirection fieldTickDirection;
 
    public:
+   using MDMkt = FieldMDMkt; 
    bool isSetMDMkt() const { return fieldMDMkt.offset > 0; }
    FieldMDMkt::ValueType getMDMkt() const { return fieldMDMkt.getValue( _fixPtr ); }
    std::string_view getMDMktView() const { return fieldMDMkt.offset > 0 ? std::string_view{ _fixPtr + fieldMDMkt.offset, getValueLength( _fixPtr + fieldMDMkt.offset ) } : std::string_view{}; }
@@ -7569,6 +8284,7 @@ class GroupMDEntries : public MessageBase
    private: FieldMDMkt fieldMDMkt;
 
    public:
+   using TradingSessionID = FieldTradingSessionID; 
    bool isSetTradingSessionID() const { return fieldTradingSessionID.offset > 0; }
    FieldTradingSessionID::ValueType getTradingSessionID() const { return fieldTradingSessionID.getValue( _fixPtr ); }
    std::string_view getTradingSessionIDView() const { return fieldTradingSessionID.offset > 0 ? std::string_view{ _fixPtr + fieldTradingSessionID.offset, getValueLength( _fixPtr + fieldTradingSessionID.offset ) } : std::string_view{}; }
@@ -7578,6 +8294,7 @@ class GroupMDEntries : public MessageBase
    private: FieldTradingSessionID fieldTradingSessionID;
 
    public:
+   using TradingSessionSubID = FieldTradingSessionSubID; 
    bool isSetTradingSessionSubID() const { return fieldTradingSessionSubID.offset > 0; }
    FieldTradingSessionSubID::ValueType getTradingSessionSubID() const { return fieldTradingSessionSubID.getValue( _fixPtr ); }
    std::string_view getTradingSessionSubIDView() const { return fieldTradingSessionSubID.offset > 0 ? std::string_view{ _fixPtr + fieldTradingSessionSubID.offset, getValueLength( _fixPtr + fieldTradingSessionSubID.offset ) } : std::string_view{}; }
@@ -7587,6 +8304,7 @@ class GroupMDEntries : public MessageBase
    private: FieldTradingSessionSubID fieldTradingSessionSubID;
 
    public:
+   using QuoteCondition = FieldQuoteCondition; 
    bool isSetQuoteCondition() const { return fieldQuoteCondition.offset > 0; }
    FieldQuoteCondition::ValueType getQuoteCondition() const { return fieldQuoteCondition.getValue( _fixPtr ); }
    std::string_view getQuoteConditionView() const { return fieldQuoteCondition.offset > 0 ? std::string_view{ _fixPtr + fieldQuoteCondition.offset, getValueLength( _fixPtr + fieldQuoteCondition.offset ) } : std::string_view{}; }
@@ -7596,6 +8314,7 @@ class GroupMDEntries : public MessageBase
    private: FieldQuoteCondition fieldQuoteCondition;
 
    public:
+   using TradeCondition = FieldTradeCondition; 
    bool isSetTradeCondition() const { return fieldTradeCondition.offset > 0; }
    FieldTradeCondition::ValueType getTradeCondition() const { return fieldTradeCondition.getValue( _fixPtr ); }
    std::string_view getTradeConditionView() const { return fieldTradeCondition.offset > 0 ? std::string_view{ _fixPtr + fieldTradeCondition.offset, getValueLength( _fixPtr + fieldTradeCondition.offset ) } : std::string_view{}; }
@@ -7605,6 +8324,7 @@ class GroupMDEntries : public MessageBase
    private: FieldTradeCondition fieldTradeCondition;
 
    public:
+   using MDEntryOriginator = FieldMDEntryOriginator; 
    bool isSetMDEntryOriginator() const { return fieldMDEntryOriginator.offset > 0; }
    FieldMDEntryOriginator::ValueType getMDEntryOriginator() const { return fieldMDEntryOriginator.getValue( _fixPtr ); }
    std::string_view getMDEntryOriginatorView() const { return fieldMDEntryOriginator.offset > 0 ? std::string_view{ _fixPtr + fieldMDEntryOriginator.offset, getValueLength( _fixPtr + fieldMDEntryOriginator.offset ) } : std::string_view{}; }
@@ -7614,6 +8334,7 @@ class GroupMDEntries : public MessageBase
    private: FieldMDEntryOriginator fieldMDEntryOriginator;
 
    public:
+   using LocationID = FieldLocationID; 
    bool isSetLocationID() const { return fieldLocationID.offset > 0; }
    FieldLocationID::ValueType getLocationID() const { return fieldLocationID.getValue( _fixPtr ); }
    std::string_view getLocationIDView() const { return fieldLocationID.offset > 0 ? std::string_view{ _fixPtr + fieldLocationID.offset, getValueLength( _fixPtr + fieldLocationID.offset ) } : std::string_view{}; }
@@ -7623,6 +8344,7 @@ class GroupMDEntries : public MessageBase
    private: FieldLocationID fieldLocationID;
 
    public:
+   using DeskID = FieldDeskID; 
    bool isSetDeskID() const { return fieldDeskID.offset > 0; }
    FieldDeskID::ValueType getDeskID() const { return fieldDeskID.getValue( _fixPtr ); }
    std::string_view getDeskIDView() const { return fieldDeskID.offset > 0 ? std::string_view{ _fixPtr + fieldDeskID.offset, getValueLength( _fixPtr + fieldDeskID.offset ) } : std::string_view{}; }
@@ -7632,6 +8354,7 @@ class GroupMDEntries : public MessageBase
    private: FieldDeskID fieldDeskID;
 
    public:
+   using OpenCloseSettlFlag = FieldOpenCloseSettlFlag; 
    bool isSetOpenCloseSettlFlag() const { return fieldOpenCloseSettlFlag.offset > 0; }
    FieldOpenCloseSettlFlag::ValueType getOpenCloseSettlFlag() const { return fieldOpenCloseSettlFlag.getValue( _fixPtr ); }
    std::string_view getOpenCloseSettlFlagView() const { return fieldOpenCloseSettlFlag.offset > 0 ? std::string_view{ _fixPtr + fieldOpenCloseSettlFlag.offset, getValueLength( _fixPtr + fieldOpenCloseSettlFlag.offset ) } : std::string_view{}; }
@@ -7641,6 +8364,7 @@ class GroupMDEntries : public MessageBase
    private: FieldOpenCloseSettlFlag fieldOpenCloseSettlFlag;
 
    public:
+   using TimeInForce = FieldTimeInForce; 
    bool isSetTimeInForce() const { return fieldTimeInForce.offset > 0; }
    FieldTimeInForce::ValueType getTimeInForce() const { return fieldTimeInForce.getValue( _fixPtr ); }
    std::string_view getTimeInForceView() const { return fieldTimeInForce.offset > 0 ? std::string_view{ _fixPtr + fieldTimeInForce.offset, getValueLength( _fixPtr + fieldTimeInForce.offset ) } : std::string_view{}; }
@@ -7650,6 +8374,7 @@ class GroupMDEntries : public MessageBase
    private: FieldTimeInForce fieldTimeInForce;
 
    public:
+   using ExpireDate = FieldExpireDate; 
    bool isSetExpireDate() const { return fieldExpireDate.offset > 0; }
    FieldExpireDate::ValueType getExpireDate() const { return fieldExpireDate.getValue( _fixPtr ); }
    std::string_view getExpireDateView() const { return fieldExpireDate.offset > 0 ? std::string_view{ _fixPtr + fieldExpireDate.offset, getValueLength( _fixPtr + fieldExpireDate.offset ) } : std::string_view{}; }
@@ -7659,6 +8384,7 @@ class GroupMDEntries : public MessageBase
    private: FieldExpireDate fieldExpireDate;
 
    public:
+   using ExpireTime = FieldExpireTime; 
    bool isSetExpireTime() const { return fieldExpireTime.offset > 0; }
    FieldExpireTime::ValueType getExpireTime() const { return fieldExpireTime.getValue( _fixPtr ); }
    std::string_view getExpireTimeView() const { return fieldExpireTime.offset > 0 ? std::string_view{ _fixPtr + fieldExpireTime.offset, getValueLength( _fixPtr + fieldExpireTime.offset ) } : std::string_view{}; }
@@ -7668,6 +8394,7 @@ class GroupMDEntries : public MessageBase
    private: FieldExpireTime fieldExpireTime;
 
    public:
+   using MinQty = FieldMinQty; 
    bool isSetMinQty() const { return fieldMinQty.offset > 0; }
    FieldMinQty::ValueType getMinQty() const { return fieldMinQty.getValue( _fixPtr ); }
    std::string_view getMinQtyView() const { return fieldMinQty.offset > 0 ? std::string_view{ _fixPtr + fieldMinQty.offset, getValueLength( _fixPtr + fieldMinQty.offset ) } : std::string_view{}; }
@@ -7677,6 +8404,7 @@ class GroupMDEntries : public MessageBase
    private: FieldMinQty fieldMinQty;
 
    public:
+   using ExecInst = FieldExecInst; 
    bool isSetExecInst() const { return fieldExecInst.offset > 0; }
    FieldExecInst::ValueType getExecInst() const { return fieldExecInst.getValue( _fixPtr ); }
    std::string_view getExecInstView() const { return fieldExecInst.offset > 0 ? std::string_view{ _fixPtr + fieldExecInst.offset, getValueLength( _fixPtr + fieldExecInst.offset ) } : std::string_view{}; }
@@ -7686,6 +8414,7 @@ class GroupMDEntries : public MessageBase
    private: FieldExecInst fieldExecInst;
 
    public:
+   using SellerDays = FieldSellerDays; 
    bool isSetSellerDays() const { return fieldSellerDays.offset > 0; }
    FieldSellerDays::ValueType getSellerDays() const { return fieldSellerDays.getValue( _fixPtr ); }
    std::string_view getSellerDaysView() const { return fieldSellerDays.offset > 0 ? std::string_view{ _fixPtr + fieldSellerDays.offset, getValueLength( _fixPtr + fieldSellerDays.offset ) } : std::string_view{}; }
@@ -7695,6 +8424,7 @@ class GroupMDEntries : public MessageBase
    private: FieldSellerDays fieldSellerDays;
 
    public:
+   using OrderID = FieldOrderID; 
    bool isSetOrderID() const { return fieldOrderID.offset > 0; }
    FieldOrderID::ValueType getOrderID() const { return fieldOrderID.getValue( _fixPtr ); }
    std::string_view getOrderIDView() const { return fieldOrderID.offset > 0 ? std::string_view{ _fixPtr + fieldOrderID.offset, getValueLength( _fixPtr + fieldOrderID.offset ) } : std::string_view{}; }
@@ -7704,6 +8434,7 @@ class GroupMDEntries : public MessageBase
    private: FieldOrderID fieldOrderID;
 
    public:
+   using QuoteEntryID = FieldQuoteEntryID; 
    bool isSetQuoteEntryID() const { return fieldQuoteEntryID.offset > 0; }
    FieldQuoteEntryID::ValueType getQuoteEntryID() const { return fieldQuoteEntryID.getValue( _fixPtr ); }
    std::string_view getQuoteEntryIDView() const { return fieldQuoteEntryID.offset > 0 ? std::string_view{ _fixPtr + fieldQuoteEntryID.offset, getValueLength( _fixPtr + fieldQuoteEntryID.offset ) } : std::string_view{}; }
@@ -7713,6 +8444,7 @@ class GroupMDEntries : public MessageBase
    private: FieldQuoteEntryID fieldQuoteEntryID;
 
    public:
+   using MDEntryBuyer = FieldMDEntryBuyer; 
    bool isSetMDEntryBuyer() const { return fieldMDEntryBuyer.offset > 0; }
    FieldMDEntryBuyer::ValueType getMDEntryBuyer() const { return fieldMDEntryBuyer.getValue( _fixPtr ); }
    std::string_view getMDEntryBuyerView() const { return fieldMDEntryBuyer.offset > 0 ? std::string_view{ _fixPtr + fieldMDEntryBuyer.offset, getValueLength( _fixPtr + fieldMDEntryBuyer.offset ) } : std::string_view{}; }
@@ -7722,6 +8454,7 @@ class GroupMDEntries : public MessageBase
    private: FieldMDEntryBuyer fieldMDEntryBuyer;
 
    public:
+   using MDEntrySeller = FieldMDEntrySeller; 
    bool isSetMDEntrySeller() const { return fieldMDEntrySeller.offset > 0; }
    FieldMDEntrySeller::ValueType getMDEntrySeller() const { return fieldMDEntrySeller.getValue( _fixPtr ); }
    std::string_view getMDEntrySellerView() const { return fieldMDEntrySeller.offset > 0 ? std::string_view{ _fixPtr + fieldMDEntrySeller.offset, getValueLength( _fixPtr + fieldMDEntrySeller.offset ) } : std::string_view{}; }
@@ -7731,6 +8464,7 @@ class GroupMDEntries : public MessageBase
    private: FieldMDEntrySeller fieldMDEntrySeller;
 
    public:
+   using NumberOfOrders = FieldNumberOfOrders; 
    bool isSetNumberOfOrders() const { return fieldNumberOfOrders.offset > 0; }
    FieldNumberOfOrders::ValueType getNumberOfOrders() const { return fieldNumberOfOrders.getValue( _fixPtr ); }
    std::string_view getNumberOfOrdersView() const { return fieldNumberOfOrders.offset > 0 ? std::string_view{ _fixPtr + fieldNumberOfOrders.offset, getValueLength( _fixPtr + fieldNumberOfOrders.offset ) } : std::string_view{}; }
@@ -7740,6 +8474,7 @@ class GroupMDEntries : public MessageBase
    private: FieldNumberOfOrders fieldNumberOfOrders;
 
    public:
+   using MDEntryPositionNo = FieldMDEntryPositionNo; 
    bool isSetMDEntryPositionNo() const { return fieldMDEntryPositionNo.offset > 0; }
    FieldMDEntryPositionNo::ValueType getMDEntryPositionNo() const { return fieldMDEntryPositionNo.getValue( _fixPtr ); }
    std::string_view getMDEntryPositionNoView() const { return fieldMDEntryPositionNo.offset > 0 ? std::string_view{ _fixPtr + fieldMDEntryPositionNo.offset, getValueLength( _fixPtr + fieldMDEntryPositionNo.offset ) } : std::string_view{}; }
@@ -7749,6 +8484,7 @@ class GroupMDEntries : public MessageBase
    private: FieldMDEntryPositionNo fieldMDEntryPositionNo;
 
    public:
+   using Scope = FieldScope; 
    bool isSetScope() const { return fieldScope.offset > 0; }
    FieldScope::ValueType getScope() const { return fieldScope.getValue( _fixPtr ); }
    std::string_view getScopeView() const { return fieldScope.offset > 0 ? std::string_view{ _fixPtr + fieldScope.offset, getValueLength( _fixPtr + fieldScope.offset ) } : std::string_view{}; }
@@ -7758,6 +8494,7 @@ class GroupMDEntries : public MessageBase
    private: FieldScope fieldScope;
 
    public:
+   using PriceDelta = FieldPriceDelta; 
    bool isSetPriceDelta() const { return fieldPriceDelta.offset > 0; }
    FieldPriceDelta::ValueType getPriceDelta() const { return fieldPriceDelta.getValue( _fixPtr ); }
    std::string_view getPriceDeltaView() const { return fieldPriceDelta.offset > 0 ? std::string_view{ _fixPtr + fieldPriceDelta.offset, getValueLength( _fixPtr + fieldPriceDelta.offset ) } : std::string_view{}; }
@@ -7767,6 +8504,7 @@ class GroupMDEntries : public MessageBase
    private: FieldPriceDelta fieldPriceDelta;
 
    public:
+   using Text = FieldText; 
    bool isSetText() const { return fieldText.offset > 0; }
    FieldText::ValueType getText() const { return fieldText.getValue( _fixPtr ); }
    std::string_view getTextView() const { return fieldText.offset > 0 ? std::string_view{ _fixPtr + fieldText.offset, getValueLength( _fixPtr + fieldText.offset ) } : std::string_view{}; }
@@ -7776,6 +8514,7 @@ class GroupMDEntries : public MessageBase
    private: FieldText fieldText;
 
    public:
+   using EncodedTextLen = FieldEncodedTextLen; 
    bool isSetEncodedTextLen() const { return fieldEncodedTextLen.offset > 0; }
    FieldEncodedTextLen::ValueType getEncodedTextLen() const { return fieldEncodedTextLen.getValue( _fixPtr ); }
    std::string_view getEncodedTextLenView() const { return fieldEncodedTextLen.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedTextLen.offset, getValueLength( _fixPtr + fieldEncodedTextLen.offset ) } : std::string_view{}; }
@@ -7785,6 +8524,7 @@ class GroupMDEntries : public MessageBase
    private: FieldEncodedTextLen fieldEncodedTextLen;
 
    public:
+   using EncodedText = FieldEncodedText; 
    bool isSetEncodedText() const { return fieldEncodedText.offset > 0; }
    FieldEncodedText::ValueType getEncodedText() const { return fieldEncodedText.getValue( _fixPtr ); }
    std::string_view getEncodedTextView() const { return fieldEncodedText.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedText.offset, getValueLength( _fixPtr + fieldEncodedText.offset ) } : std::string_view{}; }

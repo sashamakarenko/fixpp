@@ -62,6 +62,9 @@ int main( int args, const char ** argv )
     CHECK_EQ( exec report get<px>, px, erpx )
     CHECK_EQ( exec report get<qty>, qty, erqty )
     CHECK_EQ( exec report get<sectype>, st, sectype )
+    auto [ erHasPx, erHasQty ] = er.getPresenceOf<Price,OrderQty>();
+    CHECK_EQ( exec report has px, erHasPx, true )
+    CHECK_EQ( exec report has qty, erHasQty, true )
 
     HIGHLIGHT( Large ExecutionReport );
     ExecutionReport ler;
@@ -144,6 +147,11 @@ int main( int args, const char ** argv )
     CHECK_EQ( md entry depth, mddepth, mdentry.getMDEntryPositionNo() );
     CHECK_EQ( md entry price, mdpx, mdentry.getMDEntryPx() );
     CHECK_EQ( md entry qty  , mdqty, mdentry.getMDEntrySize() );
+
+    auto [ mdHasPx, mdHasQty, mdHasDepth ] = mdentry.getPresenceOf<MDEntryPx,MDEntrySize,MDEntryPositionNo>();
+    CHECK_EQ( md entry has price, mdHasPx, mdentry.isSetMDEntryPx() );
+    CHECK_EQ( md entry has qty  , mdHasQty, mdentry.isSetMDEntrySize() );
+    CHECK_EQ( md entry has depth, mdHasDepth, mdentry.isSetMDEntryPositionNo() );
 
     CHECK_EQ( enum raw Side == BUY, SideEnums::BUY.raw, toRawEnum( er.ptrToSide() ) )
     CHECK_EQ( enum Side == BUY, er.getSide(), SideEnums::BUY )

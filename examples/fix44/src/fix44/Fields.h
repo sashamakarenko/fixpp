@@ -14,6 +14,12 @@
 namespace fix44
 {
 
+template< typename Any >
+using typeExists = bool;
+
+template< typename Msg, typename Field >
+struct hasField { using type = typeExists< typename Msg::Field >; static constexpr bool value = true; };
+
 template< typename MsgType, unsigned idx, typename... Fields >
 void buildTuple( const MsgType & msg, std::tuple<typename Fields::ValueType...> & tpl )
 {
@@ -24,6 +30,16 @@ void buildTuple( const MsgType & msg, std::tuple<typename Fields::ValueType...> 
     if constexpr ( idx + 1 < sizeof...(Fields) )
     {
         buildTuple<MsgType,idx+1,Fields...>( msg, tpl );
+    }
+}
+
+template< typename MsgType, unsigned idx, typename... Fields >
+void buildPresenceTuple( const MsgType & msg, std::tuple<typeExists<Fields>...> & tpl )
+{
+    std::get<idx>(tpl) = msg.isFieldSet( std::tuple_element_t<idx,std::tuple<Fields...> > ::TAG );
+    if constexpr ( idx + 1 < sizeof...(Fields) )
+    {
+        buildPresenceTuple<MsgType,idx+1,Fields...>( msg, tpl );
     }
 }
 
