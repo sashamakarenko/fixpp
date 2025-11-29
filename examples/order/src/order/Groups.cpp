@@ -152,6 +152,54 @@ FieldDepth GroupLegs::getFieldDepth( raw_tag_t tag ){
    return ret;
 }
 
+// ---------------------------------- get<field> ---------------------------------
+
+#define FIXPP_MSG_CLASS GroupLegStipulations
+template<> FieldLegStipulationValue::ValueType FIXPP_MSG_CLASS::get<FieldLegStipulationValue>() const {
+ return getLegStipulationValue();
+}
+
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS GroupNestedPartySubIDs
+template<> FieldNestedPartySubIDType::ValueType FIXPP_MSG_CLASS::get<FieldNestedPartySubIDType>() const {
+ return getNestedPartySubIDType();
+}
+
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS GroupNestedPartyIDs
+template<> FieldNestedPartyIDSource::ValueType FIXPP_MSG_CLASS::get<FieldNestedPartyIDSource>() const {
+ return getNestedPartyIDSource();
+}
+template<> FieldNestedPartyRole::ValueType FIXPP_MSG_CLASS::get<FieldNestedPartyRole>() const {
+ return getNestedPartyRole();
+}
+
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS GroupLegs
+template<> FieldLegSide::ValueType FIXPP_MSG_CLASS::get<FieldLegSide>() const {
+ return getLegSide();
+}
+template<> FieldLegQty::ValueType FIXPP_MSG_CLASS::get<FieldLegQty>() const {
+ return getLegQty();
+}
+template<> FieldLegPositionEffect::ValueType FIXPP_MSG_CLASS::get<FieldLegPositionEffect>() const {
+ return getLegPositionEffect();
+}
+template<> FieldLegRefID::ValueType FIXPP_MSG_CLASS::get<FieldLegRefID>() const {
+ return getLegRefID();
+}
+template<> FieldLegPrice::ValueType FIXPP_MSG_CLASS::get<FieldLegPrice>() const {
+ return getLegPrice();
+}
+template<> FieldLegLastPx::ValueType FIXPP_MSG_CLASS::get<FieldLegLastPx>() const {
+ return getLegLastPx();
+}
+
+#undef FIXPP_MSG_CLASS
+
 // ---------------------------------- getFieldValue ---------------------------------
 const char * GroupLegStipulations::getFieldValue( unsigned tag ) const {
    if( _fixPtr == nullptr ) return nullptr;

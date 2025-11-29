@@ -51,6 +51,18 @@ int main( int args, const char ** argv )
     CHECK_EQ( exec report body length, header.getBodyLength(), header.getMessageLength() + er.getMessageLength() - ( header.ptrToTagMsgType() - header.getMessageBuffer() ) - CHECKSUM_FIELD_LENGTH )
     CHECK_EQ( exec report check sum, er.getCheckSum(), (int)computeChecksum( fix, er.ptrToTagCheckSum() ) )
 
+    HIGHLIGHT( get<field> )
+    auto erpx = er.get<Price>();
+    CHECK_EQ( exec report get<px>, er.getPrice(), erpx )
+    auto erqty = er.get<OrderQty>();
+    CHECK_EQ( exec report get<qty>, er.getOrderQty(), erqty )
+    auto sectype = er.get<SecurityType>();
+    CHECK_EQ( exec report get<sectype>, er.getSecurityType(), sectype )
+    auto [ px, qty, st ] = er.getFields<Price,OrderQty,SecurityType>();
+    CHECK_EQ( exec report get<px>, px, erpx )
+    CHECK_EQ( exec report get<qty>, qty, erqty )
+    CHECK_EQ( exec report get<sectype>, st, sectype )
+
     HIGHLIGHT( Large ExecutionReport );
     ExecutionReport ler;
     parse( FIX_BUFFER_LARGE_EXEC_REPORT, ler );
@@ -126,6 +138,12 @@ int main( int args, const char ** argv )
         default:
             break;
     }
+    CHECK_EQ( mdsfr no entries, mdsfr.getNoMDEntries(), 6 );
+    auto & mdentry = mdsfr.getGroupMDEntries(0);
+    auto [ mddepth, mdpx, mdqty ] = mdentry.getFields<MDEntryPositionNo,MDEntryPx,MDEntrySize>();
+    CHECK_EQ( md entry depth, mddepth, mdentry.getMDEntryPositionNo() );
+    CHECK_EQ( md entry price, mdpx, mdentry.getMDEntryPx() );
+    CHECK_EQ( md entry qty  , mdqty, mdentry.getMDEntrySize() );
 
     CHECK_EQ( enum raw Side == BUY, SideEnums::BUY.raw, toRawEnum( er.ptrToSide() ) )
     CHECK_EQ( enum Side == BUY, er.getSide(), SideEnums::BUY )
@@ -188,7 +206,7 @@ int main( int args, const char ** argv )
 
     parseSafely( FIX_BUFFER_BAD_GROUP_LARGE_EXEC_REPORT, er );
     CHECK_EQ( safely bad group exec report tag, parseTag( er.getMessageEnd() ), field::NoNestedPartyIDs::TAG )
-    
+
     parseSafely( FIX_BUFFER_BAD_DEEP_EMPTY_FIELD_EXAMPLE_LARGE_EXEC_REPORT, er );
     CHECK_EQ( safely bad deep empty field in exec report tag, er.getMessageEnd(), strstr( fix, "689=\1" ) )
 

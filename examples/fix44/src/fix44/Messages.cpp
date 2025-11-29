@@ -770,7 +770,7 @@ const std::string & MessageConfirmationRequest::getMessageType(){
      return MsgTypeEnums::CONFIRMATION_REQUEST.str;
 }
 
-// ---------------------------------- fields ---------------------------------
+// ---------------------------------- field depth ---------------------------------
 
 GetDepthMethod MessageHeader::groupGetDepthMethods[] = {
   GroupHops::getFieldDepth,
@@ -7546,6 +7546,13773 @@ FieldDepth MessageConfirmationRequest::getFieldDepth( raw_tag_t tag ){
    }
    return ret;
 }
+
+// ---------------------------------- get<field> ---------------------------------
+
+#define FIXPP_MSG_CLASS MessageHeader
+template<> FieldBeginString::ValueType FIXPP_MSG_CLASS::get<FieldBeginString>() const {
+ return getBeginString();
+}
+template<> FieldBodyLength::ValueType FIXPP_MSG_CLASS::get<FieldBodyLength>() const {
+ return getBodyLength();
+}
+template<> FieldMsgType::ValueType FIXPP_MSG_CLASS::get<FieldMsgType>() const {
+ return getMsgType();
+}
+template<> FieldSenderCompID::ValueType FIXPP_MSG_CLASS::get<FieldSenderCompID>() const {
+ return getSenderCompID();
+}
+template<> FieldTargetCompID::ValueType FIXPP_MSG_CLASS::get<FieldTargetCompID>() const {
+ return getTargetCompID();
+}
+template<> FieldOnBehalfOfCompID::ValueType FIXPP_MSG_CLASS::get<FieldOnBehalfOfCompID>() const {
+ return getOnBehalfOfCompID();
+}
+template<> FieldDeliverToCompID::ValueType FIXPP_MSG_CLASS::get<FieldDeliverToCompID>() const {
+ return getDeliverToCompID();
+}
+template<> FieldSecureDataLen::ValueType FIXPP_MSG_CLASS::get<FieldSecureDataLen>() const {
+ return getSecureDataLen();
+}
+template<> FieldSecureData::ValueType FIXPP_MSG_CLASS::get<FieldSecureData>() const {
+ return getSecureData();
+}
+template<> FieldMsgSeqNum::ValueType FIXPP_MSG_CLASS::get<FieldMsgSeqNum>() const {
+ return getMsgSeqNum();
+}
+template<> FieldSenderSubID::ValueType FIXPP_MSG_CLASS::get<FieldSenderSubID>() const {
+ return getSenderSubID();
+}
+template<> FieldSenderLocationID::ValueType FIXPP_MSG_CLASS::get<FieldSenderLocationID>() const {
+ return getSenderLocationID();
+}
+template<> FieldTargetSubID::ValueType FIXPP_MSG_CLASS::get<FieldTargetSubID>() const {
+ return getTargetSubID();
+}
+template<> FieldTargetLocationID::ValueType FIXPP_MSG_CLASS::get<FieldTargetLocationID>() const {
+ return getTargetLocationID();
+}
+template<> FieldOnBehalfOfSubID::ValueType FIXPP_MSG_CLASS::get<FieldOnBehalfOfSubID>() const {
+ return getOnBehalfOfSubID();
+}
+template<> FieldOnBehalfOfLocationID::ValueType FIXPP_MSG_CLASS::get<FieldOnBehalfOfLocationID>() const {
+ return getOnBehalfOfLocationID();
+}
+template<> FieldDeliverToSubID::ValueType FIXPP_MSG_CLASS::get<FieldDeliverToSubID>() const {
+ return getDeliverToSubID();
+}
+template<> FieldDeliverToLocationID::ValueType FIXPP_MSG_CLASS::get<FieldDeliverToLocationID>() const {
+ return getDeliverToLocationID();
+}
+template<> FieldPossDupFlag::ValueType FIXPP_MSG_CLASS::get<FieldPossDupFlag>() const {
+ return getPossDupFlag();
+}
+template<> FieldPossResend::ValueType FIXPP_MSG_CLASS::get<FieldPossResend>() const {
+ return getPossResend();
+}
+template<> FieldSendingTime::ValueType FIXPP_MSG_CLASS::get<FieldSendingTime>() const {
+ return getSendingTime();
+}
+template<> FieldOrigSendingTime::ValueType FIXPP_MSG_CLASS::get<FieldOrigSendingTime>() const {
+ return getOrigSendingTime();
+}
+template<> FieldXmlDataLen::ValueType FIXPP_MSG_CLASS::get<FieldXmlDataLen>() const {
+ return getXmlDataLen();
+}
+template<> FieldXmlData::ValueType FIXPP_MSG_CLASS::get<FieldXmlData>() const {
+ return getXmlData();
+}
+template<> FieldMessageEncoding::ValueType FIXPP_MSG_CLASS::get<FieldMessageEncoding>() const {
+ return getMessageEncoding();
+}
+template<> FieldLastMsgSeqNumProcessed::ValueType FIXPP_MSG_CLASS::get<FieldLastMsgSeqNumProcessed>() const {
+ return getLastMsgSeqNumProcessed();
+}
+
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageHeartbeat
+template<> FieldTestReqID::ValueType FIXPP_MSG_CLASS::get<FieldTestReqID>() const {
+ return getTestReqID();
+}
+
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageTestRequest
+template<> FieldTestReqID::ValueType FIXPP_MSG_CLASS::get<FieldTestReqID>() const {
+ return getTestReqID();
+}
+
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageResendRequest
+template<> FieldBeginSeqNo::ValueType FIXPP_MSG_CLASS::get<FieldBeginSeqNo>() const {
+ return getBeginSeqNo();
+}
+template<> FieldEndSeqNo::ValueType FIXPP_MSG_CLASS::get<FieldEndSeqNo>() const {
+ return getEndSeqNo();
+}
+
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageReject
+template<> FieldRefSeqNum::ValueType FIXPP_MSG_CLASS::get<FieldRefSeqNum>() const {
+ return getRefSeqNum();
+}
+template<> FieldRefTagID::ValueType FIXPP_MSG_CLASS::get<FieldRefTagID>() const {
+ return getRefTagID();
+}
+template<> FieldRefMsgType::ValueType FIXPP_MSG_CLASS::get<FieldRefMsgType>() const {
+ return getRefMsgType();
+}
+template<> FieldSessionRejectReason::ValueType FIXPP_MSG_CLASS::get<FieldSessionRejectReason>() const {
+ return getSessionRejectReason();
+}
+template<> FieldText::ValueType FIXPP_MSG_CLASS::get<FieldText>() const {
+ return getText();
+}
+template<> FieldEncodedTextLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedTextLen>() const {
+ return getEncodedTextLen();
+}
+template<> FieldEncodedText::ValueType FIXPP_MSG_CLASS::get<FieldEncodedText>() const {
+ return getEncodedText();
+}
+
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageSequenceReset
+template<> FieldGapFillFlag::ValueType FIXPP_MSG_CLASS::get<FieldGapFillFlag>() const {
+ return getGapFillFlag();
+}
+template<> FieldNewSeqNo::ValueType FIXPP_MSG_CLASS::get<FieldNewSeqNo>() const {
+ return getNewSeqNo();
+}
+
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageLogout
+template<> FieldText::ValueType FIXPP_MSG_CLASS::get<FieldText>() const {
+ return getText();
+}
+template<> FieldEncodedTextLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedTextLen>() const {
+ return getEncodedTextLen();
+}
+template<> FieldEncodedText::ValueType FIXPP_MSG_CLASS::get<FieldEncodedText>() const {
+ return getEncodedText();
+}
+
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageIOI
+template<> FieldIOIID::ValueType FIXPP_MSG_CLASS::get<FieldIOIID>() const {
+ return getIOIID();
+}
+template<> FieldIOITransType::ValueType FIXPP_MSG_CLASS::get<FieldIOITransType>() const {
+ return getIOITransType();
+}
+template<> FieldIOIRefID::ValueType FIXPP_MSG_CLASS::get<FieldIOIRefID>() const {
+ return getIOIRefID();
+}
+template<> FieldSymbol::ValueType FIXPP_MSG_CLASS::get<FieldSymbol>() const {
+ return getSymbol();
+}
+template<> FieldSymbolSfx::ValueType FIXPP_MSG_CLASS::get<FieldSymbolSfx>() const {
+ return getSymbolSfx();
+}
+template<> FieldSecurityID::ValueType FIXPP_MSG_CLASS::get<FieldSecurityID>() const {
+ return getSecurityID();
+}
+template<> FieldSecurityIDSource::ValueType FIXPP_MSG_CLASS::get<FieldSecurityIDSource>() const {
+ return getSecurityIDSource();
+}
+template<> FieldProduct::ValueType FIXPP_MSG_CLASS::get<FieldProduct>() const {
+ return getProduct();
+}
+template<> FieldCFICode::ValueType FIXPP_MSG_CLASS::get<FieldCFICode>() const {
+ return getCFICode();
+}
+template<> FieldSecurityType::ValueType FIXPP_MSG_CLASS::get<FieldSecurityType>() const {
+ return getSecurityType();
+}
+template<> FieldSecuritySubType::ValueType FIXPP_MSG_CLASS::get<FieldSecuritySubType>() const {
+ return getSecuritySubType();
+}
+template<> FieldMaturityMonthYear::ValueType FIXPP_MSG_CLASS::get<FieldMaturityMonthYear>() const {
+ return getMaturityMonthYear();
+}
+template<> FieldMaturityDate::ValueType FIXPP_MSG_CLASS::get<FieldMaturityDate>() const {
+ return getMaturityDate();
+}
+template<> FieldPutOrCall::ValueType FIXPP_MSG_CLASS::get<FieldPutOrCall>() const {
+ return getPutOrCall();
+}
+template<> FieldCouponPaymentDate::ValueType FIXPP_MSG_CLASS::get<FieldCouponPaymentDate>() const {
+ return getCouponPaymentDate();
+}
+template<> FieldIssueDate::ValueType FIXPP_MSG_CLASS::get<FieldIssueDate>() const {
+ return getIssueDate();
+}
+template<> FieldRepoCollateralSecurityType::ValueType FIXPP_MSG_CLASS::get<FieldRepoCollateralSecurityType>() const {
+ return getRepoCollateralSecurityType();
+}
+template<> FieldRepurchaseTerm::ValueType FIXPP_MSG_CLASS::get<FieldRepurchaseTerm>() const {
+ return getRepurchaseTerm();
+}
+template<> FieldRepurchaseRate::ValueType FIXPP_MSG_CLASS::get<FieldRepurchaseRate>() const {
+ return getRepurchaseRate();
+}
+template<> FieldFactor::ValueType FIXPP_MSG_CLASS::get<FieldFactor>() const {
+ return getFactor();
+}
+template<> FieldCreditRating::ValueType FIXPP_MSG_CLASS::get<FieldCreditRating>() const {
+ return getCreditRating();
+}
+template<> FieldInstrRegistry::ValueType FIXPP_MSG_CLASS::get<FieldInstrRegistry>() const {
+ return getInstrRegistry();
+}
+template<> FieldCountryOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldCountryOfIssue>() const {
+ return getCountryOfIssue();
+}
+template<> FieldStateOrProvinceOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldStateOrProvinceOfIssue>() const {
+ return getStateOrProvinceOfIssue();
+}
+template<> FieldLocaleOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldLocaleOfIssue>() const {
+ return getLocaleOfIssue();
+}
+template<> FieldRedemptionDate::ValueType FIXPP_MSG_CLASS::get<FieldRedemptionDate>() const {
+ return getRedemptionDate();
+}
+template<> FieldStrikePrice::ValueType FIXPP_MSG_CLASS::get<FieldStrikePrice>() const {
+ return getStrikePrice();
+}
+template<> FieldStrikeCurrency::ValueType FIXPP_MSG_CLASS::get<FieldStrikeCurrency>() const {
+ return getStrikeCurrency();
+}
+template<> FieldOptAttribute::ValueType FIXPP_MSG_CLASS::get<FieldOptAttribute>() const {
+ return getOptAttribute();
+}
+template<> FieldContractMultiplier::ValueType FIXPP_MSG_CLASS::get<FieldContractMultiplier>() const {
+ return getContractMultiplier();
+}
+template<> FieldCouponRate::ValueType FIXPP_MSG_CLASS::get<FieldCouponRate>() const {
+ return getCouponRate();
+}
+template<> FieldSecurityExchange::ValueType FIXPP_MSG_CLASS::get<FieldSecurityExchange>() const {
+ return getSecurityExchange();
+}
+template<> FieldIssuer::ValueType FIXPP_MSG_CLASS::get<FieldIssuer>() const {
+ return getIssuer();
+}
+template<> FieldEncodedIssuerLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedIssuerLen>() const {
+ return getEncodedIssuerLen();
+}
+template<> FieldEncodedIssuer::ValueType FIXPP_MSG_CLASS::get<FieldEncodedIssuer>() const {
+ return getEncodedIssuer();
+}
+template<> FieldSecurityDesc::ValueType FIXPP_MSG_CLASS::get<FieldSecurityDesc>() const {
+ return getSecurityDesc();
+}
+template<> FieldEncodedSecurityDescLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedSecurityDescLen>() const {
+ return getEncodedSecurityDescLen();
+}
+template<> FieldEncodedSecurityDesc::ValueType FIXPP_MSG_CLASS::get<FieldEncodedSecurityDesc>() const {
+ return getEncodedSecurityDesc();
+}
+template<> FieldPool::ValueType FIXPP_MSG_CLASS::get<FieldPool>() const {
+ return getPool();
+}
+template<> FieldContractSettlMonth::ValueType FIXPP_MSG_CLASS::get<FieldContractSettlMonth>() const {
+ return getContractSettlMonth();
+}
+template<> FieldCPProgram::ValueType FIXPP_MSG_CLASS::get<FieldCPProgram>() const {
+ return getCPProgram();
+}
+template<> FieldCPRegType::ValueType FIXPP_MSG_CLASS::get<FieldCPRegType>() const {
+ return getCPRegType();
+}
+template<> FieldDatedDate::ValueType FIXPP_MSG_CLASS::get<FieldDatedDate>() const {
+ return getDatedDate();
+}
+template<> FieldInterestAccrualDate::ValueType FIXPP_MSG_CLASS::get<FieldInterestAccrualDate>() const {
+ return getInterestAccrualDate();
+}
+template<> FieldAgreementDesc::ValueType FIXPP_MSG_CLASS::get<FieldAgreementDesc>() const {
+ return getAgreementDesc();
+}
+template<> FieldAgreementID::ValueType FIXPP_MSG_CLASS::get<FieldAgreementID>() const {
+ return getAgreementID();
+}
+template<> FieldAgreementDate::ValueType FIXPP_MSG_CLASS::get<FieldAgreementDate>() const {
+ return getAgreementDate();
+}
+template<> FieldAgreementCurrency::ValueType FIXPP_MSG_CLASS::get<FieldAgreementCurrency>() const {
+ return getAgreementCurrency();
+}
+template<> FieldTerminationType::ValueType FIXPP_MSG_CLASS::get<FieldTerminationType>() const {
+ return getTerminationType();
+}
+template<> FieldStartDate::ValueType FIXPP_MSG_CLASS::get<FieldStartDate>() const {
+ return getStartDate();
+}
+template<> FieldEndDate::ValueType FIXPP_MSG_CLASS::get<FieldEndDate>() const {
+ return getEndDate();
+}
+template<> FieldDeliveryType::ValueType FIXPP_MSG_CLASS::get<FieldDeliveryType>() const {
+ return getDeliveryType();
+}
+template<> FieldMarginRatio::ValueType FIXPP_MSG_CLASS::get<FieldMarginRatio>() const {
+ return getMarginRatio();
+}
+template<> FieldSide::ValueType FIXPP_MSG_CLASS::get<FieldSide>() const {
+ return getSide();
+}
+template<> FieldQtyType::ValueType FIXPP_MSG_CLASS::get<FieldQtyType>() const {
+ return getQtyType();
+}
+template<> FieldOrderQty::ValueType FIXPP_MSG_CLASS::get<FieldOrderQty>() const {
+ return getOrderQty();
+}
+template<> FieldCashOrderQty::ValueType FIXPP_MSG_CLASS::get<FieldCashOrderQty>() const {
+ return getCashOrderQty();
+}
+template<> FieldOrderPercent::ValueType FIXPP_MSG_CLASS::get<FieldOrderPercent>() const {
+ return getOrderPercent();
+}
+template<> FieldRoundingDirection::ValueType FIXPP_MSG_CLASS::get<FieldRoundingDirection>() const {
+ return getRoundingDirection();
+}
+template<> FieldRoundingModulus::ValueType FIXPP_MSG_CLASS::get<FieldRoundingModulus>() const {
+ return getRoundingModulus();
+}
+template<> FieldIOIQty::ValueType FIXPP_MSG_CLASS::get<FieldIOIQty>() const {
+ return getIOIQty();
+}
+template<> FieldCurrency::ValueType FIXPP_MSG_CLASS::get<FieldCurrency>() const {
+ return getCurrency();
+}
+template<> FieldPriceType::ValueType FIXPP_MSG_CLASS::get<FieldPriceType>() const {
+ return getPriceType();
+}
+template<> FieldPrice::ValueType FIXPP_MSG_CLASS::get<FieldPrice>() const {
+ return getPrice();
+}
+template<> FieldValidUntilTime::ValueType FIXPP_MSG_CLASS::get<FieldValidUntilTime>() const {
+ return getValidUntilTime();
+}
+template<> FieldIOIQltyInd::ValueType FIXPP_MSG_CLASS::get<FieldIOIQltyInd>() const {
+ return getIOIQltyInd();
+}
+template<> FieldIOINaturalFlag::ValueType FIXPP_MSG_CLASS::get<FieldIOINaturalFlag>() const {
+ return getIOINaturalFlag();
+}
+template<> FieldText::ValueType FIXPP_MSG_CLASS::get<FieldText>() const {
+ return getText();
+}
+template<> FieldEncodedTextLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedTextLen>() const {
+ return getEncodedTextLen();
+}
+template<> FieldEncodedText::ValueType FIXPP_MSG_CLASS::get<FieldEncodedText>() const {
+ return getEncodedText();
+}
+template<> FieldTransactTime::ValueType FIXPP_MSG_CLASS::get<FieldTransactTime>() const {
+ return getTransactTime();
+}
+template<> FieldURLLink::ValueType FIXPP_MSG_CLASS::get<FieldURLLink>() const {
+ return getURLLink();
+}
+template<> FieldSpread::ValueType FIXPP_MSG_CLASS::get<FieldSpread>() const {
+ return getSpread();
+}
+template<> FieldBenchmarkCurveCurrency::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkCurveCurrency>() const {
+ return getBenchmarkCurveCurrency();
+}
+template<> FieldBenchmarkCurveName::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkCurveName>() const {
+ return getBenchmarkCurveName();
+}
+template<> FieldBenchmarkCurvePoint::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkCurvePoint>() const {
+ return getBenchmarkCurvePoint();
+}
+template<> FieldBenchmarkPrice::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkPrice>() const {
+ return getBenchmarkPrice();
+}
+template<> FieldBenchmarkPriceType::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkPriceType>() const {
+ return getBenchmarkPriceType();
+}
+template<> FieldBenchmarkSecurityID::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkSecurityID>() const {
+ return getBenchmarkSecurityID();
+}
+template<> FieldBenchmarkSecurityIDSource::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkSecurityIDSource>() const {
+ return getBenchmarkSecurityIDSource();
+}
+template<> FieldYieldType::ValueType FIXPP_MSG_CLASS::get<FieldYieldType>() const {
+ return getYieldType();
+}
+template<> FieldYield::ValueType FIXPP_MSG_CLASS::get<FieldYield>() const {
+ return getYield();
+}
+template<> FieldYieldCalcDate::ValueType FIXPP_MSG_CLASS::get<FieldYieldCalcDate>() const {
+ return getYieldCalcDate();
+}
+template<> FieldYieldRedemptionDate::ValueType FIXPP_MSG_CLASS::get<FieldYieldRedemptionDate>() const {
+ return getYieldRedemptionDate();
+}
+template<> FieldYieldRedemptionPrice::ValueType FIXPP_MSG_CLASS::get<FieldYieldRedemptionPrice>() const {
+ return getYieldRedemptionPrice();
+}
+template<> FieldYieldRedemptionPriceType::ValueType FIXPP_MSG_CLASS::get<FieldYieldRedemptionPriceType>() const {
+ return getYieldRedemptionPriceType();
+}
+
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageAdvertisement
+template<> FieldAdvId::ValueType FIXPP_MSG_CLASS::get<FieldAdvId>() const {
+ return getAdvId();
+}
+template<> FieldAdvTransType::ValueType FIXPP_MSG_CLASS::get<FieldAdvTransType>() const {
+ return getAdvTransType();
+}
+template<> FieldAdvRefID::ValueType FIXPP_MSG_CLASS::get<FieldAdvRefID>() const {
+ return getAdvRefID();
+}
+template<> FieldSymbol::ValueType FIXPP_MSG_CLASS::get<FieldSymbol>() const {
+ return getSymbol();
+}
+template<> FieldSymbolSfx::ValueType FIXPP_MSG_CLASS::get<FieldSymbolSfx>() const {
+ return getSymbolSfx();
+}
+template<> FieldSecurityID::ValueType FIXPP_MSG_CLASS::get<FieldSecurityID>() const {
+ return getSecurityID();
+}
+template<> FieldSecurityIDSource::ValueType FIXPP_MSG_CLASS::get<FieldSecurityIDSource>() const {
+ return getSecurityIDSource();
+}
+template<> FieldProduct::ValueType FIXPP_MSG_CLASS::get<FieldProduct>() const {
+ return getProduct();
+}
+template<> FieldCFICode::ValueType FIXPP_MSG_CLASS::get<FieldCFICode>() const {
+ return getCFICode();
+}
+template<> FieldSecurityType::ValueType FIXPP_MSG_CLASS::get<FieldSecurityType>() const {
+ return getSecurityType();
+}
+template<> FieldSecuritySubType::ValueType FIXPP_MSG_CLASS::get<FieldSecuritySubType>() const {
+ return getSecuritySubType();
+}
+template<> FieldMaturityMonthYear::ValueType FIXPP_MSG_CLASS::get<FieldMaturityMonthYear>() const {
+ return getMaturityMonthYear();
+}
+template<> FieldMaturityDate::ValueType FIXPP_MSG_CLASS::get<FieldMaturityDate>() const {
+ return getMaturityDate();
+}
+template<> FieldPutOrCall::ValueType FIXPP_MSG_CLASS::get<FieldPutOrCall>() const {
+ return getPutOrCall();
+}
+template<> FieldCouponPaymentDate::ValueType FIXPP_MSG_CLASS::get<FieldCouponPaymentDate>() const {
+ return getCouponPaymentDate();
+}
+template<> FieldIssueDate::ValueType FIXPP_MSG_CLASS::get<FieldIssueDate>() const {
+ return getIssueDate();
+}
+template<> FieldRepoCollateralSecurityType::ValueType FIXPP_MSG_CLASS::get<FieldRepoCollateralSecurityType>() const {
+ return getRepoCollateralSecurityType();
+}
+template<> FieldRepurchaseTerm::ValueType FIXPP_MSG_CLASS::get<FieldRepurchaseTerm>() const {
+ return getRepurchaseTerm();
+}
+template<> FieldRepurchaseRate::ValueType FIXPP_MSG_CLASS::get<FieldRepurchaseRate>() const {
+ return getRepurchaseRate();
+}
+template<> FieldFactor::ValueType FIXPP_MSG_CLASS::get<FieldFactor>() const {
+ return getFactor();
+}
+template<> FieldCreditRating::ValueType FIXPP_MSG_CLASS::get<FieldCreditRating>() const {
+ return getCreditRating();
+}
+template<> FieldInstrRegistry::ValueType FIXPP_MSG_CLASS::get<FieldInstrRegistry>() const {
+ return getInstrRegistry();
+}
+template<> FieldCountryOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldCountryOfIssue>() const {
+ return getCountryOfIssue();
+}
+template<> FieldStateOrProvinceOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldStateOrProvinceOfIssue>() const {
+ return getStateOrProvinceOfIssue();
+}
+template<> FieldLocaleOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldLocaleOfIssue>() const {
+ return getLocaleOfIssue();
+}
+template<> FieldRedemptionDate::ValueType FIXPP_MSG_CLASS::get<FieldRedemptionDate>() const {
+ return getRedemptionDate();
+}
+template<> FieldStrikePrice::ValueType FIXPP_MSG_CLASS::get<FieldStrikePrice>() const {
+ return getStrikePrice();
+}
+template<> FieldStrikeCurrency::ValueType FIXPP_MSG_CLASS::get<FieldStrikeCurrency>() const {
+ return getStrikeCurrency();
+}
+template<> FieldOptAttribute::ValueType FIXPP_MSG_CLASS::get<FieldOptAttribute>() const {
+ return getOptAttribute();
+}
+template<> FieldContractMultiplier::ValueType FIXPP_MSG_CLASS::get<FieldContractMultiplier>() const {
+ return getContractMultiplier();
+}
+template<> FieldCouponRate::ValueType FIXPP_MSG_CLASS::get<FieldCouponRate>() const {
+ return getCouponRate();
+}
+template<> FieldSecurityExchange::ValueType FIXPP_MSG_CLASS::get<FieldSecurityExchange>() const {
+ return getSecurityExchange();
+}
+template<> FieldIssuer::ValueType FIXPP_MSG_CLASS::get<FieldIssuer>() const {
+ return getIssuer();
+}
+template<> FieldEncodedIssuerLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedIssuerLen>() const {
+ return getEncodedIssuerLen();
+}
+template<> FieldEncodedIssuer::ValueType FIXPP_MSG_CLASS::get<FieldEncodedIssuer>() const {
+ return getEncodedIssuer();
+}
+template<> FieldSecurityDesc::ValueType FIXPP_MSG_CLASS::get<FieldSecurityDesc>() const {
+ return getSecurityDesc();
+}
+template<> FieldEncodedSecurityDescLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedSecurityDescLen>() const {
+ return getEncodedSecurityDescLen();
+}
+template<> FieldEncodedSecurityDesc::ValueType FIXPP_MSG_CLASS::get<FieldEncodedSecurityDesc>() const {
+ return getEncodedSecurityDesc();
+}
+template<> FieldPool::ValueType FIXPP_MSG_CLASS::get<FieldPool>() const {
+ return getPool();
+}
+template<> FieldContractSettlMonth::ValueType FIXPP_MSG_CLASS::get<FieldContractSettlMonth>() const {
+ return getContractSettlMonth();
+}
+template<> FieldCPProgram::ValueType FIXPP_MSG_CLASS::get<FieldCPProgram>() const {
+ return getCPProgram();
+}
+template<> FieldCPRegType::ValueType FIXPP_MSG_CLASS::get<FieldCPRegType>() const {
+ return getCPRegType();
+}
+template<> FieldDatedDate::ValueType FIXPP_MSG_CLASS::get<FieldDatedDate>() const {
+ return getDatedDate();
+}
+template<> FieldInterestAccrualDate::ValueType FIXPP_MSG_CLASS::get<FieldInterestAccrualDate>() const {
+ return getInterestAccrualDate();
+}
+template<> FieldAdvSide::ValueType FIXPP_MSG_CLASS::get<FieldAdvSide>() const {
+ return getAdvSide();
+}
+template<> FieldQuantity::ValueType FIXPP_MSG_CLASS::get<FieldQuantity>() const {
+ return getQuantity();
+}
+template<> FieldQtyType::ValueType FIXPP_MSG_CLASS::get<FieldQtyType>() const {
+ return getQtyType();
+}
+template<> FieldPrice::ValueType FIXPP_MSG_CLASS::get<FieldPrice>() const {
+ return getPrice();
+}
+template<> FieldCurrency::ValueType FIXPP_MSG_CLASS::get<FieldCurrency>() const {
+ return getCurrency();
+}
+template<> FieldTradeDate::ValueType FIXPP_MSG_CLASS::get<FieldTradeDate>() const {
+ return getTradeDate();
+}
+template<> FieldTransactTime::ValueType FIXPP_MSG_CLASS::get<FieldTransactTime>() const {
+ return getTransactTime();
+}
+template<> FieldText::ValueType FIXPP_MSG_CLASS::get<FieldText>() const {
+ return getText();
+}
+template<> FieldEncodedTextLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedTextLen>() const {
+ return getEncodedTextLen();
+}
+template<> FieldEncodedText::ValueType FIXPP_MSG_CLASS::get<FieldEncodedText>() const {
+ return getEncodedText();
+}
+template<> FieldURLLink::ValueType FIXPP_MSG_CLASS::get<FieldURLLink>() const {
+ return getURLLink();
+}
+template<> FieldLastMkt::ValueType FIXPP_MSG_CLASS::get<FieldLastMkt>() const {
+ return getLastMkt();
+}
+template<> FieldTradingSessionID::ValueType FIXPP_MSG_CLASS::get<FieldTradingSessionID>() const {
+ return getTradingSessionID();
+}
+template<> FieldTradingSessionSubID::ValueType FIXPP_MSG_CLASS::get<FieldTradingSessionSubID>() const {
+ return getTradingSessionSubID();
+}
+
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageExecutionReport
+template<> FieldOrderID::ValueType FIXPP_MSG_CLASS::get<FieldOrderID>() const {
+ return getOrderID();
+}
+template<> FieldSecondaryOrderID::ValueType FIXPP_MSG_CLASS::get<FieldSecondaryOrderID>() const {
+ return getSecondaryOrderID();
+}
+template<> FieldSecondaryClOrdID::ValueType FIXPP_MSG_CLASS::get<FieldSecondaryClOrdID>() const {
+ return getSecondaryClOrdID();
+}
+template<> FieldSecondaryExecID::ValueType FIXPP_MSG_CLASS::get<FieldSecondaryExecID>() const {
+ return getSecondaryExecID();
+}
+template<> FieldClOrdID::ValueType FIXPP_MSG_CLASS::get<FieldClOrdID>() const {
+ return getClOrdID();
+}
+template<> FieldOrigClOrdID::ValueType FIXPP_MSG_CLASS::get<FieldOrigClOrdID>() const {
+ return getOrigClOrdID();
+}
+template<> FieldClOrdLinkID::ValueType FIXPP_MSG_CLASS::get<FieldClOrdLinkID>() const {
+ return getClOrdLinkID();
+}
+template<> FieldQuoteRespID::ValueType FIXPP_MSG_CLASS::get<FieldQuoteRespID>() const {
+ return getQuoteRespID();
+}
+template<> FieldOrdStatusReqID::ValueType FIXPP_MSG_CLASS::get<FieldOrdStatusReqID>() const {
+ return getOrdStatusReqID();
+}
+template<> FieldMassStatusReqID::ValueType FIXPP_MSG_CLASS::get<FieldMassStatusReqID>() const {
+ return getMassStatusReqID();
+}
+template<> FieldTotNumReports::ValueType FIXPP_MSG_CLASS::get<FieldTotNumReports>() const {
+ return getTotNumReports();
+}
+template<> FieldLastRptRequested::ValueType FIXPP_MSG_CLASS::get<FieldLastRptRequested>() const {
+ return getLastRptRequested();
+}
+template<> FieldTradeOriginationDate::ValueType FIXPP_MSG_CLASS::get<FieldTradeOriginationDate>() const {
+ return getTradeOriginationDate();
+}
+template<> FieldListID::ValueType FIXPP_MSG_CLASS::get<FieldListID>() const {
+ return getListID();
+}
+template<> FieldCrossID::ValueType FIXPP_MSG_CLASS::get<FieldCrossID>() const {
+ return getCrossID();
+}
+template<> FieldOrigCrossID::ValueType FIXPP_MSG_CLASS::get<FieldOrigCrossID>() const {
+ return getOrigCrossID();
+}
+template<> FieldCrossType::ValueType FIXPP_MSG_CLASS::get<FieldCrossType>() const {
+ return getCrossType();
+}
+template<> FieldExecID::ValueType FIXPP_MSG_CLASS::get<FieldExecID>() const {
+ return getExecID();
+}
+template<> FieldExecRefID::ValueType FIXPP_MSG_CLASS::get<FieldExecRefID>() const {
+ return getExecRefID();
+}
+template<> FieldExecType::ValueType FIXPP_MSG_CLASS::get<FieldExecType>() const {
+ return getExecType();
+}
+template<> FieldOrdStatus::ValueType FIXPP_MSG_CLASS::get<FieldOrdStatus>() const {
+ return getOrdStatus();
+}
+template<> FieldWorkingIndicator::ValueType FIXPP_MSG_CLASS::get<FieldWorkingIndicator>() const {
+ return getWorkingIndicator();
+}
+template<> FieldOrdRejReason::ValueType FIXPP_MSG_CLASS::get<FieldOrdRejReason>() const {
+ return getOrdRejReason();
+}
+template<> FieldExecRestatementReason::ValueType FIXPP_MSG_CLASS::get<FieldExecRestatementReason>() const {
+ return getExecRestatementReason();
+}
+template<> FieldAccount::ValueType FIXPP_MSG_CLASS::get<FieldAccount>() const {
+ return getAccount();
+}
+template<> FieldAcctIDSource::ValueType FIXPP_MSG_CLASS::get<FieldAcctIDSource>() const {
+ return getAcctIDSource();
+}
+template<> FieldAccountType::ValueType FIXPP_MSG_CLASS::get<FieldAccountType>() const {
+ return getAccountType();
+}
+template<> FieldDayBookingInst::ValueType FIXPP_MSG_CLASS::get<FieldDayBookingInst>() const {
+ return getDayBookingInst();
+}
+template<> FieldBookingUnit::ValueType FIXPP_MSG_CLASS::get<FieldBookingUnit>() const {
+ return getBookingUnit();
+}
+template<> FieldPreallocMethod::ValueType FIXPP_MSG_CLASS::get<FieldPreallocMethod>() const {
+ return getPreallocMethod();
+}
+template<> FieldSettlType::ValueType FIXPP_MSG_CLASS::get<FieldSettlType>() const {
+ return getSettlType();
+}
+template<> FieldSettlDate::ValueType FIXPP_MSG_CLASS::get<FieldSettlDate>() const {
+ return getSettlDate();
+}
+template<> FieldCashMargin::ValueType FIXPP_MSG_CLASS::get<FieldCashMargin>() const {
+ return getCashMargin();
+}
+template<> FieldClearingFeeIndicator::ValueType FIXPP_MSG_CLASS::get<FieldClearingFeeIndicator>() const {
+ return getClearingFeeIndicator();
+}
+template<> FieldSymbol::ValueType FIXPP_MSG_CLASS::get<FieldSymbol>() const {
+ return getSymbol();
+}
+template<> FieldSymbolSfx::ValueType FIXPP_MSG_CLASS::get<FieldSymbolSfx>() const {
+ return getSymbolSfx();
+}
+template<> FieldSecurityID::ValueType FIXPP_MSG_CLASS::get<FieldSecurityID>() const {
+ return getSecurityID();
+}
+template<> FieldSecurityIDSource::ValueType FIXPP_MSG_CLASS::get<FieldSecurityIDSource>() const {
+ return getSecurityIDSource();
+}
+template<> FieldProduct::ValueType FIXPP_MSG_CLASS::get<FieldProduct>() const {
+ return getProduct();
+}
+template<> FieldCFICode::ValueType FIXPP_MSG_CLASS::get<FieldCFICode>() const {
+ return getCFICode();
+}
+template<> FieldSecurityType::ValueType FIXPP_MSG_CLASS::get<FieldSecurityType>() const {
+ return getSecurityType();
+}
+template<> FieldSecuritySubType::ValueType FIXPP_MSG_CLASS::get<FieldSecuritySubType>() const {
+ return getSecuritySubType();
+}
+template<> FieldMaturityMonthYear::ValueType FIXPP_MSG_CLASS::get<FieldMaturityMonthYear>() const {
+ return getMaturityMonthYear();
+}
+template<> FieldMaturityDate::ValueType FIXPP_MSG_CLASS::get<FieldMaturityDate>() const {
+ return getMaturityDate();
+}
+template<> FieldPutOrCall::ValueType FIXPP_MSG_CLASS::get<FieldPutOrCall>() const {
+ return getPutOrCall();
+}
+template<> FieldCouponPaymentDate::ValueType FIXPP_MSG_CLASS::get<FieldCouponPaymentDate>() const {
+ return getCouponPaymentDate();
+}
+template<> FieldIssueDate::ValueType FIXPP_MSG_CLASS::get<FieldIssueDate>() const {
+ return getIssueDate();
+}
+template<> FieldRepoCollateralSecurityType::ValueType FIXPP_MSG_CLASS::get<FieldRepoCollateralSecurityType>() const {
+ return getRepoCollateralSecurityType();
+}
+template<> FieldRepurchaseTerm::ValueType FIXPP_MSG_CLASS::get<FieldRepurchaseTerm>() const {
+ return getRepurchaseTerm();
+}
+template<> FieldRepurchaseRate::ValueType FIXPP_MSG_CLASS::get<FieldRepurchaseRate>() const {
+ return getRepurchaseRate();
+}
+template<> FieldFactor::ValueType FIXPP_MSG_CLASS::get<FieldFactor>() const {
+ return getFactor();
+}
+template<> FieldCreditRating::ValueType FIXPP_MSG_CLASS::get<FieldCreditRating>() const {
+ return getCreditRating();
+}
+template<> FieldInstrRegistry::ValueType FIXPP_MSG_CLASS::get<FieldInstrRegistry>() const {
+ return getInstrRegistry();
+}
+template<> FieldCountryOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldCountryOfIssue>() const {
+ return getCountryOfIssue();
+}
+template<> FieldStateOrProvinceOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldStateOrProvinceOfIssue>() const {
+ return getStateOrProvinceOfIssue();
+}
+template<> FieldLocaleOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldLocaleOfIssue>() const {
+ return getLocaleOfIssue();
+}
+template<> FieldRedemptionDate::ValueType FIXPP_MSG_CLASS::get<FieldRedemptionDate>() const {
+ return getRedemptionDate();
+}
+template<> FieldStrikePrice::ValueType FIXPP_MSG_CLASS::get<FieldStrikePrice>() const {
+ return getStrikePrice();
+}
+template<> FieldStrikeCurrency::ValueType FIXPP_MSG_CLASS::get<FieldStrikeCurrency>() const {
+ return getStrikeCurrency();
+}
+template<> FieldOptAttribute::ValueType FIXPP_MSG_CLASS::get<FieldOptAttribute>() const {
+ return getOptAttribute();
+}
+template<> FieldContractMultiplier::ValueType FIXPP_MSG_CLASS::get<FieldContractMultiplier>() const {
+ return getContractMultiplier();
+}
+template<> FieldCouponRate::ValueType FIXPP_MSG_CLASS::get<FieldCouponRate>() const {
+ return getCouponRate();
+}
+template<> FieldSecurityExchange::ValueType FIXPP_MSG_CLASS::get<FieldSecurityExchange>() const {
+ return getSecurityExchange();
+}
+template<> FieldIssuer::ValueType FIXPP_MSG_CLASS::get<FieldIssuer>() const {
+ return getIssuer();
+}
+template<> FieldEncodedIssuerLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedIssuerLen>() const {
+ return getEncodedIssuerLen();
+}
+template<> FieldEncodedIssuer::ValueType FIXPP_MSG_CLASS::get<FieldEncodedIssuer>() const {
+ return getEncodedIssuer();
+}
+template<> FieldSecurityDesc::ValueType FIXPP_MSG_CLASS::get<FieldSecurityDesc>() const {
+ return getSecurityDesc();
+}
+template<> FieldEncodedSecurityDescLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedSecurityDescLen>() const {
+ return getEncodedSecurityDescLen();
+}
+template<> FieldEncodedSecurityDesc::ValueType FIXPP_MSG_CLASS::get<FieldEncodedSecurityDesc>() const {
+ return getEncodedSecurityDesc();
+}
+template<> FieldPool::ValueType FIXPP_MSG_CLASS::get<FieldPool>() const {
+ return getPool();
+}
+template<> FieldContractSettlMonth::ValueType FIXPP_MSG_CLASS::get<FieldContractSettlMonth>() const {
+ return getContractSettlMonth();
+}
+template<> FieldCPProgram::ValueType FIXPP_MSG_CLASS::get<FieldCPProgram>() const {
+ return getCPProgram();
+}
+template<> FieldCPRegType::ValueType FIXPP_MSG_CLASS::get<FieldCPRegType>() const {
+ return getCPRegType();
+}
+template<> FieldDatedDate::ValueType FIXPP_MSG_CLASS::get<FieldDatedDate>() const {
+ return getDatedDate();
+}
+template<> FieldInterestAccrualDate::ValueType FIXPP_MSG_CLASS::get<FieldInterestAccrualDate>() const {
+ return getInterestAccrualDate();
+}
+template<> FieldAgreementDesc::ValueType FIXPP_MSG_CLASS::get<FieldAgreementDesc>() const {
+ return getAgreementDesc();
+}
+template<> FieldAgreementID::ValueType FIXPP_MSG_CLASS::get<FieldAgreementID>() const {
+ return getAgreementID();
+}
+template<> FieldAgreementDate::ValueType FIXPP_MSG_CLASS::get<FieldAgreementDate>() const {
+ return getAgreementDate();
+}
+template<> FieldAgreementCurrency::ValueType FIXPP_MSG_CLASS::get<FieldAgreementCurrency>() const {
+ return getAgreementCurrency();
+}
+template<> FieldTerminationType::ValueType FIXPP_MSG_CLASS::get<FieldTerminationType>() const {
+ return getTerminationType();
+}
+template<> FieldStartDate::ValueType FIXPP_MSG_CLASS::get<FieldStartDate>() const {
+ return getStartDate();
+}
+template<> FieldEndDate::ValueType FIXPP_MSG_CLASS::get<FieldEndDate>() const {
+ return getEndDate();
+}
+template<> FieldDeliveryType::ValueType FIXPP_MSG_CLASS::get<FieldDeliveryType>() const {
+ return getDeliveryType();
+}
+template<> FieldMarginRatio::ValueType FIXPP_MSG_CLASS::get<FieldMarginRatio>() const {
+ return getMarginRatio();
+}
+template<> FieldSide::ValueType FIXPP_MSG_CLASS::get<FieldSide>() const {
+ return getSide();
+}
+template<> FieldQtyType::ValueType FIXPP_MSG_CLASS::get<FieldQtyType>() const {
+ return getQtyType();
+}
+template<> FieldOrderQty::ValueType FIXPP_MSG_CLASS::get<FieldOrderQty>() const {
+ return getOrderQty();
+}
+template<> FieldCashOrderQty::ValueType FIXPP_MSG_CLASS::get<FieldCashOrderQty>() const {
+ return getCashOrderQty();
+}
+template<> FieldOrderPercent::ValueType FIXPP_MSG_CLASS::get<FieldOrderPercent>() const {
+ return getOrderPercent();
+}
+template<> FieldRoundingDirection::ValueType FIXPP_MSG_CLASS::get<FieldRoundingDirection>() const {
+ return getRoundingDirection();
+}
+template<> FieldRoundingModulus::ValueType FIXPP_MSG_CLASS::get<FieldRoundingModulus>() const {
+ return getRoundingModulus();
+}
+template<> FieldOrdType::ValueType FIXPP_MSG_CLASS::get<FieldOrdType>() const {
+ return getOrdType();
+}
+template<> FieldPriceType::ValueType FIXPP_MSG_CLASS::get<FieldPriceType>() const {
+ return getPriceType();
+}
+template<> FieldPrice::ValueType FIXPP_MSG_CLASS::get<FieldPrice>() const {
+ return getPrice();
+}
+template<> FieldStopPx::ValueType FIXPP_MSG_CLASS::get<FieldStopPx>() const {
+ return getStopPx();
+}
+template<> FieldPegOffsetValue::ValueType FIXPP_MSG_CLASS::get<FieldPegOffsetValue>() const {
+ return getPegOffsetValue();
+}
+template<> FieldPegMoveType::ValueType FIXPP_MSG_CLASS::get<FieldPegMoveType>() const {
+ return getPegMoveType();
+}
+template<> FieldPegOffsetType::ValueType FIXPP_MSG_CLASS::get<FieldPegOffsetType>() const {
+ return getPegOffsetType();
+}
+template<> FieldPegLimitType::ValueType FIXPP_MSG_CLASS::get<FieldPegLimitType>() const {
+ return getPegLimitType();
+}
+template<> FieldPegRoundDirection::ValueType FIXPP_MSG_CLASS::get<FieldPegRoundDirection>() const {
+ return getPegRoundDirection();
+}
+template<> FieldPegScope::ValueType FIXPP_MSG_CLASS::get<FieldPegScope>() const {
+ return getPegScope();
+}
+template<> FieldDiscretionInst::ValueType FIXPP_MSG_CLASS::get<FieldDiscretionInst>() const {
+ return getDiscretionInst();
+}
+template<> FieldDiscretionOffsetValue::ValueType FIXPP_MSG_CLASS::get<FieldDiscretionOffsetValue>() const {
+ return getDiscretionOffsetValue();
+}
+template<> FieldDiscretionMoveType::ValueType FIXPP_MSG_CLASS::get<FieldDiscretionMoveType>() const {
+ return getDiscretionMoveType();
+}
+template<> FieldDiscretionOffsetType::ValueType FIXPP_MSG_CLASS::get<FieldDiscretionOffsetType>() const {
+ return getDiscretionOffsetType();
+}
+template<> FieldDiscretionLimitType::ValueType FIXPP_MSG_CLASS::get<FieldDiscretionLimitType>() const {
+ return getDiscretionLimitType();
+}
+template<> FieldDiscretionRoundDirection::ValueType FIXPP_MSG_CLASS::get<FieldDiscretionRoundDirection>() const {
+ return getDiscretionRoundDirection();
+}
+template<> FieldDiscretionScope::ValueType FIXPP_MSG_CLASS::get<FieldDiscretionScope>() const {
+ return getDiscretionScope();
+}
+template<> FieldPeggedPrice::ValueType FIXPP_MSG_CLASS::get<FieldPeggedPrice>() const {
+ return getPeggedPrice();
+}
+template<> FieldDiscretionPrice::ValueType FIXPP_MSG_CLASS::get<FieldDiscretionPrice>() const {
+ return getDiscretionPrice();
+}
+template<> FieldTargetStrategy::ValueType FIXPP_MSG_CLASS::get<FieldTargetStrategy>() const {
+ return getTargetStrategy();
+}
+template<> FieldTargetStrategyParameters::ValueType FIXPP_MSG_CLASS::get<FieldTargetStrategyParameters>() const {
+ return getTargetStrategyParameters();
+}
+template<> FieldParticipationRate::ValueType FIXPP_MSG_CLASS::get<FieldParticipationRate>() const {
+ return getParticipationRate();
+}
+template<> FieldTargetStrategyPerformance::ValueType FIXPP_MSG_CLASS::get<FieldTargetStrategyPerformance>() const {
+ return getTargetStrategyPerformance();
+}
+template<> FieldCurrency::ValueType FIXPP_MSG_CLASS::get<FieldCurrency>() const {
+ return getCurrency();
+}
+template<> FieldComplianceID::ValueType FIXPP_MSG_CLASS::get<FieldComplianceID>() const {
+ return getComplianceID();
+}
+template<> FieldSolicitedFlag::ValueType FIXPP_MSG_CLASS::get<FieldSolicitedFlag>() const {
+ return getSolicitedFlag();
+}
+template<> FieldTimeInForce::ValueType FIXPP_MSG_CLASS::get<FieldTimeInForce>() const {
+ return getTimeInForce();
+}
+template<> FieldEffectiveTime::ValueType FIXPP_MSG_CLASS::get<FieldEffectiveTime>() const {
+ return getEffectiveTime();
+}
+template<> FieldExpireDate::ValueType FIXPP_MSG_CLASS::get<FieldExpireDate>() const {
+ return getExpireDate();
+}
+template<> FieldExpireTime::ValueType FIXPP_MSG_CLASS::get<FieldExpireTime>() const {
+ return getExpireTime();
+}
+template<> FieldExecInst::ValueType FIXPP_MSG_CLASS::get<FieldExecInst>() const {
+ return getExecInst();
+}
+template<> FieldOrderCapacity::ValueType FIXPP_MSG_CLASS::get<FieldOrderCapacity>() const {
+ return getOrderCapacity();
+}
+template<> FieldOrderRestrictions::ValueType FIXPP_MSG_CLASS::get<FieldOrderRestrictions>() const {
+ return getOrderRestrictions();
+}
+template<> FieldCustOrderCapacity::ValueType FIXPP_MSG_CLASS::get<FieldCustOrderCapacity>() const {
+ return getCustOrderCapacity();
+}
+template<> FieldLastQty::ValueType FIXPP_MSG_CLASS::get<FieldLastQty>() const {
+ return getLastQty();
+}
+template<> FieldUnderlyingLastQty::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingLastQty>() const {
+ return getUnderlyingLastQty();
+}
+template<> FieldLastPx::ValueType FIXPP_MSG_CLASS::get<FieldLastPx>() const {
+ return getLastPx();
+}
+template<> FieldUnderlyingLastPx::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingLastPx>() const {
+ return getUnderlyingLastPx();
+}
+template<> FieldLastParPx::ValueType FIXPP_MSG_CLASS::get<FieldLastParPx>() const {
+ return getLastParPx();
+}
+template<> FieldLastSpotRate::ValueType FIXPP_MSG_CLASS::get<FieldLastSpotRate>() const {
+ return getLastSpotRate();
+}
+template<> FieldLastForwardPoints::ValueType FIXPP_MSG_CLASS::get<FieldLastForwardPoints>() const {
+ return getLastForwardPoints();
+}
+template<> FieldLastMkt::ValueType FIXPP_MSG_CLASS::get<FieldLastMkt>() const {
+ return getLastMkt();
+}
+template<> FieldTradingSessionID::ValueType FIXPP_MSG_CLASS::get<FieldTradingSessionID>() const {
+ return getTradingSessionID();
+}
+template<> FieldTradingSessionSubID::ValueType FIXPP_MSG_CLASS::get<FieldTradingSessionSubID>() const {
+ return getTradingSessionSubID();
+}
+template<> FieldTimeBracket::ValueType FIXPP_MSG_CLASS::get<FieldTimeBracket>() const {
+ return getTimeBracket();
+}
+template<> FieldLastCapacity::ValueType FIXPP_MSG_CLASS::get<FieldLastCapacity>() const {
+ return getLastCapacity();
+}
+template<> FieldLeavesQty::ValueType FIXPP_MSG_CLASS::get<FieldLeavesQty>() const {
+ return getLeavesQty();
+}
+template<> FieldCumQty::ValueType FIXPP_MSG_CLASS::get<FieldCumQty>() const {
+ return getCumQty();
+}
+template<> FieldAvgPx::ValueType FIXPP_MSG_CLASS::get<FieldAvgPx>() const {
+ return getAvgPx();
+}
+template<> FieldDayOrderQty::ValueType FIXPP_MSG_CLASS::get<FieldDayOrderQty>() const {
+ return getDayOrderQty();
+}
+template<> FieldDayCumQty::ValueType FIXPP_MSG_CLASS::get<FieldDayCumQty>() const {
+ return getDayCumQty();
+}
+template<> FieldDayAvgPx::ValueType FIXPP_MSG_CLASS::get<FieldDayAvgPx>() const {
+ return getDayAvgPx();
+}
+template<> FieldGTBookingInst::ValueType FIXPP_MSG_CLASS::get<FieldGTBookingInst>() const {
+ return getGTBookingInst();
+}
+template<> FieldTradeDate::ValueType FIXPP_MSG_CLASS::get<FieldTradeDate>() const {
+ return getTradeDate();
+}
+template<> FieldTransactTime::ValueType FIXPP_MSG_CLASS::get<FieldTransactTime>() const {
+ return getTransactTime();
+}
+template<> FieldReportToExch::ValueType FIXPP_MSG_CLASS::get<FieldReportToExch>() const {
+ return getReportToExch();
+}
+template<> FieldCommission::ValueType FIXPP_MSG_CLASS::get<FieldCommission>() const {
+ return getCommission();
+}
+template<> FieldCommType::ValueType FIXPP_MSG_CLASS::get<FieldCommType>() const {
+ return getCommType();
+}
+template<> FieldCommCurrency::ValueType FIXPP_MSG_CLASS::get<FieldCommCurrency>() const {
+ return getCommCurrency();
+}
+template<> FieldFundRenewWaiv::ValueType FIXPP_MSG_CLASS::get<FieldFundRenewWaiv>() const {
+ return getFundRenewWaiv();
+}
+template<> FieldSpread::ValueType FIXPP_MSG_CLASS::get<FieldSpread>() const {
+ return getSpread();
+}
+template<> FieldBenchmarkCurveCurrency::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkCurveCurrency>() const {
+ return getBenchmarkCurveCurrency();
+}
+template<> FieldBenchmarkCurveName::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkCurveName>() const {
+ return getBenchmarkCurveName();
+}
+template<> FieldBenchmarkCurvePoint::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkCurvePoint>() const {
+ return getBenchmarkCurvePoint();
+}
+template<> FieldBenchmarkPrice::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkPrice>() const {
+ return getBenchmarkPrice();
+}
+template<> FieldBenchmarkPriceType::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkPriceType>() const {
+ return getBenchmarkPriceType();
+}
+template<> FieldBenchmarkSecurityID::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkSecurityID>() const {
+ return getBenchmarkSecurityID();
+}
+template<> FieldBenchmarkSecurityIDSource::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkSecurityIDSource>() const {
+ return getBenchmarkSecurityIDSource();
+}
+template<> FieldYieldType::ValueType FIXPP_MSG_CLASS::get<FieldYieldType>() const {
+ return getYieldType();
+}
+template<> FieldYield::ValueType FIXPP_MSG_CLASS::get<FieldYield>() const {
+ return getYield();
+}
+template<> FieldYieldCalcDate::ValueType FIXPP_MSG_CLASS::get<FieldYieldCalcDate>() const {
+ return getYieldCalcDate();
+}
+template<> FieldYieldRedemptionDate::ValueType FIXPP_MSG_CLASS::get<FieldYieldRedemptionDate>() const {
+ return getYieldRedemptionDate();
+}
+template<> FieldYieldRedemptionPrice::ValueType FIXPP_MSG_CLASS::get<FieldYieldRedemptionPrice>() const {
+ return getYieldRedemptionPrice();
+}
+template<> FieldYieldRedemptionPriceType::ValueType FIXPP_MSG_CLASS::get<FieldYieldRedemptionPriceType>() const {
+ return getYieldRedemptionPriceType();
+}
+template<> FieldGrossTradeAmt::ValueType FIXPP_MSG_CLASS::get<FieldGrossTradeAmt>() const {
+ return getGrossTradeAmt();
+}
+template<> FieldNumDaysInterest::ValueType FIXPP_MSG_CLASS::get<FieldNumDaysInterest>() const {
+ return getNumDaysInterest();
+}
+template<> FieldExDate::ValueType FIXPP_MSG_CLASS::get<FieldExDate>() const {
+ return getExDate();
+}
+template<> FieldAccruedInterestRate::ValueType FIXPP_MSG_CLASS::get<FieldAccruedInterestRate>() const {
+ return getAccruedInterestRate();
+}
+template<> FieldAccruedInterestAmt::ValueType FIXPP_MSG_CLASS::get<FieldAccruedInterestAmt>() const {
+ return getAccruedInterestAmt();
+}
+template<> FieldInterestAtMaturity::ValueType FIXPP_MSG_CLASS::get<FieldInterestAtMaturity>() const {
+ return getInterestAtMaturity();
+}
+template<> FieldEndAccruedInterestAmt::ValueType FIXPP_MSG_CLASS::get<FieldEndAccruedInterestAmt>() const {
+ return getEndAccruedInterestAmt();
+}
+template<> FieldStartCash::ValueType FIXPP_MSG_CLASS::get<FieldStartCash>() const {
+ return getStartCash();
+}
+template<> FieldEndCash::ValueType FIXPP_MSG_CLASS::get<FieldEndCash>() const {
+ return getEndCash();
+}
+template<> FieldTradedFlatSwitch::ValueType FIXPP_MSG_CLASS::get<FieldTradedFlatSwitch>() const {
+ return getTradedFlatSwitch();
+}
+template<> FieldBasisFeatureDate::ValueType FIXPP_MSG_CLASS::get<FieldBasisFeatureDate>() const {
+ return getBasisFeatureDate();
+}
+template<> FieldBasisFeaturePrice::ValueType FIXPP_MSG_CLASS::get<FieldBasisFeaturePrice>() const {
+ return getBasisFeaturePrice();
+}
+template<> FieldConcession::ValueType FIXPP_MSG_CLASS::get<FieldConcession>() const {
+ return getConcession();
+}
+template<> FieldTotalTakedown::ValueType FIXPP_MSG_CLASS::get<FieldTotalTakedown>() const {
+ return getTotalTakedown();
+}
+template<> FieldNetMoney::ValueType FIXPP_MSG_CLASS::get<FieldNetMoney>() const {
+ return getNetMoney();
+}
+template<> FieldSettlCurrAmt::ValueType FIXPP_MSG_CLASS::get<FieldSettlCurrAmt>() const {
+ return getSettlCurrAmt();
+}
+template<> FieldSettlCurrency::ValueType FIXPP_MSG_CLASS::get<FieldSettlCurrency>() const {
+ return getSettlCurrency();
+}
+template<> FieldSettlCurrFxRate::ValueType FIXPP_MSG_CLASS::get<FieldSettlCurrFxRate>() const {
+ return getSettlCurrFxRate();
+}
+template<> FieldSettlCurrFxRateCalc::ValueType FIXPP_MSG_CLASS::get<FieldSettlCurrFxRateCalc>() const {
+ return getSettlCurrFxRateCalc();
+}
+template<> FieldHandlInst::ValueType FIXPP_MSG_CLASS::get<FieldHandlInst>() const {
+ return getHandlInst();
+}
+template<> FieldMinQty::ValueType FIXPP_MSG_CLASS::get<FieldMinQty>() const {
+ return getMinQty();
+}
+template<> FieldMaxFloor::ValueType FIXPP_MSG_CLASS::get<FieldMaxFloor>() const {
+ return getMaxFloor();
+}
+template<> FieldPositionEffect::ValueType FIXPP_MSG_CLASS::get<FieldPositionEffect>() const {
+ return getPositionEffect();
+}
+template<> FieldMaxShow::ValueType FIXPP_MSG_CLASS::get<FieldMaxShow>() const {
+ return getMaxShow();
+}
+template<> FieldBookingType::ValueType FIXPP_MSG_CLASS::get<FieldBookingType>() const {
+ return getBookingType();
+}
+template<> FieldText::ValueType FIXPP_MSG_CLASS::get<FieldText>() const {
+ return getText();
+}
+template<> FieldEncodedTextLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedTextLen>() const {
+ return getEncodedTextLen();
+}
+template<> FieldEncodedText::ValueType FIXPP_MSG_CLASS::get<FieldEncodedText>() const {
+ return getEncodedText();
+}
+template<> FieldSettlDate2::ValueType FIXPP_MSG_CLASS::get<FieldSettlDate2>() const {
+ return getSettlDate2();
+}
+template<> FieldOrderQty2::ValueType FIXPP_MSG_CLASS::get<FieldOrderQty2>() const {
+ return getOrderQty2();
+}
+template<> FieldLastForwardPoints2::ValueType FIXPP_MSG_CLASS::get<FieldLastForwardPoints2>() const {
+ return getLastForwardPoints2();
+}
+template<> FieldMultiLegReportingType::ValueType FIXPP_MSG_CLASS::get<FieldMultiLegReportingType>() const {
+ return getMultiLegReportingType();
+}
+template<> FieldCancellationRights::ValueType FIXPP_MSG_CLASS::get<FieldCancellationRights>() const {
+ return getCancellationRights();
+}
+template<> FieldMoneyLaunderingStatus::ValueType FIXPP_MSG_CLASS::get<FieldMoneyLaunderingStatus>() const {
+ return getMoneyLaunderingStatus();
+}
+template<> FieldRegistID::ValueType FIXPP_MSG_CLASS::get<FieldRegistID>() const {
+ return getRegistID();
+}
+template<> FieldDesignation::ValueType FIXPP_MSG_CLASS::get<FieldDesignation>() const {
+ return getDesignation();
+}
+template<> FieldTransBkdTime::ValueType FIXPP_MSG_CLASS::get<FieldTransBkdTime>() const {
+ return getTransBkdTime();
+}
+template<> FieldExecValuationPoint::ValueType FIXPP_MSG_CLASS::get<FieldExecValuationPoint>() const {
+ return getExecValuationPoint();
+}
+template<> FieldExecPriceType::ValueType FIXPP_MSG_CLASS::get<FieldExecPriceType>() const {
+ return getExecPriceType();
+}
+template<> FieldExecPriceAdjustment::ValueType FIXPP_MSG_CLASS::get<FieldExecPriceAdjustment>() const {
+ return getExecPriceAdjustment();
+}
+template<> FieldPriorityIndicator::ValueType FIXPP_MSG_CLASS::get<FieldPriorityIndicator>() const {
+ return getPriorityIndicator();
+}
+template<> FieldPriceImprovement::ValueType FIXPP_MSG_CLASS::get<FieldPriceImprovement>() const {
+ return getPriceImprovement();
+}
+template<> FieldLastLiquidityInd::ValueType FIXPP_MSG_CLASS::get<FieldLastLiquidityInd>() const {
+ return getLastLiquidityInd();
+}
+template<> FieldCopyMsgIndicator::ValueType FIXPP_MSG_CLASS::get<FieldCopyMsgIndicator>() const {
+ return getCopyMsgIndicator();
+}
+
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageOrderCancelReject
+template<> FieldOrderID::ValueType FIXPP_MSG_CLASS::get<FieldOrderID>() const {
+ return getOrderID();
+}
+template<> FieldSecondaryOrderID::ValueType FIXPP_MSG_CLASS::get<FieldSecondaryOrderID>() const {
+ return getSecondaryOrderID();
+}
+template<> FieldSecondaryClOrdID::ValueType FIXPP_MSG_CLASS::get<FieldSecondaryClOrdID>() const {
+ return getSecondaryClOrdID();
+}
+template<> FieldClOrdID::ValueType FIXPP_MSG_CLASS::get<FieldClOrdID>() const {
+ return getClOrdID();
+}
+template<> FieldClOrdLinkID::ValueType FIXPP_MSG_CLASS::get<FieldClOrdLinkID>() const {
+ return getClOrdLinkID();
+}
+template<> FieldOrigClOrdID::ValueType FIXPP_MSG_CLASS::get<FieldOrigClOrdID>() const {
+ return getOrigClOrdID();
+}
+template<> FieldOrdStatus::ValueType FIXPP_MSG_CLASS::get<FieldOrdStatus>() const {
+ return getOrdStatus();
+}
+template<> FieldWorkingIndicator::ValueType FIXPP_MSG_CLASS::get<FieldWorkingIndicator>() const {
+ return getWorkingIndicator();
+}
+template<> FieldOrigOrdModTime::ValueType FIXPP_MSG_CLASS::get<FieldOrigOrdModTime>() const {
+ return getOrigOrdModTime();
+}
+template<> FieldListID::ValueType FIXPP_MSG_CLASS::get<FieldListID>() const {
+ return getListID();
+}
+template<> FieldAccount::ValueType FIXPP_MSG_CLASS::get<FieldAccount>() const {
+ return getAccount();
+}
+template<> FieldAcctIDSource::ValueType FIXPP_MSG_CLASS::get<FieldAcctIDSource>() const {
+ return getAcctIDSource();
+}
+template<> FieldAccountType::ValueType FIXPP_MSG_CLASS::get<FieldAccountType>() const {
+ return getAccountType();
+}
+template<> FieldTradeOriginationDate::ValueType FIXPP_MSG_CLASS::get<FieldTradeOriginationDate>() const {
+ return getTradeOriginationDate();
+}
+template<> FieldTradeDate::ValueType FIXPP_MSG_CLASS::get<FieldTradeDate>() const {
+ return getTradeDate();
+}
+template<> FieldTransactTime::ValueType FIXPP_MSG_CLASS::get<FieldTransactTime>() const {
+ return getTransactTime();
+}
+template<> FieldCxlRejResponseTo::ValueType FIXPP_MSG_CLASS::get<FieldCxlRejResponseTo>() const {
+ return getCxlRejResponseTo();
+}
+template<> FieldCxlRejReason::ValueType FIXPP_MSG_CLASS::get<FieldCxlRejReason>() const {
+ return getCxlRejReason();
+}
+template<> FieldText::ValueType FIXPP_MSG_CLASS::get<FieldText>() const {
+ return getText();
+}
+template<> FieldEncodedTextLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedTextLen>() const {
+ return getEncodedTextLen();
+}
+template<> FieldEncodedText::ValueType FIXPP_MSG_CLASS::get<FieldEncodedText>() const {
+ return getEncodedText();
+}
+
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageLogon
+template<> FieldEncryptMethod::ValueType FIXPP_MSG_CLASS::get<FieldEncryptMethod>() const {
+ return getEncryptMethod();
+}
+template<> FieldHeartBtInt::ValueType FIXPP_MSG_CLASS::get<FieldHeartBtInt>() const {
+ return getHeartBtInt();
+}
+template<> FieldRawDataLength::ValueType FIXPP_MSG_CLASS::get<FieldRawDataLength>() const {
+ return getRawDataLength();
+}
+template<> FieldRawData::ValueType FIXPP_MSG_CLASS::get<FieldRawData>() const {
+ return getRawData();
+}
+template<> FieldResetSeqNumFlag::ValueType FIXPP_MSG_CLASS::get<FieldResetSeqNumFlag>() const {
+ return getResetSeqNumFlag();
+}
+template<> FieldNextExpectedMsgSeqNum::ValueType FIXPP_MSG_CLASS::get<FieldNextExpectedMsgSeqNum>() const {
+ return getNextExpectedMsgSeqNum();
+}
+template<> FieldMaxMessageSize::ValueType FIXPP_MSG_CLASS::get<FieldMaxMessageSize>() const {
+ return getMaxMessageSize();
+}
+template<> FieldTestMessageIndicator::ValueType FIXPP_MSG_CLASS::get<FieldTestMessageIndicator>() const {
+ return getTestMessageIndicator();
+}
+template<> FieldUsername::ValueType FIXPP_MSG_CLASS::get<FieldUsername>() const {
+ return getUsername();
+}
+template<> FieldPassword::ValueType FIXPP_MSG_CLASS::get<FieldPassword>() const {
+ return getPassword();
+}
+
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageNews
+template<> FieldOrigTime::ValueType FIXPP_MSG_CLASS::get<FieldOrigTime>() const {
+ return getOrigTime();
+}
+template<> FieldUrgency::ValueType FIXPP_MSG_CLASS::get<FieldUrgency>() const {
+ return getUrgency();
+}
+template<> FieldHeadline::ValueType FIXPP_MSG_CLASS::get<FieldHeadline>() const {
+ return getHeadline();
+}
+template<> FieldEncodedHeadlineLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedHeadlineLen>() const {
+ return getEncodedHeadlineLen();
+}
+template<> FieldEncodedHeadline::ValueType FIXPP_MSG_CLASS::get<FieldEncodedHeadline>() const {
+ return getEncodedHeadline();
+}
+template<> FieldURLLink::ValueType FIXPP_MSG_CLASS::get<FieldURLLink>() const {
+ return getURLLink();
+}
+template<> FieldRawDataLength::ValueType FIXPP_MSG_CLASS::get<FieldRawDataLength>() const {
+ return getRawDataLength();
+}
+template<> FieldRawData::ValueType FIXPP_MSG_CLASS::get<FieldRawData>() const {
+ return getRawData();
+}
+
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageEmail
+template<> FieldEmailThreadID::ValueType FIXPP_MSG_CLASS::get<FieldEmailThreadID>() const {
+ return getEmailThreadID();
+}
+template<> FieldEmailType::ValueType FIXPP_MSG_CLASS::get<FieldEmailType>() const {
+ return getEmailType();
+}
+template<> FieldOrigTime::ValueType FIXPP_MSG_CLASS::get<FieldOrigTime>() const {
+ return getOrigTime();
+}
+template<> FieldSubject::ValueType FIXPP_MSG_CLASS::get<FieldSubject>() const {
+ return getSubject();
+}
+template<> FieldEncodedSubjectLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedSubjectLen>() const {
+ return getEncodedSubjectLen();
+}
+template<> FieldEncodedSubject::ValueType FIXPP_MSG_CLASS::get<FieldEncodedSubject>() const {
+ return getEncodedSubject();
+}
+template<> FieldOrderID::ValueType FIXPP_MSG_CLASS::get<FieldOrderID>() const {
+ return getOrderID();
+}
+template<> FieldClOrdID::ValueType FIXPP_MSG_CLASS::get<FieldClOrdID>() const {
+ return getClOrdID();
+}
+template<> FieldRawDataLength::ValueType FIXPP_MSG_CLASS::get<FieldRawDataLength>() const {
+ return getRawDataLength();
+}
+template<> FieldRawData::ValueType FIXPP_MSG_CLASS::get<FieldRawData>() const {
+ return getRawData();
+}
+
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageNewOrderSingle
+template<> FieldClOrdID::ValueType FIXPP_MSG_CLASS::get<FieldClOrdID>() const {
+ return getClOrdID();
+}
+template<> FieldSecondaryClOrdID::ValueType FIXPP_MSG_CLASS::get<FieldSecondaryClOrdID>() const {
+ return getSecondaryClOrdID();
+}
+template<> FieldClOrdLinkID::ValueType FIXPP_MSG_CLASS::get<FieldClOrdLinkID>() const {
+ return getClOrdLinkID();
+}
+template<> FieldTradeOriginationDate::ValueType FIXPP_MSG_CLASS::get<FieldTradeOriginationDate>() const {
+ return getTradeOriginationDate();
+}
+template<> FieldTradeDate::ValueType FIXPP_MSG_CLASS::get<FieldTradeDate>() const {
+ return getTradeDate();
+}
+template<> FieldAccount::ValueType FIXPP_MSG_CLASS::get<FieldAccount>() const {
+ return getAccount();
+}
+template<> FieldAcctIDSource::ValueType FIXPP_MSG_CLASS::get<FieldAcctIDSource>() const {
+ return getAcctIDSource();
+}
+template<> FieldAccountType::ValueType FIXPP_MSG_CLASS::get<FieldAccountType>() const {
+ return getAccountType();
+}
+template<> FieldDayBookingInst::ValueType FIXPP_MSG_CLASS::get<FieldDayBookingInst>() const {
+ return getDayBookingInst();
+}
+template<> FieldBookingUnit::ValueType FIXPP_MSG_CLASS::get<FieldBookingUnit>() const {
+ return getBookingUnit();
+}
+template<> FieldPreallocMethod::ValueType FIXPP_MSG_CLASS::get<FieldPreallocMethod>() const {
+ return getPreallocMethod();
+}
+template<> FieldAllocID::ValueType FIXPP_MSG_CLASS::get<FieldAllocID>() const {
+ return getAllocID();
+}
+template<> FieldSettlType::ValueType FIXPP_MSG_CLASS::get<FieldSettlType>() const {
+ return getSettlType();
+}
+template<> FieldSettlDate::ValueType FIXPP_MSG_CLASS::get<FieldSettlDate>() const {
+ return getSettlDate();
+}
+template<> FieldCashMargin::ValueType FIXPP_MSG_CLASS::get<FieldCashMargin>() const {
+ return getCashMargin();
+}
+template<> FieldClearingFeeIndicator::ValueType FIXPP_MSG_CLASS::get<FieldClearingFeeIndicator>() const {
+ return getClearingFeeIndicator();
+}
+template<> FieldHandlInst::ValueType FIXPP_MSG_CLASS::get<FieldHandlInst>() const {
+ return getHandlInst();
+}
+template<> FieldExecInst::ValueType FIXPP_MSG_CLASS::get<FieldExecInst>() const {
+ return getExecInst();
+}
+template<> FieldMinQty::ValueType FIXPP_MSG_CLASS::get<FieldMinQty>() const {
+ return getMinQty();
+}
+template<> FieldMaxFloor::ValueType FIXPP_MSG_CLASS::get<FieldMaxFloor>() const {
+ return getMaxFloor();
+}
+template<> FieldExDestination::ValueType FIXPP_MSG_CLASS::get<FieldExDestination>() const {
+ return getExDestination();
+}
+template<> FieldProcessCode::ValueType FIXPP_MSG_CLASS::get<FieldProcessCode>() const {
+ return getProcessCode();
+}
+template<> FieldSymbol::ValueType FIXPP_MSG_CLASS::get<FieldSymbol>() const {
+ return getSymbol();
+}
+template<> FieldSymbolSfx::ValueType FIXPP_MSG_CLASS::get<FieldSymbolSfx>() const {
+ return getSymbolSfx();
+}
+template<> FieldSecurityID::ValueType FIXPP_MSG_CLASS::get<FieldSecurityID>() const {
+ return getSecurityID();
+}
+template<> FieldSecurityIDSource::ValueType FIXPP_MSG_CLASS::get<FieldSecurityIDSource>() const {
+ return getSecurityIDSource();
+}
+template<> FieldProduct::ValueType FIXPP_MSG_CLASS::get<FieldProduct>() const {
+ return getProduct();
+}
+template<> FieldCFICode::ValueType FIXPP_MSG_CLASS::get<FieldCFICode>() const {
+ return getCFICode();
+}
+template<> FieldSecurityType::ValueType FIXPP_MSG_CLASS::get<FieldSecurityType>() const {
+ return getSecurityType();
+}
+template<> FieldSecuritySubType::ValueType FIXPP_MSG_CLASS::get<FieldSecuritySubType>() const {
+ return getSecuritySubType();
+}
+template<> FieldMaturityMonthYear::ValueType FIXPP_MSG_CLASS::get<FieldMaturityMonthYear>() const {
+ return getMaturityMonthYear();
+}
+template<> FieldMaturityDate::ValueType FIXPP_MSG_CLASS::get<FieldMaturityDate>() const {
+ return getMaturityDate();
+}
+template<> FieldPutOrCall::ValueType FIXPP_MSG_CLASS::get<FieldPutOrCall>() const {
+ return getPutOrCall();
+}
+template<> FieldCouponPaymentDate::ValueType FIXPP_MSG_CLASS::get<FieldCouponPaymentDate>() const {
+ return getCouponPaymentDate();
+}
+template<> FieldIssueDate::ValueType FIXPP_MSG_CLASS::get<FieldIssueDate>() const {
+ return getIssueDate();
+}
+template<> FieldRepoCollateralSecurityType::ValueType FIXPP_MSG_CLASS::get<FieldRepoCollateralSecurityType>() const {
+ return getRepoCollateralSecurityType();
+}
+template<> FieldRepurchaseTerm::ValueType FIXPP_MSG_CLASS::get<FieldRepurchaseTerm>() const {
+ return getRepurchaseTerm();
+}
+template<> FieldRepurchaseRate::ValueType FIXPP_MSG_CLASS::get<FieldRepurchaseRate>() const {
+ return getRepurchaseRate();
+}
+template<> FieldFactor::ValueType FIXPP_MSG_CLASS::get<FieldFactor>() const {
+ return getFactor();
+}
+template<> FieldCreditRating::ValueType FIXPP_MSG_CLASS::get<FieldCreditRating>() const {
+ return getCreditRating();
+}
+template<> FieldInstrRegistry::ValueType FIXPP_MSG_CLASS::get<FieldInstrRegistry>() const {
+ return getInstrRegistry();
+}
+template<> FieldCountryOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldCountryOfIssue>() const {
+ return getCountryOfIssue();
+}
+template<> FieldStateOrProvinceOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldStateOrProvinceOfIssue>() const {
+ return getStateOrProvinceOfIssue();
+}
+template<> FieldLocaleOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldLocaleOfIssue>() const {
+ return getLocaleOfIssue();
+}
+template<> FieldRedemptionDate::ValueType FIXPP_MSG_CLASS::get<FieldRedemptionDate>() const {
+ return getRedemptionDate();
+}
+template<> FieldStrikePrice::ValueType FIXPP_MSG_CLASS::get<FieldStrikePrice>() const {
+ return getStrikePrice();
+}
+template<> FieldStrikeCurrency::ValueType FIXPP_MSG_CLASS::get<FieldStrikeCurrency>() const {
+ return getStrikeCurrency();
+}
+template<> FieldOptAttribute::ValueType FIXPP_MSG_CLASS::get<FieldOptAttribute>() const {
+ return getOptAttribute();
+}
+template<> FieldContractMultiplier::ValueType FIXPP_MSG_CLASS::get<FieldContractMultiplier>() const {
+ return getContractMultiplier();
+}
+template<> FieldCouponRate::ValueType FIXPP_MSG_CLASS::get<FieldCouponRate>() const {
+ return getCouponRate();
+}
+template<> FieldSecurityExchange::ValueType FIXPP_MSG_CLASS::get<FieldSecurityExchange>() const {
+ return getSecurityExchange();
+}
+template<> FieldIssuer::ValueType FIXPP_MSG_CLASS::get<FieldIssuer>() const {
+ return getIssuer();
+}
+template<> FieldEncodedIssuerLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedIssuerLen>() const {
+ return getEncodedIssuerLen();
+}
+template<> FieldEncodedIssuer::ValueType FIXPP_MSG_CLASS::get<FieldEncodedIssuer>() const {
+ return getEncodedIssuer();
+}
+template<> FieldSecurityDesc::ValueType FIXPP_MSG_CLASS::get<FieldSecurityDesc>() const {
+ return getSecurityDesc();
+}
+template<> FieldEncodedSecurityDescLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedSecurityDescLen>() const {
+ return getEncodedSecurityDescLen();
+}
+template<> FieldEncodedSecurityDesc::ValueType FIXPP_MSG_CLASS::get<FieldEncodedSecurityDesc>() const {
+ return getEncodedSecurityDesc();
+}
+template<> FieldPool::ValueType FIXPP_MSG_CLASS::get<FieldPool>() const {
+ return getPool();
+}
+template<> FieldContractSettlMonth::ValueType FIXPP_MSG_CLASS::get<FieldContractSettlMonth>() const {
+ return getContractSettlMonth();
+}
+template<> FieldCPProgram::ValueType FIXPP_MSG_CLASS::get<FieldCPProgram>() const {
+ return getCPProgram();
+}
+template<> FieldCPRegType::ValueType FIXPP_MSG_CLASS::get<FieldCPRegType>() const {
+ return getCPRegType();
+}
+template<> FieldDatedDate::ValueType FIXPP_MSG_CLASS::get<FieldDatedDate>() const {
+ return getDatedDate();
+}
+template<> FieldInterestAccrualDate::ValueType FIXPP_MSG_CLASS::get<FieldInterestAccrualDate>() const {
+ return getInterestAccrualDate();
+}
+template<> FieldAgreementDesc::ValueType FIXPP_MSG_CLASS::get<FieldAgreementDesc>() const {
+ return getAgreementDesc();
+}
+template<> FieldAgreementID::ValueType FIXPP_MSG_CLASS::get<FieldAgreementID>() const {
+ return getAgreementID();
+}
+template<> FieldAgreementDate::ValueType FIXPP_MSG_CLASS::get<FieldAgreementDate>() const {
+ return getAgreementDate();
+}
+template<> FieldAgreementCurrency::ValueType FIXPP_MSG_CLASS::get<FieldAgreementCurrency>() const {
+ return getAgreementCurrency();
+}
+template<> FieldTerminationType::ValueType FIXPP_MSG_CLASS::get<FieldTerminationType>() const {
+ return getTerminationType();
+}
+template<> FieldStartDate::ValueType FIXPP_MSG_CLASS::get<FieldStartDate>() const {
+ return getStartDate();
+}
+template<> FieldEndDate::ValueType FIXPP_MSG_CLASS::get<FieldEndDate>() const {
+ return getEndDate();
+}
+template<> FieldDeliveryType::ValueType FIXPP_MSG_CLASS::get<FieldDeliveryType>() const {
+ return getDeliveryType();
+}
+template<> FieldMarginRatio::ValueType FIXPP_MSG_CLASS::get<FieldMarginRatio>() const {
+ return getMarginRatio();
+}
+template<> FieldPrevClosePx::ValueType FIXPP_MSG_CLASS::get<FieldPrevClosePx>() const {
+ return getPrevClosePx();
+}
+template<> FieldSide::ValueType FIXPP_MSG_CLASS::get<FieldSide>() const {
+ return getSide();
+}
+template<> FieldLocateReqd::ValueType FIXPP_MSG_CLASS::get<FieldLocateReqd>() const {
+ return getLocateReqd();
+}
+template<> FieldTransactTime::ValueType FIXPP_MSG_CLASS::get<FieldTransactTime>() const {
+ return getTransactTime();
+}
+template<> FieldQtyType::ValueType FIXPP_MSG_CLASS::get<FieldQtyType>() const {
+ return getQtyType();
+}
+template<> FieldOrderQty::ValueType FIXPP_MSG_CLASS::get<FieldOrderQty>() const {
+ return getOrderQty();
+}
+template<> FieldCashOrderQty::ValueType FIXPP_MSG_CLASS::get<FieldCashOrderQty>() const {
+ return getCashOrderQty();
+}
+template<> FieldOrderPercent::ValueType FIXPP_MSG_CLASS::get<FieldOrderPercent>() const {
+ return getOrderPercent();
+}
+template<> FieldRoundingDirection::ValueType FIXPP_MSG_CLASS::get<FieldRoundingDirection>() const {
+ return getRoundingDirection();
+}
+template<> FieldRoundingModulus::ValueType FIXPP_MSG_CLASS::get<FieldRoundingModulus>() const {
+ return getRoundingModulus();
+}
+template<> FieldOrdType::ValueType FIXPP_MSG_CLASS::get<FieldOrdType>() const {
+ return getOrdType();
+}
+template<> FieldPriceType::ValueType FIXPP_MSG_CLASS::get<FieldPriceType>() const {
+ return getPriceType();
+}
+template<> FieldPrice::ValueType FIXPP_MSG_CLASS::get<FieldPrice>() const {
+ return getPrice();
+}
+template<> FieldStopPx::ValueType FIXPP_MSG_CLASS::get<FieldStopPx>() const {
+ return getStopPx();
+}
+template<> FieldSpread::ValueType FIXPP_MSG_CLASS::get<FieldSpread>() const {
+ return getSpread();
+}
+template<> FieldBenchmarkCurveCurrency::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkCurveCurrency>() const {
+ return getBenchmarkCurveCurrency();
+}
+template<> FieldBenchmarkCurveName::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkCurveName>() const {
+ return getBenchmarkCurveName();
+}
+template<> FieldBenchmarkCurvePoint::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkCurvePoint>() const {
+ return getBenchmarkCurvePoint();
+}
+template<> FieldBenchmarkPrice::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkPrice>() const {
+ return getBenchmarkPrice();
+}
+template<> FieldBenchmarkPriceType::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkPriceType>() const {
+ return getBenchmarkPriceType();
+}
+template<> FieldBenchmarkSecurityID::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkSecurityID>() const {
+ return getBenchmarkSecurityID();
+}
+template<> FieldBenchmarkSecurityIDSource::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkSecurityIDSource>() const {
+ return getBenchmarkSecurityIDSource();
+}
+template<> FieldYieldType::ValueType FIXPP_MSG_CLASS::get<FieldYieldType>() const {
+ return getYieldType();
+}
+template<> FieldYield::ValueType FIXPP_MSG_CLASS::get<FieldYield>() const {
+ return getYield();
+}
+template<> FieldYieldCalcDate::ValueType FIXPP_MSG_CLASS::get<FieldYieldCalcDate>() const {
+ return getYieldCalcDate();
+}
+template<> FieldYieldRedemptionDate::ValueType FIXPP_MSG_CLASS::get<FieldYieldRedemptionDate>() const {
+ return getYieldRedemptionDate();
+}
+template<> FieldYieldRedemptionPrice::ValueType FIXPP_MSG_CLASS::get<FieldYieldRedemptionPrice>() const {
+ return getYieldRedemptionPrice();
+}
+template<> FieldYieldRedemptionPriceType::ValueType FIXPP_MSG_CLASS::get<FieldYieldRedemptionPriceType>() const {
+ return getYieldRedemptionPriceType();
+}
+template<> FieldCurrency::ValueType FIXPP_MSG_CLASS::get<FieldCurrency>() const {
+ return getCurrency();
+}
+template<> FieldComplianceID::ValueType FIXPP_MSG_CLASS::get<FieldComplianceID>() const {
+ return getComplianceID();
+}
+template<> FieldSolicitedFlag::ValueType FIXPP_MSG_CLASS::get<FieldSolicitedFlag>() const {
+ return getSolicitedFlag();
+}
+template<> FieldIOIID::ValueType FIXPP_MSG_CLASS::get<FieldIOIID>() const {
+ return getIOIID();
+}
+template<> FieldQuoteID::ValueType FIXPP_MSG_CLASS::get<FieldQuoteID>() const {
+ return getQuoteID();
+}
+template<> FieldTimeInForce::ValueType FIXPP_MSG_CLASS::get<FieldTimeInForce>() const {
+ return getTimeInForce();
+}
+template<> FieldEffectiveTime::ValueType FIXPP_MSG_CLASS::get<FieldEffectiveTime>() const {
+ return getEffectiveTime();
+}
+template<> FieldExpireDate::ValueType FIXPP_MSG_CLASS::get<FieldExpireDate>() const {
+ return getExpireDate();
+}
+template<> FieldExpireTime::ValueType FIXPP_MSG_CLASS::get<FieldExpireTime>() const {
+ return getExpireTime();
+}
+template<> FieldGTBookingInst::ValueType FIXPP_MSG_CLASS::get<FieldGTBookingInst>() const {
+ return getGTBookingInst();
+}
+template<> FieldCommission::ValueType FIXPP_MSG_CLASS::get<FieldCommission>() const {
+ return getCommission();
+}
+template<> FieldCommType::ValueType FIXPP_MSG_CLASS::get<FieldCommType>() const {
+ return getCommType();
+}
+template<> FieldCommCurrency::ValueType FIXPP_MSG_CLASS::get<FieldCommCurrency>() const {
+ return getCommCurrency();
+}
+template<> FieldFundRenewWaiv::ValueType FIXPP_MSG_CLASS::get<FieldFundRenewWaiv>() const {
+ return getFundRenewWaiv();
+}
+template<> FieldOrderCapacity::ValueType FIXPP_MSG_CLASS::get<FieldOrderCapacity>() const {
+ return getOrderCapacity();
+}
+template<> FieldOrderRestrictions::ValueType FIXPP_MSG_CLASS::get<FieldOrderRestrictions>() const {
+ return getOrderRestrictions();
+}
+template<> FieldCustOrderCapacity::ValueType FIXPP_MSG_CLASS::get<FieldCustOrderCapacity>() const {
+ return getCustOrderCapacity();
+}
+template<> FieldForexReq::ValueType FIXPP_MSG_CLASS::get<FieldForexReq>() const {
+ return getForexReq();
+}
+template<> FieldSettlCurrency::ValueType FIXPP_MSG_CLASS::get<FieldSettlCurrency>() const {
+ return getSettlCurrency();
+}
+template<> FieldBookingType::ValueType FIXPP_MSG_CLASS::get<FieldBookingType>() const {
+ return getBookingType();
+}
+template<> FieldText::ValueType FIXPP_MSG_CLASS::get<FieldText>() const {
+ return getText();
+}
+template<> FieldEncodedTextLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedTextLen>() const {
+ return getEncodedTextLen();
+}
+template<> FieldEncodedText::ValueType FIXPP_MSG_CLASS::get<FieldEncodedText>() const {
+ return getEncodedText();
+}
+template<> FieldSettlDate2::ValueType FIXPP_MSG_CLASS::get<FieldSettlDate2>() const {
+ return getSettlDate2();
+}
+template<> FieldOrderQty2::ValueType FIXPP_MSG_CLASS::get<FieldOrderQty2>() const {
+ return getOrderQty2();
+}
+template<> FieldPrice2::ValueType FIXPP_MSG_CLASS::get<FieldPrice2>() const {
+ return getPrice2();
+}
+template<> FieldPositionEffect::ValueType FIXPP_MSG_CLASS::get<FieldPositionEffect>() const {
+ return getPositionEffect();
+}
+template<> FieldCoveredOrUncovered::ValueType FIXPP_MSG_CLASS::get<FieldCoveredOrUncovered>() const {
+ return getCoveredOrUncovered();
+}
+template<> FieldMaxShow::ValueType FIXPP_MSG_CLASS::get<FieldMaxShow>() const {
+ return getMaxShow();
+}
+template<> FieldPegOffsetValue::ValueType FIXPP_MSG_CLASS::get<FieldPegOffsetValue>() const {
+ return getPegOffsetValue();
+}
+template<> FieldPegMoveType::ValueType FIXPP_MSG_CLASS::get<FieldPegMoveType>() const {
+ return getPegMoveType();
+}
+template<> FieldPegOffsetType::ValueType FIXPP_MSG_CLASS::get<FieldPegOffsetType>() const {
+ return getPegOffsetType();
+}
+template<> FieldPegLimitType::ValueType FIXPP_MSG_CLASS::get<FieldPegLimitType>() const {
+ return getPegLimitType();
+}
+template<> FieldPegRoundDirection::ValueType FIXPP_MSG_CLASS::get<FieldPegRoundDirection>() const {
+ return getPegRoundDirection();
+}
+template<> FieldPegScope::ValueType FIXPP_MSG_CLASS::get<FieldPegScope>() const {
+ return getPegScope();
+}
+template<> FieldDiscretionInst::ValueType FIXPP_MSG_CLASS::get<FieldDiscretionInst>() const {
+ return getDiscretionInst();
+}
+template<> FieldDiscretionOffsetValue::ValueType FIXPP_MSG_CLASS::get<FieldDiscretionOffsetValue>() const {
+ return getDiscretionOffsetValue();
+}
+template<> FieldDiscretionMoveType::ValueType FIXPP_MSG_CLASS::get<FieldDiscretionMoveType>() const {
+ return getDiscretionMoveType();
+}
+template<> FieldDiscretionOffsetType::ValueType FIXPP_MSG_CLASS::get<FieldDiscretionOffsetType>() const {
+ return getDiscretionOffsetType();
+}
+template<> FieldDiscretionLimitType::ValueType FIXPP_MSG_CLASS::get<FieldDiscretionLimitType>() const {
+ return getDiscretionLimitType();
+}
+template<> FieldDiscretionRoundDirection::ValueType FIXPP_MSG_CLASS::get<FieldDiscretionRoundDirection>() const {
+ return getDiscretionRoundDirection();
+}
+template<> FieldDiscretionScope::ValueType FIXPP_MSG_CLASS::get<FieldDiscretionScope>() const {
+ return getDiscretionScope();
+}
+template<> FieldTargetStrategy::ValueType FIXPP_MSG_CLASS::get<FieldTargetStrategy>() const {
+ return getTargetStrategy();
+}
+template<> FieldTargetStrategyParameters::ValueType FIXPP_MSG_CLASS::get<FieldTargetStrategyParameters>() const {
+ return getTargetStrategyParameters();
+}
+template<> FieldParticipationRate::ValueType FIXPP_MSG_CLASS::get<FieldParticipationRate>() const {
+ return getParticipationRate();
+}
+template<> FieldCancellationRights::ValueType FIXPP_MSG_CLASS::get<FieldCancellationRights>() const {
+ return getCancellationRights();
+}
+template<> FieldMoneyLaunderingStatus::ValueType FIXPP_MSG_CLASS::get<FieldMoneyLaunderingStatus>() const {
+ return getMoneyLaunderingStatus();
+}
+template<> FieldRegistID::ValueType FIXPP_MSG_CLASS::get<FieldRegistID>() const {
+ return getRegistID();
+}
+template<> FieldDesignation::ValueType FIXPP_MSG_CLASS::get<FieldDesignation>() const {
+ return getDesignation();
+}
+
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageNewOrderList
+template<> FieldListID::ValueType FIXPP_MSG_CLASS::get<FieldListID>() const {
+ return getListID();
+}
+template<> FieldBidID::ValueType FIXPP_MSG_CLASS::get<FieldBidID>() const {
+ return getBidID();
+}
+template<> FieldClientBidID::ValueType FIXPP_MSG_CLASS::get<FieldClientBidID>() const {
+ return getClientBidID();
+}
+template<> FieldProgRptReqs::ValueType FIXPP_MSG_CLASS::get<FieldProgRptReqs>() const {
+ return getProgRptReqs();
+}
+template<> FieldBidType::ValueType FIXPP_MSG_CLASS::get<FieldBidType>() const {
+ return getBidType();
+}
+template<> FieldProgPeriodInterval::ValueType FIXPP_MSG_CLASS::get<FieldProgPeriodInterval>() const {
+ return getProgPeriodInterval();
+}
+template<> FieldCancellationRights::ValueType FIXPP_MSG_CLASS::get<FieldCancellationRights>() const {
+ return getCancellationRights();
+}
+template<> FieldMoneyLaunderingStatus::ValueType FIXPP_MSG_CLASS::get<FieldMoneyLaunderingStatus>() const {
+ return getMoneyLaunderingStatus();
+}
+template<> FieldRegistID::ValueType FIXPP_MSG_CLASS::get<FieldRegistID>() const {
+ return getRegistID();
+}
+template<> FieldListExecInstType::ValueType FIXPP_MSG_CLASS::get<FieldListExecInstType>() const {
+ return getListExecInstType();
+}
+template<> FieldListExecInst::ValueType FIXPP_MSG_CLASS::get<FieldListExecInst>() const {
+ return getListExecInst();
+}
+template<> FieldEncodedListExecInstLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedListExecInstLen>() const {
+ return getEncodedListExecInstLen();
+}
+template<> FieldEncodedListExecInst::ValueType FIXPP_MSG_CLASS::get<FieldEncodedListExecInst>() const {
+ return getEncodedListExecInst();
+}
+template<> FieldAllowableOneSidednessPct::ValueType FIXPP_MSG_CLASS::get<FieldAllowableOneSidednessPct>() const {
+ return getAllowableOneSidednessPct();
+}
+template<> FieldAllowableOneSidednessValue::ValueType FIXPP_MSG_CLASS::get<FieldAllowableOneSidednessValue>() const {
+ return getAllowableOneSidednessValue();
+}
+template<> FieldAllowableOneSidednessCurr::ValueType FIXPP_MSG_CLASS::get<FieldAllowableOneSidednessCurr>() const {
+ return getAllowableOneSidednessCurr();
+}
+template<> FieldTotNoOrders::ValueType FIXPP_MSG_CLASS::get<FieldTotNoOrders>() const {
+ return getTotNoOrders();
+}
+template<> FieldLastFragment::ValueType FIXPP_MSG_CLASS::get<FieldLastFragment>() const {
+ return getLastFragment();
+}
+
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageOrderCancelRequest
+template<> FieldOrigClOrdID::ValueType FIXPP_MSG_CLASS::get<FieldOrigClOrdID>() const {
+ return getOrigClOrdID();
+}
+template<> FieldOrderID::ValueType FIXPP_MSG_CLASS::get<FieldOrderID>() const {
+ return getOrderID();
+}
+template<> FieldClOrdID::ValueType FIXPP_MSG_CLASS::get<FieldClOrdID>() const {
+ return getClOrdID();
+}
+template<> FieldSecondaryClOrdID::ValueType FIXPP_MSG_CLASS::get<FieldSecondaryClOrdID>() const {
+ return getSecondaryClOrdID();
+}
+template<> FieldClOrdLinkID::ValueType FIXPP_MSG_CLASS::get<FieldClOrdLinkID>() const {
+ return getClOrdLinkID();
+}
+template<> FieldListID::ValueType FIXPP_MSG_CLASS::get<FieldListID>() const {
+ return getListID();
+}
+template<> FieldOrigOrdModTime::ValueType FIXPP_MSG_CLASS::get<FieldOrigOrdModTime>() const {
+ return getOrigOrdModTime();
+}
+template<> FieldAccount::ValueType FIXPP_MSG_CLASS::get<FieldAccount>() const {
+ return getAccount();
+}
+template<> FieldAcctIDSource::ValueType FIXPP_MSG_CLASS::get<FieldAcctIDSource>() const {
+ return getAcctIDSource();
+}
+template<> FieldAccountType::ValueType FIXPP_MSG_CLASS::get<FieldAccountType>() const {
+ return getAccountType();
+}
+template<> FieldSymbol::ValueType FIXPP_MSG_CLASS::get<FieldSymbol>() const {
+ return getSymbol();
+}
+template<> FieldSymbolSfx::ValueType FIXPP_MSG_CLASS::get<FieldSymbolSfx>() const {
+ return getSymbolSfx();
+}
+template<> FieldSecurityID::ValueType FIXPP_MSG_CLASS::get<FieldSecurityID>() const {
+ return getSecurityID();
+}
+template<> FieldSecurityIDSource::ValueType FIXPP_MSG_CLASS::get<FieldSecurityIDSource>() const {
+ return getSecurityIDSource();
+}
+template<> FieldProduct::ValueType FIXPP_MSG_CLASS::get<FieldProduct>() const {
+ return getProduct();
+}
+template<> FieldCFICode::ValueType FIXPP_MSG_CLASS::get<FieldCFICode>() const {
+ return getCFICode();
+}
+template<> FieldSecurityType::ValueType FIXPP_MSG_CLASS::get<FieldSecurityType>() const {
+ return getSecurityType();
+}
+template<> FieldSecuritySubType::ValueType FIXPP_MSG_CLASS::get<FieldSecuritySubType>() const {
+ return getSecuritySubType();
+}
+template<> FieldMaturityMonthYear::ValueType FIXPP_MSG_CLASS::get<FieldMaturityMonthYear>() const {
+ return getMaturityMonthYear();
+}
+template<> FieldMaturityDate::ValueType FIXPP_MSG_CLASS::get<FieldMaturityDate>() const {
+ return getMaturityDate();
+}
+template<> FieldPutOrCall::ValueType FIXPP_MSG_CLASS::get<FieldPutOrCall>() const {
+ return getPutOrCall();
+}
+template<> FieldCouponPaymentDate::ValueType FIXPP_MSG_CLASS::get<FieldCouponPaymentDate>() const {
+ return getCouponPaymentDate();
+}
+template<> FieldIssueDate::ValueType FIXPP_MSG_CLASS::get<FieldIssueDate>() const {
+ return getIssueDate();
+}
+template<> FieldRepoCollateralSecurityType::ValueType FIXPP_MSG_CLASS::get<FieldRepoCollateralSecurityType>() const {
+ return getRepoCollateralSecurityType();
+}
+template<> FieldRepurchaseTerm::ValueType FIXPP_MSG_CLASS::get<FieldRepurchaseTerm>() const {
+ return getRepurchaseTerm();
+}
+template<> FieldRepurchaseRate::ValueType FIXPP_MSG_CLASS::get<FieldRepurchaseRate>() const {
+ return getRepurchaseRate();
+}
+template<> FieldFactor::ValueType FIXPP_MSG_CLASS::get<FieldFactor>() const {
+ return getFactor();
+}
+template<> FieldCreditRating::ValueType FIXPP_MSG_CLASS::get<FieldCreditRating>() const {
+ return getCreditRating();
+}
+template<> FieldInstrRegistry::ValueType FIXPP_MSG_CLASS::get<FieldInstrRegistry>() const {
+ return getInstrRegistry();
+}
+template<> FieldCountryOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldCountryOfIssue>() const {
+ return getCountryOfIssue();
+}
+template<> FieldStateOrProvinceOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldStateOrProvinceOfIssue>() const {
+ return getStateOrProvinceOfIssue();
+}
+template<> FieldLocaleOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldLocaleOfIssue>() const {
+ return getLocaleOfIssue();
+}
+template<> FieldRedemptionDate::ValueType FIXPP_MSG_CLASS::get<FieldRedemptionDate>() const {
+ return getRedemptionDate();
+}
+template<> FieldStrikePrice::ValueType FIXPP_MSG_CLASS::get<FieldStrikePrice>() const {
+ return getStrikePrice();
+}
+template<> FieldStrikeCurrency::ValueType FIXPP_MSG_CLASS::get<FieldStrikeCurrency>() const {
+ return getStrikeCurrency();
+}
+template<> FieldOptAttribute::ValueType FIXPP_MSG_CLASS::get<FieldOptAttribute>() const {
+ return getOptAttribute();
+}
+template<> FieldContractMultiplier::ValueType FIXPP_MSG_CLASS::get<FieldContractMultiplier>() const {
+ return getContractMultiplier();
+}
+template<> FieldCouponRate::ValueType FIXPP_MSG_CLASS::get<FieldCouponRate>() const {
+ return getCouponRate();
+}
+template<> FieldSecurityExchange::ValueType FIXPP_MSG_CLASS::get<FieldSecurityExchange>() const {
+ return getSecurityExchange();
+}
+template<> FieldIssuer::ValueType FIXPP_MSG_CLASS::get<FieldIssuer>() const {
+ return getIssuer();
+}
+template<> FieldEncodedIssuerLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedIssuerLen>() const {
+ return getEncodedIssuerLen();
+}
+template<> FieldEncodedIssuer::ValueType FIXPP_MSG_CLASS::get<FieldEncodedIssuer>() const {
+ return getEncodedIssuer();
+}
+template<> FieldSecurityDesc::ValueType FIXPP_MSG_CLASS::get<FieldSecurityDesc>() const {
+ return getSecurityDesc();
+}
+template<> FieldEncodedSecurityDescLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedSecurityDescLen>() const {
+ return getEncodedSecurityDescLen();
+}
+template<> FieldEncodedSecurityDesc::ValueType FIXPP_MSG_CLASS::get<FieldEncodedSecurityDesc>() const {
+ return getEncodedSecurityDesc();
+}
+template<> FieldPool::ValueType FIXPP_MSG_CLASS::get<FieldPool>() const {
+ return getPool();
+}
+template<> FieldContractSettlMonth::ValueType FIXPP_MSG_CLASS::get<FieldContractSettlMonth>() const {
+ return getContractSettlMonth();
+}
+template<> FieldCPProgram::ValueType FIXPP_MSG_CLASS::get<FieldCPProgram>() const {
+ return getCPProgram();
+}
+template<> FieldCPRegType::ValueType FIXPP_MSG_CLASS::get<FieldCPRegType>() const {
+ return getCPRegType();
+}
+template<> FieldDatedDate::ValueType FIXPP_MSG_CLASS::get<FieldDatedDate>() const {
+ return getDatedDate();
+}
+template<> FieldInterestAccrualDate::ValueType FIXPP_MSG_CLASS::get<FieldInterestAccrualDate>() const {
+ return getInterestAccrualDate();
+}
+template<> FieldAgreementDesc::ValueType FIXPP_MSG_CLASS::get<FieldAgreementDesc>() const {
+ return getAgreementDesc();
+}
+template<> FieldAgreementID::ValueType FIXPP_MSG_CLASS::get<FieldAgreementID>() const {
+ return getAgreementID();
+}
+template<> FieldAgreementDate::ValueType FIXPP_MSG_CLASS::get<FieldAgreementDate>() const {
+ return getAgreementDate();
+}
+template<> FieldAgreementCurrency::ValueType FIXPP_MSG_CLASS::get<FieldAgreementCurrency>() const {
+ return getAgreementCurrency();
+}
+template<> FieldTerminationType::ValueType FIXPP_MSG_CLASS::get<FieldTerminationType>() const {
+ return getTerminationType();
+}
+template<> FieldStartDate::ValueType FIXPP_MSG_CLASS::get<FieldStartDate>() const {
+ return getStartDate();
+}
+template<> FieldEndDate::ValueType FIXPP_MSG_CLASS::get<FieldEndDate>() const {
+ return getEndDate();
+}
+template<> FieldDeliveryType::ValueType FIXPP_MSG_CLASS::get<FieldDeliveryType>() const {
+ return getDeliveryType();
+}
+template<> FieldMarginRatio::ValueType FIXPP_MSG_CLASS::get<FieldMarginRatio>() const {
+ return getMarginRatio();
+}
+template<> FieldSide::ValueType FIXPP_MSG_CLASS::get<FieldSide>() const {
+ return getSide();
+}
+template<> FieldTransactTime::ValueType FIXPP_MSG_CLASS::get<FieldTransactTime>() const {
+ return getTransactTime();
+}
+template<> FieldOrderQty::ValueType FIXPP_MSG_CLASS::get<FieldOrderQty>() const {
+ return getOrderQty();
+}
+template<> FieldCashOrderQty::ValueType FIXPP_MSG_CLASS::get<FieldCashOrderQty>() const {
+ return getCashOrderQty();
+}
+template<> FieldOrderPercent::ValueType FIXPP_MSG_CLASS::get<FieldOrderPercent>() const {
+ return getOrderPercent();
+}
+template<> FieldRoundingDirection::ValueType FIXPP_MSG_CLASS::get<FieldRoundingDirection>() const {
+ return getRoundingDirection();
+}
+template<> FieldRoundingModulus::ValueType FIXPP_MSG_CLASS::get<FieldRoundingModulus>() const {
+ return getRoundingModulus();
+}
+template<> FieldComplianceID::ValueType FIXPP_MSG_CLASS::get<FieldComplianceID>() const {
+ return getComplianceID();
+}
+template<> FieldText::ValueType FIXPP_MSG_CLASS::get<FieldText>() const {
+ return getText();
+}
+template<> FieldEncodedTextLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedTextLen>() const {
+ return getEncodedTextLen();
+}
+template<> FieldEncodedText::ValueType FIXPP_MSG_CLASS::get<FieldEncodedText>() const {
+ return getEncodedText();
+}
+
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageOrderCancelReplaceRequest
+template<> FieldOrderID::ValueType FIXPP_MSG_CLASS::get<FieldOrderID>() const {
+ return getOrderID();
+}
+template<> FieldTradeOriginationDate::ValueType FIXPP_MSG_CLASS::get<FieldTradeOriginationDate>() const {
+ return getTradeOriginationDate();
+}
+template<> FieldTradeDate::ValueType FIXPP_MSG_CLASS::get<FieldTradeDate>() const {
+ return getTradeDate();
+}
+template<> FieldOrigClOrdID::ValueType FIXPP_MSG_CLASS::get<FieldOrigClOrdID>() const {
+ return getOrigClOrdID();
+}
+template<> FieldClOrdID::ValueType FIXPP_MSG_CLASS::get<FieldClOrdID>() const {
+ return getClOrdID();
+}
+template<> FieldSecondaryClOrdID::ValueType FIXPP_MSG_CLASS::get<FieldSecondaryClOrdID>() const {
+ return getSecondaryClOrdID();
+}
+template<> FieldClOrdLinkID::ValueType FIXPP_MSG_CLASS::get<FieldClOrdLinkID>() const {
+ return getClOrdLinkID();
+}
+template<> FieldListID::ValueType FIXPP_MSG_CLASS::get<FieldListID>() const {
+ return getListID();
+}
+template<> FieldOrigOrdModTime::ValueType FIXPP_MSG_CLASS::get<FieldOrigOrdModTime>() const {
+ return getOrigOrdModTime();
+}
+template<> FieldAccount::ValueType FIXPP_MSG_CLASS::get<FieldAccount>() const {
+ return getAccount();
+}
+template<> FieldAcctIDSource::ValueType FIXPP_MSG_CLASS::get<FieldAcctIDSource>() const {
+ return getAcctIDSource();
+}
+template<> FieldAccountType::ValueType FIXPP_MSG_CLASS::get<FieldAccountType>() const {
+ return getAccountType();
+}
+template<> FieldDayBookingInst::ValueType FIXPP_MSG_CLASS::get<FieldDayBookingInst>() const {
+ return getDayBookingInst();
+}
+template<> FieldBookingUnit::ValueType FIXPP_MSG_CLASS::get<FieldBookingUnit>() const {
+ return getBookingUnit();
+}
+template<> FieldPreallocMethod::ValueType FIXPP_MSG_CLASS::get<FieldPreallocMethod>() const {
+ return getPreallocMethod();
+}
+template<> FieldAllocID::ValueType FIXPP_MSG_CLASS::get<FieldAllocID>() const {
+ return getAllocID();
+}
+template<> FieldSettlType::ValueType FIXPP_MSG_CLASS::get<FieldSettlType>() const {
+ return getSettlType();
+}
+template<> FieldSettlDate::ValueType FIXPP_MSG_CLASS::get<FieldSettlDate>() const {
+ return getSettlDate();
+}
+template<> FieldCashMargin::ValueType FIXPP_MSG_CLASS::get<FieldCashMargin>() const {
+ return getCashMargin();
+}
+template<> FieldClearingFeeIndicator::ValueType FIXPP_MSG_CLASS::get<FieldClearingFeeIndicator>() const {
+ return getClearingFeeIndicator();
+}
+template<> FieldHandlInst::ValueType FIXPP_MSG_CLASS::get<FieldHandlInst>() const {
+ return getHandlInst();
+}
+template<> FieldExecInst::ValueType FIXPP_MSG_CLASS::get<FieldExecInst>() const {
+ return getExecInst();
+}
+template<> FieldMinQty::ValueType FIXPP_MSG_CLASS::get<FieldMinQty>() const {
+ return getMinQty();
+}
+template<> FieldMaxFloor::ValueType FIXPP_MSG_CLASS::get<FieldMaxFloor>() const {
+ return getMaxFloor();
+}
+template<> FieldExDestination::ValueType FIXPP_MSG_CLASS::get<FieldExDestination>() const {
+ return getExDestination();
+}
+template<> FieldSymbol::ValueType FIXPP_MSG_CLASS::get<FieldSymbol>() const {
+ return getSymbol();
+}
+template<> FieldSymbolSfx::ValueType FIXPP_MSG_CLASS::get<FieldSymbolSfx>() const {
+ return getSymbolSfx();
+}
+template<> FieldSecurityID::ValueType FIXPP_MSG_CLASS::get<FieldSecurityID>() const {
+ return getSecurityID();
+}
+template<> FieldSecurityIDSource::ValueType FIXPP_MSG_CLASS::get<FieldSecurityIDSource>() const {
+ return getSecurityIDSource();
+}
+template<> FieldProduct::ValueType FIXPP_MSG_CLASS::get<FieldProduct>() const {
+ return getProduct();
+}
+template<> FieldCFICode::ValueType FIXPP_MSG_CLASS::get<FieldCFICode>() const {
+ return getCFICode();
+}
+template<> FieldSecurityType::ValueType FIXPP_MSG_CLASS::get<FieldSecurityType>() const {
+ return getSecurityType();
+}
+template<> FieldSecuritySubType::ValueType FIXPP_MSG_CLASS::get<FieldSecuritySubType>() const {
+ return getSecuritySubType();
+}
+template<> FieldMaturityMonthYear::ValueType FIXPP_MSG_CLASS::get<FieldMaturityMonthYear>() const {
+ return getMaturityMonthYear();
+}
+template<> FieldMaturityDate::ValueType FIXPP_MSG_CLASS::get<FieldMaturityDate>() const {
+ return getMaturityDate();
+}
+template<> FieldPutOrCall::ValueType FIXPP_MSG_CLASS::get<FieldPutOrCall>() const {
+ return getPutOrCall();
+}
+template<> FieldCouponPaymentDate::ValueType FIXPP_MSG_CLASS::get<FieldCouponPaymentDate>() const {
+ return getCouponPaymentDate();
+}
+template<> FieldIssueDate::ValueType FIXPP_MSG_CLASS::get<FieldIssueDate>() const {
+ return getIssueDate();
+}
+template<> FieldRepoCollateralSecurityType::ValueType FIXPP_MSG_CLASS::get<FieldRepoCollateralSecurityType>() const {
+ return getRepoCollateralSecurityType();
+}
+template<> FieldRepurchaseTerm::ValueType FIXPP_MSG_CLASS::get<FieldRepurchaseTerm>() const {
+ return getRepurchaseTerm();
+}
+template<> FieldRepurchaseRate::ValueType FIXPP_MSG_CLASS::get<FieldRepurchaseRate>() const {
+ return getRepurchaseRate();
+}
+template<> FieldFactor::ValueType FIXPP_MSG_CLASS::get<FieldFactor>() const {
+ return getFactor();
+}
+template<> FieldCreditRating::ValueType FIXPP_MSG_CLASS::get<FieldCreditRating>() const {
+ return getCreditRating();
+}
+template<> FieldInstrRegistry::ValueType FIXPP_MSG_CLASS::get<FieldInstrRegistry>() const {
+ return getInstrRegistry();
+}
+template<> FieldCountryOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldCountryOfIssue>() const {
+ return getCountryOfIssue();
+}
+template<> FieldStateOrProvinceOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldStateOrProvinceOfIssue>() const {
+ return getStateOrProvinceOfIssue();
+}
+template<> FieldLocaleOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldLocaleOfIssue>() const {
+ return getLocaleOfIssue();
+}
+template<> FieldRedemptionDate::ValueType FIXPP_MSG_CLASS::get<FieldRedemptionDate>() const {
+ return getRedemptionDate();
+}
+template<> FieldStrikePrice::ValueType FIXPP_MSG_CLASS::get<FieldStrikePrice>() const {
+ return getStrikePrice();
+}
+template<> FieldStrikeCurrency::ValueType FIXPP_MSG_CLASS::get<FieldStrikeCurrency>() const {
+ return getStrikeCurrency();
+}
+template<> FieldOptAttribute::ValueType FIXPP_MSG_CLASS::get<FieldOptAttribute>() const {
+ return getOptAttribute();
+}
+template<> FieldContractMultiplier::ValueType FIXPP_MSG_CLASS::get<FieldContractMultiplier>() const {
+ return getContractMultiplier();
+}
+template<> FieldCouponRate::ValueType FIXPP_MSG_CLASS::get<FieldCouponRate>() const {
+ return getCouponRate();
+}
+template<> FieldSecurityExchange::ValueType FIXPP_MSG_CLASS::get<FieldSecurityExchange>() const {
+ return getSecurityExchange();
+}
+template<> FieldIssuer::ValueType FIXPP_MSG_CLASS::get<FieldIssuer>() const {
+ return getIssuer();
+}
+template<> FieldEncodedIssuerLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedIssuerLen>() const {
+ return getEncodedIssuerLen();
+}
+template<> FieldEncodedIssuer::ValueType FIXPP_MSG_CLASS::get<FieldEncodedIssuer>() const {
+ return getEncodedIssuer();
+}
+template<> FieldSecurityDesc::ValueType FIXPP_MSG_CLASS::get<FieldSecurityDesc>() const {
+ return getSecurityDesc();
+}
+template<> FieldEncodedSecurityDescLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedSecurityDescLen>() const {
+ return getEncodedSecurityDescLen();
+}
+template<> FieldEncodedSecurityDesc::ValueType FIXPP_MSG_CLASS::get<FieldEncodedSecurityDesc>() const {
+ return getEncodedSecurityDesc();
+}
+template<> FieldPool::ValueType FIXPP_MSG_CLASS::get<FieldPool>() const {
+ return getPool();
+}
+template<> FieldContractSettlMonth::ValueType FIXPP_MSG_CLASS::get<FieldContractSettlMonth>() const {
+ return getContractSettlMonth();
+}
+template<> FieldCPProgram::ValueType FIXPP_MSG_CLASS::get<FieldCPProgram>() const {
+ return getCPProgram();
+}
+template<> FieldCPRegType::ValueType FIXPP_MSG_CLASS::get<FieldCPRegType>() const {
+ return getCPRegType();
+}
+template<> FieldDatedDate::ValueType FIXPP_MSG_CLASS::get<FieldDatedDate>() const {
+ return getDatedDate();
+}
+template<> FieldInterestAccrualDate::ValueType FIXPP_MSG_CLASS::get<FieldInterestAccrualDate>() const {
+ return getInterestAccrualDate();
+}
+template<> FieldAgreementDesc::ValueType FIXPP_MSG_CLASS::get<FieldAgreementDesc>() const {
+ return getAgreementDesc();
+}
+template<> FieldAgreementID::ValueType FIXPP_MSG_CLASS::get<FieldAgreementID>() const {
+ return getAgreementID();
+}
+template<> FieldAgreementDate::ValueType FIXPP_MSG_CLASS::get<FieldAgreementDate>() const {
+ return getAgreementDate();
+}
+template<> FieldAgreementCurrency::ValueType FIXPP_MSG_CLASS::get<FieldAgreementCurrency>() const {
+ return getAgreementCurrency();
+}
+template<> FieldTerminationType::ValueType FIXPP_MSG_CLASS::get<FieldTerminationType>() const {
+ return getTerminationType();
+}
+template<> FieldStartDate::ValueType FIXPP_MSG_CLASS::get<FieldStartDate>() const {
+ return getStartDate();
+}
+template<> FieldEndDate::ValueType FIXPP_MSG_CLASS::get<FieldEndDate>() const {
+ return getEndDate();
+}
+template<> FieldDeliveryType::ValueType FIXPP_MSG_CLASS::get<FieldDeliveryType>() const {
+ return getDeliveryType();
+}
+template<> FieldMarginRatio::ValueType FIXPP_MSG_CLASS::get<FieldMarginRatio>() const {
+ return getMarginRatio();
+}
+template<> FieldSide::ValueType FIXPP_MSG_CLASS::get<FieldSide>() const {
+ return getSide();
+}
+template<> FieldTransactTime::ValueType FIXPP_MSG_CLASS::get<FieldTransactTime>() const {
+ return getTransactTime();
+}
+template<> FieldQtyType::ValueType FIXPP_MSG_CLASS::get<FieldQtyType>() const {
+ return getQtyType();
+}
+template<> FieldOrderQty::ValueType FIXPP_MSG_CLASS::get<FieldOrderQty>() const {
+ return getOrderQty();
+}
+template<> FieldCashOrderQty::ValueType FIXPP_MSG_CLASS::get<FieldCashOrderQty>() const {
+ return getCashOrderQty();
+}
+template<> FieldOrderPercent::ValueType FIXPP_MSG_CLASS::get<FieldOrderPercent>() const {
+ return getOrderPercent();
+}
+template<> FieldRoundingDirection::ValueType FIXPP_MSG_CLASS::get<FieldRoundingDirection>() const {
+ return getRoundingDirection();
+}
+template<> FieldRoundingModulus::ValueType FIXPP_MSG_CLASS::get<FieldRoundingModulus>() const {
+ return getRoundingModulus();
+}
+template<> FieldOrdType::ValueType FIXPP_MSG_CLASS::get<FieldOrdType>() const {
+ return getOrdType();
+}
+template<> FieldPriceType::ValueType FIXPP_MSG_CLASS::get<FieldPriceType>() const {
+ return getPriceType();
+}
+template<> FieldPrice::ValueType FIXPP_MSG_CLASS::get<FieldPrice>() const {
+ return getPrice();
+}
+template<> FieldStopPx::ValueType FIXPP_MSG_CLASS::get<FieldStopPx>() const {
+ return getStopPx();
+}
+template<> FieldSpread::ValueType FIXPP_MSG_CLASS::get<FieldSpread>() const {
+ return getSpread();
+}
+template<> FieldBenchmarkCurveCurrency::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkCurveCurrency>() const {
+ return getBenchmarkCurveCurrency();
+}
+template<> FieldBenchmarkCurveName::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkCurveName>() const {
+ return getBenchmarkCurveName();
+}
+template<> FieldBenchmarkCurvePoint::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkCurvePoint>() const {
+ return getBenchmarkCurvePoint();
+}
+template<> FieldBenchmarkPrice::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkPrice>() const {
+ return getBenchmarkPrice();
+}
+template<> FieldBenchmarkPriceType::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkPriceType>() const {
+ return getBenchmarkPriceType();
+}
+template<> FieldBenchmarkSecurityID::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkSecurityID>() const {
+ return getBenchmarkSecurityID();
+}
+template<> FieldBenchmarkSecurityIDSource::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkSecurityIDSource>() const {
+ return getBenchmarkSecurityIDSource();
+}
+template<> FieldYieldType::ValueType FIXPP_MSG_CLASS::get<FieldYieldType>() const {
+ return getYieldType();
+}
+template<> FieldYield::ValueType FIXPP_MSG_CLASS::get<FieldYield>() const {
+ return getYield();
+}
+template<> FieldYieldCalcDate::ValueType FIXPP_MSG_CLASS::get<FieldYieldCalcDate>() const {
+ return getYieldCalcDate();
+}
+template<> FieldYieldRedemptionDate::ValueType FIXPP_MSG_CLASS::get<FieldYieldRedemptionDate>() const {
+ return getYieldRedemptionDate();
+}
+template<> FieldYieldRedemptionPrice::ValueType FIXPP_MSG_CLASS::get<FieldYieldRedemptionPrice>() const {
+ return getYieldRedemptionPrice();
+}
+template<> FieldYieldRedemptionPriceType::ValueType FIXPP_MSG_CLASS::get<FieldYieldRedemptionPriceType>() const {
+ return getYieldRedemptionPriceType();
+}
+template<> FieldPegOffsetValue::ValueType FIXPP_MSG_CLASS::get<FieldPegOffsetValue>() const {
+ return getPegOffsetValue();
+}
+template<> FieldPegMoveType::ValueType FIXPP_MSG_CLASS::get<FieldPegMoveType>() const {
+ return getPegMoveType();
+}
+template<> FieldPegOffsetType::ValueType FIXPP_MSG_CLASS::get<FieldPegOffsetType>() const {
+ return getPegOffsetType();
+}
+template<> FieldPegLimitType::ValueType FIXPP_MSG_CLASS::get<FieldPegLimitType>() const {
+ return getPegLimitType();
+}
+template<> FieldPegRoundDirection::ValueType FIXPP_MSG_CLASS::get<FieldPegRoundDirection>() const {
+ return getPegRoundDirection();
+}
+template<> FieldPegScope::ValueType FIXPP_MSG_CLASS::get<FieldPegScope>() const {
+ return getPegScope();
+}
+template<> FieldDiscretionInst::ValueType FIXPP_MSG_CLASS::get<FieldDiscretionInst>() const {
+ return getDiscretionInst();
+}
+template<> FieldDiscretionOffsetValue::ValueType FIXPP_MSG_CLASS::get<FieldDiscretionOffsetValue>() const {
+ return getDiscretionOffsetValue();
+}
+template<> FieldDiscretionMoveType::ValueType FIXPP_MSG_CLASS::get<FieldDiscretionMoveType>() const {
+ return getDiscretionMoveType();
+}
+template<> FieldDiscretionOffsetType::ValueType FIXPP_MSG_CLASS::get<FieldDiscretionOffsetType>() const {
+ return getDiscretionOffsetType();
+}
+template<> FieldDiscretionLimitType::ValueType FIXPP_MSG_CLASS::get<FieldDiscretionLimitType>() const {
+ return getDiscretionLimitType();
+}
+template<> FieldDiscretionRoundDirection::ValueType FIXPP_MSG_CLASS::get<FieldDiscretionRoundDirection>() const {
+ return getDiscretionRoundDirection();
+}
+template<> FieldDiscretionScope::ValueType FIXPP_MSG_CLASS::get<FieldDiscretionScope>() const {
+ return getDiscretionScope();
+}
+template<> FieldTargetStrategy::ValueType FIXPP_MSG_CLASS::get<FieldTargetStrategy>() const {
+ return getTargetStrategy();
+}
+template<> FieldTargetStrategyParameters::ValueType FIXPP_MSG_CLASS::get<FieldTargetStrategyParameters>() const {
+ return getTargetStrategyParameters();
+}
+template<> FieldParticipationRate::ValueType FIXPP_MSG_CLASS::get<FieldParticipationRate>() const {
+ return getParticipationRate();
+}
+template<> FieldComplianceID::ValueType FIXPP_MSG_CLASS::get<FieldComplianceID>() const {
+ return getComplianceID();
+}
+template<> FieldSolicitedFlag::ValueType FIXPP_MSG_CLASS::get<FieldSolicitedFlag>() const {
+ return getSolicitedFlag();
+}
+template<> FieldCurrency::ValueType FIXPP_MSG_CLASS::get<FieldCurrency>() const {
+ return getCurrency();
+}
+template<> FieldTimeInForce::ValueType FIXPP_MSG_CLASS::get<FieldTimeInForce>() const {
+ return getTimeInForce();
+}
+template<> FieldEffectiveTime::ValueType FIXPP_MSG_CLASS::get<FieldEffectiveTime>() const {
+ return getEffectiveTime();
+}
+template<> FieldExpireDate::ValueType FIXPP_MSG_CLASS::get<FieldExpireDate>() const {
+ return getExpireDate();
+}
+template<> FieldExpireTime::ValueType FIXPP_MSG_CLASS::get<FieldExpireTime>() const {
+ return getExpireTime();
+}
+template<> FieldGTBookingInst::ValueType FIXPP_MSG_CLASS::get<FieldGTBookingInst>() const {
+ return getGTBookingInst();
+}
+template<> FieldCommission::ValueType FIXPP_MSG_CLASS::get<FieldCommission>() const {
+ return getCommission();
+}
+template<> FieldCommType::ValueType FIXPP_MSG_CLASS::get<FieldCommType>() const {
+ return getCommType();
+}
+template<> FieldCommCurrency::ValueType FIXPP_MSG_CLASS::get<FieldCommCurrency>() const {
+ return getCommCurrency();
+}
+template<> FieldFundRenewWaiv::ValueType FIXPP_MSG_CLASS::get<FieldFundRenewWaiv>() const {
+ return getFundRenewWaiv();
+}
+template<> FieldOrderCapacity::ValueType FIXPP_MSG_CLASS::get<FieldOrderCapacity>() const {
+ return getOrderCapacity();
+}
+template<> FieldOrderRestrictions::ValueType FIXPP_MSG_CLASS::get<FieldOrderRestrictions>() const {
+ return getOrderRestrictions();
+}
+template<> FieldCustOrderCapacity::ValueType FIXPP_MSG_CLASS::get<FieldCustOrderCapacity>() const {
+ return getCustOrderCapacity();
+}
+template<> FieldForexReq::ValueType FIXPP_MSG_CLASS::get<FieldForexReq>() const {
+ return getForexReq();
+}
+template<> FieldSettlCurrency::ValueType FIXPP_MSG_CLASS::get<FieldSettlCurrency>() const {
+ return getSettlCurrency();
+}
+template<> FieldBookingType::ValueType FIXPP_MSG_CLASS::get<FieldBookingType>() const {
+ return getBookingType();
+}
+template<> FieldText::ValueType FIXPP_MSG_CLASS::get<FieldText>() const {
+ return getText();
+}
+template<> FieldEncodedTextLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedTextLen>() const {
+ return getEncodedTextLen();
+}
+template<> FieldEncodedText::ValueType FIXPP_MSG_CLASS::get<FieldEncodedText>() const {
+ return getEncodedText();
+}
+template<> FieldSettlDate2::ValueType FIXPP_MSG_CLASS::get<FieldSettlDate2>() const {
+ return getSettlDate2();
+}
+template<> FieldOrderQty2::ValueType FIXPP_MSG_CLASS::get<FieldOrderQty2>() const {
+ return getOrderQty2();
+}
+template<> FieldPrice2::ValueType FIXPP_MSG_CLASS::get<FieldPrice2>() const {
+ return getPrice2();
+}
+template<> FieldPositionEffect::ValueType FIXPP_MSG_CLASS::get<FieldPositionEffect>() const {
+ return getPositionEffect();
+}
+template<> FieldCoveredOrUncovered::ValueType FIXPP_MSG_CLASS::get<FieldCoveredOrUncovered>() const {
+ return getCoveredOrUncovered();
+}
+template<> FieldMaxShow::ValueType FIXPP_MSG_CLASS::get<FieldMaxShow>() const {
+ return getMaxShow();
+}
+template<> FieldLocateReqd::ValueType FIXPP_MSG_CLASS::get<FieldLocateReqd>() const {
+ return getLocateReqd();
+}
+template<> FieldCancellationRights::ValueType FIXPP_MSG_CLASS::get<FieldCancellationRights>() const {
+ return getCancellationRights();
+}
+template<> FieldMoneyLaunderingStatus::ValueType FIXPP_MSG_CLASS::get<FieldMoneyLaunderingStatus>() const {
+ return getMoneyLaunderingStatus();
+}
+template<> FieldRegistID::ValueType FIXPP_MSG_CLASS::get<FieldRegistID>() const {
+ return getRegistID();
+}
+template<> FieldDesignation::ValueType FIXPP_MSG_CLASS::get<FieldDesignation>() const {
+ return getDesignation();
+}
+
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageOrderStatusRequest
+template<> FieldOrderID::ValueType FIXPP_MSG_CLASS::get<FieldOrderID>() const {
+ return getOrderID();
+}
+template<> FieldClOrdID::ValueType FIXPP_MSG_CLASS::get<FieldClOrdID>() const {
+ return getClOrdID();
+}
+template<> FieldSecondaryClOrdID::ValueType FIXPP_MSG_CLASS::get<FieldSecondaryClOrdID>() const {
+ return getSecondaryClOrdID();
+}
+template<> FieldClOrdLinkID::ValueType FIXPP_MSG_CLASS::get<FieldClOrdLinkID>() const {
+ return getClOrdLinkID();
+}
+template<> FieldOrdStatusReqID::ValueType FIXPP_MSG_CLASS::get<FieldOrdStatusReqID>() const {
+ return getOrdStatusReqID();
+}
+template<> FieldAccount::ValueType FIXPP_MSG_CLASS::get<FieldAccount>() const {
+ return getAccount();
+}
+template<> FieldAcctIDSource::ValueType FIXPP_MSG_CLASS::get<FieldAcctIDSource>() const {
+ return getAcctIDSource();
+}
+template<> FieldSymbol::ValueType FIXPP_MSG_CLASS::get<FieldSymbol>() const {
+ return getSymbol();
+}
+template<> FieldSymbolSfx::ValueType FIXPP_MSG_CLASS::get<FieldSymbolSfx>() const {
+ return getSymbolSfx();
+}
+template<> FieldSecurityID::ValueType FIXPP_MSG_CLASS::get<FieldSecurityID>() const {
+ return getSecurityID();
+}
+template<> FieldSecurityIDSource::ValueType FIXPP_MSG_CLASS::get<FieldSecurityIDSource>() const {
+ return getSecurityIDSource();
+}
+template<> FieldProduct::ValueType FIXPP_MSG_CLASS::get<FieldProduct>() const {
+ return getProduct();
+}
+template<> FieldCFICode::ValueType FIXPP_MSG_CLASS::get<FieldCFICode>() const {
+ return getCFICode();
+}
+template<> FieldSecurityType::ValueType FIXPP_MSG_CLASS::get<FieldSecurityType>() const {
+ return getSecurityType();
+}
+template<> FieldSecuritySubType::ValueType FIXPP_MSG_CLASS::get<FieldSecuritySubType>() const {
+ return getSecuritySubType();
+}
+template<> FieldMaturityMonthYear::ValueType FIXPP_MSG_CLASS::get<FieldMaturityMonthYear>() const {
+ return getMaturityMonthYear();
+}
+template<> FieldMaturityDate::ValueType FIXPP_MSG_CLASS::get<FieldMaturityDate>() const {
+ return getMaturityDate();
+}
+template<> FieldPutOrCall::ValueType FIXPP_MSG_CLASS::get<FieldPutOrCall>() const {
+ return getPutOrCall();
+}
+template<> FieldCouponPaymentDate::ValueType FIXPP_MSG_CLASS::get<FieldCouponPaymentDate>() const {
+ return getCouponPaymentDate();
+}
+template<> FieldIssueDate::ValueType FIXPP_MSG_CLASS::get<FieldIssueDate>() const {
+ return getIssueDate();
+}
+template<> FieldRepoCollateralSecurityType::ValueType FIXPP_MSG_CLASS::get<FieldRepoCollateralSecurityType>() const {
+ return getRepoCollateralSecurityType();
+}
+template<> FieldRepurchaseTerm::ValueType FIXPP_MSG_CLASS::get<FieldRepurchaseTerm>() const {
+ return getRepurchaseTerm();
+}
+template<> FieldRepurchaseRate::ValueType FIXPP_MSG_CLASS::get<FieldRepurchaseRate>() const {
+ return getRepurchaseRate();
+}
+template<> FieldFactor::ValueType FIXPP_MSG_CLASS::get<FieldFactor>() const {
+ return getFactor();
+}
+template<> FieldCreditRating::ValueType FIXPP_MSG_CLASS::get<FieldCreditRating>() const {
+ return getCreditRating();
+}
+template<> FieldInstrRegistry::ValueType FIXPP_MSG_CLASS::get<FieldInstrRegistry>() const {
+ return getInstrRegistry();
+}
+template<> FieldCountryOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldCountryOfIssue>() const {
+ return getCountryOfIssue();
+}
+template<> FieldStateOrProvinceOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldStateOrProvinceOfIssue>() const {
+ return getStateOrProvinceOfIssue();
+}
+template<> FieldLocaleOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldLocaleOfIssue>() const {
+ return getLocaleOfIssue();
+}
+template<> FieldRedemptionDate::ValueType FIXPP_MSG_CLASS::get<FieldRedemptionDate>() const {
+ return getRedemptionDate();
+}
+template<> FieldStrikePrice::ValueType FIXPP_MSG_CLASS::get<FieldStrikePrice>() const {
+ return getStrikePrice();
+}
+template<> FieldStrikeCurrency::ValueType FIXPP_MSG_CLASS::get<FieldStrikeCurrency>() const {
+ return getStrikeCurrency();
+}
+template<> FieldOptAttribute::ValueType FIXPP_MSG_CLASS::get<FieldOptAttribute>() const {
+ return getOptAttribute();
+}
+template<> FieldContractMultiplier::ValueType FIXPP_MSG_CLASS::get<FieldContractMultiplier>() const {
+ return getContractMultiplier();
+}
+template<> FieldCouponRate::ValueType FIXPP_MSG_CLASS::get<FieldCouponRate>() const {
+ return getCouponRate();
+}
+template<> FieldSecurityExchange::ValueType FIXPP_MSG_CLASS::get<FieldSecurityExchange>() const {
+ return getSecurityExchange();
+}
+template<> FieldIssuer::ValueType FIXPP_MSG_CLASS::get<FieldIssuer>() const {
+ return getIssuer();
+}
+template<> FieldEncodedIssuerLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedIssuerLen>() const {
+ return getEncodedIssuerLen();
+}
+template<> FieldEncodedIssuer::ValueType FIXPP_MSG_CLASS::get<FieldEncodedIssuer>() const {
+ return getEncodedIssuer();
+}
+template<> FieldSecurityDesc::ValueType FIXPP_MSG_CLASS::get<FieldSecurityDesc>() const {
+ return getSecurityDesc();
+}
+template<> FieldEncodedSecurityDescLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedSecurityDescLen>() const {
+ return getEncodedSecurityDescLen();
+}
+template<> FieldEncodedSecurityDesc::ValueType FIXPP_MSG_CLASS::get<FieldEncodedSecurityDesc>() const {
+ return getEncodedSecurityDesc();
+}
+template<> FieldPool::ValueType FIXPP_MSG_CLASS::get<FieldPool>() const {
+ return getPool();
+}
+template<> FieldContractSettlMonth::ValueType FIXPP_MSG_CLASS::get<FieldContractSettlMonth>() const {
+ return getContractSettlMonth();
+}
+template<> FieldCPProgram::ValueType FIXPP_MSG_CLASS::get<FieldCPProgram>() const {
+ return getCPProgram();
+}
+template<> FieldCPRegType::ValueType FIXPP_MSG_CLASS::get<FieldCPRegType>() const {
+ return getCPRegType();
+}
+template<> FieldDatedDate::ValueType FIXPP_MSG_CLASS::get<FieldDatedDate>() const {
+ return getDatedDate();
+}
+template<> FieldInterestAccrualDate::ValueType FIXPP_MSG_CLASS::get<FieldInterestAccrualDate>() const {
+ return getInterestAccrualDate();
+}
+template<> FieldAgreementDesc::ValueType FIXPP_MSG_CLASS::get<FieldAgreementDesc>() const {
+ return getAgreementDesc();
+}
+template<> FieldAgreementID::ValueType FIXPP_MSG_CLASS::get<FieldAgreementID>() const {
+ return getAgreementID();
+}
+template<> FieldAgreementDate::ValueType FIXPP_MSG_CLASS::get<FieldAgreementDate>() const {
+ return getAgreementDate();
+}
+template<> FieldAgreementCurrency::ValueType FIXPP_MSG_CLASS::get<FieldAgreementCurrency>() const {
+ return getAgreementCurrency();
+}
+template<> FieldTerminationType::ValueType FIXPP_MSG_CLASS::get<FieldTerminationType>() const {
+ return getTerminationType();
+}
+template<> FieldStartDate::ValueType FIXPP_MSG_CLASS::get<FieldStartDate>() const {
+ return getStartDate();
+}
+template<> FieldEndDate::ValueType FIXPP_MSG_CLASS::get<FieldEndDate>() const {
+ return getEndDate();
+}
+template<> FieldDeliveryType::ValueType FIXPP_MSG_CLASS::get<FieldDeliveryType>() const {
+ return getDeliveryType();
+}
+template<> FieldMarginRatio::ValueType FIXPP_MSG_CLASS::get<FieldMarginRatio>() const {
+ return getMarginRatio();
+}
+template<> FieldSide::ValueType FIXPP_MSG_CLASS::get<FieldSide>() const {
+ return getSide();
+}
+
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageAllocationInstruction
+template<> FieldAllocID::ValueType FIXPP_MSG_CLASS::get<FieldAllocID>() const {
+ return getAllocID();
+}
+template<> FieldAllocTransType::ValueType FIXPP_MSG_CLASS::get<FieldAllocTransType>() const {
+ return getAllocTransType();
+}
+template<> FieldAllocType::ValueType FIXPP_MSG_CLASS::get<FieldAllocType>() const {
+ return getAllocType();
+}
+template<> FieldSecondaryAllocID::ValueType FIXPP_MSG_CLASS::get<FieldSecondaryAllocID>() const {
+ return getSecondaryAllocID();
+}
+template<> FieldRefAllocID::ValueType FIXPP_MSG_CLASS::get<FieldRefAllocID>() const {
+ return getRefAllocID();
+}
+template<> FieldAllocCancReplaceReason::ValueType FIXPP_MSG_CLASS::get<FieldAllocCancReplaceReason>() const {
+ return getAllocCancReplaceReason();
+}
+template<> FieldAllocIntermedReqType::ValueType FIXPP_MSG_CLASS::get<FieldAllocIntermedReqType>() const {
+ return getAllocIntermedReqType();
+}
+template<> FieldAllocLinkID::ValueType FIXPP_MSG_CLASS::get<FieldAllocLinkID>() const {
+ return getAllocLinkID();
+}
+template<> FieldAllocLinkType::ValueType FIXPP_MSG_CLASS::get<FieldAllocLinkType>() const {
+ return getAllocLinkType();
+}
+template<> FieldBookingRefID::ValueType FIXPP_MSG_CLASS::get<FieldBookingRefID>() const {
+ return getBookingRefID();
+}
+template<> FieldAllocNoOrdersType::ValueType FIXPP_MSG_CLASS::get<FieldAllocNoOrdersType>() const {
+ return getAllocNoOrdersType();
+}
+template<> FieldPreviouslyReported::ValueType FIXPP_MSG_CLASS::get<FieldPreviouslyReported>() const {
+ return getPreviouslyReported();
+}
+template<> FieldReversalIndicator::ValueType FIXPP_MSG_CLASS::get<FieldReversalIndicator>() const {
+ return getReversalIndicator();
+}
+template<> FieldMatchType::ValueType FIXPP_MSG_CLASS::get<FieldMatchType>() const {
+ return getMatchType();
+}
+template<> FieldSide::ValueType FIXPP_MSG_CLASS::get<FieldSide>() const {
+ return getSide();
+}
+template<> FieldSymbol::ValueType FIXPP_MSG_CLASS::get<FieldSymbol>() const {
+ return getSymbol();
+}
+template<> FieldSymbolSfx::ValueType FIXPP_MSG_CLASS::get<FieldSymbolSfx>() const {
+ return getSymbolSfx();
+}
+template<> FieldSecurityID::ValueType FIXPP_MSG_CLASS::get<FieldSecurityID>() const {
+ return getSecurityID();
+}
+template<> FieldSecurityIDSource::ValueType FIXPP_MSG_CLASS::get<FieldSecurityIDSource>() const {
+ return getSecurityIDSource();
+}
+template<> FieldProduct::ValueType FIXPP_MSG_CLASS::get<FieldProduct>() const {
+ return getProduct();
+}
+template<> FieldCFICode::ValueType FIXPP_MSG_CLASS::get<FieldCFICode>() const {
+ return getCFICode();
+}
+template<> FieldSecurityType::ValueType FIXPP_MSG_CLASS::get<FieldSecurityType>() const {
+ return getSecurityType();
+}
+template<> FieldSecuritySubType::ValueType FIXPP_MSG_CLASS::get<FieldSecuritySubType>() const {
+ return getSecuritySubType();
+}
+template<> FieldMaturityMonthYear::ValueType FIXPP_MSG_CLASS::get<FieldMaturityMonthYear>() const {
+ return getMaturityMonthYear();
+}
+template<> FieldMaturityDate::ValueType FIXPP_MSG_CLASS::get<FieldMaturityDate>() const {
+ return getMaturityDate();
+}
+template<> FieldPutOrCall::ValueType FIXPP_MSG_CLASS::get<FieldPutOrCall>() const {
+ return getPutOrCall();
+}
+template<> FieldCouponPaymentDate::ValueType FIXPP_MSG_CLASS::get<FieldCouponPaymentDate>() const {
+ return getCouponPaymentDate();
+}
+template<> FieldIssueDate::ValueType FIXPP_MSG_CLASS::get<FieldIssueDate>() const {
+ return getIssueDate();
+}
+template<> FieldRepoCollateralSecurityType::ValueType FIXPP_MSG_CLASS::get<FieldRepoCollateralSecurityType>() const {
+ return getRepoCollateralSecurityType();
+}
+template<> FieldRepurchaseTerm::ValueType FIXPP_MSG_CLASS::get<FieldRepurchaseTerm>() const {
+ return getRepurchaseTerm();
+}
+template<> FieldRepurchaseRate::ValueType FIXPP_MSG_CLASS::get<FieldRepurchaseRate>() const {
+ return getRepurchaseRate();
+}
+template<> FieldFactor::ValueType FIXPP_MSG_CLASS::get<FieldFactor>() const {
+ return getFactor();
+}
+template<> FieldCreditRating::ValueType FIXPP_MSG_CLASS::get<FieldCreditRating>() const {
+ return getCreditRating();
+}
+template<> FieldInstrRegistry::ValueType FIXPP_MSG_CLASS::get<FieldInstrRegistry>() const {
+ return getInstrRegistry();
+}
+template<> FieldCountryOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldCountryOfIssue>() const {
+ return getCountryOfIssue();
+}
+template<> FieldStateOrProvinceOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldStateOrProvinceOfIssue>() const {
+ return getStateOrProvinceOfIssue();
+}
+template<> FieldLocaleOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldLocaleOfIssue>() const {
+ return getLocaleOfIssue();
+}
+template<> FieldRedemptionDate::ValueType FIXPP_MSG_CLASS::get<FieldRedemptionDate>() const {
+ return getRedemptionDate();
+}
+template<> FieldStrikePrice::ValueType FIXPP_MSG_CLASS::get<FieldStrikePrice>() const {
+ return getStrikePrice();
+}
+template<> FieldStrikeCurrency::ValueType FIXPP_MSG_CLASS::get<FieldStrikeCurrency>() const {
+ return getStrikeCurrency();
+}
+template<> FieldOptAttribute::ValueType FIXPP_MSG_CLASS::get<FieldOptAttribute>() const {
+ return getOptAttribute();
+}
+template<> FieldContractMultiplier::ValueType FIXPP_MSG_CLASS::get<FieldContractMultiplier>() const {
+ return getContractMultiplier();
+}
+template<> FieldCouponRate::ValueType FIXPP_MSG_CLASS::get<FieldCouponRate>() const {
+ return getCouponRate();
+}
+template<> FieldSecurityExchange::ValueType FIXPP_MSG_CLASS::get<FieldSecurityExchange>() const {
+ return getSecurityExchange();
+}
+template<> FieldIssuer::ValueType FIXPP_MSG_CLASS::get<FieldIssuer>() const {
+ return getIssuer();
+}
+template<> FieldEncodedIssuerLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedIssuerLen>() const {
+ return getEncodedIssuerLen();
+}
+template<> FieldEncodedIssuer::ValueType FIXPP_MSG_CLASS::get<FieldEncodedIssuer>() const {
+ return getEncodedIssuer();
+}
+template<> FieldSecurityDesc::ValueType FIXPP_MSG_CLASS::get<FieldSecurityDesc>() const {
+ return getSecurityDesc();
+}
+template<> FieldEncodedSecurityDescLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedSecurityDescLen>() const {
+ return getEncodedSecurityDescLen();
+}
+template<> FieldEncodedSecurityDesc::ValueType FIXPP_MSG_CLASS::get<FieldEncodedSecurityDesc>() const {
+ return getEncodedSecurityDesc();
+}
+template<> FieldPool::ValueType FIXPP_MSG_CLASS::get<FieldPool>() const {
+ return getPool();
+}
+template<> FieldContractSettlMonth::ValueType FIXPP_MSG_CLASS::get<FieldContractSettlMonth>() const {
+ return getContractSettlMonth();
+}
+template<> FieldCPProgram::ValueType FIXPP_MSG_CLASS::get<FieldCPProgram>() const {
+ return getCPProgram();
+}
+template<> FieldCPRegType::ValueType FIXPP_MSG_CLASS::get<FieldCPRegType>() const {
+ return getCPRegType();
+}
+template<> FieldDatedDate::ValueType FIXPP_MSG_CLASS::get<FieldDatedDate>() const {
+ return getDatedDate();
+}
+template<> FieldInterestAccrualDate::ValueType FIXPP_MSG_CLASS::get<FieldInterestAccrualDate>() const {
+ return getInterestAccrualDate();
+}
+template<> FieldDeliveryForm::ValueType FIXPP_MSG_CLASS::get<FieldDeliveryForm>() const {
+ return getDeliveryForm();
+}
+template<> FieldPctAtRisk::ValueType FIXPP_MSG_CLASS::get<FieldPctAtRisk>() const {
+ return getPctAtRisk();
+}
+template<> FieldAgreementDesc::ValueType FIXPP_MSG_CLASS::get<FieldAgreementDesc>() const {
+ return getAgreementDesc();
+}
+template<> FieldAgreementID::ValueType FIXPP_MSG_CLASS::get<FieldAgreementID>() const {
+ return getAgreementID();
+}
+template<> FieldAgreementDate::ValueType FIXPP_MSG_CLASS::get<FieldAgreementDate>() const {
+ return getAgreementDate();
+}
+template<> FieldAgreementCurrency::ValueType FIXPP_MSG_CLASS::get<FieldAgreementCurrency>() const {
+ return getAgreementCurrency();
+}
+template<> FieldTerminationType::ValueType FIXPP_MSG_CLASS::get<FieldTerminationType>() const {
+ return getTerminationType();
+}
+template<> FieldStartDate::ValueType FIXPP_MSG_CLASS::get<FieldStartDate>() const {
+ return getStartDate();
+}
+template<> FieldEndDate::ValueType FIXPP_MSG_CLASS::get<FieldEndDate>() const {
+ return getEndDate();
+}
+template<> FieldDeliveryType::ValueType FIXPP_MSG_CLASS::get<FieldDeliveryType>() const {
+ return getDeliveryType();
+}
+template<> FieldMarginRatio::ValueType FIXPP_MSG_CLASS::get<FieldMarginRatio>() const {
+ return getMarginRatio();
+}
+template<> FieldQuantity::ValueType FIXPP_MSG_CLASS::get<FieldQuantity>() const {
+ return getQuantity();
+}
+template<> FieldQtyType::ValueType FIXPP_MSG_CLASS::get<FieldQtyType>() const {
+ return getQtyType();
+}
+template<> FieldLastMkt::ValueType FIXPP_MSG_CLASS::get<FieldLastMkt>() const {
+ return getLastMkt();
+}
+template<> FieldTradeOriginationDate::ValueType FIXPP_MSG_CLASS::get<FieldTradeOriginationDate>() const {
+ return getTradeOriginationDate();
+}
+template<> FieldTradingSessionID::ValueType FIXPP_MSG_CLASS::get<FieldTradingSessionID>() const {
+ return getTradingSessionID();
+}
+template<> FieldTradingSessionSubID::ValueType FIXPP_MSG_CLASS::get<FieldTradingSessionSubID>() const {
+ return getTradingSessionSubID();
+}
+template<> FieldPriceType::ValueType FIXPP_MSG_CLASS::get<FieldPriceType>() const {
+ return getPriceType();
+}
+template<> FieldAvgPx::ValueType FIXPP_MSG_CLASS::get<FieldAvgPx>() const {
+ return getAvgPx();
+}
+template<> FieldAvgParPx::ValueType FIXPP_MSG_CLASS::get<FieldAvgParPx>() const {
+ return getAvgParPx();
+}
+template<> FieldSpread::ValueType FIXPP_MSG_CLASS::get<FieldSpread>() const {
+ return getSpread();
+}
+template<> FieldBenchmarkCurveCurrency::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkCurveCurrency>() const {
+ return getBenchmarkCurveCurrency();
+}
+template<> FieldBenchmarkCurveName::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkCurveName>() const {
+ return getBenchmarkCurveName();
+}
+template<> FieldBenchmarkCurvePoint::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkCurvePoint>() const {
+ return getBenchmarkCurvePoint();
+}
+template<> FieldBenchmarkPrice::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkPrice>() const {
+ return getBenchmarkPrice();
+}
+template<> FieldBenchmarkPriceType::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkPriceType>() const {
+ return getBenchmarkPriceType();
+}
+template<> FieldBenchmarkSecurityID::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkSecurityID>() const {
+ return getBenchmarkSecurityID();
+}
+template<> FieldBenchmarkSecurityIDSource::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkSecurityIDSource>() const {
+ return getBenchmarkSecurityIDSource();
+}
+template<> FieldCurrency::ValueType FIXPP_MSG_CLASS::get<FieldCurrency>() const {
+ return getCurrency();
+}
+template<> FieldAvgPxPrecision::ValueType FIXPP_MSG_CLASS::get<FieldAvgPxPrecision>() const {
+ return getAvgPxPrecision();
+}
+template<> FieldTradeDate::ValueType FIXPP_MSG_CLASS::get<FieldTradeDate>() const {
+ return getTradeDate();
+}
+template<> FieldTransactTime::ValueType FIXPP_MSG_CLASS::get<FieldTransactTime>() const {
+ return getTransactTime();
+}
+template<> FieldSettlType::ValueType FIXPP_MSG_CLASS::get<FieldSettlType>() const {
+ return getSettlType();
+}
+template<> FieldSettlDate::ValueType FIXPP_MSG_CLASS::get<FieldSettlDate>() const {
+ return getSettlDate();
+}
+template<> FieldBookingType::ValueType FIXPP_MSG_CLASS::get<FieldBookingType>() const {
+ return getBookingType();
+}
+template<> FieldGrossTradeAmt::ValueType FIXPP_MSG_CLASS::get<FieldGrossTradeAmt>() const {
+ return getGrossTradeAmt();
+}
+template<> FieldConcession::ValueType FIXPP_MSG_CLASS::get<FieldConcession>() const {
+ return getConcession();
+}
+template<> FieldTotalTakedown::ValueType FIXPP_MSG_CLASS::get<FieldTotalTakedown>() const {
+ return getTotalTakedown();
+}
+template<> FieldNetMoney::ValueType FIXPP_MSG_CLASS::get<FieldNetMoney>() const {
+ return getNetMoney();
+}
+template<> FieldPositionEffect::ValueType FIXPP_MSG_CLASS::get<FieldPositionEffect>() const {
+ return getPositionEffect();
+}
+template<> FieldAutoAcceptIndicator::ValueType FIXPP_MSG_CLASS::get<FieldAutoAcceptIndicator>() const {
+ return getAutoAcceptIndicator();
+}
+template<> FieldText::ValueType FIXPP_MSG_CLASS::get<FieldText>() const {
+ return getText();
+}
+template<> FieldEncodedTextLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedTextLen>() const {
+ return getEncodedTextLen();
+}
+template<> FieldEncodedText::ValueType FIXPP_MSG_CLASS::get<FieldEncodedText>() const {
+ return getEncodedText();
+}
+template<> FieldNumDaysInterest::ValueType FIXPP_MSG_CLASS::get<FieldNumDaysInterest>() const {
+ return getNumDaysInterest();
+}
+template<> FieldAccruedInterestRate::ValueType FIXPP_MSG_CLASS::get<FieldAccruedInterestRate>() const {
+ return getAccruedInterestRate();
+}
+template<> FieldAccruedInterestAmt::ValueType FIXPP_MSG_CLASS::get<FieldAccruedInterestAmt>() const {
+ return getAccruedInterestAmt();
+}
+template<> FieldTotalAccruedInterestAmt::ValueType FIXPP_MSG_CLASS::get<FieldTotalAccruedInterestAmt>() const {
+ return getTotalAccruedInterestAmt();
+}
+template<> FieldInterestAtMaturity::ValueType FIXPP_MSG_CLASS::get<FieldInterestAtMaturity>() const {
+ return getInterestAtMaturity();
+}
+template<> FieldEndAccruedInterestAmt::ValueType FIXPP_MSG_CLASS::get<FieldEndAccruedInterestAmt>() const {
+ return getEndAccruedInterestAmt();
+}
+template<> FieldStartCash::ValueType FIXPP_MSG_CLASS::get<FieldStartCash>() const {
+ return getStartCash();
+}
+template<> FieldEndCash::ValueType FIXPP_MSG_CLASS::get<FieldEndCash>() const {
+ return getEndCash();
+}
+template<> FieldLegalConfirm::ValueType FIXPP_MSG_CLASS::get<FieldLegalConfirm>() const {
+ return getLegalConfirm();
+}
+template<> FieldYieldType::ValueType FIXPP_MSG_CLASS::get<FieldYieldType>() const {
+ return getYieldType();
+}
+template<> FieldYield::ValueType FIXPP_MSG_CLASS::get<FieldYield>() const {
+ return getYield();
+}
+template<> FieldYieldCalcDate::ValueType FIXPP_MSG_CLASS::get<FieldYieldCalcDate>() const {
+ return getYieldCalcDate();
+}
+template<> FieldYieldRedemptionDate::ValueType FIXPP_MSG_CLASS::get<FieldYieldRedemptionDate>() const {
+ return getYieldRedemptionDate();
+}
+template<> FieldYieldRedemptionPrice::ValueType FIXPP_MSG_CLASS::get<FieldYieldRedemptionPrice>() const {
+ return getYieldRedemptionPrice();
+}
+template<> FieldYieldRedemptionPriceType::ValueType FIXPP_MSG_CLASS::get<FieldYieldRedemptionPriceType>() const {
+ return getYieldRedemptionPriceType();
+}
+template<> FieldTotNoAllocs::ValueType FIXPP_MSG_CLASS::get<FieldTotNoAllocs>() const {
+ return getTotNoAllocs();
+}
+template<> FieldLastFragment::ValueType FIXPP_MSG_CLASS::get<FieldLastFragment>() const {
+ return getLastFragment();
+}
+
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageListCancelRequest
+template<> FieldListID::ValueType FIXPP_MSG_CLASS::get<FieldListID>() const {
+ return getListID();
+}
+template<> FieldTransactTime::ValueType FIXPP_MSG_CLASS::get<FieldTransactTime>() const {
+ return getTransactTime();
+}
+template<> FieldTradeOriginationDate::ValueType FIXPP_MSG_CLASS::get<FieldTradeOriginationDate>() const {
+ return getTradeOriginationDate();
+}
+template<> FieldTradeDate::ValueType FIXPP_MSG_CLASS::get<FieldTradeDate>() const {
+ return getTradeDate();
+}
+template<> FieldText::ValueType FIXPP_MSG_CLASS::get<FieldText>() const {
+ return getText();
+}
+template<> FieldEncodedTextLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedTextLen>() const {
+ return getEncodedTextLen();
+}
+template<> FieldEncodedText::ValueType FIXPP_MSG_CLASS::get<FieldEncodedText>() const {
+ return getEncodedText();
+}
+
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageListExecute
+template<> FieldListID::ValueType FIXPP_MSG_CLASS::get<FieldListID>() const {
+ return getListID();
+}
+template<> FieldClientBidID::ValueType FIXPP_MSG_CLASS::get<FieldClientBidID>() const {
+ return getClientBidID();
+}
+template<> FieldBidID::ValueType FIXPP_MSG_CLASS::get<FieldBidID>() const {
+ return getBidID();
+}
+template<> FieldTransactTime::ValueType FIXPP_MSG_CLASS::get<FieldTransactTime>() const {
+ return getTransactTime();
+}
+template<> FieldText::ValueType FIXPP_MSG_CLASS::get<FieldText>() const {
+ return getText();
+}
+template<> FieldEncodedTextLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedTextLen>() const {
+ return getEncodedTextLen();
+}
+template<> FieldEncodedText::ValueType FIXPP_MSG_CLASS::get<FieldEncodedText>() const {
+ return getEncodedText();
+}
+
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageListStatusRequest
+template<> FieldListID::ValueType FIXPP_MSG_CLASS::get<FieldListID>() const {
+ return getListID();
+}
+template<> FieldText::ValueType FIXPP_MSG_CLASS::get<FieldText>() const {
+ return getText();
+}
+template<> FieldEncodedTextLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedTextLen>() const {
+ return getEncodedTextLen();
+}
+template<> FieldEncodedText::ValueType FIXPP_MSG_CLASS::get<FieldEncodedText>() const {
+ return getEncodedText();
+}
+
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageListStatus
+template<> FieldListID::ValueType FIXPP_MSG_CLASS::get<FieldListID>() const {
+ return getListID();
+}
+template<> FieldListStatusType::ValueType FIXPP_MSG_CLASS::get<FieldListStatusType>() const {
+ return getListStatusType();
+}
+template<> FieldNoRpts::ValueType FIXPP_MSG_CLASS::get<FieldNoRpts>() const {
+ return getNoRpts();
+}
+template<> FieldListOrderStatus::ValueType FIXPP_MSG_CLASS::get<FieldListOrderStatus>() const {
+ return getListOrderStatus();
+}
+template<> FieldRptSeq::ValueType FIXPP_MSG_CLASS::get<FieldRptSeq>() const {
+ return getRptSeq();
+}
+template<> FieldListStatusText::ValueType FIXPP_MSG_CLASS::get<FieldListStatusText>() const {
+ return getListStatusText();
+}
+template<> FieldEncodedListStatusTextLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedListStatusTextLen>() const {
+ return getEncodedListStatusTextLen();
+}
+template<> FieldEncodedListStatusText::ValueType FIXPP_MSG_CLASS::get<FieldEncodedListStatusText>() const {
+ return getEncodedListStatusText();
+}
+template<> FieldTransactTime::ValueType FIXPP_MSG_CLASS::get<FieldTransactTime>() const {
+ return getTransactTime();
+}
+template<> FieldTotNoOrders::ValueType FIXPP_MSG_CLASS::get<FieldTotNoOrders>() const {
+ return getTotNoOrders();
+}
+template<> FieldLastFragment::ValueType FIXPP_MSG_CLASS::get<FieldLastFragment>() const {
+ return getLastFragment();
+}
+
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageAllocationInstructionAck
+template<> FieldAllocID::ValueType FIXPP_MSG_CLASS::get<FieldAllocID>() const {
+ return getAllocID();
+}
+template<> FieldSecondaryAllocID::ValueType FIXPP_MSG_CLASS::get<FieldSecondaryAllocID>() const {
+ return getSecondaryAllocID();
+}
+template<> FieldTradeDate::ValueType FIXPP_MSG_CLASS::get<FieldTradeDate>() const {
+ return getTradeDate();
+}
+template<> FieldTransactTime::ValueType FIXPP_MSG_CLASS::get<FieldTransactTime>() const {
+ return getTransactTime();
+}
+template<> FieldAllocStatus::ValueType FIXPP_MSG_CLASS::get<FieldAllocStatus>() const {
+ return getAllocStatus();
+}
+template<> FieldAllocRejCode::ValueType FIXPP_MSG_CLASS::get<FieldAllocRejCode>() const {
+ return getAllocRejCode();
+}
+template<> FieldAllocType::ValueType FIXPP_MSG_CLASS::get<FieldAllocType>() const {
+ return getAllocType();
+}
+template<> FieldAllocIntermedReqType::ValueType FIXPP_MSG_CLASS::get<FieldAllocIntermedReqType>() const {
+ return getAllocIntermedReqType();
+}
+template<> FieldMatchStatus::ValueType FIXPP_MSG_CLASS::get<FieldMatchStatus>() const {
+ return getMatchStatus();
+}
+template<> FieldProduct::ValueType FIXPP_MSG_CLASS::get<FieldProduct>() const {
+ return getProduct();
+}
+template<> FieldSecurityType::ValueType FIXPP_MSG_CLASS::get<FieldSecurityType>() const {
+ return getSecurityType();
+}
+template<> FieldText::ValueType FIXPP_MSG_CLASS::get<FieldText>() const {
+ return getText();
+}
+template<> FieldEncodedTextLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedTextLen>() const {
+ return getEncodedTextLen();
+}
+template<> FieldEncodedText::ValueType FIXPP_MSG_CLASS::get<FieldEncodedText>() const {
+ return getEncodedText();
+}
+
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageDontKnowTrade
+template<> FieldOrderID::ValueType FIXPP_MSG_CLASS::get<FieldOrderID>() const {
+ return getOrderID();
+}
+template<> FieldSecondaryOrderID::ValueType FIXPP_MSG_CLASS::get<FieldSecondaryOrderID>() const {
+ return getSecondaryOrderID();
+}
+template<> FieldExecID::ValueType FIXPP_MSG_CLASS::get<FieldExecID>() const {
+ return getExecID();
+}
+template<> FieldDKReason::ValueType FIXPP_MSG_CLASS::get<FieldDKReason>() const {
+ return getDKReason();
+}
+template<> FieldSymbol::ValueType FIXPP_MSG_CLASS::get<FieldSymbol>() const {
+ return getSymbol();
+}
+template<> FieldSymbolSfx::ValueType FIXPP_MSG_CLASS::get<FieldSymbolSfx>() const {
+ return getSymbolSfx();
+}
+template<> FieldSecurityID::ValueType FIXPP_MSG_CLASS::get<FieldSecurityID>() const {
+ return getSecurityID();
+}
+template<> FieldSecurityIDSource::ValueType FIXPP_MSG_CLASS::get<FieldSecurityIDSource>() const {
+ return getSecurityIDSource();
+}
+template<> FieldProduct::ValueType FIXPP_MSG_CLASS::get<FieldProduct>() const {
+ return getProduct();
+}
+template<> FieldCFICode::ValueType FIXPP_MSG_CLASS::get<FieldCFICode>() const {
+ return getCFICode();
+}
+template<> FieldSecurityType::ValueType FIXPP_MSG_CLASS::get<FieldSecurityType>() const {
+ return getSecurityType();
+}
+template<> FieldSecuritySubType::ValueType FIXPP_MSG_CLASS::get<FieldSecuritySubType>() const {
+ return getSecuritySubType();
+}
+template<> FieldMaturityMonthYear::ValueType FIXPP_MSG_CLASS::get<FieldMaturityMonthYear>() const {
+ return getMaturityMonthYear();
+}
+template<> FieldMaturityDate::ValueType FIXPP_MSG_CLASS::get<FieldMaturityDate>() const {
+ return getMaturityDate();
+}
+template<> FieldPutOrCall::ValueType FIXPP_MSG_CLASS::get<FieldPutOrCall>() const {
+ return getPutOrCall();
+}
+template<> FieldCouponPaymentDate::ValueType FIXPP_MSG_CLASS::get<FieldCouponPaymentDate>() const {
+ return getCouponPaymentDate();
+}
+template<> FieldIssueDate::ValueType FIXPP_MSG_CLASS::get<FieldIssueDate>() const {
+ return getIssueDate();
+}
+template<> FieldRepoCollateralSecurityType::ValueType FIXPP_MSG_CLASS::get<FieldRepoCollateralSecurityType>() const {
+ return getRepoCollateralSecurityType();
+}
+template<> FieldRepurchaseTerm::ValueType FIXPP_MSG_CLASS::get<FieldRepurchaseTerm>() const {
+ return getRepurchaseTerm();
+}
+template<> FieldRepurchaseRate::ValueType FIXPP_MSG_CLASS::get<FieldRepurchaseRate>() const {
+ return getRepurchaseRate();
+}
+template<> FieldFactor::ValueType FIXPP_MSG_CLASS::get<FieldFactor>() const {
+ return getFactor();
+}
+template<> FieldCreditRating::ValueType FIXPP_MSG_CLASS::get<FieldCreditRating>() const {
+ return getCreditRating();
+}
+template<> FieldInstrRegistry::ValueType FIXPP_MSG_CLASS::get<FieldInstrRegistry>() const {
+ return getInstrRegistry();
+}
+template<> FieldCountryOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldCountryOfIssue>() const {
+ return getCountryOfIssue();
+}
+template<> FieldStateOrProvinceOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldStateOrProvinceOfIssue>() const {
+ return getStateOrProvinceOfIssue();
+}
+template<> FieldLocaleOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldLocaleOfIssue>() const {
+ return getLocaleOfIssue();
+}
+template<> FieldRedemptionDate::ValueType FIXPP_MSG_CLASS::get<FieldRedemptionDate>() const {
+ return getRedemptionDate();
+}
+template<> FieldStrikePrice::ValueType FIXPP_MSG_CLASS::get<FieldStrikePrice>() const {
+ return getStrikePrice();
+}
+template<> FieldStrikeCurrency::ValueType FIXPP_MSG_CLASS::get<FieldStrikeCurrency>() const {
+ return getStrikeCurrency();
+}
+template<> FieldOptAttribute::ValueType FIXPP_MSG_CLASS::get<FieldOptAttribute>() const {
+ return getOptAttribute();
+}
+template<> FieldContractMultiplier::ValueType FIXPP_MSG_CLASS::get<FieldContractMultiplier>() const {
+ return getContractMultiplier();
+}
+template<> FieldCouponRate::ValueType FIXPP_MSG_CLASS::get<FieldCouponRate>() const {
+ return getCouponRate();
+}
+template<> FieldSecurityExchange::ValueType FIXPP_MSG_CLASS::get<FieldSecurityExchange>() const {
+ return getSecurityExchange();
+}
+template<> FieldIssuer::ValueType FIXPP_MSG_CLASS::get<FieldIssuer>() const {
+ return getIssuer();
+}
+template<> FieldEncodedIssuerLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedIssuerLen>() const {
+ return getEncodedIssuerLen();
+}
+template<> FieldEncodedIssuer::ValueType FIXPP_MSG_CLASS::get<FieldEncodedIssuer>() const {
+ return getEncodedIssuer();
+}
+template<> FieldSecurityDesc::ValueType FIXPP_MSG_CLASS::get<FieldSecurityDesc>() const {
+ return getSecurityDesc();
+}
+template<> FieldEncodedSecurityDescLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedSecurityDescLen>() const {
+ return getEncodedSecurityDescLen();
+}
+template<> FieldEncodedSecurityDesc::ValueType FIXPP_MSG_CLASS::get<FieldEncodedSecurityDesc>() const {
+ return getEncodedSecurityDesc();
+}
+template<> FieldPool::ValueType FIXPP_MSG_CLASS::get<FieldPool>() const {
+ return getPool();
+}
+template<> FieldContractSettlMonth::ValueType FIXPP_MSG_CLASS::get<FieldContractSettlMonth>() const {
+ return getContractSettlMonth();
+}
+template<> FieldCPProgram::ValueType FIXPP_MSG_CLASS::get<FieldCPProgram>() const {
+ return getCPProgram();
+}
+template<> FieldCPRegType::ValueType FIXPP_MSG_CLASS::get<FieldCPRegType>() const {
+ return getCPRegType();
+}
+template<> FieldDatedDate::ValueType FIXPP_MSG_CLASS::get<FieldDatedDate>() const {
+ return getDatedDate();
+}
+template<> FieldInterestAccrualDate::ValueType FIXPP_MSG_CLASS::get<FieldInterestAccrualDate>() const {
+ return getInterestAccrualDate();
+}
+template<> FieldSide::ValueType FIXPP_MSG_CLASS::get<FieldSide>() const {
+ return getSide();
+}
+template<> FieldOrderQty::ValueType FIXPP_MSG_CLASS::get<FieldOrderQty>() const {
+ return getOrderQty();
+}
+template<> FieldCashOrderQty::ValueType FIXPP_MSG_CLASS::get<FieldCashOrderQty>() const {
+ return getCashOrderQty();
+}
+template<> FieldOrderPercent::ValueType FIXPP_MSG_CLASS::get<FieldOrderPercent>() const {
+ return getOrderPercent();
+}
+template<> FieldRoundingDirection::ValueType FIXPP_MSG_CLASS::get<FieldRoundingDirection>() const {
+ return getRoundingDirection();
+}
+template<> FieldRoundingModulus::ValueType FIXPP_MSG_CLASS::get<FieldRoundingModulus>() const {
+ return getRoundingModulus();
+}
+template<> FieldLastQty::ValueType FIXPP_MSG_CLASS::get<FieldLastQty>() const {
+ return getLastQty();
+}
+template<> FieldLastPx::ValueType FIXPP_MSG_CLASS::get<FieldLastPx>() const {
+ return getLastPx();
+}
+template<> FieldText::ValueType FIXPP_MSG_CLASS::get<FieldText>() const {
+ return getText();
+}
+template<> FieldEncodedTextLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedTextLen>() const {
+ return getEncodedTextLen();
+}
+template<> FieldEncodedText::ValueType FIXPP_MSG_CLASS::get<FieldEncodedText>() const {
+ return getEncodedText();
+}
+
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageQuoteRequest
+template<> FieldQuoteReqID::ValueType FIXPP_MSG_CLASS::get<FieldQuoteReqID>() const {
+ return getQuoteReqID();
+}
+template<> FieldRFQReqID::ValueType FIXPP_MSG_CLASS::get<FieldRFQReqID>() const {
+ return getRFQReqID();
+}
+template<> FieldClOrdID::ValueType FIXPP_MSG_CLASS::get<FieldClOrdID>() const {
+ return getClOrdID();
+}
+template<> FieldOrderCapacity::ValueType FIXPP_MSG_CLASS::get<FieldOrderCapacity>() const {
+ return getOrderCapacity();
+}
+template<> FieldText::ValueType FIXPP_MSG_CLASS::get<FieldText>() const {
+ return getText();
+}
+template<> FieldEncodedTextLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedTextLen>() const {
+ return getEncodedTextLen();
+}
+template<> FieldEncodedText::ValueType FIXPP_MSG_CLASS::get<FieldEncodedText>() const {
+ return getEncodedText();
+}
+
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageQuote
+template<> FieldQuoteReqID::ValueType FIXPP_MSG_CLASS::get<FieldQuoteReqID>() const {
+ return getQuoteReqID();
+}
+template<> FieldQuoteID::ValueType FIXPP_MSG_CLASS::get<FieldQuoteID>() const {
+ return getQuoteID();
+}
+template<> FieldQuoteRespID::ValueType FIXPP_MSG_CLASS::get<FieldQuoteRespID>() const {
+ return getQuoteRespID();
+}
+template<> FieldQuoteType::ValueType FIXPP_MSG_CLASS::get<FieldQuoteType>() const {
+ return getQuoteType();
+}
+template<> FieldQuoteResponseLevel::ValueType FIXPP_MSG_CLASS::get<FieldQuoteResponseLevel>() const {
+ return getQuoteResponseLevel();
+}
+template<> FieldTradingSessionID::ValueType FIXPP_MSG_CLASS::get<FieldTradingSessionID>() const {
+ return getTradingSessionID();
+}
+template<> FieldTradingSessionSubID::ValueType FIXPP_MSG_CLASS::get<FieldTradingSessionSubID>() const {
+ return getTradingSessionSubID();
+}
+template<> FieldSymbol::ValueType FIXPP_MSG_CLASS::get<FieldSymbol>() const {
+ return getSymbol();
+}
+template<> FieldSymbolSfx::ValueType FIXPP_MSG_CLASS::get<FieldSymbolSfx>() const {
+ return getSymbolSfx();
+}
+template<> FieldSecurityID::ValueType FIXPP_MSG_CLASS::get<FieldSecurityID>() const {
+ return getSecurityID();
+}
+template<> FieldSecurityIDSource::ValueType FIXPP_MSG_CLASS::get<FieldSecurityIDSource>() const {
+ return getSecurityIDSource();
+}
+template<> FieldProduct::ValueType FIXPP_MSG_CLASS::get<FieldProduct>() const {
+ return getProduct();
+}
+template<> FieldCFICode::ValueType FIXPP_MSG_CLASS::get<FieldCFICode>() const {
+ return getCFICode();
+}
+template<> FieldSecurityType::ValueType FIXPP_MSG_CLASS::get<FieldSecurityType>() const {
+ return getSecurityType();
+}
+template<> FieldSecuritySubType::ValueType FIXPP_MSG_CLASS::get<FieldSecuritySubType>() const {
+ return getSecuritySubType();
+}
+template<> FieldMaturityMonthYear::ValueType FIXPP_MSG_CLASS::get<FieldMaturityMonthYear>() const {
+ return getMaturityMonthYear();
+}
+template<> FieldMaturityDate::ValueType FIXPP_MSG_CLASS::get<FieldMaturityDate>() const {
+ return getMaturityDate();
+}
+template<> FieldPutOrCall::ValueType FIXPP_MSG_CLASS::get<FieldPutOrCall>() const {
+ return getPutOrCall();
+}
+template<> FieldCouponPaymentDate::ValueType FIXPP_MSG_CLASS::get<FieldCouponPaymentDate>() const {
+ return getCouponPaymentDate();
+}
+template<> FieldIssueDate::ValueType FIXPP_MSG_CLASS::get<FieldIssueDate>() const {
+ return getIssueDate();
+}
+template<> FieldRepoCollateralSecurityType::ValueType FIXPP_MSG_CLASS::get<FieldRepoCollateralSecurityType>() const {
+ return getRepoCollateralSecurityType();
+}
+template<> FieldRepurchaseTerm::ValueType FIXPP_MSG_CLASS::get<FieldRepurchaseTerm>() const {
+ return getRepurchaseTerm();
+}
+template<> FieldRepurchaseRate::ValueType FIXPP_MSG_CLASS::get<FieldRepurchaseRate>() const {
+ return getRepurchaseRate();
+}
+template<> FieldFactor::ValueType FIXPP_MSG_CLASS::get<FieldFactor>() const {
+ return getFactor();
+}
+template<> FieldCreditRating::ValueType FIXPP_MSG_CLASS::get<FieldCreditRating>() const {
+ return getCreditRating();
+}
+template<> FieldInstrRegistry::ValueType FIXPP_MSG_CLASS::get<FieldInstrRegistry>() const {
+ return getInstrRegistry();
+}
+template<> FieldCountryOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldCountryOfIssue>() const {
+ return getCountryOfIssue();
+}
+template<> FieldStateOrProvinceOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldStateOrProvinceOfIssue>() const {
+ return getStateOrProvinceOfIssue();
+}
+template<> FieldLocaleOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldLocaleOfIssue>() const {
+ return getLocaleOfIssue();
+}
+template<> FieldRedemptionDate::ValueType FIXPP_MSG_CLASS::get<FieldRedemptionDate>() const {
+ return getRedemptionDate();
+}
+template<> FieldStrikePrice::ValueType FIXPP_MSG_CLASS::get<FieldStrikePrice>() const {
+ return getStrikePrice();
+}
+template<> FieldStrikeCurrency::ValueType FIXPP_MSG_CLASS::get<FieldStrikeCurrency>() const {
+ return getStrikeCurrency();
+}
+template<> FieldOptAttribute::ValueType FIXPP_MSG_CLASS::get<FieldOptAttribute>() const {
+ return getOptAttribute();
+}
+template<> FieldContractMultiplier::ValueType FIXPP_MSG_CLASS::get<FieldContractMultiplier>() const {
+ return getContractMultiplier();
+}
+template<> FieldCouponRate::ValueType FIXPP_MSG_CLASS::get<FieldCouponRate>() const {
+ return getCouponRate();
+}
+template<> FieldSecurityExchange::ValueType FIXPP_MSG_CLASS::get<FieldSecurityExchange>() const {
+ return getSecurityExchange();
+}
+template<> FieldIssuer::ValueType FIXPP_MSG_CLASS::get<FieldIssuer>() const {
+ return getIssuer();
+}
+template<> FieldEncodedIssuerLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedIssuerLen>() const {
+ return getEncodedIssuerLen();
+}
+template<> FieldEncodedIssuer::ValueType FIXPP_MSG_CLASS::get<FieldEncodedIssuer>() const {
+ return getEncodedIssuer();
+}
+template<> FieldSecurityDesc::ValueType FIXPP_MSG_CLASS::get<FieldSecurityDesc>() const {
+ return getSecurityDesc();
+}
+template<> FieldEncodedSecurityDescLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedSecurityDescLen>() const {
+ return getEncodedSecurityDescLen();
+}
+template<> FieldEncodedSecurityDesc::ValueType FIXPP_MSG_CLASS::get<FieldEncodedSecurityDesc>() const {
+ return getEncodedSecurityDesc();
+}
+template<> FieldPool::ValueType FIXPP_MSG_CLASS::get<FieldPool>() const {
+ return getPool();
+}
+template<> FieldContractSettlMonth::ValueType FIXPP_MSG_CLASS::get<FieldContractSettlMonth>() const {
+ return getContractSettlMonth();
+}
+template<> FieldCPProgram::ValueType FIXPP_MSG_CLASS::get<FieldCPProgram>() const {
+ return getCPProgram();
+}
+template<> FieldCPRegType::ValueType FIXPP_MSG_CLASS::get<FieldCPRegType>() const {
+ return getCPRegType();
+}
+template<> FieldDatedDate::ValueType FIXPP_MSG_CLASS::get<FieldDatedDate>() const {
+ return getDatedDate();
+}
+template<> FieldInterestAccrualDate::ValueType FIXPP_MSG_CLASS::get<FieldInterestAccrualDate>() const {
+ return getInterestAccrualDate();
+}
+template<> FieldAgreementDesc::ValueType FIXPP_MSG_CLASS::get<FieldAgreementDesc>() const {
+ return getAgreementDesc();
+}
+template<> FieldAgreementID::ValueType FIXPP_MSG_CLASS::get<FieldAgreementID>() const {
+ return getAgreementID();
+}
+template<> FieldAgreementDate::ValueType FIXPP_MSG_CLASS::get<FieldAgreementDate>() const {
+ return getAgreementDate();
+}
+template<> FieldAgreementCurrency::ValueType FIXPP_MSG_CLASS::get<FieldAgreementCurrency>() const {
+ return getAgreementCurrency();
+}
+template<> FieldTerminationType::ValueType FIXPP_MSG_CLASS::get<FieldTerminationType>() const {
+ return getTerminationType();
+}
+template<> FieldStartDate::ValueType FIXPP_MSG_CLASS::get<FieldStartDate>() const {
+ return getStartDate();
+}
+template<> FieldEndDate::ValueType FIXPP_MSG_CLASS::get<FieldEndDate>() const {
+ return getEndDate();
+}
+template<> FieldDeliveryType::ValueType FIXPP_MSG_CLASS::get<FieldDeliveryType>() const {
+ return getDeliveryType();
+}
+template<> FieldMarginRatio::ValueType FIXPP_MSG_CLASS::get<FieldMarginRatio>() const {
+ return getMarginRatio();
+}
+template<> FieldSide::ValueType FIXPP_MSG_CLASS::get<FieldSide>() const {
+ return getSide();
+}
+template<> FieldOrderQty::ValueType FIXPP_MSG_CLASS::get<FieldOrderQty>() const {
+ return getOrderQty();
+}
+template<> FieldCashOrderQty::ValueType FIXPP_MSG_CLASS::get<FieldCashOrderQty>() const {
+ return getCashOrderQty();
+}
+template<> FieldOrderPercent::ValueType FIXPP_MSG_CLASS::get<FieldOrderPercent>() const {
+ return getOrderPercent();
+}
+template<> FieldRoundingDirection::ValueType FIXPP_MSG_CLASS::get<FieldRoundingDirection>() const {
+ return getRoundingDirection();
+}
+template<> FieldRoundingModulus::ValueType FIXPP_MSG_CLASS::get<FieldRoundingModulus>() const {
+ return getRoundingModulus();
+}
+template<> FieldSettlType::ValueType FIXPP_MSG_CLASS::get<FieldSettlType>() const {
+ return getSettlType();
+}
+template<> FieldSettlDate::ValueType FIXPP_MSG_CLASS::get<FieldSettlDate>() const {
+ return getSettlDate();
+}
+template<> FieldSettlDate2::ValueType FIXPP_MSG_CLASS::get<FieldSettlDate2>() const {
+ return getSettlDate2();
+}
+template<> FieldOrderQty2::ValueType FIXPP_MSG_CLASS::get<FieldOrderQty2>() const {
+ return getOrderQty2();
+}
+template<> FieldCurrency::ValueType FIXPP_MSG_CLASS::get<FieldCurrency>() const {
+ return getCurrency();
+}
+template<> FieldAccount::ValueType FIXPP_MSG_CLASS::get<FieldAccount>() const {
+ return getAccount();
+}
+template<> FieldAcctIDSource::ValueType FIXPP_MSG_CLASS::get<FieldAcctIDSource>() const {
+ return getAcctIDSource();
+}
+template<> FieldAccountType::ValueType FIXPP_MSG_CLASS::get<FieldAccountType>() const {
+ return getAccountType();
+}
+template<> FieldBidPx::ValueType FIXPP_MSG_CLASS::get<FieldBidPx>() const {
+ return getBidPx();
+}
+template<> FieldOfferPx::ValueType FIXPP_MSG_CLASS::get<FieldOfferPx>() const {
+ return getOfferPx();
+}
+template<> FieldMktBidPx::ValueType FIXPP_MSG_CLASS::get<FieldMktBidPx>() const {
+ return getMktBidPx();
+}
+template<> FieldMktOfferPx::ValueType FIXPP_MSG_CLASS::get<FieldMktOfferPx>() const {
+ return getMktOfferPx();
+}
+template<> FieldMinBidSize::ValueType FIXPP_MSG_CLASS::get<FieldMinBidSize>() const {
+ return getMinBidSize();
+}
+template<> FieldBidSize::ValueType FIXPP_MSG_CLASS::get<FieldBidSize>() const {
+ return getBidSize();
+}
+template<> FieldMinOfferSize::ValueType FIXPP_MSG_CLASS::get<FieldMinOfferSize>() const {
+ return getMinOfferSize();
+}
+template<> FieldOfferSize::ValueType FIXPP_MSG_CLASS::get<FieldOfferSize>() const {
+ return getOfferSize();
+}
+template<> FieldValidUntilTime::ValueType FIXPP_MSG_CLASS::get<FieldValidUntilTime>() const {
+ return getValidUntilTime();
+}
+template<> FieldBidSpotRate::ValueType FIXPP_MSG_CLASS::get<FieldBidSpotRate>() const {
+ return getBidSpotRate();
+}
+template<> FieldOfferSpotRate::ValueType FIXPP_MSG_CLASS::get<FieldOfferSpotRate>() const {
+ return getOfferSpotRate();
+}
+template<> FieldBidForwardPoints::ValueType FIXPP_MSG_CLASS::get<FieldBidForwardPoints>() const {
+ return getBidForwardPoints();
+}
+template<> FieldOfferForwardPoints::ValueType FIXPP_MSG_CLASS::get<FieldOfferForwardPoints>() const {
+ return getOfferForwardPoints();
+}
+template<> FieldMidPx::ValueType FIXPP_MSG_CLASS::get<FieldMidPx>() const {
+ return getMidPx();
+}
+template<> FieldBidYield::ValueType FIXPP_MSG_CLASS::get<FieldBidYield>() const {
+ return getBidYield();
+}
+template<> FieldMidYield::ValueType FIXPP_MSG_CLASS::get<FieldMidYield>() const {
+ return getMidYield();
+}
+template<> FieldOfferYield::ValueType FIXPP_MSG_CLASS::get<FieldOfferYield>() const {
+ return getOfferYield();
+}
+template<> FieldTransactTime::ValueType FIXPP_MSG_CLASS::get<FieldTransactTime>() const {
+ return getTransactTime();
+}
+template<> FieldOrdType::ValueType FIXPP_MSG_CLASS::get<FieldOrdType>() const {
+ return getOrdType();
+}
+template<> FieldBidForwardPoints2::ValueType FIXPP_MSG_CLASS::get<FieldBidForwardPoints2>() const {
+ return getBidForwardPoints2();
+}
+template<> FieldOfferForwardPoints2::ValueType FIXPP_MSG_CLASS::get<FieldOfferForwardPoints2>() const {
+ return getOfferForwardPoints2();
+}
+template<> FieldSettlCurrBidFxRate::ValueType FIXPP_MSG_CLASS::get<FieldSettlCurrBidFxRate>() const {
+ return getSettlCurrBidFxRate();
+}
+template<> FieldSettlCurrOfferFxRate::ValueType FIXPP_MSG_CLASS::get<FieldSettlCurrOfferFxRate>() const {
+ return getSettlCurrOfferFxRate();
+}
+template<> FieldSettlCurrFxRateCalc::ValueType FIXPP_MSG_CLASS::get<FieldSettlCurrFxRateCalc>() const {
+ return getSettlCurrFxRateCalc();
+}
+template<> FieldCommType::ValueType FIXPP_MSG_CLASS::get<FieldCommType>() const {
+ return getCommType();
+}
+template<> FieldCommission::ValueType FIXPP_MSG_CLASS::get<FieldCommission>() const {
+ return getCommission();
+}
+template<> FieldCustOrderCapacity::ValueType FIXPP_MSG_CLASS::get<FieldCustOrderCapacity>() const {
+ return getCustOrderCapacity();
+}
+template<> FieldExDestination::ValueType FIXPP_MSG_CLASS::get<FieldExDestination>() const {
+ return getExDestination();
+}
+template<> FieldOrderCapacity::ValueType FIXPP_MSG_CLASS::get<FieldOrderCapacity>() const {
+ return getOrderCapacity();
+}
+template<> FieldPriceType::ValueType FIXPP_MSG_CLASS::get<FieldPriceType>() const {
+ return getPriceType();
+}
+template<> FieldSpread::ValueType FIXPP_MSG_CLASS::get<FieldSpread>() const {
+ return getSpread();
+}
+template<> FieldBenchmarkCurveCurrency::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkCurveCurrency>() const {
+ return getBenchmarkCurveCurrency();
+}
+template<> FieldBenchmarkCurveName::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkCurveName>() const {
+ return getBenchmarkCurveName();
+}
+template<> FieldBenchmarkCurvePoint::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkCurvePoint>() const {
+ return getBenchmarkCurvePoint();
+}
+template<> FieldBenchmarkPrice::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkPrice>() const {
+ return getBenchmarkPrice();
+}
+template<> FieldBenchmarkPriceType::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkPriceType>() const {
+ return getBenchmarkPriceType();
+}
+template<> FieldBenchmarkSecurityID::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkSecurityID>() const {
+ return getBenchmarkSecurityID();
+}
+template<> FieldBenchmarkSecurityIDSource::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkSecurityIDSource>() const {
+ return getBenchmarkSecurityIDSource();
+}
+template<> FieldYieldType::ValueType FIXPP_MSG_CLASS::get<FieldYieldType>() const {
+ return getYieldType();
+}
+template<> FieldYield::ValueType FIXPP_MSG_CLASS::get<FieldYield>() const {
+ return getYield();
+}
+template<> FieldYieldCalcDate::ValueType FIXPP_MSG_CLASS::get<FieldYieldCalcDate>() const {
+ return getYieldCalcDate();
+}
+template<> FieldYieldRedemptionDate::ValueType FIXPP_MSG_CLASS::get<FieldYieldRedemptionDate>() const {
+ return getYieldRedemptionDate();
+}
+template<> FieldYieldRedemptionPrice::ValueType FIXPP_MSG_CLASS::get<FieldYieldRedemptionPrice>() const {
+ return getYieldRedemptionPrice();
+}
+template<> FieldYieldRedemptionPriceType::ValueType FIXPP_MSG_CLASS::get<FieldYieldRedemptionPriceType>() const {
+ return getYieldRedemptionPriceType();
+}
+template<> FieldText::ValueType FIXPP_MSG_CLASS::get<FieldText>() const {
+ return getText();
+}
+template<> FieldEncodedTextLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedTextLen>() const {
+ return getEncodedTextLen();
+}
+template<> FieldEncodedText::ValueType FIXPP_MSG_CLASS::get<FieldEncodedText>() const {
+ return getEncodedText();
+}
+
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageSettlementInstructions
+template<> FieldSettlInstMsgID::ValueType FIXPP_MSG_CLASS::get<FieldSettlInstMsgID>() const {
+ return getSettlInstMsgID();
+}
+template<> FieldSettlInstReqID::ValueType FIXPP_MSG_CLASS::get<FieldSettlInstReqID>() const {
+ return getSettlInstReqID();
+}
+template<> FieldSettlInstMode::ValueType FIXPP_MSG_CLASS::get<FieldSettlInstMode>() const {
+ return getSettlInstMode();
+}
+template<> FieldSettlInstReqRejCode::ValueType FIXPP_MSG_CLASS::get<FieldSettlInstReqRejCode>() const {
+ return getSettlInstReqRejCode();
+}
+template<> FieldText::ValueType FIXPP_MSG_CLASS::get<FieldText>() const {
+ return getText();
+}
+template<> FieldEncodedTextLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedTextLen>() const {
+ return getEncodedTextLen();
+}
+template<> FieldEncodedText::ValueType FIXPP_MSG_CLASS::get<FieldEncodedText>() const {
+ return getEncodedText();
+}
+template<> FieldClOrdID::ValueType FIXPP_MSG_CLASS::get<FieldClOrdID>() const {
+ return getClOrdID();
+}
+template<> FieldTransactTime::ValueType FIXPP_MSG_CLASS::get<FieldTransactTime>() const {
+ return getTransactTime();
+}
+
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageMarketDataRequest
+template<> FieldMDReqID::ValueType FIXPP_MSG_CLASS::get<FieldMDReqID>() const {
+ return getMDReqID();
+}
+template<> FieldSubscriptionRequestType::ValueType FIXPP_MSG_CLASS::get<FieldSubscriptionRequestType>() const {
+ return getSubscriptionRequestType();
+}
+template<> FieldMarketDepth::ValueType FIXPP_MSG_CLASS::get<FieldMarketDepth>() const {
+ return getMarketDepth();
+}
+template<> FieldMDUpdateType::ValueType FIXPP_MSG_CLASS::get<FieldMDUpdateType>() const {
+ return getMDUpdateType();
+}
+template<> FieldAggregatedBook::ValueType FIXPP_MSG_CLASS::get<FieldAggregatedBook>() const {
+ return getAggregatedBook();
+}
+template<> FieldOpenCloseSettlFlag::ValueType FIXPP_MSG_CLASS::get<FieldOpenCloseSettlFlag>() const {
+ return getOpenCloseSettlFlag();
+}
+template<> FieldScope::ValueType FIXPP_MSG_CLASS::get<FieldScope>() const {
+ return getScope();
+}
+template<> FieldMDImplicitDelete::ValueType FIXPP_MSG_CLASS::get<FieldMDImplicitDelete>() const {
+ return getMDImplicitDelete();
+}
+template<> FieldApplQueueAction::ValueType FIXPP_MSG_CLASS::get<FieldApplQueueAction>() const {
+ return getApplQueueAction();
+}
+template<> FieldApplQueueMax::ValueType FIXPP_MSG_CLASS::get<FieldApplQueueMax>() const {
+ return getApplQueueMax();
+}
+
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageMarketDataSnapshotFullRefresh
+template<> FieldMDReqID::ValueType FIXPP_MSG_CLASS::get<FieldMDReqID>() const {
+ return getMDReqID();
+}
+template<> FieldSymbol::ValueType FIXPP_MSG_CLASS::get<FieldSymbol>() const {
+ return getSymbol();
+}
+template<> FieldSymbolSfx::ValueType FIXPP_MSG_CLASS::get<FieldSymbolSfx>() const {
+ return getSymbolSfx();
+}
+template<> FieldSecurityID::ValueType FIXPP_MSG_CLASS::get<FieldSecurityID>() const {
+ return getSecurityID();
+}
+template<> FieldSecurityIDSource::ValueType FIXPP_MSG_CLASS::get<FieldSecurityIDSource>() const {
+ return getSecurityIDSource();
+}
+template<> FieldProduct::ValueType FIXPP_MSG_CLASS::get<FieldProduct>() const {
+ return getProduct();
+}
+template<> FieldCFICode::ValueType FIXPP_MSG_CLASS::get<FieldCFICode>() const {
+ return getCFICode();
+}
+template<> FieldSecurityType::ValueType FIXPP_MSG_CLASS::get<FieldSecurityType>() const {
+ return getSecurityType();
+}
+template<> FieldSecuritySubType::ValueType FIXPP_MSG_CLASS::get<FieldSecuritySubType>() const {
+ return getSecuritySubType();
+}
+template<> FieldMaturityMonthYear::ValueType FIXPP_MSG_CLASS::get<FieldMaturityMonthYear>() const {
+ return getMaturityMonthYear();
+}
+template<> FieldMaturityDate::ValueType FIXPP_MSG_CLASS::get<FieldMaturityDate>() const {
+ return getMaturityDate();
+}
+template<> FieldPutOrCall::ValueType FIXPP_MSG_CLASS::get<FieldPutOrCall>() const {
+ return getPutOrCall();
+}
+template<> FieldCouponPaymentDate::ValueType FIXPP_MSG_CLASS::get<FieldCouponPaymentDate>() const {
+ return getCouponPaymentDate();
+}
+template<> FieldIssueDate::ValueType FIXPP_MSG_CLASS::get<FieldIssueDate>() const {
+ return getIssueDate();
+}
+template<> FieldRepoCollateralSecurityType::ValueType FIXPP_MSG_CLASS::get<FieldRepoCollateralSecurityType>() const {
+ return getRepoCollateralSecurityType();
+}
+template<> FieldRepurchaseTerm::ValueType FIXPP_MSG_CLASS::get<FieldRepurchaseTerm>() const {
+ return getRepurchaseTerm();
+}
+template<> FieldRepurchaseRate::ValueType FIXPP_MSG_CLASS::get<FieldRepurchaseRate>() const {
+ return getRepurchaseRate();
+}
+template<> FieldFactor::ValueType FIXPP_MSG_CLASS::get<FieldFactor>() const {
+ return getFactor();
+}
+template<> FieldCreditRating::ValueType FIXPP_MSG_CLASS::get<FieldCreditRating>() const {
+ return getCreditRating();
+}
+template<> FieldInstrRegistry::ValueType FIXPP_MSG_CLASS::get<FieldInstrRegistry>() const {
+ return getInstrRegistry();
+}
+template<> FieldCountryOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldCountryOfIssue>() const {
+ return getCountryOfIssue();
+}
+template<> FieldStateOrProvinceOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldStateOrProvinceOfIssue>() const {
+ return getStateOrProvinceOfIssue();
+}
+template<> FieldLocaleOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldLocaleOfIssue>() const {
+ return getLocaleOfIssue();
+}
+template<> FieldRedemptionDate::ValueType FIXPP_MSG_CLASS::get<FieldRedemptionDate>() const {
+ return getRedemptionDate();
+}
+template<> FieldStrikePrice::ValueType FIXPP_MSG_CLASS::get<FieldStrikePrice>() const {
+ return getStrikePrice();
+}
+template<> FieldStrikeCurrency::ValueType FIXPP_MSG_CLASS::get<FieldStrikeCurrency>() const {
+ return getStrikeCurrency();
+}
+template<> FieldOptAttribute::ValueType FIXPP_MSG_CLASS::get<FieldOptAttribute>() const {
+ return getOptAttribute();
+}
+template<> FieldContractMultiplier::ValueType FIXPP_MSG_CLASS::get<FieldContractMultiplier>() const {
+ return getContractMultiplier();
+}
+template<> FieldCouponRate::ValueType FIXPP_MSG_CLASS::get<FieldCouponRate>() const {
+ return getCouponRate();
+}
+template<> FieldSecurityExchange::ValueType FIXPP_MSG_CLASS::get<FieldSecurityExchange>() const {
+ return getSecurityExchange();
+}
+template<> FieldIssuer::ValueType FIXPP_MSG_CLASS::get<FieldIssuer>() const {
+ return getIssuer();
+}
+template<> FieldEncodedIssuerLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedIssuerLen>() const {
+ return getEncodedIssuerLen();
+}
+template<> FieldEncodedIssuer::ValueType FIXPP_MSG_CLASS::get<FieldEncodedIssuer>() const {
+ return getEncodedIssuer();
+}
+template<> FieldSecurityDesc::ValueType FIXPP_MSG_CLASS::get<FieldSecurityDesc>() const {
+ return getSecurityDesc();
+}
+template<> FieldEncodedSecurityDescLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedSecurityDescLen>() const {
+ return getEncodedSecurityDescLen();
+}
+template<> FieldEncodedSecurityDesc::ValueType FIXPP_MSG_CLASS::get<FieldEncodedSecurityDesc>() const {
+ return getEncodedSecurityDesc();
+}
+template<> FieldPool::ValueType FIXPP_MSG_CLASS::get<FieldPool>() const {
+ return getPool();
+}
+template<> FieldContractSettlMonth::ValueType FIXPP_MSG_CLASS::get<FieldContractSettlMonth>() const {
+ return getContractSettlMonth();
+}
+template<> FieldCPProgram::ValueType FIXPP_MSG_CLASS::get<FieldCPProgram>() const {
+ return getCPProgram();
+}
+template<> FieldCPRegType::ValueType FIXPP_MSG_CLASS::get<FieldCPRegType>() const {
+ return getCPRegType();
+}
+template<> FieldDatedDate::ValueType FIXPP_MSG_CLASS::get<FieldDatedDate>() const {
+ return getDatedDate();
+}
+template<> FieldInterestAccrualDate::ValueType FIXPP_MSG_CLASS::get<FieldInterestAccrualDate>() const {
+ return getInterestAccrualDate();
+}
+template<> FieldFinancialStatus::ValueType FIXPP_MSG_CLASS::get<FieldFinancialStatus>() const {
+ return getFinancialStatus();
+}
+template<> FieldCorporateAction::ValueType FIXPP_MSG_CLASS::get<FieldCorporateAction>() const {
+ return getCorporateAction();
+}
+template<> FieldNetChgPrevDay::ValueType FIXPP_MSG_CLASS::get<FieldNetChgPrevDay>() const {
+ return getNetChgPrevDay();
+}
+template<> FieldApplQueueDepth::ValueType FIXPP_MSG_CLASS::get<FieldApplQueueDepth>() const {
+ return getApplQueueDepth();
+}
+template<> FieldApplQueueResolution::ValueType FIXPP_MSG_CLASS::get<FieldApplQueueResolution>() const {
+ return getApplQueueResolution();
+}
+
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageMarketDataIncrementalRefresh
+template<> FieldMDReqID::ValueType FIXPP_MSG_CLASS::get<FieldMDReqID>() const {
+ return getMDReqID();
+}
+template<> FieldApplQueueDepth::ValueType FIXPP_MSG_CLASS::get<FieldApplQueueDepth>() const {
+ return getApplQueueDepth();
+}
+template<> FieldApplQueueResolution::ValueType FIXPP_MSG_CLASS::get<FieldApplQueueResolution>() const {
+ return getApplQueueResolution();
+}
+
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageMarketDataRequestReject
+template<> FieldMDReqID::ValueType FIXPP_MSG_CLASS::get<FieldMDReqID>() const {
+ return getMDReqID();
+}
+template<> FieldMDReqRejReason::ValueType FIXPP_MSG_CLASS::get<FieldMDReqRejReason>() const {
+ return getMDReqRejReason();
+}
+template<> FieldText::ValueType FIXPP_MSG_CLASS::get<FieldText>() const {
+ return getText();
+}
+template<> FieldEncodedTextLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedTextLen>() const {
+ return getEncodedTextLen();
+}
+template<> FieldEncodedText::ValueType FIXPP_MSG_CLASS::get<FieldEncodedText>() const {
+ return getEncodedText();
+}
+
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageQuoteCancel
+template<> FieldQuoteReqID::ValueType FIXPP_MSG_CLASS::get<FieldQuoteReqID>() const {
+ return getQuoteReqID();
+}
+template<> FieldQuoteID::ValueType FIXPP_MSG_CLASS::get<FieldQuoteID>() const {
+ return getQuoteID();
+}
+template<> FieldQuoteCancelType::ValueType FIXPP_MSG_CLASS::get<FieldQuoteCancelType>() const {
+ return getQuoteCancelType();
+}
+template<> FieldQuoteResponseLevel::ValueType FIXPP_MSG_CLASS::get<FieldQuoteResponseLevel>() const {
+ return getQuoteResponseLevel();
+}
+template<> FieldAccount::ValueType FIXPP_MSG_CLASS::get<FieldAccount>() const {
+ return getAccount();
+}
+template<> FieldAcctIDSource::ValueType FIXPP_MSG_CLASS::get<FieldAcctIDSource>() const {
+ return getAcctIDSource();
+}
+template<> FieldAccountType::ValueType FIXPP_MSG_CLASS::get<FieldAccountType>() const {
+ return getAccountType();
+}
+template<> FieldTradingSessionID::ValueType FIXPP_MSG_CLASS::get<FieldTradingSessionID>() const {
+ return getTradingSessionID();
+}
+template<> FieldTradingSessionSubID::ValueType FIXPP_MSG_CLASS::get<FieldTradingSessionSubID>() const {
+ return getTradingSessionSubID();
+}
+
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageQuoteStatusRequest
+template<> FieldQuoteStatusReqID::ValueType FIXPP_MSG_CLASS::get<FieldQuoteStatusReqID>() const {
+ return getQuoteStatusReqID();
+}
+template<> FieldQuoteID::ValueType FIXPP_MSG_CLASS::get<FieldQuoteID>() const {
+ return getQuoteID();
+}
+template<> FieldSymbol::ValueType FIXPP_MSG_CLASS::get<FieldSymbol>() const {
+ return getSymbol();
+}
+template<> FieldSymbolSfx::ValueType FIXPP_MSG_CLASS::get<FieldSymbolSfx>() const {
+ return getSymbolSfx();
+}
+template<> FieldSecurityID::ValueType FIXPP_MSG_CLASS::get<FieldSecurityID>() const {
+ return getSecurityID();
+}
+template<> FieldSecurityIDSource::ValueType FIXPP_MSG_CLASS::get<FieldSecurityIDSource>() const {
+ return getSecurityIDSource();
+}
+template<> FieldProduct::ValueType FIXPP_MSG_CLASS::get<FieldProduct>() const {
+ return getProduct();
+}
+template<> FieldCFICode::ValueType FIXPP_MSG_CLASS::get<FieldCFICode>() const {
+ return getCFICode();
+}
+template<> FieldSecurityType::ValueType FIXPP_MSG_CLASS::get<FieldSecurityType>() const {
+ return getSecurityType();
+}
+template<> FieldSecuritySubType::ValueType FIXPP_MSG_CLASS::get<FieldSecuritySubType>() const {
+ return getSecuritySubType();
+}
+template<> FieldMaturityMonthYear::ValueType FIXPP_MSG_CLASS::get<FieldMaturityMonthYear>() const {
+ return getMaturityMonthYear();
+}
+template<> FieldMaturityDate::ValueType FIXPP_MSG_CLASS::get<FieldMaturityDate>() const {
+ return getMaturityDate();
+}
+template<> FieldPutOrCall::ValueType FIXPP_MSG_CLASS::get<FieldPutOrCall>() const {
+ return getPutOrCall();
+}
+template<> FieldCouponPaymentDate::ValueType FIXPP_MSG_CLASS::get<FieldCouponPaymentDate>() const {
+ return getCouponPaymentDate();
+}
+template<> FieldIssueDate::ValueType FIXPP_MSG_CLASS::get<FieldIssueDate>() const {
+ return getIssueDate();
+}
+template<> FieldRepoCollateralSecurityType::ValueType FIXPP_MSG_CLASS::get<FieldRepoCollateralSecurityType>() const {
+ return getRepoCollateralSecurityType();
+}
+template<> FieldRepurchaseTerm::ValueType FIXPP_MSG_CLASS::get<FieldRepurchaseTerm>() const {
+ return getRepurchaseTerm();
+}
+template<> FieldRepurchaseRate::ValueType FIXPP_MSG_CLASS::get<FieldRepurchaseRate>() const {
+ return getRepurchaseRate();
+}
+template<> FieldFactor::ValueType FIXPP_MSG_CLASS::get<FieldFactor>() const {
+ return getFactor();
+}
+template<> FieldCreditRating::ValueType FIXPP_MSG_CLASS::get<FieldCreditRating>() const {
+ return getCreditRating();
+}
+template<> FieldInstrRegistry::ValueType FIXPP_MSG_CLASS::get<FieldInstrRegistry>() const {
+ return getInstrRegistry();
+}
+template<> FieldCountryOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldCountryOfIssue>() const {
+ return getCountryOfIssue();
+}
+template<> FieldStateOrProvinceOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldStateOrProvinceOfIssue>() const {
+ return getStateOrProvinceOfIssue();
+}
+template<> FieldLocaleOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldLocaleOfIssue>() const {
+ return getLocaleOfIssue();
+}
+template<> FieldRedemptionDate::ValueType FIXPP_MSG_CLASS::get<FieldRedemptionDate>() const {
+ return getRedemptionDate();
+}
+template<> FieldStrikePrice::ValueType FIXPP_MSG_CLASS::get<FieldStrikePrice>() const {
+ return getStrikePrice();
+}
+template<> FieldStrikeCurrency::ValueType FIXPP_MSG_CLASS::get<FieldStrikeCurrency>() const {
+ return getStrikeCurrency();
+}
+template<> FieldOptAttribute::ValueType FIXPP_MSG_CLASS::get<FieldOptAttribute>() const {
+ return getOptAttribute();
+}
+template<> FieldContractMultiplier::ValueType FIXPP_MSG_CLASS::get<FieldContractMultiplier>() const {
+ return getContractMultiplier();
+}
+template<> FieldCouponRate::ValueType FIXPP_MSG_CLASS::get<FieldCouponRate>() const {
+ return getCouponRate();
+}
+template<> FieldSecurityExchange::ValueType FIXPP_MSG_CLASS::get<FieldSecurityExchange>() const {
+ return getSecurityExchange();
+}
+template<> FieldIssuer::ValueType FIXPP_MSG_CLASS::get<FieldIssuer>() const {
+ return getIssuer();
+}
+template<> FieldEncodedIssuerLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedIssuerLen>() const {
+ return getEncodedIssuerLen();
+}
+template<> FieldEncodedIssuer::ValueType FIXPP_MSG_CLASS::get<FieldEncodedIssuer>() const {
+ return getEncodedIssuer();
+}
+template<> FieldSecurityDesc::ValueType FIXPP_MSG_CLASS::get<FieldSecurityDesc>() const {
+ return getSecurityDesc();
+}
+template<> FieldEncodedSecurityDescLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedSecurityDescLen>() const {
+ return getEncodedSecurityDescLen();
+}
+template<> FieldEncodedSecurityDesc::ValueType FIXPP_MSG_CLASS::get<FieldEncodedSecurityDesc>() const {
+ return getEncodedSecurityDesc();
+}
+template<> FieldPool::ValueType FIXPP_MSG_CLASS::get<FieldPool>() const {
+ return getPool();
+}
+template<> FieldContractSettlMonth::ValueType FIXPP_MSG_CLASS::get<FieldContractSettlMonth>() const {
+ return getContractSettlMonth();
+}
+template<> FieldCPProgram::ValueType FIXPP_MSG_CLASS::get<FieldCPProgram>() const {
+ return getCPProgram();
+}
+template<> FieldCPRegType::ValueType FIXPP_MSG_CLASS::get<FieldCPRegType>() const {
+ return getCPRegType();
+}
+template<> FieldDatedDate::ValueType FIXPP_MSG_CLASS::get<FieldDatedDate>() const {
+ return getDatedDate();
+}
+template<> FieldInterestAccrualDate::ValueType FIXPP_MSG_CLASS::get<FieldInterestAccrualDate>() const {
+ return getInterestAccrualDate();
+}
+template<> FieldAgreementDesc::ValueType FIXPP_MSG_CLASS::get<FieldAgreementDesc>() const {
+ return getAgreementDesc();
+}
+template<> FieldAgreementID::ValueType FIXPP_MSG_CLASS::get<FieldAgreementID>() const {
+ return getAgreementID();
+}
+template<> FieldAgreementDate::ValueType FIXPP_MSG_CLASS::get<FieldAgreementDate>() const {
+ return getAgreementDate();
+}
+template<> FieldAgreementCurrency::ValueType FIXPP_MSG_CLASS::get<FieldAgreementCurrency>() const {
+ return getAgreementCurrency();
+}
+template<> FieldTerminationType::ValueType FIXPP_MSG_CLASS::get<FieldTerminationType>() const {
+ return getTerminationType();
+}
+template<> FieldStartDate::ValueType FIXPP_MSG_CLASS::get<FieldStartDate>() const {
+ return getStartDate();
+}
+template<> FieldEndDate::ValueType FIXPP_MSG_CLASS::get<FieldEndDate>() const {
+ return getEndDate();
+}
+template<> FieldDeliveryType::ValueType FIXPP_MSG_CLASS::get<FieldDeliveryType>() const {
+ return getDeliveryType();
+}
+template<> FieldMarginRatio::ValueType FIXPP_MSG_CLASS::get<FieldMarginRatio>() const {
+ return getMarginRatio();
+}
+template<> FieldAccount::ValueType FIXPP_MSG_CLASS::get<FieldAccount>() const {
+ return getAccount();
+}
+template<> FieldAcctIDSource::ValueType FIXPP_MSG_CLASS::get<FieldAcctIDSource>() const {
+ return getAcctIDSource();
+}
+template<> FieldAccountType::ValueType FIXPP_MSG_CLASS::get<FieldAccountType>() const {
+ return getAccountType();
+}
+template<> FieldTradingSessionID::ValueType FIXPP_MSG_CLASS::get<FieldTradingSessionID>() const {
+ return getTradingSessionID();
+}
+template<> FieldTradingSessionSubID::ValueType FIXPP_MSG_CLASS::get<FieldTradingSessionSubID>() const {
+ return getTradingSessionSubID();
+}
+template<> FieldSubscriptionRequestType::ValueType FIXPP_MSG_CLASS::get<FieldSubscriptionRequestType>() const {
+ return getSubscriptionRequestType();
+}
+
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageMassQuoteAcknowledgement
+template<> FieldQuoteReqID::ValueType FIXPP_MSG_CLASS::get<FieldQuoteReqID>() const {
+ return getQuoteReqID();
+}
+template<> FieldQuoteID::ValueType FIXPP_MSG_CLASS::get<FieldQuoteID>() const {
+ return getQuoteID();
+}
+template<> FieldQuoteStatus::ValueType FIXPP_MSG_CLASS::get<FieldQuoteStatus>() const {
+ return getQuoteStatus();
+}
+template<> FieldQuoteRejectReason::ValueType FIXPP_MSG_CLASS::get<FieldQuoteRejectReason>() const {
+ return getQuoteRejectReason();
+}
+template<> FieldQuoteResponseLevel::ValueType FIXPP_MSG_CLASS::get<FieldQuoteResponseLevel>() const {
+ return getQuoteResponseLevel();
+}
+template<> FieldQuoteType::ValueType FIXPP_MSG_CLASS::get<FieldQuoteType>() const {
+ return getQuoteType();
+}
+template<> FieldAccount::ValueType FIXPP_MSG_CLASS::get<FieldAccount>() const {
+ return getAccount();
+}
+template<> FieldAcctIDSource::ValueType FIXPP_MSG_CLASS::get<FieldAcctIDSource>() const {
+ return getAcctIDSource();
+}
+template<> FieldAccountType::ValueType FIXPP_MSG_CLASS::get<FieldAccountType>() const {
+ return getAccountType();
+}
+template<> FieldText::ValueType FIXPP_MSG_CLASS::get<FieldText>() const {
+ return getText();
+}
+template<> FieldEncodedTextLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedTextLen>() const {
+ return getEncodedTextLen();
+}
+template<> FieldEncodedText::ValueType FIXPP_MSG_CLASS::get<FieldEncodedText>() const {
+ return getEncodedText();
+}
+
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageSecurityDefinitionRequest
+template<> FieldSecurityReqID::ValueType FIXPP_MSG_CLASS::get<FieldSecurityReqID>() const {
+ return getSecurityReqID();
+}
+template<> FieldSecurityRequestType::ValueType FIXPP_MSG_CLASS::get<FieldSecurityRequestType>() const {
+ return getSecurityRequestType();
+}
+template<> FieldSymbol::ValueType FIXPP_MSG_CLASS::get<FieldSymbol>() const {
+ return getSymbol();
+}
+template<> FieldSymbolSfx::ValueType FIXPP_MSG_CLASS::get<FieldSymbolSfx>() const {
+ return getSymbolSfx();
+}
+template<> FieldSecurityID::ValueType FIXPP_MSG_CLASS::get<FieldSecurityID>() const {
+ return getSecurityID();
+}
+template<> FieldSecurityIDSource::ValueType FIXPP_MSG_CLASS::get<FieldSecurityIDSource>() const {
+ return getSecurityIDSource();
+}
+template<> FieldProduct::ValueType FIXPP_MSG_CLASS::get<FieldProduct>() const {
+ return getProduct();
+}
+template<> FieldCFICode::ValueType FIXPP_MSG_CLASS::get<FieldCFICode>() const {
+ return getCFICode();
+}
+template<> FieldSecurityType::ValueType FIXPP_MSG_CLASS::get<FieldSecurityType>() const {
+ return getSecurityType();
+}
+template<> FieldSecuritySubType::ValueType FIXPP_MSG_CLASS::get<FieldSecuritySubType>() const {
+ return getSecuritySubType();
+}
+template<> FieldMaturityMonthYear::ValueType FIXPP_MSG_CLASS::get<FieldMaturityMonthYear>() const {
+ return getMaturityMonthYear();
+}
+template<> FieldMaturityDate::ValueType FIXPP_MSG_CLASS::get<FieldMaturityDate>() const {
+ return getMaturityDate();
+}
+template<> FieldPutOrCall::ValueType FIXPP_MSG_CLASS::get<FieldPutOrCall>() const {
+ return getPutOrCall();
+}
+template<> FieldCouponPaymentDate::ValueType FIXPP_MSG_CLASS::get<FieldCouponPaymentDate>() const {
+ return getCouponPaymentDate();
+}
+template<> FieldIssueDate::ValueType FIXPP_MSG_CLASS::get<FieldIssueDate>() const {
+ return getIssueDate();
+}
+template<> FieldRepoCollateralSecurityType::ValueType FIXPP_MSG_CLASS::get<FieldRepoCollateralSecurityType>() const {
+ return getRepoCollateralSecurityType();
+}
+template<> FieldRepurchaseTerm::ValueType FIXPP_MSG_CLASS::get<FieldRepurchaseTerm>() const {
+ return getRepurchaseTerm();
+}
+template<> FieldRepurchaseRate::ValueType FIXPP_MSG_CLASS::get<FieldRepurchaseRate>() const {
+ return getRepurchaseRate();
+}
+template<> FieldFactor::ValueType FIXPP_MSG_CLASS::get<FieldFactor>() const {
+ return getFactor();
+}
+template<> FieldCreditRating::ValueType FIXPP_MSG_CLASS::get<FieldCreditRating>() const {
+ return getCreditRating();
+}
+template<> FieldInstrRegistry::ValueType FIXPP_MSG_CLASS::get<FieldInstrRegistry>() const {
+ return getInstrRegistry();
+}
+template<> FieldCountryOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldCountryOfIssue>() const {
+ return getCountryOfIssue();
+}
+template<> FieldStateOrProvinceOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldStateOrProvinceOfIssue>() const {
+ return getStateOrProvinceOfIssue();
+}
+template<> FieldLocaleOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldLocaleOfIssue>() const {
+ return getLocaleOfIssue();
+}
+template<> FieldRedemptionDate::ValueType FIXPP_MSG_CLASS::get<FieldRedemptionDate>() const {
+ return getRedemptionDate();
+}
+template<> FieldStrikePrice::ValueType FIXPP_MSG_CLASS::get<FieldStrikePrice>() const {
+ return getStrikePrice();
+}
+template<> FieldStrikeCurrency::ValueType FIXPP_MSG_CLASS::get<FieldStrikeCurrency>() const {
+ return getStrikeCurrency();
+}
+template<> FieldOptAttribute::ValueType FIXPP_MSG_CLASS::get<FieldOptAttribute>() const {
+ return getOptAttribute();
+}
+template<> FieldContractMultiplier::ValueType FIXPP_MSG_CLASS::get<FieldContractMultiplier>() const {
+ return getContractMultiplier();
+}
+template<> FieldCouponRate::ValueType FIXPP_MSG_CLASS::get<FieldCouponRate>() const {
+ return getCouponRate();
+}
+template<> FieldSecurityExchange::ValueType FIXPP_MSG_CLASS::get<FieldSecurityExchange>() const {
+ return getSecurityExchange();
+}
+template<> FieldIssuer::ValueType FIXPP_MSG_CLASS::get<FieldIssuer>() const {
+ return getIssuer();
+}
+template<> FieldEncodedIssuerLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedIssuerLen>() const {
+ return getEncodedIssuerLen();
+}
+template<> FieldEncodedIssuer::ValueType FIXPP_MSG_CLASS::get<FieldEncodedIssuer>() const {
+ return getEncodedIssuer();
+}
+template<> FieldSecurityDesc::ValueType FIXPP_MSG_CLASS::get<FieldSecurityDesc>() const {
+ return getSecurityDesc();
+}
+template<> FieldEncodedSecurityDescLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedSecurityDescLen>() const {
+ return getEncodedSecurityDescLen();
+}
+template<> FieldEncodedSecurityDesc::ValueType FIXPP_MSG_CLASS::get<FieldEncodedSecurityDesc>() const {
+ return getEncodedSecurityDesc();
+}
+template<> FieldPool::ValueType FIXPP_MSG_CLASS::get<FieldPool>() const {
+ return getPool();
+}
+template<> FieldContractSettlMonth::ValueType FIXPP_MSG_CLASS::get<FieldContractSettlMonth>() const {
+ return getContractSettlMonth();
+}
+template<> FieldCPProgram::ValueType FIXPP_MSG_CLASS::get<FieldCPProgram>() const {
+ return getCPProgram();
+}
+template<> FieldCPRegType::ValueType FIXPP_MSG_CLASS::get<FieldCPRegType>() const {
+ return getCPRegType();
+}
+template<> FieldDatedDate::ValueType FIXPP_MSG_CLASS::get<FieldDatedDate>() const {
+ return getDatedDate();
+}
+template<> FieldInterestAccrualDate::ValueType FIXPP_MSG_CLASS::get<FieldInterestAccrualDate>() const {
+ return getInterestAccrualDate();
+}
+template<> FieldDeliveryForm::ValueType FIXPP_MSG_CLASS::get<FieldDeliveryForm>() const {
+ return getDeliveryForm();
+}
+template<> FieldPctAtRisk::ValueType FIXPP_MSG_CLASS::get<FieldPctAtRisk>() const {
+ return getPctAtRisk();
+}
+template<> FieldCurrency::ValueType FIXPP_MSG_CLASS::get<FieldCurrency>() const {
+ return getCurrency();
+}
+template<> FieldText::ValueType FIXPP_MSG_CLASS::get<FieldText>() const {
+ return getText();
+}
+template<> FieldEncodedTextLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedTextLen>() const {
+ return getEncodedTextLen();
+}
+template<> FieldEncodedText::ValueType FIXPP_MSG_CLASS::get<FieldEncodedText>() const {
+ return getEncodedText();
+}
+template<> FieldTradingSessionID::ValueType FIXPP_MSG_CLASS::get<FieldTradingSessionID>() const {
+ return getTradingSessionID();
+}
+template<> FieldTradingSessionSubID::ValueType FIXPP_MSG_CLASS::get<FieldTradingSessionSubID>() const {
+ return getTradingSessionSubID();
+}
+template<> FieldExpirationCycle::ValueType FIXPP_MSG_CLASS::get<FieldExpirationCycle>() const {
+ return getExpirationCycle();
+}
+template<> FieldSubscriptionRequestType::ValueType FIXPP_MSG_CLASS::get<FieldSubscriptionRequestType>() const {
+ return getSubscriptionRequestType();
+}
+
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageSecurityDefinition
+template<> FieldSecurityReqID::ValueType FIXPP_MSG_CLASS::get<FieldSecurityReqID>() const {
+ return getSecurityReqID();
+}
+template<> FieldSecurityResponseID::ValueType FIXPP_MSG_CLASS::get<FieldSecurityResponseID>() const {
+ return getSecurityResponseID();
+}
+template<> FieldSecurityResponseType::ValueType FIXPP_MSG_CLASS::get<FieldSecurityResponseType>() const {
+ return getSecurityResponseType();
+}
+template<> FieldSymbol::ValueType FIXPP_MSG_CLASS::get<FieldSymbol>() const {
+ return getSymbol();
+}
+template<> FieldSymbolSfx::ValueType FIXPP_MSG_CLASS::get<FieldSymbolSfx>() const {
+ return getSymbolSfx();
+}
+template<> FieldSecurityID::ValueType FIXPP_MSG_CLASS::get<FieldSecurityID>() const {
+ return getSecurityID();
+}
+template<> FieldSecurityIDSource::ValueType FIXPP_MSG_CLASS::get<FieldSecurityIDSource>() const {
+ return getSecurityIDSource();
+}
+template<> FieldProduct::ValueType FIXPP_MSG_CLASS::get<FieldProduct>() const {
+ return getProduct();
+}
+template<> FieldCFICode::ValueType FIXPP_MSG_CLASS::get<FieldCFICode>() const {
+ return getCFICode();
+}
+template<> FieldSecurityType::ValueType FIXPP_MSG_CLASS::get<FieldSecurityType>() const {
+ return getSecurityType();
+}
+template<> FieldSecuritySubType::ValueType FIXPP_MSG_CLASS::get<FieldSecuritySubType>() const {
+ return getSecuritySubType();
+}
+template<> FieldMaturityMonthYear::ValueType FIXPP_MSG_CLASS::get<FieldMaturityMonthYear>() const {
+ return getMaturityMonthYear();
+}
+template<> FieldMaturityDate::ValueType FIXPP_MSG_CLASS::get<FieldMaturityDate>() const {
+ return getMaturityDate();
+}
+template<> FieldPutOrCall::ValueType FIXPP_MSG_CLASS::get<FieldPutOrCall>() const {
+ return getPutOrCall();
+}
+template<> FieldCouponPaymentDate::ValueType FIXPP_MSG_CLASS::get<FieldCouponPaymentDate>() const {
+ return getCouponPaymentDate();
+}
+template<> FieldIssueDate::ValueType FIXPP_MSG_CLASS::get<FieldIssueDate>() const {
+ return getIssueDate();
+}
+template<> FieldRepoCollateralSecurityType::ValueType FIXPP_MSG_CLASS::get<FieldRepoCollateralSecurityType>() const {
+ return getRepoCollateralSecurityType();
+}
+template<> FieldRepurchaseTerm::ValueType FIXPP_MSG_CLASS::get<FieldRepurchaseTerm>() const {
+ return getRepurchaseTerm();
+}
+template<> FieldRepurchaseRate::ValueType FIXPP_MSG_CLASS::get<FieldRepurchaseRate>() const {
+ return getRepurchaseRate();
+}
+template<> FieldFactor::ValueType FIXPP_MSG_CLASS::get<FieldFactor>() const {
+ return getFactor();
+}
+template<> FieldCreditRating::ValueType FIXPP_MSG_CLASS::get<FieldCreditRating>() const {
+ return getCreditRating();
+}
+template<> FieldInstrRegistry::ValueType FIXPP_MSG_CLASS::get<FieldInstrRegistry>() const {
+ return getInstrRegistry();
+}
+template<> FieldCountryOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldCountryOfIssue>() const {
+ return getCountryOfIssue();
+}
+template<> FieldStateOrProvinceOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldStateOrProvinceOfIssue>() const {
+ return getStateOrProvinceOfIssue();
+}
+template<> FieldLocaleOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldLocaleOfIssue>() const {
+ return getLocaleOfIssue();
+}
+template<> FieldRedemptionDate::ValueType FIXPP_MSG_CLASS::get<FieldRedemptionDate>() const {
+ return getRedemptionDate();
+}
+template<> FieldStrikePrice::ValueType FIXPP_MSG_CLASS::get<FieldStrikePrice>() const {
+ return getStrikePrice();
+}
+template<> FieldStrikeCurrency::ValueType FIXPP_MSG_CLASS::get<FieldStrikeCurrency>() const {
+ return getStrikeCurrency();
+}
+template<> FieldOptAttribute::ValueType FIXPP_MSG_CLASS::get<FieldOptAttribute>() const {
+ return getOptAttribute();
+}
+template<> FieldContractMultiplier::ValueType FIXPP_MSG_CLASS::get<FieldContractMultiplier>() const {
+ return getContractMultiplier();
+}
+template<> FieldCouponRate::ValueType FIXPP_MSG_CLASS::get<FieldCouponRate>() const {
+ return getCouponRate();
+}
+template<> FieldSecurityExchange::ValueType FIXPP_MSG_CLASS::get<FieldSecurityExchange>() const {
+ return getSecurityExchange();
+}
+template<> FieldIssuer::ValueType FIXPP_MSG_CLASS::get<FieldIssuer>() const {
+ return getIssuer();
+}
+template<> FieldEncodedIssuerLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedIssuerLen>() const {
+ return getEncodedIssuerLen();
+}
+template<> FieldEncodedIssuer::ValueType FIXPP_MSG_CLASS::get<FieldEncodedIssuer>() const {
+ return getEncodedIssuer();
+}
+template<> FieldSecurityDesc::ValueType FIXPP_MSG_CLASS::get<FieldSecurityDesc>() const {
+ return getSecurityDesc();
+}
+template<> FieldEncodedSecurityDescLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedSecurityDescLen>() const {
+ return getEncodedSecurityDescLen();
+}
+template<> FieldEncodedSecurityDesc::ValueType FIXPP_MSG_CLASS::get<FieldEncodedSecurityDesc>() const {
+ return getEncodedSecurityDesc();
+}
+template<> FieldPool::ValueType FIXPP_MSG_CLASS::get<FieldPool>() const {
+ return getPool();
+}
+template<> FieldContractSettlMonth::ValueType FIXPP_MSG_CLASS::get<FieldContractSettlMonth>() const {
+ return getContractSettlMonth();
+}
+template<> FieldCPProgram::ValueType FIXPP_MSG_CLASS::get<FieldCPProgram>() const {
+ return getCPProgram();
+}
+template<> FieldCPRegType::ValueType FIXPP_MSG_CLASS::get<FieldCPRegType>() const {
+ return getCPRegType();
+}
+template<> FieldDatedDate::ValueType FIXPP_MSG_CLASS::get<FieldDatedDate>() const {
+ return getDatedDate();
+}
+template<> FieldInterestAccrualDate::ValueType FIXPP_MSG_CLASS::get<FieldInterestAccrualDate>() const {
+ return getInterestAccrualDate();
+}
+template<> FieldDeliveryForm::ValueType FIXPP_MSG_CLASS::get<FieldDeliveryForm>() const {
+ return getDeliveryForm();
+}
+template<> FieldPctAtRisk::ValueType FIXPP_MSG_CLASS::get<FieldPctAtRisk>() const {
+ return getPctAtRisk();
+}
+template<> FieldCurrency::ValueType FIXPP_MSG_CLASS::get<FieldCurrency>() const {
+ return getCurrency();
+}
+template<> FieldTradingSessionID::ValueType FIXPP_MSG_CLASS::get<FieldTradingSessionID>() const {
+ return getTradingSessionID();
+}
+template<> FieldTradingSessionSubID::ValueType FIXPP_MSG_CLASS::get<FieldTradingSessionSubID>() const {
+ return getTradingSessionSubID();
+}
+template<> FieldText::ValueType FIXPP_MSG_CLASS::get<FieldText>() const {
+ return getText();
+}
+template<> FieldEncodedTextLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedTextLen>() const {
+ return getEncodedTextLen();
+}
+template<> FieldEncodedText::ValueType FIXPP_MSG_CLASS::get<FieldEncodedText>() const {
+ return getEncodedText();
+}
+template<> FieldExpirationCycle::ValueType FIXPP_MSG_CLASS::get<FieldExpirationCycle>() const {
+ return getExpirationCycle();
+}
+template<> FieldRoundLot::ValueType FIXPP_MSG_CLASS::get<FieldRoundLot>() const {
+ return getRoundLot();
+}
+template<> FieldMinTradeVol::ValueType FIXPP_MSG_CLASS::get<FieldMinTradeVol>() const {
+ return getMinTradeVol();
+}
+
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageSecurityStatusRequest
+template<> FieldSecurityStatusReqID::ValueType FIXPP_MSG_CLASS::get<FieldSecurityStatusReqID>() const {
+ return getSecurityStatusReqID();
+}
+template<> FieldSymbol::ValueType FIXPP_MSG_CLASS::get<FieldSymbol>() const {
+ return getSymbol();
+}
+template<> FieldSymbolSfx::ValueType FIXPP_MSG_CLASS::get<FieldSymbolSfx>() const {
+ return getSymbolSfx();
+}
+template<> FieldSecurityID::ValueType FIXPP_MSG_CLASS::get<FieldSecurityID>() const {
+ return getSecurityID();
+}
+template<> FieldSecurityIDSource::ValueType FIXPP_MSG_CLASS::get<FieldSecurityIDSource>() const {
+ return getSecurityIDSource();
+}
+template<> FieldProduct::ValueType FIXPP_MSG_CLASS::get<FieldProduct>() const {
+ return getProduct();
+}
+template<> FieldCFICode::ValueType FIXPP_MSG_CLASS::get<FieldCFICode>() const {
+ return getCFICode();
+}
+template<> FieldSecurityType::ValueType FIXPP_MSG_CLASS::get<FieldSecurityType>() const {
+ return getSecurityType();
+}
+template<> FieldSecuritySubType::ValueType FIXPP_MSG_CLASS::get<FieldSecuritySubType>() const {
+ return getSecuritySubType();
+}
+template<> FieldMaturityMonthYear::ValueType FIXPP_MSG_CLASS::get<FieldMaturityMonthYear>() const {
+ return getMaturityMonthYear();
+}
+template<> FieldMaturityDate::ValueType FIXPP_MSG_CLASS::get<FieldMaturityDate>() const {
+ return getMaturityDate();
+}
+template<> FieldPutOrCall::ValueType FIXPP_MSG_CLASS::get<FieldPutOrCall>() const {
+ return getPutOrCall();
+}
+template<> FieldCouponPaymentDate::ValueType FIXPP_MSG_CLASS::get<FieldCouponPaymentDate>() const {
+ return getCouponPaymentDate();
+}
+template<> FieldIssueDate::ValueType FIXPP_MSG_CLASS::get<FieldIssueDate>() const {
+ return getIssueDate();
+}
+template<> FieldRepoCollateralSecurityType::ValueType FIXPP_MSG_CLASS::get<FieldRepoCollateralSecurityType>() const {
+ return getRepoCollateralSecurityType();
+}
+template<> FieldRepurchaseTerm::ValueType FIXPP_MSG_CLASS::get<FieldRepurchaseTerm>() const {
+ return getRepurchaseTerm();
+}
+template<> FieldRepurchaseRate::ValueType FIXPP_MSG_CLASS::get<FieldRepurchaseRate>() const {
+ return getRepurchaseRate();
+}
+template<> FieldFactor::ValueType FIXPP_MSG_CLASS::get<FieldFactor>() const {
+ return getFactor();
+}
+template<> FieldCreditRating::ValueType FIXPP_MSG_CLASS::get<FieldCreditRating>() const {
+ return getCreditRating();
+}
+template<> FieldInstrRegistry::ValueType FIXPP_MSG_CLASS::get<FieldInstrRegistry>() const {
+ return getInstrRegistry();
+}
+template<> FieldCountryOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldCountryOfIssue>() const {
+ return getCountryOfIssue();
+}
+template<> FieldStateOrProvinceOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldStateOrProvinceOfIssue>() const {
+ return getStateOrProvinceOfIssue();
+}
+template<> FieldLocaleOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldLocaleOfIssue>() const {
+ return getLocaleOfIssue();
+}
+template<> FieldRedemptionDate::ValueType FIXPP_MSG_CLASS::get<FieldRedemptionDate>() const {
+ return getRedemptionDate();
+}
+template<> FieldStrikePrice::ValueType FIXPP_MSG_CLASS::get<FieldStrikePrice>() const {
+ return getStrikePrice();
+}
+template<> FieldStrikeCurrency::ValueType FIXPP_MSG_CLASS::get<FieldStrikeCurrency>() const {
+ return getStrikeCurrency();
+}
+template<> FieldOptAttribute::ValueType FIXPP_MSG_CLASS::get<FieldOptAttribute>() const {
+ return getOptAttribute();
+}
+template<> FieldContractMultiplier::ValueType FIXPP_MSG_CLASS::get<FieldContractMultiplier>() const {
+ return getContractMultiplier();
+}
+template<> FieldCouponRate::ValueType FIXPP_MSG_CLASS::get<FieldCouponRate>() const {
+ return getCouponRate();
+}
+template<> FieldSecurityExchange::ValueType FIXPP_MSG_CLASS::get<FieldSecurityExchange>() const {
+ return getSecurityExchange();
+}
+template<> FieldIssuer::ValueType FIXPP_MSG_CLASS::get<FieldIssuer>() const {
+ return getIssuer();
+}
+template<> FieldEncodedIssuerLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedIssuerLen>() const {
+ return getEncodedIssuerLen();
+}
+template<> FieldEncodedIssuer::ValueType FIXPP_MSG_CLASS::get<FieldEncodedIssuer>() const {
+ return getEncodedIssuer();
+}
+template<> FieldSecurityDesc::ValueType FIXPP_MSG_CLASS::get<FieldSecurityDesc>() const {
+ return getSecurityDesc();
+}
+template<> FieldEncodedSecurityDescLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedSecurityDescLen>() const {
+ return getEncodedSecurityDescLen();
+}
+template<> FieldEncodedSecurityDesc::ValueType FIXPP_MSG_CLASS::get<FieldEncodedSecurityDesc>() const {
+ return getEncodedSecurityDesc();
+}
+template<> FieldPool::ValueType FIXPP_MSG_CLASS::get<FieldPool>() const {
+ return getPool();
+}
+template<> FieldContractSettlMonth::ValueType FIXPP_MSG_CLASS::get<FieldContractSettlMonth>() const {
+ return getContractSettlMonth();
+}
+template<> FieldCPProgram::ValueType FIXPP_MSG_CLASS::get<FieldCPProgram>() const {
+ return getCPProgram();
+}
+template<> FieldCPRegType::ValueType FIXPP_MSG_CLASS::get<FieldCPRegType>() const {
+ return getCPRegType();
+}
+template<> FieldDatedDate::ValueType FIXPP_MSG_CLASS::get<FieldDatedDate>() const {
+ return getDatedDate();
+}
+template<> FieldInterestAccrualDate::ValueType FIXPP_MSG_CLASS::get<FieldInterestAccrualDate>() const {
+ return getInterestAccrualDate();
+}
+template<> FieldDeliveryForm::ValueType FIXPP_MSG_CLASS::get<FieldDeliveryForm>() const {
+ return getDeliveryForm();
+}
+template<> FieldPctAtRisk::ValueType FIXPP_MSG_CLASS::get<FieldPctAtRisk>() const {
+ return getPctAtRisk();
+}
+template<> FieldCurrency::ValueType FIXPP_MSG_CLASS::get<FieldCurrency>() const {
+ return getCurrency();
+}
+template<> FieldSubscriptionRequestType::ValueType FIXPP_MSG_CLASS::get<FieldSubscriptionRequestType>() const {
+ return getSubscriptionRequestType();
+}
+template<> FieldTradingSessionID::ValueType FIXPP_MSG_CLASS::get<FieldTradingSessionID>() const {
+ return getTradingSessionID();
+}
+template<> FieldTradingSessionSubID::ValueType FIXPP_MSG_CLASS::get<FieldTradingSessionSubID>() const {
+ return getTradingSessionSubID();
+}
+
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageSecurityStatus
+template<> FieldSecurityStatusReqID::ValueType FIXPP_MSG_CLASS::get<FieldSecurityStatusReqID>() const {
+ return getSecurityStatusReqID();
+}
+template<> FieldSymbol::ValueType FIXPP_MSG_CLASS::get<FieldSymbol>() const {
+ return getSymbol();
+}
+template<> FieldSymbolSfx::ValueType FIXPP_MSG_CLASS::get<FieldSymbolSfx>() const {
+ return getSymbolSfx();
+}
+template<> FieldSecurityID::ValueType FIXPP_MSG_CLASS::get<FieldSecurityID>() const {
+ return getSecurityID();
+}
+template<> FieldSecurityIDSource::ValueType FIXPP_MSG_CLASS::get<FieldSecurityIDSource>() const {
+ return getSecurityIDSource();
+}
+template<> FieldProduct::ValueType FIXPP_MSG_CLASS::get<FieldProduct>() const {
+ return getProduct();
+}
+template<> FieldCFICode::ValueType FIXPP_MSG_CLASS::get<FieldCFICode>() const {
+ return getCFICode();
+}
+template<> FieldSecurityType::ValueType FIXPP_MSG_CLASS::get<FieldSecurityType>() const {
+ return getSecurityType();
+}
+template<> FieldSecuritySubType::ValueType FIXPP_MSG_CLASS::get<FieldSecuritySubType>() const {
+ return getSecuritySubType();
+}
+template<> FieldMaturityMonthYear::ValueType FIXPP_MSG_CLASS::get<FieldMaturityMonthYear>() const {
+ return getMaturityMonthYear();
+}
+template<> FieldMaturityDate::ValueType FIXPP_MSG_CLASS::get<FieldMaturityDate>() const {
+ return getMaturityDate();
+}
+template<> FieldPutOrCall::ValueType FIXPP_MSG_CLASS::get<FieldPutOrCall>() const {
+ return getPutOrCall();
+}
+template<> FieldCouponPaymentDate::ValueType FIXPP_MSG_CLASS::get<FieldCouponPaymentDate>() const {
+ return getCouponPaymentDate();
+}
+template<> FieldIssueDate::ValueType FIXPP_MSG_CLASS::get<FieldIssueDate>() const {
+ return getIssueDate();
+}
+template<> FieldRepoCollateralSecurityType::ValueType FIXPP_MSG_CLASS::get<FieldRepoCollateralSecurityType>() const {
+ return getRepoCollateralSecurityType();
+}
+template<> FieldRepurchaseTerm::ValueType FIXPP_MSG_CLASS::get<FieldRepurchaseTerm>() const {
+ return getRepurchaseTerm();
+}
+template<> FieldRepurchaseRate::ValueType FIXPP_MSG_CLASS::get<FieldRepurchaseRate>() const {
+ return getRepurchaseRate();
+}
+template<> FieldFactor::ValueType FIXPP_MSG_CLASS::get<FieldFactor>() const {
+ return getFactor();
+}
+template<> FieldCreditRating::ValueType FIXPP_MSG_CLASS::get<FieldCreditRating>() const {
+ return getCreditRating();
+}
+template<> FieldInstrRegistry::ValueType FIXPP_MSG_CLASS::get<FieldInstrRegistry>() const {
+ return getInstrRegistry();
+}
+template<> FieldCountryOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldCountryOfIssue>() const {
+ return getCountryOfIssue();
+}
+template<> FieldStateOrProvinceOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldStateOrProvinceOfIssue>() const {
+ return getStateOrProvinceOfIssue();
+}
+template<> FieldLocaleOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldLocaleOfIssue>() const {
+ return getLocaleOfIssue();
+}
+template<> FieldRedemptionDate::ValueType FIXPP_MSG_CLASS::get<FieldRedemptionDate>() const {
+ return getRedemptionDate();
+}
+template<> FieldStrikePrice::ValueType FIXPP_MSG_CLASS::get<FieldStrikePrice>() const {
+ return getStrikePrice();
+}
+template<> FieldStrikeCurrency::ValueType FIXPP_MSG_CLASS::get<FieldStrikeCurrency>() const {
+ return getStrikeCurrency();
+}
+template<> FieldOptAttribute::ValueType FIXPP_MSG_CLASS::get<FieldOptAttribute>() const {
+ return getOptAttribute();
+}
+template<> FieldContractMultiplier::ValueType FIXPP_MSG_CLASS::get<FieldContractMultiplier>() const {
+ return getContractMultiplier();
+}
+template<> FieldCouponRate::ValueType FIXPP_MSG_CLASS::get<FieldCouponRate>() const {
+ return getCouponRate();
+}
+template<> FieldSecurityExchange::ValueType FIXPP_MSG_CLASS::get<FieldSecurityExchange>() const {
+ return getSecurityExchange();
+}
+template<> FieldIssuer::ValueType FIXPP_MSG_CLASS::get<FieldIssuer>() const {
+ return getIssuer();
+}
+template<> FieldEncodedIssuerLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedIssuerLen>() const {
+ return getEncodedIssuerLen();
+}
+template<> FieldEncodedIssuer::ValueType FIXPP_MSG_CLASS::get<FieldEncodedIssuer>() const {
+ return getEncodedIssuer();
+}
+template<> FieldSecurityDesc::ValueType FIXPP_MSG_CLASS::get<FieldSecurityDesc>() const {
+ return getSecurityDesc();
+}
+template<> FieldEncodedSecurityDescLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedSecurityDescLen>() const {
+ return getEncodedSecurityDescLen();
+}
+template<> FieldEncodedSecurityDesc::ValueType FIXPP_MSG_CLASS::get<FieldEncodedSecurityDesc>() const {
+ return getEncodedSecurityDesc();
+}
+template<> FieldPool::ValueType FIXPP_MSG_CLASS::get<FieldPool>() const {
+ return getPool();
+}
+template<> FieldContractSettlMonth::ValueType FIXPP_MSG_CLASS::get<FieldContractSettlMonth>() const {
+ return getContractSettlMonth();
+}
+template<> FieldCPProgram::ValueType FIXPP_MSG_CLASS::get<FieldCPProgram>() const {
+ return getCPProgram();
+}
+template<> FieldCPRegType::ValueType FIXPP_MSG_CLASS::get<FieldCPRegType>() const {
+ return getCPRegType();
+}
+template<> FieldDatedDate::ValueType FIXPP_MSG_CLASS::get<FieldDatedDate>() const {
+ return getDatedDate();
+}
+template<> FieldInterestAccrualDate::ValueType FIXPP_MSG_CLASS::get<FieldInterestAccrualDate>() const {
+ return getInterestAccrualDate();
+}
+template<> FieldDeliveryForm::ValueType FIXPP_MSG_CLASS::get<FieldDeliveryForm>() const {
+ return getDeliveryForm();
+}
+template<> FieldPctAtRisk::ValueType FIXPP_MSG_CLASS::get<FieldPctAtRisk>() const {
+ return getPctAtRisk();
+}
+template<> FieldCurrency::ValueType FIXPP_MSG_CLASS::get<FieldCurrency>() const {
+ return getCurrency();
+}
+template<> FieldTradingSessionID::ValueType FIXPP_MSG_CLASS::get<FieldTradingSessionID>() const {
+ return getTradingSessionID();
+}
+template<> FieldTradingSessionSubID::ValueType FIXPP_MSG_CLASS::get<FieldTradingSessionSubID>() const {
+ return getTradingSessionSubID();
+}
+template<> FieldUnsolicitedIndicator::ValueType FIXPP_MSG_CLASS::get<FieldUnsolicitedIndicator>() const {
+ return getUnsolicitedIndicator();
+}
+template<> FieldSecurityTradingStatus::ValueType FIXPP_MSG_CLASS::get<FieldSecurityTradingStatus>() const {
+ return getSecurityTradingStatus();
+}
+template<> FieldFinancialStatus::ValueType FIXPP_MSG_CLASS::get<FieldFinancialStatus>() const {
+ return getFinancialStatus();
+}
+template<> FieldCorporateAction::ValueType FIXPP_MSG_CLASS::get<FieldCorporateAction>() const {
+ return getCorporateAction();
+}
+template<> FieldHaltReasonChar::ValueType FIXPP_MSG_CLASS::get<FieldHaltReasonChar>() const {
+ return getHaltReasonChar();
+}
+template<> FieldInViewOfCommon::ValueType FIXPP_MSG_CLASS::get<FieldInViewOfCommon>() const {
+ return getInViewOfCommon();
+}
+template<> FieldDueToRelated::ValueType FIXPP_MSG_CLASS::get<FieldDueToRelated>() const {
+ return getDueToRelated();
+}
+template<> FieldBuyVolume::ValueType FIXPP_MSG_CLASS::get<FieldBuyVolume>() const {
+ return getBuyVolume();
+}
+template<> FieldSellVolume::ValueType FIXPP_MSG_CLASS::get<FieldSellVolume>() const {
+ return getSellVolume();
+}
+template<> FieldHighPx::ValueType FIXPP_MSG_CLASS::get<FieldHighPx>() const {
+ return getHighPx();
+}
+template<> FieldLowPx::ValueType FIXPP_MSG_CLASS::get<FieldLowPx>() const {
+ return getLowPx();
+}
+template<> FieldLastPx::ValueType FIXPP_MSG_CLASS::get<FieldLastPx>() const {
+ return getLastPx();
+}
+template<> FieldTransactTime::ValueType FIXPP_MSG_CLASS::get<FieldTransactTime>() const {
+ return getTransactTime();
+}
+template<> FieldAdjustment::ValueType FIXPP_MSG_CLASS::get<FieldAdjustment>() const {
+ return getAdjustment();
+}
+template<> FieldText::ValueType FIXPP_MSG_CLASS::get<FieldText>() const {
+ return getText();
+}
+template<> FieldEncodedTextLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedTextLen>() const {
+ return getEncodedTextLen();
+}
+template<> FieldEncodedText::ValueType FIXPP_MSG_CLASS::get<FieldEncodedText>() const {
+ return getEncodedText();
+}
+
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageTradingSessionStatusRequest
+template<> FieldTradSesReqID::ValueType FIXPP_MSG_CLASS::get<FieldTradSesReqID>() const {
+ return getTradSesReqID();
+}
+template<> FieldTradingSessionID::ValueType FIXPP_MSG_CLASS::get<FieldTradingSessionID>() const {
+ return getTradingSessionID();
+}
+template<> FieldTradingSessionSubID::ValueType FIXPP_MSG_CLASS::get<FieldTradingSessionSubID>() const {
+ return getTradingSessionSubID();
+}
+template<> FieldTradSesMethod::ValueType FIXPP_MSG_CLASS::get<FieldTradSesMethod>() const {
+ return getTradSesMethod();
+}
+template<> FieldTradSesMode::ValueType FIXPP_MSG_CLASS::get<FieldTradSesMode>() const {
+ return getTradSesMode();
+}
+template<> FieldSubscriptionRequestType::ValueType FIXPP_MSG_CLASS::get<FieldSubscriptionRequestType>() const {
+ return getSubscriptionRequestType();
+}
+
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageTradingSessionStatus
+template<> FieldTradSesReqID::ValueType FIXPP_MSG_CLASS::get<FieldTradSesReqID>() const {
+ return getTradSesReqID();
+}
+template<> FieldTradingSessionID::ValueType FIXPP_MSG_CLASS::get<FieldTradingSessionID>() const {
+ return getTradingSessionID();
+}
+template<> FieldTradingSessionSubID::ValueType FIXPP_MSG_CLASS::get<FieldTradingSessionSubID>() const {
+ return getTradingSessionSubID();
+}
+template<> FieldTradSesMethod::ValueType FIXPP_MSG_CLASS::get<FieldTradSesMethod>() const {
+ return getTradSesMethod();
+}
+template<> FieldTradSesMode::ValueType FIXPP_MSG_CLASS::get<FieldTradSesMode>() const {
+ return getTradSesMode();
+}
+template<> FieldUnsolicitedIndicator::ValueType FIXPP_MSG_CLASS::get<FieldUnsolicitedIndicator>() const {
+ return getUnsolicitedIndicator();
+}
+template<> FieldTradSesStatus::ValueType FIXPP_MSG_CLASS::get<FieldTradSesStatus>() const {
+ return getTradSesStatus();
+}
+template<> FieldTradSesStatusRejReason::ValueType FIXPP_MSG_CLASS::get<FieldTradSesStatusRejReason>() const {
+ return getTradSesStatusRejReason();
+}
+template<> FieldTradSesStartTime::ValueType FIXPP_MSG_CLASS::get<FieldTradSesStartTime>() const {
+ return getTradSesStartTime();
+}
+template<> FieldTradSesOpenTime::ValueType FIXPP_MSG_CLASS::get<FieldTradSesOpenTime>() const {
+ return getTradSesOpenTime();
+}
+template<> FieldTradSesPreCloseTime::ValueType FIXPP_MSG_CLASS::get<FieldTradSesPreCloseTime>() const {
+ return getTradSesPreCloseTime();
+}
+template<> FieldTradSesCloseTime::ValueType FIXPP_MSG_CLASS::get<FieldTradSesCloseTime>() const {
+ return getTradSesCloseTime();
+}
+template<> FieldTradSesEndTime::ValueType FIXPP_MSG_CLASS::get<FieldTradSesEndTime>() const {
+ return getTradSesEndTime();
+}
+template<> FieldTotalVolumeTraded::ValueType FIXPP_MSG_CLASS::get<FieldTotalVolumeTraded>() const {
+ return getTotalVolumeTraded();
+}
+template<> FieldText::ValueType FIXPP_MSG_CLASS::get<FieldText>() const {
+ return getText();
+}
+template<> FieldEncodedTextLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedTextLen>() const {
+ return getEncodedTextLen();
+}
+template<> FieldEncodedText::ValueType FIXPP_MSG_CLASS::get<FieldEncodedText>() const {
+ return getEncodedText();
+}
+
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageMassQuote
+template<> FieldQuoteReqID::ValueType FIXPP_MSG_CLASS::get<FieldQuoteReqID>() const {
+ return getQuoteReqID();
+}
+template<> FieldQuoteID::ValueType FIXPP_MSG_CLASS::get<FieldQuoteID>() const {
+ return getQuoteID();
+}
+template<> FieldQuoteType::ValueType FIXPP_MSG_CLASS::get<FieldQuoteType>() const {
+ return getQuoteType();
+}
+template<> FieldQuoteResponseLevel::ValueType FIXPP_MSG_CLASS::get<FieldQuoteResponseLevel>() const {
+ return getQuoteResponseLevel();
+}
+template<> FieldAccount::ValueType FIXPP_MSG_CLASS::get<FieldAccount>() const {
+ return getAccount();
+}
+template<> FieldAcctIDSource::ValueType FIXPP_MSG_CLASS::get<FieldAcctIDSource>() const {
+ return getAcctIDSource();
+}
+template<> FieldAccountType::ValueType FIXPP_MSG_CLASS::get<FieldAccountType>() const {
+ return getAccountType();
+}
+template<> FieldDefBidSize::ValueType FIXPP_MSG_CLASS::get<FieldDefBidSize>() const {
+ return getDefBidSize();
+}
+template<> FieldDefOfferSize::ValueType FIXPP_MSG_CLASS::get<FieldDefOfferSize>() const {
+ return getDefOfferSize();
+}
+
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageBusinessMessageReject
+template<> FieldRefSeqNum::ValueType FIXPP_MSG_CLASS::get<FieldRefSeqNum>() const {
+ return getRefSeqNum();
+}
+template<> FieldRefMsgType::ValueType FIXPP_MSG_CLASS::get<FieldRefMsgType>() const {
+ return getRefMsgType();
+}
+template<> FieldBusinessRejectRefID::ValueType FIXPP_MSG_CLASS::get<FieldBusinessRejectRefID>() const {
+ return getBusinessRejectRefID();
+}
+template<> FieldBusinessRejectReason::ValueType FIXPP_MSG_CLASS::get<FieldBusinessRejectReason>() const {
+ return getBusinessRejectReason();
+}
+template<> FieldText::ValueType FIXPP_MSG_CLASS::get<FieldText>() const {
+ return getText();
+}
+template<> FieldEncodedTextLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedTextLen>() const {
+ return getEncodedTextLen();
+}
+template<> FieldEncodedText::ValueType FIXPP_MSG_CLASS::get<FieldEncodedText>() const {
+ return getEncodedText();
+}
+
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageBidRequest
+template<> FieldBidID::ValueType FIXPP_MSG_CLASS::get<FieldBidID>() const {
+ return getBidID();
+}
+template<> FieldClientBidID::ValueType FIXPP_MSG_CLASS::get<FieldClientBidID>() const {
+ return getClientBidID();
+}
+template<> FieldBidRequestTransType::ValueType FIXPP_MSG_CLASS::get<FieldBidRequestTransType>() const {
+ return getBidRequestTransType();
+}
+template<> FieldListName::ValueType FIXPP_MSG_CLASS::get<FieldListName>() const {
+ return getListName();
+}
+template<> FieldTotNoRelatedSym::ValueType FIXPP_MSG_CLASS::get<FieldTotNoRelatedSym>() const {
+ return getTotNoRelatedSym();
+}
+template<> FieldBidType::ValueType FIXPP_MSG_CLASS::get<FieldBidType>() const {
+ return getBidType();
+}
+template<> FieldNumTickets::ValueType FIXPP_MSG_CLASS::get<FieldNumTickets>() const {
+ return getNumTickets();
+}
+template<> FieldCurrency::ValueType FIXPP_MSG_CLASS::get<FieldCurrency>() const {
+ return getCurrency();
+}
+template<> FieldSideValue1::ValueType FIXPP_MSG_CLASS::get<FieldSideValue1>() const {
+ return getSideValue1();
+}
+template<> FieldSideValue2::ValueType FIXPP_MSG_CLASS::get<FieldSideValue2>() const {
+ return getSideValue2();
+}
+template<> FieldLiquidityIndType::ValueType FIXPP_MSG_CLASS::get<FieldLiquidityIndType>() const {
+ return getLiquidityIndType();
+}
+template<> FieldWtAverageLiquidity::ValueType FIXPP_MSG_CLASS::get<FieldWtAverageLiquidity>() const {
+ return getWtAverageLiquidity();
+}
+template<> FieldExchangeForPhysical::ValueType FIXPP_MSG_CLASS::get<FieldExchangeForPhysical>() const {
+ return getExchangeForPhysical();
+}
+template<> FieldOutMainCntryUIndex::ValueType FIXPP_MSG_CLASS::get<FieldOutMainCntryUIndex>() const {
+ return getOutMainCntryUIndex();
+}
+template<> FieldCrossPercent::ValueType FIXPP_MSG_CLASS::get<FieldCrossPercent>() const {
+ return getCrossPercent();
+}
+template<> FieldProgRptReqs::ValueType FIXPP_MSG_CLASS::get<FieldProgRptReqs>() const {
+ return getProgRptReqs();
+}
+template<> FieldProgPeriodInterval::ValueType FIXPP_MSG_CLASS::get<FieldProgPeriodInterval>() const {
+ return getProgPeriodInterval();
+}
+template<> FieldIncTaxInd::ValueType FIXPP_MSG_CLASS::get<FieldIncTaxInd>() const {
+ return getIncTaxInd();
+}
+template<> FieldForexReq::ValueType FIXPP_MSG_CLASS::get<FieldForexReq>() const {
+ return getForexReq();
+}
+template<> FieldNumBidders::ValueType FIXPP_MSG_CLASS::get<FieldNumBidders>() const {
+ return getNumBidders();
+}
+template<> FieldTradeDate::ValueType FIXPP_MSG_CLASS::get<FieldTradeDate>() const {
+ return getTradeDate();
+}
+template<> FieldBidTradeType::ValueType FIXPP_MSG_CLASS::get<FieldBidTradeType>() const {
+ return getBidTradeType();
+}
+template<> FieldBasisPxType::ValueType FIXPP_MSG_CLASS::get<FieldBasisPxType>() const {
+ return getBasisPxType();
+}
+template<> FieldStrikeTime::ValueType FIXPP_MSG_CLASS::get<FieldStrikeTime>() const {
+ return getStrikeTime();
+}
+template<> FieldText::ValueType FIXPP_MSG_CLASS::get<FieldText>() const {
+ return getText();
+}
+template<> FieldEncodedTextLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedTextLen>() const {
+ return getEncodedTextLen();
+}
+template<> FieldEncodedText::ValueType FIXPP_MSG_CLASS::get<FieldEncodedText>() const {
+ return getEncodedText();
+}
+
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageBidResponse
+template<> FieldBidID::ValueType FIXPP_MSG_CLASS::get<FieldBidID>() const {
+ return getBidID();
+}
+template<> FieldClientBidID::ValueType FIXPP_MSG_CLASS::get<FieldClientBidID>() const {
+ return getClientBidID();
+}
+
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageListStrikePrice
+template<> FieldListID::ValueType FIXPP_MSG_CLASS::get<FieldListID>() const {
+ return getListID();
+}
+template<> FieldTotNoStrikes::ValueType FIXPP_MSG_CLASS::get<FieldTotNoStrikes>() const {
+ return getTotNoStrikes();
+}
+template<> FieldLastFragment::ValueType FIXPP_MSG_CLASS::get<FieldLastFragment>() const {
+ return getLastFragment();
+}
+
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageXMLnonFIX
+
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageRegistrationInstructions
+template<> FieldRegistID::ValueType FIXPP_MSG_CLASS::get<FieldRegistID>() const {
+ return getRegistID();
+}
+template<> FieldRegistTransType::ValueType FIXPP_MSG_CLASS::get<FieldRegistTransType>() const {
+ return getRegistTransType();
+}
+template<> FieldRegistRefID::ValueType FIXPP_MSG_CLASS::get<FieldRegistRefID>() const {
+ return getRegistRefID();
+}
+template<> FieldClOrdID::ValueType FIXPP_MSG_CLASS::get<FieldClOrdID>() const {
+ return getClOrdID();
+}
+template<> FieldAccount::ValueType FIXPP_MSG_CLASS::get<FieldAccount>() const {
+ return getAccount();
+}
+template<> FieldAcctIDSource::ValueType FIXPP_MSG_CLASS::get<FieldAcctIDSource>() const {
+ return getAcctIDSource();
+}
+template<> FieldRegistAcctType::ValueType FIXPP_MSG_CLASS::get<FieldRegistAcctType>() const {
+ return getRegistAcctType();
+}
+template<> FieldTaxAdvantageType::ValueType FIXPP_MSG_CLASS::get<FieldTaxAdvantageType>() const {
+ return getTaxAdvantageType();
+}
+template<> FieldOwnershipType::ValueType FIXPP_MSG_CLASS::get<FieldOwnershipType>() const {
+ return getOwnershipType();
+}
+
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageRegistrationInstructionsResponse
+template<> FieldRegistID::ValueType FIXPP_MSG_CLASS::get<FieldRegistID>() const {
+ return getRegistID();
+}
+template<> FieldRegistTransType::ValueType FIXPP_MSG_CLASS::get<FieldRegistTransType>() const {
+ return getRegistTransType();
+}
+template<> FieldRegistRefID::ValueType FIXPP_MSG_CLASS::get<FieldRegistRefID>() const {
+ return getRegistRefID();
+}
+template<> FieldClOrdID::ValueType FIXPP_MSG_CLASS::get<FieldClOrdID>() const {
+ return getClOrdID();
+}
+template<> FieldAccount::ValueType FIXPP_MSG_CLASS::get<FieldAccount>() const {
+ return getAccount();
+}
+template<> FieldAcctIDSource::ValueType FIXPP_MSG_CLASS::get<FieldAcctIDSource>() const {
+ return getAcctIDSource();
+}
+template<> FieldRegistStatus::ValueType FIXPP_MSG_CLASS::get<FieldRegistStatus>() const {
+ return getRegistStatus();
+}
+template<> FieldRegistRejReasonCode::ValueType FIXPP_MSG_CLASS::get<FieldRegistRejReasonCode>() const {
+ return getRegistRejReasonCode();
+}
+template<> FieldRegistRejReasonText::ValueType FIXPP_MSG_CLASS::get<FieldRegistRejReasonText>() const {
+ return getRegistRejReasonText();
+}
+
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageOrderMassCancelRequest
+template<> FieldClOrdID::ValueType FIXPP_MSG_CLASS::get<FieldClOrdID>() const {
+ return getClOrdID();
+}
+template<> FieldSecondaryClOrdID::ValueType FIXPP_MSG_CLASS::get<FieldSecondaryClOrdID>() const {
+ return getSecondaryClOrdID();
+}
+template<> FieldMassCancelRequestType::ValueType FIXPP_MSG_CLASS::get<FieldMassCancelRequestType>() const {
+ return getMassCancelRequestType();
+}
+template<> FieldTradingSessionID::ValueType FIXPP_MSG_CLASS::get<FieldTradingSessionID>() const {
+ return getTradingSessionID();
+}
+template<> FieldTradingSessionSubID::ValueType FIXPP_MSG_CLASS::get<FieldTradingSessionSubID>() const {
+ return getTradingSessionSubID();
+}
+template<> FieldSymbol::ValueType FIXPP_MSG_CLASS::get<FieldSymbol>() const {
+ return getSymbol();
+}
+template<> FieldSymbolSfx::ValueType FIXPP_MSG_CLASS::get<FieldSymbolSfx>() const {
+ return getSymbolSfx();
+}
+template<> FieldSecurityID::ValueType FIXPP_MSG_CLASS::get<FieldSecurityID>() const {
+ return getSecurityID();
+}
+template<> FieldSecurityIDSource::ValueType FIXPP_MSG_CLASS::get<FieldSecurityIDSource>() const {
+ return getSecurityIDSource();
+}
+template<> FieldProduct::ValueType FIXPP_MSG_CLASS::get<FieldProduct>() const {
+ return getProduct();
+}
+template<> FieldCFICode::ValueType FIXPP_MSG_CLASS::get<FieldCFICode>() const {
+ return getCFICode();
+}
+template<> FieldSecurityType::ValueType FIXPP_MSG_CLASS::get<FieldSecurityType>() const {
+ return getSecurityType();
+}
+template<> FieldSecuritySubType::ValueType FIXPP_MSG_CLASS::get<FieldSecuritySubType>() const {
+ return getSecuritySubType();
+}
+template<> FieldMaturityMonthYear::ValueType FIXPP_MSG_CLASS::get<FieldMaturityMonthYear>() const {
+ return getMaturityMonthYear();
+}
+template<> FieldMaturityDate::ValueType FIXPP_MSG_CLASS::get<FieldMaturityDate>() const {
+ return getMaturityDate();
+}
+template<> FieldPutOrCall::ValueType FIXPP_MSG_CLASS::get<FieldPutOrCall>() const {
+ return getPutOrCall();
+}
+template<> FieldCouponPaymentDate::ValueType FIXPP_MSG_CLASS::get<FieldCouponPaymentDate>() const {
+ return getCouponPaymentDate();
+}
+template<> FieldIssueDate::ValueType FIXPP_MSG_CLASS::get<FieldIssueDate>() const {
+ return getIssueDate();
+}
+template<> FieldRepoCollateralSecurityType::ValueType FIXPP_MSG_CLASS::get<FieldRepoCollateralSecurityType>() const {
+ return getRepoCollateralSecurityType();
+}
+template<> FieldRepurchaseTerm::ValueType FIXPP_MSG_CLASS::get<FieldRepurchaseTerm>() const {
+ return getRepurchaseTerm();
+}
+template<> FieldRepurchaseRate::ValueType FIXPP_MSG_CLASS::get<FieldRepurchaseRate>() const {
+ return getRepurchaseRate();
+}
+template<> FieldFactor::ValueType FIXPP_MSG_CLASS::get<FieldFactor>() const {
+ return getFactor();
+}
+template<> FieldCreditRating::ValueType FIXPP_MSG_CLASS::get<FieldCreditRating>() const {
+ return getCreditRating();
+}
+template<> FieldInstrRegistry::ValueType FIXPP_MSG_CLASS::get<FieldInstrRegistry>() const {
+ return getInstrRegistry();
+}
+template<> FieldCountryOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldCountryOfIssue>() const {
+ return getCountryOfIssue();
+}
+template<> FieldStateOrProvinceOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldStateOrProvinceOfIssue>() const {
+ return getStateOrProvinceOfIssue();
+}
+template<> FieldLocaleOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldLocaleOfIssue>() const {
+ return getLocaleOfIssue();
+}
+template<> FieldRedemptionDate::ValueType FIXPP_MSG_CLASS::get<FieldRedemptionDate>() const {
+ return getRedemptionDate();
+}
+template<> FieldStrikePrice::ValueType FIXPP_MSG_CLASS::get<FieldStrikePrice>() const {
+ return getStrikePrice();
+}
+template<> FieldStrikeCurrency::ValueType FIXPP_MSG_CLASS::get<FieldStrikeCurrency>() const {
+ return getStrikeCurrency();
+}
+template<> FieldOptAttribute::ValueType FIXPP_MSG_CLASS::get<FieldOptAttribute>() const {
+ return getOptAttribute();
+}
+template<> FieldContractMultiplier::ValueType FIXPP_MSG_CLASS::get<FieldContractMultiplier>() const {
+ return getContractMultiplier();
+}
+template<> FieldCouponRate::ValueType FIXPP_MSG_CLASS::get<FieldCouponRate>() const {
+ return getCouponRate();
+}
+template<> FieldSecurityExchange::ValueType FIXPP_MSG_CLASS::get<FieldSecurityExchange>() const {
+ return getSecurityExchange();
+}
+template<> FieldIssuer::ValueType FIXPP_MSG_CLASS::get<FieldIssuer>() const {
+ return getIssuer();
+}
+template<> FieldEncodedIssuerLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedIssuerLen>() const {
+ return getEncodedIssuerLen();
+}
+template<> FieldEncodedIssuer::ValueType FIXPP_MSG_CLASS::get<FieldEncodedIssuer>() const {
+ return getEncodedIssuer();
+}
+template<> FieldSecurityDesc::ValueType FIXPP_MSG_CLASS::get<FieldSecurityDesc>() const {
+ return getSecurityDesc();
+}
+template<> FieldEncodedSecurityDescLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedSecurityDescLen>() const {
+ return getEncodedSecurityDescLen();
+}
+template<> FieldEncodedSecurityDesc::ValueType FIXPP_MSG_CLASS::get<FieldEncodedSecurityDesc>() const {
+ return getEncodedSecurityDesc();
+}
+template<> FieldPool::ValueType FIXPP_MSG_CLASS::get<FieldPool>() const {
+ return getPool();
+}
+template<> FieldContractSettlMonth::ValueType FIXPP_MSG_CLASS::get<FieldContractSettlMonth>() const {
+ return getContractSettlMonth();
+}
+template<> FieldCPProgram::ValueType FIXPP_MSG_CLASS::get<FieldCPProgram>() const {
+ return getCPProgram();
+}
+template<> FieldCPRegType::ValueType FIXPP_MSG_CLASS::get<FieldCPRegType>() const {
+ return getCPRegType();
+}
+template<> FieldDatedDate::ValueType FIXPP_MSG_CLASS::get<FieldDatedDate>() const {
+ return getDatedDate();
+}
+template<> FieldInterestAccrualDate::ValueType FIXPP_MSG_CLASS::get<FieldInterestAccrualDate>() const {
+ return getInterestAccrualDate();
+}
+template<> FieldUnderlyingSymbol::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingSymbol>() const {
+ return getUnderlyingSymbol();
+}
+template<> FieldUnderlyingSymbolSfx::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingSymbolSfx>() const {
+ return getUnderlyingSymbolSfx();
+}
+template<> FieldUnderlyingSecurityID::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingSecurityID>() const {
+ return getUnderlyingSecurityID();
+}
+template<> FieldUnderlyingSecurityIDSource::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingSecurityIDSource>() const {
+ return getUnderlyingSecurityIDSource();
+}
+template<> FieldUnderlyingProduct::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingProduct>() const {
+ return getUnderlyingProduct();
+}
+template<> FieldUnderlyingCFICode::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingCFICode>() const {
+ return getUnderlyingCFICode();
+}
+template<> FieldUnderlyingSecurityType::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingSecurityType>() const {
+ return getUnderlyingSecurityType();
+}
+template<> FieldUnderlyingSecuritySubType::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingSecuritySubType>() const {
+ return getUnderlyingSecuritySubType();
+}
+template<> FieldUnderlyingMaturityMonthYear::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingMaturityMonthYear>() const {
+ return getUnderlyingMaturityMonthYear();
+}
+template<> FieldUnderlyingMaturityDate::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingMaturityDate>() const {
+ return getUnderlyingMaturityDate();
+}
+template<> FieldUnderlyingPutOrCall::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingPutOrCall>() const {
+ return getUnderlyingPutOrCall();
+}
+template<> FieldUnderlyingCouponPaymentDate::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingCouponPaymentDate>() const {
+ return getUnderlyingCouponPaymentDate();
+}
+template<> FieldUnderlyingIssueDate::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingIssueDate>() const {
+ return getUnderlyingIssueDate();
+}
+template<> FieldUnderlyingRepoCollateralSecurityType::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingRepoCollateralSecurityType>() const {
+ return getUnderlyingRepoCollateralSecurityType();
+}
+template<> FieldUnderlyingRepurchaseTerm::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingRepurchaseTerm>() const {
+ return getUnderlyingRepurchaseTerm();
+}
+template<> FieldUnderlyingRepurchaseRate::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingRepurchaseRate>() const {
+ return getUnderlyingRepurchaseRate();
+}
+template<> FieldUnderlyingFactor::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingFactor>() const {
+ return getUnderlyingFactor();
+}
+template<> FieldUnderlyingCreditRating::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingCreditRating>() const {
+ return getUnderlyingCreditRating();
+}
+template<> FieldUnderlyingInstrRegistry::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingInstrRegistry>() const {
+ return getUnderlyingInstrRegistry();
+}
+template<> FieldUnderlyingCountryOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingCountryOfIssue>() const {
+ return getUnderlyingCountryOfIssue();
+}
+template<> FieldUnderlyingStateOrProvinceOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingStateOrProvinceOfIssue>() const {
+ return getUnderlyingStateOrProvinceOfIssue();
+}
+template<> FieldUnderlyingLocaleOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingLocaleOfIssue>() const {
+ return getUnderlyingLocaleOfIssue();
+}
+template<> FieldUnderlyingRedemptionDate::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingRedemptionDate>() const {
+ return getUnderlyingRedemptionDate();
+}
+template<> FieldUnderlyingStrikePrice::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingStrikePrice>() const {
+ return getUnderlyingStrikePrice();
+}
+template<> FieldUnderlyingStrikeCurrency::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingStrikeCurrency>() const {
+ return getUnderlyingStrikeCurrency();
+}
+template<> FieldUnderlyingOptAttribute::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingOptAttribute>() const {
+ return getUnderlyingOptAttribute();
+}
+template<> FieldUnderlyingContractMultiplier::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingContractMultiplier>() const {
+ return getUnderlyingContractMultiplier();
+}
+template<> FieldUnderlyingCouponRate::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingCouponRate>() const {
+ return getUnderlyingCouponRate();
+}
+template<> FieldUnderlyingSecurityExchange::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingSecurityExchange>() const {
+ return getUnderlyingSecurityExchange();
+}
+template<> FieldUnderlyingIssuer::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingIssuer>() const {
+ return getUnderlyingIssuer();
+}
+template<> FieldEncodedUnderlyingIssuerLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedUnderlyingIssuerLen>() const {
+ return getEncodedUnderlyingIssuerLen();
+}
+template<> FieldEncodedUnderlyingIssuer::ValueType FIXPP_MSG_CLASS::get<FieldEncodedUnderlyingIssuer>() const {
+ return getEncodedUnderlyingIssuer();
+}
+template<> FieldUnderlyingSecurityDesc::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingSecurityDesc>() const {
+ return getUnderlyingSecurityDesc();
+}
+template<> FieldEncodedUnderlyingSecurityDescLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedUnderlyingSecurityDescLen>() const {
+ return getEncodedUnderlyingSecurityDescLen();
+}
+template<> FieldEncodedUnderlyingSecurityDesc::ValueType FIXPP_MSG_CLASS::get<FieldEncodedUnderlyingSecurityDesc>() const {
+ return getEncodedUnderlyingSecurityDesc();
+}
+template<> FieldUnderlyingCPProgram::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingCPProgram>() const {
+ return getUnderlyingCPProgram();
+}
+template<> FieldUnderlyingCPRegType::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingCPRegType>() const {
+ return getUnderlyingCPRegType();
+}
+template<> FieldUnderlyingCurrency::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingCurrency>() const {
+ return getUnderlyingCurrency();
+}
+template<> FieldUnderlyingQty::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingQty>() const {
+ return getUnderlyingQty();
+}
+template<> FieldUnderlyingPx::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingPx>() const {
+ return getUnderlyingPx();
+}
+template<> FieldUnderlyingDirtyPrice::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingDirtyPrice>() const {
+ return getUnderlyingDirtyPrice();
+}
+template<> FieldUnderlyingEndPrice::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingEndPrice>() const {
+ return getUnderlyingEndPrice();
+}
+template<> FieldUnderlyingStartValue::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingStartValue>() const {
+ return getUnderlyingStartValue();
+}
+template<> FieldUnderlyingCurrentValue::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingCurrentValue>() const {
+ return getUnderlyingCurrentValue();
+}
+template<> FieldUnderlyingEndValue::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingEndValue>() const {
+ return getUnderlyingEndValue();
+}
+template<> FieldSide::ValueType FIXPP_MSG_CLASS::get<FieldSide>() const {
+ return getSide();
+}
+template<> FieldTransactTime::ValueType FIXPP_MSG_CLASS::get<FieldTransactTime>() const {
+ return getTransactTime();
+}
+template<> FieldText::ValueType FIXPP_MSG_CLASS::get<FieldText>() const {
+ return getText();
+}
+template<> FieldEncodedTextLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedTextLen>() const {
+ return getEncodedTextLen();
+}
+template<> FieldEncodedText::ValueType FIXPP_MSG_CLASS::get<FieldEncodedText>() const {
+ return getEncodedText();
+}
+
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageOrderMassCancelReport
+template<> FieldClOrdID::ValueType FIXPP_MSG_CLASS::get<FieldClOrdID>() const {
+ return getClOrdID();
+}
+template<> FieldSecondaryClOrdID::ValueType FIXPP_MSG_CLASS::get<FieldSecondaryClOrdID>() const {
+ return getSecondaryClOrdID();
+}
+template<> FieldOrderID::ValueType FIXPP_MSG_CLASS::get<FieldOrderID>() const {
+ return getOrderID();
+}
+template<> FieldSecondaryOrderID::ValueType FIXPP_MSG_CLASS::get<FieldSecondaryOrderID>() const {
+ return getSecondaryOrderID();
+}
+template<> FieldMassCancelRequestType::ValueType FIXPP_MSG_CLASS::get<FieldMassCancelRequestType>() const {
+ return getMassCancelRequestType();
+}
+template<> FieldMassCancelResponse::ValueType FIXPP_MSG_CLASS::get<FieldMassCancelResponse>() const {
+ return getMassCancelResponse();
+}
+template<> FieldMassCancelRejectReason::ValueType FIXPP_MSG_CLASS::get<FieldMassCancelRejectReason>() const {
+ return getMassCancelRejectReason();
+}
+template<> FieldTotalAffectedOrders::ValueType FIXPP_MSG_CLASS::get<FieldTotalAffectedOrders>() const {
+ return getTotalAffectedOrders();
+}
+template<> FieldTradingSessionID::ValueType FIXPP_MSG_CLASS::get<FieldTradingSessionID>() const {
+ return getTradingSessionID();
+}
+template<> FieldTradingSessionSubID::ValueType FIXPP_MSG_CLASS::get<FieldTradingSessionSubID>() const {
+ return getTradingSessionSubID();
+}
+template<> FieldSymbol::ValueType FIXPP_MSG_CLASS::get<FieldSymbol>() const {
+ return getSymbol();
+}
+template<> FieldSymbolSfx::ValueType FIXPP_MSG_CLASS::get<FieldSymbolSfx>() const {
+ return getSymbolSfx();
+}
+template<> FieldSecurityID::ValueType FIXPP_MSG_CLASS::get<FieldSecurityID>() const {
+ return getSecurityID();
+}
+template<> FieldSecurityIDSource::ValueType FIXPP_MSG_CLASS::get<FieldSecurityIDSource>() const {
+ return getSecurityIDSource();
+}
+template<> FieldProduct::ValueType FIXPP_MSG_CLASS::get<FieldProduct>() const {
+ return getProduct();
+}
+template<> FieldCFICode::ValueType FIXPP_MSG_CLASS::get<FieldCFICode>() const {
+ return getCFICode();
+}
+template<> FieldSecurityType::ValueType FIXPP_MSG_CLASS::get<FieldSecurityType>() const {
+ return getSecurityType();
+}
+template<> FieldSecuritySubType::ValueType FIXPP_MSG_CLASS::get<FieldSecuritySubType>() const {
+ return getSecuritySubType();
+}
+template<> FieldMaturityMonthYear::ValueType FIXPP_MSG_CLASS::get<FieldMaturityMonthYear>() const {
+ return getMaturityMonthYear();
+}
+template<> FieldMaturityDate::ValueType FIXPP_MSG_CLASS::get<FieldMaturityDate>() const {
+ return getMaturityDate();
+}
+template<> FieldPutOrCall::ValueType FIXPP_MSG_CLASS::get<FieldPutOrCall>() const {
+ return getPutOrCall();
+}
+template<> FieldCouponPaymentDate::ValueType FIXPP_MSG_CLASS::get<FieldCouponPaymentDate>() const {
+ return getCouponPaymentDate();
+}
+template<> FieldIssueDate::ValueType FIXPP_MSG_CLASS::get<FieldIssueDate>() const {
+ return getIssueDate();
+}
+template<> FieldRepoCollateralSecurityType::ValueType FIXPP_MSG_CLASS::get<FieldRepoCollateralSecurityType>() const {
+ return getRepoCollateralSecurityType();
+}
+template<> FieldRepurchaseTerm::ValueType FIXPP_MSG_CLASS::get<FieldRepurchaseTerm>() const {
+ return getRepurchaseTerm();
+}
+template<> FieldRepurchaseRate::ValueType FIXPP_MSG_CLASS::get<FieldRepurchaseRate>() const {
+ return getRepurchaseRate();
+}
+template<> FieldFactor::ValueType FIXPP_MSG_CLASS::get<FieldFactor>() const {
+ return getFactor();
+}
+template<> FieldCreditRating::ValueType FIXPP_MSG_CLASS::get<FieldCreditRating>() const {
+ return getCreditRating();
+}
+template<> FieldInstrRegistry::ValueType FIXPP_MSG_CLASS::get<FieldInstrRegistry>() const {
+ return getInstrRegistry();
+}
+template<> FieldCountryOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldCountryOfIssue>() const {
+ return getCountryOfIssue();
+}
+template<> FieldStateOrProvinceOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldStateOrProvinceOfIssue>() const {
+ return getStateOrProvinceOfIssue();
+}
+template<> FieldLocaleOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldLocaleOfIssue>() const {
+ return getLocaleOfIssue();
+}
+template<> FieldRedemptionDate::ValueType FIXPP_MSG_CLASS::get<FieldRedemptionDate>() const {
+ return getRedemptionDate();
+}
+template<> FieldStrikePrice::ValueType FIXPP_MSG_CLASS::get<FieldStrikePrice>() const {
+ return getStrikePrice();
+}
+template<> FieldStrikeCurrency::ValueType FIXPP_MSG_CLASS::get<FieldStrikeCurrency>() const {
+ return getStrikeCurrency();
+}
+template<> FieldOptAttribute::ValueType FIXPP_MSG_CLASS::get<FieldOptAttribute>() const {
+ return getOptAttribute();
+}
+template<> FieldContractMultiplier::ValueType FIXPP_MSG_CLASS::get<FieldContractMultiplier>() const {
+ return getContractMultiplier();
+}
+template<> FieldCouponRate::ValueType FIXPP_MSG_CLASS::get<FieldCouponRate>() const {
+ return getCouponRate();
+}
+template<> FieldSecurityExchange::ValueType FIXPP_MSG_CLASS::get<FieldSecurityExchange>() const {
+ return getSecurityExchange();
+}
+template<> FieldIssuer::ValueType FIXPP_MSG_CLASS::get<FieldIssuer>() const {
+ return getIssuer();
+}
+template<> FieldEncodedIssuerLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedIssuerLen>() const {
+ return getEncodedIssuerLen();
+}
+template<> FieldEncodedIssuer::ValueType FIXPP_MSG_CLASS::get<FieldEncodedIssuer>() const {
+ return getEncodedIssuer();
+}
+template<> FieldSecurityDesc::ValueType FIXPP_MSG_CLASS::get<FieldSecurityDesc>() const {
+ return getSecurityDesc();
+}
+template<> FieldEncodedSecurityDescLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedSecurityDescLen>() const {
+ return getEncodedSecurityDescLen();
+}
+template<> FieldEncodedSecurityDesc::ValueType FIXPP_MSG_CLASS::get<FieldEncodedSecurityDesc>() const {
+ return getEncodedSecurityDesc();
+}
+template<> FieldPool::ValueType FIXPP_MSG_CLASS::get<FieldPool>() const {
+ return getPool();
+}
+template<> FieldContractSettlMonth::ValueType FIXPP_MSG_CLASS::get<FieldContractSettlMonth>() const {
+ return getContractSettlMonth();
+}
+template<> FieldCPProgram::ValueType FIXPP_MSG_CLASS::get<FieldCPProgram>() const {
+ return getCPProgram();
+}
+template<> FieldCPRegType::ValueType FIXPP_MSG_CLASS::get<FieldCPRegType>() const {
+ return getCPRegType();
+}
+template<> FieldDatedDate::ValueType FIXPP_MSG_CLASS::get<FieldDatedDate>() const {
+ return getDatedDate();
+}
+template<> FieldInterestAccrualDate::ValueType FIXPP_MSG_CLASS::get<FieldInterestAccrualDate>() const {
+ return getInterestAccrualDate();
+}
+template<> FieldUnderlyingSymbol::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingSymbol>() const {
+ return getUnderlyingSymbol();
+}
+template<> FieldUnderlyingSymbolSfx::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingSymbolSfx>() const {
+ return getUnderlyingSymbolSfx();
+}
+template<> FieldUnderlyingSecurityID::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingSecurityID>() const {
+ return getUnderlyingSecurityID();
+}
+template<> FieldUnderlyingSecurityIDSource::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingSecurityIDSource>() const {
+ return getUnderlyingSecurityIDSource();
+}
+template<> FieldUnderlyingProduct::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingProduct>() const {
+ return getUnderlyingProduct();
+}
+template<> FieldUnderlyingCFICode::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingCFICode>() const {
+ return getUnderlyingCFICode();
+}
+template<> FieldUnderlyingSecurityType::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingSecurityType>() const {
+ return getUnderlyingSecurityType();
+}
+template<> FieldUnderlyingSecuritySubType::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingSecuritySubType>() const {
+ return getUnderlyingSecuritySubType();
+}
+template<> FieldUnderlyingMaturityMonthYear::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingMaturityMonthYear>() const {
+ return getUnderlyingMaturityMonthYear();
+}
+template<> FieldUnderlyingMaturityDate::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingMaturityDate>() const {
+ return getUnderlyingMaturityDate();
+}
+template<> FieldUnderlyingPutOrCall::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingPutOrCall>() const {
+ return getUnderlyingPutOrCall();
+}
+template<> FieldUnderlyingCouponPaymentDate::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingCouponPaymentDate>() const {
+ return getUnderlyingCouponPaymentDate();
+}
+template<> FieldUnderlyingIssueDate::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingIssueDate>() const {
+ return getUnderlyingIssueDate();
+}
+template<> FieldUnderlyingRepoCollateralSecurityType::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingRepoCollateralSecurityType>() const {
+ return getUnderlyingRepoCollateralSecurityType();
+}
+template<> FieldUnderlyingRepurchaseTerm::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingRepurchaseTerm>() const {
+ return getUnderlyingRepurchaseTerm();
+}
+template<> FieldUnderlyingRepurchaseRate::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingRepurchaseRate>() const {
+ return getUnderlyingRepurchaseRate();
+}
+template<> FieldUnderlyingFactor::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingFactor>() const {
+ return getUnderlyingFactor();
+}
+template<> FieldUnderlyingCreditRating::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingCreditRating>() const {
+ return getUnderlyingCreditRating();
+}
+template<> FieldUnderlyingInstrRegistry::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingInstrRegistry>() const {
+ return getUnderlyingInstrRegistry();
+}
+template<> FieldUnderlyingCountryOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingCountryOfIssue>() const {
+ return getUnderlyingCountryOfIssue();
+}
+template<> FieldUnderlyingStateOrProvinceOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingStateOrProvinceOfIssue>() const {
+ return getUnderlyingStateOrProvinceOfIssue();
+}
+template<> FieldUnderlyingLocaleOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingLocaleOfIssue>() const {
+ return getUnderlyingLocaleOfIssue();
+}
+template<> FieldUnderlyingRedemptionDate::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingRedemptionDate>() const {
+ return getUnderlyingRedemptionDate();
+}
+template<> FieldUnderlyingStrikePrice::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingStrikePrice>() const {
+ return getUnderlyingStrikePrice();
+}
+template<> FieldUnderlyingStrikeCurrency::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingStrikeCurrency>() const {
+ return getUnderlyingStrikeCurrency();
+}
+template<> FieldUnderlyingOptAttribute::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingOptAttribute>() const {
+ return getUnderlyingOptAttribute();
+}
+template<> FieldUnderlyingContractMultiplier::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingContractMultiplier>() const {
+ return getUnderlyingContractMultiplier();
+}
+template<> FieldUnderlyingCouponRate::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingCouponRate>() const {
+ return getUnderlyingCouponRate();
+}
+template<> FieldUnderlyingSecurityExchange::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingSecurityExchange>() const {
+ return getUnderlyingSecurityExchange();
+}
+template<> FieldUnderlyingIssuer::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingIssuer>() const {
+ return getUnderlyingIssuer();
+}
+template<> FieldEncodedUnderlyingIssuerLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedUnderlyingIssuerLen>() const {
+ return getEncodedUnderlyingIssuerLen();
+}
+template<> FieldEncodedUnderlyingIssuer::ValueType FIXPP_MSG_CLASS::get<FieldEncodedUnderlyingIssuer>() const {
+ return getEncodedUnderlyingIssuer();
+}
+template<> FieldUnderlyingSecurityDesc::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingSecurityDesc>() const {
+ return getUnderlyingSecurityDesc();
+}
+template<> FieldEncodedUnderlyingSecurityDescLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedUnderlyingSecurityDescLen>() const {
+ return getEncodedUnderlyingSecurityDescLen();
+}
+template<> FieldEncodedUnderlyingSecurityDesc::ValueType FIXPP_MSG_CLASS::get<FieldEncodedUnderlyingSecurityDesc>() const {
+ return getEncodedUnderlyingSecurityDesc();
+}
+template<> FieldUnderlyingCPProgram::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingCPProgram>() const {
+ return getUnderlyingCPProgram();
+}
+template<> FieldUnderlyingCPRegType::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingCPRegType>() const {
+ return getUnderlyingCPRegType();
+}
+template<> FieldUnderlyingCurrency::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingCurrency>() const {
+ return getUnderlyingCurrency();
+}
+template<> FieldUnderlyingQty::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingQty>() const {
+ return getUnderlyingQty();
+}
+template<> FieldUnderlyingPx::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingPx>() const {
+ return getUnderlyingPx();
+}
+template<> FieldUnderlyingDirtyPrice::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingDirtyPrice>() const {
+ return getUnderlyingDirtyPrice();
+}
+template<> FieldUnderlyingEndPrice::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingEndPrice>() const {
+ return getUnderlyingEndPrice();
+}
+template<> FieldUnderlyingStartValue::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingStartValue>() const {
+ return getUnderlyingStartValue();
+}
+template<> FieldUnderlyingCurrentValue::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingCurrentValue>() const {
+ return getUnderlyingCurrentValue();
+}
+template<> FieldUnderlyingEndValue::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingEndValue>() const {
+ return getUnderlyingEndValue();
+}
+template<> FieldSide::ValueType FIXPP_MSG_CLASS::get<FieldSide>() const {
+ return getSide();
+}
+template<> FieldTransactTime::ValueType FIXPP_MSG_CLASS::get<FieldTransactTime>() const {
+ return getTransactTime();
+}
+template<> FieldText::ValueType FIXPP_MSG_CLASS::get<FieldText>() const {
+ return getText();
+}
+template<> FieldEncodedTextLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedTextLen>() const {
+ return getEncodedTextLen();
+}
+template<> FieldEncodedText::ValueType FIXPP_MSG_CLASS::get<FieldEncodedText>() const {
+ return getEncodedText();
+}
+
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageNewOrderCross
+template<> FieldCrossID::ValueType FIXPP_MSG_CLASS::get<FieldCrossID>() const {
+ return getCrossID();
+}
+template<> FieldCrossType::ValueType FIXPP_MSG_CLASS::get<FieldCrossType>() const {
+ return getCrossType();
+}
+template<> FieldCrossPrioritization::ValueType FIXPP_MSG_CLASS::get<FieldCrossPrioritization>() const {
+ return getCrossPrioritization();
+}
+template<> FieldSymbol::ValueType FIXPP_MSG_CLASS::get<FieldSymbol>() const {
+ return getSymbol();
+}
+template<> FieldSymbolSfx::ValueType FIXPP_MSG_CLASS::get<FieldSymbolSfx>() const {
+ return getSymbolSfx();
+}
+template<> FieldSecurityID::ValueType FIXPP_MSG_CLASS::get<FieldSecurityID>() const {
+ return getSecurityID();
+}
+template<> FieldSecurityIDSource::ValueType FIXPP_MSG_CLASS::get<FieldSecurityIDSource>() const {
+ return getSecurityIDSource();
+}
+template<> FieldProduct::ValueType FIXPP_MSG_CLASS::get<FieldProduct>() const {
+ return getProduct();
+}
+template<> FieldCFICode::ValueType FIXPP_MSG_CLASS::get<FieldCFICode>() const {
+ return getCFICode();
+}
+template<> FieldSecurityType::ValueType FIXPP_MSG_CLASS::get<FieldSecurityType>() const {
+ return getSecurityType();
+}
+template<> FieldSecuritySubType::ValueType FIXPP_MSG_CLASS::get<FieldSecuritySubType>() const {
+ return getSecuritySubType();
+}
+template<> FieldMaturityMonthYear::ValueType FIXPP_MSG_CLASS::get<FieldMaturityMonthYear>() const {
+ return getMaturityMonthYear();
+}
+template<> FieldMaturityDate::ValueType FIXPP_MSG_CLASS::get<FieldMaturityDate>() const {
+ return getMaturityDate();
+}
+template<> FieldPutOrCall::ValueType FIXPP_MSG_CLASS::get<FieldPutOrCall>() const {
+ return getPutOrCall();
+}
+template<> FieldCouponPaymentDate::ValueType FIXPP_MSG_CLASS::get<FieldCouponPaymentDate>() const {
+ return getCouponPaymentDate();
+}
+template<> FieldIssueDate::ValueType FIXPP_MSG_CLASS::get<FieldIssueDate>() const {
+ return getIssueDate();
+}
+template<> FieldRepoCollateralSecurityType::ValueType FIXPP_MSG_CLASS::get<FieldRepoCollateralSecurityType>() const {
+ return getRepoCollateralSecurityType();
+}
+template<> FieldRepurchaseTerm::ValueType FIXPP_MSG_CLASS::get<FieldRepurchaseTerm>() const {
+ return getRepurchaseTerm();
+}
+template<> FieldRepurchaseRate::ValueType FIXPP_MSG_CLASS::get<FieldRepurchaseRate>() const {
+ return getRepurchaseRate();
+}
+template<> FieldFactor::ValueType FIXPP_MSG_CLASS::get<FieldFactor>() const {
+ return getFactor();
+}
+template<> FieldCreditRating::ValueType FIXPP_MSG_CLASS::get<FieldCreditRating>() const {
+ return getCreditRating();
+}
+template<> FieldInstrRegistry::ValueType FIXPP_MSG_CLASS::get<FieldInstrRegistry>() const {
+ return getInstrRegistry();
+}
+template<> FieldCountryOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldCountryOfIssue>() const {
+ return getCountryOfIssue();
+}
+template<> FieldStateOrProvinceOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldStateOrProvinceOfIssue>() const {
+ return getStateOrProvinceOfIssue();
+}
+template<> FieldLocaleOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldLocaleOfIssue>() const {
+ return getLocaleOfIssue();
+}
+template<> FieldRedemptionDate::ValueType FIXPP_MSG_CLASS::get<FieldRedemptionDate>() const {
+ return getRedemptionDate();
+}
+template<> FieldStrikePrice::ValueType FIXPP_MSG_CLASS::get<FieldStrikePrice>() const {
+ return getStrikePrice();
+}
+template<> FieldStrikeCurrency::ValueType FIXPP_MSG_CLASS::get<FieldStrikeCurrency>() const {
+ return getStrikeCurrency();
+}
+template<> FieldOptAttribute::ValueType FIXPP_MSG_CLASS::get<FieldOptAttribute>() const {
+ return getOptAttribute();
+}
+template<> FieldContractMultiplier::ValueType FIXPP_MSG_CLASS::get<FieldContractMultiplier>() const {
+ return getContractMultiplier();
+}
+template<> FieldCouponRate::ValueType FIXPP_MSG_CLASS::get<FieldCouponRate>() const {
+ return getCouponRate();
+}
+template<> FieldSecurityExchange::ValueType FIXPP_MSG_CLASS::get<FieldSecurityExchange>() const {
+ return getSecurityExchange();
+}
+template<> FieldIssuer::ValueType FIXPP_MSG_CLASS::get<FieldIssuer>() const {
+ return getIssuer();
+}
+template<> FieldEncodedIssuerLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedIssuerLen>() const {
+ return getEncodedIssuerLen();
+}
+template<> FieldEncodedIssuer::ValueType FIXPP_MSG_CLASS::get<FieldEncodedIssuer>() const {
+ return getEncodedIssuer();
+}
+template<> FieldSecurityDesc::ValueType FIXPP_MSG_CLASS::get<FieldSecurityDesc>() const {
+ return getSecurityDesc();
+}
+template<> FieldEncodedSecurityDescLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedSecurityDescLen>() const {
+ return getEncodedSecurityDescLen();
+}
+template<> FieldEncodedSecurityDesc::ValueType FIXPP_MSG_CLASS::get<FieldEncodedSecurityDesc>() const {
+ return getEncodedSecurityDesc();
+}
+template<> FieldPool::ValueType FIXPP_MSG_CLASS::get<FieldPool>() const {
+ return getPool();
+}
+template<> FieldContractSettlMonth::ValueType FIXPP_MSG_CLASS::get<FieldContractSettlMonth>() const {
+ return getContractSettlMonth();
+}
+template<> FieldCPProgram::ValueType FIXPP_MSG_CLASS::get<FieldCPProgram>() const {
+ return getCPProgram();
+}
+template<> FieldCPRegType::ValueType FIXPP_MSG_CLASS::get<FieldCPRegType>() const {
+ return getCPRegType();
+}
+template<> FieldDatedDate::ValueType FIXPP_MSG_CLASS::get<FieldDatedDate>() const {
+ return getDatedDate();
+}
+template<> FieldInterestAccrualDate::ValueType FIXPP_MSG_CLASS::get<FieldInterestAccrualDate>() const {
+ return getInterestAccrualDate();
+}
+template<> FieldSettlType::ValueType FIXPP_MSG_CLASS::get<FieldSettlType>() const {
+ return getSettlType();
+}
+template<> FieldSettlDate::ValueType FIXPP_MSG_CLASS::get<FieldSettlDate>() const {
+ return getSettlDate();
+}
+template<> FieldHandlInst::ValueType FIXPP_MSG_CLASS::get<FieldHandlInst>() const {
+ return getHandlInst();
+}
+template<> FieldExecInst::ValueType FIXPP_MSG_CLASS::get<FieldExecInst>() const {
+ return getExecInst();
+}
+template<> FieldMinQty::ValueType FIXPP_MSG_CLASS::get<FieldMinQty>() const {
+ return getMinQty();
+}
+template<> FieldMaxFloor::ValueType FIXPP_MSG_CLASS::get<FieldMaxFloor>() const {
+ return getMaxFloor();
+}
+template<> FieldExDestination::ValueType FIXPP_MSG_CLASS::get<FieldExDestination>() const {
+ return getExDestination();
+}
+template<> FieldProcessCode::ValueType FIXPP_MSG_CLASS::get<FieldProcessCode>() const {
+ return getProcessCode();
+}
+template<> FieldPrevClosePx::ValueType FIXPP_MSG_CLASS::get<FieldPrevClosePx>() const {
+ return getPrevClosePx();
+}
+template<> FieldLocateReqd::ValueType FIXPP_MSG_CLASS::get<FieldLocateReqd>() const {
+ return getLocateReqd();
+}
+template<> FieldTransactTime::ValueType FIXPP_MSG_CLASS::get<FieldTransactTime>() const {
+ return getTransactTime();
+}
+template<> FieldOrdType::ValueType FIXPP_MSG_CLASS::get<FieldOrdType>() const {
+ return getOrdType();
+}
+template<> FieldPriceType::ValueType FIXPP_MSG_CLASS::get<FieldPriceType>() const {
+ return getPriceType();
+}
+template<> FieldPrice::ValueType FIXPP_MSG_CLASS::get<FieldPrice>() const {
+ return getPrice();
+}
+template<> FieldStopPx::ValueType FIXPP_MSG_CLASS::get<FieldStopPx>() const {
+ return getStopPx();
+}
+template<> FieldSpread::ValueType FIXPP_MSG_CLASS::get<FieldSpread>() const {
+ return getSpread();
+}
+template<> FieldBenchmarkCurveCurrency::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkCurveCurrency>() const {
+ return getBenchmarkCurveCurrency();
+}
+template<> FieldBenchmarkCurveName::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkCurveName>() const {
+ return getBenchmarkCurveName();
+}
+template<> FieldBenchmarkCurvePoint::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkCurvePoint>() const {
+ return getBenchmarkCurvePoint();
+}
+template<> FieldBenchmarkPrice::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkPrice>() const {
+ return getBenchmarkPrice();
+}
+template<> FieldBenchmarkPriceType::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkPriceType>() const {
+ return getBenchmarkPriceType();
+}
+template<> FieldBenchmarkSecurityID::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkSecurityID>() const {
+ return getBenchmarkSecurityID();
+}
+template<> FieldBenchmarkSecurityIDSource::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkSecurityIDSource>() const {
+ return getBenchmarkSecurityIDSource();
+}
+template<> FieldYieldType::ValueType FIXPP_MSG_CLASS::get<FieldYieldType>() const {
+ return getYieldType();
+}
+template<> FieldYield::ValueType FIXPP_MSG_CLASS::get<FieldYield>() const {
+ return getYield();
+}
+template<> FieldYieldCalcDate::ValueType FIXPP_MSG_CLASS::get<FieldYieldCalcDate>() const {
+ return getYieldCalcDate();
+}
+template<> FieldYieldRedemptionDate::ValueType FIXPP_MSG_CLASS::get<FieldYieldRedemptionDate>() const {
+ return getYieldRedemptionDate();
+}
+template<> FieldYieldRedemptionPrice::ValueType FIXPP_MSG_CLASS::get<FieldYieldRedemptionPrice>() const {
+ return getYieldRedemptionPrice();
+}
+template<> FieldYieldRedemptionPriceType::ValueType FIXPP_MSG_CLASS::get<FieldYieldRedemptionPriceType>() const {
+ return getYieldRedemptionPriceType();
+}
+template<> FieldCurrency::ValueType FIXPP_MSG_CLASS::get<FieldCurrency>() const {
+ return getCurrency();
+}
+template<> FieldComplianceID::ValueType FIXPP_MSG_CLASS::get<FieldComplianceID>() const {
+ return getComplianceID();
+}
+template<> FieldIOIID::ValueType FIXPP_MSG_CLASS::get<FieldIOIID>() const {
+ return getIOIID();
+}
+template<> FieldQuoteID::ValueType FIXPP_MSG_CLASS::get<FieldQuoteID>() const {
+ return getQuoteID();
+}
+template<> FieldTimeInForce::ValueType FIXPP_MSG_CLASS::get<FieldTimeInForce>() const {
+ return getTimeInForce();
+}
+template<> FieldEffectiveTime::ValueType FIXPP_MSG_CLASS::get<FieldEffectiveTime>() const {
+ return getEffectiveTime();
+}
+template<> FieldExpireDate::ValueType FIXPP_MSG_CLASS::get<FieldExpireDate>() const {
+ return getExpireDate();
+}
+template<> FieldExpireTime::ValueType FIXPP_MSG_CLASS::get<FieldExpireTime>() const {
+ return getExpireTime();
+}
+template<> FieldGTBookingInst::ValueType FIXPP_MSG_CLASS::get<FieldGTBookingInst>() const {
+ return getGTBookingInst();
+}
+template<> FieldMaxShow::ValueType FIXPP_MSG_CLASS::get<FieldMaxShow>() const {
+ return getMaxShow();
+}
+template<> FieldPegOffsetValue::ValueType FIXPP_MSG_CLASS::get<FieldPegOffsetValue>() const {
+ return getPegOffsetValue();
+}
+template<> FieldPegMoveType::ValueType FIXPP_MSG_CLASS::get<FieldPegMoveType>() const {
+ return getPegMoveType();
+}
+template<> FieldPegOffsetType::ValueType FIXPP_MSG_CLASS::get<FieldPegOffsetType>() const {
+ return getPegOffsetType();
+}
+template<> FieldPegLimitType::ValueType FIXPP_MSG_CLASS::get<FieldPegLimitType>() const {
+ return getPegLimitType();
+}
+template<> FieldPegRoundDirection::ValueType FIXPP_MSG_CLASS::get<FieldPegRoundDirection>() const {
+ return getPegRoundDirection();
+}
+template<> FieldPegScope::ValueType FIXPP_MSG_CLASS::get<FieldPegScope>() const {
+ return getPegScope();
+}
+template<> FieldDiscretionInst::ValueType FIXPP_MSG_CLASS::get<FieldDiscretionInst>() const {
+ return getDiscretionInst();
+}
+template<> FieldDiscretionOffsetValue::ValueType FIXPP_MSG_CLASS::get<FieldDiscretionOffsetValue>() const {
+ return getDiscretionOffsetValue();
+}
+template<> FieldDiscretionMoveType::ValueType FIXPP_MSG_CLASS::get<FieldDiscretionMoveType>() const {
+ return getDiscretionMoveType();
+}
+template<> FieldDiscretionOffsetType::ValueType FIXPP_MSG_CLASS::get<FieldDiscretionOffsetType>() const {
+ return getDiscretionOffsetType();
+}
+template<> FieldDiscretionLimitType::ValueType FIXPP_MSG_CLASS::get<FieldDiscretionLimitType>() const {
+ return getDiscretionLimitType();
+}
+template<> FieldDiscretionRoundDirection::ValueType FIXPP_MSG_CLASS::get<FieldDiscretionRoundDirection>() const {
+ return getDiscretionRoundDirection();
+}
+template<> FieldDiscretionScope::ValueType FIXPP_MSG_CLASS::get<FieldDiscretionScope>() const {
+ return getDiscretionScope();
+}
+template<> FieldTargetStrategy::ValueType FIXPP_MSG_CLASS::get<FieldTargetStrategy>() const {
+ return getTargetStrategy();
+}
+template<> FieldTargetStrategyParameters::ValueType FIXPP_MSG_CLASS::get<FieldTargetStrategyParameters>() const {
+ return getTargetStrategyParameters();
+}
+template<> FieldParticipationRate::ValueType FIXPP_MSG_CLASS::get<FieldParticipationRate>() const {
+ return getParticipationRate();
+}
+template<> FieldCancellationRights::ValueType FIXPP_MSG_CLASS::get<FieldCancellationRights>() const {
+ return getCancellationRights();
+}
+template<> FieldMoneyLaunderingStatus::ValueType FIXPP_MSG_CLASS::get<FieldMoneyLaunderingStatus>() const {
+ return getMoneyLaunderingStatus();
+}
+template<> FieldRegistID::ValueType FIXPP_MSG_CLASS::get<FieldRegistID>() const {
+ return getRegistID();
+}
+template<> FieldDesignation::ValueType FIXPP_MSG_CLASS::get<FieldDesignation>() const {
+ return getDesignation();
+}
+
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageCrossOrderCancelReplaceRequest
+template<> FieldOrderID::ValueType FIXPP_MSG_CLASS::get<FieldOrderID>() const {
+ return getOrderID();
+}
+template<> FieldCrossID::ValueType FIXPP_MSG_CLASS::get<FieldCrossID>() const {
+ return getCrossID();
+}
+template<> FieldOrigCrossID::ValueType FIXPP_MSG_CLASS::get<FieldOrigCrossID>() const {
+ return getOrigCrossID();
+}
+template<> FieldCrossType::ValueType FIXPP_MSG_CLASS::get<FieldCrossType>() const {
+ return getCrossType();
+}
+template<> FieldCrossPrioritization::ValueType FIXPP_MSG_CLASS::get<FieldCrossPrioritization>() const {
+ return getCrossPrioritization();
+}
+template<> FieldSymbol::ValueType FIXPP_MSG_CLASS::get<FieldSymbol>() const {
+ return getSymbol();
+}
+template<> FieldSymbolSfx::ValueType FIXPP_MSG_CLASS::get<FieldSymbolSfx>() const {
+ return getSymbolSfx();
+}
+template<> FieldSecurityID::ValueType FIXPP_MSG_CLASS::get<FieldSecurityID>() const {
+ return getSecurityID();
+}
+template<> FieldSecurityIDSource::ValueType FIXPP_MSG_CLASS::get<FieldSecurityIDSource>() const {
+ return getSecurityIDSource();
+}
+template<> FieldProduct::ValueType FIXPP_MSG_CLASS::get<FieldProduct>() const {
+ return getProduct();
+}
+template<> FieldCFICode::ValueType FIXPP_MSG_CLASS::get<FieldCFICode>() const {
+ return getCFICode();
+}
+template<> FieldSecurityType::ValueType FIXPP_MSG_CLASS::get<FieldSecurityType>() const {
+ return getSecurityType();
+}
+template<> FieldSecuritySubType::ValueType FIXPP_MSG_CLASS::get<FieldSecuritySubType>() const {
+ return getSecuritySubType();
+}
+template<> FieldMaturityMonthYear::ValueType FIXPP_MSG_CLASS::get<FieldMaturityMonthYear>() const {
+ return getMaturityMonthYear();
+}
+template<> FieldMaturityDate::ValueType FIXPP_MSG_CLASS::get<FieldMaturityDate>() const {
+ return getMaturityDate();
+}
+template<> FieldPutOrCall::ValueType FIXPP_MSG_CLASS::get<FieldPutOrCall>() const {
+ return getPutOrCall();
+}
+template<> FieldCouponPaymentDate::ValueType FIXPP_MSG_CLASS::get<FieldCouponPaymentDate>() const {
+ return getCouponPaymentDate();
+}
+template<> FieldIssueDate::ValueType FIXPP_MSG_CLASS::get<FieldIssueDate>() const {
+ return getIssueDate();
+}
+template<> FieldRepoCollateralSecurityType::ValueType FIXPP_MSG_CLASS::get<FieldRepoCollateralSecurityType>() const {
+ return getRepoCollateralSecurityType();
+}
+template<> FieldRepurchaseTerm::ValueType FIXPP_MSG_CLASS::get<FieldRepurchaseTerm>() const {
+ return getRepurchaseTerm();
+}
+template<> FieldRepurchaseRate::ValueType FIXPP_MSG_CLASS::get<FieldRepurchaseRate>() const {
+ return getRepurchaseRate();
+}
+template<> FieldFactor::ValueType FIXPP_MSG_CLASS::get<FieldFactor>() const {
+ return getFactor();
+}
+template<> FieldCreditRating::ValueType FIXPP_MSG_CLASS::get<FieldCreditRating>() const {
+ return getCreditRating();
+}
+template<> FieldInstrRegistry::ValueType FIXPP_MSG_CLASS::get<FieldInstrRegistry>() const {
+ return getInstrRegistry();
+}
+template<> FieldCountryOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldCountryOfIssue>() const {
+ return getCountryOfIssue();
+}
+template<> FieldStateOrProvinceOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldStateOrProvinceOfIssue>() const {
+ return getStateOrProvinceOfIssue();
+}
+template<> FieldLocaleOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldLocaleOfIssue>() const {
+ return getLocaleOfIssue();
+}
+template<> FieldRedemptionDate::ValueType FIXPP_MSG_CLASS::get<FieldRedemptionDate>() const {
+ return getRedemptionDate();
+}
+template<> FieldStrikePrice::ValueType FIXPP_MSG_CLASS::get<FieldStrikePrice>() const {
+ return getStrikePrice();
+}
+template<> FieldStrikeCurrency::ValueType FIXPP_MSG_CLASS::get<FieldStrikeCurrency>() const {
+ return getStrikeCurrency();
+}
+template<> FieldOptAttribute::ValueType FIXPP_MSG_CLASS::get<FieldOptAttribute>() const {
+ return getOptAttribute();
+}
+template<> FieldContractMultiplier::ValueType FIXPP_MSG_CLASS::get<FieldContractMultiplier>() const {
+ return getContractMultiplier();
+}
+template<> FieldCouponRate::ValueType FIXPP_MSG_CLASS::get<FieldCouponRate>() const {
+ return getCouponRate();
+}
+template<> FieldSecurityExchange::ValueType FIXPP_MSG_CLASS::get<FieldSecurityExchange>() const {
+ return getSecurityExchange();
+}
+template<> FieldIssuer::ValueType FIXPP_MSG_CLASS::get<FieldIssuer>() const {
+ return getIssuer();
+}
+template<> FieldEncodedIssuerLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedIssuerLen>() const {
+ return getEncodedIssuerLen();
+}
+template<> FieldEncodedIssuer::ValueType FIXPP_MSG_CLASS::get<FieldEncodedIssuer>() const {
+ return getEncodedIssuer();
+}
+template<> FieldSecurityDesc::ValueType FIXPP_MSG_CLASS::get<FieldSecurityDesc>() const {
+ return getSecurityDesc();
+}
+template<> FieldEncodedSecurityDescLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedSecurityDescLen>() const {
+ return getEncodedSecurityDescLen();
+}
+template<> FieldEncodedSecurityDesc::ValueType FIXPP_MSG_CLASS::get<FieldEncodedSecurityDesc>() const {
+ return getEncodedSecurityDesc();
+}
+template<> FieldPool::ValueType FIXPP_MSG_CLASS::get<FieldPool>() const {
+ return getPool();
+}
+template<> FieldContractSettlMonth::ValueType FIXPP_MSG_CLASS::get<FieldContractSettlMonth>() const {
+ return getContractSettlMonth();
+}
+template<> FieldCPProgram::ValueType FIXPP_MSG_CLASS::get<FieldCPProgram>() const {
+ return getCPProgram();
+}
+template<> FieldCPRegType::ValueType FIXPP_MSG_CLASS::get<FieldCPRegType>() const {
+ return getCPRegType();
+}
+template<> FieldDatedDate::ValueType FIXPP_MSG_CLASS::get<FieldDatedDate>() const {
+ return getDatedDate();
+}
+template<> FieldInterestAccrualDate::ValueType FIXPP_MSG_CLASS::get<FieldInterestAccrualDate>() const {
+ return getInterestAccrualDate();
+}
+template<> FieldSettlType::ValueType FIXPP_MSG_CLASS::get<FieldSettlType>() const {
+ return getSettlType();
+}
+template<> FieldSettlDate::ValueType FIXPP_MSG_CLASS::get<FieldSettlDate>() const {
+ return getSettlDate();
+}
+template<> FieldHandlInst::ValueType FIXPP_MSG_CLASS::get<FieldHandlInst>() const {
+ return getHandlInst();
+}
+template<> FieldExecInst::ValueType FIXPP_MSG_CLASS::get<FieldExecInst>() const {
+ return getExecInst();
+}
+template<> FieldMinQty::ValueType FIXPP_MSG_CLASS::get<FieldMinQty>() const {
+ return getMinQty();
+}
+template<> FieldMaxFloor::ValueType FIXPP_MSG_CLASS::get<FieldMaxFloor>() const {
+ return getMaxFloor();
+}
+template<> FieldExDestination::ValueType FIXPP_MSG_CLASS::get<FieldExDestination>() const {
+ return getExDestination();
+}
+template<> FieldProcessCode::ValueType FIXPP_MSG_CLASS::get<FieldProcessCode>() const {
+ return getProcessCode();
+}
+template<> FieldPrevClosePx::ValueType FIXPP_MSG_CLASS::get<FieldPrevClosePx>() const {
+ return getPrevClosePx();
+}
+template<> FieldLocateReqd::ValueType FIXPP_MSG_CLASS::get<FieldLocateReqd>() const {
+ return getLocateReqd();
+}
+template<> FieldTransactTime::ValueType FIXPP_MSG_CLASS::get<FieldTransactTime>() const {
+ return getTransactTime();
+}
+template<> FieldOrdType::ValueType FIXPP_MSG_CLASS::get<FieldOrdType>() const {
+ return getOrdType();
+}
+template<> FieldPriceType::ValueType FIXPP_MSG_CLASS::get<FieldPriceType>() const {
+ return getPriceType();
+}
+template<> FieldPrice::ValueType FIXPP_MSG_CLASS::get<FieldPrice>() const {
+ return getPrice();
+}
+template<> FieldStopPx::ValueType FIXPP_MSG_CLASS::get<FieldStopPx>() const {
+ return getStopPx();
+}
+template<> FieldSpread::ValueType FIXPP_MSG_CLASS::get<FieldSpread>() const {
+ return getSpread();
+}
+template<> FieldBenchmarkCurveCurrency::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkCurveCurrency>() const {
+ return getBenchmarkCurveCurrency();
+}
+template<> FieldBenchmarkCurveName::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkCurveName>() const {
+ return getBenchmarkCurveName();
+}
+template<> FieldBenchmarkCurvePoint::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkCurvePoint>() const {
+ return getBenchmarkCurvePoint();
+}
+template<> FieldBenchmarkPrice::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkPrice>() const {
+ return getBenchmarkPrice();
+}
+template<> FieldBenchmarkPriceType::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkPriceType>() const {
+ return getBenchmarkPriceType();
+}
+template<> FieldBenchmarkSecurityID::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkSecurityID>() const {
+ return getBenchmarkSecurityID();
+}
+template<> FieldBenchmarkSecurityIDSource::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkSecurityIDSource>() const {
+ return getBenchmarkSecurityIDSource();
+}
+template<> FieldYieldType::ValueType FIXPP_MSG_CLASS::get<FieldYieldType>() const {
+ return getYieldType();
+}
+template<> FieldYield::ValueType FIXPP_MSG_CLASS::get<FieldYield>() const {
+ return getYield();
+}
+template<> FieldYieldCalcDate::ValueType FIXPP_MSG_CLASS::get<FieldYieldCalcDate>() const {
+ return getYieldCalcDate();
+}
+template<> FieldYieldRedemptionDate::ValueType FIXPP_MSG_CLASS::get<FieldYieldRedemptionDate>() const {
+ return getYieldRedemptionDate();
+}
+template<> FieldYieldRedemptionPrice::ValueType FIXPP_MSG_CLASS::get<FieldYieldRedemptionPrice>() const {
+ return getYieldRedemptionPrice();
+}
+template<> FieldYieldRedemptionPriceType::ValueType FIXPP_MSG_CLASS::get<FieldYieldRedemptionPriceType>() const {
+ return getYieldRedemptionPriceType();
+}
+template<> FieldCurrency::ValueType FIXPP_MSG_CLASS::get<FieldCurrency>() const {
+ return getCurrency();
+}
+template<> FieldComplianceID::ValueType FIXPP_MSG_CLASS::get<FieldComplianceID>() const {
+ return getComplianceID();
+}
+template<> FieldIOIID::ValueType FIXPP_MSG_CLASS::get<FieldIOIID>() const {
+ return getIOIID();
+}
+template<> FieldQuoteID::ValueType FIXPP_MSG_CLASS::get<FieldQuoteID>() const {
+ return getQuoteID();
+}
+template<> FieldTimeInForce::ValueType FIXPP_MSG_CLASS::get<FieldTimeInForce>() const {
+ return getTimeInForce();
+}
+template<> FieldEffectiveTime::ValueType FIXPP_MSG_CLASS::get<FieldEffectiveTime>() const {
+ return getEffectiveTime();
+}
+template<> FieldExpireDate::ValueType FIXPP_MSG_CLASS::get<FieldExpireDate>() const {
+ return getExpireDate();
+}
+template<> FieldExpireTime::ValueType FIXPP_MSG_CLASS::get<FieldExpireTime>() const {
+ return getExpireTime();
+}
+template<> FieldGTBookingInst::ValueType FIXPP_MSG_CLASS::get<FieldGTBookingInst>() const {
+ return getGTBookingInst();
+}
+template<> FieldMaxShow::ValueType FIXPP_MSG_CLASS::get<FieldMaxShow>() const {
+ return getMaxShow();
+}
+template<> FieldPegOffsetValue::ValueType FIXPP_MSG_CLASS::get<FieldPegOffsetValue>() const {
+ return getPegOffsetValue();
+}
+template<> FieldPegMoveType::ValueType FIXPP_MSG_CLASS::get<FieldPegMoveType>() const {
+ return getPegMoveType();
+}
+template<> FieldPegOffsetType::ValueType FIXPP_MSG_CLASS::get<FieldPegOffsetType>() const {
+ return getPegOffsetType();
+}
+template<> FieldPegLimitType::ValueType FIXPP_MSG_CLASS::get<FieldPegLimitType>() const {
+ return getPegLimitType();
+}
+template<> FieldPegRoundDirection::ValueType FIXPP_MSG_CLASS::get<FieldPegRoundDirection>() const {
+ return getPegRoundDirection();
+}
+template<> FieldPegScope::ValueType FIXPP_MSG_CLASS::get<FieldPegScope>() const {
+ return getPegScope();
+}
+template<> FieldDiscretionInst::ValueType FIXPP_MSG_CLASS::get<FieldDiscretionInst>() const {
+ return getDiscretionInst();
+}
+template<> FieldDiscretionOffsetValue::ValueType FIXPP_MSG_CLASS::get<FieldDiscretionOffsetValue>() const {
+ return getDiscretionOffsetValue();
+}
+template<> FieldDiscretionMoveType::ValueType FIXPP_MSG_CLASS::get<FieldDiscretionMoveType>() const {
+ return getDiscretionMoveType();
+}
+template<> FieldDiscretionOffsetType::ValueType FIXPP_MSG_CLASS::get<FieldDiscretionOffsetType>() const {
+ return getDiscretionOffsetType();
+}
+template<> FieldDiscretionLimitType::ValueType FIXPP_MSG_CLASS::get<FieldDiscretionLimitType>() const {
+ return getDiscretionLimitType();
+}
+template<> FieldDiscretionRoundDirection::ValueType FIXPP_MSG_CLASS::get<FieldDiscretionRoundDirection>() const {
+ return getDiscretionRoundDirection();
+}
+template<> FieldDiscretionScope::ValueType FIXPP_MSG_CLASS::get<FieldDiscretionScope>() const {
+ return getDiscretionScope();
+}
+template<> FieldTargetStrategy::ValueType FIXPP_MSG_CLASS::get<FieldTargetStrategy>() const {
+ return getTargetStrategy();
+}
+template<> FieldTargetStrategyParameters::ValueType FIXPP_MSG_CLASS::get<FieldTargetStrategyParameters>() const {
+ return getTargetStrategyParameters();
+}
+template<> FieldParticipationRate::ValueType FIXPP_MSG_CLASS::get<FieldParticipationRate>() const {
+ return getParticipationRate();
+}
+template<> FieldCancellationRights::ValueType FIXPP_MSG_CLASS::get<FieldCancellationRights>() const {
+ return getCancellationRights();
+}
+template<> FieldMoneyLaunderingStatus::ValueType FIXPP_MSG_CLASS::get<FieldMoneyLaunderingStatus>() const {
+ return getMoneyLaunderingStatus();
+}
+template<> FieldRegistID::ValueType FIXPP_MSG_CLASS::get<FieldRegistID>() const {
+ return getRegistID();
+}
+template<> FieldDesignation::ValueType FIXPP_MSG_CLASS::get<FieldDesignation>() const {
+ return getDesignation();
+}
+
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageCrossOrderCancelRequest
+template<> FieldOrderID::ValueType FIXPP_MSG_CLASS::get<FieldOrderID>() const {
+ return getOrderID();
+}
+template<> FieldCrossID::ValueType FIXPP_MSG_CLASS::get<FieldCrossID>() const {
+ return getCrossID();
+}
+template<> FieldOrigCrossID::ValueType FIXPP_MSG_CLASS::get<FieldOrigCrossID>() const {
+ return getOrigCrossID();
+}
+template<> FieldCrossType::ValueType FIXPP_MSG_CLASS::get<FieldCrossType>() const {
+ return getCrossType();
+}
+template<> FieldCrossPrioritization::ValueType FIXPP_MSG_CLASS::get<FieldCrossPrioritization>() const {
+ return getCrossPrioritization();
+}
+template<> FieldSymbol::ValueType FIXPP_MSG_CLASS::get<FieldSymbol>() const {
+ return getSymbol();
+}
+template<> FieldSymbolSfx::ValueType FIXPP_MSG_CLASS::get<FieldSymbolSfx>() const {
+ return getSymbolSfx();
+}
+template<> FieldSecurityID::ValueType FIXPP_MSG_CLASS::get<FieldSecurityID>() const {
+ return getSecurityID();
+}
+template<> FieldSecurityIDSource::ValueType FIXPP_MSG_CLASS::get<FieldSecurityIDSource>() const {
+ return getSecurityIDSource();
+}
+template<> FieldProduct::ValueType FIXPP_MSG_CLASS::get<FieldProduct>() const {
+ return getProduct();
+}
+template<> FieldCFICode::ValueType FIXPP_MSG_CLASS::get<FieldCFICode>() const {
+ return getCFICode();
+}
+template<> FieldSecurityType::ValueType FIXPP_MSG_CLASS::get<FieldSecurityType>() const {
+ return getSecurityType();
+}
+template<> FieldSecuritySubType::ValueType FIXPP_MSG_CLASS::get<FieldSecuritySubType>() const {
+ return getSecuritySubType();
+}
+template<> FieldMaturityMonthYear::ValueType FIXPP_MSG_CLASS::get<FieldMaturityMonthYear>() const {
+ return getMaturityMonthYear();
+}
+template<> FieldMaturityDate::ValueType FIXPP_MSG_CLASS::get<FieldMaturityDate>() const {
+ return getMaturityDate();
+}
+template<> FieldPutOrCall::ValueType FIXPP_MSG_CLASS::get<FieldPutOrCall>() const {
+ return getPutOrCall();
+}
+template<> FieldCouponPaymentDate::ValueType FIXPP_MSG_CLASS::get<FieldCouponPaymentDate>() const {
+ return getCouponPaymentDate();
+}
+template<> FieldIssueDate::ValueType FIXPP_MSG_CLASS::get<FieldIssueDate>() const {
+ return getIssueDate();
+}
+template<> FieldRepoCollateralSecurityType::ValueType FIXPP_MSG_CLASS::get<FieldRepoCollateralSecurityType>() const {
+ return getRepoCollateralSecurityType();
+}
+template<> FieldRepurchaseTerm::ValueType FIXPP_MSG_CLASS::get<FieldRepurchaseTerm>() const {
+ return getRepurchaseTerm();
+}
+template<> FieldRepurchaseRate::ValueType FIXPP_MSG_CLASS::get<FieldRepurchaseRate>() const {
+ return getRepurchaseRate();
+}
+template<> FieldFactor::ValueType FIXPP_MSG_CLASS::get<FieldFactor>() const {
+ return getFactor();
+}
+template<> FieldCreditRating::ValueType FIXPP_MSG_CLASS::get<FieldCreditRating>() const {
+ return getCreditRating();
+}
+template<> FieldInstrRegistry::ValueType FIXPP_MSG_CLASS::get<FieldInstrRegistry>() const {
+ return getInstrRegistry();
+}
+template<> FieldCountryOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldCountryOfIssue>() const {
+ return getCountryOfIssue();
+}
+template<> FieldStateOrProvinceOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldStateOrProvinceOfIssue>() const {
+ return getStateOrProvinceOfIssue();
+}
+template<> FieldLocaleOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldLocaleOfIssue>() const {
+ return getLocaleOfIssue();
+}
+template<> FieldRedemptionDate::ValueType FIXPP_MSG_CLASS::get<FieldRedemptionDate>() const {
+ return getRedemptionDate();
+}
+template<> FieldStrikePrice::ValueType FIXPP_MSG_CLASS::get<FieldStrikePrice>() const {
+ return getStrikePrice();
+}
+template<> FieldStrikeCurrency::ValueType FIXPP_MSG_CLASS::get<FieldStrikeCurrency>() const {
+ return getStrikeCurrency();
+}
+template<> FieldOptAttribute::ValueType FIXPP_MSG_CLASS::get<FieldOptAttribute>() const {
+ return getOptAttribute();
+}
+template<> FieldContractMultiplier::ValueType FIXPP_MSG_CLASS::get<FieldContractMultiplier>() const {
+ return getContractMultiplier();
+}
+template<> FieldCouponRate::ValueType FIXPP_MSG_CLASS::get<FieldCouponRate>() const {
+ return getCouponRate();
+}
+template<> FieldSecurityExchange::ValueType FIXPP_MSG_CLASS::get<FieldSecurityExchange>() const {
+ return getSecurityExchange();
+}
+template<> FieldIssuer::ValueType FIXPP_MSG_CLASS::get<FieldIssuer>() const {
+ return getIssuer();
+}
+template<> FieldEncodedIssuerLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedIssuerLen>() const {
+ return getEncodedIssuerLen();
+}
+template<> FieldEncodedIssuer::ValueType FIXPP_MSG_CLASS::get<FieldEncodedIssuer>() const {
+ return getEncodedIssuer();
+}
+template<> FieldSecurityDesc::ValueType FIXPP_MSG_CLASS::get<FieldSecurityDesc>() const {
+ return getSecurityDesc();
+}
+template<> FieldEncodedSecurityDescLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedSecurityDescLen>() const {
+ return getEncodedSecurityDescLen();
+}
+template<> FieldEncodedSecurityDesc::ValueType FIXPP_MSG_CLASS::get<FieldEncodedSecurityDesc>() const {
+ return getEncodedSecurityDesc();
+}
+template<> FieldPool::ValueType FIXPP_MSG_CLASS::get<FieldPool>() const {
+ return getPool();
+}
+template<> FieldContractSettlMonth::ValueType FIXPP_MSG_CLASS::get<FieldContractSettlMonth>() const {
+ return getContractSettlMonth();
+}
+template<> FieldCPProgram::ValueType FIXPP_MSG_CLASS::get<FieldCPProgram>() const {
+ return getCPProgram();
+}
+template<> FieldCPRegType::ValueType FIXPP_MSG_CLASS::get<FieldCPRegType>() const {
+ return getCPRegType();
+}
+template<> FieldDatedDate::ValueType FIXPP_MSG_CLASS::get<FieldDatedDate>() const {
+ return getDatedDate();
+}
+template<> FieldInterestAccrualDate::ValueType FIXPP_MSG_CLASS::get<FieldInterestAccrualDate>() const {
+ return getInterestAccrualDate();
+}
+template<> FieldTransactTime::ValueType FIXPP_MSG_CLASS::get<FieldTransactTime>() const {
+ return getTransactTime();
+}
+
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageSecurityTypeRequest
+template<> FieldSecurityReqID::ValueType FIXPP_MSG_CLASS::get<FieldSecurityReqID>() const {
+ return getSecurityReqID();
+}
+template<> FieldText::ValueType FIXPP_MSG_CLASS::get<FieldText>() const {
+ return getText();
+}
+template<> FieldEncodedTextLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedTextLen>() const {
+ return getEncodedTextLen();
+}
+template<> FieldEncodedText::ValueType FIXPP_MSG_CLASS::get<FieldEncodedText>() const {
+ return getEncodedText();
+}
+template<> FieldTradingSessionID::ValueType FIXPP_MSG_CLASS::get<FieldTradingSessionID>() const {
+ return getTradingSessionID();
+}
+template<> FieldTradingSessionSubID::ValueType FIXPP_MSG_CLASS::get<FieldTradingSessionSubID>() const {
+ return getTradingSessionSubID();
+}
+template<> FieldProduct::ValueType FIXPP_MSG_CLASS::get<FieldProduct>() const {
+ return getProduct();
+}
+template<> FieldSecurityType::ValueType FIXPP_MSG_CLASS::get<FieldSecurityType>() const {
+ return getSecurityType();
+}
+template<> FieldSecuritySubType::ValueType FIXPP_MSG_CLASS::get<FieldSecuritySubType>() const {
+ return getSecuritySubType();
+}
+
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageSecurityTypes
+template<> FieldSecurityReqID::ValueType FIXPP_MSG_CLASS::get<FieldSecurityReqID>() const {
+ return getSecurityReqID();
+}
+template<> FieldSecurityResponseID::ValueType FIXPP_MSG_CLASS::get<FieldSecurityResponseID>() const {
+ return getSecurityResponseID();
+}
+template<> FieldSecurityResponseType::ValueType FIXPP_MSG_CLASS::get<FieldSecurityResponseType>() const {
+ return getSecurityResponseType();
+}
+template<> FieldTotNoSecurityTypes::ValueType FIXPP_MSG_CLASS::get<FieldTotNoSecurityTypes>() const {
+ return getTotNoSecurityTypes();
+}
+template<> FieldLastFragment::ValueType FIXPP_MSG_CLASS::get<FieldLastFragment>() const {
+ return getLastFragment();
+}
+template<> FieldText::ValueType FIXPP_MSG_CLASS::get<FieldText>() const {
+ return getText();
+}
+template<> FieldEncodedTextLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedTextLen>() const {
+ return getEncodedTextLen();
+}
+template<> FieldEncodedText::ValueType FIXPP_MSG_CLASS::get<FieldEncodedText>() const {
+ return getEncodedText();
+}
+template<> FieldTradingSessionID::ValueType FIXPP_MSG_CLASS::get<FieldTradingSessionID>() const {
+ return getTradingSessionID();
+}
+template<> FieldTradingSessionSubID::ValueType FIXPP_MSG_CLASS::get<FieldTradingSessionSubID>() const {
+ return getTradingSessionSubID();
+}
+template<> FieldSubscriptionRequestType::ValueType FIXPP_MSG_CLASS::get<FieldSubscriptionRequestType>() const {
+ return getSubscriptionRequestType();
+}
+
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageSecurityListRequest
+template<> FieldSecurityReqID::ValueType FIXPP_MSG_CLASS::get<FieldSecurityReqID>() const {
+ return getSecurityReqID();
+}
+template<> FieldSecurityListRequestType::ValueType FIXPP_MSG_CLASS::get<FieldSecurityListRequestType>() const {
+ return getSecurityListRequestType();
+}
+template<> FieldSymbol::ValueType FIXPP_MSG_CLASS::get<FieldSymbol>() const {
+ return getSymbol();
+}
+template<> FieldSymbolSfx::ValueType FIXPP_MSG_CLASS::get<FieldSymbolSfx>() const {
+ return getSymbolSfx();
+}
+template<> FieldSecurityID::ValueType FIXPP_MSG_CLASS::get<FieldSecurityID>() const {
+ return getSecurityID();
+}
+template<> FieldSecurityIDSource::ValueType FIXPP_MSG_CLASS::get<FieldSecurityIDSource>() const {
+ return getSecurityIDSource();
+}
+template<> FieldProduct::ValueType FIXPP_MSG_CLASS::get<FieldProduct>() const {
+ return getProduct();
+}
+template<> FieldCFICode::ValueType FIXPP_MSG_CLASS::get<FieldCFICode>() const {
+ return getCFICode();
+}
+template<> FieldSecurityType::ValueType FIXPP_MSG_CLASS::get<FieldSecurityType>() const {
+ return getSecurityType();
+}
+template<> FieldSecuritySubType::ValueType FIXPP_MSG_CLASS::get<FieldSecuritySubType>() const {
+ return getSecuritySubType();
+}
+template<> FieldMaturityMonthYear::ValueType FIXPP_MSG_CLASS::get<FieldMaturityMonthYear>() const {
+ return getMaturityMonthYear();
+}
+template<> FieldMaturityDate::ValueType FIXPP_MSG_CLASS::get<FieldMaturityDate>() const {
+ return getMaturityDate();
+}
+template<> FieldPutOrCall::ValueType FIXPP_MSG_CLASS::get<FieldPutOrCall>() const {
+ return getPutOrCall();
+}
+template<> FieldCouponPaymentDate::ValueType FIXPP_MSG_CLASS::get<FieldCouponPaymentDate>() const {
+ return getCouponPaymentDate();
+}
+template<> FieldIssueDate::ValueType FIXPP_MSG_CLASS::get<FieldIssueDate>() const {
+ return getIssueDate();
+}
+template<> FieldRepoCollateralSecurityType::ValueType FIXPP_MSG_CLASS::get<FieldRepoCollateralSecurityType>() const {
+ return getRepoCollateralSecurityType();
+}
+template<> FieldRepurchaseTerm::ValueType FIXPP_MSG_CLASS::get<FieldRepurchaseTerm>() const {
+ return getRepurchaseTerm();
+}
+template<> FieldRepurchaseRate::ValueType FIXPP_MSG_CLASS::get<FieldRepurchaseRate>() const {
+ return getRepurchaseRate();
+}
+template<> FieldFactor::ValueType FIXPP_MSG_CLASS::get<FieldFactor>() const {
+ return getFactor();
+}
+template<> FieldCreditRating::ValueType FIXPP_MSG_CLASS::get<FieldCreditRating>() const {
+ return getCreditRating();
+}
+template<> FieldInstrRegistry::ValueType FIXPP_MSG_CLASS::get<FieldInstrRegistry>() const {
+ return getInstrRegistry();
+}
+template<> FieldCountryOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldCountryOfIssue>() const {
+ return getCountryOfIssue();
+}
+template<> FieldStateOrProvinceOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldStateOrProvinceOfIssue>() const {
+ return getStateOrProvinceOfIssue();
+}
+template<> FieldLocaleOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldLocaleOfIssue>() const {
+ return getLocaleOfIssue();
+}
+template<> FieldRedemptionDate::ValueType FIXPP_MSG_CLASS::get<FieldRedemptionDate>() const {
+ return getRedemptionDate();
+}
+template<> FieldStrikePrice::ValueType FIXPP_MSG_CLASS::get<FieldStrikePrice>() const {
+ return getStrikePrice();
+}
+template<> FieldStrikeCurrency::ValueType FIXPP_MSG_CLASS::get<FieldStrikeCurrency>() const {
+ return getStrikeCurrency();
+}
+template<> FieldOptAttribute::ValueType FIXPP_MSG_CLASS::get<FieldOptAttribute>() const {
+ return getOptAttribute();
+}
+template<> FieldContractMultiplier::ValueType FIXPP_MSG_CLASS::get<FieldContractMultiplier>() const {
+ return getContractMultiplier();
+}
+template<> FieldCouponRate::ValueType FIXPP_MSG_CLASS::get<FieldCouponRate>() const {
+ return getCouponRate();
+}
+template<> FieldSecurityExchange::ValueType FIXPP_MSG_CLASS::get<FieldSecurityExchange>() const {
+ return getSecurityExchange();
+}
+template<> FieldIssuer::ValueType FIXPP_MSG_CLASS::get<FieldIssuer>() const {
+ return getIssuer();
+}
+template<> FieldEncodedIssuerLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedIssuerLen>() const {
+ return getEncodedIssuerLen();
+}
+template<> FieldEncodedIssuer::ValueType FIXPP_MSG_CLASS::get<FieldEncodedIssuer>() const {
+ return getEncodedIssuer();
+}
+template<> FieldSecurityDesc::ValueType FIXPP_MSG_CLASS::get<FieldSecurityDesc>() const {
+ return getSecurityDesc();
+}
+template<> FieldEncodedSecurityDescLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedSecurityDescLen>() const {
+ return getEncodedSecurityDescLen();
+}
+template<> FieldEncodedSecurityDesc::ValueType FIXPP_MSG_CLASS::get<FieldEncodedSecurityDesc>() const {
+ return getEncodedSecurityDesc();
+}
+template<> FieldPool::ValueType FIXPP_MSG_CLASS::get<FieldPool>() const {
+ return getPool();
+}
+template<> FieldContractSettlMonth::ValueType FIXPP_MSG_CLASS::get<FieldContractSettlMonth>() const {
+ return getContractSettlMonth();
+}
+template<> FieldCPProgram::ValueType FIXPP_MSG_CLASS::get<FieldCPProgram>() const {
+ return getCPProgram();
+}
+template<> FieldCPRegType::ValueType FIXPP_MSG_CLASS::get<FieldCPRegType>() const {
+ return getCPRegType();
+}
+template<> FieldDatedDate::ValueType FIXPP_MSG_CLASS::get<FieldDatedDate>() const {
+ return getDatedDate();
+}
+template<> FieldInterestAccrualDate::ValueType FIXPP_MSG_CLASS::get<FieldInterestAccrualDate>() const {
+ return getInterestAccrualDate();
+}
+template<> FieldDeliveryForm::ValueType FIXPP_MSG_CLASS::get<FieldDeliveryForm>() const {
+ return getDeliveryForm();
+}
+template<> FieldPctAtRisk::ValueType FIXPP_MSG_CLASS::get<FieldPctAtRisk>() const {
+ return getPctAtRisk();
+}
+template<> FieldAgreementDesc::ValueType FIXPP_MSG_CLASS::get<FieldAgreementDesc>() const {
+ return getAgreementDesc();
+}
+template<> FieldAgreementID::ValueType FIXPP_MSG_CLASS::get<FieldAgreementID>() const {
+ return getAgreementID();
+}
+template<> FieldAgreementDate::ValueType FIXPP_MSG_CLASS::get<FieldAgreementDate>() const {
+ return getAgreementDate();
+}
+template<> FieldAgreementCurrency::ValueType FIXPP_MSG_CLASS::get<FieldAgreementCurrency>() const {
+ return getAgreementCurrency();
+}
+template<> FieldTerminationType::ValueType FIXPP_MSG_CLASS::get<FieldTerminationType>() const {
+ return getTerminationType();
+}
+template<> FieldStartDate::ValueType FIXPP_MSG_CLASS::get<FieldStartDate>() const {
+ return getStartDate();
+}
+template<> FieldEndDate::ValueType FIXPP_MSG_CLASS::get<FieldEndDate>() const {
+ return getEndDate();
+}
+template<> FieldDeliveryType::ValueType FIXPP_MSG_CLASS::get<FieldDeliveryType>() const {
+ return getDeliveryType();
+}
+template<> FieldMarginRatio::ValueType FIXPP_MSG_CLASS::get<FieldMarginRatio>() const {
+ return getMarginRatio();
+}
+template<> FieldCurrency::ValueType FIXPP_MSG_CLASS::get<FieldCurrency>() const {
+ return getCurrency();
+}
+template<> FieldText::ValueType FIXPP_MSG_CLASS::get<FieldText>() const {
+ return getText();
+}
+template<> FieldEncodedTextLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedTextLen>() const {
+ return getEncodedTextLen();
+}
+template<> FieldEncodedText::ValueType FIXPP_MSG_CLASS::get<FieldEncodedText>() const {
+ return getEncodedText();
+}
+template<> FieldTradingSessionID::ValueType FIXPP_MSG_CLASS::get<FieldTradingSessionID>() const {
+ return getTradingSessionID();
+}
+template<> FieldTradingSessionSubID::ValueType FIXPP_MSG_CLASS::get<FieldTradingSessionSubID>() const {
+ return getTradingSessionSubID();
+}
+template<> FieldSubscriptionRequestType::ValueType FIXPP_MSG_CLASS::get<FieldSubscriptionRequestType>() const {
+ return getSubscriptionRequestType();
+}
+
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageSecurityList
+template<> FieldSecurityReqID::ValueType FIXPP_MSG_CLASS::get<FieldSecurityReqID>() const {
+ return getSecurityReqID();
+}
+template<> FieldSecurityResponseID::ValueType FIXPP_MSG_CLASS::get<FieldSecurityResponseID>() const {
+ return getSecurityResponseID();
+}
+template<> FieldSecurityRequestResult::ValueType FIXPP_MSG_CLASS::get<FieldSecurityRequestResult>() const {
+ return getSecurityRequestResult();
+}
+template<> FieldTotNoRelatedSym::ValueType FIXPP_MSG_CLASS::get<FieldTotNoRelatedSym>() const {
+ return getTotNoRelatedSym();
+}
+template<> FieldLastFragment::ValueType FIXPP_MSG_CLASS::get<FieldLastFragment>() const {
+ return getLastFragment();
+}
+
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageDerivativeSecurityListRequest
+template<> FieldSecurityReqID::ValueType FIXPP_MSG_CLASS::get<FieldSecurityReqID>() const {
+ return getSecurityReqID();
+}
+template<> FieldSecurityListRequestType::ValueType FIXPP_MSG_CLASS::get<FieldSecurityListRequestType>() const {
+ return getSecurityListRequestType();
+}
+template<> FieldUnderlyingSymbol::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingSymbol>() const {
+ return getUnderlyingSymbol();
+}
+template<> FieldUnderlyingSymbolSfx::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingSymbolSfx>() const {
+ return getUnderlyingSymbolSfx();
+}
+template<> FieldUnderlyingSecurityID::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingSecurityID>() const {
+ return getUnderlyingSecurityID();
+}
+template<> FieldUnderlyingSecurityIDSource::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingSecurityIDSource>() const {
+ return getUnderlyingSecurityIDSource();
+}
+template<> FieldUnderlyingProduct::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingProduct>() const {
+ return getUnderlyingProduct();
+}
+template<> FieldUnderlyingCFICode::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingCFICode>() const {
+ return getUnderlyingCFICode();
+}
+template<> FieldUnderlyingSecurityType::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingSecurityType>() const {
+ return getUnderlyingSecurityType();
+}
+template<> FieldUnderlyingSecuritySubType::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingSecuritySubType>() const {
+ return getUnderlyingSecuritySubType();
+}
+template<> FieldUnderlyingMaturityMonthYear::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingMaturityMonthYear>() const {
+ return getUnderlyingMaturityMonthYear();
+}
+template<> FieldUnderlyingMaturityDate::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingMaturityDate>() const {
+ return getUnderlyingMaturityDate();
+}
+template<> FieldUnderlyingPutOrCall::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingPutOrCall>() const {
+ return getUnderlyingPutOrCall();
+}
+template<> FieldUnderlyingCouponPaymentDate::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingCouponPaymentDate>() const {
+ return getUnderlyingCouponPaymentDate();
+}
+template<> FieldUnderlyingIssueDate::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingIssueDate>() const {
+ return getUnderlyingIssueDate();
+}
+template<> FieldUnderlyingRepoCollateralSecurityType::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingRepoCollateralSecurityType>() const {
+ return getUnderlyingRepoCollateralSecurityType();
+}
+template<> FieldUnderlyingRepurchaseTerm::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingRepurchaseTerm>() const {
+ return getUnderlyingRepurchaseTerm();
+}
+template<> FieldUnderlyingRepurchaseRate::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingRepurchaseRate>() const {
+ return getUnderlyingRepurchaseRate();
+}
+template<> FieldUnderlyingFactor::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingFactor>() const {
+ return getUnderlyingFactor();
+}
+template<> FieldUnderlyingCreditRating::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingCreditRating>() const {
+ return getUnderlyingCreditRating();
+}
+template<> FieldUnderlyingInstrRegistry::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingInstrRegistry>() const {
+ return getUnderlyingInstrRegistry();
+}
+template<> FieldUnderlyingCountryOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingCountryOfIssue>() const {
+ return getUnderlyingCountryOfIssue();
+}
+template<> FieldUnderlyingStateOrProvinceOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingStateOrProvinceOfIssue>() const {
+ return getUnderlyingStateOrProvinceOfIssue();
+}
+template<> FieldUnderlyingLocaleOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingLocaleOfIssue>() const {
+ return getUnderlyingLocaleOfIssue();
+}
+template<> FieldUnderlyingRedemptionDate::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingRedemptionDate>() const {
+ return getUnderlyingRedemptionDate();
+}
+template<> FieldUnderlyingStrikePrice::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingStrikePrice>() const {
+ return getUnderlyingStrikePrice();
+}
+template<> FieldUnderlyingStrikeCurrency::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingStrikeCurrency>() const {
+ return getUnderlyingStrikeCurrency();
+}
+template<> FieldUnderlyingOptAttribute::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingOptAttribute>() const {
+ return getUnderlyingOptAttribute();
+}
+template<> FieldUnderlyingContractMultiplier::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingContractMultiplier>() const {
+ return getUnderlyingContractMultiplier();
+}
+template<> FieldUnderlyingCouponRate::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingCouponRate>() const {
+ return getUnderlyingCouponRate();
+}
+template<> FieldUnderlyingSecurityExchange::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingSecurityExchange>() const {
+ return getUnderlyingSecurityExchange();
+}
+template<> FieldUnderlyingIssuer::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingIssuer>() const {
+ return getUnderlyingIssuer();
+}
+template<> FieldEncodedUnderlyingIssuerLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedUnderlyingIssuerLen>() const {
+ return getEncodedUnderlyingIssuerLen();
+}
+template<> FieldEncodedUnderlyingIssuer::ValueType FIXPP_MSG_CLASS::get<FieldEncodedUnderlyingIssuer>() const {
+ return getEncodedUnderlyingIssuer();
+}
+template<> FieldUnderlyingSecurityDesc::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingSecurityDesc>() const {
+ return getUnderlyingSecurityDesc();
+}
+template<> FieldEncodedUnderlyingSecurityDescLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedUnderlyingSecurityDescLen>() const {
+ return getEncodedUnderlyingSecurityDescLen();
+}
+template<> FieldEncodedUnderlyingSecurityDesc::ValueType FIXPP_MSG_CLASS::get<FieldEncodedUnderlyingSecurityDesc>() const {
+ return getEncodedUnderlyingSecurityDesc();
+}
+template<> FieldUnderlyingCPProgram::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingCPProgram>() const {
+ return getUnderlyingCPProgram();
+}
+template<> FieldUnderlyingCPRegType::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingCPRegType>() const {
+ return getUnderlyingCPRegType();
+}
+template<> FieldUnderlyingCurrency::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingCurrency>() const {
+ return getUnderlyingCurrency();
+}
+template<> FieldUnderlyingQty::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingQty>() const {
+ return getUnderlyingQty();
+}
+template<> FieldUnderlyingPx::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingPx>() const {
+ return getUnderlyingPx();
+}
+template<> FieldUnderlyingDirtyPrice::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingDirtyPrice>() const {
+ return getUnderlyingDirtyPrice();
+}
+template<> FieldUnderlyingEndPrice::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingEndPrice>() const {
+ return getUnderlyingEndPrice();
+}
+template<> FieldUnderlyingStartValue::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingStartValue>() const {
+ return getUnderlyingStartValue();
+}
+template<> FieldUnderlyingCurrentValue::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingCurrentValue>() const {
+ return getUnderlyingCurrentValue();
+}
+template<> FieldUnderlyingEndValue::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingEndValue>() const {
+ return getUnderlyingEndValue();
+}
+template<> FieldSecuritySubType::ValueType FIXPP_MSG_CLASS::get<FieldSecuritySubType>() const {
+ return getSecuritySubType();
+}
+template<> FieldCurrency::ValueType FIXPP_MSG_CLASS::get<FieldCurrency>() const {
+ return getCurrency();
+}
+template<> FieldText::ValueType FIXPP_MSG_CLASS::get<FieldText>() const {
+ return getText();
+}
+template<> FieldEncodedTextLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedTextLen>() const {
+ return getEncodedTextLen();
+}
+template<> FieldEncodedText::ValueType FIXPP_MSG_CLASS::get<FieldEncodedText>() const {
+ return getEncodedText();
+}
+template<> FieldTradingSessionID::ValueType FIXPP_MSG_CLASS::get<FieldTradingSessionID>() const {
+ return getTradingSessionID();
+}
+template<> FieldTradingSessionSubID::ValueType FIXPP_MSG_CLASS::get<FieldTradingSessionSubID>() const {
+ return getTradingSessionSubID();
+}
+template<> FieldSubscriptionRequestType::ValueType FIXPP_MSG_CLASS::get<FieldSubscriptionRequestType>() const {
+ return getSubscriptionRequestType();
+}
+
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageDerivativeSecurityList
+template<> FieldSecurityReqID::ValueType FIXPP_MSG_CLASS::get<FieldSecurityReqID>() const {
+ return getSecurityReqID();
+}
+template<> FieldSecurityResponseID::ValueType FIXPP_MSG_CLASS::get<FieldSecurityResponseID>() const {
+ return getSecurityResponseID();
+}
+template<> FieldSecurityRequestResult::ValueType FIXPP_MSG_CLASS::get<FieldSecurityRequestResult>() const {
+ return getSecurityRequestResult();
+}
+template<> FieldUnderlyingSymbol::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingSymbol>() const {
+ return getUnderlyingSymbol();
+}
+template<> FieldUnderlyingSymbolSfx::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingSymbolSfx>() const {
+ return getUnderlyingSymbolSfx();
+}
+template<> FieldUnderlyingSecurityID::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingSecurityID>() const {
+ return getUnderlyingSecurityID();
+}
+template<> FieldUnderlyingSecurityIDSource::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingSecurityIDSource>() const {
+ return getUnderlyingSecurityIDSource();
+}
+template<> FieldUnderlyingProduct::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingProduct>() const {
+ return getUnderlyingProduct();
+}
+template<> FieldUnderlyingCFICode::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingCFICode>() const {
+ return getUnderlyingCFICode();
+}
+template<> FieldUnderlyingSecurityType::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingSecurityType>() const {
+ return getUnderlyingSecurityType();
+}
+template<> FieldUnderlyingSecuritySubType::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingSecuritySubType>() const {
+ return getUnderlyingSecuritySubType();
+}
+template<> FieldUnderlyingMaturityMonthYear::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingMaturityMonthYear>() const {
+ return getUnderlyingMaturityMonthYear();
+}
+template<> FieldUnderlyingMaturityDate::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingMaturityDate>() const {
+ return getUnderlyingMaturityDate();
+}
+template<> FieldUnderlyingPutOrCall::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingPutOrCall>() const {
+ return getUnderlyingPutOrCall();
+}
+template<> FieldUnderlyingCouponPaymentDate::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingCouponPaymentDate>() const {
+ return getUnderlyingCouponPaymentDate();
+}
+template<> FieldUnderlyingIssueDate::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingIssueDate>() const {
+ return getUnderlyingIssueDate();
+}
+template<> FieldUnderlyingRepoCollateralSecurityType::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingRepoCollateralSecurityType>() const {
+ return getUnderlyingRepoCollateralSecurityType();
+}
+template<> FieldUnderlyingRepurchaseTerm::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingRepurchaseTerm>() const {
+ return getUnderlyingRepurchaseTerm();
+}
+template<> FieldUnderlyingRepurchaseRate::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingRepurchaseRate>() const {
+ return getUnderlyingRepurchaseRate();
+}
+template<> FieldUnderlyingFactor::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingFactor>() const {
+ return getUnderlyingFactor();
+}
+template<> FieldUnderlyingCreditRating::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingCreditRating>() const {
+ return getUnderlyingCreditRating();
+}
+template<> FieldUnderlyingInstrRegistry::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingInstrRegistry>() const {
+ return getUnderlyingInstrRegistry();
+}
+template<> FieldUnderlyingCountryOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingCountryOfIssue>() const {
+ return getUnderlyingCountryOfIssue();
+}
+template<> FieldUnderlyingStateOrProvinceOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingStateOrProvinceOfIssue>() const {
+ return getUnderlyingStateOrProvinceOfIssue();
+}
+template<> FieldUnderlyingLocaleOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingLocaleOfIssue>() const {
+ return getUnderlyingLocaleOfIssue();
+}
+template<> FieldUnderlyingRedemptionDate::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingRedemptionDate>() const {
+ return getUnderlyingRedemptionDate();
+}
+template<> FieldUnderlyingStrikePrice::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingStrikePrice>() const {
+ return getUnderlyingStrikePrice();
+}
+template<> FieldUnderlyingStrikeCurrency::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingStrikeCurrency>() const {
+ return getUnderlyingStrikeCurrency();
+}
+template<> FieldUnderlyingOptAttribute::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingOptAttribute>() const {
+ return getUnderlyingOptAttribute();
+}
+template<> FieldUnderlyingContractMultiplier::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingContractMultiplier>() const {
+ return getUnderlyingContractMultiplier();
+}
+template<> FieldUnderlyingCouponRate::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingCouponRate>() const {
+ return getUnderlyingCouponRate();
+}
+template<> FieldUnderlyingSecurityExchange::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingSecurityExchange>() const {
+ return getUnderlyingSecurityExchange();
+}
+template<> FieldUnderlyingIssuer::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingIssuer>() const {
+ return getUnderlyingIssuer();
+}
+template<> FieldEncodedUnderlyingIssuerLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedUnderlyingIssuerLen>() const {
+ return getEncodedUnderlyingIssuerLen();
+}
+template<> FieldEncodedUnderlyingIssuer::ValueType FIXPP_MSG_CLASS::get<FieldEncodedUnderlyingIssuer>() const {
+ return getEncodedUnderlyingIssuer();
+}
+template<> FieldUnderlyingSecurityDesc::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingSecurityDesc>() const {
+ return getUnderlyingSecurityDesc();
+}
+template<> FieldEncodedUnderlyingSecurityDescLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedUnderlyingSecurityDescLen>() const {
+ return getEncodedUnderlyingSecurityDescLen();
+}
+template<> FieldEncodedUnderlyingSecurityDesc::ValueType FIXPP_MSG_CLASS::get<FieldEncodedUnderlyingSecurityDesc>() const {
+ return getEncodedUnderlyingSecurityDesc();
+}
+template<> FieldUnderlyingCPProgram::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingCPProgram>() const {
+ return getUnderlyingCPProgram();
+}
+template<> FieldUnderlyingCPRegType::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingCPRegType>() const {
+ return getUnderlyingCPRegType();
+}
+template<> FieldUnderlyingCurrency::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingCurrency>() const {
+ return getUnderlyingCurrency();
+}
+template<> FieldUnderlyingQty::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingQty>() const {
+ return getUnderlyingQty();
+}
+template<> FieldUnderlyingPx::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingPx>() const {
+ return getUnderlyingPx();
+}
+template<> FieldUnderlyingDirtyPrice::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingDirtyPrice>() const {
+ return getUnderlyingDirtyPrice();
+}
+template<> FieldUnderlyingEndPrice::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingEndPrice>() const {
+ return getUnderlyingEndPrice();
+}
+template<> FieldUnderlyingStartValue::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingStartValue>() const {
+ return getUnderlyingStartValue();
+}
+template<> FieldUnderlyingCurrentValue::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingCurrentValue>() const {
+ return getUnderlyingCurrentValue();
+}
+template<> FieldUnderlyingEndValue::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingEndValue>() const {
+ return getUnderlyingEndValue();
+}
+template<> FieldTotNoRelatedSym::ValueType FIXPP_MSG_CLASS::get<FieldTotNoRelatedSym>() const {
+ return getTotNoRelatedSym();
+}
+template<> FieldLastFragment::ValueType FIXPP_MSG_CLASS::get<FieldLastFragment>() const {
+ return getLastFragment();
+}
+
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageNewOrderMultileg
+template<> FieldClOrdID::ValueType FIXPP_MSG_CLASS::get<FieldClOrdID>() const {
+ return getClOrdID();
+}
+template<> FieldSecondaryClOrdID::ValueType FIXPP_MSG_CLASS::get<FieldSecondaryClOrdID>() const {
+ return getSecondaryClOrdID();
+}
+template<> FieldClOrdLinkID::ValueType FIXPP_MSG_CLASS::get<FieldClOrdLinkID>() const {
+ return getClOrdLinkID();
+}
+template<> FieldTradeOriginationDate::ValueType FIXPP_MSG_CLASS::get<FieldTradeOriginationDate>() const {
+ return getTradeOriginationDate();
+}
+template<> FieldTradeDate::ValueType FIXPP_MSG_CLASS::get<FieldTradeDate>() const {
+ return getTradeDate();
+}
+template<> FieldAccount::ValueType FIXPP_MSG_CLASS::get<FieldAccount>() const {
+ return getAccount();
+}
+template<> FieldAcctIDSource::ValueType FIXPP_MSG_CLASS::get<FieldAcctIDSource>() const {
+ return getAcctIDSource();
+}
+template<> FieldAccountType::ValueType FIXPP_MSG_CLASS::get<FieldAccountType>() const {
+ return getAccountType();
+}
+template<> FieldDayBookingInst::ValueType FIXPP_MSG_CLASS::get<FieldDayBookingInst>() const {
+ return getDayBookingInst();
+}
+template<> FieldBookingUnit::ValueType FIXPP_MSG_CLASS::get<FieldBookingUnit>() const {
+ return getBookingUnit();
+}
+template<> FieldPreallocMethod::ValueType FIXPP_MSG_CLASS::get<FieldPreallocMethod>() const {
+ return getPreallocMethod();
+}
+template<> FieldAllocID::ValueType FIXPP_MSG_CLASS::get<FieldAllocID>() const {
+ return getAllocID();
+}
+template<> FieldSettlType::ValueType FIXPP_MSG_CLASS::get<FieldSettlType>() const {
+ return getSettlType();
+}
+template<> FieldSettlDate::ValueType FIXPP_MSG_CLASS::get<FieldSettlDate>() const {
+ return getSettlDate();
+}
+template<> FieldCashMargin::ValueType FIXPP_MSG_CLASS::get<FieldCashMargin>() const {
+ return getCashMargin();
+}
+template<> FieldClearingFeeIndicator::ValueType FIXPP_MSG_CLASS::get<FieldClearingFeeIndicator>() const {
+ return getClearingFeeIndicator();
+}
+template<> FieldHandlInst::ValueType FIXPP_MSG_CLASS::get<FieldHandlInst>() const {
+ return getHandlInst();
+}
+template<> FieldExecInst::ValueType FIXPP_MSG_CLASS::get<FieldExecInst>() const {
+ return getExecInst();
+}
+template<> FieldMinQty::ValueType FIXPP_MSG_CLASS::get<FieldMinQty>() const {
+ return getMinQty();
+}
+template<> FieldMaxFloor::ValueType FIXPP_MSG_CLASS::get<FieldMaxFloor>() const {
+ return getMaxFloor();
+}
+template<> FieldExDestination::ValueType FIXPP_MSG_CLASS::get<FieldExDestination>() const {
+ return getExDestination();
+}
+template<> FieldProcessCode::ValueType FIXPP_MSG_CLASS::get<FieldProcessCode>() const {
+ return getProcessCode();
+}
+template<> FieldSide::ValueType FIXPP_MSG_CLASS::get<FieldSide>() const {
+ return getSide();
+}
+template<> FieldSymbol::ValueType FIXPP_MSG_CLASS::get<FieldSymbol>() const {
+ return getSymbol();
+}
+template<> FieldSymbolSfx::ValueType FIXPP_MSG_CLASS::get<FieldSymbolSfx>() const {
+ return getSymbolSfx();
+}
+template<> FieldSecurityID::ValueType FIXPP_MSG_CLASS::get<FieldSecurityID>() const {
+ return getSecurityID();
+}
+template<> FieldSecurityIDSource::ValueType FIXPP_MSG_CLASS::get<FieldSecurityIDSource>() const {
+ return getSecurityIDSource();
+}
+template<> FieldProduct::ValueType FIXPP_MSG_CLASS::get<FieldProduct>() const {
+ return getProduct();
+}
+template<> FieldCFICode::ValueType FIXPP_MSG_CLASS::get<FieldCFICode>() const {
+ return getCFICode();
+}
+template<> FieldSecurityType::ValueType FIXPP_MSG_CLASS::get<FieldSecurityType>() const {
+ return getSecurityType();
+}
+template<> FieldSecuritySubType::ValueType FIXPP_MSG_CLASS::get<FieldSecuritySubType>() const {
+ return getSecuritySubType();
+}
+template<> FieldMaturityMonthYear::ValueType FIXPP_MSG_CLASS::get<FieldMaturityMonthYear>() const {
+ return getMaturityMonthYear();
+}
+template<> FieldMaturityDate::ValueType FIXPP_MSG_CLASS::get<FieldMaturityDate>() const {
+ return getMaturityDate();
+}
+template<> FieldPutOrCall::ValueType FIXPP_MSG_CLASS::get<FieldPutOrCall>() const {
+ return getPutOrCall();
+}
+template<> FieldCouponPaymentDate::ValueType FIXPP_MSG_CLASS::get<FieldCouponPaymentDate>() const {
+ return getCouponPaymentDate();
+}
+template<> FieldIssueDate::ValueType FIXPP_MSG_CLASS::get<FieldIssueDate>() const {
+ return getIssueDate();
+}
+template<> FieldRepoCollateralSecurityType::ValueType FIXPP_MSG_CLASS::get<FieldRepoCollateralSecurityType>() const {
+ return getRepoCollateralSecurityType();
+}
+template<> FieldRepurchaseTerm::ValueType FIXPP_MSG_CLASS::get<FieldRepurchaseTerm>() const {
+ return getRepurchaseTerm();
+}
+template<> FieldRepurchaseRate::ValueType FIXPP_MSG_CLASS::get<FieldRepurchaseRate>() const {
+ return getRepurchaseRate();
+}
+template<> FieldFactor::ValueType FIXPP_MSG_CLASS::get<FieldFactor>() const {
+ return getFactor();
+}
+template<> FieldCreditRating::ValueType FIXPP_MSG_CLASS::get<FieldCreditRating>() const {
+ return getCreditRating();
+}
+template<> FieldInstrRegistry::ValueType FIXPP_MSG_CLASS::get<FieldInstrRegistry>() const {
+ return getInstrRegistry();
+}
+template<> FieldCountryOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldCountryOfIssue>() const {
+ return getCountryOfIssue();
+}
+template<> FieldStateOrProvinceOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldStateOrProvinceOfIssue>() const {
+ return getStateOrProvinceOfIssue();
+}
+template<> FieldLocaleOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldLocaleOfIssue>() const {
+ return getLocaleOfIssue();
+}
+template<> FieldRedemptionDate::ValueType FIXPP_MSG_CLASS::get<FieldRedemptionDate>() const {
+ return getRedemptionDate();
+}
+template<> FieldStrikePrice::ValueType FIXPP_MSG_CLASS::get<FieldStrikePrice>() const {
+ return getStrikePrice();
+}
+template<> FieldStrikeCurrency::ValueType FIXPP_MSG_CLASS::get<FieldStrikeCurrency>() const {
+ return getStrikeCurrency();
+}
+template<> FieldOptAttribute::ValueType FIXPP_MSG_CLASS::get<FieldOptAttribute>() const {
+ return getOptAttribute();
+}
+template<> FieldContractMultiplier::ValueType FIXPP_MSG_CLASS::get<FieldContractMultiplier>() const {
+ return getContractMultiplier();
+}
+template<> FieldCouponRate::ValueType FIXPP_MSG_CLASS::get<FieldCouponRate>() const {
+ return getCouponRate();
+}
+template<> FieldSecurityExchange::ValueType FIXPP_MSG_CLASS::get<FieldSecurityExchange>() const {
+ return getSecurityExchange();
+}
+template<> FieldIssuer::ValueType FIXPP_MSG_CLASS::get<FieldIssuer>() const {
+ return getIssuer();
+}
+template<> FieldEncodedIssuerLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedIssuerLen>() const {
+ return getEncodedIssuerLen();
+}
+template<> FieldEncodedIssuer::ValueType FIXPP_MSG_CLASS::get<FieldEncodedIssuer>() const {
+ return getEncodedIssuer();
+}
+template<> FieldSecurityDesc::ValueType FIXPP_MSG_CLASS::get<FieldSecurityDesc>() const {
+ return getSecurityDesc();
+}
+template<> FieldEncodedSecurityDescLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedSecurityDescLen>() const {
+ return getEncodedSecurityDescLen();
+}
+template<> FieldEncodedSecurityDesc::ValueType FIXPP_MSG_CLASS::get<FieldEncodedSecurityDesc>() const {
+ return getEncodedSecurityDesc();
+}
+template<> FieldPool::ValueType FIXPP_MSG_CLASS::get<FieldPool>() const {
+ return getPool();
+}
+template<> FieldContractSettlMonth::ValueType FIXPP_MSG_CLASS::get<FieldContractSettlMonth>() const {
+ return getContractSettlMonth();
+}
+template<> FieldCPProgram::ValueType FIXPP_MSG_CLASS::get<FieldCPProgram>() const {
+ return getCPProgram();
+}
+template<> FieldCPRegType::ValueType FIXPP_MSG_CLASS::get<FieldCPRegType>() const {
+ return getCPRegType();
+}
+template<> FieldDatedDate::ValueType FIXPP_MSG_CLASS::get<FieldDatedDate>() const {
+ return getDatedDate();
+}
+template<> FieldInterestAccrualDate::ValueType FIXPP_MSG_CLASS::get<FieldInterestAccrualDate>() const {
+ return getInterestAccrualDate();
+}
+template<> FieldPrevClosePx::ValueType FIXPP_MSG_CLASS::get<FieldPrevClosePx>() const {
+ return getPrevClosePx();
+}
+template<> FieldLocateReqd::ValueType FIXPP_MSG_CLASS::get<FieldLocateReqd>() const {
+ return getLocateReqd();
+}
+template<> FieldTransactTime::ValueType FIXPP_MSG_CLASS::get<FieldTransactTime>() const {
+ return getTransactTime();
+}
+template<> FieldQtyType::ValueType FIXPP_MSG_CLASS::get<FieldQtyType>() const {
+ return getQtyType();
+}
+template<> FieldOrderQty::ValueType FIXPP_MSG_CLASS::get<FieldOrderQty>() const {
+ return getOrderQty();
+}
+template<> FieldCashOrderQty::ValueType FIXPP_MSG_CLASS::get<FieldCashOrderQty>() const {
+ return getCashOrderQty();
+}
+template<> FieldOrderPercent::ValueType FIXPP_MSG_CLASS::get<FieldOrderPercent>() const {
+ return getOrderPercent();
+}
+template<> FieldRoundingDirection::ValueType FIXPP_MSG_CLASS::get<FieldRoundingDirection>() const {
+ return getRoundingDirection();
+}
+template<> FieldRoundingModulus::ValueType FIXPP_MSG_CLASS::get<FieldRoundingModulus>() const {
+ return getRoundingModulus();
+}
+template<> FieldOrdType::ValueType FIXPP_MSG_CLASS::get<FieldOrdType>() const {
+ return getOrdType();
+}
+template<> FieldPriceType::ValueType FIXPP_MSG_CLASS::get<FieldPriceType>() const {
+ return getPriceType();
+}
+template<> FieldPrice::ValueType FIXPP_MSG_CLASS::get<FieldPrice>() const {
+ return getPrice();
+}
+template<> FieldStopPx::ValueType FIXPP_MSG_CLASS::get<FieldStopPx>() const {
+ return getStopPx();
+}
+template<> FieldCurrency::ValueType FIXPP_MSG_CLASS::get<FieldCurrency>() const {
+ return getCurrency();
+}
+template<> FieldComplianceID::ValueType FIXPP_MSG_CLASS::get<FieldComplianceID>() const {
+ return getComplianceID();
+}
+template<> FieldSolicitedFlag::ValueType FIXPP_MSG_CLASS::get<FieldSolicitedFlag>() const {
+ return getSolicitedFlag();
+}
+template<> FieldIOIID::ValueType FIXPP_MSG_CLASS::get<FieldIOIID>() const {
+ return getIOIID();
+}
+template<> FieldQuoteID::ValueType FIXPP_MSG_CLASS::get<FieldQuoteID>() const {
+ return getQuoteID();
+}
+template<> FieldTimeInForce::ValueType FIXPP_MSG_CLASS::get<FieldTimeInForce>() const {
+ return getTimeInForce();
+}
+template<> FieldEffectiveTime::ValueType FIXPP_MSG_CLASS::get<FieldEffectiveTime>() const {
+ return getEffectiveTime();
+}
+template<> FieldExpireDate::ValueType FIXPP_MSG_CLASS::get<FieldExpireDate>() const {
+ return getExpireDate();
+}
+template<> FieldExpireTime::ValueType FIXPP_MSG_CLASS::get<FieldExpireTime>() const {
+ return getExpireTime();
+}
+template<> FieldGTBookingInst::ValueType FIXPP_MSG_CLASS::get<FieldGTBookingInst>() const {
+ return getGTBookingInst();
+}
+template<> FieldCommission::ValueType FIXPP_MSG_CLASS::get<FieldCommission>() const {
+ return getCommission();
+}
+template<> FieldCommType::ValueType FIXPP_MSG_CLASS::get<FieldCommType>() const {
+ return getCommType();
+}
+template<> FieldCommCurrency::ValueType FIXPP_MSG_CLASS::get<FieldCommCurrency>() const {
+ return getCommCurrency();
+}
+template<> FieldFundRenewWaiv::ValueType FIXPP_MSG_CLASS::get<FieldFundRenewWaiv>() const {
+ return getFundRenewWaiv();
+}
+template<> FieldOrderCapacity::ValueType FIXPP_MSG_CLASS::get<FieldOrderCapacity>() const {
+ return getOrderCapacity();
+}
+template<> FieldOrderRestrictions::ValueType FIXPP_MSG_CLASS::get<FieldOrderRestrictions>() const {
+ return getOrderRestrictions();
+}
+template<> FieldCustOrderCapacity::ValueType FIXPP_MSG_CLASS::get<FieldCustOrderCapacity>() const {
+ return getCustOrderCapacity();
+}
+template<> FieldForexReq::ValueType FIXPP_MSG_CLASS::get<FieldForexReq>() const {
+ return getForexReq();
+}
+template<> FieldSettlCurrency::ValueType FIXPP_MSG_CLASS::get<FieldSettlCurrency>() const {
+ return getSettlCurrency();
+}
+template<> FieldBookingType::ValueType FIXPP_MSG_CLASS::get<FieldBookingType>() const {
+ return getBookingType();
+}
+template<> FieldText::ValueType FIXPP_MSG_CLASS::get<FieldText>() const {
+ return getText();
+}
+template<> FieldEncodedTextLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedTextLen>() const {
+ return getEncodedTextLen();
+}
+template<> FieldEncodedText::ValueType FIXPP_MSG_CLASS::get<FieldEncodedText>() const {
+ return getEncodedText();
+}
+template<> FieldPositionEffect::ValueType FIXPP_MSG_CLASS::get<FieldPositionEffect>() const {
+ return getPositionEffect();
+}
+template<> FieldCoveredOrUncovered::ValueType FIXPP_MSG_CLASS::get<FieldCoveredOrUncovered>() const {
+ return getCoveredOrUncovered();
+}
+template<> FieldMaxShow::ValueType FIXPP_MSG_CLASS::get<FieldMaxShow>() const {
+ return getMaxShow();
+}
+template<> FieldPegOffsetValue::ValueType FIXPP_MSG_CLASS::get<FieldPegOffsetValue>() const {
+ return getPegOffsetValue();
+}
+template<> FieldPegMoveType::ValueType FIXPP_MSG_CLASS::get<FieldPegMoveType>() const {
+ return getPegMoveType();
+}
+template<> FieldPegOffsetType::ValueType FIXPP_MSG_CLASS::get<FieldPegOffsetType>() const {
+ return getPegOffsetType();
+}
+template<> FieldPegLimitType::ValueType FIXPP_MSG_CLASS::get<FieldPegLimitType>() const {
+ return getPegLimitType();
+}
+template<> FieldPegRoundDirection::ValueType FIXPP_MSG_CLASS::get<FieldPegRoundDirection>() const {
+ return getPegRoundDirection();
+}
+template<> FieldPegScope::ValueType FIXPP_MSG_CLASS::get<FieldPegScope>() const {
+ return getPegScope();
+}
+template<> FieldDiscretionInst::ValueType FIXPP_MSG_CLASS::get<FieldDiscretionInst>() const {
+ return getDiscretionInst();
+}
+template<> FieldDiscretionOffsetValue::ValueType FIXPP_MSG_CLASS::get<FieldDiscretionOffsetValue>() const {
+ return getDiscretionOffsetValue();
+}
+template<> FieldDiscretionMoveType::ValueType FIXPP_MSG_CLASS::get<FieldDiscretionMoveType>() const {
+ return getDiscretionMoveType();
+}
+template<> FieldDiscretionOffsetType::ValueType FIXPP_MSG_CLASS::get<FieldDiscretionOffsetType>() const {
+ return getDiscretionOffsetType();
+}
+template<> FieldDiscretionLimitType::ValueType FIXPP_MSG_CLASS::get<FieldDiscretionLimitType>() const {
+ return getDiscretionLimitType();
+}
+template<> FieldDiscretionRoundDirection::ValueType FIXPP_MSG_CLASS::get<FieldDiscretionRoundDirection>() const {
+ return getDiscretionRoundDirection();
+}
+template<> FieldDiscretionScope::ValueType FIXPP_MSG_CLASS::get<FieldDiscretionScope>() const {
+ return getDiscretionScope();
+}
+template<> FieldTargetStrategy::ValueType FIXPP_MSG_CLASS::get<FieldTargetStrategy>() const {
+ return getTargetStrategy();
+}
+template<> FieldTargetStrategyParameters::ValueType FIXPP_MSG_CLASS::get<FieldTargetStrategyParameters>() const {
+ return getTargetStrategyParameters();
+}
+template<> FieldParticipationRate::ValueType FIXPP_MSG_CLASS::get<FieldParticipationRate>() const {
+ return getParticipationRate();
+}
+template<> FieldCancellationRights::ValueType FIXPP_MSG_CLASS::get<FieldCancellationRights>() const {
+ return getCancellationRights();
+}
+template<> FieldMoneyLaunderingStatus::ValueType FIXPP_MSG_CLASS::get<FieldMoneyLaunderingStatus>() const {
+ return getMoneyLaunderingStatus();
+}
+template<> FieldRegistID::ValueType FIXPP_MSG_CLASS::get<FieldRegistID>() const {
+ return getRegistID();
+}
+template<> FieldDesignation::ValueType FIXPP_MSG_CLASS::get<FieldDesignation>() const {
+ return getDesignation();
+}
+template<> FieldMultiLegRptTypeReq::ValueType FIXPP_MSG_CLASS::get<FieldMultiLegRptTypeReq>() const {
+ return getMultiLegRptTypeReq();
+}
+
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageMultilegOrderCancelReplace
+template<> FieldOrderID::ValueType FIXPP_MSG_CLASS::get<FieldOrderID>() const {
+ return getOrderID();
+}
+template<> FieldOrigClOrdID::ValueType FIXPP_MSG_CLASS::get<FieldOrigClOrdID>() const {
+ return getOrigClOrdID();
+}
+template<> FieldClOrdID::ValueType FIXPP_MSG_CLASS::get<FieldClOrdID>() const {
+ return getClOrdID();
+}
+template<> FieldSecondaryClOrdID::ValueType FIXPP_MSG_CLASS::get<FieldSecondaryClOrdID>() const {
+ return getSecondaryClOrdID();
+}
+template<> FieldClOrdLinkID::ValueType FIXPP_MSG_CLASS::get<FieldClOrdLinkID>() const {
+ return getClOrdLinkID();
+}
+template<> FieldOrigOrdModTime::ValueType FIXPP_MSG_CLASS::get<FieldOrigOrdModTime>() const {
+ return getOrigOrdModTime();
+}
+template<> FieldTradeOriginationDate::ValueType FIXPP_MSG_CLASS::get<FieldTradeOriginationDate>() const {
+ return getTradeOriginationDate();
+}
+template<> FieldTradeDate::ValueType FIXPP_MSG_CLASS::get<FieldTradeDate>() const {
+ return getTradeDate();
+}
+template<> FieldAccount::ValueType FIXPP_MSG_CLASS::get<FieldAccount>() const {
+ return getAccount();
+}
+template<> FieldAcctIDSource::ValueType FIXPP_MSG_CLASS::get<FieldAcctIDSource>() const {
+ return getAcctIDSource();
+}
+template<> FieldAccountType::ValueType FIXPP_MSG_CLASS::get<FieldAccountType>() const {
+ return getAccountType();
+}
+template<> FieldDayBookingInst::ValueType FIXPP_MSG_CLASS::get<FieldDayBookingInst>() const {
+ return getDayBookingInst();
+}
+template<> FieldBookingUnit::ValueType FIXPP_MSG_CLASS::get<FieldBookingUnit>() const {
+ return getBookingUnit();
+}
+template<> FieldPreallocMethod::ValueType FIXPP_MSG_CLASS::get<FieldPreallocMethod>() const {
+ return getPreallocMethod();
+}
+template<> FieldAllocID::ValueType FIXPP_MSG_CLASS::get<FieldAllocID>() const {
+ return getAllocID();
+}
+template<> FieldSettlType::ValueType FIXPP_MSG_CLASS::get<FieldSettlType>() const {
+ return getSettlType();
+}
+template<> FieldSettlDate::ValueType FIXPP_MSG_CLASS::get<FieldSettlDate>() const {
+ return getSettlDate();
+}
+template<> FieldCashMargin::ValueType FIXPP_MSG_CLASS::get<FieldCashMargin>() const {
+ return getCashMargin();
+}
+template<> FieldClearingFeeIndicator::ValueType FIXPP_MSG_CLASS::get<FieldClearingFeeIndicator>() const {
+ return getClearingFeeIndicator();
+}
+template<> FieldHandlInst::ValueType FIXPP_MSG_CLASS::get<FieldHandlInst>() const {
+ return getHandlInst();
+}
+template<> FieldExecInst::ValueType FIXPP_MSG_CLASS::get<FieldExecInst>() const {
+ return getExecInst();
+}
+template<> FieldMinQty::ValueType FIXPP_MSG_CLASS::get<FieldMinQty>() const {
+ return getMinQty();
+}
+template<> FieldMaxFloor::ValueType FIXPP_MSG_CLASS::get<FieldMaxFloor>() const {
+ return getMaxFloor();
+}
+template<> FieldExDestination::ValueType FIXPP_MSG_CLASS::get<FieldExDestination>() const {
+ return getExDestination();
+}
+template<> FieldProcessCode::ValueType FIXPP_MSG_CLASS::get<FieldProcessCode>() const {
+ return getProcessCode();
+}
+template<> FieldSide::ValueType FIXPP_MSG_CLASS::get<FieldSide>() const {
+ return getSide();
+}
+template<> FieldSymbol::ValueType FIXPP_MSG_CLASS::get<FieldSymbol>() const {
+ return getSymbol();
+}
+template<> FieldSymbolSfx::ValueType FIXPP_MSG_CLASS::get<FieldSymbolSfx>() const {
+ return getSymbolSfx();
+}
+template<> FieldSecurityID::ValueType FIXPP_MSG_CLASS::get<FieldSecurityID>() const {
+ return getSecurityID();
+}
+template<> FieldSecurityIDSource::ValueType FIXPP_MSG_CLASS::get<FieldSecurityIDSource>() const {
+ return getSecurityIDSource();
+}
+template<> FieldProduct::ValueType FIXPP_MSG_CLASS::get<FieldProduct>() const {
+ return getProduct();
+}
+template<> FieldCFICode::ValueType FIXPP_MSG_CLASS::get<FieldCFICode>() const {
+ return getCFICode();
+}
+template<> FieldSecurityType::ValueType FIXPP_MSG_CLASS::get<FieldSecurityType>() const {
+ return getSecurityType();
+}
+template<> FieldSecuritySubType::ValueType FIXPP_MSG_CLASS::get<FieldSecuritySubType>() const {
+ return getSecuritySubType();
+}
+template<> FieldMaturityMonthYear::ValueType FIXPP_MSG_CLASS::get<FieldMaturityMonthYear>() const {
+ return getMaturityMonthYear();
+}
+template<> FieldMaturityDate::ValueType FIXPP_MSG_CLASS::get<FieldMaturityDate>() const {
+ return getMaturityDate();
+}
+template<> FieldPutOrCall::ValueType FIXPP_MSG_CLASS::get<FieldPutOrCall>() const {
+ return getPutOrCall();
+}
+template<> FieldCouponPaymentDate::ValueType FIXPP_MSG_CLASS::get<FieldCouponPaymentDate>() const {
+ return getCouponPaymentDate();
+}
+template<> FieldIssueDate::ValueType FIXPP_MSG_CLASS::get<FieldIssueDate>() const {
+ return getIssueDate();
+}
+template<> FieldRepoCollateralSecurityType::ValueType FIXPP_MSG_CLASS::get<FieldRepoCollateralSecurityType>() const {
+ return getRepoCollateralSecurityType();
+}
+template<> FieldRepurchaseTerm::ValueType FIXPP_MSG_CLASS::get<FieldRepurchaseTerm>() const {
+ return getRepurchaseTerm();
+}
+template<> FieldRepurchaseRate::ValueType FIXPP_MSG_CLASS::get<FieldRepurchaseRate>() const {
+ return getRepurchaseRate();
+}
+template<> FieldFactor::ValueType FIXPP_MSG_CLASS::get<FieldFactor>() const {
+ return getFactor();
+}
+template<> FieldCreditRating::ValueType FIXPP_MSG_CLASS::get<FieldCreditRating>() const {
+ return getCreditRating();
+}
+template<> FieldInstrRegistry::ValueType FIXPP_MSG_CLASS::get<FieldInstrRegistry>() const {
+ return getInstrRegistry();
+}
+template<> FieldCountryOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldCountryOfIssue>() const {
+ return getCountryOfIssue();
+}
+template<> FieldStateOrProvinceOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldStateOrProvinceOfIssue>() const {
+ return getStateOrProvinceOfIssue();
+}
+template<> FieldLocaleOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldLocaleOfIssue>() const {
+ return getLocaleOfIssue();
+}
+template<> FieldRedemptionDate::ValueType FIXPP_MSG_CLASS::get<FieldRedemptionDate>() const {
+ return getRedemptionDate();
+}
+template<> FieldStrikePrice::ValueType FIXPP_MSG_CLASS::get<FieldStrikePrice>() const {
+ return getStrikePrice();
+}
+template<> FieldStrikeCurrency::ValueType FIXPP_MSG_CLASS::get<FieldStrikeCurrency>() const {
+ return getStrikeCurrency();
+}
+template<> FieldOptAttribute::ValueType FIXPP_MSG_CLASS::get<FieldOptAttribute>() const {
+ return getOptAttribute();
+}
+template<> FieldContractMultiplier::ValueType FIXPP_MSG_CLASS::get<FieldContractMultiplier>() const {
+ return getContractMultiplier();
+}
+template<> FieldCouponRate::ValueType FIXPP_MSG_CLASS::get<FieldCouponRate>() const {
+ return getCouponRate();
+}
+template<> FieldSecurityExchange::ValueType FIXPP_MSG_CLASS::get<FieldSecurityExchange>() const {
+ return getSecurityExchange();
+}
+template<> FieldIssuer::ValueType FIXPP_MSG_CLASS::get<FieldIssuer>() const {
+ return getIssuer();
+}
+template<> FieldEncodedIssuerLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedIssuerLen>() const {
+ return getEncodedIssuerLen();
+}
+template<> FieldEncodedIssuer::ValueType FIXPP_MSG_CLASS::get<FieldEncodedIssuer>() const {
+ return getEncodedIssuer();
+}
+template<> FieldSecurityDesc::ValueType FIXPP_MSG_CLASS::get<FieldSecurityDesc>() const {
+ return getSecurityDesc();
+}
+template<> FieldEncodedSecurityDescLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedSecurityDescLen>() const {
+ return getEncodedSecurityDescLen();
+}
+template<> FieldEncodedSecurityDesc::ValueType FIXPP_MSG_CLASS::get<FieldEncodedSecurityDesc>() const {
+ return getEncodedSecurityDesc();
+}
+template<> FieldPool::ValueType FIXPP_MSG_CLASS::get<FieldPool>() const {
+ return getPool();
+}
+template<> FieldContractSettlMonth::ValueType FIXPP_MSG_CLASS::get<FieldContractSettlMonth>() const {
+ return getContractSettlMonth();
+}
+template<> FieldCPProgram::ValueType FIXPP_MSG_CLASS::get<FieldCPProgram>() const {
+ return getCPProgram();
+}
+template<> FieldCPRegType::ValueType FIXPP_MSG_CLASS::get<FieldCPRegType>() const {
+ return getCPRegType();
+}
+template<> FieldDatedDate::ValueType FIXPP_MSG_CLASS::get<FieldDatedDate>() const {
+ return getDatedDate();
+}
+template<> FieldInterestAccrualDate::ValueType FIXPP_MSG_CLASS::get<FieldInterestAccrualDate>() const {
+ return getInterestAccrualDate();
+}
+template<> FieldPrevClosePx::ValueType FIXPP_MSG_CLASS::get<FieldPrevClosePx>() const {
+ return getPrevClosePx();
+}
+template<> FieldLocateReqd::ValueType FIXPP_MSG_CLASS::get<FieldLocateReqd>() const {
+ return getLocateReqd();
+}
+template<> FieldTransactTime::ValueType FIXPP_MSG_CLASS::get<FieldTransactTime>() const {
+ return getTransactTime();
+}
+template<> FieldQtyType::ValueType FIXPP_MSG_CLASS::get<FieldQtyType>() const {
+ return getQtyType();
+}
+template<> FieldOrderQty::ValueType FIXPP_MSG_CLASS::get<FieldOrderQty>() const {
+ return getOrderQty();
+}
+template<> FieldCashOrderQty::ValueType FIXPP_MSG_CLASS::get<FieldCashOrderQty>() const {
+ return getCashOrderQty();
+}
+template<> FieldOrderPercent::ValueType FIXPP_MSG_CLASS::get<FieldOrderPercent>() const {
+ return getOrderPercent();
+}
+template<> FieldRoundingDirection::ValueType FIXPP_MSG_CLASS::get<FieldRoundingDirection>() const {
+ return getRoundingDirection();
+}
+template<> FieldRoundingModulus::ValueType FIXPP_MSG_CLASS::get<FieldRoundingModulus>() const {
+ return getRoundingModulus();
+}
+template<> FieldOrdType::ValueType FIXPP_MSG_CLASS::get<FieldOrdType>() const {
+ return getOrdType();
+}
+template<> FieldPriceType::ValueType FIXPP_MSG_CLASS::get<FieldPriceType>() const {
+ return getPriceType();
+}
+template<> FieldPrice::ValueType FIXPP_MSG_CLASS::get<FieldPrice>() const {
+ return getPrice();
+}
+template<> FieldStopPx::ValueType FIXPP_MSG_CLASS::get<FieldStopPx>() const {
+ return getStopPx();
+}
+template<> FieldCurrency::ValueType FIXPP_MSG_CLASS::get<FieldCurrency>() const {
+ return getCurrency();
+}
+template<> FieldComplianceID::ValueType FIXPP_MSG_CLASS::get<FieldComplianceID>() const {
+ return getComplianceID();
+}
+template<> FieldSolicitedFlag::ValueType FIXPP_MSG_CLASS::get<FieldSolicitedFlag>() const {
+ return getSolicitedFlag();
+}
+template<> FieldIOIID::ValueType FIXPP_MSG_CLASS::get<FieldIOIID>() const {
+ return getIOIID();
+}
+template<> FieldQuoteID::ValueType FIXPP_MSG_CLASS::get<FieldQuoteID>() const {
+ return getQuoteID();
+}
+template<> FieldTimeInForce::ValueType FIXPP_MSG_CLASS::get<FieldTimeInForce>() const {
+ return getTimeInForce();
+}
+template<> FieldEffectiveTime::ValueType FIXPP_MSG_CLASS::get<FieldEffectiveTime>() const {
+ return getEffectiveTime();
+}
+template<> FieldExpireDate::ValueType FIXPP_MSG_CLASS::get<FieldExpireDate>() const {
+ return getExpireDate();
+}
+template<> FieldExpireTime::ValueType FIXPP_MSG_CLASS::get<FieldExpireTime>() const {
+ return getExpireTime();
+}
+template<> FieldGTBookingInst::ValueType FIXPP_MSG_CLASS::get<FieldGTBookingInst>() const {
+ return getGTBookingInst();
+}
+template<> FieldCommission::ValueType FIXPP_MSG_CLASS::get<FieldCommission>() const {
+ return getCommission();
+}
+template<> FieldCommType::ValueType FIXPP_MSG_CLASS::get<FieldCommType>() const {
+ return getCommType();
+}
+template<> FieldCommCurrency::ValueType FIXPP_MSG_CLASS::get<FieldCommCurrency>() const {
+ return getCommCurrency();
+}
+template<> FieldFundRenewWaiv::ValueType FIXPP_MSG_CLASS::get<FieldFundRenewWaiv>() const {
+ return getFundRenewWaiv();
+}
+template<> FieldOrderCapacity::ValueType FIXPP_MSG_CLASS::get<FieldOrderCapacity>() const {
+ return getOrderCapacity();
+}
+template<> FieldOrderRestrictions::ValueType FIXPP_MSG_CLASS::get<FieldOrderRestrictions>() const {
+ return getOrderRestrictions();
+}
+template<> FieldCustOrderCapacity::ValueType FIXPP_MSG_CLASS::get<FieldCustOrderCapacity>() const {
+ return getCustOrderCapacity();
+}
+template<> FieldForexReq::ValueType FIXPP_MSG_CLASS::get<FieldForexReq>() const {
+ return getForexReq();
+}
+template<> FieldSettlCurrency::ValueType FIXPP_MSG_CLASS::get<FieldSettlCurrency>() const {
+ return getSettlCurrency();
+}
+template<> FieldBookingType::ValueType FIXPP_MSG_CLASS::get<FieldBookingType>() const {
+ return getBookingType();
+}
+template<> FieldText::ValueType FIXPP_MSG_CLASS::get<FieldText>() const {
+ return getText();
+}
+template<> FieldEncodedTextLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedTextLen>() const {
+ return getEncodedTextLen();
+}
+template<> FieldEncodedText::ValueType FIXPP_MSG_CLASS::get<FieldEncodedText>() const {
+ return getEncodedText();
+}
+template<> FieldPositionEffect::ValueType FIXPP_MSG_CLASS::get<FieldPositionEffect>() const {
+ return getPositionEffect();
+}
+template<> FieldCoveredOrUncovered::ValueType FIXPP_MSG_CLASS::get<FieldCoveredOrUncovered>() const {
+ return getCoveredOrUncovered();
+}
+template<> FieldMaxShow::ValueType FIXPP_MSG_CLASS::get<FieldMaxShow>() const {
+ return getMaxShow();
+}
+template<> FieldPegOffsetValue::ValueType FIXPP_MSG_CLASS::get<FieldPegOffsetValue>() const {
+ return getPegOffsetValue();
+}
+template<> FieldPegMoveType::ValueType FIXPP_MSG_CLASS::get<FieldPegMoveType>() const {
+ return getPegMoveType();
+}
+template<> FieldPegOffsetType::ValueType FIXPP_MSG_CLASS::get<FieldPegOffsetType>() const {
+ return getPegOffsetType();
+}
+template<> FieldPegLimitType::ValueType FIXPP_MSG_CLASS::get<FieldPegLimitType>() const {
+ return getPegLimitType();
+}
+template<> FieldPegRoundDirection::ValueType FIXPP_MSG_CLASS::get<FieldPegRoundDirection>() const {
+ return getPegRoundDirection();
+}
+template<> FieldPegScope::ValueType FIXPP_MSG_CLASS::get<FieldPegScope>() const {
+ return getPegScope();
+}
+template<> FieldDiscretionInst::ValueType FIXPP_MSG_CLASS::get<FieldDiscretionInst>() const {
+ return getDiscretionInst();
+}
+template<> FieldDiscretionOffsetValue::ValueType FIXPP_MSG_CLASS::get<FieldDiscretionOffsetValue>() const {
+ return getDiscretionOffsetValue();
+}
+template<> FieldDiscretionMoveType::ValueType FIXPP_MSG_CLASS::get<FieldDiscretionMoveType>() const {
+ return getDiscretionMoveType();
+}
+template<> FieldDiscretionOffsetType::ValueType FIXPP_MSG_CLASS::get<FieldDiscretionOffsetType>() const {
+ return getDiscretionOffsetType();
+}
+template<> FieldDiscretionLimitType::ValueType FIXPP_MSG_CLASS::get<FieldDiscretionLimitType>() const {
+ return getDiscretionLimitType();
+}
+template<> FieldDiscretionRoundDirection::ValueType FIXPP_MSG_CLASS::get<FieldDiscretionRoundDirection>() const {
+ return getDiscretionRoundDirection();
+}
+template<> FieldDiscretionScope::ValueType FIXPP_MSG_CLASS::get<FieldDiscretionScope>() const {
+ return getDiscretionScope();
+}
+template<> FieldTargetStrategy::ValueType FIXPP_MSG_CLASS::get<FieldTargetStrategy>() const {
+ return getTargetStrategy();
+}
+template<> FieldTargetStrategyParameters::ValueType FIXPP_MSG_CLASS::get<FieldTargetStrategyParameters>() const {
+ return getTargetStrategyParameters();
+}
+template<> FieldParticipationRate::ValueType FIXPP_MSG_CLASS::get<FieldParticipationRate>() const {
+ return getParticipationRate();
+}
+template<> FieldCancellationRights::ValueType FIXPP_MSG_CLASS::get<FieldCancellationRights>() const {
+ return getCancellationRights();
+}
+template<> FieldMoneyLaunderingStatus::ValueType FIXPP_MSG_CLASS::get<FieldMoneyLaunderingStatus>() const {
+ return getMoneyLaunderingStatus();
+}
+template<> FieldRegistID::ValueType FIXPP_MSG_CLASS::get<FieldRegistID>() const {
+ return getRegistID();
+}
+template<> FieldDesignation::ValueType FIXPP_MSG_CLASS::get<FieldDesignation>() const {
+ return getDesignation();
+}
+template<> FieldMultiLegRptTypeReq::ValueType FIXPP_MSG_CLASS::get<FieldMultiLegRptTypeReq>() const {
+ return getMultiLegRptTypeReq();
+}
+
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageTradeCaptureReportRequest
+template<> FieldTradeRequestID::ValueType FIXPP_MSG_CLASS::get<FieldTradeRequestID>() const {
+ return getTradeRequestID();
+}
+template<> FieldTradeRequestType::ValueType FIXPP_MSG_CLASS::get<FieldTradeRequestType>() const {
+ return getTradeRequestType();
+}
+template<> FieldSubscriptionRequestType::ValueType FIXPP_MSG_CLASS::get<FieldSubscriptionRequestType>() const {
+ return getSubscriptionRequestType();
+}
+template<> FieldTradeReportID::ValueType FIXPP_MSG_CLASS::get<FieldTradeReportID>() const {
+ return getTradeReportID();
+}
+template<> FieldSecondaryTradeReportID::ValueType FIXPP_MSG_CLASS::get<FieldSecondaryTradeReportID>() const {
+ return getSecondaryTradeReportID();
+}
+template<> FieldExecID::ValueType FIXPP_MSG_CLASS::get<FieldExecID>() const {
+ return getExecID();
+}
+template<> FieldExecType::ValueType FIXPP_MSG_CLASS::get<FieldExecType>() const {
+ return getExecType();
+}
+template<> FieldOrderID::ValueType FIXPP_MSG_CLASS::get<FieldOrderID>() const {
+ return getOrderID();
+}
+template<> FieldClOrdID::ValueType FIXPP_MSG_CLASS::get<FieldClOrdID>() const {
+ return getClOrdID();
+}
+template<> FieldMatchStatus::ValueType FIXPP_MSG_CLASS::get<FieldMatchStatus>() const {
+ return getMatchStatus();
+}
+template<> FieldTrdType::ValueType FIXPP_MSG_CLASS::get<FieldTrdType>() const {
+ return getTrdType();
+}
+template<> FieldTrdSubType::ValueType FIXPP_MSG_CLASS::get<FieldTrdSubType>() const {
+ return getTrdSubType();
+}
+template<> FieldTransferReason::ValueType FIXPP_MSG_CLASS::get<FieldTransferReason>() const {
+ return getTransferReason();
+}
+template<> FieldSecondaryTrdType::ValueType FIXPP_MSG_CLASS::get<FieldSecondaryTrdType>() const {
+ return getSecondaryTrdType();
+}
+template<> FieldTradeLinkID::ValueType FIXPP_MSG_CLASS::get<FieldTradeLinkID>() const {
+ return getTradeLinkID();
+}
+template<> FieldTrdMatchID::ValueType FIXPP_MSG_CLASS::get<FieldTrdMatchID>() const {
+ return getTrdMatchID();
+}
+template<> FieldSymbol::ValueType FIXPP_MSG_CLASS::get<FieldSymbol>() const {
+ return getSymbol();
+}
+template<> FieldSymbolSfx::ValueType FIXPP_MSG_CLASS::get<FieldSymbolSfx>() const {
+ return getSymbolSfx();
+}
+template<> FieldSecurityID::ValueType FIXPP_MSG_CLASS::get<FieldSecurityID>() const {
+ return getSecurityID();
+}
+template<> FieldSecurityIDSource::ValueType FIXPP_MSG_CLASS::get<FieldSecurityIDSource>() const {
+ return getSecurityIDSource();
+}
+template<> FieldProduct::ValueType FIXPP_MSG_CLASS::get<FieldProduct>() const {
+ return getProduct();
+}
+template<> FieldCFICode::ValueType FIXPP_MSG_CLASS::get<FieldCFICode>() const {
+ return getCFICode();
+}
+template<> FieldSecurityType::ValueType FIXPP_MSG_CLASS::get<FieldSecurityType>() const {
+ return getSecurityType();
+}
+template<> FieldSecuritySubType::ValueType FIXPP_MSG_CLASS::get<FieldSecuritySubType>() const {
+ return getSecuritySubType();
+}
+template<> FieldMaturityMonthYear::ValueType FIXPP_MSG_CLASS::get<FieldMaturityMonthYear>() const {
+ return getMaturityMonthYear();
+}
+template<> FieldMaturityDate::ValueType FIXPP_MSG_CLASS::get<FieldMaturityDate>() const {
+ return getMaturityDate();
+}
+template<> FieldPutOrCall::ValueType FIXPP_MSG_CLASS::get<FieldPutOrCall>() const {
+ return getPutOrCall();
+}
+template<> FieldCouponPaymentDate::ValueType FIXPP_MSG_CLASS::get<FieldCouponPaymentDate>() const {
+ return getCouponPaymentDate();
+}
+template<> FieldIssueDate::ValueType FIXPP_MSG_CLASS::get<FieldIssueDate>() const {
+ return getIssueDate();
+}
+template<> FieldRepoCollateralSecurityType::ValueType FIXPP_MSG_CLASS::get<FieldRepoCollateralSecurityType>() const {
+ return getRepoCollateralSecurityType();
+}
+template<> FieldRepurchaseTerm::ValueType FIXPP_MSG_CLASS::get<FieldRepurchaseTerm>() const {
+ return getRepurchaseTerm();
+}
+template<> FieldRepurchaseRate::ValueType FIXPP_MSG_CLASS::get<FieldRepurchaseRate>() const {
+ return getRepurchaseRate();
+}
+template<> FieldFactor::ValueType FIXPP_MSG_CLASS::get<FieldFactor>() const {
+ return getFactor();
+}
+template<> FieldCreditRating::ValueType FIXPP_MSG_CLASS::get<FieldCreditRating>() const {
+ return getCreditRating();
+}
+template<> FieldInstrRegistry::ValueType FIXPP_MSG_CLASS::get<FieldInstrRegistry>() const {
+ return getInstrRegistry();
+}
+template<> FieldCountryOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldCountryOfIssue>() const {
+ return getCountryOfIssue();
+}
+template<> FieldStateOrProvinceOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldStateOrProvinceOfIssue>() const {
+ return getStateOrProvinceOfIssue();
+}
+template<> FieldLocaleOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldLocaleOfIssue>() const {
+ return getLocaleOfIssue();
+}
+template<> FieldRedemptionDate::ValueType FIXPP_MSG_CLASS::get<FieldRedemptionDate>() const {
+ return getRedemptionDate();
+}
+template<> FieldStrikePrice::ValueType FIXPP_MSG_CLASS::get<FieldStrikePrice>() const {
+ return getStrikePrice();
+}
+template<> FieldStrikeCurrency::ValueType FIXPP_MSG_CLASS::get<FieldStrikeCurrency>() const {
+ return getStrikeCurrency();
+}
+template<> FieldOptAttribute::ValueType FIXPP_MSG_CLASS::get<FieldOptAttribute>() const {
+ return getOptAttribute();
+}
+template<> FieldContractMultiplier::ValueType FIXPP_MSG_CLASS::get<FieldContractMultiplier>() const {
+ return getContractMultiplier();
+}
+template<> FieldCouponRate::ValueType FIXPP_MSG_CLASS::get<FieldCouponRate>() const {
+ return getCouponRate();
+}
+template<> FieldSecurityExchange::ValueType FIXPP_MSG_CLASS::get<FieldSecurityExchange>() const {
+ return getSecurityExchange();
+}
+template<> FieldIssuer::ValueType FIXPP_MSG_CLASS::get<FieldIssuer>() const {
+ return getIssuer();
+}
+template<> FieldEncodedIssuerLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedIssuerLen>() const {
+ return getEncodedIssuerLen();
+}
+template<> FieldEncodedIssuer::ValueType FIXPP_MSG_CLASS::get<FieldEncodedIssuer>() const {
+ return getEncodedIssuer();
+}
+template<> FieldSecurityDesc::ValueType FIXPP_MSG_CLASS::get<FieldSecurityDesc>() const {
+ return getSecurityDesc();
+}
+template<> FieldEncodedSecurityDescLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedSecurityDescLen>() const {
+ return getEncodedSecurityDescLen();
+}
+template<> FieldEncodedSecurityDesc::ValueType FIXPP_MSG_CLASS::get<FieldEncodedSecurityDesc>() const {
+ return getEncodedSecurityDesc();
+}
+template<> FieldPool::ValueType FIXPP_MSG_CLASS::get<FieldPool>() const {
+ return getPool();
+}
+template<> FieldContractSettlMonth::ValueType FIXPP_MSG_CLASS::get<FieldContractSettlMonth>() const {
+ return getContractSettlMonth();
+}
+template<> FieldCPProgram::ValueType FIXPP_MSG_CLASS::get<FieldCPProgram>() const {
+ return getCPProgram();
+}
+template<> FieldCPRegType::ValueType FIXPP_MSG_CLASS::get<FieldCPRegType>() const {
+ return getCPRegType();
+}
+template<> FieldDatedDate::ValueType FIXPP_MSG_CLASS::get<FieldDatedDate>() const {
+ return getDatedDate();
+}
+template<> FieldInterestAccrualDate::ValueType FIXPP_MSG_CLASS::get<FieldInterestAccrualDate>() const {
+ return getInterestAccrualDate();
+}
+template<> FieldDeliveryForm::ValueType FIXPP_MSG_CLASS::get<FieldDeliveryForm>() const {
+ return getDeliveryForm();
+}
+template<> FieldPctAtRisk::ValueType FIXPP_MSG_CLASS::get<FieldPctAtRisk>() const {
+ return getPctAtRisk();
+}
+template<> FieldAgreementDesc::ValueType FIXPP_MSG_CLASS::get<FieldAgreementDesc>() const {
+ return getAgreementDesc();
+}
+template<> FieldAgreementID::ValueType FIXPP_MSG_CLASS::get<FieldAgreementID>() const {
+ return getAgreementID();
+}
+template<> FieldAgreementDate::ValueType FIXPP_MSG_CLASS::get<FieldAgreementDate>() const {
+ return getAgreementDate();
+}
+template<> FieldAgreementCurrency::ValueType FIXPP_MSG_CLASS::get<FieldAgreementCurrency>() const {
+ return getAgreementCurrency();
+}
+template<> FieldTerminationType::ValueType FIXPP_MSG_CLASS::get<FieldTerminationType>() const {
+ return getTerminationType();
+}
+template<> FieldStartDate::ValueType FIXPP_MSG_CLASS::get<FieldStartDate>() const {
+ return getStartDate();
+}
+template<> FieldEndDate::ValueType FIXPP_MSG_CLASS::get<FieldEndDate>() const {
+ return getEndDate();
+}
+template<> FieldDeliveryType::ValueType FIXPP_MSG_CLASS::get<FieldDeliveryType>() const {
+ return getDeliveryType();
+}
+template<> FieldMarginRatio::ValueType FIXPP_MSG_CLASS::get<FieldMarginRatio>() const {
+ return getMarginRatio();
+}
+template<> FieldClearingBusinessDate::ValueType FIXPP_MSG_CLASS::get<FieldClearingBusinessDate>() const {
+ return getClearingBusinessDate();
+}
+template<> FieldTradingSessionID::ValueType FIXPP_MSG_CLASS::get<FieldTradingSessionID>() const {
+ return getTradingSessionID();
+}
+template<> FieldTradingSessionSubID::ValueType FIXPP_MSG_CLASS::get<FieldTradingSessionSubID>() const {
+ return getTradingSessionSubID();
+}
+template<> FieldTimeBracket::ValueType FIXPP_MSG_CLASS::get<FieldTimeBracket>() const {
+ return getTimeBracket();
+}
+template<> FieldSide::ValueType FIXPP_MSG_CLASS::get<FieldSide>() const {
+ return getSide();
+}
+template<> FieldMultiLegReportingType::ValueType FIXPP_MSG_CLASS::get<FieldMultiLegReportingType>() const {
+ return getMultiLegReportingType();
+}
+template<> FieldTradeInputSource::ValueType FIXPP_MSG_CLASS::get<FieldTradeInputSource>() const {
+ return getTradeInputSource();
+}
+template<> FieldTradeInputDevice::ValueType FIXPP_MSG_CLASS::get<FieldTradeInputDevice>() const {
+ return getTradeInputDevice();
+}
+template<> FieldResponseTransportType::ValueType FIXPP_MSG_CLASS::get<FieldResponseTransportType>() const {
+ return getResponseTransportType();
+}
+template<> FieldResponseDestination::ValueType FIXPP_MSG_CLASS::get<FieldResponseDestination>() const {
+ return getResponseDestination();
+}
+template<> FieldText::ValueType FIXPP_MSG_CLASS::get<FieldText>() const {
+ return getText();
+}
+template<> FieldEncodedTextLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedTextLen>() const {
+ return getEncodedTextLen();
+}
+template<> FieldEncodedText::ValueType FIXPP_MSG_CLASS::get<FieldEncodedText>() const {
+ return getEncodedText();
+}
+
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageTradeCaptureReport
+template<> FieldTradeReportID::ValueType FIXPP_MSG_CLASS::get<FieldTradeReportID>() const {
+ return getTradeReportID();
+}
+template<> FieldTradeReportTransType::ValueType FIXPP_MSG_CLASS::get<FieldTradeReportTransType>() const {
+ return getTradeReportTransType();
+}
+template<> FieldTradeReportType::ValueType FIXPP_MSG_CLASS::get<FieldTradeReportType>() const {
+ return getTradeReportType();
+}
+template<> FieldTradeRequestID::ValueType FIXPP_MSG_CLASS::get<FieldTradeRequestID>() const {
+ return getTradeRequestID();
+}
+template<> FieldTrdType::ValueType FIXPP_MSG_CLASS::get<FieldTrdType>() const {
+ return getTrdType();
+}
+template<> FieldTrdSubType::ValueType FIXPP_MSG_CLASS::get<FieldTrdSubType>() const {
+ return getTrdSubType();
+}
+template<> FieldSecondaryTrdType::ValueType FIXPP_MSG_CLASS::get<FieldSecondaryTrdType>() const {
+ return getSecondaryTrdType();
+}
+template<> FieldTransferReason::ValueType FIXPP_MSG_CLASS::get<FieldTransferReason>() const {
+ return getTransferReason();
+}
+template<> FieldExecType::ValueType FIXPP_MSG_CLASS::get<FieldExecType>() const {
+ return getExecType();
+}
+template<> FieldTotNumTradeReports::ValueType FIXPP_MSG_CLASS::get<FieldTotNumTradeReports>() const {
+ return getTotNumTradeReports();
+}
+template<> FieldLastRptRequested::ValueType FIXPP_MSG_CLASS::get<FieldLastRptRequested>() const {
+ return getLastRptRequested();
+}
+template<> FieldUnsolicitedIndicator::ValueType FIXPP_MSG_CLASS::get<FieldUnsolicitedIndicator>() const {
+ return getUnsolicitedIndicator();
+}
+template<> FieldSubscriptionRequestType::ValueType FIXPP_MSG_CLASS::get<FieldSubscriptionRequestType>() const {
+ return getSubscriptionRequestType();
+}
+template<> FieldTradeReportRefID::ValueType FIXPP_MSG_CLASS::get<FieldTradeReportRefID>() const {
+ return getTradeReportRefID();
+}
+template<> FieldSecondaryTradeReportRefID::ValueType FIXPP_MSG_CLASS::get<FieldSecondaryTradeReportRefID>() const {
+ return getSecondaryTradeReportRefID();
+}
+template<> FieldSecondaryTradeReportID::ValueType FIXPP_MSG_CLASS::get<FieldSecondaryTradeReportID>() const {
+ return getSecondaryTradeReportID();
+}
+template<> FieldTradeLinkID::ValueType FIXPP_MSG_CLASS::get<FieldTradeLinkID>() const {
+ return getTradeLinkID();
+}
+template<> FieldTrdMatchID::ValueType FIXPP_MSG_CLASS::get<FieldTrdMatchID>() const {
+ return getTrdMatchID();
+}
+template<> FieldExecID::ValueType FIXPP_MSG_CLASS::get<FieldExecID>() const {
+ return getExecID();
+}
+template<> FieldOrdStatus::ValueType FIXPP_MSG_CLASS::get<FieldOrdStatus>() const {
+ return getOrdStatus();
+}
+template<> FieldSecondaryExecID::ValueType FIXPP_MSG_CLASS::get<FieldSecondaryExecID>() const {
+ return getSecondaryExecID();
+}
+template<> FieldExecRestatementReason::ValueType FIXPP_MSG_CLASS::get<FieldExecRestatementReason>() const {
+ return getExecRestatementReason();
+}
+template<> FieldPreviouslyReported::ValueType FIXPP_MSG_CLASS::get<FieldPreviouslyReported>() const {
+ return getPreviouslyReported();
+}
+template<> FieldPriceType::ValueType FIXPP_MSG_CLASS::get<FieldPriceType>() const {
+ return getPriceType();
+}
+template<> FieldSymbol::ValueType FIXPP_MSG_CLASS::get<FieldSymbol>() const {
+ return getSymbol();
+}
+template<> FieldSymbolSfx::ValueType FIXPP_MSG_CLASS::get<FieldSymbolSfx>() const {
+ return getSymbolSfx();
+}
+template<> FieldSecurityID::ValueType FIXPP_MSG_CLASS::get<FieldSecurityID>() const {
+ return getSecurityID();
+}
+template<> FieldSecurityIDSource::ValueType FIXPP_MSG_CLASS::get<FieldSecurityIDSource>() const {
+ return getSecurityIDSource();
+}
+template<> FieldProduct::ValueType FIXPP_MSG_CLASS::get<FieldProduct>() const {
+ return getProduct();
+}
+template<> FieldCFICode::ValueType FIXPP_MSG_CLASS::get<FieldCFICode>() const {
+ return getCFICode();
+}
+template<> FieldSecurityType::ValueType FIXPP_MSG_CLASS::get<FieldSecurityType>() const {
+ return getSecurityType();
+}
+template<> FieldSecuritySubType::ValueType FIXPP_MSG_CLASS::get<FieldSecuritySubType>() const {
+ return getSecuritySubType();
+}
+template<> FieldMaturityMonthYear::ValueType FIXPP_MSG_CLASS::get<FieldMaturityMonthYear>() const {
+ return getMaturityMonthYear();
+}
+template<> FieldMaturityDate::ValueType FIXPP_MSG_CLASS::get<FieldMaturityDate>() const {
+ return getMaturityDate();
+}
+template<> FieldPutOrCall::ValueType FIXPP_MSG_CLASS::get<FieldPutOrCall>() const {
+ return getPutOrCall();
+}
+template<> FieldCouponPaymentDate::ValueType FIXPP_MSG_CLASS::get<FieldCouponPaymentDate>() const {
+ return getCouponPaymentDate();
+}
+template<> FieldIssueDate::ValueType FIXPP_MSG_CLASS::get<FieldIssueDate>() const {
+ return getIssueDate();
+}
+template<> FieldRepoCollateralSecurityType::ValueType FIXPP_MSG_CLASS::get<FieldRepoCollateralSecurityType>() const {
+ return getRepoCollateralSecurityType();
+}
+template<> FieldRepurchaseTerm::ValueType FIXPP_MSG_CLASS::get<FieldRepurchaseTerm>() const {
+ return getRepurchaseTerm();
+}
+template<> FieldRepurchaseRate::ValueType FIXPP_MSG_CLASS::get<FieldRepurchaseRate>() const {
+ return getRepurchaseRate();
+}
+template<> FieldFactor::ValueType FIXPP_MSG_CLASS::get<FieldFactor>() const {
+ return getFactor();
+}
+template<> FieldCreditRating::ValueType FIXPP_MSG_CLASS::get<FieldCreditRating>() const {
+ return getCreditRating();
+}
+template<> FieldInstrRegistry::ValueType FIXPP_MSG_CLASS::get<FieldInstrRegistry>() const {
+ return getInstrRegistry();
+}
+template<> FieldCountryOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldCountryOfIssue>() const {
+ return getCountryOfIssue();
+}
+template<> FieldStateOrProvinceOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldStateOrProvinceOfIssue>() const {
+ return getStateOrProvinceOfIssue();
+}
+template<> FieldLocaleOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldLocaleOfIssue>() const {
+ return getLocaleOfIssue();
+}
+template<> FieldRedemptionDate::ValueType FIXPP_MSG_CLASS::get<FieldRedemptionDate>() const {
+ return getRedemptionDate();
+}
+template<> FieldStrikePrice::ValueType FIXPP_MSG_CLASS::get<FieldStrikePrice>() const {
+ return getStrikePrice();
+}
+template<> FieldStrikeCurrency::ValueType FIXPP_MSG_CLASS::get<FieldStrikeCurrency>() const {
+ return getStrikeCurrency();
+}
+template<> FieldOptAttribute::ValueType FIXPP_MSG_CLASS::get<FieldOptAttribute>() const {
+ return getOptAttribute();
+}
+template<> FieldContractMultiplier::ValueType FIXPP_MSG_CLASS::get<FieldContractMultiplier>() const {
+ return getContractMultiplier();
+}
+template<> FieldCouponRate::ValueType FIXPP_MSG_CLASS::get<FieldCouponRate>() const {
+ return getCouponRate();
+}
+template<> FieldSecurityExchange::ValueType FIXPP_MSG_CLASS::get<FieldSecurityExchange>() const {
+ return getSecurityExchange();
+}
+template<> FieldIssuer::ValueType FIXPP_MSG_CLASS::get<FieldIssuer>() const {
+ return getIssuer();
+}
+template<> FieldEncodedIssuerLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedIssuerLen>() const {
+ return getEncodedIssuerLen();
+}
+template<> FieldEncodedIssuer::ValueType FIXPP_MSG_CLASS::get<FieldEncodedIssuer>() const {
+ return getEncodedIssuer();
+}
+template<> FieldSecurityDesc::ValueType FIXPP_MSG_CLASS::get<FieldSecurityDesc>() const {
+ return getSecurityDesc();
+}
+template<> FieldEncodedSecurityDescLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedSecurityDescLen>() const {
+ return getEncodedSecurityDescLen();
+}
+template<> FieldEncodedSecurityDesc::ValueType FIXPP_MSG_CLASS::get<FieldEncodedSecurityDesc>() const {
+ return getEncodedSecurityDesc();
+}
+template<> FieldPool::ValueType FIXPP_MSG_CLASS::get<FieldPool>() const {
+ return getPool();
+}
+template<> FieldContractSettlMonth::ValueType FIXPP_MSG_CLASS::get<FieldContractSettlMonth>() const {
+ return getContractSettlMonth();
+}
+template<> FieldCPProgram::ValueType FIXPP_MSG_CLASS::get<FieldCPProgram>() const {
+ return getCPProgram();
+}
+template<> FieldCPRegType::ValueType FIXPP_MSG_CLASS::get<FieldCPRegType>() const {
+ return getCPRegType();
+}
+template<> FieldDatedDate::ValueType FIXPP_MSG_CLASS::get<FieldDatedDate>() const {
+ return getDatedDate();
+}
+template<> FieldInterestAccrualDate::ValueType FIXPP_MSG_CLASS::get<FieldInterestAccrualDate>() const {
+ return getInterestAccrualDate();
+}
+template<> FieldAgreementDesc::ValueType FIXPP_MSG_CLASS::get<FieldAgreementDesc>() const {
+ return getAgreementDesc();
+}
+template<> FieldAgreementID::ValueType FIXPP_MSG_CLASS::get<FieldAgreementID>() const {
+ return getAgreementID();
+}
+template<> FieldAgreementDate::ValueType FIXPP_MSG_CLASS::get<FieldAgreementDate>() const {
+ return getAgreementDate();
+}
+template<> FieldAgreementCurrency::ValueType FIXPP_MSG_CLASS::get<FieldAgreementCurrency>() const {
+ return getAgreementCurrency();
+}
+template<> FieldTerminationType::ValueType FIXPP_MSG_CLASS::get<FieldTerminationType>() const {
+ return getTerminationType();
+}
+template<> FieldStartDate::ValueType FIXPP_MSG_CLASS::get<FieldStartDate>() const {
+ return getStartDate();
+}
+template<> FieldEndDate::ValueType FIXPP_MSG_CLASS::get<FieldEndDate>() const {
+ return getEndDate();
+}
+template<> FieldDeliveryType::ValueType FIXPP_MSG_CLASS::get<FieldDeliveryType>() const {
+ return getDeliveryType();
+}
+template<> FieldMarginRatio::ValueType FIXPP_MSG_CLASS::get<FieldMarginRatio>() const {
+ return getMarginRatio();
+}
+template<> FieldOrderQty::ValueType FIXPP_MSG_CLASS::get<FieldOrderQty>() const {
+ return getOrderQty();
+}
+template<> FieldCashOrderQty::ValueType FIXPP_MSG_CLASS::get<FieldCashOrderQty>() const {
+ return getCashOrderQty();
+}
+template<> FieldOrderPercent::ValueType FIXPP_MSG_CLASS::get<FieldOrderPercent>() const {
+ return getOrderPercent();
+}
+template<> FieldRoundingDirection::ValueType FIXPP_MSG_CLASS::get<FieldRoundingDirection>() const {
+ return getRoundingDirection();
+}
+template<> FieldRoundingModulus::ValueType FIXPP_MSG_CLASS::get<FieldRoundingModulus>() const {
+ return getRoundingModulus();
+}
+template<> FieldQtyType::ValueType FIXPP_MSG_CLASS::get<FieldQtyType>() const {
+ return getQtyType();
+}
+template<> FieldYieldType::ValueType FIXPP_MSG_CLASS::get<FieldYieldType>() const {
+ return getYieldType();
+}
+template<> FieldYield::ValueType FIXPP_MSG_CLASS::get<FieldYield>() const {
+ return getYield();
+}
+template<> FieldYieldCalcDate::ValueType FIXPP_MSG_CLASS::get<FieldYieldCalcDate>() const {
+ return getYieldCalcDate();
+}
+template<> FieldYieldRedemptionDate::ValueType FIXPP_MSG_CLASS::get<FieldYieldRedemptionDate>() const {
+ return getYieldRedemptionDate();
+}
+template<> FieldYieldRedemptionPrice::ValueType FIXPP_MSG_CLASS::get<FieldYieldRedemptionPrice>() const {
+ return getYieldRedemptionPrice();
+}
+template<> FieldYieldRedemptionPriceType::ValueType FIXPP_MSG_CLASS::get<FieldYieldRedemptionPriceType>() const {
+ return getYieldRedemptionPriceType();
+}
+template<> FieldUnderlyingTradingSessionID::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingTradingSessionID>() const {
+ return getUnderlyingTradingSessionID();
+}
+template<> FieldUnderlyingTradingSessionSubID::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingTradingSessionSubID>() const {
+ return getUnderlyingTradingSessionSubID();
+}
+template<> FieldLastQty::ValueType FIXPP_MSG_CLASS::get<FieldLastQty>() const {
+ return getLastQty();
+}
+template<> FieldLastPx::ValueType FIXPP_MSG_CLASS::get<FieldLastPx>() const {
+ return getLastPx();
+}
+template<> FieldLastParPx::ValueType FIXPP_MSG_CLASS::get<FieldLastParPx>() const {
+ return getLastParPx();
+}
+template<> FieldLastSpotRate::ValueType FIXPP_MSG_CLASS::get<FieldLastSpotRate>() const {
+ return getLastSpotRate();
+}
+template<> FieldLastForwardPoints::ValueType FIXPP_MSG_CLASS::get<FieldLastForwardPoints>() const {
+ return getLastForwardPoints();
+}
+template<> FieldLastMkt::ValueType FIXPP_MSG_CLASS::get<FieldLastMkt>() const {
+ return getLastMkt();
+}
+template<> FieldTradeDate::ValueType FIXPP_MSG_CLASS::get<FieldTradeDate>() const {
+ return getTradeDate();
+}
+template<> FieldClearingBusinessDate::ValueType FIXPP_MSG_CLASS::get<FieldClearingBusinessDate>() const {
+ return getClearingBusinessDate();
+}
+template<> FieldAvgPx::ValueType FIXPP_MSG_CLASS::get<FieldAvgPx>() const {
+ return getAvgPx();
+}
+template<> FieldSpread::ValueType FIXPP_MSG_CLASS::get<FieldSpread>() const {
+ return getSpread();
+}
+template<> FieldBenchmarkCurveCurrency::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkCurveCurrency>() const {
+ return getBenchmarkCurveCurrency();
+}
+template<> FieldBenchmarkCurveName::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkCurveName>() const {
+ return getBenchmarkCurveName();
+}
+template<> FieldBenchmarkCurvePoint::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkCurvePoint>() const {
+ return getBenchmarkCurvePoint();
+}
+template<> FieldBenchmarkPrice::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkPrice>() const {
+ return getBenchmarkPrice();
+}
+template<> FieldBenchmarkPriceType::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkPriceType>() const {
+ return getBenchmarkPriceType();
+}
+template<> FieldBenchmarkSecurityID::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkSecurityID>() const {
+ return getBenchmarkSecurityID();
+}
+template<> FieldBenchmarkSecurityIDSource::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkSecurityIDSource>() const {
+ return getBenchmarkSecurityIDSource();
+}
+template<> FieldAvgPxIndicator::ValueType FIXPP_MSG_CLASS::get<FieldAvgPxIndicator>() const {
+ return getAvgPxIndicator();
+}
+template<> FieldMultiLegReportingType::ValueType FIXPP_MSG_CLASS::get<FieldMultiLegReportingType>() const {
+ return getMultiLegReportingType();
+}
+template<> FieldTradeLegRefID::ValueType FIXPP_MSG_CLASS::get<FieldTradeLegRefID>() const {
+ return getTradeLegRefID();
+}
+template<> FieldTransactTime::ValueType FIXPP_MSG_CLASS::get<FieldTransactTime>() const {
+ return getTransactTime();
+}
+template<> FieldSettlType::ValueType FIXPP_MSG_CLASS::get<FieldSettlType>() const {
+ return getSettlType();
+}
+template<> FieldSettlDate::ValueType FIXPP_MSG_CLASS::get<FieldSettlDate>() const {
+ return getSettlDate();
+}
+template<> FieldMatchStatus::ValueType FIXPP_MSG_CLASS::get<FieldMatchStatus>() const {
+ return getMatchStatus();
+}
+template<> FieldMatchType::ValueType FIXPP_MSG_CLASS::get<FieldMatchType>() const {
+ return getMatchType();
+}
+template<> FieldCopyMsgIndicator::ValueType FIXPP_MSG_CLASS::get<FieldCopyMsgIndicator>() const {
+ return getCopyMsgIndicator();
+}
+template<> FieldPublishTrdIndicator::ValueType FIXPP_MSG_CLASS::get<FieldPublishTrdIndicator>() const {
+ return getPublishTrdIndicator();
+}
+template<> FieldShortSaleReason::ValueType FIXPP_MSG_CLASS::get<FieldShortSaleReason>() const {
+ return getShortSaleReason();
+}
+
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageOrderMassStatusRequest
+template<> FieldMassStatusReqID::ValueType FIXPP_MSG_CLASS::get<FieldMassStatusReqID>() const {
+ return getMassStatusReqID();
+}
+template<> FieldMassStatusReqType::ValueType FIXPP_MSG_CLASS::get<FieldMassStatusReqType>() const {
+ return getMassStatusReqType();
+}
+template<> FieldAccount::ValueType FIXPP_MSG_CLASS::get<FieldAccount>() const {
+ return getAccount();
+}
+template<> FieldAcctIDSource::ValueType FIXPP_MSG_CLASS::get<FieldAcctIDSource>() const {
+ return getAcctIDSource();
+}
+template<> FieldTradingSessionID::ValueType FIXPP_MSG_CLASS::get<FieldTradingSessionID>() const {
+ return getTradingSessionID();
+}
+template<> FieldTradingSessionSubID::ValueType FIXPP_MSG_CLASS::get<FieldTradingSessionSubID>() const {
+ return getTradingSessionSubID();
+}
+template<> FieldSymbol::ValueType FIXPP_MSG_CLASS::get<FieldSymbol>() const {
+ return getSymbol();
+}
+template<> FieldSymbolSfx::ValueType FIXPP_MSG_CLASS::get<FieldSymbolSfx>() const {
+ return getSymbolSfx();
+}
+template<> FieldSecurityID::ValueType FIXPP_MSG_CLASS::get<FieldSecurityID>() const {
+ return getSecurityID();
+}
+template<> FieldSecurityIDSource::ValueType FIXPP_MSG_CLASS::get<FieldSecurityIDSource>() const {
+ return getSecurityIDSource();
+}
+template<> FieldProduct::ValueType FIXPP_MSG_CLASS::get<FieldProduct>() const {
+ return getProduct();
+}
+template<> FieldCFICode::ValueType FIXPP_MSG_CLASS::get<FieldCFICode>() const {
+ return getCFICode();
+}
+template<> FieldSecurityType::ValueType FIXPP_MSG_CLASS::get<FieldSecurityType>() const {
+ return getSecurityType();
+}
+template<> FieldSecuritySubType::ValueType FIXPP_MSG_CLASS::get<FieldSecuritySubType>() const {
+ return getSecuritySubType();
+}
+template<> FieldMaturityMonthYear::ValueType FIXPP_MSG_CLASS::get<FieldMaturityMonthYear>() const {
+ return getMaturityMonthYear();
+}
+template<> FieldMaturityDate::ValueType FIXPP_MSG_CLASS::get<FieldMaturityDate>() const {
+ return getMaturityDate();
+}
+template<> FieldPutOrCall::ValueType FIXPP_MSG_CLASS::get<FieldPutOrCall>() const {
+ return getPutOrCall();
+}
+template<> FieldCouponPaymentDate::ValueType FIXPP_MSG_CLASS::get<FieldCouponPaymentDate>() const {
+ return getCouponPaymentDate();
+}
+template<> FieldIssueDate::ValueType FIXPP_MSG_CLASS::get<FieldIssueDate>() const {
+ return getIssueDate();
+}
+template<> FieldRepoCollateralSecurityType::ValueType FIXPP_MSG_CLASS::get<FieldRepoCollateralSecurityType>() const {
+ return getRepoCollateralSecurityType();
+}
+template<> FieldRepurchaseTerm::ValueType FIXPP_MSG_CLASS::get<FieldRepurchaseTerm>() const {
+ return getRepurchaseTerm();
+}
+template<> FieldRepurchaseRate::ValueType FIXPP_MSG_CLASS::get<FieldRepurchaseRate>() const {
+ return getRepurchaseRate();
+}
+template<> FieldFactor::ValueType FIXPP_MSG_CLASS::get<FieldFactor>() const {
+ return getFactor();
+}
+template<> FieldCreditRating::ValueType FIXPP_MSG_CLASS::get<FieldCreditRating>() const {
+ return getCreditRating();
+}
+template<> FieldInstrRegistry::ValueType FIXPP_MSG_CLASS::get<FieldInstrRegistry>() const {
+ return getInstrRegistry();
+}
+template<> FieldCountryOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldCountryOfIssue>() const {
+ return getCountryOfIssue();
+}
+template<> FieldStateOrProvinceOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldStateOrProvinceOfIssue>() const {
+ return getStateOrProvinceOfIssue();
+}
+template<> FieldLocaleOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldLocaleOfIssue>() const {
+ return getLocaleOfIssue();
+}
+template<> FieldRedemptionDate::ValueType FIXPP_MSG_CLASS::get<FieldRedemptionDate>() const {
+ return getRedemptionDate();
+}
+template<> FieldStrikePrice::ValueType FIXPP_MSG_CLASS::get<FieldStrikePrice>() const {
+ return getStrikePrice();
+}
+template<> FieldStrikeCurrency::ValueType FIXPP_MSG_CLASS::get<FieldStrikeCurrency>() const {
+ return getStrikeCurrency();
+}
+template<> FieldOptAttribute::ValueType FIXPP_MSG_CLASS::get<FieldOptAttribute>() const {
+ return getOptAttribute();
+}
+template<> FieldContractMultiplier::ValueType FIXPP_MSG_CLASS::get<FieldContractMultiplier>() const {
+ return getContractMultiplier();
+}
+template<> FieldCouponRate::ValueType FIXPP_MSG_CLASS::get<FieldCouponRate>() const {
+ return getCouponRate();
+}
+template<> FieldSecurityExchange::ValueType FIXPP_MSG_CLASS::get<FieldSecurityExchange>() const {
+ return getSecurityExchange();
+}
+template<> FieldIssuer::ValueType FIXPP_MSG_CLASS::get<FieldIssuer>() const {
+ return getIssuer();
+}
+template<> FieldEncodedIssuerLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedIssuerLen>() const {
+ return getEncodedIssuerLen();
+}
+template<> FieldEncodedIssuer::ValueType FIXPP_MSG_CLASS::get<FieldEncodedIssuer>() const {
+ return getEncodedIssuer();
+}
+template<> FieldSecurityDesc::ValueType FIXPP_MSG_CLASS::get<FieldSecurityDesc>() const {
+ return getSecurityDesc();
+}
+template<> FieldEncodedSecurityDescLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedSecurityDescLen>() const {
+ return getEncodedSecurityDescLen();
+}
+template<> FieldEncodedSecurityDesc::ValueType FIXPP_MSG_CLASS::get<FieldEncodedSecurityDesc>() const {
+ return getEncodedSecurityDesc();
+}
+template<> FieldPool::ValueType FIXPP_MSG_CLASS::get<FieldPool>() const {
+ return getPool();
+}
+template<> FieldContractSettlMonth::ValueType FIXPP_MSG_CLASS::get<FieldContractSettlMonth>() const {
+ return getContractSettlMonth();
+}
+template<> FieldCPProgram::ValueType FIXPP_MSG_CLASS::get<FieldCPProgram>() const {
+ return getCPProgram();
+}
+template<> FieldCPRegType::ValueType FIXPP_MSG_CLASS::get<FieldCPRegType>() const {
+ return getCPRegType();
+}
+template<> FieldDatedDate::ValueType FIXPP_MSG_CLASS::get<FieldDatedDate>() const {
+ return getDatedDate();
+}
+template<> FieldInterestAccrualDate::ValueType FIXPP_MSG_CLASS::get<FieldInterestAccrualDate>() const {
+ return getInterestAccrualDate();
+}
+template<> FieldUnderlyingSymbol::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingSymbol>() const {
+ return getUnderlyingSymbol();
+}
+template<> FieldUnderlyingSymbolSfx::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingSymbolSfx>() const {
+ return getUnderlyingSymbolSfx();
+}
+template<> FieldUnderlyingSecurityID::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingSecurityID>() const {
+ return getUnderlyingSecurityID();
+}
+template<> FieldUnderlyingSecurityIDSource::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingSecurityIDSource>() const {
+ return getUnderlyingSecurityIDSource();
+}
+template<> FieldUnderlyingProduct::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingProduct>() const {
+ return getUnderlyingProduct();
+}
+template<> FieldUnderlyingCFICode::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingCFICode>() const {
+ return getUnderlyingCFICode();
+}
+template<> FieldUnderlyingSecurityType::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingSecurityType>() const {
+ return getUnderlyingSecurityType();
+}
+template<> FieldUnderlyingSecuritySubType::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingSecuritySubType>() const {
+ return getUnderlyingSecuritySubType();
+}
+template<> FieldUnderlyingMaturityMonthYear::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingMaturityMonthYear>() const {
+ return getUnderlyingMaturityMonthYear();
+}
+template<> FieldUnderlyingMaturityDate::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingMaturityDate>() const {
+ return getUnderlyingMaturityDate();
+}
+template<> FieldUnderlyingPutOrCall::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingPutOrCall>() const {
+ return getUnderlyingPutOrCall();
+}
+template<> FieldUnderlyingCouponPaymentDate::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingCouponPaymentDate>() const {
+ return getUnderlyingCouponPaymentDate();
+}
+template<> FieldUnderlyingIssueDate::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingIssueDate>() const {
+ return getUnderlyingIssueDate();
+}
+template<> FieldUnderlyingRepoCollateralSecurityType::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingRepoCollateralSecurityType>() const {
+ return getUnderlyingRepoCollateralSecurityType();
+}
+template<> FieldUnderlyingRepurchaseTerm::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingRepurchaseTerm>() const {
+ return getUnderlyingRepurchaseTerm();
+}
+template<> FieldUnderlyingRepurchaseRate::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingRepurchaseRate>() const {
+ return getUnderlyingRepurchaseRate();
+}
+template<> FieldUnderlyingFactor::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingFactor>() const {
+ return getUnderlyingFactor();
+}
+template<> FieldUnderlyingCreditRating::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingCreditRating>() const {
+ return getUnderlyingCreditRating();
+}
+template<> FieldUnderlyingInstrRegistry::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingInstrRegistry>() const {
+ return getUnderlyingInstrRegistry();
+}
+template<> FieldUnderlyingCountryOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingCountryOfIssue>() const {
+ return getUnderlyingCountryOfIssue();
+}
+template<> FieldUnderlyingStateOrProvinceOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingStateOrProvinceOfIssue>() const {
+ return getUnderlyingStateOrProvinceOfIssue();
+}
+template<> FieldUnderlyingLocaleOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingLocaleOfIssue>() const {
+ return getUnderlyingLocaleOfIssue();
+}
+template<> FieldUnderlyingRedemptionDate::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingRedemptionDate>() const {
+ return getUnderlyingRedemptionDate();
+}
+template<> FieldUnderlyingStrikePrice::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingStrikePrice>() const {
+ return getUnderlyingStrikePrice();
+}
+template<> FieldUnderlyingStrikeCurrency::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingStrikeCurrency>() const {
+ return getUnderlyingStrikeCurrency();
+}
+template<> FieldUnderlyingOptAttribute::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingOptAttribute>() const {
+ return getUnderlyingOptAttribute();
+}
+template<> FieldUnderlyingContractMultiplier::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingContractMultiplier>() const {
+ return getUnderlyingContractMultiplier();
+}
+template<> FieldUnderlyingCouponRate::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingCouponRate>() const {
+ return getUnderlyingCouponRate();
+}
+template<> FieldUnderlyingSecurityExchange::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingSecurityExchange>() const {
+ return getUnderlyingSecurityExchange();
+}
+template<> FieldUnderlyingIssuer::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingIssuer>() const {
+ return getUnderlyingIssuer();
+}
+template<> FieldEncodedUnderlyingIssuerLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedUnderlyingIssuerLen>() const {
+ return getEncodedUnderlyingIssuerLen();
+}
+template<> FieldEncodedUnderlyingIssuer::ValueType FIXPP_MSG_CLASS::get<FieldEncodedUnderlyingIssuer>() const {
+ return getEncodedUnderlyingIssuer();
+}
+template<> FieldUnderlyingSecurityDesc::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingSecurityDesc>() const {
+ return getUnderlyingSecurityDesc();
+}
+template<> FieldEncodedUnderlyingSecurityDescLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedUnderlyingSecurityDescLen>() const {
+ return getEncodedUnderlyingSecurityDescLen();
+}
+template<> FieldEncodedUnderlyingSecurityDesc::ValueType FIXPP_MSG_CLASS::get<FieldEncodedUnderlyingSecurityDesc>() const {
+ return getEncodedUnderlyingSecurityDesc();
+}
+template<> FieldUnderlyingCPProgram::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingCPProgram>() const {
+ return getUnderlyingCPProgram();
+}
+template<> FieldUnderlyingCPRegType::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingCPRegType>() const {
+ return getUnderlyingCPRegType();
+}
+template<> FieldUnderlyingCurrency::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingCurrency>() const {
+ return getUnderlyingCurrency();
+}
+template<> FieldUnderlyingQty::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingQty>() const {
+ return getUnderlyingQty();
+}
+template<> FieldUnderlyingPx::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingPx>() const {
+ return getUnderlyingPx();
+}
+template<> FieldUnderlyingDirtyPrice::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingDirtyPrice>() const {
+ return getUnderlyingDirtyPrice();
+}
+template<> FieldUnderlyingEndPrice::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingEndPrice>() const {
+ return getUnderlyingEndPrice();
+}
+template<> FieldUnderlyingStartValue::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingStartValue>() const {
+ return getUnderlyingStartValue();
+}
+template<> FieldUnderlyingCurrentValue::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingCurrentValue>() const {
+ return getUnderlyingCurrentValue();
+}
+template<> FieldUnderlyingEndValue::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingEndValue>() const {
+ return getUnderlyingEndValue();
+}
+template<> FieldSide::ValueType FIXPP_MSG_CLASS::get<FieldSide>() const {
+ return getSide();
+}
+
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageQuoteRequestReject
+template<> FieldQuoteReqID::ValueType FIXPP_MSG_CLASS::get<FieldQuoteReqID>() const {
+ return getQuoteReqID();
+}
+template<> FieldRFQReqID::ValueType FIXPP_MSG_CLASS::get<FieldRFQReqID>() const {
+ return getRFQReqID();
+}
+template<> FieldQuoteRequestRejectReason::ValueType FIXPP_MSG_CLASS::get<FieldQuoteRequestRejectReason>() const {
+ return getQuoteRequestRejectReason();
+}
+template<> FieldText::ValueType FIXPP_MSG_CLASS::get<FieldText>() const {
+ return getText();
+}
+template<> FieldEncodedTextLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedTextLen>() const {
+ return getEncodedTextLen();
+}
+template<> FieldEncodedText::ValueType FIXPP_MSG_CLASS::get<FieldEncodedText>() const {
+ return getEncodedText();
+}
+
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageRFQRequest
+template<> FieldRFQReqID::ValueType FIXPP_MSG_CLASS::get<FieldRFQReqID>() const {
+ return getRFQReqID();
+}
+template<> FieldSubscriptionRequestType::ValueType FIXPP_MSG_CLASS::get<FieldSubscriptionRequestType>() const {
+ return getSubscriptionRequestType();
+}
+
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageQuoteStatusReport
+template<> FieldQuoteStatusReqID::ValueType FIXPP_MSG_CLASS::get<FieldQuoteStatusReqID>() const {
+ return getQuoteStatusReqID();
+}
+template<> FieldQuoteReqID::ValueType FIXPP_MSG_CLASS::get<FieldQuoteReqID>() const {
+ return getQuoteReqID();
+}
+template<> FieldQuoteID::ValueType FIXPP_MSG_CLASS::get<FieldQuoteID>() const {
+ return getQuoteID();
+}
+template<> FieldQuoteRespID::ValueType FIXPP_MSG_CLASS::get<FieldQuoteRespID>() const {
+ return getQuoteRespID();
+}
+template<> FieldQuoteType::ValueType FIXPP_MSG_CLASS::get<FieldQuoteType>() const {
+ return getQuoteType();
+}
+template<> FieldTradingSessionID::ValueType FIXPP_MSG_CLASS::get<FieldTradingSessionID>() const {
+ return getTradingSessionID();
+}
+template<> FieldTradingSessionSubID::ValueType FIXPP_MSG_CLASS::get<FieldTradingSessionSubID>() const {
+ return getTradingSessionSubID();
+}
+template<> FieldSymbol::ValueType FIXPP_MSG_CLASS::get<FieldSymbol>() const {
+ return getSymbol();
+}
+template<> FieldSymbolSfx::ValueType FIXPP_MSG_CLASS::get<FieldSymbolSfx>() const {
+ return getSymbolSfx();
+}
+template<> FieldSecurityID::ValueType FIXPP_MSG_CLASS::get<FieldSecurityID>() const {
+ return getSecurityID();
+}
+template<> FieldSecurityIDSource::ValueType FIXPP_MSG_CLASS::get<FieldSecurityIDSource>() const {
+ return getSecurityIDSource();
+}
+template<> FieldProduct::ValueType FIXPP_MSG_CLASS::get<FieldProduct>() const {
+ return getProduct();
+}
+template<> FieldCFICode::ValueType FIXPP_MSG_CLASS::get<FieldCFICode>() const {
+ return getCFICode();
+}
+template<> FieldSecurityType::ValueType FIXPP_MSG_CLASS::get<FieldSecurityType>() const {
+ return getSecurityType();
+}
+template<> FieldSecuritySubType::ValueType FIXPP_MSG_CLASS::get<FieldSecuritySubType>() const {
+ return getSecuritySubType();
+}
+template<> FieldMaturityMonthYear::ValueType FIXPP_MSG_CLASS::get<FieldMaturityMonthYear>() const {
+ return getMaturityMonthYear();
+}
+template<> FieldMaturityDate::ValueType FIXPP_MSG_CLASS::get<FieldMaturityDate>() const {
+ return getMaturityDate();
+}
+template<> FieldPutOrCall::ValueType FIXPP_MSG_CLASS::get<FieldPutOrCall>() const {
+ return getPutOrCall();
+}
+template<> FieldCouponPaymentDate::ValueType FIXPP_MSG_CLASS::get<FieldCouponPaymentDate>() const {
+ return getCouponPaymentDate();
+}
+template<> FieldIssueDate::ValueType FIXPP_MSG_CLASS::get<FieldIssueDate>() const {
+ return getIssueDate();
+}
+template<> FieldRepoCollateralSecurityType::ValueType FIXPP_MSG_CLASS::get<FieldRepoCollateralSecurityType>() const {
+ return getRepoCollateralSecurityType();
+}
+template<> FieldRepurchaseTerm::ValueType FIXPP_MSG_CLASS::get<FieldRepurchaseTerm>() const {
+ return getRepurchaseTerm();
+}
+template<> FieldRepurchaseRate::ValueType FIXPP_MSG_CLASS::get<FieldRepurchaseRate>() const {
+ return getRepurchaseRate();
+}
+template<> FieldFactor::ValueType FIXPP_MSG_CLASS::get<FieldFactor>() const {
+ return getFactor();
+}
+template<> FieldCreditRating::ValueType FIXPP_MSG_CLASS::get<FieldCreditRating>() const {
+ return getCreditRating();
+}
+template<> FieldInstrRegistry::ValueType FIXPP_MSG_CLASS::get<FieldInstrRegistry>() const {
+ return getInstrRegistry();
+}
+template<> FieldCountryOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldCountryOfIssue>() const {
+ return getCountryOfIssue();
+}
+template<> FieldStateOrProvinceOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldStateOrProvinceOfIssue>() const {
+ return getStateOrProvinceOfIssue();
+}
+template<> FieldLocaleOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldLocaleOfIssue>() const {
+ return getLocaleOfIssue();
+}
+template<> FieldRedemptionDate::ValueType FIXPP_MSG_CLASS::get<FieldRedemptionDate>() const {
+ return getRedemptionDate();
+}
+template<> FieldStrikePrice::ValueType FIXPP_MSG_CLASS::get<FieldStrikePrice>() const {
+ return getStrikePrice();
+}
+template<> FieldStrikeCurrency::ValueType FIXPP_MSG_CLASS::get<FieldStrikeCurrency>() const {
+ return getStrikeCurrency();
+}
+template<> FieldOptAttribute::ValueType FIXPP_MSG_CLASS::get<FieldOptAttribute>() const {
+ return getOptAttribute();
+}
+template<> FieldContractMultiplier::ValueType FIXPP_MSG_CLASS::get<FieldContractMultiplier>() const {
+ return getContractMultiplier();
+}
+template<> FieldCouponRate::ValueType FIXPP_MSG_CLASS::get<FieldCouponRate>() const {
+ return getCouponRate();
+}
+template<> FieldSecurityExchange::ValueType FIXPP_MSG_CLASS::get<FieldSecurityExchange>() const {
+ return getSecurityExchange();
+}
+template<> FieldIssuer::ValueType FIXPP_MSG_CLASS::get<FieldIssuer>() const {
+ return getIssuer();
+}
+template<> FieldEncodedIssuerLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedIssuerLen>() const {
+ return getEncodedIssuerLen();
+}
+template<> FieldEncodedIssuer::ValueType FIXPP_MSG_CLASS::get<FieldEncodedIssuer>() const {
+ return getEncodedIssuer();
+}
+template<> FieldSecurityDesc::ValueType FIXPP_MSG_CLASS::get<FieldSecurityDesc>() const {
+ return getSecurityDesc();
+}
+template<> FieldEncodedSecurityDescLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedSecurityDescLen>() const {
+ return getEncodedSecurityDescLen();
+}
+template<> FieldEncodedSecurityDesc::ValueType FIXPP_MSG_CLASS::get<FieldEncodedSecurityDesc>() const {
+ return getEncodedSecurityDesc();
+}
+template<> FieldPool::ValueType FIXPP_MSG_CLASS::get<FieldPool>() const {
+ return getPool();
+}
+template<> FieldContractSettlMonth::ValueType FIXPP_MSG_CLASS::get<FieldContractSettlMonth>() const {
+ return getContractSettlMonth();
+}
+template<> FieldCPProgram::ValueType FIXPP_MSG_CLASS::get<FieldCPProgram>() const {
+ return getCPProgram();
+}
+template<> FieldCPRegType::ValueType FIXPP_MSG_CLASS::get<FieldCPRegType>() const {
+ return getCPRegType();
+}
+template<> FieldDatedDate::ValueType FIXPP_MSG_CLASS::get<FieldDatedDate>() const {
+ return getDatedDate();
+}
+template<> FieldInterestAccrualDate::ValueType FIXPP_MSG_CLASS::get<FieldInterestAccrualDate>() const {
+ return getInterestAccrualDate();
+}
+template<> FieldAgreementDesc::ValueType FIXPP_MSG_CLASS::get<FieldAgreementDesc>() const {
+ return getAgreementDesc();
+}
+template<> FieldAgreementID::ValueType FIXPP_MSG_CLASS::get<FieldAgreementID>() const {
+ return getAgreementID();
+}
+template<> FieldAgreementDate::ValueType FIXPP_MSG_CLASS::get<FieldAgreementDate>() const {
+ return getAgreementDate();
+}
+template<> FieldAgreementCurrency::ValueType FIXPP_MSG_CLASS::get<FieldAgreementCurrency>() const {
+ return getAgreementCurrency();
+}
+template<> FieldTerminationType::ValueType FIXPP_MSG_CLASS::get<FieldTerminationType>() const {
+ return getTerminationType();
+}
+template<> FieldStartDate::ValueType FIXPP_MSG_CLASS::get<FieldStartDate>() const {
+ return getStartDate();
+}
+template<> FieldEndDate::ValueType FIXPP_MSG_CLASS::get<FieldEndDate>() const {
+ return getEndDate();
+}
+template<> FieldDeliveryType::ValueType FIXPP_MSG_CLASS::get<FieldDeliveryType>() const {
+ return getDeliveryType();
+}
+template<> FieldMarginRatio::ValueType FIXPP_MSG_CLASS::get<FieldMarginRatio>() const {
+ return getMarginRatio();
+}
+template<> FieldSide::ValueType FIXPP_MSG_CLASS::get<FieldSide>() const {
+ return getSide();
+}
+template<> FieldOrderQty::ValueType FIXPP_MSG_CLASS::get<FieldOrderQty>() const {
+ return getOrderQty();
+}
+template<> FieldCashOrderQty::ValueType FIXPP_MSG_CLASS::get<FieldCashOrderQty>() const {
+ return getCashOrderQty();
+}
+template<> FieldOrderPercent::ValueType FIXPP_MSG_CLASS::get<FieldOrderPercent>() const {
+ return getOrderPercent();
+}
+template<> FieldRoundingDirection::ValueType FIXPP_MSG_CLASS::get<FieldRoundingDirection>() const {
+ return getRoundingDirection();
+}
+template<> FieldRoundingModulus::ValueType FIXPP_MSG_CLASS::get<FieldRoundingModulus>() const {
+ return getRoundingModulus();
+}
+template<> FieldSettlType::ValueType FIXPP_MSG_CLASS::get<FieldSettlType>() const {
+ return getSettlType();
+}
+template<> FieldSettlDate::ValueType FIXPP_MSG_CLASS::get<FieldSettlDate>() const {
+ return getSettlDate();
+}
+template<> FieldSettlDate2::ValueType FIXPP_MSG_CLASS::get<FieldSettlDate2>() const {
+ return getSettlDate2();
+}
+template<> FieldOrderQty2::ValueType FIXPP_MSG_CLASS::get<FieldOrderQty2>() const {
+ return getOrderQty2();
+}
+template<> FieldCurrency::ValueType FIXPP_MSG_CLASS::get<FieldCurrency>() const {
+ return getCurrency();
+}
+template<> FieldAccount::ValueType FIXPP_MSG_CLASS::get<FieldAccount>() const {
+ return getAccount();
+}
+template<> FieldAcctIDSource::ValueType FIXPP_MSG_CLASS::get<FieldAcctIDSource>() const {
+ return getAcctIDSource();
+}
+template<> FieldAccountType::ValueType FIXPP_MSG_CLASS::get<FieldAccountType>() const {
+ return getAccountType();
+}
+template<> FieldExpireTime::ValueType FIXPP_MSG_CLASS::get<FieldExpireTime>() const {
+ return getExpireTime();
+}
+template<> FieldPrice::ValueType FIXPP_MSG_CLASS::get<FieldPrice>() const {
+ return getPrice();
+}
+template<> FieldPriceType::ValueType FIXPP_MSG_CLASS::get<FieldPriceType>() const {
+ return getPriceType();
+}
+template<> FieldSpread::ValueType FIXPP_MSG_CLASS::get<FieldSpread>() const {
+ return getSpread();
+}
+template<> FieldBenchmarkCurveCurrency::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkCurveCurrency>() const {
+ return getBenchmarkCurveCurrency();
+}
+template<> FieldBenchmarkCurveName::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkCurveName>() const {
+ return getBenchmarkCurveName();
+}
+template<> FieldBenchmarkCurvePoint::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkCurvePoint>() const {
+ return getBenchmarkCurvePoint();
+}
+template<> FieldBenchmarkPrice::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkPrice>() const {
+ return getBenchmarkPrice();
+}
+template<> FieldBenchmarkPriceType::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkPriceType>() const {
+ return getBenchmarkPriceType();
+}
+template<> FieldBenchmarkSecurityID::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkSecurityID>() const {
+ return getBenchmarkSecurityID();
+}
+template<> FieldBenchmarkSecurityIDSource::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkSecurityIDSource>() const {
+ return getBenchmarkSecurityIDSource();
+}
+template<> FieldYieldType::ValueType FIXPP_MSG_CLASS::get<FieldYieldType>() const {
+ return getYieldType();
+}
+template<> FieldYield::ValueType FIXPP_MSG_CLASS::get<FieldYield>() const {
+ return getYield();
+}
+template<> FieldYieldCalcDate::ValueType FIXPP_MSG_CLASS::get<FieldYieldCalcDate>() const {
+ return getYieldCalcDate();
+}
+template<> FieldYieldRedemptionDate::ValueType FIXPP_MSG_CLASS::get<FieldYieldRedemptionDate>() const {
+ return getYieldRedemptionDate();
+}
+template<> FieldYieldRedemptionPrice::ValueType FIXPP_MSG_CLASS::get<FieldYieldRedemptionPrice>() const {
+ return getYieldRedemptionPrice();
+}
+template<> FieldYieldRedemptionPriceType::ValueType FIXPP_MSG_CLASS::get<FieldYieldRedemptionPriceType>() const {
+ return getYieldRedemptionPriceType();
+}
+template<> FieldBidPx::ValueType FIXPP_MSG_CLASS::get<FieldBidPx>() const {
+ return getBidPx();
+}
+template<> FieldOfferPx::ValueType FIXPP_MSG_CLASS::get<FieldOfferPx>() const {
+ return getOfferPx();
+}
+template<> FieldMktBidPx::ValueType FIXPP_MSG_CLASS::get<FieldMktBidPx>() const {
+ return getMktBidPx();
+}
+template<> FieldMktOfferPx::ValueType FIXPP_MSG_CLASS::get<FieldMktOfferPx>() const {
+ return getMktOfferPx();
+}
+template<> FieldMinBidSize::ValueType FIXPP_MSG_CLASS::get<FieldMinBidSize>() const {
+ return getMinBidSize();
+}
+template<> FieldBidSize::ValueType FIXPP_MSG_CLASS::get<FieldBidSize>() const {
+ return getBidSize();
+}
+template<> FieldMinOfferSize::ValueType FIXPP_MSG_CLASS::get<FieldMinOfferSize>() const {
+ return getMinOfferSize();
+}
+template<> FieldOfferSize::ValueType FIXPP_MSG_CLASS::get<FieldOfferSize>() const {
+ return getOfferSize();
+}
+template<> FieldValidUntilTime::ValueType FIXPP_MSG_CLASS::get<FieldValidUntilTime>() const {
+ return getValidUntilTime();
+}
+template<> FieldBidSpotRate::ValueType FIXPP_MSG_CLASS::get<FieldBidSpotRate>() const {
+ return getBidSpotRate();
+}
+template<> FieldOfferSpotRate::ValueType FIXPP_MSG_CLASS::get<FieldOfferSpotRate>() const {
+ return getOfferSpotRate();
+}
+template<> FieldBidForwardPoints::ValueType FIXPP_MSG_CLASS::get<FieldBidForwardPoints>() const {
+ return getBidForwardPoints();
+}
+template<> FieldOfferForwardPoints::ValueType FIXPP_MSG_CLASS::get<FieldOfferForwardPoints>() const {
+ return getOfferForwardPoints();
+}
+template<> FieldMidPx::ValueType FIXPP_MSG_CLASS::get<FieldMidPx>() const {
+ return getMidPx();
+}
+template<> FieldBidYield::ValueType FIXPP_MSG_CLASS::get<FieldBidYield>() const {
+ return getBidYield();
+}
+template<> FieldMidYield::ValueType FIXPP_MSG_CLASS::get<FieldMidYield>() const {
+ return getMidYield();
+}
+template<> FieldOfferYield::ValueType FIXPP_MSG_CLASS::get<FieldOfferYield>() const {
+ return getOfferYield();
+}
+template<> FieldTransactTime::ValueType FIXPP_MSG_CLASS::get<FieldTransactTime>() const {
+ return getTransactTime();
+}
+template<> FieldOrdType::ValueType FIXPP_MSG_CLASS::get<FieldOrdType>() const {
+ return getOrdType();
+}
+template<> FieldBidForwardPoints2::ValueType FIXPP_MSG_CLASS::get<FieldBidForwardPoints2>() const {
+ return getBidForwardPoints2();
+}
+template<> FieldOfferForwardPoints2::ValueType FIXPP_MSG_CLASS::get<FieldOfferForwardPoints2>() const {
+ return getOfferForwardPoints2();
+}
+template<> FieldSettlCurrBidFxRate::ValueType FIXPP_MSG_CLASS::get<FieldSettlCurrBidFxRate>() const {
+ return getSettlCurrBidFxRate();
+}
+template<> FieldSettlCurrOfferFxRate::ValueType FIXPP_MSG_CLASS::get<FieldSettlCurrOfferFxRate>() const {
+ return getSettlCurrOfferFxRate();
+}
+template<> FieldSettlCurrFxRateCalc::ValueType FIXPP_MSG_CLASS::get<FieldSettlCurrFxRateCalc>() const {
+ return getSettlCurrFxRateCalc();
+}
+template<> FieldCommType::ValueType FIXPP_MSG_CLASS::get<FieldCommType>() const {
+ return getCommType();
+}
+template<> FieldCommission::ValueType FIXPP_MSG_CLASS::get<FieldCommission>() const {
+ return getCommission();
+}
+template<> FieldCustOrderCapacity::ValueType FIXPP_MSG_CLASS::get<FieldCustOrderCapacity>() const {
+ return getCustOrderCapacity();
+}
+template<> FieldExDestination::ValueType FIXPP_MSG_CLASS::get<FieldExDestination>() const {
+ return getExDestination();
+}
+template<> FieldQuoteStatus::ValueType FIXPP_MSG_CLASS::get<FieldQuoteStatus>() const {
+ return getQuoteStatus();
+}
+template<> FieldText::ValueType FIXPP_MSG_CLASS::get<FieldText>() const {
+ return getText();
+}
+template<> FieldEncodedTextLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedTextLen>() const {
+ return getEncodedTextLen();
+}
+template<> FieldEncodedText::ValueType FIXPP_MSG_CLASS::get<FieldEncodedText>() const {
+ return getEncodedText();
+}
+
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageQuoteResponse
+template<> FieldQuoteRespID::ValueType FIXPP_MSG_CLASS::get<FieldQuoteRespID>() const {
+ return getQuoteRespID();
+}
+template<> FieldQuoteID::ValueType FIXPP_MSG_CLASS::get<FieldQuoteID>() const {
+ return getQuoteID();
+}
+template<> FieldQuoteRespType::ValueType FIXPP_MSG_CLASS::get<FieldQuoteRespType>() const {
+ return getQuoteRespType();
+}
+template<> FieldClOrdID::ValueType FIXPP_MSG_CLASS::get<FieldClOrdID>() const {
+ return getClOrdID();
+}
+template<> FieldOrderCapacity::ValueType FIXPP_MSG_CLASS::get<FieldOrderCapacity>() const {
+ return getOrderCapacity();
+}
+template<> FieldIOIID::ValueType FIXPP_MSG_CLASS::get<FieldIOIID>() const {
+ return getIOIID();
+}
+template<> FieldQuoteType::ValueType FIXPP_MSG_CLASS::get<FieldQuoteType>() const {
+ return getQuoteType();
+}
+template<> FieldTradingSessionID::ValueType FIXPP_MSG_CLASS::get<FieldTradingSessionID>() const {
+ return getTradingSessionID();
+}
+template<> FieldTradingSessionSubID::ValueType FIXPP_MSG_CLASS::get<FieldTradingSessionSubID>() const {
+ return getTradingSessionSubID();
+}
+template<> FieldSymbol::ValueType FIXPP_MSG_CLASS::get<FieldSymbol>() const {
+ return getSymbol();
+}
+template<> FieldSymbolSfx::ValueType FIXPP_MSG_CLASS::get<FieldSymbolSfx>() const {
+ return getSymbolSfx();
+}
+template<> FieldSecurityID::ValueType FIXPP_MSG_CLASS::get<FieldSecurityID>() const {
+ return getSecurityID();
+}
+template<> FieldSecurityIDSource::ValueType FIXPP_MSG_CLASS::get<FieldSecurityIDSource>() const {
+ return getSecurityIDSource();
+}
+template<> FieldProduct::ValueType FIXPP_MSG_CLASS::get<FieldProduct>() const {
+ return getProduct();
+}
+template<> FieldCFICode::ValueType FIXPP_MSG_CLASS::get<FieldCFICode>() const {
+ return getCFICode();
+}
+template<> FieldSecurityType::ValueType FIXPP_MSG_CLASS::get<FieldSecurityType>() const {
+ return getSecurityType();
+}
+template<> FieldSecuritySubType::ValueType FIXPP_MSG_CLASS::get<FieldSecuritySubType>() const {
+ return getSecuritySubType();
+}
+template<> FieldMaturityMonthYear::ValueType FIXPP_MSG_CLASS::get<FieldMaturityMonthYear>() const {
+ return getMaturityMonthYear();
+}
+template<> FieldMaturityDate::ValueType FIXPP_MSG_CLASS::get<FieldMaturityDate>() const {
+ return getMaturityDate();
+}
+template<> FieldPutOrCall::ValueType FIXPP_MSG_CLASS::get<FieldPutOrCall>() const {
+ return getPutOrCall();
+}
+template<> FieldCouponPaymentDate::ValueType FIXPP_MSG_CLASS::get<FieldCouponPaymentDate>() const {
+ return getCouponPaymentDate();
+}
+template<> FieldIssueDate::ValueType FIXPP_MSG_CLASS::get<FieldIssueDate>() const {
+ return getIssueDate();
+}
+template<> FieldRepoCollateralSecurityType::ValueType FIXPP_MSG_CLASS::get<FieldRepoCollateralSecurityType>() const {
+ return getRepoCollateralSecurityType();
+}
+template<> FieldRepurchaseTerm::ValueType FIXPP_MSG_CLASS::get<FieldRepurchaseTerm>() const {
+ return getRepurchaseTerm();
+}
+template<> FieldRepurchaseRate::ValueType FIXPP_MSG_CLASS::get<FieldRepurchaseRate>() const {
+ return getRepurchaseRate();
+}
+template<> FieldFactor::ValueType FIXPP_MSG_CLASS::get<FieldFactor>() const {
+ return getFactor();
+}
+template<> FieldCreditRating::ValueType FIXPP_MSG_CLASS::get<FieldCreditRating>() const {
+ return getCreditRating();
+}
+template<> FieldInstrRegistry::ValueType FIXPP_MSG_CLASS::get<FieldInstrRegistry>() const {
+ return getInstrRegistry();
+}
+template<> FieldCountryOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldCountryOfIssue>() const {
+ return getCountryOfIssue();
+}
+template<> FieldStateOrProvinceOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldStateOrProvinceOfIssue>() const {
+ return getStateOrProvinceOfIssue();
+}
+template<> FieldLocaleOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldLocaleOfIssue>() const {
+ return getLocaleOfIssue();
+}
+template<> FieldRedemptionDate::ValueType FIXPP_MSG_CLASS::get<FieldRedemptionDate>() const {
+ return getRedemptionDate();
+}
+template<> FieldStrikePrice::ValueType FIXPP_MSG_CLASS::get<FieldStrikePrice>() const {
+ return getStrikePrice();
+}
+template<> FieldStrikeCurrency::ValueType FIXPP_MSG_CLASS::get<FieldStrikeCurrency>() const {
+ return getStrikeCurrency();
+}
+template<> FieldOptAttribute::ValueType FIXPP_MSG_CLASS::get<FieldOptAttribute>() const {
+ return getOptAttribute();
+}
+template<> FieldContractMultiplier::ValueType FIXPP_MSG_CLASS::get<FieldContractMultiplier>() const {
+ return getContractMultiplier();
+}
+template<> FieldCouponRate::ValueType FIXPP_MSG_CLASS::get<FieldCouponRate>() const {
+ return getCouponRate();
+}
+template<> FieldSecurityExchange::ValueType FIXPP_MSG_CLASS::get<FieldSecurityExchange>() const {
+ return getSecurityExchange();
+}
+template<> FieldIssuer::ValueType FIXPP_MSG_CLASS::get<FieldIssuer>() const {
+ return getIssuer();
+}
+template<> FieldEncodedIssuerLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedIssuerLen>() const {
+ return getEncodedIssuerLen();
+}
+template<> FieldEncodedIssuer::ValueType FIXPP_MSG_CLASS::get<FieldEncodedIssuer>() const {
+ return getEncodedIssuer();
+}
+template<> FieldSecurityDesc::ValueType FIXPP_MSG_CLASS::get<FieldSecurityDesc>() const {
+ return getSecurityDesc();
+}
+template<> FieldEncodedSecurityDescLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedSecurityDescLen>() const {
+ return getEncodedSecurityDescLen();
+}
+template<> FieldEncodedSecurityDesc::ValueType FIXPP_MSG_CLASS::get<FieldEncodedSecurityDesc>() const {
+ return getEncodedSecurityDesc();
+}
+template<> FieldPool::ValueType FIXPP_MSG_CLASS::get<FieldPool>() const {
+ return getPool();
+}
+template<> FieldContractSettlMonth::ValueType FIXPP_MSG_CLASS::get<FieldContractSettlMonth>() const {
+ return getContractSettlMonth();
+}
+template<> FieldCPProgram::ValueType FIXPP_MSG_CLASS::get<FieldCPProgram>() const {
+ return getCPProgram();
+}
+template<> FieldCPRegType::ValueType FIXPP_MSG_CLASS::get<FieldCPRegType>() const {
+ return getCPRegType();
+}
+template<> FieldDatedDate::ValueType FIXPP_MSG_CLASS::get<FieldDatedDate>() const {
+ return getDatedDate();
+}
+template<> FieldInterestAccrualDate::ValueType FIXPP_MSG_CLASS::get<FieldInterestAccrualDate>() const {
+ return getInterestAccrualDate();
+}
+template<> FieldAgreementDesc::ValueType FIXPP_MSG_CLASS::get<FieldAgreementDesc>() const {
+ return getAgreementDesc();
+}
+template<> FieldAgreementID::ValueType FIXPP_MSG_CLASS::get<FieldAgreementID>() const {
+ return getAgreementID();
+}
+template<> FieldAgreementDate::ValueType FIXPP_MSG_CLASS::get<FieldAgreementDate>() const {
+ return getAgreementDate();
+}
+template<> FieldAgreementCurrency::ValueType FIXPP_MSG_CLASS::get<FieldAgreementCurrency>() const {
+ return getAgreementCurrency();
+}
+template<> FieldTerminationType::ValueType FIXPP_MSG_CLASS::get<FieldTerminationType>() const {
+ return getTerminationType();
+}
+template<> FieldStartDate::ValueType FIXPP_MSG_CLASS::get<FieldStartDate>() const {
+ return getStartDate();
+}
+template<> FieldEndDate::ValueType FIXPP_MSG_CLASS::get<FieldEndDate>() const {
+ return getEndDate();
+}
+template<> FieldDeliveryType::ValueType FIXPP_MSG_CLASS::get<FieldDeliveryType>() const {
+ return getDeliveryType();
+}
+template<> FieldMarginRatio::ValueType FIXPP_MSG_CLASS::get<FieldMarginRatio>() const {
+ return getMarginRatio();
+}
+template<> FieldSide::ValueType FIXPP_MSG_CLASS::get<FieldSide>() const {
+ return getSide();
+}
+template<> FieldOrderQty::ValueType FIXPP_MSG_CLASS::get<FieldOrderQty>() const {
+ return getOrderQty();
+}
+template<> FieldCashOrderQty::ValueType FIXPP_MSG_CLASS::get<FieldCashOrderQty>() const {
+ return getCashOrderQty();
+}
+template<> FieldOrderPercent::ValueType FIXPP_MSG_CLASS::get<FieldOrderPercent>() const {
+ return getOrderPercent();
+}
+template<> FieldRoundingDirection::ValueType FIXPP_MSG_CLASS::get<FieldRoundingDirection>() const {
+ return getRoundingDirection();
+}
+template<> FieldRoundingModulus::ValueType FIXPP_MSG_CLASS::get<FieldRoundingModulus>() const {
+ return getRoundingModulus();
+}
+template<> FieldSettlType::ValueType FIXPP_MSG_CLASS::get<FieldSettlType>() const {
+ return getSettlType();
+}
+template<> FieldSettlDate::ValueType FIXPP_MSG_CLASS::get<FieldSettlDate>() const {
+ return getSettlDate();
+}
+template<> FieldSettlDate2::ValueType FIXPP_MSG_CLASS::get<FieldSettlDate2>() const {
+ return getSettlDate2();
+}
+template<> FieldOrderQty2::ValueType FIXPP_MSG_CLASS::get<FieldOrderQty2>() const {
+ return getOrderQty2();
+}
+template<> FieldCurrency::ValueType FIXPP_MSG_CLASS::get<FieldCurrency>() const {
+ return getCurrency();
+}
+template<> FieldAccount::ValueType FIXPP_MSG_CLASS::get<FieldAccount>() const {
+ return getAccount();
+}
+template<> FieldAcctIDSource::ValueType FIXPP_MSG_CLASS::get<FieldAcctIDSource>() const {
+ return getAcctIDSource();
+}
+template<> FieldAccountType::ValueType FIXPP_MSG_CLASS::get<FieldAccountType>() const {
+ return getAccountType();
+}
+template<> FieldBidPx::ValueType FIXPP_MSG_CLASS::get<FieldBidPx>() const {
+ return getBidPx();
+}
+template<> FieldOfferPx::ValueType FIXPP_MSG_CLASS::get<FieldOfferPx>() const {
+ return getOfferPx();
+}
+template<> FieldMktBidPx::ValueType FIXPP_MSG_CLASS::get<FieldMktBidPx>() const {
+ return getMktBidPx();
+}
+template<> FieldMktOfferPx::ValueType FIXPP_MSG_CLASS::get<FieldMktOfferPx>() const {
+ return getMktOfferPx();
+}
+template<> FieldMinBidSize::ValueType FIXPP_MSG_CLASS::get<FieldMinBidSize>() const {
+ return getMinBidSize();
+}
+template<> FieldBidSize::ValueType FIXPP_MSG_CLASS::get<FieldBidSize>() const {
+ return getBidSize();
+}
+template<> FieldMinOfferSize::ValueType FIXPP_MSG_CLASS::get<FieldMinOfferSize>() const {
+ return getMinOfferSize();
+}
+template<> FieldOfferSize::ValueType FIXPP_MSG_CLASS::get<FieldOfferSize>() const {
+ return getOfferSize();
+}
+template<> FieldValidUntilTime::ValueType FIXPP_MSG_CLASS::get<FieldValidUntilTime>() const {
+ return getValidUntilTime();
+}
+template<> FieldBidSpotRate::ValueType FIXPP_MSG_CLASS::get<FieldBidSpotRate>() const {
+ return getBidSpotRate();
+}
+template<> FieldOfferSpotRate::ValueType FIXPP_MSG_CLASS::get<FieldOfferSpotRate>() const {
+ return getOfferSpotRate();
+}
+template<> FieldBidForwardPoints::ValueType FIXPP_MSG_CLASS::get<FieldBidForwardPoints>() const {
+ return getBidForwardPoints();
+}
+template<> FieldOfferForwardPoints::ValueType FIXPP_MSG_CLASS::get<FieldOfferForwardPoints>() const {
+ return getOfferForwardPoints();
+}
+template<> FieldMidPx::ValueType FIXPP_MSG_CLASS::get<FieldMidPx>() const {
+ return getMidPx();
+}
+template<> FieldBidYield::ValueType FIXPP_MSG_CLASS::get<FieldBidYield>() const {
+ return getBidYield();
+}
+template<> FieldMidYield::ValueType FIXPP_MSG_CLASS::get<FieldMidYield>() const {
+ return getMidYield();
+}
+template<> FieldOfferYield::ValueType FIXPP_MSG_CLASS::get<FieldOfferYield>() const {
+ return getOfferYield();
+}
+template<> FieldTransactTime::ValueType FIXPP_MSG_CLASS::get<FieldTransactTime>() const {
+ return getTransactTime();
+}
+template<> FieldOrdType::ValueType FIXPP_MSG_CLASS::get<FieldOrdType>() const {
+ return getOrdType();
+}
+template<> FieldBidForwardPoints2::ValueType FIXPP_MSG_CLASS::get<FieldBidForwardPoints2>() const {
+ return getBidForwardPoints2();
+}
+template<> FieldOfferForwardPoints2::ValueType FIXPP_MSG_CLASS::get<FieldOfferForwardPoints2>() const {
+ return getOfferForwardPoints2();
+}
+template<> FieldSettlCurrBidFxRate::ValueType FIXPP_MSG_CLASS::get<FieldSettlCurrBidFxRate>() const {
+ return getSettlCurrBidFxRate();
+}
+template<> FieldSettlCurrOfferFxRate::ValueType FIXPP_MSG_CLASS::get<FieldSettlCurrOfferFxRate>() const {
+ return getSettlCurrOfferFxRate();
+}
+template<> FieldSettlCurrFxRateCalc::ValueType FIXPP_MSG_CLASS::get<FieldSettlCurrFxRateCalc>() const {
+ return getSettlCurrFxRateCalc();
+}
+template<> FieldCommission::ValueType FIXPP_MSG_CLASS::get<FieldCommission>() const {
+ return getCommission();
+}
+template<> FieldCommType::ValueType FIXPP_MSG_CLASS::get<FieldCommType>() const {
+ return getCommType();
+}
+template<> FieldCustOrderCapacity::ValueType FIXPP_MSG_CLASS::get<FieldCustOrderCapacity>() const {
+ return getCustOrderCapacity();
+}
+template<> FieldExDestination::ValueType FIXPP_MSG_CLASS::get<FieldExDestination>() const {
+ return getExDestination();
+}
+template<> FieldText::ValueType FIXPP_MSG_CLASS::get<FieldText>() const {
+ return getText();
+}
+template<> FieldEncodedTextLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedTextLen>() const {
+ return getEncodedTextLen();
+}
+template<> FieldEncodedText::ValueType FIXPP_MSG_CLASS::get<FieldEncodedText>() const {
+ return getEncodedText();
+}
+template<> FieldPrice::ValueType FIXPP_MSG_CLASS::get<FieldPrice>() const {
+ return getPrice();
+}
+template<> FieldPriceType::ValueType FIXPP_MSG_CLASS::get<FieldPriceType>() const {
+ return getPriceType();
+}
+template<> FieldSpread::ValueType FIXPP_MSG_CLASS::get<FieldSpread>() const {
+ return getSpread();
+}
+template<> FieldBenchmarkCurveCurrency::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkCurveCurrency>() const {
+ return getBenchmarkCurveCurrency();
+}
+template<> FieldBenchmarkCurveName::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkCurveName>() const {
+ return getBenchmarkCurveName();
+}
+template<> FieldBenchmarkCurvePoint::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkCurvePoint>() const {
+ return getBenchmarkCurvePoint();
+}
+template<> FieldBenchmarkPrice::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkPrice>() const {
+ return getBenchmarkPrice();
+}
+template<> FieldBenchmarkPriceType::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkPriceType>() const {
+ return getBenchmarkPriceType();
+}
+template<> FieldBenchmarkSecurityID::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkSecurityID>() const {
+ return getBenchmarkSecurityID();
+}
+template<> FieldBenchmarkSecurityIDSource::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkSecurityIDSource>() const {
+ return getBenchmarkSecurityIDSource();
+}
+template<> FieldYieldType::ValueType FIXPP_MSG_CLASS::get<FieldYieldType>() const {
+ return getYieldType();
+}
+template<> FieldYield::ValueType FIXPP_MSG_CLASS::get<FieldYield>() const {
+ return getYield();
+}
+template<> FieldYieldCalcDate::ValueType FIXPP_MSG_CLASS::get<FieldYieldCalcDate>() const {
+ return getYieldCalcDate();
+}
+template<> FieldYieldRedemptionDate::ValueType FIXPP_MSG_CLASS::get<FieldYieldRedemptionDate>() const {
+ return getYieldRedemptionDate();
+}
+template<> FieldYieldRedemptionPrice::ValueType FIXPP_MSG_CLASS::get<FieldYieldRedemptionPrice>() const {
+ return getYieldRedemptionPrice();
+}
+template<> FieldYieldRedemptionPriceType::ValueType FIXPP_MSG_CLASS::get<FieldYieldRedemptionPriceType>() const {
+ return getYieldRedemptionPriceType();
+}
+
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageConfirmation
+template<> FieldConfirmID::ValueType FIXPP_MSG_CLASS::get<FieldConfirmID>() const {
+ return getConfirmID();
+}
+template<> FieldConfirmRefID::ValueType FIXPP_MSG_CLASS::get<FieldConfirmRefID>() const {
+ return getConfirmRefID();
+}
+template<> FieldConfirmReqID::ValueType FIXPP_MSG_CLASS::get<FieldConfirmReqID>() const {
+ return getConfirmReqID();
+}
+template<> FieldConfirmTransType::ValueType FIXPP_MSG_CLASS::get<FieldConfirmTransType>() const {
+ return getConfirmTransType();
+}
+template<> FieldConfirmType::ValueType FIXPP_MSG_CLASS::get<FieldConfirmType>() const {
+ return getConfirmType();
+}
+template<> FieldCopyMsgIndicator::ValueType FIXPP_MSG_CLASS::get<FieldCopyMsgIndicator>() const {
+ return getCopyMsgIndicator();
+}
+template<> FieldLegalConfirm::ValueType FIXPP_MSG_CLASS::get<FieldLegalConfirm>() const {
+ return getLegalConfirm();
+}
+template<> FieldConfirmStatus::ValueType FIXPP_MSG_CLASS::get<FieldConfirmStatus>() const {
+ return getConfirmStatus();
+}
+template<> FieldAllocID::ValueType FIXPP_MSG_CLASS::get<FieldAllocID>() const {
+ return getAllocID();
+}
+template<> FieldSecondaryAllocID::ValueType FIXPP_MSG_CLASS::get<FieldSecondaryAllocID>() const {
+ return getSecondaryAllocID();
+}
+template<> FieldIndividualAllocID::ValueType FIXPP_MSG_CLASS::get<FieldIndividualAllocID>() const {
+ return getIndividualAllocID();
+}
+template<> FieldTransactTime::ValueType FIXPP_MSG_CLASS::get<FieldTransactTime>() const {
+ return getTransactTime();
+}
+template<> FieldTradeDate::ValueType FIXPP_MSG_CLASS::get<FieldTradeDate>() const {
+ return getTradeDate();
+}
+template<> FieldSymbol::ValueType FIXPP_MSG_CLASS::get<FieldSymbol>() const {
+ return getSymbol();
+}
+template<> FieldSymbolSfx::ValueType FIXPP_MSG_CLASS::get<FieldSymbolSfx>() const {
+ return getSymbolSfx();
+}
+template<> FieldSecurityID::ValueType FIXPP_MSG_CLASS::get<FieldSecurityID>() const {
+ return getSecurityID();
+}
+template<> FieldSecurityIDSource::ValueType FIXPP_MSG_CLASS::get<FieldSecurityIDSource>() const {
+ return getSecurityIDSource();
+}
+template<> FieldProduct::ValueType FIXPP_MSG_CLASS::get<FieldProduct>() const {
+ return getProduct();
+}
+template<> FieldCFICode::ValueType FIXPP_MSG_CLASS::get<FieldCFICode>() const {
+ return getCFICode();
+}
+template<> FieldSecurityType::ValueType FIXPP_MSG_CLASS::get<FieldSecurityType>() const {
+ return getSecurityType();
+}
+template<> FieldSecuritySubType::ValueType FIXPP_MSG_CLASS::get<FieldSecuritySubType>() const {
+ return getSecuritySubType();
+}
+template<> FieldMaturityMonthYear::ValueType FIXPP_MSG_CLASS::get<FieldMaturityMonthYear>() const {
+ return getMaturityMonthYear();
+}
+template<> FieldMaturityDate::ValueType FIXPP_MSG_CLASS::get<FieldMaturityDate>() const {
+ return getMaturityDate();
+}
+template<> FieldPutOrCall::ValueType FIXPP_MSG_CLASS::get<FieldPutOrCall>() const {
+ return getPutOrCall();
+}
+template<> FieldCouponPaymentDate::ValueType FIXPP_MSG_CLASS::get<FieldCouponPaymentDate>() const {
+ return getCouponPaymentDate();
+}
+template<> FieldIssueDate::ValueType FIXPP_MSG_CLASS::get<FieldIssueDate>() const {
+ return getIssueDate();
+}
+template<> FieldRepoCollateralSecurityType::ValueType FIXPP_MSG_CLASS::get<FieldRepoCollateralSecurityType>() const {
+ return getRepoCollateralSecurityType();
+}
+template<> FieldRepurchaseTerm::ValueType FIXPP_MSG_CLASS::get<FieldRepurchaseTerm>() const {
+ return getRepurchaseTerm();
+}
+template<> FieldRepurchaseRate::ValueType FIXPP_MSG_CLASS::get<FieldRepurchaseRate>() const {
+ return getRepurchaseRate();
+}
+template<> FieldFactor::ValueType FIXPP_MSG_CLASS::get<FieldFactor>() const {
+ return getFactor();
+}
+template<> FieldCreditRating::ValueType FIXPP_MSG_CLASS::get<FieldCreditRating>() const {
+ return getCreditRating();
+}
+template<> FieldInstrRegistry::ValueType FIXPP_MSG_CLASS::get<FieldInstrRegistry>() const {
+ return getInstrRegistry();
+}
+template<> FieldCountryOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldCountryOfIssue>() const {
+ return getCountryOfIssue();
+}
+template<> FieldStateOrProvinceOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldStateOrProvinceOfIssue>() const {
+ return getStateOrProvinceOfIssue();
+}
+template<> FieldLocaleOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldLocaleOfIssue>() const {
+ return getLocaleOfIssue();
+}
+template<> FieldRedemptionDate::ValueType FIXPP_MSG_CLASS::get<FieldRedemptionDate>() const {
+ return getRedemptionDate();
+}
+template<> FieldStrikePrice::ValueType FIXPP_MSG_CLASS::get<FieldStrikePrice>() const {
+ return getStrikePrice();
+}
+template<> FieldStrikeCurrency::ValueType FIXPP_MSG_CLASS::get<FieldStrikeCurrency>() const {
+ return getStrikeCurrency();
+}
+template<> FieldOptAttribute::ValueType FIXPP_MSG_CLASS::get<FieldOptAttribute>() const {
+ return getOptAttribute();
+}
+template<> FieldContractMultiplier::ValueType FIXPP_MSG_CLASS::get<FieldContractMultiplier>() const {
+ return getContractMultiplier();
+}
+template<> FieldCouponRate::ValueType FIXPP_MSG_CLASS::get<FieldCouponRate>() const {
+ return getCouponRate();
+}
+template<> FieldSecurityExchange::ValueType FIXPP_MSG_CLASS::get<FieldSecurityExchange>() const {
+ return getSecurityExchange();
+}
+template<> FieldIssuer::ValueType FIXPP_MSG_CLASS::get<FieldIssuer>() const {
+ return getIssuer();
+}
+template<> FieldEncodedIssuerLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedIssuerLen>() const {
+ return getEncodedIssuerLen();
+}
+template<> FieldEncodedIssuer::ValueType FIXPP_MSG_CLASS::get<FieldEncodedIssuer>() const {
+ return getEncodedIssuer();
+}
+template<> FieldSecurityDesc::ValueType FIXPP_MSG_CLASS::get<FieldSecurityDesc>() const {
+ return getSecurityDesc();
+}
+template<> FieldEncodedSecurityDescLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedSecurityDescLen>() const {
+ return getEncodedSecurityDescLen();
+}
+template<> FieldEncodedSecurityDesc::ValueType FIXPP_MSG_CLASS::get<FieldEncodedSecurityDesc>() const {
+ return getEncodedSecurityDesc();
+}
+template<> FieldPool::ValueType FIXPP_MSG_CLASS::get<FieldPool>() const {
+ return getPool();
+}
+template<> FieldContractSettlMonth::ValueType FIXPP_MSG_CLASS::get<FieldContractSettlMonth>() const {
+ return getContractSettlMonth();
+}
+template<> FieldCPProgram::ValueType FIXPP_MSG_CLASS::get<FieldCPProgram>() const {
+ return getCPProgram();
+}
+template<> FieldCPRegType::ValueType FIXPP_MSG_CLASS::get<FieldCPRegType>() const {
+ return getCPRegType();
+}
+template<> FieldDatedDate::ValueType FIXPP_MSG_CLASS::get<FieldDatedDate>() const {
+ return getDatedDate();
+}
+template<> FieldInterestAccrualDate::ValueType FIXPP_MSG_CLASS::get<FieldInterestAccrualDate>() const {
+ return getInterestAccrualDate();
+}
+template<> FieldDeliveryForm::ValueType FIXPP_MSG_CLASS::get<FieldDeliveryForm>() const {
+ return getDeliveryForm();
+}
+template<> FieldPctAtRisk::ValueType FIXPP_MSG_CLASS::get<FieldPctAtRisk>() const {
+ return getPctAtRisk();
+}
+template<> FieldAgreementDesc::ValueType FIXPP_MSG_CLASS::get<FieldAgreementDesc>() const {
+ return getAgreementDesc();
+}
+template<> FieldAgreementID::ValueType FIXPP_MSG_CLASS::get<FieldAgreementID>() const {
+ return getAgreementID();
+}
+template<> FieldAgreementDate::ValueType FIXPP_MSG_CLASS::get<FieldAgreementDate>() const {
+ return getAgreementDate();
+}
+template<> FieldAgreementCurrency::ValueType FIXPP_MSG_CLASS::get<FieldAgreementCurrency>() const {
+ return getAgreementCurrency();
+}
+template<> FieldTerminationType::ValueType FIXPP_MSG_CLASS::get<FieldTerminationType>() const {
+ return getTerminationType();
+}
+template<> FieldStartDate::ValueType FIXPP_MSG_CLASS::get<FieldStartDate>() const {
+ return getStartDate();
+}
+template<> FieldEndDate::ValueType FIXPP_MSG_CLASS::get<FieldEndDate>() const {
+ return getEndDate();
+}
+template<> FieldDeliveryType::ValueType FIXPP_MSG_CLASS::get<FieldDeliveryType>() const {
+ return getDeliveryType();
+}
+template<> FieldMarginRatio::ValueType FIXPP_MSG_CLASS::get<FieldMarginRatio>() const {
+ return getMarginRatio();
+}
+template<> FieldYieldType::ValueType FIXPP_MSG_CLASS::get<FieldYieldType>() const {
+ return getYieldType();
+}
+template<> FieldYield::ValueType FIXPP_MSG_CLASS::get<FieldYield>() const {
+ return getYield();
+}
+template<> FieldYieldCalcDate::ValueType FIXPP_MSG_CLASS::get<FieldYieldCalcDate>() const {
+ return getYieldCalcDate();
+}
+template<> FieldYieldRedemptionDate::ValueType FIXPP_MSG_CLASS::get<FieldYieldRedemptionDate>() const {
+ return getYieldRedemptionDate();
+}
+template<> FieldYieldRedemptionPrice::ValueType FIXPP_MSG_CLASS::get<FieldYieldRedemptionPrice>() const {
+ return getYieldRedemptionPrice();
+}
+template<> FieldYieldRedemptionPriceType::ValueType FIXPP_MSG_CLASS::get<FieldYieldRedemptionPriceType>() const {
+ return getYieldRedemptionPriceType();
+}
+template<> FieldAllocQty::ValueType FIXPP_MSG_CLASS::get<FieldAllocQty>() const {
+ return getAllocQty();
+}
+template<> FieldQtyType::ValueType FIXPP_MSG_CLASS::get<FieldQtyType>() const {
+ return getQtyType();
+}
+template<> FieldSide::ValueType FIXPP_MSG_CLASS::get<FieldSide>() const {
+ return getSide();
+}
+template<> FieldCurrency::ValueType FIXPP_MSG_CLASS::get<FieldCurrency>() const {
+ return getCurrency();
+}
+template<> FieldLastMkt::ValueType FIXPP_MSG_CLASS::get<FieldLastMkt>() const {
+ return getLastMkt();
+}
+template<> FieldAllocAccount::ValueType FIXPP_MSG_CLASS::get<FieldAllocAccount>() const {
+ return getAllocAccount();
+}
+template<> FieldAllocAcctIDSource::ValueType FIXPP_MSG_CLASS::get<FieldAllocAcctIDSource>() const {
+ return getAllocAcctIDSource();
+}
+template<> FieldAllocAccountType::ValueType FIXPP_MSG_CLASS::get<FieldAllocAccountType>() const {
+ return getAllocAccountType();
+}
+template<> FieldAvgPx::ValueType FIXPP_MSG_CLASS::get<FieldAvgPx>() const {
+ return getAvgPx();
+}
+template<> FieldAvgPxPrecision::ValueType FIXPP_MSG_CLASS::get<FieldAvgPxPrecision>() const {
+ return getAvgPxPrecision();
+}
+template<> FieldPriceType::ValueType FIXPP_MSG_CLASS::get<FieldPriceType>() const {
+ return getPriceType();
+}
+template<> FieldAvgParPx::ValueType FIXPP_MSG_CLASS::get<FieldAvgParPx>() const {
+ return getAvgParPx();
+}
+template<> FieldSpread::ValueType FIXPP_MSG_CLASS::get<FieldSpread>() const {
+ return getSpread();
+}
+template<> FieldBenchmarkCurveCurrency::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkCurveCurrency>() const {
+ return getBenchmarkCurveCurrency();
+}
+template<> FieldBenchmarkCurveName::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkCurveName>() const {
+ return getBenchmarkCurveName();
+}
+template<> FieldBenchmarkCurvePoint::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkCurvePoint>() const {
+ return getBenchmarkCurvePoint();
+}
+template<> FieldBenchmarkPrice::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkPrice>() const {
+ return getBenchmarkPrice();
+}
+template<> FieldBenchmarkPriceType::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkPriceType>() const {
+ return getBenchmarkPriceType();
+}
+template<> FieldBenchmarkSecurityID::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkSecurityID>() const {
+ return getBenchmarkSecurityID();
+}
+template<> FieldBenchmarkSecurityIDSource::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkSecurityIDSource>() const {
+ return getBenchmarkSecurityIDSource();
+}
+template<> FieldReportedPx::ValueType FIXPP_MSG_CLASS::get<FieldReportedPx>() const {
+ return getReportedPx();
+}
+template<> FieldText::ValueType FIXPP_MSG_CLASS::get<FieldText>() const {
+ return getText();
+}
+template<> FieldEncodedTextLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedTextLen>() const {
+ return getEncodedTextLen();
+}
+template<> FieldEncodedText::ValueType FIXPP_MSG_CLASS::get<FieldEncodedText>() const {
+ return getEncodedText();
+}
+template<> FieldProcessCode::ValueType FIXPP_MSG_CLASS::get<FieldProcessCode>() const {
+ return getProcessCode();
+}
+template<> FieldGrossTradeAmt::ValueType FIXPP_MSG_CLASS::get<FieldGrossTradeAmt>() const {
+ return getGrossTradeAmt();
+}
+template<> FieldNumDaysInterest::ValueType FIXPP_MSG_CLASS::get<FieldNumDaysInterest>() const {
+ return getNumDaysInterest();
+}
+template<> FieldExDate::ValueType FIXPP_MSG_CLASS::get<FieldExDate>() const {
+ return getExDate();
+}
+template<> FieldAccruedInterestRate::ValueType FIXPP_MSG_CLASS::get<FieldAccruedInterestRate>() const {
+ return getAccruedInterestRate();
+}
+template<> FieldAccruedInterestAmt::ValueType FIXPP_MSG_CLASS::get<FieldAccruedInterestAmt>() const {
+ return getAccruedInterestAmt();
+}
+template<> FieldInterestAtMaturity::ValueType FIXPP_MSG_CLASS::get<FieldInterestAtMaturity>() const {
+ return getInterestAtMaturity();
+}
+template<> FieldEndAccruedInterestAmt::ValueType FIXPP_MSG_CLASS::get<FieldEndAccruedInterestAmt>() const {
+ return getEndAccruedInterestAmt();
+}
+template<> FieldStartCash::ValueType FIXPP_MSG_CLASS::get<FieldStartCash>() const {
+ return getStartCash();
+}
+template<> FieldEndCash::ValueType FIXPP_MSG_CLASS::get<FieldEndCash>() const {
+ return getEndCash();
+}
+template<> FieldConcession::ValueType FIXPP_MSG_CLASS::get<FieldConcession>() const {
+ return getConcession();
+}
+template<> FieldTotalTakedown::ValueType FIXPP_MSG_CLASS::get<FieldTotalTakedown>() const {
+ return getTotalTakedown();
+}
+template<> FieldNetMoney::ValueType FIXPP_MSG_CLASS::get<FieldNetMoney>() const {
+ return getNetMoney();
+}
+template<> FieldMaturityNetMoney::ValueType FIXPP_MSG_CLASS::get<FieldMaturityNetMoney>() const {
+ return getMaturityNetMoney();
+}
+template<> FieldSettlCurrAmt::ValueType FIXPP_MSG_CLASS::get<FieldSettlCurrAmt>() const {
+ return getSettlCurrAmt();
+}
+template<> FieldSettlCurrency::ValueType FIXPP_MSG_CLASS::get<FieldSettlCurrency>() const {
+ return getSettlCurrency();
+}
+template<> FieldSettlCurrFxRate::ValueType FIXPP_MSG_CLASS::get<FieldSettlCurrFxRate>() const {
+ return getSettlCurrFxRate();
+}
+template<> FieldSettlCurrFxRateCalc::ValueType FIXPP_MSG_CLASS::get<FieldSettlCurrFxRateCalc>() const {
+ return getSettlCurrFxRateCalc();
+}
+template<> FieldSettlType::ValueType FIXPP_MSG_CLASS::get<FieldSettlType>() const {
+ return getSettlType();
+}
+template<> FieldSettlDate::ValueType FIXPP_MSG_CLASS::get<FieldSettlDate>() const {
+ return getSettlDate();
+}
+template<> FieldSettlDeliveryType::ValueType FIXPP_MSG_CLASS::get<FieldSettlDeliveryType>() const {
+ return getSettlDeliveryType();
+}
+template<> FieldStandInstDbType::ValueType FIXPP_MSG_CLASS::get<FieldStandInstDbType>() const {
+ return getStandInstDbType();
+}
+template<> FieldStandInstDbName::ValueType FIXPP_MSG_CLASS::get<FieldStandInstDbName>() const {
+ return getStandInstDbName();
+}
+template<> FieldStandInstDbID::ValueType FIXPP_MSG_CLASS::get<FieldStandInstDbID>() const {
+ return getStandInstDbID();
+}
+template<> FieldCommission::ValueType FIXPP_MSG_CLASS::get<FieldCommission>() const {
+ return getCommission();
+}
+template<> FieldCommType::ValueType FIXPP_MSG_CLASS::get<FieldCommType>() const {
+ return getCommType();
+}
+template<> FieldCommCurrency::ValueType FIXPP_MSG_CLASS::get<FieldCommCurrency>() const {
+ return getCommCurrency();
+}
+template<> FieldFundRenewWaiv::ValueType FIXPP_MSG_CLASS::get<FieldFundRenewWaiv>() const {
+ return getFundRenewWaiv();
+}
+template<> FieldSharedCommission::ValueType FIXPP_MSG_CLASS::get<FieldSharedCommission>() const {
+ return getSharedCommission();
+}
+
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessagePositionMaintenanceRequest
+template<> FieldPosReqID::ValueType FIXPP_MSG_CLASS::get<FieldPosReqID>() const {
+ return getPosReqID();
+}
+template<> FieldPosTransType::ValueType FIXPP_MSG_CLASS::get<FieldPosTransType>() const {
+ return getPosTransType();
+}
+template<> FieldPosMaintAction::ValueType FIXPP_MSG_CLASS::get<FieldPosMaintAction>() const {
+ return getPosMaintAction();
+}
+template<> FieldOrigPosReqRefID::ValueType FIXPP_MSG_CLASS::get<FieldOrigPosReqRefID>() const {
+ return getOrigPosReqRefID();
+}
+template<> FieldPosMaintRptRefID::ValueType FIXPP_MSG_CLASS::get<FieldPosMaintRptRefID>() const {
+ return getPosMaintRptRefID();
+}
+template<> FieldClearingBusinessDate::ValueType FIXPP_MSG_CLASS::get<FieldClearingBusinessDate>() const {
+ return getClearingBusinessDate();
+}
+template<> FieldSettlSessID::ValueType FIXPP_MSG_CLASS::get<FieldSettlSessID>() const {
+ return getSettlSessID();
+}
+template<> FieldSettlSessSubID::ValueType FIXPP_MSG_CLASS::get<FieldSettlSessSubID>() const {
+ return getSettlSessSubID();
+}
+template<> FieldAccount::ValueType FIXPP_MSG_CLASS::get<FieldAccount>() const {
+ return getAccount();
+}
+template<> FieldAcctIDSource::ValueType FIXPP_MSG_CLASS::get<FieldAcctIDSource>() const {
+ return getAcctIDSource();
+}
+template<> FieldAccountType::ValueType FIXPP_MSG_CLASS::get<FieldAccountType>() const {
+ return getAccountType();
+}
+template<> FieldSymbol::ValueType FIXPP_MSG_CLASS::get<FieldSymbol>() const {
+ return getSymbol();
+}
+template<> FieldSymbolSfx::ValueType FIXPP_MSG_CLASS::get<FieldSymbolSfx>() const {
+ return getSymbolSfx();
+}
+template<> FieldSecurityID::ValueType FIXPP_MSG_CLASS::get<FieldSecurityID>() const {
+ return getSecurityID();
+}
+template<> FieldSecurityIDSource::ValueType FIXPP_MSG_CLASS::get<FieldSecurityIDSource>() const {
+ return getSecurityIDSource();
+}
+template<> FieldProduct::ValueType FIXPP_MSG_CLASS::get<FieldProduct>() const {
+ return getProduct();
+}
+template<> FieldCFICode::ValueType FIXPP_MSG_CLASS::get<FieldCFICode>() const {
+ return getCFICode();
+}
+template<> FieldSecurityType::ValueType FIXPP_MSG_CLASS::get<FieldSecurityType>() const {
+ return getSecurityType();
+}
+template<> FieldSecuritySubType::ValueType FIXPP_MSG_CLASS::get<FieldSecuritySubType>() const {
+ return getSecuritySubType();
+}
+template<> FieldMaturityMonthYear::ValueType FIXPP_MSG_CLASS::get<FieldMaturityMonthYear>() const {
+ return getMaturityMonthYear();
+}
+template<> FieldMaturityDate::ValueType FIXPP_MSG_CLASS::get<FieldMaturityDate>() const {
+ return getMaturityDate();
+}
+template<> FieldPutOrCall::ValueType FIXPP_MSG_CLASS::get<FieldPutOrCall>() const {
+ return getPutOrCall();
+}
+template<> FieldCouponPaymentDate::ValueType FIXPP_MSG_CLASS::get<FieldCouponPaymentDate>() const {
+ return getCouponPaymentDate();
+}
+template<> FieldIssueDate::ValueType FIXPP_MSG_CLASS::get<FieldIssueDate>() const {
+ return getIssueDate();
+}
+template<> FieldRepoCollateralSecurityType::ValueType FIXPP_MSG_CLASS::get<FieldRepoCollateralSecurityType>() const {
+ return getRepoCollateralSecurityType();
+}
+template<> FieldRepurchaseTerm::ValueType FIXPP_MSG_CLASS::get<FieldRepurchaseTerm>() const {
+ return getRepurchaseTerm();
+}
+template<> FieldRepurchaseRate::ValueType FIXPP_MSG_CLASS::get<FieldRepurchaseRate>() const {
+ return getRepurchaseRate();
+}
+template<> FieldFactor::ValueType FIXPP_MSG_CLASS::get<FieldFactor>() const {
+ return getFactor();
+}
+template<> FieldCreditRating::ValueType FIXPP_MSG_CLASS::get<FieldCreditRating>() const {
+ return getCreditRating();
+}
+template<> FieldInstrRegistry::ValueType FIXPP_MSG_CLASS::get<FieldInstrRegistry>() const {
+ return getInstrRegistry();
+}
+template<> FieldCountryOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldCountryOfIssue>() const {
+ return getCountryOfIssue();
+}
+template<> FieldStateOrProvinceOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldStateOrProvinceOfIssue>() const {
+ return getStateOrProvinceOfIssue();
+}
+template<> FieldLocaleOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldLocaleOfIssue>() const {
+ return getLocaleOfIssue();
+}
+template<> FieldRedemptionDate::ValueType FIXPP_MSG_CLASS::get<FieldRedemptionDate>() const {
+ return getRedemptionDate();
+}
+template<> FieldStrikePrice::ValueType FIXPP_MSG_CLASS::get<FieldStrikePrice>() const {
+ return getStrikePrice();
+}
+template<> FieldStrikeCurrency::ValueType FIXPP_MSG_CLASS::get<FieldStrikeCurrency>() const {
+ return getStrikeCurrency();
+}
+template<> FieldOptAttribute::ValueType FIXPP_MSG_CLASS::get<FieldOptAttribute>() const {
+ return getOptAttribute();
+}
+template<> FieldContractMultiplier::ValueType FIXPP_MSG_CLASS::get<FieldContractMultiplier>() const {
+ return getContractMultiplier();
+}
+template<> FieldCouponRate::ValueType FIXPP_MSG_CLASS::get<FieldCouponRate>() const {
+ return getCouponRate();
+}
+template<> FieldSecurityExchange::ValueType FIXPP_MSG_CLASS::get<FieldSecurityExchange>() const {
+ return getSecurityExchange();
+}
+template<> FieldIssuer::ValueType FIXPP_MSG_CLASS::get<FieldIssuer>() const {
+ return getIssuer();
+}
+template<> FieldEncodedIssuerLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedIssuerLen>() const {
+ return getEncodedIssuerLen();
+}
+template<> FieldEncodedIssuer::ValueType FIXPP_MSG_CLASS::get<FieldEncodedIssuer>() const {
+ return getEncodedIssuer();
+}
+template<> FieldSecurityDesc::ValueType FIXPP_MSG_CLASS::get<FieldSecurityDesc>() const {
+ return getSecurityDesc();
+}
+template<> FieldEncodedSecurityDescLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedSecurityDescLen>() const {
+ return getEncodedSecurityDescLen();
+}
+template<> FieldEncodedSecurityDesc::ValueType FIXPP_MSG_CLASS::get<FieldEncodedSecurityDesc>() const {
+ return getEncodedSecurityDesc();
+}
+template<> FieldPool::ValueType FIXPP_MSG_CLASS::get<FieldPool>() const {
+ return getPool();
+}
+template<> FieldContractSettlMonth::ValueType FIXPP_MSG_CLASS::get<FieldContractSettlMonth>() const {
+ return getContractSettlMonth();
+}
+template<> FieldCPProgram::ValueType FIXPP_MSG_CLASS::get<FieldCPProgram>() const {
+ return getCPProgram();
+}
+template<> FieldCPRegType::ValueType FIXPP_MSG_CLASS::get<FieldCPRegType>() const {
+ return getCPRegType();
+}
+template<> FieldDatedDate::ValueType FIXPP_MSG_CLASS::get<FieldDatedDate>() const {
+ return getDatedDate();
+}
+template<> FieldInterestAccrualDate::ValueType FIXPP_MSG_CLASS::get<FieldInterestAccrualDate>() const {
+ return getInterestAccrualDate();
+}
+template<> FieldCurrency::ValueType FIXPP_MSG_CLASS::get<FieldCurrency>() const {
+ return getCurrency();
+}
+template<> FieldTransactTime::ValueType FIXPP_MSG_CLASS::get<FieldTransactTime>() const {
+ return getTransactTime();
+}
+template<> FieldAdjustmentType::ValueType FIXPP_MSG_CLASS::get<FieldAdjustmentType>() const {
+ return getAdjustmentType();
+}
+template<> FieldContraryInstructionIndicator::ValueType FIXPP_MSG_CLASS::get<FieldContraryInstructionIndicator>() const {
+ return getContraryInstructionIndicator();
+}
+template<> FieldPriorSpreadIndicator::ValueType FIXPP_MSG_CLASS::get<FieldPriorSpreadIndicator>() const {
+ return getPriorSpreadIndicator();
+}
+template<> FieldThresholdAmount::ValueType FIXPP_MSG_CLASS::get<FieldThresholdAmount>() const {
+ return getThresholdAmount();
+}
+template<> FieldText::ValueType FIXPP_MSG_CLASS::get<FieldText>() const {
+ return getText();
+}
+template<> FieldEncodedTextLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedTextLen>() const {
+ return getEncodedTextLen();
+}
+template<> FieldEncodedText::ValueType FIXPP_MSG_CLASS::get<FieldEncodedText>() const {
+ return getEncodedText();
+}
+
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessagePositionMaintenanceReport
+template<> FieldPosMaintRptID::ValueType FIXPP_MSG_CLASS::get<FieldPosMaintRptID>() const {
+ return getPosMaintRptID();
+}
+template<> FieldPosTransType::ValueType FIXPP_MSG_CLASS::get<FieldPosTransType>() const {
+ return getPosTransType();
+}
+template<> FieldPosReqID::ValueType FIXPP_MSG_CLASS::get<FieldPosReqID>() const {
+ return getPosReqID();
+}
+template<> FieldPosMaintAction::ValueType FIXPP_MSG_CLASS::get<FieldPosMaintAction>() const {
+ return getPosMaintAction();
+}
+template<> FieldOrigPosReqRefID::ValueType FIXPP_MSG_CLASS::get<FieldOrigPosReqRefID>() const {
+ return getOrigPosReqRefID();
+}
+template<> FieldPosMaintStatus::ValueType FIXPP_MSG_CLASS::get<FieldPosMaintStatus>() const {
+ return getPosMaintStatus();
+}
+template<> FieldPosMaintResult::ValueType FIXPP_MSG_CLASS::get<FieldPosMaintResult>() const {
+ return getPosMaintResult();
+}
+template<> FieldClearingBusinessDate::ValueType FIXPP_MSG_CLASS::get<FieldClearingBusinessDate>() const {
+ return getClearingBusinessDate();
+}
+template<> FieldSettlSessID::ValueType FIXPP_MSG_CLASS::get<FieldSettlSessID>() const {
+ return getSettlSessID();
+}
+template<> FieldSettlSessSubID::ValueType FIXPP_MSG_CLASS::get<FieldSettlSessSubID>() const {
+ return getSettlSessSubID();
+}
+template<> FieldAccount::ValueType FIXPP_MSG_CLASS::get<FieldAccount>() const {
+ return getAccount();
+}
+template<> FieldAcctIDSource::ValueType FIXPP_MSG_CLASS::get<FieldAcctIDSource>() const {
+ return getAcctIDSource();
+}
+template<> FieldAccountType::ValueType FIXPP_MSG_CLASS::get<FieldAccountType>() const {
+ return getAccountType();
+}
+template<> FieldSymbol::ValueType FIXPP_MSG_CLASS::get<FieldSymbol>() const {
+ return getSymbol();
+}
+template<> FieldSymbolSfx::ValueType FIXPP_MSG_CLASS::get<FieldSymbolSfx>() const {
+ return getSymbolSfx();
+}
+template<> FieldSecurityID::ValueType FIXPP_MSG_CLASS::get<FieldSecurityID>() const {
+ return getSecurityID();
+}
+template<> FieldSecurityIDSource::ValueType FIXPP_MSG_CLASS::get<FieldSecurityIDSource>() const {
+ return getSecurityIDSource();
+}
+template<> FieldProduct::ValueType FIXPP_MSG_CLASS::get<FieldProduct>() const {
+ return getProduct();
+}
+template<> FieldCFICode::ValueType FIXPP_MSG_CLASS::get<FieldCFICode>() const {
+ return getCFICode();
+}
+template<> FieldSecurityType::ValueType FIXPP_MSG_CLASS::get<FieldSecurityType>() const {
+ return getSecurityType();
+}
+template<> FieldSecuritySubType::ValueType FIXPP_MSG_CLASS::get<FieldSecuritySubType>() const {
+ return getSecuritySubType();
+}
+template<> FieldMaturityMonthYear::ValueType FIXPP_MSG_CLASS::get<FieldMaturityMonthYear>() const {
+ return getMaturityMonthYear();
+}
+template<> FieldMaturityDate::ValueType FIXPP_MSG_CLASS::get<FieldMaturityDate>() const {
+ return getMaturityDate();
+}
+template<> FieldPutOrCall::ValueType FIXPP_MSG_CLASS::get<FieldPutOrCall>() const {
+ return getPutOrCall();
+}
+template<> FieldCouponPaymentDate::ValueType FIXPP_MSG_CLASS::get<FieldCouponPaymentDate>() const {
+ return getCouponPaymentDate();
+}
+template<> FieldIssueDate::ValueType FIXPP_MSG_CLASS::get<FieldIssueDate>() const {
+ return getIssueDate();
+}
+template<> FieldRepoCollateralSecurityType::ValueType FIXPP_MSG_CLASS::get<FieldRepoCollateralSecurityType>() const {
+ return getRepoCollateralSecurityType();
+}
+template<> FieldRepurchaseTerm::ValueType FIXPP_MSG_CLASS::get<FieldRepurchaseTerm>() const {
+ return getRepurchaseTerm();
+}
+template<> FieldRepurchaseRate::ValueType FIXPP_MSG_CLASS::get<FieldRepurchaseRate>() const {
+ return getRepurchaseRate();
+}
+template<> FieldFactor::ValueType FIXPP_MSG_CLASS::get<FieldFactor>() const {
+ return getFactor();
+}
+template<> FieldCreditRating::ValueType FIXPP_MSG_CLASS::get<FieldCreditRating>() const {
+ return getCreditRating();
+}
+template<> FieldInstrRegistry::ValueType FIXPP_MSG_CLASS::get<FieldInstrRegistry>() const {
+ return getInstrRegistry();
+}
+template<> FieldCountryOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldCountryOfIssue>() const {
+ return getCountryOfIssue();
+}
+template<> FieldStateOrProvinceOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldStateOrProvinceOfIssue>() const {
+ return getStateOrProvinceOfIssue();
+}
+template<> FieldLocaleOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldLocaleOfIssue>() const {
+ return getLocaleOfIssue();
+}
+template<> FieldRedemptionDate::ValueType FIXPP_MSG_CLASS::get<FieldRedemptionDate>() const {
+ return getRedemptionDate();
+}
+template<> FieldStrikePrice::ValueType FIXPP_MSG_CLASS::get<FieldStrikePrice>() const {
+ return getStrikePrice();
+}
+template<> FieldStrikeCurrency::ValueType FIXPP_MSG_CLASS::get<FieldStrikeCurrency>() const {
+ return getStrikeCurrency();
+}
+template<> FieldOptAttribute::ValueType FIXPP_MSG_CLASS::get<FieldOptAttribute>() const {
+ return getOptAttribute();
+}
+template<> FieldContractMultiplier::ValueType FIXPP_MSG_CLASS::get<FieldContractMultiplier>() const {
+ return getContractMultiplier();
+}
+template<> FieldCouponRate::ValueType FIXPP_MSG_CLASS::get<FieldCouponRate>() const {
+ return getCouponRate();
+}
+template<> FieldSecurityExchange::ValueType FIXPP_MSG_CLASS::get<FieldSecurityExchange>() const {
+ return getSecurityExchange();
+}
+template<> FieldIssuer::ValueType FIXPP_MSG_CLASS::get<FieldIssuer>() const {
+ return getIssuer();
+}
+template<> FieldEncodedIssuerLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedIssuerLen>() const {
+ return getEncodedIssuerLen();
+}
+template<> FieldEncodedIssuer::ValueType FIXPP_MSG_CLASS::get<FieldEncodedIssuer>() const {
+ return getEncodedIssuer();
+}
+template<> FieldSecurityDesc::ValueType FIXPP_MSG_CLASS::get<FieldSecurityDesc>() const {
+ return getSecurityDesc();
+}
+template<> FieldEncodedSecurityDescLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedSecurityDescLen>() const {
+ return getEncodedSecurityDescLen();
+}
+template<> FieldEncodedSecurityDesc::ValueType FIXPP_MSG_CLASS::get<FieldEncodedSecurityDesc>() const {
+ return getEncodedSecurityDesc();
+}
+template<> FieldPool::ValueType FIXPP_MSG_CLASS::get<FieldPool>() const {
+ return getPool();
+}
+template<> FieldContractSettlMonth::ValueType FIXPP_MSG_CLASS::get<FieldContractSettlMonth>() const {
+ return getContractSettlMonth();
+}
+template<> FieldCPProgram::ValueType FIXPP_MSG_CLASS::get<FieldCPProgram>() const {
+ return getCPProgram();
+}
+template<> FieldCPRegType::ValueType FIXPP_MSG_CLASS::get<FieldCPRegType>() const {
+ return getCPRegType();
+}
+template<> FieldDatedDate::ValueType FIXPP_MSG_CLASS::get<FieldDatedDate>() const {
+ return getDatedDate();
+}
+template<> FieldInterestAccrualDate::ValueType FIXPP_MSG_CLASS::get<FieldInterestAccrualDate>() const {
+ return getInterestAccrualDate();
+}
+template<> FieldCurrency::ValueType FIXPP_MSG_CLASS::get<FieldCurrency>() const {
+ return getCurrency();
+}
+template<> FieldTransactTime::ValueType FIXPP_MSG_CLASS::get<FieldTransactTime>() const {
+ return getTransactTime();
+}
+template<> FieldAdjustmentType::ValueType FIXPP_MSG_CLASS::get<FieldAdjustmentType>() const {
+ return getAdjustmentType();
+}
+template<> FieldThresholdAmount::ValueType FIXPP_MSG_CLASS::get<FieldThresholdAmount>() const {
+ return getThresholdAmount();
+}
+template<> FieldText::ValueType FIXPP_MSG_CLASS::get<FieldText>() const {
+ return getText();
+}
+template<> FieldEncodedTextLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedTextLen>() const {
+ return getEncodedTextLen();
+}
+template<> FieldEncodedText::ValueType FIXPP_MSG_CLASS::get<FieldEncodedText>() const {
+ return getEncodedText();
+}
+
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageRequestForPositions
+template<> FieldPosReqID::ValueType FIXPP_MSG_CLASS::get<FieldPosReqID>() const {
+ return getPosReqID();
+}
+template<> FieldPosReqType::ValueType FIXPP_MSG_CLASS::get<FieldPosReqType>() const {
+ return getPosReqType();
+}
+template<> FieldMatchStatus::ValueType FIXPP_MSG_CLASS::get<FieldMatchStatus>() const {
+ return getMatchStatus();
+}
+template<> FieldSubscriptionRequestType::ValueType FIXPP_MSG_CLASS::get<FieldSubscriptionRequestType>() const {
+ return getSubscriptionRequestType();
+}
+template<> FieldAccount::ValueType FIXPP_MSG_CLASS::get<FieldAccount>() const {
+ return getAccount();
+}
+template<> FieldAcctIDSource::ValueType FIXPP_MSG_CLASS::get<FieldAcctIDSource>() const {
+ return getAcctIDSource();
+}
+template<> FieldAccountType::ValueType FIXPP_MSG_CLASS::get<FieldAccountType>() const {
+ return getAccountType();
+}
+template<> FieldSymbol::ValueType FIXPP_MSG_CLASS::get<FieldSymbol>() const {
+ return getSymbol();
+}
+template<> FieldSymbolSfx::ValueType FIXPP_MSG_CLASS::get<FieldSymbolSfx>() const {
+ return getSymbolSfx();
+}
+template<> FieldSecurityID::ValueType FIXPP_MSG_CLASS::get<FieldSecurityID>() const {
+ return getSecurityID();
+}
+template<> FieldSecurityIDSource::ValueType FIXPP_MSG_CLASS::get<FieldSecurityIDSource>() const {
+ return getSecurityIDSource();
+}
+template<> FieldProduct::ValueType FIXPP_MSG_CLASS::get<FieldProduct>() const {
+ return getProduct();
+}
+template<> FieldCFICode::ValueType FIXPP_MSG_CLASS::get<FieldCFICode>() const {
+ return getCFICode();
+}
+template<> FieldSecurityType::ValueType FIXPP_MSG_CLASS::get<FieldSecurityType>() const {
+ return getSecurityType();
+}
+template<> FieldSecuritySubType::ValueType FIXPP_MSG_CLASS::get<FieldSecuritySubType>() const {
+ return getSecuritySubType();
+}
+template<> FieldMaturityMonthYear::ValueType FIXPP_MSG_CLASS::get<FieldMaturityMonthYear>() const {
+ return getMaturityMonthYear();
+}
+template<> FieldMaturityDate::ValueType FIXPP_MSG_CLASS::get<FieldMaturityDate>() const {
+ return getMaturityDate();
+}
+template<> FieldPutOrCall::ValueType FIXPP_MSG_CLASS::get<FieldPutOrCall>() const {
+ return getPutOrCall();
+}
+template<> FieldCouponPaymentDate::ValueType FIXPP_MSG_CLASS::get<FieldCouponPaymentDate>() const {
+ return getCouponPaymentDate();
+}
+template<> FieldIssueDate::ValueType FIXPP_MSG_CLASS::get<FieldIssueDate>() const {
+ return getIssueDate();
+}
+template<> FieldRepoCollateralSecurityType::ValueType FIXPP_MSG_CLASS::get<FieldRepoCollateralSecurityType>() const {
+ return getRepoCollateralSecurityType();
+}
+template<> FieldRepurchaseTerm::ValueType FIXPP_MSG_CLASS::get<FieldRepurchaseTerm>() const {
+ return getRepurchaseTerm();
+}
+template<> FieldRepurchaseRate::ValueType FIXPP_MSG_CLASS::get<FieldRepurchaseRate>() const {
+ return getRepurchaseRate();
+}
+template<> FieldFactor::ValueType FIXPP_MSG_CLASS::get<FieldFactor>() const {
+ return getFactor();
+}
+template<> FieldCreditRating::ValueType FIXPP_MSG_CLASS::get<FieldCreditRating>() const {
+ return getCreditRating();
+}
+template<> FieldInstrRegistry::ValueType FIXPP_MSG_CLASS::get<FieldInstrRegistry>() const {
+ return getInstrRegistry();
+}
+template<> FieldCountryOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldCountryOfIssue>() const {
+ return getCountryOfIssue();
+}
+template<> FieldStateOrProvinceOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldStateOrProvinceOfIssue>() const {
+ return getStateOrProvinceOfIssue();
+}
+template<> FieldLocaleOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldLocaleOfIssue>() const {
+ return getLocaleOfIssue();
+}
+template<> FieldRedemptionDate::ValueType FIXPP_MSG_CLASS::get<FieldRedemptionDate>() const {
+ return getRedemptionDate();
+}
+template<> FieldStrikePrice::ValueType FIXPP_MSG_CLASS::get<FieldStrikePrice>() const {
+ return getStrikePrice();
+}
+template<> FieldStrikeCurrency::ValueType FIXPP_MSG_CLASS::get<FieldStrikeCurrency>() const {
+ return getStrikeCurrency();
+}
+template<> FieldOptAttribute::ValueType FIXPP_MSG_CLASS::get<FieldOptAttribute>() const {
+ return getOptAttribute();
+}
+template<> FieldContractMultiplier::ValueType FIXPP_MSG_CLASS::get<FieldContractMultiplier>() const {
+ return getContractMultiplier();
+}
+template<> FieldCouponRate::ValueType FIXPP_MSG_CLASS::get<FieldCouponRate>() const {
+ return getCouponRate();
+}
+template<> FieldSecurityExchange::ValueType FIXPP_MSG_CLASS::get<FieldSecurityExchange>() const {
+ return getSecurityExchange();
+}
+template<> FieldIssuer::ValueType FIXPP_MSG_CLASS::get<FieldIssuer>() const {
+ return getIssuer();
+}
+template<> FieldEncodedIssuerLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedIssuerLen>() const {
+ return getEncodedIssuerLen();
+}
+template<> FieldEncodedIssuer::ValueType FIXPP_MSG_CLASS::get<FieldEncodedIssuer>() const {
+ return getEncodedIssuer();
+}
+template<> FieldSecurityDesc::ValueType FIXPP_MSG_CLASS::get<FieldSecurityDesc>() const {
+ return getSecurityDesc();
+}
+template<> FieldEncodedSecurityDescLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedSecurityDescLen>() const {
+ return getEncodedSecurityDescLen();
+}
+template<> FieldEncodedSecurityDesc::ValueType FIXPP_MSG_CLASS::get<FieldEncodedSecurityDesc>() const {
+ return getEncodedSecurityDesc();
+}
+template<> FieldPool::ValueType FIXPP_MSG_CLASS::get<FieldPool>() const {
+ return getPool();
+}
+template<> FieldContractSettlMonth::ValueType FIXPP_MSG_CLASS::get<FieldContractSettlMonth>() const {
+ return getContractSettlMonth();
+}
+template<> FieldCPProgram::ValueType FIXPP_MSG_CLASS::get<FieldCPProgram>() const {
+ return getCPProgram();
+}
+template<> FieldCPRegType::ValueType FIXPP_MSG_CLASS::get<FieldCPRegType>() const {
+ return getCPRegType();
+}
+template<> FieldDatedDate::ValueType FIXPP_MSG_CLASS::get<FieldDatedDate>() const {
+ return getDatedDate();
+}
+template<> FieldInterestAccrualDate::ValueType FIXPP_MSG_CLASS::get<FieldInterestAccrualDate>() const {
+ return getInterestAccrualDate();
+}
+template<> FieldCurrency::ValueType FIXPP_MSG_CLASS::get<FieldCurrency>() const {
+ return getCurrency();
+}
+template<> FieldClearingBusinessDate::ValueType FIXPP_MSG_CLASS::get<FieldClearingBusinessDate>() const {
+ return getClearingBusinessDate();
+}
+template<> FieldSettlSessID::ValueType FIXPP_MSG_CLASS::get<FieldSettlSessID>() const {
+ return getSettlSessID();
+}
+template<> FieldSettlSessSubID::ValueType FIXPP_MSG_CLASS::get<FieldSettlSessSubID>() const {
+ return getSettlSessSubID();
+}
+template<> FieldTransactTime::ValueType FIXPP_MSG_CLASS::get<FieldTransactTime>() const {
+ return getTransactTime();
+}
+template<> FieldResponseTransportType::ValueType FIXPP_MSG_CLASS::get<FieldResponseTransportType>() const {
+ return getResponseTransportType();
+}
+template<> FieldResponseDestination::ValueType FIXPP_MSG_CLASS::get<FieldResponseDestination>() const {
+ return getResponseDestination();
+}
+template<> FieldText::ValueType FIXPP_MSG_CLASS::get<FieldText>() const {
+ return getText();
+}
+template<> FieldEncodedTextLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedTextLen>() const {
+ return getEncodedTextLen();
+}
+template<> FieldEncodedText::ValueType FIXPP_MSG_CLASS::get<FieldEncodedText>() const {
+ return getEncodedText();
+}
+
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageRequestForPositionsAck
+template<> FieldPosMaintRptID::ValueType FIXPP_MSG_CLASS::get<FieldPosMaintRptID>() const {
+ return getPosMaintRptID();
+}
+template<> FieldPosReqID::ValueType FIXPP_MSG_CLASS::get<FieldPosReqID>() const {
+ return getPosReqID();
+}
+template<> FieldTotalNumPosReports::ValueType FIXPP_MSG_CLASS::get<FieldTotalNumPosReports>() const {
+ return getTotalNumPosReports();
+}
+template<> FieldUnsolicitedIndicator::ValueType FIXPP_MSG_CLASS::get<FieldUnsolicitedIndicator>() const {
+ return getUnsolicitedIndicator();
+}
+template<> FieldPosReqResult::ValueType FIXPP_MSG_CLASS::get<FieldPosReqResult>() const {
+ return getPosReqResult();
+}
+template<> FieldPosReqStatus::ValueType FIXPP_MSG_CLASS::get<FieldPosReqStatus>() const {
+ return getPosReqStatus();
+}
+template<> FieldAccount::ValueType FIXPP_MSG_CLASS::get<FieldAccount>() const {
+ return getAccount();
+}
+template<> FieldAcctIDSource::ValueType FIXPP_MSG_CLASS::get<FieldAcctIDSource>() const {
+ return getAcctIDSource();
+}
+template<> FieldAccountType::ValueType FIXPP_MSG_CLASS::get<FieldAccountType>() const {
+ return getAccountType();
+}
+template<> FieldSymbol::ValueType FIXPP_MSG_CLASS::get<FieldSymbol>() const {
+ return getSymbol();
+}
+template<> FieldSymbolSfx::ValueType FIXPP_MSG_CLASS::get<FieldSymbolSfx>() const {
+ return getSymbolSfx();
+}
+template<> FieldSecurityID::ValueType FIXPP_MSG_CLASS::get<FieldSecurityID>() const {
+ return getSecurityID();
+}
+template<> FieldSecurityIDSource::ValueType FIXPP_MSG_CLASS::get<FieldSecurityIDSource>() const {
+ return getSecurityIDSource();
+}
+template<> FieldProduct::ValueType FIXPP_MSG_CLASS::get<FieldProduct>() const {
+ return getProduct();
+}
+template<> FieldCFICode::ValueType FIXPP_MSG_CLASS::get<FieldCFICode>() const {
+ return getCFICode();
+}
+template<> FieldSecurityType::ValueType FIXPP_MSG_CLASS::get<FieldSecurityType>() const {
+ return getSecurityType();
+}
+template<> FieldSecuritySubType::ValueType FIXPP_MSG_CLASS::get<FieldSecuritySubType>() const {
+ return getSecuritySubType();
+}
+template<> FieldMaturityMonthYear::ValueType FIXPP_MSG_CLASS::get<FieldMaturityMonthYear>() const {
+ return getMaturityMonthYear();
+}
+template<> FieldMaturityDate::ValueType FIXPP_MSG_CLASS::get<FieldMaturityDate>() const {
+ return getMaturityDate();
+}
+template<> FieldPutOrCall::ValueType FIXPP_MSG_CLASS::get<FieldPutOrCall>() const {
+ return getPutOrCall();
+}
+template<> FieldCouponPaymentDate::ValueType FIXPP_MSG_CLASS::get<FieldCouponPaymentDate>() const {
+ return getCouponPaymentDate();
+}
+template<> FieldIssueDate::ValueType FIXPP_MSG_CLASS::get<FieldIssueDate>() const {
+ return getIssueDate();
+}
+template<> FieldRepoCollateralSecurityType::ValueType FIXPP_MSG_CLASS::get<FieldRepoCollateralSecurityType>() const {
+ return getRepoCollateralSecurityType();
+}
+template<> FieldRepurchaseTerm::ValueType FIXPP_MSG_CLASS::get<FieldRepurchaseTerm>() const {
+ return getRepurchaseTerm();
+}
+template<> FieldRepurchaseRate::ValueType FIXPP_MSG_CLASS::get<FieldRepurchaseRate>() const {
+ return getRepurchaseRate();
+}
+template<> FieldFactor::ValueType FIXPP_MSG_CLASS::get<FieldFactor>() const {
+ return getFactor();
+}
+template<> FieldCreditRating::ValueType FIXPP_MSG_CLASS::get<FieldCreditRating>() const {
+ return getCreditRating();
+}
+template<> FieldInstrRegistry::ValueType FIXPP_MSG_CLASS::get<FieldInstrRegistry>() const {
+ return getInstrRegistry();
+}
+template<> FieldCountryOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldCountryOfIssue>() const {
+ return getCountryOfIssue();
+}
+template<> FieldStateOrProvinceOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldStateOrProvinceOfIssue>() const {
+ return getStateOrProvinceOfIssue();
+}
+template<> FieldLocaleOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldLocaleOfIssue>() const {
+ return getLocaleOfIssue();
+}
+template<> FieldRedemptionDate::ValueType FIXPP_MSG_CLASS::get<FieldRedemptionDate>() const {
+ return getRedemptionDate();
+}
+template<> FieldStrikePrice::ValueType FIXPP_MSG_CLASS::get<FieldStrikePrice>() const {
+ return getStrikePrice();
+}
+template<> FieldStrikeCurrency::ValueType FIXPP_MSG_CLASS::get<FieldStrikeCurrency>() const {
+ return getStrikeCurrency();
+}
+template<> FieldOptAttribute::ValueType FIXPP_MSG_CLASS::get<FieldOptAttribute>() const {
+ return getOptAttribute();
+}
+template<> FieldContractMultiplier::ValueType FIXPP_MSG_CLASS::get<FieldContractMultiplier>() const {
+ return getContractMultiplier();
+}
+template<> FieldCouponRate::ValueType FIXPP_MSG_CLASS::get<FieldCouponRate>() const {
+ return getCouponRate();
+}
+template<> FieldSecurityExchange::ValueType FIXPP_MSG_CLASS::get<FieldSecurityExchange>() const {
+ return getSecurityExchange();
+}
+template<> FieldIssuer::ValueType FIXPP_MSG_CLASS::get<FieldIssuer>() const {
+ return getIssuer();
+}
+template<> FieldEncodedIssuerLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedIssuerLen>() const {
+ return getEncodedIssuerLen();
+}
+template<> FieldEncodedIssuer::ValueType FIXPP_MSG_CLASS::get<FieldEncodedIssuer>() const {
+ return getEncodedIssuer();
+}
+template<> FieldSecurityDesc::ValueType FIXPP_MSG_CLASS::get<FieldSecurityDesc>() const {
+ return getSecurityDesc();
+}
+template<> FieldEncodedSecurityDescLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedSecurityDescLen>() const {
+ return getEncodedSecurityDescLen();
+}
+template<> FieldEncodedSecurityDesc::ValueType FIXPP_MSG_CLASS::get<FieldEncodedSecurityDesc>() const {
+ return getEncodedSecurityDesc();
+}
+template<> FieldPool::ValueType FIXPP_MSG_CLASS::get<FieldPool>() const {
+ return getPool();
+}
+template<> FieldContractSettlMonth::ValueType FIXPP_MSG_CLASS::get<FieldContractSettlMonth>() const {
+ return getContractSettlMonth();
+}
+template<> FieldCPProgram::ValueType FIXPP_MSG_CLASS::get<FieldCPProgram>() const {
+ return getCPProgram();
+}
+template<> FieldCPRegType::ValueType FIXPP_MSG_CLASS::get<FieldCPRegType>() const {
+ return getCPRegType();
+}
+template<> FieldDatedDate::ValueType FIXPP_MSG_CLASS::get<FieldDatedDate>() const {
+ return getDatedDate();
+}
+template<> FieldInterestAccrualDate::ValueType FIXPP_MSG_CLASS::get<FieldInterestAccrualDate>() const {
+ return getInterestAccrualDate();
+}
+template<> FieldCurrency::ValueType FIXPP_MSG_CLASS::get<FieldCurrency>() const {
+ return getCurrency();
+}
+template<> FieldResponseTransportType::ValueType FIXPP_MSG_CLASS::get<FieldResponseTransportType>() const {
+ return getResponseTransportType();
+}
+template<> FieldResponseDestination::ValueType FIXPP_MSG_CLASS::get<FieldResponseDestination>() const {
+ return getResponseDestination();
+}
+template<> FieldText::ValueType FIXPP_MSG_CLASS::get<FieldText>() const {
+ return getText();
+}
+template<> FieldEncodedTextLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedTextLen>() const {
+ return getEncodedTextLen();
+}
+template<> FieldEncodedText::ValueType FIXPP_MSG_CLASS::get<FieldEncodedText>() const {
+ return getEncodedText();
+}
+
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessagePositionReport
+template<> FieldPosMaintRptID::ValueType FIXPP_MSG_CLASS::get<FieldPosMaintRptID>() const {
+ return getPosMaintRptID();
+}
+template<> FieldPosReqID::ValueType FIXPP_MSG_CLASS::get<FieldPosReqID>() const {
+ return getPosReqID();
+}
+template<> FieldPosReqType::ValueType FIXPP_MSG_CLASS::get<FieldPosReqType>() const {
+ return getPosReqType();
+}
+template<> FieldSubscriptionRequestType::ValueType FIXPP_MSG_CLASS::get<FieldSubscriptionRequestType>() const {
+ return getSubscriptionRequestType();
+}
+template<> FieldTotalNumPosReports::ValueType FIXPP_MSG_CLASS::get<FieldTotalNumPosReports>() const {
+ return getTotalNumPosReports();
+}
+template<> FieldUnsolicitedIndicator::ValueType FIXPP_MSG_CLASS::get<FieldUnsolicitedIndicator>() const {
+ return getUnsolicitedIndicator();
+}
+template<> FieldPosReqResult::ValueType FIXPP_MSG_CLASS::get<FieldPosReqResult>() const {
+ return getPosReqResult();
+}
+template<> FieldClearingBusinessDate::ValueType FIXPP_MSG_CLASS::get<FieldClearingBusinessDate>() const {
+ return getClearingBusinessDate();
+}
+template<> FieldSettlSessID::ValueType FIXPP_MSG_CLASS::get<FieldSettlSessID>() const {
+ return getSettlSessID();
+}
+template<> FieldSettlSessSubID::ValueType FIXPP_MSG_CLASS::get<FieldSettlSessSubID>() const {
+ return getSettlSessSubID();
+}
+template<> FieldAccount::ValueType FIXPP_MSG_CLASS::get<FieldAccount>() const {
+ return getAccount();
+}
+template<> FieldAcctIDSource::ValueType FIXPP_MSG_CLASS::get<FieldAcctIDSource>() const {
+ return getAcctIDSource();
+}
+template<> FieldAccountType::ValueType FIXPP_MSG_CLASS::get<FieldAccountType>() const {
+ return getAccountType();
+}
+template<> FieldSymbol::ValueType FIXPP_MSG_CLASS::get<FieldSymbol>() const {
+ return getSymbol();
+}
+template<> FieldSymbolSfx::ValueType FIXPP_MSG_CLASS::get<FieldSymbolSfx>() const {
+ return getSymbolSfx();
+}
+template<> FieldSecurityID::ValueType FIXPP_MSG_CLASS::get<FieldSecurityID>() const {
+ return getSecurityID();
+}
+template<> FieldSecurityIDSource::ValueType FIXPP_MSG_CLASS::get<FieldSecurityIDSource>() const {
+ return getSecurityIDSource();
+}
+template<> FieldProduct::ValueType FIXPP_MSG_CLASS::get<FieldProduct>() const {
+ return getProduct();
+}
+template<> FieldCFICode::ValueType FIXPP_MSG_CLASS::get<FieldCFICode>() const {
+ return getCFICode();
+}
+template<> FieldSecurityType::ValueType FIXPP_MSG_CLASS::get<FieldSecurityType>() const {
+ return getSecurityType();
+}
+template<> FieldSecuritySubType::ValueType FIXPP_MSG_CLASS::get<FieldSecuritySubType>() const {
+ return getSecuritySubType();
+}
+template<> FieldMaturityMonthYear::ValueType FIXPP_MSG_CLASS::get<FieldMaturityMonthYear>() const {
+ return getMaturityMonthYear();
+}
+template<> FieldMaturityDate::ValueType FIXPP_MSG_CLASS::get<FieldMaturityDate>() const {
+ return getMaturityDate();
+}
+template<> FieldPutOrCall::ValueType FIXPP_MSG_CLASS::get<FieldPutOrCall>() const {
+ return getPutOrCall();
+}
+template<> FieldCouponPaymentDate::ValueType FIXPP_MSG_CLASS::get<FieldCouponPaymentDate>() const {
+ return getCouponPaymentDate();
+}
+template<> FieldIssueDate::ValueType FIXPP_MSG_CLASS::get<FieldIssueDate>() const {
+ return getIssueDate();
+}
+template<> FieldRepoCollateralSecurityType::ValueType FIXPP_MSG_CLASS::get<FieldRepoCollateralSecurityType>() const {
+ return getRepoCollateralSecurityType();
+}
+template<> FieldRepurchaseTerm::ValueType FIXPP_MSG_CLASS::get<FieldRepurchaseTerm>() const {
+ return getRepurchaseTerm();
+}
+template<> FieldRepurchaseRate::ValueType FIXPP_MSG_CLASS::get<FieldRepurchaseRate>() const {
+ return getRepurchaseRate();
+}
+template<> FieldFactor::ValueType FIXPP_MSG_CLASS::get<FieldFactor>() const {
+ return getFactor();
+}
+template<> FieldCreditRating::ValueType FIXPP_MSG_CLASS::get<FieldCreditRating>() const {
+ return getCreditRating();
+}
+template<> FieldInstrRegistry::ValueType FIXPP_MSG_CLASS::get<FieldInstrRegistry>() const {
+ return getInstrRegistry();
+}
+template<> FieldCountryOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldCountryOfIssue>() const {
+ return getCountryOfIssue();
+}
+template<> FieldStateOrProvinceOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldStateOrProvinceOfIssue>() const {
+ return getStateOrProvinceOfIssue();
+}
+template<> FieldLocaleOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldLocaleOfIssue>() const {
+ return getLocaleOfIssue();
+}
+template<> FieldRedemptionDate::ValueType FIXPP_MSG_CLASS::get<FieldRedemptionDate>() const {
+ return getRedemptionDate();
+}
+template<> FieldStrikePrice::ValueType FIXPP_MSG_CLASS::get<FieldStrikePrice>() const {
+ return getStrikePrice();
+}
+template<> FieldStrikeCurrency::ValueType FIXPP_MSG_CLASS::get<FieldStrikeCurrency>() const {
+ return getStrikeCurrency();
+}
+template<> FieldOptAttribute::ValueType FIXPP_MSG_CLASS::get<FieldOptAttribute>() const {
+ return getOptAttribute();
+}
+template<> FieldContractMultiplier::ValueType FIXPP_MSG_CLASS::get<FieldContractMultiplier>() const {
+ return getContractMultiplier();
+}
+template<> FieldCouponRate::ValueType FIXPP_MSG_CLASS::get<FieldCouponRate>() const {
+ return getCouponRate();
+}
+template<> FieldSecurityExchange::ValueType FIXPP_MSG_CLASS::get<FieldSecurityExchange>() const {
+ return getSecurityExchange();
+}
+template<> FieldIssuer::ValueType FIXPP_MSG_CLASS::get<FieldIssuer>() const {
+ return getIssuer();
+}
+template<> FieldEncodedIssuerLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedIssuerLen>() const {
+ return getEncodedIssuerLen();
+}
+template<> FieldEncodedIssuer::ValueType FIXPP_MSG_CLASS::get<FieldEncodedIssuer>() const {
+ return getEncodedIssuer();
+}
+template<> FieldSecurityDesc::ValueType FIXPP_MSG_CLASS::get<FieldSecurityDesc>() const {
+ return getSecurityDesc();
+}
+template<> FieldEncodedSecurityDescLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedSecurityDescLen>() const {
+ return getEncodedSecurityDescLen();
+}
+template<> FieldEncodedSecurityDesc::ValueType FIXPP_MSG_CLASS::get<FieldEncodedSecurityDesc>() const {
+ return getEncodedSecurityDesc();
+}
+template<> FieldPool::ValueType FIXPP_MSG_CLASS::get<FieldPool>() const {
+ return getPool();
+}
+template<> FieldContractSettlMonth::ValueType FIXPP_MSG_CLASS::get<FieldContractSettlMonth>() const {
+ return getContractSettlMonth();
+}
+template<> FieldCPProgram::ValueType FIXPP_MSG_CLASS::get<FieldCPProgram>() const {
+ return getCPProgram();
+}
+template<> FieldCPRegType::ValueType FIXPP_MSG_CLASS::get<FieldCPRegType>() const {
+ return getCPRegType();
+}
+template<> FieldDatedDate::ValueType FIXPP_MSG_CLASS::get<FieldDatedDate>() const {
+ return getDatedDate();
+}
+template<> FieldInterestAccrualDate::ValueType FIXPP_MSG_CLASS::get<FieldInterestAccrualDate>() const {
+ return getInterestAccrualDate();
+}
+template<> FieldCurrency::ValueType FIXPP_MSG_CLASS::get<FieldCurrency>() const {
+ return getCurrency();
+}
+template<> FieldSettlPrice::ValueType FIXPP_MSG_CLASS::get<FieldSettlPrice>() const {
+ return getSettlPrice();
+}
+template<> FieldSettlPriceType::ValueType FIXPP_MSG_CLASS::get<FieldSettlPriceType>() const {
+ return getSettlPriceType();
+}
+template<> FieldPriorSettlPrice::ValueType FIXPP_MSG_CLASS::get<FieldPriorSettlPrice>() const {
+ return getPriorSettlPrice();
+}
+template<> FieldRegistStatus::ValueType FIXPP_MSG_CLASS::get<FieldRegistStatus>() const {
+ return getRegistStatus();
+}
+template<> FieldDeliveryDate::ValueType FIXPP_MSG_CLASS::get<FieldDeliveryDate>() const {
+ return getDeliveryDate();
+}
+template<> FieldText::ValueType FIXPP_MSG_CLASS::get<FieldText>() const {
+ return getText();
+}
+template<> FieldEncodedTextLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedTextLen>() const {
+ return getEncodedTextLen();
+}
+template<> FieldEncodedText::ValueType FIXPP_MSG_CLASS::get<FieldEncodedText>() const {
+ return getEncodedText();
+}
+
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageTradeCaptureReportRequestAck
+template<> FieldTradeRequestID::ValueType FIXPP_MSG_CLASS::get<FieldTradeRequestID>() const {
+ return getTradeRequestID();
+}
+template<> FieldTradeRequestType::ValueType FIXPP_MSG_CLASS::get<FieldTradeRequestType>() const {
+ return getTradeRequestType();
+}
+template<> FieldSubscriptionRequestType::ValueType FIXPP_MSG_CLASS::get<FieldSubscriptionRequestType>() const {
+ return getSubscriptionRequestType();
+}
+template<> FieldTotNumTradeReports::ValueType FIXPP_MSG_CLASS::get<FieldTotNumTradeReports>() const {
+ return getTotNumTradeReports();
+}
+template<> FieldTradeRequestResult::ValueType FIXPP_MSG_CLASS::get<FieldTradeRequestResult>() const {
+ return getTradeRequestResult();
+}
+template<> FieldTradeRequestStatus::ValueType FIXPP_MSG_CLASS::get<FieldTradeRequestStatus>() const {
+ return getTradeRequestStatus();
+}
+template<> FieldSymbol::ValueType FIXPP_MSG_CLASS::get<FieldSymbol>() const {
+ return getSymbol();
+}
+template<> FieldSymbolSfx::ValueType FIXPP_MSG_CLASS::get<FieldSymbolSfx>() const {
+ return getSymbolSfx();
+}
+template<> FieldSecurityID::ValueType FIXPP_MSG_CLASS::get<FieldSecurityID>() const {
+ return getSecurityID();
+}
+template<> FieldSecurityIDSource::ValueType FIXPP_MSG_CLASS::get<FieldSecurityIDSource>() const {
+ return getSecurityIDSource();
+}
+template<> FieldProduct::ValueType FIXPP_MSG_CLASS::get<FieldProduct>() const {
+ return getProduct();
+}
+template<> FieldCFICode::ValueType FIXPP_MSG_CLASS::get<FieldCFICode>() const {
+ return getCFICode();
+}
+template<> FieldSecurityType::ValueType FIXPP_MSG_CLASS::get<FieldSecurityType>() const {
+ return getSecurityType();
+}
+template<> FieldSecuritySubType::ValueType FIXPP_MSG_CLASS::get<FieldSecuritySubType>() const {
+ return getSecuritySubType();
+}
+template<> FieldMaturityMonthYear::ValueType FIXPP_MSG_CLASS::get<FieldMaturityMonthYear>() const {
+ return getMaturityMonthYear();
+}
+template<> FieldMaturityDate::ValueType FIXPP_MSG_CLASS::get<FieldMaturityDate>() const {
+ return getMaturityDate();
+}
+template<> FieldPutOrCall::ValueType FIXPP_MSG_CLASS::get<FieldPutOrCall>() const {
+ return getPutOrCall();
+}
+template<> FieldCouponPaymentDate::ValueType FIXPP_MSG_CLASS::get<FieldCouponPaymentDate>() const {
+ return getCouponPaymentDate();
+}
+template<> FieldIssueDate::ValueType FIXPP_MSG_CLASS::get<FieldIssueDate>() const {
+ return getIssueDate();
+}
+template<> FieldRepoCollateralSecurityType::ValueType FIXPP_MSG_CLASS::get<FieldRepoCollateralSecurityType>() const {
+ return getRepoCollateralSecurityType();
+}
+template<> FieldRepurchaseTerm::ValueType FIXPP_MSG_CLASS::get<FieldRepurchaseTerm>() const {
+ return getRepurchaseTerm();
+}
+template<> FieldRepurchaseRate::ValueType FIXPP_MSG_CLASS::get<FieldRepurchaseRate>() const {
+ return getRepurchaseRate();
+}
+template<> FieldFactor::ValueType FIXPP_MSG_CLASS::get<FieldFactor>() const {
+ return getFactor();
+}
+template<> FieldCreditRating::ValueType FIXPP_MSG_CLASS::get<FieldCreditRating>() const {
+ return getCreditRating();
+}
+template<> FieldInstrRegistry::ValueType FIXPP_MSG_CLASS::get<FieldInstrRegistry>() const {
+ return getInstrRegistry();
+}
+template<> FieldCountryOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldCountryOfIssue>() const {
+ return getCountryOfIssue();
+}
+template<> FieldStateOrProvinceOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldStateOrProvinceOfIssue>() const {
+ return getStateOrProvinceOfIssue();
+}
+template<> FieldLocaleOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldLocaleOfIssue>() const {
+ return getLocaleOfIssue();
+}
+template<> FieldRedemptionDate::ValueType FIXPP_MSG_CLASS::get<FieldRedemptionDate>() const {
+ return getRedemptionDate();
+}
+template<> FieldStrikePrice::ValueType FIXPP_MSG_CLASS::get<FieldStrikePrice>() const {
+ return getStrikePrice();
+}
+template<> FieldStrikeCurrency::ValueType FIXPP_MSG_CLASS::get<FieldStrikeCurrency>() const {
+ return getStrikeCurrency();
+}
+template<> FieldOptAttribute::ValueType FIXPP_MSG_CLASS::get<FieldOptAttribute>() const {
+ return getOptAttribute();
+}
+template<> FieldContractMultiplier::ValueType FIXPP_MSG_CLASS::get<FieldContractMultiplier>() const {
+ return getContractMultiplier();
+}
+template<> FieldCouponRate::ValueType FIXPP_MSG_CLASS::get<FieldCouponRate>() const {
+ return getCouponRate();
+}
+template<> FieldSecurityExchange::ValueType FIXPP_MSG_CLASS::get<FieldSecurityExchange>() const {
+ return getSecurityExchange();
+}
+template<> FieldIssuer::ValueType FIXPP_MSG_CLASS::get<FieldIssuer>() const {
+ return getIssuer();
+}
+template<> FieldEncodedIssuerLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedIssuerLen>() const {
+ return getEncodedIssuerLen();
+}
+template<> FieldEncodedIssuer::ValueType FIXPP_MSG_CLASS::get<FieldEncodedIssuer>() const {
+ return getEncodedIssuer();
+}
+template<> FieldSecurityDesc::ValueType FIXPP_MSG_CLASS::get<FieldSecurityDesc>() const {
+ return getSecurityDesc();
+}
+template<> FieldEncodedSecurityDescLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedSecurityDescLen>() const {
+ return getEncodedSecurityDescLen();
+}
+template<> FieldEncodedSecurityDesc::ValueType FIXPP_MSG_CLASS::get<FieldEncodedSecurityDesc>() const {
+ return getEncodedSecurityDesc();
+}
+template<> FieldPool::ValueType FIXPP_MSG_CLASS::get<FieldPool>() const {
+ return getPool();
+}
+template<> FieldContractSettlMonth::ValueType FIXPP_MSG_CLASS::get<FieldContractSettlMonth>() const {
+ return getContractSettlMonth();
+}
+template<> FieldCPProgram::ValueType FIXPP_MSG_CLASS::get<FieldCPProgram>() const {
+ return getCPProgram();
+}
+template<> FieldCPRegType::ValueType FIXPP_MSG_CLASS::get<FieldCPRegType>() const {
+ return getCPRegType();
+}
+template<> FieldDatedDate::ValueType FIXPP_MSG_CLASS::get<FieldDatedDate>() const {
+ return getDatedDate();
+}
+template<> FieldInterestAccrualDate::ValueType FIXPP_MSG_CLASS::get<FieldInterestAccrualDate>() const {
+ return getInterestAccrualDate();
+}
+template<> FieldMultiLegReportingType::ValueType FIXPP_MSG_CLASS::get<FieldMultiLegReportingType>() const {
+ return getMultiLegReportingType();
+}
+template<> FieldResponseTransportType::ValueType FIXPP_MSG_CLASS::get<FieldResponseTransportType>() const {
+ return getResponseTransportType();
+}
+template<> FieldResponseDestination::ValueType FIXPP_MSG_CLASS::get<FieldResponseDestination>() const {
+ return getResponseDestination();
+}
+template<> FieldText::ValueType FIXPP_MSG_CLASS::get<FieldText>() const {
+ return getText();
+}
+template<> FieldEncodedTextLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedTextLen>() const {
+ return getEncodedTextLen();
+}
+template<> FieldEncodedText::ValueType FIXPP_MSG_CLASS::get<FieldEncodedText>() const {
+ return getEncodedText();
+}
+
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageTradeCaptureReportAck
+template<> FieldTradeReportID::ValueType FIXPP_MSG_CLASS::get<FieldTradeReportID>() const {
+ return getTradeReportID();
+}
+template<> FieldTradeReportTransType::ValueType FIXPP_MSG_CLASS::get<FieldTradeReportTransType>() const {
+ return getTradeReportTransType();
+}
+template<> FieldTradeReportType::ValueType FIXPP_MSG_CLASS::get<FieldTradeReportType>() const {
+ return getTradeReportType();
+}
+template<> FieldTrdType::ValueType FIXPP_MSG_CLASS::get<FieldTrdType>() const {
+ return getTrdType();
+}
+template<> FieldTrdSubType::ValueType FIXPP_MSG_CLASS::get<FieldTrdSubType>() const {
+ return getTrdSubType();
+}
+template<> FieldSecondaryTrdType::ValueType FIXPP_MSG_CLASS::get<FieldSecondaryTrdType>() const {
+ return getSecondaryTrdType();
+}
+template<> FieldTransferReason::ValueType FIXPP_MSG_CLASS::get<FieldTransferReason>() const {
+ return getTransferReason();
+}
+template<> FieldExecType::ValueType FIXPP_MSG_CLASS::get<FieldExecType>() const {
+ return getExecType();
+}
+template<> FieldTradeReportRefID::ValueType FIXPP_MSG_CLASS::get<FieldTradeReportRefID>() const {
+ return getTradeReportRefID();
+}
+template<> FieldSecondaryTradeReportRefID::ValueType FIXPP_MSG_CLASS::get<FieldSecondaryTradeReportRefID>() const {
+ return getSecondaryTradeReportRefID();
+}
+template<> FieldTrdRptStatus::ValueType FIXPP_MSG_CLASS::get<FieldTrdRptStatus>() const {
+ return getTrdRptStatus();
+}
+template<> FieldTradeReportRejectReason::ValueType FIXPP_MSG_CLASS::get<FieldTradeReportRejectReason>() const {
+ return getTradeReportRejectReason();
+}
+template<> FieldSecondaryTradeReportID::ValueType FIXPP_MSG_CLASS::get<FieldSecondaryTradeReportID>() const {
+ return getSecondaryTradeReportID();
+}
+template<> FieldSubscriptionRequestType::ValueType FIXPP_MSG_CLASS::get<FieldSubscriptionRequestType>() const {
+ return getSubscriptionRequestType();
+}
+template<> FieldTradeLinkID::ValueType FIXPP_MSG_CLASS::get<FieldTradeLinkID>() const {
+ return getTradeLinkID();
+}
+template<> FieldTrdMatchID::ValueType FIXPP_MSG_CLASS::get<FieldTrdMatchID>() const {
+ return getTrdMatchID();
+}
+template<> FieldExecID::ValueType FIXPP_MSG_CLASS::get<FieldExecID>() const {
+ return getExecID();
+}
+template<> FieldSecondaryExecID::ValueType FIXPP_MSG_CLASS::get<FieldSecondaryExecID>() const {
+ return getSecondaryExecID();
+}
+template<> FieldSymbol::ValueType FIXPP_MSG_CLASS::get<FieldSymbol>() const {
+ return getSymbol();
+}
+template<> FieldSymbolSfx::ValueType FIXPP_MSG_CLASS::get<FieldSymbolSfx>() const {
+ return getSymbolSfx();
+}
+template<> FieldSecurityID::ValueType FIXPP_MSG_CLASS::get<FieldSecurityID>() const {
+ return getSecurityID();
+}
+template<> FieldSecurityIDSource::ValueType FIXPP_MSG_CLASS::get<FieldSecurityIDSource>() const {
+ return getSecurityIDSource();
+}
+template<> FieldProduct::ValueType FIXPP_MSG_CLASS::get<FieldProduct>() const {
+ return getProduct();
+}
+template<> FieldCFICode::ValueType FIXPP_MSG_CLASS::get<FieldCFICode>() const {
+ return getCFICode();
+}
+template<> FieldSecurityType::ValueType FIXPP_MSG_CLASS::get<FieldSecurityType>() const {
+ return getSecurityType();
+}
+template<> FieldSecuritySubType::ValueType FIXPP_MSG_CLASS::get<FieldSecuritySubType>() const {
+ return getSecuritySubType();
+}
+template<> FieldMaturityMonthYear::ValueType FIXPP_MSG_CLASS::get<FieldMaturityMonthYear>() const {
+ return getMaturityMonthYear();
+}
+template<> FieldMaturityDate::ValueType FIXPP_MSG_CLASS::get<FieldMaturityDate>() const {
+ return getMaturityDate();
+}
+template<> FieldPutOrCall::ValueType FIXPP_MSG_CLASS::get<FieldPutOrCall>() const {
+ return getPutOrCall();
+}
+template<> FieldCouponPaymentDate::ValueType FIXPP_MSG_CLASS::get<FieldCouponPaymentDate>() const {
+ return getCouponPaymentDate();
+}
+template<> FieldIssueDate::ValueType FIXPP_MSG_CLASS::get<FieldIssueDate>() const {
+ return getIssueDate();
+}
+template<> FieldRepoCollateralSecurityType::ValueType FIXPP_MSG_CLASS::get<FieldRepoCollateralSecurityType>() const {
+ return getRepoCollateralSecurityType();
+}
+template<> FieldRepurchaseTerm::ValueType FIXPP_MSG_CLASS::get<FieldRepurchaseTerm>() const {
+ return getRepurchaseTerm();
+}
+template<> FieldRepurchaseRate::ValueType FIXPP_MSG_CLASS::get<FieldRepurchaseRate>() const {
+ return getRepurchaseRate();
+}
+template<> FieldFactor::ValueType FIXPP_MSG_CLASS::get<FieldFactor>() const {
+ return getFactor();
+}
+template<> FieldCreditRating::ValueType FIXPP_MSG_CLASS::get<FieldCreditRating>() const {
+ return getCreditRating();
+}
+template<> FieldInstrRegistry::ValueType FIXPP_MSG_CLASS::get<FieldInstrRegistry>() const {
+ return getInstrRegistry();
+}
+template<> FieldCountryOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldCountryOfIssue>() const {
+ return getCountryOfIssue();
+}
+template<> FieldStateOrProvinceOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldStateOrProvinceOfIssue>() const {
+ return getStateOrProvinceOfIssue();
+}
+template<> FieldLocaleOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldLocaleOfIssue>() const {
+ return getLocaleOfIssue();
+}
+template<> FieldRedemptionDate::ValueType FIXPP_MSG_CLASS::get<FieldRedemptionDate>() const {
+ return getRedemptionDate();
+}
+template<> FieldStrikePrice::ValueType FIXPP_MSG_CLASS::get<FieldStrikePrice>() const {
+ return getStrikePrice();
+}
+template<> FieldStrikeCurrency::ValueType FIXPP_MSG_CLASS::get<FieldStrikeCurrency>() const {
+ return getStrikeCurrency();
+}
+template<> FieldOptAttribute::ValueType FIXPP_MSG_CLASS::get<FieldOptAttribute>() const {
+ return getOptAttribute();
+}
+template<> FieldContractMultiplier::ValueType FIXPP_MSG_CLASS::get<FieldContractMultiplier>() const {
+ return getContractMultiplier();
+}
+template<> FieldCouponRate::ValueType FIXPP_MSG_CLASS::get<FieldCouponRate>() const {
+ return getCouponRate();
+}
+template<> FieldSecurityExchange::ValueType FIXPP_MSG_CLASS::get<FieldSecurityExchange>() const {
+ return getSecurityExchange();
+}
+template<> FieldIssuer::ValueType FIXPP_MSG_CLASS::get<FieldIssuer>() const {
+ return getIssuer();
+}
+template<> FieldEncodedIssuerLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedIssuerLen>() const {
+ return getEncodedIssuerLen();
+}
+template<> FieldEncodedIssuer::ValueType FIXPP_MSG_CLASS::get<FieldEncodedIssuer>() const {
+ return getEncodedIssuer();
+}
+template<> FieldSecurityDesc::ValueType FIXPP_MSG_CLASS::get<FieldSecurityDesc>() const {
+ return getSecurityDesc();
+}
+template<> FieldEncodedSecurityDescLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedSecurityDescLen>() const {
+ return getEncodedSecurityDescLen();
+}
+template<> FieldEncodedSecurityDesc::ValueType FIXPP_MSG_CLASS::get<FieldEncodedSecurityDesc>() const {
+ return getEncodedSecurityDesc();
+}
+template<> FieldPool::ValueType FIXPP_MSG_CLASS::get<FieldPool>() const {
+ return getPool();
+}
+template<> FieldContractSettlMonth::ValueType FIXPP_MSG_CLASS::get<FieldContractSettlMonth>() const {
+ return getContractSettlMonth();
+}
+template<> FieldCPProgram::ValueType FIXPP_MSG_CLASS::get<FieldCPProgram>() const {
+ return getCPProgram();
+}
+template<> FieldCPRegType::ValueType FIXPP_MSG_CLASS::get<FieldCPRegType>() const {
+ return getCPRegType();
+}
+template<> FieldDatedDate::ValueType FIXPP_MSG_CLASS::get<FieldDatedDate>() const {
+ return getDatedDate();
+}
+template<> FieldInterestAccrualDate::ValueType FIXPP_MSG_CLASS::get<FieldInterestAccrualDate>() const {
+ return getInterestAccrualDate();
+}
+template<> FieldTransactTime::ValueType FIXPP_MSG_CLASS::get<FieldTransactTime>() const {
+ return getTransactTime();
+}
+template<> FieldResponseTransportType::ValueType FIXPP_MSG_CLASS::get<FieldResponseTransportType>() const {
+ return getResponseTransportType();
+}
+template<> FieldResponseDestination::ValueType FIXPP_MSG_CLASS::get<FieldResponseDestination>() const {
+ return getResponseDestination();
+}
+template<> FieldText::ValueType FIXPP_MSG_CLASS::get<FieldText>() const {
+ return getText();
+}
+template<> FieldEncodedTextLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedTextLen>() const {
+ return getEncodedTextLen();
+}
+template<> FieldEncodedText::ValueType FIXPP_MSG_CLASS::get<FieldEncodedText>() const {
+ return getEncodedText();
+}
+template<> FieldClearingFeeIndicator::ValueType FIXPP_MSG_CLASS::get<FieldClearingFeeIndicator>() const {
+ return getClearingFeeIndicator();
+}
+template<> FieldOrderCapacity::ValueType FIXPP_MSG_CLASS::get<FieldOrderCapacity>() const {
+ return getOrderCapacity();
+}
+template<> FieldOrderRestrictions::ValueType FIXPP_MSG_CLASS::get<FieldOrderRestrictions>() const {
+ return getOrderRestrictions();
+}
+template<> FieldCustOrderCapacity::ValueType FIXPP_MSG_CLASS::get<FieldCustOrderCapacity>() const {
+ return getCustOrderCapacity();
+}
+template<> FieldAccount::ValueType FIXPP_MSG_CLASS::get<FieldAccount>() const {
+ return getAccount();
+}
+template<> FieldAcctIDSource::ValueType FIXPP_MSG_CLASS::get<FieldAcctIDSource>() const {
+ return getAcctIDSource();
+}
+template<> FieldAccountType::ValueType FIXPP_MSG_CLASS::get<FieldAccountType>() const {
+ return getAccountType();
+}
+template<> FieldPositionEffect::ValueType FIXPP_MSG_CLASS::get<FieldPositionEffect>() const {
+ return getPositionEffect();
+}
+template<> FieldPreallocMethod::ValueType FIXPP_MSG_CLASS::get<FieldPreallocMethod>() const {
+ return getPreallocMethod();
+}
+
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageAllocationReport
+template<> FieldAllocReportID::ValueType FIXPP_MSG_CLASS::get<FieldAllocReportID>() const {
+ return getAllocReportID();
+}
+template<> FieldAllocID::ValueType FIXPP_MSG_CLASS::get<FieldAllocID>() const {
+ return getAllocID();
+}
+template<> FieldAllocTransType::ValueType FIXPP_MSG_CLASS::get<FieldAllocTransType>() const {
+ return getAllocTransType();
+}
+template<> FieldAllocReportRefID::ValueType FIXPP_MSG_CLASS::get<FieldAllocReportRefID>() const {
+ return getAllocReportRefID();
+}
+template<> FieldAllocCancReplaceReason::ValueType FIXPP_MSG_CLASS::get<FieldAllocCancReplaceReason>() const {
+ return getAllocCancReplaceReason();
+}
+template<> FieldSecondaryAllocID::ValueType FIXPP_MSG_CLASS::get<FieldSecondaryAllocID>() const {
+ return getSecondaryAllocID();
+}
+template<> FieldAllocReportType::ValueType FIXPP_MSG_CLASS::get<FieldAllocReportType>() const {
+ return getAllocReportType();
+}
+template<> FieldAllocStatus::ValueType FIXPP_MSG_CLASS::get<FieldAllocStatus>() const {
+ return getAllocStatus();
+}
+template<> FieldAllocRejCode::ValueType FIXPP_MSG_CLASS::get<FieldAllocRejCode>() const {
+ return getAllocRejCode();
+}
+template<> FieldRefAllocID::ValueType FIXPP_MSG_CLASS::get<FieldRefAllocID>() const {
+ return getRefAllocID();
+}
+template<> FieldAllocIntermedReqType::ValueType FIXPP_MSG_CLASS::get<FieldAllocIntermedReqType>() const {
+ return getAllocIntermedReqType();
+}
+template<> FieldAllocLinkID::ValueType FIXPP_MSG_CLASS::get<FieldAllocLinkID>() const {
+ return getAllocLinkID();
+}
+template<> FieldAllocLinkType::ValueType FIXPP_MSG_CLASS::get<FieldAllocLinkType>() const {
+ return getAllocLinkType();
+}
+template<> FieldBookingRefID::ValueType FIXPP_MSG_CLASS::get<FieldBookingRefID>() const {
+ return getBookingRefID();
+}
+template<> FieldAllocNoOrdersType::ValueType FIXPP_MSG_CLASS::get<FieldAllocNoOrdersType>() const {
+ return getAllocNoOrdersType();
+}
+template<> FieldPreviouslyReported::ValueType FIXPP_MSG_CLASS::get<FieldPreviouslyReported>() const {
+ return getPreviouslyReported();
+}
+template<> FieldReversalIndicator::ValueType FIXPP_MSG_CLASS::get<FieldReversalIndicator>() const {
+ return getReversalIndicator();
+}
+template<> FieldMatchType::ValueType FIXPP_MSG_CLASS::get<FieldMatchType>() const {
+ return getMatchType();
+}
+template<> FieldSide::ValueType FIXPP_MSG_CLASS::get<FieldSide>() const {
+ return getSide();
+}
+template<> FieldSymbol::ValueType FIXPP_MSG_CLASS::get<FieldSymbol>() const {
+ return getSymbol();
+}
+template<> FieldSymbolSfx::ValueType FIXPP_MSG_CLASS::get<FieldSymbolSfx>() const {
+ return getSymbolSfx();
+}
+template<> FieldSecurityID::ValueType FIXPP_MSG_CLASS::get<FieldSecurityID>() const {
+ return getSecurityID();
+}
+template<> FieldSecurityIDSource::ValueType FIXPP_MSG_CLASS::get<FieldSecurityIDSource>() const {
+ return getSecurityIDSource();
+}
+template<> FieldProduct::ValueType FIXPP_MSG_CLASS::get<FieldProduct>() const {
+ return getProduct();
+}
+template<> FieldCFICode::ValueType FIXPP_MSG_CLASS::get<FieldCFICode>() const {
+ return getCFICode();
+}
+template<> FieldSecurityType::ValueType FIXPP_MSG_CLASS::get<FieldSecurityType>() const {
+ return getSecurityType();
+}
+template<> FieldSecuritySubType::ValueType FIXPP_MSG_CLASS::get<FieldSecuritySubType>() const {
+ return getSecuritySubType();
+}
+template<> FieldMaturityMonthYear::ValueType FIXPP_MSG_CLASS::get<FieldMaturityMonthYear>() const {
+ return getMaturityMonthYear();
+}
+template<> FieldMaturityDate::ValueType FIXPP_MSG_CLASS::get<FieldMaturityDate>() const {
+ return getMaturityDate();
+}
+template<> FieldPutOrCall::ValueType FIXPP_MSG_CLASS::get<FieldPutOrCall>() const {
+ return getPutOrCall();
+}
+template<> FieldCouponPaymentDate::ValueType FIXPP_MSG_CLASS::get<FieldCouponPaymentDate>() const {
+ return getCouponPaymentDate();
+}
+template<> FieldIssueDate::ValueType FIXPP_MSG_CLASS::get<FieldIssueDate>() const {
+ return getIssueDate();
+}
+template<> FieldRepoCollateralSecurityType::ValueType FIXPP_MSG_CLASS::get<FieldRepoCollateralSecurityType>() const {
+ return getRepoCollateralSecurityType();
+}
+template<> FieldRepurchaseTerm::ValueType FIXPP_MSG_CLASS::get<FieldRepurchaseTerm>() const {
+ return getRepurchaseTerm();
+}
+template<> FieldRepurchaseRate::ValueType FIXPP_MSG_CLASS::get<FieldRepurchaseRate>() const {
+ return getRepurchaseRate();
+}
+template<> FieldFactor::ValueType FIXPP_MSG_CLASS::get<FieldFactor>() const {
+ return getFactor();
+}
+template<> FieldCreditRating::ValueType FIXPP_MSG_CLASS::get<FieldCreditRating>() const {
+ return getCreditRating();
+}
+template<> FieldInstrRegistry::ValueType FIXPP_MSG_CLASS::get<FieldInstrRegistry>() const {
+ return getInstrRegistry();
+}
+template<> FieldCountryOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldCountryOfIssue>() const {
+ return getCountryOfIssue();
+}
+template<> FieldStateOrProvinceOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldStateOrProvinceOfIssue>() const {
+ return getStateOrProvinceOfIssue();
+}
+template<> FieldLocaleOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldLocaleOfIssue>() const {
+ return getLocaleOfIssue();
+}
+template<> FieldRedemptionDate::ValueType FIXPP_MSG_CLASS::get<FieldRedemptionDate>() const {
+ return getRedemptionDate();
+}
+template<> FieldStrikePrice::ValueType FIXPP_MSG_CLASS::get<FieldStrikePrice>() const {
+ return getStrikePrice();
+}
+template<> FieldStrikeCurrency::ValueType FIXPP_MSG_CLASS::get<FieldStrikeCurrency>() const {
+ return getStrikeCurrency();
+}
+template<> FieldOptAttribute::ValueType FIXPP_MSG_CLASS::get<FieldOptAttribute>() const {
+ return getOptAttribute();
+}
+template<> FieldContractMultiplier::ValueType FIXPP_MSG_CLASS::get<FieldContractMultiplier>() const {
+ return getContractMultiplier();
+}
+template<> FieldCouponRate::ValueType FIXPP_MSG_CLASS::get<FieldCouponRate>() const {
+ return getCouponRate();
+}
+template<> FieldSecurityExchange::ValueType FIXPP_MSG_CLASS::get<FieldSecurityExchange>() const {
+ return getSecurityExchange();
+}
+template<> FieldIssuer::ValueType FIXPP_MSG_CLASS::get<FieldIssuer>() const {
+ return getIssuer();
+}
+template<> FieldEncodedIssuerLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedIssuerLen>() const {
+ return getEncodedIssuerLen();
+}
+template<> FieldEncodedIssuer::ValueType FIXPP_MSG_CLASS::get<FieldEncodedIssuer>() const {
+ return getEncodedIssuer();
+}
+template<> FieldSecurityDesc::ValueType FIXPP_MSG_CLASS::get<FieldSecurityDesc>() const {
+ return getSecurityDesc();
+}
+template<> FieldEncodedSecurityDescLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedSecurityDescLen>() const {
+ return getEncodedSecurityDescLen();
+}
+template<> FieldEncodedSecurityDesc::ValueType FIXPP_MSG_CLASS::get<FieldEncodedSecurityDesc>() const {
+ return getEncodedSecurityDesc();
+}
+template<> FieldPool::ValueType FIXPP_MSG_CLASS::get<FieldPool>() const {
+ return getPool();
+}
+template<> FieldContractSettlMonth::ValueType FIXPP_MSG_CLASS::get<FieldContractSettlMonth>() const {
+ return getContractSettlMonth();
+}
+template<> FieldCPProgram::ValueType FIXPP_MSG_CLASS::get<FieldCPProgram>() const {
+ return getCPProgram();
+}
+template<> FieldCPRegType::ValueType FIXPP_MSG_CLASS::get<FieldCPRegType>() const {
+ return getCPRegType();
+}
+template<> FieldDatedDate::ValueType FIXPP_MSG_CLASS::get<FieldDatedDate>() const {
+ return getDatedDate();
+}
+template<> FieldInterestAccrualDate::ValueType FIXPP_MSG_CLASS::get<FieldInterestAccrualDate>() const {
+ return getInterestAccrualDate();
+}
+template<> FieldDeliveryForm::ValueType FIXPP_MSG_CLASS::get<FieldDeliveryForm>() const {
+ return getDeliveryForm();
+}
+template<> FieldPctAtRisk::ValueType FIXPP_MSG_CLASS::get<FieldPctAtRisk>() const {
+ return getPctAtRisk();
+}
+template<> FieldAgreementDesc::ValueType FIXPP_MSG_CLASS::get<FieldAgreementDesc>() const {
+ return getAgreementDesc();
+}
+template<> FieldAgreementID::ValueType FIXPP_MSG_CLASS::get<FieldAgreementID>() const {
+ return getAgreementID();
+}
+template<> FieldAgreementDate::ValueType FIXPP_MSG_CLASS::get<FieldAgreementDate>() const {
+ return getAgreementDate();
+}
+template<> FieldAgreementCurrency::ValueType FIXPP_MSG_CLASS::get<FieldAgreementCurrency>() const {
+ return getAgreementCurrency();
+}
+template<> FieldTerminationType::ValueType FIXPP_MSG_CLASS::get<FieldTerminationType>() const {
+ return getTerminationType();
+}
+template<> FieldStartDate::ValueType FIXPP_MSG_CLASS::get<FieldStartDate>() const {
+ return getStartDate();
+}
+template<> FieldEndDate::ValueType FIXPP_MSG_CLASS::get<FieldEndDate>() const {
+ return getEndDate();
+}
+template<> FieldDeliveryType::ValueType FIXPP_MSG_CLASS::get<FieldDeliveryType>() const {
+ return getDeliveryType();
+}
+template<> FieldMarginRatio::ValueType FIXPP_MSG_CLASS::get<FieldMarginRatio>() const {
+ return getMarginRatio();
+}
+template<> FieldQuantity::ValueType FIXPP_MSG_CLASS::get<FieldQuantity>() const {
+ return getQuantity();
+}
+template<> FieldQtyType::ValueType FIXPP_MSG_CLASS::get<FieldQtyType>() const {
+ return getQtyType();
+}
+template<> FieldLastMkt::ValueType FIXPP_MSG_CLASS::get<FieldLastMkt>() const {
+ return getLastMkt();
+}
+template<> FieldTradeOriginationDate::ValueType FIXPP_MSG_CLASS::get<FieldTradeOriginationDate>() const {
+ return getTradeOriginationDate();
+}
+template<> FieldTradingSessionID::ValueType FIXPP_MSG_CLASS::get<FieldTradingSessionID>() const {
+ return getTradingSessionID();
+}
+template<> FieldTradingSessionSubID::ValueType FIXPP_MSG_CLASS::get<FieldTradingSessionSubID>() const {
+ return getTradingSessionSubID();
+}
+template<> FieldPriceType::ValueType FIXPP_MSG_CLASS::get<FieldPriceType>() const {
+ return getPriceType();
+}
+template<> FieldAvgPx::ValueType FIXPP_MSG_CLASS::get<FieldAvgPx>() const {
+ return getAvgPx();
+}
+template<> FieldAvgParPx::ValueType FIXPP_MSG_CLASS::get<FieldAvgParPx>() const {
+ return getAvgParPx();
+}
+template<> FieldSpread::ValueType FIXPP_MSG_CLASS::get<FieldSpread>() const {
+ return getSpread();
+}
+template<> FieldBenchmarkCurveCurrency::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkCurveCurrency>() const {
+ return getBenchmarkCurveCurrency();
+}
+template<> FieldBenchmarkCurveName::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkCurveName>() const {
+ return getBenchmarkCurveName();
+}
+template<> FieldBenchmarkCurvePoint::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkCurvePoint>() const {
+ return getBenchmarkCurvePoint();
+}
+template<> FieldBenchmarkPrice::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkPrice>() const {
+ return getBenchmarkPrice();
+}
+template<> FieldBenchmarkPriceType::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkPriceType>() const {
+ return getBenchmarkPriceType();
+}
+template<> FieldBenchmarkSecurityID::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkSecurityID>() const {
+ return getBenchmarkSecurityID();
+}
+template<> FieldBenchmarkSecurityIDSource::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkSecurityIDSource>() const {
+ return getBenchmarkSecurityIDSource();
+}
+template<> FieldCurrency::ValueType FIXPP_MSG_CLASS::get<FieldCurrency>() const {
+ return getCurrency();
+}
+template<> FieldAvgPxPrecision::ValueType FIXPP_MSG_CLASS::get<FieldAvgPxPrecision>() const {
+ return getAvgPxPrecision();
+}
+template<> FieldTradeDate::ValueType FIXPP_MSG_CLASS::get<FieldTradeDate>() const {
+ return getTradeDate();
+}
+template<> FieldTransactTime::ValueType FIXPP_MSG_CLASS::get<FieldTransactTime>() const {
+ return getTransactTime();
+}
+template<> FieldSettlType::ValueType FIXPP_MSG_CLASS::get<FieldSettlType>() const {
+ return getSettlType();
+}
+template<> FieldSettlDate::ValueType FIXPP_MSG_CLASS::get<FieldSettlDate>() const {
+ return getSettlDate();
+}
+template<> FieldBookingType::ValueType FIXPP_MSG_CLASS::get<FieldBookingType>() const {
+ return getBookingType();
+}
+template<> FieldGrossTradeAmt::ValueType FIXPP_MSG_CLASS::get<FieldGrossTradeAmt>() const {
+ return getGrossTradeAmt();
+}
+template<> FieldConcession::ValueType FIXPP_MSG_CLASS::get<FieldConcession>() const {
+ return getConcession();
+}
+template<> FieldTotalTakedown::ValueType FIXPP_MSG_CLASS::get<FieldTotalTakedown>() const {
+ return getTotalTakedown();
+}
+template<> FieldNetMoney::ValueType FIXPP_MSG_CLASS::get<FieldNetMoney>() const {
+ return getNetMoney();
+}
+template<> FieldPositionEffect::ValueType FIXPP_MSG_CLASS::get<FieldPositionEffect>() const {
+ return getPositionEffect();
+}
+template<> FieldAutoAcceptIndicator::ValueType FIXPP_MSG_CLASS::get<FieldAutoAcceptIndicator>() const {
+ return getAutoAcceptIndicator();
+}
+template<> FieldText::ValueType FIXPP_MSG_CLASS::get<FieldText>() const {
+ return getText();
+}
+template<> FieldEncodedTextLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedTextLen>() const {
+ return getEncodedTextLen();
+}
+template<> FieldEncodedText::ValueType FIXPP_MSG_CLASS::get<FieldEncodedText>() const {
+ return getEncodedText();
+}
+template<> FieldNumDaysInterest::ValueType FIXPP_MSG_CLASS::get<FieldNumDaysInterest>() const {
+ return getNumDaysInterest();
+}
+template<> FieldAccruedInterestRate::ValueType FIXPP_MSG_CLASS::get<FieldAccruedInterestRate>() const {
+ return getAccruedInterestRate();
+}
+template<> FieldAccruedInterestAmt::ValueType FIXPP_MSG_CLASS::get<FieldAccruedInterestAmt>() const {
+ return getAccruedInterestAmt();
+}
+template<> FieldTotalAccruedInterestAmt::ValueType FIXPP_MSG_CLASS::get<FieldTotalAccruedInterestAmt>() const {
+ return getTotalAccruedInterestAmt();
+}
+template<> FieldInterestAtMaturity::ValueType FIXPP_MSG_CLASS::get<FieldInterestAtMaturity>() const {
+ return getInterestAtMaturity();
+}
+template<> FieldEndAccruedInterestAmt::ValueType FIXPP_MSG_CLASS::get<FieldEndAccruedInterestAmt>() const {
+ return getEndAccruedInterestAmt();
+}
+template<> FieldStartCash::ValueType FIXPP_MSG_CLASS::get<FieldStartCash>() const {
+ return getStartCash();
+}
+template<> FieldEndCash::ValueType FIXPP_MSG_CLASS::get<FieldEndCash>() const {
+ return getEndCash();
+}
+template<> FieldLegalConfirm::ValueType FIXPP_MSG_CLASS::get<FieldLegalConfirm>() const {
+ return getLegalConfirm();
+}
+template<> FieldYieldType::ValueType FIXPP_MSG_CLASS::get<FieldYieldType>() const {
+ return getYieldType();
+}
+template<> FieldYield::ValueType FIXPP_MSG_CLASS::get<FieldYield>() const {
+ return getYield();
+}
+template<> FieldYieldCalcDate::ValueType FIXPP_MSG_CLASS::get<FieldYieldCalcDate>() const {
+ return getYieldCalcDate();
+}
+template<> FieldYieldRedemptionDate::ValueType FIXPP_MSG_CLASS::get<FieldYieldRedemptionDate>() const {
+ return getYieldRedemptionDate();
+}
+template<> FieldYieldRedemptionPrice::ValueType FIXPP_MSG_CLASS::get<FieldYieldRedemptionPrice>() const {
+ return getYieldRedemptionPrice();
+}
+template<> FieldYieldRedemptionPriceType::ValueType FIXPP_MSG_CLASS::get<FieldYieldRedemptionPriceType>() const {
+ return getYieldRedemptionPriceType();
+}
+template<> FieldTotNoAllocs::ValueType FIXPP_MSG_CLASS::get<FieldTotNoAllocs>() const {
+ return getTotNoAllocs();
+}
+template<> FieldLastFragment::ValueType FIXPP_MSG_CLASS::get<FieldLastFragment>() const {
+ return getLastFragment();
+}
+
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageAllocationReportAck
+template<> FieldAllocReportID::ValueType FIXPP_MSG_CLASS::get<FieldAllocReportID>() const {
+ return getAllocReportID();
+}
+template<> FieldAllocID::ValueType FIXPP_MSG_CLASS::get<FieldAllocID>() const {
+ return getAllocID();
+}
+template<> FieldSecondaryAllocID::ValueType FIXPP_MSG_CLASS::get<FieldSecondaryAllocID>() const {
+ return getSecondaryAllocID();
+}
+template<> FieldTradeDate::ValueType FIXPP_MSG_CLASS::get<FieldTradeDate>() const {
+ return getTradeDate();
+}
+template<> FieldTransactTime::ValueType FIXPP_MSG_CLASS::get<FieldTransactTime>() const {
+ return getTransactTime();
+}
+template<> FieldAllocStatus::ValueType FIXPP_MSG_CLASS::get<FieldAllocStatus>() const {
+ return getAllocStatus();
+}
+template<> FieldAllocRejCode::ValueType FIXPP_MSG_CLASS::get<FieldAllocRejCode>() const {
+ return getAllocRejCode();
+}
+template<> FieldAllocReportType::ValueType FIXPP_MSG_CLASS::get<FieldAllocReportType>() const {
+ return getAllocReportType();
+}
+template<> FieldAllocIntermedReqType::ValueType FIXPP_MSG_CLASS::get<FieldAllocIntermedReqType>() const {
+ return getAllocIntermedReqType();
+}
+template<> FieldMatchStatus::ValueType FIXPP_MSG_CLASS::get<FieldMatchStatus>() const {
+ return getMatchStatus();
+}
+template<> FieldProduct::ValueType FIXPP_MSG_CLASS::get<FieldProduct>() const {
+ return getProduct();
+}
+template<> FieldSecurityType::ValueType FIXPP_MSG_CLASS::get<FieldSecurityType>() const {
+ return getSecurityType();
+}
+template<> FieldText::ValueType FIXPP_MSG_CLASS::get<FieldText>() const {
+ return getText();
+}
+template<> FieldEncodedTextLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedTextLen>() const {
+ return getEncodedTextLen();
+}
+template<> FieldEncodedText::ValueType FIXPP_MSG_CLASS::get<FieldEncodedText>() const {
+ return getEncodedText();
+}
+
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageConfirmationAck
+template<> FieldConfirmID::ValueType FIXPP_MSG_CLASS::get<FieldConfirmID>() const {
+ return getConfirmID();
+}
+template<> FieldTradeDate::ValueType FIXPP_MSG_CLASS::get<FieldTradeDate>() const {
+ return getTradeDate();
+}
+template<> FieldTransactTime::ValueType FIXPP_MSG_CLASS::get<FieldTransactTime>() const {
+ return getTransactTime();
+}
+template<> FieldAffirmStatus::ValueType FIXPP_MSG_CLASS::get<FieldAffirmStatus>() const {
+ return getAffirmStatus();
+}
+template<> FieldConfirmRejReason::ValueType FIXPP_MSG_CLASS::get<FieldConfirmRejReason>() const {
+ return getConfirmRejReason();
+}
+template<> FieldMatchStatus::ValueType FIXPP_MSG_CLASS::get<FieldMatchStatus>() const {
+ return getMatchStatus();
+}
+template<> FieldText::ValueType FIXPP_MSG_CLASS::get<FieldText>() const {
+ return getText();
+}
+template<> FieldEncodedTextLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedTextLen>() const {
+ return getEncodedTextLen();
+}
+template<> FieldEncodedText::ValueType FIXPP_MSG_CLASS::get<FieldEncodedText>() const {
+ return getEncodedText();
+}
+
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageSettlementInstructionRequest
+template<> FieldSettlInstReqID::ValueType FIXPP_MSG_CLASS::get<FieldSettlInstReqID>() const {
+ return getSettlInstReqID();
+}
+template<> FieldTransactTime::ValueType FIXPP_MSG_CLASS::get<FieldTransactTime>() const {
+ return getTransactTime();
+}
+template<> FieldAllocAccount::ValueType FIXPP_MSG_CLASS::get<FieldAllocAccount>() const {
+ return getAllocAccount();
+}
+template<> FieldAllocAcctIDSource::ValueType FIXPP_MSG_CLASS::get<FieldAllocAcctIDSource>() const {
+ return getAllocAcctIDSource();
+}
+template<> FieldSide::ValueType FIXPP_MSG_CLASS::get<FieldSide>() const {
+ return getSide();
+}
+template<> FieldProduct::ValueType FIXPP_MSG_CLASS::get<FieldProduct>() const {
+ return getProduct();
+}
+template<> FieldSecurityType::ValueType FIXPP_MSG_CLASS::get<FieldSecurityType>() const {
+ return getSecurityType();
+}
+template<> FieldCFICode::ValueType FIXPP_MSG_CLASS::get<FieldCFICode>() const {
+ return getCFICode();
+}
+template<> FieldEffectiveTime::ValueType FIXPP_MSG_CLASS::get<FieldEffectiveTime>() const {
+ return getEffectiveTime();
+}
+template<> FieldExpireTime::ValueType FIXPP_MSG_CLASS::get<FieldExpireTime>() const {
+ return getExpireTime();
+}
+template<> FieldLastUpdateTime::ValueType FIXPP_MSG_CLASS::get<FieldLastUpdateTime>() const {
+ return getLastUpdateTime();
+}
+template<> FieldStandInstDbType::ValueType FIXPP_MSG_CLASS::get<FieldStandInstDbType>() const {
+ return getStandInstDbType();
+}
+template<> FieldStandInstDbName::ValueType FIXPP_MSG_CLASS::get<FieldStandInstDbName>() const {
+ return getStandInstDbName();
+}
+template<> FieldStandInstDbID::ValueType FIXPP_MSG_CLASS::get<FieldStandInstDbID>() const {
+ return getStandInstDbID();
+}
+
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageAssignmentReport
+template<> FieldAsgnRptID::ValueType FIXPP_MSG_CLASS::get<FieldAsgnRptID>() const {
+ return getAsgnRptID();
+}
+template<> FieldTotNumAssignmentReports::ValueType FIXPP_MSG_CLASS::get<FieldTotNumAssignmentReports>() const {
+ return getTotNumAssignmentReports();
+}
+template<> FieldLastRptRequested::ValueType FIXPP_MSG_CLASS::get<FieldLastRptRequested>() const {
+ return getLastRptRequested();
+}
+template<> FieldAccount::ValueType FIXPP_MSG_CLASS::get<FieldAccount>() const {
+ return getAccount();
+}
+template<> FieldAccountType::ValueType FIXPP_MSG_CLASS::get<FieldAccountType>() const {
+ return getAccountType();
+}
+template<> FieldSymbol::ValueType FIXPP_MSG_CLASS::get<FieldSymbol>() const {
+ return getSymbol();
+}
+template<> FieldSymbolSfx::ValueType FIXPP_MSG_CLASS::get<FieldSymbolSfx>() const {
+ return getSymbolSfx();
+}
+template<> FieldSecurityID::ValueType FIXPP_MSG_CLASS::get<FieldSecurityID>() const {
+ return getSecurityID();
+}
+template<> FieldSecurityIDSource::ValueType FIXPP_MSG_CLASS::get<FieldSecurityIDSource>() const {
+ return getSecurityIDSource();
+}
+template<> FieldProduct::ValueType FIXPP_MSG_CLASS::get<FieldProduct>() const {
+ return getProduct();
+}
+template<> FieldCFICode::ValueType FIXPP_MSG_CLASS::get<FieldCFICode>() const {
+ return getCFICode();
+}
+template<> FieldSecurityType::ValueType FIXPP_MSG_CLASS::get<FieldSecurityType>() const {
+ return getSecurityType();
+}
+template<> FieldSecuritySubType::ValueType FIXPP_MSG_CLASS::get<FieldSecuritySubType>() const {
+ return getSecuritySubType();
+}
+template<> FieldMaturityMonthYear::ValueType FIXPP_MSG_CLASS::get<FieldMaturityMonthYear>() const {
+ return getMaturityMonthYear();
+}
+template<> FieldMaturityDate::ValueType FIXPP_MSG_CLASS::get<FieldMaturityDate>() const {
+ return getMaturityDate();
+}
+template<> FieldPutOrCall::ValueType FIXPP_MSG_CLASS::get<FieldPutOrCall>() const {
+ return getPutOrCall();
+}
+template<> FieldCouponPaymentDate::ValueType FIXPP_MSG_CLASS::get<FieldCouponPaymentDate>() const {
+ return getCouponPaymentDate();
+}
+template<> FieldIssueDate::ValueType FIXPP_MSG_CLASS::get<FieldIssueDate>() const {
+ return getIssueDate();
+}
+template<> FieldRepoCollateralSecurityType::ValueType FIXPP_MSG_CLASS::get<FieldRepoCollateralSecurityType>() const {
+ return getRepoCollateralSecurityType();
+}
+template<> FieldRepurchaseTerm::ValueType FIXPP_MSG_CLASS::get<FieldRepurchaseTerm>() const {
+ return getRepurchaseTerm();
+}
+template<> FieldRepurchaseRate::ValueType FIXPP_MSG_CLASS::get<FieldRepurchaseRate>() const {
+ return getRepurchaseRate();
+}
+template<> FieldFactor::ValueType FIXPP_MSG_CLASS::get<FieldFactor>() const {
+ return getFactor();
+}
+template<> FieldCreditRating::ValueType FIXPP_MSG_CLASS::get<FieldCreditRating>() const {
+ return getCreditRating();
+}
+template<> FieldInstrRegistry::ValueType FIXPP_MSG_CLASS::get<FieldInstrRegistry>() const {
+ return getInstrRegistry();
+}
+template<> FieldCountryOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldCountryOfIssue>() const {
+ return getCountryOfIssue();
+}
+template<> FieldStateOrProvinceOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldStateOrProvinceOfIssue>() const {
+ return getStateOrProvinceOfIssue();
+}
+template<> FieldLocaleOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldLocaleOfIssue>() const {
+ return getLocaleOfIssue();
+}
+template<> FieldRedemptionDate::ValueType FIXPP_MSG_CLASS::get<FieldRedemptionDate>() const {
+ return getRedemptionDate();
+}
+template<> FieldStrikePrice::ValueType FIXPP_MSG_CLASS::get<FieldStrikePrice>() const {
+ return getStrikePrice();
+}
+template<> FieldStrikeCurrency::ValueType FIXPP_MSG_CLASS::get<FieldStrikeCurrency>() const {
+ return getStrikeCurrency();
+}
+template<> FieldOptAttribute::ValueType FIXPP_MSG_CLASS::get<FieldOptAttribute>() const {
+ return getOptAttribute();
+}
+template<> FieldContractMultiplier::ValueType FIXPP_MSG_CLASS::get<FieldContractMultiplier>() const {
+ return getContractMultiplier();
+}
+template<> FieldCouponRate::ValueType FIXPP_MSG_CLASS::get<FieldCouponRate>() const {
+ return getCouponRate();
+}
+template<> FieldSecurityExchange::ValueType FIXPP_MSG_CLASS::get<FieldSecurityExchange>() const {
+ return getSecurityExchange();
+}
+template<> FieldIssuer::ValueType FIXPP_MSG_CLASS::get<FieldIssuer>() const {
+ return getIssuer();
+}
+template<> FieldEncodedIssuerLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedIssuerLen>() const {
+ return getEncodedIssuerLen();
+}
+template<> FieldEncodedIssuer::ValueType FIXPP_MSG_CLASS::get<FieldEncodedIssuer>() const {
+ return getEncodedIssuer();
+}
+template<> FieldSecurityDesc::ValueType FIXPP_MSG_CLASS::get<FieldSecurityDesc>() const {
+ return getSecurityDesc();
+}
+template<> FieldEncodedSecurityDescLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedSecurityDescLen>() const {
+ return getEncodedSecurityDescLen();
+}
+template<> FieldEncodedSecurityDesc::ValueType FIXPP_MSG_CLASS::get<FieldEncodedSecurityDesc>() const {
+ return getEncodedSecurityDesc();
+}
+template<> FieldPool::ValueType FIXPP_MSG_CLASS::get<FieldPool>() const {
+ return getPool();
+}
+template<> FieldContractSettlMonth::ValueType FIXPP_MSG_CLASS::get<FieldContractSettlMonth>() const {
+ return getContractSettlMonth();
+}
+template<> FieldCPProgram::ValueType FIXPP_MSG_CLASS::get<FieldCPProgram>() const {
+ return getCPProgram();
+}
+template<> FieldCPRegType::ValueType FIXPP_MSG_CLASS::get<FieldCPRegType>() const {
+ return getCPRegType();
+}
+template<> FieldDatedDate::ValueType FIXPP_MSG_CLASS::get<FieldDatedDate>() const {
+ return getDatedDate();
+}
+template<> FieldInterestAccrualDate::ValueType FIXPP_MSG_CLASS::get<FieldInterestAccrualDate>() const {
+ return getInterestAccrualDate();
+}
+template<> FieldCurrency::ValueType FIXPP_MSG_CLASS::get<FieldCurrency>() const {
+ return getCurrency();
+}
+template<> FieldThresholdAmount::ValueType FIXPP_MSG_CLASS::get<FieldThresholdAmount>() const {
+ return getThresholdAmount();
+}
+template<> FieldSettlPrice::ValueType FIXPP_MSG_CLASS::get<FieldSettlPrice>() const {
+ return getSettlPrice();
+}
+template<> FieldSettlPriceType::ValueType FIXPP_MSG_CLASS::get<FieldSettlPriceType>() const {
+ return getSettlPriceType();
+}
+template<> FieldUnderlyingSettlPrice::ValueType FIXPP_MSG_CLASS::get<FieldUnderlyingSettlPrice>() const {
+ return getUnderlyingSettlPrice();
+}
+template<> FieldExpireDate::ValueType FIXPP_MSG_CLASS::get<FieldExpireDate>() const {
+ return getExpireDate();
+}
+template<> FieldAssignmentMethod::ValueType FIXPP_MSG_CLASS::get<FieldAssignmentMethod>() const {
+ return getAssignmentMethod();
+}
+template<> FieldAssignmentUnit::ValueType FIXPP_MSG_CLASS::get<FieldAssignmentUnit>() const {
+ return getAssignmentUnit();
+}
+template<> FieldOpenInterest::ValueType FIXPP_MSG_CLASS::get<FieldOpenInterest>() const {
+ return getOpenInterest();
+}
+template<> FieldExerciseMethod::ValueType FIXPP_MSG_CLASS::get<FieldExerciseMethod>() const {
+ return getExerciseMethod();
+}
+template<> FieldSettlSessID::ValueType FIXPP_MSG_CLASS::get<FieldSettlSessID>() const {
+ return getSettlSessID();
+}
+template<> FieldSettlSessSubID::ValueType FIXPP_MSG_CLASS::get<FieldSettlSessSubID>() const {
+ return getSettlSessSubID();
+}
+template<> FieldClearingBusinessDate::ValueType FIXPP_MSG_CLASS::get<FieldClearingBusinessDate>() const {
+ return getClearingBusinessDate();
+}
+template<> FieldText::ValueType FIXPP_MSG_CLASS::get<FieldText>() const {
+ return getText();
+}
+template<> FieldEncodedTextLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedTextLen>() const {
+ return getEncodedTextLen();
+}
+template<> FieldEncodedText::ValueType FIXPP_MSG_CLASS::get<FieldEncodedText>() const {
+ return getEncodedText();
+}
+
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageCollateralRequest
+template<> FieldCollReqID::ValueType FIXPP_MSG_CLASS::get<FieldCollReqID>() const {
+ return getCollReqID();
+}
+template<> FieldCollAsgnReason::ValueType FIXPP_MSG_CLASS::get<FieldCollAsgnReason>() const {
+ return getCollAsgnReason();
+}
+template<> FieldTransactTime::ValueType FIXPP_MSG_CLASS::get<FieldTransactTime>() const {
+ return getTransactTime();
+}
+template<> FieldExpireTime::ValueType FIXPP_MSG_CLASS::get<FieldExpireTime>() const {
+ return getExpireTime();
+}
+template<> FieldAccount::ValueType FIXPP_MSG_CLASS::get<FieldAccount>() const {
+ return getAccount();
+}
+template<> FieldAccountType::ValueType FIXPP_MSG_CLASS::get<FieldAccountType>() const {
+ return getAccountType();
+}
+template<> FieldClOrdID::ValueType FIXPP_MSG_CLASS::get<FieldClOrdID>() const {
+ return getClOrdID();
+}
+template<> FieldOrderID::ValueType FIXPP_MSG_CLASS::get<FieldOrderID>() const {
+ return getOrderID();
+}
+template<> FieldSecondaryOrderID::ValueType FIXPP_MSG_CLASS::get<FieldSecondaryOrderID>() const {
+ return getSecondaryOrderID();
+}
+template<> FieldSecondaryClOrdID::ValueType FIXPP_MSG_CLASS::get<FieldSecondaryClOrdID>() const {
+ return getSecondaryClOrdID();
+}
+template<> FieldSymbol::ValueType FIXPP_MSG_CLASS::get<FieldSymbol>() const {
+ return getSymbol();
+}
+template<> FieldSymbolSfx::ValueType FIXPP_MSG_CLASS::get<FieldSymbolSfx>() const {
+ return getSymbolSfx();
+}
+template<> FieldSecurityID::ValueType FIXPP_MSG_CLASS::get<FieldSecurityID>() const {
+ return getSecurityID();
+}
+template<> FieldSecurityIDSource::ValueType FIXPP_MSG_CLASS::get<FieldSecurityIDSource>() const {
+ return getSecurityIDSource();
+}
+template<> FieldProduct::ValueType FIXPP_MSG_CLASS::get<FieldProduct>() const {
+ return getProduct();
+}
+template<> FieldCFICode::ValueType FIXPP_MSG_CLASS::get<FieldCFICode>() const {
+ return getCFICode();
+}
+template<> FieldSecurityType::ValueType FIXPP_MSG_CLASS::get<FieldSecurityType>() const {
+ return getSecurityType();
+}
+template<> FieldSecuritySubType::ValueType FIXPP_MSG_CLASS::get<FieldSecuritySubType>() const {
+ return getSecuritySubType();
+}
+template<> FieldMaturityMonthYear::ValueType FIXPP_MSG_CLASS::get<FieldMaturityMonthYear>() const {
+ return getMaturityMonthYear();
+}
+template<> FieldMaturityDate::ValueType FIXPP_MSG_CLASS::get<FieldMaturityDate>() const {
+ return getMaturityDate();
+}
+template<> FieldPutOrCall::ValueType FIXPP_MSG_CLASS::get<FieldPutOrCall>() const {
+ return getPutOrCall();
+}
+template<> FieldCouponPaymentDate::ValueType FIXPP_MSG_CLASS::get<FieldCouponPaymentDate>() const {
+ return getCouponPaymentDate();
+}
+template<> FieldIssueDate::ValueType FIXPP_MSG_CLASS::get<FieldIssueDate>() const {
+ return getIssueDate();
+}
+template<> FieldRepoCollateralSecurityType::ValueType FIXPP_MSG_CLASS::get<FieldRepoCollateralSecurityType>() const {
+ return getRepoCollateralSecurityType();
+}
+template<> FieldRepurchaseTerm::ValueType FIXPP_MSG_CLASS::get<FieldRepurchaseTerm>() const {
+ return getRepurchaseTerm();
+}
+template<> FieldRepurchaseRate::ValueType FIXPP_MSG_CLASS::get<FieldRepurchaseRate>() const {
+ return getRepurchaseRate();
+}
+template<> FieldFactor::ValueType FIXPP_MSG_CLASS::get<FieldFactor>() const {
+ return getFactor();
+}
+template<> FieldCreditRating::ValueType FIXPP_MSG_CLASS::get<FieldCreditRating>() const {
+ return getCreditRating();
+}
+template<> FieldInstrRegistry::ValueType FIXPP_MSG_CLASS::get<FieldInstrRegistry>() const {
+ return getInstrRegistry();
+}
+template<> FieldCountryOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldCountryOfIssue>() const {
+ return getCountryOfIssue();
+}
+template<> FieldStateOrProvinceOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldStateOrProvinceOfIssue>() const {
+ return getStateOrProvinceOfIssue();
+}
+template<> FieldLocaleOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldLocaleOfIssue>() const {
+ return getLocaleOfIssue();
+}
+template<> FieldRedemptionDate::ValueType FIXPP_MSG_CLASS::get<FieldRedemptionDate>() const {
+ return getRedemptionDate();
+}
+template<> FieldStrikePrice::ValueType FIXPP_MSG_CLASS::get<FieldStrikePrice>() const {
+ return getStrikePrice();
+}
+template<> FieldStrikeCurrency::ValueType FIXPP_MSG_CLASS::get<FieldStrikeCurrency>() const {
+ return getStrikeCurrency();
+}
+template<> FieldOptAttribute::ValueType FIXPP_MSG_CLASS::get<FieldOptAttribute>() const {
+ return getOptAttribute();
+}
+template<> FieldContractMultiplier::ValueType FIXPP_MSG_CLASS::get<FieldContractMultiplier>() const {
+ return getContractMultiplier();
+}
+template<> FieldCouponRate::ValueType FIXPP_MSG_CLASS::get<FieldCouponRate>() const {
+ return getCouponRate();
+}
+template<> FieldSecurityExchange::ValueType FIXPP_MSG_CLASS::get<FieldSecurityExchange>() const {
+ return getSecurityExchange();
+}
+template<> FieldIssuer::ValueType FIXPP_MSG_CLASS::get<FieldIssuer>() const {
+ return getIssuer();
+}
+template<> FieldEncodedIssuerLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedIssuerLen>() const {
+ return getEncodedIssuerLen();
+}
+template<> FieldEncodedIssuer::ValueType FIXPP_MSG_CLASS::get<FieldEncodedIssuer>() const {
+ return getEncodedIssuer();
+}
+template<> FieldSecurityDesc::ValueType FIXPP_MSG_CLASS::get<FieldSecurityDesc>() const {
+ return getSecurityDesc();
+}
+template<> FieldEncodedSecurityDescLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedSecurityDescLen>() const {
+ return getEncodedSecurityDescLen();
+}
+template<> FieldEncodedSecurityDesc::ValueType FIXPP_MSG_CLASS::get<FieldEncodedSecurityDesc>() const {
+ return getEncodedSecurityDesc();
+}
+template<> FieldPool::ValueType FIXPP_MSG_CLASS::get<FieldPool>() const {
+ return getPool();
+}
+template<> FieldContractSettlMonth::ValueType FIXPP_MSG_CLASS::get<FieldContractSettlMonth>() const {
+ return getContractSettlMonth();
+}
+template<> FieldCPProgram::ValueType FIXPP_MSG_CLASS::get<FieldCPProgram>() const {
+ return getCPProgram();
+}
+template<> FieldCPRegType::ValueType FIXPP_MSG_CLASS::get<FieldCPRegType>() const {
+ return getCPRegType();
+}
+template<> FieldDatedDate::ValueType FIXPP_MSG_CLASS::get<FieldDatedDate>() const {
+ return getDatedDate();
+}
+template<> FieldInterestAccrualDate::ValueType FIXPP_MSG_CLASS::get<FieldInterestAccrualDate>() const {
+ return getInterestAccrualDate();
+}
+template<> FieldAgreementDesc::ValueType FIXPP_MSG_CLASS::get<FieldAgreementDesc>() const {
+ return getAgreementDesc();
+}
+template<> FieldAgreementID::ValueType FIXPP_MSG_CLASS::get<FieldAgreementID>() const {
+ return getAgreementID();
+}
+template<> FieldAgreementDate::ValueType FIXPP_MSG_CLASS::get<FieldAgreementDate>() const {
+ return getAgreementDate();
+}
+template<> FieldAgreementCurrency::ValueType FIXPP_MSG_CLASS::get<FieldAgreementCurrency>() const {
+ return getAgreementCurrency();
+}
+template<> FieldTerminationType::ValueType FIXPP_MSG_CLASS::get<FieldTerminationType>() const {
+ return getTerminationType();
+}
+template<> FieldStartDate::ValueType FIXPP_MSG_CLASS::get<FieldStartDate>() const {
+ return getStartDate();
+}
+template<> FieldEndDate::ValueType FIXPP_MSG_CLASS::get<FieldEndDate>() const {
+ return getEndDate();
+}
+template<> FieldDeliveryType::ValueType FIXPP_MSG_CLASS::get<FieldDeliveryType>() const {
+ return getDeliveryType();
+}
+template<> FieldMarginRatio::ValueType FIXPP_MSG_CLASS::get<FieldMarginRatio>() const {
+ return getMarginRatio();
+}
+template<> FieldSettlDate::ValueType FIXPP_MSG_CLASS::get<FieldSettlDate>() const {
+ return getSettlDate();
+}
+template<> FieldQuantity::ValueType FIXPP_MSG_CLASS::get<FieldQuantity>() const {
+ return getQuantity();
+}
+template<> FieldQtyType::ValueType FIXPP_MSG_CLASS::get<FieldQtyType>() const {
+ return getQtyType();
+}
+template<> FieldCurrency::ValueType FIXPP_MSG_CLASS::get<FieldCurrency>() const {
+ return getCurrency();
+}
+template<> FieldMarginExcess::ValueType FIXPP_MSG_CLASS::get<FieldMarginExcess>() const {
+ return getMarginExcess();
+}
+template<> FieldTotalNetValue::ValueType FIXPP_MSG_CLASS::get<FieldTotalNetValue>() const {
+ return getTotalNetValue();
+}
+template<> FieldCashOutstanding::ValueType FIXPP_MSG_CLASS::get<FieldCashOutstanding>() const {
+ return getCashOutstanding();
+}
+template<> FieldSide::ValueType FIXPP_MSG_CLASS::get<FieldSide>() const {
+ return getSide();
+}
+template<> FieldPrice::ValueType FIXPP_MSG_CLASS::get<FieldPrice>() const {
+ return getPrice();
+}
+template<> FieldPriceType::ValueType FIXPP_MSG_CLASS::get<FieldPriceType>() const {
+ return getPriceType();
+}
+template<> FieldAccruedInterestAmt::ValueType FIXPP_MSG_CLASS::get<FieldAccruedInterestAmt>() const {
+ return getAccruedInterestAmt();
+}
+template<> FieldEndAccruedInterestAmt::ValueType FIXPP_MSG_CLASS::get<FieldEndAccruedInterestAmt>() const {
+ return getEndAccruedInterestAmt();
+}
+template<> FieldStartCash::ValueType FIXPP_MSG_CLASS::get<FieldStartCash>() const {
+ return getStartCash();
+}
+template<> FieldEndCash::ValueType FIXPP_MSG_CLASS::get<FieldEndCash>() const {
+ return getEndCash();
+}
+template<> FieldSpread::ValueType FIXPP_MSG_CLASS::get<FieldSpread>() const {
+ return getSpread();
+}
+template<> FieldBenchmarkCurveCurrency::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkCurveCurrency>() const {
+ return getBenchmarkCurveCurrency();
+}
+template<> FieldBenchmarkCurveName::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkCurveName>() const {
+ return getBenchmarkCurveName();
+}
+template<> FieldBenchmarkCurvePoint::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkCurvePoint>() const {
+ return getBenchmarkCurvePoint();
+}
+template<> FieldBenchmarkPrice::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkPrice>() const {
+ return getBenchmarkPrice();
+}
+template<> FieldBenchmarkPriceType::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkPriceType>() const {
+ return getBenchmarkPriceType();
+}
+template<> FieldBenchmarkSecurityID::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkSecurityID>() const {
+ return getBenchmarkSecurityID();
+}
+template<> FieldBenchmarkSecurityIDSource::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkSecurityIDSource>() const {
+ return getBenchmarkSecurityIDSource();
+}
+template<> FieldTradingSessionID::ValueType FIXPP_MSG_CLASS::get<FieldTradingSessionID>() const {
+ return getTradingSessionID();
+}
+template<> FieldTradingSessionSubID::ValueType FIXPP_MSG_CLASS::get<FieldTradingSessionSubID>() const {
+ return getTradingSessionSubID();
+}
+template<> FieldSettlSessID::ValueType FIXPP_MSG_CLASS::get<FieldSettlSessID>() const {
+ return getSettlSessID();
+}
+template<> FieldSettlSessSubID::ValueType FIXPP_MSG_CLASS::get<FieldSettlSessSubID>() const {
+ return getSettlSessSubID();
+}
+template<> FieldClearingBusinessDate::ValueType FIXPP_MSG_CLASS::get<FieldClearingBusinessDate>() const {
+ return getClearingBusinessDate();
+}
+template<> FieldText::ValueType FIXPP_MSG_CLASS::get<FieldText>() const {
+ return getText();
+}
+template<> FieldEncodedTextLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedTextLen>() const {
+ return getEncodedTextLen();
+}
+template<> FieldEncodedText::ValueType FIXPP_MSG_CLASS::get<FieldEncodedText>() const {
+ return getEncodedText();
+}
+
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageCollateralAssignment
+template<> FieldCollAsgnID::ValueType FIXPP_MSG_CLASS::get<FieldCollAsgnID>() const {
+ return getCollAsgnID();
+}
+template<> FieldCollReqID::ValueType FIXPP_MSG_CLASS::get<FieldCollReqID>() const {
+ return getCollReqID();
+}
+template<> FieldCollAsgnReason::ValueType FIXPP_MSG_CLASS::get<FieldCollAsgnReason>() const {
+ return getCollAsgnReason();
+}
+template<> FieldCollAsgnTransType::ValueType FIXPP_MSG_CLASS::get<FieldCollAsgnTransType>() const {
+ return getCollAsgnTransType();
+}
+template<> FieldCollAsgnRefID::ValueType FIXPP_MSG_CLASS::get<FieldCollAsgnRefID>() const {
+ return getCollAsgnRefID();
+}
+template<> FieldTransactTime::ValueType FIXPP_MSG_CLASS::get<FieldTransactTime>() const {
+ return getTransactTime();
+}
+template<> FieldExpireTime::ValueType FIXPP_MSG_CLASS::get<FieldExpireTime>() const {
+ return getExpireTime();
+}
+template<> FieldAccount::ValueType FIXPP_MSG_CLASS::get<FieldAccount>() const {
+ return getAccount();
+}
+template<> FieldAccountType::ValueType FIXPP_MSG_CLASS::get<FieldAccountType>() const {
+ return getAccountType();
+}
+template<> FieldClOrdID::ValueType FIXPP_MSG_CLASS::get<FieldClOrdID>() const {
+ return getClOrdID();
+}
+template<> FieldOrderID::ValueType FIXPP_MSG_CLASS::get<FieldOrderID>() const {
+ return getOrderID();
+}
+template<> FieldSecondaryOrderID::ValueType FIXPP_MSG_CLASS::get<FieldSecondaryOrderID>() const {
+ return getSecondaryOrderID();
+}
+template<> FieldSecondaryClOrdID::ValueType FIXPP_MSG_CLASS::get<FieldSecondaryClOrdID>() const {
+ return getSecondaryClOrdID();
+}
+template<> FieldSymbol::ValueType FIXPP_MSG_CLASS::get<FieldSymbol>() const {
+ return getSymbol();
+}
+template<> FieldSymbolSfx::ValueType FIXPP_MSG_CLASS::get<FieldSymbolSfx>() const {
+ return getSymbolSfx();
+}
+template<> FieldSecurityID::ValueType FIXPP_MSG_CLASS::get<FieldSecurityID>() const {
+ return getSecurityID();
+}
+template<> FieldSecurityIDSource::ValueType FIXPP_MSG_CLASS::get<FieldSecurityIDSource>() const {
+ return getSecurityIDSource();
+}
+template<> FieldProduct::ValueType FIXPP_MSG_CLASS::get<FieldProduct>() const {
+ return getProduct();
+}
+template<> FieldCFICode::ValueType FIXPP_MSG_CLASS::get<FieldCFICode>() const {
+ return getCFICode();
+}
+template<> FieldSecurityType::ValueType FIXPP_MSG_CLASS::get<FieldSecurityType>() const {
+ return getSecurityType();
+}
+template<> FieldSecuritySubType::ValueType FIXPP_MSG_CLASS::get<FieldSecuritySubType>() const {
+ return getSecuritySubType();
+}
+template<> FieldMaturityMonthYear::ValueType FIXPP_MSG_CLASS::get<FieldMaturityMonthYear>() const {
+ return getMaturityMonthYear();
+}
+template<> FieldMaturityDate::ValueType FIXPP_MSG_CLASS::get<FieldMaturityDate>() const {
+ return getMaturityDate();
+}
+template<> FieldPutOrCall::ValueType FIXPP_MSG_CLASS::get<FieldPutOrCall>() const {
+ return getPutOrCall();
+}
+template<> FieldCouponPaymentDate::ValueType FIXPP_MSG_CLASS::get<FieldCouponPaymentDate>() const {
+ return getCouponPaymentDate();
+}
+template<> FieldIssueDate::ValueType FIXPP_MSG_CLASS::get<FieldIssueDate>() const {
+ return getIssueDate();
+}
+template<> FieldRepoCollateralSecurityType::ValueType FIXPP_MSG_CLASS::get<FieldRepoCollateralSecurityType>() const {
+ return getRepoCollateralSecurityType();
+}
+template<> FieldRepurchaseTerm::ValueType FIXPP_MSG_CLASS::get<FieldRepurchaseTerm>() const {
+ return getRepurchaseTerm();
+}
+template<> FieldRepurchaseRate::ValueType FIXPP_MSG_CLASS::get<FieldRepurchaseRate>() const {
+ return getRepurchaseRate();
+}
+template<> FieldFactor::ValueType FIXPP_MSG_CLASS::get<FieldFactor>() const {
+ return getFactor();
+}
+template<> FieldCreditRating::ValueType FIXPP_MSG_CLASS::get<FieldCreditRating>() const {
+ return getCreditRating();
+}
+template<> FieldInstrRegistry::ValueType FIXPP_MSG_CLASS::get<FieldInstrRegistry>() const {
+ return getInstrRegistry();
+}
+template<> FieldCountryOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldCountryOfIssue>() const {
+ return getCountryOfIssue();
+}
+template<> FieldStateOrProvinceOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldStateOrProvinceOfIssue>() const {
+ return getStateOrProvinceOfIssue();
+}
+template<> FieldLocaleOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldLocaleOfIssue>() const {
+ return getLocaleOfIssue();
+}
+template<> FieldRedemptionDate::ValueType FIXPP_MSG_CLASS::get<FieldRedemptionDate>() const {
+ return getRedemptionDate();
+}
+template<> FieldStrikePrice::ValueType FIXPP_MSG_CLASS::get<FieldStrikePrice>() const {
+ return getStrikePrice();
+}
+template<> FieldStrikeCurrency::ValueType FIXPP_MSG_CLASS::get<FieldStrikeCurrency>() const {
+ return getStrikeCurrency();
+}
+template<> FieldOptAttribute::ValueType FIXPP_MSG_CLASS::get<FieldOptAttribute>() const {
+ return getOptAttribute();
+}
+template<> FieldContractMultiplier::ValueType FIXPP_MSG_CLASS::get<FieldContractMultiplier>() const {
+ return getContractMultiplier();
+}
+template<> FieldCouponRate::ValueType FIXPP_MSG_CLASS::get<FieldCouponRate>() const {
+ return getCouponRate();
+}
+template<> FieldSecurityExchange::ValueType FIXPP_MSG_CLASS::get<FieldSecurityExchange>() const {
+ return getSecurityExchange();
+}
+template<> FieldIssuer::ValueType FIXPP_MSG_CLASS::get<FieldIssuer>() const {
+ return getIssuer();
+}
+template<> FieldEncodedIssuerLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedIssuerLen>() const {
+ return getEncodedIssuerLen();
+}
+template<> FieldEncodedIssuer::ValueType FIXPP_MSG_CLASS::get<FieldEncodedIssuer>() const {
+ return getEncodedIssuer();
+}
+template<> FieldSecurityDesc::ValueType FIXPP_MSG_CLASS::get<FieldSecurityDesc>() const {
+ return getSecurityDesc();
+}
+template<> FieldEncodedSecurityDescLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedSecurityDescLen>() const {
+ return getEncodedSecurityDescLen();
+}
+template<> FieldEncodedSecurityDesc::ValueType FIXPP_MSG_CLASS::get<FieldEncodedSecurityDesc>() const {
+ return getEncodedSecurityDesc();
+}
+template<> FieldPool::ValueType FIXPP_MSG_CLASS::get<FieldPool>() const {
+ return getPool();
+}
+template<> FieldContractSettlMonth::ValueType FIXPP_MSG_CLASS::get<FieldContractSettlMonth>() const {
+ return getContractSettlMonth();
+}
+template<> FieldCPProgram::ValueType FIXPP_MSG_CLASS::get<FieldCPProgram>() const {
+ return getCPProgram();
+}
+template<> FieldCPRegType::ValueType FIXPP_MSG_CLASS::get<FieldCPRegType>() const {
+ return getCPRegType();
+}
+template<> FieldDatedDate::ValueType FIXPP_MSG_CLASS::get<FieldDatedDate>() const {
+ return getDatedDate();
+}
+template<> FieldInterestAccrualDate::ValueType FIXPP_MSG_CLASS::get<FieldInterestAccrualDate>() const {
+ return getInterestAccrualDate();
+}
+template<> FieldAgreementDesc::ValueType FIXPP_MSG_CLASS::get<FieldAgreementDesc>() const {
+ return getAgreementDesc();
+}
+template<> FieldAgreementID::ValueType FIXPP_MSG_CLASS::get<FieldAgreementID>() const {
+ return getAgreementID();
+}
+template<> FieldAgreementDate::ValueType FIXPP_MSG_CLASS::get<FieldAgreementDate>() const {
+ return getAgreementDate();
+}
+template<> FieldAgreementCurrency::ValueType FIXPP_MSG_CLASS::get<FieldAgreementCurrency>() const {
+ return getAgreementCurrency();
+}
+template<> FieldTerminationType::ValueType FIXPP_MSG_CLASS::get<FieldTerminationType>() const {
+ return getTerminationType();
+}
+template<> FieldStartDate::ValueType FIXPP_MSG_CLASS::get<FieldStartDate>() const {
+ return getStartDate();
+}
+template<> FieldEndDate::ValueType FIXPP_MSG_CLASS::get<FieldEndDate>() const {
+ return getEndDate();
+}
+template<> FieldDeliveryType::ValueType FIXPP_MSG_CLASS::get<FieldDeliveryType>() const {
+ return getDeliveryType();
+}
+template<> FieldMarginRatio::ValueType FIXPP_MSG_CLASS::get<FieldMarginRatio>() const {
+ return getMarginRatio();
+}
+template<> FieldSettlDate::ValueType FIXPP_MSG_CLASS::get<FieldSettlDate>() const {
+ return getSettlDate();
+}
+template<> FieldQuantity::ValueType FIXPP_MSG_CLASS::get<FieldQuantity>() const {
+ return getQuantity();
+}
+template<> FieldQtyType::ValueType FIXPP_MSG_CLASS::get<FieldQtyType>() const {
+ return getQtyType();
+}
+template<> FieldCurrency::ValueType FIXPP_MSG_CLASS::get<FieldCurrency>() const {
+ return getCurrency();
+}
+template<> FieldMarginExcess::ValueType FIXPP_MSG_CLASS::get<FieldMarginExcess>() const {
+ return getMarginExcess();
+}
+template<> FieldTotalNetValue::ValueType FIXPP_MSG_CLASS::get<FieldTotalNetValue>() const {
+ return getTotalNetValue();
+}
+template<> FieldCashOutstanding::ValueType FIXPP_MSG_CLASS::get<FieldCashOutstanding>() const {
+ return getCashOutstanding();
+}
+template<> FieldSide::ValueType FIXPP_MSG_CLASS::get<FieldSide>() const {
+ return getSide();
+}
+template<> FieldPrice::ValueType FIXPP_MSG_CLASS::get<FieldPrice>() const {
+ return getPrice();
+}
+template<> FieldPriceType::ValueType FIXPP_MSG_CLASS::get<FieldPriceType>() const {
+ return getPriceType();
+}
+template<> FieldAccruedInterestAmt::ValueType FIXPP_MSG_CLASS::get<FieldAccruedInterestAmt>() const {
+ return getAccruedInterestAmt();
+}
+template<> FieldEndAccruedInterestAmt::ValueType FIXPP_MSG_CLASS::get<FieldEndAccruedInterestAmt>() const {
+ return getEndAccruedInterestAmt();
+}
+template<> FieldStartCash::ValueType FIXPP_MSG_CLASS::get<FieldStartCash>() const {
+ return getStartCash();
+}
+template<> FieldEndCash::ValueType FIXPP_MSG_CLASS::get<FieldEndCash>() const {
+ return getEndCash();
+}
+template<> FieldSpread::ValueType FIXPP_MSG_CLASS::get<FieldSpread>() const {
+ return getSpread();
+}
+template<> FieldBenchmarkCurveCurrency::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkCurveCurrency>() const {
+ return getBenchmarkCurveCurrency();
+}
+template<> FieldBenchmarkCurveName::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkCurveName>() const {
+ return getBenchmarkCurveName();
+}
+template<> FieldBenchmarkCurvePoint::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkCurvePoint>() const {
+ return getBenchmarkCurvePoint();
+}
+template<> FieldBenchmarkPrice::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkPrice>() const {
+ return getBenchmarkPrice();
+}
+template<> FieldBenchmarkPriceType::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkPriceType>() const {
+ return getBenchmarkPriceType();
+}
+template<> FieldBenchmarkSecurityID::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkSecurityID>() const {
+ return getBenchmarkSecurityID();
+}
+template<> FieldBenchmarkSecurityIDSource::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkSecurityIDSource>() const {
+ return getBenchmarkSecurityIDSource();
+}
+template<> FieldSettlDeliveryType::ValueType FIXPP_MSG_CLASS::get<FieldSettlDeliveryType>() const {
+ return getSettlDeliveryType();
+}
+template<> FieldStandInstDbType::ValueType FIXPP_MSG_CLASS::get<FieldStandInstDbType>() const {
+ return getStandInstDbType();
+}
+template<> FieldStandInstDbName::ValueType FIXPP_MSG_CLASS::get<FieldStandInstDbName>() const {
+ return getStandInstDbName();
+}
+template<> FieldStandInstDbID::ValueType FIXPP_MSG_CLASS::get<FieldStandInstDbID>() const {
+ return getStandInstDbID();
+}
+template<> FieldTradingSessionID::ValueType FIXPP_MSG_CLASS::get<FieldTradingSessionID>() const {
+ return getTradingSessionID();
+}
+template<> FieldTradingSessionSubID::ValueType FIXPP_MSG_CLASS::get<FieldTradingSessionSubID>() const {
+ return getTradingSessionSubID();
+}
+template<> FieldSettlSessID::ValueType FIXPP_MSG_CLASS::get<FieldSettlSessID>() const {
+ return getSettlSessID();
+}
+template<> FieldSettlSessSubID::ValueType FIXPP_MSG_CLASS::get<FieldSettlSessSubID>() const {
+ return getSettlSessSubID();
+}
+template<> FieldClearingBusinessDate::ValueType FIXPP_MSG_CLASS::get<FieldClearingBusinessDate>() const {
+ return getClearingBusinessDate();
+}
+template<> FieldText::ValueType FIXPP_MSG_CLASS::get<FieldText>() const {
+ return getText();
+}
+template<> FieldEncodedTextLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedTextLen>() const {
+ return getEncodedTextLen();
+}
+template<> FieldEncodedText::ValueType FIXPP_MSG_CLASS::get<FieldEncodedText>() const {
+ return getEncodedText();
+}
+
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageCollateralResponse
+template<> FieldCollRespID::ValueType FIXPP_MSG_CLASS::get<FieldCollRespID>() const {
+ return getCollRespID();
+}
+template<> FieldCollAsgnID::ValueType FIXPP_MSG_CLASS::get<FieldCollAsgnID>() const {
+ return getCollAsgnID();
+}
+template<> FieldCollReqID::ValueType FIXPP_MSG_CLASS::get<FieldCollReqID>() const {
+ return getCollReqID();
+}
+template<> FieldCollAsgnReason::ValueType FIXPP_MSG_CLASS::get<FieldCollAsgnReason>() const {
+ return getCollAsgnReason();
+}
+template<> FieldCollAsgnTransType::ValueType FIXPP_MSG_CLASS::get<FieldCollAsgnTransType>() const {
+ return getCollAsgnTransType();
+}
+template<> FieldCollAsgnRespType::ValueType FIXPP_MSG_CLASS::get<FieldCollAsgnRespType>() const {
+ return getCollAsgnRespType();
+}
+template<> FieldCollAsgnRejectReason::ValueType FIXPP_MSG_CLASS::get<FieldCollAsgnRejectReason>() const {
+ return getCollAsgnRejectReason();
+}
+template<> FieldTransactTime::ValueType FIXPP_MSG_CLASS::get<FieldTransactTime>() const {
+ return getTransactTime();
+}
+template<> FieldAccount::ValueType FIXPP_MSG_CLASS::get<FieldAccount>() const {
+ return getAccount();
+}
+template<> FieldAccountType::ValueType FIXPP_MSG_CLASS::get<FieldAccountType>() const {
+ return getAccountType();
+}
+template<> FieldClOrdID::ValueType FIXPP_MSG_CLASS::get<FieldClOrdID>() const {
+ return getClOrdID();
+}
+template<> FieldOrderID::ValueType FIXPP_MSG_CLASS::get<FieldOrderID>() const {
+ return getOrderID();
+}
+template<> FieldSecondaryOrderID::ValueType FIXPP_MSG_CLASS::get<FieldSecondaryOrderID>() const {
+ return getSecondaryOrderID();
+}
+template<> FieldSecondaryClOrdID::ValueType FIXPP_MSG_CLASS::get<FieldSecondaryClOrdID>() const {
+ return getSecondaryClOrdID();
+}
+template<> FieldSymbol::ValueType FIXPP_MSG_CLASS::get<FieldSymbol>() const {
+ return getSymbol();
+}
+template<> FieldSymbolSfx::ValueType FIXPP_MSG_CLASS::get<FieldSymbolSfx>() const {
+ return getSymbolSfx();
+}
+template<> FieldSecurityID::ValueType FIXPP_MSG_CLASS::get<FieldSecurityID>() const {
+ return getSecurityID();
+}
+template<> FieldSecurityIDSource::ValueType FIXPP_MSG_CLASS::get<FieldSecurityIDSource>() const {
+ return getSecurityIDSource();
+}
+template<> FieldProduct::ValueType FIXPP_MSG_CLASS::get<FieldProduct>() const {
+ return getProduct();
+}
+template<> FieldCFICode::ValueType FIXPP_MSG_CLASS::get<FieldCFICode>() const {
+ return getCFICode();
+}
+template<> FieldSecurityType::ValueType FIXPP_MSG_CLASS::get<FieldSecurityType>() const {
+ return getSecurityType();
+}
+template<> FieldSecuritySubType::ValueType FIXPP_MSG_CLASS::get<FieldSecuritySubType>() const {
+ return getSecuritySubType();
+}
+template<> FieldMaturityMonthYear::ValueType FIXPP_MSG_CLASS::get<FieldMaturityMonthYear>() const {
+ return getMaturityMonthYear();
+}
+template<> FieldMaturityDate::ValueType FIXPP_MSG_CLASS::get<FieldMaturityDate>() const {
+ return getMaturityDate();
+}
+template<> FieldPutOrCall::ValueType FIXPP_MSG_CLASS::get<FieldPutOrCall>() const {
+ return getPutOrCall();
+}
+template<> FieldCouponPaymentDate::ValueType FIXPP_MSG_CLASS::get<FieldCouponPaymentDate>() const {
+ return getCouponPaymentDate();
+}
+template<> FieldIssueDate::ValueType FIXPP_MSG_CLASS::get<FieldIssueDate>() const {
+ return getIssueDate();
+}
+template<> FieldRepoCollateralSecurityType::ValueType FIXPP_MSG_CLASS::get<FieldRepoCollateralSecurityType>() const {
+ return getRepoCollateralSecurityType();
+}
+template<> FieldRepurchaseTerm::ValueType FIXPP_MSG_CLASS::get<FieldRepurchaseTerm>() const {
+ return getRepurchaseTerm();
+}
+template<> FieldRepurchaseRate::ValueType FIXPP_MSG_CLASS::get<FieldRepurchaseRate>() const {
+ return getRepurchaseRate();
+}
+template<> FieldFactor::ValueType FIXPP_MSG_CLASS::get<FieldFactor>() const {
+ return getFactor();
+}
+template<> FieldCreditRating::ValueType FIXPP_MSG_CLASS::get<FieldCreditRating>() const {
+ return getCreditRating();
+}
+template<> FieldInstrRegistry::ValueType FIXPP_MSG_CLASS::get<FieldInstrRegistry>() const {
+ return getInstrRegistry();
+}
+template<> FieldCountryOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldCountryOfIssue>() const {
+ return getCountryOfIssue();
+}
+template<> FieldStateOrProvinceOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldStateOrProvinceOfIssue>() const {
+ return getStateOrProvinceOfIssue();
+}
+template<> FieldLocaleOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldLocaleOfIssue>() const {
+ return getLocaleOfIssue();
+}
+template<> FieldRedemptionDate::ValueType FIXPP_MSG_CLASS::get<FieldRedemptionDate>() const {
+ return getRedemptionDate();
+}
+template<> FieldStrikePrice::ValueType FIXPP_MSG_CLASS::get<FieldStrikePrice>() const {
+ return getStrikePrice();
+}
+template<> FieldStrikeCurrency::ValueType FIXPP_MSG_CLASS::get<FieldStrikeCurrency>() const {
+ return getStrikeCurrency();
+}
+template<> FieldOptAttribute::ValueType FIXPP_MSG_CLASS::get<FieldOptAttribute>() const {
+ return getOptAttribute();
+}
+template<> FieldContractMultiplier::ValueType FIXPP_MSG_CLASS::get<FieldContractMultiplier>() const {
+ return getContractMultiplier();
+}
+template<> FieldCouponRate::ValueType FIXPP_MSG_CLASS::get<FieldCouponRate>() const {
+ return getCouponRate();
+}
+template<> FieldSecurityExchange::ValueType FIXPP_MSG_CLASS::get<FieldSecurityExchange>() const {
+ return getSecurityExchange();
+}
+template<> FieldIssuer::ValueType FIXPP_MSG_CLASS::get<FieldIssuer>() const {
+ return getIssuer();
+}
+template<> FieldEncodedIssuerLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedIssuerLen>() const {
+ return getEncodedIssuerLen();
+}
+template<> FieldEncodedIssuer::ValueType FIXPP_MSG_CLASS::get<FieldEncodedIssuer>() const {
+ return getEncodedIssuer();
+}
+template<> FieldSecurityDesc::ValueType FIXPP_MSG_CLASS::get<FieldSecurityDesc>() const {
+ return getSecurityDesc();
+}
+template<> FieldEncodedSecurityDescLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedSecurityDescLen>() const {
+ return getEncodedSecurityDescLen();
+}
+template<> FieldEncodedSecurityDesc::ValueType FIXPP_MSG_CLASS::get<FieldEncodedSecurityDesc>() const {
+ return getEncodedSecurityDesc();
+}
+template<> FieldPool::ValueType FIXPP_MSG_CLASS::get<FieldPool>() const {
+ return getPool();
+}
+template<> FieldContractSettlMonth::ValueType FIXPP_MSG_CLASS::get<FieldContractSettlMonth>() const {
+ return getContractSettlMonth();
+}
+template<> FieldCPProgram::ValueType FIXPP_MSG_CLASS::get<FieldCPProgram>() const {
+ return getCPProgram();
+}
+template<> FieldCPRegType::ValueType FIXPP_MSG_CLASS::get<FieldCPRegType>() const {
+ return getCPRegType();
+}
+template<> FieldDatedDate::ValueType FIXPP_MSG_CLASS::get<FieldDatedDate>() const {
+ return getDatedDate();
+}
+template<> FieldInterestAccrualDate::ValueType FIXPP_MSG_CLASS::get<FieldInterestAccrualDate>() const {
+ return getInterestAccrualDate();
+}
+template<> FieldAgreementDesc::ValueType FIXPP_MSG_CLASS::get<FieldAgreementDesc>() const {
+ return getAgreementDesc();
+}
+template<> FieldAgreementID::ValueType FIXPP_MSG_CLASS::get<FieldAgreementID>() const {
+ return getAgreementID();
+}
+template<> FieldAgreementDate::ValueType FIXPP_MSG_CLASS::get<FieldAgreementDate>() const {
+ return getAgreementDate();
+}
+template<> FieldAgreementCurrency::ValueType FIXPP_MSG_CLASS::get<FieldAgreementCurrency>() const {
+ return getAgreementCurrency();
+}
+template<> FieldTerminationType::ValueType FIXPP_MSG_CLASS::get<FieldTerminationType>() const {
+ return getTerminationType();
+}
+template<> FieldStartDate::ValueType FIXPP_MSG_CLASS::get<FieldStartDate>() const {
+ return getStartDate();
+}
+template<> FieldEndDate::ValueType FIXPP_MSG_CLASS::get<FieldEndDate>() const {
+ return getEndDate();
+}
+template<> FieldDeliveryType::ValueType FIXPP_MSG_CLASS::get<FieldDeliveryType>() const {
+ return getDeliveryType();
+}
+template<> FieldMarginRatio::ValueType FIXPP_MSG_CLASS::get<FieldMarginRatio>() const {
+ return getMarginRatio();
+}
+template<> FieldSettlDate::ValueType FIXPP_MSG_CLASS::get<FieldSettlDate>() const {
+ return getSettlDate();
+}
+template<> FieldQuantity::ValueType FIXPP_MSG_CLASS::get<FieldQuantity>() const {
+ return getQuantity();
+}
+template<> FieldQtyType::ValueType FIXPP_MSG_CLASS::get<FieldQtyType>() const {
+ return getQtyType();
+}
+template<> FieldCurrency::ValueType FIXPP_MSG_CLASS::get<FieldCurrency>() const {
+ return getCurrency();
+}
+template<> FieldMarginExcess::ValueType FIXPP_MSG_CLASS::get<FieldMarginExcess>() const {
+ return getMarginExcess();
+}
+template<> FieldTotalNetValue::ValueType FIXPP_MSG_CLASS::get<FieldTotalNetValue>() const {
+ return getTotalNetValue();
+}
+template<> FieldCashOutstanding::ValueType FIXPP_MSG_CLASS::get<FieldCashOutstanding>() const {
+ return getCashOutstanding();
+}
+template<> FieldSide::ValueType FIXPP_MSG_CLASS::get<FieldSide>() const {
+ return getSide();
+}
+template<> FieldPrice::ValueType FIXPP_MSG_CLASS::get<FieldPrice>() const {
+ return getPrice();
+}
+template<> FieldPriceType::ValueType FIXPP_MSG_CLASS::get<FieldPriceType>() const {
+ return getPriceType();
+}
+template<> FieldAccruedInterestAmt::ValueType FIXPP_MSG_CLASS::get<FieldAccruedInterestAmt>() const {
+ return getAccruedInterestAmt();
+}
+template<> FieldEndAccruedInterestAmt::ValueType FIXPP_MSG_CLASS::get<FieldEndAccruedInterestAmt>() const {
+ return getEndAccruedInterestAmt();
+}
+template<> FieldStartCash::ValueType FIXPP_MSG_CLASS::get<FieldStartCash>() const {
+ return getStartCash();
+}
+template<> FieldEndCash::ValueType FIXPP_MSG_CLASS::get<FieldEndCash>() const {
+ return getEndCash();
+}
+template<> FieldSpread::ValueType FIXPP_MSG_CLASS::get<FieldSpread>() const {
+ return getSpread();
+}
+template<> FieldBenchmarkCurveCurrency::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkCurveCurrency>() const {
+ return getBenchmarkCurveCurrency();
+}
+template<> FieldBenchmarkCurveName::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkCurveName>() const {
+ return getBenchmarkCurveName();
+}
+template<> FieldBenchmarkCurvePoint::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkCurvePoint>() const {
+ return getBenchmarkCurvePoint();
+}
+template<> FieldBenchmarkPrice::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkPrice>() const {
+ return getBenchmarkPrice();
+}
+template<> FieldBenchmarkPriceType::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkPriceType>() const {
+ return getBenchmarkPriceType();
+}
+template<> FieldBenchmarkSecurityID::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkSecurityID>() const {
+ return getBenchmarkSecurityID();
+}
+template<> FieldBenchmarkSecurityIDSource::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkSecurityIDSource>() const {
+ return getBenchmarkSecurityIDSource();
+}
+template<> FieldText::ValueType FIXPP_MSG_CLASS::get<FieldText>() const {
+ return getText();
+}
+template<> FieldEncodedTextLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedTextLen>() const {
+ return getEncodedTextLen();
+}
+template<> FieldEncodedText::ValueType FIXPP_MSG_CLASS::get<FieldEncodedText>() const {
+ return getEncodedText();
+}
+
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageCollateralReport
+template<> FieldCollRptID::ValueType FIXPP_MSG_CLASS::get<FieldCollRptID>() const {
+ return getCollRptID();
+}
+template<> FieldCollInquiryID::ValueType FIXPP_MSG_CLASS::get<FieldCollInquiryID>() const {
+ return getCollInquiryID();
+}
+template<> FieldCollStatus::ValueType FIXPP_MSG_CLASS::get<FieldCollStatus>() const {
+ return getCollStatus();
+}
+template<> FieldTotNumReports::ValueType FIXPP_MSG_CLASS::get<FieldTotNumReports>() const {
+ return getTotNumReports();
+}
+template<> FieldLastRptRequested::ValueType FIXPP_MSG_CLASS::get<FieldLastRptRequested>() const {
+ return getLastRptRequested();
+}
+template<> FieldAccount::ValueType FIXPP_MSG_CLASS::get<FieldAccount>() const {
+ return getAccount();
+}
+template<> FieldAccountType::ValueType FIXPP_MSG_CLASS::get<FieldAccountType>() const {
+ return getAccountType();
+}
+template<> FieldClOrdID::ValueType FIXPP_MSG_CLASS::get<FieldClOrdID>() const {
+ return getClOrdID();
+}
+template<> FieldOrderID::ValueType FIXPP_MSG_CLASS::get<FieldOrderID>() const {
+ return getOrderID();
+}
+template<> FieldSecondaryOrderID::ValueType FIXPP_MSG_CLASS::get<FieldSecondaryOrderID>() const {
+ return getSecondaryOrderID();
+}
+template<> FieldSecondaryClOrdID::ValueType FIXPP_MSG_CLASS::get<FieldSecondaryClOrdID>() const {
+ return getSecondaryClOrdID();
+}
+template<> FieldSymbol::ValueType FIXPP_MSG_CLASS::get<FieldSymbol>() const {
+ return getSymbol();
+}
+template<> FieldSymbolSfx::ValueType FIXPP_MSG_CLASS::get<FieldSymbolSfx>() const {
+ return getSymbolSfx();
+}
+template<> FieldSecurityID::ValueType FIXPP_MSG_CLASS::get<FieldSecurityID>() const {
+ return getSecurityID();
+}
+template<> FieldSecurityIDSource::ValueType FIXPP_MSG_CLASS::get<FieldSecurityIDSource>() const {
+ return getSecurityIDSource();
+}
+template<> FieldProduct::ValueType FIXPP_MSG_CLASS::get<FieldProduct>() const {
+ return getProduct();
+}
+template<> FieldCFICode::ValueType FIXPP_MSG_CLASS::get<FieldCFICode>() const {
+ return getCFICode();
+}
+template<> FieldSecurityType::ValueType FIXPP_MSG_CLASS::get<FieldSecurityType>() const {
+ return getSecurityType();
+}
+template<> FieldSecuritySubType::ValueType FIXPP_MSG_CLASS::get<FieldSecuritySubType>() const {
+ return getSecuritySubType();
+}
+template<> FieldMaturityMonthYear::ValueType FIXPP_MSG_CLASS::get<FieldMaturityMonthYear>() const {
+ return getMaturityMonthYear();
+}
+template<> FieldMaturityDate::ValueType FIXPP_MSG_CLASS::get<FieldMaturityDate>() const {
+ return getMaturityDate();
+}
+template<> FieldPutOrCall::ValueType FIXPP_MSG_CLASS::get<FieldPutOrCall>() const {
+ return getPutOrCall();
+}
+template<> FieldCouponPaymentDate::ValueType FIXPP_MSG_CLASS::get<FieldCouponPaymentDate>() const {
+ return getCouponPaymentDate();
+}
+template<> FieldIssueDate::ValueType FIXPP_MSG_CLASS::get<FieldIssueDate>() const {
+ return getIssueDate();
+}
+template<> FieldRepoCollateralSecurityType::ValueType FIXPP_MSG_CLASS::get<FieldRepoCollateralSecurityType>() const {
+ return getRepoCollateralSecurityType();
+}
+template<> FieldRepurchaseTerm::ValueType FIXPP_MSG_CLASS::get<FieldRepurchaseTerm>() const {
+ return getRepurchaseTerm();
+}
+template<> FieldRepurchaseRate::ValueType FIXPP_MSG_CLASS::get<FieldRepurchaseRate>() const {
+ return getRepurchaseRate();
+}
+template<> FieldFactor::ValueType FIXPP_MSG_CLASS::get<FieldFactor>() const {
+ return getFactor();
+}
+template<> FieldCreditRating::ValueType FIXPP_MSG_CLASS::get<FieldCreditRating>() const {
+ return getCreditRating();
+}
+template<> FieldInstrRegistry::ValueType FIXPP_MSG_CLASS::get<FieldInstrRegistry>() const {
+ return getInstrRegistry();
+}
+template<> FieldCountryOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldCountryOfIssue>() const {
+ return getCountryOfIssue();
+}
+template<> FieldStateOrProvinceOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldStateOrProvinceOfIssue>() const {
+ return getStateOrProvinceOfIssue();
+}
+template<> FieldLocaleOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldLocaleOfIssue>() const {
+ return getLocaleOfIssue();
+}
+template<> FieldRedemptionDate::ValueType FIXPP_MSG_CLASS::get<FieldRedemptionDate>() const {
+ return getRedemptionDate();
+}
+template<> FieldStrikePrice::ValueType FIXPP_MSG_CLASS::get<FieldStrikePrice>() const {
+ return getStrikePrice();
+}
+template<> FieldStrikeCurrency::ValueType FIXPP_MSG_CLASS::get<FieldStrikeCurrency>() const {
+ return getStrikeCurrency();
+}
+template<> FieldOptAttribute::ValueType FIXPP_MSG_CLASS::get<FieldOptAttribute>() const {
+ return getOptAttribute();
+}
+template<> FieldContractMultiplier::ValueType FIXPP_MSG_CLASS::get<FieldContractMultiplier>() const {
+ return getContractMultiplier();
+}
+template<> FieldCouponRate::ValueType FIXPP_MSG_CLASS::get<FieldCouponRate>() const {
+ return getCouponRate();
+}
+template<> FieldSecurityExchange::ValueType FIXPP_MSG_CLASS::get<FieldSecurityExchange>() const {
+ return getSecurityExchange();
+}
+template<> FieldIssuer::ValueType FIXPP_MSG_CLASS::get<FieldIssuer>() const {
+ return getIssuer();
+}
+template<> FieldEncodedIssuerLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedIssuerLen>() const {
+ return getEncodedIssuerLen();
+}
+template<> FieldEncodedIssuer::ValueType FIXPP_MSG_CLASS::get<FieldEncodedIssuer>() const {
+ return getEncodedIssuer();
+}
+template<> FieldSecurityDesc::ValueType FIXPP_MSG_CLASS::get<FieldSecurityDesc>() const {
+ return getSecurityDesc();
+}
+template<> FieldEncodedSecurityDescLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedSecurityDescLen>() const {
+ return getEncodedSecurityDescLen();
+}
+template<> FieldEncodedSecurityDesc::ValueType FIXPP_MSG_CLASS::get<FieldEncodedSecurityDesc>() const {
+ return getEncodedSecurityDesc();
+}
+template<> FieldPool::ValueType FIXPP_MSG_CLASS::get<FieldPool>() const {
+ return getPool();
+}
+template<> FieldContractSettlMonth::ValueType FIXPP_MSG_CLASS::get<FieldContractSettlMonth>() const {
+ return getContractSettlMonth();
+}
+template<> FieldCPProgram::ValueType FIXPP_MSG_CLASS::get<FieldCPProgram>() const {
+ return getCPProgram();
+}
+template<> FieldCPRegType::ValueType FIXPP_MSG_CLASS::get<FieldCPRegType>() const {
+ return getCPRegType();
+}
+template<> FieldDatedDate::ValueType FIXPP_MSG_CLASS::get<FieldDatedDate>() const {
+ return getDatedDate();
+}
+template<> FieldInterestAccrualDate::ValueType FIXPP_MSG_CLASS::get<FieldInterestAccrualDate>() const {
+ return getInterestAccrualDate();
+}
+template<> FieldAgreementDesc::ValueType FIXPP_MSG_CLASS::get<FieldAgreementDesc>() const {
+ return getAgreementDesc();
+}
+template<> FieldAgreementID::ValueType FIXPP_MSG_CLASS::get<FieldAgreementID>() const {
+ return getAgreementID();
+}
+template<> FieldAgreementDate::ValueType FIXPP_MSG_CLASS::get<FieldAgreementDate>() const {
+ return getAgreementDate();
+}
+template<> FieldAgreementCurrency::ValueType FIXPP_MSG_CLASS::get<FieldAgreementCurrency>() const {
+ return getAgreementCurrency();
+}
+template<> FieldTerminationType::ValueType FIXPP_MSG_CLASS::get<FieldTerminationType>() const {
+ return getTerminationType();
+}
+template<> FieldStartDate::ValueType FIXPP_MSG_CLASS::get<FieldStartDate>() const {
+ return getStartDate();
+}
+template<> FieldEndDate::ValueType FIXPP_MSG_CLASS::get<FieldEndDate>() const {
+ return getEndDate();
+}
+template<> FieldDeliveryType::ValueType FIXPP_MSG_CLASS::get<FieldDeliveryType>() const {
+ return getDeliveryType();
+}
+template<> FieldMarginRatio::ValueType FIXPP_MSG_CLASS::get<FieldMarginRatio>() const {
+ return getMarginRatio();
+}
+template<> FieldSettlDate::ValueType FIXPP_MSG_CLASS::get<FieldSettlDate>() const {
+ return getSettlDate();
+}
+template<> FieldQuantity::ValueType FIXPP_MSG_CLASS::get<FieldQuantity>() const {
+ return getQuantity();
+}
+template<> FieldQtyType::ValueType FIXPP_MSG_CLASS::get<FieldQtyType>() const {
+ return getQtyType();
+}
+template<> FieldCurrency::ValueType FIXPP_MSG_CLASS::get<FieldCurrency>() const {
+ return getCurrency();
+}
+template<> FieldMarginExcess::ValueType FIXPP_MSG_CLASS::get<FieldMarginExcess>() const {
+ return getMarginExcess();
+}
+template<> FieldTotalNetValue::ValueType FIXPP_MSG_CLASS::get<FieldTotalNetValue>() const {
+ return getTotalNetValue();
+}
+template<> FieldCashOutstanding::ValueType FIXPP_MSG_CLASS::get<FieldCashOutstanding>() const {
+ return getCashOutstanding();
+}
+template<> FieldSide::ValueType FIXPP_MSG_CLASS::get<FieldSide>() const {
+ return getSide();
+}
+template<> FieldPrice::ValueType FIXPP_MSG_CLASS::get<FieldPrice>() const {
+ return getPrice();
+}
+template<> FieldPriceType::ValueType FIXPP_MSG_CLASS::get<FieldPriceType>() const {
+ return getPriceType();
+}
+template<> FieldAccruedInterestAmt::ValueType FIXPP_MSG_CLASS::get<FieldAccruedInterestAmt>() const {
+ return getAccruedInterestAmt();
+}
+template<> FieldEndAccruedInterestAmt::ValueType FIXPP_MSG_CLASS::get<FieldEndAccruedInterestAmt>() const {
+ return getEndAccruedInterestAmt();
+}
+template<> FieldStartCash::ValueType FIXPP_MSG_CLASS::get<FieldStartCash>() const {
+ return getStartCash();
+}
+template<> FieldEndCash::ValueType FIXPP_MSG_CLASS::get<FieldEndCash>() const {
+ return getEndCash();
+}
+template<> FieldSpread::ValueType FIXPP_MSG_CLASS::get<FieldSpread>() const {
+ return getSpread();
+}
+template<> FieldBenchmarkCurveCurrency::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkCurveCurrency>() const {
+ return getBenchmarkCurveCurrency();
+}
+template<> FieldBenchmarkCurveName::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkCurveName>() const {
+ return getBenchmarkCurveName();
+}
+template<> FieldBenchmarkCurvePoint::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkCurvePoint>() const {
+ return getBenchmarkCurvePoint();
+}
+template<> FieldBenchmarkPrice::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkPrice>() const {
+ return getBenchmarkPrice();
+}
+template<> FieldBenchmarkPriceType::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkPriceType>() const {
+ return getBenchmarkPriceType();
+}
+template<> FieldBenchmarkSecurityID::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkSecurityID>() const {
+ return getBenchmarkSecurityID();
+}
+template<> FieldBenchmarkSecurityIDSource::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkSecurityIDSource>() const {
+ return getBenchmarkSecurityIDSource();
+}
+template<> FieldSettlDeliveryType::ValueType FIXPP_MSG_CLASS::get<FieldSettlDeliveryType>() const {
+ return getSettlDeliveryType();
+}
+template<> FieldStandInstDbType::ValueType FIXPP_MSG_CLASS::get<FieldStandInstDbType>() const {
+ return getStandInstDbType();
+}
+template<> FieldStandInstDbName::ValueType FIXPP_MSG_CLASS::get<FieldStandInstDbName>() const {
+ return getStandInstDbName();
+}
+template<> FieldStandInstDbID::ValueType FIXPP_MSG_CLASS::get<FieldStandInstDbID>() const {
+ return getStandInstDbID();
+}
+template<> FieldTradingSessionID::ValueType FIXPP_MSG_CLASS::get<FieldTradingSessionID>() const {
+ return getTradingSessionID();
+}
+template<> FieldTradingSessionSubID::ValueType FIXPP_MSG_CLASS::get<FieldTradingSessionSubID>() const {
+ return getTradingSessionSubID();
+}
+template<> FieldSettlSessID::ValueType FIXPP_MSG_CLASS::get<FieldSettlSessID>() const {
+ return getSettlSessID();
+}
+template<> FieldSettlSessSubID::ValueType FIXPP_MSG_CLASS::get<FieldSettlSessSubID>() const {
+ return getSettlSessSubID();
+}
+template<> FieldClearingBusinessDate::ValueType FIXPP_MSG_CLASS::get<FieldClearingBusinessDate>() const {
+ return getClearingBusinessDate();
+}
+template<> FieldText::ValueType FIXPP_MSG_CLASS::get<FieldText>() const {
+ return getText();
+}
+template<> FieldEncodedTextLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedTextLen>() const {
+ return getEncodedTextLen();
+}
+template<> FieldEncodedText::ValueType FIXPP_MSG_CLASS::get<FieldEncodedText>() const {
+ return getEncodedText();
+}
+
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageCollateralInquiry
+template<> FieldCollInquiryID::ValueType FIXPP_MSG_CLASS::get<FieldCollInquiryID>() const {
+ return getCollInquiryID();
+}
+template<> FieldSubscriptionRequestType::ValueType FIXPP_MSG_CLASS::get<FieldSubscriptionRequestType>() const {
+ return getSubscriptionRequestType();
+}
+template<> FieldResponseTransportType::ValueType FIXPP_MSG_CLASS::get<FieldResponseTransportType>() const {
+ return getResponseTransportType();
+}
+template<> FieldResponseDestination::ValueType FIXPP_MSG_CLASS::get<FieldResponseDestination>() const {
+ return getResponseDestination();
+}
+template<> FieldAccount::ValueType FIXPP_MSG_CLASS::get<FieldAccount>() const {
+ return getAccount();
+}
+template<> FieldAccountType::ValueType FIXPP_MSG_CLASS::get<FieldAccountType>() const {
+ return getAccountType();
+}
+template<> FieldClOrdID::ValueType FIXPP_MSG_CLASS::get<FieldClOrdID>() const {
+ return getClOrdID();
+}
+template<> FieldOrderID::ValueType FIXPP_MSG_CLASS::get<FieldOrderID>() const {
+ return getOrderID();
+}
+template<> FieldSecondaryOrderID::ValueType FIXPP_MSG_CLASS::get<FieldSecondaryOrderID>() const {
+ return getSecondaryOrderID();
+}
+template<> FieldSecondaryClOrdID::ValueType FIXPP_MSG_CLASS::get<FieldSecondaryClOrdID>() const {
+ return getSecondaryClOrdID();
+}
+template<> FieldSymbol::ValueType FIXPP_MSG_CLASS::get<FieldSymbol>() const {
+ return getSymbol();
+}
+template<> FieldSymbolSfx::ValueType FIXPP_MSG_CLASS::get<FieldSymbolSfx>() const {
+ return getSymbolSfx();
+}
+template<> FieldSecurityID::ValueType FIXPP_MSG_CLASS::get<FieldSecurityID>() const {
+ return getSecurityID();
+}
+template<> FieldSecurityIDSource::ValueType FIXPP_MSG_CLASS::get<FieldSecurityIDSource>() const {
+ return getSecurityIDSource();
+}
+template<> FieldProduct::ValueType FIXPP_MSG_CLASS::get<FieldProduct>() const {
+ return getProduct();
+}
+template<> FieldCFICode::ValueType FIXPP_MSG_CLASS::get<FieldCFICode>() const {
+ return getCFICode();
+}
+template<> FieldSecurityType::ValueType FIXPP_MSG_CLASS::get<FieldSecurityType>() const {
+ return getSecurityType();
+}
+template<> FieldSecuritySubType::ValueType FIXPP_MSG_CLASS::get<FieldSecuritySubType>() const {
+ return getSecuritySubType();
+}
+template<> FieldMaturityMonthYear::ValueType FIXPP_MSG_CLASS::get<FieldMaturityMonthYear>() const {
+ return getMaturityMonthYear();
+}
+template<> FieldMaturityDate::ValueType FIXPP_MSG_CLASS::get<FieldMaturityDate>() const {
+ return getMaturityDate();
+}
+template<> FieldPutOrCall::ValueType FIXPP_MSG_CLASS::get<FieldPutOrCall>() const {
+ return getPutOrCall();
+}
+template<> FieldCouponPaymentDate::ValueType FIXPP_MSG_CLASS::get<FieldCouponPaymentDate>() const {
+ return getCouponPaymentDate();
+}
+template<> FieldIssueDate::ValueType FIXPP_MSG_CLASS::get<FieldIssueDate>() const {
+ return getIssueDate();
+}
+template<> FieldRepoCollateralSecurityType::ValueType FIXPP_MSG_CLASS::get<FieldRepoCollateralSecurityType>() const {
+ return getRepoCollateralSecurityType();
+}
+template<> FieldRepurchaseTerm::ValueType FIXPP_MSG_CLASS::get<FieldRepurchaseTerm>() const {
+ return getRepurchaseTerm();
+}
+template<> FieldRepurchaseRate::ValueType FIXPP_MSG_CLASS::get<FieldRepurchaseRate>() const {
+ return getRepurchaseRate();
+}
+template<> FieldFactor::ValueType FIXPP_MSG_CLASS::get<FieldFactor>() const {
+ return getFactor();
+}
+template<> FieldCreditRating::ValueType FIXPP_MSG_CLASS::get<FieldCreditRating>() const {
+ return getCreditRating();
+}
+template<> FieldInstrRegistry::ValueType FIXPP_MSG_CLASS::get<FieldInstrRegistry>() const {
+ return getInstrRegistry();
+}
+template<> FieldCountryOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldCountryOfIssue>() const {
+ return getCountryOfIssue();
+}
+template<> FieldStateOrProvinceOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldStateOrProvinceOfIssue>() const {
+ return getStateOrProvinceOfIssue();
+}
+template<> FieldLocaleOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldLocaleOfIssue>() const {
+ return getLocaleOfIssue();
+}
+template<> FieldRedemptionDate::ValueType FIXPP_MSG_CLASS::get<FieldRedemptionDate>() const {
+ return getRedemptionDate();
+}
+template<> FieldStrikePrice::ValueType FIXPP_MSG_CLASS::get<FieldStrikePrice>() const {
+ return getStrikePrice();
+}
+template<> FieldStrikeCurrency::ValueType FIXPP_MSG_CLASS::get<FieldStrikeCurrency>() const {
+ return getStrikeCurrency();
+}
+template<> FieldOptAttribute::ValueType FIXPP_MSG_CLASS::get<FieldOptAttribute>() const {
+ return getOptAttribute();
+}
+template<> FieldContractMultiplier::ValueType FIXPP_MSG_CLASS::get<FieldContractMultiplier>() const {
+ return getContractMultiplier();
+}
+template<> FieldCouponRate::ValueType FIXPP_MSG_CLASS::get<FieldCouponRate>() const {
+ return getCouponRate();
+}
+template<> FieldSecurityExchange::ValueType FIXPP_MSG_CLASS::get<FieldSecurityExchange>() const {
+ return getSecurityExchange();
+}
+template<> FieldIssuer::ValueType FIXPP_MSG_CLASS::get<FieldIssuer>() const {
+ return getIssuer();
+}
+template<> FieldEncodedIssuerLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedIssuerLen>() const {
+ return getEncodedIssuerLen();
+}
+template<> FieldEncodedIssuer::ValueType FIXPP_MSG_CLASS::get<FieldEncodedIssuer>() const {
+ return getEncodedIssuer();
+}
+template<> FieldSecurityDesc::ValueType FIXPP_MSG_CLASS::get<FieldSecurityDesc>() const {
+ return getSecurityDesc();
+}
+template<> FieldEncodedSecurityDescLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedSecurityDescLen>() const {
+ return getEncodedSecurityDescLen();
+}
+template<> FieldEncodedSecurityDesc::ValueType FIXPP_MSG_CLASS::get<FieldEncodedSecurityDesc>() const {
+ return getEncodedSecurityDesc();
+}
+template<> FieldPool::ValueType FIXPP_MSG_CLASS::get<FieldPool>() const {
+ return getPool();
+}
+template<> FieldContractSettlMonth::ValueType FIXPP_MSG_CLASS::get<FieldContractSettlMonth>() const {
+ return getContractSettlMonth();
+}
+template<> FieldCPProgram::ValueType FIXPP_MSG_CLASS::get<FieldCPProgram>() const {
+ return getCPProgram();
+}
+template<> FieldCPRegType::ValueType FIXPP_MSG_CLASS::get<FieldCPRegType>() const {
+ return getCPRegType();
+}
+template<> FieldDatedDate::ValueType FIXPP_MSG_CLASS::get<FieldDatedDate>() const {
+ return getDatedDate();
+}
+template<> FieldInterestAccrualDate::ValueType FIXPP_MSG_CLASS::get<FieldInterestAccrualDate>() const {
+ return getInterestAccrualDate();
+}
+template<> FieldAgreementDesc::ValueType FIXPP_MSG_CLASS::get<FieldAgreementDesc>() const {
+ return getAgreementDesc();
+}
+template<> FieldAgreementID::ValueType FIXPP_MSG_CLASS::get<FieldAgreementID>() const {
+ return getAgreementID();
+}
+template<> FieldAgreementDate::ValueType FIXPP_MSG_CLASS::get<FieldAgreementDate>() const {
+ return getAgreementDate();
+}
+template<> FieldAgreementCurrency::ValueType FIXPP_MSG_CLASS::get<FieldAgreementCurrency>() const {
+ return getAgreementCurrency();
+}
+template<> FieldTerminationType::ValueType FIXPP_MSG_CLASS::get<FieldTerminationType>() const {
+ return getTerminationType();
+}
+template<> FieldStartDate::ValueType FIXPP_MSG_CLASS::get<FieldStartDate>() const {
+ return getStartDate();
+}
+template<> FieldEndDate::ValueType FIXPP_MSG_CLASS::get<FieldEndDate>() const {
+ return getEndDate();
+}
+template<> FieldDeliveryType::ValueType FIXPP_MSG_CLASS::get<FieldDeliveryType>() const {
+ return getDeliveryType();
+}
+template<> FieldMarginRatio::ValueType FIXPP_MSG_CLASS::get<FieldMarginRatio>() const {
+ return getMarginRatio();
+}
+template<> FieldSettlDate::ValueType FIXPP_MSG_CLASS::get<FieldSettlDate>() const {
+ return getSettlDate();
+}
+template<> FieldQuantity::ValueType FIXPP_MSG_CLASS::get<FieldQuantity>() const {
+ return getQuantity();
+}
+template<> FieldQtyType::ValueType FIXPP_MSG_CLASS::get<FieldQtyType>() const {
+ return getQtyType();
+}
+template<> FieldCurrency::ValueType FIXPP_MSG_CLASS::get<FieldCurrency>() const {
+ return getCurrency();
+}
+template<> FieldMarginExcess::ValueType FIXPP_MSG_CLASS::get<FieldMarginExcess>() const {
+ return getMarginExcess();
+}
+template<> FieldTotalNetValue::ValueType FIXPP_MSG_CLASS::get<FieldTotalNetValue>() const {
+ return getTotalNetValue();
+}
+template<> FieldCashOutstanding::ValueType FIXPP_MSG_CLASS::get<FieldCashOutstanding>() const {
+ return getCashOutstanding();
+}
+template<> FieldSide::ValueType FIXPP_MSG_CLASS::get<FieldSide>() const {
+ return getSide();
+}
+template<> FieldPrice::ValueType FIXPP_MSG_CLASS::get<FieldPrice>() const {
+ return getPrice();
+}
+template<> FieldPriceType::ValueType FIXPP_MSG_CLASS::get<FieldPriceType>() const {
+ return getPriceType();
+}
+template<> FieldAccruedInterestAmt::ValueType FIXPP_MSG_CLASS::get<FieldAccruedInterestAmt>() const {
+ return getAccruedInterestAmt();
+}
+template<> FieldEndAccruedInterestAmt::ValueType FIXPP_MSG_CLASS::get<FieldEndAccruedInterestAmt>() const {
+ return getEndAccruedInterestAmt();
+}
+template<> FieldStartCash::ValueType FIXPP_MSG_CLASS::get<FieldStartCash>() const {
+ return getStartCash();
+}
+template<> FieldEndCash::ValueType FIXPP_MSG_CLASS::get<FieldEndCash>() const {
+ return getEndCash();
+}
+template<> FieldSpread::ValueType FIXPP_MSG_CLASS::get<FieldSpread>() const {
+ return getSpread();
+}
+template<> FieldBenchmarkCurveCurrency::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkCurveCurrency>() const {
+ return getBenchmarkCurveCurrency();
+}
+template<> FieldBenchmarkCurveName::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkCurveName>() const {
+ return getBenchmarkCurveName();
+}
+template<> FieldBenchmarkCurvePoint::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkCurvePoint>() const {
+ return getBenchmarkCurvePoint();
+}
+template<> FieldBenchmarkPrice::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkPrice>() const {
+ return getBenchmarkPrice();
+}
+template<> FieldBenchmarkPriceType::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkPriceType>() const {
+ return getBenchmarkPriceType();
+}
+template<> FieldBenchmarkSecurityID::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkSecurityID>() const {
+ return getBenchmarkSecurityID();
+}
+template<> FieldBenchmarkSecurityIDSource::ValueType FIXPP_MSG_CLASS::get<FieldBenchmarkSecurityIDSource>() const {
+ return getBenchmarkSecurityIDSource();
+}
+template<> FieldSettlDeliveryType::ValueType FIXPP_MSG_CLASS::get<FieldSettlDeliveryType>() const {
+ return getSettlDeliveryType();
+}
+template<> FieldStandInstDbType::ValueType FIXPP_MSG_CLASS::get<FieldStandInstDbType>() const {
+ return getStandInstDbType();
+}
+template<> FieldStandInstDbName::ValueType FIXPP_MSG_CLASS::get<FieldStandInstDbName>() const {
+ return getStandInstDbName();
+}
+template<> FieldStandInstDbID::ValueType FIXPP_MSG_CLASS::get<FieldStandInstDbID>() const {
+ return getStandInstDbID();
+}
+template<> FieldTradingSessionID::ValueType FIXPP_MSG_CLASS::get<FieldTradingSessionID>() const {
+ return getTradingSessionID();
+}
+template<> FieldTradingSessionSubID::ValueType FIXPP_MSG_CLASS::get<FieldTradingSessionSubID>() const {
+ return getTradingSessionSubID();
+}
+template<> FieldSettlSessID::ValueType FIXPP_MSG_CLASS::get<FieldSettlSessID>() const {
+ return getSettlSessID();
+}
+template<> FieldSettlSessSubID::ValueType FIXPP_MSG_CLASS::get<FieldSettlSessSubID>() const {
+ return getSettlSessSubID();
+}
+template<> FieldClearingBusinessDate::ValueType FIXPP_MSG_CLASS::get<FieldClearingBusinessDate>() const {
+ return getClearingBusinessDate();
+}
+template<> FieldText::ValueType FIXPP_MSG_CLASS::get<FieldText>() const {
+ return getText();
+}
+template<> FieldEncodedTextLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedTextLen>() const {
+ return getEncodedTextLen();
+}
+template<> FieldEncodedText::ValueType FIXPP_MSG_CLASS::get<FieldEncodedText>() const {
+ return getEncodedText();
+}
+
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageNetworkCounterpartySystemStatusRequest
+template<> FieldNetworkRequestType::ValueType FIXPP_MSG_CLASS::get<FieldNetworkRequestType>() const {
+ return getNetworkRequestType();
+}
+template<> FieldNetworkRequestID::ValueType FIXPP_MSG_CLASS::get<FieldNetworkRequestID>() const {
+ return getNetworkRequestID();
+}
+
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageNetworkCounterpartySystemStatusResponse
+template<> FieldNetworkStatusResponseType::ValueType FIXPP_MSG_CLASS::get<FieldNetworkStatusResponseType>() const {
+ return getNetworkStatusResponseType();
+}
+template<> FieldNetworkRequestID::ValueType FIXPP_MSG_CLASS::get<FieldNetworkRequestID>() const {
+ return getNetworkRequestID();
+}
+template<> FieldNetworkResponseID::ValueType FIXPP_MSG_CLASS::get<FieldNetworkResponseID>() const {
+ return getNetworkResponseID();
+}
+template<> FieldLastNetworkResponseID::ValueType FIXPP_MSG_CLASS::get<FieldLastNetworkResponseID>() const {
+ return getLastNetworkResponseID();
+}
+
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageUserRequest
+template<> FieldUserRequestID::ValueType FIXPP_MSG_CLASS::get<FieldUserRequestID>() const {
+ return getUserRequestID();
+}
+template<> FieldUserRequestType::ValueType FIXPP_MSG_CLASS::get<FieldUserRequestType>() const {
+ return getUserRequestType();
+}
+template<> FieldUsername::ValueType FIXPP_MSG_CLASS::get<FieldUsername>() const {
+ return getUsername();
+}
+template<> FieldPassword::ValueType FIXPP_MSG_CLASS::get<FieldPassword>() const {
+ return getPassword();
+}
+template<> FieldNewPassword::ValueType FIXPP_MSG_CLASS::get<FieldNewPassword>() const {
+ return getNewPassword();
+}
+template<> FieldRawDataLength::ValueType FIXPP_MSG_CLASS::get<FieldRawDataLength>() const {
+ return getRawDataLength();
+}
+template<> FieldRawData::ValueType FIXPP_MSG_CLASS::get<FieldRawData>() const {
+ return getRawData();
+}
+
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageUserResponse
+template<> FieldUserRequestID::ValueType FIXPP_MSG_CLASS::get<FieldUserRequestID>() const {
+ return getUserRequestID();
+}
+template<> FieldUsername::ValueType FIXPP_MSG_CLASS::get<FieldUsername>() const {
+ return getUsername();
+}
+template<> FieldUserStatus::ValueType FIXPP_MSG_CLASS::get<FieldUserStatus>() const {
+ return getUserStatus();
+}
+template<> FieldUserStatusText::ValueType FIXPP_MSG_CLASS::get<FieldUserStatusText>() const {
+ return getUserStatusText();
+}
+
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageCollateralInquiryAck
+template<> FieldCollInquiryID::ValueType FIXPP_MSG_CLASS::get<FieldCollInquiryID>() const {
+ return getCollInquiryID();
+}
+template<> FieldCollInquiryStatus::ValueType FIXPP_MSG_CLASS::get<FieldCollInquiryStatus>() const {
+ return getCollInquiryStatus();
+}
+template<> FieldCollInquiryResult::ValueType FIXPP_MSG_CLASS::get<FieldCollInquiryResult>() const {
+ return getCollInquiryResult();
+}
+template<> FieldTotNumReports::ValueType FIXPP_MSG_CLASS::get<FieldTotNumReports>() const {
+ return getTotNumReports();
+}
+template<> FieldAccount::ValueType FIXPP_MSG_CLASS::get<FieldAccount>() const {
+ return getAccount();
+}
+template<> FieldAccountType::ValueType FIXPP_MSG_CLASS::get<FieldAccountType>() const {
+ return getAccountType();
+}
+template<> FieldClOrdID::ValueType FIXPP_MSG_CLASS::get<FieldClOrdID>() const {
+ return getClOrdID();
+}
+template<> FieldOrderID::ValueType FIXPP_MSG_CLASS::get<FieldOrderID>() const {
+ return getOrderID();
+}
+template<> FieldSecondaryOrderID::ValueType FIXPP_MSG_CLASS::get<FieldSecondaryOrderID>() const {
+ return getSecondaryOrderID();
+}
+template<> FieldSecondaryClOrdID::ValueType FIXPP_MSG_CLASS::get<FieldSecondaryClOrdID>() const {
+ return getSecondaryClOrdID();
+}
+template<> FieldSymbol::ValueType FIXPP_MSG_CLASS::get<FieldSymbol>() const {
+ return getSymbol();
+}
+template<> FieldSymbolSfx::ValueType FIXPP_MSG_CLASS::get<FieldSymbolSfx>() const {
+ return getSymbolSfx();
+}
+template<> FieldSecurityID::ValueType FIXPP_MSG_CLASS::get<FieldSecurityID>() const {
+ return getSecurityID();
+}
+template<> FieldSecurityIDSource::ValueType FIXPP_MSG_CLASS::get<FieldSecurityIDSource>() const {
+ return getSecurityIDSource();
+}
+template<> FieldProduct::ValueType FIXPP_MSG_CLASS::get<FieldProduct>() const {
+ return getProduct();
+}
+template<> FieldCFICode::ValueType FIXPP_MSG_CLASS::get<FieldCFICode>() const {
+ return getCFICode();
+}
+template<> FieldSecurityType::ValueType FIXPP_MSG_CLASS::get<FieldSecurityType>() const {
+ return getSecurityType();
+}
+template<> FieldSecuritySubType::ValueType FIXPP_MSG_CLASS::get<FieldSecuritySubType>() const {
+ return getSecuritySubType();
+}
+template<> FieldMaturityMonthYear::ValueType FIXPP_MSG_CLASS::get<FieldMaturityMonthYear>() const {
+ return getMaturityMonthYear();
+}
+template<> FieldMaturityDate::ValueType FIXPP_MSG_CLASS::get<FieldMaturityDate>() const {
+ return getMaturityDate();
+}
+template<> FieldPutOrCall::ValueType FIXPP_MSG_CLASS::get<FieldPutOrCall>() const {
+ return getPutOrCall();
+}
+template<> FieldCouponPaymentDate::ValueType FIXPP_MSG_CLASS::get<FieldCouponPaymentDate>() const {
+ return getCouponPaymentDate();
+}
+template<> FieldIssueDate::ValueType FIXPP_MSG_CLASS::get<FieldIssueDate>() const {
+ return getIssueDate();
+}
+template<> FieldRepoCollateralSecurityType::ValueType FIXPP_MSG_CLASS::get<FieldRepoCollateralSecurityType>() const {
+ return getRepoCollateralSecurityType();
+}
+template<> FieldRepurchaseTerm::ValueType FIXPP_MSG_CLASS::get<FieldRepurchaseTerm>() const {
+ return getRepurchaseTerm();
+}
+template<> FieldRepurchaseRate::ValueType FIXPP_MSG_CLASS::get<FieldRepurchaseRate>() const {
+ return getRepurchaseRate();
+}
+template<> FieldFactor::ValueType FIXPP_MSG_CLASS::get<FieldFactor>() const {
+ return getFactor();
+}
+template<> FieldCreditRating::ValueType FIXPP_MSG_CLASS::get<FieldCreditRating>() const {
+ return getCreditRating();
+}
+template<> FieldInstrRegistry::ValueType FIXPP_MSG_CLASS::get<FieldInstrRegistry>() const {
+ return getInstrRegistry();
+}
+template<> FieldCountryOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldCountryOfIssue>() const {
+ return getCountryOfIssue();
+}
+template<> FieldStateOrProvinceOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldStateOrProvinceOfIssue>() const {
+ return getStateOrProvinceOfIssue();
+}
+template<> FieldLocaleOfIssue::ValueType FIXPP_MSG_CLASS::get<FieldLocaleOfIssue>() const {
+ return getLocaleOfIssue();
+}
+template<> FieldRedemptionDate::ValueType FIXPP_MSG_CLASS::get<FieldRedemptionDate>() const {
+ return getRedemptionDate();
+}
+template<> FieldStrikePrice::ValueType FIXPP_MSG_CLASS::get<FieldStrikePrice>() const {
+ return getStrikePrice();
+}
+template<> FieldStrikeCurrency::ValueType FIXPP_MSG_CLASS::get<FieldStrikeCurrency>() const {
+ return getStrikeCurrency();
+}
+template<> FieldOptAttribute::ValueType FIXPP_MSG_CLASS::get<FieldOptAttribute>() const {
+ return getOptAttribute();
+}
+template<> FieldContractMultiplier::ValueType FIXPP_MSG_CLASS::get<FieldContractMultiplier>() const {
+ return getContractMultiplier();
+}
+template<> FieldCouponRate::ValueType FIXPP_MSG_CLASS::get<FieldCouponRate>() const {
+ return getCouponRate();
+}
+template<> FieldSecurityExchange::ValueType FIXPP_MSG_CLASS::get<FieldSecurityExchange>() const {
+ return getSecurityExchange();
+}
+template<> FieldIssuer::ValueType FIXPP_MSG_CLASS::get<FieldIssuer>() const {
+ return getIssuer();
+}
+template<> FieldEncodedIssuerLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedIssuerLen>() const {
+ return getEncodedIssuerLen();
+}
+template<> FieldEncodedIssuer::ValueType FIXPP_MSG_CLASS::get<FieldEncodedIssuer>() const {
+ return getEncodedIssuer();
+}
+template<> FieldSecurityDesc::ValueType FIXPP_MSG_CLASS::get<FieldSecurityDesc>() const {
+ return getSecurityDesc();
+}
+template<> FieldEncodedSecurityDescLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedSecurityDescLen>() const {
+ return getEncodedSecurityDescLen();
+}
+template<> FieldEncodedSecurityDesc::ValueType FIXPP_MSG_CLASS::get<FieldEncodedSecurityDesc>() const {
+ return getEncodedSecurityDesc();
+}
+template<> FieldPool::ValueType FIXPP_MSG_CLASS::get<FieldPool>() const {
+ return getPool();
+}
+template<> FieldContractSettlMonth::ValueType FIXPP_MSG_CLASS::get<FieldContractSettlMonth>() const {
+ return getContractSettlMonth();
+}
+template<> FieldCPProgram::ValueType FIXPP_MSG_CLASS::get<FieldCPProgram>() const {
+ return getCPProgram();
+}
+template<> FieldCPRegType::ValueType FIXPP_MSG_CLASS::get<FieldCPRegType>() const {
+ return getCPRegType();
+}
+template<> FieldDatedDate::ValueType FIXPP_MSG_CLASS::get<FieldDatedDate>() const {
+ return getDatedDate();
+}
+template<> FieldInterestAccrualDate::ValueType FIXPP_MSG_CLASS::get<FieldInterestAccrualDate>() const {
+ return getInterestAccrualDate();
+}
+template<> FieldAgreementDesc::ValueType FIXPP_MSG_CLASS::get<FieldAgreementDesc>() const {
+ return getAgreementDesc();
+}
+template<> FieldAgreementID::ValueType FIXPP_MSG_CLASS::get<FieldAgreementID>() const {
+ return getAgreementID();
+}
+template<> FieldAgreementDate::ValueType FIXPP_MSG_CLASS::get<FieldAgreementDate>() const {
+ return getAgreementDate();
+}
+template<> FieldAgreementCurrency::ValueType FIXPP_MSG_CLASS::get<FieldAgreementCurrency>() const {
+ return getAgreementCurrency();
+}
+template<> FieldTerminationType::ValueType FIXPP_MSG_CLASS::get<FieldTerminationType>() const {
+ return getTerminationType();
+}
+template<> FieldStartDate::ValueType FIXPP_MSG_CLASS::get<FieldStartDate>() const {
+ return getStartDate();
+}
+template<> FieldEndDate::ValueType FIXPP_MSG_CLASS::get<FieldEndDate>() const {
+ return getEndDate();
+}
+template<> FieldDeliveryType::ValueType FIXPP_MSG_CLASS::get<FieldDeliveryType>() const {
+ return getDeliveryType();
+}
+template<> FieldMarginRatio::ValueType FIXPP_MSG_CLASS::get<FieldMarginRatio>() const {
+ return getMarginRatio();
+}
+template<> FieldSettlDate::ValueType FIXPP_MSG_CLASS::get<FieldSettlDate>() const {
+ return getSettlDate();
+}
+template<> FieldQuantity::ValueType FIXPP_MSG_CLASS::get<FieldQuantity>() const {
+ return getQuantity();
+}
+template<> FieldQtyType::ValueType FIXPP_MSG_CLASS::get<FieldQtyType>() const {
+ return getQtyType();
+}
+template<> FieldCurrency::ValueType FIXPP_MSG_CLASS::get<FieldCurrency>() const {
+ return getCurrency();
+}
+template<> FieldTradingSessionID::ValueType FIXPP_MSG_CLASS::get<FieldTradingSessionID>() const {
+ return getTradingSessionID();
+}
+template<> FieldTradingSessionSubID::ValueType FIXPP_MSG_CLASS::get<FieldTradingSessionSubID>() const {
+ return getTradingSessionSubID();
+}
+template<> FieldSettlSessID::ValueType FIXPP_MSG_CLASS::get<FieldSettlSessID>() const {
+ return getSettlSessID();
+}
+template<> FieldSettlSessSubID::ValueType FIXPP_MSG_CLASS::get<FieldSettlSessSubID>() const {
+ return getSettlSessSubID();
+}
+template<> FieldClearingBusinessDate::ValueType FIXPP_MSG_CLASS::get<FieldClearingBusinessDate>() const {
+ return getClearingBusinessDate();
+}
+template<> FieldResponseTransportType::ValueType FIXPP_MSG_CLASS::get<FieldResponseTransportType>() const {
+ return getResponseTransportType();
+}
+template<> FieldResponseDestination::ValueType FIXPP_MSG_CLASS::get<FieldResponseDestination>() const {
+ return getResponseDestination();
+}
+template<> FieldText::ValueType FIXPP_MSG_CLASS::get<FieldText>() const {
+ return getText();
+}
+template<> FieldEncodedTextLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedTextLen>() const {
+ return getEncodedTextLen();
+}
+template<> FieldEncodedText::ValueType FIXPP_MSG_CLASS::get<FieldEncodedText>() const {
+ return getEncodedText();
+}
+
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageConfirmationRequest
+template<> FieldConfirmReqID::ValueType FIXPP_MSG_CLASS::get<FieldConfirmReqID>() const {
+ return getConfirmReqID();
+}
+template<> FieldConfirmType::ValueType FIXPP_MSG_CLASS::get<FieldConfirmType>() const {
+ return getConfirmType();
+}
+template<> FieldAllocID::ValueType FIXPP_MSG_CLASS::get<FieldAllocID>() const {
+ return getAllocID();
+}
+template<> FieldSecondaryAllocID::ValueType FIXPP_MSG_CLASS::get<FieldSecondaryAllocID>() const {
+ return getSecondaryAllocID();
+}
+template<> FieldIndividualAllocID::ValueType FIXPP_MSG_CLASS::get<FieldIndividualAllocID>() const {
+ return getIndividualAllocID();
+}
+template<> FieldTransactTime::ValueType FIXPP_MSG_CLASS::get<FieldTransactTime>() const {
+ return getTransactTime();
+}
+template<> FieldAllocAccount::ValueType FIXPP_MSG_CLASS::get<FieldAllocAccount>() const {
+ return getAllocAccount();
+}
+template<> FieldAllocAcctIDSource::ValueType FIXPP_MSG_CLASS::get<FieldAllocAcctIDSource>() const {
+ return getAllocAcctIDSource();
+}
+template<> FieldAllocAccountType::ValueType FIXPP_MSG_CLASS::get<FieldAllocAccountType>() const {
+ return getAllocAccountType();
+}
+template<> FieldText::ValueType FIXPP_MSG_CLASS::get<FieldText>() const {
+ return getText();
+}
+template<> FieldEncodedTextLen::ValueType FIXPP_MSG_CLASS::get<FieldEncodedTextLen>() const {
+ return getEncodedTextLen();
+}
+template<> FieldEncodedText::ValueType FIXPP_MSG_CLASS::get<FieldEncodedText>() const {
+ return getEncodedText();
+}
+
+#undef FIXPP_MSG_CLASS
 
 // ---------------------------------- getFieldValue ---------------------------------
 

@@ -25,7 +25,7 @@ const char * Message##NAME::getMessageName(){\
 #undef FIX_MSG_END
 #undef FIX_MSG_GROUP
 
-<com> ---------------------------------- fields ---------------------------------
+<com> ---------------------------------- field depth ---------------------------------
 
 #define FIX_MSG_BEGIN(NAME,TYPE) \
 GetDepthMethod Message##NAME::groupGetDepthMethods[] = {
@@ -79,6 +79,28 @@ FieldDepth Message##NAME::getFieldDepth( raw_tag_t tag ){\
 #undef FIX_MSG_GROUP
 
 <nl>
+
+<com> ---------------------------------- get<field> ---------------------------------
+
+#define FIX_MSG_BEGIN(NAME,TYPE) \
+<def> FIXPP_MSG_CLASS Message##NAME
+
+#define FIX_MSG_FIELD(NAME) \
+template<> Field##NAME::ValueType FIXPP_MSG_CLASS::get<Field##NAME>() const {\
+<nl> return get##NAME();\
+<nl>}
+
+#define FIX_MSG_GROUP(NAME) <remove-me>
+
+#define FIX_MSG_END \
+<undef> FIXPP_MSG_CLASS
+
+#include <Messages.def>
+
+#undef FIX_MSG_FIELD
+#undef FIX_MSG_BEGIN
+#undef FIX_MSG_END
+#undef FIX_MSG_GROUP
 
 <com> ---------------------------------- getFieldValue ---------------------------------
 

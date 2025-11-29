@@ -213,6 +213,16 @@ class BusinessLogic
 };
 ```
 
+Access multiple fields at a time:
+
+```c++
+    MarketDataSnapshotFullRefresh mdsfr;
+    // receive message
+    ...
+    auto & mdentry = mdsfr.getGroupMDEntries(0);
+    auto [ mddepth, mdpx, mdqty ] = mdentry.getFields<MDEntryPositionNo,MDEntryPx,MDEntrySize>();
+```
+
 ### Scanning
 
 In most cases a latency sensitive implementation will tend to reuse objects and avoid allocations on the critical path. Here we suggest keeping a `Header` object and messages separately. The parsing is carried out in two steps:
@@ -471,7 +481,7 @@ For example one could write:
     order.append<OrdType>( 12345 );
 ```
 
-To prevent from such situation and to get your IDE completion working with message sending API, consider using 
+To prevent from such situation and to get your IDE completion working with message sending API, consider using
 message specific builders.
 The example above will appear as follows:
 

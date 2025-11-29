@@ -9,9 +9,23 @@
 
 #include <iostream>
 #include <map>
+#include <tuple>
 
 namespace fix44
 {
+
+template< typename MsgType, unsigned idx, typename... Fields >
+void buildTuple( const MsgType & msg, std::tuple<typename Fields::ValueType...> & tpl )
+{
+    if( msg.isFieldSet( std::tuple_element_t<idx,std::tuple<Fields...> > ::TAG ) )
+    {
+        std::get<idx>(tpl) = msg.template get< std::tuple_element_t<idx,std::tuple<Fields...> > >();
+    }
+    if constexpr ( idx + 1 < sizeof...(Fields) )
+    {
+        buildTuple<MsgType,idx+1,Fields...>( msg, tpl );
+    }
+}
 
 struct FieldDepth
 {

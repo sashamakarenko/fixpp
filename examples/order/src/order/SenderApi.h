@@ -148,7 +148,7 @@ inline char * reversePaddedUIntToString( char * ptr, unsigned value, unsigned wi
     return ptr;
 }
 
-struct TimestampKeeper;
+class TimestampKeeper;
 using ClockType = std::chrono::system_clock;
 using TimePoint = std::chrono::time_point<ClockType>;
 

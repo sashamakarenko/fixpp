@@ -33,6 +33,8 @@ class MessageHeader: public MessageBase
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
    const char * getFieldValue( tag_t tag ) const;
+   template< typename FIELD > typename FIELD::ValueType get() const;
+   template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<MessageHeader,0,FIELDS...>(*this,tpl); return tpl; };
    bool isFieldSet( tag_t tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
@@ -131,6 +133,8 @@ class MessageNewOrderSingle: public MessageBase
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
    const char * getFieldValue( tag_t tag ) const;
+   template< typename FIELD > typename FIELD::ValueType get() const;
+   template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<MessageNewOrderSingle,0,FIELDS...>(*this,tpl); return tpl; };
    bool isFieldSet( tag_t tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
@@ -264,6 +268,8 @@ class MessageExecutionReport: public MessageBase
    offset_t skip( const char * fix, unsigned len ) const;
    void reset();
    const char * getFieldValue( tag_t tag ) const;
+   template< typename FIELD > typename FIELD::ValueType get() const;
+   template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<MessageExecutionReport,0,FIELDS...>(*this,tpl); return tpl; };
    bool isFieldSet( tag_t tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;

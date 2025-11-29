@@ -13,6 +13,8 @@ class Group##NAME : public MessageBase\
 <n1>    static offset_t scanSafely( Array & arr, const char * fix, unsigned len, unsigned & groupCount, const char * & badFieldPtr );\
 <n1>    static offset_t skip( const char * fix, unsigned len );\
 <n1>    const char * getFieldValue( unsigned tag ) const;\
+<n1>    template< typename FIELD > typename FIELD::ValueType get() const;\
+<n1>    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<Group##NAME,0,FIELDS...>(*this,tpl); return tpl; };\
 <n1>    bool isFieldSet( tag_t tag ) const;\
 <n1>    const char * findBadField() const;\
 <n1>    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;\

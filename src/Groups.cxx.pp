@@ -8,7 +8,7 @@ const char * Group##NAME::getMessageName(){\
 
 #define FIX_MSG_FIELD(NAME)
 #define FIX_MSG_GROUP(NAME)
-#define FIX_MSG_GROUP_END 
+#define FIX_MSG_GROUP_END
 
 #include <Groups.def>
 #undef FIX_MSG_GROUP_BEGIN
@@ -84,6 +84,30 @@ FieldDepth Group##NAME::getFieldDepth( raw_tag_t tag ){\
 <nl>}\
 
 #include <Groups.def>
+
+#undef FIX_MSG_GROUP_BEGIN
+#undef FIX_MSG_FIELD
+#undef FIX_MSG_GROUP_END
+#undef FIX_MSG_GROUP
+
+
+<com> ---------------------------------- get<field> ---------------------------------
+
+#define FIX_MSG_GROUP_BEGIN(NAME,FIRST_FIELD) \
+<def> FIXPP_MSG_CLASS Group##NAME
+
+#define FIX_MSG_FIELD(NAME) \
+template<> Field##NAME::ValueType FIXPP_MSG_CLASS::get<Field##NAME>() const {\
+<nl> return get##NAME();\
+<nl>}
+
+#define FIX_MSG_GROUP(NAME) <remove-me>
+
+#define FIX_MSG_GROUP_END \
+<undef> FIXPP_MSG_CLASS
+
+#include <Groups.def>
+
 #undef FIX_MSG_GROUP_BEGIN
 #undef FIX_MSG_FIELD
 #undef FIX_MSG_GROUP_END

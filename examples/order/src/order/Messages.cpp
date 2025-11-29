@@ -42,7 +42,7 @@ const std::string & MessageExecutionReport::getMessageType(){
      return MsgTypeEnums::EXECUTION_REPORT.str;
 }
 
-// ---------------------------------- fields ---------------------------------
+// ---------------------------------- field depth ---------------------------------
 
 GetDepthMethod MessageHeader::groupGetDepthMethods[] = {
   nullptr };
@@ -142,6 +142,158 @@ FieldDepth MessageExecutionReport::getFieldDepth( raw_tag_t tag ){
    }
    return ret;
 }
+
+// ---------------------------------- get<field> ---------------------------------
+
+#define FIXPP_MSG_CLASS MessageHeader
+template<> FieldBeginString::ValueType FIXPP_MSG_CLASS::get<FieldBeginString>() const {
+ return getBeginString();
+}
+template<> FieldBodyLength::ValueType FIXPP_MSG_CLASS::get<FieldBodyLength>() const {
+ return getBodyLength();
+}
+template<> FieldMsgType::ValueType FIXPP_MSG_CLASS::get<FieldMsgType>() const {
+ return getMsgType();
+}
+template<> FieldSenderCompID::ValueType FIXPP_MSG_CLASS::get<FieldSenderCompID>() const {
+ return getSenderCompID();
+}
+template<> FieldTargetCompID::ValueType FIXPP_MSG_CLASS::get<FieldTargetCompID>() const {
+ return getTargetCompID();
+}
+template<> FieldMsgSeqNum::ValueType FIXPP_MSG_CLASS::get<FieldMsgSeqNum>() const {
+ return getMsgSeqNum();
+}
+template<> FieldSendingTime::ValueType FIXPP_MSG_CLASS::get<FieldSendingTime>() const {
+ return getSendingTime();
+}
+
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageNewOrderSingle
+template<> FieldClOrdID::ValueType FIXPP_MSG_CLASS::get<FieldClOrdID>() const {
+ return getClOrdID();
+}
+template<> FieldAccount::ValueType FIXPP_MSG_CLASS::get<FieldAccount>() const {
+ return getAccount();
+}
+template<> FieldSymbol::ValueType FIXPP_MSG_CLASS::get<FieldSymbol>() const {
+ return getSymbol();
+}
+template<> FieldSecurityID::ValueType FIXPP_MSG_CLASS::get<FieldSecurityID>() const {
+ return getSecurityID();
+}
+template<> FieldSide::ValueType FIXPP_MSG_CLASS::get<FieldSide>() const {
+ return getSide();
+}
+template<> FieldQtyType::ValueType FIXPP_MSG_CLASS::get<FieldQtyType>() const {
+ return getQtyType();
+}
+template<> FieldOrderQty::ValueType FIXPP_MSG_CLASS::get<FieldOrderQty>() const {
+ return getOrderQty();
+}
+template<> FieldOrdType::ValueType FIXPP_MSG_CLASS::get<FieldOrdType>() const {
+ return getOrdType();
+}
+template<> FieldPrice::ValueType FIXPP_MSG_CLASS::get<FieldPrice>() const {
+ return getPrice();
+}
+template<> FieldStopPx::ValueType FIXPP_MSG_CLASS::get<FieldStopPx>() const {
+ return getStopPx();
+}
+template<> FieldTransactTime::ValueType FIXPP_MSG_CLASS::get<FieldTransactTime>() const {
+ return getTransactTime();
+}
+
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageExecutionReport
+template<> FieldOrderID::ValueType FIXPP_MSG_CLASS::get<FieldOrderID>() const {
+ return getOrderID();
+}
+template<> FieldClOrdID::ValueType FIXPP_MSG_CLASS::get<FieldClOrdID>() const {
+ return getClOrdID();
+}
+template<> FieldOrigClOrdID::ValueType FIXPP_MSG_CLASS::get<FieldOrigClOrdID>() const {
+ return getOrigClOrdID();
+}
+template<> FieldExecID::ValueType FIXPP_MSG_CLASS::get<FieldExecID>() const {
+ return getExecID();
+}
+template<> FieldExecType::ValueType FIXPP_MSG_CLASS::get<FieldExecType>() const {
+ return getExecType();
+}
+template<> FieldOrdStatus::ValueType FIXPP_MSG_CLASS::get<FieldOrdStatus>() const {
+ return getOrdStatus();
+}
+template<> FieldOrdRejReason::ValueType FIXPP_MSG_CLASS::get<FieldOrdRejReason>() const {
+ return getOrdRejReason();
+}
+template<> FieldAccount::ValueType FIXPP_MSG_CLASS::get<FieldAccount>() const {
+ return getAccount();
+}
+template<> FieldSymbol::ValueType FIXPP_MSG_CLASS::get<FieldSymbol>() const {
+ return getSymbol();
+}
+template<> FieldSecurityID::ValueType FIXPP_MSG_CLASS::get<FieldSecurityID>() const {
+ return getSecurityID();
+}
+template<> FieldSecurityType::ValueType FIXPP_MSG_CLASS::get<FieldSecurityType>() const {
+ return getSecurityType();
+}
+template<> FieldText::ValueType FIXPP_MSG_CLASS::get<FieldText>() const {
+ return getText();
+}
+template<> FieldProduct::ValueType FIXPP_MSG_CLASS::get<FieldProduct>() const {
+ return getProduct();
+}
+template<> FieldSide::ValueType FIXPP_MSG_CLASS::get<FieldSide>() const {
+ return getSide();
+}
+template<> FieldQtyType::ValueType FIXPP_MSG_CLASS::get<FieldQtyType>() const {
+ return getQtyType();
+}
+template<> FieldOrderQty::ValueType FIXPP_MSG_CLASS::get<FieldOrderQty>() const {
+ return getOrderQty();
+}
+template<> FieldOrdType::ValueType FIXPP_MSG_CLASS::get<FieldOrdType>() const {
+ return getOrdType();
+}
+template<> FieldPriceType::ValueType FIXPP_MSG_CLASS::get<FieldPriceType>() const {
+ return getPriceType();
+}
+template<> FieldPrice::ValueType FIXPP_MSG_CLASS::get<FieldPrice>() const {
+ return getPrice();
+}
+template<> FieldStopPx::ValueType FIXPP_MSG_CLASS::get<FieldStopPx>() const {
+ return getStopPx();
+}
+template<> FieldCurrency::ValueType FIXPP_MSG_CLASS::get<FieldCurrency>() const {
+ return getCurrency();
+}
+template<> FieldTimeInForce::ValueType FIXPP_MSG_CLASS::get<FieldTimeInForce>() const {
+ return getTimeInForce();
+}
+template<> FieldExecInst::ValueType FIXPP_MSG_CLASS::get<FieldExecInst>() const {
+ return getExecInst();
+}
+template<> FieldLastQty::ValueType FIXPP_MSG_CLASS::get<FieldLastQty>() const {
+ return getLastQty();
+}
+template<> FieldLastPx::ValueType FIXPP_MSG_CLASS::get<FieldLastPx>() const {
+ return getLastPx();
+}
+template<> FieldLeavesQty::ValueType FIXPP_MSG_CLASS::get<FieldLeavesQty>() const {
+ return getLeavesQty();
+}
+template<> FieldAvgPx::ValueType FIXPP_MSG_CLASS::get<FieldAvgPx>() const {
+ return getAvgPx();
+}
+template<> FieldCumQty::ValueType FIXPP_MSG_CLASS::get<FieldCumQty>() const {
+ return getCumQty();
+}
+
+#undef FIXPP_MSG_CLASS
 
 // ---------------------------------- getFieldValue ---------------------------------
 
