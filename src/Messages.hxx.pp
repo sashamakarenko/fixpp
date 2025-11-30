@@ -15,9 +15,10 @@ class Message##NAME: public MessageBase\
 <n1>    offset_t skip( const char * fix, unsigned len ) const;\
 <n1>    void reset();\
 <n1>    const char * getFieldValue( tag_t tag ) const;\
+<n1>    template< typename FIELD > static constexpr bool hasField() { return false; }\
 <n1>    template< typename FIELD > typename FIELD::ValueType get() const;\
-<n1>    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<Message##NAME,0,FIELDS...>(*this,tpl); return tpl; };\
-<n1>    template< typename... FIELDS > std::tuple<typeExists<FIELDS>...> getPresenceOf() const { std::tuple< typeExists<FIELDS>... > tpl{}; buildPresenceTuple<Message##NAME,0,FIELDS...>(*this,tpl); return tpl; };\
+<n1>    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<Message##NAME,0,FIELDS...>(*this,tpl); return tpl; }\
+<n1>    template< typename... FIELDS > std::tuple<anyToBool<FIELDS>...> getPresenceOf() const { std::tuple<anyToBool<FIELDS>...> tpl{}; buildPresenceTuple<Message##NAME,0,FIELDS...>(*this,tpl); return tpl; }\
 <n1>    bool isFieldSet( tag_t tag ) const;\
 <n1>    const char * findBadField() const;\
 <n1>    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;\
@@ -41,9 +42,33 @@ class Message##NAME: public MessageBase\
 #undef FIX_MSG_FIELD
 #undef FIX_MSG_GROUP
 
-#define FIX_MSG_FIELD(NAME)
-#define FIX_MSG_GROUP(NAME)
-#define FIX_MSG_END
+
+<com> ---------------------------------- hasField<field> ---------------------------------
+
+#define FIX_MSG_BEGIN(NAME,TYPE) \
+<def> FIXPP_MSG_CLASS Message##NAME
+
+#define FIX_MSG_FIELD(NAME) \
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<Field##NAME>() { return true; }
+
+#define FIX_MSG_GROUP(NAME) \
+template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNo##NAME>() { return true; }
+
+#define FIX_MSG_END \
+<undef> FIXPP_MSG_CLASS
+
+#include <Messages.def>
+
+#undef FIX_MSG_FIELD
+#undef FIX_MSG_BEGIN
+#undef FIX_MSG_END
+#undef FIX_MSG_GROUP
+
+<com> ---------------------------------- ParserDispatcher ---------------------------------
+
+#define FIX_MSG_FIELD(NAME) <remove-me>
+#define FIX_MSG_GROUP(NAME) <remove-me>
+#define FIX_MSG_END <remove-me>
 
 <nl>
 class ParserDispatcher

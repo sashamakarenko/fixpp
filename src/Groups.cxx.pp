@@ -97,11 +97,10 @@ FieldDepth Group##NAME::getFieldDepth( raw_tag_t tag ){\
 <def> FIXPP_MSG_CLASS Group##NAME
 
 #define FIX_MSG_FIELD(NAME) \
-template<> Field##NAME::ValueType FIXPP_MSG_CLASS::get<Field##NAME>() const {\
-<nl> return get##NAME();\
-<nl>}
+template<> Field##NAME::ValueType FIXPP_MSG_CLASS::get<Field##NAME>() const { return get##NAME(); }
 
-#define FIX_MSG_GROUP(NAME) <remove-me>
+#define FIX_MSG_GROUP(NAME) \
+template<> FieldNo##NAME::ValueType FIXPP_MSG_CLASS::get<FieldNo##NAME>() const { return getNo##NAME(); }
 
 #define FIX_MSG_GROUP_END \
 <undef> FIXPP_MSG_CLASS

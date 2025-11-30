@@ -161,7 +161,7 @@ for pp in $mydir/src/*.pp; do
         -e "s/<n2>/\\n    /g" \
         -e "s/<n3>/\\n      /g" \
         -e "s%<def>%\\n#define%g" \
-        -e "s%<undef>%\\n#undef%g" \
+        -e "s%<undef>%#undef%g" \
         -e "s%<com>%\\n//%g" \
         -e "s%<icom>%//%g" -i $dst
     sed '/^$/N;/^\n$/D' -i $dst

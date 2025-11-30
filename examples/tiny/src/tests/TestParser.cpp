@@ -58,7 +58,7 @@ int main( int args, const char ** argv )
     CHECK_EQ( exec report get<qty>, er.getOrderQty(), erqty )
     auto sectype = er.get<SecurityType>();
     CHECK_EQ( exec report get<sectype>, er.getSecurityType(), sectype )
-    auto [ px, qty, st ] = er.getFields<Price,OrderQty,SecurityType>();
+    auto [ px, qty, st, nolegs ] = er.getFields<Price,OrderQty,SecurityType,NoLegs>();
     CHECK_EQ( exec report get<px>, px, erpx )
     CHECK_EQ( exec report get<qty>, qty, erqty )
     CHECK_EQ( exec report get<sectype>, st, sectype )
@@ -152,6 +152,9 @@ int main( int args, const char ** argv )
     CHECK_EQ( md entry has price, mdHasPx, mdentry.isSetMDEntryPx() );
     CHECK_EQ( md entry has qty  , mdHasQty, mdentry.isSetMDEntrySize() );
     CHECK_EQ( md entry has depth, mdHasDepth, mdentry.isSetMDEntryPositionNo() );
+
+    CHECK_EQ( mdsfr knowns field Price, MarketDataSnapshotFullRefresh::hasField<Price>(), false );
+    CHECK_EQ( mdsfr knowns field MDReqID, MarketDataSnapshotFullRefresh::hasField<MDReqID>(), true );
 
     CHECK_EQ( enum raw Side == BUY, SideEnums::BUY.raw, toRawEnum( er.ptrToSide() ) )
     CHECK_EQ( enum Side == BUY, er.getSide(), SideEnums::BUY )

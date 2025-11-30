@@ -15,17 +15,16 @@ namespace order
 {
 
 template< typename Any >
-using typeExists = bool;
-
-template< typename Msg, typename Field >
-struct hasField { using type = typeExists< typename Msg::Field >; static constexpr bool value = true; };
+using anyToBool = bool;
 
 template< typename MsgType, unsigned idx, typename... Fields >
 void buildTuple( const MsgType & msg, std::tuple<typename Fields::ValueType...> & tpl )
 {
-    if( msg.isFieldSet( std::tuple_element_t<idx,std::tuple<Fields...> > ::TAG ) )
+    using FieldType = std::tuple_element_t<idx,std::tuple<Fields...> >;
+    static_assert( MsgType::template hasField<FieldType>() );
+    if( msg.isFieldSet( FieldType::TAG ) )
     {
-        std::get<idx>(tpl) = msg.template get< std::tuple_element_t<idx,std::tuple<Fields...> > >();
+        std::get<idx>(tpl) = msg.template get<FieldType>();
     }
     if constexpr ( idx + 1 < sizeof...(Fields) )
     {
@@ -34,9 +33,11 @@ void buildTuple( const MsgType & msg, std::tuple<typename Fields::ValueType...> 
 }
 
 template< typename MsgType, unsigned idx, typename... Fields >
-void buildPresenceTuple( const MsgType & msg, std::tuple<typeExists<Fields>...> & tpl )
+void buildPresenceTuple( const MsgType & msg, std::tuple<anyToBool<Fields>...> & tpl )
 {
-    std::get<idx>(tpl) = msg.isFieldSet( std::tuple_element_t<idx,std::tuple<Fields...> > ::TAG );
+    using FieldType = std::tuple_element_t<idx,std::tuple<Fields...> >;
+    static_assert( MsgType::template hasField<FieldType>() );
+    std::get<idx>(tpl) = msg.isFieldSet( FieldType::TAG );
     if constexpr ( idx + 1 < sizeof...(Fields) )
     {
         buildPresenceTuple<MsgType,idx+1,Fields...>( msg, tpl );

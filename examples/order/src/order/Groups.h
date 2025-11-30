@@ -29,9 +29,10 @@ class GroupLegStipulations : public MessageBase
    static offset_t scanSafely( Array & arr, const char * fix, unsigned len, unsigned & groupCount, const char * & badFieldPtr );
    static offset_t skip( const char * fix, unsigned len );
    const char * getFieldValue( unsigned tag ) const;
+   template< typename FIELD > static constexpr bool hasField() { return false; }
    template< typename FIELD > typename FIELD::ValueType get() const;
-   template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<GroupLegStipulations,0,FIELDS...>(*this,tpl); return tpl; };
-   template< typename... FIELDS > std::tuple<typeExists<FIELDS>... > getPresenceOf() const { std::tuple< typeExists<FIELDS>... > tpl{}; buildPresenceTuple<GroupLegStipulations,0,FIELDS...>(*this,tpl); return tpl; };
+   template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<GroupLegStipulations,0,FIELDS...>(*this,tpl); return tpl; }
+   template< typename... FIELDS > std::tuple<anyToBool<FIELDS>...> getPresenceOf() const { std::tuple<anyToBool<FIELDS>...> tpl{}; buildPresenceTuple<GroupLegStipulations,0,FIELDS...>(*this,tpl); return tpl; }
    bool isFieldSet( tag_t tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
@@ -75,9 +76,10 @@ class GroupNestedPartySubIDs : public MessageBase
    static offset_t scanSafely( Array & arr, const char * fix, unsigned len, unsigned & groupCount, const char * & badFieldPtr );
    static offset_t skip( const char * fix, unsigned len );
    const char * getFieldValue( unsigned tag ) const;
+   template< typename FIELD > static constexpr bool hasField() { return false; }
    template< typename FIELD > typename FIELD::ValueType get() const;
-   template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<GroupNestedPartySubIDs,0,FIELDS...>(*this,tpl); return tpl; };
-   template< typename... FIELDS > std::tuple<typeExists<FIELDS>... > getPresenceOf() const { std::tuple< typeExists<FIELDS>... > tpl{}; buildPresenceTuple<GroupNestedPartySubIDs,0,FIELDS...>(*this,tpl); return tpl; };
+   template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<GroupNestedPartySubIDs,0,FIELDS...>(*this,tpl); return tpl; }
+   template< typename... FIELDS > std::tuple<anyToBool<FIELDS>...> getPresenceOf() const { std::tuple<anyToBool<FIELDS>...> tpl{}; buildPresenceTuple<GroupNestedPartySubIDs,0,FIELDS...>(*this,tpl); return tpl; }
    bool isFieldSet( tag_t tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
@@ -121,9 +123,10 @@ class GroupNestedPartyIDs : public MessageBase
    static offset_t scanSafely( Array & arr, const char * fix, unsigned len, unsigned & groupCount, const char * & badFieldPtr );
    static offset_t skip( const char * fix, unsigned len );
    const char * getFieldValue( unsigned tag ) const;
+   template< typename FIELD > static constexpr bool hasField() { return false; }
    template< typename FIELD > typename FIELD::ValueType get() const;
-   template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<GroupNestedPartyIDs,0,FIELDS...>(*this,tpl); return tpl; };
-   template< typename... FIELDS > std::tuple<typeExists<FIELDS>... > getPresenceOf() const { std::tuple< typeExists<FIELDS>... > tpl{}; buildPresenceTuple<GroupNestedPartyIDs,0,FIELDS...>(*this,tpl); return tpl; };
+   template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<GroupNestedPartyIDs,0,FIELDS...>(*this,tpl); return tpl; }
+   template< typename... FIELDS > std::tuple<anyToBool<FIELDS>...> getPresenceOf() const { std::tuple<anyToBool<FIELDS>...> tpl{}; buildPresenceTuple<GroupNestedPartyIDs,0,FIELDS...>(*this,tpl); return tpl; }
    bool isFieldSet( tag_t tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
@@ -192,9 +195,10 @@ class GroupLegs : public MessageBase
    static offset_t scanSafely( Array & arr, const char * fix, unsigned len, unsigned & groupCount, const char * & badFieldPtr );
    static offset_t skip( const char * fix, unsigned len );
    const char * getFieldValue( unsigned tag ) const;
+   template< typename FIELD > static constexpr bool hasField() { return false; }
    template< typename FIELD > typename FIELD::ValueType get() const;
-   template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<GroupLegs,0,FIELDS...>(*this,tpl); return tpl; };
-   template< typename... FIELDS > std::tuple<typeExists<FIELDS>... > getPresenceOf() const { std::tuple< typeExists<FIELDS>... > tpl{}; buildPresenceTuple<GroupLegs,0,FIELDS...>(*this,tpl); return tpl; };
+   template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<GroupLegs,0,FIELDS...>(*this,tpl); return tpl; }
+   template< typename... FIELDS > std::tuple<anyToBool<FIELDS>...> getPresenceOf() const { std::tuple<anyToBool<FIELDS>...> tpl{}; buildPresenceTuple<GroupLegs,0,FIELDS...>(*this,tpl); return tpl; }
    bool isFieldSet( tag_t tag ) const;
    const char * findBadField() const;
    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;
@@ -304,6 +308,33 @@ class GroupLegs : public MessageBase
    private: FieldLegLastPx fieldLegLastPx;
 
 };
+
+// ---------------------------------- hasField<field> ---------------------------------
+
+#define FIXPP_MSG_CLASS GroupLegStipulations
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldLegStipulationValue>() { return true; }
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS GroupNestedPartySubIDs
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNestedPartySubIDType>() { return true; }
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS GroupNestedPartyIDs
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNestedPartyIDSource>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNestedPartyRole>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoNestedPartySubIDs>() { return true; }
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS GroupLegs
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldLegSide>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldLegQty>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoLegStipulations>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldLegPositionEffect>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoNestedPartyIDs>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldLegRefID>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldLegPrice>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldLegLastPx>() { return true; }
+#undef FIXPP_MSG_CLASS
 // end of Groups.hxx
 
 } // namespace order

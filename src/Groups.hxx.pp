@@ -13,9 +13,10 @@ class Group##NAME : public MessageBase\
 <n1>    static offset_t scanSafely( Array & arr, const char * fix, unsigned len, unsigned & groupCount, const char * & badFieldPtr );\
 <n1>    static offset_t skip( const char * fix, unsigned len );\
 <n1>    const char * getFieldValue( unsigned tag ) const;\
+<n1>    template< typename FIELD > static constexpr bool hasField() { return false; }\
 <n1>    template< typename FIELD > typename FIELD::ValueType get() const;\
-<n1>    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<Group##NAME,0,FIELDS...>(*this,tpl); return tpl; };\
-<n1>    template< typename... FIELDS > std::tuple<typeExists<FIELDS>... > getPresenceOf() const { std::tuple< typeExists<FIELDS>... > tpl{}; buildPresenceTuple<Group##NAME,0,FIELDS...>(*this,tpl); return tpl; };\
+<n1>    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<Group##NAME,0,FIELDS...>(*this,tpl); return tpl; }\
+<n1>    template< typename... FIELDS > std::tuple<anyToBool<FIELDS>...> getPresenceOf() const { std::tuple<anyToBool<FIELDS>...> tpl{}; buildPresenceTuple<Group##NAME,0,FIELDS...>(*this,tpl); return tpl; }\
 <n1>    bool isFieldSet( tag_t tag ) const;\
 <n1>    const char * findBadField() const;\
 <n1>    const char * findBadGroup( unsigned & noExpected, unsigned & noReceived ) const;\
@@ -31,4 +32,30 @@ class Group##NAME : public MessageBase\
 <nl>};
 
 #include <Groups.def>
+
+#undef FIX_MSG_GROUP_BEGIN
+#undef FIX_MSG_FIELD
+#undef FIX_MSG_GROUP_END
+#undef FIX_MSG_GROUP
+
+<com> ---------------------------------- hasField<field> ---------------------------------
+
+#define FIX_MSG_GROUP_BEGIN(NAME,FIRST_FIELD) \
+<def> FIXPP_MSG_CLASS Group##NAME
+
+#define FIX_MSG_FIELD(NAME) \
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<Field##NAME>() { return true; }
+
+#define FIX_MSG_GROUP(NAME) \
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNo##NAME>() { return true; }
+
+#define FIX_MSG_GROUP_END \
+<undef> FIXPP_MSG_CLASS
+
+#include <Groups.def>
+
+#undef FIX_MSG_GROUP_BEGIN
+#undef FIX_MSG_FIELD
+#undef FIX_MSG_GROUP_END
+#undef FIX_MSG_GROUP
 
