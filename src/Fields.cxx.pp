@@ -14,7 +14,7 @@ const NAME##Enums::ItemType NAME##Enums::BAD_ENUM( "BAD_ENUM", NAME##Enums::ITEM
 const NAME##Enums::ItemType NAME##Enums::E( #E, V ); \
 
 #define FIX_ENUM_END
-        
+
 #include <Fields.def>
 
 #undef FIX_FIELD_DECL
@@ -30,7 +30,7 @@ const NAME##Enums::ItemType NAME##Enums::E( #E, V ); \
 #define FIX_FIELD_DECL( NAME, TAG, TYPE ) \
 template<> const FieldEnumBase * const * Field##NAME::enumItems = nullptr;\
 <nl>template<> FieldType Field##NAME::getType() { return FieldType::TYPE; }\
-<nl>template<> const std::string & Field##NAME::getTypeName() { static const std::string fixType{ #TYPE }; return fixType; }
+<nl>template<> const std::string & Field##NAME::getTypeName() { return fixTypeName_##TYPE; }
 
 #define FIX_ENUM_BEGIN( NAME ) \
 <nl>const char * NAME##Enums::getFieldName() const { return Fix##NAME; }\
@@ -95,7 +95,7 @@ const FieldEnumMap NAME##Enums::itemByRaw = { \
 <n1>tagNameByValue.emplace( TAG, Fix##NAME );\
 <n1>tagByName.emplace( Fix##NAME, TAG );\
 <n1>fieldTypeByValue.emplace( TAG, FieldType::TYPE );\
-<n1>fieldTypeNameByValue.emplace( TAG, #TYPE );
+<n1>fieldTypeNameByValue.emplace( TAG, fixTypeName_##TYPE );
 
 <nl>
 int initStatics()

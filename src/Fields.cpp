@@ -96,7 +96,7 @@ std::map< raw_tag_t  , const FieldEnumsBase * const > enumsByRaw;
 std::map< tag_t      , const FieldEnumsBase * const > enumsByTag;
 std::map< std::string, tag_t >                        tagByName;
 std::map< tag_t      , FieldType >                    fieldTypeByValue;
-std::map< tag_t      , const std::string >            fieldTypeNameByValue;
+std::map< tag_t      , const std::string & >          fieldTypeNameByValue;
 
 const std::map< raw_tag_t  , const char * const >           & RAW_TAG_TO_NAME        = tagNameByRaw;
 const std::map< tag_t      , const char * const >           & TAG_TO_NAME            = tagNameByValue;
@@ -104,7 +104,7 @@ const std::map< raw_tag_t  , const FieldEnumsBase * const > & RAW_TO_ENUM       
 const std::map< tag_t      , const FieldEnumsBase * const > & TAG_TO_ENUM            = enumsByTag;
 const std::map< std::string, tag_t >                        & FIELD_NAME_TO_TAG      = tagByName;
 const std::map< tag_t      , FieldType >                    & TAG_TO_FIELD_TYPE      = fieldTypeByValue;
-const std::map< tag_t      , const std::string >            & TAG_TO_FIELD_TYPE_NAME = fieldTypeNameByValue;
+const std::map< tag_t      , const std::string & >          & TAG_TO_FIELD_TYPE_NAME = fieldTypeNameByValue;
 
 tag_t getFieldTag( const std::string & fieldName )
 {
@@ -141,6 +141,44 @@ bool isHeaderField( tag_t tagValue )
     return headerTags.find( tagValue ) != headerTags.end();
 }
 
+
+const std::string fixTypeName_AMT                 { "AMT" };
+const std::string fixTypeName_BOOLEAN             { "BOOLEAN" };
+const std::string fixTypeName_CHAR                { "CHAR" };
+const std::string fixTypeName_COUNTRY             { "COUNTRY" };
+const std::string fixTypeName_CURRENCY            { "CURRENCY" };
+const std::string fixTypeName_DATA                { "DATA" };
+const std::string fixTypeName_EXCHANGE            { "EXCHANGE" };
+const std::string fixTypeName_FLOAT               { "FLOAT" };
+const std::string fixTypeName_INT                 { "INT" };
+const std::string fixTypeName_LENGTH              { "LENGTH" };
+const std::string fixTypeName_LOCALMKTDATE        { "LOCALMKTDATE" };
+const std::string fixTypeName_LOCALMKTTIME        { "LOCALMKTTIME" };
+const std::string fixTypeName_DAYOFMONTH          { "DAYOFMONTH" };
+const std::string fixTypeName_MONTHYEAR           { "MONTHYEAR" };
+const std::string fixTypeName_MULTIPLEVALUESTRING { "MULTIPLEVALUESTRING" };
+const std::string fixTypeName_NUMINGROUP          { "NUMINGROUP" };
+const std::string fixTypeName_PERCENTAGE          { "PERCENTAGE" };
+const std::string fixTypeName_PRICE               { "PRICE" };
+const std::string fixTypeName_PRICEOFFSET         { "PRICEOFFSET" };
+const std::string fixTypeName_QTY                 { "QTY" };
+const std::string fixTypeName_SEQNUM              { "SEQNUM" };
+const std::string fixTypeName_STRING              { "STRING" };
+const std::string fixTypeName_MULTIPLECHARVALUE   { "MULTIPLECHARVALUE" };
+const std::string fixTypeName_MULTIPLESTRINGVALUE { "MULTIPLESTRINGVALUE" };
+const std::string fixTypeName_UTCDATEONLY         { "UTCDATEONLY" };
+const std::string fixTypeName_UTCTIMEONLY         { "UTCTIMEONLY" };
+const std::string fixTypeName_UTCTIMESTAMP        { "UTCTIMESTAMP" };
+const std::string fixTypeName_UTCDATE             { "UTCDATE" };
+const std::string fixTypeName_TZTIMEONLY          { "TZTIMEONLY" };
+const std::string fixTypeName_LANGUAGE            { "LANGUAGE" };
+const std::string fixTypeName_TZTIMESTAMP         { "TZTIMESTAMP" };
+const std::string fixTypeName_XMLDATA             { "XMLDATA" };
+const std::string fixTypeName_XID                 { "XID" };
+const std::string fixTypeName_XIDREF              { "XIDREF" };
+const std::string fixTypeName_EURIBOR             { "EURIBOR" };
+const std::string fixTypeName_TAGNUM              { "TAGNUM" };
+
 #include <DSTINCDIR/Fields.cxx>
 
 // May be used to check whther raw_enum_t to hold uniquely all enum items for each enum field.
@@ -156,7 +194,7 @@ void checkEnums()
         {
             ++enumCount;
         }
-        
+
         if( enumCount != mapSz )
         {
             std::cerr << "Enum size mismatch " << enums->getFieldName() << " no.items=" << enumCount << " map.size=" << mapSz << std::endl;
@@ -166,7 +204,7 @@ void checkEnums()
                 auto it = knownEnums.find( (*eptr)->raw );
                 if( it == knownEnums.end() )
                 {
-                    knownEnums[ (*eptr)->raw ] = *eptr; 
+                    knownEnums[ (*eptr)->raw ] = *eptr;
                 }
                 else
                 {
