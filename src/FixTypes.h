@@ -151,43 +151,14 @@ constexpr bool isNotDecDigit( char c )
 template< typename T, T N >
 constexpr T dec_zeros()
 {
-    return ( dec_zeros<T,T(N-1)>() * T(10) ) + T( '0' );
-}
-
-template<>
-constexpr unsigned short dec_zeros<unsigned short,0U>()
-{
-    return 0U;
-}
-
-template<>
-constexpr short dec_zeros<short,0>()
-{
-    return 0;
-}
-
-template<>
-constexpr unsigned dec_zeros<unsigned,0U>()
-{
-    return 0U;
-}
-
-template<>
-constexpr int dec_zeros<int,0>()
-{
-    return 0;
-}
-
-template<>
-constexpr int64_t dec_zeros<int64_t,0L>()
-{
-    return 0L;
-}
-
-template<>
-constexpr uint64_t dec_zeros<uint64_t,0UL>()
-{
-    return 0UL;
+    if constexpr ( N == 0 )
+    {
+        return T(0);
+    }
+    else
+    {
+        return ( dec_zeros<T,T(N-1)>() * T(10) ) + T( '0' );
+    }
 }
 
 // Three improvements:
