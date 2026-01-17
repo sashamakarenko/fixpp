@@ -30,5 +30,7 @@ FIX_MSG_GROUP( NestedPartyIDs )
 FIX_MSG_FIELD( LegRefID )
 FIX_MSG_FIELD( LegPrice )
 FIX_MSG_FIELD( LegLastPx )
+FIX_MSG_FIELD( RawDataLength )
+FIX_MSG_FIELD( RawData  )
 FIX_MSG_GROUP_END
 

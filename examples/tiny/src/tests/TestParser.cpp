@@ -15,28 +15,45 @@ int main( int args, const char ** argv )
 {
     Header header;
     offset_t pos, safepos;
+    size_t msglen;
     const char * fix;
+
+    auto skip = [&]<typename MSG>( const char * buffer, MSG & msg )
+    {
+        fix = buffer;
+        header.reset();
+        msglen = pos = header.skip( fix, strlen( fix ) );
+        msg.reset();
+        pos = msg.skip( fix + pos, strlen( fix ) - pos );
+        msglen += pos;
+    };
+
     auto parse = [&]<typename MSG>( const char * buffer, MSG & msg )
     {
         fix = buffer;
         header.reset();
-        pos = header.scan( fix, strlen( fix ) );
+        msglen = pos = header.scan( fix, strlen( fix ) );
         msg.reset();
         pos = msg.scan( fix + pos, strlen( fix ) - pos );
+        msglen += pos;
     };
 
     auto parseSafely = [&]<typename MSG>( const char * buffer, MSG & msg )
     {
         fix = buffer;
         header.reset();
-        safepos = header.scanSafely( fix, strlen( fix ) );
+        msglen = safepos = header.scanSafely( fix, strlen( fix ) );
         msg.reset();
         safepos = msg.scanSafely( fix + safepos, strlen( fix ) - safepos );
+        msglen += safepos;
     };
 
     std::string checkPrettyPrinting( "text to show in debugger" );
     HIGHLIGHT( ExecutionReport );
     ExecutionReport er;
+    skip( FIX_BUFFER_EXEC_REPORT, er );
+    CHECK_EQ( msg length, msglen, strlen(FIX_BUFFER_EXEC_REPORT) )
+
     parse( FIX_BUFFER_EXEC_REPORT, er );
     CHECK_EQ( header length, (ssize_t)header.getMessageLength(), er.ptrToTagClOrdID() - fix )
     const char * badFieldPtr = header.findBadField();
@@ -206,11 +223,11 @@ int main( int args, const char ** argv )
     CHECK_EQ( logon report body length, header.getMessageLength() + logon.getMessageLength(), uint64_t( header.getBodyLength() + ( header.ptrToTagMsgType() - header.getMessageBuffer() ) ) + CHECKSUM_FIELD_LENGTH )
 
     std::string_view blv = header.getBodyLengthView();
-    CHECK( body length view, blv, == "120" )
+    CHECK_EQ( body length view, blv, "120" )
 
     parse( FIX_BUFFER_BAD_GROUP_LARGE_EXEC_REPORT, er );
     badGroupPtr = er.findBadGroup( noExpected, noReceived );
-    CHECK( bad group exec report, badGroupPtr != nullptr, == true )
+    CHECK_EQ( bad group exec report, badGroupPtr != nullptr, true )
     CHECK_EQ( bad group exec report tag, parseTag( badGroupPtr ), field::NoNestedPartyIDs::TAG )
     CHECK_EQ( bad group exec report expected, noExpected, 1 )
     CHECK_EQ( bad group exec report received, noReceived, 2 )
@@ -227,7 +244,7 @@ int main( int args, const char ** argv )
 
     parse( FIX_BUFFER_BAD_GROUP_MD_FULL_REFRESH, mdsfr );
     badGroupPtr = mdsfr.findBadGroup( noExpected, noReceived );
-    CHECK( bad group md full refresh, badGroupPtr != nullptr, == true )
+    CHECK_EQ( bad group md full refresh, badGroupPtr != nullptr, true )
     CHECK_EQ( bad group md full refresh tag, parseTag( badGroupPtr ), field::NoMDEntries::TAG )
     CHECK_EQ( bad group md full refresh expected, noExpected, 10 )
     CHECK_EQ( bad group md full refresh received, noReceived, 6 )
@@ -236,7 +253,7 @@ int main( int args, const char ** argv )
 
     parse( FIX_BUFFER_BAD_SIDE_EXAMPLE_EXEC_REPORT, er );
     badFieldPtr = er.findBadEnum();
-    CHECK( bad enum in exec report, badFieldPtr != nullptr, == true )
+    CHECK_EQ( bad enum in exec report, badFieldPtr != nullptr, true )
     CHECK_EQ( bad enum field report tag, parseTag( badFieldPtr ), field::Side::TAG )
 
     fix = FIX_BUFFER_BAD_SENDER_COMP_ID_XX_EXAMPLE_LOGON;
@@ -251,14 +268,14 @@ int main( int args, const char ** argv )
     header.reset();
     pos = header.scan( fix, strlen( fix ) );
     badFieldPtr = header.findBadField();
-    CHECK( empty sender comp id, badFieldPtr != nullptr, == true )
+    CHECK_EQ( empty sender comp id, badFieldPtr != nullptr, true )
     CHECK_EQ( empty sender comp id tag, parseTag( badFieldPtr ), field::SenderCompID::TAG )
     header.reset();
     pos = header.scanSafely( fix, strlen( fix ) );
     CHECK_EQ( safely empty sender comp id tag, parseTag( header.getMessageEnd() ), field::SenderCompID::TAG )
 
     parse( FIX_BUFFER_BAD_BODY_LENGTH_EXAMPLE_LOGON, logon );
-    CHECK( logon message length, strlen( fix ), == header.getMessageLength() + logon.getMessageLength() )
+    CHECK_EQ( logon message length, strlen( fix ), header.getMessageLength() + logon.getMessageLength() )
     CHECK( bad body length in logon, header.getMessageLength() + logon.getMessageLength(), < header.getBodyLength() )
 
     fix = FIX_BUFFER_BAD_SEQNO_TWICE_EXAMPLE_LOGON;
@@ -289,5 +306,52 @@ int main( int args, const char ** argv )
     pos = header.scan( fix, 100 );
     CHECK_EQ( mal formatted 9=, header.getBodyLength(), 0 )
 
+    HIGHLIGHT( logon with raw data )
+    parse( FIX_BUFFER_LOGON_WITH_RAWDATA, logon );
+    CHECK_EQ( message length, header.getMessageLength() + logon.getMessageLength(), uint64_t( header.getBodyLength() + ( header.ptrToTagMsgType() - header.getMessageBuffer() ) ) + CHECKSUM_FIELD_LENGTH )
+    CHECK_EQ( check sum, logon.getCheckSum(), (int)computeChecksum( fix, logon.ptrToTagCheckSum() ) )
+    std::string_view rdv = logon.getRawDataView();
+    CHECK_EQ( raw data length, rdv.size(), (size_t)logon.getRawDataLength() )
+    CHECK_EQ( raw data[0], rdv[0], '\1' )
+    CHECK_EQ( raw data[9], rdv[9], 'Z' )
+
+    parseSafely( FIX_BUFFER_LOGON_WITH_RAWDATA, logon );
+    CHECK_EQ( message length, header.getMessageLength() + logon.getMessageLength(), uint64_t( header.getBodyLength() + ( header.ptrToTagMsgType() - header.getMessageBuffer() ) ) + CHECKSUM_FIELD_LENGTH )
+    CHECK_EQ( check sum, logon.getCheckSum(), (int)computeChecksum( fix, logon.ptrToTagCheckSum() ) )
+
+    HIGHLIGHT( logon with xml and raw data )
+    parse( FIX_BUFFER_LOGON_WITH_XMLDATA, logon );
+    CHECK_EQ( message length, header.getMessageLength() + logon.getMessageLength(), uint64_t( header.getBodyLength() + ( header.ptrToTagMsgType() - header.getMessageBuffer() ) ) + CHECKSUM_FIELD_LENGTH )
+    CHECK_EQ( check sum, logon.getCheckSum(), (int)computeChecksum( fix, logon.ptrToTagCheckSum() ) )
+    rdv = logon.getRawDataView();
+    CHECK_EQ( raw data length, rdv.size(), (size_t)logon.getRawDataLength() )
+    CHECK_EQ( raw data[0], rdv[0], '\1' )
+    CHECK_EQ( raw data[9], rdv[9], 'Z' )
+    std::string_view xdv = header.getXmlDataView();
+    CHECK_EQ( xml data, xdv, "<xml></xml>" )    
+
+    parseSafely( FIX_BUFFER_LOGON_WITH_XMLDATA, logon );
+    CHECK_EQ( message length, header.getMessageLength() + logon.getMessageLength(), uint64_t( header.getBodyLength() + ( header.ptrToTagMsgType() - header.getMessageBuffer() ) ) + CHECKSUM_FIELD_LENGTH )
+    CHECK_EQ( check sum, logon.getCheckSum(), (int)computeChecksum( fix, logon.ptrToTagCheckSum() ) )
+    
+    skip( FIX_BUFFER_LOGON_WITH_XMLDATA, logon );
+    CHECK_EQ( msg length, msglen, strlen(FIX_BUFFER_LOGON_WITH_XMLDATA) )
+
+    parseSafely( FIX_BUFFER_LOGON_WITH_XMLDATA, logon );
+    CHECK_EQ( msg length, msglen, strlen(FIX_BUFFER_LOGON_WITH_XMLDATA) )
+
+    HIGHLIGHT( exec report with raw data in groups )
+    parse( EXAMPLE_LARGE_EXEC_REPORT_WITH_RAWDATA, er );
+    CHECK_EQ( end of parser, msglen, strlen(EXAMPLE_LARGE_EXEC_REPORT_WITH_RAWDATA) )
+    CHECK_EQ( message length, header.getMessageLength() + er.getMessageLength(), uint64_t( header.getBodyLength() + ( header.ptrToTagMsgType() - header.getMessageBuffer() ) ) + CHECKSUM_FIELD_LENGTH )
+    CHECK_EQ( check sum, er.getCheckSum(), (int)computeChecksum( fix, er.ptrToTagCheckSum() ) )
+    skip( EXAMPLE_LARGE_EXEC_REPORT_WITH_RAWDATA, er );
+    CHECK_EQ( end of parser, msglen, strlen(EXAMPLE_LARGE_EXEC_REPORT_WITH_RAWDATA) )
+    parseSafely( EXAMPLE_LARGE_EXEC_REPORT_WITH_RAWDATA, er );
+    CHECK_EQ( end of parser, msglen, strlen(EXAMPLE_LARGE_EXEC_REPORT_WITH_RAWDATA) )
+    rdv = er.getGroupLegs(0).getRawDataView();
+    CHECK_EQ( raw data length, rdv.size(), (size_t)er.getGroupLegs(0).getRawDataLength() )
+    CHECK_EQ( raw data[0], rdv[0], '\1' )
+    CHECK_EQ( raw data[2], rdv[2], '\3' )
     return 0;
 }

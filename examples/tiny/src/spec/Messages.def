@@ -6,6 +6,8 @@ FIX_MSG_FIELD( MsgType )
 FIX_MSG_FIELD( SenderCompID )
 FIX_MSG_FIELD( TargetCompID )
 FIX_MSG_FIELD( MsgSeqNum )
+FIX_MSG_FIELD( XmlDataLen )
+FIX_MSG_FIELD( XmlData )
 FIX_MSG_FIELD( SendingTime )
 FIX_MSG_END
 
@@ -17,6 +19,8 @@ FIX_MSG_BEGIN( Logon, LOGON )
 FIX_MSG_FIELD( EncryptMethod )
 FIX_MSG_FIELD( HeartBtInt )
 FIX_MSG_FIELD( ResetSeqNumFlag )
+FIX_MSG_FIELD( RawDataLength )
+FIX_MSG_FIELD( RawData  )
 FIX_MSG_FIELD( Username )
 FIX_MSG_FIELD( Password )
 FIX_MSG_END

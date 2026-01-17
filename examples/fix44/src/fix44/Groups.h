@@ -712,7 +712,7 @@ class GroupAllocs : public MessageBase
    using EncodedAllocText = FieldEncodedAllocText; 
    bool isSetEncodedAllocText() const { return fieldEncodedAllocText.offset > 0; }
    FieldEncodedAllocText::ValueType getEncodedAllocText() const { return fieldEncodedAllocText.getValue( _fixPtr ); }
-   std::string_view getEncodedAllocTextView() const { return fieldEncodedAllocText.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedAllocText.offset, getValueLength( _fixPtr + fieldEncodedAllocText.offset ) } : std::string_view{}; }
+   std::string_view getEncodedAllocTextView() const { return fieldEncodedAllocText.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedAllocText.offset, (size_t)getEncodedAllocTextLen() } : std::string_view{}; }
    const char * ptrToEncodedAllocText() const { return _fixPtr + fieldEncodedAllocText.offset; }
    const char * ptrToTagEncodedAllocText() const { return _fixPtr + fieldEncodedAllocText.offset - 1 - FieldEncodedAllocText::tagWidth(); }
    const char * getIfSetEncodedAllocText() const { return fieldEncodedAllocText.offset > 0 ? _fixPtr + fieldEncodedAllocText.offset : nullptr; }
@@ -1262,7 +1262,7 @@ class GroupUnderlyings : public MessageBase
    using EncodedUnderlyingIssuer = FieldEncodedUnderlyingIssuer; 
    bool isSetEncodedUnderlyingIssuer() const { return fieldEncodedUnderlyingIssuer.offset > 0; }
    FieldEncodedUnderlyingIssuer::ValueType getEncodedUnderlyingIssuer() const { return fieldEncodedUnderlyingIssuer.getValue( _fixPtr ); }
-   std::string_view getEncodedUnderlyingIssuerView() const { return fieldEncodedUnderlyingIssuer.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedUnderlyingIssuer.offset, getValueLength( _fixPtr + fieldEncodedUnderlyingIssuer.offset ) } : std::string_view{}; }
+   std::string_view getEncodedUnderlyingIssuerView() const { return fieldEncodedUnderlyingIssuer.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedUnderlyingIssuer.offset, (size_t)getEncodedUnderlyingIssuerLen() } : std::string_view{}; }
    const char * ptrToEncodedUnderlyingIssuer() const { return _fixPtr + fieldEncodedUnderlyingIssuer.offset; }
    const char * ptrToTagEncodedUnderlyingIssuer() const { return _fixPtr + fieldEncodedUnderlyingIssuer.offset - 1 - FieldEncodedUnderlyingIssuer::tagWidth(); }
    const char * getIfSetEncodedUnderlyingIssuer() const { return fieldEncodedUnderlyingIssuer.offset > 0 ? _fixPtr + fieldEncodedUnderlyingIssuer.offset : nullptr; }
@@ -1292,7 +1292,7 @@ class GroupUnderlyings : public MessageBase
    using EncodedUnderlyingSecurityDesc = FieldEncodedUnderlyingSecurityDesc; 
    bool isSetEncodedUnderlyingSecurityDesc() const { return fieldEncodedUnderlyingSecurityDesc.offset > 0; }
    FieldEncodedUnderlyingSecurityDesc::ValueType getEncodedUnderlyingSecurityDesc() const { return fieldEncodedUnderlyingSecurityDesc.getValue( _fixPtr ); }
-   std::string_view getEncodedUnderlyingSecurityDescView() const { return fieldEncodedUnderlyingSecurityDesc.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedUnderlyingSecurityDesc.offset, getValueLength( _fixPtr + fieldEncodedUnderlyingSecurityDesc.offset ) } : std::string_view{}; }
+   std::string_view getEncodedUnderlyingSecurityDescView() const { return fieldEncodedUnderlyingSecurityDesc.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedUnderlyingSecurityDesc.offset, (size_t)getEncodedUnderlyingSecurityDescLen() } : std::string_view{}; }
    const char * ptrToEncodedUnderlyingSecurityDesc() const { return _fixPtr + fieldEncodedUnderlyingSecurityDesc.offset; }
    const char * ptrToTagEncodedUnderlyingSecurityDesc() const { return _fixPtr + fieldEncodedUnderlyingSecurityDesc.offset - 1 - FieldEncodedUnderlyingSecurityDesc::tagWidth(); }
    const char * getIfSetEncodedUnderlyingSecurityDesc() const { return fieldEncodedUnderlyingSecurityDesc.offset > 0 ? _fixPtr + fieldEncodedUnderlyingSecurityDesc.offset : nullptr; }
@@ -2121,7 +2121,7 @@ class GroupOrders : public MessageBase
    using EncodedIssuer = FieldEncodedIssuer; 
    bool isSetEncodedIssuer() const { return fieldEncodedIssuer.offset > 0; }
    FieldEncodedIssuer::ValueType getEncodedIssuer() const { return fieldEncodedIssuer.getValue( _fixPtr ); }
-   std::string_view getEncodedIssuerView() const { return fieldEncodedIssuer.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedIssuer.offset, getValueLength( _fixPtr + fieldEncodedIssuer.offset ) } : std::string_view{}; }
+   std::string_view getEncodedIssuerView() const { return fieldEncodedIssuer.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedIssuer.offset, (size_t)getEncodedIssuerLen() } : std::string_view{}; }
    const char * ptrToEncodedIssuer() const { return _fixPtr + fieldEncodedIssuer.offset; }
    const char * ptrToTagEncodedIssuer() const { return _fixPtr + fieldEncodedIssuer.offset - 1 - FieldEncodedIssuer::tagWidth(); }
    const char * getIfSetEncodedIssuer() const { return fieldEncodedIssuer.offset > 0 ? _fixPtr + fieldEncodedIssuer.offset : nullptr; }
@@ -2151,7 +2151,7 @@ class GroupOrders : public MessageBase
    using EncodedSecurityDesc = FieldEncodedSecurityDesc; 
    bool isSetEncodedSecurityDesc() const { return fieldEncodedSecurityDesc.offset > 0; }
    FieldEncodedSecurityDesc::ValueType getEncodedSecurityDesc() const { return fieldEncodedSecurityDesc.getValue( _fixPtr ); }
-   std::string_view getEncodedSecurityDescView() const { return fieldEncodedSecurityDesc.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedSecurityDesc.offset, getValueLength( _fixPtr + fieldEncodedSecurityDesc.offset ) } : std::string_view{}; }
+   std::string_view getEncodedSecurityDescView() const { return fieldEncodedSecurityDesc.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedSecurityDesc.offset, (size_t)getEncodedSecurityDescLen() } : std::string_view{}; }
    const char * ptrToEncodedSecurityDesc() const { return _fixPtr + fieldEncodedSecurityDesc.offset; }
    const char * ptrToTagEncodedSecurityDesc() const { return _fixPtr + fieldEncodedSecurityDesc.offset - 1 - FieldEncodedSecurityDesc::tagWidth(); }
    const char * getIfSetEncodedSecurityDesc() const { return fieldEncodedSecurityDesc.offset > 0 ? _fixPtr + fieldEncodedSecurityDesc.offset : nullptr; }
@@ -2776,7 +2776,7 @@ class GroupOrders : public MessageBase
    using EncodedText = FieldEncodedText; 
    bool isSetEncodedText() const { return fieldEncodedText.offset > 0; }
    FieldEncodedText::ValueType getEncodedText() const { return fieldEncodedText.getValue( _fixPtr ); }
-   std::string_view getEncodedTextView() const { return fieldEncodedText.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedText.offset, getValueLength( _fixPtr + fieldEncodedText.offset ) } : std::string_view{}; }
+   std::string_view getEncodedTextView() const { return fieldEncodedText.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedText.offset, (size_t)getEncodedTextLen() } : std::string_view{}; }
    const char * ptrToEncodedText() const { return _fixPtr + fieldEncodedText.offset; }
    const char * ptrToTagEncodedText() const { return _fixPtr + fieldEncodedText.offset - 1 - FieldEncodedText::tagWidth(); }
    const char * getIfSetEncodedText() const { return fieldEncodedText.offset > 0 ? _fixPtr + fieldEncodedText.offset : nullptr; }
@@ -3695,7 +3695,7 @@ class GroupLegs : public MessageBase
    using EncodedLegIssuer = FieldEncodedLegIssuer; 
    bool isSetEncodedLegIssuer() const { return fieldEncodedLegIssuer.offset > 0; }
    FieldEncodedLegIssuer::ValueType getEncodedLegIssuer() const { return fieldEncodedLegIssuer.getValue( _fixPtr ); }
-   std::string_view getEncodedLegIssuerView() const { return fieldEncodedLegIssuer.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedLegIssuer.offset, getValueLength( _fixPtr + fieldEncodedLegIssuer.offset ) } : std::string_view{}; }
+   std::string_view getEncodedLegIssuerView() const { return fieldEncodedLegIssuer.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedLegIssuer.offset, (size_t)getEncodedLegIssuerLen() } : std::string_view{}; }
    const char * ptrToEncodedLegIssuer() const { return _fixPtr + fieldEncodedLegIssuer.offset; }
    const char * ptrToTagEncodedLegIssuer() const { return _fixPtr + fieldEncodedLegIssuer.offset - 1 - FieldEncodedLegIssuer::tagWidth(); }
    const char * getIfSetEncodedLegIssuer() const { return fieldEncodedLegIssuer.offset > 0 ? _fixPtr + fieldEncodedLegIssuer.offset : nullptr; }
@@ -3725,7 +3725,7 @@ class GroupLegs : public MessageBase
    using EncodedLegSecurityDesc = FieldEncodedLegSecurityDesc; 
    bool isSetEncodedLegSecurityDesc() const { return fieldEncodedLegSecurityDesc.offset > 0; }
    FieldEncodedLegSecurityDesc::ValueType getEncodedLegSecurityDesc() const { return fieldEncodedLegSecurityDesc.getValue( _fixPtr ); }
-   std::string_view getEncodedLegSecurityDescView() const { return fieldEncodedLegSecurityDesc.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedLegSecurityDesc.offset, getValueLength( _fixPtr + fieldEncodedLegSecurityDesc.offset ) } : std::string_view{}; }
+   std::string_view getEncodedLegSecurityDescView() const { return fieldEncodedLegSecurityDesc.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedLegSecurityDesc.offset, (size_t)getEncodedLegSecurityDescLen() } : std::string_view{}; }
    const char * ptrToEncodedLegSecurityDesc() const { return _fixPtr + fieldEncodedLegSecurityDesc.offset; }
    const char * ptrToTagEncodedLegSecurityDesc() const { return _fixPtr + fieldEncodedLegSecurityDesc.offset - 1 - FieldEncodedLegSecurityDesc::tagWidth(); }
    const char * getIfSetEncodedLegSecurityDesc() const { return fieldEncodedLegSecurityDesc.offset > 0 ? _fixPtr + fieldEncodedLegSecurityDesc.offset : nullptr; }
@@ -4277,7 +4277,7 @@ class GroupQuoteEntries : public MessageBase
    using EncodedIssuer = FieldEncodedIssuer; 
    bool isSetEncodedIssuer() const { return fieldEncodedIssuer.offset > 0; }
    FieldEncodedIssuer::ValueType getEncodedIssuer() const { return fieldEncodedIssuer.getValue( _fixPtr ); }
-   std::string_view getEncodedIssuerView() const { return fieldEncodedIssuer.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedIssuer.offset, getValueLength( _fixPtr + fieldEncodedIssuer.offset ) } : std::string_view{}; }
+   std::string_view getEncodedIssuerView() const { return fieldEncodedIssuer.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedIssuer.offset, (size_t)getEncodedIssuerLen() } : std::string_view{}; }
    const char * ptrToEncodedIssuer() const { return _fixPtr + fieldEncodedIssuer.offset; }
    const char * ptrToTagEncodedIssuer() const { return _fixPtr + fieldEncodedIssuer.offset - 1 - FieldEncodedIssuer::tagWidth(); }
    const char * getIfSetEncodedIssuer() const { return fieldEncodedIssuer.offset > 0 ? _fixPtr + fieldEncodedIssuer.offset : nullptr; }
@@ -4307,7 +4307,7 @@ class GroupQuoteEntries : public MessageBase
    using EncodedSecurityDesc = FieldEncodedSecurityDesc; 
    bool isSetEncodedSecurityDesc() const { return fieldEncodedSecurityDesc.offset > 0; }
    FieldEncodedSecurityDesc::ValueType getEncodedSecurityDesc() const { return fieldEncodedSecurityDesc.getValue( _fixPtr ); }
-   std::string_view getEncodedSecurityDescView() const { return fieldEncodedSecurityDesc.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedSecurityDesc.offset, getValueLength( _fixPtr + fieldEncodedSecurityDesc.offset ) } : std::string_view{}; }
+   std::string_view getEncodedSecurityDescView() const { return fieldEncodedSecurityDesc.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedSecurityDesc.offset, (size_t)getEncodedSecurityDescLen() } : std::string_view{}; }
    const char * ptrToEncodedSecurityDesc() const { return _fixPtr + fieldEncodedSecurityDesc.offset; }
    const char * ptrToTagEncodedSecurityDesc() const { return _fixPtr + fieldEncodedSecurityDesc.offset - 1 - FieldEncodedSecurityDesc::tagWidth(); }
    const char * getIfSetEncodedSecurityDesc() const { return fieldEncodedSecurityDesc.offset > 0 ? _fixPtr + fieldEncodedSecurityDesc.offset : nullptr; }
@@ -4874,7 +4874,7 @@ class GroupQuoteSets : public MessageBase
    using EncodedUnderlyingIssuer = FieldEncodedUnderlyingIssuer; 
    bool isSetEncodedUnderlyingIssuer() const { return fieldEncodedUnderlyingIssuer.offset > 0; }
    FieldEncodedUnderlyingIssuer::ValueType getEncodedUnderlyingIssuer() const { return fieldEncodedUnderlyingIssuer.getValue( _fixPtr ); }
-   std::string_view getEncodedUnderlyingIssuerView() const { return fieldEncodedUnderlyingIssuer.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedUnderlyingIssuer.offset, getValueLength( _fixPtr + fieldEncodedUnderlyingIssuer.offset ) } : std::string_view{}; }
+   std::string_view getEncodedUnderlyingIssuerView() const { return fieldEncodedUnderlyingIssuer.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedUnderlyingIssuer.offset, (size_t)getEncodedUnderlyingIssuerLen() } : std::string_view{}; }
    const char * ptrToEncodedUnderlyingIssuer() const { return _fixPtr + fieldEncodedUnderlyingIssuer.offset; }
    const char * ptrToTagEncodedUnderlyingIssuer() const { return _fixPtr + fieldEncodedUnderlyingIssuer.offset - 1 - FieldEncodedUnderlyingIssuer::tagWidth(); }
    const char * getIfSetEncodedUnderlyingIssuer() const { return fieldEncodedUnderlyingIssuer.offset > 0 ? _fixPtr + fieldEncodedUnderlyingIssuer.offset : nullptr; }
@@ -4904,7 +4904,7 @@ class GroupQuoteSets : public MessageBase
    using EncodedUnderlyingSecurityDesc = FieldEncodedUnderlyingSecurityDesc; 
    bool isSetEncodedUnderlyingSecurityDesc() const { return fieldEncodedUnderlyingSecurityDesc.offset > 0; }
    FieldEncodedUnderlyingSecurityDesc::ValueType getEncodedUnderlyingSecurityDesc() const { return fieldEncodedUnderlyingSecurityDesc.getValue( _fixPtr ); }
-   std::string_view getEncodedUnderlyingSecurityDescView() const { return fieldEncodedUnderlyingSecurityDesc.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedUnderlyingSecurityDesc.offset, getValueLength( _fixPtr + fieldEncodedUnderlyingSecurityDesc.offset ) } : std::string_view{}; }
+   std::string_view getEncodedUnderlyingSecurityDescView() const { return fieldEncodedUnderlyingSecurityDesc.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedUnderlyingSecurityDesc.offset, (size_t)getEncodedUnderlyingSecurityDescLen() } : std::string_view{}; }
    const char * ptrToEncodedUnderlyingSecurityDesc() const { return _fixPtr + fieldEncodedUnderlyingSecurityDesc.offset; }
    const char * ptrToTagEncodedUnderlyingSecurityDesc() const { return _fixPtr + fieldEncodedUnderlyingSecurityDesc.offset - 1 - FieldEncodedUnderlyingSecurityDesc::tagWidth(); }
    const char * getIfSetEncodedUnderlyingSecurityDesc() const { return fieldEncodedUnderlyingSecurityDesc.offset > 0 ? _fixPtr + fieldEncodedUnderlyingSecurityDesc.offset : nullptr; }
@@ -6434,7 +6434,7 @@ class GroupSides : public MessageBase
    using EncodedText = FieldEncodedText; 
    bool isSetEncodedText() const { return fieldEncodedText.offset > 0; }
    FieldEncodedText::ValueType getEncodedText() const { return fieldEncodedText.getValue( _fixPtr ); }
-   std::string_view getEncodedTextView() const { return fieldEncodedText.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedText.offset, getValueLength( _fixPtr + fieldEncodedText.offset ) } : std::string_view{}; }
+   std::string_view getEncodedTextView() const { return fieldEncodedText.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedText.offset, (size_t)getEncodedTextLen() } : std::string_view{}; }
    const char * ptrToEncodedText() const { return _fixPtr + fieldEncodedText.offset; }
    const char * ptrToTagEncodedText() const { return _fixPtr + fieldEncodedText.offset - 1 - FieldEncodedText::tagWidth(); }
    const char * getIfSetEncodedText() const { return fieldEncodedText.offset > 0 ? _fixPtr + fieldEncodedText.offset : nullptr; }
@@ -6585,7 +6585,7 @@ class GroupLinesOfText : public MessageBase
    using EncodedText = FieldEncodedText; 
    bool isSetEncodedText() const { return fieldEncodedText.offset > 0; }
    FieldEncodedText::ValueType getEncodedText() const { return fieldEncodedText.getValue( _fixPtr ); }
-   std::string_view getEncodedTextView() const { return fieldEncodedText.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedText.offset, getValueLength( _fixPtr + fieldEncodedText.offset ) } : std::string_view{}; }
+   std::string_view getEncodedTextView() const { return fieldEncodedText.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedText.offset, (size_t)getEncodedTextLen() } : std::string_view{}; }
    const char * ptrToEncodedText() const { return _fixPtr + fieldEncodedText.offset; }
    const char * ptrToTagEncodedText() const { return _fixPtr + fieldEncodedText.offset - 1 - FieldEncodedText::tagWidth(); }
    const char * getIfSetEncodedText() const { return fieldEncodedText.offset > 0 ? _fixPtr + fieldEncodedText.offset : nullptr; }
@@ -7068,7 +7068,7 @@ class GroupRelatedSym : public MessageBase
    using EncodedIssuer = FieldEncodedIssuer; 
    bool isSetEncodedIssuer() const { return fieldEncodedIssuer.offset > 0; }
    FieldEncodedIssuer::ValueType getEncodedIssuer() const { return fieldEncodedIssuer.getValue( _fixPtr ); }
-   std::string_view getEncodedIssuerView() const { return fieldEncodedIssuer.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedIssuer.offset, getValueLength( _fixPtr + fieldEncodedIssuer.offset ) } : std::string_view{}; }
+   std::string_view getEncodedIssuerView() const { return fieldEncodedIssuer.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedIssuer.offset, (size_t)getEncodedIssuerLen() } : std::string_view{}; }
    const char * ptrToEncodedIssuer() const { return _fixPtr + fieldEncodedIssuer.offset; }
    const char * ptrToTagEncodedIssuer() const { return _fixPtr + fieldEncodedIssuer.offset - 1 - FieldEncodedIssuer::tagWidth(); }
    const char * getIfSetEncodedIssuer() const { return fieldEncodedIssuer.offset > 0 ? _fixPtr + fieldEncodedIssuer.offset : nullptr; }
@@ -7098,7 +7098,7 @@ class GroupRelatedSym : public MessageBase
    using EncodedSecurityDesc = FieldEncodedSecurityDesc; 
    bool isSetEncodedSecurityDesc() const { return fieldEncodedSecurityDesc.offset > 0; }
    FieldEncodedSecurityDesc::ValueType getEncodedSecurityDesc() const { return fieldEncodedSecurityDesc.getValue( _fixPtr ); }
-   std::string_view getEncodedSecurityDescView() const { return fieldEncodedSecurityDesc.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedSecurityDesc.offset, getValueLength( _fixPtr + fieldEncodedSecurityDesc.offset ) } : std::string_view{}; }
+   std::string_view getEncodedSecurityDescView() const { return fieldEncodedSecurityDesc.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedSecurityDesc.offset, (size_t)getEncodedSecurityDescLen() } : std::string_view{}; }
    const char * ptrToEncodedSecurityDesc() const { return _fixPtr + fieldEncodedSecurityDesc.offset; }
    const char * ptrToTagEncodedSecurityDesc() const { return _fixPtr + fieldEncodedSecurityDesc.offset - 1 - FieldEncodedSecurityDesc::tagWidth(); }
    const char * getIfSetEncodedSecurityDesc() const { return fieldEncodedSecurityDesc.offset > 0 ? _fixPtr + fieldEncodedSecurityDesc.offset : nullptr; }
@@ -7659,7 +7659,7 @@ class GroupStrikes : public MessageBase
    using EncodedIssuer = FieldEncodedIssuer; 
    bool isSetEncodedIssuer() const { return fieldEncodedIssuer.offset > 0; }
    FieldEncodedIssuer::ValueType getEncodedIssuer() const { return fieldEncodedIssuer.getValue( _fixPtr ); }
-   std::string_view getEncodedIssuerView() const { return fieldEncodedIssuer.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedIssuer.offset, getValueLength( _fixPtr + fieldEncodedIssuer.offset ) } : std::string_view{}; }
+   std::string_view getEncodedIssuerView() const { return fieldEncodedIssuer.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedIssuer.offset, (size_t)getEncodedIssuerLen() } : std::string_view{}; }
    const char * ptrToEncodedIssuer() const { return _fixPtr + fieldEncodedIssuer.offset; }
    const char * ptrToTagEncodedIssuer() const { return _fixPtr + fieldEncodedIssuer.offset - 1 - FieldEncodedIssuer::tagWidth(); }
    const char * getIfSetEncodedIssuer() const { return fieldEncodedIssuer.offset > 0 ? _fixPtr + fieldEncodedIssuer.offset : nullptr; }
@@ -7689,7 +7689,7 @@ class GroupStrikes : public MessageBase
    using EncodedSecurityDesc = FieldEncodedSecurityDesc; 
    bool isSetEncodedSecurityDesc() const { return fieldEncodedSecurityDesc.offset > 0; }
    FieldEncodedSecurityDesc::ValueType getEncodedSecurityDesc() const { return fieldEncodedSecurityDesc.getValue( _fixPtr ); }
-   std::string_view getEncodedSecurityDescView() const { return fieldEncodedSecurityDesc.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedSecurityDesc.offset, getValueLength( _fixPtr + fieldEncodedSecurityDesc.offset ) } : std::string_view{}; }
+   std::string_view getEncodedSecurityDescView() const { return fieldEncodedSecurityDesc.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedSecurityDesc.offset, (size_t)getEncodedSecurityDescLen() } : std::string_view{}; }
    const char * ptrToEncodedSecurityDesc() const { return _fixPtr + fieldEncodedSecurityDesc.offset; }
    const char * ptrToTagEncodedSecurityDesc() const { return _fixPtr + fieldEncodedSecurityDesc.offset - 1 - FieldEncodedSecurityDesc::tagWidth(); }
    const char * getIfSetEncodedSecurityDesc() const { return fieldEncodedSecurityDesc.offset > 0 ? _fixPtr + fieldEncodedSecurityDesc.offset : nullptr; }
@@ -8586,7 +8586,7 @@ class GroupMDEntries : public MessageBase
    using EncodedText = FieldEncodedText; 
    bool isSetEncodedText() const { return fieldEncodedText.offset > 0; }
    FieldEncodedText::ValueType getEncodedText() const { return fieldEncodedText.getValue( _fixPtr ); }
-   std::string_view getEncodedTextView() const { return fieldEncodedText.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedText.offset, getValueLength( _fixPtr + fieldEncodedText.offset ) } : std::string_view{}; }
+   std::string_view getEncodedTextView() const { return fieldEncodedText.offset > 0 ? std::string_view{ _fixPtr + fieldEncodedText.offset, (size_t)getEncodedTextLen() } : std::string_view{}; }
    const char * ptrToEncodedText() const { return _fixPtr + fieldEncodedText.offset; }
    const char * ptrToTagEncodedText() const { return _fixPtr + fieldEncodedText.offset - 1 - FieldEncodedText::tagWidth(); }
    const char * getIfSetEncodedText() const { return fieldEncodedText.offset > 0 ? _fixPtr + fieldEncodedText.offset : nullptr; }

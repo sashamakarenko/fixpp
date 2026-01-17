@@ -336,3 +336,40 @@ sed "/HeaderTemplate/,/Message/s/Safely//g" -i $dst
 sed "/case-begin-_/,/case-end-_/d" -i ${DSTDIR}/Messages.cpp
 sed "/on-message-begin-_/,/on-message-end-_/d" -i ${DSTDIR}/Messages.cpp
 sed "/on-message-begin-_/,/on-message-end-_/d" -i ${DSTDIR}/Messages.h
+
+
+rawDataFields=$( sed -n -e 's/FIX_FIELD_DECL.*( *\(.*\) *,.*,.*DATA.*).*/\1/gp' ${DEFDIR}/Fields.def )
+for rawField in $rawDataFields; do
+    echo "  fixing raw data field: $rawField"
+    rawFieldLength=${rawField}Len
+    if grep -q ${rawFieldLength}gth ${DEFDIR}/Fields.def; then
+        rawFieldLength=${rawFieldLength}gth
+    fi
+    for m in $(sed -n -e 's/.*FIX_MSG_BEGIN.*( *\(.*\), .*/\1/gp' ${DEFDIR}/Messages.def); do
+        if [[ $(sed -n -e "/.*FIX_MSG_BEGIN.*( *$m.*, .*/,/FIX_MSG_END/p" ${DEFDIR}/Messages.def | grep ${rawFieldLength} | wc -l ) == 1 ]]; then
+            echo "  Message $m has $rawField"
+            sed "/Message$m::scanSafely/,/switch/s/FIXPP_SOH/FIXPP_SOH and tag != Field${rawField}::RAW_TAG/" -i ${DSTDIR}/MessageScanners.cpp
+        fi
+    done
+    for m in $(sed -n -e 's/.*FIX_MSG_GROUP_BEGIN.*( *\(.*\), .*/\1/gp' ${DEFDIR}/Groups.def); do
+        if [[ $(sed -n -e "/.*FIX_MSG_GROUP_BEGIN.*( *$m.*, .*/,/FIX_MSG_GROUP_END/p" ${DEFDIR}/Groups.def | grep ${rawFieldLength} | wc -l ) == 1 ]]; then
+            echo "  Group $m has $rawField"
+            sed "/Group$m::scanSafely/,/switch/s/FIXPP_SOH/FIXPP_SOH and tag != Field${rawField}::RAW_TAG/" -i ${DSTDIR}/GroupScanners.cpp
+        fi
+    done
+    
+    sed -e "s/field${rawField}.offset = pos;/{ field${rawField}.offset = pos; posIsOnNextField = true; pos += get${rawFieldLength}()+1; }/g" \
+        -e "s/case Field${rawFieldLength}::RAW_TAG :/case Field${rawFieldLength}::RAW_TAG: { posIsOnNextField = true; unsigned sz = 0; unsigned dataLen = parseUInt( fix+pos, sz ); pos += sz + 1 + Field${rawField}::TAG_WIDTH + 1 + dataLen + 1; }/" \
+        -e "s/if( field${rawField}.offset < 0 )/if( field${rawField}.offset < 0 and field${rawFieldLength}.offset >= 0 )/" \
+        -i ${DSTDIR}/MessageScanners.cpp
+
+    sed -e "s/group->field${rawField}.offset = gpos;/{ group->field${rawField}.offset = gpos; posIsOnNextField = true; pos += group->get${rawFieldLength}()+1; }/g" \
+        -e "s/case Field${rawFieldLength}::RAW_TAG :/case Field${rawFieldLength}::RAW_TAG: { posIsOnNextField = true; unsigned sz = 0; unsigned dataLen = parseUInt( fix+pos, sz ); pos += sz + 1 + Field${rawField}::TAG_WIDTH + 1 + dataLen + 1; }/" \
+        -e "s/if( group->field${rawField}.offset < 0 )/if( group->field${rawField}.offset < 0 and group->field${rawFieldLength}.offset >= 0 )/" \
+        -i ${DSTDIR}/GroupScanners.cpp
+
+    for dst in ${DSTDIR}/Messages.h ${DSTDIR}/Groups.h; do
+        sed -e "/get${rawField}View()/s/getValueLength(.*)/(size_t)get${rawFieldLength}()/" -i $dst
+    done
+done
+

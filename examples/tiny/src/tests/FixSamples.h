@@ -7,6 +7,12 @@
 #define EXAMPLE_LOGON \
 "8=FIX.4.4" I "9=120" I "35=A" I "34=1" I "49=SampleCompID" I "52=20220616-12:06:31.300" I "56=TargetCompID" I "98=0" I "108=30" I "141=Y" I "553=SampleLogin" I "554=SamplePassword" I "10=017" I
 
+#define EXAMPLE_LOGON_WITH_RAWDATA \
+"8=FIX.4.4" I "9=140" I "35=A" I "34=1" I "49=SampleCompID" I "52=20220616-12:06:31.300" I "56=TargetCompID" I "95=10" I "96=\1\2\3\4\5\6\7XYZ" I "98=0" I "108=30" I "141=Y" I "553=SampleLogin" I "554=SamplePassword" I "10=244" I
+
+#define EXAMPLE_LOGON_WITH_XMLDATA \
+"8=FIX.4.4" I "9=163" I "35=A" I "34=1" I "49=SampleCompID" I "56=TargetCompID" I "52=20220616-12:06:31.300" I "212=11" I "213=<xml></xml>" I "95=10" I "96=\1\2\3\4\5\6\7XYZ" I "98=0" I "108=30" I "141=Y" I "553=SampleLogin" I "554=SamplePassword" I "10=199" I
+
 #define EXAMPLE_EXEC_REPORT \
 "8=FIX.4.4" I "9=156" I "35=8" I "49=foo" I "56=bar" I "52=20071123-05:30:00.000" I "11=OID123456" I "150=E" I "39=A" I "55=XYZ" I "167=CS" I "54=1" I "38=15" I "40=2" I "44=15.001" I "58=EQUITYTESTING" I "59=0" I "32=0" I "31=0" I "151=15" I "14=0" I "6=0" I "10=216" I
 
@@ -22,6 +28,21 @@
                              "688=A" I "689=a" I  \
                              "688=B" I "689=b" I  \
 "10=118" I
+
+const char * EXAMPLE_LARGE_EXEC_REPORT_WITH_RAWDATA = \
+"8=FIX.4.4" I "9=362" I "35=8" I "49=foo" I "56=bar" I "52=20071123-05:30:00.000" I "11=OID123456" I "150=E" I "39=A" I "55=XYZ" I "167=CS" I "54=1" I "38=15" I "40=2" I "44=15.001" I "58=EQUITYTESTING" I "59=0" I "32=0" I "31=0" I "151=15" I "14=0" I "6=0" I  \
+"555=2" I "600=SYM1" I "624=0" I "687=10" I "95=4" I "96=\1\2\3\4" I \
+                       "683=1" I  \
+                             "688=A" I "689=a" I  \
+                             "564=1" I  \
+                             "539=2" I "524=PARTY1" I "525=S" I  \
+                                   "524=PARTY2" I "525=S" I  \
+                                   "804=2" I "545=S1" I "805=1" I "545=S2" I "805=2" I \
+         "600=SYM2" I "624=1" I "687=20" I "95=8" I "96=\1\2\3\4\1\2\3\4" I \
+                   "683=2" I  \
+                             "688=A" I "689=a" I  \
+                             "688=B" I "689=b" I  \
+"10=181" I;
 
 #define EXAMPLE_MARKETDATA_FULL_REFRESH \
 "8=FIX.4.4" I "9=315" I "35=W" I "49=foo" I "56=bar" I "34=1234" I "52=20190101-01:01:01.000" I "55=EUR/USD" I \
@@ -124,6 +145,8 @@
 "8=FIX.4.4" I "9=0090" I "35=W" I "49=server" I "56=client" I "34=0000037" I "52=20240501-06:32:24.884449" I "262=MDR1" I "55=EUR/USD" I "268=0" I "10=232" I
 
 const char * FIX_BUFFER_LOGON                      = EXAMPLE_LOGON;
+const char * FIX_BUFFER_LOGON_WITH_RAWDATA         = EXAMPLE_LOGON_WITH_RAWDATA;
+const char * FIX_BUFFER_LOGON_WITH_XMLDATA         = EXAMPLE_LOGON_WITH_XMLDATA;
 const char * FIX_BUFFER_EXEC_REPORT                = EXAMPLE_EXEC_REPORT;
 const char * FIX_BUFFER_LARGE_EXEC_REPORT          = EXAMPLE_LARGE_EXEC_REPORT;
 const char * FIX_BUFFER_MD_FULL_REFRESH            = EXAMPLE_MARKETDATA_FULL_REFRESH;

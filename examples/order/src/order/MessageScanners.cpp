@@ -17,47 +17,47 @@ offset_t MessageHeader::scan( const char * fix, unsigned len ){
 _fixPtr = fix;
 offset_t prev = 0, pos = 0;
 while( pos < (int)len ) {
-   bool isGroupStart = false;
+   bool posIsOnNextField = false;
    prev = pos;
    raw_tag_t tag = loadRawTag( fix+pos, pos );
    switch( tag ){
 
-   case FieldBeginString::RAW_TAG :
+   case FieldBeginString::RAW_TAG:
      FIXPP_PRINT_FIELD(BeginString) 
      fieldBeginString.offset = pos;
      break;
 
-   case FieldBodyLength::RAW_TAG :
+   case FieldBodyLength::RAW_TAG:
      FIXPP_PRINT_FIELD(BodyLength) 
      fieldBodyLength.offset = pos;
      break;
 
-   case FieldMsgType::RAW_TAG :
+   case FieldMsgType::RAW_TAG:
      FIXPP_PRINT_FIELD(MsgType) 
      fieldMsgType.offset = pos;
      break;
 
-   case FieldSenderCompID::RAW_TAG :
+   case FieldSenderCompID::RAW_TAG:
      FIXPP_PRINT_FIELD(SenderCompID) 
      fieldSenderCompID.offset = pos;
      break;
 
-   case FieldTargetCompID::RAW_TAG :
+   case FieldTargetCompID::RAW_TAG:
      FIXPP_PRINT_FIELD(TargetCompID) 
      fieldTargetCompID.offset = pos;
      break;
 
-   case FieldMsgSeqNum::RAW_TAG :
+   case FieldMsgSeqNum::RAW_TAG:
      FIXPP_PRINT_FIELD(MsgSeqNum) 
      fieldMsgSeqNum.offset = pos;
      break;
 
-   case FieldSendingTime::RAW_TAG :
+   case FieldSendingTime::RAW_TAG:
      FIXPP_PRINT_FIELD(SendingTime) 
      fieldSendingTime.offset = pos;
      break;
 
-   case FieldCheckSum::RAW_TAG :
+   case FieldCheckSum::RAW_TAG:
      FIXPP_PRINT_FIELD(CheckSum) 
      fieldCheckSum.offset = pos;
      gotoNextField( fix, pos );
@@ -68,7 +68,7 @@ while( pos < (int)len ) {
      _fixLength = prev;
      return prev;
    }
-   if( ! isGroupStart ) gotoNextField( fix, pos );
+   if( ! posIsOnNextField ) gotoNextField( fix, pos );
  }
  _fixLength = pos;
  return pos;
@@ -78,67 +78,67 @@ offset_t MessageNewOrderSingle::scan( const char * fix, unsigned len ){
 _fixPtr = fix;
 offset_t prev = 0, pos = 0;
 while( pos < (int)len ) {
-   bool isGroupStart = false;
+   bool posIsOnNextField = false;
    prev = pos;
    raw_tag_t tag = loadRawTag( fix+pos, pos );
    switch( tag ){
 
-   case FieldClOrdID::RAW_TAG :
+   case FieldClOrdID::RAW_TAG:
      FIXPP_PRINT_FIELD(ClOrdID) 
      fieldClOrdID.offset = pos;
      break;
 
-   case FieldAccount::RAW_TAG :
+   case FieldAccount::RAW_TAG:
      FIXPP_PRINT_FIELD(Account) 
      fieldAccount.offset = pos;
      break;
 
-   case FieldSymbol::RAW_TAG :
+   case FieldSymbol::RAW_TAG:
      FIXPP_PRINT_FIELD(Symbol) 
      fieldSymbol.offset = pos;
      break;
 
-   case FieldSecurityID::RAW_TAG :
+   case FieldSecurityID::RAW_TAG:
      FIXPP_PRINT_FIELD(SecurityID) 
      fieldSecurityID.offset = pos;
      break;
 
-   case FieldSide::RAW_TAG :
+   case FieldSide::RAW_TAG:
      FIXPP_PRINT_FIELD(Side) 
      fieldSide.offset = pos;
      break;
 
-   case FieldQtyType::RAW_TAG :
+   case FieldQtyType::RAW_TAG:
      FIXPP_PRINT_FIELD(QtyType) 
      fieldQtyType.offset = pos;
      break;
 
-   case FieldOrderQty::RAW_TAG :
+   case FieldOrderQty::RAW_TAG:
      FIXPP_PRINT_FIELD(OrderQty) 
      fieldOrderQty.offset = pos;
      break;
 
-   case FieldOrdType::RAW_TAG :
+   case FieldOrdType::RAW_TAG:
      FIXPP_PRINT_FIELD(OrdType) 
      fieldOrdType.offset = pos;
      break;
 
-   case FieldPrice::RAW_TAG :
+   case FieldPrice::RAW_TAG:
      FIXPP_PRINT_FIELD(Price) 
      fieldPrice.offset = pos;
      break;
 
-   case FieldStopPx::RAW_TAG :
+   case FieldStopPx::RAW_TAG:
      FIXPP_PRINT_FIELD(StopPx) 
      fieldStopPx.offset = pos;
      break;
 
-   case FieldTransactTime::RAW_TAG :
+   case FieldTransactTime::RAW_TAG:
      FIXPP_PRINT_FIELD(TransactTime) 
      fieldTransactTime.offset = pos;
      break;
 
-   case FieldCheckSum::RAW_TAG :
+   case FieldCheckSum::RAW_TAG:
      FIXPP_PRINT_FIELD(CheckSum) 
      fieldCheckSum.offset = pos;
      gotoNextField( fix, pos );
@@ -149,7 +149,7 @@ while( pos < (int)len ) {
      _fixLength = prev;
      return prev;
    }
-   if( ! isGroupStart ) gotoNextField( fix, pos );
+   if( ! posIsOnNextField ) gotoNextField( fix, pos );
  }
  _fixLength = pos;
  return pos;
@@ -159,160 +159,160 @@ offset_t MessageExecutionReport::scan( const char * fix, unsigned len ){
 _fixPtr = fix;
 offset_t prev = 0, pos = 0;
 while( pos < (int)len ) {
-   bool isGroupStart = false;
+   bool posIsOnNextField = false;
    prev = pos;
    raw_tag_t tag = loadRawTag( fix+pos, pos );
    switch( tag ){
 
-   case FieldOrderID::RAW_TAG :
+   case FieldOrderID::RAW_TAG:
      FIXPP_PRINT_FIELD(OrderID) 
      fieldOrderID.offset = pos;
      break;
 
-   case FieldClOrdID::RAW_TAG :
+   case FieldClOrdID::RAW_TAG:
      FIXPP_PRINT_FIELD(ClOrdID) 
      fieldClOrdID.offset = pos;
      break;
 
-   case FieldOrigClOrdID::RAW_TAG :
+   case FieldOrigClOrdID::RAW_TAG:
      FIXPP_PRINT_FIELD(OrigClOrdID) 
      fieldOrigClOrdID.offset = pos;
      break;
 
-   case FieldExecID::RAW_TAG :
+   case FieldExecID::RAW_TAG:
      FIXPP_PRINT_FIELD(ExecID) 
      fieldExecID.offset = pos;
      break;
 
-   case FieldExecType::RAW_TAG :
+   case FieldExecType::RAW_TAG:
      FIXPP_PRINT_FIELD(ExecType) 
      fieldExecType.offset = pos;
      break;
 
-   case FieldOrdStatus::RAW_TAG :
+   case FieldOrdStatus::RAW_TAG:
      FIXPP_PRINT_FIELD(OrdStatus) 
      fieldOrdStatus.offset = pos;
      break;
 
-   case FieldOrdRejReason::RAW_TAG :
+   case FieldOrdRejReason::RAW_TAG:
      FIXPP_PRINT_FIELD(OrdRejReason) 
      fieldOrdRejReason.offset = pos;
      break;
 
-   case FieldAccount::RAW_TAG :
+   case FieldAccount::RAW_TAG:
      FIXPP_PRINT_FIELD(Account) 
      fieldAccount.offset = pos;
      break;
 
-   case FieldSymbol::RAW_TAG :
+   case FieldSymbol::RAW_TAG:
      FIXPP_PRINT_FIELD(Symbol) 
      fieldSymbol.offset = pos;
      break;
 
-   case FieldSecurityID::RAW_TAG :
+   case FieldSecurityID::RAW_TAG:
      FIXPP_PRINT_FIELD(SecurityID) 
      fieldSecurityID.offset = pos;
      break;
 
-   case FieldSecurityType::RAW_TAG :
+   case FieldSecurityType::RAW_TAG:
      FIXPP_PRINT_FIELD(SecurityType) 
      fieldSecurityType.offset = pos;
      break;
 
-   case FieldText::RAW_TAG :
+   case FieldText::RAW_TAG:
      FIXPP_PRINT_FIELD(Text) 
      fieldText.offset = pos;
      break;
 
-   case FieldProduct::RAW_TAG :
+   case FieldProduct::RAW_TAG:
      FIXPP_PRINT_FIELD(Product) 
      fieldProduct.offset = pos;
      break;
 
-   case FieldSide::RAW_TAG :
+   case FieldSide::RAW_TAG:
      FIXPP_PRINT_FIELD(Side) 
      fieldSide.offset = pos;
      break;
 
-   case FieldQtyType::RAW_TAG :
+   case FieldQtyType::RAW_TAG:
      FIXPP_PRINT_FIELD(QtyType) 
      fieldQtyType.offset = pos;
      break;
 
-   case FieldOrderQty::RAW_TAG :
+   case FieldOrderQty::RAW_TAG:
      FIXPP_PRINT_FIELD(OrderQty) 
      fieldOrderQty.offset = pos;
      break;
 
-   case FieldOrdType::RAW_TAG :
+   case FieldOrdType::RAW_TAG:
      FIXPP_PRINT_FIELD(OrdType) 
      fieldOrdType.offset = pos;
      break;
 
-   case FieldPriceType::RAW_TAG :
+   case FieldPriceType::RAW_TAG:
      FIXPP_PRINT_FIELD(PriceType) 
      fieldPriceType.offset = pos;
      break;
 
-   case FieldPrice::RAW_TAG :
+   case FieldPrice::RAW_TAG:
      FIXPP_PRINT_FIELD(Price) 
      fieldPrice.offset = pos;
      break;
 
-   case FieldStopPx::RAW_TAG :
+   case FieldStopPx::RAW_TAG:
      FIXPP_PRINT_FIELD(StopPx) 
      fieldStopPx.offset = pos;
      break;
 
-   case FieldCurrency::RAW_TAG :
+   case FieldCurrency::RAW_TAG:
      FIXPP_PRINT_FIELD(Currency) 
      fieldCurrency.offset = pos;
      break;
 
-   case FieldTimeInForce::RAW_TAG :
+   case FieldTimeInForce::RAW_TAG:
      FIXPP_PRINT_FIELD(TimeInForce) 
      fieldTimeInForce.offset = pos;
      break;
 
-   case FieldExecInst::RAW_TAG :
+   case FieldExecInst::RAW_TAG:
      FIXPP_PRINT_FIELD(ExecInst) 
      fieldExecInst.offset = pos;
      break;
 
-   case FieldLastQty::RAW_TAG :
+   case FieldLastQty::RAW_TAG:
      FIXPP_PRINT_FIELD(LastQty) 
      fieldLastQty.offset = pos;
      break;
 
-   case FieldLastPx::RAW_TAG :
+   case FieldLastPx::RAW_TAG:
      FIXPP_PRINT_FIELD(LastPx) 
      fieldLastPx.offset = pos;
      break;
 
-   case FieldLeavesQty::RAW_TAG :
+   case FieldLeavesQty::RAW_TAG:
      FIXPP_PRINT_FIELD(LeavesQty) 
      fieldLeavesQty.offset = pos;
      break;
 
-   case FieldAvgPx::RAW_TAG :
+   case FieldAvgPx::RAW_TAG:
      FIXPP_PRINT_FIELD(AvgPx) 
      fieldAvgPx.offset = pos;
      break;
 
-   case FieldCumQty::RAW_TAG :
+   case FieldCumQty::RAW_TAG:
      FIXPP_PRINT_FIELD(CumQty) 
      fieldCumQty.offset = pos;
      break;
 
-   case FieldNoLegs::RAW_TAG :
+   case FieldNoLegs::RAW_TAG:
      FIXPP_PRINT_FIELD(NoLegs) 
      fieldNoLegs.offset = pos;
-     isGroupStart = true;
+     posIsOnNextField = true;
      gotoNextField( fix, pos );
      pos += GroupLegs::scan( groupsLegs, fix+pos, len - pos );
      break;
 
-   case FieldCheckSum::RAW_TAG :
+   case FieldCheckSum::RAW_TAG:
      FIXPP_PRINT_FIELD(CheckSum) 
      fieldCheckSum.offset = pos;
      gotoNextField( fix, pos );
@@ -323,7 +323,7 @@ while( pos < (int)len ) {
      _fixLength = prev;
      return prev;
    }
-   if( ! isGroupStart ) gotoNextField( fix, pos );
+   if( ! posIsOnNextField ) gotoNextField( fix, pos );
  }
  _fixLength = pos;
  return pos;
@@ -335,26 +335,26 @@ offset_t MessageHeader::scanSafely( const char * fix, unsigned len ){
 _fixPtr = fix;
 offset_t prev = 0, pos = 0;
 while( pos < (int)len ) {
-   bool isGroupStart = false;
+   bool posIsOnNextField = false;
    prev = pos;
    if( not isGoodTag( fix+pos ) ) break;
    raw_tag_t tag = loadRawTag( fix+pos, pos );
-   if( fix[pos] == 1 ) { _fixLength = prev; return pos; }
+   if( fix[pos] == FIXPP_SOH ) { _fixLength = prev; return pos; }
    switch( tag ){
 
-   case FieldBeginString::RAW_TAG :
+   case FieldBeginString::RAW_TAG:
      FIXPP_PRINT_FIELD(BeginString) 
      if( fieldBeginString.offset < 0 ) fieldBeginString.offset = pos;
      else { _fixLength = prev; return pos; }
      break;
 
-   case FieldBodyLength::RAW_TAG :
+   case FieldBodyLength::RAW_TAG:
      FIXPP_PRINT_FIELD(BodyLength) 
      if( fieldBodyLength.offset < 0 ) fieldBodyLength.offset = pos;
      else { _fixLength = prev; return pos; }
      break;
 
-   case FieldMsgType::RAW_TAG :
+   case FieldMsgType::RAW_TAG:
      FIXPP_PRINT_FIELD(MsgType) 
      if( fieldMsgType.offset < 0 ) {
        fieldMsgType.offset = pos;
@@ -364,31 +364,31 @@ while( pos < (int)len ) {
      else { _fixLength = prev; return pos; }
      break;
 
-   case FieldSenderCompID::RAW_TAG :
+   case FieldSenderCompID::RAW_TAG:
      FIXPP_PRINT_FIELD(SenderCompID) 
      if( fieldSenderCompID.offset < 0 ) fieldSenderCompID.offset = pos;
      else { _fixLength = prev; return pos; }
      break;
 
-   case FieldTargetCompID::RAW_TAG :
+   case FieldTargetCompID::RAW_TAG:
      FIXPP_PRINT_FIELD(TargetCompID) 
      if( fieldTargetCompID.offset < 0 ) fieldTargetCompID.offset = pos;
      else { _fixLength = prev; return pos; }
      break;
 
-   case FieldMsgSeqNum::RAW_TAG :
+   case FieldMsgSeqNum::RAW_TAG:
      FIXPP_PRINT_FIELD(MsgSeqNum) 
      if( fieldMsgSeqNum.offset < 0 ) fieldMsgSeqNum.offset = pos;
      else { _fixLength = prev; return pos; }
      break;
 
-   case FieldSendingTime::RAW_TAG :
+   case FieldSendingTime::RAW_TAG:
      FIXPP_PRINT_FIELD(SendingTime) 
      if( fieldSendingTime.offset < 0 ) fieldSendingTime.offset = pos;
      else { _fixLength = prev; return pos; }
      break;
 
-   case FieldCheckSum::RAW_TAG :
+   case FieldCheckSum::RAW_TAG:
      FIXPP_PRINT_FIELD(CheckSum) 
      fieldCheckSum.offset = pos;
      gotoNextField( fix, pos );
@@ -399,7 +399,7 @@ while( pos < (int)len ) {
      _fixLength = prev;
      return prev;
    }
-   if( ! isGroupStart ) gotoNextField( fix, pos );
+   if( ! posIsOnNextField ) gotoNextField( fix, pos );
  }
  _fixLength = pos;
  return pos;
@@ -409,38 +409,38 @@ offset_t MessageNewOrderSingle::scanSafely( const char * fix, unsigned len ){
 _fixPtr = fix;
 offset_t prev = 0, pos = 0;
 while( pos < (int)len ) {
-   bool isGroupStart = false;
+   bool posIsOnNextField = false;
    prev = pos;
    if( not isGoodTag( fix+pos ) ) break;
    raw_tag_t tag = loadRawTag( fix+pos, pos );
-   if( fix[pos] == 1 ) { _fixLength = prev; return pos; }
+   if( fix[pos] == FIXPP_SOH ) { _fixLength = prev; return pos; }
    switch( tag ){
 
-   case FieldClOrdID::RAW_TAG :
+   case FieldClOrdID::RAW_TAG:
      FIXPP_PRINT_FIELD(ClOrdID) 
      if( fieldClOrdID.offset < 0 ) fieldClOrdID.offset = pos;
      else { _fixLength = prev; return pos; }
      break;
 
-   case FieldAccount::RAW_TAG :
+   case FieldAccount::RAW_TAG:
      FIXPP_PRINT_FIELD(Account) 
      if( fieldAccount.offset < 0 ) fieldAccount.offset = pos;
      else { _fixLength = prev; return pos; }
      break;
 
-   case FieldSymbol::RAW_TAG :
+   case FieldSymbol::RAW_TAG:
      FIXPP_PRINT_FIELD(Symbol) 
      if( fieldSymbol.offset < 0 ) fieldSymbol.offset = pos;
      else { _fixLength = prev; return pos; }
      break;
 
-   case FieldSecurityID::RAW_TAG :
+   case FieldSecurityID::RAW_TAG:
      FIXPP_PRINT_FIELD(SecurityID) 
      if( fieldSecurityID.offset < 0 ) fieldSecurityID.offset = pos;
      else { _fixLength = prev; return pos; }
      break;
 
-   case FieldSide::RAW_TAG :
+   case FieldSide::RAW_TAG:
      FIXPP_PRINT_FIELD(Side) 
      if( fieldSide.offset < 0 ) {
        fieldSide.offset = pos;
@@ -450,7 +450,7 @@ while( pos < (int)len ) {
      else { _fixLength = prev; return pos; }
      break;
 
-   case FieldQtyType::RAW_TAG :
+   case FieldQtyType::RAW_TAG:
      FIXPP_PRINT_FIELD(QtyType) 
      if( fieldQtyType.offset < 0 ) {
        fieldQtyType.offset = pos;
@@ -460,13 +460,13 @@ while( pos < (int)len ) {
      else { _fixLength = prev; return pos; }
      break;
 
-   case FieldOrderQty::RAW_TAG :
+   case FieldOrderQty::RAW_TAG:
      FIXPP_PRINT_FIELD(OrderQty) 
      if( fieldOrderQty.offset < 0 ) fieldOrderQty.offset = pos;
      else { _fixLength = prev; return pos; }
      break;
 
-   case FieldOrdType::RAW_TAG :
+   case FieldOrdType::RAW_TAG:
      FIXPP_PRINT_FIELD(OrdType) 
      if( fieldOrdType.offset < 0 ) {
        fieldOrdType.offset = pos;
@@ -476,25 +476,25 @@ while( pos < (int)len ) {
      else { _fixLength = prev; return pos; }
      break;
 
-   case FieldPrice::RAW_TAG :
+   case FieldPrice::RAW_TAG:
      FIXPP_PRINT_FIELD(Price) 
      if( fieldPrice.offset < 0 ) fieldPrice.offset = pos;
      else { _fixLength = prev; return pos; }
      break;
 
-   case FieldStopPx::RAW_TAG :
+   case FieldStopPx::RAW_TAG:
      FIXPP_PRINT_FIELD(StopPx) 
      if( fieldStopPx.offset < 0 ) fieldStopPx.offset = pos;
      else { _fixLength = prev; return pos; }
      break;
 
-   case FieldTransactTime::RAW_TAG :
+   case FieldTransactTime::RAW_TAG:
      FIXPP_PRINT_FIELD(TransactTime) 
      if( fieldTransactTime.offset < 0 ) fieldTransactTime.offset = pos;
      else { _fixLength = prev; return pos; }
      break;
 
-   case FieldCheckSum::RAW_TAG :
+   case FieldCheckSum::RAW_TAG:
      FIXPP_PRINT_FIELD(CheckSum) 
      fieldCheckSum.offset = pos;
      gotoNextField( fix, pos );
@@ -505,7 +505,7 @@ while( pos < (int)len ) {
      _fixLength = prev;
      return prev;
    }
-   if( ! isGroupStart ) gotoNextField( fix, pos );
+   if( ! posIsOnNextField ) gotoNextField( fix, pos );
  }
  _fixLength = pos;
  return pos;
@@ -515,44 +515,44 @@ offset_t MessageExecutionReport::scanSafely( const char * fix, unsigned len ){
 _fixPtr = fix;
 offset_t prev = 0, pos = 0;
 while( pos < (int)len ) {
-   bool isGroupStart = false;
+   bool posIsOnNextField = false;
    prev = pos;
    if( not isGoodTag( fix+pos ) ) break;
    raw_tag_t tag = loadRawTag( fix+pos, pos );
-   if( fix[pos] == 1 ) { _fixLength = prev; return pos; }
+   if( fix[pos] == FIXPP_SOH ) { _fixLength = prev; return pos; }
    switch( tag ){
 
-   case FieldOrderID::RAW_TAG :
+   case FieldOrderID::RAW_TAG:
      FIXPP_PRINT_FIELD(OrderID) 
      if( fieldOrderID.offset < 0 ) fieldOrderID.offset = pos;
      else { _fixLength = prev; return pos; }
      break;
 
-   case FieldClOrdID::RAW_TAG :
+   case FieldClOrdID::RAW_TAG:
      FIXPP_PRINT_FIELD(ClOrdID) 
      if( fieldClOrdID.offset < 0 ) fieldClOrdID.offset = pos;
      else { _fixLength = prev; return pos; }
      break;
 
-   case FieldOrigClOrdID::RAW_TAG :
+   case FieldOrigClOrdID::RAW_TAG:
      FIXPP_PRINT_FIELD(OrigClOrdID) 
      if( fieldOrigClOrdID.offset < 0 ) fieldOrigClOrdID.offset = pos;
      else { _fixLength = prev; return pos; }
      break;
 
-   case FieldExecID::RAW_TAG :
+   case FieldExecID::RAW_TAG:
      FIXPP_PRINT_FIELD(ExecID) 
      if( fieldExecID.offset < 0 ) fieldExecID.offset = pos;
      else { _fixLength = prev; return pos; }
      break;
 
-   case FieldExecType::RAW_TAG :
+   case FieldExecType::RAW_TAG:
      FIXPP_PRINT_FIELD(ExecType) 
      if( fieldExecType.offset < 0 ) fieldExecType.offset = pos;
      else { _fixLength = prev; return pos; }
      break;
 
-   case FieldOrdStatus::RAW_TAG :
+   case FieldOrdStatus::RAW_TAG:
      FIXPP_PRINT_FIELD(OrdStatus) 
      if( fieldOrdStatus.offset < 0 ) {
        fieldOrdStatus.offset = pos;
@@ -562,31 +562,31 @@ while( pos < (int)len ) {
      else { _fixLength = prev; return pos; }
      break;
 
-   case FieldOrdRejReason::RAW_TAG :
+   case FieldOrdRejReason::RAW_TAG:
      FIXPP_PRINT_FIELD(OrdRejReason) 
      if( fieldOrdRejReason.offset < 0 ) fieldOrdRejReason.offset = pos;
      else { _fixLength = prev; return pos; }
      break;
 
-   case FieldAccount::RAW_TAG :
+   case FieldAccount::RAW_TAG:
      FIXPP_PRINT_FIELD(Account) 
      if( fieldAccount.offset < 0 ) fieldAccount.offset = pos;
      else { _fixLength = prev; return pos; }
      break;
 
-   case FieldSymbol::RAW_TAG :
+   case FieldSymbol::RAW_TAG:
      FIXPP_PRINT_FIELD(Symbol) 
      if( fieldSymbol.offset < 0 ) fieldSymbol.offset = pos;
      else { _fixLength = prev; return pos; }
      break;
 
-   case FieldSecurityID::RAW_TAG :
+   case FieldSecurityID::RAW_TAG:
      FIXPP_PRINT_FIELD(SecurityID) 
      if( fieldSecurityID.offset < 0 ) fieldSecurityID.offset = pos;
      else { _fixLength = prev; return pos; }
      break;
 
-   case FieldSecurityType::RAW_TAG :
+   case FieldSecurityType::RAW_TAG:
      FIXPP_PRINT_FIELD(SecurityType) 
      if( fieldSecurityType.offset < 0 ) {
        fieldSecurityType.offset = pos;
@@ -596,13 +596,13 @@ while( pos < (int)len ) {
      else { _fixLength = prev; return pos; }
      break;
 
-   case FieldText::RAW_TAG :
+   case FieldText::RAW_TAG:
      FIXPP_PRINT_FIELD(Text) 
      if( fieldText.offset < 0 ) fieldText.offset = pos;
      else { _fixLength = prev; return pos; }
      break;
 
-   case FieldProduct::RAW_TAG :
+   case FieldProduct::RAW_TAG:
      FIXPP_PRINT_FIELD(Product) 
      if( fieldProduct.offset < 0 ) {
        fieldProduct.offset = pos;
@@ -612,7 +612,7 @@ while( pos < (int)len ) {
      else { _fixLength = prev; return pos; }
      break;
 
-   case FieldSide::RAW_TAG :
+   case FieldSide::RAW_TAG:
      FIXPP_PRINT_FIELD(Side) 
      if( fieldSide.offset < 0 ) {
        fieldSide.offset = pos;
@@ -622,7 +622,7 @@ while( pos < (int)len ) {
      else { _fixLength = prev; return pos; }
      break;
 
-   case FieldQtyType::RAW_TAG :
+   case FieldQtyType::RAW_TAG:
      FIXPP_PRINT_FIELD(QtyType) 
      if( fieldQtyType.offset < 0 ) {
        fieldQtyType.offset = pos;
@@ -632,13 +632,13 @@ while( pos < (int)len ) {
      else { _fixLength = prev; return pos; }
      break;
 
-   case FieldOrderQty::RAW_TAG :
+   case FieldOrderQty::RAW_TAG:
      FIXPP_PRINT_FIELD(OrderQty) 
      if( fieldOrderQty.offset < 0 ) fieldOrderQty.offset = pos;
      else { _fixLength = prev; return pos; }
      break;
 
-   case FieldOrdType::RAW_TAG :
+   case FieldOrdType::RAW_TAG:
      FIXPP_PRINT_FIELD(OrdType) 
      if( fieldOrdType.offset < 0 ) {
        fieldOrdType.offset = pos;
@@ -648,7 +648,7 @@ while( pos < (int)len ) {
      else { _fixLength = prev; return pos; }
      break;
 
-   case FieldPriceType::RAW_TAG :
+   case FieldPriceType::RAW_TAG:
      FIXPP_PRINT_FIELD(PriceType) 
      if( fieldPriceType.offset < 0 ) {
        fieldPriceType.offset = pos;
@@ -658,25 +658,25 @@ while( pos < (int)len ) {
      else { _fixLength = prev; return pos; }
      break;
 
-   case FieldPrice::RAW_TAG :
+   case FieldPrice::RAW_TAG:
      FIXPP_PRINT_FIELD(Price) 
      if( fieldPrice.offset < 0 ) fieldPrice.offset = pos;
      else { _fixLength = prev; return pos; }
      break;
 
-   case FieldStopPx::RAW_TAG :
+   case FieldStopPx::RAW_TAG:
      FIXPP_PRINT_FIELD(StopPx) 
      if( fieldStopPx.offset < 0 ) fieldStopPx.offset = pos;
      else { _fixLength = prev; return pos; }
      break;
 
-   case FieldCurrency::RAW_TAG :
+   case FieldCurrency::RAW_TAG:
      FIXPP_PRINT_FIELD(Currency) 
      if( fieldCurrency.offset < 0 ) fieldCurrency.offset = pos;
      else { _fixLength = prev; return pos; }
      break;
 
-   case FieldTimeInForce::RAW_TAG :
+   case FieldTimeInForce::RAW_TAG:
      FIXPP_PRINT_FIELD(TimeInForce) 
      if( fieldTimeInForce.offset < 0 ) {
        fieldTimeInForce.offset = pos;
@@ -686,47 +686,47 @@ while( pos < (int)len ) {
      else { _fixLength = prev; return pos; }
      break;
 
-   case FieldExecInst::RAW_TAG :
+   case FieldExecInst::RAW_TAG:
      FIXPP_PRINT_FIELD(ExecInst) 
      if( fieldExecInst.offset < 0 ) fieldExecInst.offset = pos;
      else { _fixLength = prev; return pos; }
      break;
 
-   case FieldLastQty::RAW_TAG :
+   case FieldLastQty::RAW_TAG:
      FIXPP_PRINT_FIELD(LastQty) 
      if( fieldLastQty.offset < 0 ) fieldLastQty.offset = pos;
      else { _fixLength = prev; return pos; }
      break;
 
-   case FieldLastPx::RAW_TAG :
+   case FieldLastPx::RAW_TAG:
      FIXPP_PRINT_FIELD(LastPx) 
      if( fieldLastPx.offset < 0 ) fieldLastPx.offset = pos;
      else { _fixLength = prev; return pos; }
      break;
 
-   case FieldLeavesQty::RAW_TAG :
+   case FieldLeavesQty::RAW_TAG:
      FIXPP_PRINT_FIELD(LeavesQty) 
      if( fieldLeavesQty.offset < 0 ) fieldLeavesQty.offset = pos;
      else { _fixLength = prev; return pos; }
      break;
 
-   case FieldAvgPx::RAW_TAG :
+   case FieldAvgPx::RAW_TAG:
      FIXPP_PRINT_FIELD(AvgPx) 
      if( fieldAvgPx.offset < 0 ) fieldAvgPx.offset = pos;
      else { _fixLength = prev; return pos; }
      break;
 
-   case FieldCumQty::RAW_TAG :
+   case FieldCumQty::RAW_TAG:
      FIXPP_PRINT_FIELD(CumQty) 
      if( fieldCumQty.offset < 0 ) fieldCumQty.offset = pos;
      else { _fixLength = prev; return pos; }
      break;
 
-   case FieldNoLegs::RAW_TAG :
+   case FieldNoLegs::RAW_TAG:
      FIXPP_PRINT_FIELD(NoLegs) 
      if( fieldNoLegs.offset < 0 ){
        fieldNoLegs.offset = pos;
-       isGroupStart = true;
+       posIsOnNextField = true;
        {
        int groupExpected = parseGroupNoValue( fix + pos );
        unsigned groupFound = 0;
@@ -739,7 +739,7 @@ while( pos < (int)len ) {
      } else { _fixLength = prev; return pos; }
      break;
 
-   case FieldCheckSum::RAW_TAG :
+   case FieldCheckSum::RAW_TAG:
      FIXPP_PRINT_FIELD(CheckSum) 
      fieldCheckSum.offset = pos;
      gotoNextField( fix, pos );
@@ -750,7 +750,7 @@ while( pos < (int)len ) {
      _fixLength = prev;
      return prev;
    }
-   if( ! isGroupStart ) gotoNextField( fix, pos );
+   if( ! posIsOnNextField ) gotoNextField( fix, pos );
  }
  _fixLength = pos;
  return pos;
@@ -761,9 +761,8 @@ while( pos < (int)len ) {
 offset_t MessageHeader::skip( const char * fix, unsigned len ) const
 {
 offset_t prev = 0, pos = 0;
-gotoNextField( fix, pos );
 while( pos < (int)len ) {
-   bool isGroupStart = false;
+   bool posIsOnNextField = false;
    prev = pos;
    raw_tag_t tag = loadRawTag( fix+pos, pos );
    switch( tag ){
@@ -796,7 +795,7 @@ while( pos < (int)len ) {
    default: FIXPP_PRINT_UNKNOWN_FIELD
      return prev;
    }
-   if( ! isGroupStart ) gotoNextField( fix, pos );
+   if( ! posIsOnNextField ) gotoNextField( fix, pos );
  }
  return pos;
 }
@@ -804,9 +803,8 @@ while( pos < (int)len ) {
 offset_t MessageNewOrderSingle::skip( const char * fix, unsigned len ) const
 {
 offset_t prev = 0, pos = 0;
-gotoNextField( fix, pos );
 while( pos < (int)len ) {
-   bool isGroupStart = false;
+   bool posIsOnNextField = false;
    prev = pos;
    raw_tag_t tag = loadRawTag( fix+pos, pos );
    switch( tag ){
@@ -851,7 +849,7 @@ while( pos < (int)len ) {
    default: FIXPP_PRINT_UNKNOWN_FIELD
      return prev;
    }
-   if( ! isGroupStart ) gotoNextField( fix, pos );
+   if( ! posIsOnNextField ) gotoNextField( fix, pos );
  }
  return pos;
 }
@@ -859,9 +857,8 @@ while( pos < (int)len ) {
 offset_t MessageExecutionReport::skip( const char * fix, unsigned len ) const
 {
 offset_t prev = 0, pos = 0;
-gotoNextField( fix, pos );
 while( pos < (int)len ) {
-   bool isGroupStart = false;
+   bool posIsOnNextField = false;
    prev = pos;
    raw_tag_t tag = loadRawTag( fix+pos, pos );
    switch( tag ){
@@ -951,7 +948,7 @@ while( pos < (int)len ) {
      break;
 
    case FieldNoLegs::RAW_TAG :
-     isGroupStart = true;
+     posIsOnNextField = true;
      gotoNextField( fix, pos );
      pos += GroupLegs::skip( fix+pos, len - pos );
      break;
@@ -963,7 +960,7 @@ while( pos < (int)len ) {
    default: FIXPP_PRINT_UNKNOWN_FIELD
      return prev;
    }
-   if( ! isGroupStart ) gotoNextField( fix, pos );
+   if( ! posIsOnNextField ) gotoNextField( fix, pos );
  }
  return pos;
 }

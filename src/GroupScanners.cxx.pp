@@ -10,12 +10,12 @@ offset_t Group##NAME::scan( Array & arr, const char * fix, unsigned len ){\
 <nl> const char * groupBuf = fix; \
 <nl> unsigned groupCount = 0; \
 <nl> while( pos < (int)len ) { \
-<n1>  bool isGroupStart = false;\
+<n1>  bool posIsOnNextField = false;\
 <n1>  prev = pos;\
 <n1>  raw_tag_t tag = loadRawTag( fix+pos, pos );\
 <n1>  gpos = pos - (groupBuf - fix);\
 <n1>  switch( tag ){\
-<n1>  case Field##FIRST_FIELD::RAW_TAG :\
+<n1>  case Field##FIRST_FIELD::RAW_TAG:\
 <n2>    FIXPP_PRINT_FIELD(FIRST_FIELD)\
 <n2>    if( group ) group->_fixLength = gpos;\
 <n2>    group = groupCount < arr.size() ? & arr[ groupCount ] : & arr.emplace_back();\
@@ -26,16 +26,16 @@ offset_t Group##NAME::scan( Array & arr, const char * fix, unsigned len ){\
 <n2>    break;\
 
 #define FIX_MSG_FIELD(NAME) \
-<n1>  case Field##NAME::RAW_TAG :\
+<n1>  case Field##NAME::RAW_TAG:\
 <n2>    FIXPP_PRINT_FIELD(NAME)\
 <n2>    group->field##NAME.offset = gpos;\
 <n2>    break;\
 
 #define FIX_MSG_GROUP(NAME) \
-<n1>  case FieldNo##NAME::RAW_TAG :\
+<n1>  case FieldNo##NAME::RAW_TAG:\
 <n2>    FIXPP_PRINT_FIELD(No##NAME)\
 <n2>    group->fieldNo##NAME.offset = gpos;\
-<n2>    isGroupStart = true;\
+<n2>    posIsOnNextField = true;\
 <n2>    gotoNextField( fix, pos );\
 <n2>    pos += Group##NAME::scan( group->groups##NAME, fix+pos, len - pos );\
 <n2>    break;\
@@ -45,7 +45,7 @@ offset_t Group##NAME::scan( Array & arr, const char * fix, unsigned len ){\
 <n2>    if( group ) group->_fixLength = gpos;\
 <n2>    return prev;\
 <n1>    }\
-<n1>  if( ! isGroupStart ) gotoNextField( fix, pos );\
+<n1>  if( ! posIsOnNextField ) gotoNextField( fix, pos );\
 <nl>  }\
 <nl>  if( group ) group->_fixLength = gpos;\
 <nl>  return pos;\
@@ -68,14 +68,14 @@ offset_t Group##NAME::scanSafely( Array & arr, const char * fix, unsigned len, u
 <nl> if( loadRawTag( fix, gpos ) != Field##FIRST_FIELD::RAW_TAG ) return 0;\
 <nl> const char * groupBuf = fix; \
 <nl>while( pos < (int)len ) {\
-<n1>  bool isGroupStart = false;\
+<n1>  bool posIsOnNextField = false;\
 <n1>  prev = pos;\
 <n1>  if( not isGoodTag( fix+pos ) ) {badFieldPtr = fix + pos; break; }\
 <n1>  raw_tag_t tag = loadRawTag( fix+pos, pos );\
-<n1>  if( fix[pos] == 1 ) { if( group ) group->_fixLength = prev; badFieldPtr = fix + prev; return pos; }\
+<n1>  if( fix[pos] == FIXPP_SOH ) { if( group ) group->_fixLength = prev; badFieldPtr = fix + prev; return pos; }\
 <n1>  gpos = pos - (groupBuf - fix);\
 <n1>  switch( tag ){\
-<n1>  case Field##FIRST_FIELD::RAW_TAG :\
+<n1>  case Field##FIRST_FIELD::RAW_TAG:\
 <n2>    FIXPP_PRINT_FIELD(FIRST_FIELD)\
 <n2>    if( group ) group->_fixLength = gpos;\
 <n2>    group = groupCount < arr.size() ? & arr[ groupCount ] : & arr.emplace_back();\
@@ -86,14 +86,14 @@ offset_t Group##NAME::scanSafely( Array & arr, const char * fix, unsigned len, u
 <n2>    break;\
 
 #define FIX_MSG_FIELD(NAME) \
-<n1>  case Field##NAME::RAW_TAG :\
+<n1>  case Field##NAME::RAW_TAG:\
 <n2>    FIXPP_PRINT_FIELD(NAME)\
 <n2>    if( group->field##NAME.offset < 0 ) group->field##NAME.offset = gpos;\
 <n2>    else { group->_fixLength = prev; badFieldPtr = fix + prev; return pos; }\
 <n2>    break;\
 
 #define FIX_MSG_ENUM_FIELD(NAME) \
-<n1>  case Field##NAME::RAW_TAG :\
+<n1>  case Field##NAME::RAW_TAG:\
 <n2>    FIXPP_PRINT_FIELD(NAME) \
 <n2>    if( group->field##NAME.offset < 0 ) {\
 <n3>      group->field##NAME.offset = gpos;\
@@ -104,11 +104,11 @@ offset_t Group##NAME::scanSafely( Array & arr, const char * fix, unsigned len, u
 <n2>    break;\
 
 #define FIX_MSG_GROUP(NAME) \
-<n1>  case FieldNo##NAME::RAW_TAG :\
+<n1>  case FieldNo##NAME::RAW_TAG:\
 <n2>    FIXPP_PRINT_FIELD(No##NAME) \
 <n2>    if( group->fieldNo##NAME.offset < 0 ){\
 <n3>    group->fieldNo##NAME.offset = gpos;\
-<n3>    isGroupStart = true;\
+<n3>    posIsOnNextField = true;\
 <n3>    {\
 <n3>    int groupExpected = parseGroupNoValue( fix + pos );\
 <n3>    unsigned groupFound = 0;\
@@ -125,7 +125,7 @@ offset_t Group##NAME::scanSafely( Array & arr, const char * fix, unsigned len, u
 <n2>    if( group ) group->_fixLength = gpos;\
 <n2>    return prev;\
 <n1>    }\
-<n1>  if( ! isGroupStart ) gotoNextField( fix, pos );\
+<n1>  if( ! posIsOnNextField ) gotoNextField( fix, pos );\
 <nl>  }\
 <nl>  if( group ) group->_fixLength = gpos;\
 <nl>  return pos;\
@@ -144,7 +144,7 @@ offset_t Group##NAME::scanSafely( Array & arr, const char * fix, unsigned len, u
 offset_t Group##NAME::skip( const char * fix, unsigned len ){\
 <nl> offset_t prev = 0, pos = 0; \
 <nl> while( pos < (int)len ) { \
-<n1>  bool isGroupStart = false;\
+<n1>  bool posIsOnNextField = false;\
 <n1>  prev = pos;\
 <n1>  raw_tag_t tag = loadRawTag( fix+pos, pos );\
 <n1>  switch( tag ){\
@@ -157,7 +157,7 @@ offset_t Group##NAME::skip( const char * fix, unsigned len ){\
 
 #define FIX_MSG_GROUP(NAME) \
 <n1>  case FieldNo##NAME::RAW_TAG :\
-<n2>    isGroupStart = true;\
+<n2>    posIsOnNextField = true;\
 <n2>    gotoNextField( fix, pos );\
 <n2>    pos += Group##NAME::skip( fix+pos, len - pos );\
 <n2>    break;\
@@ -166,7 +166,7 @@ offset_t Group##NAME::skip( const char * fix, unsigned len ){\
 <n1>  default: FIXPP_PRINT_UNKNOWN_FIELD\
 <n2>    return prev;\
 <n1>    }\
-<n1>  if( ! isGroupStart ) gotoNextField( fix, pos );\
+<n1>  if( ! posIsOnNextField ) gotoNextField( fix, pos );\
 <nl>  }\
 <nl>  return pos;\
 <nl>}\

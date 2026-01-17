@@ -7,28 +7,28 @@ offset_t Message##NAME::scan( const char * fix, unsigned len ){\
 <nl>_fixPtr = fix;\
 <nl>offset_t prev = 0, pos = 0;\
 <nl>while( pos < (int)len ) {\
-<n1>  bool isGroupStart = false;\
+<n1>  bool posIsOnNextField = false;\
 <n1>  prev = pos;\
 <n1>  raw_tag_t tag = loadRawTag( fix+pos, pos );\
 <n1>  switch( tag ){\
 
 #define FIX_MSG_FIELD(NAME) \
-<n1>  case Field##NAME::RAW_TAG :\
+<n1>  case Field##NAME::RAW_TAG:\
 <n2>    FIXPP_PRINT_FIELD(NAME) \
 <n2>    field##NAME.offset = pos;\
 <n2>    break;\
 
 #define FIX_MSG_GROUP(NAME) \
-<n1>  case FieldNo##NAME::RAW_TAG :\
+<n1>  case FieldNo##NAME::RAW_TAG:\
 <n2>    FIXPP_PRINT_FIELD(No##NAME) \
 <n2>    fieldNo##NAME.offset = pos;\
-<n2>    isGroupStart = true;\
+<n2>    posIsOnNextField = true;\
 <n2>    gotoNextField( fix, pos );\
 <n2>    pos += Group##NAME::scan( groups##NAME, fix+pos, len - pos );\
 <n2>    break;\
 
 #define FIX_MSG_END \
-<n1>  case FieldCheckSum::RAW_TAG :\
+<n1>  case FieldCheckSum::RAW_TAG:\
 <n2>    FIXPP_PRINT_FIELD(CheckSum) \
 <n2>    fieldCheckSum.offset = pos;\
 <n2>    gotoNextField( fix, pos );\
@@ -39,7 +39,7 @@ offset_t Message##NAME::scan( const char * fix, unsigned len ){\
 <n2>    _fixLength = prev;\
 <n2>    return prev;\
 <n1>    }\
-<n1>  if( ! isGroupStart ) gotoNextField( fix, pos );\
+<n1>  if( ! posIsOnNextField ) gotoNextField( fix, pos );\
 <nl>  }\
 <nl>  _fixLength = pos;\
 <nl>  return pos;\
@@ -59,22 +59,22 @@ offset_t Message##NAME::scanSafely( const char * fix, unsigned len ){\
 <nl>_fixPtr = fix;\
 <nl>offset_t prev = 0, pos = 0;\
 <nl>while( pos < (int)len ) {\
-<n1>  bool isGroupStart = false;\
+<n1>  bool posIsOnNextField = false;\
 <n1>  prev = pos;\
 <n1>  if( not isGoodTag( fix+pos ) ) break;\
 <n1>  raw_tag_t tag = loadRawTag( fix+pos, pos );\
-<n1>  if( fix[pos] == 1 ) { _fixLength = prev; return pos; }\
+<n1>  if( fix[pos] == FIXPP_SOH ) { _fixLength = prev; return pos; }\
 <n1>  switch( tag ){\
 
 #define FIX_MSG_FIELD(NAME) \
-<n1>  case Field##NAME::RAW_TAG :\
+<n1>  case Field##NAME::RAW_TAG:\
 <n2>    FIXPP_PRINT_FIELD(NAME) \
 <n2>    if( field##NAME.offset < 0 ) field##NAME.offset = pos;\
 <n2>    else { _fixLength = prev; return pos; }\
 <n2>    break;\
 
 #define FIX_MSG_ENUM_FIELD(NAME) \
-<n1>  case Field##NAME::RAW_TAG :\
+<n1>  case Field##NAME::RAW_TAG:\
 <n2>    FIXPP_PRINT_FIELD(NAME) \
 <n2>    if( field##NAME.offset < 0 ) {\
 <n3>      field##NAME.offset = pos;\
@@ -85,11 +85,11 @@ offset_t Message##NAME::scanSafely( const char * fix, unsigned len ){\
 <n2>    break;\
 
 #define FIX_MSG_GROUP(NAME) \
-<n1>  case FieldNo##NAME::RAW_TAG :\
+<n1>  case FieldNo##NAME::RAW_TAG:\
 <n2>    FIXPP_PRINT_FIELD(No##NAME) \
 <n2>    if( fieldNo##NAME.offset < 0 ){\
 <n3>    fieldNo##NAME.offset = pos;\
-<n3>    isGroupStart = true;\
+<n3>    posIsOnNextField = true;\
 <n3>    {\
 <n3>    int groupExpected = parseGroupNoValue( fix + pos );\
 <n3>    unsigned groupFound = 0;\
@@ -103,7 +103,7 @@ offset_t Message##NAME::scanSafely( const char * fix, unsigned len ){\
 <n2>    break;\
 
 #define FIX_MSG_END \
-<n1>  case FieldCheckSum::RAW_TAG :\
+<n1>  case FieldCheckSum::RAW_TAG:\
 <n2>    FIXPP_PRINT_FIELD(CheckSum) \
 <n2>    fieldCheckSum.offset = pos;\
 <n2>    gotoNextField( fix, pos );\
@@ -114,7 +114,7 @@ offset_t Message##NAME::scanSafely( const char * fix, unsigned len ){\
 <n2>    _fixLength = prev;\
 <n2>    return prev;\
 <n1>    }\
-<n1>  if( ! isGroupStart ) gotoNextField( fix, pos );\
+<n1>  if( ! posIsOnNextField ) gotoNextField( fix, pos );\
 <nl>  }\
 <nl>  _fixLength = pos;\
 <nl>  return pos;\
@@ -133,9 +133,8 @@ offset_t Message##NAME::scanSafely( const char * fix, unsigned len ){\
 offset_t Message##NAME::skip( const char * fix, unsigned len ) const\
 <nl>{\
 <nl>offset_t prev = 0, pos = 0;\
-<nl>gotoNextField( fix, pos );\
 <nl>while( pos < (int)len ) {\
-<n1>  bool isGroupStart = false;\
+<n1>  bool posIsOnNextField = false;\
 <n1>  prev = pos;\
 <n1>  raw_tag_t tag = loadRawTag( fix+pos, pos );\
 <n1>  switch( tag ){\
@@ -146,7 +145,7 @@ offset_t Message##NAME::skip( const char * fix, unsigned len ) const\
 
 #define FIX_MSG_GROUP(NAME) \
 <n1>  case FieldNo##NAME::RAW_TAG :\
-<n2>    isGroupStart = true;\
+<n2>    posIsOnNextField = true;\
 <n2>    gotoNextField( fix, pos );\
 <n2>    pos += Group##NAME::skip( fix+pos, len - pos );\
 <n2>    break;\
@@ -159,7 +158,7 @@ offset_t Message##NAME::skip( const char * fix, unsigned len ) const\
 <n1>  default: FIXPP_PRINT_UNKNOWN_FIELD\
 <n2>    return prev;\
 <n1>    }\
-<n1>  if( ! isGroupStart ) gotoNextField( fix, pos );\
+<n1>  if( ! posIsOnNextField ) gotoNextField( fix, pos );\
 <nl>  }\
 <nl>  return pos;\
 <nl>}\
