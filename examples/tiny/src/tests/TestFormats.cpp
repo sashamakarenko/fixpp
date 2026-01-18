@@ -285,5 +285,7 @@ int main( int args, const char ** argv )
     pos = 0;
     fixToFlatJson( FIX_BUFFER_EXEC_REPORT, pos, std::cout, "f", "v", "n", "e", "t" ) << '\n' << std::endl;
 
+    std::cout << fixstr( FIX_BUFFER_LOGON_WITH_RAWDATA, ttyRgbStyle ) << std::endl;
+
     return 0;
 }

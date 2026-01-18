@@ -31620,6 +31620,8 @@ std::ostream & fixToHuman( const char * fix, offset_t & pos, std::ostream & os, 
 {
     os << style.messageBegin;
 
+    raw_tag_t prevTag      = 0;
+    const char * prevValue = nullptr;
     while( fix[pos] )
     {
         offset_t prev = pos;
@@ -31684,13 +31686,37 @@ std::ostream & fixToHuman( const char * fix, offset_t & pos, std::ostream & os, 
         }
         os << style.tagValueStop << style.equal << style.valueStart;
 
-        raw_enum_t rawEnum = toRawEnum( fix + pos );
+        const char * value = fix + pos;
+        raw_enum_t rawEnum = toRawEnum( value );
 
-        // value as is
-        while( fix[pos] and fix[pos] != FIXPP_SOH )
+        raw_tag_t dataLengthTag = getDataFieldLengthRawTag( tag );
+        if( dataLengthTag == prevTag and prevValue != nullptr )
         {
-            os << fix[pos++];
+            unsigned tmp = 0;
+            unsigned datalen = parseUInt( prevValue, tmp );
+            while( datalen-- > 0 )
+            {
+                char c = fix[pos++];
+                unsigned u = c;
+                if( u < ' ' or u > 127U )
+                {
+                    os << '\\' << ( u >> 6 ) << ( ( u >> 3 ) & 7 ) << ( u & 7 );
+                }
+                else
+                {
+                    os << c;
+                }
+            }
         }
+        else
+        {
+            // value as is
+            while( fix[pos] and fix[pos] != FIXPP_SOH )
+            {
+                os << fix[pos++];
+            }
+        }
+        prevValue = value;
 
         os << style.valueStop;
 
@@ -31722,7 +31748,7 @@ std::ostream & fixToHuman( const char * fix, offset_t & pos, std::ostream & os, 
         {
             break;
         }
-
+        prevTag = tag;
     }
     os << style.messageEnd;
     return os;

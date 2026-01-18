@@ -141,6 +141,16 @@ bool isHeaderField( tag_t tagValue )
     return headerTags.find( tagValue ) != headerTags.end();
 }
 
+std::map< raw_tag_t, raw_tag_t > dataFieldsRawTags
+{
+#include <DSTINCDIR/DataFields.cxx>
+};
+
+raw_tag_t getDataFieldLengthRawTag( raw_tag_t dataFieldRawTag )
+{
+    auto it = dataFieldsRawTags.find( dataFieldRawTag );
+    return it == dataFieldsRawTags.end() ? 0 : it->second;
+}
 
 const std::string fixTypeName_AMT                 { "AMT" };
 const std::string fixTypeName_BOOLEAN             { "BOOLEAN" };

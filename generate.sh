@@ -205,6 +205,18 @@ dst=${DSTDIR}/Header.cxx
 echo "  generating $dst"
 sed -n /Header/,/FIX_MSG_END/p ${DEFDIR}/Messages.def | grep FIX_MSG_FIELD | sed 's/FIX_MSG_FIELD( \(.*\) )/ Field\1::TAG,/' > $dst
 
+dst=${DSTDIR}/DataFields.cxx
+echo "  generating $dst"
+echo > $dst
+rawDataFields=$( sed -n -e 's/FIX_FIELD_DECL.*( *\(.*\) *,.*,.*DATA.*).*/\1/gp' ${DEFDIR}/Fields.def )
+for rawField in $rawDataFields; do
+    rawFieldLength=${rawField}Len
+    if grep -q ${rawFieldLength}gth ${DEFDIR}/Fields.def; then
+        rawFieldLength=${rawFieldLength}gth
+    fi
+    echo "{ Field${rawField}::RAW_TAG, Field${rawFieldLength}::RAW_TAG }," >> $dst
+done
+
 # Build MsgType enums
 dst=${DSTDIR}/Fields.hxx
 echo "  generating MsgType enums"
@@ -338,7 +350,6 @@ sed "/on-message-begin-_/,/on-message-end-_/d" -i ${DSTDIR}/Messages.cpp
 sed "/on-message-begin-_/,/on-message-end-_/d" -i ${DSTDIR}/Messages.h
 
 
-rawDataFields=$( sed -n -e 's/FIX_FIELD_DECL.*( *\(.*\) *,.*,.*DATA.*).*/\1/gp' ${DEFDIR}/Fields.def )
 for rawField in $rawDataFields; do
     echo "  fixing raw data field: $rawField"
     if [[ -n "$PPDIR" ]]; then

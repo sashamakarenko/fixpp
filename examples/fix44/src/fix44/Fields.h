@@ -75,6 +75,7 @@ FieldType getFieldType( tag_t tagValue );
 const std::string & getFieldTypeName( tag_t tagValue );
 
 bool isHeaderField( tag_t tagValue );
+raw_tag_t getDataFieldLengthRawTag( raw_tag_t dataFieldRawTag );
 
 // start of Fields.hxx
 

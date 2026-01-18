@@ -170,6 +170,34 @@ bool isHeaderField( tag_t tagValue )
     return headerTags.find( tagValue ) != headerTags.end();
 }
 
+std::map< raw_tag_t, raw_tag_t > dataFieldsRawTags
+{
+// start of DataFields.cxx
+
+{ FieldSignature::RAW_TAG, FieldSignatureLength::RAW_TAG },
+{ FieldSecureData::RAW_TAG, FieldSecureDataLen::RAW_TAG },
+{ FieldRawData::RAW_TAG, FieldRawDataLength::RAW_TAG },
+{ FieldXmlData::RAW_TAG, FieldXmlDataLen::RAW_TAG },
+{ FieldEncodedIssuer::RAW_TAG, FieldEncodedIssuerLen::RAW_TAG },
+{ FieldEncodedSecurityDesc::RAW_TAG, FieldEncodedSecurityDescLen::RAW_TAG },
+{ FieldEncodedListExecInst::RAW_TAG, FieldEncodedListExecInstLen::RAW_TAG },
+{ FieldEncodedText::RAW_TAG, FieldEncodedTextLen::RAW_TAG },
+{ FieldEncodedSubject::RAW_TAG, FieldEncodedSubjectLen::RAW_TAG },
+{ FieldEncodedHeadline::RAW_TAG, FieldEncodedHeadlineLen::RAW_TAG },
+{ FieldEncodedAllocText::RAW_TAG, FieldEncodedAllocTextLen::RAW_TAG },
+{ FieldEncodedUnderlyingIssuer::RAW_TAG, FieldEncodedUnderlyingIssuerLen::RAW_TAG },
+{ FieldEncodedUnderlyingSecurityDesc::RAW_TAG, FieldEncodedUnderlyingSecurityDescLen::RAW_TAG },
+{ FieldEncodedListStatusText::RAW_TAG, FieldEncodedListStatusTextLen::RAW_TAG },
+{ FieldEncodedLegIssuer::RAW_TAG, FieldEncodedLegIssuerLen::RAW_TAG },
+{ FieldEncodedLegSecurityDesc::RAW_TAG, FieldEncodedLegSecurityDescLen::RAW_TAG },
+// end of DataFields.cxx
+};
+
+raw_tag_t getDataFieldLengthRawTag( raw_tag_t dataFieldRawTag )
+{
+    auto it = dataFieldsRawTags.find( dataFieldRawTag );
+    return it == dataFieldsRawTags.end() ? 0 : it->second;
+}
 
 const std::string fixTypeName_AMT                 { "AMT" };
 const std::string fixTypeName_BOOLEAN             { "BOOLEAN" };
