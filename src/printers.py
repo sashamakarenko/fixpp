@@ -15,6 +15,8 @@ OFFSET = 'offset'
 BUF = '_fixPtr'
 BUFLEN = '_fixLength'
 
+DATA_FIELDS = { __DATA_FIELDS__ }
+
 if sys.version_info[0] > 2:
     Iterator = object
 else:
@@ -45,11 +47,33 @@ def getFieldTag( msg, fieldName ):
         offset = offset - 1
     return res
 
+def rawData(soh,sz):
+    s = ''
+    i = 0
+    while i < sz:
+        ch = soh[i]
+        if ch < 32 or ch > 127:
+            s = s + '\\' + oct(ch)
+        else:
+            s = s + chr(ch)
+        i = i + 1
+    return s
+
 def getFieldValue( msg, fieldName ):
     buf = msg[BUF]
     offset = msg[fieldName][OFFSET]
     if buf == 0 or offset < 0:
         return ''
+    if fieldName in DATA_FIELDS:
+        sz = 0
+        try:
+            sz = int(getFieldValue(msg,fieldName+'Len'))
+        except:
+            try:
+                sz = int(getFieldValue(msg,fieldName+'Length'))
+            except:
+                sz = 0
+        return rawData(buf+offset,sz)
     return soh2str(buf+offset)
 
 def getEnumName( msg, fieldName ):

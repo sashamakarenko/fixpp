@@ -341,6 +341,9 @@ sed "/on-message-begin-_/,/on-message-end-_/d" -i ${DSTDIR}/Messages.h
 rawDataFields=$( sed -n -e 's/FIX_FIELD_DECL.*( *\(.*\) *,.*,.*DATA.*).*/\1/gp' ${DEFDIR}/Fields.def )
 for rawField in $rawDataFields; do
     echo "  fixing raw data field: $rawField"
+    if [[ -n "$PPDIR" ]]; then
+        sed "s/__DATA_FIELDS__/ 'field$rawField',__DATA_FIELDS__/" -i $PPDIR/printers.py
+    fi
     rawFieldLength=${rawField}Len
     if grep -q ${rawFieldLength}gth ${DEFDIR}/Fields.def; then
         rawFieldLength=${rawFieldLength}gth
@@ -373,3 +376,6 @@ for rawField in $rawDataFields; do
     done
 done
 
+if [[ -n "$PPDIR" ]]; then
+    sed "s/__DATA_FIELDS__//" -i $PPDIR/printers.py
+fi
