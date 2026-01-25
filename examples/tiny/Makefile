@@ -30,6 +30,8 @@ else
     DISABLED_TESTS = Perf SenderPerf SendForexPerf
 endif
 
+CPP_DEFINES=-DFIXPP_GROUPS_CPP_INCLUDE=\<tiny/InitialGroupSizes.h\> -Iinclude
+
 TEST_DEFINES = -DEXIT_ON_ERROR
 CPP_EXTRA_FLAGS = -Wall -Wextra -Wno-unused-parameter -Werror
 ifeq ($(COMPILER),c++)

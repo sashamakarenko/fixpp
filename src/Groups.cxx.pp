@@ -24,7 +24,7 @@ Group##NAME::Group##NAME(){
 #define FIX_MSG_FIELD(NAME) remove-me
 
 #define FIX_MSG_GROUP(NAME) \
-<n2>    groups##NAME.assign( 10, {} );
+<n2>    groups##NAME.assign( initialNoGroupsToPreallocate<Group##NAME>(), {} );
 
 #define FIX_MSG_GROUP_END \
 <nl>}\

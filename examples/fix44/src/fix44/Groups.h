@@ -12,6 +12,14 @@
 namespace fix44
 {
 
+// One can specialize this value for different group types in a file 'XXX.h'.
+// Then -DFIXPP_GROUPS_CPP_INCLUDE=\"XXX.h\"
+template< typename GROUP >
+constexpr unsigned initialNoGroupsToPreallocate()
+{
+    return 8;
+}
+
 // start of Groups.hxx
 
 // Generated
@@ -443,7 +451,7 @@ class GroupNested2PartyIDs : public MessageBase
    public:
    std::size_t getGroupCountNested2PartySubIDs() const { return groupsNested2PartySubIDs.size(); } 
    const GroupNested2PartySubIDs & getGroupNested2PartySubIDs( std::size_t idx ) const { return groupsNested2PartySubIDs[ idx ]; } 
-   private: GroupNested2PartySubIDs::Array groupsNested2PartySubIDs{ 10 };
+   private: GroupNested2PartySubIDs::Array groupsNested2PartySubIDs{ initialNoGroupsToPreallocate<GroupNested2PartySubIDs>() };
 
 };
 
@@ -609,7 +617,7 @@ class GroupPartyIDs : public MessageBase
    public:
    std::size_t getGroupCountPartySubIDs() const { return groupsPartySubIDs.size(); } 
    const GroupPartySubIDs & getGroupPartySubIDs( std::size_t idx ) const { return groupsPartySubIDs[ idx ]; } 
-   private: GroupPartySubIDs::Array groupsPartySubIDs{ 10 };
+   private: GroupPartySubIDs::Array groupsPartySubIDs{ initialNoGroupsToPreallocate<GroupPartySubIDs>() };
 
 };
 
@@ -986,7 +994,7 @@ class GroupUnderlyings : public MessageBase
    public:
    std::size_t getGroupCountUnderlyingSecurityAltID() const { return groupsUnderlyingSecurityAltID.size(); } 
    const GroupUnderlyingSecurityAltID & getGroupUnderlyingSecurityAltID( std::size_t idx ) const { return groupsUnderlyingSecurityAltID[ idx ]; } 
-   private: GroupUnderlyingSecurityAltID::Array groupsUnderlyingSecurityAltID{ 10 };
+   private: GroupUnderlyingSecurityAltID::Array groupsUnderlyingSecurityAltID{ initialNoGroupsToPreallocate<GroupUnderlyingSecurityAltID>() };
 
    public:
    using UnderlyingProduct = FieldUnderlyingProduct; 
@@ -1411,7 +1419,7 @@ class GroupUnderlyings : public MessageBase
    public:
    std::size_t getGroupCountUnderlyingStips() const { return groupsUnderlyingStips.size(); } 
    const GroupUnderlyingStips & getGroupUnderlyingStips( std::size_t idx ) const { return groupsUnderlyingStips[ idx ]; } 
-   private: GroupUnderlyingStips::Array groupsUnderlyingStips{ 10 };
+   private: GroupUnderlyingStips::Array groupsUnderlyingStips{ initialNoGroupsToPreallocate<GroupUnderlyingStips>() };
 
    public:
    using UnderlyingSettlPrice = FieldUnderlyingSettlPrice; 
@@ -1570,7 +1578,7 @@ class GroupOrders : public MessageBase
    public:
    std::size_t getGroupCountPartyIDs() const { return groupsPartyIDs.size(); } 
    const GroupPartyIDs & getGroupPartyIDs( std::size_t idx ) const { return groupsPartyIDs[ idx ]; } 
-   private: GroupPartyIDs::Array groupsPartyIDs{ 10 };
+   private: GroupPartyIDs::Array groupsPartyIDs{ initialNoGroupsToPreallocate<GroupPartyIDs>() };
 
    public:
    using TradeOriginationDate = FieldTradeOriginationDate; 
@@ -1675,7 +1683,7 @@ class GroupOrders : public MessageBase
    public:
    std::size_t getGroupCountAllocs() const { return groupsAllocs.size(); } 
    const GroupAllocs & getGroupAllocs( std::size_t idx ) const { return groupsAllocs[ idx ]; } 
-   private: GroupAllocs::Array groupsAllocs{ 10 };
+   private: GroupAllocs::Array groupsAllocs{ initialNoGroupsToPreallocate<GroupAllocs>() };
 
    public:
    using SettlType = FieldSettlType; 
@@ -1780,7 +1788,7 @@ class GroupOrders : public MessageBase
    public:
    std::size_t getGroupCountTradingSessions() const { return groupsTradingSessions.size(); } 
    const GroupTradingSessions & getGroupTradingSessions( std::size_t idx ) const { return groupsTradingSessions[ idx ]; } 
-   private: GroupTradingSessions::Array groupsTradingSessions{ 10 };
+   private: GroupTradingSessions::Array groupsTradingSessions{ initialNoGroupsToPreallocate<GroupTradingSessions>() };
 
    public:
    using ProcessCode = FieldProcessCode; 
@@ -1845,7 +1853,7 @@ class GroupOrders : public MessageBase
    public:
    std::size_t getGroupCountSecurityAltID() const { return groupsSecurityAltID.size(); } 
    const GroupSecurityAltID & getGroupSecurityAltID( std::size_t idx ) const { return groupsSecurityAltID[ idx ]; } 
-   private: GroupSecurityAltID::Array groupsSecurityAltID{ 10 };
+   private: GroupSecurityAltID::Array groupsSecurityAltID{ initialNoGroupsToPreallocate<GroupSecurityAltID>() };
 
    public:
    using Product = FieldProduct; 
@@ -2210,7 +2218,7 @@ class GroupOrders : public MessageBase
    public:
    std::size_t getGroupCountEvents() const { return groupsEvents.size(); } 
    const GroupEvents & getGroupEvents( std::size_t idx ) const { return groupsEvents[ idx ]; } 
-   private: GroupEvents::Array groupsEvents{ 10 };
+   private: GroupEvents::Array groupsEvents{ initialNoGroupsToPreallocate<GroupEvents>() };
 
    public:
    using DatedDate = FieldDatedDate; 
@@ -2245,7 +2253,7 @@ class GroupOrders : public MessageBase
    public:
    std::size_t getGroupCountUnderlyings() const { return groupsUnderlyings.size(); } 
    const GroupUnderlyings & getGroupUnderlyings( std::size_t idx ) const { return groupsUnderlyings[ idx ]; } 
-   private: GroupUnderlyings::Array groupsUnderlyings{ 10 };
+   private: GroupUnderlyings::Array groupsUnderlyings{ initialNoGroupsToPreallocate<GroupUnderlyings>() };
 
    public:
    using PrevClosePx = FieldPrevClosePx; 
@@ -2310,7 +2318,7 @@ class GroupOrders : public MessageBase
    public:
    std::size_t getGroupCountStipulations() const { return groupsStipulations.size(); } 
    const GroupStipulations & getGroupStipulations( std::size_t idx ) const { return groupsStipulations[ idx ]; } 
-   private: GroupStipulations::Array groupsStipulations{ 10 };
+   private: GroupStipulations::Array groupsStipulations{ initialNoGroupsToPreallocate<GroupStipulations>() };
 
    public:
    using QtyType = FieldQtyType; 
@@ -3129,7 +3137,7 @@ class GroupSettlPartyIDs : public MessageBase
    public:
    std::size_t getGroupCountSettlPartySubIDs() const { return groupsSettlPartySubIDs.size(); } 
    const GroupSettlPartySubIDs & getGroupSettlPartySubIDs( std::size_t idx ) const { return groupsSettlPartySubIDs[ idx ]; } 
-   private: GroupSettlPartySubIDs::Array groupsSettlPartySubIDs{ 10 };
+   private: GroupSettlPartySubIDs::Array groupsSettlPartySubIDs{ initialNoGroupsToPreallocate<GroupSettlPartySubIDs>() };
 
 };
 
@@ -3191,7 +3199,7 @@ class GroupDlvyInst : public MessageBase
    public:
    std::size_t getGroupCountSettlPartyIDs() const { return groupsSettlPartyIDs.size(); } 
    const GroupSettlPartyIDs & getGroupSettlPartyIDs( std::size_t idx ) const { return groupsSettlPartyIDs[ idx ]; } 
-   private: GroupSettlPartyIDs::Array groupsSettlPartyIDs{ 10 };
+   private: GroupSettlPartyIDs::Array groupsSettlPartyIDs{ initialNoGroupsToPreallocate<GroupSettlPartyIDs>() };
 
 };
 
@@ -3347,7 +3355,7 @@ class GroupNestedPartyIDs : public MessageBase
    public:
    std::size_t getGroupCountNestedPartySubIDs() const { return groupsNestedPartySubIDs.size(); } 
    const GroupNestedPartySubIDs & getGroupNestedPartySubIDs( std::size_t idx ) const { return groupsNestedPartySubIDs[ idx ]; } 
-   private: GroupNestedPartySubIDs::Array groupsNestedPartySubIDs{ 10 };
+   private: GroupNestedPartySubIDs::Array groupsNestedPartySubIDs{ initialNoGroupsToPreallocate<GroupNestedPartySubIDs>() };
 
 };
 
@@ -3429,7 +3437,7 @@ class GroupLegs : public MessageBase
    public:
    std::size_t getGroupCountLegSecurityAltID() const { return groupsLegSecurityAltID.size(); } 
    const GroupLegSecurityAltID & getGroupLegSecurityAltID( std::size_t idx ) const { return groupsLegSecurityAltID[ idx ]; } 
-   private: GroupLegSecurityAltID::Array groupsLegSecurityAltID{ 10 };
+   private: GroupLegSecurityAltID::Array groupsLegSecurityAltID{ initialNoGroupsToPreallocate<GroupLegSecurityAltID>() };
 
    public:
    using LegProduct = FieldLegProduct; 
@@ -3834,7 +3842,7 @@ class GroupLegs : public MessageBase
    public:
    std::size_t getGroupCountLegStipulations() const { return groupsLegStipulations.size(); } 
    const GroupLegStipulations & getGroupLegStipulations( std::size_t idx ) const { return groupsLegStipulations[ idx ]; } 
-   private: GroupLegStipulations::Array groupsLegStipulations{ 10 };
+   private: GroupLegStipulations::Array groupsLegStipulations{ initialNoGroupsToPreallocate<GroupLegStipulations>() };
 
    public:
    using LegPositionEffect = FieldLegPositionEffect; 
@@ -3869,7 +3877,7 @@ class GroupLegs : public MessageBase
    public:
    std::size_t getGroupCountNestedPartyIDs() const { return groupsNestedPartyIDs.size(); } 
    const GroupNestedPartyIDs & getGroupNestedPartyIDs( std::size_t idx ) const { return groupsNestedPartyIDs[ idx ]; } 
-   private: GroupNestedPartyIDs::Array groupsNestedPartyIDs{ 10 };
+   private: GroupNestedPartyIDs::Array groupsNestedPartyIDs{ initialNoGroupsToPreallocate<GroupNestedPartyIDs>() };
 
    public:
    using LegRefID = FieldLegRefID; 
@@ -4001,7 +4009,7 @@ class GroupQuoteEntries : public MessageBase
    public:
    std::size_t getGroupCountSecurityAltID() const { return groupsSecurityAltID.size(); } 
    const GroupSecurityAltID & getGroupSecurityAltID( std::size_t idx ) const { return groupsSecurityAltID[ idx ]; } 
-   private: GroupSecurityAltID::Array groupsSecurityAltID{ 10 };
+   private: GroupSecurityAltID::Array groupsSecurityAltID{ initialNoGroupsToPreallocate<GroupSecurityAltID>() };
 
    public:
    using Product = FieldProduct; 
@@ -4366,7 +4374,7 @@ class GroupQuoteEntries : public MessageBase
    public:
    std::size_t getGroupCountEvents() const { return groupsEvents.size(); } 
    const GroupEvents & getGroupEvents( std::size_t idx ) const { return groupsEvents[ idx ]; } 
-   private: GroupEvents::Array groupsEvents{ 10 };
+   private: GroupEvents::Array groupsEvents{ initialNoGroupsToPreallocate<GroupEvents>() };
 
    public:
    using DatedDate = FieldDatedDate; 
@@ -4491,7 +4499,7 @@ class GroupQuoteEntries : public MessageBase
    public:
    std::size_t getGroupCountUnderlyings() const { return groupsUnderlyings.size(); } 
    const GroupUnderlyings & getGroupUnderlyings( std::size_t idx ) const { return groupsUnderlyings[ idx ]; } 
-   private: GroupUnderlyings::Array groupsUnderlyings{ 10 };
+   private: GroupUnderlyings::Array groupsUnderlyings{ initialNoGroupsToPreallocate<GroupUnderlyings>() };
 
    public:
    using NoLegs = FieldNoLegs; 
@@ -4506,7 +4514,7 @@ class GroupQuoteEntries : public MessageBase
    public:
    std::size_t getGroupCountLegs() const { return groupsLegs.size(); } 
    const GroupLegs & getGroupLegs( std::size_t idx ) const { return groupsLegs[ idx ]; } 
-   private: GroupLegs::Array groupsLegs{ 10 };
+   private: GroupLegs::Array groupsLegs{ initialNoGroupsToPreallocate<GroupLegs>() };
 
 };
 
@@ -4598,7 +4606,7 @@ class GroupQuoteSets : public MessageBase
    public:
    std::size_t getGroupCountUnderlyingSecurityAltID() const { return groupsUnderlyingSecurityAltID.size(); } 
    const GroupUnderlyingSecurityAltID & getGroupUnderlyingSecurityAltID( std::size_t idx ) const { return groupsUnderlyingSecurityAltID[ idx ]; } 
-   private: GroupUnderlyingSecurityAltID::Array groupsUnderlyingSecurityAltID{ 10 };
+   private: GroupUnderlyingSecurityAltID::Array groupsUnderlyingSecurityAltID{ initialNoGroupsToPreallocate<GroupUnderlyingSecurityAltID>() };
 
    public:
    using UnderlyingProduct = FieldUnderlyingProduct; 
@@ -5023,7 +5031,7 @@ class GroupQuoteSets : public MessageBase
    public:
    std::size_t getGroupCountUnderlyingStips() const { return groupsUnderlyingStips.size(); } 
    const GroupUnderlyingStips & getGroupUnderlyingStips( std::size_t idx ) const { return groupsUnderlyingStips[ idx ]; } 
-   private: GroupUnderlyingStips::Array groupsUnderlyingStips{ 10 };
+   private: GroupUnderlyingStips::Array groupsUnderlyingStips{ initialNoGroupsToPreallocate<GroupUnderlyingStips>() };
 
    public:
    using TotNoQuoteEntries = FieldTotNoQuoteEntries; 
@@ -5058,7 +5066,7 @@ class GroupQuoteSets : public MessageBase
    public:
    std::size_t getGroupCountQuoteEntries() const { return groupsQuoteEntries.size(); } 
    const GroupQuoteEntries & getGroupQuoteEntries( std::size_t idx ) const { return groupsQuoteEntries[ idx ]; } 
-   private: GroupQuoteEntries::Array groupsQuoteEntries{ 10 };
+   private: GroupQuoteEntries::Array groupsQuoteEntries{ initialNoGroupsToPreallocate<GroupQuoteEntries>() };
 
 };
 
@@ -5197,7 +5205,7 @@ class GroupNested3PartyIDs : public MessageBase
    public:
    std::size_t getGroupCountNested3PartySubIDs() const { return groupsNested3PartySubIDs.size(); } 
    const GroupNested3PartySubIDs & getGroupNested3PartySubIDs( std::size_t idx ) const { return groupsNested3PartySubIDs[ idx ]; } 
-   private: GroupNested3PartySubIDs::Array groupsNested3PartySubIDs{ 10 };
+   private: GroupNested3PartySubIDs::Array groupsNested3PartySubIDs{ initialNoGroupsToPreallocate<GroupNested3PartySubIDs>() };
 
 };
 
@@ -5279,7 +5287,7 @@ class GroupPositions : public MessageBase
    public:
    std::size_t getGroupCountNestedPartyIDs() const { return groupsNestedPartyIDs.size(); } 
    const GroupNestedPartyIDs & getGroupNestedPartyIDs( std::size_t idx ) const { return groupsNestedPartyIDs[ idx ]; } 
-   private: GroupNestedPartyIDs::Array groupsNestedPartyIDs{ 10 };
+   private: GroupNestedPartyIDs::Array groupsNestedPartyIDs{ initialNoGroupsToPreallocate<GroupNestedPartyIDs>() };
 
 };
 
@@ -5659,7 +5667,7 @@ class GroupSettlInst : public MessageBase
    public:
    std::size_t getGroupCountPartyIDs() const { return groupsPartyIDs.size(); } 
    const GroupPartyIDs & getGroupPartyIDs( std::size_t idx ) const { return groupsPartyIDs[ idx ]; } 
-   private: GroupPartyIDs::Array groupsPartyIDs{ 10 };
+   private: GroupPartyIDs::Array groupsPartyIDs{ initialNoGroupsToPreallocate<GroupPartyIDs>() };
 
    public:
    using Side = FieldSide; 
@@ -5784,7 +5792,7 @@ class GroupSettlInst : public MessageBase
    public:
    std::size_t getGroupCountDlvyInst() const { return groupsDlvyInst.size(); } 
    const GroupDlvyInst & getGroupDlvyInst( std::size_t idx ) const { return groupsDlvyInst[ idx ]; } 
-   private: GroupDlvyInst::Array groupsDlvyInst{ 10 };
+   private: GroupDlvyInst::Array groupsDlvyInst{ initialNoGroupsToPreallocate<GroupDlvyInst>() };
 
    public:
    using PaymentMethod = FieldPaymentMethod; 
@@ -6328,7 +6336,7 @@ class GroupSides : public MessageBase
    public:
    std::size_t getGroupCountPartyIDs() const { return groupsPartyIDs.size(); } 
    const GroupPartyIDs & getGroupPartyIDs( std::size_t idx ) const { return groupsPartyIDs[ idx ]; } 
-   private: GroupPartyIDs::Array groupsPartyIDs{ 10 };
+   private: GroupPartyIDs::Array groupsPartyIDs{ initialNoGroupsToPreallocate<GroupPartyIDs>() };
 
    public:
    using TradeOriginationDate = FieldTradeOriginationDate; 
@@ -6792,7 +6800,7 @@ class GroupRelatedSym : public MessageBase
    public:
    std::size_t getGroupCountSecurityAltID() const { return groupsSecurityAltID.size(); } 
    const GroupSecurityAltID & getGroupSecurityAltID( std::size_t idx ) const { return groupsSecurityAltID[ idx ]; } 
-   private: GroupSecurityAltID::Array groupsSecurityAltID{ 10 };
+   private: GroupSecurityAltID::Array groupsSecurityAltID{ initialNoGroupsToPreallocate<GroupSecurityAltID>() };
 
    public:
    using Product = FieldProduct; 
@@ -7157,7 +7165,7 @@ class GroupRelatedSym : public MessageBase
    public:
    std::size_t getGroupCountEvents() const { return groupsEvents.size(); } 
    const GroupEvents & getGroupEvents( std::size_t idx ) const { return groupsEvents[ idx ]; } 
-   private: GroupEvents::Array groupsEvents{ 10 };
+   private: GroupEvents::Array groupsEvents{ initialNoGroupsToPreallocate<GroupEvents>() };
 
    public:
    using DatedDate = FieldDatedDate; 
@@ -7383,7 +7391,7 @@ class GroupStrikes : public MessageBase
    public:
    std::size_t getGroupCountSecurityAltID() const { return groupsSecurityAltID.size(); } 
    const GroupSecurityAltID & getGroupSecurityAltID( std::size_t idx ) const { return groupsSecurityAltID[ idx ]; } 
-   private: GroupSecurityAltID::Array groupsSecurityAltID{ 10 };
+   private: GroupSecurityAltID::Array groupsSecurityAltID{ initialNoGroupsToPreallocate<GroupSecurityAltID>() };
 
    public:
    using Product = FieldProduct; 
@@ -7748,7 +7756,7 @@ class GroupStrikes : public MessageBase
    public:
    std::size_t getGroupCountEvents() const { return groupsEvents.size(); } 
    const GroupEvents & getGroupEvents( std::size_t idx ) const { return groupsEvents[ idx ]; } 
-   private: GroupEvents::Array groupsEvents{ 10 };
+   private: GroupEvents::Array groupsEvents{ initialNoGroupsToPreallocate<GroupEvents>() };
 
    public:
    using DatedDate = FieldDatedDate; 
@@ -8034,7 +8042,7 @@ class GroupLegAllocs : public MessageBase
    public:
    std::size_t getGroupCountNested2PartyIDs() const { return groupsNested2PartyIDs.size(); } 
    const GroupNested2PartyIDs & getGroupNested2PartyIDs( std::size_t idx ) const { return groupsNested2PartyIDs[ idx ]; } 
-   private: GroupNested2PartyIDs::Array groupsNested2PartyIDs{ 10 };
+   private: GroupNested2PartyIDs::Array groupsNested2PartyIDs{ initialNoGroupsToPreallocate<GroupNested2PartyIDs>() };
 
    public:
    using LegAllocQty = FieldLegAllocQty; 
@@ -8146,7 +8154,7 @@ class GroupRegistDtls : public MessageBase
    public:
    std::size_t getGroupCountNestedPartyIDs() const { return groupsNestedPartyIDs.size(); } 
    const GroupNestedPartyIDs & getGroupNestedPartyIDs( std::size_t idx ) const { return groupsNestedPartyIDs[ idx ]; } 
-   private: GroupNestedPartyIDs::Array groupsNestedPartyIDs{ 10 };
+   private: GroupNestedPartyIDs::Array groupsNestedPartyIDs{ initialNoGroupsToPreallocate<GroupNestedPartyIDs>() };
 
    public:
    using OwnerType = FieldOwnerType; 

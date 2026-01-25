@@ -10,6 +10,10 @@
 #include <vector>
 #include <string_view>
 
+#ifdef FIXPP_GROUPS_CPP_INCLUDE
+#include FIXPP_GROUPS_CPP_INCLUDE
+#endif
+
 namespace order
 {
 
@@ -599,7 +603,7 @@ class MessageExecutionReport: public MessageBase
    public:
    std::size_t getGroupCountLegs() const { return groupsLegs.size(); } 
    const GroupLegs & getGroupLegs( std::size_t idx ) const { return groupsLegs[ idx ]; } 
-   private: GroupLegs::Array groupsLegs{ 10 };
+   private: GroupLegs::Array groupsLegs{ initialNoGroupsToPreallocate<GroupLegs>() };
 
  
    public:

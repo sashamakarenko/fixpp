@@ -12,6 +12,14 @@
 namespace order
 {
 
+// One can specialize this value for different group types in a file 'XXX.h'.
+// Then -DFIXPP_GROUPS_CPP_INCLUDE=\"XXX.h\"
+template< typename GROUP >
+constexpr unsigned initialNoGroupsToPreallocate()
+{
+    return 8;
+}
+
 // start of Groups.hxx
 
 // Generated
@@ -178,7 +186,7 @@ class GroupNestedPartyIDs : public MessageBase
    public:
    std::size_t getGroupCountNestedPartySubIDs() const { return groupsNestedPartySubIDs.size(); } 
    const GroupNestedPartySubIDs & getGroupNestedPartySubIDs( std::size_t idx ) const { return groupsNestedPartySubIDs[ idx ]; } 
-   private: GroupNestedPartySubIDs::Array groupsNestedPartySubIDs{ 10 };
+   private: GroupNestedPartySubIDs::Array groupsNestedPartySubIDs{ initialNoGroupsToPreallocate<GroupNestedPartySubIDs>() };
 
 };
 
@@ -250,7 +258,7 @@ class GroupLegs : public MessageBase
    public:
    std::size_t getGroupCountLegStipulations() const { return groupsLegStipulations.size(); } 
    const GroupLegStipulations & getGroupLegStipulations( std::size_t idx ) const { return groupsLegStipulations[ idx ]; } 
-   private: GroupLegStipulations::Array groupsLegStipulations{ 10 };
+   private: GroupLegStipulations::Array groupsLegStipulations{ initialNoGroupsToPreallocate<GroupLegStipulations>() };
 
    public:
    using LegPositionEffect = FieldLegPositionEffect; 
@@ -275,7 +283,7 @@ class GroupLegs : public MessageBase
    public:
    std::size_t getGroupCountNestedPartyIDs() const { return groupsNestedPartyIDs.size(); } 
    const GroupNestedPartyIDs & getGroupNestedPartyIDs( std::size_t idx ) const { return groupsNestedPartyIDs[ idx ]; } 
-   private: GroupNestedPartyIDs::Array groupsNestedPartyIDs{ 10 };
+   private: GroupNestedPartyIDs::Array groupsNestedPartyIDs{ initialNoGroupsToPreallocate<GroupNestedPartyIDs>() };
 
    public:
    using LegRefID = FieldLegRefID; 

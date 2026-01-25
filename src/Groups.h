@@ -10,6 +10,14 @@ __COPYRIGHT__
 namespace DSTNAMESPACE
 {
 
+// One can specialize this value for different group types in a file 'XXX.h'.
+// Then -DFIXPP_GROUPS_CPP_INCLUDE=\"XXX.h\"
+template< typename GROUP >
+constexpr unsigned initialNoGroupsToPreallocate()
+{
+    return 8;
+}
+
 #include <DSTINCDIR/Groups.hxx>
 
 } // namespace DSTNAMESPACE

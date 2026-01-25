@@ -4,6 +4,10 @@
 
 #include <order/Groups.h>
 
+#ifdef FIXPP_GROUPS_CPP_INCLUDE
+#include FIXPP_GROUPS_CPP_INCLUDE
+#endif
+
 namespace order
 {
 
@@ -39,15 +43,15 @@ GroupNestedPartySubIDs::GroupNestedPartySubIDs(){
 
 GroupNestedPartyIDs::GroupNestedPartyIDs(){
 
-     groupsNestedPartySubIDs.assign( 10, {} );
+     groupsNestedPartySubIDs.assign( initialNoGroupsToPreallocate<GroupNestedPartySubIDs>(), {} );
 
 }
 
 GroupLegs::GroupLegs(){
 
-     groupsLegStipulations.assign( 10, {} );
+     groupsLegStipulations.assign( initialNoGroupsToPreallocate<GroupLegStipulations>(), {} );
 
-     groupsNestedPartyIDs.assign( 10, {} );
+     groupsNestedPartyIDs.assign( initialNoGroupsToPreallocate<GroupNestedPartyIDs>(), {} );
 
 }
 

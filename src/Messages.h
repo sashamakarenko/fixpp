@@ -8,6 +8,10 @@ __COPYRIGHT__
 #include <vector>
 #include <string_view>
 
+#ifdef FIXPP_GROUPS_CPP_INCLUDE
+#include FIXPP_GROUPS_CPP_INCLUDE
+#endif
+
 namespace DSTNAMESPACE
 {
 

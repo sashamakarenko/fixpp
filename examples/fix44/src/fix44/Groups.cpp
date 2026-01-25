@@ -4,6 +4,10 @@
 
 #include <fix44/Groups.h>
 
+#ifdef FIXPP_GROUPS_CPP_INCLUDE
+#include FIXPP_GROUPS_CPP_INCLUDE
+#endif
+
 namespace fix44
 {
 
@@ -281,7 +285,7 @@ GroupNested2PartySubIDs::GroupNested2PartySubIDs(){
 
 GroupNested2PartyIDs::GroupNested2PartyIDs(){
 
-     groupsNested2PartySubIDs.assign( 10, {} );
+     groupsNested2PartySubIDs.assign( initialNoGroupsToPreallocate<GroupNested2PartySubIDs>(), {} );
 
 }
 
@@ -295,7 +299,7 @@ GroupCollInquiryQualifier::GroupCollInquiryQualifier(){
 
 GroupPartyIDs::GroupPartyIDs(){
 
-     groupsPartySubIDs.assign( 10, {} );
+     groupsPartySubIDs.assign( initialNoGroupsToPreallocate<GroupPartySubIDs>(), {} );
 
 }
 
@@ -321,9 +325,9 @@ GroupUnderlyingStips::GroupUnderlyingStips(){
 
 GroupUnderlyings::GroupUnderlyings(){
 
-     groupsUnderlyingSecurityAltID.assign( 10, {} );
+     groupsUnderlyingSecurityAltID.assign( initialNoGroupsToPreallocate<GroupUnderlyingSecurityAltID>(), {} );
 
-     groupsUnderlyingStips.assign( 10, {} );
+     groupsUnderlyingStips.assign( initialNoGroupsToPreallocate<GroupUnderlyingStips>(), {} );
 
 }
 
@@ -333,19 +337,19 @@ GroupStipulations::GroupStipulations(){
 
 GroupOrders::GroupOrders(){
 
-     groupsPartyIDs.assign( 10, {} );
+     groupsPartyIDs.assign( initialNoGroupsToPreallocate<GroupPartyIDs>(), {} );
 
-     groupsAllocs.assign( 10, {} );
+     groupsAllocs.assign( initialNoGroupsToPreallocate<GroupAllocs>(), {} );
 
-     groupsTradingSessions.assign( 10, {} );
+     groupsTradingSessions.assign( initialNoGroupsToPreallocate<GroupTradingSessions>(), {} );
 
-     groupsSecurityAltID.assign( 10, {} );
+     groupsSecurityAltID.assign( initialNoGroupsToPreallocate<GroupSecurityAltID>(), {} );
 
-     groupsEvents.assign( 10, {} );
+     groupsEvents.assign( initialNoGroupsToPreallocate<GroupEvents>(), {} );
 
-     groupsUnderlyings.assign( 10, {} );
+     groupsUnderlyings.assign( initialNoGroupsToPreallocate<GroupUnderlyings>(), {} );
 
-     groupsStipulations.assign( 10, {} );
+     groupsStipulations.assign( initialNoGroupsToPreallocate<GroupStipulations>(), {} );
 
 }
 
@@ -355,13 +359,13 @@ GroupSettlPartySubIDs::GroupSettlPartySubIDs(){
 
 GroupSettlPartyIDs::GroupSettlPartyIDs(){
 
-     groupsSettlPartySubIDs.assign( 10, {} );
+     groupsSettlPartySubIDs.assign( initialNoGroupsToPreallocate<GroupSettlPartySubIDs>(), {} );
 
 }
 
 GroupDlvyInst::GroupDlvyInst(){
 
-     groupsSettlPartyIDs.assign( 10, {} );
+     groupsSettlPartyIDs.assign( initialNoGroupsToPreallocate<GroupSettlPartyIDs>(), {} );
 
 }
 
@@ -375,39 +379,39 @@ GroupNestedPartySubIDs::GroupNestedPartySubIDs(){
 
 GroupNestedPartyIDs::GroupNestedPartyIDs(){
 
-     groupsNestedPartySubIDs.assign( 10, {} );
+     groupsNestedPartySubIDs.assign( initialNoGroupsToPreallocate<GroupNestedPartySubIDs>(), {} );
 
 }
 
 GroupLegs::GroupLegs(){
 
-     groupsLegSecurityAltID.assign( 10, {} );
+     groupsLegSecurityAltID.assign( initialNoGroupsToPreallocate<GroupLegSecurityAltID>(), {} );
 
-     groupsLegStipulations.assign( 10, {} );
+     groupsLegStipulations.assign( initialNoGroupsToPreallocate<GroupLegStipulations>(), {} );
 
-     groupsNestedPartyIDs.assign( 10, {} );
+     groupsNestedPartyIDs.assign( initialNoGroupsToPreallocate<GroupNestedPartyIDs>(), {} );
 
 }
 
 GroupQuoteEntries::GroupQuoteEntries(){
 
-     groupsSecurityAltID.assign( 10, {} );
+     groupsSecurityAltID.assign( initialNoGroupsToPreallocate<GroupSecurityAltID>(), {} );
 
-     groupsEvents.assign( 10, {} );
+     groupsEvents.assign( initialNoGroupsToPreallocate<GroupEvents>(), {} );
 
-     groupsUnderlyings.assign( 10, {} );
+     groupsUnderlyings.assign( initialNoGroupsToPreallocate<GroupUnderlyings>(), {} );
 
-     groupsLegs.assign( 10, {} );
+     groupsLegs.assign( initialNoGroupsToPreallocate<GroupLegs>(), {} );
 
 }
 
 GroupQuoteSets::GroupQuoteSets(){
 
-     groupsUnderlyingSecurityAltID.assign( 10, {} );
+     groupsUnderlyingSecurityAltID.assign( initialNoGroupsToPreallocate<GroupUnderlyingSecurityAltID>(), {} );
 
-     groupsUnderlyingStips.assign( 10, {} );
+     groupsUnderlyingStips.assign( initialNoGroupsToPreallocate<GroupUnderlyingStips>(), {} );
 
-     groupsQuoteEntries.assign( 10, {} );
+     groupsQuoteEntries.assign( initialNoGroupsToPreallocate<GroupQuoteEntries>(), {} );
 
 }
 
@@ -417,13 +421,13 @@ GroupSecurityTypes::GroupSecurityTypes(){
 
 GroupNested3PartyIDs::GroupNested3PartyIDs(){
 
-     groupsNested3PartySubIDs.assign( 10, {} );
+     groupsNested3PartySubIDs.assign( initialNoGroupsToPreallocate<GroupNested3PartySubIDs>(), {} );
 
 }
 
 GroupPositions::GroupPositions(){
 
-     groupsNestedPartyIDs.assign( 10, {} );
+     groupsNestedPartyIDs.assign( initialNoGroupsToPreallocate<GroupNestedPartyIDs>(), {} );
 
 }
 
@@ -445,9 +449,9 @@ GroupBidComponents::GroupBidComponents(){
 
 GroupSettlInst::GroupSettlInst(){
 
-     groupsPartyIDs.assign( 10, {} );
+     groupsPartyIDs.assign( initialNoGroupsToPreallocate<GroupPartyIDs>(), {} );
 
-     groupsDlvyInst.assign( 10, {} );
+     groupsDlvyInst.assign( initialNoGroupsToPreallocate<GroupDlvyInst>(), {} );
 
 }
 
@@ -477,7 +481,7 @@ GroupAltMDSource::GroupAltMDSource(){
 
 GroupSides::GroupSides(){
 
-     groupsPartyIDs.assign( 10, {} );
+     groupsPartyIDs.assign( initialNoGroupsToPreallocate<GroupPartyIDs>(), {} );
 
 }
 
@@ -507,9 +511,9 @@ GroupMDEntryTypes::GroupMDEntryTypes(){
 
 GroupRelatedSym::GroupRelatedSym(){
 
-     groupsSecurityAltID.assign( 10, {} );
+     groupsSecurityAltID.assign( initialNoGroupsToPreallocate<GroupSecurityAltID>(), {} );
 
-     groupsEvents.assign( 10, {} );
+     groupsEvents.assign( initialNoGroupsToPreallocate<GroupEvents>(), {} );
 
 }
 
@@ -523,9 +527,9 @@ GroupTrades::GroupTrades(){
 
 GroupStrikes::GroupStrikes(){
 
-     groupsSecurityAltID.assign( 10, {} );
+     groupsSecurityAltID.assign( initialNoGroupsToPreallocate<GroupSecurityAltID>(), {} );
 
-     groupsEvents.assign( 10, {} );
+     groupsEvents.assign( initialNoGroupsToPreallocate<GroupEvents>(), {} );
 
 }
 
@@ -539,13 +543,13 @@ GroupCompIDs::GroupCompIDs(){
 
 GroupLegAllocs::GroupLegAllocs(){
 
-     groupsNested2PartyIDs.assign( 10, {} );
+     groupsNested2PartyIDs.assign( initialNoGroupsToPreallocate<GroupNested2PartyIDs>(), {} );
 
 }
 
 GroupRegistDtls::GroupRegistDtls(){
 
-     groupsNestedPartyIDs.assign( 10, {} );
+     groupsNestedPartyIDs.assign( initialNoGroupsToPreallocate<GroupNestedPartyIDs>(), {} );
 
 }
 

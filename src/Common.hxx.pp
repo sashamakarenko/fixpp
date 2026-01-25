@@ -15,5 +15,5 @@
 <n1> public:\
 <n1> std::size_t getGroupCount##NAME() const { return groups##NAME.size(); } \
 <n1> const Group##NAME & getGroup##NAME( std::size_t idx ) const { return groups##NAME[ idx ]; } \
-<n1> private: Group##NAME::Array groups##NAME{ 10 };
+<n1> private: Group##NAME::Array groups##NAME{ initialNoGroupsToPreallocate<Group##NAME>() };
 
