@@ -51,20 +51,21 @@ class Float
 
         Float() = default;
 
-        // todo: round properly
+        // minimal checks for performance reasons
         template< typename V, std::enable_if_t< std::is_floating_point<V>::value, int > = 0 >
         constexpr Float( V real, Dot dotPos = DEFAULT_PRECISION )
-        : _int{ Int( real * uintPow10[dotPos] ) }
+        : _int{ dotPos <= MAX_DIGITS ? Int( ( real + div10Pow[dotPos+1] * ( real >= 0 ? 5 : -5 ) ) * uintPow10[dotPos] ) : MAX_VALUE }
         , _dot{ dotPos }
-        , _flags{ dotPos > MAX_DIGITS or std::abs(real * uintPow10[dotPos]) > MAX_DOUBLE_VALUE ? Flag::OVERFLOW : Flag::CLEAR }
+        , _flags{ dotPos > MAX_DIGITS or std::abs( _int ) > MAX_VALUE ? Flag::OVERFLOW : Flag::CLEAR }
         {
         }
 
+        // not safe for performance reasons
         template< typename V, std::enable_if_t< std::is_integral<V>::value, int > = 0 >
         constexpr Float( V integer, Dot dotPos = 0 )
         : _int{ integer }
         , _dot{ dotPos }
-        , _flags{ Flag::CLEAR }
+        , _flags{ dotPos <= MAX_NUMBER_PRECISION ? Flag::CLEAR : Flag::OVERFLOW }
         {
         }
 

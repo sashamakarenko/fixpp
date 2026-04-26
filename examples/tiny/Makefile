@@ -34,14 +34,15 @@ CPP_DEFINES=-DFIXPP_GROUPS_CPP_INCLUDE=\<tiny/InitialGroupSizes.h\> -Iinclude
 
 TEST_DEFINES = -DEXIT_ON_ERROR
 CPP_EXTRA_FLAGS = -Wall -Wextra -Wno-unused-parameter -Werror
+
+-include $(DEV_ROOT)/makefile/Makefile
+
 ifeq ($(COMPILER),c++)
     CPP_EXTRA_FLAGS += -fmax-errors=1
 else
     # clang
     CPP_EXTRA_FLAGS += -Wno-unknown-pragmas -Wno-string-plus-int -Wno-c++20-extensions
 endif
-
--include $(DEV_ROOT)/makefile/Makefile
 
 $(DEV_ROOT)/makefile/Makefile:
 	@echo "cloning makefile..."

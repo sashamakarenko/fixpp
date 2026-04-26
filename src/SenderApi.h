@@ -802,7 +802,7 @@ class ReusableMessageBuilder: public FixBufferStream
         {
             resizeIfNecessary( 16 ); // formatted floating point max length ?
             _end = insert<FIELD>( _end );
-            return pushValue( v, precision );
+            return precision <= Float::MAX_DIGITS ? pushValue( v, precision ) : pushValue( "OVERFLOW" );
         }
 
         template< typename FIELD >
