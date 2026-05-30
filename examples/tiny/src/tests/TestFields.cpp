@@ -44,11 +44,11 @@ int main( int args, const char ** argv )
     CHECK_EQ( tag 12345, tag, 12345 );
 
     offset_t pos = 0;
-    raw = tiny::loadRawTag( "1=", pos );
+    raw = tiny::loadRawTag( "1=\0\0\0\0\0", pos );
     CHECK_EQ( load tag 1, raw, tag_as_raw<1>() );
 
     pos = 0;
-    raw = tiny::loadRawTag( "12345=", pos );
+    raw = tiny::loadRawTag( "12345=\0", pos );
     CHECK_EQ( load tag 12345, raw, tag_as_raw<12345>() );
 
     tag = tiny::parseTag( "12345=" );
