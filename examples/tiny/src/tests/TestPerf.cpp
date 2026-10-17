@@ -50,7 +50,7 @@ int main( int args, const char ** argv )
         for( int j = 0; j < 10; ++j )
         {
             m.startCapture();
-            cursor = mp.parseAndDipatch( cursor, len - ( cursor - buffer ) );
+            cursor = mp.parseAndDispatch( cursor, len - ( cursor - buffer ) );
             m.stopCapture();
         }
     }

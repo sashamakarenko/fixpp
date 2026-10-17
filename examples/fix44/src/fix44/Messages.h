@@ -58786,7 +58786,7 @@ class ParserDispatcher
 {
    public:
 
-     virtual const char * parseAndDipatch( const char * buf, unsigned len, bool resetMessage = true );
+     virtual const char * parseAndDispatch( const char * buf, unsigned len, bool resetMessage = true );
 
    protected:
 

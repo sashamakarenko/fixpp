@@ -31,7 +31,7 @@ int main( int args, const char ** argv )
     const char * cursor = buffer;
 
     MyProcessor mp;
-    while( ( cursor = mp.parseAndDipatch( cursor, len - ( cursor - buffer ) ) ) != nullptr )
+    while( ( cursor = mp.parseAndDispatch( cursor, len - ( cursor - buffer ) ) ) != nullptr )
     {
     }
     
@@ -49,7 +49,7 @@ int main( int args, const char ** argv )
         // read the remaining bytes
         if( source.read( & recvbuffer[begStrAndBodyLenBytes], len - begStrAndBodyLenBytes + msgTypeOffset ) )
         {
-            mp.parseAndDipatch( &recvbuffer[0], len + msgTypeOffset );
+            mp.parseAndDispatch( &recvbuffer[0], len + msgTypeOffset );
         }
         else
         {

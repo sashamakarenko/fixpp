@@ -437,7 +437,7 @@ GetDepthMethod getTagDepthMethodByRawMsgType( raw_enum_t rawMsgType ){
 
 // -------------------------------------- ParserDispatcher ----------------------------------------
 
-const char * ParserDispatcher::parseAndDipatch( const char * buf, unsigned len, bool resetMessage )
+const char * ParserDispatcher::parseAndDispatch( const char * buf, unsigned len, bool resetMessage )
 {
     if( resetMessage )
     {
