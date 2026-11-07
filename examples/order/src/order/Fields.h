@@ -734,6 +734,17 @@ typedef FieldNestedPartySubIDType NestedPartySubIDType;
 
 }
 
+// SenderCompID and TargetCompID sizes to be added by apps to skip header
+
+// see scanBody in Messages.h
+constexpr offset_t MinHeaderSize = FixBeginStringInsertableTagLength +
+                                   field::BodyLength::INSERTABLE_TAG_WIDTH + 2 +
+                                   field::MsgType::INSERTABLE_TAG_WIDTH + 1 +
+                                   field::MsgSeqNum::INSERTABLE_TAG_WIDTH + 1 +
+                                   field::SendingTime::INSERTABLE_TAG_WIDTH + 17 +
+                                   field::SenderCompID::INSERTABLE_TAG_WIDTH +
+                                   field::TargetCompID::INSERTABLE_TAG_WIDTH;
+
 constexpr raw_enum_t MsgTypeRaw__ = (raw_enum_t)0; // Header
 constexpr raw_enum_t MsgTypeRaw_EXECUTION_REPORT = (raw_enum_t)'8';
 constexpr raw_enum_t MsgTypeRaw_NEW_ORDER_SINGLE = (raw_enum_t)'D';

@@ -107,6 +107,20 @@ int main( int args, const char ** argv )
     m.showAverageValues( std::cout );
     m.rewind();
 
+    const std::size_t compIDsSize =  header.getSenderCompID().size() + header.getTargetCompID().size();
+    HIGHLIGHT( ExecutionReport: Pure headerless scan )
+    for( int j = 0; j < 10; ++j )
+    {
+        er.reset();
+        m.startCapture();
+        scanBody( er, buffer, len, compIDsSize, false );
+        m.stopCapture();
+    }
+    m.prepareResults();
+    m.printCaptures();
+    m.showAverageValues( std::cout );
+    m.rewind();
+
     buffer = EXAMPLE_LARGE_EXEC_REPORT;
     len = std::strlen( buffer );
     HIGHLIGHT( Large ExecutionReport: Pure scan )

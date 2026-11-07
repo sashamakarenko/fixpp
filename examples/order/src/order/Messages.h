@@ -34,7 +34,7 @@ class MessageHeader: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
-   offset_t skip( const char * fix, unsigned len ) const;
+   static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
    template< typename FIELD > static constexpr bool hasField() { return false; }
@@ -144,7 +144,7 @@ class MessageNewOrderSingle: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
-   offset_t skip( const char * fix, unsigned len ) const;
+   static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
    template< typename FIELD > static constexpr bool hasField() { return false; }
@@ -293,7 +293,7 @@ class MessageExecutionReport: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
-   offset_t skip( const char * fix, unsigned len ) const;
+   static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
    template< typename FIELD > static constexpr bool hasField() { return false; }
@@ -733,6 +733,18 @@ typedef MessageExecutionReport ExecutionReport;
 
 }
 // end of Messages.hxx
+
+// Convenience function for scanning the body of a message skipping the header.
+// If the header has more fields than the standard ones, you can use the compIDsSize parameter to skip them as well.
+template< typename MSG >
+offset_t scanBody( MSG & msg, const char * buffer, unsigned len, offset_t compIDsSize, bool safely = true )
+{
+    offset_t pos = MinHeaderSize + compIDsSize;
+    gotoNextField( buffer, pos );
+    pos += MessageHeader::skip( buffer + pos, len - pos );
+    pos = safely ? msg.scanSafely( buffer + pos, len - pos ) : msg.scan( buffer + pos, len - pos );
+    return pos;
+}
 
 struct FixFormatStyle
 {

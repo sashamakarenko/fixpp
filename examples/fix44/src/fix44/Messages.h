@@ -34,7 +34,7 @@ class MessageHeader: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
-   offset_t skip( const char * fix, unsigned len ) const;
+   static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
    template< typename FIELD > static constexpr bool hasField() { return false; }
@@ -349,7 +349,7 @@ class MessageHeartbeat: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
-   offset_t skip( const char * fix, unsigned len ) const;
+   static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
    template< typename FIELD > static constexpr bool hasField() { return false; }
@@ -398,7 +398,7 @@ class MessageTestRequest: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
-   offset_t skip( const char * fix, unsigned len ) const;
+   static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
    template< typename FIELD > static constexpr bool hasField() { return false; }
@@ -447,7 +447,7 @@ class MessageResendRequest: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
-   offset_t skip( const char * fix, unsigned len ) const;
+   static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
    template< typename FIELD > static constexpr bool hasField() { return false; }
@@ -506,7 +506,7 @@ class MessageReject: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
-   offset_t skip( const char * fix, unsigned len ) const;
+   static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
    template< typename FIELD > static constexpr bool hasField() { return false; }
@@ -615,7 +615,7 @@ class MessageSequenceReset: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
-   offset_t skip( const char * fix, unsigned len ) const;
+   static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
    template< typename FIELD > static constexpr bool hasField() { return false; }
@@ -674,7 +674,7 @@ class MessageLogout: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
-   offset_t skip( const char * fix, unsigned len ) const;
+   static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
    template< typename FIELD > static constexpr bool hasField() { return false; }
@@ -743,7 +743,7 @@ class MessageIOI: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
-   offset_t skip( const char * fix, unsigned len ) const;
+   static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
    template< typename FIELD > static constexpr bool hasField() { return false; }
@@ -1747,7 +1747,7 @@ class MessageAdvertisement: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
-   offset_t skip( const char * fix, unsigned len ) const;
+   static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
    template< typename FIELD > static constexpr bool hasField() { return false; }
@@ -2426,7 +2426,7 @@ class MessageExecutionReport: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
-   offset_t skip( const char * fix, unsigned len ) const;
+   static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
    template< typename FIELD > static constexpr bool hasField() { return false; }
@@ -4690,7 +4690,7 @@ class MessageOrderCancelReject: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
-   offset_t skip( const char * fix, unsigned len ) const;
+   static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
    template< typename FIELD > static constexpr bool hasField() { return false; }
@@ -4939,7 +4939,7 @@ class MessageLogon: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
-   offset_t skip( const char * fix, unsigned len ) const;
+   static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
    template< typename FIELD > static constexpr bool hasField() { return false; }
@@ -5093,7 +5093,7 @@ class MessageNews: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
-   offset_t skip( const char * fix, unsigned len ) const;
+   static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
    template< typename FIELD > static constexpr bool hasField() { return false; }
@@ -5287,7 +5287,7 @@ class MessageEmail: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
-   offset_t skip( const char * fix, unsigned len ) const;
+   static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
    template< typename FIELD > static constexpr bool hasField() { return false; }
@@ -5501,7 +5501,7 @@ class MessageNewOrderSingle: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
-   offset_t skip( const char * fix, unsigned len ) const;
+   static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
    template< typename FIELD > static constexpr bool hasField() { return false; }
@@ -7135,7 +7135,7 @@ class MessageNewOrderList: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
-   offset_t skip( const char * fix, unsigned len ) const;
+   static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
    template< typename FIELD > static constexpr bool hasField() { return false; }
@@ -7369,7 +7369,7 @@ class MessageOrderCancelRequest: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
-   offset_t skip( const char * fix, unsigned len ) const;
+   static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
    template< typename FIELD > static constexpr bool hasField() { return false; }
@@ -8178,7 +8178,7 @@ class MessageOrderCancelReplaceRequest: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
-   offset_t skip( const char * fix, unsigned len ) const;
+   static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
    template< typename FIELD > static constexpr bool hasField() { return false; }
@@ -9797,7 +9797,7 @@ class MessageOrderStatusRequest: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
-   offset_t skip( const char * fix, unsigned len ) const;
+   static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
    template< typename FIELD > static constexpr bool hasField() { return false; }
@@ -10476,7 +10476,7 @@ class MessageAllocationInstruction: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
-   offset_t skip( const char * fix, unsigned len ) const;
+   static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
    template< typename FIELD > static constexpr bool hasField() { return false; }
@@ -11835,7 +11835,7 @@ class MessageListCancelRequest: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
-   offset_t skip( const char * fix, unsigned len ) const;
+   static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
    template< typename FIELD > static constexpr bool hasField() { return false; }
@@ -11944,7 +11944,7 @@ class MessageListExecute: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
-   offset_t skip( const char * fix, unsigned len ) const;
+   static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
    template< typename FIELD > static constexpr bool hasField() { return false; }
@@ -12053,7 +12053,7 @@ class MessageListStatusRequest: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
-   offset_t skip( const char * fix, unsigned len ) const;
+   static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
    template< typename FIELD > static constexpr bool hasField() { return false; }
@@ -12132,7 +12132,7 @@ class MessageListStatus: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
-   offset_t skip( const char * fix, unsigned len ) const;
+   static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
    template< typename FIELD > static constexpr bool hasField() { return false; }
@@ -12296,7 +12296,7 @@ class MessageAllocationInstructionAck: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
-   offset_t skip( const char * fix, unsigned len ) const;
+   static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
    template< typename FIELD > static constexpr bool hasField() { return false; }
@@ -12505,7 +12505,7 @@ class MessageDontKnowTrade: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
-   offset_t skip( const char * fix, unsigned len ) const;
+   static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
    template< typename FIELD > static constexpr bool hasField() { return false; }
@@ -13164,7 +13164,7 @@ class MessageQuoteRequest: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
-   offset_t skip( const char * fix, unsigned len ) const;
+   static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
    template< typename FIELD > static constexpr bool hasField() { return false; }
@@ -13288,7 +13288,7 @@ class MessageQuote: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
-   offset_t skip( const char * fix, unsigned len ) const;
+   static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
    template< typename FIELD > static constexpr bool hasField() { return false; }
@@ -14612,7 +14612,7 @@ class MessageSettlementInstructions: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
-   offset_t skip( const char * fix, unsigned len ) const;
+   static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
    template< typename FIELD > static constexpr bool hasField() { return false; }
@@ -14756,7 +14756,7 @@ class MessageMarketDataRequest: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
-   offset_t skip( const char * fix, unsigned len ) const;
+   static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
    template< typename FIELD > static constexpr bool hasField() { return false; }
@@ -14940,7 +14940,7 @@ class MessageMarketDataSnapshotFullRefresh: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
-   offset_t skip( const char * fix, unsigned len ) const;
+   static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
    template< typename FIELD > static constexpr bool hasField() { return false; }
@@ -15524,7 +15524,7 @@ class MessageMarketDataIncrementalRefresh: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
-   offset_t skip( const char * fix, unsigned len ) const;
+   static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
    template< typename FIELD > static constexpr bool hasField() { return false; }
@@ -15608,7 +15608,7 @@ class MessageMarketDataRequestReject: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
-   offset_t skip( const char * fix, unsigned len ) const;
+   static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
    template< typename FIELD > static constexpr bool hasField() { return false; }
@@ -15712,7 +15712,7 @@ class MessageQuoteCancel: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
-   offset_t skip( const char * fix, unsigned len ) const;
+   static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
    template< typename FIELD > static constexpr bool hasField() { return false; }
@@ -15871,7 +15871,7 @@ class MessageQuoteStatusRequest: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
-   offset_t skip( const char * fix, unsigned len ) const;
+   static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
    template< typename FIELD > static constexpr bool hasField() { return false; }
@@ -16565,7 +16565,7 @@ class MessageMassQuoteAcknowledgement: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
-   offset_t skip( const char * fix, unsigned len ) const;
+   static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
    template< typename FIELD > static constexpr bool hasField() { return false; }
@@ -16754,7 +16754,7 @@ class MessageSecurityDefinitionRequest: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
-   offset_t skip( const char * fix, unsigned len ) const;
+   static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
    template< typename FIELD > static constexpr bool hasField() { return false; }
@@ -17398,7 +17398,7 @@ class MessageSecurityDefinition: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
-   offset_t skip( const char * fix, unsigned len ) const;
+   static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
    template< typename FIELD > static constexpr bool hasField() { return false; }
@@ -18062,7 +18062,7 @@ class MessageSecurityStatusRequest: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
-   offset_t skip( const char * fix, unsigned len ) const;
+   static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
    template< typename FIELD > static constexpr bool hasField() { return false; }
@@ -18656,7 +18656,7 @@ class MessageSecurityStatus: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
-   offset_t skip( const char * fix, unsigned len ) const;
+   static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
    template< typename FIELD > static constexpr bool hasField() { return false; }
@@ -19410,7 +19410,7 @@ class MessageTradingSessionStatusRequest: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
-   offset_t skip( const char * fix, unsigned len ) const;
+   static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
    template< typename FIELD > static constexpr bool hasField() { return false; }
@@ -19509,7 +19509,7 @@ class MessageTradingSessionStatus: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
-   offset_t skip( const char * fix, unsigned len ) const;
+   static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
    template< typename FIELD > static constexpr bool hasField() { return false; }
@@ -19718,7 +19718,7 @@ class MessageMassQuote: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
-   offset_t skip( const char * fix, unsigned len ) const;
+   static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
    template< typename FIELD > static constexpr bool hasField() { return false; }
@@ -19877,7 +19877,7 @@ class MessageBusinessMessageReject: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
-   offset_t skip( const char * fix, unsigned len ) const;
+   static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
    template< typename FIELD > static constexpr bool hasField() { return false; }
@@ -19986,7 +19986,7 @@ class MessageBidRequest: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
-   offset_t skip( const char * fix, unsigned len ) const;
+   static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
    template< typename FIELD > static constexpr bool hasField() { return false; }
@@ -20325,7 +20325,7 @@ class MessageBidResponse: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
-   offset_t skip( const char * fix, unsigned len ) const;
+   static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
    template< typename FIELD > static constexpr bool hasField() { return false; }
@@ -20399,7 +20399,7 @@ class MessageListStrikePrice: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
-   offset_t skip( const char * fix, unsigned len ) const;
+   static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
    template< typename FIELD > static constexpr bool hasField() { return false; }
@@ -20498,7 +20498,7 @@ class MessageXMLnonFIX: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
-   offset_t skip( const char * fix, unsigned len ) const;
+   static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
    template< typename FIELD > static constexpr bool hasField() { return false; }
@@ -20537,7 +20537,7 @@ class MessageRegistrationInstructions: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
-   offset_t skip( const char * fix, unsigned len ) const;
+   static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
    template< typename FIELD > static constexpr bool hasField() { return false; }
@@ -20711,7 +20711,7 @@ class MessageRegistrationInstructionsResponse: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
-   offset_t skip( const char * fix, unsigned len ) const;
+   static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
    template< typename FIELD > static constexpr bool hasField() { return false; }
@@ -20855,7 +20855,7 @@ class MessageOrderMassCancelRequest: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
-   offset_t skip( const char * fix, unsigned len ) const;
+   static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
    template< typename FIELD > static constexpr bool hasField() { return false; }
@@ -21914,7 +21914,7 @@ class MessageOrderMassCancelReport: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
-   offset_t skip( const char * fix, unsigned len ) const;
+   static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
    template< typename FIELD > static constexpr bool hasField() { return false; }
@@ -23038,7 +23038,7 @@ class MessageNewOrderCross: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
-   offset_t skip( const char * fix, unsigned len ) const;
+   static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
    template< typename FIELD > static constexpr bool hasField() { return false; }
@@ -24212,7 +24212,7 @@ class MessageCrossOrderCancelReplaceRequest: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
-   offset_t skip( const char * fix, unsigned len ) const;
+   static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
    template< typename FIELD > static constexpr bool hasField() { return false; }
@@ -25406,7 +25406,7 @@ class MessageCrossOrderCancelRequest: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
-   offset_t skip( const char * fix, unsigned len ) const;
+   static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
    template< typename FIELD > static constexpr bool hasField() { return false; }
@@ -25990,7 +25990,7 @@ class MessageSecurityTypeRequest: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
-   offset_t skip( const char * fix, unsigned len ) const;
+   static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
    template< typename FIELD > static constexpr bool hasField() { return false; }
@@ -26119,7 +26119,7 @@ class MessageSecurityTypes: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
-   offset_t skip( const char * fix, unsigned len ) const;
+   static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
    template< typename FIELD > static constexpr bool hasField() { return false; }
@@ -26283,7 +26283,7 @@ class MessageSecurityListRequest: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
-   offset_t skip( const char * fix, unsigned len ) const;
+   static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
    template< typename FIELD > static constexpr bool hasField() { return false; }
@@ -27007,7 +27007,7 @@ class MessageSecurityList: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
-   offset_t skip( const char * fix, unsigned len ) const;
+   static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
    template< typename FIELD > static constexpr bool hasField() { return false; }
@@ -27111,7 +27111,7 @@ class MessageDerivativeSecurityListRequest: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
-   offset_t skip( const char * fix, unsigned len ) const;
+   static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
    template< typename FIELD > static constexpr bool hasField() { return false; }
@@ -27730,7 +27730,7 @@ class MessageDerivativeSecurityList: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
-   offset_t skip( const char * fix, unsigned len ) const;
+   static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
    template< typename FIELD > static constexpr bool hasField() { return false; }
@@ -28314,7 +28314,7 @@ class MessageNewOrderMultileg: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
-   offset_t skip( const char * fix, unsigned len ) const;
+   static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
    template< typename FIELD > static constexpr bool hasField() { return false; }
@@ -29698,7 +29698,7 @@ class MessageMultilegOrderCancelReplace: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
-   offset_t skip( const char * fix, unsigned len ) const;
+   static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
    template< typename FIELD > static constexpr bool hasField() { return false; }
@@ -31112,7 +31112,7 @@ class MessageTradeCaptureReportRequest: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
-   offset_t skip( const char * fix, unsigned len ) const;
+   static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
    template< typename FIELD > static constexpr bool hasField() { return false; }
@@ -32066,7 +32066,7 @@ class MessageTradeCaptureReport: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
-   offset_t skip( const char * fix, unsigned len ) const;
+   static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
    template< typename FIELD > static constexpr bool hasField() { return false; }
@@ -33370,7 +33370,7 @@ class MessageOrderMassStatusRequest: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
-   offset_t skip( const char * fix, unsigned len ) const;
+   static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
    template< typename FIELD > static constexpr bool hasField() { return false; }
@@ -34414,7 +34414,7 @@ class MessageQuoteRequestReject: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
-   offset_t skip( const char * fix, unsigned len ) const;
+   static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
    template< typename FIELD > static constexpr bool hasField() { return false; }
@@ -34528,7 +34528,7 @@ class MessageRFQRequest: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
-   offset_t skip( const char * fix, unsigned len ) const;
+   static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
    template< typename FIELD > static constexpr bool hasField() { return false; }
@@ -34602,7 +34602,7 @@ class MessageQuoteStatusReport: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
-   offset_t skip( const char * fix, unsigned len ) const;
+   static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
    template< typename FIELD > static constexpr bool hasField() { return false; }
@@ -35946,7 +35946,7 @@ class MessageQuoteResponse: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
-   offset_t skip( const char * fix, unsigned len ) const;
+   static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
    template< typename FIELD > static constexpr bool hasField() { return false; }
@@ -37290,7 +37290,7 @@ class MessageConfirmation: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
-   offset_t skip( const char * fix, unsigned len ) const;
+   static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
    template< typename FIELD > static constexpr bool hasField() { return false; }
@@ -38749,7 +38749,7 @@ class MessagePositionMaintenanceRequest: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
-   offset_t skip( const char * fix, unsigned len ) const;
+   static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
    template< typename FIELD > static constexpr bool hasField() { return false; }
@@ -39503,7 +39503,7 @@ class MessagePositionMaintenanceReport: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
-   offset_t skip( const char * fix, unsigned len ) const;
+   static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
    template< typename FIELD > static constexpr bool hasField() { return false; }
@@ -40272,7 +40272,7 @@ class MessageRequestForPositions: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
-   offset_t skip( const char * fix, unsigned len ) const;
+   static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
    template< typename FIELD > static constexpr bool hasField() { return false; }
@@ -40981,7 +40981,7 @@ class MessageRequestForPositionsAck: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
-   offset_t skip( const char * fix, unsigned len ) const;
+   static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
    template< typename FIELD > static constexpr bool hasField() { return false; }
@@ -41655,7 +41655,7 @@ class MessagePositionReport: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
-   offset_t skip( const char * fix, unsigned len ) const;
+   static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
    template< typename FIELD > static constexpr bool hasField() { return false; }
@@ -42429,7 +42429,7 @@ class MessageTradeCaptureReportRequestAck: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
-   offset_t skip( const char * fix, unsigned len ) const;
+   static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
    template< typename FIELD > static constexpr bool hasField() { return false; }
@@ -43058,7 +43058,7 @@ class MessageTradeCaptureReportAck: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
-   offset_t skip( const char * fix, unsigned len ) const;
+   static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
    template< typename FIELD > static constexpr bool hasField() { return false; }
@@ -43912,7 +43912,7 @@ class MessageAllocationReport: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
-   offset_t skip( const char * fix, unsigned len ) const;
+   static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
    template< typename FIELD > static constexpr bool hasField() { return false; }
@@ -45311,7 +45311,7 @@ class MessageAllocationReportAck: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
-   offset_t skip( const char * fix, unsigned len ) const;
+   static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
    template< typename FIELD > static constexpr bool hasField() { return false; }
@@ -45530,7 +45530,7 @@ class MessageConfirmationAck: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
-   offset_t skip( const char * fix, unsigned len ) const;
+   static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
    template< typename FIELD > static constexpr bool hasField() { return false; }
@@ -45659,7 +45659,7 @@ class MessageSettlementInstructionRequest: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
-   offset_t skip( const char * fix, unsigned len ) const;
+   static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
    template< typename FIELD > static constexpr bool hasField() { return false; }
@@ -45853,7 +45853,7 @@ class MessageAssignmentReport: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
-   offset_t skip( const char * fix, unsigned len ) const;
+   static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
    template< typename FIELD > static constexpr bool hasField() { return false; }
@@ -46617,7 +46617,7 @@ class MessageCollateralRequest: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
-   offset_t skip( const char * fix, unsigned len ) const;
+   static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
    template< typename FIELD > static constexpr bool hasField() { return false; }
@@ -47706,7 +47706,7 @@ class MessageCollateralAssignment: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
-   offset_t skip( const char * fix, unsigned len ) const;
+   static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
    template< typename FIELD > static constexpr bool hasField() { return false; }
@@ -48880,7 +48880,7 @@ class MessageCollateralResponse: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
-   offset_t skip( const char * fix, unsigned len ) const;
+   static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
    template< typename FIELD > static constexpr bool hasField() { return false; }
@@ -49959,7 +49959,7 @@ class MessageCollateralReport: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
-   offset_t skip( const char * fix, unsigned len ) const;
+   static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
    template< typename FIELD > static constexpr bool hasField() { return false; }
@@ -51113,7 +51113,7 @@ class MessageCollateralInquiry: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
-   offset_t skip( const char * fix, unsigned len ) const;
+   static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
    template< typename FIELD > static constexpr bool hasField() { return false; }
@@ -52257,7 +52257,7 @@ class MessageNetworkCounterpartySystemStatusRequest: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
-   offset_t skip( const char * fix, unsigned len ) const;
+   static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
    template< typename FIELD > static constexpr bool hasField() { return false; }
@@ -52331,7 +52331,7 @@ class MessageNetworkCounterpartySystemStatusResponse: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
-   offset_t skip( const char * fix, unsigned len ) const;
+   static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
    template< typename FIELD > static constexpr bool hasField() { return false; }
@@ -52425,7 +52425,7 @@ class MessageUserRequest: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
-   offset_t skip( const char * fix, unsigned len ) const;
+   static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
    template< typename FIELD > static constexpr bool hasField() { return false; }
@@ -52534,7 +52534,7 @@ class MessageUserResponse: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
-   offset_t skip( const char * fix, unsigned len ) const;
+   static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
    template< typename FIELD > static constexpr bool hasField() { return false; }
@@ -52613,7 +52613,7 @@ class MessageCollateralInquiryAck: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
-   offset_t skip( const char * fix, unsigned len ) const;
+   static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
    template< typename FIELD > static constexpr bool hasField() { return false; }
@@ -53512,7 +53512,7 @@ class MessageConfirmationRequest: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
-   offset_t skip( const char * fix, unsigned len ) const;
+   static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
    template< typename FIELD > static constexpr bool hasField() { return false; }
@@ -59657,6 +59657,18 @@ typedef MessageConfirmationRequest ConfirmationRequest;
 
 }
 // end of Messages.hxx
+
+// Convenience function for scanning the body of a message skipping the header.
+// If the header has more fields than the standard ones, you can use the compIDsSize parameter to skip them as well.
+template< typename MSG >
+offset_t scanBody( MSG & msg, const char * buffer, unsigned len, offset_t compIDsSize, bool safely = true )
+{
+    offset_t pos = MinHeaderSize + compIDsSize;
+    gotoNextField( buffer, pos );
+    pos += MessageHeader::skip( buffer + pos, len - pos );
+    pos = safely ? msg.scanSafely( buffer + pos, len - pos ) : msg.scan( buffer + pos, len - pos );
+    return pos;
+}
 
 struct FixFormatStyle
 {

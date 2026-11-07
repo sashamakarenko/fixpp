@@ -130,7 +130,7 @@ offset_t Message##NAME::scanSafely( const char * fix, unsigned len ){\
 <com> -------------------------------------- skip ----------------------------------------
 
 #define FIX_MSG_BEGIN(NAME,TYPE) \
-offset_t Message##NAME::skip( const char * fix, unsigned len ) const\
+offset_t Message##NAME::skip( const char * fix, unsigned len )\
 <nl>{\
 <nl>offset_t prev = 0, pos = 0;\
 <nl>while( pos < (int)len ) {\

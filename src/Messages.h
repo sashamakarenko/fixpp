@@ -20,6 +20,18 @@ GetDepthMethod getTagDepthMethodByRawMsgType( raw_enum_t rawMsgType );
 
 #include <DSTINCDIR/Messages.hxx>
 
+// Convenience function for scanning the body of a message skipping the header.
+// If the header has more fields than the standard ones, you can use the compIDsSize parameter to skip them as well.
+template< typename MSG >
+offset_t scanBody( MSG & msg, const char * buffer, unsigned len, offset_t compIDsSize, bool safely = true )
+{
+    offset_t pos = MinHeaderSize + compIDsSize;
+    gotoNextField( buffer, pos );
+    pos += MessageHeader::skip( buffer + pos, len - pos );
+    pos = safely ? msg.scanSafely( buffer + pos, len - pos ) : msg.scan( buffer + pos, len - pos );
+    return pos;
+}
+
 struct FixFormatStyle
 {
     const char * messageBegin      ;

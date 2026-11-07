@@ -72,6 +72,16 @@ namespace field
 #include <Fields.def>
 }
 
+<com> SenderCompID and TargetCompID sizes to be added by apps to skip header
+<com> see scanBody in Messages.h
+constexpr offset_t MinHeaderSize = FixBeginStringInsertableTagLength         +
+                                   field::BodyLength::INSERTABLE_TAG_WIDTH   + 2 +
+                                   field::MsgType::INSERTABLE_TAG_WIDTH      + 1 +
+                                   field::MsgSeqNum::INSERTABLE_TAG_WIDTH    + 1 +
+                                   field::SendingTime::INSERTABLE_TAG_WIDTH  + 17 +
+                                   field::SenderCompID::INSERTABLE_TAG_WIDTH +
+                                   field::TargetCompID::INSERTABLE_TAG_WIDTH;
+
 #undef FIX_FIELD_DECL
 #undef FIX_ENUM_BEGIN
 #undef FIX_ENUM_DECL

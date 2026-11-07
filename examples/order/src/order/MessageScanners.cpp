@@ -758,7 +758,7 @@ while( pos < (int)len ) {
 
 // -------------------------------------- skip ----------------------------------------
 
-offset_t MessageHeader::skip( const char * fix, unsigned len ) const
+offset_t MessageHeader::skip( const char * fix, unsigned len )
 {
 offset_t prev = 0, pos = 0;
 while( pos < (int)len ) {
@@ -800,7 +800,7 @@ while( pos < (int)len ) {
  return pos;
 }
 
-offset_t MessageNewOrderSingle::skip( const char * fix, unsigned len ) const
+offset_t MessageNewOrderSingle::skip( const char * fix, unsigned len )
 {
 offset_t prev = 0, pos = 0;
 while( pos < (int)len ) {
@@ -854,7 +854,7 @@ while( pos < (int)len ) {
  return pos;
 }
 
-offset_t MessageExecutionReport::skip( const char * fix, unsigned len ) const
+offset_t MessageExecutionReport::skip( const char * fix, unsigned len )
 {
 offset_t prev = 0, pos = 0;
 while( pos < (int)len ) {

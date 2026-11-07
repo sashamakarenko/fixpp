@@ -31,7 +31,11 @@ You have to know:
 
 ## Performance
 
-Tags and enums are not converted. For instance the sequence like `"|49="` will be inserted as a single integer assignment with value `0x3d'39'34'01`. On reception, the string `"49"` will not be translated to decimal value 49 but rather reinterpreted as `0x39'34`.
+Keys:
+
+* Tags and enums are not converted. For instance the sequence like `"|49="` will be inserted as a single integer assignment with value `0x3d'39'34'01`. On reception, the string `"49"` will not be translated to decimal value 49 but rather reinterpreted as `0x39'34`.
+* The tokenization code relies on modern CPU's capacity to execute instructions in parallel. This happens to be more performant than AVX based parsers (verified on i7) since the FIX tags and most values are short.
+
 
 > Results obtained in a tight loop on an i7-1360P @ 5GHz
 
@@ -257,6 +261,19 @@ In most cases a latency sensitive implementation will tend to reuse objects and 
             break;
         ...
     }
+```
+### Skipping message header
+
+Once you know your session's SenderCompID and TargetCompIDs, and you trust the venue, you can skip the header and scan the message body:
+
+```c++
+    // my class attribute:
+    MessageExecutionReport      _execReport;
+    offset_t                    _compIDsSize; // computed once
+    ...
+    // after reading the message into fixString
+    scanBody( _execReport, fixString.data(), fixString.size(), compIDsSize );
+
 ```
 
 

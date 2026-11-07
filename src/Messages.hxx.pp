@@ -12,7 +12,7 @@ class Message##NAME: public MessageBase\
 <n1>    static const std::string & getMessageType();\
 <n1>    offset_t scan( const char * fix, unsigned len );\
 <n1>    offset_t scanSafely( const char * fix, unsigned len );\
-<n1>    offset_t skip( const char * fix, unsigned len ) const;\
+<n1>    static offset_t skip( const char * fix, unsigned len );\
 <n1>    void reset();\
 <n1>    const char * getFieldValue( tag_t tag ) const;\
 <n1>    template< typename FIELD > static constexpr bool hasField() { return false; }\

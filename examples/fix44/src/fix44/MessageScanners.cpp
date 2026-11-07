@@ -66951,7 +66951,7 @@ while( pos < (int)len ) {
 
 // -------------------------------------- skip ----------------------------------------
 
-offset_t MessageHeader::skip( const char * fix, unsigned len ) const
+offset_t MessageHeader::skip( const char * fix, unsigned len )
 {
 offset_t prev = 0, pos = 0;
 while( pos < (int)len ) {
@@ -67056,7 +67056,7 @@ while( pos < (int)len ) {
  return pos;
 }
 
-offset_t MessageHeartbeat::skip( const char * fix, unsigned len ) const
+offset_t MessageHeartbeat::skip( const char * fix, unsigned len )
 {
 offset_t prev = 0, pos = 0;
 while( pos < (int)len ) {
@@ -67080,7 +67080,7 @@ while( pos < (int)len ) {
  return pos;
 }
 
-offset_t MessageTestRequest::skip( const char * fix, unsigned len ) const
+offset_t MessageTestRequest::skip( const char * fix, unsigned len )
 {
 offset_t prev = 0, pos = 0;
 while( pos < (int)len ) {
@@ -67104,7 +67104,7 @@ while( pos < (int)len ) {
  return pos;
 }
 
-offset_t MessageResendRequest::skip( const char * fix, unsigned len ) const
+offset_t MessageResendRequest::skip( const char * fix, unsigned len )
 {
 offset_t prev = 0, pos = 0;
 while( pos < (int)len ) {
@@ -67131,7 +67131,7 @@ while( pos < (int)len ) {
  return pos;
 }
 
-offset_t MessageReject::skip( const char * fix, unsigned len ) const
+offset_t MessageReject::skip( const char * fix, unsigned len )
 {
 offset_t prev = 0, pos = 0;
 while( pos < (int)len ) {
@@ -67173,7 +67173,7 @@ while( pos < (int)len ) {
  return pos;
 }
 
-offset_t MessageSequenceReset::skip( const char * fix, unsigned len ) const
+offset_t MessageSequenceReset::skip( const char * fix, unsigned len )
 {
 offset_t prev = 0, pos = 0;
 while( pos < (int)len ) {
@@ -67200,7 +67200,7 @@ while( pos < (int)len ) {
  return pos;
 }
 
-offset_t MessageLogout::skip( const char * fix, unsigned len ) const
+offset_t MessageLogout::skip( const char * fix, unsigned len )
 {
 offset_t prev = 0, pos = 0;
 while( pos < (int)len ) {
@@ -67230,7 +67230,7 @@ while( pos < (int)len ) {
  return pos;
 }
 
-offset_t MessageIOI::skip( const char * fix, unsigned len ) const
+offset_t MessageIOI::skip( const char * fix, unsigned len )
 {
 offset_t prev = 0, pos = 0;
 while( pos < (int)len ) {
@@ -67551,7 +67551,7 @@ while( pos < (int)len ) {
  return pos;
 }
 
-offset_t MessageAdvertisement::skip( const char * fix, unsigned len ) const
+offset_t MessageAdvertisement::skip( const char * fix, unsigned len )
 {
 offset_t prev = 0, pos = 0;
 while( pos < (int)len ) {
@@ -67770,7 +67770,7 @@ while( pos < (int)len ) {
  return pos;
 }
 
-offset_t MessageExecutionReport::skip( const char * fix, unsigned len ) const
+offset_t MessageExecutionReport::skip( const char * fix, unsigned len )
 {
 offset_t prev = 0, pos = 0;
 while( pos < (int)len ) {
@@ -68472,7 +68472,7 @@ while( pos < (int)len ) {
  return pos;
 }
 
-offset_t MessageOrderCancelReject::skip( const char * fix, unsigned len ) const
+offset_t MessageOrderCancelReject::skip( const char * fix, unsigned len )
 {
 offset_t prev = 0, pos = 0;
 while( pos < (int)len ) {
@@ -68556,7 +68556,7 @@ while( pos < (int)len ) {
  return pos;
 }
 
-offset_t MessageLogon::skip( const char * fix, unsigned len ) const
+offset_t MessageLogon::skip( const char * fix, unsigned len )
 {
 offset_t prev = 0, pos = 0;
 while( pos < (int)len ) {
@@ -68613,7 +68613,7 @@ while( pos < (int)len ) {
  return pos;
 }
 
-offset_t MessageNews::skip( const char * fix, unsigned len ) const
+offset_t MessageNews::skip( const char * fix, unsigned len )
 {
 offset_t prev = 0, pos = 0;
 while( pos < (int)len ) {
@@ -68688,7 +68688,7 @@ while( pos < (int)len ) {
  return pos;
 }
 
-offset_t MessageEmail::skip( const char * fix, unsigned len ) const
+offset_t MessageEmail::skip( const char * fix, unsigned len )
 {
 offset_t prev = 0, pos = 0;
 while( pos < (int)len ) {
@@ -68769,7 +68769,7 @@ while( pos < (int)len ) {
  return pos;
 }
 
-offset_t MessageNewOrderSingle::skip( const char * fix, unsigned len ) const
+offset_t MessageNewOrderSingle::skip( const char * fix, unsigned len )
 {
 offset_t prev = 0, pos = 0;
 while( pos < (int)len ) {
@@ -69279,7 +69279,7 @@ while( pos < (int)len ) {
  return pos;
 }
 
-offset_t MessageNewOrderList::skip( const char * fix, unsigned len ) const
+offset_t MessageNewOrderList::skip( const char * fix, unsigned len )
 {
 offset_t prev = 0, pos = 0;
 while( pos < (int)len ) {
@@ -69360,7 +69360,7 @@ while( pos < (int)len ) {
  return pos;
 }
 
-offset_t MessageOrderCancelRequest::skip( const char * fix, unsigned len ) const
+offset_t MessageOrderCancelRequest::skip( const char * fix, unsigned len )
 {
 offset_t prev = 0, pos = 0;
 while( pos < (int)len ) {
@@ -69618,7 +69618,7 @@ while( pos < (int)len ) {
  return pos;
 }
 
-offset_t MessageOrderCancelReplaceRequest::skip( const char * fix, unsigned len ) const
+offset_t MessageOrderCancelReplaceRequest::skip( const char * fix, unsigned len )
 {
 offset_t prev = 0, pos = 0;
 while( pos < (int)len ) {
@@ -70122,7 +70122,7 @@ while( pos < (int)len ) {
  return pos;
 }
 
-offset_t MessageOrderStatusRequest::skip( const char * fix, unsigned len ) const
+offset_t MessageOrderStatusRequest::skip( const char * fix, unsigned len )
 {
 offset_t prev = 0, pos = 0;
 while( pos < (int)len ) {
@@ -70341,7 +70341,7 @@ while( pos < (int)len ) {
  return pos;
 }
 
-offset_t MessageAllocationInstruction::skip( const char * fix, unsigned len ) const
+offset_t MessageAllocationInstruction::skip( const char * fix, unsigned len )
 {
 offset_t prev = 0, pos = 0;
 while( pos < (int)len ) {
@@ -70773,7 +70773,7 @@ while( pos < (int)len ) {
  return pos;
 }
 
-offset_t MessageListCancelRequest::skip( const char * fix, unsigned len ) const
+offset_t MessageListCancelRequest::skip( const char * fix, unsigned len )
 {
 offset_t prev = 0, pos = 0;
 while( pos < (int)len ) {
@@ -70815,7 +70815,7 @@ while( pos < (int)len ) {
  return pos;
 }
 
-offset_t MessageListExecute::skip( const char * fix, unsigned len ) const
+offset_t MessageListExecute::skip( const char * fix, unsigned len )
 {
 offset_t prev = 0, pos = 0;
 while( pos < (int)len ) {
@@ -70857,7 +70857,7 @@ while( pos < (int)len ) {
  return pos;
 }
 
-offset_t MessageListStatusRequest::skip( const char * fix, unsigned len ) const
+offset_t MessageListStatusRequest::skip( const char * fix, unsigned len )
 {
 offset_t prev = 0, pos = 0;
 while( pos < (int)len ) {
@@ -70890,7 +70890,7 @@ while( pos < (int)len ) {
  return pos;
 }
 
-offset_t MessageListStatus::skip( const char * fix, unsigned len ) const
+offset_t MessageListStatus::skip( const char * fix, unsigned len )
 {
 offset_t prev = 0, pos = 0;
 while( pos < (int)len ) {
@@ -70950,7 +70950,7 @@ while( pos < (int)len ) {
  return pos;
 }
 
-offset_t MessageAllocationInstructionAck::skip( const char * fix, unsigned len ) const
+offset_t MessageAllocationInstructionAck::skip( const char * fix, unsigned len )
 {
 offset_t prev = 0, pos = 0;
 while( pos < (int)len ) {
@@ -71025,7 +71025,7 @@ while( pos < (int)len ) {
  return pos;
 }
 
-offset_t MessageDontKnowTrade::skip( const char * fix, unsigned len ) const
+offset_t MessageDontKnowTrade::skip( const char * fix, unsigned len )
 {
 offset_t prev = 0, pos = 0;
 while( pos < (int)len ) {
@@ -71238,7 +71238,7 @@ while( pos < (int)len ) {
  return pos;
 }
 
-offset_t MessageQuoteRequest::skip( const char * fix, unsigned len ) const
+offset_t MessageQuoteRequest::skip( const char * fix, unsigned len )
 {
 offset_t prev = 0, pos = 0;
 while( pos < (int)len ) {
@@ -71286,7 +71286,7 @@ while( pos < (int)len ) {
  return pos;
 }
 
-offset_t MessageQuote::skip( const char * fix, unsigned len ) const
+offset_t MessageQuote::skip( const char * fix, unsigned len )
 {
 offset_t prev = 0, pos = 0;
 while( pos < (int)len ) {
@@ -71703,7 +71703,7 @@ while( pos < (int)len ) {
  return pos;
 }
 
-offset_t MessageSettlementInstructions::skip( const char * fix, unsigned len ) const
+offset_t MessageSettlementInstructions::skip( const char * fix, unsigned len )
 {
 offset_t prev = 0, pos = 0;
 while( pos < (int)len ) {
@@ -71757,7 +71757,7 @@ while( pos < (int)len ) {
  return pos;
 }
 
-offset_t MessageMarketDataRequest::skip( const char * fix, unsigned len ) const
+offset_t MessageMarketDataRequest::skip( const char * fix, unsigned len )
 {
 offset_t prev = 0, pos = 0;
 while( pos < (int)len ) {
@@ -71826,7 +71826,7 @@ while( pos < (int)len ) {
  return pos;
 }
 
-offset_t MessageMarketDataSnapshotFullRefresh::skip( const char * fix, unsigned len ) const
+offset_t MessageMarketDataSnapshotFullRefresh::skip( const char * fix, unsigned len )
 {
 offset_t prev = 0, pos = 0;
 while( pos < (int)len ) {
@@ -72018,7 +72018,7 @@ while( pos < (int)len ) {
  return pos;
 }
 
-offset_t MessageMarketDataIncrementalRefresh::skip( const char * fix, unsigned len ) const
+offset_t MessageMarketDataIncrementalRefresh::skip( const char * fix, unsigned len )
 {
 offset_t prev = 0, pos = 0;
 while( pos < (int)len ) {
@@ -72054,7 +72054,7 @@ while( pos < (int)len ) {
  return pos;
 }
 
-offset_t MessageMarketDataRequestReject::skip( const char * fix, unsigned len ) const
+offset_t MessageMarketDataRequestReject::skip( const char * fix, unsigned len )
 {
 offset_t prev = 0, pos = 0;
 while( pos < (int)len ) {
@@ -72096,7 +72096,7 @@ while( pos < (int)len ) {
  return pos;
 }
 
-offset_t MessageQuoteCancel::skip( const char * fix, unsigned len ) const
+offset_t MessageQuoteCancel::skip( const char * fix, unsigned len )
 {
 offset_t prev = 0, pos = 0;
 while( pos < (int)len ) {
@@ -72156,7 +72156,7 @@ while( pos < (int)len ) {
  return pos;
 }
 
-offset_t MessageQuoteStatusRequest::skip( const char * fix, unsigned len ) const
+offset_t MessageQuoteStatusRequest::skip( const char * fix, unsigned len )
 {
 offset_t prev = 0, pos = 0;
 while( pos < (int)len ) {
@@ -72381,7 +72381,7 @@ while( pos < (int)len ) {
  return pos;
 }
 
-offset_t MessageMassQuoteAcknowledgement::skip( const char * fix, unsigned len ) const
+offset_t MessageMassQuoteAcknowledgement::skip( const char * fix, unsigned len )
 {
 offset_t prev = 0, pos = 0;
 while( pos < (int)len ) {
@@ -72450,7 +72450,7 @@ while( pos < (int)len ) {
  return pos;
 }
 
-offset_t MessageSecurityDefinitionRequest::skip( const char * fix, unsigned len ) const
+offset_t MessageSecurityDefinitionRequest::skip( const char * fix, unsigned len )
 {
 offset_t prev = 0, pos = 0;
 while( pos < (int)len ) {
@@ -72660,7 +72660,7 @@ while( pos < (int)len ) {
  return pos;
 }
 
-offset_t MessageSecurityDefinition::skip( const char * fix, unsigned len ) const
+offset_t MessageSecurityDefinition::skip( const char * fix, unsigned len )
 {
 offset_t prev = 0, pos = 0;
 while( pos < (int)len ) {
@@ -72876,7 +72876,7 @@ while( pos < (int)len ) {
  return pos;
 }
 
-offset_t MessageSecurityStatusRequest::skip( const char * fix, unsigned len ) const
+offset_t MessageSecurityStatusRequest::skip( const char * fix, unsigned len )
 {
 offset_t prev = 0, pos = 0;
 while( pos < (int)len ) {
@@ -73071,7 +73071,7 @@ while( pos < (int)len ) {
  return pos;
 }
 
-offset_t MessageSecurityStatus::skip( const char * fix, unsigned len ) const
+offset_t MessageSecurityStatus::skip( const char * fix, unsigned len )
 {
 offset_t prev = 0, pos = 0;
 while( pos < (int)len ) {
@@ -73314,7 +73314,7 @@ while( pos < (int)len ) {
  return pos;
 }
 
-offset_t MessageTradingSessionStatusRequest::skip( const char * fix, unsigned len ) const
+offset_t MessageTradingSessionStatusRequest::skip( const char * fix, unsigned len )
 {
 offset_t prev = 0, pos = 0;
 while( pos < (int)len ) {
@@ -73353,7 +73353,7 @@ while( pos < (int)len ) {
  return pos;
 }
 
-offset_t MessageTradingSessionStatus::skip( const char * fix, unsigned len ) const
+offset_t MessageTradingSessionStatus::skip( const char * fix, unsigned len )
 {
 offset_t prev = 0, pos = 0;
 while( pos < (int)len ) {
@@ -73425,7 +73425,7 @@ while( pos < (int)len ) {
  return pos;
 }
 
-offset_t MessageMassQuote::skip( const char * fix, unsigned len ) const
+offset_t MessageMassQuote::skip( const char * fix, unsigned len )
 {
 offset_t prev = 0, pos = 0;
 while( pos < (int)len ) {
@@ -73485,7 +73485,7 @@ while( pos < (int)len ) {
  return pos;
 }
 
-offset_t MessageBusinessMessageReject::skip( const char * fix, unsigned len ) const
+offset_t MessageBusinessMessageReject::skip( const char * fix, unsigned len )
 {
 offset_t prev = 0, pos = 0;
 while( pos < (int)len ) {
@@ -73527,7 +73527,7 @@ while( pos < (int)len ) {
  return pos;
 }
 
-offset_t MessageBidRequest::skip( const char * fix, unsigned len ) const
+offset_t MessageBidRequest::skip( const char * fix, unsigned len )
 {
 offset_t prev = 0, pos = 0;
 while( pos < (int)len ) {
@@ -73641,7 +73641,7 @@ while( pos < (int)len ) {
  return pos;
 }
 
-offset_t MessageBidResponse::skip( const char * fix, unsigned len ) const
+offset_t MessageBidResponse::skip( const char * fix, unsigned len )
 {
 offset_t prev = 0, pos = 0;
 while( pos < (int)len ) {
@@ -73674,7 +73674,7 @@ while( pos < (int)len ) {
  return pos;
 }
 
-offset_t MessageListStrikePrice::skip( const char * fix, unsigned len ) const
+offset_t MessageListStrikePrice::skip( const char * fix, unsigned len )
 {
 offset_t prev = 0, pos = 0;
 while( pos < (int)len ) {
@@ -73716,7 +73716,7 @@ while( pos < (int)len ) {
  return pos;
 }
 
-offset_t MessageXMLnonFIX::skip( const char * fix, unsigned len ) const
+offset_t MessageXMLnonFIX::skip( const char * fix, unsigned len )
 {
 offset_t prev = 0, pos = 0;
 while( pos < (int)len ) {
@@ -73737,7 +73737,7 @@ while( pos < (int)len ) {
  return pos;
 }
 
-offset_t MessageRegistrationInstructions::skip( const char * fix, unsigned len ) const
+offset_t MessageRegistrationInstructions::skip( const char * fix, unsigned len )
 {
 offset_t prev = 0, pos = 0;
 while( pos < (int)len ) {
@@ -73803,7 +73803,7 @@ while( pos < (int)len ) {
  return pos;
 }
 
-offset_t MessageRegistrationInstructionsResponse::skip( const char * fix, unsigned len ) const
+offset_t MessageRegistrationInstructionsResponse::skip( const char * fix, unsigned len )
 {
 offset_t prev = 0, pos = 0;
 while( pos < (int)len ) {
@@ -73857,7 +73857,7 @@ while( pos < (int)len ) {
  return pos;
 }
 
-offset_t MessageOrderMassCancelRequest::skip( const char * fix, unsigned len ) const
+offset_t MessageOrderMassCancelRequest::skip( const char * fix, unsigned len )
 {
 offset_t prev = 0, pos = 0;
 while( pos < (int)len ) {
@@ -74190,7 +74190,7 @@ while( pos < (int)len ) {
  return pos;
 }
 
-offset_t MessageOrderMassCancelReport::skip( const char * fix, unsigned len ) const
+offset_t MessageOrderMassCancelReport::skip( const char * fix, unsigned len )
 {
 offset_t prev = 0, pos = 0;
 while( pos < (int)len ) {
@@ -74544,7 +74544,7 @@ while( pos < (int)len ) {
  return pos;
 }
 
-offset_t MessageNewOrderCross::skip( const char * fix, unsigned len ) const
+offset_t MessageNewOrderCross::skip( const char * fix, unsigned len )
 {
 offset_t prev = 0, pos = 0;
 while( pos < (int)len ) {
@@ -74916,7 +74916,7 @@ while( pos < (int)len ) {
  return pos;
 }
 
-offset_t MessageCrossOrderCancelReplaceRequest::skip( const char * fix, unsigned len ) const
+offset_t MessageCrossOrderCancelReplaceRequest::skip( const char * fix, unsigned len )
 {
 offset_t prev = 0, pos = 0;
 while( pos < (int)len ) {
@@ -75294,7 +75294,7 @@ while( pos < (int)len ) {
  return pos;
 }
 
-offset_t MessageCrossOrderCancelRequest::skip( const char * fix, unsigned len ) const
+offset_t MessageCrossOrderCancelRequest::skip( const char * fix, unsigned len )
 {
 offset_t prev = 0, pos = 0;
 while( pos < (int)len ) {
@@ -75486,7 +75486,7 @@ while( pos < (int)len ) {
  return pos;
 }
 
-offset_t MessageSecurityTypeRequest::skip( const char * fix, unsigned len ) const
+offset_t MessageSecurityTypeRequest::skip( const char * fix, unsigned len )
 {
 offset_t prev = 0, pos = 0;
 while( pos < (int)len ) {
@@ -75534,7 +75534,7 @@ while( pos < (int)len ) {
  return pos;
 }
 
-offset_t MessageSecurityTypes::skip( const char * fix, unsigned len ) const
+offset_t MessageSecurityTypes::skip( const char * fix, unsigned len )
 {
 offset_t prev = 0, pos = 0;
 while( pos < (int)len ) {
@@ -75594,7 +75594,7 @@ while( pos < (int)len ) {
  return pos;
 }
 
-offset_t MessageSecurityListRequest::skip( const char * fix, unsigned len ) const
+offset_t MessageSecurityListRequest::skip( const char * fix, unsigned len )
 {
 offset_t prev = 0, pos = 0;
 while( pos < (int)len ) {
@@ -75828,7 +75828,7 @@ while( pos < (int)len ) {
  return pos;
 }
 
-offset_t MessageSecurityList::skip( const char * fix, unsigned len ) const
+offset_t MessageSecurityList::skip( const char * fix, unsigned len )
 {
 offset_t prev = 0, pos = 0;
 while( pos < (int)len ) {
@@ -75870,7 +75870,7 @@ while( pos < (int)len ) {
  return pos;
 }
 
-offset_t MessageDerivativeSecurityListRequest::skip( const char * fix, unsigned len ) const
+offset_t MessageDerivativeSecurityListRequest::skip( const char * fix, unsigned len )
 {
 offset_t prev = 0, pos = 0;
 while( pos < (int)len ) {
@@ -76068,7 +76068,7 @@ while( pos < (int)len ) {
  return pos;
 }
 
-offset_t MessageDerivativeSecurityList::skip( const char * fix, unsigned len ) const
+offset_t MessageDerivativeSecurityList::skip( const char * fix, unsigned len )
 {
 offset_t prev = 0, pos = 0;
 while( pos < (int)len ) {
@@ -76257,7 +76257,7 @@ while( pos < (int)len ) {
  return pos;
 }
 
-offset_t MessageNewOrderMultileg::skip( const char * fix, unsigned len ) const
+offset_t MessageNewOrderMultileg::skip( const char * fix, unsigned len )
 {
 offset_t prev = 0, pos = 0;
 while( pos < (int)len ) {
@@ -76692,7 +76692,7 @@ while( pos < (int)len ) {
  return pos;
 }
 
-offset_t MessageMultilegOrderCancelReplace::skip( const char * fix, unsigned len ) const
+offset_t MessageMultilegOrderCancelReplace::skip( const char * fix, unsigned len )
 {
 offset_t prev = 0, pos = 0;
 while( pos < (int)len ) {
@@ -77136,7 +77136,7 @@ while( pos < (int)len ) {
  return pos;
 }
 
-offset_t MessageTradeCaptureReportRequest::skip( const char * fix, unsigned len ) const
+offset_t MessageTradeCaptureReportRequest::skip( const char * fix, unsigned len )
 {
 offset_t prev = 0, pos = 0;
 while( pos < (int)len ) {
@@ -77442,7 +77442,7 @@ while( pos < (int)len ) {
  return pos;
 }
 
-offset_t MessageTradeCaptureReport::skip( const char * fix, unsigned len ) const
+offset_t MessageTradeCaptureReport::skip( const char * fix, unsigned len )
 {
 offset_t prev = 0, pos = 0;
 while( pos < (int)len ) {
@@ -77853,7 +77853,7 @@ while( pos < (int)len ) {
  return pos;
 }
 
-offset_t MessageOrderMassStatusRequest::skip( const char * fix, unsigned len ) const
+offset_t MessageOrderMassStatusRequest::skip( const char * fix, unsigned len )
 {
 offset_t prev = 0, pos = 0;
 while( pos < (int)len ) {
@@ -78183,7 +78183,7 @@ while( pos < (int)len ) {
  return pos;
 }
 
-offset_t MessageQuoteRequestReject::skip( const char * fix, unsigned len ) const
+offset_t MessageQuoteRequestReject::skip( const char * fix, unsigned len )
 {
 offset_t prev = 0, pos = 0;
 while( pos < (int)len ) {
@@ -78228,7 +78228,7 @@ while( pos < (int)len ) {
  return pos;
 }
 
-offset_t MessageRFQRequest::skip( const char * fix, unsigned len ) const
+offset_t MessageRFQRequest::skip( const char * fix, unsigned len )
 {
 offset_t prev = 0, pos = 0;
 while( pos < (int)len ) {
@@ -78261,7 +78261,7 @@ while( pos < (int)len ) {
  return pos;
 }
 
-offset_t MessageQuoteStatusReport::skip( const char * fix, unsigned len ) const
+offset_t MessageQuoteStatusReport::skip( const char * fix, unsigned len )
 {
 offset_t prev = 0, pos = 0;
 while( pos < (int)len ) {
@@ -78684,7 +78684,7 @@ while( pos < (int)len ) {
  return pos;
 }
 
-offset_t MessageQuoteResponse::skip( const char * fix, unsigned len ) const
+offset_t MessageQuoteResponse::skip( const char * fix, unsigned len )
 {
 offset_t prev = 0, pos = 0;
 while( pos < (int)len ) {
@@ -79107,7 +79107,7 @@ while( pos < (int)len ) {
  return pos;
 }
 
-offset_t MessageConfirmation::skip( const char * fix, unsigned len ) const
+offset_t MessageConfirmation::skip( const char * fix, unsigned len )
 {
 offset_t prev = 0, pos = 0;
 while( pos < (int)len ) {
@@ -79572,7 +79572,7 @@ while( pos < (int)len ) {
  return pos;
 }
 
-offset_t MessagePositionMaintenanceRequest::skip( const char * fix, unsigned len ) const
+offset_t MessagePositionMaintenanceRequest::skip( const char * fix, unsigned len )
 {
 offset_t prev = 0, pos = 0;
 while( pos < (int)len ) {
@@ -79818,7 +79818,7 @@ while( pos < (int)len ) {
  return pos;
 }
 
-offset_t MessagePositionMaintenanceReport::skip( const char * fix, unsigned len ) const
+offset_t MessagePositionMaintenanceReport::skip( const char * fix, unsigned len )
 {
 offset_t prev = 0, pos = 0;
 while( pos < (int)len ) {
@@ -80070,7 +80070,7 @@ while( pos < (int)len ) {
  return pos;
 }
 
-offset_t MessageRequestForPositions::skip( const char * fix, unsigned len ) const
+offset_t MessageRequestForPositions::skip( const char * fix, unsigned len )
 {
 offset_t prev = 0, pos = 0;
 while( pos < (int)len ) {
@@ -80301,7 +80301,7 @@ while( pos < (int)len ) {
  return pos;
 }
 
-offset_t MessageRequestForPositionsAck::skip( const char * fix, unsigned len ) const
+offset_t MessageRequestForPositionsAck::skip( const char * fix, unsigned len )
 {
 offset_t prev = 0, pos = 0;
 while( pos < (int)len ) {
@@ -80520,7 +80520,7 @@ while( pos < (int)len ) {
  return pos;
 }
 
-offset_t MessagePositionReport::skip( const char * fix, unsigned len ) const
+offset_t MessagePositionReport::skip( const char * fix, unsigned len )
 {
 offset_t prev = 0, pos = 0;
 while( pos < (int)len ) {
@@ -80772,7 +80772,7 @@ while( pos < (int)len ) {
  return pos;
 }
 
-offset_t MessageTradeCaptureReportRequestAck::skip( const char * fix, unsigned len ) const
+offset_t MessageTradeCaptureReportRequestAck::skip( const char * fix, unsigned len )
 {
 offset_t prev = 0, pos = 0;
 while( pos < (int)len ) {
@@ -80976,7 +80976,7 @@ while( pos < (int)len ) {
  return pos;
 }
 
-offset_t MessageTradeCaptureReportAck::skip( const char * fix, unsigned len ) const
+offset_t MessageTradeCaptureReportAck::skip( const char * fix, unsigned len )
 {
 offset_t prev = 0, pos = 0;
 while( pos < (int)len ) {
@@ -81249,7 +81249,7 @@ while( pos < (int)len ) {
  return pos;
 }
 
-offset_t MessageAllocationReport::skip( const char * fix, unsigned len ) const
+offset_t MessageAllocationReport::skip( const char * fix, unsigned len )
 {
 offset_t prev = 0, pos = 0;
 while( pos < (int)len ) {
@@ -81693,7 +81693,7 @@ while( pos < (int)len ) {
  return pos;
 }
 
-offset_t MessageAllocationReportAck::skip( const char * fix, unsigned len ) const
+offset_t MessageAllocationReportAck::skip( const char * fix, unsigned len )
 {
 offset_t prev = 0, pos = 0;
 while( pos < (int)len ) {
@@ -81771,7 +81771,7 @@ while( pos < (int)len ) {
  return pos;
 }
 
-offset_t MessageConfirmationAck::skip( const char * fix, unsigned len ) const
+offset_t MessageConfirmationAck::skip( const char * fix, unsigned len )
 {
 offset_t prev = 0, pos = 0;
 while( pos < (int)len ) {
@@ -81819,7 +81819,7 @@ while( pos < (int)len ) {
  return pos;
 }
 
-offset_t MessageSettlementInstructionRequest::skip( const char * fix, unsigned len ) const
+offset_t MessageSettlementInstructionRequest::skip( const char * fix, unsigned len )
 {
 offset_t prev = 0, pos = 0;
 while( pos < (int)len ) {
@@ -81888,7 +81888,7 @@ while( pos < (int)len ) {
  return pos;
 }
 
-offset_t MessageAssignmentReport::skip( const char * fix, unsigned len ) const
+offset_t MessageAssignmentReport::skip( const char * fix, unsigned len )
 {
 offset_t prev = 0, pos = 0;
 while( pos < (int)len ) {
@@ -82137,7 +82137,7 @@ while( pos < (int)len ) {
  return pos;
 }
 
-offset_t MessageCollateralRequest::skip( const char * fix, unsigned len ) const
+offset_t MessageCollateralRequest::skip( const char * fix, unsigned len )
 {
 offset_t prev = 0, pos = 0;
 while( pos < (int)len ) {
@@ -82488,7 +82488,7 @@ while( pos < (int)len ) {
  return pos;
 }
 
-offset_t MessageCollateralAssignment::skip( const char * fix, unsigned len ) const
+offset_t MessageCollateralAssignment::skip( const char * fix, unsigned len )
 {
 offset_t prev = 0, pos = 0;
 while( pos < (int)len ) {
@@ -82866,7 +82866,7 @@ while( pos < (int)len ) {
  return pos;
 }
 
-offset_t MessageCollateralResponse::skip( const char * fix, unsigned len ) const
+offset_t MessageCollateralResponse::skip( const char * fix, unsigned len )
 {
 offset_t prev = 0, pos = 0;
 while( pos < (int)len ) {
@@ -83214,7 +83214,7 @@ while( pos < (int)len ) {
  return pos;
 }
 
-offset_t MessageCollateralReport::skip( const char * fix, unsigned len ) const
+offset_t MessageCollateralReport::skip( const char * fix, unsigned len )
 {
 offset_t prev = 0, pos = 0;
 while( pos < (int)len ) {
@@ -83586,7 +83586,7 @@ while( pos < (int)len ) {
  return pos;
 }
 
-offset_t MessageCollateralInquiry::skip( const char * fix, unsigned len ) const
+offset_t MessageCollateralInquiry::skip( const char * fix, unsigned len )
 {
 offset_t prev = 0, pos = 0;
 while( pos < (int)len ) {
@@ -83955,7 +83955,7 @@ while( pos < (int)len ) {
  return pos;
 }
 
-offset_t MessageNetworkCounterpartySystemStatusRequest::skip( const char * fix, unsigned len ) const
+offset_t MessageNetworkCounterpartySystemStatusRequest::skip( const char * fix, unsigned len )
 {
 offset_t prev = 0, pos = 0;
 while( pos < (int)len ) {
@@ -83988,7 +83988,7 @@ while( pos < (int)len ) {
  return pos;
 }
 
-offset_t MessageNetworkCounterpartySystemStatusResponse::skip( const char * fix, unsigned len ) const
+offset_t MessageNetworkCounterpartySystemStatusResponse::skip( const char * fix, unsigned len )
 {
 offset_t prev = 0, pos = 0;
 while( pos < (int)len ) {
@@ -84027,7 +84027,7 @@ while( pos < (int)len ) {
  return pos;
 }
 
-offset_t MessageUserRequest::skip( const char * fix, unsigned len ) const
+offset_t MessageUserRequest::skip( const char * fix, unsigned len )
 {
 offset_t prev = 0, pos = 0;
 while( pos < (int)len ) {
@@ -84069,7 +84069,7 @@ while( pos < (int)len ) {
  return pos;
 }
 
-offset_t MessageUserResponse::skip( const char * fix, unsigned len ) const
+offset_t MessageUserResponse::skip( const char * fix, unsigned len )
 {
 offset_t prev = 0, pos = 0;
 while( pos < (int)len ) {
@@ -84102,7 +84102,7 @@ while( pos < (int)len ) {
  return pos;
 }
 
-offset_t MessageCollateralInquiryAck::skip( const char * fix, unsigned len ) const
+offset_t MessageCollateralInquiryAck::skip( const char * fix, unsigned len )
 {
 offset_t prev = 0, pos = 0;
 while( pos < (int)len ) {
@@ -84393,7 +84393,7 @@ while( pos < (int)len ) {
  return pos;
 }
 
-offset_t MessageConfirmationRequest::skip( const char * fix, unsigned len ) const
+offset_t MessageConfirmationRequest::skip( const char * fix, unsigned len )
 {
 offset_t prev = 0, pos = 0;
 while( pos < (int)len ) {
