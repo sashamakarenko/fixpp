@@ -5,6 +5,7 @@ __COPYRIGHT__
 
 #include <cstdint>
 #include <string>
+#include <string_view>
 #include <cstring>
 #include <limits>
 #include <cstddef>
@@ -15,6 +16,8 @@ __COPYRIGHT__
 
 namespace DSTNAMESPACE
 {
+
+using std::size_t;
 
 // ------------------------------ primitives -----------------------------
 
@@ -338,19 +341,37 @@ struct sohstr
         return getValueLength( ptr );
     }
 
+    std::string_view view() const
+    {
+        return std::string_view( ptr, size() );
+    }
+
     bool operator == ( const sohstr & other ) const
     {
-        if( ptr == other.ptr )
+        return view().compare( other.view() ) == 0;
+    }
+
+    bool operator == ( const std::string_view & other ) const
+    {
+        return view().compare( other ) == 0;
+    }
+
+    bool operator == ( const std::string & other ) const
+    {
+        return view().compare( other ) == 0;
+    }
+
+    bool operator == ( const char * other ) const
+    {
+        if( ptr == other )
         {
             return true;
         }
-        if( ptr == nullptr or other.ptr == nullptr )
+        if( ptr == nullptr or other == nullptr )
         {
             return false;
         }
-        size_t mySize    = size();
-        size_t otherSize = other.size();
-        return mySize == otherSize and std::strncmp( ptr, other.ptr, mySize ) == 0;
+        return view().compare( std::string_view( other, std::strlen( other ) ) ) == 0;
     }
 
     bool operator != ( const sohstr & other ) const
