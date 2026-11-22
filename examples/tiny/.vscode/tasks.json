@@ -124,7 +124,7 @@
             "label": "Build TestMessageBuilders (debug)",
             "type": "shell",
             "command": "make",
-            "args": [ "build/bin/debug/tests/TestMessageBuilders.exe", "BUILD_MODE=debug", "-j8" ],
+            "args": [ "build/bin/debug/tests/TestMessageBuilders.exe", "BUILD_MODE=debug" ],
             "problemMatcher": [
                 "$gcc"
             ],
@@ -164,6 +164,19 @@
             "type": "shell",
             "command": "make",
             "args": [ "build/bin/debug/tests/TestSafeSender.exe", "BUILD_MODE=debug" ],
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+        {
+            "label": "Build TestSelect (debug)",
+            "type": "shell",
+            "command": "make",
+            "args": [ "build/bin/debug/tests/TestSelect.exe", "BUILD_MODE=debug" ],
             "problemMatcher": [
                 "$gcc"
             ],
@@ -349,6 +362,19 @@
             "type": "shell",
             "command": "make",
             "args": [ "build/bin/release/tests/TestSafeSender.exe", "BUILD_MODE=release" ],
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+        {
+            "label": "Build TestSelect (release)",
+            "type": "shell",
+            "command": "make",
+            "args": [ "build/bin/release/tests/TestSelect.exe", "BUILD_MODE=release" ],
             "problemMatcher": [
                 "$gcc"
             ],

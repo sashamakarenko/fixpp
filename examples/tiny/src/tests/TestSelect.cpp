@@ -47,5 +47,6 @@ int main( int args, const char ** argv )
     CHECK_EQ( exec report price, price, 15.001 );
     CHECK_EQ( exec report symbol, symbol, "XYZ" );
     CHECK_EQ( exec report leaves qty, leavesQty, 15 );
+
     return 0;
 }

@@ -11,13 +11,14 @@ constexpr bool wanted()
     return ( std::is_same<T,Types>() or ... );
 };
 
-template< typename FIELD >
-struct StopOn
+struct AllFields: FieldBase
 {
 };
 
-struct AllFields
+template< typename FIELD >
+struct StopOn: FieldBase
 {
+static_assert( std::is_base_of_v<FieldBase,FIELD> or std::is_same_v<FIELD,AllFields>, "not a Field type" ); 
 };
 
 #include <DSTINCDIR/GroupSelect.hxx>

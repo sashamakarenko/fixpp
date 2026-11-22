@@ -13,18 +13,17 @@ constexpr bool wanted()
     return ( std::is_same<T,Types>() or ... );
 };
 
-template< typename FIELD >
-struct StopOn
+struct AllFields: FieldBase
 {
 };
 
-struct AllFields
+template< typename FIELD >
+struct StopOn: FieldBase
 {
+static_assert( std::is_base_of_v<FieldBase,FIELD> or std::is_same_v<FIELD,AllFields>, "not a Field type" ); 
 };
 
 // start of GroupSelect.hxx
-
-// Generated
 
 // -------------------------------------- select ----------------------------------------
 template< typename... FIELDS > offset_t GroupLegStipulations::select( Array & arr, const char * fix, unsigned len ){
@@ -232,12 +231,11 @@ template< typename... FIELDS > offset_t GroupLegs::select( Array & arr, const ch
 
 // start of MessageSelect.hxx
 
-// Generated
-
 // -------------------------------------- select ----------------------------------------
 
 template< typename... FIELDS > 
 offset_t MessageHeader::select( const char * fix, unsigned len ){
+static_assert( ( std::is_base_of_v<FieldBase,FIELDS> and ... ), "not a Field type in <FIELDS>" ); 
 _fixPtr = fix;
 offset_t prev = 0, pos = 0;
 while( pos < (int)len ) {
@@ -247,55 +245,47 @@ while( pos < (int)len ) {
    switch( tag ){
 
    case FieldBeginString::RAW_TAG:
-     FIXPP_PRINT_FIELD(BeginString) 
      if constexpr ( wanted<FieldBeginString,FIELDS...>() or wanted<AllFields,FIELDS...>() ) fieldBeginString.offset = pos;
      if constexpr ( wanted<StopOn<FieldBeginString>,FIELDS...>() ) return pos;
      break;
 
    case FieldBodyLength::RAW_TAG:
-     FIXPP_PRINT_FIELD(BodyLength) 
      if constexpr ( wanted<FieldBodyLength,FIELDS...>() or wanted<AllFields,FIELDS...>() ) fieldBodyLength.offset = pos;
      if constexpr ( wanted<StopOn<FieldBodyLength>,FIELDS...>() ) return pos;
      break;
 
    case FieldMsgType::RAW_TAG:
-     FIXPP_PRINT_FIELD(MsgType) 
      if constexpr ( wanted<FieldMsgType,FIELDS...>() or wanted<AllFields,FIELDS...>() ) fieldMsgType.offset = pos;
      if constexpr ( wanted<StopOn<FieldMsgType>,FIELDS...>() ) return pos;
      break;
 
    case FieldSenderCompID::RAW_TAG:
-     FIXPP_PRINT_FIELD(SenderCompID) 
      if constexpr ( wanted<FieldSenderCompID,FIELDS...>() or wanted<AllFields,FIELDS...>() ) fieldSenderCompID.offset = pos;
      if constexpr ( wanted<StopOn<FieldSenderCompID>,FIELDS...>() ) return pos;
      break;
 
    case FieldTargetCompID::RAW_TAG:
-     FIXPP_PRINT_FIELD(TargetCompID) 
      if constexpr ( wanted<FieldTargetCompID,FIELDS...>() or wanted<AllFields,FIELDS...>() ) fieldTargetCompID.offset = pos;
      if constexpr ( wanted<StopOn<FieldTargetCompID>,FIELDS...>() ) return pos;
      break;
 
    case FieldMsgSeqNum::RAW_TAG:
-     FIXPP_PRINT_FIELD(MsgSeqNum) 
      if constexpr ( wanted<FieldMsgSeqNum,FIELDS...>() or wanted<AllFields,FIELDS...>() ) fieldMsgSeqNum.offset = pos;
      if constexpr ( wanted<StopOn<FieldMsgSeqNum>,FIELDS...>() ) return pos;
      break;
 
    case FieldSendingTime::RAW_TAG:
-     FIXPP_PRINT_FIELD(SendingTime) 
      if constexpr ( wanted<FieldSendingTime,FIELDS...>() or wanted<AllFields,FIELDS...>() ) fieldSendingTime.offset = pos;
      if constexpr ( wanted<StopOn<FieldSendingTime>,FIELDS...>() ) return pos;
      break;
 
    case FieldCheckSum::RAW_TAG:
-     FIXPP_PRINT_FIELD(CheckSum) 
      if constexpr ( wanted<FieldCheckSum,FIELDS...>() or wanted<AllFields,FIELDS...>() ) fieldCheckSum.offset = pos;
      gotoNextField( fix, pos );
      _fixLength = pos;
      return pos;
 
-   default: FIXPP_PRINT_UNKNOWN_FIELD
+   default:
      _fixLength = prev;
      return prev;
    }
@@ -307,6 +297,7 @@ while( pos < (int)len ) {
 
 template< typename... FIELDS > 
 offset_t MessageNewOrderSingle::select( const char * fix, unsigned len ){
+static_assert( ( std::is_base_of_v<FieldBase,FIELDS> and ... ), "not a Field type in <FIELDS>" ); 
 _fixPtr = fix;
 offset_t prev = 0, pos = 0;
 while( pos < (int)len ) {
@@ -316,79 +307,67 @@ while( pos < (int)len ) {
    switch( tag ){
 
    case FieldClOrdID::RAW_TAG:
-     FIXPP_PRINT_FIELD(ClOrdID) 
      if constexpr ( wanted<FieldClOrdID,FIELDS...>() or wanted<AllFields,FIELDS...>() ) fieldClOrdID.offset = pos;
      if constexpr ( wanted<StopOn<FieldClOrdID>,FIELDS...>() ) return pos;
      break;
 
    case FieldAccount::RAW_TAG:
-     FIXPP_PRINT_FIELD(Account) 
      if constexpr ( wanted<FieldAccount,FIELDS...>() or wanted<AllFields,FIELDS...>() ) fieldAccount.offset = pos;
      if constexpr ( wanted<StopOn<FieldAccount>,FIELDS...>() ) return pos;
      break;
 
    case FieldSymbol::RAW_TAG:
-     FIXPP_PRINT_FIELD(Symbol) 
      if constexpr ( wanted<FieldSymbol,FIELDS...>() or wanted<AllFields,FIELDS...>() ) fieldSymbol.offset = pos;
      if constexpr ( wanted<StopOn<FieldSymbol>,FIELDS...>() ) return pos;
      break;
 
    case FieldSecurityID::RAW_TAG:
-     FIXPP_PRINT_FIELD(SecurityID) 
      if constexpr ( wanted<FieldSecurityID,FIELDS...>() or wanted<AllFields,FIELDS...>() ) fieldSecurityID.offset = pos;
      if constexpr ( wanted<StopOn<FieldSecurityID>,FIELDS...>() ) return pos;
      break;
 
    case FieldSide::RAW_TAG:
-     FIXPP_PRINT_FIELD(Side) 
      if constexpr ( wanted<FieldSide,FIELDS...>() or wanted<AllFields,FIELDS...>() ) fieldSide.offset = pos;
      if constexpr ( wanted<StopOn<FieldSide>,FIELDS...>() ) return pos;
      break;
 
    case FieldQtyType::RAW_TAG:
-     FIXPP_PRINT_FIELD(QtyType) 
      if constexpr ( wanted<FieldQtyType,FIELDS...>() or wanted<AllFields,FIELDS...>() ) fieldQtyType.offset = pos;
      if constexpr ( wanted<StopOn<FieldQtyType>,FIELDS...>() ) return pos;
      break;
 
    case FieldOrderQty::RAW_TAG:
-     FIXPP_PRINT_FIELD(OrderQty) 
      if constexpr ( wanted<FieldOrderQty,FIELDS...>() or wanted<AllFields,FIELDS...>() ) fieldOrderQty.offset = pos;
      if constexpr ( wanted<StopOn<FieldOrderQty>,FIELDS...>() ) return pos;
      break;
 
    case FieldOrdType::RAW_TAG:
-     FIXPP_PRINT_FIELD(OrdType) 
      if constexpr ( wanted<FieldOrdType,FIELDS...>() or wanted<AllFields,FIELDS...>() ) fieldOrdType.offset = pos;
      if constexpr ( wanted<StopOn<FieldOrdType>,FIELDS...>() ) return pos;
      break;
 
    case FieldPrice::RAW_TAG:
-     FIXPP_PRINT_FIELD(Price) 
      if constexpr ( wanted<FieldPrice,FIELDS...>() or wanted<AllFields,FIELDS...>() ) fieldPrice.offset = pos;
      if constexpr ( wanted<StopOn<FieldPrice>,FIELDS...>() ) return pos;
      break;
 
    case FieldStopPx::RAW_TAG:
-     FIXPP_PRINT_FIELD(StopPx) 
      if constexpr ( wanted<FieldStopPx,FIELDS...>() or wanted<AllFields,FIELDS...>() ) fieldStopPx.offset = pos;
      if constexpr ( wanted<StopOn<FieldStopPx>,FIELDS...>() ) return pos;
      break;
 
    case FieldTransactTime::RAW_TAG:
-     FIXPP_PRINT_FIELD(TransactTime) 
      if constexpr ( wanted<FieldTransactTime,FIELDS...>() or wanted<AllFields,FIELDS...>() ) fieldTransactTime.offset = pos;
      if constexpr ( wanted<StopOn<FieldTransactTime>,FIELDS...>() ) return pos;
      break;
 
    case FieldCheckSum::RAW_TAG:
-     FIXPP_PRINT_FIELD(CheckSum) 
      if constexpr ( wanted<FieldCheckSum,FIELDS...>() or wanted<AllFields,FIELDS...>() ) fieldCheckSum.offset = pos;
      gotoNextField( fix, pos );
      _fixLength = pos;
      return pos;
 
-   default: FIXPP_PRINT_UNKNOWN_FIELD
+   default:
      _fixLength = prev;
      return prev;
    }
@@ -400,6 +379,7 @@ while( pos < (int)len ) {
 
 template< typename... FIELDS > 
 offset_t MessageExecutionReport::select( const char * fix, unsigned len ){
+static_assert( ( std::is_base_of_v<FieldBase,FIELDS> and ... ), "not a Field type in <FIELDS>" ); 
 _fixPtr = fix;
 offset_t prev = 0, pos = 0;
 while( pos < (int)len ) {
@@ -409,175 +389,146 @@ while( pos < (int)len ) {
    switch( tag ){
 
    case FieldOrderID::RAW_TAG:
-     FIXPP_PRINT_FIELD(OrderID) 
      if constexpr ( wanted<FieldOrderID,FIELDS...>() or wanted<AllFields,FIELDS...>() ) fieldOrderID.offset = pos;
      if constexpr ( wanted<StopOn<FieldOrderID>,FIELDS...>() ) return pos;
      break;
 
    case FieldClOrdID::RAW_TAG:
-     FIXPP_PRINT_FIELD(ClOrdID) 
      if constexpr ( wanted<FieldClOrdID,FIELDS...>() or wanted<AllFields,FIELDS...>() ) fieldClOrdID.offset = pos;
      if constexpr ( wanted<StopOn<FieldClOrdID>,FIELDS...>() ) return pos;
      break;
 
    case FieldOrigClOrdID::RAW_TAG:
-     FIXPP_PRINT_FIELD(OrigClOrdID) 
      if constexpr ( wanted<FieldOrigClOrdID,FIELDS...>() or wanted<AllFields,FIELDS...>() ) fieldOrigClOrdID.offset = pos;
      if constexpr ( wanted<StopOn<FieldOrigClOrdID>,FIELDS...>() ) return pos;
      break;
 
    case FieldExecID::RAW_TAG:
-     FIXPP_PRINT_FIELD(ExecID) 
      if constexpr ( wanted<FieldExecID,FIELDS...>() or wanted<AllFields,FIELDS...>() ) fieldExecID.offset = pos;
      if constexpr ( wanted<StopOn<FieldExecID>,FIELDS...>() ) return pos;
      break;
 
    case FieldExecType::RAW_TAG:
-     FIXPP_PRINT_FIELD(ExecType) 
      if constexpr ( wanted<FieldExecType,FIELDS...>() or wanted<AllFields,FIELDS...>() ) fieldExecType.offset = pos;
      if constexpr ( wanted<StopOn<FieldExecType>,FIELDS...>() ) return pos;
      break;
 
    case FieldOrdStatus::RAW_TAG:
-     FIXPP_PRINT_FIELD(OrdStatus) 
      if constexpr ( wanted<FieldOrdStatus,FIELDS...>() or wanted<AllFields,FIELDS...>() ) fieldOrdStatus.offset = pos;
      if constexpr ( wanted<StopOn<FieldOrdStatus>,FIELDS...>() ) return pos;
      break;
 
    case FieldOrdRejReason::RAW_TAG:
-     FIXPP_PRINT_FIELD(OrdRejReason) 
      if constexpr ( wanted<FieldOrdRejReason,FIELDS...>() or wanted<AllFields,FIELDS...>() ) fieldOrdRejReason.offset = pos;
      if constexpr ( wanted<StopOn<FieldOrdRejReason>,FIELDS...>() ) return pos;
      break;
 
    case FieldAccount::RAW_TAG:
-     FIXPP_PRINT_FIELD(Account) 
      if constexpr ( wanted<FieldAccount,FIELDS...>() or wanted<AllFields,FIELDS...>() ) fieldAccount.offset = pos;
      if constexpr ( wanted<StopOn<FieldAccount>,FIELDS...>() ) return pos;
      break;
 
    case FieldSymbol::RAW_TAG:
-     FIXPP_PRINT_FIELD(Symbol) 
      if constexpr ( wanted<FieldSymbol,FIELDS...>() or wanted<AllFields,FIELDS...>() ) fieldSymbol.offset = pos;
      if constexpr ( wanted<StopOn<FieldSymbol>,FIELDS...>() ) return pos;
      break;
 
    case FieldSecurityID::RAW_TAG:
-     FIXPP_PRINT_FIELD(SecurityID) 
      if constexpr ( wanted<FieldSecurityID,FIELDS...>() or wanted<AllFields,FIELDS...>() ) fieldSecurityID.offset = pos;
      if constexpr ( wanted<StopOn<FieldSecurityID>,FIELDS...>() ) return pos;
      break;
 
    case FieldSecurityType::RAW_TAG:
-     FIXPP_PRINT_FIELD(SecurityType) 
      if constexpr ( wanted<FieldSecurityType,FIELDS...>() or wanted<AllFields,FIELDS...>() ) fieldSecurityType.offset = pos;
      if constexpr ( wanted<StopOn<FieldSecurityType>,FIELDS...>() ) return pos;
      break;
 
    case FieldText::RAW_TAG:
-     FIXPP_PRINT_FIELD(Text) 
      if constexpr ( wanted<FieldText,FIELDS...>() or wanted<AllFields,FIELDS...>() ) fieldText.offset = pos;
      if constexpr ( wanted<StopOn<FieldText>,FIELDS...>() ) return pos;
      break;
 
    case FieldProduct::RAW_TAG:
-     FIXPP_PRINT_FIELD(Product) 
      if constexpr ( wanted<FieldProduct,FIELDS...>() or wanted<AllFields,FIELDS...>() ) fieldProduct.offset = pos;
      if constexpr ( wanted<StopOn<FieldProduct>,FIELDS...>() ) return pos;
      break;
 
    case FieldSide::RAW_TAG:
-     FIXPP_PRINT_FIELD(Side) 
      if constexpr ( wanted<FieldSide,FIELDS...>() or wanted<AllFields,FIELDS...>() ) fieldSide.offset = pos;
      if constexpr ( wanted<StopOn<FieldSide>,FIELDS...>() ) return pos;
      break;
 
    case FieldQtyType::RAW_TAG:
-     FIXPP_PRINT_FIELD(QtyType) 
      if constexpr ( wanted<FieldQtyType,FIELDS...>() or wanted<AllFields,FIELDS...>() ) fieldQtyType.offset = pos;
      if constexpr ( wanted<StopOn<FieldQtyType>,FIELDS...>() ) return pos;
      break;
 
    case FieldOrderQty::RAW_TAG:
-     FIXPP_PRINT_FIELD(OrderQty) 
      if constexpr ( wanted<FieldOrderQty,FIELDS...>() or wanted<AllFields,FIELDS...>() ) fieldOrderQty.offset = pos;
      if constexpr ( wanted<StopOn<FieldOrderQty>,FIELDS...>() ) return pos;
      break;
 
    case FieldOrdType::RAW_TAG:
-     FIXPP_PRINT_FIELD(OrdType) 
      if constexpr ( wanted<FieldOrdType,FIELDS...>() or wanted<AllFields,FIELDS...>() ) fieldOrdType.offset = pos;
      if constexpr ( wanted<StopOn<FieldOrdType>,FIELDS...>() ) return pos;
      break;
 
    case FieldPriceType::RAW_TAG:
-     FIXPP_PRINT_FIELD(PriceType) 
      if constexpr ( wanted<FieldPriceType,FIELDS...>() or wanted<AllFields,FIELDS...>() ) fieldPriceType.offset = pos;
      if constexpr ( wanted<StopOn<FieldPriceType>,FIELDS...>() ) return pos;
      break;
 
    case FieldPrice::RAW_TAG:
-     FIXPP_PRINT_FIELD(Price) 
      if constexpr ( wanted<FieldPrice,FIELDS...>() or wanted<AllFields,FIELDS...>() ) fieldPrice.offset = pos;
      if constexpr ( wanted<StopOn<FieldPrice>,FIELDS...>() ) return pos;
      break;
 
    case FieldStopPx::RAW_TAG:
-     FIXPP_PRINT_FIELD(StopPx) 
      if constexpr ( wanted<FieldStopPx,FIELDS...>() or wanted<AllFields,FIELDS...>() ) fieldStopPx.offset = pos;
      if constexpr ( wanted<StopOn<FieldStopPx>,FIELDS...>() ) return pos;
      break;
 
    case FieldCurrency::RAW_TAG:
-     FIXPP_PRINT_FIELD(Currency) 
      if constexpr ( wanted<FieldCurrency,FIELDS...>() or wanted<AllFields,FIELDS...>() ) fieldCurrency.offset = pos;
      if constexpr ( wanted<StopOn<FieldCurrency>,FIELDS...>() ) return pos;
      break;
 
    case FieldTimeInForce::RAW_TAG:
-     FIXPP_PRINT_FIELD(TimeInForce) 
      if constexpr ( wanted<FieldTimeInForce,FIELDS...>() or wanted<AllFields,FIELDS...>() ) fieldTimeInForce.offset = pos;
      if constexpr ( wanted<StopOn<FieldTimeInForce>,FIELDS...>() ) return pos;
      break;
 
    case FieldExecInst::RAW_TAG:
-     FIXPP_PRINT_FIELD(ExecInst) 
      if constexpr ( wanted<FieldExecInst,FIELDS...>() or wanted<AllFields,FIELDS...>() ) fieldExecInst.offset = pos;
      if constexpr ( wanted<StopOn<FieldExecInst>,FIELDS...>() ) return pos;
      break;
 
    case FieldLastQty::RAW_TAG:
-     FIXPP_PRINT_FIELD(LastQty) 
      if constexpr ( wanted<FieldLastQty,FIELDS...>() or wanted<AllFields,FIELDS...>() ) fieldLastQty.offset = pos;
      if constexpr ( wanted<StopOn<FieldLastQty>,FIELDS...>() ) return pos;
      break;
 
    case FieldLastPx::RAW_TAG:
-     FIXPP_PRINT_FIELD(LastPx) 
      if constexpr ( wanted<FieldLastPx,FIELDS...>() or wanted<AllFields,FIELDS...>() ) fieldLastPx.offset = pos;
      if constexpr ( wanted<StopOn<FieldLastPx>,FIELDS...>() ) return pos;
      break;
 
    case FieldLeavesQty::RAW_TAG:
-     FIXPP_PRINT_FIELD(LeavesQty) 
      if constexpr ( wanted<FieldLeavesQty,FIELDS...>() or wanted<AllFields,FIELDS...>() ) fieldLeavesQty.offset = pos;
      if constexpr ( wanted<StopOn<FieldLeavesQty>,FIELDS...>() ) return pos;
      break;
 
    case FieldAvgPx::RAW_TAG:
-     FIXPP_PRINT_FIELD(AvgPx) 
      if constexpr ( wanted<FieldAvgPx,FIELDS...>() or wanted<AllFields,FIELDS...>() ) fieldAvgPx.offset = pos;
      if constexpr ( wanted<StopOn<FieldAvgPx>,FIELDS...>() ) return pos;
      break;
 
    case FieldCumQty::RAW_TAG:
-     FIXPP_PRINT_FIELD(CumQty) 
      if constexpr ( wanted<FieldCumQty,FIELDS...>() or wanted<AllFields,FIELDS...>() ) fieldCumQty.offset = pos;
      if constexpr ( wanted<StopOn<FieldCumQty>,FIELDS...>() ) return pos;
      break;
 
    case FieldNoLegs::RAW_TAG:
-     FIXPP_PRINT_FIELD(NoLegs) 
      if constexpr ( wanted<FieldNoLegs,FIELDS...>() or wanted<AllFields,FIELDS...>() ) fieldNoLegs.offset = pos;
      if constexpr ( wanted<StopOn<FieldNoLegs>,FIELDS...>() ) return pos;
      posIsOnNextField = true;
@@ -586,13 +537,12 @@ while( pos < (int)len ) {
      break;
 
    case FieldCheckSum::RAW_TAG:
-     FIXPP_PRINT_FIELD(CheckSum) 
      if constexpr ( wanted<FieldCheckSum,FIELDS...>() or wanted<AllFields,FIELDS...>() ) fieldCheckSum.offset = pos;
      gotoNextField( fix, pos );
      _fixLength = pos;
      return pos;
 
-   default: FIXPP_PRINT_UNKNOWN_FIELD
+   default:
      _fixLength = prev;
      return prev;
    }

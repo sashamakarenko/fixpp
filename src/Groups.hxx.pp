@@ -11,9 +11,10 @@ class Group##NAME : public MessageBase\
 <n1>    static const char * getMessageName();\
 <n1>    static offset_t scan( Array & arr, const char * fix, unsigned len );\
 <n1>    static offset_t scanSafely( Array & arr, const char * fix, unsigned len, unsigned & groupCount, const char * & badFieldPtr );\
+<n1>    template< typename... FIELDS > static offset_t select( Array & arr, const char * fix, unsigned len );\
 <n1>    static offset_t skip( const char * fix, unsigned len );\
 <n1>    const char * getFieldValue( unsigned tag ) const;\
-<n1>    template< typename FIELD > static constexpr bool hasField() { return false; }\
+<n1>    template< typename FIELD > static constexpr bool hasField();\
 <n1>    template< typename FIELD > typename FIELD::ValueType get() const;\
 <n1>    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<Group##NAME,0,FIELDS...>(*this,tpl); return tpl; }\
 <n1>    template< typename... FIELDS > std::tuple<anyToBool<FIELDS>...> getPresenceOf() const { std::tuple<anyToBool<FIELDS>...> tpl{}; buildPresenceTuple<Group##NAME,0,FIELDS...>(*this,tpl); return tpl; }\
@@ -30,6 +31,26 @@ class Group##NAME : public MessageBase\
 
 #define FIX_MSG_GROUP_END \
 <nl>};
+
+#include <Groups.def>
+
+#undef FIX_MSG_GROUP_BEGIN
+#undef FIX_MSG_FIELD
+#undef FIX_MSG_GROUP_END
+#undef FIX_MSG_GROUP
+
+<com> ---------------------------------- default hasField<field> ---------------------------------
+
+#define FIX_MSG_GROUP_BEGIN(NAME,FIRST_FIELD) \
+<def> FIXPP_MSG_CLASS Group##NAME \
+<nl>template< typename FIELD > inline constexpr bool FIXPP_MSG_CLASS::hasField() { return false
+
+#define FIX_MSG_FIELD(NAME) <remove-me>
+
+#define FIX_MSG_GROUP(NAME) or Group##NAME::hasField<FIELD>()
+
+#define FIX_MSG_GROUP_END ; } \
+<nl><undef> FIXPP_MSG_CLASS
 
 #include <Groups.def>
 

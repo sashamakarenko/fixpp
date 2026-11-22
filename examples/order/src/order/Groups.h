@@ -35,9 +35,10 @@ class GroupLegStipulations : public MessageBase
    static const char * getMessageName();
    static offset_t scan( Array & arr, const char * fix, unsigned len );
    static offset_t scanSafely( Array & arr, const char * fix, unsigned len, unsigned & groupCount, const char * & badFieldPtr );
+   template< typename... FIELDS > static offset_t select( Array & arr, const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    const char * getFieldValue( unsigned tag ) const;
-   template< typename FIELD > static constexpr bool hasField() { return false; }
+   template< typename FIELD > static constexpr bool hasField();
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<GroupLegStipulations,0,FIELDS...>(*this,tpl); return tpl; }
    template< typename... FIELDS > std::tuple<anyToBool<FIELDS>...> getPresenceOf() const { std::tuple<anyToBool<FIELDS>...> tpl{}; buildPresenceTuple<GroupLegStipulations,0,FIELDS...>(*this,tpl); return tpl; }
@@ -82,9 +83,10 @@ class GroupNestedPartySubIDs : public MessageBase
    static const char * getMessageName();
    static offset_t scan( Array & arr, const char * fix, unsigned len );
    static offset_t scanSafely( Array & arr, const char * fix, unsigned len, unsigned & groupCount, const char * & badFieldPtr );
+   template< typename... FIELDS > static offset_t select( Array & arr, const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    const char * getFieldValue( unsigned tag ) const;
-   template< typename FIELD > static constexpr bool hasField() { return false; }
+   template< typename FIELD > static constexpr bool hasField();
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<GroupNestedPartySubIDs,0,FIELDS...>(*this,tpl); return tpl; }
    template< typename... FIELDS > std::tuple<anyToBool<FIELDS>...> getPresenceOf() const { std::tuple<anyToBool<FIELDS>...> tpl{}; buildPresenceTuple<GroupNestedPartySubIDs,0,FIELDS...>(*this,tpl); return tpl; }
@@ -129,9 +131,10 @@ class GroupNestedPartyIDs : public MessageBase
    static const char * getMessageName();
    static offset_t scan( Array & arr, const char * fix, unsigned len );
    static offset_t scanSafely( Array & arr, const char * fix, unsigned len, unsigned & groupCount, const char * & badFieldPtr );
+   template< typename... FIELDS > static offset_t select( Array & arr, const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    const char * getFieldValue( unsigned tag ) const;
-   template< typename FIELD > static constexpr bool hasField() { return false; }
+   template< typename FIELD > static constexpr bool hasField();
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<GroupNestedPartyIDs,0,FIELDS...>(*this,tpl); return tpl; }
    template< typename... FIELDS > std::tuple<anyToBool<FIELDS>...> getPresenceOf() const { std::tuple<anyToBool<FIELDS>...> tpl{}; buildPresenceTuple<GroupNestedPartyIDs,0,FIELDS...>(*this,tpl); return tpl; }
@@ -201,9 +204,10 @@ class GroupLegs : public MessageBase
    static const char * getMessageName();
    static offset_t scan( Array & arr, const char * fix, unsigned len );
    static offset_t scanSafely( Array & arr, const char * fix, unsigned len, unsigned & groupCount, const char * & badFieldPtr );
+   template< typename... FIELDS > static offset_t select( Array & arr, const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    const char * getFieldValue( unsigned tag ) const;
-   template< typename FIELD > static constexpr bool hasField() { return false; }
+   template< typename FIELD > static constexpr bool hasField();
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<GroupLegs,0,FIELDS...>(*this,tpl); return tpl; }
    template< typename... FIELDS > std::tuple<anyToBool<FIELDS>...> getPresenceOf() const { std::tuple<anyToBool<FIELDS>...> tpl{}; buildPresenceTuple<GroupLegs,0,FIELDS...>(*this,tpl); return tpl; }
@@ -316,6 +320,27 @@ class GroupLegs : public MessageBase
    private: FieldLegLastPx fieldLegLastPx;
 
 };
+
+// ---------------------------------- default hasField<field> ---------------------------------
+
+#define FIXPP_MSG_CLASS GroupLegStipulations 
+template< typename FIELD > inline constexpr bool FIXPP_MSG_CLASS::hasField() { return false; } 
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS GroupNestedPartySubIDs 
+template< typename FIELD > inline constexpr bool FIXPP_MSG_CLASS::hasField() { return false; } 
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS GroupNestedPartyIDs 
+template< typename FIELD > inline constexpr bool FIXPP_MSG_CLASS::hasField() { return false
+or GroupNestedPartySubIDs::hasField<FIELD>(); } 
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS GroupLegs 
+template< typename FIELD > inline constexpr bool FIXPP_MSG_CLASS::hasField() { return false
+or GroupLegStipulations::hasField<FIELD>()
+or GroupNestedPartyIDs::hasField<FIELD>(); } 
+#undef FIXPP_MSG_CLASS
 
 // ---------------------------------- hasField<field> ---------------------------------
 

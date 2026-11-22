@@ -262,6 +262,37 @@ In most cases a latency sensitive implementation will tend to reuse objects and 
         ...
     }
 ```
+### Selective scan
+
+One can choose to scan a limited set of fields with `Message::select<FIELDS>()`. Where `<FIELDS>` is the list of filed types to retain after scan.
+There is no order in `<FIELDS>`, neither type checking (types unknown to the message will be ignored). If repeating group fields are of interest, they must appear in `<FIELDS>` as well.
+
+```c++
+#include "MessageSelect.h"
+    ...
+    offset_t pos = header.select<SenderCompID>( fix, msglen );
+    pos += execReport.select<Price,OrderQty,NoLegs,LegSymbol,NoNestedPartyIDs,NestedPartyID>( fix + pos, msglen - pos );
+```
+
+### Breaking scan
+
+By the FIX protocol design, in the example above the `select` method will have go through all fields but keep track only of wanted fields location.
+One can shorten the scan process with a special type `StopOn<FIELD>`. Several `StopOn`s are acceptable in `<FIELDS>`.
+
+```c++
+    offset_t pos = header.skip( fix, msglen );
+    pos += execReport.select<Price,OrderQty,NoLegs,StopOn<NoLegs>>( fix + pos, msglen - pos );
+```
+
+To select all fields preceding `LeavesQty`, for instance, it is easier to select `AllFields` with `StopOn<LeavesQty>`:
+
+```c++
+    offset_t pos = header.skip( fix, msglen );
+    pos += execReport.select<AllFields,StopOn<LeavesQty>>( fix + pos, msglen - pos );
+    auto [ price, symbol, leavesQty ] = execReport.getFields<Price,Symbol,LeavesQty>();
+```
+Naturally, `AllFields` and `StopOn` are excluded from repeating groups scanning.
+
 ### Skipping message header
 
 Once you know your session's SenderCompID and TargetCompIDs, and you trust the venue, you can skip the header and scan the message body:

@@ -172,6 +172,7 @@ int main( int args, const char ** argv )
 
     CHECK_EQ( mdsfr knowns field Price, MarketDataSnapshotFullRefresh::hasField<Price>(), false );
     CHECK_EQ( mdsfr knowns field MDReqID, MarketDataSnapshotFullRefresh::hasField<MDReqID>(), true );
+    CHECK_EQ( mdsfr knowns recursively field MDEntryPx, MarketDataSnapshotFullRefresh::hasField<MDEntryPx>(), true );
 
     CHECK_EQ( enum raw Side == BUY, SideEnums::BUY.raw, toRawEnum( er.ptrToSide() ) )
     CHECK_EQ( enum Side == BUY, er.getSide(), SideEnums::BUY )

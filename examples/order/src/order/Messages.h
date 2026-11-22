@@ -34,10 +34,11 @@ class MessageHeader: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
+   template< typename... FIELDS > offset_t select( const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
-   template< typename FIELD > static constexpr bool hasField() { return false; }
+   template< typename FIELD > static constexpr bool hasField();
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<MessageHeader,0,FIELDS...>(*this,tpl); return tpl; }
    template< typename... FIELDS > std::tuple<anyToBool<FIELDS>...> getPresenceOf() const { std::tuple<anyToBool<FIELDS>...> tpl{}; buildPresenceTuple<MessageHeader,0,FIELDS...>(*this,tpl); return tpl; }
@@ -144,10 +145,11 @@ class MessageNewOrderSingle: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
+   template< typename... FIELDS > offset_t select( const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
-   template< typename FIELD > static constexpr bool hasField() { return false; }
+   template< typename FIELD > static constexpr bool hasField();
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<MessageNewOrderSingle,0,FIELDS...>(*this,tpl); return tpl; }
    template< typename... FIELDS > std::tuple<anyToBool<FIELDS>...> getPresenceOf() const { std::tuple<anyToBool<FIELDS>...> tpl{}; buildPresenceTuple<MessageNewOrderSingle,0,FIELDS...>(*this,tpl); return tpl; }
@@ -293,10 +295,11 @@ class MessageExecutionReport: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
+   template< typename... FIELDS > offset_t select( const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
-   template< typename FIELD > static constexpr bool hasField() { return false; }
+   template< typename FIELD > static constexpr bool hasField();
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<MessageExecutionReport,0,FIELDS...>(*this,tpl); return tpl; }
    template< typename... FIELDS > std::tuple<anyToBool<FIELDS>...> getPresenceOf() const { std::tuple<anyToBool<FIELDS>...> tpl{}; buildPresenceTuple<MessageExecutionReport,0,FIELDS...>(*this,tpl); return tpl; }
@@ -617,6 +620,21 @@ class MessageExecutionReport: public MessageBase
    private: FieldCheckSum fieldCheckSum;
 };
 
+// ---------------------------------- default hasField<field> ---------------------------------
+
+#define FIXPP_MSG_CLASS MessageHeader 
+template< typename FIELD > inline constexpr bool FIXPP_MSG_CLASS::hasField() { return false; } 
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageNewOrderSingle 
+template< typename FIELD > inline constexpr bool FIXPP_MSG_CLASS::hasField() { return false; } 
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageExecutionReport 
+template< typename FIELD > inline constexpr bool FIXPP_MSG_CLASS::hasField() { return false
+or GroupLegs::hasField<FIELD>(); } 
+#undef FIXPP_MSG_CLASS
+
 // ---------------------------------- hasField<field> ---------------------------------
 
 #define FIXPP_MSG_CLASS MessageHeader
@@ -672,7 +690,7 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldLastPx>() { retu
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldLeavesQty>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAvgPx>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCumQty>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoLegs>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoLegs>() { return true; }
 #undef FIXPP_MSG_CLASS
 
 // ---------------------------------- ParserDispatcher ---------------------------------

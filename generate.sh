@@ -274,6 +274,9 @@ echo "  processing include .hxx and .cxx"
     done
 )
 
+sed ':a;N;$!ba;s/\n; }/; }/g' -i ${DSTDIR}/Groups.h
+sed ':a;N;$!ba;s/\n; }/; }/g' -i ${DSTDIR}/Messages.h
+
 # message and group names for gdb pretty printing
 dst=$PPDIR/printers.py
 if [[ -n "$PPDIR" ]]; then

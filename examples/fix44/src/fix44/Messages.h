@@ -34,10 +34,11 @@ class MessageHeader: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
+   template< typename... FIELDS > offset_t select( const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
-   template< typename FIELD > static constexpr bool hasField() { return false; }
+   template< typename FIELD > static constexpr bool hasField();
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<MessageHeader,0,FIELDS...>(*this,tpl); return tpl; }
    template< typename... FIELDS > std::tuple<anyToBool<FIELDS>...> getPresenceOf() const { std::tuple<anyToBool<FIELDS>...> tpl{}; buildPresenceTuple<MessageHeader,0,FIELDS...>(*this,tpl); return tpl; }
@@ -349,10 +350,11 @@ class MessageHeartbeat: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
+   template< typename... FIELDS > offset_t select( const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
-   template< typename FIELD > static constexpr bool hasField() { return false; }
+   template< typename FIELD > static constexpr bool hasField();
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<MessageHeartbeat,0,FIELDS...>(*this,tpl); return tpl; }
    template< typename... FIELDS > std::tuple<anyToBool<FIELDS>...> getPresenceOf() const { std::tuple<anyToBool<FIELDS>...> tpl{}; buildPresenceTuple<MessageHeartbeat,0,FIELDS...>(*this,tpl); return tpl; }
@@ -398,10 +400,11 @@ class MessageTestRequest: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
+   template< typename... FIELDS > offset_t select( const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
-   template< typename FIELD > static constexpr bool hasField() { return false; }
+   template< typename FIELD > static constexpr bool hasField();
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<MessageTestRequest,0,FIELDS...>(*this,tpl); return tpl; }
    template< typename... FIELDS > std::tuple<anyToBool<FIELDS>...> getPresenceOf() const { std::tuple<anyToBool<FIELDS>...> tpl{}; buildPresenceTuple<MessageTestRequest,0,FIELDS...>(*this,tpl); return tpl; }
@@ -447,10 +450,11 @@ class MessageResendRequest: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
+   template< typename... FIELDS > offset_t select( const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
-   template< typename FIELD > static constexpr bool hasField() { return false; }
+   template< typename FIELD > static constexpr bool hasField();
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<MessageResendRequest,0,FIELDS...>(*this,tpl); return tpl; }
    template< typename... FIELDS > std::tuple<anyToBool<FIELDS>...> getPresenceOf() const { std::tuple<anyToBool<FIELDS>...> tpl{}; buildPresenceTuple<MessageResendRequest,0,FIELDS...>(*this,tpl); return tpl; }
@@ -506,10 +510,11 @@ class MessageReject: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
+   template< typename... FIELDS > offset_t select( const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
-   template< typename FIELD > static constexpr bool hasField() { return false; }
+   template< typename FIELD > static constexpr bool hasField();
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<MessageReject,0,FIELDS...>(*this,tpl); return tpl; }
    template< typename... FIELDS > std::tuple<anyToBool<FIELDS>...> getPresenceOf() const { std::tuple<anyToBool<FIELDS>...> tpl{}; buildPresenceTuple<MessageReject,0,FIELDS...>(*this,tpl); return tpl; }
@@ -615,10 +620,11 @@ class MessageSequenceReset: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
+   template< typename... FIELDS > offset_t select( const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
-   template< typename FIELD > static constexpr bool hasField() { return false; }
+   template< typename FIELD > static constexpr bool hasField();
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<MessageSequenceReset,0,FIELDS...>(*this,tpl); return tpl; }
    template< typename... FIELDS > std::tuple<anyToBool<FIELDS>...> getPresenceOf() const { std::tuple<anyToBool<FIELDS>...> tpl{}; buildPresenceTuple<MessageSequenceReset,0,FIELDS...>(*this,tpl); return tpl; }
@@ -674,10 +680,11 @@ class MessageLogout: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
+   template< typename... FIELDS > offset_t select( const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
-   template< typename FIELD > static constexpr bool hasField() { return false; }
+   template< typename FIELD > static constexpr bool hasField();
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<MessageLogout,0,FIELDS...>(*this,tpl); return tpl; }
    template< typename... FIELDS > std::tuple<anyToBool<FIELDS>...> getPresenceOf() const { std::tuple<anyToBool<FIELDS>...> tpl{}; buildPresenceTuple<MessageLogout,0,FIELDS...>(*this,tpl); return tpl; }
@@ -743,10 +750,11 @@ class MessageIOI: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
+   template< typename... FIELDS > offset_t select( const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
-   template< typename FIELD > static constexpr bool hasField() { return false; }
+   template< typename FIELD > static constexpr bool hasField();
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<MessageIOI,0,FIELDS...>(*this,tpl); return tpl; }
    template< typename... FIELDS > std::tuple<anyToBool<FIELDS>...> getPresenceOf() const { std::tuple<anyToBool<FIELDS>...> tpl{}; buildPresenceTuple<MessageIOI,0,FIELDS...>(*this,tpl); return tpl; }
@@ -1747,10 +1755,11 @@ class MessageAdvertisement: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
+   template< typename... FIELDS > offset_t select( const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
-   template< typename FIELD > static constexpr bool hasField() { return false; }
+   template< typename FIELD > static constexpr bool hasField();
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<MessageAdvertisement,0,FIELDS...>(*this,tpl); return tpl; }
    template< typename... FIELDS > std::tuple<anyToBool<FIELDS>...> getPresenceOf() const { std::tuple<anyToBool<FIELDS>...> tpl{}; buildPresenceTuple<MessageAdvertisement,0,FIELDS...>(*this,tpl); return tpl; }
@@ -2426,10 +2435,11 @@ class MessageExecutionReport: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
+   template< typename... FIELDS > offset_t select( const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
-   template< typename FIELD > static constexpr bool hasField() { return false; }
+   template< typename FIELD > static constexpr bool hasField();
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<MessageExecutionReport,0,FIELDS...>(*this,tpl); return tpl; }
    template< typename... FIELDS > std::tuple<anyToBool<FIELDS>...> getPresenceOf() const { std::tuple<anyToBool<FIELDS>...> tpl{}; buildPresenceTuple<MessageExecutionReport,0,FIELDS...>(*this,tpl); return tpl; }
@@ -4690,10 +4700,11 @@ class MessageOrderCancelReject: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
+   template< typename... FIELDS > offset_t select( const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
-   template< typename FIELD > static constexpr bool hasField() { return false; }
+   template< typename FIELD > static constexpr bool hasField();
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<MessageOrderCancelReject,0,FIELDS...>(*this,tpl); return tpl; }
    template< typename... FIELDS > std::tuple<anyToBool<FIELDS>...> getPresenceOf() const { std::tuple<anyToBool<FIELDS>...> tpl{}; buildPresenceTuple<MessageOrderCancelReject,0,FIELDS...>(*this,tpl); return tpl; }
@@ -4939,10 +4950,11 @@ class MessageLogon: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
+   template< typename... FIELDS > offset_t select( const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
-   template< typename FIELD > static constexpr bool hasField() { return false; }
+   template< typename FIELD > static constexpr bool hasField();
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<MessageLogon,0,FIELDS...>(*this,tpl); return tpl; }
    template< typename... FIELDS > std::tuple<anyToBool<FIELDS>...> getPresenceOf() const { std::tuple<anyToBool<FIELDS>...> tpl{}; buildPresenceTuple<MessageLogon,0,FIELDS...>(*this,tpl); return tpl; }
@@ -5093,10 +5105,11 @@ class MessageNews: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
+   template< typename... FIELDS > offset_t select( const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
-   template< typename FIELD > static constexpr bool hasField() { return false; }
+   template< typename FIELD > static constexpr bool hasField();
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<MessageNews,0,FIELDS...>(*this,tpl); return tpl; }
    template< typename... FIELDS > std::tuple<anyToBool<FIELDS>...> getPresenceOf() const { std::tuple<anyToBool<FIELDS>...> tpl{}; buildPresenceTuple<MessageNews,0,FIELDS...>(*this,tpl); return tpl; }
@@ -5287,10 +5300,11 @@ class MessageEmail: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
+   template< typename... FIELDS > offset_t select( const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
-   template< typename FIELD > static constexpr bool hasField() { return false; }
+   template< typename FIELD > static constexpr bool hasField();
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<MessageEmail,0,FIELDS...>(*this,tpl); return tpl; }
    template< typename... FIELDS > std::tuple<anyToBool<FIELDS>...> getPresenceOf() const { std::tuple<anyToBool<FIELDS>...> tpl{}; buildPresenceTuple<MessageEmail,0,FIELDS...>(*this,tpl); return tpl; }
@@ -5501,10 +5515,11 @@ class MessageNewOrderSingle: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
+   template< typename... FIELDS > offset_t select( const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
-   template< typename FIELD > static constexpr bool hasField() { return false; }
+   template< typename FIELD > static constexpr bool hasField();
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<MessageNewOrderSingle,0,FIELDS...>(*this,tpl); return tpl; }
    template< typename... FIELDS > std::tuple<anyToBool<FIELDS>...> getPresenceOf() const { std::tuple<anyToBool<FIELDS>...> tpl{}; buildPresenceTuple<MessageNewOrderSingle,0,FIELDS...>(*this,tpl); return tpl; }
@@ -7135,10 +7150,11 @@ class MessageNewOrderList: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
+   template< typename... FIELDS > offset_t select( const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
-   template< typename FIELD > static constexpr bool hasField() { return false; }
+   template< typename FIELD > static constexpr bool hasField();
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<MessageNewOrderList,0,FIELDS...>(*this,tpl); return tpl; }
    template< typename... FIELDS > std::tuple<anyToBool<FIELDS>...> getPresenceOf() const { std::tuple<anyToBool<FIELDS>...> tpl{}; buildPresenceTuple<MessageNewOrderList,0,FIELDS...>(*this,tpl); return tpl; }
@@ -7369,10 +7385,11 @@ class MessageOrderCancelRequest: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
+   template< typename... FIELDS > offset_t select( const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
-   template< typename FIELD > static constexpr bool hasField() { return false; }
+   template< typename FIELD > static constexpr bool hasField();
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<MessageOrderCancelRequest,0,FIELDS...>(*this,tpl); return tpl; }
    template< typename... FIELDS > std::tuple<anyToBool<FIELDS>...> getPresenceOf() const { std::tuple<anyToBool<FIELDS>...> tpl{}; buildPresenceTuple<MessageOrderCancelRequest,0,FIELDS...>(*this,tpl); return tpl; }
@@ -8178,10 +8195,11 @@ class MessageOrderCancelReplaceRequest: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
+   template< typename... FIELDS > offset_t select( const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
-   template< typename FIELD > static constexpr bool hasField() { return false; }
+   template< typename FIELD > static constexpr bool hasField();
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<MessageOrderCancelReplaceRequest,0,FIELDS...>(*this,tpl); return tpl; }
    template< typename... FIELDS > std::tuple<anyToBool<FIELDS>...> getPresenceOf() const { std::tuple<anyToBool<FIELDS>...> tpl{}; buildPresenceTuple<MessageOrderCancelReplaceRequest,0,FIELDS...>(*this,tpl); return tpl; }
@@ -9797,10 +9815,11 @@ class MessageOrderStatusRequest: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
+   template< typename... FIELDS > offset_t select( const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
-   template< typename FIELD > static constexpr bool hasField() { return false; }
+   template< typename FIELD > static constexpr bool hasField();
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<MessageOrderStatusRequest,0,FIELDS...>(*this,tpl); return tpl; }
    template< typename... FIELDS > std::tuple<anyToBool<FIELDS>...> getPresenceOf() const { std::tuple<anyToBool<FIELDS>...> tpl{}; buildPresenceTuple<MessageOrderStatusRequest,0,FIELDS...>(*this,tpl); return tpl; }
@@ -10476,10 +10495,11 @@ class MessageAllocationInstruction: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
+   template< typename... FIELDS > offset_t select( const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
-   template< typename FIELD > static constexpr bool hasField() { return false; }
+   template< typename FIELD > static constexpr bool hasField();
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<MessageAllocationInstruction,0,FIELDS...>(*this,tpl); return tpl; }
    template< typename... FIELDS > std::tuple<anyToBool<FIELDS>...> getPresenceOf() const { std::tuple<anyToBool<FIELDS>...> tpl{}; buildPresenceTuple<MessageAllocationInstruction,0,FIELDS...>(*this,tpl); return tpl; }
@@ -11835,10 +11855,11 @@ class MessageListCancelRequest: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
+   template< typename... FIELDS > offset_t select( const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
-   template< typename FIELD > static constexpr bool hasField() { return false; }
+   template< typename FIELD > static constexpr bool hasField();
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<MessageListCancelRequest,0,FIELDS...>(*this,tpl); return tpl; }
    template< typename... FIELDS > std::tuple<anyToBool<FIELDS>...> getPresenceOf() const { std::tuple<anyToBool<FIELDS>...> tpl{}; buildPresenceTuple<MessageListCancelRequest,0,FIELDS...>(*this,tpl); return tpl; }
@@ -11944,10 +11965,11 @@ class MessageListExecute: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
+   template< typename... FIELDS > offset_t select( const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
-   template< typename FIELD > static constexpr bool hasField() { return false; }
+   template< typename FIELD > static constexpr bool hasField();
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<MessageListExecute,0,FIELDS...>(*this,tpl); return tpl; }
    template< typename... FIELDS > std::tuple<anyToBool<FIELDS>...> getPresenceOf() const { std::tuple<anyToBool<FIELDS>...> tpl{}; buildPresenceTuple<MessageListExecute,0,FIELDS...>(*this,tpl); return tpl; }
@@ -12053,10 +12075,11 @@ class MessageListStatusRequest: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
+   template< typename... FIELDS > offset_t select( const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
-   template< typename FIELD > static constexpr bool hasField() { return false; }
+   template< typename FIELD > static constexpr bool hasField();
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<MessageListStatusRequest,0,FIELDS...>(*this,tpl); return tpl; }
    template< typename... FIELDS > std::tuple<anyToBool<FIELDS>...> getPresenceOf() const { std::tuple<anyToBool<FIELDS>...> tpl{}; buildPresenceTuple<MessageListStatusRequest,0,FIELDS...>(*this,tpl); return tpl; }
@@ -12132,10 +12155,11 @@ class MessageListStatus: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
+   template< typename... FIELDS > offset_t select( const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
-   template< typename FIELD > static constexpr bool hasField() { return false; }
+   template< typename FIELD > static constexpr bool hasField();
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<MessageListStatus,0,FIELDS...>(*this,tpl); return tpl; }
    template< typename... FIELDS > std::tuple<anyToBool<FIELDS>...> getPresenceOf() const { std::tuple<anyToBool<FIELDS>...> tpl{}; buildPresenceTuple<MessageListStatus,0,FIELDS...>(*this,tpl); return tpl; }
@@ -12296,10 +12320,11 @@ class MessageAllocationInstructionAck: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
+   template< typename... FIELDS > offset_t select( const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
-   template< typename FIELD > static constexpr bool hasField() { return false; }
+   template< typename FIELD > static constexpr bool hasField();
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<MessageAllocationInstructionAck,0,FIELDS...>(*this,tpl); return tpl; }
    template< typename... FIELDS > std::tuple<anyToBool<FIELDS>...> getPresenceOf() const { std::tuple<anyToBool<FIELDS>...> tpl{}; buildPresenceTuple<MessageAllocationInstructionAck,0,FIELDS...>(*this,tpl); return tpl; }
@@ -12505,10 +12530,11 @@ class MessageDontKnowTrade: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
+   template< typename... FIELDS > offset_t select( const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
-   template< typename FIELD > static constexpr bool hasField() { return false; }
+   template< typename FIELD > static constexpr bool hasField();
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<MessageDontKnowTrade,0,FIELDS...>(*this,tpl); return tpl; }
    template< typename... FIELDS > std::tuple<anyToBool<FIELDS>...> getPresenceOf() const { std::tuple<anyToBool<FIELDS>...> tpl{}; buildPresenceTuple<MessageDontKnowTrade,0,FIELDS...>(*this,tpl); return tpl; }
@@ -13164,10 +13190,11 @@ class MessageQuoteRequest: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
+   template< typename... FIELDS > offset_t select( const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
-   template< typename FIELD > static constexpr bool hasField() { return false; }
+   template< typename FIELD > static constexpr bool hasField();
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<MessageQuoteRequest,0,FIELDS...>(*this,tpl); return tpl; }
    template< typename... FIELDS > std::tuple<anyToBool<FIELDS>...> getPresenceOf() const { std::tuple<anyToBool<FIELDS>...> tpl{}; buildPresenceTuple<MessageQuoteRequest,0,FIELDS...>(*this,tpl); return tpl; }
@@ -13288,10 +13315,11 @@ class MessageQuote: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
+   template< typename... FIELDS > offset_t select( const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
-   template< typename FIELD > static constexpr bool hasField() { return false; }
+   template< typename FIELD > static constexpr bool hasField();
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<MessageQuote,0,FIELDS...>(*this,tpl); return tpl; }
    template< typename... FIELDS > std::tuple<anyToBool<FIELDS>...> getPresenceOf() const { std::tuple<anyToBool<FIELDS>...> tpl{}; buildPresenceTuple<MessageQuote,0,FIELDS...>(*this,tpl); return tpl; }
@@ -14612,10 +14640,11 @@ class MessageSettlementInstructions: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
+   template< typename... FIELDS > offset_t select( const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
-   template< typename FIELD > static constexpr bool hasField() { return false; }
+   template< typename FIELD > static constexpr bool hasField();
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<MessageSettlementInstructions,0,FIELDS...>(*this,tpl); return tpl; }
    template< typename... FIELDS > std::tuple<anyToBool<FIELDS>...> getPresenceOf() const { std::tuple<anyToBool<FIELDS>...> tpl{}; buildPresenceTuple<MessageSettlementInstructions,0,FIELDS...>(*this,tpl); return tpl; }
@@ -14756,10 +14785,11 @@ class MessageMarketDataRequest: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
+   template< typename... FIELDS > offset_t select( const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
-   template< typename FIELD > static constexpr bool hasField() { return false; }
+   template< typename FIELD > static constexpr bool hasField();
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<MessageMarketDataRequest,0,FIELDS...>(*this,tpl); return tpl; }
    template< typename... FIELDS > std::tuple<anyToBool<FIELDS>...> getPresenceOf() const { std::tuple<anyToBool<FIELDS>...> tpl{}; buildPresenceTuple<MessageMarketDataRequest,0,FIELDS...>(*this,tpl); return tpl; }
@@ -14940,10 +14970,11 @@ class MessageMarketDataSnapshotFullRefresh: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
+   template< typename... FIELDS > offset_t select( const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
-   template< typename FIELD > static constexpr bool hasField() { return false; }
+   template< typename FIELD > static constexpr bool hasField();
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<MessageMarketDataSnapshotFullRefresh,0,FIELDS...>(*this,tpl); return tpl; }
    template< typename... FIELDS > std::tuple<anyToBool<FIELDS>...> getPresenceOf() const { std::tuple<anyToBool<FIELDS>...> tpl{}; buildPresenceTuple<MessageMarketDataSnapshotFullRefresh,0,FIELDS...>(*this,tpl); return tpl; }
@@ -15524,10 +15555,11 @@ class MessageMarketDataIncrementalRefresh: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
+   template< typename... FIELDS > offset_t select( const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
-   template< typename FIELD > static constexpr bool hasField() { return false; }
+   template< typename FIELD > static constexpr bool hasField();
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<MessageMarketDataIncrementalRefresh,0,FIELDS...>(*this,tpl); return tpl; }
    template< typename... FIELDS > std::tuple<anyToBool<FIELDS>...> getPresenceOf() const { std::tuple<anyToBool<FIELDS>...> tpl{}; buildPresenceTuple<MessageMarketDataIncrementalRefresh,0,FIELDS...>(*this,tpl); return tpl; }
@@ -15608,10 +15640,11 @@ class MessageMarketDataRequestReject: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
+   template< typename... FIELDS > offset_t select( const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
-   template< typename FIELD > static constexpr bool hasField() { return false; }
+   template< typename FIELD > static constexpr bool hasField();
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<MessageMarketDataRequestReject,0,FIELDS...>(*this,tpl); return tpl; }
    template< typename... FIELDS > std::tuple<anyToBool<FIELDS>...> getPresenceOf() const { std::tuple<anyToBool<FIELDS>...> tpl{}; buildPresenceTuple<MessageMarketDataRequestReject,0,FIELDS...>(*this,tpl); return tpl; }
@@ -15712,10 +15745,11 @@ class MessageQuoteCancel: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
+   template< typename... FIELDS > offset_t select( const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
-   template< typename FIELD > static constexpr bool hasField() { return false; }
+   template< typename FIELD > static constexpr bool hasField();
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<MessageQuoteCancel,0,FIELDS...>(*this,tpl); return tpl; }
    template< typename... FIELDS > std::tuple<anyToBool<FIELDS>...> getPresenceOf() const { std::tuple<anyToBool<FIELDS>...> tpl{}; buildPresenceTuple<MessageQuoteCancel,0,FIELDS...>(*this,tpl); return tpl; }
@@ -15871,10 +15905,11 @@ class MessageQuoteStatusRequest: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
+   template< typename... FIELDS > offset_t select( const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
-   template< typename FIELD > static constexpr bool hasField() { return false; }
+   template< typename FIELD > static constexpr bool hasField();
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<MessageQuoteStatusRequest,0,FIELDS...>(*this,tpl); return tpl; }
    template< typename... FIELDS > std::tuple<anyToBool<FIELDS>...> getPresenceOf() const { std::tuple<anyToBool<FIELDS>...> tpl{}; buildPresenceTuple<MessageQuoteStatusRequest,0,FIELDS...>(*this,tpl); return tpl; }
@@ -16565,10 +16600,11 @@ class MessageMassQuoteAcknowledgement: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
+   template< typename... FIELDS > offset_t select( const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
-   template< typename FIELD > static constexpr bool hasField() { return false; }
+   template< typename FIELD > static constexpr bool hasField();
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<MessageMassQuoteAcknowledgement,0,FIELDS...>(*this,tpl); return tpl; }
    template< typename... FIELDS > std::tuple<anyToBool<FIELDS>...> getPresenceOf() const { std::tuple<anyToBool<FIELDS>...> tpl{}; buildPresenceTuple<MessageMassQuoteAcknowledgement,0,FIELDS...>(*this,tpl); return tpl; }
@@ -16754,10 +16790,11 @@ class MessageSecurityDefinitionRequest: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
+   template< typename... FIELDS > offset_t select( const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
-   template< typename FIELD > static constexpr bool hasField() { return false; }
+   template< typename FIELD > static constexpr bool hasField();
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<MessageSecurityDefinitionRequest,0,FIELDS...>(*this,tpl); return tpl; }
    template< typename... FIELDS > std::tuple<anyToBool<FIELDS>...> getPresenceOf() const { std::tuple<anyToBool<FIELDS>...> tpl{}; buildPresenceTuple<MessageSecurityDefinitionRequest,0,FIELDS...>(*this,tpl); return tpl; }
@@ -17398,10 +17435,11 @@ class MessageSecurityDefinition: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
+   template< typename... FIELDS > offset_t select( const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
-   template< typename FIELD > static constexpr bool hasField() { return false; }
+   template< typename FIELD > static constexpr bool hasField();
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<MessageSecurityDefinition,0,FIELDS...>(*this,tpl); return tpl; }
    template< typename... FIELDS > std::tuple<anyToBool<FIELDS>...> getPresenceOf() const { std::tuple<anyToBool<FIELDS>...> tpl{}; buildPresenceTuple<MessageSecurityDefinition,0,FIELDS...>(*this,tpl); return tpl; }
@@ -18062,10 +18100,11 @@ class MessageSecurityStatusRequest: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
+   template< typename... FIELDS > offset_t select( const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
-   template< typename FIELD > static constexpr bool hasField() { return false; }
+   template< typename FIELD > static constexpr bool hasField();
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<MessageSecurityStatusRequest,0,FIELDS...>(*this,tpl); return tpl; }
    template< typename... FIELDS > std::tuple<anyToBool<FIELDS>...> getPresenceOf() const { std::tuple<anyToBool<FIELDS>...> tpl{}; buildPresenceTuple<MessageSecurityStatusRequest,0,FIELDS...>(*this,tpl); return tpl; }
@@ -18656,10 +18695,11 @@ class MessageSecurityStatus: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
+   template< typename... FIELDS > offset_t select( const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
-   template< typename FIELD > static constexpr bool hasField() { return false; }
+   template< typename FIELD > static constexpr bool hasField();
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<MessageSecurityStatus,0,FIELDS...>(*this,tpl); return tpl; }
    template< typename... FIELDS > std::tuple<anyToBool<FIELDS>...> getPresenceOf() const { std::tuple<anyToBool<FIELDS>...> tpl{}; buildPresenceTuple<MessageSecurityStatus,0,FIELDS...>(*this,tpl); return tpl; }
@@ -19410,10 +19450,11 @@ class MessageTradingSessionStatusRequest: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
+   template< typename... FIELDS > offset_t select( const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
-   template< typename FIELD > static constexpr bool hasField() { return false; }
+   template< typename FIELD > static constexpr bool hasField();
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<MessageTradingSessionStatusRequest,0,FIELDS...>(*this,tpl); return tpl; }
    template< typename... FIELDS > std::tuple<anyToBool<FIELDS>...> getPresenceOf() const { std::tuple<anyToBool<FIELDS>...> tpl{}; buildPresenceTuple<MessageTradingSessionStatusRequest,0,FIELDS...>(*this,tpl); return tpl; }
@@ -19509,10 +19550,11 @@ class MessageTradingSessionStatus: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
+   template< typename... FIELDS > offset_t select( const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
-   template< typename FIELD > static constexpr bool hasField() { return false; }
+   template< typename FIELD > static constexpr bool hasField();
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<MessageTradingSessionStatus,0,FIELDS...>(*this,tpl); return tpl; }
    template< typename... FIELDS > std::tuple<anyToBool<FIELDS>...> getPresenceOf() const { std::tuple<anyToBool<FIELDS>...> tpl{}; buildPresenceTuple<MessageTradingSessionStatus,0,FIELDS...>(*this,tpl); return tpl; }
@@ -19718,10 +19760,11 @@ class MessageMassQuote: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
+   template< typename... FIELDS > offset_t select( const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
-   template< typename FIELD > static constexpr bool hasField() { return false; }
+   template< typename FIELD > static constexpr bool hasField();
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<MessageMassQuote,0,FIELDS...>(*this,tpl); return tpl; }
    template< typename... FIELDS > std::tuple<anyToBool<FIELDS>...> getPresenceOf() const { std::tuple<anyToBool<FIELDS>...> tpl{}; buildPresenceTuple<MessageMassQuote,0,FIELDS...>(*this,tpl); return tpl; }
@@ -19877,10 +19920,11 @@ class MessageBusinessMessageReject: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
+   template< typename... FIELDS > offset_t select( const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
-   template< typename FIELD > static constexpr bool hasField() { return false; }
+   template< typename FIELD > static constexpr bool hasField();
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<MessageBusinessMessageReject,0,FIELDS...>(*this,tpl); return tpl; }
    template< typename... FIELDS > std::tuple<anyToBool<FIELDS>...> getPresenceOf() const { std::tuple<anyToBool<FIELDS>...> tpl{}; buildPresenceTuple<MessageBusinessMessageReject,0,FIELDS...>(*this,tpl); return tpl; }
@@ -19986,10 +20030,11 @@ class MessageBidRequest: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
+   template< typename... FIELDS > offset_t select( const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
-   template< typename FIELD > static constexpr bool hasField() { return false; }
+   template< typename FIELD > static constexpr bool hasField();
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<MessageBidRequest,0,FIELDS...>(*this,tpl); return tpl; }
    template< typename... FIELDS > std::tuple<anyToBool<FIELDS>...> getPresenceOf() const { std::tuple<anyToBool<FIELDS>...> tpl{}; buildPresenceTuple<MessageBidRequest,0,FIELDS...>(*this,tpl); return tpl; }
@@ -20325,10 +20370,11 @@ class MessageBidResponse: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
+   template< typename... FIELDS > offset_t select( const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
-   template< typename FIELD > static constexpr bool hasField() { return false; }
+   template< typename FIELD > static constexpr bool hasField();
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<MessageBidResponse,0,FIELDS...>(*this,tpl); return tpl; }
    template< typename... FIELDS > std::tuple<anyToBool<FIELDS>...> getPresenceOf() const { std::tuple<anyToBool<FIELDS>...> tpl{}; buildPresenceTuple<MessageBidResponse,0,FIELDS...>(*this,tpl); return tpl; }
@@ -20399,10 +20445,11 @@ class MessageListStrikePrice: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
+   template< typename... FIELDS > offset_t select( const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
-   template< typename FIELD > static constexpr bool hasField() { return false; }
+   template< typename FIELD > static constexpr bool hasField();
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<MessageListStrikePrice,0,FIELDS...>(*this,tpl); return tpl; }
    template< typename... FIELDS > std::tuple<anyToBool<FIELDS>...> getPresenceOf() const { std::tuple<anyToBool<FIELDS>...> tpl{}; buildPresenceTuple<MessageListStrikePrice,0,FIELDS...>(*this,tpl); return tpl; }
@@ -20498,10 +20545,11 @@ class MessageXMLnonFIX: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
+   template< typename... FIELDS > offset_t select( const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
-   template< typename FIELD > static constexpr bool hasField() { return false; }
+   template< typename FIELD > static constexpr bool hasField();
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<MessageXMLnonFIX,0,FIELDS...>(*this,tpl); return tpl; }
    template< typename... FIELDS > std::tuple<anyToBool<FIELDS>...> getPresenceOf() const { std::tuple<anyToBool<FIELDS>...> tpl{}; buildPresenceTuple<MessageXMLnonFIX,0,FIELDS...>(*this,tpl); return tpl; }
@@ -20537,10 +20585,11 @@ class MessageRegistrationInstructions: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
+   template< typename... FIELDS > offset_t select( const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
-   template< typename FIELD > static constexpr bool hasField() { return false; }
+   template< typename FIELD > static constexpr bool hasField();
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<MessageRegistrationInstructions,0,FIELDS...>(*this,tpl); return tpl; }
    template< typename... FIELDS > std::tuple<anyToBool<FIELDS>...> getPresenceOf() const { std::tuple<anyToBool<FIELDS>...> tpl{}; buildPresenceTuple<MessageRegistrationInstructions,0,FIELDS...>(*this,tpl); return tpl; }
@@ -20711,10 +20760,11 @@ class MessageRegistrationInstructionsResponse: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
+   template< typename... FIELDS > offset_t select( const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
-   template< typename FIELD > static constexpr bool hasField() { return false; }
+   template< typename FIELD > static constexpr bool hasField();
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<MessageRegistrationInstructionsResponse,0,FIELDS...>(*this,tpl); return tpl; }
    template< typename... FIELDS > std::tuple<anyToBool<FIELDS>...> getPresenceOf() const { std::tuple<anyToBool<FIELDS>...> tpl{}; buildPresenceTuple<MessageRegistrationInstructionsResponse,0,FIELDS...>(*this,tpl); return tpl; }
@@ -20855,10 +20905,11 @@ class MessageOrderMassCancelRequest: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
+   template< typename... FIELDS > offset_t select( const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
-   template< typename FIELD > static constexpr bool hasField() { return false; }
+   template< typename FIELD > static constexpr bool hasField();
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<MessageOrderMassCancelRequest,0,FIELDS...>(*this,tpl); return tpl; }
    template< typename... FIELDS > std::tuple<anyToBool<FIELDS>...> getPresenceOf() const { std::tuple<anyToBool<FIELDS>...> tpl{}; buildPresenceTuple<MessageOrderMassCancelRequest,0,FIELDS...>(*this,tpl); return tpl; }
@@ -21914,10 +21965,11 @@ class MessageOrderMassCancelReport: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
+   template< typename... FIELDS > offset_t select( const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
-   template< typename FIELD > static constexpr bool hasField() { return false; }
+   template< typename FIELD > static constexpr bool hasField();
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<MessageOrderMassCancelReport,0,FIELDS...>(*this,tpl); return tpl; }
    template< typename... FIELDS > std::tuple<anyToBool<FIELDS>...> getPresenceOf() const { std::tuple<anyToBool<FIELDS>...> tpl{}; buildPresenceTuple<MessageOrderMassCancelReport,0,FIELDS...>(*this,tpl); return tpl; }
@@ -23038,10 +23090,11 @@ class MessageNewOrderCross: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
+   template< typename... FIELDS > offset_t select( const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
-   template< typename FIELD > static constexpr bool hasField() { return false; }
+   template< typename FIELD > static constexpr bool hasField();
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<MessageNewOrderCross,0,FIELDS...>(*this,tpl); return tpl; }
    template< typename... FIELDS > std::tuple<anyToBool<FIELDS>...> getPresenceOf() const { std::tuple<anyToBool<FIELDS>...> tpl{}; buildPresenceTuple<MessageNewOrderCross,0,FIELDS...>(*this,tpl); return tpl; }
@@ -24212,10 +24265,11 @@ class MessageCrossOrderCancelReplaceRequest: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
+   template< typename... FIELDS > offset_t select( const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
-   template< typename FIELD > static constexpr bool hasField() { return false; }
+   template< typename FIELD > static constexpr bool hasField();
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<MessageCrossOrderCancelReplaceRequest,0,FIELDS...>(*this,tpl); return tpl; }
    template< typename... FIELDS > std::tuple<anyToBool<FIELDS>...> getPresenceOf() const { std::tuple<anyToBool<FIELDS>...> tpl{}; buildPresenceTuple<MessageCrossOrderCancelReplaceRequest,0,FIELDS...>(*this,tpl); return tpl; }
@@ -25406,10 +25460,11 @@ class MessageCrossOrderCancelRequest: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
+   template< typename... FIELDS > offset_t select( const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
-   template< typename FIELD > static constexpr bool hasField() { return false; }
+   template< typename FIELD > static constexpr bool hasField();
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<MessageCrossOrderCancelRequest,0,FIELDS...>(*this,tpl); return tpl; }
    template< typename... FIELDS > std::tuple<anyToBool<FIELDS>...> getPresenceOf() const { std::tuple<anyToBool<FIELDS>...> tpl{}; buildPresenceTuple<MessageCrossOrderCancelRequest,0,FIELDS...>(*this,tpl); return tpl; }
@@ -25990,10 +26045,11 @@ class MessageSecurityTypeRequest: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
+   template< typename... FIELDS > offset_t select( const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
-   template< typename FIELD > static constexpr bool hasField() { return false; }
+   template< typename FIELD > static constexpr bool hasField();
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<MessageSecurityTypeRequest,0,FIELDS...>(*this,tpl); return tpl; }
    template< typename... FIELDS > std::tuple<anyToBool<FIELDS>...> getPresenceOf() const { std::tuple<anyToBool<FIELDS>...> tpl{}; buildPresenceTuple<MessageSecurityTypeRequest,0,FIELDS...>(*this,tpl); return tpl; }
@@ -26119,10 +26175,11 @@ class MessageSecurityTypes: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
+   template< typename... FIELDS > offset_t select( const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
-   template< typename FIELD > static constexpr bool hasField() { return false; }
+   template< typename FIELD > static constexpr bool hasField();
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<MessageSecurityTypes,0,FIELDS...>(*this,tpl); return tpl; }
    template< typename... FIELDS > std::tuple<anyToBool<FIELDS>...> getPresenceOf() const { std::tuple<anyToBool<FIELDS>...> tpl{}; buildPresenceTuple<MessageSecurityTypes,0,FIELDS...>(*this,tpl); return tpl; }
@@ -26283,10 +26340,11 @@ class MessageSecurityListRequest: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
+   template< typename... FIELDS > offset_t select( const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
-   template< typename FIELD > static constexpr bool hasField() { return false; }
+   template< typename FIELD > static constexpr bool hasField();
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<MessageSecurityListRequest,0,FIELDS...>(*this,tpl); return tpl; }
    template< typename... FIELDS > std::tuple<anyToBool<FIELDS>...> getPresenceOf() const { std::tuple<anyToBool<FIELDS>...> tpl{}; buildPresenceTuple<MessageSecurityListRequest,0,FIELDS...>(*this,tpl); return tpl; }
@@ -27007,10 +27065,11 @@ class MessageSecurityList: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
+   template< typename... FIELDS > offset_t select( const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
-   template< typename FIELD > static constexpr bool hasField() { return false; }
+   template< typename FIELD > static constexpr bool hasField();
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<MessageSecurityList,0,FIELDS...>(*this,tpl); return tpl; }
    template< typename... FIELDS > std::tuple<anyToBool<FIELDS>...> getPresenceOf() const { std::tuple<anyToBool<FIELDS>...> tpl{}; buildPresenceTuple<MessageSecurityList,0,FIELDS...>(*this,tpl); return tpl; }
@@ -27111,10 +27170,11 @@ class MessageDerivativeSecurityListRequest: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
+   template< typename... FIELDS > offset_t select( const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
-   template< typename FIELD > static constexpr bool hasField() { return false; }
+   template< typename FIELD > static constexpr bool hasField();
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<MessageDerivativeSecurityListRequest,0,FIELDS...>(*this,tpl); return tpl; }
    template< typename... FIELDS > std::tuple<anyToBool<FIELDS>...> getPresenceOf() const { std::tuple<anyToBool<FIELDS>...> tpl{}; buildPresenceTuple<MessageDerivativeSecurityListRequest,0,FIELDS...>(*this,tpl); return tpl; }
@@ -27730,10 +27790,11 @@ class MessageDerivativeSecurityList: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
+   template< typename... FIELDS > offset_t select( const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
-   template< typename FIELD > static constexpr bool hasField() { return false; }
+   template< typename FIELD > static constexpr bool hasField();
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<MessageDerivativeSecurityList,0,FIELDS...>(*this,tpl); return tpl; }
    template< typename... FIELDS > std::tuple<anyToBool<FIELDS>...> getPresenceOf() const { std::tuple<anyToBool<FIELDS>...> tpl{}; buildPresenceTuple<MessageDerivativeSecurityList,0,FIELDS...>(*this,tpl); return tpl; }
@@ -28314,10 +28375,11 @@ class MessageNewOrderMultileg: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
+   template< typename... FIELDS > offset_t select( const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
-   template< typename FIELD > static constexpr bool hasField() { return false; }
+   template< typename FIELD > static constexpr bool hasField();
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<MessageNewOrderMultileg,0,FIELDS...>(*this,tpl); return tpl; }
    template< typename... FIELDS > std::tuple<anyToBool<FIELDS>...> getPresenceOf() const { std::tuple<anyToBool<FIELDS>...> tpl{}; buildPresenceTuple<MessageNewOrderMultileg,0,FIELDS...>(*this,tpl); return tpl; }
@@ -29698,10 +29760,11 @@ class MessageMultilegOrderCancelReplace: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
+   template< typename... FIELDS > offset_t select( const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
-   template< typename FIELD > static constexpr bool hasField() { return false; }
+   template< typename FIELD > static constexpr bool hasField();
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<MessageMultilegOrderCancelReplace,0,FIELDS...>(*this,tpl); return tpl; }
    template< typename... FIELDS > std::tuple<anyToBool<FIELDS>...> getPresenceOf() const { std::tuple<anyToBool<FIELDS>...> tpl{}; buildPresenceTuple<MessageMultilegOrderCancelReplace,0,FIELDS...>(*this,tpl); return tpl; }
@@ -31112,10 +31175,11 @@ class MessageTradeCaptureReportRequest: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
+   template< typename... FIELDS > offset_t select( const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
-   template< typename FIELD > static constexpr bool hasField() { return false; }
+   template< typename FIELD > static constexpr bool hasField();
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<MessageTradeCaptureReportRequest,0,FIELDS...>(*this,tpl); return tpl; }
    template< typename... FIELDS > std::tuple<anyToBool<FIELDS>...> getPresenceOf() const { std::tuple<anyToBool<FIELDS>...> tpl{}; buildPresenceTuple<MessageTradeCaptureReportRequest,0,FIELDS...>(*this,tpl); return tpl; }
@@ -32066,10 +32130,11 @@ class MessageTradeCaptureReport: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
+   template< typename... FIELDS > offset_t select( const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
-   template< typename FIELD > static constexpr bool hasField() { return false; }
+   template< typename FIELD > static constexpr bool hasField();
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<MessageTradeCaptureReport,0,FIELDS...>(*this,tpl); return tpl; }
    template< typename... FIELDS > std::tuple<anyToBool<FIELDS>...> getPresenceOf() const { std::tuple<anyToBool<FIELDS>...> tpl{}; buildPresenceTuple<MessageTradeCaptureReport,0,FIELDS...>(*this,tpl); return tpl; }
@@ -33370,10 +33435,11 @@ class MessageOrderMassStatusRequest: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
+   template< typename... FIELDS > offset_t select( const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
-   template< typename FIELD > static constexpr bool hasField() { return false; }
+   template< typename FIELD > static constexpr bool hasField();
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<MessageOrderMassStatusRequest,0,FIELDS...>(*this,tpl); return tpl; }
    template< typename... FIELDS > std::tuple<anyToBool<FIELDS>...> getPresenceOf() const { std::tuple<anyToBool<FIELDS>...> tpl{}; buildPresenceTuple<MessageOrderMassStatusRequest,0,FIELDS...>(*this,tpl); return tpl; }
@@ -34414,10 +34480,11 @@ class MessageQuoteRequestReject: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
+   template< typename... FIELDS > offset_t select( const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
-   template< typename FIELD > static constexpr bool hasField() { return false; }
+   template< typename FIELD > static constexpr bool hasField();
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<MessageQuoteRequestReject,0,FIELDS...>(*this,tpl); return tpl; }
    template< typename... FIELDS > std::tuple<anyToBool<FIELDS>...> getPresenceOf() const { std::tuple<anyToBool<FIELDS>...> tpl{}; buildPresenceTuple<MessageQuoteRequestReject,0,FIELDS...>(*this,tpl); return tpl; }
@@ -34528,10 +34595,11 @@ class MessageRFQRequest: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
+   template< typename... FIELDS > offset_t select( const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
-   template< typename FIELD > static constexpr bool hasField() { return false; }
+   template< typename FIELD > static constexpr bool hasField();
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<MessageRFQRequest,0,FIELDS...>(*this,tpl); return tpl; }
    template< typename... FIELDS > std::tuple<anyToBool<FIELDS>...> getPresenceOf() const { std::tuple<anyToBool<FIELDS>...> tpl{}; buildPresenceTuple<MessageRFQRequest,0,FIELDS...>(*this,tpl); return tpl; }
@@ -34602,10 +34670,11 @@ class MessageQuoteStatusReport: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
+   template< typename... FIELDS > offset_t select( const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
-   template< typename FIELD > static constexpr bool hasField() { return false; }
+   template< typename FIELD > static constexpr bool hasField();
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<MessageQuoteStatusReport,0,FIELDS...>(*this,tpl); return tpl; }
    template< typename... FIELDS > std::tuple<anyToBool<FIELDS>...> getPresenceOf() const { std::tuple<anyToBool<FIELDS>...> tpl{}; buildPresenceTuple<MessageQuoteStatusReport,0,FIELDS...>(*this,tpl); return tpl; }
@@ -35946,10 +36015,11 @@ class MessageQuoteResponse: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
+   template< typename... FIELDS > offset_t select( const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
-   template< typename FIELD > static constexpr bool hasField() { return false; }
+   template< typename FIELD > static constexpr bool hasField();
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<MessageQuoteResponse,0,FIELDS...>(*this,tpl); return tpl; }
    template< typename... FIELDS > std::tuple<anyToBool<FIELDS>...> getPresenceOf() const { std::tuple<anyToBool<FIELDS>...> tpl{}; buildPresenceTuple<MessageQuoteResponse,0,FIELDS...>(*this,tpl); return tpl; }
@@ -37290,10 +37360,11 @@ class MessageConfirmation: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
+   template< typename... FIELDS > offset_t select( const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
-   template< typename FIELD > static constexpr bool hasField() { return false; }
+   template< typename FIELD > static constexpr bool hasField();
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<MessageConfirmation,0,FIELDS...>(*this,tpl); return tpl; }
    template< typename... FIELDS > std::tuple<anyToBool<FIELDS>...> getPresenceOf() const { std::tuple<anyToBool<FIELDS>...> tpl{}; buildPresenceTuple<MessageConfirmation,0,FIELDS...>(*this,tpl); return tpl; }
@@ -38749,10 +38820,11 @@ class MessagePositionMaintenanceRequest: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
+   template< typename... FIELDS > offset_t select( const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
-   template< typename FIELD > static constexpr bool hasField() { return false; }
+   template< typename FIELD > static constexpr bool hasField();
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<MessagePositionMaintenanceRequest,0,FIELDS...>(*this,tpl); return tpl; }
    template< typename... FIELDS > std::tuple<anyToBool<FIELDS>...> getPresenceOf() const { std::tuple<anyToBool<FIELDS>...> tpl{}; buildPresenceTuple<MessagePositionMaintenanceRequest,0,FIELDS...>(*this,tpl); return tpl; }
@@ -39503,10 +39575,11 @@ class MessagePositionMaintenanceReport: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
+   template< typename... FIELDS > offset_t select( const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
-   template< typename FIELD > static constexpr bool hasField() { return false; }
+   template< typename FIELD > static constexpr bool hasField();
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<MessagePositionMaintenanceReport,0,FIELDS...>(*this,tpl); return tpl; }
    template< typename... FIELDS > std::tuple<anyToBool<FIELDS>...> getPresenceOf() const { std::tuple<anyToBool<FIELDS>...> tpl{}; buildPresenceTuple<MessagePositionMaintenanceReport,0,FIELDS...>(*this,tpl); return tpl; }
@@ -40272,10 +40345,11 @@ class MessageRequestForPositions: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
+   template< typename... FIELDS > offset_t select( const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
-   template< typename FIELD > static constexpr bool hasField() { return false; }
+   template< typename FIELD > static constexpr bool hasField();
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<MessageRequestForPositions,0,FIELDS...>(*this,tpl); return tpl; }
    template< typename... FIELDS > std::tuple<anyToBool<FIELDS>...> getPresenceOf() const { std::tuple<anyToBool<FIELDS>...> tpl{}; buildPresenceTuple<MessageRequestForPositions,0,FIELDS...>(*this,tpl); return tpl; }
@@ -40981,10 +41055,11 @@ class MessageRequestForPositionsAck: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
+   template< typename... FIELDS > offset_t select( const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
-   template< typename FIELD > static constexpr bool hasField() { return false; }
+   template< typename FIELD > static constexpr bool hasField();
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<MessageRequestForPositionsAck,0,FIELDS...>(*this,tpl); return tpl; }
    template< typename... FIELDS > std::tuple<anyToBool<FIELDS>...> getPresenceOf() const { std::tuple<anyToBool<FIELDS>...> tpl{}; buildPresenceTuple<MessageRequestForPositionsAck,0,FIELDS...>(*this,tpl); return tpl; }
@@ -41655,10 +41730,11 @@ class MessagePositionReport: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
+   template< typename... FIELDS > offset_t select( const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
-   template< typename FIELD > static constexpr bool hasField() { return false; }
+   template< typename FIELD > static constexpr bool hasField();
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<MessagePositionReport,0,FIELDS...>(*this,tpl); return tpl; }
    template< typename... FIELDS > std::tuple<anyToBool<FIELDS>...> getPresenceOf() const { std::tuple<anyToBool<FIELDS>...> tpl{}; buildPresenceTuple<MessagePositionReport,0,FIELDS...>(*this,tpl); return tpl; }
@@ -42429,10 +42505,11 @@ class MessageTradeCaptureReportRequestAck: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
+   template< typename... FIELDS > offset_t select( const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
-   template< typename FIELD > static constexpr bool hasField() { return false; }
+   template< typename FIELD > static constexpr bool hasField();
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<MessageTradeCaptureReportRequestAck,0,FIELDS...>(*this,tpl); return tpl; }
    template< typename... FIELDS > std::tuple<anyToBool<FIELDS>...> getPresenceOf() const { std::tuple<anyToBool<FIELDS>...> tpl{}; buildPresenceTuple<MessageTradeCaptureReportRequestAck,0,FIELDS...>(*this,tpl); return tpl; }
@@ -43058,10 +43135,11 @@ class MessageTradeCaptureReportAck: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
+   template< typename... FIELDS > offset_t select( const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
-   template< typename FIELD > static constexpr bool hasField() { return false; }
+   template< typename FIELD > static constexpr bool hasField();
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<MessageTradeCaptureReportAck,0,FIELDS...>(*this,tpl); return tpl; }
    template< typename... FIELDS > std::tuple<anyToBool<FIELDS>...> getPresenceOf() const { std::tuple<anyToBool<FIELDS>...> tpl{}; buildPresenceTuple<MessageTradeCaptureReportAck,0,FIELDS...>(*this,tpl); return tpl; }
@@ -43912,10 +43990,11 @@ class MessageAllocationReport: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
+   template< typename... FIELDS > offset_t select( const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
-   template< typename FIELD > static constexpr bool hasField() { return false; }
+   template< typename FIELD > static constexpr bool hasField();
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<MessageAllocationReport,0,FIELDS...>(*this,tpl); return tpl; }
    template< typename... FIELDS > std::tuple<anyToBool<FIELDS>...> getPresenceOf() const { std::tuple<anyToBool<FIELDS>...> tpl{}; buildPresenceTuple<MessageAllocationReport,0,FIELDS...>(*this,tpl); return tpl; }
@@ -45311,10 +45390,11 @@ class MessageAllocationReportAck: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
+   template< typename... FIELDS > offset_t select( const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
-   template< typename FIELD > static constexpr bool hasField() { return false; }
+   template< typename FIELD > static constexpr bool hasField();
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<MessageAllocationReportAck,0,FIELDS...>(*this,tpl); return tpl; }
    template< typename... FIELDS > std::tuple<anyToBool<FIELDS>...> getPresenceOf() const { std::tuple<anyToBool<FIELDS>...> tpl{}; buildPresenceTuple<MessageAllocationReportAck,0,FIELDS...>(*this,tpl); return tpl; }
@@ -45530,10 +45610,11 @@ class MessageConfirmationAck: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
+   template< typename... FIELDS > offset_t select( const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
-   template< typename FIELD > static constexpr bool hasField() { return false; }
+   template< typename FIELD > static constexpr bool hasField();
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<MessageConfirmationAck,0,FIELDS...>(*this,tpl); return tpl; }
    template< typename... FIELDS > std::tuple<anyToBool<FIELDS>...> getPresenceOf() const { std::tuple<anyToBool<FIELDS>...> tpl{}; buildPresenceTuple<MessageConfirmationAck,0,FIELDS...>(*this,tpl); return tpl; }
@@ -45659,10 +45740,11 @@ class MessageSettlementInstructionRequest: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
+   template< typename... FIELDS > offset_t select( const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
-   template< typename FIELD > static constexpr bool hasField() { return false; }
+   template< typename FIELD > static constexpr bool hasField();
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<MessageSettlementInstructionRequest,0,FIELDS...>(*this,tpl); return tpl; }
    template< typename... FIELDS > std::tuple<anyToBool<FIELDS>...> getPresenceOf() const { std::tuple<anyToBool<FIELDS>...> tpl{}; buildPresenceTuple<MessageSettlementInstructionRequest,0,FIELDS...>(*this,tpl); return tpl; }
@@ -45853,10 +45935,11 @@ class MessageAssignmentReport: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
+   template< typename... FIELDS > offset_t select( const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
-   template< typename FIELD > static constexpr bool hasField() { return false; }
+   template< typename FIELD > static constexpr bool hasField();
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<MessageAssignmentReport,0,FIELDS...>(*this,tpl); return tpl; }
    template< typename... FIELDS > std::tuple<anyToBool<FIELDS>...> getPresenceOf() const { std::tuple<anyToBool<FIELDS>...> tpl{}; buildPresenceTuple<MessageAssignmentReport,0,FIELDS...>(*this,tpl); return tpl; }
@@ -46617,10 +46700,11 @@ class MessageCollateralRequest: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
+   template< typename... FIELDS > offset_t select( const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
-   template< typename FIELD > static constexpr bool hasField() { return false; }
+   template< typename FIELD > static constexpr bool hasField();
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<MessageCollateralRequest,0,FIELDS...>(*this,tpl); return tpl; }
    template< typename... FIELDS > std::tuple<anyToBool<FIELDS>...> getPresenceOf() const { std::tuple<anyToBool<FIELDS>...> tpl{}; buildPresenceTuple<MessageCollateralRequest,0,FIELDS...>(*this,tpl); return tpl; }
@@ -47706,10 +47790,11 @@ class MessageCollateralAssignment: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
+   template< typename... FIELDS > offset_t select( const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
-   template< typename FIELD > static constexpr bool hasField() { return false; }
+   template< typename FIELD > static constexpr bool hasField();
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<MessageCollateralAssignment,0,FIELDS...>(*this,tpl); return tpl; }
    template< typename... FIELDS > std::tuple<anyToBool<FIELDS>...> getPresenceOf() const { std::tuple<anyToBool<FIELDS>...> tpl{}; buildPresenceTuple<MessageCollateralAssignment,0,FIELDS...>(*this,tpl); return tpl; }
@@ -48880,10 +48965,11 @@ class MessageCollateralResponse: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
+   template< typename... FIELDS > offset_t select( const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
-   template< typename FIELD > static constexpr bool hasField() { return false; }
+   template< typename FIELD > static constexpr bool hasField();
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<MessageCollateralResponse,0,FIELDS...>(*this,tpl); return tpl; }
    template< typename... FIELDS > std::tuple<anyToBool<FIELDS>...> getPresenceOf() const { std::tuple<anyToBool<FIELDS>...> tpl{}; buildPresenceTuple<MessageCollateralResponse,0,FIELDS...>(*this,tpl); return tpl; }
@@ -49959,10 +50045,11 @@ class MessageCollateralReport: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
+   template< typename... FIELDS > offset_t select( const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
-   template< typename FIELD > static constexpr bool hasField() { return false; }
+   template< typename FIELD > static constexpr bool hasField();
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<MessageCollateralReport,0,FIELDS...>(*this,tpl); return tpl; }
    template< typename... FIELDS > std::tuple<anyToBool<FIELDS>...> getPresenceOf() const { std::tuple<anyToBool<FIELDS>...> tpl{}; buildPresenceTuple<MessageCollateralReport,0,FIELDS...>(*this,tpl); return tpl; }
@@ -51113,10 +51200,11 @@ class MessageCollateralInquiry: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
+   template< typename... FIELDS > offset_t select( const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
-   template< typename FIELD > static constexpr bool hasField() { return false; }
+   template< typename FIELD > static constexpr bool hasField();
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<MessageCollateralInquiry,0,FIELDS...>(*this,tpl); return tpl; }
    template< typename... FIELDS > std::tuple<anyToBool<FIELDS>...> getPresenceOf() const { std::tuple<anyToBool<FIELDS>...> tpl{}; buildPresenceTuple<MessageCollateralInquiry,0,FIELDS...>(*this,tpl); return tpl; }
@@ -52257,10 +52345,11 @@ class MessageNetworkCounterpartySystemStatusRequest: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
+   template< typename... FIELDS > offset_t select( const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
-   template< typename FIELD > static constexpr bool hasField() { return false; }
+   template< typename FIELD > static constexpr bool hasField();
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<MessageNetworkCounterpartySystemStatusRequest,0,FIELDS...>(*this,tpl); return tpl; }
    template< typename... FIELDS > std::tuple<anyToBool<FIELDS>...> getPresenceOf() const { std::tuple<anyToBool<FIELDS>...> tpl{}; buildPresenceTuple<MessageNetworkCounterpartySystemStatusRequest,0,FIELDS...>(*this,tpl); return tpl; }
@@ -52331,10 +52420,11 @@ class MessageNetworkCounterpartySystemStatusResponse: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
+   template< typename... FIELDS > offset_t select( const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
-   template< typename FIELD > static constexpr bool hasField() { return false; }
+   template< typename FIELD > static constexpr bool hasField();
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<MessageNetworkCounterpartySystemStatusResponse,0,FIELDS...>(*this,tpl); return tpl; }
    template< typename... FIELDS > std::tuple<anyToBool<FIELDS>...> getPresenceOf() const { std::tuple<anyToBool<FIELDS>...> tpl{}; buildPresenceTuple<MessageNetworkCounterpartySystemStatusResponse,0,FIELDS...>(*this,tpl); return tpl; }
@@ -52425,10 +52515,11 @@ class MessageUserRequest: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
+   template< typename... FIELDS > offset_t select( const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
-   template< typename FIELD > static constexpr bool hasField() { return false; }
+   template< typename FIELD > static constexpr bool hasField();
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<MessageUserRequest,0,FIELDS...>(*this,tpl); return tpl; }
    template< typename... FIELDS > std::tuple<anyToBool<FIELDS>...> getPresenceOf() const { std::tuple<anyToBool<FIELDS>...> tpl{}; buildPresenceTuple<MessageUserRequest,0,FIELDS...>(*this,tpl); return tpl; }
@@ -52534,10 +52625,11 @@ class MessageUserResponse: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
+   template< typename... FIELDS > offset_t select( const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
-   template< typename FIELD > static constexpr bool hasField() { return false; }
+   template< typename FIELD > static constexpr bool hasField();
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<MessageUserResponse,0,FIELDS...>(*this,tpl); return tpl; }
    template< typename... FIELDS > std::tuple<anyToBool<FIELDS>...> getPresenceOf() const { std::tuple<anyToBool<FIELDS>...> tpl{}; buildPresenceTuple<MessageUserResponse,0,FIELDS...>(*this,tpl); return tpl; }
@@ -52613,10 +52705,11 @@ class MessageCollateralInquiryAck: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
+   template< typename... FIELDS > offset_t select( const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
-   template< typename FIELD > static constexpr bool hasField() { return false; }
+   template< typename FIELD > static constexpr bool hasField();
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<MessageCollateralInquiryAck,0,FIELDS...>(*this,tpl); return tpl; }
    template< typename... FIELDS > std::tuple<anyToBool<FIELDS>...> getPresenceOf() const { std::tuple<anyToBool<FIELDS>...> tpl{}; buildPresenceTuple<MessageCollateralInquiryAck,0,FIELDS...>(*this,tpl); return tpl; }
@@ -53512,10 +53605,11 @@ class MessageConfirmationRequest: public MessageBase
    static const std::string & getMessageType();
    offset_t scan( const char * fix, unsigned len );
    offset_t scanSafely( const char * fix, unsigned len );
+   template< typename... FIELDS > offset_t select( const char * fix, unsigned len );
    static offset_t skip( const char * fix, unsigned len );
    void reset();
    const char * getFieldValue( tag_t tag ) const;
-   template< typename FIELD > static constexpr bool hasField() { return false; }
+   template< typename FIELD > static constexpr bool hasField();
    template< typename FIELD > typename FIELD::ValueType get() const;
    template< typename... FIELDS > std::tuple<typename FIELDS::ValueType...> getFields() const { std::tuple<typename FIELDS::ValueType...> tpl{}; buildTuple<MessageConfirmationRequest,0,FIELDS...>(*this,tpl); return tpl; }
    template< typename... FIELDS > std::tuple<anyToBool<FIELDS>...> getPresenceOf() const { std::tuple<anyToBool<FIELDS>...> tpl{}; buildPresenceTuple<MessageConfirmationRequest,0,FIELDS...>(*this,tpl); return tpl; }
@@ -53676,6 +53770,741 @@ class MessageConfirmationRequest: public MessageBase
    private: FieldCheckSum fieldCheckSum;
 };
 
+// ---------------------------------- default hasField<field> ---------------------------------
+
+#define FIXPP_MSG_CLASS MessageHeader 
+template< typename FIELD > inline constexpr bool FIXPP_MSG_CLASS::hasField() { return false
+or GroupHops::hasField<FIELD>(); } 
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageHeartbeat 
+template< typename FIELD > inline constexpr bool FIXPP_MSG_CLASS::hasField() { return false; } 
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageTestRequest 
+template< typename FIELD > inline constexpr bool FIXPP_MSG_CLASS::hasField() { return false; } 
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageResendRequest 
+template< typename FIELD > inline constexpr bool FIXPP_MSG_CLASS::hasField() { return false; } 
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageReject 
+template< typename FIELD > inline constexpr bool FIXPP_MSG_CLASS::hasField() { return false; } 
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageSequenceReset 
+template< typename FIELD > inline constexpr bool FIXPP_MSG_CLASS::hasField() { return false; } 
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageLogout 
+template< typename FIELD > inline constexpr bool FIXPP_MSG_CLASS::hasField() { return false; } 
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageIOI 
+template< typename FIELD > inline constexpr bool FIXPP_MSG_CLASS::hasField() { return false
+or GroupSecurityAltID::hasField<FIELD>()
+or GroupEvents::hasField<FIELD>()
+or GroupUnderlyings::hasField<FIELD>()
+or GroupStipulations::hasField<FIELD>()
+or GroupLegs::hasField<FIELD>()
+or GroupIOIQualifiers::hasField<FIELD>()
+or GroupRoutingIDs::hasField<FIELD>(); } 
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageAdvertisement 
+template< typename FIELD > inline constexpr bool FIXPP_MSG_CLASS::hasField() { return false
+or GroupSecurityAltID::hasField<FIELD>()
+or GroupEvents::hasField<FIELD>()
+or GroupLegs::hasField<FIELD>()
+or GroupUnderlyings::hasField<FIELD>(); } 
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageExecutionReport 
+template< typename FIELD > inline constexpr bool FIXPP_MSG_CLASS::hasField() { return false
+or GroupPartyIDs::hasField<FIELD>()
+or GroupContraBrokers::hasField<FIELD>()
+or GroupSecurityAltID::hasField<FIELD>()
+or GroupEvents::hasField<FIELD>()
+or GroupUnderlyings::hasField<FIELD>()
+or GroupStipulations::hasField<FIELD>()
+or GroupContAmts::hasField<FIELD>()
+or GroupLegs::hasField<FIELD>()
+or GroupMiscFees::hasField<FIELD>(); } 
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageOrderCancelReject 
+template< typename FIELD > inline constexpr bool FIXPP_MSG_CLASS::hasField() { return false; } 
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageLogon 
+template< typename FIELD > inline constexpr bool FIXPP_MSG_CLASS::hasField() { return false
+or GroupMsgTypes::hasField<FIELD>(); } 
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageNews 
+template< typename FIELD > inline constexpr bool FIXPP_MSG_CLASS::hasField() { return false
+or GroupRoutingIDs::hasField<FIELD>()
+or GroupRelatedSym::hasField<FIELD>()
+or GroupLegs::hasField<FIELD>()
+or GroupUnderlyings::hasField<FIELD>()
+or GroupLinesOfText::hasField<FIELD>(); } 
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageEmail 
+template< typename FIELD > inline constexpr bool FIXPP_MSG_CLASS::hasField() { return false
+or GroupRoutingIDs::hasField<FIELD>()
+or GroupRelatedSym::hasField<FIELD>()
+or GroupUnderlyings::hasField<FIELD>()
+or GroupLegs::hasField<FIELD>()
+or GroupLinesOfText::hasField<FIELD>(); } 
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageNewOrderSingle 
+template< typename FIELD > inline constexpr bool FIXPP_MSG_CLASS::hasField() { return false
+or GroupPartyIDs::hasField<FIELD>()
+or GroupAllocs::hasField<FIELD>()
+or GroupTradingSessions::hasField<FIELD>()
+or GroupSecurityAltID::hasField<FIELD>()
+or GroupEvents::hasField<FIELD>()
+or GroupUnderlyings::hasField<FIELD>()
+or GroupStipulations::hasField<FIELD>(); } 
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageNewOrderList 
+template< typename FIELD > inline constexpr bool FIXPP_MSG_CLASS::hasField() { return false
+or GroupOrders::hasField<FIELD>(); } 
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageOrderCancelRequest 
+template< typename FIELD > inline constexpr bool FIXPP_MSG_CLASS::hasField() { return false
+or GroupPartyIDs::hasField<FIELD>()
+or GroupSecurityAltID::hasField<FIELD>()
+or GroupEvents::hasField<FIELD>()
+or GroupUnderlyings::hasField<FIELD>(); } 
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageOrderCancelReplaceRequest 
+template< typename FIELD > inline constexpr bool FIXPP_MSG_CLASS::hasField() { return false
+or GroupPartyIDs::hasField<FIELD>()
+or GroupAllocs::hasField<FIELD>()
+or GroupTradingSessions::hasField<FIELD>()
+or GroupSecurityAltID::hasField<FIELD>()
+or GroupEvents::hasField<FIELD>()
+or GroupUnderlyings::hasField<FIELD>(); } 
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageOrderStatusRequest 
+template< typename FIELD > inline constexpr bool FIXPP_MSG_CLASS::hasField() { return false
+or GroupPartyIDs::hasField<FIELD>()
+or GroupSecurityAltID::hasField<FIELD>()
+or GroupEvents::hasField<FIELD>()
+or GroupUnderlyings::hasField<FIELD>(); } 
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageAllocationInstruction 
+template< typename FIELD > inline constexpr bool FIXPP_MSG_CLASS::hasField() { return false
+or GroupOrders::hasField<FIELD>()
+or GroupExecs::hasField<FIELD>()
+or GroupSecurityAltID::hasField<FIELD>()
+or GroupEvents::hasField<FIELD>()
+or GroupInstrAttrib::hasField<FIELD>()
+or GroupUnderlyings::hasField<FIELD>()
+or GroupLegs::hasField<FIELD>()
+or GroupPartyIDs::hasField<FIELD>()
+or GroupStipulations::hasField<FIELD>()
+or GroupAllocs::hasField<FIELD>(); } 
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageListCancelRequest 
+template< typename FIELD > inline constexpr bool FIXPP_MSG_CLASS::hasField() { return false; } 
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageListExecute 
+template< typename FIELD > inline constexpr bool FIXPP_MSG_CLASS::hasField() { return false; } 
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageListStatusRequest 
+template< typename FIELD > inline constexpr bool FIXPP_MSG_CLASS::hasField() { return false; } 
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageListStatus 
+template< typename FIELD > inline constexpr bool FIXPP_MSG_CLASS::hasField() { return false
+or GroupOrders::hasField<FIELD>(); } 
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageAllocationInstructionAck 
+template< typename FIELD > inline constexpr bool FIXPP_MSG_CLASS::hasField() { return false
+or GroupPartyIDs::hasField<FIELD>()
+or GroupAllocs::hasField<FIELD>(); } 
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageDontKnowTrade 
+template< typename FIELD > inline constexpr bool FIXPP_MSG_CLASS::hasField() { return false
+or GroupSecurityAltID::hasField<FIELD>()
+or GroupEvents::hasField<FIELD>()
+or GroupUnderlyings::hasField<FIELD>()
+or GroupLegs::hasField<FIELD>(); } 
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageQuoteRequest 
+template< typename FIELD > inline constexpr bool FIXPP_MSG_CLASS::hasField() { return false
+or GroupRelatedSym::hasField<FIELD>(); } 
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageQuote 
+template< typename FIELD > inline constexpr bool FIXPP_MSG_CLASS::hasField() { return false
+or GroupQuoteQualifiers::hasField<FIELD>()
+or GroupPartyIDs::hasField<FIELD>()
+or GroupSecurityAltID::hasField<FIELD>()
+or GroupEvents::hasField<FIELD>()
+or GroupUnderlyings::hasField<FIELD>()
+or GroupStipulations::hasField<FIELD>()
+or GroupLegs::hasField<FIELD>(); } 
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageSettlementInstructions 
+template< typename FIELD > inline constexpr bool FIXPP_MSG_CLASS::hasField() { return false
+or GroupSettlInst::hasField<FIELD>(); } 
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageMarketDataRequest 
+template< typename FIELD > inline constexpr bool FIXPP_MSG_CLASS::hasField() { return false
+or GroupMDEntryTypes::hasField<FIELD>()
+or GroupRelatedSym::hasField<FIELD>()
+or GroupTradingSessions::hasField<FIELD>(); } 
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageMarketDataSnapshotFullRefresh 
+template< typename FIELD > inline constexpr bool FIXPP_MSG_CLASS::hasField() { return false
+or GroupSecurityAltID::hasField<FIELD>()
+or GroupEvents::hasField<FIELD>()
+or GroupUnderlyings::hasField<FIELD>()
+or GroupLegs::hasField<FIELD>()
+or GroupMDEntries::hasField<FIELD>(); } 
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageMarketDataIncrementalRefresh 
+template< typename FIELD > inline constexpr bool FIXPP_MSG_CLASS::hasField() { return false
+or GroupMDEntries::hasField<FIELD>(); } 
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageMarketDataRequestReject 
+template< typename FIELD > inline constexpr bool FIXPP_MSG_CLASS::hasField() { return false
+or GroupAltMDSource::hasField<FIELD>(); } 
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageQuoteCancel 
+template< typename FIELD > inline constexpr bool FIXPP_MSG_CLASS::hasField() { return false
+or GroupPartyIDs::hasField<FIELD>()
+or GroupQuoteEntries::hasField<FIELD>(); } 
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageQuoteStatusRequest 
+template< typename FIELD > inline constexpr bool FIXPP_MSG_CLASS::hasField() { return false
+or GroupSecurityAltID::hasField<FIELD>()
+or GroupEvents::hasField<FIELD>()
+or GroupUnderlyings::hasField<FIELD>()
+or GroupLegs::hasField<FIELD>()
+or GroupPartyIDs::hasField<FIELD>(); } 
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageMassQuoteAcknowledgement 
+template< typename FIELD > inline constexpr bool FIXPP_MSG_CLASS::hasField() { return false
+or GroupPartyIDs::hasField<FIELD>()
+or GroupQuoteSets::hasField<FIELD>(); } 
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageSecurityDefinitionRequest 
+template< typename FIELD > inline constexpr bool FIXPP_MSG_CLASS::hasField() { return false
+or GroupSecurityAltID::hasField<FIELD>()
+or GroupEvents::hasField<FIELD>()
+or GroupInstrAttrib::hasField<FIELD>()
+or GroupUnderlyings::hasField<FIELD>()
+or GroupLegs::hasField<FIELD>(); } 
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageSecurityDefinition 
+template< typename FIELD > inline constexpr bool FIXPP_MSG_CLASS::hasField() { return false
+or GroupSecurityAltID::hasField<FIELD>()
+or GroupEvents::hasField<FIELD>()
+or GroupInstrAttrib::hasField<FIELD>()
+or GroupUnderlyings::hasField<FIELD>()
+or GroupLegs::hasField<FIELD>(); } 
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageSecurityStatusRequest 
+template< typename FIELD > inline constexpr bool FIXPP_MSG_CLASS::hasField() { return false
+or GroupSecurityAltID::hasField<FIELD>()
+or GroupEvents::hasField<FIELD>()
+or GroupInstrAttrib::hasField<FIELD>()
+or GroupUnderlyings::hasField<FIELD>()
+or GroupLegs::hasField<FIELD>(); } 
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageSecurityStatus 
+template< typename FIELD > inline constexpr bool FIXPP_MSG_CLASS::hasField() { return false
+or GroupSecurityAltID::hasField<FIELD>()
+or GroupEvents::hasField<FIELD>()
+or GroupInstrAttrib::hasField<FIELD>()
+or GroupUnderlyings::hasField<FIELD>()
+or GroupLegs::hasField<FIELD>(); } 
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageTradingSessionStatusRequest 
+template< typename FIELD > inline constexpr bool FIXPP_MSG_CLASS::hasField() { return false; } 
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageTradingSessionStatus 
+template< typename FIELD > inline constexpr bool FIXPP_MSG_CLASS::hasField() { return false; } 
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageMassQuote 
+template< typename FIELD > inline constexpr bool FIXPP_MSG_CLASS::hasField() { return false
+or GroupPartyIDs::hasField<FIELD>()
+or GroupQuoteSets::hasField<FIELD>(); } 
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageBusinessMessageReject 
+template< typename FIELD > inline constexpr bool FIXPP_MSG_CLASS::hasField() { return false; } 
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageBidRequest 
+template< typename FIELD > inline constexpr bool FIXPP_MSG_CLASS::hasField() { return false
+or GroupBidDescriptors::hasField<FIELD>()
+or GroupBidComponents::hasField<FIELD>(); } 
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageBidResponse 
+template< typename FIELD > inline constexpr bool FIXPP_MSG_CLASS::hasField() { return false
+or GroupBidComponents::hasField<FIELD>(); } 
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageListStrikePrice 
+template< typename FIELD > inline constexpr bool FIXPP_MSG_CLASS::hasField() { return false
+or GroupStrikes::hasField<FIELD>()
+or GroupUnderlyings::hasField<FIELD>(); } 
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageXMLnonFIX 
+template< typename FIELD > inline constexpr bool FIXPP_MSG_CLASS::hasField() { return false; } 
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageRegistrationInstructions 
+template< typename FIELD > inline constexpr bool FIXPP_MSG_CLASS::hasField() { return false
+or GroupPartyIDs::hasField<FIELD>()
+or GroupRegistDtls::hasField<FIELD>()
+or GroupDistribInsts::hasField<FIELD>(); } 
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageRegistrationInstructionsResponse 
+template< typename FIELD > inline constexpr bool FIXPP_MSG_CLASS::hasField() { return false
+or GroupPartyIDs::hasField<FIELD>(); } 
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageOrderMassCancelRequest 
+template< typename FIELD > inline constexpr bool FIXPP_MSG_CLASS::hasField() { return false
+or GroupSecurityAltID::hasField<FIELD>()
+or GroupEvents::hasField<FIELD>()
+or GroupUnderlyingSecurityAltID::hasField<FIELD>()
+or GroupUnderlyingStips::hasField<FIELD>(); } 
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageOrderMassCancelReport 
+template< typename FIELD > inline constexpr bool FIXPP_MSG_CLASS::hasField() { return false
+or GroupAffectedOrders::hasField<FIELD>()
+or GroupSecurityAltID::hasField<FIELD>()
+or GroupEvents::hasField<FIELD>()
+or GroupUnderlyingSecurityAltID::hasField<FIELD>()
+or GroupUnderlyingStips::hasField<FIELD>(); } 
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageNewOrderCross 
+template< typename FIELD > inline constexpr bool FIXPP_MSG_CLASS::hasField() { return false
+or GroupSides::hasField<FIELD>()
+or GroupSecurityAltID::hasField<FIELD>()
+or GroupEvents::hasField<FIELD>()
+or GroupUnderlyings::hasField<FIELD>()
+or GroupLegs::hasField<FIELD>()
+or GroupTradingSessions::hasField<FIELD>()
+or GroupStipulations::hasField<FIELD>(); } 
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageCrossOrderCancelReplaceRequest 
+template< typename FIELD > inline constexpr bool FIXPP_MSG_CLASS::hasField() { return false
+or GroupSides::hasField<FIELD>()
+or GroupSecurityAltID::hasField<FIELD>()
+or GroupEvents::hasField<FIELD>()
+or GroupUnderlyings::hasField<FIELD>()
+or GroupLegs::hasField<FIELD>()
+or GroupTradingSessions::hasField<FIELD>()
+or GroupStipulations::hasField<FIELD>(); } 
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageCrossOrderCancelRequest 
+template< typename FIELD > inline constexpr bool FIXPP_MSG_CLASS::hasField() { return false
+or GroupSides::hasField<FIELD>()
+or GroupSecurityAltID::hasField<FIELD>()
+or GroupEvents::hasField<FIELD>()
+or GroupUnderlyings::hasField<FIELD>()
+or GroupLegs::hasField<FIELD>(); } 
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageSecurityTypeRequest 
+template< typename FIELD > inline constexpr bool FIXPP_MSG_CLASS::hasField() { return false; } 
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageSecurityTypes 
+template< typename FIELD > inline constexpr bool FIXPP_MSG_CLASS::hasField() { return false
+or GroupSecurityTypes::hasField<FIELD>(); } 
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageSecurityListRequest 
+template< typename FIELD > inline constexpr bool FIXPP_MSG_CLASS::hasField() { return false
+or GroupSecurityAltID::hasField<FIELD>()
+or GroupEvents::hasField<FIELD>()
+or GroupInstrAttrib::hasField<FIELD>()
+or GroupUnderlyings::hasField<FIELD>()
+or GroupLegs::hasField<FIELD>(); } 
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageSecurityList 
+template< typename FIELD > inline constexpr bool FIXPP_MSG_CLASS::hasField() { return false
+or GroupRelatedSym::hasField<FIELD>(); } 
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageDerivativeSecurityListRequest 
+template< typename FIELD > inline constexpr bool FIXPP_MSG_CLASS::hasField() { return false
+or GroupUnderlyingSecurityAltID::hasField<FIELD>()
+or GroupUnderlyingStips::hasField<FIELD>(); } 
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageDerivativeSecurityList 
+template< typename FIELD > inline constexpr bool FIXPP_MSG_CLASS::hasField() { return false
+or GroupUnderlyingSecurityAltID::hasField<FIELD>()
+or GroupUnderlyingStips::hasField<FIELD>()
+or GroupRelatedSym::hasField<FIELD>(); } 
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageNewOrderMultileg 
+template< typename FIELD > inline constexpr bool FIXPP_MSG_CLASS::hasField() { return false
+or GroupPartyIDs::hasField<FIELD>()
+or GroupAllocs::hasField<FIELD>()
+or GroupTradingSessions::hasField<FIELD>()
+or GroupSecurityAltID::hasField<FIELD>()
+or GroupEvents::hasField<FIELD>()
+or GroupUnderlyings::hasField<FIELD>()
+or GroupLegs::hasField<FIELD>(); } 
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageMultilegOrderCancelReplace 
+template< typename FIELD > inline constexpr bool FIXPP_MSG_CLASS::hasField() { return false
+or GroupPartyIDs::hasField<FIELD>()
+or GroupAllocs::hasField<FIELD>()
+or GroupTradingSessions::hasField<FIELD>()
+or GroupSecurityAltID::hasField<FIELD>()
+or GroupEvents::hasField<FIELD>()
+or GroupUnderlyings::hasField<FIELD>()
+or GroupLegs::hasField<FIELD>(); } 
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageTradeCaptureReportRequest 
+template< typename FIELD > inline constexpr bool FIXPP_MSG_CLASS::hasField() { return false
+or GroupPartyIDs::hasField<FIELD>()
+or GroupSecurityAltID::hasField<FIELD>()
+or GroupEvents::hasField<FIELD>()
+or GroupInstrAttrib::hasField<FIELD>()
+or GroupUnderlyings::hasField<FIELD>()
+or GroupLegs::hasField<FIELD>()
+or GroupDates::hasField<FIELD>(); } 
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageTradeCaptureReport 
+template< typename FIELD > inline constexpr bool FIXPP_MSG_CLASS::hasField() { return false
+or GroupSecurityAltID::hasField<FIELD>()
+or GroupEvents::hasField<FIELD>()
+or GroupUnderlyings::hasField<FIELD>()
+or GroupPosAmt::hasField<FIELD>()
+or GroupLegs::hasField<FIELD>()
+or GroupTrdRegTimestamps::hasField<FIELD>()
+or GroupSides::hasField<FIELD>(); } 
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageOrderMassStatusRequest 
+template< typename FIELD > inline constexpr bool FIXPP_MSG_CLASS::hasField() { return false
+or GroupPartyIDs::hasField<FIELD>()
+or GroupSecurityAltID::hasField<FIELD>()
+or GroupEvents::hasField<FIELD>()
+or GroupUnderlyingSecurityAltID::hasField<FIELD>()
+or GroupUnderlyingStips::hasField<FIELD>(); } 
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageQuoteRequestReject 
+template< typename FIELD > inline constexpr bool FIXPP_MSG_CLASS::hasField() { return false
+or GroupRelatedSym::hasField<FIELD>(); } 
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageRFQRequest 
+template< typename FIELD > inline constexpr bool FIXPP_MSG_CLASS::hasField() { return false
+or GroupRelatedSym::hasField<FIELD>(); } 
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageQuoteStatusReport 
+template< typename FIELD > inline constexpr bool FIXPP_MSG_CLASS::hasField() { return false
+or GroupPartyIDs::hasField<FIELD>()
+or GroupSecurityAltID::hasField<FIELD>()
+or GroupEvents::hasField<FIELD>()
+or GroupUnderlyings::hasField<FIELD>()
+or GroupStipulations::hasField<FIELD>()
+or GroupLegs::hasField<FIELD>()
+or GroupQuoteQualifiers::hasField<FIELD>(); } 
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageQuoteResponse 
+template< typename FIELD > inline constexpr bool FIXPP_MSG_CLASS::hasField() { return false
+or GroupQuoteQualifiers::hasField<FIELD>()
+or GroupPartyIDs::hasField<FIELD>()
+or GroupSecurityAltID::hasField<FIELD>()
+or GroupEvents::hasField<FIELD>()
+or GroupUnderlyings::hasField<FIELD>()
+or GroupStipulations::hasField<FIELD>()
+or GroupLegs::hasField<FIELD>(); } 
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageConfirmation 
+template< typename FIELD > inline constexpr bool FIXPP_MSG_CLASS::hasField() { return false
+or GroupPartyIDs::hasField<FIELD>()
+or GroupOrders::hasField<FIELD>()
+or GroupTrdRegTimestamps::hasField<FIELD>()
+or GroupSecurityAltID::hasField<FIELD>()
+or GroupEvents::hasField<FIELD>()
+or GroupInstrAttrib::hasField<FIELD>()
+or GroupUnderlyings::hasField<FIELD>()
+or GroupLegs::hasField<FIELD>()
+or GroupCapacities::hasField<FIELD>()
+or GroupDlvyInst::hasField<FIELD>()
+or GroupStipulations::hasField<FIELD>()
+or GroupMiscFees::hasField<FIELD>(); } 
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessagePositionMaintenanceRequest 
+template< typename FIELD > inline constexpr bool FIXPP_MSG_CLASS::hasField() { return false
+or GroupPartyIDs::hasField<FIELD>()
+or GroupSecurityAltID::hasField<FIELD>()
+or GroupEvents::hasField<FIELD>()
+or GroupLegs::hasField<FIELD>()
+or GroupUnderlyings::hasField<FIELD>()
+or GroupTradingSessions::hasField<FIELD>()
+or GroupPositions::hasField<FIELD>(); } 
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessagePositionMaintenanceReport 
+template< typename FIELD > inline constexpr bool FIXPP_MSG_CLASS::hasField() { return false
+or GroupPartyIDs::hasField<FIELD>()
+or GroupSecurityAltID::hasField<FIELD>()
+or GroupEvents::hasField<FIELD>()
+or GroupLegs::hasField<FIELD>()
+or GroupUnderlyings::hasField<FIELD>()
+or GroupTradingSessions::hasField<FIELD>()
+or GroupPositions::hasField<FIELD>()
+or GroupPosAmt::hasField<FIELD>(); } 
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageRequestForPositions 
+template< typename FIELD > inline constexpr bool FIXPP_MSG_CLASS::hasField() { return false
+or GroupPartyIDs::hasField<FIELD>()
+or GroupSecurityAltID::hasField<FIELD>()
+or GroupEvents::hasField<FIELD>()
+or GroupLegs::hasField<FIELD>()
+or GroupUnderlyings::hasField<FIELD>()
+or GroupTradingSessions::hasField<FIELD>(); } 
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageRequestForPositionsAck 
+template< typename FIELD > inline constexpr bool FIXPP_MSG_CLASS::hasField() { return false
+or GroupPartyIDs::hasField<FIELD>()
+or GroupSecurityAltID::hasField<FIELD>()
+or GroupEvents::hasField<FIELD>()
+or GroupLegs::hasField<FIELD>()
+or GroupUnderlyings::hasField<FIELD>(); } 
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessagePositionReport 
+template< typename FIELD > inline constexpr bool FIXPP_MSG_CLASS::hasField() { return false
+or GroupPartyIDs::hasField<FIELD>()
+or GroupSecurityAltID::hasField<FIELD>()
+or GroupEvents::hasField<FIELD>()
+or GroupLegs::hasField<FIELD>()
+or GroupUnderlyings::hasField<FIELD>()
+or GroupPositions::hasField<FIELD>()
+or GroupPosAmt::hasField<FIELD>(); } 
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageTradeCaptureReportRequestAck 
+template< typename FIELD > inline constexpr bool FIXPP_MSG_CLASS::hasField() { return false
+or GroupSecurityAltID::hasField<FIELD>()
+or GroupEvents::hasField<FIELD>()
+or GroupUnderlyings::hasField<FIELD>()
+or GroupLegs::hasField<FIELD>(); } 
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageTradeCaptureReportAck 
+template< typename FIELD > inline constexpr bool FIXPP_MSG_CLASS::hasField() { return false
+or GroupSecurityAltID::hasField<FIELD>()
+or GroupEvents::hasField<FIELD>()
+or GroupTrdRegTimestamps::hasField<FIELD>()
+or GroupLegs::hasField<FIELD>()
+or GroupAllocs::hasField<FIELD>(); } 
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageAllocationReport 
+template< typename FIELD > inline constexpr bool FIXPP_MSG_CLASS::hasField() { return false
+or GroupOrders::hasField<FIELD>()
+or GroupExecs::hasField<FIELD>()
+or GroupSecurityAltID::hasField<FIELD>()
+or GroupEvents::hasField<FIELD>()
+or GroupInstrAttrib::hasField<FIELD>()
+or GroupUnderlyings::hasField<FIELD>()
+or GroupLegs::hasField<FIELD>()
+or GroupPartyIDs::hasField<FIELD>()
+or GroupStipulations::hasField<FIELD>()
+or GroupAllocs::hasField<FIELD>(); } 
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageAllocationReportAck 
+template< typename FIELD > inline constexpr bool FIXPP_MSG_CLASS::hasField() { return false
+or GroupPartyIDs::hasField<FIELD>()
+or GroupAllocs::hasField<FIELD>(); } 
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageConfirmationAck 
+template< typename FIELD > inline constexpr bool FIXPP_MSG_CLASS::hasField() { return false; } 
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageSettlementInstructionRequest 
+template< typename FIELD > inline constexpr bool FIXPP_MSG_CLASS::hasField() { return false
+or GroupPartyIDs::hasField<FIELD>(); } 
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageAssignmentReport 
+template< typename FIELD > inline constexpr bool FIXPP_MSG_CLASS::hasField() { return false
+or GroupPartyIDs::hasField<FIELD>()
+or GroupSecurityAltID::hasField<FIELD>()
+or GroupEvents::hasField<FIELD>()
+or GroupLegs::hasField<FIELD>()
+or GroupUnderlyings::hasField<FIELD>()
+or GroupPositions::hasField<FIELD>()
+or GroupPosAmt::hasField<FIELD>(); } 
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageCollateralRequest 
+template< typename FIELD > inline constexpr bool FIXPP_MSG_CLASS::hasField() { return false
+or GroupPartyIDs::hasField<FIELD>()
+or GroupExecs::hasField<FIELD>()
+or GroupTrades::hasField<FIELD>()
+or GroupSecurityAltID::hasField<FIELD>()
+or GroupEvents::hasField<FIELD>()
+or GroupLegs::hasField<FIELD>()
+or GroupUnderlyings::hasField<FIELD>()
+or GroupTrdRegTimestamps::hasField<FIELD>()
+or GroupMiscFees::hasField<FIELD>()
+or GroupStipulations::hasField<FIELD>(); } 
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageCollateralAssignment 
+template< typename FIELD > inline constexpr bool FIXPP_MSG_CLASS::hasField() { return false
+or GroupPartyIDs::hasField<FIELD>()
+or GroupExecs::hasField<FIELD>()
+or GroupTrades::hasField<FIELD>()
+or GroupSecurityAltID::hasField<FIELD>()
+or GroupEvents::hasField<FIELD>()
+or GroupLegs::hasField<FIELD>()
+or GroupUnderlyings::hasField<FIELD>()
+or GroupTrdRegTimestamps::hasField<FIELD>()
+or GroupMiscFees::hasField<FIELD>()
+or GroupStipulations::hasField<FIELD>()
+or GroupDlvyInst::hasField<FIELD>(); } 
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageCollateralResponse 
+template< typename FIELD > inline constexpr bool FIXPP_MSG_CLASS::hasField() { return false
+or GroupPartyIDs::hasField<FIELD>()
+or GroupExecs::hasField<FIELD>()
+or GroupTrades::hasField<FIELD>()
+or GroupSecurityAltID::hasField<FIELD>()
+or GroupEvents::hasField<FIELD>()
+or GroupLegs::hasField<FIELD>()
+or GroupUnderlyings::hasField<FIELD>()
+or GroupTrdRegTimestamps::hasField<FIELD>()
+or GroupMiscFees::hasField<FIELD>()
+or GroupStipulations::hasField<FIELD>(); } 
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageCollateralReport 
+template< typename FIELD > inline constexpr bool FIXPP_MSG_CLASS::hasField() { return false
+or GroupPartyIDs::hasField<FIELD>()
+or GroupExecs::hasField<FIELD>()
+or GroupTrades::hasField<FIELD>()
+or GroupSecurityAltID::hasField<FIELD>()
+or GroupEvents::hasField<FIELD>()
+or GroupLegs::hasField<FIELD>()
+or GroupUnderlyings::hasField<FIELD>()
+or GroupTrdRegTimestamps::hasField<FIELD>()
+or GroupMiscFees::hasField<FIELD>()
+or GroupStipulations::hasField<FIELD>()
+or GroupDlvyInst::hasField<FIELD>(); } 
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageCollateralInquiry 
+template< typename FIELD > inline constexpr bool FIXPP_MSG_CLASS::hasField() { return false
+or GroupCollInquiryQualifier::hasField<FIELD>()
+or GroupPartyIDs::hasField<FIELD>()
+or GroupExecs::hasField<FIELD>()
+or GroupTrades::hasField<FIELD>()
+or GroupSecurityAltID::hasField<FIELD>()
+or GroupEvents::hasField<FIELD>()
+or GroupLegs::hasField<FIELD>()
+or GroupUnderlyings::hasField<FIELD>()
+or GroupTrdRegTimestamps::hasField<FIELD>()
+or GroupStipulations::hasField<FIELD>()
+or GroupDlvyInst::hasField<FIELD>(); } 
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageNetworkCounterpartySystemStatusRequest 
+template< typename FIELD > inline constexpr bool FIXPP_MSG_CLASS::hasField() { return false
+or GroupCompIDs::hasField<FIELD>(); } 
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageNetworkCounterpartySystemStatusResponse 
+template< typename FIELD > inline constexpr bool FIXPP_MSG_CLASS::hasField() { return false
+or GroupCompIDs::hasField<FIELD>(); } 
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageUserRequest 
+template< typename FIELD > inline constexpr bool FIXPP_MSG_CLASS::hasField() { return false; } 
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageUserResponse 
+template< typename FIELD > inline constexpr bool FIXPP_MSG_CLASS::hasField() { return false; } 
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageCollateralInquiryAck 
+template< typename FIELD > inline constexpr bool FIXPP_MSG_CLASS::hasField() { return false
+or GroupCollInquiryQualifier::hasField<FIELD>()
+or GroupPartyIDs::hasField<FIELD>()
+or GroupExecs::hasField<FIELD>()
+or GroupTrades::hasField<FIELD>()
+or GroupSecurityAltID::hasField<FIELD>()
+or GroupEvents::hasField<FIELD>()
+or GroupLegs::hasField<FIELD>()
+or GroupUnderlyings::hasField<FIELD>(); } 
+#undef FIXPP_MSG_CLASS
+
+#define FIXPP_MSG_CLASS MessageConfirmationRequest 
+template< typename FIELD > inline constexpr bool FIXPP_MSG_CLASS::hasField() { return false
+or GroupOrders::hasField<FIELD>(); } 
+#undef FIXPP_MSG_CLASS
+
 // ---------------------------------- hasField<field> ---------------------------------
 
 #define FIXPP_MSG_CLASS MessageHeader
@@ -53705,7 +54534,7 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldXmlDataLen>() { 
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldXmlData>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldMessageEncoding>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldLastMsgSeqNumProcessed>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoHops>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoHops>() { return true; }
 #undef FIXPP_MSG_CLASS
 
 #define FIXPP_MSG_CLASS MessageHeartbeat
@@ -53750,7 +54579,7 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSymbol>() { retu
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSymbolSfx>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityIDSource>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoSecurityAltID>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoSecurityAltID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldProduct>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCFICode>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityType>() { return true; }
@@ -53786,7 +54615,7 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldPool>() { return
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldContractSettlMonth>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCPProgram>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCPRegType>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoEvents>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoEvents>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldDatedDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldInterestAccrualDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAgreementDesc>() { return true; }
@@ -53798,7 +54627,7 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldStartDate>() { r
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldEndDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldDeliveryType>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldMarginRatio>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoUnderlyings>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoUnderlyings>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSide>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldQtyType>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldOrderQty>() { return true; }
@@ -53808,20 +54637,20 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldRoundingDirectio
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldRoundingModulus>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldIOIQty>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCurrency>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoStipulations>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoLegs>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoStipulations>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoLegs>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldPriceType>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldPrice>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldValidUntilTime>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldIOIQltyInd>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldIOINaturalFlag>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoIOIQualifiers>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoIOIQualifiers>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldText>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldEncodedTextLen>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldEncodedText>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldTransactTime>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldURLLink>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoRoutingIDs>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoRoutingIDs>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSpread>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldBenchmarkCurveCurrency>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldBenchmarkCurveName>() { return true; }
@@ -53846,7 +54675,7 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSymbol>() { retu
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSymbolSfx>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityIDSource>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoSecurityAltID>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoSecurityAltID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldProduct>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCFICode>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityType>() { return true; }
@@ -53882,11 +54711,11 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldPool>() { return
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldContractSettlMonth>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCPProgram>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCPRegType>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoEvents>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoEvents>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldDatedDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldInterestAccrualDate>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoLegs>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoUnderlyings>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoLegs>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoUnderlyings>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAdvSide>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldQuantity>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldQtyType>() { return true; }
@@ -53916,9 +54745,9 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldOrdStatusReqID>(
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldMassStatusReqID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldTotNumReports>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldLastRptRequested>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoPartyIDs>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoPartyIDs>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldTradeOriginationDate>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoContraBrokers>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoContraBrokers>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldListID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCrossID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldOrigCrossID>() { return true; }
@@ -53944,7 +54773,7 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSymbol>() { retu
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSymbolSfx>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityIDSource>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoSecurityAltID>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoSecurityAltID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldProduct>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCFICode>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityType>() { return true; }
@@ -53980,7 +54809,7 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldPool>() { return
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldContractSettlMonth>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCPProgram>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCPRegType>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoEvents>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoEvents>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldDatedDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldInterestAccrualDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAgreementDesc>() { return true; }
@@ -53992,9 +54821,9 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldStartDate>() { r
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldEndDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldDeliveryType>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldMarginRatio>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoUnderlyings>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoUnderlyings>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSide>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoStipulations>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoStipulations>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldQtyType>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldOrderQty>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCashOrderQty>() { return true; }
@@ -54118,10 +54947,10 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldExecPriceAdjustm
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldPriorityIndicator>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldPriceImprovement>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldLastLiquidityInd>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoContAmts>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoLegs>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoContAmts>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoLegs>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCopyMsgIndicator>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoMiscFees>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoMiscFees>() { return true; }
 #undef FIXPP_MSG_CLASS
 
 #define FIXPP_MSG_CLASS MessageOrderCancelReject
@@ -54156,7 +54985,7 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldRawData>() { ret
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldResetSeqNumFlag>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNextExpectedMsgSeqNum>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldMaxMessageSize>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoMsgTypes>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoMsgTypes>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldTestMessageIndicator>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldUsername>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldPassword>() { return true; }
@@ -54168,11 +54997,11 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldUrgency>() { ret
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldHeadline>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldEncodedHeadlineLen>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldEncodedHeadline>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoRoutingIDs>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoRelatedSym>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoLegs>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoUnderlyings>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoLinesOfText>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoRoutingIDs>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoRelatedSym>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoLegs>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoUnderlyings>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoLinesOfText>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldURLLink>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldRawDataLength>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldRawData>() { return true; }
@@ -54185,13 +55014,13 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldOrigTime>() { re
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSubject>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldEncodedSubjectLen>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldEncodedSubject>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoRoutingIDs>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoRelatedSym>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoUnderlyings>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoLegs>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoRoutingIDs>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoRelatedSym>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoUnderlyings>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoLegs>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldOrderID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldClOrdID>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoLinesOfText>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoLinesOfText>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldRawDataLength>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldRawData>() { return true; }
 #undef FIXPP_MSG_CLASS
@@ -54200,7 +55029,7 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldRawData>() { ret
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldClOrdID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecondaryClOrdID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldClOrdLinkID>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoPartyIDs>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoPartyIDs>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldTradeOriginationDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldTradeDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAccount>() { return true; }
@@ -54210,7 +55039,7 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldDayBookingInst>(
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldBookingUnit>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldPreallocMethod>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAllocID>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoAllocs>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoAllocs>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSettlType>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSettlDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCashMargin>() { return true; }
@@ -54220,13 +55049,13 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldExecInst>() { re
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldMinQty>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldMaxFloor>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldExDestination>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoTradingSessions>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoTradingSessions>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldProcessCode>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSymbol>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSymbolSfx>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityIDSource>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoSecurityAltID>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoSecurityAltID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldProduct>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCFICode>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityType>() { return true; }
@@ -54262,7 +55091,7 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldPool>() { return
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldContractSettlMonth>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCPProgram>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCPRegType>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoEvents>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoEvents>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldDatedDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldInterestAccrualDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAgreementDesc>() { return true; }
@@ -54274,12 +55103,12 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldStartDate>() { r
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldEndDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldDeliveryType>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldMarginRatio>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoUnderlyings>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoUnderlyings>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldPrevClosePx>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSide>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldLocateReqd>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldTransactTime>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoStipulations>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoStipulations>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldQtyType>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldOrderQty>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCashOrderQty>() { return true; }
@@ -54374,7 +55203,7 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAllowableOneSide
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAllowableOneSidednessCurr>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldTotNoOrders>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldLastFragment>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoOrders>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoOrders>() { return true; }
 #undef FIXPP_MSG_CLASS
 
 #define FIXPP_MSG_CLASS MessageOrderCancelRequest
@@ -54388,12 +55217,12 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldOrigOrdModTime>(
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAccount>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAcctIDSource>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAccountType>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoPartyIDs>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoPartyIDs>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSymbol>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSymbolSfx>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityIDSource>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoSecurityAltID>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoSecurityAltID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldProduct>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCFICode>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityType>() { return true; }
@@ -54429,7 +55258,7 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldPool>() { return
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldContractSettlMonth>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCPProgram>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCPRegType>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoEvents>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoEvents>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldDatedDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldInterestAccrualDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAgreementDesc>() { return true; }
@@ -54441,7 +55270,7 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldStartDate>() { r
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldEndDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldDeliveryType>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldMarginRatio>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoUnderlyings>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoUnderlyings>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSide>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldTransactTime>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldOrderQty>() { return true; }
@@ -54457,7 +55286,7 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldEncodedText>() {
 
 #define FIXPP_MSG_CLASS MessageOrderCancelReplaceRequest
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldOrderID>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoPartyIDs>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoPartyIDs>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldTradeOriginationDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldTradeDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldOrigClOrdID>() { return true; }
@@ -54473,7 +55302,7 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldDayBookingInst>(
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldBookingUnit>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldPreallocMethod>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAllocID>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoAllocs>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoAllocs>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSettlType>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSettlDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCashMargin>() { return true; }
@@ -54483,12 +55312,12 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldExecInst>() { re
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldMinQty>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldMaxFloor>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldExDestination>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoTradingSessions>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoTradingSessions>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSymbol>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSymbolSfx>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityIDSource>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoSecurityAltID>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoSecurityAltID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldProduct>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCFICode>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityType>() { return true; }
@@ -54524,7 +55353,7 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldPool>() { return
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldContractSettlMonth>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCPProgram>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCPRegType>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoEvents>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoEvents>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldDatedDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldInterestAccrualDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAgreementDesc>() { return true; }
@@ -54536,7 +55365,7 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldStartDate>() { r
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldEndDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldDeliveryType>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldMarginRatio>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoUnderlyings>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoUnderlyings>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSide>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldTransactTime>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldQtyType>() { return true; }
@@ -54618,7 +55447,7 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldOrderID>() { ret
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldClOrdID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecondaryClOrdID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldClOrdLinkID>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoPartyIDs>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoPartyIDs>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldOrdStatusReqID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAccount>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAcctIDSource>() { return true; }
@@ -54626,7 +55455,7 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSymbol>() { retu
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSymbolSfx>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityIDSource>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoSecurityAltID>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoSecurityAltID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldProduct>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCFICode>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityType>() { return true; }
@@ -54662,7 +55491,7 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldPool>() { return
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldContractSettlMonth>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCPProgram>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCPRegType>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoEvents>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoEvents>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldDatedDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldInterestAccrualDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAgreementDesc>() { return true; }
@@ -54674,7 +55503,7 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldStartDate>() { r
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldEndDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldDeliveryType>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldMarginRatio>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoUnderlyings>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoUnderlyings>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSide>() { return true; }
 #undef FIXPP_MSG_CLASS
 
@@ -54690,8 +55519,8 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAllocLinkID>() {
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAllocLinkType>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldBookingRefID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAllocNoOrdersType>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoOrders>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoExecs>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoOrders>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoExecs>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldPreviouslyReported>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldReversalIndicator>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldMatchType>() { return true; }
@@ -54700,7 +55529,7 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSymbol>() { retu
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSymbolSfx>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityIDSource>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoSecurityAltID>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoSecurityAltID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldProduct>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCFICode>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityType>() { return true; }
@@ -54736,12 +55565,12 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldPool>() { return
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldContractSettlMonth>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCPProgram>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCPRegType>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoEvents>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoEvents>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldDatedDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldInterestAccrualDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldDeliveryForm>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldPctAtRisk>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoInstrAttrib>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoInstrAttrib>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAgreementDesc>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAgreementID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAgreementDate>() { return true; }
@@ -54751,8 +55580,8 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldStartDate>() { r
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldEndDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldDeliveryType>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldMarginRatio>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoUnderlyings>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoLegs>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoUnderlyings>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoLegs>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldQuantity>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldQtyType>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldLastMkt>() { return true; }
@@ -54772,7 +55601,7 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldBenchmarkSecurit
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldBenchmarkSecurityIDSource>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCurrency>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAvgPxPrecision>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoPartyIDs>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoPartyIDs>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldTradeDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldTransactTime>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSettlType>() { return true; }
@@ -54796,7 +55625,7 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldEndAccruedIntere
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldStartCash>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldEndCash>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldLegalConfirm>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoStipulations>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoStipulations>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldYieldType>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldYield>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldYieldCalcDate>() { return true; }
@@ -54805,7 +55634,7 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldYieldRedemptionP
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldYieldRedemptionPriceType>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldTotNoAllocs>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldLastFragment>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoAllocs>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoAllocs>() { return true; }
 #undef FIXPP_MSG_CLASS
 
 #define FIXPP_MSG_CLASS MessageListCancelRequest
@@ -54847,12 +55676,12 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldEncodedListStatu
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldTransactTime>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldTotNoOrders>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldLastFragment>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoOrders>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoOrders>() { return true; }
 #undef FIXPP_MSG_CLASS
 
 #define FIXPP_MSG_CLASS MessageAllocationInstructionAck
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAllocID>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoPartyIDs>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoPartyIDs>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecondaryAllocID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldTradeDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldTransactTime>() { return true; }
@@ -54866,7 +55695,7 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityType>() 
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldText>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldEncodedTextLen>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldEncodedText>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoAllocs>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoAllocs>() { return true; }
 #undef FIXPP_MSG_CLASS
 
 #define FIXPP_MSG_CLASS MessageDontKnowTrade
@@ -54878,7 +55707,7 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSymbol>() { retu
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSymbolSfx>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityIDSource>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoSecurityAltID>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoSecurityAltID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldProduct>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCFICode>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityType>() { return true; }
@@ -54914,11 +55743,11 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldPool>() { return
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldContractSettlMonth>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCPProgram>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCPRegType>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoEvents>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoEvents>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldDatedDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldInterestAccrualDate>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoUnderlyings>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoLegs>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoUnderlyings>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoLegs>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSide>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldOrderQty>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCashOrderQty>() { return true; }
@@ -54937,7 +55766,7 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldQuoteReqID>() { 
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldRFQReqID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldClOrdID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldOrderCapacity>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoRelatedSym>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoRelatedSym>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldText>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldEncodedTextLen>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldEncodedText>() { return true; }
@@ -54948,16 +55777,16 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldQuoteReqID>() { 
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldQuoteID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldQuoteRespID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldQuoteType>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoQuoteQualifiers>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoQuoteQualifiers>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldQuoteResponseLevel>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoPartyIDs>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoPartyIDs>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldTradingSessionID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldTradingSessionSubID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSymbol>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSymbolSfx>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityIDSource>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoSecurityAltID>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoSecurityAltID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldProduct>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCFICode>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityType>() { return true; }
@@ -54993,7 +55822,7 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldPool>() { return
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldContractSettlMonth>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCPProgram>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCPRegType>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoEvents>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoEvents>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldDatedDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldInterestAccrualDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAgreementDesc>() { return true; }
@@ -55005,7 +55834,7 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldStartDate>() { r
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldEndDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldDeliveryType>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldMarginRatio>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoUnderlyings>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoUnderlyings>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSide>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldOrderQty>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCashOrderQty>() { return true; }
@@ -55017,11 +55846,11 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSettlDate>() { r
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSettlDate2>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldOrderQty2>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCurrency>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoStipulations>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoStipulations>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAccount>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAcctIDSource>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAccountType>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoLegs>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoLegs>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldBidPx>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldOfferPx>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldMktBidPx>() { return true; }
@@ -55081,7 +55910,7 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldEncodedTextLen>(
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldEncodedText>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldClOrdID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldTransactTime>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoSettlInst>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoSettlInst>() { return true; }
 #undef FIXPP_MSG_CLASS
 
 #define FIXPP_MSG_CLASS MessageMarketDataRequest
@@ -55093,9 +55922,9 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAggregatedBook>(
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldOpenCloseSettlFlag>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldScope>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldMDImplicitDelete>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoMDEntryTypes>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoRelatedSym>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoTradingSessions>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoMDEntryTypes>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoRelatedSym>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoTradingSessions>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldApplQueueAction>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldApplQueueMax>() { return true; }
 #undef FIXPP_MSG_CLASS
@@ -55106,7 +55935,7 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSymbol>() { retu
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSymbolSfx>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityIDSource>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoSecurityAltID>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoSecurityAltID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldProduct>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCFICode>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityType>() { return true; }
@@ -55142,22 +55971,22 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldPool>() { return
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldContractSettlMonth>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCPProgram>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCPRegType>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoEvents>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoEvents>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldDatedDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldInterestAccrualDate>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoUnderlyings>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoLegs>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoUnderlyings>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoLegs>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldFinancialStatus>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCorporateAction>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNetChgPrevDay>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoMDEntries>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoMDEntries>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldApplQueueDepth>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldApplQueueResolution>() { return true; }
 #undef FIXPP_MSG_CLASS
 
 #define FIXPP_MSG_CLASS MessageMarketDataIncrementalRefresh
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldMDReqID>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoMDEntries>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoMDEntries>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldApplQueueDepth>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldApplQueueResolution>() { return true; }
 #undef FIXPP_MSG_CLASS
@@ -55165,7 +55994,7 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldApplQueueResolut
 #define FIXPP_MSG_CLASS MessageMarketDataRequestReject
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldMDReqID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldMDReqRejReason>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoAltMDSource>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoAltMDSource>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldText>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldEncodedTextLen>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldEncodedText>() { return true; }
@@ -55176,13 +56005,13 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldQuoteReqID>() { 
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldQuoteID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldQuoteCancelType>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldQuoteResponseLevel>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoPartyIDs>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoPartyIDs>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAccount>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAcctIDSource>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAccountType>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldTradingSessionID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldTradingSessionSubID>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoQuoteEntries>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoQuoteEntries>() { return true; }
 #undef FIXPP_MSG_CLASS
 
 #define FIXPP_MSG_CLASS MessageQuoteStatusRequest
@@ -55192,7 +56021,7 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSymbol>() { retu
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSymbolSfx>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityIDSource>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoSecurityAltID>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoSecurityAltID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldProduct>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCFICode>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityType>() { return true; }
@@ -55228,7 +56057,7 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldPool>() { return
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldContractSettlMonth>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCPProgram>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCPRegType>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoEvents>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoEvents>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldDatedDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldInterestAccrualDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAgreementDesc>() { return true; }
@@ -55240,9 +56069,9 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldStartDate>() { r
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldEndDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldDeliveryType>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldMarginRatio>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoUnderlyings>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoLegs>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoPartyIDs>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoUnderlyings>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoLegs>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoPartyIDs>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAccount>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAcctIDSource>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAccountType>() { return true; }
@@ -55258,14 +56087,14 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldQuoteStatus>() {
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldQuoteRejectReason>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldQuoteResponseLevel>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldQuoteType>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoPartyIDs>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoPartyIDs>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAccount>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAcctIDSource>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAccountType>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldText>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldEncodedTextLen>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldEncodedText>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoQuoteSets>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoQuoteSets>() { return true; }
 #undef FIXPP_MSG_CLASS
 
 #define FIXPP_MSG_CLASS MessageSecurityDefinitionRequest
@@ -55275,7 +56104,7 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSymbol>() { retu
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSymbolSfx>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityIDSource>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoSecurityAltID>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoSecurityAltID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldProduct>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCFICode>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityType>() { return true; }
@@ -55311,20 +56140,20 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldPool>() { return
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldContractSettlMonth>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCPProgram>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCPRegType>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoEvents>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoEvents>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldDatedDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldInterestAccrualDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldDeliveryForm>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldPctAtRisk>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoInstrAttrib>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoUnderlyings>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoInstrAttrib>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoUnderlyings>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCurrency>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldText>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldEncodedTextLen>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldEncodedText>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldTradingSessionID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldTradingSessionSubID>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoLegs>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoLegs>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldExpirationCycle>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSubscriptionRequestType>() { return true; }
 #undef FIXPP_MSG_CLASS
@@ -55337,7 +56166,7 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSymbol>() { retu
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSymbolSfx>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityIDSource>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoSecurityAltID>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoSecurityAltID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldProduct>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCFICode>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityType>() { return true; }
@@ -55373,20 +56202,20 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldPool>() { return
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldContractSettlMonth>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCPProgram>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCPRegType>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoEvents>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoEvents>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldDatedDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldInterestAccrualDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldDeliveryForm>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldPctAtRisk>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoInstrAttrib>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoUnderlyings>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoInstrAttrib>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoUnderlyings>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCurrency>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldTradingSessionID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldTradingSessionSubID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldText>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldEncodedTextLen>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldEncodedText>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoLegs>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoLegs>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldExpirationCycle>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldRoundLot>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldMinTradeVol>() { return true; }
@@ -55398,7 +56227,7 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSymbol>() { retu
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSymbolSfx>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityIDSource>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoSecurityAltID>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoSecurityAltID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldProduct>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCFICode>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityType>() { return true; }
@@ -55434,14 +56263,14 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldPool>() { return
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldContractSettlMonth>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCPProgram>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCPRegType>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoEvents>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoEvents>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldDatedDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldInterestAccrualDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldDeliveryForm>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldPctAtRisk>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoInstrAttrib>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoUnderlyings>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoLegs>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoInstrAttrib>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoUnderlyings>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoLegs>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCurrency>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSubscriptionRequestType>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldTradingSessionID>() { return true; }
@@ -55454,7 +56283,7 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSymbol>() { retu
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSymbolSfx>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityIDSource>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoSecurityAltID>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoSecurityAltID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldProduct>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCFICode>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityType>() { return true; }
@@ -55490,14 +56319,14 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldPool>() { return
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldContractSettlMonth>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCPProgram>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCPRegType>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoEvents>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoEvents>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldDatedDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldInterestAccrualDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldDeliveryForm>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldPctAtRisk>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoInstrAttrib>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoUnderlyings>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoLegs>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoInstrAttrib>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoUnderlyings>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoLegs>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCurrency>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldTradingSessionID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldTradingSessionSubID>() { return true; }
@@ -55554,13 +56383,13 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldQuoteReqID>() { 
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldQuoteID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldQuoteType>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldQuoteResponseLevel>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoPartyIDs>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoPartyIDs>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAccount>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAcctIDSource>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAccountType>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldDefBidSize>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldDefOfferSize>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoQuoteSets>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoQuoteSets>() { return true; }
 #undef FIXPP_MSG_CLASS
 
 #define FIXPP_MSG_CLASS MessageBusinessMessageReject
@@ -55584,8 +56413,8 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNumTickets>() { 
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCurrency>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSideValue1>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSideValue2>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoBidDescriptors>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoBidComponents>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoBidDescriptors>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoBidComponents>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldLiquidityIndType>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldWtAverageLiquidity>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldExchangeForPhysical>() { return true; }
@@ -55608,15 +56437,15 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldEncodedText>() {
 #define FIXPP_MSG_CLASS MessageBidResponse
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldBidID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldClientBidID>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoBidComponents>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoBidComponents>() { return true; }
 #undef FIXPP_MSG_CLASS
 
 #define FIXPP_MSG_CLASS MessageListStrikePrice
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldListID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldTotNoStrikes>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldLastFragment>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoStrikes>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoUnderlyings>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoStrikes>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoUnderlyings>() { return true; }
 #undef FIXPP_MSG_CLASS
 
 #define FIXPP_MSG_CLASS MessageXMLnonFIX
@@ -55627,14 +56456,14 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldRegistID>() { re
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldRegistTransType>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldRegistRefID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldClOrdID>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoPartyIDs>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoPartyIDs>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAccount>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAcctIDSource>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldRegistAcctType>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldTaxAdvantageType>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldOwnershipType>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoRegistDtls>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoDistribInsts>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoRegistDtls>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoDistribInsts>() { return true; }
 #undef FIXPP_MSG_CLASS
 
 #define FIXPP_MSG_CLASS MessageRegistrationInstructionsResponse
@@ -55642,7 +56471,7 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldRegistID>() { re
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldRegistTransType>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldRegistRefID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldClOrdID>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoPartyIDs>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoPartyIDs>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAccount>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAcctIDSource>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldRegistStatus>() { return true; }
@@ -55660,7 +56489,7 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSymbol>() { retu
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSymbolSfx>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityIDSource>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoSecurityAltID>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoSecurityAltID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldProduct>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCFICode>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityType>() { return true; }
@@ -55696,14 +56525,14 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldPool>() { return
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldContractSettlMonth>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCPProgram>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCPRegType>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoEvents>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoEvents>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldDatedDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldInterestAccrualDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldUnderlyingSymbol>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldUnderlyingSymbolSfx>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldUnderlyingSecurityID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldUnderlyingSecurityIDSource>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoUnderlyingSecurityAltID>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoUnderlyingSecurityAltID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldUnderlyingProduct>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldUnderlyingCFICode>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldUnderlyingSecurityType>() { return true; }
@@ -55745,7 +56574,7 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldUnderlyingEndPri
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldUnderlyingStartValue>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldUnderlyingCurrentValue>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldUnderlyingEndValue>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoUnderlyingStips>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoUnderlyingStips>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSide>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldTransactTime>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldText>() { return true; }
@@ -55762,14 +56591,14 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldMassCancelReques
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldMassCancelResponse>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldMassCancelRejectReason>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldTotalAffectedOrders>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoAffectedOrders>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoAffectedOrders>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldTradingSessionID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldTradingSessionSubID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSymbol>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSymbolSfx>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityIDSource>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoSecurityAltID>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoSecurityAltID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldProduct>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCFICode>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityType>() { return true; }
@@ -55805,14 +56634,14 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldPool>() { return
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldContractSettlMonth>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCPProgram>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCPRegType>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoEvents>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoEvents>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldDatedDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldInterestAccrualDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldUnderlyingSymbol>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldUnderlyingSymbolSfx>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldUnderlyingSecurityID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldUnderlyingSecurityIDSource>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoUnderlyingSecurityAltID>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoUnderlyingSecurityAltID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldUnderlyingProduct>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldUnderlyingCFICode>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldUnderlyingSecurityType>() { return true; }
@@ -55854,7 +56683,7 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldUnderlyingEndPri
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldUnderlyingStartValue>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldUnderlyingCurrentValue>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldUnderlyingEndValue>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoUnderlyingStips>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoUnderlyingStips>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSide>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldTransactTime>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldText>() { return true; }
@@ -55866,12 +56695,12 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldEncodedText>() {
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCrossID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCrossType>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCrossPrioritization>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoSides>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoSides>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSymbol>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSymbolSfx>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityIDSource>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoSecurityAltID>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoSecurityAltID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldProduct>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCFICode>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityType>() { return true; }
@@ -55907,11 +56736,11 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldPool>() { return
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldContractSettlMonth>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCPProgram>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCPRegType>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoEvents>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoEvents>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldDatedDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldInterestAccrualDate>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoUnderlyings>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoLegs>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoUnderlyings>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoLegs>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSettlType>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSettlDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldHandlInst>() { return true; }
@@ -55919,12 +56748,12 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldExecInst>() { re
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldMinQty>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldMaxFloor>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldExDestination>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoTradingSessions>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoTradingSessions>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldProcessCode>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldPrevClosePx>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldLocateReqd>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldTransactTime>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoStipulations>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoStipulations>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldOrdType>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldPriceType>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldPrice>() { return true; }
@@ -55981,12 +56810,12 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCrossID>() { ret
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldOrigCrossID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCrossType>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCrossPrioritization>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoSides>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoSides>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSymbol>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSymbolSfx>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityIDSource>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoSecurityAltID>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoSecurityAltID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldProduct>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCFICode>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityType>() { return true; }
@@ -56022,11 +56851,11 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldPool>() { return
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldContractSettlMonth>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCPProgram>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCPRegType>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoEvents>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoEvents>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldDatedDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldInterestAccrualDate>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoUnderlyings>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoLegs>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoUnderlyings>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoLegs>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSettlType>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSettlDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldHandlInst>() { return true; }
@@ -56034,12 +56863,12 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldExecInst>() { re
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldMinQty>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldMaxFloor>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldExDestination>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoTradingSessions>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoTradingSessions>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldProcessCode>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldPrevClosePx>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldLocateReqd>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldTransactTime>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoStipulations>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoStipulations>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldOrdType>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldPriceType>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldPrice>() { return true; }
@@ -56096,12 +56925,12 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCrossID>() { ret
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldOrigCrossID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCrossType>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCrossPrioritization>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoSides>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoSides>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSymbol>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSymbolSfx>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityIDSource>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoSecurityAltID>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoSecurityAltID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldProduct>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCFICode>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityType>() { return true; }
@@ -56137,11 +56966,11 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldPool>() { return
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldContractSettlMonth>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCPProgram>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCPRegType>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoEvents>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoEvents>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldDatedDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldInterestAccrualDate>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoUnderlyings>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoLegs>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoUnderlyings>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoLegs>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldTransactTime>() { return true; }
 #undef FIXPP_MSG_CLASS
 
@@ -56163,7 +56992,7 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityResponse
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityResponseType>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldTotNoSecurityTypes>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldLastFragment>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoSecurityTypes>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoSecurityTypes>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldText>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldEncodedTextLen>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldEncodedText>() { return true; }
@@ -56179,7 +57008,7 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSymbol>() { retu
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSymbolSfx>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityIDSource>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoSecurityAltID>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoSecurityAltID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldProduct>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCFICode>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityType>() { return true; }
@@ -56215,12 +57044,12 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldPool>() { return
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldContractSettlMonth>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCPProgram>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCPRegType>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoEvents>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoEvents>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldDatedDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldInterestAccrualDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldDeliveryForm>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldPctAtRisk>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoInstrAttrib>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoInstrAttrib>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAgreementDesc>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAgreementID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAgreementDate>() { return true; }
@@ -56230,8 +57059,8 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldStartDate>() { r
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldEndDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldDeliveryType>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldMarginRatio>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoUnderlyings>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoLegs>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoUnderlyings>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoLegs>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCurrency>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldText>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldEncodedTextLen>() { return true; }
@@ -56247,7 +57076,7 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityResponse
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityRequestResult>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldTotNoRelatedSym>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldLastFragment>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoRelatedSym>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoRelatedSym>() { return true; }
 #undef FIXPP_MSG_CLASS
 
 #define FIXPP_MSG_CLASS MessageDerivativeSecurityListRequest
@@ -56257,7 +57086,7 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldUnderlyingSymbol
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldUnderlyingSymbolSfx>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldUnderlyingSecurityID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldUnderlyingSecurityIDSource>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoUnderlyingSecurityAltID>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoUnderlyingSecurityAltID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldUnderlyingProduct>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldUnderlyingCFICode>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldUnderlyingSecurityType>() { return true; }
@@ -56299,7 +57128,7 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldUnderlyingEndPri
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldUnderlyingStartValue>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldUnderlyingCurrentValue>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldUnderlyingEndValue>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoUnderlyingStips>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoUnderlyingStips>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecuritySubType>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCurrency>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldText>() { return true; }
@@ -56318,7 +57147,7 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldUnderlyingSymbol
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldUnderlyingSymbolSfx>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldUnderlyingSecurityID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldUnderlyingSecurityIDSource>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoUnderlyingSecurityAltID>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoUnderlyingSecurityAltID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldUnderlyingProduct>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldUnderlyingCFICode>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldUnderlyingSecurityType>() { return true; }
@@ -56360,17 +57189,17 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldUnderlyingEndPri
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldUnderlyingStartValue>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldUnderlyingCurrentValue>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldUnderlyingEndValue>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoUnderlyingStips>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoUnderlyingStips>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldTotNoRelatedSym>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldLastFragment>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoRelatedSym>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoRelatedSym>() { return true; }
 #undef FIXPP_MSG_CLASS
 
 #define FIXPP_MSG_CLASS MessageNewOrderMultileg
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldClOrdID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecondaryClOrdID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldClOrdLinkID>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoPartyIDs>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoPartyIDs>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldTradeOriginationDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldTradeDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAccount>() { return true; }
@@ -56380,7 +57209,7 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldDayBookingInst>(
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldBookingUnit>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldPreallocMethod>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAllocID>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoAllocs>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoAllocs>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSettlType>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSettlDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCashMargin>() { return true; }
@@ -56390,14 +57219,14 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldExecInst>() { re
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldMinQty>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldMaxFloor>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldExDestination>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoTradingSessions>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoTradingSessions>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldProcessCode>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSide>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSymbol>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSymbolSfx>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityIDSource>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoSecurityAltID>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoSecurityAltID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldProduct>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCFICode>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityType>() { return true; }
@@ -56433,12 +57262,12 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldPool>() { return
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldContractSettlMonth>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCPProgram>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCPRegType>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoEvents>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoEvents>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldDatedDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldInterestAccrualDate>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoUnderlyings>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoUnderlyings>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldPrevClosePx>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoLegs>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoLegs>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldLocateReqd>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldTransactTime>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldQtyType>() { return true; }
@@ -56507,7 +57336,7 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldClOrdID>() { ret
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecondaryClOrdID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldClOrdLinkID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldOrigOrdModTime>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoPartyIDs>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoPartyIDs>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldTradeOriginationDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldTradeDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAccount>() { return true; }
@@ -56517,7 +57346,7 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldDayBookingInst>(
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldBookingUnit>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldPreallocMethod>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAllocID>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoAllocs>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoAllocs>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSettlType>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSettlDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCashMargin>() { return true; }
@@ -56527,14 +57356,14 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldExecInst>() { re
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldMinQty>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldMaxFloor>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldExDestination>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoTradingSessions>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoTradingSessions>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldProcessCode>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSide>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSymbol>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSymbolSfx>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityIDSource>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoSecurityAltID>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoSecurityAltID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldProduct>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCFICode>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityType>() { return true; }
@@ -56570,12 +57399,12 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldPool>() { return
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldContractSettlMonth>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCPProgram>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCPRegType>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoEvents>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoEvents>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldDatedDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldInterestAccrualDate>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoUnderlyings>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoUnderlyings>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldPrevClosePx>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoLegs>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoLegs>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldLocateReqd>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldTransactTime>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldQtyType>() { return true; }
@@ -56654,12 +57483,12 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldTransferReason>(
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecondaryTrdType>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldTradeLinkID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldTrdMatchID>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoPartyIDs>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoPartyIDs>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSymbol>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSymbolSfx>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityIDSource>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoSecurityAltID>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoSecurityAltID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldProduct>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCFICode>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityType>() { return true; }
@@ -56695,12 +57524,12 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldPool>() { return
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldContractSettlMonth>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCPProgram>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCPRegType>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoEvents>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoEvents>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldDatedDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldInterestAccrualDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldDeliveryForm>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldPctAtRisk>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoInstrAttrib>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoInstrAttrib>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAgreementDesc>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAgreementID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAgreementDate>() { return true; }
@@ -56710,9 +57539,9 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldStartDate>() { r
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldEndDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldDeliveryType>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldMarginRatio>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoUnderlyings>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoLegs>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoDates>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoUnderlyings>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoLegs>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoDates>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldClearingBusinessDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldTradingSessionID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldTradingSessionSubID>() { return true; }
@@ -56757,7 +57586,7 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSymbol>() { retu
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSymbolSfx>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityIDSource>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoSecurityAltID>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoSecurityAltID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldProduct>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCFICode>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityType>() { return true; }
@@ -56793,7 +57622,7 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldPool>() { return
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldContractSettlMonth>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCPProgram>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCPRegType>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoEvents>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoEvents>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldDatedDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldInterestAccrualDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAgreementDesc>() { return true; }
@@ -56817,7 +57646,7 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldYieldCalcDate>()
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldYieldRedemptionDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldYieldRedemptionPrice>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldYieldRedemptionPriceType>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoUnderlyings>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoUnderlyings>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldUnderlyingTradingSessionID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldUnderlyingTradingSessionSubID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldLastQty>() { return true; }
@@ -56838,17 +57667,17 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldBenchmarkPriceTy
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldBenchmarkSecurityID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldBenchmarkSecurityIDSource>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAvgPxIndicator>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoPosAmt>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoPosAmt>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldMultiLegReportingType>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldTradeLegRefID>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoLegs>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoLegs>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldTransactTime>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoTrdRegTimestamps>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoTrdRegTimestamps>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSettlType>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSettlDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldMatchStatus>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldMatchType>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoSides>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoSides>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCopyMsgIndicator>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldPublishTrdIndicator>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldShortSaleReason>() { return true; }
@@ -56857,7 +57686,7 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldShortSaleReason>
 #define FIXPP_MSG_CLASS MessageOrderMassStatusRequest
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldMassStatusReqID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldMassStatusReqType>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoPartyIDs>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoPartyIDs>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAccount>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAcctIDSource>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldTradingSessionID>() { return true; }
@@ -56866,7 +57695,7 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSymbol>() { retu
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSymbolSfx>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityIDSource>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoSecurityAltID>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoSecurityAltID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldProduct>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCFICode>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityType>() { return true; }
@@ -56902,14 +57731,14 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldPool>() { return
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldContractSettlMonth>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCPProgram>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCPRegType>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoEvents>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoEvents>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldDatedDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldInterestAccrualDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldUnderlyingSymbol>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldUnderlyingSymbolSfx>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldUnderlyingSecurityID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldUnderlyingSecurityIDSource>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoUnderlyingSecurityAltID>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoUnderlyingSecurityAltID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldUnderlyingProduct>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldUnderlyingCFICode>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldUnderlyingSecurityType>() { return true; }
@@ -56951,7 +57780,7 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldUnderlyingEndPri
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldUnderlyingStartValue>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldUnderlyingCurrentValue>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldUnderlyingEndValue>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoUnderlyingStips>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoUnderlyingStips>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSide>() { return true; }
 #undef FIXPP_MSG_CLASS
 
@@ -56959,7 +57788,7 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSide>() { return
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldQuoteReqID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldRFQReqID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldQuoteRequestRejectReason>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoRelatedSym>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoRelatedSym>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldText>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldEncodedTextLen>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldEncodedText>() { return true; }
@@ -56967,7 +57796,7 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldEncodedText>() {
 
 #define FIXPP_MSG_CLASS MessageRFQRequest
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldRFQReqID>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoRelatedSym>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoRelatedSym>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSubscriptionRequestType>() { return true; }
 #undef FIXPP_MSG_CLASS
 
@@ -56977,14 +57806,14 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldQuoteReqID>() { 
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldQuoteID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldQuoteRespID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldQuoteType>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoPartyIDs>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoPartyIDs>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldTradingSessionID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldTradingSessionSubID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSymbol>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSymbolSfx>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityIDSource>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoSecurityAltID>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoSecurityAltID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldProduct>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCFICode>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityType>() { return true; }
@@ -57020,7 +57849,7 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldPool>() { return
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldContractSettlMonth>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCPProgram>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCPRegType>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoEvents>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoEvents>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldDatedDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldInterestAccrualDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAgreementDesc>() { return true; }
@@ -57032,7 +57861,7 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldStartDate>() { r
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldEndDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldDeliveryType>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldMarginRatio>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoUnderlyings>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoUnderlyings>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSide>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldOrderQty>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCashOrderQty>() { return true; }
@@ -57044,12 +57873,12 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSettlDate>() { r
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSettlDate2>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldOrderQty2>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCurrency>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoStipulations>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoStipulations>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAccount>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAcctIDSource>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAccountType>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoLegs>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoQuoteQualifiers>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoLegs>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoQuoteQualifiers>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldExpireTime>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldPrice>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldPriceType>() { return true; }
@@ -57109,15 +57938,15 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldClOrdID>() { ret
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldOrderCapacity>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldIOIID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldQuoteType>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoQuoteQualifiers>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoPartyIDs>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoQuoteQualifiers>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoPartyIDs>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldTradingSessionID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldTradingSessionSubID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSymbol>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSymbolSfx>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityIDSource>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoSecurityAltID>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoSecurityAltID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldProduct>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCFICode>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityType>() { return true; }
@@ -57153,7 +57982,7 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldPool>() { return
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldContractSettlMonth>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCPProgram>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCPRegType>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoEvents>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoEvents>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldDatedDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldInterestAccrualDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAgreementDesc>() { return true; }
@@ -57165,7 +57994,7 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldStartDate>() { r
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldEndDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldDeliveryType>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldMarginRatio>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoUnderlyings>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoUnderlyings>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSide>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldOrderQty>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCashOrderQty>() { return true; }
@@ -57177,11 +58006,11 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSettlDate>() { r
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSettlDate2>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldOrderQty2>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCurrency>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoStipulations>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoStipulations>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAccount>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAcctIDSource>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAccountType>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoLegs>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoLegs>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldBidPx>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldOfferPx>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldMktBidPx>() { return true; }
@@ -57240,19 +58069,19 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldConfirmType>() {
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCopyMsgIndicator>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldLegalConfirm>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldConfirmStatus>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoPartyIDs>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoOrders>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoPartyIDs>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoOrders>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAllocID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecondaryAllocID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldIndividualAllocID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldTransactTime>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldTradeDate>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoTrdRegTimestamps>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoTrdRegTimestamps>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSymbol>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSymbolSfx>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityIDSource>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoSecurityAltID>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoSecurityAltID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldProduct>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCFICode>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityType>() { return true; }
@@ -57288,12 +58117,12 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldPool>() { return
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldContractSettlMonth>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCPProgram>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCPRegType>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoEvents>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoEvents>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldDatedDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldInterestAccrualDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldDeliveryForm>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldPctAtRisk>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoInstrAttrib>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoInstrAttrib>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAgreementDesc>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAgreementID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAgreementDate>() { return true; }
@@ -57303,8 +58132,8 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldStartDate>() { r
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldEndDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldDeliveryType>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldMarginRatio>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoUnderlyings>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoLegs>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoUnderlyings>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoLegs>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldYieldType>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldYield>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldYieldCalcDate>() { return true; }
@@ -57316,7 +58145,7 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldQtyType>() { ret
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSide>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCurrency>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldLastMkt>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoCapacities>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoCapacities>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAllocAccount>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAllocAcctIDSource>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAllocAccountType>() { return true; }
@@ -57360,14 +58189,14 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSettlDeliveryTyp
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldStandInstDbType>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldStandInstDbName>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldStandInstDbID>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoDlvyInst>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoDlvyInst>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCommission>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCommType>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCommCurrency>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldFundRenewWaiv>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSharedCommission>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoStipulations>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoMiscFees>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoStipulations>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoMiscFees>() { return true; }
 #undef FIXPP_MSG_CLASS
 
 #define FIXPP_MSG_CLASS MessagePositionMaintenanceRequest
@@ -57379,7 +58208,7 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldPosMaintRptRefID
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldClearingBusinessDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSettlSessID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSettlSessSubID>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoPartyIDs>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoPartyIDs>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAccount>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAcctIDSource>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAccountType>() { return true; }
@@ -57387,7 +58216,7 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSymbol>() { retu
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSymbolSfx>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityIDSource>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoSecurityAltID>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoSecurityAltID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldProduct>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCFICode>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityType>() { return true; }
@@ -57423,15 +58252,15 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldPool>() { return
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldContractSettlMonth>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCPProgram>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCPRegType>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoEvents>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoEvents>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldDatedDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldInterestAccrualDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCurrency>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoLegs>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoUnderlyings>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoTradingSessions>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoLegs>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoUnderlyings>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoTradingSessions>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldTransactTime>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoPositions>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoPositions>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAdjustmentType>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldContraryInstructionIndicator>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldPriorSpreadIndicator>() { return true; }
@@ -57452,7 +58281,7 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldPosMaintResult>(
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldClearingBusinessDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSettlSessID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSettlSessSubID>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoPartyIDs>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoPartyIDs>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAccount>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAcctIDSource>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAccountType>() { return true; }
@@ -57460,7 +58289,7 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSymbol>() { retu
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSymbolSfx>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityIDSource>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoSecurityAltID>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoSecurityAltID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldProduct>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCFICode>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityType>() { return true; }
@@ -57496,16 +58325,16 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldPool>() { return
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldContractSettlMonth>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCPProgram>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCPRegType>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoEvents>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoEvents>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldDatedDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldInterestAccrualDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCurrency>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoLegs>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoUnderlyings>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoTradingSessions>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoLegs>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoUnderlyings>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoTradingSessions>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldTransactTime>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoPositions>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoPosAmt>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoPositions>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoPosAmt>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAdjustmentType>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldThresholdAmount>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldText>() { return true; }
@@ -57518,7 +58347,7 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldPosReqID>() { re
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldPosReqType>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldMatchStatus>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSubscriptionRequestType>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoPartyIDs>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoPartyIDs>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAccount>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAcctIDSource>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAccountType>() { return true; }
@@ -57526,7 +58355,7 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSymbol>() { retu
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSymbolSfx>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityIDSource>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoSecurityAltID>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoSecurityAltID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldProduct>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCFICode>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityType>() { return true; }
@@ -57562,16 +58391,16 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldPool>() { return
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldContractSettlMonth>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCPProgram>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCPRegType>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoEvents>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoEvents>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldDatedDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldInterestAccrualDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCurrency>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoLegs>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoUnderlyings>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoLegs>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoUnderlyings>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldClearingBusinessDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSettlSessID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSettlSessSubID>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoTradingSessions>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoTradingSessions>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldTransactTime>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldResponseTransportType>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldResponseDestination>() { return true; }
@@ -57587,7 +58416,7 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldTotalNumPosRepor
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldUnsolicitedIndicator>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldPosReqResult>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldPosReqStatus>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoPartyIDs>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoPartyIDs>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAccount>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAcctIDSource>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAccountType>() { return true; }
@@ -57595,7 +58424,7 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSymbol>() { retu
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSymbolSfx>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityIDSource>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoSecurityAltID>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoSecurityAltID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldProduct>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCFICode>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityType>() { return true; }
@@ -57631,12 +58460,12 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldPool>() { return
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldContractSettlMonth>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCPProgram>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCPRegType>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoEvents>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoEvents>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldDatedDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldInterestAccrualDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCurrency>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoLegs>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoUnderlyings>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoLegs>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoUnderlyings>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldResponseTransportType>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldResponseDestination>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldText>() { return true; }
@@ -57655,7 +58484,7 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldPosReqResult>() 
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldClearingBusinessDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSettlSessID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSettlSessSubID>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoPartyIDs>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoPartyIDs>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAccount>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAcctIDSource>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAccountType>() { return true; }
@@ -57663,7 +58492,7 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSymbol>() { retu
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSymbolSfx>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityIDSource>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoSecurityAltID>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoSecurityAltID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldProduct>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCFICode>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityType>() { return true; }
@@ -57699,17 +58528,17 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldPool>() { return
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldContractSettlMonth>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCPProgram>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCPRegType>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoEvents>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoEvents>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldDatedDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldInterestAccrualDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCurrency>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSettlPrice>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSettlPriceType>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldPriorSettlPrice>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoLegs>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoUnderlyings>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoPositions>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoPosAmt>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoLegs>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoUnderlyings>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoPositions>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoPosAmt>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldRegistStatus>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldDeliveryDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldText>() { return true; }
@@ -57728,7 +58557,7 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSymbol>() { retu
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSymbolSfx>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityIDSource>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoSecurityAltID>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoSecurityAltID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldProduct>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCFICode>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityType>() { return true; }
@@ -57764,11 +58593,11 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldPool>() { return
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldContractSettlMonth>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCPProgram>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCPRegType>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoEvents>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoEvents>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldDatedDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldInterestAccrualDate>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoUnderlyings>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoLegs>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoUnderlyings>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoLegs>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldMultiLegReportingType>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldResponseTransportType>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldResponseDestination>() { return true; }
@@ -57800,7 +58629,7 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSymbol>() { retu
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSymbolSfx>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityIDSource>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoSecurityAltID>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoSecurityAltID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldProduct>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCFICode>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityType>() { return true; }
@@ -57836,17 +58665,17 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldPool>() { return
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldContractSettlMonth>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCPProgram>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCPRegType>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoEvents>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoEvents>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldDatedDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldInterestAccrualDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldTransactTime>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoTrdRegTimestamps>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoTrdRegTimestamps>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldResponseTransportType>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldResponseDestination>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldText>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldEncodedTextLen>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldEncodedText>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoLegs>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoLegs>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldClearingFeeIndicator>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldOrderCapacity>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldOrderRestrictions>() { return true; }
@@ -57856,7 +58685,7 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAcctIDSource>() 
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAccountType>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldPositionEffect>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldPreallocMethod>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoAllocs>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoAllocs>() { return true; }
 #undef FIXPP_MSG_CLASS
 
 #define FIXPP_MSG_CLASS MessageAllocationReport
@@ -57875,8 +58704,8 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAllocLinkID>() {
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAllocLinkType>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldBookingRefID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAllocNoOrdersType>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoOrders>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoExecs>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoOrders>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoExecs>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldPreviouslyReported>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldReversalIndicator>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldMatchType>() { return true; }
@@ -57885,7 +58714,7 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSymbol>() { retu
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSymbolSfx>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityIDSource>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoSecurityAltID>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoSecurityAltID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldProduct>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCFICode>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityType>() { return true; }
@@ -57921,12 +58750,12 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldPool>() { return
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldContractSettlMonth>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCPProgram>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCPRegType>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoEvents>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoEvents>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldDatedDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldInterestAccrualDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldDeliveryForm>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldPctAtRisk>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoInstrAttrib>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoInstrAttrib>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAgreementDesc>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAgreementID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAgreementDate>() { return true; }
@@ -57936,8 +58765,8 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldStartDate>() { r
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldEndDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldDeliveryType>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldMarginRatio>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoUnderlyings>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoLegs>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoUnderlyings>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoLegs>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldQuantity>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldQtyType>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldLastMkt>() { return true; }
@@ -57957,7 +58786,7 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldBenchmarkSecurit
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldBenchmarkSecurityIDSource>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCurrency>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAvgPxPrecision>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoPartyIDs>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoPartyIDs>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldTradeDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldTransactTime>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSettlType>() { return true; }
@@ -57981,7 +58810,7 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldEndAccruedIntere
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldStartCash>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldEndCash>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldLegalConfirm>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoStipulations>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoStipulations>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldYieldType>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldYield>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldYieldCalcDate>() { return true; }
@@ -57990,13 +58819,13 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldYieldRedemptionP
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldYieldRedemptionPriceType>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldTotNoAllocs>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldLastFragment>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoAllocs>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoAllocs>() { return true; }
 #undef FIXPP_MSG_CLASS
 
 #define FIXPP_MSG_CLASS MessageAllocationReportAck
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAllocReportID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAllocID>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoPartyIDs>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoPartyIDs>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecondaryAllocID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldTradeDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldTransactTime>() { return true; }
@@ -58010,7 +58839,7 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityType>() 
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldText>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldEncodedTextLen>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldEncodedText>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoAllocs>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoAllocs>() { return true; }
 #undef FIXPP_MSG_CLASS
 
 #define FIXPP_MSG_CLASS MessageConfirmationAck
@@ -58028,7 +58857,7 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldEncodedText>() {
 #define FIXPP_MSG_CLASS MessageSettlementInstructionRequest
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSettlInstReqID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldTransactTime>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoPartyIDs>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoPartyIDs>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAllocAccount>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAllocAcctIDSource>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSide>() { return true; }
@@ -58047,14 +58876,14 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldStandInstDbID>()
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAsgnRptID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldTotNumAssignmentReports>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldLastRptRequested>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoPartyIDs>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoPartyIDs>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAccount>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAccountType>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSymbol>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSymbolSfx>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityIDSource>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoSecurityAltID>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoSecurityAltID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldProduct>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCFICode>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityType>() { return true; }
@@ -58090,14 +58919,14 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldPool>() { return
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldContractSettlMonth>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCPProgram>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCPRegType>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoEvents>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoEvents>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldDatedDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldInterestAccrualDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCurrency>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoLegs>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoUnderlyings>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoPositions>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoPosAmt>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoLegs>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoUnderlyings>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoPositions>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoPosAmt>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldThresholdAmount>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSettlPrice>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSettlPriceType>() { return true; }
@@ -58120,20 +58949,20 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCollReqID>() { r
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCollAsgnReason>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldTransactTime>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldExpireTime>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoPartyIDs>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoPartyIDs>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAccount>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAccountType>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldClOrdID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldOrderID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecondaryOrderID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecondaryClOrdID>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoExecs>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoTrades>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoExecs>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoTrades>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSymbol>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSymbolSfx>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityIDSource>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoSecurityAltID>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoSecurityAltID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldProduct>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCFICode>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityType>() { return true; }
@@ -58169,7 +58998,7 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldPool>() { return
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldContractSettlMonth>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCPProgram>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCPRegType>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoEvents>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoEvents>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldDatedDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldInterestAccrualDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAgreementDesc>() { return true; }
@@ -58185,14 +59014,14 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSettlDate>() { r
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldQuantity>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldQtyType>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCurrency>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoLegs>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoUnderlyings>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoLegs>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoUnderlyings>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldMarginExcess>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldTotalNetValue>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCashOutstanding>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoTrdRegTimestamps>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoTrdRegTimestamps>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSide>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoMiscFees>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoMiscFees>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldPrice>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldPriceType>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAccruedInterestAmt>() { return true; }
@@ -58207,7 +59036,7 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldBenchmarkPrice>(
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldBenchmarkPriceType>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldBenchmarkSecurityID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldBenchmarkSecurityIDSource>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoStipulations>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoStipulations>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldTradingSessionID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldTradingSessionSubID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSettlSessID>() { return true; }
@@ -58226,20 +59055,20 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCollAsgnTransTyp
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCollAsgnRefID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldTransactTime>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldExpireTime>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoPartyIDs>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoPartyIDs>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAccount>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAccountType>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldClOrdID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldOrderID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecondaryOrderID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecondaryClOrdID>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoExecs>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoTrades>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoExecs>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoTrades>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSymbol>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSymbolSfx>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityIDSource>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoSecurityAltID>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoSecurityAltID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldProduct>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCFICode>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityType>() { return true; }
@@ -58275,7 +59104,7 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldPool>() { return
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldContractSettlMonth>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCPProgram>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCPRegType>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoEvents>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoEvents>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldDatedDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldInterestAccrualDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAgreementDesc>() { return true; }
@@ -58291,14 +59120,14 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSettlDate>() { r
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldQuantity>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldQtyType>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCurrency>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoLegs>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoUnderlyings>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoLegs>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoUnderlyings>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldMarginExcess>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldTotalNetValue>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCashOutstanding>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoTrdRegTimestamps>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoTrdRegTimestamps>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSide>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoMiscFees>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoMiscFees>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldPrice>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldPriceType>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAccruedInterestAmt>() { return true; }
@@ -58313,12 +59142,12 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldBenchmarkPrice>(
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldBenchmarkPriceType>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldBenchmarkSecurityID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldBenchmarkSecurityIDSource>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoStipulations>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoStipulations>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSettlDeliveryType>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldStandInstDbType>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldStandInstDbName>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldStandInstDbID>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoDlvyInst>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoDlvyInst>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldTradingSessionID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldTradingSessionSubID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSettlSessID>() { return true; }
@@ -58338,20 +59167,20 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCollAsgnTransTyp
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCollAsgnRespType>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCollAsgnRejectReason>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldTransactTime>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoPartyIDs>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoPartyIDs>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAccount>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAccountType>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldClOrdID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldOrderID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecondaryOrderID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecondaryClOrdID>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoExecs>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoTrades>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoExecs>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoTrades>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSymbol>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSymbolSfx>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityIDSource>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoSecurityAltID>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoSecurityAltID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldProduct>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCFICode>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityType>() { return true; }
@@ -58387,7 +59216,7 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldPool>() { return
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldContractSettlMonth>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCPProgram>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCPRegType>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoEvents>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoEvents>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldDatedDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldInterestAccrualDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAgreementDesc>() { return true; }
@@ -58403,14 +59232,14 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSettlDate>() { r
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldQuantity>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldQtyType>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCurrency>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoLegs>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoUnderlyings>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoLegs>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoUnderlyings>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldMarginExcess>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldTotalNetValue>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCashOutstanding>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoTrdRegTimestamps>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoTrdRegTimestamps>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSide>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoMiscFees>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoMiscFees>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldPrice>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldPriceType>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAccruedInterestAmt>() { return true; }
@@ -58425,7 +59254,7 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldBenchmarkPrice>(
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldBenchmarkPriceType>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldBenchmarkSecurityID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldBenchmarkSecurityIDSource>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoStipulations>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoStipulations>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldText>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldEncodedTextLen>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldEncodedText>() { return true; }
@@ -58437,20 +59266,20 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCollInquiryID>()
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCollStatus>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldTotNumReports>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldLastRptRequested>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoPartyIDs>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoPartyIDs>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAccount>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAccountType>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldClOrdID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldOrderID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecondaryOrderID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecondaryClOrdID>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoExecs>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoTrades>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoExecs>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoTrades>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSymbol>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSymbolSfx>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityIDSource>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoSecurityAltID>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoSecurityAltID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldProduct>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCFICode>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityType>() { return true; }
@@ -58486,7 +59315,7 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldPool>() { return
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldContractSettlMonth>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCPProgram>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCPRegType>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoEvents>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoEvents>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldDatedDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldInterestAccrualDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAgreementDesc>() { return true; }
@@ -58502,14 +59331,14 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSettlDate>() { r
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldQuantity>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldQtyType>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCurrency>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoLegs>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoUnderlyings>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoLegs>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoUnderlyings>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldMarginExcess>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldTotalNetValue>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCashOutstanding>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoTrdRegTimestamps>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoTrdRegTimestamps>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSide>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoMiscFees>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoMiscFees>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldPrice>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldPriceType>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAccruedInterestAmt>() { return true; }
@@ -58524,12 +59353,12 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldBenchmarkPrice>(
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldBenchmarkPriceType>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldBenchmarkSecurityID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldBenchmarkSecurityIDSource>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoStipulations>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoStipulations>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSettlDeliveryType>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldStandInstDbType>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldStandInstDbName>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldStandInstDbID>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoDlvyInst>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoDlvyInst>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldTradingSessionID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldTradingSessionSubID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSettlSessID>() { return true; }
@@ -58542,24 +59371,24 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldEncodedText>() {
 
 #define FIXPP_MSG_CLASS MessageCollateralInquiry
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCollInquiryID>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoCollInquiryQualifier>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoCollInquiryQualifier>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSubscriptionRequestType>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldResponseTransportType>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldResponseDestination>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoPartyIDs>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoPartyIDs>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAccount>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAccountType>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldClOrdID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldOrderID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecondaryOrderID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecondaryClOrdID>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoExecs>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoTrades>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoExecs>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoTrades>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSymbol>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSymbolSfx>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityIDSource>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoSecurityAltID>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoSecurityAltID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldProduct>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCFICode>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityType>() { return true; }
@@ -58595,7 +59424,7 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldPool>() { return
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldContractSettlMonth>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCPProgram>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCPRegType>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoEvents>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoEvents>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldDatedDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldInterestAccrualDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAgreementDesc>() { return true; }
@@ -58611,12 +59440,12 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSettlDate>() { r
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldQuantity>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldQtyType>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCurrency>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoLegs>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoUnderlyings>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoLegs>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoUnderlyings>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldMarginExcess>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldTotalNetValue>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCashOutstanding>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoTrdRegTimestamps>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoTrdRegTimestamps>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSide>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldPrice>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldPriceType>() { return true; }
@@ -58632,12 +59461,12 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldBenchmarkPrice>(
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldBenchmarkPriceType>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldBenchmarkSecurityID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldBenchmarkSecurityIDSource>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoStipulations>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoStipulations>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSettlDeliveryType>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldStandInstDbType>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldStandInstDbName>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldStandInstDbID>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoDlvyInst>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoDlvyInst>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldTradingSessionID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldTradingSessionSubID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSettlSessID>() { return true; }
@@ -58651,7 +59480,7 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldEncodedText>() {
 #define FIXPP_MSG_CLASS MessageNetworkCounterpartySystemStatusRequest
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNetworkRequestType>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNetworkRequestID>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoCompIDs>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoCompIDs>() { return true; }
 #undef FIXPP_MSG_CLASS
 
 #define FIXPP_MSG_CLASS MessageNetworkCounterpartySystemStatusResponse
@@ -58659,7 +59488,7 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNetworkStatusRes
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNetworkRequestID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNetworkResponseID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldLastNetworkResponseID>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoCompIDs>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoCompIDs>() { return true; }
 #undef FIXPP_MSG_CLASS
 
 #define FIXPP_MSG_CLASS MessageUserRequest
@@ -58683,22 +59512,22 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldUserStatusText>(
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCollInquiryID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCollInquiryStatus>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCollInquiryResult>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoCollInquiryQualifier>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoCollInquiryQualifier>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldTotNumReports>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoPartyIDs>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoPartyIDs>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAccount>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAccountType>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldClOrdID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldOrderID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecondaryOrderID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecondaryClOrdID>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoExecs>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoTrades>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoExecs>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoTrades>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSymbol>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSymbolSfx>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityIDSource>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoSecurityAltID>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoSecurityAltID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldProduct>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCFICode>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecurityType>() { return true; }
@@ -58734,7 +59563,7 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldPool>() { return
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldContractSettlMonth>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCPProgram>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCPRegType>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoEvents>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoEvents>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldDatedDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldInterestAccrualDate>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAgreementDesc>() { return true; }
@@ -58750,8 +59579,8 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSettlDate>() { r
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldQuantity>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldQtyType>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldCurrency>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoLegs>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoUnderlyings>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoLegs>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoUnderlyings>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldTradingSessionID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldTradingSessionSubID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSettlSessID>() { return true; }
@@ -58767,7 +59596,7 @@ template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldEncodedText>() {
 #define FIXPP_MSG_CLASS MessageConfirmationRequest
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldConfirmReqID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldConfirmType>() { return true; }
-template<> inline bool constexpr FIXPP_MSG_CLASS::hasField<FieldNoOrders>() { return true; }
+template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldNoOrders>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldAllocID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldSecondaryAllocID>() { return true; }
 template<> inline constexpr bool FIXPP_MSG_CLASS::hasField<FieldIndividualAllocID>() { return true; }
