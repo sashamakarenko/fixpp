@@ -98,8 +98,11 @@ class FloatPrinter:
         self.val = val
 
     def to_string(self):
-        res = f"(({self.val.type.name}*){self.val.address})->toString(true).c_str()"
-        return gdb.parse_and_eval(res).string()
+        expr = f"(({self.val.type.name}*){self.val.address})->toString(true).c_str()"
+        try:
+            return gdb.parse_and_eval(expr).string()
+        except:
+            return ''
 
     def display_hint(self):
         return 'string'
